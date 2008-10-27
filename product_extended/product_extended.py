@@ -1,22 +1,30 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution	
-#    Copyright (C) 2004-2008 Tiny SPRL (<http://tiny.be>). All Rights Reserved
-#    $Id$
+# Copyright (c) 2006 TINY SPRL. (http://tiny.be) All Rights Reserved.
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# $Id$
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsability of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# garantees and support are strongly adviced to contract a Free Software
+# Service Company
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# This program is Free Software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
 
@@ -32,7 +40,7 @@ class product_supplierinfo(osv.osv):
     def _last_order(self, cr, uid, ids, name, arg, context):
         res = {}
         for supinfo in self.browse(cr, uid, ids):
-            cr.execute("select po.id, max(po.date_approve) from purchase_order as po, purchase_order_line as line where po.id=line.order_id and product_id=%s and partner_id=%s and state='approved' group by po.id", (supinfo.product_id.id, supinfo.name.id,))
+            cr.execute("select po.id, max(po.date_approve) from purchase_order as po, purchase_order_line as line where po.id=line.order_id and product_id=%d and partner_id=%d and state='approved' group by po.id", (supinfo.product_id.id, supinfo.name.id,))
             record = cr.fetchone()
             if record:
                 res[supinfo.id] = record[0]
@@ -67,7 +75,7 @@ class product_product(osv.osv):
     def _find_op(self, cr, uid, ids, name, arg, context):
         res = {}
         for product_id in ids:
-            cr.execute('SELECT swo.id from stock_warehouse_orderpoint AS swo WHERE product_id=%s', (product_id,))
+            cr.execute('SELECT swo.id from stock_warehouse_orderpoint AS swo WHERE product_id=%d', (product_id,))
             op_id = cr.fetchone()
             if op_id:
                 res[product_id] = op_id[0]
