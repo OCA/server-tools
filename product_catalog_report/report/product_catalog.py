@@ -95,7 +95,7 @@ class product_catalog(report_sxw.rml_parse):
 
     def _get_packaging_title(self,product,index):
         packaging_ids = self.pool.get('product.packaging').search(self.cr,self.uid,[('product_id','=',product)],limit=4)
-        packs = self.pool.get('product.packaging').read(self.cr,self.uid,packaging_ids)
+        packs = self.pool.get('product.packaging').read(self.cr,self.uid,packaging_ids,['name'])
         if len(packs) > index:
             s = str(packs[index]['name'])
             if len(s)>9:
@@ -107,7 +107,7 @@ class product_catalog(report_sxw.rml_parse):
 
     def _get_packaging_value(self,product,index):
         packaging_ids = self.pool.get('product.packaging').search(self.cr,self.uid,[('product_id','=',product)],limit=4)
-        packs = self.pool.get('product.packaging').read(self.cr,self.uid,packaging_ids)
+        packs = self.pool.get('product.packaging').read(self.cr,self.uid,packaging_ids,['qty'])
         if len(packs) > index:
             return str(packs[index]['qty'])
         return False
