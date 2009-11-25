@@ -34,7 +34,7 @@ Product extension. This module adds:
     "demo_xml" : [],
     "update_xml" : ["product_extended_view.xml","product_extended_wizard.xml","mrp_view.xml"],
     "active": False,
-    "installable": True
+    "installable": False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    "name":"Product Catalog",
+    "name":"Product Catalog - Print Report of product catalog with product image",
     "version":"1.0",
     "author":"Tiny",
     "category":"Generic Modules/Inventory Control",

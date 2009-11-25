@@ -27,7 +27,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ###############################################################################
 {
-    "name" : "Products & Pricelists",
+    "name" : "Products & Pricelists - Define quality control and testing parameters in product",
     "version" : "1.0",
     "author" : "Tiny",
     "category" : "Generic Modules/Inventory Control",
