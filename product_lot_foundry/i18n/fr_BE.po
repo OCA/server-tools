@@ -1,0 +1,471 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_lot_foundry
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2009-11-25 13:31:27+0000\n"
+"PO-Revision-Date: 2009-11-25 13:31:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_lot_foundry
+#: field:stock.production.lot.all,lot_id:0
+#: field:stock.production.lot.reservation,lot_id:0
+msgid "Lot"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Lots Assignations"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:product.product:0
+msgid "Dimensions"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:product.template,name:product_lot_foundry.product_product_ampco21_product_template
+msgid "AMPCO21 plate"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.actions.act_window,name:product_lot_foundry.act_production_product
+#: view:product.lot.foundry.heatcode:0
+#: field:product.lot.foundry.heatcode,lot_ids:0
+#: field:product.product,lot_ids:0
+msgid "Lots"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Automatic Declaration"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.actions.act_window,name:product_lot_foundry.action_heatcode_all
+#: model:ir.ui.menu,name:product_lot_foundry.menu_action_inventory_heat
+msgid "Heat Codes"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot,quality_info:0
+msgid "Quality Information"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot,status:0
+msgid "Status"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Sale Order Lines"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.product,size_x:0
+#: field:sale.order.line,size_x:0
+#: field:stock.production.lot,size_x:0
+#: field:stock.production.lot.reservation,size_x:0
+msgid "Width"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.lot.foundry.heatcode,state:0
+msgid "State"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Create Invoice"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:product.lot.foundry.heatcode,state:0
+#: selection:stock.production.lot,status:0
+msgid "Draft"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Set to Draft"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Untaxed amount"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Compute"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Qty"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.module.module,description:product_lot_foundry.module_meta_information
+msgid "Lots management for a metal company: cutting, heatcode, sizes"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot,type:0
+msgid "Type"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Invoice Lines"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Recreate Procurement"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.model,name:product_lot_foundry.model_product_lot_foundry_heatcode
+#: view:product.lot.foundry.heatcode:0
+#: field:product.lot.foundry.heatcode,name:0
+msgid "Heat Code"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:product.lot.foundry.heatcode:0
+msgid "Mechanical Properties"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Procurement Corrected"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.lot.foundry.heatcode.chemical,name:0
+#: field:product.lot.foundry.heatcode.mecanical,name:0
+msgid "Property"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:res.company,overdue_msg:product_lot_foundry.main_company_sa
+msgid "Would your payment have been carried out after this mail was sent, please consider the present one as void. Do not hesitate to contact our accounting department"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Invoice Corrected"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Manual Description"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.product,size_z:0
+#: field:sale.order.line,size_z:0
+#: field:stock.production.lot,size_z:0
+#: field:stock.production.lot.reservation,size_z:0
+msgid "Thickness"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Total amount"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.ui.menu,name:product_lot_foundry.menu_action_inventory
+msgid "Inventory Control"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.model,name:product_lot_foundry.model_product_lot_foundry_heatcode_chemical
+#: view:product.lot.foundry.heatcode:0
+#: field:product.lot.foundry.heatcode,chemical_ids:0
+msgid "Chemical Properties"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.product,cutting:0
+msgid "Can be Cutted"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Automatic Reservation"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:sale.order.line,prodlot_ids:0
+msgid "Lots Assignation"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Confirm Order"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:product.lot.foundry.heatcode,state:0
+#: selection:stock.production.lot,status:0
+msgid "Valid"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.lot.foundry.heatcode,date:0
+#: field:stock.production.lot.reservation,date:0
+msgid "Date"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Extra Info"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot.all,name:0
+msgid "Quantity"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Properties"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Cancel Order"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Inventory Moves"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:product.lot.foundry.heatcode:0
+msgid "Heat code"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:product.product:0
+#: constraint:res.partner:0
+msgid "Error: Invalid EAN,UPC,JPC,GTIN code"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot,available:0
+msgid "Availables"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:stock.production.lot,type:0
+msgid "Bar"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:product.template:0
+msgid "Error: UOS must be in a different category than the UOM"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:stock.production.lot,type:0
+msgid "Plate"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:product.template:0
+msgid "Error: The default UOM and the purchase UOM must be in the same category."
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Notes"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Sale Order"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.product,auto_picking:0
+msgid "Auto Picking for Production"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.lot.foundry.heatcode.chemical,value:0
+#: field:product.lot.foundry.heatcode.mecanical,value:0
+msgid "Value"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.lot.foundry.heatcode.chemical,heatcode_id:0
+#: field:product.lot.foundry.heatcode.mecanical,heatcode_id:0
+#: field:stock.production.lot,heatcode_id:0
+msgid "Heatcode"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:product.product,size_y:0
+#: field:stock.production.lot,size_y:0
+#: field:stock.production.lot.reservation,size_y:0
+msgid "Length"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.model,name:product_lot_foundry.model_stock_production_lot_reservation
+msgid "stock.production.lot.reservation"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:stock.production.lot.reservation,name:0
+msgid "Reservation"
+msgstr ""
+
+#. module: product_lot_foundry
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.module.module,shortdesc:product_lot_foundry.module_meta_information
+msgid "Products Lot Foundry"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:stock.production.lot,status:0
+msgid "Non Conformity"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:stock.production.lot:0
+msgid "Dimension"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "History"
+msgstr ""
+
+#. module: product_lot_foundry
+#: help:sale.order.line,prodlot_id:0
+#: help:sale.order.line,prodlot_ids:0
+msgid "Production lot is used to put a serial number on the production"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.model,name:product_lot_foundry.model_stock_production_lot_all
+msgid "stock.production.lot.all"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Recreate Invoice"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Related invoices"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Other data"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:stock.production.lot:0
+#: field:stock.production.lot,reservation_ids:0
+msgid "Reservations"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:sale.order.line,size_y:0
+msgid "Height"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "States"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Sales order lines"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.model,name:product_lot_foundry.model_product_lot_foundry_heatcode_mecanical
+#: field:product.lot.foundry.heatcode,mecanical_ids:0
+msgid "Mecanical Properties"
+msgstr ""
+
+#. module: product_lot_foundry
+#: field:sale.order.line,prodlot_id:0
+msgid "Production lot"
+msgstr ""
+
+#. module: product_lot_foundry
+#: selection:stock.production.lot,status:0
+msgid "Done"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "UoM"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Related packings"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:ir.actions.act_window,name:product_lot_foundry.action_heatcode_draft
+#: model:ir.ui.menu,name:product_lot_foundry.menu_action_inventory_draft_heat
+msgid "Draft Heat Codes"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Sales order"
+msgstr ""
+
+#. module: product_lot_foundry
+#: model:product.template,name:product_lot_foundry.product_product_ampco25_product_template
+msgid "Ampco25 Rectangle Bar"
+msgstr ""
+
+#. module: product_lot_foundry
+#: view:sale.order:0
+msgid "Order Line"
+msgstr ""
+

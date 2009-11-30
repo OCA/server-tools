@@ -1,0 +1,123 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_size
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2009-11-25 13:34:00+0000\n"
+"PO-Revision-Date: 2009-11-25 13:34:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_size
+#: constraint:product.template:0
+msgid "Error: UOS must be in a different category than the UOM"
+msgstr ""
+
+#. module: product_size
+#: constraint:product.product:0
+#: constraint:res.partner:0
+msgid "Error: Invalid EAN,UPC,JPC,GTIN code"
+msgstr ""
+
+#. module: product_size
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: product_size
+#: model:product.uom,name:product_size.product_uom_ft
+msgid "Ft"
+msgstr ""
+
+#. module: product_size
+#: view:product.product:0
+msgid "Dimensions"
+msgstr ""
+
+#. module: product_size
+#: model:product.template,name:product_size.product_product_ampco21_product_template
+msgid "AMPCO21 plate"
+msgstr ""
+
+#. module: product_size
+#: model:product.template,name:product_size.product_product_ampco25_cut_product_template
+msgid "Ampco25 Rectangle Bar - Cutted"
+msgstr ""
+
+#. module: product_size
+#: constraint:product.template:0
+msgid "Error: The default UOM and the purchase UOM must be in the same category."
+msgstr ""
+
+#. module: product_size
+#: model:product.uom,name:product_size.product_uom_m2
+msgid "Sq.M"
+msgstr ""
+
+#. module: product_size
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr ""
+
+#. module: product_size
+#: model:product.uom.categ,name:product_size.product_uom_categ_size2
+msgid "Square Length"
+msgstr ""
+
+#. module: product_size
+#: field:product.product,thickness:0
+#: field:stock.production.lot,thickness:0
+msgid "Thickness"
+msgstr ""
+
+#. module: product_size
+#: field:product.product,width:0
+#: field:stock.production.lot,width:0
+msgid "Width"
+msgstr ""
+
+#. module: product_size
+#: field:product.product,length:0
+#: model:product.uom.categ,name:product_size.product_uom_categ_size
+#: field:stock.production.lot,length:0
+msgid "Length"
+msgstr ""
+
+#. module: product_size
+#: model:product.uom,name:product_size.product_uom_m
+msgid "M"
+msgstr ""
+
+#. module: product_size
+#: constraint:mrp.bom:0
+msgid "Error ! You can not create recursive BoM."
+msgstr ""
+
+#. module: product_size
+#: model:res.company,overdue_msg:product_size.main_company_sa
+msgid "Would your payment have been carried out after this mail was sent, please consider the present one as void. Do not hesitate to contact our accounting department"
+msgstr ""
+
+#. module: product_size
+#: model:product.template,name:product_size.product_product_ampco25_product_template
+msgid "Ampco25 Rectangle Bar"
+msgstr ""
+
+#. module: product_size
+#: model:ir.module.module,description:product_size.module_meta_information
+msgid "Manage 3 dimensions size on lots.\n"
+"Implements demo data for a complex workflow on steel."
+msgstr ""
+
+#. module: product_size
+#: model:ir.module.module,shortdesc:product_size.module_meta_information
+msgid "Sizes of lots (width, length, thickness)"
+msgstr ""
+

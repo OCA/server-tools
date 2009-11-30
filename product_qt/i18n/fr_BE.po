@@ -1,0 +1,250 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_qt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2009-11-25 13:32:22+0000\n"
+"PO-Revision-Date: 2009-11-25 13:32:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_qt
+#: help:quality.test.config,min_limit:0
+msgid "Minimum Limit of measure"
+msgstr ""
+
+#. module: product_qt
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.module.module,description:product_qt.module_meta_information
+msgid "\n"
+"    This module add quality control and testing parameters in product\n"
+"    1> configure QC parameters for particular product.\n"
+"    2> QC testing on purchased raw material.\n"
+"    3> QC testing during production.\n"
+"    3> QC testing on finished goods.\n"
+"    "
+msgstr ""
+
+#. module: product_qt
+#: model:ir.actions.act_window,name:product_qt.action_testing_result_form
+#: model:ir.ui.menu,name:product_qt.menu_action_testing_result
+#: model:ir.ui.menu,name:product_qt.menu_testing_result
+#: view:testing.result:0
+msgid "Testing Result"
+msgstr ""
+
+#. module: product_qt
+#: help:product.product,raw_m_test:0
+msgid "Quality Testing configuration for raw material."
+msgstr ""
+
+#. module: product_qt
+#: selection:testing.result,type:0
+msgid "Raw Material Testing"
+msgstr ""
+
+#. module: product_qt
+#: help:product.product,finished_test:0
+msgid "Quality Testing configuration for finished goods."
+msgstr ""
+
+#. module: product_qt
+#: field:testing.result,test_date:0
+msgid "Testing Date"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,actual_val:0
+msgid "Actual Value"
+msgstr ""
+
+#. module: product_qt
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr ""
+
+#. module: product_qt
+#: selection:testing.result,type:0
+msgid "Finish Goods Testing"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,test_id:0
+msgid "Test Result"
+msgstr ""
+
+#. module: product_qt
+#: field:product.product,production_test:0
+msgid "During Production testing"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,uom:0
+msgid "UOM"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,state:0
+msgid "Status"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,product_idf:0
+#: field:quality.test.config,product_idp:0
+#: field:quality.test.config,product_idr:0
+#: field:testing.result,product:0
+msgid "Product"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test,description:0
+msgid "Description"
+msgstr ""
+
+#. module: product_qt
+#: field:mrp.production.workcenter.line,qlty_test_reject:0
+#: selection:quality.test.config,state:0
+#: field:stock.move,qlty_test_reject:0
+msgid "Rejected"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.model,name:product_qt.model_quality_test_config
+msgid "quality test configuration"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test,name:0
+#: field:quality.test.config,name:0
+msgid "Test Case"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,max_limit:0
+msgid "Max Limit"
+msgstr ""
+
+#. module: product_qt
+#: field:mrp.production.workcenter.line,qlty_test_accept:0
+#: selection:quality.test.config,state:0
+#: field:stock.move,qlty_test_accept:0
+msgid "Accepted"
+msgstr ""
+
+#. module: product_qt
+#: selection:testing.result,type:0
+msgid "During Production Testing"
+msgstr ""
+
+#. module: product_qt
+#: field:testing.result,type:0
+msgid "Testing Type"
+msgstr ""
+
+#. module: product_qt
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: product_qt
+#: view:product.product:0
+msgid "QC Config"
+msgstr ""
+
+#. module: product_qt
+#: field:quality.test.config,min_limit:0
+msgid "Min Limit"
+msgstr ""
+
+#. module: product_qt
+#: help:product.product,production_test:0
+msgid "Quality Testing configuration during production."
+msgstr ""
+
+#. module: product_qt
+#: field:product.product,finished_test:0
+msgid "Finished Goods testing"
+msgstr ""
+
+#. module: product_qt
+#: field:product.product,raw_m_test:0
+msgid "Raw material testing"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.model,name:product_qt.model_quality_test
+msgid "quality testings"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.model,name:product_qt.model_testing_result
+msgid "testing.result"
+msgstr ""
+
+#. module: product_qt
+#: field:testing.result,tester:0
+msgid "Tested By"
+msgstr ""
+
+#. module: product_qt
+#: field:testing.result,test_case:0
+msgid "Cases"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.module.module,shortdesc:product_qt.module_meta_information
+msgid "Products & Pricelists"
+msgstr ""
+
+#. module: product_qt
+#: wizard_button:qty_test,init,ok:0
+#: wizard_button:qty_test_finish,init,ok:0
+#: wizard_button:qty_test_prod,init,ok:0
+msgid "OK"
+msgstr ""
+
+#. module: product_qt
+#: view:quality.test.config:0
+msgid "QT Configuration"
+msgstr ""
+
+#. module: product_qt
+#: help:quality.test.config,max_limit:0
+msgid "Maximum Limit of measure"
+msgstr ""
+
+#. module: product_qt
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Move State"
+msgstr ""
+
+#. module: product_qt
+#: model:ir.actions.wizard,name:product_qt.qty_test_finish_id
+#: model:ir.actions.wizard,name:product_qt.qty_test_id
+#: model:ir.actions.wizard,name:product_qt.qty_test_prod_id
+#: view:mrp.production:0
+#: view:quality.test:0
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Quality Testing"
+msgstr ""
+
+#. module: product_qt
+#: wizard_button:qty_test,init,end:0
+#: wizard_button:qty_test_finish,init,end:0
+#: wizard_button:qty_test_prod,init,end:0
+msgid "Cancel"
+msgstr ""
+
