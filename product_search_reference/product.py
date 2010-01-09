@@ -30,7 +30,7 @@ class Product(osv.osv):
                     for x in product.seller_ids if x.product_code]) or ''
         return res
 
-    def _partner_ref2_search(self, cursor, user, obj, name, args):
+    def _partner_ref2_search(self, cursor, user, obj, name, args, context={}):
         supplierinfo_obj = self.pool.get('product.supplierinfo')
         args = args[:]
         i = 0
