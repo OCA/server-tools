@@ -22,20 +22,23 @@ class ProductImages(osv.osv):
     _name = "product.images"
     _description = __doc__
     
-    def _get_image(self, cr, uid, ids, field_name, arg, context={}):
+    def get_image(self, cr, uid, ids):
         res = {}
         for each in self.read(cr, uid, ids, ['link', 'filename', 'image']):
             if each['link']:
-                f = open(each['filename'],'rb')
+                f = open(each['filename'], 'rb')
                 res[each['id']] = base64.encodestring(f.read())
                 f.close()
             else:
                 res[each['id']] = each['image']
         return res
     
+    def _get_image(self, cr, uid, ids, field_name, arg, context={}):
+        return self.get_image(cr,uid,ids)
+    
     _columns = {
         'name':fields.char('Image Title', size=100, required=True),
-        'link':fields.boolean('Link?', help="Images can be linked from files in a remote web location (preffered) or on your file system"),
+        'link':fields.boolean('Link?', help="Images can be linked from files on your file system"),
         'image':fields.binary('Image', filters='*.png,*.jpeg,*.gif'),
         'filename':fields.char('File Location', size=250),
         'preview':fields.function(_get_image, type="binary", method=True),
