@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_product_image_form" model="ir.ui.view">
+			<field name="name">product.images.form</field>
+			<field name="model">product.images</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Product Images">
+					<notebook colspan="4">
+						<page string="Image">
+							<group col="4" colspan="4">
+								<field name="name" colspan="2" />
+								<field name="link" colspan="2" />
+							</group>
+							<group col="4" colspan="4" attrs="{'invisible':[('link','!=',0)]}">
+								<field name="image" colspan="4" />
+							</group>
+							<group col="4" colspan="4" attrs="{'invisible':[('link','=',0)]}">
+								<field name="filename" colspan="4" />
+							</group>
+							<separator string="Preview (Only when saved)" colspan="4" />
+							<field name="preview" widget="image" nolabel="1" colspan="4"/>
+						</page>
+						<page string="Comments">
+							<field name="comments" nolabel="1" colspan="4" />
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		<record id="view_product_image_tree" model="ir.ui.view">
+			<field name="name">product.images.tree</field>
+			<field name="model">product.images</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Product Images">
+					<field name="name" select="1" />
+					<field name="image" />
+					<field name="comments" select="2" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_product_form_img_inh" model="ir.ui.view">
+			<field name="name">product.product.images</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<xpath expr="/form/notebook" position="inside">
+					<page string="Images">
+						<field name="image_ids" nolabel="1" />
+					</page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
