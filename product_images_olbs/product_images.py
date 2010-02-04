@@ -15,7 +15,7 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
 from osv import osv, fields
-import base64
+import base64, urllib
 
 class ProductImages(osv.osv):
     "Products Image gallery"
@@ -26,7 +26,8 @@ class ProductImages(osv.osv):
         res = {}
         for each in self.read(cr, uid, ids, ['link', 'filename', 'image']):
             if each['link']:
-                f = open(each['filename'], 'rb')
+                (filename, header) = urllib.urlretrieve(each['filename'])
+                f = open(filename , 'rb')
                 res[each['id']] = base64.encodestring(f.read())
                 f.close()
             else:
@@ -34,11 +35,11 @@ class ProductImages(osv.osv):
         return res
     
     def _get_image(self, cr, uid, ids, field_name, arg, context={}):
-        return self.get_image(cr,uid,ids)
+        return self.get_image(cr, uid, ids)
     
     _columns = {
         'name':fields.char('Image Title', size=100, required=True),
-        'link':fields.boolean('Link?', help="Images can be linked from files on your file system"),
+        'link':fields.boolean('Link?', help="Images can be linked from files on your file system or remote (Preferred)"),
         'image':fields.binary('Image', filters='*.png,*.jpeg,*.gif'),
         'filename':fields.char('File Location', size=250),
         'preview':fields.function(_get_image, type="binary", method=True),
