@@ -21,7 +21,7 @@
     "name" : "Product extension to track sales and purchases",
     "version" : "1.0",
     "author" : "Tiny",
-    "depends" : ["product", "purchase", "sale"],
+    "depends" : ["product", "purchase", "sale", "mrp"],
     "category" : "Generic Modules/Inventory Control",
     "description": """
 Product extension. This module adds:
@@ -34,7 +34,7 @@ Product extension. This module adds:
     "demo_xml" : [],
     "update_xml" : ["product_extended_view.xml","product_extended_wizard.xml","mrp_view.xml"],
     "active": False,
-    "installable": False
+    "installable": True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
