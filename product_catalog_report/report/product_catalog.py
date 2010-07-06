@@ -1,5 +1,5 @@
 ##############################################################################
-#
+#    
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
@@ -14,7 +14,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
 
@@ -24,8 +24,6 @@ import reportlab.lib.units
 import urllib
 import base64
 from report import report_sxw
-import netsvc
-logger = netsvc.Logger()
 
 class product_catalog(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
@@ -57,12 +55,11 @@ class product_catalog(report_sxw.rml_parse):
                         img_data =  base64.encodestring(urllib.urlopen(datas[0]['link']).read())
                         return img_data
                     except Exception,innerEx:
-                         logger.notifyChannel(innerEx)
+                        print innerEx
                 elif datas[0]['datas']:
                     return datas[0]['datas']
             except Exception,e:
-                   return (False, str(e))
-
+                print e
         return None
 
     def setCat(self,cats):

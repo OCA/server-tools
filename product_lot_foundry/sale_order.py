@@ -68,6 +68,7 @@ prod_lot_lines()
 class sale_order(osv.osv):
     _inherit = "sale.order"
     def action_wait(self, cr, uid, ids, *args):
+        print 'Confirm'
         res = super(sale_order,self).action_wait(cr, uid, ids, *args)
         for sale in self.browse(cr, uid, ids):
             for line in sale.order_line:
