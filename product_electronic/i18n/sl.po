@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-11-25 13:27+0000\n"
-"PO-Revision-Date: 2010-07-29 11:57+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2010-08-29 14:48+0000\n"
+"Last-Translator: Matic Gradišer <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-08-26 04:05+0000\n"
+"X-Launchpad-Export-Date: 2010-08-30 04:10+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #. module: product_manufacturer
 #: model:ir.module.module,description:product_manufacturer.module_meta_information
 msgid "A module that add manufacturers and attributes on the product form"
-msgstr ""
+msgstr "Modul, ki doda proizvajalce in atribute v obrazec produkta"
 
 #. module: product_manufacturer
 #: field:product.product,manufacturer_pref:0
 msgid "Manufacturer product code"
-msgstr ""
+msgstr "Koda produkta proizvajalca"
 
 #. module: product_manufacturer
 #: constraint:ir.ui.view:0
@@ -47,7 +47,7 @@ msgstr ""
 #. module: product_manufacturer
 #: model:ir.model,name:product_manufacturer.model_product_electronic_attribute
 msgid "Product attributes"
-msgstr ""
+msgstr "Atributi produkta"
 
 #. module: product_manufacturer
 #: view:product.product:0
@@ -57,7 +57,7 @@ msgstr ""
 #. module: product_manufacturer
 #: view:product.product:0
 msgid "Product reference"
-msgstr ""
+msgstr "Referenca produkta"
 
 #. module: product_manufacturer
 #: field:product.manufacturer.attribute,name:0
