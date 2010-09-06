@@ -30,7 +30,7 @@ class product_supplierinfo(osv.osv):
     def _last_order(self, cr, uid, ids, name, arg, context):
         res = {}
         for supinfo in self.browse(cr, uid, ids):
-            cr.execute("select po.id, max(po.date_approve) from purchase_order as po, purchase_order_line as line where po.id=line.order_id and product_id=%s and partner_id=%s and state='approved' group by po.id", (supinfo.product_id.id, supinfo.name.id,))
+            cr.execute("select po.id, max(po.date_approve) from purchase_order as po, purchase_order_line as line where po.id=line.order_id and line.product_id=%s and po.partner_id=%s and po.state='approved' group by po.id", (supinfo.product_id.id, supinfo.name.id,))
             record = cr.fetchone()
             if record:
                 res[supinfo.id] = record[0]
