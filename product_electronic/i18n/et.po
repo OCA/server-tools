@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-11-25 13:27+0000\n"
-"PO-Revision-Date: 2010-07-31 04:39+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2010-10-26 17:21+0000\n"
+"Last-Translator: Jalakas <Unknown>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-10-15 04:54+0000\n"
+"X-Launchpad-Export-Date: 2010-10-27 05:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #. module: product_manufacturer
 #: model:ir.module.module,description:product_manufacturer.module_meta_information
 msgid "A module that add manufacturers and attributes on the product form"
-msgstr ""
+msgstr "Moodul, mis lisab tootjad ja atribuudid toote vormi"
 
 #. module: product_manufacturer
 #: field:product.product,manufacturer_pref:0
@@ -93,7 +93,7 @@ msgstr "Omadused"
 #. module: product_manufacturer
 #: model:ir.module.module,shortdesc:product_manufacturer.module_meta_information
 msgid "Products Attributes & Manufacturers"
-msgstr ""
+msgstr "Toodete Atribuudid & Tootjad"
 
 #. module: product_manufacturer
 #: field:product.product,manufacturer_pname:0
