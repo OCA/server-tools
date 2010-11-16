@@ -17,25 +17,28 @@
 from osv import osv, fields
 import base64, urllib
 
-class ProductImages(osv.osv):
+class product_images(osv.osv):
     "Products Image gallery"
     _name = "product.images"
     _description = __doc__
+    _table = "product_images"
     
-    def get_image(self, cr, uid, ids):
-        res = {}
-        for each in self.read(cr, uid, ids, ['link', 'filename', 'image']):
-            if each['link']:
-                (filename, header) = urllib.urlretrieve(each['filename'])
-                f = open(filename , 'rb')
-                res[each['id']] = base64.encodestring(f.read())
-                f.close()
-            else:
-                res[each['id']] = each['image']
-        return res
+    def get_image(self, cr, uid, id):
+        each = self.read(cr, uid, id, ['link', 'filename', 'image'])
+        if each['link']:
+            (filename, header) = urllib.urlretrieve(each['filename'])
+            f = open(filename , 'rb')
+            img = base64.encodestring(f.read())
+            f.close()
+        else:
+            img = each['image']
+        return img
     
     def _get_image(self, cr, uid, ids, field_name, arg, context={}):
-        return self.get_image(cr, uid, ids)
+        res = {}
+        for each in ids:
+            res[each] = self.get_image(cr, uid, each)
+        return res
     
     _columns = {
         'name':fields.char('Image Title', size=100, required=True),
@@ -46,4 +49,4 @@ class ProductImages(osv.osv):
         'comments':fields.text('Comments'),
         'product_id':fields.many2one('product.product', 'Product')
     }
-ProductImages()
+product_images()
