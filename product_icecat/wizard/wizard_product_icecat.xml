@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="wizard_product_icecat" model="ir.ui.view">
+            <field name="name">product.icecat.wizard.form</field>
+            <field name="model">product.icecat.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Import icecat XML">
+                <group col="4" colspan="4" attrs="{'invisible':[('state','=','done')]}">
+                    <label string="Are you sure to import from icecat values to product?" colspan="4"/>
+                    <field name="name"/><newline/>
+                    <field name="description"/><newline/>
+                    <field name="description_sale"/><newline/>
+                    <field name="language_id"/><newline/>
+                    <field name="image"/><newline/>
+                    <field name="html"/>
+                </group>
+                <group col="4" colspan="4" attrs="{'invisible':[('state','=','first')]}">
+                    <field name="result"/><newline/>
+                    <field name="resimg"/>
+                </group>
+                <group col="2" colspan="4">
+                    <field name="state" invisible="1" />
+                    <button string="Cancel" special="cancel" icon="gtk-cancel" states="first" />
+                    <button string="update" name="import_xml" type="object" icon="gtk-ok" states="first" />
+                    <button string="Close" special="cancel" icon="gtk-ok" states="done" />
+                </group>
+            </form>
+            </field>
+        </record>
+
+        <act_window name="Import Icecat"
+            res_model="product.icecat.wizard"
+            src_model="product.product"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="act_product_icecat"
+            groups="base.group_extended"/>
+    </data>
+</openerp>
