@@ -30,13 +30,14 @@ class product_template(osv.osv):
             string='Public Price',
             method=True,
             view_load=True,
-            required=True, size=64),
+            required=True,
+            help="Base price for computing the customer price. Sometimes called the catalog price."),
         'standard_price': fields.property('product.template',
             type='float',
             string='Standard Price',
             method=True,
             view_load=True,
-            required=True, size=64,
+            required=True,
             help="Product's cost for accounting stock valuation. It is the base price for the supplier price."),
         }
 product_template()
@@ -50,7 +51,7 @@ class pricelist_partnerinfo(osv.osv):
             string='Seller Price',
             method=True,
             view_load=True,
-            required=True, size=64,
+            required=True,
             help="This price will be considered as a price for the supplier UoM if any or the default Unit of Measure of the product otherwise"),
     }
 pricelist_partnerinfo()
