@@ -1,5 +1,5 @@
 {
-    "name" : "Product GTIN EAN UPC JPC Support",
+    "name" : "Invalid - Please use chricar_product_gtin instead Product GTIN EAN UPC JPC Support",
     "version" : "1.0",
     "author" : "ChriCar Beteiligungs- und Beratungs- GmbH",
     "website" : "http://www.chricar.at/ChriCar",
