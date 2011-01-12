@@ -56,7 +56,7 @@
 		<field name="view_mode">tree,form</field>
 	</record>
 	
-	<menuitem name="Indexes" id="menu_product_config_index" parent="product.menu_config_product" action="action_index_tree"/>
+	<menuitem name="Indexes" id="menu_product_config_index" parent="base.menu_product" action="action_index_tree"/>
 	
 	<menuitem name="New index" id="menu_product_config_new_index" parent="menu_product_config_index" action="action_index_form"/>
 
