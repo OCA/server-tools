@@ -107,7 +107,8 @@ class product_product(osv.osv):
             price = 0
             if bom.bom_lines:
                 for sbom in bom.bom_lines:
-                    price += self._calc_price(cr, uid, sbom) * sbom.product_qty                    
+                    my_qty = sbom.bom_lines and 1.0 or sbom.product_qty
+                    price += self._calc_price(cr, uid, sbom) * my_qty                    
             else:
                 bom_obj = pooler.get_pool(cr.dbname).get('mrp.bom')
                 no_child_bom = bom_obj.search(cr, uid, [('product_id', '=', bom.product_id.id), ('bom_id', '=', False)])

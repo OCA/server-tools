@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_fixed">
+            <field name="name">product.pricelist.item.form.fixed</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_max_margin" position="after">
+                    <field name="fixed_price" colspan="3" attrs="{'readonly': [('base','!=', -3)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_price_discount">
+            <field name="name">product.pricelist.item.form.price_discount</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_discount" position="replace">
+                    <field name="price_discount" nolabel="1" attrs="{'readonly': [('base','==', -3)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_price_surcharge">
+            <field name="name">product.pricelist.item.form.price_surcharge</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_surcharge" position="replace">
+                    <field name="price_surcharge" nolabel="1" attrs="{'readonly': [('base','==', -3)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_price_round">
+            <field name="name">product.pricelist.item.form.price_round</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_round" position="replace">
+                    <field name="price_round" string="Rounding Method" attrs="{'readonly': [('base','==', -3)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_price_min_margin">
+            <field name="name">product.pricelist.item.form.price_min_margin</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_min_margin" position="replace">
+                    <field name="price_min_margin" string="Min. Margin" attrs="{'readonly': [('base','==', -3)]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_pricelist_item_form_view_price_max_margin">
+            <field name="name">product.pricelist.item.form.price_max_margin</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="price_max_margin" position="replace">
+                    <field name="price_max_margin" string="Max. Margin" attrs="{'readonly': [('base','==', -3)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

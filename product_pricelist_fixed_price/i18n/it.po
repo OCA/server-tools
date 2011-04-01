@@ -1,0 +1,64 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_pricelist_fixed_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.1\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-03-25 10:08+0000\n"
+"PO-Revision-Date: 2011-03-31 12:02+0000\n"
+"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-04-01 05:08+0000\n"
+"X-Generator: Launchpad (build 12559)\n"
+
+#. module: product_pricelist_fixed_price
+#: view:product.pricelist.item:0
+msgid "Max. Margin"
+msgstr "Margine Massimo"
+
+#. module: product_pricelist_fixed_price
+#: view:product.pricelist.item:0
+msgid "Min. Margin"
+msgstr "Margine Minimo"
+
+#. module: product_pricelist_fixed_price
+#: view:product.pricelist.item:0
+msgid "Rounding Method"
+msgstr "Metodo Arrotondamento"
+
+#. module: product_pricelist_fixed_price
+#: constraint:product.pricelist.item:0
+msgid ""
+"Error ! You cannot assign the Main Pricelist as Other Pricelist in PriceList "
+"Item!"
+msgstr ""
+"Errore ! Non è possibile assegnare il listino principale come 'altro "
+"listino' nell'elemento di listino!"
+
+#. module: product_pricelist_fixed_price
+#: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist
+msgid "Pricelist"
+msgstr "Listino Prezzi"
+
+#. module: product_pricelist_fixed_price
+#: code:addons/product_pricelist_fixed_price/pricelist.py:97
+#, python-format
+msgid "Warning !"
+msgstr "attenzione !"
+
+#. module: product_pricelist_fixed_price
+#: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr "Oggetto Listino"
+
+#. module: product_pricelist_fixed_price
+#: code:addons/product_pricelist_fixed_price/pricelist.py:32
+#: field:product.pricelist.item,fixed_price:0
+#, python-format
+msgid "Fixed Price"
+msgstr "Prezzo fisso"
