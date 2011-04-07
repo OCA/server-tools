@@ -8,13 +8,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-12-20 08:03+0000\n"
 "PO-Revision-Date: 2011-02-15 18:38+0000\n"
-"Last-Translator: Raimon Esteve (Zikzakmedia) <resteve@zikzakmedia.com>\n"
+"Last-Translator: Raimon Esteve (www.zikzakmedia.com) "
+"<resteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-04 05:18+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-07 05:09+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
 
 #. module: product_icecat
 #: constraint:ir.model:0
@@ -30,13 +31,13 @@ msgid "Invalid model name in the action definition."
 msgstr "Nombre del modelo inválido en la definición de la acción."
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:159
 #, python-format
 msgid "No"
 msgstr "No"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:72
 #, python-format
 msgid "Ok !"
 msgstr "Ok !"
@@ -52,7 +53,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:96
 #, python-format
 msgid ""
 "They are other icecat configuration with \"Active\" field checked. Only one "
@@ -82,7 +83,7 @@ msgid "product.icecat.wizard"
 msgstr "product.icecat.wizard"
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:378
 #, python-format
 msgid "EAN not avaible"
 msgstr "EAN no disponible"
@@ -104,7 +105,8 @@ msgid "HTML Code"
 msgstr "Código HTML"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:65
+#: code:addons/product_icecat/product_icecat.py:69
 #, python-format
 msgid "Error !"
 msgstr "Error !"
@@ -115,7 +117,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:69
 #, python-format
 msgid "Username/password FTP connection was not successfully!"
 msgstr "El usuario/password de la conexión FTP no se ha podido realizar!"
@@ -126,7 +128,7 @@ msgid "User Name"
 msgstr "Usuario"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:72
 #, python-format
 msgid "FTP connection was successfully!"
 msgstr "La conexión FTP se ha realizado correctamente!"
@@ -156,7 +158,7 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:267
 #, python-format
 msgid "Product %s XML Import successfully"
 msgstr "La importación del XML del producto %s se ha realizado correctamente"
@@ -202,7 +204,7 @@ msgid "Language"
 msgstr "Lengua"
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:316
 #, python-format
 msgid "Not exist %s image"
 msgstr "Not exist %s image"
@@ -223,13 +225,13 @@ msgid "update"
 msgstr "actualizar"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:96
 #, python-format
 msgid "Error!"
 msgstr "Error!"
 
 #. module: product_icecat
-#: code:addons/product_icecat/product_icecat.py:0
+#: code:addons/product_icecat/product_icecat.py:65
 #, python-format
 msgid "IP FTP connection was not successfully!"
 msgstr "No se ha podido conectar con FTP con la IP especificada!"
@@ -246,7 +248,6 @@ msgstr "Campo XML"
 
 #. module: product_icecat
 #: model:ir.actions.act_window,name:product_icecat.action_product_icecat
-#: model:ir.model,name:product_icecat.model_product_icecat
 #: model:ir.ui.menu,name:product_icecat.product_icecat
 msgid "Icecat Configuration"
 msgstr "Configuración Icecat"
@@ -257,7 +258,7 @@ msgid "OpenERP Model"
 msgstr "Modelo OpenERP"
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:373
 #, python-format
 msgid "Import image not avaible"
 msgstr "La importación de la imagen no está disponible"
@@ -311,7 +312,7 @@ msgid "Close"
 msgstr "Cerrar"
 
 #. module: product_icecat
-#: code:addons/product_icecat/wizard/wizard_product_icecat.py:0
+#: code:addons/product_icecat/wizard/wizard_product_icecat.py:157
 #, python-format
 msgid "Yes"
 msgstr "Si"
