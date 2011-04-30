@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1rc1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-14 17:47+0000\n"
-"PO-Revision-Date: 2012-01-14 17:47+0000\n"
+"Project-Id-Version: OpenERP Server 5.0.0\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2009-02-26 15:54:34+0000\n"
+"PO-Revision-Date: 2009-02-26 15:54:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_product_packaging
-msgid "Packaging"
-msgstr "Verpackung"
+#: model:ir.module.module,shortdesc:chricar_product_gtin.module_name_translation
+msgid "Product GTIN EAN8 EAN13 UPC JPC Support"
+msgstr "Produkt GTIN EAN8 EAN13 UPC JPC Unterstützung"
 
 #. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_res_partner
-msgid "Partner"
-msgstr "Partner"
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "Fehlerhafter xml Code für diese Ansicht!"
 
 #. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_product_product
-msgid "Product"
-msgstr "Produkt"
-
-#. module: chricar_product_gtin
-#: constraint:product.packaging:0
-#: constraint:product.product:0
-#: constraint:res.partner:0
-msgid "Error: Invalid EAN code"
-msgstr "Fehler: ungültiger EAN Code"
+#: model:ir.module.module,description:chricar_product_gtin.module_name_translation
+msgid "Replaces the EAN13 code completion with a checkroutine for EAN13, EAN8, JPC, UPC and GTIN\n"
+"    makes EAN visible in simplified view\n"
+"        "
+msgstr "Ersetzt die EAN13 Prüfung durch Prüfung entsprechend EAN13 EAN8 JPC, UPS und GTIN\eigt EAN Feld in der vereinfachten Ansicht an"
 
