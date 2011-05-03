@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_is_a_gift for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __terp__.py
+-->
+
+<openerp>
+    <data>
+    
+        <!-- INHERITED VIEW FOR THE OBJECT : product_product -->
+
+		<record id="product_is_a_gift_product_product_view_form" model="ir.ui.view">
+			<field name="name">product_is_a_gift.product_product.view_form</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="type">form</field>
+            <field eval="15" name="priority"/>
+			<field name="arch" type="xml">
+				<data>
+					<field name="rental" position="after">
+						<field name="allow_gift_wrap" />
+					</field>
+				</data>
+			</field>
+		</record>
+
+    </data>
+</openerp>
