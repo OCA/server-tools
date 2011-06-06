@@ -25,7 +25,7 @@
     'version': '0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """This module add the posibility to send a email when a scheduler raise an error""",
+    'description': """This module dfkdsjfkdsjkfjksadd the posibility to send a email when a scheduler raise an error""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': ['poweremail'],
