@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-#	* product_pricelist_fixed_price
+# German translation for openobject-addons
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.1\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-25 10:08+0000\n"
-"PO-Revision-Date: 2011-03-31 12:02+0000\n"
-"Last-Translator: Lorenzo Battistini <lorenzo.battistini@agilebg.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-05-02 07:47+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +20,17 @@ msgstr ""
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Max. Margin"
-msgstr "Margine Massimo"
+msgstr "Max. Spanne"
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Min. Margin"
-msgstr "Margine Minimo"
+msgstr "Min. Spanne"
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Rounding Method"
-msgstr "Metodo Arrotondamento"
+msgstr "Rundungsverfahren"
 
 #. module: product_pricelist_fixed_price
 #: constraint:product.pricelist.item:0
@@ -37,28 +38,28 @@ msgid ""
 "Error ! You cannot assign the Main Pricelist as Other Pricelist in PriceList "
 "Item!"
 msgstr ""
-"Errore ! Non è possibile assegnare il listino principale come 'altro "
-"listino' nell'elemento di listino!"
+"Fehler! Sie können die Basispreisliste nicht als alternative Preisliste in "
+"einem Preislisteneintrag zuweisen."
 
 #. module: product_pricelist_fixed_price
 #: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist
 msgid "Pricelist"
-msgstr "Listino Prezzi"
+msgstr "Preisliste"
 
 #. module: product_pricelist_fixed_price
 #: code:addons/product_pricelist_fixed_price/pricelist.py:97
 #, python-format
 msgid "Warning !"
-msgstr "attenzione !"
+msgstr "Warnung!"
 
 #. module: product_pricelist_fixed_price
 #: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist_item
 msgid "Pricelist item"
-msgstr "Oggetto Listino"
+msgstr "Preisliste Einzelposition"
 
 #. module: product_pricelist_fixed_price
 #: code:addons/product_pricelist_fixed_price/pricelist.py:32
 #: field:product.pricelist.item,fixed_price:0
 #, python-format
 msgid "Fixed Price"
-msgstr "Prezzo fisso"
+msgstr "Festpreis"
