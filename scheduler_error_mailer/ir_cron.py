@@ -34,10 +34,10 @@ class ir_cron(osv.osv, netsvc.Agent):
     }
 
     def _handle_callback_exception(self, cr, uid, model, func, args, job_id, job_exception):
-        super(ir_cron, self)._handle_callback_exception(cr, uid, model, func, args, job_id, job_exception)
-        job = self.read(cr, uid, job_id, ['send_email?', 'message', 'email_TO', 'email_account', 'name'])
+        res = super(ir_cron, self)._handle_callback_exception(cr, uid, model, func, args, job_id, job_exception)
+        job = self.read(cr, uid, job_id, ['send_email', 'message', 'email_TO', 'email_account', 'name'])
         #TODO USE POWEREMAIL TEMPLATE
-        if job['send_email?']:
+        if job['send_email']:
             addresses = {'To' : job['email_TO']}
             mail_obj = self.pool.get('poweremail.mailbox')
             id = mail_obj.create(cr, uid, {
