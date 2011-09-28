@@ -1,4 +1,4 @@
-# German translation for openobject-addons
+# Spanish translation for openobject-addons
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the openobject-addons package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-25 10:08+0000\n"
-"PO-Revision-Date: 2011-05-02 07:47+0000\n"
+"PO-Revision-Date: 2011-08-26 23:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: German <de@li.org>\n"
+"Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,17 +20,17 @@ msgstr ""
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Max. Margin"
-msgstr "Max. Spanne"
+msgstr "Margen máx."
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Min. Margin"
-msgstr "Min. Spanne"
+msgstr "Margen mínimo"
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
 msgid "Rounding Method"
-msgstr "Rundungsverfahren"
+msgstr "Método de redondeo"
 
 #. module: product_pricelist_fixed_price
 #: constraint:product.pricelist.item:0
@@ -38,28 +38,28 @@ msgid ""
 "Error ! You cannot assign the Main Pricelist as Other Pricelist in PriceList "
 "Item!"
 msgstr ""
-"Fehler! Sie können die Basispreisliste nicht als alternative Preisliste in "
-"einem Preislisteneintrag zuweisen."
+"¡Error!  No puede asignar la tarifa principal como otra tarifa en un "
+"elemento de la tarifa."
 
 #. module: product_pricelist_fixed_price
 #: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist
 msgid "Pricelist"
-msgstr "Preisliste"
+msgstr "Lista de precios"
 
 #. module: product_pricelist_fixed_price
 #: code:addons/product_pricelist_fixed_price/pricelist.py:97
 #, python-format
 msgid "Warning !"
-msgstr "Warnung!"
+msgstr "Aviso !"
 
 #. module: product_pricelist_fixed_price
 #: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist_item
 msgid "Pricelist item"
-msgstr "Preisliste Einzelposition"
+msgstr "Elemento de lista de precios"
 
 #. module: product_pricelist_fixed_price
 #: code:addons/product_pricelist_fixed_price/pricelist.py:32
 #: field:product.pricelist.item,fixed_price:0
 #, python-format
 msgid "Fixed Price"
-msgstr "Festpreis"
+msgstr "Precio fijo"

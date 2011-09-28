@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-#	* product_listprice_upgrade
+# Spanish translation for openobject-addons
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.14\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-11-25 13:31+0000\n"
-"PO-Revision-Date: 2010-11-22 22:25+0000\n"
-"Last-Translator: Olivier Dony (OpenERP) <Unknown>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-08-27 13:50+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,22 +20,22 @@ msgstr ""
 #. module: product_listprice_upgrade
 #: model:ir.ui.menu,name:product_listprice_upgrade.menu_wizard_pricelist
 msgid "Pricelists"
-msgstr ""
+msgstr "Lista de precios"
 
 #. module: product_listprice_upgrade
 #: wizard_view:product.listprice,init:0
 msgid "Select a pricelist "
-msgstr ""
+msgstr "Seleccione una lista de precios "
 
 #. module: product_listprice_upgrade
 #: wizard_field:product.listprice,init,product_category:0
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría del Producto"
 
 #. module: product_listprice_upgrade
 #: wizard_button:product.listprice,upgrade,end:0
 msgid "End"
-msgstr ""
+msgstr "Finalizar"
 
 #. module: product_listprice_upgrade
 #: model:ir.actions.wizard,name:product_listprice_upgrade.wizard_product_listprice
@@ -59,7 +60,7 @@ msgstr ""
 #. module: product_listprice_upgrade
 #: wizard_button:product.listprice,init,upgrade:0
 msgid "Upgrade"
-msgstr ""
+msgstr "Actualizar"
 
 #. module: product_listprice_upgrade
 #: model:ir.module.module,description:product_listprice_upgrade.module_meta_information
@@ -85,7 +86,7 @@ msgstr ""
 #. module: product_listprice_upgrade
 #: wizard_button:product.listprice,init,end:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: product_listprice_upgrade
 #: wizard_view:product.listprice,init:0
@@ -95,7 +96,7 @@ msgstr ""
 #. module: product_listprice_upgrade
 #: wizard_field:product.listprice,init,pricelist:0
 msgid "Pricelist"
-msgstr ""
+msgstr "Lista de precios"
 
 #. module: product_listprice_upgrade
 #: wizard_field:product.listprice,init,upgrade:0
@@ -105,9 +106,9 @@ msgstr ""
 #. module: product_listprice_upgrade
 #: model:product.pricelist.type,name:product_listprice_upgrade.pricelist_type_internal
 msgid "Internal Pricelist"
-msgstr ""
+msgstr "Lista de precios interna"
 
 #. module: product_listprice_upgrade
 #: model:ir.module.module,shortdesc:product_listprice_upgrade.module_meta_information
 msgid "Product listprice upgrade"
-msgstr "Product listprice upgrade"
+msgstr ""
