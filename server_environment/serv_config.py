@@ -109,7 +109,7 @@ class ServerConfiguration(osv.osv_memory):
     """Display server configuration."""
     _name = 'server.config'
     _columns = {}
-    _defaults = _Defaults()
+    _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
         res = super(ServerConfiguration, self).__init__(pool, cr)
@@ -131,7 +131,7 @@ class ServerConfiguration(osv.osv_memory):
             # XXX: remove this hack when we switch to the web client.
             k = k.replace('_', '__')
             self._columns[key] = fields.char(k, size=1024)
-            self._defaults[key] = v
+            self._conf_defaults[key] = v
             names.append(key)
 
         return ('<group col="2" colspan="4">' +
@@ -169,7 +169,7 @@ class ServerConfiguration(osv.osv_memory):
         arch += '</notebook></form>'
         self._arch = etree.fromstring(arch)
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False,  submenu=False):
         """Overwrite the default method to render the custom view."""
         res = super(ServerConfiguration, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar)
         if view_type == 'form':
@@ -179,6 +179,10 @@ class ServerConfiguration(osv.osv_memory):
             res['fields'] = xfields
         return res
 
-    # TODO: button action_reload
 
+    def default_get(self, cr, uid, fields_list, context=None):
+        res = {}
+        for key in self._conf_defaults:
+            res[key] = self._conf_defaults[key]()
+        return res
 ServerConfiguration()
