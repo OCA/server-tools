@@ -2,7 +2,7 @@
 <!--
   product_is_a_gift for OpenERP
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
-  The licence is in the file __terp__.py
+  The licence is in the file __openerp__.py
 -->
 
 <openerp>
@@ -10,15 +10,14 @@
     
         <!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
 
-		<record id="product_is_a_gift_sale_order_view_form" model="ir.ui.view">
-			<field name="name">product_is_a_gift.sale_order.view_form</field>
+		<record id="view_order_form" model="ir.ui.view">
+			<field name="name">product_is_a_gift.view_order_form</field>
 			<field name="model">sale.order</field>
 			<field name="inherit_id" ref="sale.view_order_form" />
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<data>
-
-					<xpath expr="/form/notebook/page[@string='Other data']/separator[@string='Notes']" position="before">
+					<xpath expr="/form/notebook/page[@string='Other Information']/separator[@string='Notes']" position="before">
                         <separator string="Gift Message" colspan="4"/>
                         <field name="gift_message" colspan="4" nolabel="1"/>
 					</xpath>
@@ -36,8 +35,6 @@
 					<xpath expr="/form/notebook/page/field/tree/field[@name='name']" position="after">
 						<field name="need_gift_wrap" />
 					</xpath>
-
-
 				</data>
 			</field>
 		</record>

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 #################################################################################
 #                                                                               #
-#    product_is_a_gift for OpenERP                                          #
+#    product_is_a_gift for OpenERP                                              #
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
 #                                                                               #
 #    This program is free software: you can redistribute it and/or modify       #
@@ -19,24 +19,31 @@
 #                                                                               #
 #################################################################################
 
+from osv import osv, fields
+import netsvc
 
-{
-    'name': 'product_is_a_gift',
-    'version': '0.1',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'description': """empty""",
-    'author': 'Akretion',
-    'website': 'http://www.akretion.com/',
-    'depends': ['sale','product', 'stock'], 
-    'init_xml': [],
-    'update_xml': [ 
-           'stock_view.xml',
-           'product_view.xml',
-           'sale_view.xml',
-    ],
-    'demo_xml': [],
-    'installable': True,
-    'active': False,
-}
 
+class sale_order(osv.osv):
+    
+    _inherit = "sale.order"
+    
+    _columns = {
+        'gift_message': fields.text('Gift Message'),
+
+    }
+
+sale_order()
+
+class sale_order_line(osv.osv):
+    
+    _inherit = "sale.order.line"
+    
+    _columns = {
+        'gift_message': fields.text('Gift Message'),
+        'need_gift_wrap': fields.boolean('Add Gift Wrap'),
+
+    }
+
+sale_order_line()
+
+ 

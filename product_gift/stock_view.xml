@@ -2,7 +2,7 @@
 <!--
   product_is_a_gift for OpenERP
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
-  The licence is in the file __terp__.py
+  The licence is in the file __openerp__.py
 -->
 
 <openerp>
@@ -10,10 +10,10 @@
     
         <!-- INHERITED VIEW FOR THE OBJECT : stock_picking -->
 
-		<record id="product_is_a_gift_stock_picking_view_picking_out_form" model="ir.ui.view">
-			<field name="name">product_is_a_gift.stock_picking.view_picking_out_form</field>
+		<record id="view_picking_form" model="ir.ui.view">
+			<field name="name">product_is_a_gift.view_picking_form</field>
 			<field name="model">stock.picking</field>
-			<field name="inherit_id" ref="stock.view_picking_out_form" />
+			<field name="inherit_id" ref="stock.view_picking_form" />
             <field eval="16" name="priority"/>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
@@ -25,7 +25,7 @@
                         </page>
 					</xpath>
 
-					<xpath expr="/form/notebook/page/field/form/separator[@string='Move State']" position="before">
+					<xpath expr="/form/notebook/page/field/form/label[@string='']" position="before">
                         <group colspan="4">
                             <separator string="Gift Option" colspan="4"/>
                             <field name="need_gift_wrap" />
@@ -39,10 +39,10 @@
 		</record>
 
 
-		<record id="product_is_a_gift_stock_picking_view_picking_delivery_form" model="ir.ui.view">
-			<field name="name">product_is_a_gift.stock_picking.view_picking_delivery_form</field>
+		<record id="view_picking_out_form" model="ir.ui.view">
+			<field name="name">product_is_a_gift.view_picking_out_form</field>
 			<field name="model">stock.picking</field>
-			<field name="inherit_id" ref="stock.view_picking_delivery_form" />
+			<field name="inherit_id" ref="stock.view_picking_out_form" />
             <field eval="16" name="priority"/>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
@@ -54,7 +54,7 @@
                         </page>
 					</xpath>
 
-					<xpath expr="/form/notebook/page/field/form/separator[@string='Move State']" position="before">
+					<xpath expr="/form/notebook/page/field/form/label[@string='']" position="before">
                         <group colspan="4">
                             <separator string="Gift Option" colspan="4"/>
                             <field name="need_gift_wrap" />
@@ -70,8 +70,8 @@
 
         <!-- INHERITED VIEW FOR THE OBJECT : stock_move -->
 
-		<record id="product_is_a_gift_stock_move_view_tree" model="ir.ui.view">
-			<field name="name">product_is_a_gift.stock_move.view_tree</field>
+		<record id="view_move_tree" model="ir.ui.view">
+			<field name="name">product_is_a_gift.view_move_tree</field>
 			<field name="model">stock.move</field>
 			<field name="inherit_id" ref="stock.view_move_tree" />
             <field eval="16" name="priority"/>

@@ -19,32 +19,24 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
-import tools
-import os, sys, imp
 
-class product_product(osv.osv):
-    _inherit = "product.product"
-    
-    def init(self, cr):
-        #load mapping for ecommerce module
-        print 'launch init'
-        module_2_template = {'magentoerpconnect' : 'external.mappinglines.template.csv'}
-        for module in module_2_template:
-            cr.execute("select id from ir_module_module where name = '%s' and state in ('installed', 'to_update');"%module)
-            res = cr.fetchall()
-            print 'res', res
-            if res:
-                filename =  module_2_template[module]
-                fp = tools.file_open('product_is_a_gift/mapping/'+ filename)
-                tools.convert_csv_import(cr, 'product_is_a_gift', filename , fp.read())#, idref=None, mode='init', noupdate=False)
-        return True
+{
+    'name': 'product_gift',
+    'version': '0.1',
+    'category': 'Generic Modules',
+    'license': 'AGPL-3',
+    'description': """This modules add the feature of gift_wraf""",
+    'author': 'Akretion',
+    'website': 'http://www.akretion.com/',
+    'depends': ['sale','product', 'stock'], 
+    'init_xml': [],
+    'update_xml': [
+           'stock_view.xml',
+           'product_view.xml',
+           'sale_view.xml',
+    ],
+    'demo_xml': [],
+    'installable': True,
+    'active': False,
+}
 
-    _columns = {
-        'allow_gift_wrap': fields.boolean('Allow Gift Wrap'),
-    }
-
-    _defaults = { 'allow_gift_wrap': lambda *a: True,
-    }
-
-product_product()

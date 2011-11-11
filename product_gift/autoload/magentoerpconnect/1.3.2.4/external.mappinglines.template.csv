@@ -1,0 +1,3 @@
+id,type_id:id,model_id:id,external_field,type,external_type,in_function,out_function
+mag_1324_erp_product_is_gift_1,magentoerpconnect.magento1324,sale.model_sale_order,gift_message,in,unicode,"result=[('gift_message',ifield)]",
+mag_1324_erp_product_is_gift_2,magentoerpconnect.magento1324,sale.model_sale_order_line,product_options,in,unicode,"result=[('need_gift_wrap', 'Option Cadeau' in ifield)]",

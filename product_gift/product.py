@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 #################################################################################
 #                                                                               #
-#    product_is_a_gift for OpenERP                                          #
+#    product_is_a_gift for OpenERP                                              #
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
 #                                                                               #
 #    This program is free software: you can redistribute it and/or modify       #
@@ -20,40 +20,18 @@
 #################################################################################
 
 from osv import osv, fields
-import netsvc
+import tools
+import os, sys, imp
 
-
-class sale_order(osv.osv):
+class product_product(osv.osv):
+    _inherit = "product.product"
     
-    _inherit = "sale.order"
-    
-
     _columns = {
-        'gift_message': fields.text('Gift Message'),
-
+        'allow_gift_wrap': fields.boolean('Allow Gift Wrap', help="Determine if the product can have the option gift wrap on the sale order line"),
     }
 
     _defaults = {
-
+        'allow_gift_wrap': lambda *a: True,
     }
 
-sale_order()
-
-class sale_order_line(osv.osv):
-    
-    _inherit = "sale.order.line"
-    
-
-    _columns = {
-        'gift_message': fields.text('Gift Message'),
-        'need_gift_wrap': fields.boolean('Add Gift Wrap'),
-
-    }
-
-    _defaults = {
-
-    }
-
-sale_order_line()
-
- 
+product_product()
