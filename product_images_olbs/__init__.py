@@ -17,3 +17,4 @@
 
 import product_images
 import product
+import company

@@ -13,14 +13,11 @@
 								<field name="name" colspan="2" />
 								<field name="link" colspan="2" />
 							</group>
-							<group col="4" colspan="4" attrs="{'invisible':[('link','!=',0)]}">
-								<field name="image" colspan="4" />
-							</group>
-							<group col="4" colspan="4" attrs="{'invisible':[('link','=',0)]}">
-								<field name="filename" colspan="4" widget="url"/>
-							</group>
-							<separator string="Preview (Only when saved)" colspan="4" />
-							<field name="preview" widget="image" nolabel="1" colspan="4"/>
+                            <group attrs="{'invisible':[('link','=',0)]}" colspan="4">
+							    <separator string="File Location and Preview (Only when saved)" colspan="4"/>
+                                <field name="filename" colspan="4" widget="url" nolabel="1"/>
+                            </group>
+							<field name="preview" widget="image" nolabel="1" colspan="4" attrs="{'readonly':[('link','!=',0)]}"/>
 						</page>
 						<page string="Comments">
 							<field name="comments" nolabel="1" colspan="4" />
