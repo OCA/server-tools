@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_company_form_product_images">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <notebook  position="inside">
+            		<page string="Product images">
+                        <field name="local_media_repository"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
+
