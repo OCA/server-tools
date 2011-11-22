@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="inherit_fetchmail">
+            <!-- must be unique in this module. -->
+            <field name="name">inherit_fetchmail_for_env_support</field>
+            <field name="model">fetchmail.server</field>
+            <!--parent python entity -->
+            <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+            <!-- modulename.view -->
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="server"  attrs="{'required' : [('type', '!=', 'local')]}" position="replace">
+                    <field name="server" />
+                </field>
+                <field name="port"  attrs="{'required' : [('type', '!=', 'local')]}" position="replace">
+                    <field name="port" />
+                </field>
+                <field name="user"  attrs="{'required' : [('type', '!=', 'local')]}" position="replace">
+                    <field name="user" />
+                </field>
+                <field name="password"  attrs="{'required' : [('type', '!=', 'local')]}" position="replace">
+                    <field name="password" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
