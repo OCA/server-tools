@@ -90,9 +90,9 @@ class FetchmailServer(osv.osv):
             global_section_name = 'incoming_mail'
 
             key_types = {'port': int,
-                         'is_ssl': bool,
-                         'attach': bool,
-                         'original': bool,}
+                         'is_ssl': lambda a: bool(int(a)),
+                         'attach': lambda a: bool(int(a)),
+                         'original': lambda a: bool(int(a)),}
 
             # default vals
             config_vals = {'port': 993,
