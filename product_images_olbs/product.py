@@ -1,5 +1,7 @@
+# -*- encoding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas, Open Labs Business solutions      #
+# Copyright (C) 2011 Akretion Sébastien BEAU sebastien.beau@akretion.com#
 #                                                                       #
 #This program is free software: you can redistribute it and/or modify   #
 #it under the terms of the GNU General Public License as published by   #
@@ -32,9 +34,8 @@ class product_product(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         #note that write on default code can be only done on one id, if it's multiple id it will raise an error indeed default code should be uniq
         if vals.get('default_code', False):
-            user = self.pool.get('res.users').browse(cr, uid, uid)
-            company = user.company_id
-            if company.local_media_repository:
+            local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
+            if local_media_repository:
                 if isinstance(ids, list):
                     id =ids[0]
                 else:
@@ -42,9 +43,9 @@ class product_product(osv.osv):
                 old_default_code = self.read(cr, uid, id, ['default_code'], context=context)['default_code']
                 res = super(product_product, self).write(cr, uid, ids, vals, context=context)
                 if old_default_code != vals['default_code']:
-                    old_path = os.path.join(company.local_media_repository, old_default_code)
+                    old_path = os.path.join(local_media_repository, old_default_code)
                     if os.path.isdir(old_path):
-                        os.rename(old_path,  os.path.join(company.local_media_repository, vals['default_code']))
+                        os.rename(old_path,  os.path.join(local_media_repository, vals['default_code']))
                 return res
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
 

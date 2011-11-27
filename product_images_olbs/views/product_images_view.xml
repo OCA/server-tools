@@ -9,15 +9,16 @@
 				<form string="Product Images">
 					<notebook colspan="4">
 						<page string="Image">
-							<group col="4" colspan="4">
+							<group col="6" colspan="4">
 								<field name="name" colspan="2" />
+                                <field name="extention" colspan="2" />
 								<field name="link" colspan="2" />
 							</group>
                             <group attrs="{'invisible':[('link','=',0)]}" colspan="4">
 							    <separator string="File Location and Preview (Only when saved)" colspan="4"/>
-                                <field name="filename" colspan="4" widget="url" nolabel="1"/>
+                                <field name="url" colspan="4" widget="url" nolabel="1"/>
                             </group>
-							<field name="preview" widget="image" nolabel="1" colspan="4" attrs="{'readonly':[('link','!=',0)]}"/>
+							<field name="file" widget="image" nolabel="1" filename="name" colspan="4" attrs="{'readonly':[('link','!=',0)]}"/>
 						</page>
 						<page string="Comments">
 							<field name="comments" nolabel="1" colspan="4" />
@@ -33,7 +34,7 @@
 			<field name="arch" type="xml">
 				<tree string="Product Images">
 					<field name="name" select="1" />
-					<field name="image" />
+					<field name="file" widget="image"/>
 					<field name="comments" select="2" />
 				</tree>
 			</field>
