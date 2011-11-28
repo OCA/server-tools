@@ -137,7 +137,7 @@ class product_images(osv.osv):
 
     _columns = {
         'name':fields.char('Image Title', size=100, required=True),
-        'extention': fields.char('file extention', size=4),
+        'extention': fields.char('file extention', size=6),
         'link':fields.boolean('Link?', help="Images can be linked from files on your file system or remote (Preferred)"),
         'file_db_store':fields.binary('Image stored in database'),
         'file':fields.function(_get_image, fnct_inv=_set_image, type="image", method=True, filters='*.png,*.jpg,*.gif'),

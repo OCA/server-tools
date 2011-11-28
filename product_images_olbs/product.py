@@ -50,7 +50,7 @@ class product_product(osv.osv):
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
 
     #This constraint should be by default in openerp 
-    _sql_constraints = [('default_code', 'UNIQUE(defaut_code)',
+    _sql_constraints = [('default_code', 'UNIQUE(default_code)',
                 _('Default code should be uniq'))]
     
 product_product()
