@@ -36,8 +36,11 @@ class product_product(osv.osv):
         img_obj = self.pool.get('product.images')
         for id in ids:
             image_id = self.get_main_image(cr, uid, id, context=context)
-            image = img_obj.browse(cr, uid, image_id, context=context)
-            res[id] = image.file
+            if image_id:
+                image = img_obj.browse(cr, uid, image_id, context=context)
+                res[id] = image.file
+            else:
+                res[id] = False
         return res
 
     _columns = {
