@@ -22,6 +22,24 @@ import os
 
 class product_product(osv.osv):
     _inherit = "product.product"
+
+    def get_main_image(self, cr, uid, id, context=None):
+        if isinstance(id, list):
+            id = id[0]
+        images_ids = self.read(cr, uid, id, ['image_ids'], context=context)['image_ids']
+        if images_ids:
+            return images_ids[0]
+        return False
+    
+    def _get_main_image(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        img_obj = self.pool.get('product.images')
+        for id in ids:
+            image_id = self.get_main_image(cr, uid, id, context=context)
+            image = img_obj.browse(cr, uid, image_id, context=context)
+            res[id] = image.file
+        return res
+
     _columns = {
         'image_ids':fields.one2many(
                 'product.images',
@@ -29,7 +47,10 @@ class product_product(osv.osv):
                 'Product Images'
         ),
         'default_code' : fields.char('Reference', size=64, require='True'),
+        'product_image': fields.function(_get_main_image, type="image", method=True),
     }
+
+    
 
     def write(self, cr, uid, ids, vals, context=None):
         #note that write on default code can be only done on one id, if it's multiple id it will raise an error indeed default code should be uniq
