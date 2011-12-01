@@ -22,11 +22,11 @@
                         <field name="gift_message" colspan="4" nolabel="1"/>
 					</xpath>
 
-					<xpath expr="/form/notebook/page/field/form/notebook/page[@string='Order Line']/field[@name='product_packaging']" position="after">
+					<xpath expr="/form/notebook/page/field[@name='order_line']/form/notebook/page[@string='Order Line']/group/field[@name='product_packaging']" position="after">
 						<field name="need_gift_wrap" />
 					</xpath>
 
-					<xpath expr="/form/notebook/page/field/form/notebook/page[@string='Notes']" position="after">
+					<xpath expr="/form/notebook/page/field[@name='order_line']/form/notebook/page[@string='Extra Info']" position="after">
                         <page string="Gift Message">
                             <field name="gift_message" colspan="4" nolabel="1"/>
                         </page>

@@ -20,8 +20,7 @@
 #################################################################################
 
 from osv import osv, fields
-import tools
-import os, sys, imp
+
 
 class product_product(osv.osv):
     _inherit = "product.product"
@@ -31,7 +30,7 @@ class product_product(osv.osv):
     }
 
     _defaults = {
-        'allow_gift_wrap': lambda *a: True,
+        'allow_gift_wrap': True,
     }
 
 product_product()
