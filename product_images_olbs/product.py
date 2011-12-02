@@ -40,12 +40,13 @@ class product_product(osv.osv):
                     id =ids[0]
                 else:
                     id=ids
-                old_default_code = self.read(cr, uid, id, ['default_code'], context=context)['default_code']
+                old_product = self.read(cr, uid, id, ['default_code', 'image_ids'], context=context)
                 res = super(product_product, self).write(cr, uid, ids, vals, context=context)
-                if old_default_code != vals['default_code']:
-                    old_path = os.path.join(local_media_repository, old_default_code)
-                    if os.path.isdir(old_path):
-                        os.rename(old_path,  os.path.join(local_media_repository, vals['default_code']))
+                if old_product['image_ids']:
+                    if old_product['default_code'] != vals['default_code']:
+                        old_path = os.path.join(local_media_repository, old_product['default_code'])
+                        if os.path.isdir(old_path):
+                            os.rename(old_path,  os.path.join(local_media_repository, vals['default_code']))
                 return res
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
 
