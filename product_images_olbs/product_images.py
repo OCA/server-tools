@@ -133,21 +133,21 @@ class product_images(osv.osv):
         if local_media_repository:
             image = self.browse(cr, uid, id, context=context)
             return self._save_file(os.path.join(local_media_repository, image.product_id.default_code), '%s%s'%(image.name, image.extention), value)
-        return self.write(cr, uid, id, {'image' : value}, context=context)
+        return self.write(cr, uid, id, {'file_db_store' : value}, context=context)
 
     _columns = {
         'name':fields.char('Image Title', size=100, required=True),
         'extention': fields.char('file extention', size=6),
         'link':fields.boolean('Link?', help="Images can be linked from files on your file system or remote (Preferred)"),
         'file_db_store':fields.binary('Image stored in database'),
-        'file':fields.function(_get_image, fnct_inv=_set_image, type="image", method=True, filters='*.png,*.jpg,*.gif'),
+        'file':fields.function(_get_image, fnct_inv=_set_image, type="binary", method=True, filters='*.png,*.jpg,*.gif'),
         'url':fields.char('File Location', size=250),
         'comments':fields.text('Comments'),
         'product_id':fields.many2one('product.product', 'Product')
     }
 
     _defaults = {
-        'link': lambda *a: True,
+        'link': lambda *a: False,
     }
 
     _sql_constraints = [('uniq_name_product_id', 'UNIQUE(product_id, name)',

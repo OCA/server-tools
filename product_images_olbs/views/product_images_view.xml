@@ -34,7 +34,6 @@
 			<field name="arch" type="xml">
 				<tree string="Product Images">
 					<field name="name" select="1" />
-					<field name="file" widget="image"/>
 					<field name="comments" select="2" />
 				</tree>
 			</field>

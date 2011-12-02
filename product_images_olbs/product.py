@@ -50,10 +50,8 @@ class product_product(osv.osv):
                 'Product Images'
         ),
         'default_code' : fields.char('Reference', size=64, require='True'),
-        'product_image': fields.function(_get_main_image, type="image", method=True),
-    }
-
-    
+        'product_image': fields.function(_get_main_image, type="binary", method=True),
+    }    
 
     def write(self, cr, uid, ids, vals, context=None):
         #note that write on default code can be only done on one id, if it's multiple id it will raise an error indeed default code should be uniq
