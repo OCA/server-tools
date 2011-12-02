@@ -19,7 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+
+import netsvc
 from osv import fields, osv
+import math
 import operator
 
 def is_pair(x):
@@ -101,3 +105,5 @@ res_partner()
 
 #class wiz_ean13_check(wizard.interface):
 #wiz_ean13_check()
+
+
