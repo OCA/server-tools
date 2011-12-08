@@ -28,6 +28,7 @@ class product_product(osv.osv):
             default = {}
         default.update({
             'default_code': False,
+            'images_ids': False,
         })
         return super(product_product, self).copy(cr, uid, id, default, context=context)
 
