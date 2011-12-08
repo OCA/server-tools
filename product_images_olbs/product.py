@@ -23,6 +23,14 @@ import os
 class product_product(osv.osv):
     _inherit = "product.product"
 
+    def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'default_code': False,
+        })
+        return super(product_product, self).copy(cr, uid, id, default, context=context)
+
     def get_main_image(self, cr, uid, id, context=None):
         if isinstance(id, list):
             id = id[0]
