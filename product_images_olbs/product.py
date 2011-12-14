@@ -63,15 +63,13 @@ class product_product(osv.osv):
     }    
 
     def write(self, cr, uid, ids, vals, context=None):
-        #note that write on default code can be only done on one id, if it's multiple id it will raise an error indeed default code should be uniq
-        if vals.get('default_code', False):
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        # here we expect that the write on default_code is alwayse on 1 product because there is an unique constraint on the default code
+        if vals.get('default_code', False) and ids:
             local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
             if local_media_repository:
-                if isinstance(ids, list):
-                    id =ids[0]
-                else:
-                    id=ids
-                old_product = self.read(cr, uid, id, ['default_code', 'image_ids'], context=context)
+                old_product = self.read(cr, uid, ids[0], ['default_code', 'image_ids'], context=context)
                 res = super(product_product, self).write(cr, uid, ids, vals, context=context)
                 if old_product['image_ids']:
                     if old_product['default_code'] != vals['default_code']:
