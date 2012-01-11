@@ -38,7 +38,8 @@ class product_product(osv.osv):
             arch = u''
             for field in price_fields:
                 arch += '<field name="' + field +'"/>'
-            result['arch'] = result['arch'].decode('utf8').replace('<field name="list_price"/>', arch)
+            result['arch'] = result['arch'].decode('utf8').replace('<field name="list_price" modifiers="{}"/>', arch)
+#            print result
         return result
 
 product_product()
