@@ -47,7 +47,7 @@ ck_path = os.path.join(_dir, system_base_config['running_env'])
 
 if not os.path.exists(ck_path) :
     raise Exception(
-        "Provided server environment does not exists please add a folder %s"%s(ck_path)
+        "Provided server environment does not exists please add a folder %s"%(ck_path)
     )
 
 def setboolean(obj, attr, _bool=_boolean_states):
