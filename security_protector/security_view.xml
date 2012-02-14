@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="base.ir_access_act" model="ir.actions.act_window">
+            <field name="context">{'manual_security_override': 1}</field>
+        </record>
+    </data>
+</openerp>
