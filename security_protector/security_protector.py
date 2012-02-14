@@ -32,15 +32,16 @@ class IrModelAccess(osv.osv):
     def unlink(self, cr, uid, ids, context=None):
         res = True
         context = context or {}
-        if self._acces_can_be_modified(cr, uid, context=context):
-            res = super(IrModelAccess, self).write(cr, uid, ids, context=context)
-        else: # I'm note sur about this one maybe we should do nothing
-            self.write(cr, uid, args[0], 
-                       {'perm_read':False,
-                        'perm_write': False, 
-                        'perm_unlink': False,
-                        'perm_create': False}, 
-                       context={context})
+        # I'm note sur about this one maybe we should do nothing
+        if self._acces_can_be_modified(cr, uid, context=context): 
+            vals = {'perm_read':False,
+             'perm_write': False, 
+             'perm_unlink': False,
+             'perm_create': False}
+            super(IrModelAccess, self).write(cr, uid, ids, vals, context=context)
+        else: 
+            res = super(IrModelAccess, self).unlink(cr, uid, ids, context=context)
+
         return res
         
 IrModelAccess()
