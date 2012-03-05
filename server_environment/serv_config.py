@@ -38,16 +38,16 @@ _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
 
 if not system_base_config.get('running_env', False):
     raise Exception(
-        "The parameter 'running_env' has not be set neither in base config file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an explicit config file with this content:\n"
-        "[options]\nrunning_env = dev"
+        ("The parameter 'running_env' has not be set neither in base config file option -c or in openerprc.\n"
+         "We strongly recommand you not to use the rc file but instead use an explicite config file with this content : \n"
+         "[options] \nrunning_env =  dev")
     )
-
+    
 ck_path = os.path.join(_dir, system_base_config['running_env'])
 
 if not os.path.exists(ck_path) :
     raise Exception(
-        "Provided server environment does not exist, please add a folder %s" % ck_path
+        "Provided server environment does not exists please add a folder %s"%(ck_path)
     )
 
 def setboolean(obj, attr, _bool=_boolean_states):
@@ -127,6 +127,9 @@ class ServerConfiguration(osv.osv_memory):
             # Mask passwords
             if 'passw' in k and not self.show_passwords:
                 v = '**********'
+            # for the GTK display, we need to replace '_' with '__'.
+            # XXX: remove this hack when we switch to the web client.
+            k = k.replace('_', '__')
             self._columns[key] = fields.char(k, size=1024)
             self._conf_defaults[key] = v
             names.append(key)
