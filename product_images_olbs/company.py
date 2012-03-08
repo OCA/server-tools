@@ -27,8 +27,7 @@ class ResCompany(osv.osv):
     _columns = {        
         'local_media_repository':fields.char(
                         'Images Repository Path', 
-                        size=256, 
-                        required=True,
+                        size=256,
                         help='Local mounted path on OpenERP server where all your images are stored.'
                     ),
     }    
