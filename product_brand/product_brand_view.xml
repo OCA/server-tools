@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_brand for OpenERP
+  Copyright (C) 2009 NetAndCo (<http://www.netandco.net>).
+    Authors, Mathieu Lemercier, mathieu@netandco.net, Franck Bret, franck@netandco.net
+  Copyright (C) 2011 Akretion Benoît Guillot <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
 <openerp>  
-	<data>
+    <data>
         <record model="ir.ui.view" id="view_product_brand_form">
             <field name="name">product.brand.form</field>
             <field name="model">product.brand</field>
@@ -8,14 +15,14 @@
             <field name="arch" type="xml">
                 <form string="product.brand">
                     <field name="name" select="1"/>
-                    <field name="logo_id" select="1"/>
+                    <field name="logo" widget='image' />
                     <field name="partner_id" select="1"/>
                     <separator colspan="4" string="Description"/>
                     <field colspan="4" name="description" nolabel="1"/>
                 </form>
             </field>
         </record>
-		
+        
         <record model="ir.ui.view" id="view_product_brand_tree">
             <field name="name">product.brand.tree</field>
             <field name="model">product.brand</field>
@@ -28,38 +35,38 @@
                 </tree>
             </field>
         </record>
-		
-		<record model="ir.ui.view" id="normal_form_product_brand">
-		   <field name="name">product.normal.form</field>
-		   <field name="model">product.product</field>
-		   <field name="type">form</field>
-		   <field name="inherit_id" ref="product.product_normal_form_view" />
-		   <field name="arch" type="xml">
-			    <field name="categ_id" position="after"  >
-					<field name="product_brand_id" select="1" />
-			   </field>
-		   </field>
-		</record>
-		
-		<record model="ir.ui.view" id="product_template_form_brand_add">
-			<field name="name">product.template.product.form</field>
-			<field name="model">product.template</field>
-			<field name="type">form</field>
-			<field name="inherit_id" ref="product.product_template_form_view" />
-			<field name="arch" type="xml">
-				<field name="categ_id" position="after"  >
-				  <field name="product_brand_id" select="1" />
-				</field>
-			  </field>
-		</record>
-		
+        
+        <record model="ir.ui.view" id="normal_form_product_brand">
+           <field name="name">product.normal.form</field>
+           <field name="model">product.product</field>
+           <field name="type">form</field>
+           <field name="inherit_id" ref="product.product_normal_form_view" />
+           <field name="arch" type="xml">
+                <field name="categ_id" position="after"  >
+                    <field name="product_brand_id" select="1" />
+               </field>
+           </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_template_form_brand_add">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after"  >
+                  <field name="product_brand_id" select="1" />
+                </field>
+              </field>
+        </record>
+        
         <record model="ir.actions.act_window" id="action_product_brand">
             <field name="name">Brand</field>
             <field name="res_model">product.brand</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-		
-        <menuitem name="Brand management" id="menu_product_brand" action="action_product_brand" parent="product.menu_config_product"/>
+        
+        <menuitem name="Brand management" id="menu_product_brand" action="action_product_brand" parent="product.prod_config_main"/>
     </data>
 </openerp>

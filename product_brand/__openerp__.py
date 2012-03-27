@@ -24,4 +24,26 @@
 ###################################################################################
 # Product Brand is an Openobject module wich enable Brand management for products #
 ###################################################################################
-import product_brand
+{
+    'name': 'Product Brand Manager',
+    'version': '0.1',
+    'category': 'Product',
+    'description': """This module allows your user to easily manage product brand. You can define brand, attach it a logo and a description.
+    It also allows to attach a partner to a brand.
+    One installed check the menu Product/configuration/brand
+    To do / To come :
+        - A view to seeing products by brand.
+    """,
+    'author': 'NetAndCo',
+    'website': 'http://ww.netandco.net',
+    'depends': ['product'],
+    'init_xml': [],
+    'update_xml': [
+        'product_brand_view.xml',
+        'security/ir.model.access.csv'
+    ],
+    'demo_xml': [],
+    'installable': True,
+    'certificate': '',
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

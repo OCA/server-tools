@@ -58,12 +58,12 @@ msgstr "Marque"
 #. module: product_brand
 #: constraint:ir.model:0
 msgid "The Object name must start with x_ and not contain any special character !"
-msgstr ""
+msgstr "Le nom de l'objet doit commencer par x_ et ne pas contenir de caractères spéciaux !"
 
 #. module: product_brand
 #: constraint:ir.actions.act_window:0
 msgid "Invalid model name in the action definition."
-msgstr ""
+msgstr "Nom de modèle invalide dans la définition de l'action"
 
 #. module: product_brand
 #: field:product.brand,partner_id:0
