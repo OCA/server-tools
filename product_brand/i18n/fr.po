@@ -1,0 +1,105 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_brand
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.7\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-01-25 17:15:23+0000\n"
+"PO-Revision-Date: 2010-01-25 17:15:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_brand
+#: model:ir.model,name:product_brand.model_product_brand
+#: view:product.brand:0
+msgid "product.brand"
+msgstr ""
+
+#. module: product_brand
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: product_brand
+#: help:product.product,product_brand_id:0
+#: help:product.template,product_brand_id:0
+msgid "Select a brand for this product"
+msgstr "Sélectionnez une marque pour ce produit"
+
+#. module: product_brand
+#: model:ir.ui.menu,name:product_brand.menu_product_brand
+msgid "Brand management"
+msgstr "Gestion des marques"
+
+#. module: product_brand
+#: view:product.brand:0
+#: field:product.brand,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: product_brand
+#: field:product.brand,name:0
+msgid "Brand Name"
+msgstr "Marque"
+
+#. module: product_brand
+#: model:ir.actions.act_window,name:product_brand.action_product_brand
+#: field:product.product,product_brand_id:0
+#: field:product.template,product_brand_id:0
+msgid "Brand"
+msgstr "Marque"
+
+#. module: product_brand
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "Le nom de l'objet doit commencer par x_ et ne pas contenir de caractères spéciaux !"
+
+#. module: product_brand
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nom de modèle invalide dans la définition de l'action"
+
+#. module: product_brand
+#: field:product.brand,partner_id:0
+msgid "partner"
+msgstr "Partenaire"
+
+#. module: product_brand
+#: model:ir.module.module,description:product_brand.module_meta_information
+msgid "This module allows your user to easily manage product brand. You can define brand, attach it a logo and a description.\n"
+"    It also allows to attach a partner to a brand.\n"
+"    One installed check the menu Product/configuration/brand\n"
+"    To do / To come :\n"
+"        - A view to seeing products by brand.\n"
+"    "
+msgstr "Ce module permet à vos utilisateurs de gérer des marques pour leurs produits. Vous pouvez définir une marque, lui attacher un logo et une description. \n"
+"    Vous pouvez également attacher un partenaire à une marque.\n"
+"    Une fois installé allez dans le menu Produit/configuration/Marques\n"
+"    A faire / a venir :\n"
+"        - Une vue pour voir tous les produits par marque.\n"
+#. module: product_brand
+#: field:product.brand,logo_id:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: product_brand
+#: help:product.brand,logo_id:0
+msgid "Select picture file"
+msgstr "Sélectionnez une image"
+
+#. module: product_brand
+#: model:ir.module.module,shortdesc:product_brand.module_meta_information
+msgid "Product Brand Manager"
+msgstr "Gestionnaire de marques"
+
+#. module: product_brand
+#: help:product.brand,partner_id:0
+msgid "Select a partner for this brand if it exist"
+msgstr "Sélectionnez un partenaire pour cette marque"
+
