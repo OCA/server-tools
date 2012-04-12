@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- KPI -->
+
+        <record id="view_mgmtsystem_kpi_tree" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.tree</field>
+            <field name="model">mgmtsystem.kpi</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Key Performance Indicators">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="threshold_id"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mgmtsystem_kpi_form" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.form</field>
+            <field name="model">mgmtsystem.kpi</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Key Performance Indicator">
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <newline/>
+                    <field name="value"/>
+                    <field name="threshold_id"/>
+                    <newline/>
+                    <field name="periodicity"/>
+                    <field name="periodicity_uom"/>
+                    <newline/>
+                    <field name="description" colspan="2"/>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_mgmtsystem_kpi" 
+            name="KPI"
+            action="open_mgmtsystem_kpi_list"
+            sequence="15" 
+            parent="mgmtsystem.menu_mgmtsystem_main" 
+            groups="base.group_user"/>
+
+        <record model="ir.actions.act_window" id="open_mgmtsystem_kpi_list">
+            <field name="name">Key Performance Indicators</field>
+            <field name="res_model">mgmtsystem.kpi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_mgmtsystem_kpi_tree"/>
+        </record>
+
+	<!-- Thresholds -->
+
+        <record id="view_mgmtsystem_kpi_threshold_tree" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.threshold.tree</field>
+            <field name="model">mgmtsystem.kpi.threshold</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Thresholds">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mgmtsystem_kpi_threshold_form" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.threshold.form</field>
+            <field name="model">mgmtsystem.kpi.threshold</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Threshold">
+                    <field name="name"/>
+                    <newline/>
+                    <field name="range_ids" nolabel="1" colspan="2">
+                        <tree string="Ranges">
+                            <field name="min"/>
+                            <field name="max"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi" 
+            name="KPI" 
+            parent="mgmtsystem.menu_mgmtsystem_configuration" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="20"/>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi_threshold" 
+            name="Thresholds"
+            action="open_mgmtsystem_threshold_list"
+            parent="menu_mgmtsystem_configuration_kpi" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="10"/>
+
+        <record model="ir.actions.act_window" id="open_mgmtsystem_threshold_list">
+            <field name="name">Thresholds</field>
+            <field name="res_model">mgmtsystem.kpi.threshold</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_mgmtsystem_kpi_threshold_tree"/>
+        </record>
+
+	<!-- Ranges -->
+
+        <record id="view_mgmtsystem_kpi_threshold_range_tree" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.threshold.range.tree</field>
+            <field name="model">mgmtsystem.kpi.threshold.range</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ranges">
+                    <field name="name"/>
+                    <field name="min"/>
+                    <field name="max"/>
+                    <field name="color"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mgmtsystem_kpi_threshold_range_form" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.threshold.range.form</field>
+            <field name="model">mgmtsystem.kpi.threshold.range</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Range">
+                    <field name="name"/>
+                    <newline/>
+                    <field name="min"/>
+                    <field name="max"/>
+                    <newline/>
+                    <field name="color"/>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi_range"
+            name="Ranges"
+            action="open_mgmtsystem_threshold_range_list"
+            parent="menu_mgmtsystem_configuration_kpi" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="20"/>
+
+        <record model="ir.actions.act_window" id="open_mgmtsystem_threshold_range_list">
+            <field name="name">Ranges</field>
+            <field name="res_model">mgmtsystem.kpi.threshold.range</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_mgmtsystem_kpi_threshold_range_tree"/>
+        </record>
+
+	<!-- data -->
+
+	<record model="mgmtsystem.kpi.periodicity.uom" id="hour">
+	    <field name="name">Hour</field>
+	</record>
+
+	<record model="mgmtsystem.kpi.periodicity.uom" id="day">
+	    <field name="name">Day</field>
+	</record>
+
+	<record model="mgmtsystem.kpi.periodicity.uom" id="week">
+	    <field name="name">Week</field>
+	</record>
+
+	<record model="mgmtsystem.kpi.periodicity.uom" id="month">
+	    <field name="name">Month</field>
+	</record>
+
+    </data>
+</openerp>
