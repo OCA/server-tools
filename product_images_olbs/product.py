@@ -19,6 +19,8 @@
 from osv import osv,fields
 from tools.translate import _
 import os
+import unicodedata
+import base64, urllib
 
 class product_product(osv.osv):
     _inherit = "product.product"
@@ -82,5 +84,21 @@ class product_product(osv.osv):
     #This constraint should be by default in openerp 
     _sql_constraints = [('default_code', 'UNIQUE(default_code)',
                 _('Default code should be uniq'))]
+
+    def create_image_from_url(self, cr, uid, id, url, image_name=None, context=None):
+        (filename, header) = urllib.urlretrieve(url)
+        f = open(filename , 'rb')
+        data = f.read()
+        f.close()
+        img = base64.encodestring(data)
+        filename, extention = os.path.splitext(os.path.basename(url))
+        data = {'name': image_name or filename,
+            'extention': extention,
+            'file': img,
+            'product_id': id,
+            }
+        new_image_id = self.pool.get('product.images').create(cr, uid, data, context=context)
+        return True
+
     
 product_product()
