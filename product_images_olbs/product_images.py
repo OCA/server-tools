@@ -32,14 +32,12 @@ class product_images(osv.osv):
     _table = "product_images"
     
     def unlink(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
-            ids=[ids]
-        local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
-        if local_media_repository:
-            for image in self.browse(cr, uid, ids, context=context):
-                path = os.path.join(local_media_repository, image.product_id.default_code, image.name)
-                if os.path.isfile(path):
-                    os.remove(path)          
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        for image in self.browse(cr, uid, ids, context=context):
+            full_path = self._image_path(cr, uid, image, context=context)
+            if full_path:
+                os.path.isfile(full_path) and os.remove(full_path)
         return super(product_images, self).unlink(cr, uid, ids, context=context)
 
     def create(self, cr, uid, vals, context=None):
@@ -49,47 +47,60 @@ class product_images(osv.osv):
 
     def write(self, cr, uid, ids, vals, context=None):
         if not isinstance(ids, list):
-            ids=[ids]
+            ids = [ids]
         if vals.get('name', False) and not vals.get('extention', False):
             vals['name'], vals['extention'] = os.path.splitext(vals['name'])
+        upd_ids = ids[:]
         if vals.get('name', False) or vals.get('extention', False):
-            local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
-            if local_media_repository:
-                old_images = self.browse(cr, uid, ids, context=context)
-                res=[]
-                for old_image in old_images:
-                    if vals.get('name', False) and (old_image.name != vals['name']) or vals.get('extention', False) and (old_image.extention != vals['extention']):
-                        old_path = os.path.join(local_media_repository, old_image.product_id.default_code, '%s%s' %(old_image.name, old_image.extention))
-                        res.append(super(product_images, self).write(cr, uid, old_image.id, vals, context=context))
-                        if 'file' in vals:
-                            #a new image have been loaded we should remove the old image
-                            #TODO it's look like there is something wrong with function field in openerp indeed the preview is always added in the write :(
-                            if os.path.isfile(old_path):
-                                os.remove(old_path)
-                        else:
-                            #we have to rename the image on the file system
-                            if os.path.isfile(old_path):
-                                os.rename(old_path, os.path.join(local_media_repository, old_image.product_id.default_code, '%s%s' %(old_image.name, old_image.extention)))      
-                return res
-        return super(product_images, self).write(cr, uid, ids, vals, context=context)
+            images = self.browse(cr, uid, upd_ids, context=context)
+            for image in images:
+                old_full_path = self._image_path(cr, uid, image, context=context)
+                if not old_full_path:
+                    continue
+                # all the stuff below is there to manage the files on the filesystem
+                if vals.get('name', False) and (image.name != vals['name']) \
+                    or vals.get('extention', False) and (image.extention != vals['extention']):
+                    super(product_images, self).write(
+                        cr, uid, image.id, vals, context=context)
+                    upd_ids.remove(image.id)
+                    if 'file' in vals:
+                        # a new image have been loaded we should remove the old image
+                        # TODO it's look like there is something wrong with function
+                        # field in openerp indeed the preview is always added in the write :(
+                        if os.path.isfile(old_full_path):
+                            os.remove(old_full_path)
+                    else:
+                        new_image = self.browse(cr, uid, image.id, context=context)
+                        new_full_path = self._image_path(cr, uid, new_image, context=context)
+                        #we have to rename the image on the file system
+                        if os.path.isfile(old_full_path):
+                            os.rename(old_full_path, new_full_path)
+        return super(product_images, self).write(cr, uid, upd_ids, vals, context=context)
+
+    def _image_path(self, cr, uid, image, context=None):
+        full_path = False
+        local_media_repository = self.pool.get('res.company').\
+             get_local_media_repository(cr, uid, context=context)
+        if local_media_repository:
+            full_path = os.path.join(
+                local_media_repository,
+                image.product_id.default_code,
+                '%s%s' % (image.name or '', image.extention or ''))
+        return full_path
 
     def get_image(self, cr, uid, id, context=None):
-        each = self.read(cr, uid, id, ['link', 'url', 'name', 'file_db_store', 'product_id', 'name', 'extention'])
-        if each['link']:
-            (filename, header) = urllib.urlretrieve(each['url'])
-            f = open(filename , 'rb')
-            img = base64.encodestring(f.read())
-            f.close()
+        image = self.browse(cr, uid, id, context=context)
+        if image.link:
+            (filename, header) = urllib.urlretrieve(image.url)
+            with open(filename , 'rb') as f:
+                img = base64.encodestring(f.read())
         else:
-            local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
-            if local_media_repository:
-                product_code = self.pool.get('product.product').read(cr, uid, each['product_id'][0], ['default_code'])['default_code']
-                full_path = os.path.join(local_media_repository, product_code, '%s%s'%(each['name'], each['extention']))
+            full_path = self._image_path(cr, uid, image, context=context)
+            if full_path:
                 if os.path.exists(full_path):
                     try:
-                        f = open(full_path, 'rb')
-                        img = base64.encodestring(f.read())
-                        f.close()
+                        with open(full_path, 'rb') as f:
+                            img = base64.encodestring(f.read())
                     except Exception, e:
                         logger = netsvc.Logger()
                         logger.notifyChannel('product_images', netsvc.LOG_ERROR, "Can not open the image %s, error : %s" %(full_path, e))
@@ -99,9 +110,9 @@ class product_images(osv.osv):
                     logger.notifyChannel('product_images', netsvc.LOG_ERROR, "The image %s doesn't exist " %full_path)
                     return False
             else:
-                img = each['file_db_store']
+                img = image.file_db_store
         return img
-    
+
     def _get_image(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         for each in ids:
@@ -109,30 +120,26 @@ class product_images(osv.osv):
         return res
 
     def _check_filestore(self, image_filestore):
-        '''check if the filestore is created, if not it create it automatically'''
+        """check if the filestore is created, if not it create it automatically"""
         try:
-            if not os.path.isdir(image_filestore):
+            if not os.path.exists(os.path.dirname(image_filestore)):
                 os.makedirs(image_filestore)
-        except Exception, e:
+        except OSError, e:
             raise osv.except_osv(_('Error'), _('The image filestore can not be created, %s'%e))
         return True
 
-    def _save_file(self, path, filename, b64_file):
+    def _save_file(self, path, b64_file):
         """Save a file encoded in base 64"""
-        full_path = os.path.join(path, filename)
         self._check_filestore(path)
-        ofile = open(full_path, 'w')
-        try:
+        with open(path, 'w') as ofile:
             ofile.write(base64.decodestring(b64_file))
-        finally:
-            ofile.close()
         return True
 
     def _set_image(self, cr, uid, id, name, value, arg, context=None):
-        local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
-        if local_media_repository:
-            image = self.browse(cr, uid, id, context=context)
-            return self._save_file(os.path.join(local_media_repository, image.product_id.default_code), '%s%s'%(image.name, image.extention), value)
+        image = self.browse(cr, uid, id, context=context)
+        full_path = self._image_path(cr, uid, image, context=context)
+        if full_path:
+            return self._save_file(full_path, value)
         return self.write(cr, uid, id, {'file_db_store' : value}, context=context)
 
     _columns = {
