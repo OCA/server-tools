@@ -93,14 +93,14 @@ class product_images(osv.osv):
         if image.link:
             (filename, header) = urllib.urlretrieve(image.url)
             with open(filename , 'rb') as f:
-                img = base64.encodestring(f.read())
+                img = base64.b64encode(f.read())
         else:
             full_path = self._image_path(cr, uid, image, context=context)
             if full_path:
                 if os.path.exists(full_path):
                     try:
                         with open(full_path, 'rb') as f:
-                            img = base64.encodestring(f.read())
+                            img = base64.b64encode(f.read())
                     except Exception, e:
                         logger = netsvc.Logger()
                         logger.notifyChannel('product_images', netsvc.LOG_ERROR, "Can not open the image %s, error : %s" %(full_path, e))
@@ -122,8 +122,9 @@ class product_images(osv.osv):
     def _check_filestore(self, image_filestore):
         """check if the filestore is created, if not it create it automatically"""
         try:
-            if not os.path.exists(os.path.dirname(image_filestore)):
-                os.makedirs(image_filestore)
+            dir_path = os.path.dirname(image_filestore)
+            if not os.path.exists(dir_path):
+                os.makedirs(dir_path)
         except OSError, e:
             raise osv.except_osv(_('Error'), _('The image filestore can not be created, %s'%e))
         return True
@@ -132,7 +133,7 @@ class product_images(osv.osv):
         """Save a file encoded in base 64"""
         self._check_filestore(path)
         with open(path, 'w') as ofile:
-            ofile.write(base64.decodestring(b64_file))
+            ofile.write(base64.b64decode(b64_file))
         return True
 
     def _set_image(self, cr, uid, id, name, value, arg, context=None):
