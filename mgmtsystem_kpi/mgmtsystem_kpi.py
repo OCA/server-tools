@@ -41,11 +41,27 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
     _name = "mgmtsystem.kpi.threshold.range"
     _description = "KPI Threshold Range"
 
+    def _compute_min_value(self, cr, uid, ids, field_name, arg, context=None):
+        result = {}
+
+        return result
+
+    def _compute_max_value(self, cr, uid, ids, field_name, arg, context=None):
+        result = {}
+
+        return result
+
     _columns = {
         'name': fields.char('Name', size=50, required=True),
-        'min': fields.float('Minimum', required=True),
-        'max': fields.float('Maximum', size=50, required=True),
-        'color': fields.char('Color (RGB code)', size=7, required=True),
+        'min_type': fields.selection((('static','Fixed value'), ('dynamic','Computed value')), 'Min Type', required=True),
+        'min_value': fields.function(_compute_min_value, string='Minimum', type='float'),
+        'min_fixed_value': fields.float('Minimum'),
+        'min_code': fields.text('Minimum Computation Code'),
+        'max_type': fields.selection((('static','Fixed value'), ('dynamic','Computed value')), 'Max Type', required=True),
+        'max_value': fields.function(_compute_max_value, string='Maximum', type='float'),
+        'max_fixed_value': fields.float('Maximum'),
+        'max_code': fields.text('Maximum Computation Code'),
+        'color': fields.char('Color', help='RGB code with #', size=7, required=True),
     }
 
 mgmtsystem_kpi_threshold_range()
@@ -83,6 +99,12 @@ class mgmtsystem_kpi(osv.osv):
     """
     _name = "mgmtsystem.kpi"
     _description = "Key Performance Indicator"
+
+    def _compute_kpi_value(self, cr, uid, ids, field_name, arg, context=None):
+        result= {}
+
+        return result
+
     _columns = {
         'name': fields.char('Name', size=50, required=True),
         'description': fields.text('Description'),
@@ -90,7 +112,8 @@ class mgmtsystem_kpi(osv.osv):
         'threshold_id': fields.many2one('mgmtsystem.kpi.threshold','Threshold', required=True),
         'periodicity': fields.integer('Periodicity'),
         'periodicity_uom': fields.many2one('mgmtsystem.kpi.periodicity.uom','Periodicity UoM', required=True),
-        'value': fields.float('Value'),
+        'value': fields.function(_compute_kpi_value, string='Value', type='float'),
+        'kpi_code': fields.text('KPI Computation Code'),
     }
 
 mgmtsystem_kpi()

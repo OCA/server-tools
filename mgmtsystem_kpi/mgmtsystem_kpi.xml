@@ -33,17 +33,12 @@
                     <field name="periodicity"/>
                     <field name="periodicity_uom"/>
                     <newline/>
-                    <field name="description" colspan="2"/>
+                    <field name="kpi_code" colspan="4"/>
+                    <newline/>
+                    <field name="description" colspan="4"/>
                 </form>
             </field>
         </record>
-
-        <menuitem id="menu_mgmtsystem_kpi" 
-            name="KPI"
-            action="open_mgmtsystem_kpi_list"
-            sequence="15" 
-            parent="mgmtsystem.menu_mgmtsystem_main" 
-            groups="base.group_user"/>
 
         <record model="ir.actions.act_window" id="open_mgmtsystem_kpi_list">
             <field name="name">Key Performance Indicators</field>
@@ -52,6 +47,13 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_mgmtsystem_kpi_tree"/>
         </record>
+
+        <menuitem id="menu_mgmtsystem_kpi" 
+            name="KPI"
+            action="open_mgmtsystem_kpi_list"
+            sequence="15" 
+            parent="mgmtsystem.menu_mgmtsystem_main" 
+            groups="base.group_user"/>
 
 	<!-- Thresholds -->
 
@@ -76,8 +78,9 @@
                     <newline/>
                     <field name="range_ids" nolabel="1" colspan="2">
                         <tree string="Ranges">
-                            <field name="min"/>
-                            <field name="max"/>
+                            <field name="name"/>
+                            <field name="min_value"/>
+                            <field name="max_value"/>
                         </tree>
                     </field>
                 </form>
@@ -90,13 +93,6 @@
             groups="base.group_mgmtsystem_manager" 
             sequence="20"/>
 
-        <menuitem id="menu_mgmtsystem_configuration_kpi_threshold" 
-            name="Thresholds"
-            action="open_mgmtsystem_threshold_list"
-            parent="menu_mgmtsystem_configuration_kpi" 
-            groups="base.group_mgmtsystem_manager" 
-            sequence="10"/>
-
         <record model="ir.actions.act_window" id="open_mgmtsystem_threshold_list">
             <field name="name">Thresholds</field>
             <field name="res_model">mgmtsystem.kpi.threshold</field>
@@ -104,6 +100,13 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_mgmtsystem_kpi_threshold_tree"/>
         </record>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi_threshold" 
+            name="Thresholds"
+            action="open_mgmtsystem_threshold_list"
+            parent="menu_mgmtsystem_configuration_kpi" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="10"/>
 
 	<!-- Ranges -->
 
@@ -114,8 +117,8 @@
             <field name="arch" type="xml">
                 <tree string="Ranges">
                     <field name="name"/>
-                    <field name="min"/>
-                    <field name="max"/>
+                    <field name="min_value"/>
+                    <field name="max_value"/>
                     <field name="color"/>
                 </tree>
             </field>
@@ -128,21 +131,24 @@
             <field name="arch" type="xml">
                 <form string="Range">
                     <field name="name"/>
-                    <newline/>
-                    <field name="min"/>
-                    <field name="max"/>
-                    <newline/>
                     <field name="color"/>
+                    <newline/>
+                    <separator string="Minimum" colspan="4"/>
+                    <newline/>
+                    <field name="min_type"/>
+                    <field name="min_fixed_value" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
+                    <newline/>
+                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', '!=', 'dynamic')]}"/>
+                    <newline/>
+                    <separator string="Maximum" colspan="4"/>
+                    <newline/>
+                    <field name="max_type"/>
+                    <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
+                    <newline/>
+                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', '!=', 'dynamic')]}"/>
                 </form>
             </field>
         </record>
-
-        <menuitem id="menu_mgmtsystem_configuration_kpi_range"
-            name="Ranges"
-            action="open_mgmtsystem_threshold_range_list"
-            parent="menu_mgmtsystem_configuration_kpi" 
-            groups="base.group_mgmtsystem_manager" 
-            sequence="20"/>
 
         <record model="ir.actions.act_window" id="open_mgmtsystem_threshold_range_list">
             <field name="name">Ranges</field>
@@ -151,6 +157,13 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_mgmtsystem_kpi_threshold_range_tree"/>
         </record>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi_range"
+            name="Ranges"
+            action="open_mgmtsystem_threshold_range_list"
+            parent="menu_mgmtsystem_configuration_kpi" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="20"/>
 
 	<!-- data -->
 
