@@ -60,7 +60,6 @@ class product_product(osv.osv):
                 'product_id',
                 'Product Images'
         ),
-        'default_code' : fields.char('Reference', size=64, require='True'),
         'product_image': fields.function(_get_main_image, type="binary", method=True),
     }    
 
@@ -80,10 +79,6 @@ class product_product(osv.osv):
                             os.rename(old_path,  os.path.join(local_media_repository, vals['default_code']))
                 return res
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
-
-    #This constraint should be by default in openerp 
-    _sql_constraints = [('default_code', 'UNIQUE(default_code)',
-                _('Default code should be uniq'))]
 
     def create_image_from_url(self, cr, uid, id, url, image_name=None, context=None):
         (filename, header) = urllib.urlretrieve(url)

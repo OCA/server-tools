@@ -21,7 +21,7 @@
     "author" : "Sharoon Thomas, Open Labs Business Solutions",
     "website" : "http://openlabs.co.in/",
     "category" : "Added functionality - Product Extension",
-    "depends" : ['base','product'],
+    "depends" : ['product_sequence'],
     "description": """
     This Module implements an Image Gallery for products.
     You can add images against every product.
