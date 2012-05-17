@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 #################################################################################
 #                                                                               #
-#    product_is_a_gift for OpenERP                                          #
+#    product_is_a_gift for OpenERP                                              #
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
 #                                                                               #
 #    This program is free software: you can redistribute it and/or modify       #
@@ -25,7 +25,7 @@
     'version': '0.1',
     'category': 'Generic Modules',
     'license': 'AGPL-3',
-    'description': """This modules add the feature of gift_wraf""",
+    'description': """This modules add the feature of gift_wrap and give the posibility to add present message on the order or the order line""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': ['sale','product', 'stock'], 
