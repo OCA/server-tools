@@ -14,7 +14,7 @@
             <field name="name">product_quick_stock_rule.product_product.view_form</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
-            <field eval="16" name="priority"/>
+            <field eval="30" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <data>

@@ -45,7 +45,7 @@ class product_product(osv.osv):
         op_ids = orderpoint_obj.search(cr, uid, [('product_id', '=', product_id)], context=context)
         if op_ids:
             orderpoint_obj.write(cr, uid, op_ids[0], {'product_min_qty': value}, context=context)
-        else:
+        elif value:
             vals = self._prepare_orderpoint_minrule(cr, uid, product_id, value, context=context)
             vals['active'] = False
             orderpoint_obj.create(cr, uid, vals, context=context)
@@ -74,9 +74,8 @@ class product_product(osv.osv):
                         ('active', '=', True), ('product_id', '=', product_id)], context=context)
         if op_ids:
             orderpoint_obj.write(cr, uid, op_ids[0], {'active': value}, context=context)
-        else:
-            vals = self._prepare_orderpoint_minrule(cr, uid, product_id, value, context=context)
-            vals['active'] = value
+        elif value:
+            vals = self._prepare_orderpoint_minrule(cr, uid, product_id, context=context)
             orderpoint_obj.create(cr, uid, vals, context=context)
         return True
 
