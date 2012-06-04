@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  model module for OpenERP
-  Copyright (C) 2010 Sébastien BEAU <sebastien.beau@akretion.com>
+  Copyright (C) 2012 Akretion
   The licence is in the file __openerp__.py
 -->
 
@@ -16,10 +15,7 @@
                 <field name="doall" position='after'>
                     <group col="6" colspan="4">
                         <separator string="Error Mailer" colspan="6"/>
-                        <field name="send_email" colspan="1"/>
-                        <field name="email_account" colspan="1"/>
-                        <field name="email_to" colspan="1"/>
-                        <field name="message" nolabel='1' colspan="6"/>
+                        <field name="email_template" colspan="2"/>
                     </group>
                 </field>
             </field>
