@@ -3,7 +3,8 @@
 #
 #    Scheduler error mailer module for OpenERP
 #    Copyright (C) 2012 Akretion
-#    @author: Sébastien Beau <sebastien.beau@akretion.com>
+#    @author David Beal <bealdavid@gmail.com>
+#    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +21,19 @@
 #
 ##############################################################################
 
-import ir_cron
-# import test_fail_scheduler
+from osv import fields, osv
+from tools.translate import _
 
+class test_fail_scheduler(osv.osv_memory):
+    _name = "test.fail.scheduler"
+    _description = "Test scheduler failure"
+
+    def test_fail(self, cr, uid, context=None):
+        """ This a test fail, only for debugging purpose
+            DO NOT UNCOMMENT IMPORT IN init.py IN PRODUCTION ENVIRONNEMENT
+        """
+
+        raise osv.except_osv(_('Error :'), _("task failure"))
+        # context['tytytyty']
+
+test_fail_scheduler()
