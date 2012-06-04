@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012 Akretion
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <!-- Email template  -->
+    <data noupdate="1">
+
+        <record id="scheduler_error_mailer" model="email.template">
+            <field name="name">Scheduler error</field>
+            <field name="email_from">${object.user_id.user_email or ''}</field>
+            <field name="subject">[DB ${object._cr.dbname}] Scheduler '${object.name or ''}' FAILED</field>
+            <field name="email_to">${object.user_id.user_email or ''}</field>
+            <field name="model_id" ref="base.model_ir_cron"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_text"><![CDATA[
+On the database '${object._cr.dbname}', OpenERP has run the scheduler '${object.name or ''}' but it failed. Here is the error message :
+
+${hasattr(context.get('ctx').get('job_exception'), 'value') and context.get('ctx').get('job_exception').value or context.get('ctx').get('job_exception')}
+
+You may check the logs of OpenERP to get more information about this failure.
+
+The next action on this task is scheduled on ${object.nextcall or ''}.
+
+--
+Automatic e-mail sent by OpenERP. Do not reply.
+            ]]></field>
+        </record>
+    </data>
+</openerp>

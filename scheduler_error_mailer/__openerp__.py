@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Model module for OpenERP
-#    Copyright (C) 2010 Sébastien BEAU <sebastien.beau@akretion.com>
+#    Scheduler error mailer module for OpenERP
+#    Copyright (C) 2012 Akretion
+#    @author: Sébastien Beau <sebastien.beau@akretion.com>
+#    @author David Beal <bealdavid@gmail.com>
+#    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,16 +24,16 @@
 
 
 {
-    'name': 'Scheduler Error Mailer',
-    'version': '0.1',
-    'category': 'Generic Modules/Others',
+    'name': 'Scheduler error mailer',
+    'version': '1.0',
+    'category': 'Extra Tools',
     'license': 'AGPL-3',
-    'description': """This module dfkdsjfkdsjkfjksadd the posibility to send a email when a scheduler raise an error""",
+    'description': """This module adds the possibility to send an e-mail when a scheduler raises an error""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['poweremail'],
+    'depends': ['email_template'],
     'init_xml': [],
-    'update_xml': ['ir_cron.xml'],
+    'update_xml': ['ir_cron.xml', 'ir_cron_email_tpl.xml'],
     'demo_xml': [],
     'installable': True,
     'active': False,
