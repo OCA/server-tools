@@ -20,7 +20,9 @@ from osv import osv, fields
 import base64, urllib
 from tools.translate import _
 import os
-import netsvc
+
+import logging
+_logger = logging.getLogger(__name__)
 
 #TODO find a good solution in order to roll back changed done on file system
 #TODO add the posibility to move from a store system to an other (example : moving existing image on database to file system)
@@ -30,7 +32,7 @@ class product_images(osv.osv):
     _name = "product.images"
     _description = __doc__
     _table = "product_images"
-    
+
     def unlink(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
@@ -95,19 +97,25 @@ class product_images(osv.osv):
             with open(filename , 'rb') as f:
                 img = base64.b64encode(f.read())
         else:
-            full_path = self._image_path(cr, uid, image, context=context)
+            try:
+                if isinstance(image.product_id.default_code, bool):
+                    _logger.debug('product not completely setup, no image available')
+                    full_path = False
+                else:
+                    full_path = self._image_path(cr, uid, image, context=context)
+            except Exception, e:
+                _logger.error("Can not find the path for image %s: %s", id, e, exc_info=True)
+                return False
             if full_path:
                 if os.path.exists(full_path):
                     try:
                         with open(full_path, 'rb') as f:
                             img = base64.b64encode(f.read())
                     except Exception, e:
-                        logger = netsvc.Logger()
-                        logger.notifyChannel('product_images', netsvc.LOG_ERROR, "Can not open the image %s, error : %s" %(full_path, e))
+                        _logger.error("Can not open the image %s, error : %s", full_path, e, exc_info=True)
                         return False
                 else:
-                    logger = netsvc.Logger()
-                    logger.notifyChannel('product_images', netsvc.LOG_ERROR, "The image %s doesn't exist " %full_path)
+                    _logger.error("The image %s doesn't exist ", full_path)
                     return False
             else:
                 img = image.file_db_store
