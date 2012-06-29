@@ -33,37 +33,37 @@ from osv import osv, fields
 #   *Agregar su security.csv
 
 class product_product(osv.osv):
-     _inherit = "product.product"
-     
-     _columns = {
-          'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Customer Codes'),
-     }
-     
-     def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
-          res = super(product_product, self).name_search(cr, user, name, args, operator, context, limit)
-          product_customer_code_obj=self.pool.get('product.customer.code')
-          if not res:
-               ids=[]
-               id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name)], limit=limit, context=context)
-               id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
-               for ppu in id_prod:
-                    ids.append(ppu.product_id.id)
-               if ids:
-                    res = self.name_get(cr, user, ids, context)
-          return res
-     
+    _inherit = "product.product"
+    
+    _columns = {
+        'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Customer Codes'),
+    }
+    
+    def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
+        res = super(product_product, self).name_search(cr, user, name, args, operator, context, limit)
+        product_customer_code_obj=self.pool.get('product.customer.code')
+        if not res:
+            ids=[]
+            id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name)], limit=limit, context=context)
+            id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
+            for ppu in id_prod:
+                ids.append(ppu.product_id.id)
+            if ids:
+                res = self.name_get(cr, user, ids, context)
+        return res
+    
 product_product()
 
 class product_customer_code(osv.osv):
-     _name = "product.customer.code"
-     _description = "Add manies Code of Customer's"
-     
-     _rec_name = 'product_code'
-     
-     _columns = {
-          'product_code': fields.char('Customer Product Code', size=64, required=True, help="This customer's product code will be used when printing a request for quotation."),
-          'product_name': fields.char('Customer Product Name', size=128, help="This customer's product name will be used when printing a request for quotation. Keep empty to use the internal one."),
-          'product_id': fields.many2one('product.product', 'Product', required=True),
-          'partner_id': fields.many2one('res.partner', 'Partner'),
-     }
+    _name = "product.customer.code"
+    _description = "Add manies Code of Customer's"
+    
+    _rec_name = 'product_code'
+    
+    _columns = {
+        'product_code': fields.char('Customer Product Code', size=64, required=True, help="This customer's product code will be used when printing a request for quotation."),
+        'product_name': fields.char('Customer Product Name', size=128, help="This customer's product name will be used when printing a request for quotation. Keep empty to use the internal one."),
+        'product_id': fields.many2one('product.product', 'Product', required=True),
+        'partner_id': fields.many2one('res.partner', 'Partner',required=True),
+    }
 product_customer_code()

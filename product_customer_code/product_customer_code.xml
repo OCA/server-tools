@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-		
-		<record model="ir.ui.view" id="view_product_customer_code_form">
-			<field name="name">view.product.customer.code.form</field>
+    
+        <record model="ir.ui.view" id="view_product_customer_code_form">
+            <field name="name">view.product.customer.code.form</field>
 			<field name="model">product.customer.code</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
@@ -12,8 +12,8 @@
 					<field name="partner_id" select="1"/>
 				</form>
 			</field>
-		</record>
-		<record model="ir.ui.view" id="view_product_customer_code_tree">
+        </record>
+        <record model="ir.ui.view" id="view_product_customer_code_tree">
 			<field name="name">view.product.customer.code.tree</field>
 			<field name="model">product.customer.code</field>
 			<field name="type">tree</field>
