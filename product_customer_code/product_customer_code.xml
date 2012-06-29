@@ -2,7 +2,7 @@
 <openerp>
     <data>
 		
-		<record model="ir.ui.view" id="view_product_partner_upc_form">
+		<record model="ir.ui.view" id="view_product_customer_code_form">
 			<field name="name">view.product.customer.code.form</field>
 			<field name="model">product.customer.code</field>
 			<field name="type">form</field>
@@ -13,7 +13,7 @@
 				</form>
 			</field>
 		</record>
-		<record model="ir.ui.view" id="view_product_partner_upc_tree">
+		<record model="ir.ui.view" id="view_product_customer_code_tree">
 			<field name="name">view.product.customer.code.tree</field>
 			<field name="model">product.customer.code</field>
 			<field name="type">tree</field>

@@ -36,16 +36,16 @@ class product_product(osv.osv):
      _inherit = "product.product"
      
      _columns = {
-          'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Partner UPCs'),
+          'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Customer Codes'),
      }
      
      def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
           res = super(product_product, self).name_search(cr, user, name, args, operator, context, limit)
-          product_partner_upc_obj=self.pool.get('product.customer.code')
+          product_customer_code_obj=self.pool.get('product.customer.code')
           if not res:
                ids=[]
-               id_prod_upc=product_partner_upc_obj.search(cr, user, [('product_code','=',name)], limit=limit, context=context)
-               id_prod=id_prod_upc and product_partner_upc_obj.browse(cr, user, id_prod_upc, context=context) or []
+               id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name)], limit=limit, context=context)
+               id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
                for ppu in id_prod:
                     ids.append(ppu.product_id.id)
                if ids:
@@ -54,9 +54,9 @@ class product_product(osv.osv):
      
 product_product()
 
-class product_partner_upc(osv.osv):
+class product_customer_code(osv.osv):
      _name = "product.customer.code"
-     _description = "Add manies UPC of Partner's"
+     _description = "Add manies Code of Customer's"
      
      _rec_name = 'product_code'
      
@@ -66,4 +66,4 @@ class product_partner_upc(osv.osv):
           'product_id': fields.many2one('product.product', 'Product', required=True),
           'partner_id': fields.many2one('res.partner', 'Partner'),
      }
-product_partner_upc()
+product_customer_code()
