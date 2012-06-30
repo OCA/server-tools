@@ -24,20 +24,24 @@
 #
 ##############################################################################
 {
-	"name" : "Products Customer Code",
-	"version" : "1.0",
-	"author" : "Vauxoo",
+    "name" : "Products Customer Code",
+    "version" : "1.0",
+    "author" : "Vauxoo",
     "website" : "http://www.vauxoo.com/",
     "license" : "AGPL-3",
-	"category" : "Generic Modules/Product",
-	"depends" : ["base", "product"],
-	"init_xml" : [],
-	"demo_xml" : [],
-	"description": """
-Add manies UPC of Partner's in product
-	""",
-	"update_xml" : ["product_customer_code.xml", "product_product.xml"],
-	#"update_xml" : ["product_customer_code.xml", ],
-	"active": False,
-	"installable": True,
+    "category" : "Generic Modules/Product",
+    "depends" : ["base", "product"],
+    "init_xml" : [],
+    "demo_xml" : [],
+    "description": """
+Add manies Codes of Customer's in product
+     """,
+    "update_xml" : ["security/groups.xml",
+                    "security/ir.model.access.csv",
+                    "product_customer_code.xml",
+                    "product_product.xml",
+                    
+                    ],
+    "active": False,
+    "installable": True,
 }

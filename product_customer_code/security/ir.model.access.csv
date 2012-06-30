@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_create,perm_unlink,perm_write,perm_read
+access_product_customer_code_user,product.customer.code.user,model_product_customer_code,,0,1,0,1

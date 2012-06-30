@@ -4,26 +4,26 @@
     
         <record model="ir.ui.view" id="view_product_customer_code_form">
             <field name="name">view.product.customer.code.form</field>
-			<field name="model">product.customer.code</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Product Partner UPC">
-					<field name="product_code" select="1"/>
-					<field name="partner_id" select="1"/>
-				</form>
-			</field>
+            <field name="model">product.customer.code</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Customer Code">
+                    <field name="product_code" select="1"/>
+                    <field name="partner_id" select="1"/>
+                </form>
+            </field>
         </record>
         <record model="ir.ui.view" id="view_product_customer_code_tree">
-			<field name="name">view.product.customer.code.tree</field>
-			<field name="model">product.customer.code</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Product Partner UPC" editable="bottom">
-					<field name="product_code"/>
-					<field name="partner_id"/>
-				</tree>
-			</field>
-		</record>
+            <field name="name">view.product.customer.code.tree</field>
+            <field name="model">product.customer.code</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Customer Code" editable="bottom">
+                    <field name="product_code"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
 
     </data>
 </openerp>
