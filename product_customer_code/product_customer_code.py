@@ -65,5 +65,9 @@ class product_customer_code(osv.osv):
         'product_name': fields.char('Customer Product Name', size=128, help="This customer's product name will be used when printing a request for quotation. Keep empty to use the internal one."),
         'product_id': fields.many2one('product.product', 'Product', required=True),
         'partner_id': fields.many2one('res.partner', 'Partner',required=True),
+        'company_id': fields.many2one('res.company','Company')
+    }
+    _defaults = {
+        'company_id': lambda s, cr, uid, c: s.pool.get('res.company')._company_default_get(cr, uid, 'product.customer.code', context=c),
     }
 product_customer_code()
