@@ -46,12 +46,13 @@ class product_product(osv.osv):
         product_customer_code_obj=self.pool.get('product.customer.code')
         if not res:
             ids=[]
-            id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name)], limit=limit, context=context)
-            id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
-            for ppu in id_prod:
-                ids.append(ppu.product_id.id)
-            if ids:
-                res = self.name_get(cr, user, ids, context)
+            if context.get('partner_id',True):
+                id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name),('partner_id','=',context.get('partner_id'))], limit=limit, context=context)
+                id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
+                for ppu in id_prod:
+                    ids.append(ppu.product_id.id)
+                if ids:
+                    res = self.name_get(cr, user, ids, context)
         return res
     
 product_product()
@@ -73,6 +74,6 @@ class product_customer_code(osv.osv):
         'company_id': lambda s, cr, uid, c: s.pool.get('res.company')._company_default_get(cr, uid, 'product.customer.code', context=c),
     }
     _sql_constraints = [
-        ('unique_name', 'unique(product_code)', 'Product Code must be unique'),
+        ('unique_code', 'unique(product_code,company_id,partner_id)', 'Product Code must be unique'),
     ]
 product_customer_code()
