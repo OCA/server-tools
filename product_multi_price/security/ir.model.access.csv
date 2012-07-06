@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_product_price_fields_manager","product_multi_price_product_price_fields","product_multi_price.model_product_price_fields","base.group_sale_salesman",1,1,1,1
+"access_product_price_fields_user","product_multi_price_product_price_fields","product_multi_price.model_product_price_fields","base.group_user",1,0,0,0

@@ -35,6 +35,7 @@
            'product_view.xml',
            'product_price_field_config.xml',
            'account_view.xml',
+           'security/ir.model.access.csv',
     ],
     'demo_xml': [],
     'installable': True,
