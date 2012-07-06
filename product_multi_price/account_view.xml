@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_multi_price for OpenERP
+  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+<openerp>
+    <data>
+
+        <!-- INHERITED VIEW FOR THE OBJECT : account_tax -->
+
+        <record id="product_multi_price_account_tax_view_form" model="ir.ui.view">
+            <field name="name">product_multi_price.account_tax.view_tax_form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form" />
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="price_include" position="after">
+                        <field name="related_inc_tax_id" attrs="{'invisible':[('price_include', '=', True)]}" />
+                    </field>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

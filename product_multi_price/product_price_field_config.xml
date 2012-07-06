@@ -13,6 +13,7 @@
         <record id="product_multi_price_original_sale_price" model="product.price.fields">
             <field name="field_name">list_price</field>
             <field name="sequence">0</field>
+            <field name="default_basedon">manual</field>
         </record>
 
     </data>

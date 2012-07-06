@@ -22,6 +22,7 @@
 
 import product_price_fields
 import product
+import account
 
 
 
