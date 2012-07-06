@@ -47,13 +47,13 @@ class product_product(osv.osv):
     def write(self, cr, uid, ids, vals, context=None):
         if context is None:
             context = {}
-        result = True
-        for product in self.browse(cr, uid, ids, context):
-            default_code = product.default_code
-            if not default_code or default_code == '/':
-                vals['default_code'] = self.pool.get('ir.sequence').get(cr, uid, 'product.product')
-            result = result and super(product_product, self).write(cr, uid, ids, vals, context)
-        return result
+        products_without_code = self.search(cr, uid, [('default_code', 'in', [False, '/']),('id', 'in', ids)], context=context)
+        direct_write_ids = set(ids) - set(products_without_code)
+        super(product_product, self).write(cr, uid, list(direct_write_ids), vals, context)
+        for product_id in products_without_code:
+            vals['default_code'] = self.pool.get('ir.sequence').get(cr, uid, 'product.product')
+            super(product_product, self).write(cr, uid, product_id, vals, context)
+        return True
 
     def copy(self, cr, uid, id, default={}, context=None):
         product = self.read(cr, uid, id, ['default_code'], context=context)
