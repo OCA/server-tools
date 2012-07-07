@@ -33,11 +33,11 @@ class product_customer_code(osv.osv):
     _rec_name = 'product_code'
     
     _columns = {
-        'product_code': fields.char('Customer Product Code', size=64, required=True, help="This customer's product code will be used when printing a request for quotation."),
-        'product_name': fields.char('Customer Product Name', size=128, help="This customer's product name will be used when printing a request for quotation. Keep empty to use the internal one."),
+        'product_code': fields.char('Customer Product Code', size=64, required=True, help="This customer's product code will be used when searching into a request for quotation."),
+        'product_name': fields.char('Customer Product Name', size=128, help="This customer's product name will be used when searching into a request for quotation."),
         'product_id': fields.many2one('product.product', 'Product', required=True),
-        'partner_id': fields.many2one('res.partner', 'Customer',required=True),
-        'company_id': fields.many2one('res.company','Company')
+        'partner_id': fields.many2one('res.partner', 'Customer', required=True),
+        'company_id': fields.many2one('res.company','Company', required=True),
     }
     
     _defaults = {

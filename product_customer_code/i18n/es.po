@@ -63,8 +63,8 @@ msgstr "Error: Código EAN erróneo"
 
 #. module: product_customer_code
 #: help:product.customer.code,product_code:0
-msgid "This customer's product code will be used when printing a request for quotation."
-msgstr "El código de producto de este cliente se utiliza cuando se imprime una solicitud de cotización."
+msgid "This customer's product code will be used when searching into a request for quotation."
+msgstr "El código de producto de este cliente se utiliza cuando se busca dentro de una solicitud de cotización."
 
 #. module: product_customer_code
 #: field:product.customer.code,product_name:0
@@ -78,8 +78,8 @@ msgstr "Cliente"
 
 #. module: product_customer_code
 #: help:product.customer.code,product_name:0
-msgid "This customer's product name will be used when printing a request for quotation. Keep empty to use the internal one."
-msgstr "El nombre de producto de este cliente se utiliza cuando se imprime una solicitud de cotización. Mantenga vacío para usar una interna."
+msgid "This customer's product name will be used when searching into a request for quotation."
+msgstr "El nombre de producto de este cliente se utiliza cuando se busca dentro de una solicitud de cotización."
 
 #. module: product_customer_code
 #: model:ir.model,name:product_customer_code.model_product_customer_code
