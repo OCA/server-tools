@@ -36,7 +36,7 @@
     "description": """
 Add manies Codes of Customer's in product
      """,
-    "update_xml" : ["security/groups.xml",
+    "update_xml" : ["security/product_customer_code_security.xml",
                     "security/ir.model.access.csv",
                     "product_customer_code.xml",
                     "product_product.xml",
