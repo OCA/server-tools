@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-		
-		<record model="ir.ui.view" id="product_normal_form_inherit10">
-			<field name="name">product.normal.form.inherit10</field>
-			<field name="model">product.product</field>
-			<field name="type">form</field>
-			<field name="inherit_id" ref="product.product_normal_form_view"/>
-			<field name="arch" type="xml">
-				<page string="Information" position="after">
-					<page string="Customer Code">
-						<field name="product_customer_code_ids" colspan="4" nolabel="1"/>
-					</page>
-				</page>
-			</field>
-		</record>
-		
+        
+        <record model="ir.ui.view" id="product_normal_form_inh_product_customer_code_01">
+            <field name="name">product.normal.form.inh.product.customer.code.01</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Information" position="after">
+                    <page string="Customer Code">
+                        <field name="product_customer_code_ids" colspan="4" nolabel="1"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+        
     </data>
 </openerp>
