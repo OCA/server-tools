@@ -46,13 +46,14 @@ class product_product(osv.osv):
         product_customer_code_obj=self.pool.get('product.customer.code')
         if not res:
             ids=[]
-            if context.get('partner_id',True):
-                id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name),('partner_id','=',context.get('partner_id'))], limit=limit, context=context)
+            partner_id = context.get('partner_id', False)
+            if partner_id:
+                id_prod_code=product_customer_code_obj.search(cr, user, [('product_code','=',name),('partner_id','=',partner_id)], limit=limit, context=context)
                 id_prod=id_prod_code and product_customer_code_obj.browse(cr, user, id_prod_code, context=context) or []
                 for ppu in id_prod:
                     ids.append(ppu.product_id.id)
-                if ids:
-                    res = self.name_get(cr, user, ids, context)
+            if ids:
+                res = self.name_get(cr, user, ids, context)
         return res
     
 product_product()
