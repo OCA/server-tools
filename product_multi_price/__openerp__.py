@@ -28,7 +28,7 @@
     'description': """empty""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product','account', 'sale','mv_prices_to_variant'], 
+    'depends': ['product','account', 'sale','product_prices_on_variant'], 
     'init_xml': [],
     'update_xml': [ 
            'product_price_fields_view.xml',
