@@ -34,123 +34,127 @@ class product_product(osv.osv):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         result = super(osv.osv, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
         if view_type=='form':
-            product_price_fields_obj = self.pool.get('product.price.fields')
-            product_price_fields_ids = product_price_fields_obj.search(cr, uid, [], context=context)
-            price_fields = []
-            tax_inc = False
-            tax_ex = False
-#            arch_1 = u"""<group colspan="2" col="10">\n<separator string="Tax exclude prices" colspan="10"/>\n"""
-#            arch_2 = u"""</group>\n"""
-#            arch_3 = u"""<group colspan="2" col="10">\n<separator string="Tax include prices" colspan="10"/>\n"""
-#            arch_4 = u"""<separator colspan="10"/>\n</group>"""
-#            for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
-#                price_fields += [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name]
-#                fields_arch = u"""<label string="%s :" colspan="3"/>\n<field name="%s" colspan="4" nolabel="1"/>\n<field name="%s" string="Coef" colspan="1" attrs="{'readonly':[('%s','!=','product_coef')]}" modifiers="{&quot;readonly&quot;:[[&quot;%s&quot;,&quot;!=&quot;,&quot;product_coef&quot;]]}"/>\n<field name="%s" colspan="1" nolabel="1" attrs="{'readonly':[('%s','!=','manual')]}" modifiers="{&quot;readonly&quot;:[[&quot;%s&quot;,&quot;!=&quot;,&quot;manual&quot;]]}"/>\n""" % (field.name, field.basedon_field_id.name, field.product_coef_field_id.name, field.basedon_field_id.name, field.basedon_field_id.name, field.field_name, field.basedon_field_id.name, field.basedon_field_id.name)
-#                if field.tax_included:
-#                    arch_3 +=  fields_arch
-#                    tax_inc = True
-#                else:
-#                    arch_1 += fields_arch
-#                    tax_ex = True
-#                print price_fields
-#            #remove group tax include or tax exclude if no price in it
-#            if not tax_inc:
-#                arch = arch_1 + arch_4
-#            elif not tax_ex:
-#                arch = arch_3 + arch_4
-#            else:
-#                arch = arch_1 + arch_2 + arch_3 + arch_4
-#            import pdb;pdb.set_trace()
-#            result['fields'].update(self.fields_get(cr, uid, price_fields, context))
-#            result['arch'] = result['arch'].decode('utf8').replace('<field name="list_price" modifiers="{}"/>', arch)
-##            print result
-            eview = etree.fromstring(result['arch'])
-            #select separator just before field : list_price in order to remove it
-            main_sep = eview.xpath("//field[@name='list_price']/preceding-sibling::*[1]")
-            main_sep = main_sep[0]
-            main_sep.getparent().remove(main_sep)
-            btn = eview.xpath("//field[@name='list_price']")
-            if btn:
-                btn = btn[0]
-                group_ex = etree.Element('group', colspan="2", col="10")
-                separator_ex = etree.SubElement(
-                                group_ex,
-                                'separator',
-                                colspan="9",
-                                string="Tax exclude prices")
-                group_inc = etree.Element('group', colspan="2", col="10")
-                separator_inc = etree.SubElement(
-                                group_inc,
-                                'separator',
-                                colspan="9",
-                                string="Tax include prices")
-                group_sep = etree.Element('group', colspan="2", col="10")
-                separator_end = etree.SubElement(
-                                group_sep,
-                                'separator',
-                                colspan="10")
-                inc_price = self.pool.get('product.price.fields').search(cr, uid, [
-                                                                        ('tax_included', '=', True)
-                                                                        ], context=context)
-                if inc_price:
-                    button_parent = group_inc
-                else:
-                    button_parent = group_ex
-                button = etree.SubElement(
-                                button_parent,
-                                'button',
-                                colspan="1",
-                                name="refresh_prices",
-                                string="Refresh Prices",
-                                type="object")
-                for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
-                    price_fields = [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name]
-                    result['fields'].update(self.fields_get(cr, uid, price_fields, context))
-                    if field.tax_included:
-                        parent =  group_inc
-                        tax_inc = True
+            data_obj = self.pool.get('ir.model.data')
+            ir_model_product_id = data_obj.search(cr, uid, [('name', '=', 'product_normal_form_view'),('module', '=', 'product')], context=context)[0]
+            ir_model_product = data_obj.read(cr, uid, ir_model_product_id, ['res_id'], context=context)
+            if view_id == ir_model_product['res_id']:
+                product_price_fields_obj = self.pool.get('product.price.fields')
+                product_price_fields_ids = product_price_fields_obj.search(cr, uid, [], context=context)
+                price_fields = []
+                tax_inc = False
+                tax_ex = False
+    #            arch_1 = u"""<group colspan="2" col="10">\n<separator string="Tax exclude prices" colspan="10"/>\n"""
+    #            arch_2 = u"""</group>\n"""
+    #            arch_3 = u"""<group colspan="2" col="10">\n<separator string="Tax include prices" colspan="10"/>\n"""
+    #            arch_4 = u"""<separator colspan="10"/>\n</group>"""
+    #            for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
+    #                price_fields += [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name]
+    #                fields_arch = u"""<label string="%s :" colspan="3"/>\n<field name="%s" colspan="4" nolabel="1"/>\n<field name="%s" string="Coef" colspan="1" attrs="{'readonly':[('%s','!=','product_coef')]}" modifiers="{&quot;readonly&quot;:[[&quot;%s&quot;,&quot;!=&quot;,&quot;product_coef&quot;]]}"/>\n<field name="%s" colspan="1" nolabel="1" attrs="{'readonly':[('%s','!=','manual')]}" modifiers="{&quot;readonly&quot;:[[&quot;%s&quot;,&quot;!=&quot;,&quot;manual&quot;]]}"/>\n""" % (field.name, field.basedon_field_id.name, field.product_coef_field_id.name, field.basedon_field_id.name, field.basedon_field_id.name, field.field_name, field.basedon_field_id.name, field.basedon_field_id.name)
+    #                if field.tax_included:
+    #                    arch_3 +=  fields_arch
+    #                    tax_inc = True
+    #                else:
+    #                    arch_1 += fields_arch
+    #                    tax_ex = True
+    #                print price_fields
+    #            #remove group tax include or tax exclude if no price in it
+    #            if not tax_inc:
+    #                arch = arch_1 + arch_4
+    #            elif not tax_ex:
+    #                arch = arch_3 + arch_4
+    #            else:
+    #                arch = arch_1 + arch_2 + arch_3 + arch_4
+    #            import pdb;pdb.set_trace()
+    #            result['fields'].update(self.fields_get(cr, uid, price_fields, context))
+    #            result['arch'] = result['arch'].decode('utf8').replace('<field name="list_price" modifiers="{}"/>', arch)
+    ##            print result
+                eview = etree.fromstring(result['arch'])
+                #select separator just before field : list_price in order to remove it
+                main_sep = eview.xpath("//field[@name='list_price']/preceding-sibling::*[1]")
+                main_sep = main_sep[0]
+                main_sep.getparent().remove(main_sep)
+                btn = eview.xpath("//field[@name='list_price']")
+                if btn:
+                    btn = btn[0]
+                    group_ex = etree.Element('group', colspan="2", col="10")
+                    separator_ex = etree.SubElement(
+                                    group_ex,
+                                    'separator',
+                                    colspan="9",
+                                    string="Tax exclude prices")
+                    group_inc = etree.Element('group', colspan="2", col="10")
+                    separator_inc = etree.SubElement(
+                                    group_inc,
+                                    'separator',
+                                    colspan="9",
+                                    string="Tax include prices")
+                    group_sep = etree.Element('group', colspan="2", col="10")
+                    separator_end = etree.SubElement(
+                                    group_sep,
+                                    'separator',
+                                    colspan="10")
+                    inc_price = self.pool.get('product.price.fields').search(cr, uid, [
+                                                                            ('tax_included', '=', True)
+                                                                            ], context=context)
+                    if inc_price:
+                        button_parent = group_inc
                     else:
-                        parent = group_ex
-                        tax_ex = True
-                    label = etree.SubElement(
-                                parent,
-                                'label',
-                                colspan="3",
-                                string="%s" % field.name)
-                    basedon = etree.SubElement(
-                                parent,
-                                'field',
-                                name="%s" % field.basedon_field_id.name,
-                                colspan="4",
-                                nolabel="1")
-                    coef = etree.SubElement(
-                                parent,
-                                'field',
-                                digits="(18, 6)",
-                                name="%s" % field.product_coef_field_id.name,
-                                string="Coef",
-                                colspan="1",
-                                attrs="{'readonly':[('%s','!=','product_coef')]}" % field.basedon_field_id.name)
-                    orm.setup_modifiers(
-                        coef, field=result['fields'][field.product_coef_field_id.name], context=context)
-                    price = etree.SubElement(
-                                parent,
-                                'field',
-                                digits ="(12, %s)" % (self.pool.get('decimal.precision').precision_get(cr, uid, 'Sale Price')),
-                                name="%s" % field.field_name,
-                                colspan="1",
-                                nolabel="1",
-                                attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
-                    orm.setup_modifiers(
-                        price, field=result['fields'][field.field_name], context=context)
-                arch = etree.Element('group', colspan="2", col="10")
-                if tax_inc:
-                    arch.extend(group_inc)
-                if tax_ex:
-                    arch.extend(group_ex)
-                arch.extend(group_sep)
-                btn.getparent().replace(btn, arch)
-            result['arch'] = etree.tostring(eview, pretty_print=True)
+                        button_parent = group_ex
+                    button = etree.SubElement(
+                                    button_parent,
+                                    'button',
+                                    colspan="1",
+                                    name="refresh_prices",
+                                    string="Refresh Prices",
+                                    type="object")
+                    for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
+                        price_fields = [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name]
+                        result['fields'].update(self.fields_get(cr, uid, price_fields, context))
+                        if field.tax_included:
+                            parent =  group_inc
+                            tax_inc = True
+                        else:
+                            parent = group_ex
+                            tax_ex = True
+                        label = etree.SubElement(
+                                    parent,
+                                    'label',
+                                    colspan="3",
+                                    string="%s" % field.name)
+                        basedon = etree.SubElement(
+                                    parent,
+                                    'field',
+                                    name="%s" % field.basedon_field_id.name,
+                                    colspan="4",
+                                    nolabel="1")
+                        coef = etree.SubElement(
+                                    parent,
+                                    'field',
+                                    digits="(18, 6)",
+                                    name="%s" % field.product_coef_field_id.name,
+                                    string="Coef",
+                                    colspan="1",
+                                    attrs="{'readonly':[('%s','!=','product_coef')]}" % field.basedon_field_id.name)
+                        orm.setup_modifiers(
+                            coef, field=result['fields'][field.product_coef_field_id.name], context=context)
+                        price = etree.SubElement(
+                                    parent,
+                                    'field',
+                                    digits ="(12, %s)" % (self.pool.get('decimal.precision').precision_get(cr, uid, 'Sale Price')),
+                                    name="%s" % field.field_name,
+                                    colspan="1",
+                                    nolabel="1",
+                                    attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
+                        orm.setup_modifiers(
+                            price, field=result['fields'][field.field_name], context=context)
+                    arch = etree.Element('group', colspan="2", col="10")
+                    if tax_inc:
+                        arch.extend(group_inc)
+                    if tax_ex:
+                        arch.extend(group_ex)
+                    arch.extend(group_sep)
+                    btn.getparent().replace(btn, arch)
+                result['arch'] = etree.tostring(eview, pretty_print=True)
         return result
 
     def default_get(self, cr, uid, fields_list, context=None):
