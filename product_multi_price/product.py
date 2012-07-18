@@ -240,7 +240,7 @@ class product_product(osv.osv):
                                                                 ], context=context)
                         if price_field_ids:
                             price_field = prod_price_fields_obj.read(cr, uid, price_field_ids[0], ['tax_included'], context=context)
-                            if price_field.get('tax_included'):
+                            if price_field.get('tax_included') and result['taxes_id']:
                                 #TODO support several taxes ?
                                 tax = tax_obj.browse(cr, uid, result['taxes_id'][0], context=context)
                                 tax_inc = True
