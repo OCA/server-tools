@@ -35,6 +35,8 @@ class product_product(osv.osv):
     
     def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
         res = super(product_product, self).name_search(cr, user, name, args, operator, context, limit)
+        if not context:
+            context={}
         product_customer_code_obj=self.pool.get('product.customer.code')
         if not res:
             ids=[]
