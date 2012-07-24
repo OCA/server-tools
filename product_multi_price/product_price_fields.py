@@ -151,8 +151,11 @@ class product_price_fields(osv.osv):
                 if field == 'basedon' and vals.get('default_basedon', False):
                     default_vals[field_vals['name']] = vals['default_basedon']
                     self.pool.get('product.product').write(cr, uid, product_ids, default_vals, context=context)
-        price_type_id = self._create_price_type(cr, uid, vals, context=context)
-        price_list = self._create_price_list(cr, uid, vals, price_type_id, context=context)
+        if not exist_id:
+            if not vals.get('currency_id'):
+                vals['currency_id'] = self._get_currency(cr, uid, context)
+            price_type_id = self._create_price_type(cr, uid, vals, context=context)
+            price_list = self._create_price_list(cr, uid, vals, price_type_id, context=context)
         if vals.get('field_name', False):
             del vals['field_name']
         del vals['name']
