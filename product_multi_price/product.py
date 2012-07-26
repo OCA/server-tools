@@ -76,23 +76,23 @@ class product_product(osv.osv):
                 btn = eview.xpath("//field[@name='list_price']")
                 if btn:
                     btn = btn[0]
-                    group_ex = etree.Element('group', colspan="2", col="10")
+                    group_ex = etree.Element('group', colspan="2", col="11")
                     separator_ex = etree.SubElement(
                                     group_ex,
                                     'separator',
-                                    colspan="9",
+                                    colspan="10",
                                     string="Tax exclude prices")
-                    group_inc = etree.Element('group', colspan="2", col="10")
+                    group_inc = etree.Element('group', colspan="2", col="11")
                     separator_inc = etree.SubElement(
                                     group_inc,
                                     'separator',
-                                    colspan="9",
+                                    colspan="10",
                                     string="Tax include prices")
-                    group_sep = etree.Element('group', colspan="2", col="10")
+                    group_sep = etree.Element('group', colspan="2", col="11")
                     separator_end = etree.SubElement(
                                     group_sep,
                                     'separator',
-                                    colspan="10")
+                                    colspan="11")
                     inc_price = self.pool.get('product.price.fields').search(cr, uid, [
                                                                             ('tax_included', '=', True)
                                                                             ], context=context)
@@ -108,14 +108,18 @@ class product_product(osv.osv):
                                     string="Refresh Prices",
                                     type="object")
                     for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
-                        price_fields = [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name]
+                        price_fields = [field.field_name, field.basedon_field_id.name, field.product_coef_field_id.name, field.inc_price_field_id.name]
                         result['fields'].update(self.fields_get(cr, uid, price_fields, context))
                         if field.tax_included:
                             parent =  group_inc
                             tax_inc = True
+                            inc_readonly = "0"
+                            ex_readonly = "1"
                         else:
                             parent = group_ex
                             tax_ex = True
+                            inc_readonly = "1"
+                            ex_readonly = "0"
                         label = etree.SubElement(
                                     parent,
                                     'label',
@@ -144,10 +148,22 @@ class product_product(osv.osv):
                                     name="%s" % field.field_name,
                                     colspan="1",
                                     nolabel="1",
+                                    readonly = ex_readonly,
                                     attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
                         orm.setup_modifiers(
                             price, field=result['fields'][field.field_name], context=context)
-                    arch = etree.Element('group', colspan="2", col="10")
+                        inc_price = etree.SubElement(
+                                    parent,
+                                    'field',
+                                    digits ="(12, %s)" % (self.pool.get('decimal.precision').precision_get(cr, uid, 'Sale Price')),
+                                    name="%s" % field.inc_price_field_id.name,
+                                    colspan="1",
+                                    nolabel="1",
+                                    readonly = inc_readonly,
+                                    attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
+                        orm.setup_modifiers(
+                            inc_price, field=result['fields'][field.inc_price_field_id.name], context=context)
+                    arch = etree.Element('group', colspan="2", col="11")
                     if tax_inc:
                         arch.extend(group_inc)
                     if tax_ex:
@@ -184,6 +200,7 @@ class product_product(osv.osv):
             if field[0:5] == 'x_pm_':
                 read = True
         if read and not context.get('simple_read'):
+            print fields
             tax_obj = self.pool.get('account.tax')
             prod_price_fields_obj = self.pool.get('product.price.fields')
             add_fields = []
@@ -203,6 +220,9 @@ class product_product(osv.osv):
                     if not 'x_pm_product_coef_' + name in fields:
                         fields.append('x_pm_product_coef_' + name)
                         add_fields.append('x_pm_product_coef_' + name)
+                    if not 'x_pm_inc_price_' + name in fields:
+                        fields.append('x_pm_inc_price_' + name)
+                        add_fields.append('x_pm_inc_price_' + name)
                 elif field[0:18] == 'x_pm_product_coef_':
                     name = field[18:]
                     if name == 'list_price':
@@ -212,6 +232,21 @@ class product_product(osv.osv):
                     elif not 'x_pm_price_' + name in fields:
                         fields.append('x_pm_price_' + name)
                         add_fields.append('x_pm_price_' + name)
+                    if not 'x_pm_inc_price_' + name in fields:
+                        fields.append('x_pm_inc_price_' + name)
+                        add_fields.append('x_pm_inc_price_' + name)
+                elif field[0:15] == 'x_pm_inc_price_':
+                    name = field[15:]
+                    if name == 'list_price':
+                        if not name in fields:
+                            fields.append(name)
+                            add_fields.append(name)
+                    elif not 'x_pm_price_' + name in fields:
+                        fields.append('x_pm_price_' + name)
+                        add_fields.append('x_pm_price_' + name)
+                    if not 'x_pm_product_coef_' + name in fields:
+                        fields.append('x_pm_product_coef_' + name)
+                        add_fields.append('x_pm_product_coef_' + name)
                 if name:
                     if not 'x_pm_basedon_' + name in fields:
                         fields.append('x_pm_basedon_' + name)
@@ -229,6 +264,8 @@ class product_product(osv.osv):
                         name = field[11:]
                     elif field[0:18] == 'x_pm_product_coef_':
                         name = field[18:]
+                    elif field[0:15] == 'x_pm_inc_price_':
+                        name = field[15:]
                     if name:
                         if name == 'list_price':
                             price_name = 'list_price'
@@ -240,18 +277,24 @@ class product_product(osv.osv):
                                                                 ], context=context)
                         if price_field_ids:
                             price_field = prod_price_fields_obj.read(cr, uid, price_field_ids[0], ['tax_included'], context=context)
-                            if price_field.get('tax_included') and result['taxes_id']:
-                                #TODO support several taxes ?
-                                tax = tax_obj.browse(cr, uid, result['taxes_id'][0], context=context)
+                            if price_field.get('tax_included'):
                                 tax_inc = True
+                        if result.get('taxes_id'):
+                            #TODO support several taxes ?
+                            tax = tax_obj.browse(cr, uid, result['taxes_id'][0], context=context)
                         if result['x_pm_basedon_' + name] == 'manual':
                             if result['standard_price']:
-                                if tax_inc:
-                                    #TODO tax inc
-                                    taxes = tax_obj.compute_all_with_precision(cr, uid, [tax.related_inc_tax_id], result[price_name], 1, precision=6)
-                                    result['x_pm_product_coef_' + name] = taxes['total']/result['standard_price']
+                                if tax_inc and result.get('taxes_id'):
+                                    if not tax.related_inc_tax_id:
+                                        raise osv.except_osv(_("No related tax"), _("You need to define a related included tax for the sale tax!"))
+                                    taxes = tax_obj.compute_all_with_precision(cr, uid, [tax.related_inc_tax_id], result['x_pm_inc_price_' + name], 1, precision=6)
+                                    result[price_name] = taxes['total']
+                                elif result.get('taxes_id'):
+                                    taxes = tax_obj.compute_all_with_precision(cr, uid, [tax], result[price_name], 1, precision=6)
+                                    result['x_pm_inc_price_' + name] = taxes['total_included']
                                 else:
-                                    result['x_pm_product_coef_' + name] = result[price_name]/result['standard_price']
+                                    result['x_pm_inc_price_' + name] = result[price_name]
+                                result['x_pm_product_coef_' + name] = result[price_name]/result['standard_price']
                             else:
                                 result['x_pm_product_coef_' + name] = 0
                         elif result['x_pm_basedon_' + name] == 'product_coef':
@@ -268,14 +311,15 @@ class product_product(osv.osv):
                             if categ[0].get('x_pm_categ_coef_' + name):
                                 result['x_pm_product_coef_' + name] = categ[0]['x_pm_categ_coef_' + name]
                             else:
-                                result['x_pm_product_coef_' + name] = 0
+                                result['x_pm_product_coef_' + name] = 1
                             price_ex = result['standard_price']*result['x_pm_product_coef_' + name]
                         if result['x_pm_basedon_' + name] in ['categ_coef', 'product_coef']:
-                            if tax_inc:
+                            if result.get('taxes_id'):
                                 taxes = tax_obj.compute_all_with_precision(cr, uid, [tax], price_ex, 1, precision=6)
-                                result[price_name] = taxes['total_included']
+                                result['x_pm_inc_price_' + name] = taxes['total_included']
                             else:
-                                result[price_name] = price_ex
+                                result['x_pm_inc_price_' + name] = price_ex
+                            result[price_name] = price_ex
                 for field in add_fields:
                     if result.get(field):
                         del result[field]

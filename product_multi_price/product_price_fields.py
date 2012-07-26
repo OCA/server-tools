@@ -43,6 +43,7 @@ class product_price_fields(osv.osv):
         'categ_coef_field_id' : fields.many2one('ir.model.fields', 'Category Coef Field ID', domain = [('model', '=', 'product.category'), ('ttype', '=', 'float')]),
         'default_basedon':fields.selection([('categ_coef','Price on category coefficient'),('product_coef','Price on product coefficient'),('manual','Manual price')], 'Based on by default'),
         'currency_id': fields.many2one('res.currency', "Currency", required=True, help="The currency the field is expressed in."),
+        'inc_price_field_id' : fields.many2one('ir.model.fields', 'Price Included Field ID', domain = [('model', '=', 'product.product'), ('ttype', '=', 'float')]),
     }
 
     def _get_currency(self, cr, uid, ctx):
@@ -119,7 +120,7 @@ class product_price_fields(osv.osv):
             exist_id = self.pool.get('ir.model.fields').search(cr, uid, [('name', '=', vals['field_name'])])
             if not exist_id and vals['field_name'][0:2] != 'x_':
                 raise osv.except_osv(_('User Error'), _("Please prefix the name field by x_ as it's a custom field"))
-        field_list = ['price', 'basedon','product_coef','categ_coef']
+        field_list = ['price', 'inc_price', 'basedon','product_coef','categ_coef']
         product_ids = self.pool.get('product.product').search(cr, uid, [], context=context)
         for field in field_list:
             if exist_id and field == 'price':
@@ -141,7 +142,7 @@ class product_price_fields(osv.osv):
                     'field_description': (vals.get('field_name', False) or vals['name']).capitalize() + ' ' + field,
                     'state': 'manual'
                 }
-                if field in ['price','product_coef','categ_coef']:
+                if field in ['price', 'inc_price', 'product_coef','categ_coef']:
                     field_vals['ttype'] = 'float'
                 if field == 'basedon':
                     field_vals['ttype'] = 'selection'
