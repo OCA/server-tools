@@ -19,13 +19,27 @@
             <field name="model">product.customer.code</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Product Customer Code" editable="bottom">
+                <tree string="Product Customer Code">
                     <field name="product_code"/>
                     <field name="partner_id"/>
-                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                    <field name="company_id"/>
                 </tree>
             </field>
         </record>
+        
+          <record id="action_product_customer_code_tree" model="ir.actions.act_window">
+            <field name="name">Product Customer Code</field>
+            <field name="res_model">product.customer.code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_product_customer_code_tree"/>
+        </record>
+        
+         <menuitem action="action_product_customer_code_tree" 
+                id="menu_product_customer_code" sequence="50" 
+                parent="base.menu_res_company_global"
+                groups="group_product_customer_code_manager"
+            />
 
     </data>
 </openerp>

@@ -10,7 +10,18 @@
             <field name="arch" type="xml">
                 <page string="Information" position="after">
                     <page string="Customer Code">
-                        <field name="product_customer_code_ids" colspan="4" nolabel="1"/>
+                         <field name="product_customer_code_ids" nolabel="1" colspan="4"  widget="one2many_list">
+                            <tree string="Product Customer Code" editable="bottom">
+                                <field name="product_code"/>
+                                <field name="partner_id"/>
+                                <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                            </tree>
+                            <form string="Product Customer Code">
+                                <field name="product_code"/>
+                                <field name="partner_id"/>
+                                 <field name="company_id"/>
+                            </form> 
+                        </field>
                     </page>
                 </page>
             </field>
