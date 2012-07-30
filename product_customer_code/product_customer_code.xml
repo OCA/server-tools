@@ -35,6 +35,24 @@
             <field name="view_id" ref="view_product_customer_code_tree"/>
         </record>
         
+        <record id="view_product_customer_code_search" model="ir.ui.view">
+            <field name="name">view.product.customer.code.certificate.search</field>
+            <field name="model">product.customer.code</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Product Customer Code">
+                    <field name="product_code"/>
+                    <field name="partner_id"/>
+                    <field name="company_id"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Company" icon="terp-partner" domain="[]" context="{'group_by':'company_id'}"/>
+                        <separator orientation="vertical"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
          <menuitem action="action_product_customer_code_tree" 
                 id="menu_product_customer_code" sequence="50" 
                 parent="product.prod_config_main"
