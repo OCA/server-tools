@@ -20,6 +20,7 @@
 ##############################################################################
 
 from osv import fields, osv
+import time
 
 class mgmtsystem_kpi_category(osv.osv):
     """
@@ -93,6 +94,27 @@ class mgmtsystem_kpi_periodicity_uom(osv.osv):
 
 mgmtsystem_kpi_threshold()
 
+class mgmtsystem_kpi_history(osv.osv):
+    """
+    History of the KPI
+    """
+    _name = "mgmtsystem.kpi.history"
+    _description = "History of the KPI"
+
+    _columns = {
+        'name': fields.char('Name', size=150, required=True),
+        'kpi_id': fields.many2one('mgmtsystem.kpi', 'KPI', required=True),
+        'date': fields.datetime('Execution Date', required=True, readonly=True),
+        'value': fields.float('Value', required=True, readonly=True),
+    }
+
+    _defaults = {
+        'name': lambda *a: time.strftime('%d %B %Y'),
+        'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+    }
+
+mgmtsystem_kpi_threshold()
+
 class mgmtsystem_kpi(osv.osv):
     """
     Key Performance Indicators
@@ -100,8 +122,13 @@ class mgmtsystem_kpi(osv.osv):
     _name = "mgmtsystem.kpi"
     _description = "Key Performance Indicator"
 
+    def _display_last_kpi_value(self, cr, uid, ids, field_name, arg, context=None):
+        result = {}
+
+        return result
+
     def _compute_kpi_value(self, cr, uid, ids, field_name, arg, context=None):
-        result= {}
+        result = {}
 
         return result
 
@@ -112,8 +139,9 @@ class mgmtsystem_kpi(osv.osv):
         'threshold_id': fields.many2one('mgmtsystem.kpi.threshold','Threshold', required=True),
         'periodicity': fields.integer('Periodicity'),
         'periodicity_uom': fields.many2one('mgmtsystem.kpi.periodicity.uom','Periodicity UoM', required=True),
-        'value': fields.function(_compute_kpi_value, string='Value', type='float'),
+        'value': fields.function(_display_last_kpi_value, string='Value', type='float'),
         'kpi_code': fields.text('KPI Computation Code'),
+        'history_ids': fields.one2many('mgmtsystem.kpi.history', 'kpi_id', 'History')
     }
 
 mgmtsystem_kpi()

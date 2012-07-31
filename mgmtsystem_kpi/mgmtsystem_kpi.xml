@@ -36,6 +36,8 @@
                     <field name="kpi_code" colspan="4"/>
                     <newline/>
                     <field name="description" colspan="4"/>
+                    <newline/>
+                    <field name="history_ids" colspan="4"/>
                 </form>
             </field>
         </record>
@@ -54,6 +56,21 @@
             sequence="15" 
             parent="mgmtsystem.menu_mgmtsystem_main" 
             groups="base.group_user"/>
+
+        <!-- KPI history -->
+
+        <record id="view_mgmtsystem_kpi_history_tree" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.history.tree</field>
+            <field name="model">mgmtsystem.kpi.history</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="KPI History">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
 
 	<!-- Thresholds -->
 
