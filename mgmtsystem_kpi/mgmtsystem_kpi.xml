@@ -27,8 +27,10 @@
                     <field name="name"/>
                     <field name="category_id"/>
                     <newline/>
-                    <field name="value"/>
                     <field name="threshold_id"/>
+                    <newline/>
+                    <field name="value"/>
+                    <button name="_compute_kpi_value" string="Compute KPI Now" colspan="2"/>
                     <newline/>
                     <field name="periodicity"/>
                     <field name="periodicity_uom"/>
@@ -37,7 +39,7 @@
                     <newline/>
                     <field name="description" colspan="4"/>
                     <newline/>
-                    <field name="history_ids" colspan="4"/>
+                    <field name="history_ids" colspan="4" readonly="1"/>
                 </form>
             </field>
         </record>
