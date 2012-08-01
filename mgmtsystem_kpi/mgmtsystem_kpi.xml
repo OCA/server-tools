@@ -11,10 +11,29 @@
             <field name="arch" type="xml">
                 <tree string="Key Performance Indicators">
                     <field name="name"/>
+                    <field name="value" widget="progressbar"/>
                     <field name="category_id"/>
-                    <field name="threshold_id"/>
-                    <field name="value"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="view_mgmtsystem_kpi_filter" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.filter</field>
+            <field name="model">mgmtsystem.kpi</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="KPI">
+                    <group>
+                        <filter name="active" icon="terp-document-new" domain="[('active','=',True)]" string="Active" help="Only active KPIs are computed by the scheduler based on the periodicity configuration."/>
+                        <separator orientation="vertical"/>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                    </group>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Category" context="{'group_by':'category_id'}"/>
+                    </group>
+                </search>
             </field>
         </record>
 
@@ -24,22 +43,35 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Key Performance Indicator">
-                    <field name="name"/>
-                    <field name="category_id"/>
-                    <newline/>
-                    <field name="threshold_id"/>
-                    <newline/>
-                    <field name="value"/>
-                    <button name="_compute_kpi_value" string="Compute KPI Now" colspan="2"/>
-                    <newline/>
-                    <field name="periodicity"/>
-                    <field name="periodicity_uom"/>
-                    <newline/>
-                    <field name="kpi_code" colspan="4"/>
-                    <newline/>
-                    <field name="description" colspan="4"/>
-                    <newline/>
-                    <field name="history_ids" colspan="4" readonly="1"/>
+                    <group col="6" colspan="6">
+                        <field name="name" colspan="2"/>
+                        <field name="threshold_id" colspan="2"/>
+                        <field name="category_id" colspan="2"/>
+                        <newline/>
+                        <field name="value" colspan="2"/>
+                        <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
+                        <field name="active" colspan="2"/>
+                    </group>
+                    <notebook colspan="6">
+                        <page string="History">
+                            <field name="history_ids" readonly="1" nolabel="1"/>
+                        </page>
+                        <page string="Computation">
+                            <group col="6">
+                                <field name="periodicity" colspan="2"/>
+                                <field name="periodicity_uom" colspan="2"/>
+                                <field name="next_execution_date" colspan="2"/>
+                                <separator string="KPI Computation" colspan="6"/>
+                                <newline/>
+                                <field name="kpi_type" colspan="2"/>
+                                <newline/>
+                                <field name="kpi_code" colspan="6"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
                 </form>
             </field>
         </record>
@@ -50,6 +82,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_mgmtsystem_kpi_tree"/>
+            <field name="search_view_id" ref="view_mgmtsystem_kpi_filter"/>
         </record>
 
         <menuitem id="menu_mgmtsystem_kpi" 
@@ -73,6 +106,55 @@
                 </tree>
             </field>
         </record>
+
+        <!-- Configuration menu -->
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi" 
+            name="KPI" 
+            parent="mgmtsystem.menu_mgmtsystem_configuration" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="20"/>
+
+	<!-- Categories -->
+
+        <record id="view_mgmtsystem_kpi_category_tree" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.category.tree</field>
+            <field name="model">mgmtsystem.kpi.category</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Categories">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mgmtsystem_kpi_category_form" model="ir.ui.view">
+            <field name="name">mgmtsystem.kpi.category.form</field>
+            <field name="model">mgmtsystem.kpi.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Category">
+                    <field name="name"/>
+                    <newline/>
+                    <field name="description" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_mgmtsystem_category_list">
+            <field name="name">Categories</field>
+            <field name="res_model">mgmtsystem.kpi.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_mgmtsystem_kpi_category_tree"/>
+        </record>
+
+        <menuitem id="menu_mgmtsystem_configuration_kpi_category" 
+            name="Categories"
+            action="open_mgmtsystem_category_list"
+            parent="menu_mgmtsystem_configuration_kpi" 
+            groups="base.group_mgmtsystem_manager" 
+            sequence="10"/>
 
 	<!-- Thresholds -->
 
@@ -100,17 +182,12 @@
                             <field name="name"/>
                             <field name="min_value"/>
                             <field name="max_value"/>
+                            <field name="color"/>
                         </tree>
                     </field>
                 </form>
             </field>
         </record>
-
-        <menuitem id="menu_mgmtsystem_configuration_kpi" 
-            name="KPI" 
-            parent="mgmtsystem.menu_mgmtsystem_configuration" 
-            groups="base.group_mgmtsystem_manager" 
-            sequence="20"/>
 
         <record model="ir.actions.act_window" id="open_mgmtsystem_threshold_list">
             <field name="name">Thresholds</field>
@@ -157,14 +234,14 @@
                     <field name="min_type"/>
                     <field name="min_fixed_value" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
                     <newline/>
-                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', '!=', 'dynamic')]}"/>
+                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('sql','python'))]}"/>
                     <newline/>
                     <separator string="Maximum" colspan="4"/>
                     <newline/>
                     <field name="max_type"/>
                     <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
                     <newline/>
-                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', '!=', 'dynamic')]}"/>
+                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('sql','python'))]}"/>
                 </form>
             </field>
         </record>
@@ -184,23 +261,21 @@
             groups="base.group_mgmtsystem_manager" 
             sequence="20"/>
 
-	<!-- data -->
+    </data>
 
-	<record model="mgmtsystem.kpi.periodicity.uom" id="hour">
-	    <field name="name">Hour</field>
-	</record>
+    <data noupdate="1">
 
-	<record model="mgmtsystem.kpi.periodicity.uom" id="day">
-	    <field name="name">Day</field>
-	</record>
-
-	<record model="mgmtsystem.kpi.periodicity.uom" id="week">
-	    <field name="name">Week</field>
-	</record>
-
-	<record model="mgmtsystem.kpi.periodicity.uom" id="month">
-	    <field name="name">Month</field>
-	</record>
+        <record forcecreate="True" id="ir_cron_mgmtsystem_kpi_action" model="ir.cron">
+            <field name="name">Update KPI values</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'mgmtsystem.kpi'" name="model"/>
+            <field eval="'update_kpi_value'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
 
     </data>
 </openerp>

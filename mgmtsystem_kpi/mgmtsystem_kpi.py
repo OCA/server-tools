@@ -19,6 +19,8 @@
 #
 ##############################################################################
 
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 from osv import fields, osv
 import time
 
@@ -43,22 +45,50 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
     _description = "KPI Threshold Range"
 
     def _compute_min_value(self, cr, uid, ids, field_name, arg, context=None):
+        if context is None:
+            context = {}
         result = {}
+
+        for obj in self.browse(cr, uid, ids):
+            value = 0
+            if obj.min_type == 'sql':
+                cr.execute(obj.min_code)
+                value = cr.dictfetchone()['value']
+            elif obj.min_type == 'python':
+                value = eval(obj.min_code)
+            else:
+                value = obj.min_fixed_value
+
+            result[obj.id] = value
 
         return result
 
     def _compute_max_value(self, cr, uid, ids, field_name, arg, context=None):
+        if context is None:
+            context = {}
         result = {}
+
+        for obj in self.browse(cr, uid, ids):
+            value = 0
+            if obj.max_type == 'sql':
+                cr.execute(obj.max_code)
+                value = cr.dictfetchone()['value']
+            elif obj.max_type == 'python':
+                value = eval(obj.max_code)
+            else:
+                value = obj.max_fixed_value
+
+            result[obj.id] = value
 
         return result
 
     _columns = {
         'name': fields.char('Name', size=50, required=True),
-        'min_type': fields.selection((('static','Fixed value'), ('dynamic','Computed value')), 'Min Type', required=True),
+        'min_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('sql', 'SQL Query')), 'Min Type', required=True),
         'min_value': fields.function(_compute_min_value, string='Minimum', type='float'),
         'min_fixed_value': fields.float('Minimum'),
         'min_code': fields.text('Minimum Computation Code'),
-        'max_type': fields.selection((('static','Fixed value'), ('dynamic','Computed value')), 'Max Type', required=True),
+        'max_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('sql', 'SQL Query')), 'Max Type', required=True),
         'max_value': fields.function(_compute_max_value, string='Maximum', type='float'),
         'max_fixed_value': fields.float('Maximum'),
         'max_code': fields.text('Maximum Computation Code'),
@@ -77,19 +107,6 @@ class mgmtsystem_kpi_threshold(osv.osv):
     _columns = {
         'name': fields.char('Name', size=50, required=True),
         'range_ids': fields.many2many('mgmtsystem.kpi.threshold.range','mgmtsystem_kpi_threshold_range_rel', 'threshold_id', 'range_id', 'Range', required=True),
-    }
-
-mgmtsystem_kpi_threshold()
-
-class mgmtsystem_kpi_periodicity_uom(osv.osv):
-    """
-    Unit of Measure for Periodicity
-    """
-    _name = "mgmtsystem.kpi.periodicity.uom"
-    _description = "Periodicity Unit of Measure"
-
-    _columns = {
-        'name': fields.char('Name', size=10, required=True),
     }
 
 mgmtsystem_kpi_threshold()
@@ -113,6 +130,8 @@ class mgmtsystem_kpi_history(osv.osv):
         'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
     }
 
+    _order = "date desc" 
+
 mgmtsystem_kpi_threshold()
 
 class mgmtsystem_kpi(osv.osv):
@@ -123,14 +142,82 @@ class mgmtsystem_kpi(osv.osv):
     _description = "Key Performance Indicator"
 
     def _display_last_kpi_value(self, cr, uid, ids, field_name, arg, context=None):
+        if context is None:
+            context = {}
+        
         result = {}
+        for obj in self.browse(cr, uid, ids):
+            if obj.history_ids:
+                result[obj.id] = obj.history_ids[0].value
+            else:
+                result[obj.id] = 0
 
         return result
 
-    def _compute_kpi_value(self, cr, uid, ids, field_name, arg, context=None):
-        result = {}
+    def compute_kpi_value(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        kpi_value = 0 
 
-        return result
+        for obj in self.browse(cr, uid, ids):       
+            kpi_value = 0 
+            if obj.kpi_type == 'sql':
+                cr.execute(obj.kpi_code)
+                kpi_value = cr.dictfetchone()['value']
+            elif obj.kpi_type == 'python':
+                kpi_value = eval(obj.kpi_code)
+        
+            values = {
+	        'kpi_id': obj.id,
+                'value': kpi_value,
+	    }
+
+            history_obj = self.pool.get('mgmtsystem.kpi.history')
+            history_id = history_obj.create(cr, uid, values, context=context)
+            obj.history_ids.append(history_id)
+
+        return True
+
+    def update_next_execution_date(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
+        for obj in self.browse(cr, uid, ids):
+            if obj.periodicity_uom == 'hour':
+                new_date = datetime.now() + relativedelta( hours = +obj.periodicity )
+            elif obj.periodicity_uom == 'day': 
+                new_date = datetime.now() + relativedelta( days = +obj.periodicity )
+            elif obj.periodicity_uom == 'week': 
+                new_date = datetime.now() + relativedelta( weeks = +obj.periodicity )
+            elif obj.periodicity_uom == 'month': 
+                new_date = datetime.now() + relativedelta( months = +obj.periodicity )
+
+            values = {
+                'next_execution_date': new_date.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+
+            obj.write(values)
+
+        return True
+
+    # Method called by the scheduler
+    def update_kpi_value(self, cr, uid, ids=None, context=None):
+        if context is None:
+            context = {}
+        if not ids:
+            filters = ['&', '|', ('active', '=', True), ('next_execution_date', '<=', datetime.now().strftime('%Y-%m-%d %H:%M:%S')), ('next_execution_date', '=', False)]
+            if 'filters' in context:
+                filters.extend(context['filters'])
+            ids = self.search(cr, uid, filters, context=context)
+        res = None
+
+        try:
+            res = self.compute_kpi_value(cr, uid, ids, context=context)
+            self.update_next_execution_date(cr, uid, ids, context=context)
+        except Exception:
+            _logger.exception("Failed updating KPI values")
+        
+        return res
 
     _columns = {
         'name': fields.char('Name', size=50, required=True),
@@ -138,10 +225,19 @@ class mgmtsystem_kpi(osv.osv):
         'category_id': fields.many2one('mgmtsystem.kpi.category','Category', required=True),
         'threshold_id': fields.many2one('mgmtsystem.kpi.threshold','Threshold', required=True),
         'periodicity': fields.integer('Periodicity'),
-        'periodicity_uom': fields.many2one('mgmtsystem.kpi.periodicity.uom','Periodicity UoM', required=True),
+        'periodicity_uom': fields.selection((('hour','Hour'), ('day','Day'), ('week','Week'), ('month','Month')), 'Periodicity UoM', required=True),
+        'next_execution_date': fields.datetime('Next execution date', readonly=True),
         'value': fields.function(_display_last_kpi_value, string='Value', type='float'),
-        'kpi_code': fields.text('KPI Computation Code'),
-        'history_ids': fields.one2many('mgmtsystem.kpi.history', 'kpi_id', 'History')
+        'kpi_type': fields.selection((('sql','SQL'), ('python','Python')),'KPI Computation Type'),
+        'kpi_code': fields.text('KPI Code', help='SQL code must return the result as \'value\' (i.e. \'SELECT 5 AS value\').'),
+        'history_ids': fields.one2many('mgmtsystem.kpi.history', 'kpi_id', 'History'),
+        'active': fields.boolean('Active', help="Only active KPIs will be updated by the scheduler based on the periodicity configuration."),
+    }
+
+    _defaults = {
+        'active': True,
+        'periodicity': 1,
+        'periodicity_uom': 'day',
     }
 
 mgmtsystem_kpi()
