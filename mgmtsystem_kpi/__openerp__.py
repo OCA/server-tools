@@ -28,16 +28,34 @@
     "complexity" : "normal",
     "description": """
 	This module provides the basis for creating key performance indicators,
-        including static and dynamic thresholds.
+        including static and dynamic thresholds (SQL query or Python code).
+
+        The module also provides the mecanism to update KPIs automatically. 
+        A scheduler is executed every hour and updates the KPI values, based 
+        on the periodicity of each KPI. KPI computation can also be done 
+        manually.
+
+        A threshold is a list of ranges and a range is:
+         * a name (like Good, Warning, Bad)
+         * a minimum value (fixed, sql query or python code)
+         * a maximum value (fixed, sql query or python code)
+         * color (RGB code like #00FF00 for green, #FFA500 for orange, 
+           #FF0000 for red)
     """,
     "depends" : ['mgmtsystem'],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         'mgmtsystem_kpi.xml',
     ],
-    "demo_xml" : [],
+    "images" : [
+        "images/kpi_definition.png",
+        "images/kpi_computation.png",
+        "images/kpi_threshold.png",
+        "images/kpi_range.png",
+    ],
+    "demo" : [],
+    "test" : [],
     "installable" : True,
-    "certificate" : ''
+    "complexity": "normal",
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
