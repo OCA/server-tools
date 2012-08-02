@@ -45,7 +45,7 @@ class product_customer_code(osv.osv):
     }
     
     _sql_constraints = [
-        ('unique_code', 'unique(product_code,company_id,partner_id)', 'Product Code must be unique'),
+        ('unique_code', 'unique(product_code,company_id,partner_id)', 'Product Code of customer must be unique'),
     ]
     
     #TODO: Add index to product_code, partner_id

@@ -33,6 +33,11 @@ class product_product(osv.osv):
         'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Customer Codes'),
     }
     
+    def copy(self, cr, uid, id, default=None, context=None):
+        default['product_customer_code_ids'] = False
+        res = super(product_product, self).copy(cr,uid,id,default=default,context=context)
+        return res
+    
     def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
         res = super(product_product, self).name_search(cr, user, name, args, operator, context, limit)
         if not context:
