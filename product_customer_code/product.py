@@ -34,6 +34,8 @@ class product_product(osv.osv):
     }
     
     def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
         default['product_customer_code_ids'] = False
         res = super(product_product, self).copy(cr,uid,id,default=default,context=context)
         return res
