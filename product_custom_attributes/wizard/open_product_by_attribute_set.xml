@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_custom_attributes for OpenERP
+  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="open_product_by_attribute_set_view">
+            <field name="name">open.product.by.attribute.set.view</field>
+            <field name="model">open.product.by.attribute.set</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Open product by attributes set">
+                    <field name="attribute_set_id" colspan="4"/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                    <button icon="gtk-ok" name="open_product_by_attribute" string="Open Product By attribute" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_product_by_attribute_set" model="ir.actions.act_window">
+            <field name="name">Open Product By Attribute Set</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">open.product.by.attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="open_product_by_attribute_set_view"/>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="open_product_by_attribute_set" id="open_product_wizard" parent="stock.menu_stock_product" sequence="20"/>
+
+
+    </data>
+</openerp>

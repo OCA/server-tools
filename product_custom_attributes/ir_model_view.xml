@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_custom_attributs for OpenERP
+  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+    
+        <!-- INHERITED VIEW FOR THE OBJECT : ir_model_fields -->
+
+<!--        <record id="ir_model_fields_view_form" model="ir.ui.view">-->
+<!--            <field name="name">product_custom_attributs.ir_model_fields.view_form</field>-->
+<!--            <field name="model">ir.model.fields</field>-->
+<!--            <field name="inherit_id" ref="module_name_to_inherit.view_id" />-->
+<!--            <field eval="16" name="priority"/>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <data>-->
+<!--                    <field name="field_reference" position="after">-->
+<!--                    </field>-->
+<!--                </data>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="ir_model_fields_view_tree" model="ir.ui.view">-->
+<!--            <field name="name">product_custom_attributs.ir_model_fields.view_tree</field>-->
+<!--            <field name="model">ir.model.fields</field>-->
+<!--            <field name="inherit_id" ref="module_name_to_inherit.view_id" />-->
+<!--            <field eval="16" name="priority"/>-->
+<!--            <field name="type">tree</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <data>-->
+<!--                    <field name="field_reference" position="after">-->
+<!--                    </field>-->
+<!--                </data>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    -->
+
+
+
+
+    </data>
+</openerp>
