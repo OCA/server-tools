@@ -13,6 +13,7 @@
                     <field name="name"/>
                     <field name="value" widget="progressbar"/>
                     <field name="category_id"/>
+                    <field name="kpi_type"/>
                 </tree>
             </field>
         </record>
@@ -32,6 +33,7 @@
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Category" context="{'group_by':'category_id'}"/>
+                        <filter string="Type" context="{'group_by':'kpi_type'}"/>
                     </group>
                 </search>
             </field>
@@ -64,6 +66,7 @@
                                 <separator string="KPI Computation" colspan="6"/>
                                 <newline/>
                                 <field name="kpi_type" colspan="2"/>
+                                <field name="dbsource_id" colspan="2" attrs="{'invisible' : [('kpi_type', '!=', 'external')]}"/>
                                 <newline/>
                                 <field name="kpi_code" colspan="6"/>
                             </group>
@@ -103,6 +106,7 @@
                     <field name="name"/>
                     <field name="date"/>
                     <field name="value"/>
+                    <field name="color"/>
                 </tree>
             </field>
         </record>
@@ -233,15 +237,17 @@
                     <newline/>
                     <field name="min_type"/>
                     <field name="min_fixed_value" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
+                    <field name="min_dbsource_id" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
                     <newline/>
-                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('sql','python'))]}"/>
+                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
                     <newline/>
                     <separator string="Maximum" colspan="4"/>
                     <newline/>
                     <field name="max_type"/>
                     <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
+                    <field name="max_dbsource_id" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
                     <newline/>
-                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('sql','python'))]}"/>
+                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
                 </form>
             </field>
         </record>

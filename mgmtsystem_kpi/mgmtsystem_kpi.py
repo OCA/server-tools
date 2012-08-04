@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+#  -*- encoding: utf-8 -*-
 ##############################################################################
 #    
 #    OpenERP, Open Source Management Solution
@@ -51,9 +51,14 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
 
         for obj in self.browse(cr, uid, ids):
             value = 0
-            if obj.min_type == 'sql':
+            if obj.min_type == 'local':
                 cr.execute(obj.min_code)
                 value = cr.dictfetchone()['value']
+            elif obj.max_type == 'external':
+                if not dbsource_id:
+                    dbsrc_obj = self.pool.get('base.external.dbsource').browse(cr, uid, min_dbsource_id, context)
+                    res = dbsrc_obj.execute(obj.min_code)
+                    value = res[0]['value']
             elif obj.min_type == 'python':
                 value = eval(obj.min_code)
             else:
@@ -70,11 +75,16 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
 
         for obj in self.browse(cr, uid, ids):
             value = 0
-            if obj.max_type == 'sql':
+            if obj.max_type == 'local':
                 cr.execute(obj.max_code)
                 value = cr.dictfetchone()['value']
             elif obj.max_type == 'python':
                 value = eval(obj.max_code)
+            elif obj.max_type == 'external':
+                if not dbsource_id:
+                    dbsrc_obj = self.pool.get('base.external.dbsource').browse(cr, uid, max_dbsource_id, context)
+                    res = dbsrc_obj.execute(obj.max_code)
+                    value = res[0]['value']
             else:
                 value = obj.max_fixed_value
 
@@ -84,14 +94,16 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
 
     _columns = {
         'name': fields.char('Name', size=50, required=True),
-        'min_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('sql', 'SQL Query')), 'Min Type', required=True),
+        'min_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('local', 'SQL - Local DB'), ('external', 'SQL - Externa DB')), 'Min Type', required=True),
         'min_value': fields.function(_compute_min_value, string='Minimum', type='float'),
         'min_fixed_value': fields.float('Minimum'),
         'min_code': fields.text('Minimum Computation Code'),
-        'max_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('sql', 'SQL Query')), 'Max Type', required=True),
+        'min_dbsource_id': fields.many2one('base.external.dbsource','External DB Source'),
+        'max_type': fields.selection((('static','Fixed value'), ('python','Python Code'), ('local', 'SQL - Local DB'), ('external', 'SQL - External DB')), 'Max Type', required=True),
         'max_value': fields.function(_compute_max_value, string='Maximum', type='float'),
         'max_fixed_value': fields.float('Maximum'),
         'max_code': fields.text('Maximum Computation Code'),
+        'max_dbsource_id': fields.many2one('base.external.dbsource','External DB Source'),
         'color': fields.char('Color', help='RGB code with #', size=7, required=True),
     }
 
@@ -109,6 +121,26 @@ class mgmtsystem_kpi_threshold(osv.osv):
         'range_ids': fields.many2many('mgmtsystem.kpi.threshold.range','mgmtsystem_kpi_threshold_range_rel', 'threshold_id', 'range_id', 'Range', required=True),
     }
 
+    def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
+
+        # TODO: check if ranges overlap
+
+        return super(mgmtsystem_kpi_threshold, self).write(cr, uid, ids, vals, context=context)
+
+    def get_color(self, cr, uid, ids, kpi_value, context=None):
+        if context is None:
+            context = {}
+
+        color = '#FFFFFF'
+        for obj in self.browse(cr, uid, ids, context):
+            for range_id in obj.range_ids:
+               range_obj = self.pool.get('mgmtsystem.kpi.threshold.range').browse(cr, uid, range_id.id, context)
+               if range_obj.min_value <= kpi_value <= range_obj.max_value:
+                   color = range_obj.color
+        return color
+
 mgmtsystem_kpi_threshold()
 
 class mgmtsystem_kpi_history(osv.osv):
@@ -123,11 +155,13 @@ class mgmtsystem_kpi_history(osv.osv):
         'kpi_id': fields.many2one('mgmtsystem.kpi', 'KPI', required=True),
         'date': fields.datetime('Execution Date', required=True, readonly=True),
         'value': fields.float('Value', required=True, readonly=True),
+        'color': fields.text('Color', required=True, readonly=True),
     }
 
     _defaults = {
         'name': lambda *a: time.strftime('%d %B %Y'),
         'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'color': '#FFFFFF',
     }
 
     _order = "date desc" 
@@ -161,15 +195,22 @@ class mgmtsystem_kpi(osv.osv):
 
         for obj in self.browse(cr, uid, ids):       
             kpi_value = 0 
-            if obj.kpi_type == 'sql':
+            if obj.kpi_type == 'local':
                 cr.execute(obj.kpi_code)
                 kpi_value = cr.dictfetchone()['value']
+            elif obj.kpi_type == 'external':
+                if obj.dbsource_id.id:
+                    dbsrc_obj = self.pool.get('base.external.dbsource').browse(cr, uid, obj.dbsource_id.id, context)
+                    res = dbsrc_obj.execute(obj.kpi_code)
+                    kpi_value = res[0]['value']
             elif obj.kpi_type == 'python':
                 kpi_value = eval(obj.kpi_code)
-        
+
+            threshold_obj = self.pool.get('mgmtsystem.kpi.threshold').browse(cr, uid, obj.threshold_id.id, context)
             values = {
 	        'kpi_id': obj.id,
                 'value': kpi_value,
+                'color': threshold_obj.get_color(kpi_value),
 	    }
 
             history_obj = self.pool.get('mgmtsystem.kpi.history')
@@ -228,7 +269,8 @@ class mgmtsystem_kpi(osv.osv):
         'periodicity_uom': fields.selection((('hour','Hour'), ('day','Day'), ('week','Week'), ('month','Month')), 'Periodicity UoM', required=True),
         'next_execution_date': fields.datetime('Next execution date', readonly=True),
         'value': fields.function(_display_last_kpi_value, string='Value', type='float'),
-        'kpi_type': fields.selection((('sql','SQL'), ('python','Python')),'KPI Computation Type'),
+        'kpi_type': fields.selection((('python','Python'), ('local','SQL - Local DB'), ('external','SQL - External DB')),'KPI Computation Type'),
+        'dbsource_id': fields.many2one('base.external.dbsource','External DB Source'),
         'kpi_code': fields.text('KPI Code', help='SQL code must return the result as \'value\' (i.e. \'SELECT 5 AS value\').'),
         'history_ids': fields.one2many('mgmtsystem.kpi.history', 'kpi_id', 'History'),
         'active': fields.boolean('Active', help="Only active KPIs will be updated by the scheduler based on the periodicity configuration."),
