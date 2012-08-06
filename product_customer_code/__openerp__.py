@@ -38,8 +38,8 @@ Add manies Codes of Customer's in product
      """,
     "update_xml" : ["security/product_customer_code_security.xml",
                     "security/ir.model.access.csv",
-                    "product_customer_code.xml",
-                    "product_product.xml",
+                    "product_customer_code_view.xml",
+                    "product_product_view.xml",
                     
                     ],
     "active": False,
