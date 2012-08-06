@@ -37,7 +37,6 @@ class product_attribute(osv.osv):
 
     _name = "product.attribute"
     _description = "Product Attribute"
-    _order="sequence"
 
     _inherits = {'ir.model.fields': 'field_id'}
 
