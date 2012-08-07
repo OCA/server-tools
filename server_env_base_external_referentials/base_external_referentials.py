@@ -21,6 +21,8 @@
 
 from osv import fields, osv
 from server_environment import serv_config
+import logging
+
 
 
 class external_referential(osv.osv):
@@ -32,8 +34,12 @@ class external_referential(osv.osv):
             values[referential.id] = {}
             for field_name in field_names:
                 section_name = '.'.join((self._name.replace('.', '_'), referential.name))
-                value = serv_config.get(section_name, field_name)
-                values[referential.id].update({field_name: value})
+                try:
+                    value = serv_config.get(section_name, field_name)
+                    values[referential.id].update({field_name: value})
+                except:
+                    logger = logging.getLogger(__name__)
+                    logger.exception('error trying to read field %s in section %s', field_name, section_name)
         return values
 
     _columns = {
