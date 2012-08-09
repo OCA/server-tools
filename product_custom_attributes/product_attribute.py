@@ -28,7 +28,7 @@ class attribute_option(osv.osv):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, translate=True, required=True),
         'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
