@@ -46,6 +46,7 @@ class product_attribute(osv.osv):
         'serialized': fields.boolean('Field serialized', help="If serialized, the field will be stocked in the serialized field : attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"),
         'based_on': fields.selection([('product_template','Product Template'),('product_product','Product Variant')],'Based on', required=True),
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Option'),
+        'create_date': fields.datetime('Created date', readonly=True),
     }
 
     def create(self, cr, uid, vals, context=None):
@@ -67,9 +68,14 @@ class product_attribute(osv.osv):
                 raise osv.except_osv(_('Create Error'), _("The field serialized should be ticked for a multiselect field !"))
         else:
             vals['ttype'] = vals['attribute_type']
-        vals['field_description'] = vals['name'][2:].capitalize()
         vals['state'] = 'manual'
         return super(product_attribute, self).create(cr, uid, vals, context)
+
+    def onchange_field_description(self, cr, uid, ids, field_description, context=None):
+        name = 'x_'
+        if field_description:
+            name = 'x_%s' % field_description.replace(' ', '_').lower()
+        return  {'value' : {'name' : name}}
 
 class attribute_location(osv.osv):
 

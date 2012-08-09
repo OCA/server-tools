@@ -29,7 +29,7 @@ class ir_model_fields(osv.osv):
     
 
     _columns = {
-    
+        'field_description': fields.char('Field Label', required=True, size=256, translate=True),
     }
 
     _defaults = {
