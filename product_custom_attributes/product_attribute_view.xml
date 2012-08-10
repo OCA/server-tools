@@ -66,6 +66,7 @@
                     <field name="based_on" colspan="1"/>
                     <field name="serialized" colspan="1"/>
                     <field name="size" colspan="1" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
+                    <field name="translate" colspan="1" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
                     <field name="option_ids" colspan="8" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}" widget="one2many_list" nolabel="1">
                         <tree string="Attribute Options" editable="top" >
                             <field name="sequence" colspan="1"/>
