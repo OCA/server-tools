@@ -32,7 +32,7 @@ class product_product(osv.osv):
     _inherit = "product.product"
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        result = super(osv.osv, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
+        result = super(product_product, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
         if view_type=='form' and result.get('model') == 'product.product' and '<field name="list_price" modifiers="{}"/>' in result['arch']:
             product_price_fields_obj = self.pool.get('product.price.fields')
             product_price_fields_ids = product_price_fields_obj.search(cr, uid, [], context=context)
@@ -170,7 +170,7 @@ class product_product(osv.osv):
         return result
 
     def default_get(self, cr, uid, fields_list, context=None):
-        defaults = super(osv.osv, self).default_get(cr, uid, fields_list, context=context)
+        defaults = super(product_product, self).default_get(cr, uid, fields_list, context=context)
         product_price_fields_obj = self.pool.get('product.price.fields')
         product_price_fields_ids = product_price_fields_obj.search(cr, uid, [], context=context)
         for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
@@ -246,7 +246,7 @@ class product_product(osv.osv):
                     if not 'x_pm_basedon_' + name in fields:
                         fields.append('x_pm_basedon_' + name)
                         add_fields.append('x_pm_basedon_' + name)
-            results = super(osv.osv, self).read(cr, uid, ids, fields=fields, context=context, load=load)
+            results = super(product_product, self).read(cr, uid, ids, fields=fields, context=context, load=load)
             to_unlist = False
             if not hasattr(results, "__iter__"):
                 results = results
@@ -321,7 +321,7 @@ class product_product(osv.osv):
             if to_unlist:
                 results = results[0]
         else:
-            results = super(osv.osv, self).read(cr, uid, ids, fields=fields, context=context, load=load)
+            results = super(product_product, self).read(cr, uid, ids, fields=fields, context=context, load=load)
         return results
 
 product_product()
@@ -331,7 +331,7 @@ class product_category(osv.osv):
     _inherit = 'product.category'
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        result = super(osv.osv, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
+        result = super(product_category, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
         if view_type=='form':
             product_price_fields_obj = self.pool.get('product.price.fields')
             product_price_fields_ids = product_price_fields_obj.search(cr, uid, [], context=context)
