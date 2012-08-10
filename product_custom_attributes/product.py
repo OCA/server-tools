@@ -93,7 +93,7 @@ class product_product(osv.osv):
         return notebook, toupdate_fields
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        result = super(osv.osv, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
+        result = super(product_product, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
         if view_type == 'form' and context.get('set_id'):
             eview = etree.fromstring(result['arch'])
             #hide button under the name
@@ -112,5 +112,4 @@ class product_product(osv.osv):
                 info_page = eview.xpath("//page[@string='Information']")[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
-            print result['arch']
         return result
