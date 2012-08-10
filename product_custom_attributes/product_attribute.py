@@ -115,3 +115,14 @@ class attribute_set(osv.osv):
         'name': fields.char('Name', size=128, required=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
     }
+
+    def create(self, cr, uid, vals, context=None):
+        full_vals = vals.copy()
+        vals['attribute_group_ids'] = []
+        set_id = super(attribute_set, self).create(cr, uid, vals, context)
+        for group in full_vals['attribute_group_ids']:
+            group[2]['attribute_set_id'] = set_id
+            for attribute in group[2]['attribute_ids']:
+                attribute[2]['attribute_set_id'] = set_id
+        super(attribute_set, self).write(cr, uid, set_id, full_vals, context)
+        return set_id
