@@ -16,11 +16,14 @@
 #You should have received a copy of the GNU General Public License      #
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
-from osv import osv,fields
-from tools.translate import _
 import os
+import shutil
+import logging
 import unicodedata
 import base64, urllib
+
+from osv import osv,fields
+from tools.translate import _
 
 class product_product(osv.osv):
     _inherit = "product.product"
@@ -28,10 +31,21 @@ class product_product(osv.osv):
     def copy(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
+        original = self.read(cr, uid, id, fields=['default_code', 'image_ids'], context=context)
         default.update({
-            'default_code': False,
             'images_ids': False,
         })
+        local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
+        if local_media_repository:
+            if original['image_ids']:
+                old_path = os.path.join(local_media_repository, original['default_code'])
+                if os.path.isdir(old_path):
+                    try:
+                        shutil.copytree(old_path, old_path + '-copy')
+                    except:
+                        logger = logging.getLogger('product_images_olbs')
+                        logger.exception('error while trying to copy images from %s to %s', old_path, old_path+'.copy')
+
         return super(product_product, self).copy(cr, uid, id, default, context=context)
 
     def get_main_image(self, cr, uid, id, context=None):
@@ -41,7 +55,7 @@ class product_product(osv.osv):
         if images_ids:
             return images_ids[0]
         return False
-    
+
     def _get_main_image(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         img_obj = self.pool.get('product.images')
@@ -61,12 +75,12 @@ class product_product(osv.osv):
                 'Product Images'
         ),
         'product_image': fields.function(_get_main_image, type="binary", method=True),
-    }    
+    }
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        # here we expect that the write on default_code is alwayse on 1 product because there is an unique constraint on the default code
+        # here we expect that the write on default_code is always on 1 product because there is an unique constraint on the default code
         if vals.get('default_code', False) and ids:
             local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
             if local_media_repository:
@@ -95,5 +109,5 @@ class product_product(osv.osv):
         new_image_id = self.pool.get('product.images').create(cr, uid, data, context=context)
         return True
 
-    
+
 product_product()
