@@ -21,6 +21,8 @@
 
 from osv import osv, fields
 import netsvc
+#You should install the library Unicode2Ascii, you can find it in the akretion github repository
+from unicode2ascii import Unicode2Ascii
 
 class attribute_option(osv.osv):
     _name = "attribute.option"
@@ -74,7 +76,7 @@ class product_attribute(osv.osv):
     def onchange_field_description(self, cr, uid, ids, field_description, context=None):
         name = 'x_'
         if field_description:
-            name = 'x_%s' % field_description.replace(' ', '_').lower()
+            name = Unicode2Ascii('x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
 class attribute_location(osv.osv):
