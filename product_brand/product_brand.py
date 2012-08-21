@@ -21,11 +21,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.      #
 #                                                                               #
 #################################################################################
-from osv import osv, fields
-import  os
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-class product_brand(osv.osv):
-    _name = 'product.brand' 
+class product_brand(Model):
+    _name = 'product.brand'
     _columns = {
         'name': fields.char('Brand Name',size=32),
         'description': fields.text('Description',translate=True),
@@ -33,13 +33,11 @@ class product_brand(osv.osv):
         'logo': fields.binary('Logo File')
     }
 
-product_brand()
 
-class product_template(osv.osv):
+class product_template(Model):
     _name = 'product.template'
     _inherit = 'product.template'
     _columns = {
         'product_brand_id' : fields.many2one('product.brand','Brand', help='Select a brand for this product'),
     }
 
-product_template()

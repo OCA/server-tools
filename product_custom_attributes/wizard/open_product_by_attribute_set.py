@@ -19,11 +19,11 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import TransientModel
+from osv import fields
 
 
-class open_product_by_attribute_set(osv.osv_memory):
+class open_product_by_attribute_set(TransientModel):
     _name = 'open.product.by.attribute.set'
     _description = 'Wizard to open product by attributes set'
 
@@ -44,9 +44,9 @@ class open_product_by_attribute_set(osv.osv_memory):
         if context is None:
             context = {}
         attribute_set = self.browse(cr, uid, ids[0], context=context).attribute_set_id
-        data = self.read(cr, uid, ids, [], context=context)[0]
+        data = self.read(cr, uid, ids, [], context=context)[0] # XXX used?
         result = mod_obj.get_object_reference(cr, uid, 'product', 'product_normal_action')
-        id = result and result[1] or False
+        id = result[1] if result else False
         result = act_obj.read(cr, uid, [id], context=context)[0]
         result['context'] = "{'set_id': %s, 'open_product_by_attribute_set': %s}"%(attribute_set.id, True)
         result['domain'] = "[('attribute_set_id', '=', %s)]" % attribute_set.id

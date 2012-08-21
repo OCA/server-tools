@@ -19,12 +19,13 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.osv.osv import except_osv
 from lxml import etree
 from tools.translate import _
 
-class product_template(osv.osv):
+class product_template(Model):
 
     _inherit = "product.template"
 
@@ -32,7 +33,7 @@ class product_template(osv.osv):
         'attribute_custom_tmpl': fields.serialized('Custom Template Attributes'),
     }
 
-class product_product(osv.osv):
+class product_product(Model):
 
     _inherit = "product.product"
 
@@ -50,7 +51,7 @@ class product_product(osv.osv):
         set_id = self.read(cr, uid, ids, fields=['attribute_set_id'], context=context)[0]['attribute_set_id']
 
         if not set_id:
-            raise osv.except_osv(_('User Error'), _('Please choose an attribute set before opening the product attributes'))
+            raise except_osv(_('User Error'), _('Please choose an attribute set before opening the product attributes'))
 
         return {
             'name': 'Product Attributes',
@@ -73,14 +74,14 @@ class product_product(osv.osv):
         kwargs = {'name': "%s" % attribute.name}
         if attribute.ttype == 'many2many':
             parent = etree.SubElement(page, 'group', colspan="2", col="4")
-            sep = etree.SubElement(parent, 'separator', 
+            sep = etree.SubElement(parent, 'separator',
                                     string="%s" % attribute.field_description, colspan="4")
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
         return parent
-        
+
     def _build_attributes_notebook(self, cr, uid, set_id, context=None):
         attribute_set = self.pool.get('attribute.set').browse(cr, uid, set_id, context=context)
         notebook = etree.Element('notebook', name="attributes_notebook", colspan="4")

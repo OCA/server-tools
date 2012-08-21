@@ -19,13 +19,12 @@
 import os
 import shutil
 import logging
-import unicodedata
 import base64, urllib
 
-from osv import osv,fields
-from tools.translate import _
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-class product_product(osv.osv):
+class product_product(Model):
     _inherit = "product.product"
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -108,6 +107,3 @@ class product_product(osv.osv):
             }
         new_image_id = self.pool.get('product.images').create(cr, uid, data, context=context)
         return True
-
-
-product_product()

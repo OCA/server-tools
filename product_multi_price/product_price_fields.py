@@ -19,19 +19,17 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.osv.osv import except_osv
 from tools.translate import _
-import decimal_precision as dp
 
 #TODO
 
 
-class product_price_fields(osv.osv):
-    
+class product_price_fields(Model):
     _name = "product.price.fields"
     _description = "product price fields"
-    
     _columns = {
         'name': fields.related('price_field_id', 'field_description', type='char', size=64, string='Field Label', store=True),
         'field_name': fields.related('price_field_id', 'name', type='char', size=64, string='Field Name', store=True, help ="you can chose the field name by default it will be build with the name of the field replacing the space by '_' and adding x_pm_ add the start"),
@@ -44,7 +42,7 @@ class product_price_fields(osv.osv):
         'default_basedon':fields.selection([('categ_coef','Price on category coefficient'),('product_coef','Price on product coefficient'),('manual','Manual price')], 'Based on by default'),
         'currency_id': fields.many2one('res.currency', "Currency", required=True, help="The currency the field is expressed in."),
         'inc_price_field_id' : fields.many2one('ir.model.fields', 'Price Included Field ID', domain = [('model', '=', 'product.product'), ('ttype', '=', 'float')]),
-    }
+        }
 
     def _get_currency(self, cr, uid, ctx):
         comp = self.pool.get('res.users').browse(cr, uid, uid).company_id
@@ -119,7 +117,7 @@ class product_price_fields(osv.osv):
             print 'field name'
             exist_id = self.pool.get('ir.model.fields').search(cr, uid, [('name', '=', vals['field_name'])])
             if not exist_id and vals['field_name'][0:2] != 'x_':
-                raise osv.except_osv(_('User Error'), _("Please prefix the name field by x_ as it's a custom field"))
+                raise except_osv(_('User Error'), _("Please prefix the name field by x_ as it's a custom field"))
         field_list = ['price', 'inc_price', 'basedon','product_coef','categ_coef']
         product_ids = self.pool.get('product.product').search(cr, uid, [], context=context)
         for field in field_list:
@@ -169,6 +167,3 @@ class product_price_fields(osv.osv):
             price_field.product_coef_field_id.unlink()
             price_field.categ_coef_field_id.unlink()
         return super(product_price_fields, self).unlink(cr, uid, ids, context=context)
-
-product_price_fields()
-

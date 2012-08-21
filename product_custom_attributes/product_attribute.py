@@ -19,12 +19,15 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.osv.osv import except_osv
+from openerp.tools import _
+
 #You should install the library Unicode2Ascii, you can find it in the akretion github repository
 from unicode2ascii import Unicode2Ascii
 
-class attribute_option(osv.osv):
+class attribute_option(Model):
     _name = "attribute.option"
     _description = "Attribute Option"
     _order="sequence"
@@ -35,25 +38,37 @@ class attribute_option(osv.osv):
         'sequence': fields.integer('Sequence'),
     }
 
-class product_attribute(osv.osv):
 
+class product_attribute(Model):
     _name = "product.attribute"
     _description = "Product Attribute"
-
     _inherits = {'ir.model.fields': 'field_id'}
-
     _columns = {
         'field_id': fields.many2one('ir.model.fields', 'Ir Model Fields', required=True, ondelete="cascade"),
-        'attribute_type': fields.selection([('char','Char'),('text','Text'),('select','Select'),('multiselect','Multiselect'),('boolean','Boolean'),('integer','Integer'),('date','Date'),('datetime','Datetime'),('binary','Binary'),('float','Float')],'Type', required=True),
-        'serialized': fields.boolean('Field serialized', help="If serialized, the field will be stocked in the serialized field : attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"),
-        'based_on': fields.selection([('product_template','Product Template'),('product_product','Product Variant')],'Based on', required=True),
+        'attribute_type': fields.selection([('char','Char'),
+                                            ('text','Text'),
+                                            ('select','Select'),
+                                            ('multiselect','Multiselect'),
+                                            ('boolean','Boolean'),
+                                            ('integer','Integer'),
+                                            ('date','Date'),
+                                            ('datetime','Datetime'),
+                                            ('binary','Binary'),
+                                            ('float','Float')],
+                                           'Type', required=True),
+        'serialized': fields.boolean('Field serialized',
+                                     help="If serialized, the field will be stocked in the serialized field: "
+                                     "attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"),
+        'based_on': fields.selection([('product_template','Product Template'),
+                                      ('product_product','Product Variant')],
+                                     'Based on', required=True),
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Option'),
         'create_date': fields.datetime('Created date', readonly=True),
-    }
+        }
 
     def create(self, cr, uid, vals, context=None):
         if vals.get('based_on') == 'product_template':
-            vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.template')],context=context)[0]
+            vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.template')], context=context)[0]
             serial_name = 'attribute_custom_tmpl'
         else:
             vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.product')], context=context)[0]
@@ -67,7 +82,7 @@ class product_attribute(osv.osv):
             vals['ttype'] = 'many2many'
             vals['relation'] = 'attribute.option'
             if not vals.get('serialized'):
-                raise osv.except_osv(_('Create Error'), _("The field serialized should be ticked for a multiselect field !"))
+                raise except_osv(_('Create Error'), _("The field serialized should be ticked for a multiselect field !"))
         else:
             vals['ttype'] = vals['attribute_type']
         vals['state'] = 'manual'
@@ -79,23 +94,21 @@ class product_attribute(osv.osv):
             name = Unicode2Ascii('x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
-class attribute_location(osv.osv):
 
+class attribute_location(Model):
     _name = "attribute.location"
     _description = "Attribute Location"
     _order="sequence"
-
     _inherits = {'product.attribute': 'attribute_id'}
-
     _columns = {
         'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True, ondelete="cascade"),
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set', required=True),
         'attribute_group_id': fields.many2one('attribute.group', 'Attribute Group', required=True),
         'sequence': fields.integer('Sequence'),
-    }
+        }
 
-class attribute_group(osv.osv):
 
+class attribute_group(Model):
     _name= "attribute.group"
     _description = "Attribute Group"
     _order="sequence"
@@ -105,18 +118,16 @@ class attribute_group(osv.osv):
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set', required=True),
         'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
         'sequence': fields.integer('Sequence'),
-    }
+        }
 
 
-class attribute_set(osv.osv):
-
+class attribute_set(Model):
     _name = "attribute.set"
     _description = "Attribute Set"
-
     _columns = {
         'name': fields.char('Name', size=128, required=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
-    }
+        }
 
     def create(self, cr, uid, vals, context=None):
         original_vals = vals.copy()

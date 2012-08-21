@@ -14,12 +14,12 @@
 #You should have received a copy of the GNU General Public License      #
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
-from osv import osv,fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-class product_product(osv.osv):
+class product_product(Model):
     _inherit = "product.template"
     _columns = {
         'categ_id': fields.many2one('product.category','Pricing/Primary Category', required=True, change_default=True),
         'categ_ids': fields.many2many('product.category','product_categ_rel','product_id','categ_id','Product Categories')
-    }
-product_product()
+        }

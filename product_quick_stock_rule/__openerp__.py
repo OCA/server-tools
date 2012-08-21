@@ -29,16 +29,16 @@
     'description': """
         This module simplifie the stock rule managment.
         Two field have been had on product view : 'active_rule' and 'min_qty'
-        If you click on 'active rule' and select a 'min_qty' a stock rule will be automatically 
+        If you click on 'active rule' and select a 'min_qty' a stock rule will be automatically
         generated.
         If you unselect the 'active rule' the rule will be unactive.
         And the field min qty will be in readonly.
         """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['procurement'], 
+    'depends': ['procurement'],
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
            'product_view.xml',
     ],
     'demo_xml': [],
