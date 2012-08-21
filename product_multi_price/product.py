@@ -187,7 +187,7 @@ class product_product(osv.osv):
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
 
     def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
-        if not context:
+        if context is None:
             context={}
         read = False
         if not fields:
