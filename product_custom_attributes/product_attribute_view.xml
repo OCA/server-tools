@@ -21,7 +21,24 @@
             <field name="arch" type="xml">
                 <form string="Attribute Set" col="4">
                     <field name="name" colspan="1"/>
-                    <field name="attribute_group_ids" colspan="4" nolabel="1"/>
+                    <field name="attribute_group_ids" colspan="4" nolabel="1" >
+                        <form string="Attribute Groups">
+                            <field name="name" colspan="1"/>
+                            <field name="sequence" colspan="1"/>
+                            <field name="attribute_ids" colspan="6" nolabel="1">
+                                <form string="Attribute Location">
+                                    <field name="attribute_id" />
+                                    <field name="sequence" />
+                                </form>
+                                <tree string="Attribute Location">
+                                    <field name="attribute_id" />
+                                </tree>
+                            </field>
+                        </form>
+                        <tree string="Attribute Groups">
+                            <field name="name" colspan="1"/>
+                        </tree>
+                    </field>
                 </form>
             </field>
         </record>
@@ -35,7 +52,15 @@
                     <field name="name" colspan="1"/>
                     <field name="sequence" colspan="1"/>
                     <field name="attribute_set_id" colspan="1"/>
-                    <field name="attribute_ids" colspan="6" nolabel="1"/>
+                    <field name="attribute_ids" colspan="6" nolabel="1">
+                        <form string="Attribute Location">
+                            <field name="attribute_id" />
+                            <field name="sequence" />
+                        </form>
+                        <tree string="Attribute Location">
+                            <field name="attribute_id" />
+                        </tree>
+                    </field>
                 </form>
             </field>
         </record>
@@ -66,6 +91,7 @@
                     <field name="based_on" colspan="1"/>
                     <field name="serialized" colspan="1"/>
                     <field name="size" colspan="1" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
+                    <field name="translate" colspan="1" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
                     <field name="option_ids" colspan="8" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}" widget="one2many_list" nolabel="1">
                         <tree string="Attribute Options" editable="top" >
                             <field name="sequence" colspan="1"/>

@@ -21,6 +21,8 @@
 
 from osv import osv, fields
 import netsvc
+#You should install the library Unicode2Ascii, you can find it in the akretion github repository
+from unicode2ascii import Unicode2Ascii
 
 class attribute_option(osv.osv):
     _name = "attribute.option"
@@ -28,7 +30,7 @@ class attribute_option(osv.osv):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, translate=True, required=True),
         'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
@@ -74,7 +76,7 @@ class product_attribute(osv.osv):
     def onchange_field_description(self, cr, uid, ids, field_description, context=None):
         name = 'x_'
         if field_description:
-            name = 'x_%s' % field_description.replace(' ', '_').lower()
+            name = Unicode2Ascii('x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
 class attribute_location(osv.osv):
@@ -115,3 +117,23 @@ class attribute_set(osv.osv):
         'name': fields.char('Name', size=128, required=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
     }
+
+    def create(self, cr, uid, vals, context=None):
+        original_vals = vals.copy()
+        vals['attribute_group_ids'] = []
+        set_id = super(attribute_set, self).create(cr, uid, vals, context)
+        self.write(cr, uid, set_id, original_vals, context=context)
+        return set_id
+
+    def write(self, cr, uid, ids, vals, context=None):
+        for set_id in ids:
+            full_vals = vals.copy()
+            for group in full_vals['attribute_group_ids']:
+                if group[2]:
+                    group[2]['attribute_set_id'] = set_id
+                    for attribute in group[2]['attribute_ids']:
+                        if attribute[2]:
+                            attribute[2]['attribute_set_id'] = set_id
+            super(attribute_set, self).write(cr, uid, set_id, full_vals, context)
+        return True
+
