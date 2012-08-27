@@ -23,6 +23,7 @@ from osv import osv, fields
 import netsvc
 #You should install the library Unicode2Ascii, you can find it in the akretion github repository
 from unicode2ascii import Unicode2Ascii
+from tools.translate import _
 
 class attribute_option(osv.osv):
     _name = "attribute.option"
@@ -107,6 +108,12 @@ class attribute_group(osv.osv):
         'sequence': fields.integer('Sequence'),
     }
 
+    def create(self, cr, uid, vals, context=None):
+        for attribute in vals['attribute_ids']:
+            if attribute[2] and not attribute[2].get('attribute_set_id'):
+                attribute[2]['attribute_set_id'] = vals['attribute_set_id']
+        return super(attribute_group, self).create(cr, uid, vals, context)
+
 
 class attribute_set(osv.osv):
 
@@ -126,6 +133,8 @@ class attribute_set(osv.osv):
         return set_id
 
     def write(self, cr, uid, ids, vals, context=None):
+        if isinstance(ids, (int, long)):
+            ids = [ids]
         for set_id in ids:
             full_vals = vals.copy()
             for group in full_vals['attribute_group_ids']:
