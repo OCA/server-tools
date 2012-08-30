@@ -19,30 +19,25 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
 
-class stock_picking(osv.osv):
+class stock_picking(Model):
     _inherit = "stock.picking"
-
     _columns = {
         'gift_message': fields.text('Gift Message'),
-    }
-
-stock_picking()
+        }
 
 
-class stock_move(osv.osv):
+class stock_move(Model):
     _inherit = "stock.move"
-
     _columns = {
         'gift_message': fields.text('Gift Message'),
         'need_gift_wrap': fields.boolean('Need Gift Wrap'),
-    }
+        }
 
     def _prepare_chained_picking(self, cr, uid, pick_name, picking, ptype, move, context=None):
         res = super(stock_move, self)._prepare_chained_picking(cr, uid, pick_name, picking, ptype, move, context=context)
         res['gift_message'] = picking.gift_message
         return res
-
-stock_move()

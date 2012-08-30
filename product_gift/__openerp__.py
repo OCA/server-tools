@@ -28,7 +28,7 @@
     'description': """This modules add the feature of gift_wrap and give the posibility to add present message on the order or the order line""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['sale','product', 'stock'], 
+    'depends': ['sale','product', 'stock'],
     'init_xml': [],
     'update_xml': [
            'stock_view.xml',

@@ -30,14 +30,14 @@
     This module add the posibility to create easily custom field on product.
     Each product can be link to an attributes set (like camera, fridge...)
     And each attributs have custom fields (for example you don't need the same field for a frigde and a camera)
-    
+
     Need to install the lib unicode2ascii, http://github.com/akretion/unicode2ascii.git
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product','stock'], 
+    'depends': ['product','stock'],
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
            'ir_model_view.xml',
            'product_attribute_view.xml',
            'product_view.xml',

@@ -19,17 +19,14 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-class account_tax(osv.osv):
-
+class account_tax(Model):
     _inherit = 'account.tax'
-
     _columns = {
         'related_inc_tax_id': fields.many2one('account.tax', 'Related Included Tax'),
-    }
-
+        }
 
     # overload def compute all but add a choice for the decimal precision
     def compute_all_with_precision(self, cr, uid, taxes, price_unit, quantity, address_id=None, product=None, partner=None, force_excluded=False, precision=None):
@@ -68,4 +65,4 @@ class account_tax(osv.osv):
             'total': totalex,
             'total_included': totalin,
             'taxes': tin + tex
-        }
+            }

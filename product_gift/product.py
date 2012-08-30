@@ -19,18 +19,15 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
 
-class product_product(osv.osv):
+class product_product(Model):
     _inherit = "product.product"
-    
     _columns = {
         'allow_gift_wrap': fields.boolean('Allow Gift Wrap', help="Determine if the product can have the option gift wrap on the sale order line"),
-    }
-
+        }
     _defaults = {
         'allow_gift_wrap': True,
-    }
-
-product_product()
+        }

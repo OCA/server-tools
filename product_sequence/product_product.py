@@ -19,23 +19,21 @@
 #
 ##############################################################################
 
-from osv import osv, fields
-from tools.translate import _
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.tools.translate import _
 
-class product_product(osv.osv):
+class product_product(Model):
     _inherit = 'product.product'
-
     _columns = {
         'default_code' : fields.char('Reference', size=64, required=True),
-    }
-
+        }
     _sql_constraints = [
         ('uniq_default_code', 'unique(default_code)', "The reference must be unique"),
-    ]
-
+        ]
     _defaults = {
         'default_code': lambda * a: '/',
-    }
+        }
 
     def create(self, cr, uid, vals, context=None):
         if context is None:
@@ -63,5 +61,3 @@ class product_product(osv.osv):
             })
 
         return super(product_product, self).copy(cr, uid, id, default, context)
-
-product_product()
