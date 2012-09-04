@@ -73,8 +73,8 @@
                 <form string="Attribute Location">
                     <field name="attribute_id" />
                     <field name="sequence" />
-                    <field name="attribute_set_id" />
                     <field name="attribute_group_id" />
+                    <field name="attribute_set_id" />
                 </form>
             </field>
         </record>
