@@ -41,7 +41,7 @@ class product_price_fields(osv.osv):
         'basedon_field_id' : fields.many2one('ir.model.fields', 'Based on Field ID', domain = [('model', '=', 'product.product'), ('ttype', '=', 'selection')]),
         'product_coef_field_id' : fields.many2one('ir.model.fields', 'Product Coef Field ID', domain = [('model', '=', 'product.product'), ('ttype', '=', 'float')]),
         'categ_coef_field_id' : fields.many2one('ir.model.fields', 'Category Coef Field ID', domain = [('model', '=', 'product.category'), ('ttype', '=', 'float')]),
-        'default_basedon':fields.selection([('categ_coef','Price on category coefficient'),('product_coef','Price on product coefficient'),('manual','Manual price')], 'Based on by default'),
+        'default_basedon':fields.selection([('categ_coef','Price on category coefficient'),('product_coef','Price on product coefficient'),('manual','Manual price')], 'Based on by default', required=True),
         'currency_id': fields.many2one('res.currency', "Currency", required=True, help="The currency the field is expressed in."),
         'inc_price_field_id' : fields.many2one('ir.model.fields', 'Price Included Field ID', domain = [('model', '=', 'product.product'), ('ttype', '=', 'float')]),
     }
@@ -60,7 +60,7 @@ class product_price_fields(osv.osv):
     _order = "sequence, name"
 
     def _create_price_type(self, cr, uid, vals, context=None):
-        field = (vals.get('field_name', False) or 'x_pm_price_' + vals['name'].replace(' ', '_')).lower()
+        field = (vals.get('field_name', False) or 'x_pm_price_' + vals['name'].replace(' ', '_').replace('-', '_')).lower()
         name = (_('Price')) + ' ' + (vals.get('field_name', False) or vals['name']).capitalize()
         type_obj = self.pool.get('product.price.type')
         price_type_ids = type_obj.search(cr, uid, [
@@ -136,7 +136,7 @@ class product_price_fields(osv.osv):
                     model_id = product_model_id
                     model = 'product.product'
                 field_vals = {
-                    'name': (vals.get('field_name', False) or 'x_pm_' + field + '_' + vals['name'].replace(' ', '_')).lower() ,
+                    'name': (vals.get('field_name', False) or 'x_pm_' + field + '_' + vals['name'].replace(' ', '_').replace('-', '_')).lower() ,
                     'model_id':model_id,
                     'model':model,
                     'field_description': (vals.get('field_name', False) or vals['name']).capitalize() + ' ' + field,
@@ -147,6 +147,7 @@ class product_price_fields(osv.osv):
                 if field == 'basedon':
                     field_vals['ttype'] = 'selection'
                     field_vals['selection'] = "[('categ_coef','Price on category coefficient'),('product_coef','Price on product coefficient'),('manual','Manual price')]"
+                    field_vals['required'] = True
                 vals[field + '_field_id'] = self.pool.get('ir.model.fields').create(cr, uid, field_vals)
                 default_vals={}
                 if field == 'basedon' and vals.get('default_basedon', False):
