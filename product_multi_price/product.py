@@ -125,6 +125,8 @@ class product_product(Model):
                                 name="%s" % field.basedon_field_id.name,
                                 colspan="4",
                                 nolabel="1")
+                    orm.setup_modifiers(
+                        basedon, field=result['fields'][field.basedon_field_id.name], context=context)
                     coef = etree.SubElement(
                                 parent,
                                 'field',
@@ -184,6 +186,7 @@ class product_product(Model):
         return True
 
     def write(self, cr, uid, ids, vals, context=None):
+        if context is None: context={}
         context['simple_read'] = True
         return super(product_product, self).write(cr, uid, ids, vals, context=context)
 
@@ -196,6 +199,7 @@ class product_product(Model):
         for field in fields:
             if field[0:5] == 'x_pm_':
                 read = True
+                break
         if read and not context.get('simple_read'):
             tax_obj = self.pool.get('account.tax')
             prod_price_fields_obj = self.pool.get('product.price.fields')
