@@ -148,7 +148,7 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
         'max_code': fields.text('Maximum Computation Code'),
         'max_dbsource_id': fields.many2one('base.external.dbsource','External DB Source'),
         'color': fields.char('Color', help='RGB code with #', size=7, required=True),
-        'threshold_ids': fields.many2many('mgmtsystem.kpi.threshold','mgmtsystem_kpi_threshold_range_rel', 'range_id', 'Threshold_id', 'Thresholds'),
+        'threshold_ids': fields.many2many('mgmtsystem.kpi.threshold','mgmtsystem_kpi_threshold_range_rel', 'range_id', 'threshold_id', 'Thresholds'),
     }
 
     _defaults = {
