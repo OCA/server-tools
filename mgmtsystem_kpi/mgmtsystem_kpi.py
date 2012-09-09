@@ -286,8 +286,9 @@ class mgmtsystem_kpi(osv.osv):
             kpi_value = 0 
             if obj.kpi_type == 'local' and is_select_query(obj.kpi_code):
                 cr.execute(obj.kpi_code)
-                if is_one_value(cr.dictfetchall()):
-                    kpi_value = cr.dictfetchone()['value']
+                dic = cr.dictfetchall()
+                if is_one_value(dic):
+                    kpi_value = dic[0]['value']
             elif obj.kpi_type == 'external' and obj.dbsource_id.id and is_select_query(obj.kpi_code):
                 dbsrc_obj = self.pool.get('base.external.dbsource').browse(cr, uid, obj.dbsource_id.id, context)
                 res = dbsrc_obj.execute(obj.kpi_code)
