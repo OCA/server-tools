@@ -42,7 +42,7 @@
 			<field name="name">product.product.images</field>
 			<field name="model">product.product</field>
 			<field name="inherit_id" ref="product.product_normal_form_view" />
-			<field name="type">tree</field>
+			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<xpath expr="/form/notebook" position="inside">
 					<page string="Images">
