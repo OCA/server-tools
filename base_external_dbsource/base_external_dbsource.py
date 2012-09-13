@@ -105,8 +105,8 @@ Sample connection strings:
 
         return conn
 
-    def execute_and_inspect(self, cr, uid, ids, sqlquery, sqlparams=None, context=None):
-        """Executes SQL and returns a dict with the rows and the list of columns.
+    def execute(self, cr, uid, ids, sqlquery, sqlparams=None, metadata=False, context=None):
+        """Executes SQL and returns a list of rows. 
         
             "sqlparams" can be a dict of values, that can be referenced in the SQL statement
             using "%(key)s" or, in the case of Oracle, ":key".
@@ -114,31 +114,32 @@ Sample connection strings:
                 sqlquery = "select * from mytable where city = %(city)s and date > %(dt)s"
                 params   = {'city': 'Lisbon', 'dt': datetime.datetime(2000, 12, 31)}
                 
-            Sample result:  { 'colnames'; ['col_a', 'col_b', ...]
-                            , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
+            If metadata=True, it will instead return a dict containing the rows list and the columns list,
+            in the format:
+                { 'cols': [ 'col_a', 'col_b', ...]
+                , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
         """
         data = self.browse(cr, uid, ids)
-        nams = dict()
-        rows = list()
+        rows, cols = list(), list()
         for obj in data:
             conn = self.conn_open(cr, uid, obj.id)
             if obj.connector in ["sqlite","mysql","mssql"]: 
                 #using sqlalchemy
                 cur = conn.execute(sqlquery, sqlparams)
-                nams = cur.keys()
+                if metadata: cols = cur.keys()
                 rows = [r for r in cur]
             else: 
                 #using other db connectors
                 cur = conn.cursor()
                 cur.execute(sqlquery, sqlparams)
-                nams = [d[0] for d in cur.description]
+                if metadata: cols = [d[0] for d in cur.description]
                 rows = cur.fetchall()
             conn.close()
-        return {'colnames': nams, 'rows': rows}
+        if metadata: 
+            return{'cols': cols, 'rows': rows}
+        else:
+            return rows
 
-    def execute(self, cr, uid, ids, sqlquery, sqlparams=None, context=None):
-        return self.execute_and_inspect(self, cr, uid, ids, sqlquery, sqlparams)['rows']
-        
     def connection_test(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context):
             conn = False
