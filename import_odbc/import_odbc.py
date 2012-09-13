@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-import os
 import sys
 from datetime import datetime
 from osv import fields, osv
 import logging
 _logger = logging.getLogger(__name__)
 _loglvl = _logger.getEffectiveLevel()
+SEP     = '|'
 
 class import_odbc_dbtable(osv.osv):
     _name="import.odbc.dbtable"
@@ -50,7 +50,7 @@ class import_odbc_dbtable(osv.osv):
             help = "On error try to reimport rows ignoring relationships."),
         'raise_import_errors': fields.boolean('Raise import errors', 
             help = "Import errors not handled, intended for debugging purposes."
-                 + "\nAlso forces debug messages to be written to the serevr log."),
+                 + "\nAlso forces debug messages to be written to the server log."),
     }
     _defaults = {
         'enabled': True,
@@ -79,25 +79,24 @@ class import_odbc_dbtable(osv.osv):
         
         
         _logger.debug( data )
-        cols = list(flds) #copy to avoid side effects
-        err  = list()
-        msg  = str()
+        cols   = list(flds) #copy to avoid side effects
+        errmsg = str()
         if table_obj.raise_import_errors:
             model_obj.import_data(cr, uid, cols, [data], noupdate=table_obj.noupdate)
         else:
             try:
                 model_obj.import_data(cr, uid, cols, [data], noupdate=table_obj.noupdate)
             except:
-                msg = str(sys.exc_info()[1])
+                errmsg = str(sys.exc_info()[1])
                 
-        if err and not table_obj.ignore_rel_errors:
+        if errmsg and not table_obj.ignore_rel_errors:
             #Fail
-            append_to_log(log, 'ERROR', data, msg )
+            append_to_log(log, 'ERROR', data, errmsg )
             log['last_error_count'] += 1
             return False
-        if err and table_obj.ignore_rel_errors:
+        if errmsg and table_obj.ignore_rel_errors:
             #Warn and retry ignoring many2one fields...
-            append_to_log(log, 'WARN', data, msg )
+            append_to_log(log, 'WARN', data, errmsg )
             log['last_warn_count'] += 1
             #Try ignoring each many2one (tip: in the SQL sentence select more problematic FKs first)
             i = find_m2o(cols)
@@ -147,11 +146,11 @@ class import_odbc_dbtable(osv.osv):
             if obj.last_sync: sync = datetime.strptime(obj.last_sync, "%Y-%m-%d %H:%M:%S")
             else:             sync = datetime.datetime(1900, 1, 1, 0, 0, 0)
             params = {'sync': sync}
-            res    = db_model.execute_and_inspect(cr, uid, [obj.dbsource_id.id], obj.sql_source, params)
+            res    = db_model.execute(cr, uid, [obj.dbsource_id.id], obj.sql_source, params, metadata=True)
                 
             #Exclude columns titled "None"; add (xml_)"id" column
-            cidx = [i for i, x in enumerate(res['colnames']) if x.upper() != 'NONE']
-            cols = [x for i, x in enumerate(res['colnames']) if x.upper() != 'NONE'] + ['id']
+            cidx = [i for i, x in enumerate(res['cols']) if x.upper() != 'NONE']
+            cols = [x for i, x in enumerate(res['cols']) if x.upper() != 'NONE'] + ['id']
 
             #Import each row:
             for row in res['rows']:
@@ -181,9 +180,9 @@ class import_odbc_dbtable(osv.osv):
                 model_name,  log['last_record_count'],  log['last_error_count'] ,
                 log['last_warn_count'] ) )
             #Write run log, either if the table import is active or inactive
-            if log['last_log']:
-                 log['last_log'].insert(0, 'LEVEL|== Line ==    |== Relationship ==|== Message ==')
-                 log.update( {'last_log': '\n'.join(log['last_log'])} )
+            if log['last_log']: 
+                log['last_log'].insert(0, 'LEVEL|== Line ==    |== Relationship ==|== Message ==')
+            log.update( {'last_log': '\n'.join(log['last_log'])} )
             log.update({ 'last_run': datetime.now().replace(microsecond=0) }) #second=0, 
             self.write(cr, uid, [obj.id], log)
         #Finished
