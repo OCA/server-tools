@@ -42,6 +42,11 @@ class product_product(Model):
         'attribute_custom_variant': fields.serialized('Custom Variant Attributes'),
     }
 
+    def _fix_size_bug(self, cr, uid, result, context=None):
+        for field in result['fields']:
+            if result['fields'][field]['type'] == 'text':
+                if 'size' in result['fields'][field]: del result['fields'][field]['size']
+        return result
 
     def open_attributes(self, cr, uid, ids, context=None):
         ir_model_data_obj = self.pool.get('ir.model.data')
@@ -113,4 +118,5 @@ class product_product(Model):
                 info_page = eview.xpath("//page[@string='Information']")[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
+            result = self._fix_size_bug(cr, uid, result, context=context)
         return result
