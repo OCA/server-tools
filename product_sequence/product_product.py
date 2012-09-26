@@ -43,6 +43,8 @@ class product_product(Model):
         return super(product_product, self).create(cr, uid, vals, context)
 
     def write(self, cr, uid, ids, vals, context=None):
+        if not hasattr(ids, '__iter__'):
+            ids = [ids]
         if context is None:
             context = {}
         products_without_code = self.search(cr, uid, [('default_code', 'in', [False, '/']),('id', 'in', ids)], context=context)
