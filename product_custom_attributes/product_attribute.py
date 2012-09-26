@@ -91,7 +91,11 @@ class product_attribute(Model):
         if field_description:
             name = unidecode('x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
-
+    
+    def onchange_name(self, cr, uid, ids, name, context=None):
+        if name[:2] != 'x_':
+            name = 'x_%s' % name
+        return  {'value' : {'name' : unidecode(name)}}
 
 class attribute_location(Model):
     _name = "attribute.location"
