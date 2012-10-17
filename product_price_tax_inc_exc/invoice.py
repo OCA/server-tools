@@ -19,19 +19,19 @@
 #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv import fields
+from openerp.osv.orm import Model
 import decimal_precision as dp
 
 
-class account_invoice(osv.osv):
+class account_invoice(Model):
     _inherit = "account.invoice"
 
     _columns = {
         'pricelist_id': fields.many2one('product.pricelist', 'Pricelist'),
     }
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(Model):
     _inherit = "account.invoice.line"
     
     def _amount_line_tax_inc(self, cr, uid, ids, prop, unknow_none, unknow_dict):
@@ -51,7 +51,8 @@ class account_invoice_line(osv.osv):
         'sub_total_tax_inc' : fields.function(_amount_line_tax_inc, method=True, digits_compute= dp.get_precision('Sale Price'), string='Sub-Total Tax Inc'),
     }
 
-#class account_invoice_line(osv.osv):
+#TODO keep it commented for now, maybe we will use it latter
+#class account_invoice_line(Model):
 #    _inherit = "account.invoice.line"
 #    
 #    def _amount_line_tax_inc(self, cr, uid, ids, prop, unknow_none, unknow_dict):
@@ -84,4 +85,3 @@ class account_invoice_line(osv.osv):
 #        'price_unit_tax_exc' : fields.function(_get_amount_line_tax, method=True, digits_compute= dp.get_precision('Sale Price'), string='Unit Price Tax Exc', multi='tax_val'),
 #        'price_unit_tax_inc' : fields.function(_get_amount_line_tax, method=True, digits_compute= dp.get_precision('Sale Price'), string='Unit Price Tax Inc', multi='tax_val'),
 #    }
-#account_invoice_line()

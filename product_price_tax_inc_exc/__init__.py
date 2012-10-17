@@ -19,12 +19,7 @@
 #
 ###############################################################################
 
-
 import sale
 import pricelist
 import account
 import invoice
-
-
-
-

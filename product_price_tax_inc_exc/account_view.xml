@@ -7,7 +7,6 @@
 
 <openerp>
     <data>
-    
         <!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
 
         <record id="view_account_position_form" model="ir.ui.view">
@@ -22,7 +21,6 @@
                 </field>
             </field>
         </record>
-
 
     </data>
 </openerp>

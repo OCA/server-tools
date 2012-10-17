@@ -19,12 +19,10 @@
 #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
-import decimal_precision as dp
+from openerp.osv import fields
+from openerp.osv.orm import Model
 
-
-class account_fiscal_position(osv.osv):
+class account_fiscal_position(Model):
     _inherit = 'account.fiscal.position'
     _columns = {
         'is_tax_inc': fields.boolean('Is Tax Inc'),

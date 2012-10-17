@@ -19,18 +19,12 @@
 #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv import fields
+from openerp.osv.orm import Model
 
-
-class product_pricelist(osv.osv):
-    
+class product_pricelist(Model):
     _inherit = "product.pricelist"
-    
 
     _columns = {
         'is_tax_inc': fields.boolean('Is Tax Inc'),
     }
-
-product_pricelist()
-

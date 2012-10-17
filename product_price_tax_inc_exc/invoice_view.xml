@@ -7,7 +7,6 @@
 
 <openerp>
     <data>
-    
         <!-- INHERITED VIEW FOR THE OBJECT : account_invoice -->
 
         <record id="product_price_tax_inc_exc_account_invoice_view_form" model="ir.ui.view">
@@ -17,21 +16,17 @@
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <data>
-                <!--
-                    <field name="price_unit" position="after">
-                        <field name="price_unit_tax_exc"/>
-                        <field name="price_unit_tax_inc"/>
-                    </field>
-                -->
-                    <field name="price_subtotal" position="after">
-                        <field name="sub_total_tax_inc"/>
-                    </field>
-                </data>
+            <!--
+                <field name="price_unit" position="after">
+                    <field name="price_unit_tax_exc"/>
+                    <field name="price_unit_tax_inc"/>
+                </field>
+            -->
+                <field name="price_subtotal" position="after">
+                    <field name="sub_total_tax_inc"/>
+                </field>
             </field>
         </record>
-
-
 
         <record id="invoice_form" model="ir.ui.view">
             <field name="name">product_price_tax_inc_exc.invoice_form</field>
@@ -45,7 +40,6 @@
                 </field>
             </field>
         </record>
-
 
     </data>
 </openerp>

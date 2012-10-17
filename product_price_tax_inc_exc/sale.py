@@ -19,13 +19,11 @@
 #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv import fields
+from openerp.osv.orm import Model
 import decimal_precision as dp
 
-
-class sale_order(osv.osv):
-    
+class sale_order(Model):
     _inherit = "sale.order"
 
     def onchange_partner_id(self, cr, uid, ids, part):
@@ -52,7 +50,7 @@ class sale_order(osv.osv):
         return result
 
 
-class sale_order_line(osv.osv):
+class sale_order_line(Model):
     _inherit = "sale.order.line"
 
     def _get_amount_line_tax(self, cr, uid, ids, field_name, arg, context=None):
@@ -79,7 +77,8 @@ class sale_order_line(osv.osv):
             res['value']['tax_id'] = tax_ids
         return res
 
-#class sale_order_line(osv.osv):
+#TODO keep it commented for now, maybe we will use it latter
+#class sale_order_line(Model):
 #    _inherit = "sale.order.line"
 
 #    def _get_amount_line_tax(self, cr, uid, ids, field_name, arg, context=None):
@@ -102,4 +101,3 @@ class sale_order_line(osv.osv):
 #        'price_unit_tax_exc' : fields.function(_get_amount_line_tax, method=True, digits_compute= dp.get_precision('Sale Price'), string='Unit Price Tax Exc', multi='tax_val'),
 #        'price_unit_tax_inc' : fields.function(_get_amount_line_tax, method=True, digits_compute= dp.get_precision('Sale Price'), string='Unit Price Tax Inc', multi='tax_val'),
 #    }
-#sale_order_line()
