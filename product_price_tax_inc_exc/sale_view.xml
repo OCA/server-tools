@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_price_tax_inc_exc for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+    
+        <!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
+
+        <record id="product_price_tax_inc_exc_sale_order_view_form" model="ir.ui.view">
+            <field name="name">product_price_tax_inc_exc.sale_order.view_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="fiscal_position" position="replace">
+                    </field>
+
+                    <field name="pricelist_id" position="attributes">
+                        <attribute name="on_change">pricelist_id_change(pricelist_id)</attribute>
+                    </field>
+
+                    <field name="pricelist_id" position="after">
+                        <field name="fiscal_position"/>
+                    </field>
+
+                    <field name="price_subtotal" position="after">
+                        <field name="sub_total_tax_inc"/>
+                    </field>
+
+                </data>
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
