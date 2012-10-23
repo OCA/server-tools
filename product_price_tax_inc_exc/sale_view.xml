@@ -16,6 +16,8 @@
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
+            
+            
                 <field name="fiscal_position" position="replace">
                 </field>
 

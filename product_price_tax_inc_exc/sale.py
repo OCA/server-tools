@@ -26,22 +26,17 @@ import decimal_precision as dp
 class sale_order(Model):
     _inherit = "sale.order"
 
-    def onchange_partner_id(self, cr, uid, ids, part):
-        res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part)
-        if not res['value']['fiscal_position']:
-            del res['value']['fiscal_position']
-        return res
-
     def pricelist_id_change(self, cr, uid, ids, pricelist_id):
-        res={}
         if self.pool.get('product.pricelist').read(cr, uid, pricelist_id, ['is_tax_inc'])['is_tax_inc']:
-            #id = self.pool.get('account.fiscal.position').search(cr, uid, [['name', '=', 'Particulier France et Union Européenne']])[0] #TODO t hardcode this
-            #res['value'] = {'fiscal_position' : id}
-            res['domain'] = {'fiscal_position': [['is_tax_inc', "=", True]]}
+            res = {
+                'value': {'fiscal_position' : False},
+                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-inc', 'both']]]},
+                }
         else:
-            #res['domain'] = {'fiscal_position' : [('id','!=', id)]} # filter doesn't work with widget selection
-            res['value'] = {'fiscal_position' : False}
-            res['domain'] = {'fiscal_position': [['is_tax_inc', "=", False]]}
+            res = {
+                'value': {'fiscal_position' : False},
+                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-exc', 'both']]]},
+                }
         return res
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
@@ -78,8 +73,6 @@ class sale_order_line(Model):
         return res
 
 #TODO keep it commented for now, maybe we will use it latter
-#class sale_order_line(Model):
-#    _inherit = "sale.order.line"
 
 #    def _get_amount_line_tax(self, cr, uid, ids, field_name, arg, context=None):
 #        order_obj = self.pool.get('sale.order')

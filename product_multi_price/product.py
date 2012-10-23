@@ -125,8 +125,8 @@ class product_product(Model):
                                 name="%s" % field.basedon_field_id.name,
                                 colspan="4",
                                 nolabel="1")
-                    orm.setup_modifiers(
-                        basedon, field=result['fields'][field.basedon_field_id.name], context=context)
+                    setup_modifiers(
+                        _basedon, field=result['fields'][field.basedon_field_id.name], context=context)
                     coef = etree.SubElement(
                                 parent,
                                 'field',

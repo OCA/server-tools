@@ -2,7 +2,8 @@
 ###############################################################################
 #
 #   product_price_tax_inc_exc for OpenERP
-#   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>. All Rights Reserved
+#   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>.
+#               All Rights Reserved
 #     @author Sébastien BEAU <sebastien.beau@akretion.com>
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
@@ -25,5 +26,15 @@ from openerp.osv.orm import Model
 class account_fiscal_position(Model):
     _inherit = 'account.fiscal.position'
     _columns = {
-        'is_tax_inc': fields.boolean('Is Tax Inc'),
+        'pricelist_compatibility': fields.selection([
+                    ('tax-inc', 'Tax Inc'),
+                    ('tax-exc', 'Tax Exc'),
+                    ('both', 'Both'),
+                    ], 'Pricelist Compatibility',
+                    help=("Choose the kind of pricelist compatible"
+                    "with the fiscal position")),
+    }
+
+    _defaults = {
+        'pricelist_compatibility': 'tax-exc',
     }
