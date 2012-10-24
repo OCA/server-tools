@@ -39,10 +39,10 @@ class sale_order(Model):
                 }
         return res
 
-    def _prepare_invoice(self, cr, uid, order, lines, context=None):
-        result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
-        result['pricelist_id'] = order.pricelist_id.id
-        return result
+#    def _prepare_invoice(self, cr, uid, order, lines, context=None):
+#        result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
+#        result['pricelist_id'] = order.pricelist_id.id
+#        return result
 
 
 class sale_order_line(Model):
