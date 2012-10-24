@@ -24,12 +24,26 @@ from openerp.osv.orm import Model
 import decimal_precision as dp
 
 
-class account_invoice(Model):
-    _inherit = "account.invoice"
+#class account_invoice(Model):
+#    _inherit = "account.invoice"
 
-    _columns = {
-        'pricelist_id': fields.many2one('product.pricelist', 'Pricelist'),
-    }
+#    _columns = {
+#        'pricelist_id': fields.many2one('product.pricelist', 'Pricelist'),
+#    }
+
+#    def pricelist_id_change(self, cr, uid, ids, pricelist_id):
+
+#        if self.pool.get('product.pricelist').read(cr, uid, pricelist_id, ['is_tax_inc'])['is_tax_inc']:
+#            res = {
+#                'value': {'fiscal_position' : False},
+#                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-inc', 'both']]]},
+#                }
+#        else:
+#            res = {
+#                'value': {'fiscal_position' : False},
+#                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-exc', 'both']]]},
+#                }
+#        return res
 
 class account_invoice_line(Model):
     _inherit = "account.invoice.line"
@@ -50,6 +64,27 @@ class account_invoice_line(Model):
     _columns = {
         'sub_total_tax_inc' : fields.function(_amount_line_tax_inc, method=True, digits_compute= dp.get_precision('Sale Price'), string='Sub-Total Tax Inc'),
     }
+
+#    def product_id_change(self, cr, uid, ids, product, uom, qty=0, name='',
+#            type='out_invoice', partner_id=False, fposition_id=False,
+#            price_unit=False, address_invoice_id=False, currency_id=False,
+#            context=None, company_id=None, pricelist_id=None):
+
+#        res = super(account_invoice_line, self).product_id_change(cr, uid,
+#            ids, product, uom, qty=qty, name=name,type=type,
+#            partner_id=partner_id, fposition_id=fposition_id,
+#            price_unit=price_unit, address_invoice_id=address_invoice_id,
+#            currency_id=currency_id, context=context,
+#            company_id=company_id)
+#        if pricelist_id:
+#            pricelist = self.pool.get('product.pricelist').browse(cr, uid, pricelist_id, context=context)
+#            if pricelist.is_tax_inc and res.get('value', {}).get('tax_id'):
+#                tax_ids = []
+#                for tax in self.pool.get('account.tax').browse(cr, uid, res['value']['tax_id'], context=context):
+#                    tax_ids.append(tax.related_inc_tax_id.id or tax.id)
+#                res['value']['tax_id'] = tax_ids
+#        return res
+
 
 #TODO keep it commented for now, maybe we will use it latter
 #class account_invoice_line(Model):
