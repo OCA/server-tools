@@ -9,7 +9,7 @@
             <field name="model">base.external.dbsource</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree string="External DB Sources">
                     <field name="name"/>
 		    <field name="connector"/>
 		    <field name="conn_string"/>
@@ -22,7 +22,7 @@
             <field name="model">base.external.dbsource</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form>
+                <form string="External DB Source">
                     <field name="name"/>
                     <field name="password" password="True"/>
                     <newline/>
@@ -45,7 +45,7 @@
 
         <menuitem name="Database Sources"
                   id="menu_dbsource" 
-                  parent="base.next_id_15" 
+                  parent="base.next_id_9" 
                   action="action_dbsource"/>
 
     </data>
