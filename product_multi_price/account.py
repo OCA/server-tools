@@ -25,7 +25,7 @@ from openerp.osv import fields
 class account_tax(Model):
     _inherit = 'account.tax'
     _columns = {
-        'related_inc_tax_id': fields.many2one('account.tax', 'Related Included Tax'),
+        'related_inc_tax_id': fields.many2one('account.tax', 'Related Included Tax', domain=[('price_include','=', True)]),
         }
 
     # overload def compute all but add a choice for the decimal precision
