@@ -17,7 +17,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="active" position="after">
-                    <field name="is_tax_inc"/>
+                    <field name="price_compatibility"/>
                 </field>
             </field>
         </record>

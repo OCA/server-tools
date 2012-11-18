@@ -22,35 +22,27 @@
 from openerp.osv import fields
 from openerp.osv.orm import Model
 import decimal_precision as dp
+from tools.translate import _
+from invoice_sale import InvoiceSale, InvoiceSaleLine
 
-class sale_order(Model):
+class sale_order(InvoiceSale):
     _inherit = "sale.order"
 
-    def pricelist_id_change(self, cr, uid, ids, pricelist_id):
-        if self.pool.get('product.pricelist').read(cr, uid, pricelist_id, ['is_tax_inc'])['is_tax_inc']:
-            res = {
-                'value': {'fiscal_position' : False},
-                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-inc', 'both']]]},
-                }
-        else:
-            res = {
-                'value': {'fiscal_position' : False},
-                'domain': {'fiscal_position': [['pricelist_compatibility', "in", ['tax-exc', 'both']]]},
-                }
-        return res
+    _columns = {
+        'tax_inc' : fields.boolean('Tax Inc', help="Tic the box if you want to use unit price in taxe include"),
+    }
 
-#    def _prepare_invoice(self, cr, uid, order, lines, context=None):
-#        result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
-#        result['pricelist_id'] = order.pricelist_id.id
-#        return result
+    def _prepare_invoice(self, cr, uid, order, lines, context=None):
+        result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
+        result['tax_inc'] = order.tax_inc
+        return result
 
 
-class sale_order_line(Model):
+class sale_order_line(InvoiceSaleLine):
     _inherit = "sale.order.line"
 
     def _get_amount_line_tax(self, cr, uid, ids, field_name, arg, context=None):
         order_obj = self.pool.get('sale.order')
-        tax_obj = self.pool.get('account.tax')
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
             amount_tax_line = order_obj._amount_line_tax(cr, uid, line, context=None)
@@ -60,17 +52,6 @@ class sale_order_line(Model):
     _columns = {
         'sub_total_tax_inc' : fields.function(_get_amount_line_tax, method=True, digits_compute= dp.get_precision('Sale Price'), string='Sub-Total Tax Inc'),
     }
-
-    def product_id_change(self, cr, uid, ids, pricelist_id, *args, **kwargs):
-        res = super(sale_order_line, self).product_id_change(cr, uid, ids, pricelist_id, *args, **kwargs)
-        context = kwargs.get('context')
-        pricelist = self.pool.get('product.pricelist').browse(cr, uid, pricelist_id, context=context)
-        if pricelist.is_tax_inc and res.get('value', {}).get('tax_id'):
-            tax_ids = []
-            for tax in self.pool.get('account.tax').browse(cr, uid, res['value']['tax_id'], context=context):
-                tax_ids.append(tax.related_inc_tax_id.id or tax.id)
-            res['value']['tax_id'] = tax_ids
-        return res
 
 #TODO keep it commented for now, maybe we will use it latter
 

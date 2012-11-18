@@ -19,8 +19,25 @@
 #
 ###############################################################################
 
-import sale
-import pricelist
-import account
-import invoice
-import product
+from openerp.osv import fields
+from openerp.osv.orm import Model
+
+class product_product(Model):
+    _inherit = 'product.product'
+
+    def price_get(self, cr, uid, ids, ptype='list_price', context=None):
+        if context is None:
+            context = {}
+        if 'tax_inc' in context:
+            price_field_obj = self.pool.get('product.price.fields')
+            price_field_id = price_field_obj.search(cr, uid, ['|', 
+                                        ['inc_price_field_id.name', '=', ptype],
+                                        ['price_field_id.name', '=', ptype],
+                                        ], context=context)[0]
+            price_field = price_field_obj.browse(cr, uid, price_field_id, context=context)
+            if context['tax_inc']:
+                ptype = price_field.inc_price_field_id.name
+            else:
+                ptype = price_field.price_field_id.name
+        res = super(product_product, self).price_get(cr, uid, ids, ptype=ptype, context=context)
+        return res
