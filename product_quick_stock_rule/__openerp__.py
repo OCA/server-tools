@@ -23,7 +23,7 @@
 
 {
     'name': 'product_quick_stock_rule',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Stock',
     'license': 'AGPL-3',
     'description': """

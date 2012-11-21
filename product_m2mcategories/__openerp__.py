@@ -17,7 +17,7 @@
 
 {
     "name" : "Product - Many Categories",
-    "version" : "1.0.2",
+    "version" : "6.1.0",
     "author" : "Sharoon Thomas",
     "website" : "",
     "category" : "Added functionality",

@@ -17,7 +17,7 @@
 
 {
     "name" : "Product Image Gallery",
-    "version" : "0.1 ",
+    "version" : "6.1.1",
     "author" : "Sharoon Thomas, Open Labs Business Solutions",
     "website" : "http://openlabs.co.in/",
     "category" : "Added functionality - Product Extension",
