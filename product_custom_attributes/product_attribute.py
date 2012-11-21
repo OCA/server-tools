@@ -93,7 +93,7 @@ class product_attribute(Model):
         return  {'value' : {'name' : name}}
     
     def onchange_name(self, cr, uid, ids, name, context=None):
-        if name[:2] != 'x_':
+        if not name.startswith('x_'):
             name = 'x_%s' % name
         return  {'value' : {'name' : unidecode(name)}}
 

@@ -43,6 +43,10 @@ class product_product(Model):
     }
 
     def _fix_size_bug(self, cr, uid, result, context=None):
+	#When created a field text dynamicaly, its size is limited to 64 in the view.
+	#The bug is fixed but not merged
+	#https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa/+merge/128003
+	#TO remove when the fix will be merged
         for field in result['fields']:
             if result['fields'][field]['type'] == 'text':
                 if 'size' in result['fields'][field]: del result['fields'][field]['size']
