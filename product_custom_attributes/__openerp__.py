@@ -27,9 +27,9 @@
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
-    This module add the posibility to create easily custom field on product.
-    Each product can be link to an attributes set (like camera, fridge...)
-    And each attributs have custom fields (for example you don't need the same field for a frigde and a camera)
+    This module adds the posibility to easily create custom fields on products.
+    Each product can be linked to an attribute set (such as camera, fridge...)
+    and each attribute set has custom fields (for example you don't need the same field for a frigde and a camera)
 
     Need to install the lib unicode2ascii, http://github.com/akretion/unicode2ascii.git
     """,

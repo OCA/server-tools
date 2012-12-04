@@ -117,7 +117,7 @@ class product_price_fields(Model):
             print 'field name'
             exist_id = self.pool.get('ir.model.fields').search(cr, uid, [('name', '=', vals['field_name'])])
             if not exist_id and vals['field_name'][0:2] != 'x_':
-                raise except_osv(_('User Error'), _("Please prefix the name field by x_ as it's a custom field"))
+                raise except_osv(_('User Error'), _("Please prefix the field name by x_ as it is a custom field"))
         field_list = ['price', 'inc_price', 'basedon','product_coef','categ_coef']
         product_ids = self.pool.get('product.product').search(cr, uid, [], context=context)
         for field in field_list:

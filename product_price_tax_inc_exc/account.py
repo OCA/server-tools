@@ -31,7 +31,7 @@ class account_fiscal_position(Model):
                     ('tax-exc', 'Tax Exc'),
                     ('both', 'Both'),
                     ], 'Pricelist Compatibility',
-                    help=("Choose the kind of pricelist compatible"
+                    help=("Choose the kind of pricelist compatible "
                     "with the fiscal position")),
     }
 

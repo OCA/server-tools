@@ -23,10 +23,10 @@
     "category" : "Added functionality",
     "depends" : ['base','product'],
     "description": """
-    This module Extends the existing functionality of Open ERP Products (One product - One Catgory)
+    This module extends the existing functionality of OpenERP Products (One product -> One Category)
     to One product -> Many Categories
 
-    *Note: This module was built generically but in focus of the Magento Open ERP connector
+    *Note: This module was built generically but in focus of the Magento OpenERP connector
     """,
     "init_xml": [],
     "update_xml": [
