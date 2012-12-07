@@ -136,7 +136,7 @@ class product_images(Model):
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
         except OSError, e:
-            raise except_osv(_('Error'), _('The image filestore can not be created, %s'%e))
+            raise except_osv(_('Error'), _('The image filestore can not be created, %s')%e)
         return True
 
     def _save_file(self, path, b64_file):
