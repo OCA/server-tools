@@ -23,21 +23,21 @@
 
 {
     'name': 'product_custom_attributes',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
-    This module add the posibility to create easily custom field on product.
-    Each product can be link to an attributes set (like camera, fridge...)
-    And each attributs have custom fields (for example you don't need the same field for a frigde and a camera)
-    
+    This module adds the posibility to easily create custom fields on products.
+    Each product can be linked to an attribute set (such as camera, fridge...)
+    and each attribute set has custom fields (for example you don't need the same field for a frigde and a camera)
+
     Need to install the lib unicode2ascii, http://github.com/akretion/unicode2ascii.git
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product','stock'], 
+    'depends': ['product','stock'],
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
            'ir_model_view.xml',
            'product_attribute_view.xml',
            'product_view.xml',

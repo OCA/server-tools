@@ -19,18 +19,18 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
 
-class product_product(osv.osv):
+class product_product(Model):
     _inherit = "product.product"
 
     def _get_min_stock(self, cr, uid, ids, field_name, arg, context=None):
         orderpoint_obj = self.pool.get('stock.warehouse.orderpoint')
         res={}
         for product_id in ids:
-            op_ids = orderpoint_obj.search(cr, uid, ['|', ('active', '=', False), 
+            op_ids = orderpoint_obj.search(cr, uid, ['|', ('active', '=', False),
                             ('active', '=', True), ('product_id', '=', product_id)], context=context)
             if op_ids:
                 op = orderpoint_obj.browse(cr, uid, op_ids[0], context=context)
@@ -70,7 +70,7 @@ class product_product(osv.osv):
 
     def _set_rule_status(self, cr, uid, product_id, name, value, arg, context=None):
         orderpoint_obj = self.pool.get('stock.warehouse.orderpoint')
-        op_ids = orderpoint_obj.search(cr, uid, ['|', ('active', '=', False), 
+        op_ids = orderpoint_obj.search(cr, uid, ['|', ('active', '=', False),
                         ('active', '=', True), ('product_id', '=', product_id)], context=context)
         if op_ids:
             orderpoint_obj.write(cr, uid, op_ids[0], {'active': value}, context=context)
@@ -79,22 +79,20 @@ class product_product(osv.osv):
             orderpoint_obj.create(cr, uid, vals, context=context)
         return True
 
-
     _columns = {
         'active_rule': fields.function(_get_rule_status, fnct_inv =_set_rule_status, type='boolean', string='Active Rule'),
         'qty_min': fields.function(_get_min_stock, fnct_inv =_set_min_stock, type='float', string='Minimal Stock'),
-    }
+        }
 
 
-class stock_warehouse_orderpoint(osv.osv):
+class stock_warehouse_orderpoint(Model):
     """
     Defines Minimum stock rules.
     """
     _inherit = "stock.warehouse.orderpoint"
-
     _columns = {
         'sequence': fields.integer('Sequence', require=True),
-    }
+        }
 
     def _get_default_warehouse(self, cr, uid, context=None):
         warehouse_ids = self.pool.get('stock.warehouse').search(cr, uid, [], context=context)
@@ -115,4 +113,4 @@ class stock_warehouse_orderpoint(osv.osv):
         'warehouse_id': _get_default_warehouse,
         'product_max_qty': 0,
         'sequence': 0,
-    }
+        }

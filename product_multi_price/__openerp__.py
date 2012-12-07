@@ -22,15 +22,15 @@
 
 {
     'name': 'product_multi_price',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """empty""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product','account', 'sale','product_prices_on_variant'], 
+    'depends': ['product','account', 'sale','product_prices_on_variant'],
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
            'product_price_fields_view.xml',
            'product_view.xml',
            'product_price_field_config.xml',

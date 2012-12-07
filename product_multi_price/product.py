@@ -19,16 +19,14 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, orm, fields
-import netsvc
+from openerp.osv.orm import Model, setup_modifiers
+from openerp.osv.osv import except_osv
 from lxml import etree
-import decimal_precision as dp
 from tools.translate import _
 
 
 
-class product_product(osv.osv):
-    
+class product_product(Model):
     _inherit = "product.product"
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
@@ -73,19 +71,19 @@ class product_product(osv.osv):
             if btn:
                 btn = btn[0]
                 group_ex = etree.Element('group', colspan="2", col="11")
-                separator_ex = etree.SubElement(
+                _separator_ex = etree.SubElement(
                                 group_ex,
                                 'separator',
                                 colspan="10",
                                 string="Tax exclude prices")
                 group_inc = etree.Element('group', colspan="2", col="11")
-                separator_inc = etree.SubElement(
+                _separator_inc = etree.SubElement(
                                 group_inc,
                                 'separator',
                                 colspan="10",
                                 string="Tax include prices")
                 group_sep = etree.Element('group', colspan="2", col="11")
-                separator_end = etree.SubElement(
+                _separator_end = etree.SubElement(
                                 group_sep,
                                 'separator',
                                 colspan="11")
@@ -96,7 +94,7 @@ class product_product(osv.osv):
                     button_parent = group_inc
                 else:
                     button_parent = group_ex
-                button = etree.SubElement(
+                _button = etree.SubElement(
                                 button_parent,
                                 'button',
                                 colspan="1",
@@ -116,19 +114,19 @@ class product_product(osv.osv):
                         tax_ex = True
                         inc_readonly = "1"
                         ex_readonly = "0"
-                    label = etree.SubElement(
+                    _label = etree.SubElement(
                                 parent,
                                 'label',
                                 colspan="3",
                                 string="%s" % field.name)
-                    basedon = etree.SubElement(
+                    _basedon = etree.SubElement(
                                 parent,
                                 'field',
                                 name="%s" % field.basedon_field_id.name,
                                 colspan="4",
                                 nolabel="1")
-                    orm.setup_modifiers(
-                        basedon, field=result['fields'][field.basedon_field_id.name], context=context)
+                    setup_modifiers(
+                        _basedon, field=result['fields'][field.basedon_field_id.name], context=context)
                     coef = etree.SubElement(
                                 parent,
                                 'field',
@@ -137,8 +135,9 @@ class product_product(osv.osv):
                                 string="Coef",
                                 colspan="1",
                                 attrs="{'readonly':[('%s','!=','product_coef')]}" % field.basedon_field_id.name)
-                    orm.setup_modifiers(
-                        coef, field=result['fields'][field.product_coef_field_id.name], context=context)
+                    setup_modifiers(coef,
+                                    field=result['fields'][field.product_coef_field_id.name],
+                                    context=context)
                     price = etree.SubElement(
                                 parent,
                                 'field',
@@ -148,8 +147,9 @@ class product_product(osv.osv):
                                 nolabel="1",
                                 readonly = ex_readonly,
                                 attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
-                    orm.setup_modifiers(
-                        price, field=result['fields'][field.field_name], context=context)
+                    setup_modifiers(price,
+                                    field=result['fields'][field.field_name],
+                                    context=context)
                     inc_price = etree.SubElement(
                                 parent,
                                 'field',
@@ -159,8 +159,9 @@ class product_product(osv.osv):
                                 nolabel="1",
                                 readonly = inc_readonly,
                                 attrs="{'readonly':[('%s','!=','manual')]}" % field.basedon_field_id.name)
-                    orm.setup_modifiers(
-                        inc_price, field=result['fields'][field.inc_price_field_id.name], context=context)
+                    setup_modifiers(inc_price,
+                                    field=result['fields'][field.inc_price_field_id.name],
+                                    context=context)
                 arch = etree.Element('group', colspan="2", col="11")
                 if tax_inc:
                     arch.extend(group_inc)
@@ -268,7 +269,7 @@ class product_product(osv.osv):
                     if name:
                         if name == 'list_price':
                             price_name = 'list_price'
-                        else: 
+                        else:
                             price_name = 'x_pm_price_' + name
                         tax_inc = False
                         price_field_ids = prod_price_fields_obj.search(cr, uid, [
@@ -285,7 +286,7 @@ class product_product(osv.osv):
                             if result['standard_price']:
                                 if tax_inc and result.get('taxes_id'):
                                     if not tax.related_inc_tax_id:
-                                        raise osv.except_osv(_("No related tax"), _("You need to define a related included tax for the sale tax!"))
+                                        raise except_osv(_("No related tax"), _("You need to define a related included tax for the sale tax!"))
                                     taxes = tax_obj.compute_all_with_precision(cr, uid, [tax.related_inc_tax_id], result['x_pm_inc_price_' + name], 1, precision=6)
                                     result[price_name] = taxes['total']
                                 elif result.get('taxes_id'):
@@ -328,10 +329,9 @@ class product_product(osv.osv):
             results = super(product_product, self).read(cr, uid, ids, fields=fields, context=context, load=load)
         return results
 
-product_product()
 
-class product_category(osv.osv):
 
+class product_category(Model):
     _inherit = 'product.category'
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
@@ -345,14 +345,14 @@ class product_category(osv.osv):
             if btn:
                 btn = btn[0]
                 arch = etree.Element('group', colspan="2", col="2")
-                separator = etree.SubElement(
+                _separator = etree.SubElement(
                                 arch,
                                 'separator',
                                 colspan="2",
                                 string="Product price coefficients")
                 for field in product_price_fields_obj.browse(cr, uid, product_price_fields_ids, context=context):
                     price_fields.append(field.categ_coef_field_id.name)
-                    coef = etree.SubElement(
+                    _coef = etree.SubElement(
                                 arch,
                                 'field',
                                 digits="(18, 6)",

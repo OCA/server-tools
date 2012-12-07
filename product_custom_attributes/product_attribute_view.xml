@@ -86,7 +86,7 @@
             <field name="arch" type="xml">
                 <form string="Product Attribute" col="8">
                     <field name="field_description" colspan="1" on_change="onchange_field_description(field_description, context)"/>
-                    <field name="name" colspan="1" attrs="{'readonly':[('create_date', '!=', False)]}"/>
+                    <field name="name" colspan="1" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" colspan="1"/>
                     <field name="based_on" colspan="1"/>
                     <field name="serialized" colspan="1"/>

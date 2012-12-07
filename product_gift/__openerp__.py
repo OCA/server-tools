@@ -22,13 +22,13 @@
 
 {
     'name': 'product_gift',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Generic Modules',
     'license': 'AGPL-3',
-    'description': """This modules add the feature of gift_wrap and give the posibility to add present message on the order or the order line""",
+    'description': """This module adds the gift_wrap feature and gives the possibility to add a gift message on the order or the order line.""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['sale','product', 'stock'], 
+    'depends': ['sale','product', 'stock'],
     'init_xml': [],
     'update_xml': [
            'stock_view.xml',

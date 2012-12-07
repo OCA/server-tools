@@ -16,7 +16,9 @@
 #You should have received a copy of the GNU General Public License      #
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.osv.osv import except_osv
 import base64, urllib
 from tools.translate import _
 import os
@@ -27,7 +29,7 @@ _logger = logging.getLogger(__name__)
 #TODO find a good solution in order to roll back changed done on file system
 #TODO add the posibility to move from a store system to an other (example : moving existing image on database to file system)
 
-class product_images(osv.osv):
+class product_images(Model):
     "Products Image gallery"
     _name = "product.images"
     _description = __doc__
@@ -134,7 +136,7 @@ class product_images(osv.osv):
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
         except OSError, e:
-            raise osv.except_osv(_('Error'), _('The image filestore can not be created, %s'%e))
+            raise except_osv(_('Error'), _('The image filestore can not be created, %s')%e)
         return True
 
     def _save_file(self, path, b64_file):
@@ -160,13 +162,10 @@ class product_images(osv.osv):
         'url':fields.char('File Location', size=250),
         'comments':fields.text('Comments'),
         'product_id':fields.many2one('product.product', 'Product')
-    }
-
+        }
     _defaults = {
         'link': lambda *a: False,
-    }
-
+        }
     _sql_constraints = [('uniq_name_product_id', 'UNIQUE(product_id, name)',
-                _('A product can have only one image with the same name'))]
+                         _('A product can have only one image with the same name'))]
 
-product_images()

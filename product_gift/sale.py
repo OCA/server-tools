@@ -20,38 +20,31 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
 
-class sale_order(osv.osv):
-    
+class sale_order(Model):
     _inherit = "sale.order"
-    
     _columns = {
         'gift_message': fields.text('Gift Message'),
-    }
+        }
 
     def _prepare_order_picking(self, cr, uid, order, *args, **kwargs):
         values = super(sale_order, self)._prepare_order_picking(cr, uid, order, *args, **kwargs)
         values.update({'gift_message' : order.gift_message})
         return values
 
-sale_order()
 
-
-class sale_order_line(osv.osv):
-    
+class sale_order_line(Model):
     _inherit = "sale.order.line"
-    
     _columns = {
         'gift_message': fields.text('Gift Message'),
         'need_gift_wrap': fields.boolean('Add Gift Wrap'),
-    }
+        }
 
     def _prepare_order_line_move(self, cr, uid, order, line, picking_id, date_planned, *args, **kwargs):
         values = super(sale_order_line, self)._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, *args, **kwargs)
         values.update({'gift_message': line.gift_message,
                        'need_gift_wrap': line.need_gift_wrap})
         return values
-
-sale_order_line()

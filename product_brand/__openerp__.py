@@ -26,7 +26,7 @@
 ###################################################################################
 {
     'name': 'Product Brand Manager',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Product',
     'description': """This module allows your user to easily manage product brand. You can define brand, attach it a logo and a description.
     It also allows to attach a partner to a brand.

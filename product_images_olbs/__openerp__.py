@@ -17,7 +17,7 @@
 
 {
     "name" : "Product Image Gallery",
-    "version" : "0.1 ",
+    "version" : "6.1.1",
     "author" : "Sharoon Thomas, Open Labs Business Solutions",
     "website" : "http://openlabs.co.in/",
     "category" : "Added functionality - Product Extension",
@@ -25,7 +25,7 @@
     "description": """
     This Module implements an Image Gallery for products.
     You can add images against every product.
-    
+
     This module is generic but built for Magento ERP connector and
     the upcoming e-commerce system for Open ERP by Open Labs
     """,

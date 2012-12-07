@@ -23,22 +23,22 @@
 
 {
     'name': 'product_quick_stock_rule',
-    'version': '0.1',
+    'version': '6.1.0',
     'category': 'Stock',
     'license': 'AGPL-3',
     'description': """
-        This module simplifie the stock rule managment.
-        Two field have been had on product view : 'active_rule' and 'min_qty'
-        If you click on 'active rule' and select a 'min_qty' a stock rule will be automatically 
+        This module simplifies the stock rule managment.
+        Two fields have been added on product view : 'active_rule' and 'min_qty'
+        If you click on 'active rule' and select a 'min_qty' a stock rule will be automatically
         generated.
-        If you unselect the 'active rule' the rule will be unactive.
-        And the field min qty will be in readonly.
+        If you unselect the 'active rule' the rule will be deactivated 
+        and the field min_qty will be read only.
         """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['procurement'], 
+    'depends': ['procurement'],
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
            'product_view.xml',
     ],
     'demo_xml': [],
