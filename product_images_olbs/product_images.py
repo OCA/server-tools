@@ -95,9 +95,12 @@ class product_images(Model):
     def get_image(self, cr, uid, id, context=None):
         image = self.browse(cr, uid, id, context=context)
         if image.link:
-            (filename, header) = urllib.urlretrieve(image.url)
-            with open(filename , 'rb') as f:
-                img = base64.b64encode(f.read())
+            if image.url:
+                (filename, header) = urllib.urlretrieve(image.url)
+                with open(filename , 'rb') as f:
+                    img = base64.b64encode(f.read())
+            else:
+                return False
         else:
             try:
                 if isinstance(image.product_id.default_code, bool):
