@@ -44,7 +44,7 @@
 			<field name="inherit_id" ref="product.product_normal_form_view" />
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<xpath expr="/form/notebook" position="inside">
+				<xpath expr="/form/sheet/notebook" position="inside">
 					<page string="Images">
 						<field name="image_ids" nolabel="1" />
 					</page>
