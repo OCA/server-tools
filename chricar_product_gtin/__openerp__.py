@@ -9,7 +9,7 @@ Replaces the EAN13 code completion with a checkroutine for EAN13, EAN8, JPC, UPC
 makes EAN visible in simplified view
 """
 , "init_xml"     : []
-, "demo_xml"     : []
+, "demo"         : []
 , "update_xml"   : ["chricar_product_gtin_view.xml"]
 , "auto_install" : False
 , "installable"  : True
