@@ -13,4 +13,5 @@ makes EAN visible in simplified view
 , "update_xml"   : ["chricar_product_gtin_view.xml"]
 , "auto_install" : False
 , "installable"  : True
+, 'application'  : False
 }
