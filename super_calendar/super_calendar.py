@@ -25,7 +25,7 @@ from openerp import logging
 from mako.template import Template
 from datetime import datetime
 from openerp import tools
-from tools.safe_eval import safe_eval as eval
+from openerp.tools import safe_eval as eval
 
 def _models_get(self, cr, uid, context=None):
     obj = self.pool.get('ir.model')
