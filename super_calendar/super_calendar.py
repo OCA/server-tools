@@ -60,8 +60,10 @@ class super_calendar_configurator(orm.Model):
                         raise osv.except_osv(_('Error'), 
                             _("The 'User' field of record %s (%s) does not refer to res.users")
                             % (current_record[line.description_field_id.name], line.name.model))
-                    if ((line.description_field_id and current_record[line.description_field_id.name]) or line.description_code)  \
-                        and current_record[line.date_start_field_id.name]:
+                    if (((line.description_field_id
+                        and current_record[line.description_field_id.name])
+                        or line.description_code)
+                        and current_record[line.date_start_field_id.name]):
                         duration = False
                         if not line.duration_field_id and line.date_stop_field_id and current_record[line.date_start_field_id.name] and current_record[line.date_stop_field_id.name]:
                             date_start= datetime.strptime(current_record[line.date_start_field_id.name], tools.DEFAULT_SERVER_DATETIME_FORMAT)
@@ -89,7 +91,6 @@ class super_calendar_configurator(orm.Model):
         self._logger.info('Calendar generated')
         return True
 
-super_calendar_configurator()
 
 class super_calendar_configurator_line(orm.Model):
     _name = 'super.calendar.configurator.line'
@@ -116,7 +117,6 @@ class super_calendar_configurator_line(orm.Model):
             domain="['&',('ttype', '=', 'many2one'),('model_id', '=', name)]"),
         }
         
-super_calendar_configurator_line()
 
 class super_calendar(orm.Model):
     _name = 'super.calendar'
@@ -124,11 +124,9 @@ class super_calendar(orm.Model):
         'name': fields.char('Description', size=512, required=True),
         'model_description': fields.char('Model Description', size=128, required=True),
         'date_start':fields.datetime('Start date', required=True),
-        #'date_stop':fields.datetime('End date'), # to be removed?
         'duration':fields.float('Duration'),
         'user_id': fields.many2one('res.users', 'User'),
         'configurator_id': fields.many2one('super.calendar.configurator', 'Configurator'),
         'res_id': fields.reference('Resource', selection=_models_get, size=128),
         'model_id': fields.many2one('ir.model', 'Model'),
         }
-super_calendar()
