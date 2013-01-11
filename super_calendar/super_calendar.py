@@ -21,7 +21,7 @@
 
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import logging
 from mako.template import Template
 from datetime import datetime
 from openerp import tools
@@ -33,7 +33,7 @@ def _models_get(self, cr, uid, context=None):
     return [(r['model'], r['name']) for r in res]
 
 class super_calendar_configurator(orm.Model):
-    _logger = netsvc.Logger()
+    _logger = logging.getLogger('super.calendar')
     _name = 'super.calendar.configurator'
     _columns  = {
         'name': fields.char('Name', size=64, required=True),
@@ -86,7 +86,7 @@ class super_calendar_configurator(orm.Model):
                             'model_id': line.name.id,
                             }
                         super_calendar_pool.create(cr, uid, super_calendar_values)
-        self._logger.notifyChannel('super_calendar', netsvc.LOG_INFO, "Calendar generated")
+        self._logger.info('Calendar generated')
         return True
 
 super_calendar_configurator()
