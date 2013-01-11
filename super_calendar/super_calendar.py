@@ -45,16 +45,15 @@ class super_calendar_configurator(orm.Model):
         super_calendar_pool = self.pool.get('super.calendar')
         
         # removing old records
-        super_calendar_ids = super_calendar_pool.search(cr, uid, [])
-        super_calendar_pool.unlink(cr, uid, super_calendar_ids)
+        super_calendar_ids = super_calendar_pool.search(cr, uid, [], context=context)
+        super_calendar_pool.unlink(cr, uid, super_calendar_ids, context=context)
         
-        for configurator_id in configurator_ids:
-            configurator = self.browse(cr, uid, configurator_id)
+        for configurator in self.browse(cr, uid, configurator_ids, context):
             for line in configurator.line_ids:
                 current_pool = self.pool.get(line.name.model)
-                current_record_ids = current_pool.search(cr, uid, line.domain and eval(line.domain) or [])
+                current_record_ids = current_pool.search(cr, uid, line.domain and eval(line.domain) or [], context=context)
                 for current_record_id in current_record_ids:
-                    current_record  = current_pool.browse(cr, uid, current_record_id)
+                    current_record  = current_pool.browse(cr, uid, current_record_id, context=context)
                     if line.user_field_id and \
                         current_record[line.user_field_id.name] and current_record[line.user_field_id.name]._table_name != 'res.users':
                         raise osv.except_osv(_('Error'), 
@@ -85,7 +84,7 @@ class super_calendar_configurator(orm.Model):
                             'res_id': line.name.model+','+str(current_record['id']),
                             'model_id': line.name.id,
                             }
-                        super_calendar_pool.create(cr, uid, super_calendar_values)
+                        super_calendar_pool.create(cr, uid, super_calendar_values, context=context)
         self._logger.info('Calendar generated')
         return True
 
