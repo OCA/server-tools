@@ -21,7 +21,7 @@
 
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
-from openerp import logging
+import logging
 from mako.template import Template
 from datetime import datetime
 from openerp import tools
