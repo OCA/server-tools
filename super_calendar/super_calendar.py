@@ -19,20 +19,20 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-from tools.translate import _
-import netsvc
+from openerp.osv import fields, osv, orm
+from openerp.tools.translate import _
+from openerp import netsvc
 from mako.template import Template
 from datetime import datetime
 from openerp import tools
 
-def _models_get(self, cr, uid, context={}):
+def _models_get(self, cr, uid, context=None):
     obj = self.pool.get('ir.model')
     ids = obj.search(cr, uid, [])
     res = obj.read(cr, uid, ids, ['model', 'name'], context)
     return [(r['model'], r['name']) for r in res]
 
-class super_calendar_configurator(osv.osv):
+class super_calendar_configurator(orm.Model):
     _logger = netsvc.Logger()
     _name = 'super.calendar.configurator'
     _columns  = {
@@ -91,7 +91,7 @@ class super_calendar_configurator(osv.osv):
 
 super_calendar_configurator()
 
-class super_calendar_configurator_line(osv.osv):
+class super_calendar_configurator_line(orm.Model):
     _name = 'super.calendar.configurator.line'
     _columns  = {
         'name': fields.many2one('ir.model', 'Model', required=True),
@@ -118,7 +118,7 @@ class super_calendar_configurator_line(osv.osv):
         
 super_calendar_configurator_line()
 
-class super_calendar(osv.osv):
+class super_calendar(orm.Model):
     _name = 'super.calendar'
     _columns  = {
         'name': fields.char('Description', size=512, required=True),
