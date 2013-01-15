@@ -60,7 +60,7 @@ And here is the weekly one:
 
 As you can see, several filters are available. A typical usage consists in filtering by ‘Configurator’ (if you have several configurators, ‘Scheduled calls and meetings’ can be one of them) and by your user. Once you filtered, you can save the filter as ‘Advanced filter’ or even add it to a dashboard.
 """,
-    'author': 'Agile Business Group & Domsense',
+    'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends" : ['base'],
