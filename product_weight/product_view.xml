@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="product_weight_form_view" model="ir.ui.view">
+      <field name="name">product.weight.form</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="arch" type="xml">
+	<data>
+	  <field name="weight" position="replace">
+	    <label for="weight" />
+	    <div>
+	      <field name="weight" attrs="{'readonly': [('type','=','service')]}" class="oe_inline" />
+	      <button name="update_weight" type="object" string="update" attrs="{'invisible':[('type','=','service')]}" class="oe_link" />
+	    </div>
+	  </field>
+	</data>
+      </field>
+    </record>
+  </data>
+</openerp>
