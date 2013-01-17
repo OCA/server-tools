@@ -28,7 +28,7 @@
     "license": "AGPL-3",
     "category": "Warehouse",
     "description": """
-    This module updates product weight based on it's components weight'
+    This module updates product net weight based on it's components weight
     """,
     "depends": [
         "base",
