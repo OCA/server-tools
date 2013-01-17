@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_product_weight_update" model="ir.ui.view">
+      <field name="name">Update Product Weight</field>
+      <field name="model">product.weight.update</field>
+      <field name="arch" type="xml">
+	<form string="Update Product Weight" version="7.0">
+	  <group>
+	    <field name="product_id" invisible="1" />
+	    <field name="bom_id" />
+	  </group>
+	  <footer>
+	    <button name="update_weight" string="_Apply" type="object" class="oe_highlight"/>
+	    or
+	    <button string="Cancel" class="oe_link" special="cancel" />
+	  </footer>
+	</form>
+      </field>
+    </record>
+
+    <record id="action_view_product_weight_update" model="ir.actions.act_window">
+      <field name="name">Update Product Weight</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">product.weight.update</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_product_weight_update"/>
+      <field name="target">new</field>
+    </record>
+    
+  </data>
+</openerp>
+

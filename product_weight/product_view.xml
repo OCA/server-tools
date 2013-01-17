@@ -7,11 +7,11 @@
       <field name="inherit_id" ref="product.product_normal_form_view"/>
       <field name="arch" type="xml">
 	<data>
-	  <field name="weight" position="replace">
-	    <label for="weight" />
+	  <field name="weight_net" position="replace">
+	    <label for="weight_net" />
 	    <div>
-	      <field name="weight" attrs="{'readonly': [('type','=','service')]}" class="oe_inline" />
-	      <button name="update_weight" type="object" string="update" attrs="{'invisible':[('type','=','service')]}" class="oe_link" />
+	      <field name="weight_net" attrs="{'readonly': [('type','=','service')]}" class="oe_inline" />
+	      <button name="%(action_view_product_weight_update)d" type="action" string="update" attrs="{'invisible':[('type','=','service')]}" class="oe_link" />
 	    </div>
 	  </field>
 	</data>

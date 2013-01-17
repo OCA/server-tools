@@ -20,24 +20,4 @@
 #
 ##############################################################################
 
-{
-    "name": "Product Weight Calculation",
-    "version": "0.1",
-    "author": "Savoir-faire Linux",
-    "website": "http://www.savoirfairelinux.com",
-    "license": "GPL-3",
-    "category": "Warehouse",
-    "description": """
-    This module updates product weight based on it's components weight'
-    """,
-    "depends": [
-        "base",
-        "mrp",
-    ],
-    "demo": [],
-    "data": [
-        "product_view.xml",
-        "wizard/product_weight_update_view.xml"
-    ],
-    "installable": True,
-}
+import product_weight_update
