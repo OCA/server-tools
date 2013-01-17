@@ -7,7 +7,7 @@
             <field name="model">product.supplierinfo</field>
             <field name="inherit_id" ref="product.product_supplierinfo_form_view" />
             <field name="arch" type="xml">
-                <field name="qty" position="after">
+                <field name="sequence" position="after">
                     <field name="last_order" colspan="4"/>
                 </field>
             </field>
@@ -40,7 +40,7 @@
             <field name="model">product.product</field>
             <field name="type">form</field>
             <field name="priority">3</field>
-            <field name="inherit_id" ref="purchase.view_product_supplier_inherit" />
+            <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
                 <field name="seller_ids" position="before">
                     <field name="calculate_price" />

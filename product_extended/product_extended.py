@@ -1,7 +1,8 @@
 ##############################################################################
 #    
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2010-2011 OpenERP S.A. (<http://www.openerp.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,26 +21,22 @@
 
 from osv import fields
 from osv import osv
-#import ir
-import pooler
 
 class product_supplierinfo(osv.osv):
     _inherit = 'product.supplierinfo'
     _name = "product.supplierinfo"
 
-    def _last_order(self, cr, uid, ids, name, arg, context):
-        res = {}
-        for supinfo in self.browse(cr, uid, ids):
+    def _last_order(self, cr, uid, ids, name, arg, context=None):
+        res = dict.fromkeys(ids, False)
+        for supinfo in self.browse(cr, uid, ids, context=context):
             cr.execute("select po.id, max(po.date_approve) from purchase_order as po, purchase_order_line as line where po.id=line.order_id and line.product_id=%s and po.partner_id=%s and po.state='approved' group by po.id", (supinfo.product_id.id, supinfo.name.id,))
             record = cr.fetchone()
             if record:
                 res[supinfo.id] = record[0]
-            else:
-                res[supinfo.id] = False
         return res
 
     def _last_order_date(self, cr, uid, ids, name, arg, context):
-        res = {}
+        res = dict.fromkeys(ids, False)
         po = self.pool.get('purchase.order')
         last_orders = self._last_order(cr, uid, ids, name, arg, context)
         dates = po.read(cr, uid, filter(None, last_orders.values()), ['date_approve'])
@@ -47,8 +44,6 @@ class product_supplierinfo(osv.osv):
             date_approve = [x['date_approve'] for x in dates if x['id']==last_orders[suppinfo]]
             if date_approve:
                 res[suppinfo] = date_approve[0]
-            else:
-                res[suppinfo] = False
         return res
 
     _columns = {
@@ -63,14 +58,12 @@ class product_product(osv.osv):
     _inherit = 'product.product'
     
     def _find_op(self, cr, uid, ids, name, arg, context):
-        res = {}
+        res = dict.fromkeys(ids, False)
         for product_id in ids:
             cr.execute('SELECT swo.id from stock_warehouse_orderpoint AS swo WHERE product_id=%s', (product_id,))
             op_id = cr.fetchone()
             if op_id:
                 res[product_id] = op_id[0]
-            else:
-                res[product_id] = False
         return res
 
     def _product_dispo(self, cr, uid, ids, name, arg, context={}):
@@ -92,11 +85,13 @@ class product_product(osv.osv):
         'calculate_price': lambda w,x,y,z: False,
     }
 
-    def compute_price(self, cr, uid, ids, *args):
+    def compute_price(self, cr, uid, ids, context=None):
+        if context is None: context = {}
+        proxy = self.pool.get('mrp.bom')
         for prod_id in ids:
-            bom_ids = pooler.get_pool(cr.dbname).get('mrp.bom').search(cr, uid, [('product_id', '=', prod_id)])
+            bom_ids = proxy.search(cr, uid, [('product_id', '=', prod_id)])
             if bom_ids:
-                for bom in pooler.get_pool(cr.dbname).get('mrp.bom').browse(cr, uid, bom_ids):
+                for bom in proxy.browse(cr, uid, bom_ids):
                     self._calc_price(cr, uid, bom)
         return True
                     
@@ -108,9 +103,9 @@ class product_product(osv.osv):
             if bom.bom_lines:
                 for sbom in bom.bom_lines:
                     my_qty = sbom.bom_lines and 1.0 or sbom.product_qty
-                    price += self._calc_price(cr, uid, sbom) * my_qty                    
+                    price += self._calc_price(cr, uid, sbom) * my_qty
             else:
-                bom_obj = pooler.get_pool(cr.dbname).get('mrp.bom')
+                bom_obj = self.pool.get('mrp.bom')
                 no_child_bom = bom_obj.search(cr, uid, [('product_id', '=', bom.product_id.id), ('bom_id', '=', False)])
                 if no_child_bom and bom.id not in no_child_bom:
                     other_bom = bom_obj.browse(cr, uid, no_child_bom)[0]
