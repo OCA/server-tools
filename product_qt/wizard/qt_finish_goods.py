@@ -39,20 +39,20 @@ def get_default(val):
 
 
 def _get_cases(self, cr, uid, data, context):
-    mrp_obj=pooler.get_pool(cr.dbname).get('mrp.production').browse(cr,uid,data['id'])
-    prod_obj=pooler.get_pool(cr.dbname).get('product.product').browse(cr,uid,mrp_obj.product_id.id)
+    mrp_obj = pooler.get_pool(cr.dbname).get('mrp.production').browse(cr, uid, data['id'])
+    prod_obj = pooler.get_pool(cr.dbname).get('product.product').browse(cr, uid, mrp_obj.product_id.id)
     fields.clear()
 
     arch_lst = ['<?xml version="1.0"?>', '<form string="Quality Testing">']
 
     arch_lst.append('<field name="test_date"/>')
-    fields['test_date'] = {'string':'Testing Date','type':'date','default': get_default(time.strftime('%Y-%m-%d'))}
+    fields['test_date'] = {'string':'Testing Date', 'type':'date', 'default': get_default(time.strftime('%Y-%m-%d'))}
 
     arch_lst.append('<field name="tester" colspan="1"/>')
-    fields['tester'] = {'string': 'Tester','type': 'many2one', 'relation': 'hr.employee'}
+    fields['tester'] = {'string': 'Tester', 'type': 'many2one', 'relation': 'hr.employee'}
 
     arch_lst.append('<field name="product"/>')
-    fields['product'] = {'string': 'Product','readonly':True,
+    fields['product'] = {'string': 'Product', 'readonly':True,
                     'type': 'many2one', 'relation': 'product.product',
                     'default':get_default(prod_obj.id)}
     arch_lst.append('\n')
@@ -65,20 +65,20 @@ def _get_cases(self, cr, uid, data, context):
             arch_lst.append('<separator colspan="4"/>')
             arch_lst.append('\n')
             arch_lst.append('<field name="min%s" colspan="1"/>' % (case.name.id,))
-            fields['min'+'%s'%case.name.id]={'string':'Min Limit',
-                                                    'type':'float','readonly':True,'default':get_default(case.min_limit)}
+            fields['min' + '%s' % case.name.id] = {'string':'Min Limit',
+                                                    'type':'float', 'readonly':True, 'default':get_default(case.min_limit)}
             arch_lst.append('<field name="max%s" colspan="1"/>' % (case.name.id,))
-            fields['max'+'%s'%case.name.id]={'string':'Max Limit',
-                                                    'type':'float','readonly':True,'default':get_default(case.max_limit)}
+            fields['max' + '%s' % case.name.id] = {'string':'Max Limit',
+                                                    'type':'float', 'readonly':True, 'default':get_default(case.max_limit)}
             arch_lst.append('<field name="actual%s" colspan="1"/>' % (case.name.id,))
-            fields['actual'+'%s'%case.name.id]={'string':'Actual','type':'float'}
+            fields['actual' + '%s' % case.name.id] = {'string':'Actual', 'type':'float'}
             arch_lst.append('<field name="uom%s" colspan="1"/>' % (case.name.id,))
-            fields['uom'+'%s'%case.name.id] = {'string': 'UOM','readonly':True,
+            fields['uom' + '%s' % case.name.id] = {'string': 'UOM', 'readonly':True,
                         'type': 'many2one', 'relation': 'product.uom',
                         'default':get_default(case.uom.id)}
 
             arch_lst.append('<field name="active%s" colspan="1"/>' % (case.name.id,))
-            fields['active'+'%s'%case.name.id] = {'string': 'Active',
+            fields['active' + '%s' % case.name.id] = {'string': 'Active',
                         'type': 'boolean'}
             arch_lst.append('\n')
 
@@ -88,38 +88,38 @@ def _get_cases(self, cr, uid, data, context):
     return {}
 
 def check(self, cr, uid, data, context):
-    test_obj=pooler.get_pool(cr.dbname).get('testing.result')
-    test_config=pooler.get_pool(cr.dbname).get('quality.test.config')
-    mrp=pooler.get_pool(cr.dbname).get('mrp.production')
-    mrp_obj=mrp.browse(cr,uid,data['id'])
-    prod_obj=pooler.get_pool(cr.dbname).get('product.product').browse(cr,uid,mrp_obj.product_id.id)
+    test_obj = pooler.get_pool(cr.dbname).get('testing.result')
+    test_config = pooler.get_pool(cr.dbname).get('quality.test.config')
+    mrp = pooler.get_pool(cr.dbname).get('mrp.production')
+    mrp_obj = mrp.browse(cr, uid, data['id'])
+    prod_obj = pooler.get_pool(cr.dbname).get('product.product').browse(cr, uid, mrp_obj.product_id.id)
 
     if prod_obj.finished_test:
-        flag=False
-        res={}
-        res={'type':'finish_prod','product':data['form']['product'],'tester':data['form']['tester'],'test_date':data['form']['test_date']}
-        test_id=test_obj.create(cr,uid,res)
+        flag = False
+        res = {}
+        res = {'type':'finish_prod', 'product':data['form']['product'], 'tester':data['form']['tester'], 'test_date':data['form']['test_date']}
+        test_id = test_obj.create(cr, uid, res)
 
         for case in prod_obj.finished_test:
 
-            actual=data['form']['actual%s'%(case.name.id,)]
-            min=data['form']['min%s'%(case.name.id,)]
-            max=data['form']['max%s'%(case.name.id,)]
+            actual = data['form']['actual%s' % (case.name.id,)]
+            min = data['form']['min%s' % (case.name.id,)]
+            max = data['form']['max%s' % (case.name.id,)]
 
-            if data['form']['active%s'%(case.name.id,)]:
-                if actual> 0.00:
-                    val={}
-                    if (actual >=min and actual <= max):
-                       state='accepted'
+            if data['form']['active%s' % (case.name.id,)]:
+                if actual > 0.00:
+                    val = {}
+                    if (actual >= min and actual <= max):
+                       state = 'accepted'
                     else:
-                       state='rejected'
-                       flag=True
-                    val={'name':case.name.id,'min_limit':case.min_limit,'max_limit':case.max_limit,'uom':case.uom.id,
-                             'actual_val':actual,'state':state,'test_id':test_id}
-                    test_config.create(cr,uid,val)
+                       state = 'rejected'
+                       flag = True
+                    val = {'name':case.name.id, 'min_limit':case.min_limit, 'max_limit':case.max_limit, 'uom':case.uom.id,
+                             'actual_val':actual, 'state':state, 'test_id':test_id}
+                    test_config.create(cr, uid, val)
 
         if not flag:
-            mrp.write(cr,uid,data['id'],{'state':'done'})
+            mrp.write(cr, uid, data['id'], {'state':'done'})
 
     return {}
 
@@ -128,13 +128,12 @@ class wizard_qty_test_finish(wizard.interface):
     states = {
         'init': {
             'actions': [_get_cases],
-            'result': {'type':'form', 'arch':arch, 'fields':fields, 'state':[('end','Cancel'),('ok','OK')]}
+            'result': {'type':'form', 'arch':arch, 'fields':fields, 'state':[('end', 'Cancel'), ('ok', 'OK')]}
         },
         'ok': {
             'actions': [check],
             'result': {'type': 'state', 'state': 'end'},
         }
-
     }
 wizard_qty_test_finish('qty_test_finish')
 

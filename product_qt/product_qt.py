@@ -29,11 +29,7 @@
 ##############################################################################
 
 from osv import osv, fields
-import pooler
 import time
-import math
-
-from tools import config
 
 #----------------------------------------------------------
 # Quality Testing
@@ -119,4 +115,3 @@ class mrp_production_workcenter_line(osv.osv):
 mrp_production_workcenter_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
