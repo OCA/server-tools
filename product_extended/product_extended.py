@@ -20,7 +20,7 @@
 
 from osv import fields
 from osv import osv
-import ir
+#import ir
 import pooler
 
 class product_supplierinfo(osv.osv):
