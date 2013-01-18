@@ -69,6 +69,6 @@ serv_config.get('external_service.ftp', 'tls')
     "update_xml": [
         'serv_config.xml',
     ],
-    "installable": True,
+    "installable": False,
     "active": False,
 }
