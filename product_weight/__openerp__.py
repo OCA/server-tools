@@ -36,8 +36,8 @@
     ],
     "demo": [],
     "data": [
+        "wizard/product_weight_update_view.xml",
         "product_view.xml",
-        "wizard/product_weight_update_view.xml"
     ],
     "installable": True,
 }
