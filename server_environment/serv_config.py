@@ -21,15 +21,14 @@
 
 import os
 import ConfigParser
-
 from lxml import etree
 
-from osv import osv, fields
-from tools.config import config as system_base_config
+from openerp.osv import osv, fields, orm
+from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 
-import server_environment_files
+import openerp.addons import server_environment_files
 _dir = os.path.dirname(server_environment_files.__file__)
 
 # Same dict as RawConfigParser._boolean_states
@@ -38,8 +37,10 @@ _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
 
 if not system_base_config.get('running_env', False):
     raise Exception(
-        "The parameter 'running_env' has not be set neither in base config file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an explicit config file with this content:\n"
+        "The parameter 'running_env' has not be set neither in base config "
+        "file option -c or in openerprc.\n"
+        "We strongly recommend against using the rc file but instead use an "
+        "explicit config file with this content:\n"
         "[options]\nrunning_env = dev"
     )
 
@@ -47,7 +48,8 @@ ck_path = os.path.join(_dir, system_base_config['running_env'])
 
 if not os.path.exists(ck_path) :
     raise Exception(
-        "Provided server environment does not exist, please add a folder %s" % ck_path
+        "Provided server environment does not exist, "
+        "please add a folder %s" % ck_path
     )
 
 def setboolean(obj, attr, _bool=_boolean_states):
@@ -78,7 +80,8 @@ def _listconf(env_path):
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
     default = os.path.join(_dir, 'default')
-    running_env = os.path.join(_dir, system_base_config['running_env'])
+    running_env = os.path.join(_dir,
+                               system_base_config['running_env'])
     if os.path.isdir(default):
         conf_files = _listconf(default) + _listconf(running_env)
     else:
@@ -105,7 +108,7 @@ class _Defaults(dict):
         return dict.__setitem__(self, key, func)
 
 
-class ServerConfiguration(osv.osv_memory):
+class ServerConfiguration(orm.TransientModel):
     """Display server configuration."""
     _name = 'server.config'
     _columns = {}
@@ -116,8 +119,8 @@ class ServerConfiguration(osv.osv_memory):
         self.running_env = system_base_config['running_env']
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
+        self._arch = None
         self._build_osv()
-        return res
 
     def _group(self, items, prefix):
         """Return an XML chunk which represents a group of fields."""
@@ -166,12 +169,20 @@ class ServerConfiguration(osv.osv_memory):
         arch += '</notebook></form>'
         self._arch = etree.fromstring(arch)
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False,  submenu=False):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                        context=None, toolbar=False,  submenu=False):
         """Overwrite the default method to render the custom view."""
-        res = super(ServerConfiguration, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar)
+        res = super(ServerConfiguration, self).fields_view_get(cr, uid,
+                                                               view_id,
+                                                               view_type,
+                                                               context,
+                                                               toolbar)
         if view_type == 'form':
             arch_node = self._arch
-            xarch, xfields = self._view_look_dom_arch(cr, uid, arch_node, view_id, context=context)
+            xarch, xfields = self._view_look_dom_arch(cr, uid,
+                                                      arch_node,
+                                                      view_id,
+                                                      context=context)
             res['arch'] = xarch
             res['fields'] = xfields
         return res
@@ -182,4 +193,3 @@ class ServerConfiguration(osv.osv_memory):
         for key in self._conf_defaults:
             res[key] = self._conf_defaults[key]()
         return res
-ServerConfiguration()

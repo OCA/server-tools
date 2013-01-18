@@ -24,8 +24,8 @@ import os
 import platform
 import subprocess
 
-import release
-from tools.config import config
+from openerp import release
+from openerp.tools.config import config
 
 
 def _get_output(cmd):
