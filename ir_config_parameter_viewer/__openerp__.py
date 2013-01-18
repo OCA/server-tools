@@ -15,6 +15,6 @@
  'init_xml': [],
  'update_xml': ['ir_config_parameter_view.xml'],
  'demo_xml': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
