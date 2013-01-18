@@ -72,5 +72,5 @@ As you can see, several filters are available. A typical usage consists in filte
         ],
     "demo_xml" : [],
     "active": False,
-    "installable": True
+    "installable": False
 }
