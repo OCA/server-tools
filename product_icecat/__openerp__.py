@@ -42,6 +42,6 @@
         'wizard/wizard_product_icecat.xml',
     ],
     'test':[''],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

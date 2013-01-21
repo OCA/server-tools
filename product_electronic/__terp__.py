@@ -28,7 +28,7 @@
     "description": "A module that add manufacturers and attributes on the product form",
     "update_xml" : ["security/ir.model.access.csv","product_electronic_view.xml"],
     "active": False,
-    "installable": True
+    'installable': False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

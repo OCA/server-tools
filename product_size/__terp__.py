@@ -28,7 +28,7 @@
     "description": "Manage 3 dimensions size on lots.\nImplements demo data for a complex workflow on steel.",
     "update_xml" : ["product_size_view.xml"],
     "active": False,
-    "installable": True
+    'installable': False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

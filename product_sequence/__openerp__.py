@@ -40,6 +40,6 @@ Note: This module is incompatible with nan_product_sequence.
     ],
     "update_xml" : [
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

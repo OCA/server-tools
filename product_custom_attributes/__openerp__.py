@@ -44,7 +44,7 @@
            'wizard/open_product_by_attribute_set.xml',
     ],
     'demo_xml': [],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
 

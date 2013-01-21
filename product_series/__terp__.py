@@ -34,7 +34,7 @@
 This module adds a new object and a field on the product view. """,
 	"update_xml" : ['security/ir.model.access.csv',"product_series_view.xml"],
 	"active": False,
-	"installable": True,
+	'installable': False,
 	"certificate": '0012565031125949',
 
 }

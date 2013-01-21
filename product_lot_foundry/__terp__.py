@@ -28,7 +28,7 @@
     "description": "Lots management for a metal company: cutting, heatcode, sizes",
     "update_xml" : ["security/ir.model.access.csv","product_lot_foundry_view.xml","sale_order_view.xml"],
     "active": False,
-    "installable": True
+    'installable': False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

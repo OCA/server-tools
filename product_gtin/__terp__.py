@@ -13,5 +13,5 @@ It allows to support different types of barcodes systems.
     "demo_xml" : [],
     "update_xml" : [],
     "active": False,
-    "installable": True
+    'installable': False
 }

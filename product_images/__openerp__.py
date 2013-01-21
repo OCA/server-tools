@@ -37,7 +37,7 @@
         'views/product_images_view.xml',
         'views/company_view.xml'
     ],
-    "installable": True,
+    'installable': False,
     "active": False,
 }
 

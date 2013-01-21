@@ -28,7 +28,7 @@
     "init_xml" : [],
     "update_xml" : ['security/ir.model.access.csv','product_data.xml', "product_index_view.xml", "product_view.xml"],
     "active": False,
-    "installable": True
+    'installable': False
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
