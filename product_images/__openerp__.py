@@ -1,5 +1,7 @@
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas, Open Labs Business solutions      #
+# Copyright (C) 2012-Today  Akretion www.akretion.com                   #
+#       @author sebastien beau sebastien.beau@akretion.com              #
 #                                                                       #
 #This program is free software: you can redistribute it and/or modify   #
 #it under the terms of the GNU General Public License as published by   #
@@ -17,8 +19,8 @@
 
 {
     "name" : "Product Image Gallery",
-    "version" : "6.1.1",
-    "author" : "Sharoon Thomas, Open Labs Business Solutions",
+    "version" : "0.1 ",
+    "author" : "Sharoon Thomas, Open Labs Business Solutions, Akretion",
     "website" : "http://openlabs.co.in/",
     "category" : "Added functionality - Product Extension",
     "depends" : ['product_sequence'],
