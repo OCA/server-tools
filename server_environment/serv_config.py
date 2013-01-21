@@ -28,7 +28,7 @@ from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 
-import openerp.addons import server_environment_files
+from openerp.addons import server_environment_files
 _dir = os.path.dirname(server_environment_files.__file__)
 
 # Same dict as RawConfigParser._boolean_states
