@@ -11,7 +11,7 @@
 						<page string="Image">
 							<group col="6" colspan="4">
 								<field name="name" colspan="2" />
-                                <field name="extention" colspan="2" />
+                                <field name="extension" colspan="2" />
 								<field name="link" colspan="2" />
 							</group>
                             <group attrs="{'invisible':[('link','=',0)]}" colspan="4">

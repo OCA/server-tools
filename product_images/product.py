@@ -104,11 +104,11 @@ class product_product(orm.Model):
         with open(filename, 'rb') as f:
             data = f.read()
         img = base64.encodestring(data)
-        filename, extention = os.path.splitext(os.path.basename(url))
+        filename, extension = os.path.splitext(os.path.basename(url))
         data = {'name': image_name or filename,
-            'extention': extention,
-            'file': img,
-            'product_id': id,
-            }
+                'extension': extension,
+                'file': img,
+                'product_id': id,
+                }
         new_image_id = self.pool.get('product.images').create(cr, uid, data, context=context)
         return True

@@ -46,17 +46,17 @@ class product_images(orm.Model):
         return super(product_images, self).unlink(cr, uid, ids, context=context)
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('name', False) and not vals.get('extention', False):
-            vals['name'], vals['extention'] = os.path.splitext(vals['name'])
+        if vals.get('name', False) and not vals.get('extension', False):
+            vals['name'], vals['extension'] = os.path.splitext(vals['name'])
         return super(product_images, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
         if not isinstance(ids, list):
             ids = [ids]
-        if vals.get('name', False) and not vals.get('extention', False):
-            vals['name'], vals['extention'] = os.path.splitext(vals['name'])
+        if vals.get('name', False) and not vals.get('extension', False):
+            vals['name'], vals['extension'] = os.path.splitext(vals['name'])
         upd_ids = ids[:]
-        if vals.get('name', False) or vals.get('extention', False):
+        if vals.get('name', False) or vals.get('extension', False):
             images = self.browse(cr, uid, upd_ids, context=context)
             for image in images:
                 old_full_path = self._image_path(cr, uid, image, context=context)
@@ -64,7 +64,7 @@ class product_images(orm.Model):
                     continue
                 # all the stuff below is there to manage the files on the filesystem
                 if vals.get('name', False) and (image.name != vals['name']) \
-                    or vals.get('extention', False) and (image.extention != vals['extention']):
+                    or vals.get('extension', False) and (image.extension != vals['extension']):
                     super(product_images, self).write(
                         cr, uid, image.id, vals, context=context)
                     upd_ids.remove(image.id)
@@ -90,7 +90,7 @@ class product_images(orm.Model):
             full_path = os.path.join(
                 local_media_repository,
                 image.product_id.default_code,
-                '%s%s' % (image.name or '', image.extention or ''))
+                '%s%s' % (image.name or '', image.extension or ''))
         return full_path
 
     def get_image(self, cr, uid, id, context=None):
@@ -164,7 +164,7 @@ class product_images(orm.Model):
 
     _columns = {
         'name': fields.char('Image Title', required=True),
-        'extention': fields.char('file extention'),
+        'extension': fields.char('file extension', oldname='extention'),
         'link': fields.boolean('Link?',
                                help="Images can be linked from files on "
                                     "your file system or remote (Preferred)"),
