@@ -22,7 +22,7 @@
 
 {
     'name' : 'Product Sequence',
-    'version' : '6.1.0',
+    'version' : '7.0',
     "author": "Zikzakmedia SL",
     "website": "http://www.zikzakmedia.com",
     "license" : "AGPL-3",
@@ -35,11 +35,9 @@ Note: This module is incompatible with nan_product_sequence.
     'depends' : [
         'product',
     ],
-    "init_xml" : [
+    "data" : [
         'product_sequence.xml',
     ],
-    "update_xml" : [
-    ],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
