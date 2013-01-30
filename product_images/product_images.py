@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas, Open Labs Business solutions      #
 # Copyright (C) 2011 Akretion Sébastien BEAU sebastien.beau@akretion.com#
@@ -16,24 +16,25 @@
 #You should have received a copy of the GNU General Public License      #
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.  #
 #########################################################################
-from openerp.osv.orm import Model
-from openerp.osv import fields
-from openerp.osv.osv import except_osv
-import base64, urllib
-from tools.translate import _
+import base64
+import urllib
 import os
+
+from openerp.osv import fields, orm, osv
+from openerp.tools.translate import _
 
 import logging
 _logger = logging.getLogger(__name__)
 
 #TODO find a good solution in order to roll back changed done on file system
-#TODO add the posibility to move from a store system to an other (example : moving existing image on database to file system)
+#TODO add the posibility to move from a store system to an other
+# (example : moving existing image on database to file system)
 
-class product_images(Model):
+
+class product_images(orm.Model):
     "Products Image gallery"
     _name = "product.images"
     _description = __doc__
-    _table = "product_images"
 
     def unlink(self, cr, uid, ids, context=None):
         if isinstance(ids, (int, long)):
@@ -97,7 +98,7 @@ class product_images(Model):
         if image.link:
             if image.url:
                 (filename, header) = urllib.urlretrieve(image.url)
-                with open(filename , 'rb') as f:
+                with open(filename, 'rb') as f:
                     img = base64.b64encode(f.read())
             else:
                 return False
@@ -117,7 +118,8 @@ class product_images(Model):
                         with open(full_path, 'rb') as f:
                             img = base64.b64encode(f.read())
                     except Exception, e:
-                        _logger.error("Can not open the image %s, error : %s", full_path, e, exc_info=True)
+                        _logger.error("Can not open the image %s, error : %s",
+                                      full_path, e, exc_info=True)
                         return False
                 else:
                     _logger.error("The image %s doesn't exist ", full_path)
@@ -133,13 +135,17 @@ class product_images(Model):
         return res
 
     def _check_filestore(self, image_filestore):
-        """check if the filestore is created, if not it create it automatically"""
+        """check if the filestore is created, if not it create it
+        automatically
+        """
         try:
             dir_path = os.path.dirname(image_filestore)
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
         except OSError, e:
-            raise except_osv(_('Error'), _('The image filestore can not be created, %s')%e)
+            raise osv.except_osv(
+                    _('Error'),
+                    _('The image filestore can not be created, %s') % e)
         return True
 
     def _save_file(self, path, b64_file):
@@ -154,21 +160,30 @@ class product_images(Model):
         full_path = self._image_path(cr, uid, image, context=context)
         if full_path:
             return self._save_file(full_path, value)
-        return self.write(cr, uid, id, {'file_db_store' : value}, context=context)
+        return self.write(cr, uid, id, {'file_db_store': value}, context=context)
 
     _columns = {
-        'name':fields.char('Image Title', size=100, required=True),
-        'extention': fields.char('file extention', size=6),
-        'link':fields.boolean('Link?', help="Images can be linked from files on your file system or remote (Preferred)"),
-        'file_db_store':fields.binary('Image stored in database'),
-        'file':fields.function(_get_image, fnct_inv=_set_image, type="binary", filters='*.png,*.jpg,*.gif'),
-        'url':fields.char('File Location', size=250),
-        'comments':fields.text('Comments'),
-        'product_id':fields.many2one('product.product', 'Product')
+        'name': fields.char('Image Title', required=True),
+        'extention': fields.char('file extention'),
+        'link': fields.boolean('Link?',
+                               help="Images can be linked from files on "
+                                    "your file system or remote (Preferred)"),
+        'file_db_store': fields.binary('Image stored in database'),
+        'file': fields.function(_get_image,
+                                fnct_inv=_set_image,
+                                type="binary",
+                                string="File",
+                                filters='*.png,*.jpg,*.gif'),
+        'url': fields.char('File Location'),
+        'comments': fields.text('Comments'),
+        'product_id': fields.many2one('product.product', 'Product')
         }
-    _defaults = {
-        'link': lambda *a: False,
-        }
-    _sql_constraints = [('uniq_name_product_id', 'UNIQUE(product_id, name)',
-                         _('A product can have only one image with the same name'))]
 
+    _defaults = {
+        'link': False,
+        }
+
+    _sql_constraints = [('uniq_name_product_id',
+                         'UNIQUE(product_id, name)',
+                         _('A product can have only one '
+                           'image with the same name'))]
