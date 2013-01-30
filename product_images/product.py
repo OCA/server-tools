@@ -86,7 +86,7 @@ class product_product(orm.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         # here we expect that the write on default_code is always on 1 product because there is an unique constraint on the default code
-        if vals.get('default_code', False) and ids:
+        if vals.get('default_code') and ids:
             local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
             if local_media_repository:
                 old_product = self.read(cr, uid, ids[0], ['default_code', 'image_ids'], context=context)
