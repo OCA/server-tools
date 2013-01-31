@@ -46,25 +46,25 @@ class product_images(orm.Model):
         return super(product_images, self).unlink(cr, uid, ids, context=context)
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('name', False) and not vals.get('extension', False):
+        if vals.get('name') and not vals.get('extension'):
             vals['name'], vals['extension'] = os.path.splitext(vals['name'])
         return super(product_images, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
         if not isinstance(ids, list):
             ids = [ids]
-        if vals.get('name', False) and not vals.get('extension', False):
+        if vals.get('name') and not vals.get('extension'):
             vals['name'], vals['extension'] = os.path.splitext(vals['name'])
         upd_ids = ids[:]
-        if vals.get('name', False) or vals.get('extension', False):
+        if vals.get('name') or vals.get('extension'):
             images = self.browse(cr, uid, upd_ids, context=context)
             for image in images:
                 old_full_path = self._image_path(cr, uid, image, context=context)
                 if not old_full_path:
                     continue
                 # all the stuff below is there to manage the files on the filesystem
-                if vals.get('name', False) and (image.name != vals['name']) \
-                    or vals.get('extension', False) and (image.extension != vals['extension']):
+                if vals.get('name') and (image.name != vals['name']) \
+                    or vals.get('extension') and (image.extension != vals['extension']):
                     super(product_images, self).write(
                         cr, uid, image.id, vals, context=context)
                     upd_ids.remove(image.id)
