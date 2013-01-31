@@ -20,7 +20,7 @@
 
 {
     "name" : "Product Image Gallery",
-    "version" : "7.0",
+    "version" : "0.2",
     "author" : "Sharoon Thomas, Open Labs Business Solutions, Akretion",
     "website" : "http://openlabs.co.in/",
     "category" : "Generic Modules",
