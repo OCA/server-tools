@@ -27,8 +27,8 @@ class ResCompany(orm.Model):
     _columns = {
         'local_media_repository': fields.char(
             'Images Repository Path',
-            help='Local mounted path on OpenERP server '
-                 'where all your images are stored.'),
+            help='Local directory on the OpenERP server '
+                 'where all images are stored.'),
         }
 
     def get_local_media_repository(self, cr, uid, id=None, context=None):

@@ -27,7 +27,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 #TODO find a good solution in order to roll back changed done on file system
-#TODO add the posibility to move from a store system to an other
+#TODO add the possibility to move from a store system to an other
 # (example : moving existing image on database to file system)
 
 
