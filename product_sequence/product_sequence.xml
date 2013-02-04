@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <openerp>
     <data noupdate="1">
+
         <record id="seq_product_auto_type" model="ir.sequence.type">
             <field name="name">Product</field>
             <field name="code">product.product</field>
         </record>
-        
+
         <record id="seq_product_auto" model="ir.sequence">
             <field name="name">Product</field>
             <field name="code">product.product</field>
