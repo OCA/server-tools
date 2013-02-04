@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas  & Open ERP Community              #
 #                                                                       #
@@ -17,23 +18,21 @@
 
 {
     "name" : "Product - Many Categories",
-    "version" : "6.1.0",
+    "version" : "7.0.0",
     "author" : "Sharoon Thomas",
     "website" : "",
-    "category" : "Added functionality",
-    "depends" : ['base','product'],
+    "category" : "Generic Modules",
+    "depends" : ['product'],
     "description": """
-    This module extends the existing functionality of OpenERP Products (One product -> One Category)
-    to One product -> Many Categories
+This module extends the existing functionality of OpenERP Products (One
+product -> One Category) to One product -> Many Categories
 
-    *Note: This module was built generically but in focus of the Magento OpenERP connector
-    """,
-    "init_xml": [],
-    "update_xml": [
+.. note:: This module was built generically but in focus of the Magento
+          OpenERP connector """,
+    "data": [
             'product_view.xml'
     ],
-    'installable': False,
+    'installable': True,
     "active": False,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

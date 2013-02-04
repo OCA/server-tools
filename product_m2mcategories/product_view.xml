@@ -5,10 +5,9 @@
             <field name="name">product.normal.form</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
-            <field name="type">form</field>
             <field eval="7" name="priority"/>
             <field name="arch" type="xml">
-                <page string="Information" position="after" version="7.0">
+                <page string="Information" position="after">
                     <page string="Extra Categories">
                         <separator string="Classification Categories" colspan="2"/>
                         <newline/>
