@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas, Open Labs Business solutions      #
 # Copyright (C) 2011 Akretion Sébastien BEAU sebastien.beau@akretion.com#
@@ -19,12 +19,13 @@
 import os
 import shutil
 import logging
-import base64, urllib
+import base64
+import urllib
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import orm, fields
 
-class product_product(Model):
+
+class product_product(orm.Model):
     _inherit = "product.product"
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -43,7 +44,10 @@ class product_product(Model):
                         shutil.copytree(old_path, old_path + '-copy')
                     except:
                         logger = logging.getLogger('product_images_olbs')
-                        logger.exception('error while trying to copy images from %s to %s', old_path, old_path+'.copy')
+                        logger.exception('error while trying to copy images '
+                                         'from %s to %s',
+                                         old_path,
+                                         old_path + '.copy')
 
         return super(product_product, self).copy(cr, uid, id, default, context=context)
 
@@ -68,19 +72,21 @@ class product_product(Model):
         return res
 
     _columns = {
-        'image_ids':fields.one2many(
+        'image_ids': fields.one2many(
                 'product.images',
                 'product_id',
-                'Product Images'
-        ),
-        'product_image': fields.function(_get_main_image, type="binary", method=True),
+                string='Product Images'),
+        'product_image': fields.function(
+            _get_main_image,
+            type="binary",
+            string="Main Image"),
     }
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
         # here we expect that the write on default_code is always on 1 product because there is an unique constraint on the default code
-        if vals.get('default_code', False) and ids:
+        if vals.get('default_code') and ids:
             local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
             if local_media_repository:
                 old_product = self.read(cr, uid, ids[0], ['default_code', 'image_ids'], context=context)
@@ -95,15 +101,14 @@ class product_product(Model):
 
     def create_image_from_url(self, cr, uid, id, url, image_name=None, context=None):
         (filename, header) = urllib.urlretrieve(url)
-        f = open(filename , 'rb')
-        data = f.read()
-        f.close()
+        with open(filename, 'rb') as f:
+            data = f.read()
         img = base64.encodestring(data)
-        filename, extention = os.path.splitext(os.path.basename(url))
+        filename, extension = os.path.splitext(os.path.basename(url))
         data = {'name': image_name or filename,
-            'extention': extention,
-            'file': img,
-            'product_id': id,
-            }
+                'extension': extension,
+                'file': img,
+                'product_id': id,
+                }
         new_image_id = self.pool.get('product.images').create(cr, uid, data, context=context)
         return True

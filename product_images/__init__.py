@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas Open Labs Business Solutions       #
 #                                                                       #

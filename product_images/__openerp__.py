@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #########################################################################
 # Copyright (C) 2009  Sharoon Thomas, Open Labs Business solutions      #
 # Copyright (C) 2012-Today  Akretion www.akretion.com                   #
@@ -19,26 +20,24 @@
 
 {
     "name" : "Product Image Gallery",
-    "version" : "0.1 ",
+    "version" : "0.2",
     "author" : "Sharoon Thomas, Open Labs Business Solutions, Akretion",
     "website" : "http://openlabs.co.in/",
-    "category" : "Added functionality - Product Extension",
+    "category" : "Generic Modules",
     "depends" : ['product_sequence'],
     "description": """
-    This Module implements an Image Gallery for products.
-    You can add images against every product.
+This Module implements an Image Gallery for products.
+You can add images to every product.
 
-    This module is generic but built for Magento ERP connector and
-    the upcoming e-commerce system for Open ERP by Open Labs
+This module is generic but built for Magento ERP connector and
+the upcoming e-commerce system for Open ERP by Open Labs
     """,
-    "init_xml": [],
-    "update_xml": [
+    "data": [
         'security/ir.model.access.csv',
         'views/product_images_view.xml',
         'views/company_view.xml'
     ],
-    'installable': False,
+    'installable': True,
     "active": False,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
