@@ -43,10 +43,10 @@ class product_product(Model):
     }
 
     def _fix_size_bug(self, cr, uid, result, context=None):
-	#When created a field text dynamicaly, its size is limited to 64 in the view.
-	#The bug is fixed but not merged
-	#https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa/+merge/128003
-	#TO remove when the fix will be merged
+    #When created a field text dynamicaly, its size is limited to 64 in the view.
+    #The bug is fixed but not merged
+    #https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa/+merge/128003
+    #TO remove when the fix will be merged
         for field in result['fields']:
             if result['fields'][field]['type'] == 'text':
                 if 'size' in result['fields'][field]: del result['fields'][field]['size']
@@ -103,8 +103,8 @@ class product_product(Model):
         return notebook, toupdate_fields
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        if context==None:
-	    context={}
+        if context is None:
+            context = {}
         result = super(product_product, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
         if view_type == 'form' and context.get('set_id'):
             eview = etree.fromstring(result['arch'])

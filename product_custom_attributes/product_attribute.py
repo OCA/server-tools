@@ -60,7 +60,7 @@ class product_attribute(Model):
         'based_on': fields.selection([('product_template','Product Template'),
                                       ('product_product','Product Variant')],
                                      'Based on', required=True),
-        'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Option'),
+        'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
         }
 
@@ -91,7 +91,7 @@ class product_attribute(Model):
         if field_description:
             name = unidecode('x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
-    
+
     def onchange_name(self, cr, uid, ids, name, context=None):
         if not name.startswith('x_'):
             name = 'x_%s' % name
@@ -102,12 +102,21 @@ class attribute_location(Model):
     _description = "Attribute Location"
     _order="sequence"
     _inherits = {'product.attribute': 'attribute_id'}
+
+
+    def _get_attribute_loc_from_group(self, cr, uid, ids, context=None):
+        return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
+
     _columns = {
         'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True, ondelete="cascade"),
-        'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', store=True, readonly=True),
+        'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
+store={
+            'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
+        }),
         'attribute_group_id': fields.many2one('attribute.group', 'Attribute Group', required=True),
         'sequence': fields.integer('Sequence'),
         }
+
 
 
 class attribute_group(Model):

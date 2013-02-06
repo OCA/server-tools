@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   product_custom_attributes for OpenERP
-  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
   The licence is in the file __openerp__.py
 -->
 
 <openerp>
     <data>
 
-        <!-- CREATED VIEW FOR THE OBJECT : product_product -->
-
         <record model="ir.ui.view" id="product_product_form_view_set_button">
             <field name="name">attributes.product.normal.form</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <data>
-                    <xpath expr="/form/group/group/field[@name='name']" position="after">
-                        <group name="attribute_fields" colspan="2" col="4" >
-                            <field name="attribute_set_id" colspan="3"/>
-                            <button name="open_attributes" string="Open Attributes" type="object" icon="gtk-ok" colspan="1" attrs="{'invisible':[('attribute_set_id', '=', False)]}"/>
-                        </group>
-                    </xpath>
-                </data>
+                <xpath expr="/form/sheet/notebook/page[@string='Information']/group/group/field[@name='variants']/.." position="after">
+                    <group name="attribute_fields">
+                        <field name="attribute_set_id" />
+                        <button name="open_attributes" string="Open Attributes" type="object" icon="gtk-ok" attrs="{'invisible':[('attribute_set_id', '=', False)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 
         <record model="ir.ui.view" id="product_attributes_form_view">
             <field name="name">product.attributes.normal.wizard</field>
             <field name="model">product.product</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Product">
-                    <group name="name_set" colspan='4' col='8'>
+                <form string="Product" version="7.0">
+                    <group name="name_set">
                         <field name="name"/>
                         <field name="attribute_set_id" />
                     </group>
                     <separator string="attributes_placeholder" colspan="4"/>
-                    <group colspan='4' col='4'>
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="save_and_close_product_attributes" string="Save and Close" type="object"/>
-                    </group>
+                    <footer>
+                        <button name="save_and_close_product_attributes" string="Save and Close" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
                 </form>
             </field>
         </record>

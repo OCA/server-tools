@@ -32,16 +32,15 @@ Each attribute has custom fields (for example, you don't need the same field for
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product','stock'],
+    'depends': ['product', 'stock'],
     'init_xml': [],
     'update_xml': [
-           'ir_model_view.xml',
            'product_attribute_view.xml',
            'product_view.xml',
            'wizard/open_product_by_attribute_set.xml',
     ],
     'demo_xml': [],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
 
