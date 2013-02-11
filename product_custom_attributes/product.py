@@ -121,7 +121,7 @@ class product_product(Model):
             elif context.get('open_product_by_attribute_set'):
                 main_page = etree.Element('page', string=_('Custom Attributes'))
                 main_page.append(attributes_notebook)
-                info_page = eview.xpath("//page[@string='Information']")[0]
+                info_page = eview.xpath("//page[@string='%s']" % (_('Information'),))[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
             result = self._fix_size_bug(cr, uid, result, context=context)
