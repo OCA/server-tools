@@ -22,7 +22,7 @@
 
 {
     'name': 'product_gift',
-    'version': '6.1.0',
+    'version': '0.1',
     'category': 'Generic Modules',
     'license': 'AGPL-3',
     'description': """This module adds the gift_wrap feature and gives the possibility to add a gift message on the order or the order line.""",

@@ -22,7 +22,7 @@
 
 {
     'name' : 'Product Sequence',
-    'version' : '7.0',
+    'version' : '0.1',
     "author": "Zikzakmedia SL",
     "website": "http://www.zikzakmedia.com",
     "license" : "AGPL-3",

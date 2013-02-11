@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   product_custom_attributes for OpenERP
-  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
   The licence is in the file __openerp__.py
 -->
 
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="open_product_by_attribute_set_view">
+        <record id="open_product_by_attribute_set_view" model="ir.ui.view">
             <field name="name">open.product.by.attribute.set.view</field>
             <field name="model">open.product.by.attribute.set</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Open product by attributes set">
-                    <field name="attribute_set_id" colspan="4"/>
-                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                    <button icon="gtk-ok" name="open_product_by_attribute" string="Open Product By attribute" type="object"/>
+                <form string="Open product by attributes set" version="7.0">
+                    <group>
+                        <field name="attribute_set_id" />
+                    </group>
+                    <footer>
+                        <button name="open_product_by_attribute" string="Open Product By attribute" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
                 </form>
             </field>
         </record>
 
         <record id="open_product_by_attribute_set" model="ir.actions.act_window">
             <field name="name">Open Product By Attribute Set</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">open.product.by.attribute.set</field>
             <field name="view_type">form</field>
             <field name="target">new</field>

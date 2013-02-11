@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   product_custom_attributes for OpenERP                                      #
-#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
+#   product_custom_attributes for OpenERP                                     #
+#   Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)               #
+#   @author: Benoît GUILLOT <benoit.guillot@akretion.com>                     #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -28,7 +29,7 @@ class open_product_by_attribute_set(TransientModel):
     _description = 'Wizard to open product by attributes set'
 
     _columns = {
-        'attribute_set_id':fields.many2one('attribute.set', 'Attribute Set'),
+        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         }
 
     def open_product_by_attribute(self, cr, uid, ids, context=None):
@@ -44,7 +45,6 @@ class open_product_by_attribute_set(TransientModel):
         if context is None:
             context = {}
         attribute_set = self.browse(cr, uid, ids[0], context=context).attribute_set_id
-        data = self.read(cr, uid, ids, [], context=context)[0] # XXX used?
         result = mod_obj.get_object_reference(cr, uid, 'product', 'product_normal_action')
         id = result[1] if result else False
         result = act_obj.read(cr, uid, [id], context=context)[0]
