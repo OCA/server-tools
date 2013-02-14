@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Serpent Consulting Services (<http://www.serpentcs.com>)
-#    Copyright (C) 2010-Today OpenERP SA (<http://www.openerp.com>)
+#    This module uses OpenERP, Open Source Management Solution Framework.
+#    Copyright (C) 2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>
 #
 ##############################################################################
-
 
 from osv import fields, osv
 from tools.translate import _

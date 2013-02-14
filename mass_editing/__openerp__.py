@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    This module uses OpenERP, Open Source Management Solution Framework.
 #    Copyright (C) 2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
-#    Copyright (C) 2010-Today OpenERP SA (<http://www.openerp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,17 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>
 #
 ##############################################################################
-
-
 {
     "name" : "Mass Editing",
-    "version" : "1.1",
+    "version" : "1.2",
     "author" : "Serpent Consulting Services",
     "category" : "Tools",
     "website" : "http://www.serpentcs.com",
     "description": """This module provides the functionality to add, update or remove the values of more than one records on the fly at the same time.
         You can configure mass editing for any OpenERP model. 
-        The video explaining the features is available at http://t.co/wukYMx1A 
+        The video explaining the features and how-to for OpenERP Version 6 is here http://t.co/wukYMx1A
+        The video explaining the features and how-to for OpenERP Version 7 is here : http://www.youtube.com/watch?v=9BH0o74A748&feature=youtu.be 
         For more details/customization/feedback contact us on contact@serpentcs.com. 
     """,
     'depends': ['base'],
