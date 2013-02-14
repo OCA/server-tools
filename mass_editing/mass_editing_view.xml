@@ -14,9 +14,9 @@
                     <notebook colspan="4">
                         <page string="Fields">
                             <field name="field_ids" colspan="4" nolabel="1"
-                                domain="[('ttype', 'not in', ['one2many', 'refenrence', 'function']), ('model_id', 'in', model_list)]"/>
+                                domain="[('ttype', 'not in', ['one2many', 'reference', 'function']), ('model_id', 'in', model_list)]"/>
                         </page>
-                        <page string="Advance">
+                        <page string="Advanced">
                             <group colspan="2" col="2">
                                 <button name="create_action" string="Add sidebar button" type="object" icon="gtk-execute"
                                         colspan="2" attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"
