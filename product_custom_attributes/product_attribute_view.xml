@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   product_custom_attributes for OpenERP
-  Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
   The licence is in the file __openerp__.py
 -->
 
 <openerp>
     <data>
-
-        <!-- CREATED VIEW FOR THE OBJECT : product_attribute -->
 
         <menuitem
             id="menu_attribute_in_config_stock_product" name="Attributes"
@@ -17,15 +16,14 @@
         <record id="attribute_set_form_view" model="ir.ui.view">
             <field name="name">attribute.set.form</field>
             <field name="model">attribute.set</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Attribute Set" col="4">
-                    <field name="name" colspan="1"/>
-                    <field name="attribute_group_ids" colspan="4" nolabel="1" >
+                <form string="Attribute Set">
+                    <field name="name" colspan="4"/>
+                    <field name="attribute_group_ids" colspan="4" >
                         <form string="Attribute Groups">
-                            <field name="name" colspan="1"/>
-                            <field name="sequence" colspan="1"/>
-                            <field name="attribute_ids" colspan="6" nolabel="1">
+                            <field name="name" />
+                            <field name="sequence" />
+                            <field name="attribute_ids" colspan="4">
                                 <form string="Attribute Location">
                                     <field name="attribute_id" />
                                     <field name="sequence" />
@@ -36,7 +34,7 @@
                             </field>
                         </form>
                         <tree string="Attribute Groups">
-                            <field name="name" colspan="1"/>
+                            <field name="name" />
                         </tree>
                     </field>
                 </form>
@@ -46,13 +44,12 @@
         <record id="attribute_group_form_view" model="ir.ui.view">
             <field name="name">attribute.group.form</field>
             <field name="model">attribute.group</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Attribute Group" col="6">
-                    <field name="name" colspan="1"/>
-                    <field name="sequence" colspan="1"/>
-                    <field name="attribute_set_id" colspan="1"/>
-                    <field name="attribute_ids" colspan="6" nolabel="1">
+                <form string="Attribute Group">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="attribute_set_id" />
+                    <field name="attribute_ids" colspan="4" nolabel="1">
                         <form string="Attribute Location">
                             <field name="attribute_id" />
                             <field name="sequence" />
@@ -68,7 +65,6 @@
         <record id="attribute_location_form_view" model="ir.ui.view">
             <field name="name">attribute.location.form</field>
             <field name="model">attribute.location</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Attribute Location">
                     <field name="attribute_id" />
@@ -82,20 +78,20 @@
         <record id="product_attribute_form_view" model="ir.ui.view">
             <field name="name">product.attribute.form</field>
             <field name="model">product.attribute</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Product Attribute" col="8">
-                    <field name="field_description" colspan="1" on_change="onchange_field_description(field_description, context)"/>
-                    <field name="name" colspan="1" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
-                    <field name="attribute_type" colspan="1"/>
-                    <field name="based_on" colspan="1"/>
-                    <field name="serialized" colspan="1"/>
-                    <field name="size" colspan="1" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
-                    <field name="translate" colspan="1" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
-                    <field name="option_ids" colspan="8" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}" widget="one2many_list" nolabel="1">
+                <form string="Product Attribute">
+                    <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
+                    <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
+                    <field name="attribute_type" />
+                    <field name="based_on" />
+                    <field name="serialized" />
+                    <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
+                    <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
+                    <newline />
+                    <field name="option_ids" colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}" widget="one2many_list" nolabel="1">
                         <tree string="Attribute Options" editable="top" >
-                            <field name="sequence" colspan="1"/>
-                            <field name="name" colspan="7"/>
+                            <field name="sequence" />
+                            <field name="name" />
                         </tree>
                     </field>
                     <field name="create_date" invisible="1"/>
@@ -106,12 +102,11 @@
         <record id="attribute_option_form_view" model="ir.ui.view">
             <field name="name">attribute.option.form</field>
             <field name="model">attribute.option</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Attribute Option" col="6">
-                    <field name="name" colspan="1"/>
-                    <field name="sequence" colspan="1"/>
-                    <field name="attribute_id" colspan="1"/>
+                    <field name="name" colspan="2"/>
+                    <field name="sequence" colspan="2"/>
+                    <field name="attribute_id" colspan="2"/>
                 </form>
             </field>
         </record>
@@ -119,7 +114,6 @@
         <record id="attribute_set_tree_view" model="ir.ui.view">
             <field name="name">attribute.set.tree</field>
             <field name="model">attribute.set</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Attribute Set" >
                     <field name="name" />
@@ -130,7 +124,6 @@
         <record id="attribute_group_tree_view" model="ir.ui.view">
             <field name="name">attribute.group.tree</field>
             <field name="model">attribute.group</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Attribute Group">
                     <field name="name" />
@@ -143,7 +136,6 @@
         <record id="attribute_location_tree_view" model="ir.ui.view">
             <field name="name">attribute.location.tree</field>
             <field name="model">attribute.location</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Attribute Location">
                     <field name="attribute_id" />
@@ -157,7 +149,6 @@
         <record id="product_attribute_tree_view" model="ir.ui.view">
             <field name="name">product.attribute.tree</field>
             <field name="model">product.attribute</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Product Attribute">
                     <field name="name" />
@@ -169,7 +160,6 @@
         <record id="prio_attribute_option_tree_view" model="ir.ui.view">
             <field name="name">attribute.option.tree.prio</field>
             <field name="model">attribute.option</field>
-            <field name="type">tree</field>
             <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
@@ -181,7 +171,6 @@
         <record id="attribute_option_tree_view" model="ir.ui.view">
             <field name="name">attribute.option.tree</field>
             <field name="model">attribute.option</field>
-            <field name="type">tree</field>
             <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
@@ -195,10 +184,9 @@
         <record id="view_attribute_set_search" model="ir.ui.view">
             <field name="name">attribute.set.list</field>
             <field name="model">attribute.set</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Sets">
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                </search>
             </field>
         </record>
@@ -206,10 +194,9 @@
         <record id="view_attribute_group_search" model="ir.ui.view">
             <field name="name">attribute.group.list</field>
             <field name="model">attribute.group</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Groups">
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                     <field name="attribute_set_id"/>
                </search>
             </field>
@@ -218,10 +205,9 @@
         <record id="view_attribute_location_search" model="ir.ui.view">
             <field name="name">attribute.location.list</field>
             <field name="model">attribute.location</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Locations">
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                     <field name="attribute_set_id"/>
                     <field name="attribute_group_id"/>
                </search>
@@ -231,10 +217,9 @@
         <record id="view_product_attribute_search" model="ir.ui.view">
             <field name="name">product.attribute.list</field>
             <field name="model">product.attribute</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Product Attributes">
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                </search>
             </field>
         </record>
@@ -242,7 +227,6 @@
         <record id="view_attribute_option_search" model="ir.ui.view">
             <field name="name">attribute.option.list</field>
             <field name="model">attribute.option</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Options">
                     <field name="name" />
@@ -253,10 +237,9 @@
 
         <record id="attribute_set_form_action" model="ir.actions.act_window">
             <field name="name">Attribute Sets</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">attribute.set</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_attribute_set_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
@@ -264,10 +247,9 @@
 
         <record id="attribute_group_form_action" model="ir.actions.act_window">
             <field name="name">Attribute Groups</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">attribute.group</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_attribute_group_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
@@ -275,10 +257,9 @@
 
         <record id="attribute_location_form_action" model="ir.actions.act_window">
             <field name="name">Attribute Locations</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">attribute.location</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_attribute_location_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
@@ -286,10 +267,9 @@
 
         <record id="product_attribute_form_action" model="ir.actions.act_window">
             <field name="name">Product Attributes</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.attribute</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_product_attribute_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
@@ -297,10 +277,9 @@
 
         <record id="attribute_option_form_action" model="ir.actions.act_window">
             <field name="name">Attribute Options</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="res_model">attribute.option</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="attribute_option_tree_view"/>
             <field name="search_view_id" ref="view_attribute_option_search"/>
             <field name="context">{"search_default_user_id":uid}</field>

@@ -18,7 +18,7 @@
 
 {
     "name" : "Product - Many Categories",
-    "version" : "7.0.0",
+    "version" : "0.1",
     "author" : "Sharoon Thomas",
     "website" : "",
     "category" : "Generic Modules",
