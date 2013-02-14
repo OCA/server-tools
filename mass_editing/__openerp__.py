@@ -31,8 +31,7 @@
         For more details/customization/feedback contact us on contact@serpentcs.com. 
     """,
     'depends': ['base'],
-    'init_xml': [],
-    'update_xml': [
+    'data': [
         'mass_editing_view.xml',
     ],
     'installable': True,

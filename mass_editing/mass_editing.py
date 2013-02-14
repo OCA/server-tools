@@ -40,14 +40,14 @@ class mass_object(osv.osv):
     _name = "mass.object"
 
     _columns = {
-        'name' : fields.char("Name", size=64, required=True, select=1),
-        'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1),
-        'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'),
-        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True,
+        'name' : fields.char("Name", size=64, required=True, select=1), 
+        'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1), 
+        'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'), 
+        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True, 
                                             help="Sidebar action to make this template available on records "
-                                                 "of the related document model"),
-        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True,
-                                       help="Sidebar button to open the sidebar action"),
+                                                 "of the related document model"), 
+        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True, 
+                                       help="Sidebar button to open the sidebar action"), 
         'model_list': fields.char('Model List', size=256)
     }
     
@@ -65,9 +65,6 @@ class mass_object(osv.osv):
                     if model_ids:
                         model_list += "," + str(model_ids[0]) + ""
             model_list += "]"
-#            model_list = map(int, model_list[1:-1].split(','))
-#            context['model_list'] = model_list
-#            print 'context:::', context
         return {'value': {'model_list': model_list}}
 
     def create_action(self, cr, uid, ids, context=None):
@@ -78,26 +75,26 @@ class mass_object(osv.osv):
             src_obj = data.model_id.model
             button_name = _('Mass Editing (%s)') % data.name
             vals['ref_ir_act_window'] = action_obj.create(cr, uid, {
-                 'name': button_name,
-                 'type': 'ir.actions.act_window',
-                 'res_model': 'mass.editing.wizard',
-                 'src_model': src_obj,
-                 'view_type': 'form',
-                 'context': "{'mass_editing_object' : %d}" % (data.id),
-                 'view_mode':'form,tree',
-                 'target': 'new',
+                 'name': button_name, 
+                 'type': 'ir.actions.act_window', 
+                 'res_model': 'mass.editing.wizard', 
+                 'src_model': src_obj, 
+                 'view_type': 'form', 
+                 'context': "{'mass_editing_object' : %d}" % (data.id), 
+                 'view_mode':'form,tree', 
+                 'target': 'new', 
                  'auto_refresh':1
             }, context)
             vals['ref_ir_value'] = self.pool.get('ir.values').create(cr, uid, {
-                 'name': button_name,
-                 'model': src_obj,
-                 'key2': 'client_action_multi',
-                 'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']),
-                 'object': True,
+                 'name': button_name, 
+                 'model': src_obj, 
+                 'key2': 'client_action_multi', 
+                 'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']), 
+                 'object': True, 
              }, context)
         self.write(cr, uid, ids, {
-                    'ref_ir_act_window': vals.get('ref_ir_act_window', False),
-                    'ref_ir_value': vals.get('ref_ir_value', False),
+                    'ref_ir_act_window': vals.get('ref_ir_act_window', False), 
+                    'ref_ir_value': vals.get('ref_ir_value', False), 
                 }, context)
         return True
 
