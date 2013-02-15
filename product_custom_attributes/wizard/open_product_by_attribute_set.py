@@ -48,7 +48,10 @@ class open_product_by_attribute_set(TransientModel):
         result = mod_obj.get_object_reference(cr, uid, 'product', 'product_normal_action')
         id = result[1] if result else False
         result = act_obj.read(cr, uid, [id], context=context)[0]
-        result['context'] = "{'set_id': %s, 'open_product_by_attribute_set': %s}"%(attribute_set.id, True)
+        grp_ids = self.pool.get('attribute.group').search(cr, uid, [('attribute_set_id', '=', attribute_set.id)])
+        ctx = "{'open_product_by_attribute_set': %s, \
+              'attribute_group_ids': %s}" % (True, grp_ids)
+        result['context'] = ctx
         result['domain'] = "[('attribute_set_id', '=', %s)]" % attribute_set.id
         result['name'] = attribute_set.name
         return result

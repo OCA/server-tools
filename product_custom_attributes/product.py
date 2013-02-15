@@ -37,9 +37,23 @@ class product_product(Model):
 
     _inherit = "product.product"
 
+    def _attr_grp_ids(self, cr, uid, ids, field_names, arg=None, context=None):
+        res = {}
+        for i in ids:
+            set_id = self.read(cr, uid, [i], fields=['attribute_set_id'],
+                     context=context)[0]['attribute_set_id']
+            if not set_id:
+                raise except_osv(_('User Error'), _('Please choose \
+                an attribute set before opening the product attributes'))
+            res[i] = self.pool.get('attribute.group').search(cr, uid,
+                      [('attribute_set_id', '=', set_id[0])])
+        return res
+
     _columns = {
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_custom_variant': fields.serialized('Custom Variant Attributes'),
+        'attribute_group_ids': fields.function(_attr_grp_ids, type='one2many',
+        relation='attribute.group', string='Groups')
     }
 
     def _fix_size_bug(self, cr, uid, result, context=None):
@@ -57,10 +71,8 @@ class product_product(Model):
         ir_model_data_id = ir_model_data_obj.search(cr, uid, [['model', '=', 'ir.ui.view'], ['name', '=', 'product_attributes_form_view']], context=context)
         if ir_model_data_id:
             res_id = ir_model_data_obj.read(cr, uid, ir_model_data_id, fields=['res_id'])[0]['res_id']
-        set_id = self.read(cr, uid, ids, fields=['attribute_set_id'], context=context)[0]['attribute_set_id']
-
-        if not set_id:
-            raise except_osv(_('User Error'), _('Please choose an attribute set before opening the product attributes'))
+        grp_ids = self._attr_grp_ids(cr, uid, [ids[0]], [], None, context)[ids[0]]
+        ctx = {'open_attributes': True, 'attribute_group_ids': grp_ids}
 
         return {
             'name': 'Product Attributes',
@@ -68,7 +80,7 @@ class product_product(Model):
             'view_mode': 'form',
             'view_id': [res_id],
             'res_model': self._name,
-            'context': "{'set_id': %s, 'open_attributes': %s}"%(set_id[0], True),
+            'context': ctx,
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'new',
@@ -91,11 +103,11 @@ class product_product(Model):
         field = etree.SubElement(parent, 'field', **kwargs)
         return parent
 
-    def _build_attributes_notebook(self, cr, uid, set_id, context=None):
-        attribute_set = self.pool.get('attribute.set').browse(cr, uid, set_id, context=context)
+    def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
         notebook = etree.Element('notebook', name="attributes_notebook", colspan="4")
         toupdate_fields = []
-        for group in attribute_set.attribute_group_ids:
+        grp_obj = self.pool.get('attribute.group')
+        for group in grp_obj.browse(cr, uid, attribute_group_ids, context=context):
             page = etree.SubElement(notebook, 'page', string=group.name.capitalize())
             for attribute in group.attribute_ids:
                 toupdate_fields.append(attribute.name)
@@ -106,14 +118,14 @@ class product_product(Model):
         if context is None:
             context = {}
         result = super(product_product, self).fields_view_get(cr, uid, view_id,view_type,context,toolbar=toolbar, submenu=submenu)
-        if view_type == 'form' and context.get('set_id'):
+        if view_type == 'form' and context.get('attribute_group_ids'):
             eview = etree.fromstring(result['arch'])
             #hide button under the name
             button = eview.xpath("//button[@name='open_attributes']")
             if button:
                 button = button[0]
                 button.getparent().remove(button)
-            attributes_notebook, toupdate_fields = self._build_attributes_notebook(cr, uid, context['set_id'], context=context)
+            attributes_notebook, toupdate_fields = self._build_attributes_notebook(cr, uid, context['attribute_group_ids'], context=context)
             result['fields'].update(self.fields_get(cr, uid, toupdate_fields, context))
             if context.get('open_attributes'):
                 placeholder = eview.xpath("//separator[@string='attributes_placeholder']")[0]
