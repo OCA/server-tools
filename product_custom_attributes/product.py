@@ -110,8 +110,9 @@ class product_product(Model):
         for group in grp_obj.browse(cr, uid, attribute_group_ids, context=context):
             page = etree.SubElement(notebook, 'page', string=group.name.capitalize())
             for attribute in group.attribute_ids:
-                toupdate_fields.append(attribute.name)
-                self._build_attribute_field(cr, uid, page, attribute, context=context)
+                if attribute.name not in toupdate_fields:
+                    toupdate_fields.append(attribute.name)
+                    self._build_attribute_field(cr, uid, page, attribute, context=context)
         return notebook, toupdate_fields
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
