@@ -4,11 +4,11 @@
 "access_product_custom_attributes_attribute_location_salemanager","product_custom_attributes_attribute_location","product_custom_attributes.model_attribute_location","base.group_sale_manager",1,1,1,1
 "access_product_custom_attributes_product_attribute_salemanager","product_custom_attributes_product_attribute","product_custom_attributes.model_product_attribute","base.group_sale_manager",1,1,1,1
 "access_product_custom_attributes_attribute_option_salemanager","product_custom_attributes_attribute_option","product_custom_attributes.model_attribute_option","base.group_sale_manager",1,1,1,1
-"access_product_custom_attributes_attribute_set_manager","product_custom_attributes_attribute_set","product_custom_attributes.model_attribute_set","stock.group_stock_manager",1,1,1,1
-"access_product_custom_attributes_attribute_group_manager","product_custom_attributes_attribute_group","product_custom_attributes.model_attribute_group","stock.group_stock_manager",1,1,1,1
-"access_product_custom_attributes_attribute_location_manager","product_custom_attributes_attribute_location","product_custom_attributes.model_attribute_location","stock.group_stock_manager",1,1,1,1
-"access_product_custom_attributes_product_attribute_manager","product_custom_attributes_product_attribute","product_custom_attributes.model_product_attribute","stock.group_stock_manager",1,1,1,1
-"access_product_custom_attributes_attribute_option_manager","product_custom_attributes_attribute_option","product_custom_attributes.model_attribute_option","stock.group_stock_manager",1,1,1,1
+"access_product_custom_attributes_attribute_set_manager","product_custom_attributes_attribute_set","product_custom_attributes.model_attribute_set","product.group_product_variant",1,1,1,1
+"access_product_custom_attributes_attribute_group_manager","product_custom_attributes_attribute_group","product_custom_attributes.model_attribute_group","product.group_product_variant",1,1,1,1
+"access_product_custom_attributes_attribute_location_manager","product_custom_attributes_attribute_location","product_custom_attributes.model_attribute_location","product.group_product_variant",1,1,1,1
+"access_product_custom_attributes_product_attribute_manager","product_custom_attributes_product_attribute","product_custom_attributes.model_product_attribute","product.group_product_variant",1,1,1,1
+"access_product_custom_attributes_attribute_option_manager","product_custom_attributes_attribute_option","product_custom_attributes.model_attribute_option","product.group_product_variant",1,1,1,1
 "access_product_custom_attributes_attribute_set_user","product_custom_attributes_attribute_set","product_custom_attributes.model_attribute_set","base.group_user",1,0,0,0
 "access_product_custom_attributes_attribute_group_user","product_custom_attributes_attribute_group","product_custom_attributes.model_attribute_group","base.group_user",1,0,0,0
 "access_product_custom_attributes_attribute_location_user","product_custom_attributes_attribute_location","product_custom_attributes.model_attribute_location","base.group_user",1,0,0,0

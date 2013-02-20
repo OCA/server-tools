@@ -32,7 +32,7 @@ Each attribute has custom fields (for example, you don't need the same field for
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product', 'stock'],
+    'depends': ['product'],
     'init_xml': [],
     'update_xml': [
            'security/ir.model.access.csv',

@@ -35,8 +35,7 @@
             <field name="help"></field>
         </record>
 
-        <menuitem action="open_product_by_attribute_set" id="open_product_wizard" parent="stock.menu_stock_product" sequence="20"/>
-
+        <menuitem action="open_product_by_attribute_set" id="open_product_wizard" parent="base.menu_product" sequence="20"/>
 
     </data>
 </openerp>
