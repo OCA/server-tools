@@ -23,6 +23,7 @@ from openerp.osv.orm import Model
 from openerp.osv import osv
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
+from lxml import etree
 from openerp.tools.translate import _
 from unidecode import unidecode # Debian package python-unidecode
 
@@ -94,8 +95,11 @@ class attribute_option_wizard(osv.osv_memory):
                             'required': True,
                             }
                         })
-            dyn_arch = "<field name='option_ids' colspan='6'/>"
-            res['arch'] = res['arch'].replace("<separator name=\"placeholder\"/>", dyn_arch)
+            eview = etree.fromstring(res['arch'])
+            options = etree.Element('field', name='option_ids', colspan='6')
+            placeholder = eview.xpath("//separator[@string='options_placeholder']")[0]
+            placeholder.getparent().replace(placeholder, options)
+            res['arch'] = etree.tostring(eview, pretty_print=True)
         return res
 
 

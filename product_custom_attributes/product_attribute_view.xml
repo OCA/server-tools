@@ -112,7 +112,7 @@
             <field name="arch" type="xml">
                 <form string="Options Wizard" col="6">
                     <field name="attribute_id" invisible="1" colspan="2"/>
-                    <separator name="placeholder"/>
+                    <separator string="options_placeholder"/>
                     <button special="cancel" string="Cancel" icon="gtk-cancel"/>
                     <button name="validate" string="Validate" type="object" icon="gtk-convert"/>
                 </form>
