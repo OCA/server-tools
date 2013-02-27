@@ -95,11 +95,19 @@ class product_product(Model):
         kwargs = {'name': "%s" % attribute.name}
         if attribute.ttype == 'many2many':
             parent = etree.SubElement(page, 'group', colspan="2", col="4")
+            #FIXME the following isn't displayed in v7:
             sep = etree.SubElement(parent, 'separator',
                                     string="%s" % attribute.field_description, colspan="4")
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
-            kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+            if attribute.relation_model_id:
+                if attribute.domain:
+                    kwargs['domain'] = attribute.domain
+                else:
+                    ids = [op.value_ref.id for op in attribute.option_ids]
+                    kwargs['domain'] = "[('id', 'in', %s)]" % ids
+            else:
+                kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
         return parent
 

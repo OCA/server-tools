@@ -149,6 +149,10 @@ class product_attribute(Model):
         }
 
     def create(self, cr, uid, vals, context=None):
+        if vals.get('relation_model_id'):
+            relation = self.pool.get('ir.model').read(cr, uid, [vals.get('relation_model_id')], ['model'])[0]['model']
+        else:
+            relation = 'attribute.option'
         if vals.get('based_on') == 'product_template':
             vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.template')], context=context)[0]
             serial_name = 'attribute_custom_tmpl'
@@ -159,10 +163,10 @@ class product_attribute(Model):
             vals['serialization_field_id'] = self.pool.get('ir.model.fields').search(cr, uid, [('name', '=', serial_name)], context=context)[0]
         if vals['attribute_type'] == 'select':
             vals['ttype'] = 'many2one'
-            vals['relation'] = 'attribute.option'
+            vals['relation'] = relation
         elif vals['attribute_type'] == 'multiselect':
             vals['ttype'] = 'many2many'
-            vals['relation'] = 'attribute.option'
+            vals['relation'] = relation
             if not vals.get('serialized'):
                 raise except_osv(_('Create Error'), _("The field serialized should be ticked for a multiselect field !"))
         else:
