@@ -35,7 +35,7 @@ class attribute_option(Model):
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
         'value_ref': fields.reference('Reference', selection=[], size=128),
-        'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
 
@@ -51,7 +51,7 @@ class attribute_option_wizard(osv.osv_memory):
     _rec_name = 'attribute_id'
 
     _columns = {
-        'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True),
     }
 
     _defaults = {
@@ -62,7 +62,7 @@ class attribute_option_wizard(osv.osv_memory):
         return True
 
     def create(self, cr, uid, vals, context=None):
-        attr_obj = self.pool.get("product.attribute")
+        attr_obj = self.pool.get("custom.attribute")
         attr = attr_obj.browse(cr, uid, vals['attribute_id'])
         op_ids = [op.id for op in attr.option_ids]
         opt_obj = self.pool.get("attribute.option")
@@ -81,7 +81,7 @@ class attribute_option_wizard(osv.osv_memory):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = super(attribute_option_wizard, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
         if context and context.get("attribute_id"):
-            attr_obj = self.pool.get("product.attribute")
+            attr_obj = self.pool.get("custom.attribute")
             model_id = attr_obj.read(cr, uid, [context.get("attribute_id")], ['relation_model_id'])[0]['relation_model_id'][0]
             relation = self.pool.get("ir.model").read(cr, uid, [model_id], ["model"])[0]["model"]
             res['fields'].update({'option_ids': {
@@ -100,8 +100,8 @@ class attribute_option_wizard(osv.osv_memory):
         return res
 
 
-class product_attribute(Model):
-    _name = "product.attribute"
+class custom_attribute(Model):
+    _name = "custom.attribute"
     _description = "Product Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
 
@@ -169,7 +169,7 @@ class product_attribute(Model):
         else:
             vals['ttype'] = vals['attribute_type']
         vals['state'] = 'manual'
-        return super(product_attribute, self).create(cr, uid, vals, context)
+        return super(custom_attribute, self).create(cr, uid, vals, context)
 
     def onchange_field_description(self, cr, uid, ids, field_description, context=None):
         name = 'x_'
@@ -186,14 +186,14 @@ class attribute_location(Model):
     _name = "attribute.location"
     _description = "Attribute Location"
     _order="sequence"
-    _inherits = {'product.attribute': 'attribute_id'}
+    _inherits = {'custom.attribute': 'attribute_id'}
 
 
     def _get_attribute_loc_from_group(self, cr, uid, ids, context=None):
         return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
 
     _columns = {
-        'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True, ondelete="cascade"),
+        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True, ondelete="cascade"),
         'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
 store={
             'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),

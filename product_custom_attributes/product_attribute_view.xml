@@ -75,9 +75,9 @@
             </field>
         </record>
 
-        <record id="product_attribute_form_view" model="ir.ui.view">
-            <field name="name">product.attribute.form</field>
-            <field name="model">product.attribute</field>
+        <record id="custom_attribute_form_view" model="ir.ui.view">
+            <field name="name">custom.attribute.form</field>
+            <field name="model">custom.attribute</field>
             <field name="arch" type="xml">
                 <form string="Product Attribute">
                     <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
@@ -166,9 +166,9 @@
             </field>
         </record>
 
-        <record id="product_attribute_tree_view" model="ir.ui.view">
-            <field name="name">product.attribute.tree</field>
-            <field name="model">product.attribute</field>
+        <record id="custom_attribute_tree_view" model="ir.ui.view">
+            <field name="name">custom.attribute.tree</field>
+            <field name="model">custom.attribute</field>
             <field name="arch" type="xml">
                 <tree string="Product Attribute">
                     <field name="name" />
@@ -234,9 +234,9 @@
             </field>
         </record>
 
-        <record id="view_product_attribute_search" model="ir.ui.view">
-            <field name="name">product.attribute.list</field>
-            <field name="model">product.attribute</field>
+        <record id="view_custom_attribute_search" model="ir.ui.view">
+            <field name="name">custom.attribute.list</field>
+            <field name="model">custom.attribute</field>
             <field name="arch" type="xml">
                 <search string="Search Product Attributes">
                     <field name="name"/>
@@ -285,12 +285,12 @@
             <field name="help"></field>
         </record>
 
-        <record id="product_attribute_form_action" model="ir.actions.act_window">
+        <record id="custom_attribute_form_action" model="ir.actions.act_window">
             <field name="name">Product Attributes</field>
-            <field name="res_model">product.attribute</field>
+            <field name="res_model">custom.attribute</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_product_attribute_search"/>
+            <field name="search_view_id" ref="view_custom_attribute_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
         </record>
@@ -316,7 +316,7 @@
              action="attribute_location_form_action" id="menu_attribute_location_action"
              parent="product_custom_attributes.menu_attribute_in_config_product" sequence="3"/>
          <menuitem
-             action="product_attribute_form_action" id="menu_product_attribute_action"
+             action="custom_attribute_form_action" id="menu_custom_attribute_action"
              parent="product_custom_attributes.menu_attribute_in_config_product" sequence="4"/>
          <menuitem
              action="attribute_option_form_action" id="menu_attribute_option_action"
