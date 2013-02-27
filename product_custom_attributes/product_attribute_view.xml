@@ -88,13 +88,33 @@
                     <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
                     <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
                     <newline />
-                    <field name="option_ids" colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}" widget="one2many_list" nolabel="1">
-                        <tree string="Attribute Options" editable="top" >
-                            <field name="sequence" />
-                            <field name="name" />
+                    <group colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}">
+                    <field name="relation_model_id" on_change="relation_model_id_change(relation_model_id, option_ids, context)"/>
+                    <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
+                    <group colspan="4" attrs="{'invisible':[('domain', '!=', False)]}">
+                    <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False)]}" type="object" string="Change Options"/>
+                    <field name="option_ids" colspan="4" nolabel="1">
+                        <tree string="Attribute Options" editable="top">
+                            <field name="sequence" invisible="1"/>
+                            <field name="name" on_change="name_change(name, parent.relation_model_id, context)"/>
                         </tree>
                     </field>
+                    </group>
+                    </group>
                     <field name="create_date" invisible="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_option_wizard_form_view" model="ir.ui.view">
+            <field name="name">attribute.option.wizard</field>
+            <field name="model">attribute.option.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Options Wizard" col="6">
+                    <field name="attribute_id" invisible="1" colspan="2"/>
+                    <separator name="placeholder"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="validate" string="Validate" type="object" icon="gtk-convert"/>
                 </form>
             </field>
         </record>
@@ -104,7 +124,7 @@
             <field name="model">attribute.option</field>
             <field name="arch" type="xml">
                 <form string="Attribute Option" col="6">
-                    <field name="name" colspan="2"/>
+                    <field name="value_ref" colspan="2"/>
                     <field name="sequence" colspan="2"/>
                     <field name="attribute_id" colspan="2"/>
                 </form>
@@ -163,7 +183,7 @@
             <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
-                    <field name="name" />
+                    <field name="value_ref" />
                 </tree>
             </field>
         </record>
@@ -175,7 +195,7 @@
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
                     <field name="sequence" />
-                    <field name="name" />
+                    <field name="value_ref" />
                     <field name="attribute_id" />
                 </tree>
             </field>
@@ -229,7 +249,7 @@
             <field name="model">attribute.option</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Options">
-                    <field name="name" />
+                    <field name="value_ref" />
                     <field name="attribute_id"/>
                </search>
             </field>

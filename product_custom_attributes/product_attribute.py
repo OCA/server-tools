@@ -20,27 +20,105 @@
 ###############################################################################
 
 from openerp.osv.orm import Model
+from openerp.osv import osv
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
 from openerp.tools.translate import _
 from unidecode import unidecode # Debian package python-unidecode
+
 
 class attribute_option(Model):
     _name = "attribute.option"
     _description = "Attribute Option"
     _order="sequence"
 
+    _rec_name = 'value_ref' #FIXME add validation constraint to enforce model homogeneity
+
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
+        'value_ref': fields.reference('Reference', selection=[], size=128),
         'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
+
+    def name_change(self, cr, uid, ids, name, relation_model_id, context=None):
+        if relation_model_id:
+            warning = {'title': _('Error!'), 'message': _("Use the 'Change Options' button instead to select appropriate model references'")}
+            return {"value": {"name": False}, "warning": warning}
+        else:
+            return True
+
+class attribute_option_wizard(osv.osv_memory):
+    _name = "attribute.option.wizard"
+    _rec_name = 'attribute_id'
+
+    _columns = {
+        'attribute_id': fields.many2one('product.attribute', 'Product Attribute', required=True),
+    }
+
+    _defaults = {
+        'attribute_id': lambda self, cr, uid, context: context.get('attribute_id', False)
+    }
+
+    def validate(self, cr, uid, ids, context=None):
+        return True
+
+    def create(self, cr, uid, vals, context=None):
+        attr_obj = self.pool.get("product.attribute")
+        attr = attr_obj.browse(cr, uid, vals['attribute_id'])
+        op_ids = [op.id for op in attr.option_ids]
+        opt_obj = self.pool.get("attribute.option")
+        opt_obj.unlink(cr, uid, op_ids)
+        for op_id in (vals.get("option_ids") and vals['option_ids'][0][2] or []):
+            model = attr.relation_model_id.model
+            name = self.pool.get(model).name_get(cr, uid, [op_id], context)[0][1]
+            opt_obj.create(cr, uid, {
+                'attribute_id': vals['attribute_id'],
+                'name': name,
+                'value_ref': "%s,%s" % (attr.relation_model_id.model, op_id)
+            })
+        res = super(attribute_option_wizard, self).create(cr, uid, vals, context)
+        return res
+
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
+        res = super(attribute_option_wizard, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
+        if context and context.get("attribute_id"):
+            attr_obj = self.pool.get("product.attribute")
+            model_id = attr_obj.read(cr, uid, [context.get("attribute_id")], ['relation_model_id'])[0]['relation_model_id'][0]
+            relation = self.pool.get("ir.model").read(cr, uid, [model_id], ["model"])[0]["model"]
+            res['fields'].update({'option_ids': {
+                            'domain': [],
+                            'string': "Options",
+                            'type': 'many2many',
+                            'relation': relation,
+                            'required': True,
+                            }
+                        })
+            dyn_arch = "<field name='option_ids' colspan='6'/>"
+            res['arch'] = res['arch'].replace("<separator name=\"placeholder\"/>", dyn_arch)
+        return res
 
 
 class product_attribute(Model):
     _name = "product.attribute"
     _description = "Product Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
+
+    def relation_model_id_change(self, cr, uid, ids, relation_model_id, option_ids, context=None):
+        "removed selected options as they would be inconsistent" 
+        return {'value': {'option_ids': [(2, i[1]) for i in option_ids]}}
+
+    def button_add_options(self, cr, uid, ids, context=None):
+        return {
+            'context': "{'attribute_id': %s}" % (ids[0]),
+            'name': _('Options Wizard'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'attribute.option.wizard',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+        }
+
     _columns = {
         'field_id': fields.many2one('ir.model.fields', 'Ir Model Fields', required=True, ondelete="cascade"),
         'attribute_type': fields.selection([('char','Char'),
@@ -62,6 +140,8 @@ class product_attribute(Model):
                                      'Based on', required=True),
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
+        'relation_model_id': fields.many2one('ir.model', 'Model'),
+        'domain': fields.char('Domain', size=256),
         }
 
     def create(self, cr, uid, vals, context=None):
