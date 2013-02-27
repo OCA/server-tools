@@ -211,14 +211,14 @@ class attribute_group(Model):
 
     _columns = {
         'name': fields.char('Name', size=128, required=True),
-        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set', required=True),
+        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
         'sequence': fields.integer('Sequence'),
     }
 
     def create(self, cr, uid, vals, context=None):
         for attribute in vals['attribute_ids']:
-            if attribute[2] and not attribute[2].get('attribute_set_id'):
+            if vals.get('attribute_set_id') and attribute[2] and not attribute[2].get('attribute_set_id'):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
