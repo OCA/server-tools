@@ -27,13 +27,10 @@ from lxml import etree
 from openerp.tools.translate import _
 from unidecode import unidecode # Debian package python-unidecode
 
-
 class attribute_option(Model):
     _name = "attribute.option"
     _description = "Attribute Option"
     _order="sequence"
-
-    _rec_name = 'value_ref' #FIXME add validation constraint to enforce model homogeneity
 
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
