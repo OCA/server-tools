@@ -83,7 +83,7 @@
                     <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
                     <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" />
-                    <field name="based_on" />
+                    <field name="model_id" />
                     <field name="serialized" />
                     <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
                     <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>

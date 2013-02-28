@@ -25,13 +25,6 @@ from openerp.osv.osv import except_osv
 from lxml import etree
 from tools.translate import _
 
-class product_template(Model):
-
-    _inherit = "product.template"
-
-    _columns = {
-        'attribute_custom_tmpl': fields.serialized('Custom Template Attributes'),
-    }
 
 class product_product(Model):
 
@@ -51,7 +44,6 @@ class product_product(Model):
 
     _columns = {
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
-        'attribute_custom_variant': fields.serialized('Custom Variant Attributes'),
         'attribute_group_ids': fields.function(_attr_grp_ids, type='one2many',
         relation='attribute.group', string='Groups')
     }
