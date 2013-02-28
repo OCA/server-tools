@@ -105,6 +105,39 @@ class custom_attribute(Model):
     _description = "Product Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
 
+    def _build_attribute_field(self, cr, uid, page, attribute, context=None):
+        parent = page
+        kwargs = {'name': "%s" % attribute.name}
+        if attribute.ttype == 'many2many':
+            parent = etree.SubElement(page, 'group', colspan="2", col="4")
+            #FIXME the following isn't displayed in v7:
+            sep = etree.SubElement(parent, 'separator',
+                                    string="%s" % attribute.field_description, colspan="4")
+            kwargs['nolabel'] = "1"
+        if attribute.ttype in ['many2one', 'many2many']:
+            if attribute.relation_model_id:
+                if attribute.domain:
+                    kwargs['domain'] = attribute.domain
+                else:
+                    ids = [op.value_ref.id for op in attribute.option_ids]
+                    kwargs['domain'] = "[('id', 'in', %s)]" % ids
+            else:
+                kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+        field = etree.SubElement(parent, 'field', **kwargs)
+        return parent
+
+    def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
+        notebook = etree.Element('notebook', name="attributes_notebook", colspan="4")
+        toupdate_fields = []
+        grp_obj = self.pool.get('attribute.group')
+        for group in grp_obj.browse(cr, uid, attribute_group_ids, context=context):
+            page = etree.SubElement(notebook, 'page', string=group.name.capitalize())
+            for attribute in group.attribute_ids:
+                if attribute.name not in toupdate_fields:
+                    toupdate_fields.append(attribute.name)
+                    self._build_attribute_field(cr, uid, page, attribute, context=context)
+        return notebook, toupdate_fields
+
     def relation_model_id_change(self, cr, uid, ids, relation_model_id, option_ids, context=None):
         "removed selected options as they would be inconsistent" 
         return {'value': {'option_ids': [(2, i[1]) for i in option_ids]}}
