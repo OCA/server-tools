@@ -136,9 +136,6 @@ class custom_attribute(Model):
         'serialized': fields.boolean('Field serialized',
                                      help="If serialized, the field will be stocked in the serialized field: "
                                      "attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"),
-        'based_on': fields.selection([('product_template','Product Template'),
-                                      ('product_product','Product Variant')],
-                                     'Based on', required=True),
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
         'relation_model_id': fields.many2one('ir.model', 'Model'),
@@ -147,17 +144,25 @@ class custom_attribute(Model):
 
     def create(self, cr, uid, vals, context=None):
         if vals.get('relation_model_id'):
-            relation = self.pool.get('ir.model').read(cr, uid, [vals.get('relation_model_id')], ['model'])[0]['model']
+            relation = self.pool.get('ir.model').read(cr, uid,
+            [vals.get('relation_model_id')], ['model'])[0]['model']
         else:
             relation = 'attribute.option'
-        if vals.get('based_on') == 'product_template':
-            vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.template')], context=context)[0]
-            serial_name = 'attribute_custom_tmpl'
-        else:
-            vals['model_id'] = self.pool.get('ir.model').search(cr, uid, [('model', '=', 'product.product')], context=context)[0]
-            serial_name = 'attribute_custom_variant'
         if vals.get('serialized'):
-            vals['serialization_field_id'] = self.pool.get('ir.model.fields').search(cr, uid, [('name', '=', serial_name)], context=context)[0]
+            field_obj = self.pool.get('ir.model.fields')
+            serialized_ids = field_obj.search(cr, uid,
+            [('ttype', '=', 'serialized'), ('model_id', '=', vals['model_id']),
+            ('name', '=', 'x_custom_json_attrs')], context=context)
+            if serialized_ids:
+                vals['serialization_field_id'] = serialized_ids[0]
+            else:
+                f_vals = {
+                    'name': 'x_custom_json_attrs',
+                    'field_description': 'Serialized JSON Attributes', 
+                    'ttype': 'serialized',
+                    'model_id': vals['model_id'],
+                }
+                vals['serialization_field_id'] = field_obj.create(cr, uid, f_vals, {'manual': True})
         if vals['attribute_type'] == 'select':
             vals['ttype'] = 'many2one'
             vals['relation'] = relation
