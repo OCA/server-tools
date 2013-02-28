@@ -36,7 +36,7 @@ Each attribute has custom fields (for example, you don't need the same field for
     'init_xml': [],
     'update_xml': [
            'security/ir.model.access.csv',
-           'product_attribute_view.xml',
+           'custom_attributes_view.xml',
            'product_view.xml',
            'wizard/open_product_by_attribute_set.xml',
     ],

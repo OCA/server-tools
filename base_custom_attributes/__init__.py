@@ -22,7 +22,7 @@
 
 
 import ir_model
-import product_attribute
+import product_attributes
 import product
 import wizard
 
