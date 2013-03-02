@@ -22,7 +22,7 @@
 
 
 import ir_model
-import product_attributes
+import custom_attributes
 
 
 

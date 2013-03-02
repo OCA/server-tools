@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  base_custom_attributes for OpenERP
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <menuitem
+            id="menu_attribute_in_config_product" name="Attributes"
+            parent="product.prod_config_main" sequence="20"/>
+
+        <record id="attribute_set_form_view" model="ir.ui.view">
+            <field name="name">attribute.set.form</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Set">
+                    <field name="name" colspan="4"/>
+                    <field name="attribute_group_ids" colspan="4" >
+                        <form string="Attribute Groups">
+                            <field name="name" />
+                            <field name="sequence" />
+                            <field name="attribute_ids" colspan="4">
+                                <form string="Attribute Location">
+                                    <field name="attribute_id" />
+                                    <field name="sequence" />
+                                </form>
+                                <tree string="Attribute Location">
+                                    <field name="attribute_id" />
+                                </tree>
+                            </field>
+                        </form>
+                        <tree string="Attribute Groups">
+                            <field name="name" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_location_form_view" model="ir.ui.view">
+            <field name="name">attribute.location.form</field>
+            <field name="model">attribute.location</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Location">
+                    <field name="attribute_id" />
+                    <field name="sequence" />
+                    <field name="attribute_group_id" />
+                    <field name="attribute_set_id" />
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_set_tree_view" model="ir.ui.view">
+            <field name="name">attribute.set.tree</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Set" >
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="attribute_group_tree_view" model="ir.ui.view">
+            <field name="model">attribute.group</field>
+            <field name="inherit_id" ref="base_custom_attributes.attribute_group_tree_view" />
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="attribute_set_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="attribute_location_tree_view" model="ir.ui.view">
+            <field name="name">attribute.location.tree</field>
+            <field name="model">attribute.location</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Location">
+                    <field name="attribute_id" />
+                    <field name="sequence" />
+                    <field name="attribute_set_id" />
+                    <field name="attribute_group_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_set_search" model="ir.ui.view">
+            <field name="name">attribute.set.list</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Sets">
+                    <field name="name"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="view_attribute_group_search" model="ir.ui.view">
+            <field name="name">attribute.group.list</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Groups">
+                    <field name="name"/>
+                    <field name="attribute_set_id"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="view_attribute_location_search" model="ir.ui.view">
+            <field name="name">attribute.location.list</field>
+            <field name="model">attribute.location</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Locations">
+                    <field name="name"/>
+                    <field name="attribute_set_id"/>
+                    <field name="attribute_group_id"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_set_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Sets</field>
+            <field name="res_model">attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_set_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+        <record id="attribute_location_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Locations</field>
+            <field name="res_model">attribute.location</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_location_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_set_form_action" id="menu_attribute_set_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="1"/>
+         <menuitem
+             action="base_custom_attributes.attribute_group_form_action" id="menu_attribute_group_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="2"/>
+         <menuitem
+             action="attribute_location_form_action" id="menu_attribute_location_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="3"/>
+         <menuitem
+             action="base_custom_attributes.custom_attribute_form_action" id="menu_custom_attribute_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="4"/>
+         <menuitem
+             action="base_custom_attributes.attribute_option_form_action" id="menu_attribute_option_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="5"/>
+
+    </data>
+</openerp>

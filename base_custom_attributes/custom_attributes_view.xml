@@ -9,72 +9,6 @@
 <openerp>
     <data>
 
-        <menuitem
-            id="menu_attribute_in_config_product" name="Attributes"
-            parent="product.prod_config_main" sequence="20"/>
-
-        <record id="attribute_set_form_view" model="ir.ui.view">
-            <field name="name">attribute.set.form</field>
-            <field name="model">attribute.set</field>
-            <field name="arch" type="xml">
-                <form string="Attribute Set">
-                    <field name="name" colspan="4"/>
-                    <field name="attribute_group_ids" colspan="4" >
-                        <form string="Attribute Groups">
-                            <field name="name" />
-                            <field name="sequence" />
-                            <field name="attribute_ids" colspan="4">
-                                <form string="Attribute Location">
-                                    <field name="attribute_id" />
-                                    <field name="sequence" />
-                                </form>
-                                <tree string="Attribute Location">
-                                    <field name="attribute_id" />
-                                </tree>
-                            </field>
-                        </form>
-                        <tree string="Attribute Groups">
-                            <field name="name" />
-                        </tree>
-                    </field>
-                </form>
-            </field>
-        </record>
-
-        <record id="attribute_group_form_view" model="ir.ui.view">
-            <field name="name">attribute.group.form</field>
-            <field name="model">attribute.group</field>
-            <field name="arch" type="xml">
-                <form string="Attribute Group">
-                    <field name="name" />
-                    <field name="sequence" />
-                    <field name="attribute_set_id" />
-                    <field name="attribute_ids" colspan="4" nolabel="1">
-                        <form string="Attribute Location">
-                            <field name="attribute_id" />
-                            <field name="sequence" />
-                        </form>
-                        <tree string="Attribute Location">
-                            <field name="attribute_id" />
-                        </tree>
-                    </field>
-                </form>
-            </field>
-        </record>
-
-        <record id="attribute_location_form_view" model="ir.ui.view">
-            <field name="name">attribute.location.form</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <form string="Attribute Location">
-                    <field name="attribute_id" />
-                    <field name="sequence" />
-                    <field name="attribute_group_id" />
-                    <field name="attribute_set_id" />
-                </form>
-            </field>
-        </record>
-
         <record id="custom_attribute_form_view" model="ir.ui.view">
             <field name="name">custom.attribute.form</field>
             <field name="model">custom.attribute</field>
@@ -91,15 +25,13 @@
                     <group colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}">
                     <field name="relation_model_id" on_change="relation_model_id_change(relation_model_id, option_ids, context)"/>
                     <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
-                    <group colspan="4" attrs="{'invisible':[('domain', '!=', False)]}">
-                    <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False)]}" type="object" string="Change Options"/>
+                    <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False), ('domain', '!=', False)]}" type="object" string="Change Options"/>
                     <field name="option_ids" colspan="4" nolabel="1">
                         <tree string="Attribute Options" editable="top">
                             <field name="sequence" invisible="1"/>
                             <field name="name" on_change="name_change(name, parent.relation_model_id, context)"/>
                         </tree>
                     </field>
-                    </group>
                     </group>
                     <field name="create_date" invisible="1"/>
                 </form>
@@ -124,6 +56,7 @@
             <field name="model">attribute.option</field>
             <field name="arch" type="xml">
                 <form string="Attribute Option" col="6">
+                    <field name="name" colspan="2"/>
                     <field name="value_ref" colspan="2"/>
                     <field name="sequence" colspan="2"/>
                     <field name="attribute_id" colspan="2"/>
@@ -131,13 +64,20 @@
             </field>
         </record>
 
-        <record id="attribute_set_tree_view" model="ir.ui.view">
-            <field name="name">attribute.set.tree</field>
-            <field name="model">attribute.set</field>
+        <record id="attribute_group_form_view" model="ir.ui.view">
+            <field name="name">attribute.group.form</field>
+            <field name="model">attribute.group</field>
             <field name="arch" type="xml">
-                <tree string="Attribute Set" >
+                <form string="Attribute Group">
                     <field name="name" />
-                </tree>
+                    <field name="sequence" />
+                    <field name="attribute_ids" colspan="4" nolabel="1">
+                        <form string="Attribute Location">
+                            <field name="attribute_id" />
+                            <field name="sequence" />
+                        </form>
+                    </field>
+                </form>
             </field>
         </record>
 
@@ -148,20 +88,6 @@
                 <tree string="Attribute Group">
                     <field name="name" />
                     <field name="sequence" />
-                    <field name="attribute_set_id" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="attribute_location_tree_view" model="ir.ui.view">
-            <field name="name">attribute.location.tree</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <tree string="Attribute Location">
-                    <field name="attribute_id" />
-                    <field name="sequence" />
-                    <field name="attribute_set_id" />
-                    <field name="attribute_group_id" />
                 </tree>
             </field>
         </record>
@@ -201,39 +127,6 @@
             </field>
         </record>
 
-        <record id="view_attribute_set_search" model="ir.ui.view">
-            <field name="name">attribute.set.list</field>
-            <field name="model">attribute.set</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Sets">
-                    <field name="name"/>
-               </search>
-            </field>
-        </record>
-
-        <record id="view_attribute_group_search" model="ir.ui.view">
-            <field name="name">attribute.group.list</field>
-            <field name="model">attribute.group</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Groups">
-                    <field name="name"/>
-                    <field name="attribute_set_id"/>
-               </search>
-            </field>
-        </record>
-
-        <record id="view_attribute_location_search" model="ir.ui.view">
-            <field name="name">attribute.location.list</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Locations">
-                    <field name="name"/>
-                    <field name="attribute_set_id"/>
-                    <field name="attribute_group_id"/>
-               </search>
-            </field>
-        </record>
-
         <record id="view_custom_attribute_search" model="ir.ui.view">
             <field name="name">custom.attribute.list</field>
             <field name="model">custom.attribute</field>
@@ -255,38 +148,8 @@
             </field>
         </record>
 
-        <record id="attribute_set_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Sets</field>
-            <field name="res_model">attribute.set</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_attribute_set_search"/>
-            <field name="context">{"search_default_user_id":uid}</field>
-            <field name="help"></field>
-        </record>
-
-        <record id="attribute_group_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Groups</field>
-            <field name="res_model">attribute.group</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_attribute_group_search"/>
-            <field name="context">{"search_default_user_id":uid}</field>
-            <field name="help"></field>
-        </record>
-
-        <record id="attribute_location_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Locations</field>
-            <field name="res_model">attribute.location</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_attribute_location_search"/>
-            <field name="context">{"search_default_user_id":uid}</field>
-            <field name="help"></field>
-        </record>
-
         <record id="custom_attribute_form_action" model="ir.actions.act_window">
-            <field name="name">Product Attributes</field>
+            <field name="name">Custom Attributes</field>
             <field name="res_model">custom.attribute</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -296,7 +159,7 @@
         </record>
 
         <record id="attribute_option_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Options</field>
+            <field name="name">Custom Attribute Options</field>
             <field name="res_model">attribute.option</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -306,21 +169,24 @@
             <field name="help"></field>
         </record>
 
-         <menuitem
-             action="attribute_set_form_action" id="menu_attribute_set_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="1"/>
+        <record id="attribute_group_form_action" model="ir.actions.act_window">
+            <field name="name">Custom Attribute Groups</field>
+            <field name="res_model">attribute.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
          <menuitem
              action="attribute_group_form_action" id="menu_attribute_group_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="2"/>
-         <menuitem
-             action="attribute_location_form_action" id="menu_attribute_location_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="3"/>
+             parent="base.next_id_9" sequence="2"/>
          <menuitem
              action="custom_attribute_form_action" id="menu_custom_attribute_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="4"/>
+             parent="base.next_id_9" sequence="4"/>
          <menuitem
              action="attribute_option_form_action" id="menu_attribute_option_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="5"/>
+             parent="base.next_id_9" sequence="5"/>
 
     </data>
 </openerp>

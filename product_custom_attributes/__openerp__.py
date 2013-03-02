@@ -37,6 +37,7 @@ In particular it's used by the Magento Magentoerpconnect module to match the EAV
     'init_xml': [],
     'update_xml': [
            'product_view.xml',
+           'custom_attributes_view.xml',
            'wizard/open_product_by_attribute_set.xml',
     ],
     'demo_xml': [],

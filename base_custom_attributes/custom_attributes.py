@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   product_custom_attributes for OpenERP                                      #
+#   base_custom_attributes for OpenERP                                        #
 #   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
+#   Copyright (C) 2013 Akretion Raphaël VALYI <raphael.valyi@akretion.com>    #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -220,6 +221,18 @@ class custom_attribute(Model):
             name = 'x_%s' % name
         return  {'value' : {'name' : unidecode(name)}}
 
+
+class attribute_group(Model):
+    _name= "attribute.group"
+    _description = "Attribute Group"
+    _order="sequence"
+
+    _columns = {
+        'name': fields.char('Name', size=128, required=True),
+        'sequence': fields.integer('Sequence'),
+        'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
+    }
+
 class attribute_location(Model):
     _name = "attribute.location"
     _description = "Attribute Location"
@@ -232,39 +245,6 @@ class attribute_location(Model):
 
     _columns = {
         'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True, ondelete="cascade"),
-        'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
-store={
-            'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
-        }),
         'attribute_group_id': fields.many2one('attribute.group', 'Attribute Group', required=True),
         'sequence': fields.integer('Sequence'),
         }
-
-
-
-class attribute_group(Model):
-    _name= "attribute.group"
-    _description = "Attribute Group"
-    _order="sequence"
-
-    _columns = {
-        'name': fields.char('Name', size=128, required=True),
-        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
-        'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
-        'sequence': fields.integer('Sequence'),
-    }
-
-    def create(self, cr, uid, vals, context=None):
-        for attribute in vals['attribute_ids']:
-            if vals.get('attribute_set_id') and attribute[2] and not attribute[2].get('attribute_set_id'):
-                attribute[2]['attribute_set_id'] = vals['attribute_set_id']
-        return super(attribute_group, self).create(cr, uid, vals, context)
-
-class attribute_set(Model):
-    _name = "attribute.set"
-    _description = "Attribute Set"
-    _columns = {
-        'name': fields.char('Name', size=128, required=True),
-        'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
-        }
-
