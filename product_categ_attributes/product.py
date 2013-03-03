@@ -15,12 +15,11 @@ class product_product(Model):
     _inherit = "product.product"
 
     def _attr_grp_ids(self, cr, uid, ids, field_names, arg=None, context=None):
-        print "AAAAAAAAAAAAAA"
         res = {}
         for product in self.browse(cr, uid, ids, context=context):
-            grp_ids = []
+            grp_ids = [grp.id for grp in product.categ_id.attribute_group_ids]
             for categ in product.categ_ids:
                 grp_ids += [grp.id for grp in categ.attribute_group_ids]
-            res[product.id] = grp_ids
+            res[product.id] = list(set(grp_ids))
         return res
 
