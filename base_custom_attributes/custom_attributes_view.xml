@@ -17,7 +17,7 @@
                     <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
                     <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" />
-                    <field name="model_id" />
+                    <field name="model_id" /><!-- TODO find a way to apply restriction domain dynamically-->
                     <field name="serialized" />
                     <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
                     <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
@@ -109,6 +109,7 @@
             <field eval="1" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
+                    <field name="name" />
                     <field name="value_ref" />
                 </tree>
             </field>
@@ -120,6 +121,7 @@
             <field eval="20" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Attribute Option">
+                    <field name="name" />
                     <field name="sequence" />
                     <field name="value_ref" />
                     <field name="attribute_id" />
@@ -142,6 +144,7 @@
             <field name="model">attribute.option</field>
             <field name="arch" type="xml">
                 <search string="Search Attribute Options">
+                    <field name="name" />
                     <field name="value_ref" />
                     <field name="attribute_id"/>
                </search>
