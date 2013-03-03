@@ -74,6 +74,16 @@
             </field>
         </record>
 
+        <record id="attribute_group_form_view" model="ir.ui.view">
+            <field name="model">attribute.group</field>
+            <field name="inherit_id" ref="base_custom_attributes.attribute_group_form_view" />
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="attribute_set_id" />
+                </field>
+            </field>
+        </record>
+
         <record id="attribute_location_tree_view" model="ir.ui.view">
             <field name="name">attribute.location.tree</field>
             <field name="model">attribute.location</field>
