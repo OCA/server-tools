@@ -2,9 +2,9 @@
 "access_base_custom_attributes_attribute_group_salemanager","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_sale_manager",1,1,1,1
 "access_base_custom_attributes_product_attribute_salemanager","base_custom_attributes_product_attribute","base_custom_attributes.model_custom_attribute","base.group_sale_manager",1,1,1,1
 "access_base_custom_attributes_attribute_option_salemanager","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_sale_manager",1,1,1,1
-"access_base_custom_attributes_attribute_group_manager","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","product.group_product_variant",1,1,1,1
-"access_base_custom_attributes_product_attribute_manager","base_custom_attributes_product_attribute","base_custom_attributes.model_custom_attribute","product.group_product_variant",1,1,1,1
-"access_base_custom_attributes_attribute_option_manager","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","product.group_product_variant",1,1,1,1
+"access_base_custom_attributes_attribute_group_manager","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_no_one",1,1,1,1
+"access_base_custom_attributes_product_attribute_manager","base_custom_attributes_product_attribute","base_custom_attributes.model_custom_attribute","base.group_no_one",1,1,1,1
+"access_base_custom_attributes_attribute_option_manager","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_no_one",1,1,1,1
 "access_base_custom_attributes_attribute_group_user","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_user",1,0,0,0
 "access_base_custom_attributes_product_attribute_user","base_custom_attributes_product_attribute","base_custom_attributes.model_custom_attribute","base.group_user",1,0,0,0
 "access_base_custom_attributes_attribute_option_user","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_user",1,0,0,0
