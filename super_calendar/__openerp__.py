@@ -22,6 +22,7 @@
     'name': "Super Calendar",
     'version': '0.1',
     'category': 'Generic Modules/Others',
+    'summary': 'This module allows to create configurable calendars.',
     'description': """
 This module allows to create configurable calendars.
 
@@ -63,14 +64,15 @@ As you can see, several filters are available. A typical usage consists in filte
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['base'],
-    "init_xml" : [],
-    "update_xml" : [
+    'depends' : ['base'],
+    "data" : [
         'super_calendar_view.xml',
         'cron_data.xml',
         'security/ir.model.access.csv',
         ],
-    "demo_xml" : [],
-    "active": False,
-    "installable": False
+    'demo': [],
+    'test': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
 }
