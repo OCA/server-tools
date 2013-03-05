@@ -7,17 +7,16 @@
         <record model="ir.ui.view" id="super_calendar_configurator_tree">
             <field name="name">super_calendar_configurator_tree</field>
             <field name="model">super.calendar.configurator</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Configurators">
                     <field name="name"/>
                 </tree>
             </field>
         </record>
+
         <record model="ir.ui.view" id="super_calendar_configurator_form">
             <field name="name">super_calendar_configurator_form</field>
             <field name="model">super.calendar.configurator</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Configurator">
                     <field name="name" select="1" colspan="2"/>
@@ -64,7 +63,6 @@
         <record model="ir.ui.view" id="super_calendar_tree">
             <field name="name">super_calendar_tree</field>
             <field name="model">super.calendar</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Calendar">
                     <field name="name"/>
@@ -78,10 +76,10 @@
                 </tree>
             </field>
         </record>
+
         <record model="ir.ui.view" id="super_calendar_form">
             <field name="name">super_calendar_form</field>
             <field name="model">super.calendar</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Configurator">
                     <field name="name" readonly="1"/>
@@ -96,20 +94,20 @@
                 </form>
             </field>
         </record>
+
         <record model="ir.ui.view" id="super_calendar">
             <field name="name">super_calendar</field>
             <field name="model">super.calendar</field>
-            <field name="type">calendar</field>
             <field name="arch" type="xml">
                 <calendar string="Calendar" color="model_description" date_start="date_start" date_delay="duration">
                     <field name="name"/>
                 </calendar>
             </field>
         </record>
+
         <record model="ir.ui.view" id="super_calendar_search">
             <field name="name">super_calendar_search</field>
             <field name="model">super.calendar</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search Calendar" >
                     <field name="name"/>
