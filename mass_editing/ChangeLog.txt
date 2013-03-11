@@ -1,6 +1,9 @@
 ===============================================================================
  Version Change Log (mass_editing)
 ===============================================================================
+1.3	* March 11,2013 : Serpent Consulting Services
+	* Improved and optimized the code of mass_editing
+
 1.2	* Feb 14,2013 : Serpent Consulting Services
 	* Corrected code as per the review by Community
 
