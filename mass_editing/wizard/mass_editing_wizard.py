@@ -41,53 +41,47 @@ class mass_editing_wizard(osv.osv_memory):
             etree.SubElement(xml_group, 'label', {'string': '', 'colspan': '2'})
             xml_group = etree.SubElement(xml_form, 'group', {'colspan': '4'})
             model_obj = self.pool.get(context.get('active_model'))
+            field_info = model_obj.fields_get(cr, uid, [], context)
             for field in editing_data.field_ids:
                 if field.ttype == "many2many":
-                    field_info = model_obj.fields_get(cr, uid, [field.name], context)
-                    all_fields[field.name] = field_info[field.name]
-                    all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove_m2m', 'Remove'), ('add', 'Add')]}
+                    all_fields[field.name] = field_info[field.name] 
+                    all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove_m2m', 'Remove'), ('add', 'Add')]}
                     xml_group = etree.SubElement(xml_group, 'group', {'colspan': '4'})
                     etree.SubElement(xml_group, 'separator', {'string': field_info[field.name]['string'], 'colspan': '2'})
-                    etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan': '2', 'nolabel':'1'})
-                    etree.SubElement(xml_group, 'field', {'name': field.name, 'colspan':'4', 'nolabel':'1', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove_m2m')]}"})
+                    etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan': '2', 'nolabel':'1'})
+                    etree.SubElement(xml_group, 'field', {'name': field.name, 'colspan':'4', 'nolabel':'1', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove_m2m')]}"})
                 elif field.ttype == "many2one":
-                    field_info = model_obj.fields_get(cr, uid, [field.name], context)
                     if field_info:
-                        all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
+                        all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
                         all_fields[field.name] = {'type':field.ttype, 'string': field.field_description, 'relation': field.relation}
-                        etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan':'2'})
-                        etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'colspan':'2', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove')]}"})
+                        etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan':'2'})
+                        etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'colspan':'2', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove')]}"})
                 elif field.ttype == "char":
-                    field_info = model_obj.fields_get(cr, uid, [field.name], context)
-                    all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
+                    all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
                     all_fields[field.name] = {'type':field.ttype, 'string': field.field_description, 'size': field.size or 256}
-                    etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan':'2', 'colspan':'2'})
-                    etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove')]}", 'colspan':'2'})
+                    etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan':'2', 'colspan':'2'})
+                    etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove')]}", 'colspan':'2'})
                 elif field.ttype == 'selection':
-                    field_info = model_obj.fields_get(cr, uid, [field.name], context)
-                    all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
-                    etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan':'2'})
-                    etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'colspan':'2', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove')]}"})
+                    all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
+                    etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan':'2'})
+                    etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'colspan':'2', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove')]}"})
                     all_fields[field.name] = {'type':field.ttype, 'string': field.field_description, 'selection': field_info[field.name]['selection']}
                 else:
-                    field_info = model_obj.fields_get(cr, uid, [field.name], context)
                     all_fields[field.name] = {'type':field.ttype, 'string': field.field_description}
-                    all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
+                    all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
                     if field.ttype == 'text':
                         xml_group = etree.SubElement(xml_group, 'group', {'colspan': '6'})
                         etree.SubElement(xml_group, 'separator', {'string': all_fields[field.name]['string'], 'colspan': '2'})
-                        etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan': '2', 'nolabel':'1'})
-                        etree.SubElement(xml_group, 'field', {'name': field.name, 'colspan':'4', 'nolabel':'1', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove')]}"})
+                        etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan': '2', 'nolabel':'1'})
+                        etree.SubElement(xml_group, 'field', {'name': field.name, 'colspan':'4', 'nolabel':'1', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove')]}"})
                     else:
-                        all_fields["selection_"+field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
-                        etree.SubElement(xml_group, 'field', {'name': "selection_"+field.name, 'colspan': '2', })
-                        etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'attrs':"{'invisible':[('selection_"+field.name+"','=','remove')]}", 'colspan': '2', })
-
+                        all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
+                        etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan': '2', })
+                        etree.SubElement(xml_group, 'field', {'name': field.name, 'nolabel':'1', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove')]}", 'colspan': '2', })
             etree.SubElement(xml_form, 'separator', {'string' : '', 'colspan': '4'})
             xml_group3 = etree.SubElement(xml_form, 'footer', {})
             etree.SubElement(xml_group3, 'button', {'string' :'Close', 'icon': "gtk-close", 'special' :'cancel'})
             etree.SubElement(xml_group3, 'button', {'string' :'Apply', 'icon': "gtk-execute", 'type' :'object', 'name':"action_apply"})
-
             root = xml_form.getroottree()
             result['arch'] = etree.tostring(root)
             result['fields'] = all_fields
@@ -98,14 +92,14 @@ class mass_editing_wizard(osv.osv_memory):
             model_obj = self.pool.get(context.get('active_model'))
             dict = {}
             for key , val in vals.items():
-                if key.startswith('selection_'):
-                    split_key = key.split('_', 1)[1]
+                if key.startswith('selection__'):
+                    split_key = key.split('__', 1)[1]
                     if val == 'set':
                         dict.update({split_key: vals.get(split_key, False)})
                     elif val == 'remove':
                         dict.update({split_key: False})
                     elif val == 'remove_m2m':
-                        dict.update({split_key: [(5, 0, [])]})
+                        dict.update({split_key: [(3, id) for id in vals.get(split_key, False)[0][2]]})
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:
@@ -120,5 +114,4 @@ class mass_editing_wizard(osv.osv_memory):
         return  {'type': 'ir.actions.act_window_close'}
 
 mass_editing_wizard()
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

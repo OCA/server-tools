@@ -28,11 +28,14 @@ class ir_model_fields(osv.osv):
     _inherit = 'ir.model.fields'
     
     def search(self, cr, uid, args, offset=0, limit=0, order=None, context=None, count=False):
-        res = super(ir_model_fields, self).search(cr, uid, args, offset=offset, limit=limit, order=order, context=context, count=count)
+        model_domain = []
         for domain in args:
-            if domain[0]== 'model_id' and type(domain[2]) != list:
-                res = self.search(cr, uid, [('model_id', 'in', map(int, domain[2][1:-1].split(',')))])
-        return res
+            if domain[0] == 'model_id' and domain[2] and type(domain[2]) != list:
+                model_domain += [('model_id', 'in', map(int, domain[2][1:-1].split(',')))]
+            else:
+                model_domain += domain
+        return super(ir_model_fields, self).search(cr, uid, model_domain, offset=offset, limit=limit, order=order, context=context, count=count)
+    
         
 ir_model_fields()
 
@@ -40,61 +43,60 @@ class mass_object(osv.osv):
     _name = "mass.object"
 
     _columns = {
-        'name' : fields.char("Name", size=64, required=True, select=1), 
-        'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1), 
-        'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'), 
-        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True, 
+        'name' : fields.char("Name", size=64, required=True, select=1),
+        'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1),
+        'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'),
+        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True,
                                             help="Sidebar action to make this template available on records "
-                                                 "of the related document model"), 
-        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True, 
-                                       help="Sidebar button to open the sidebar action"), 
+                                                 "of the related document model"),
+        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True,
+                                       help="Sidebar button to open the sidebar action"),
         'model_list': fields.char('Model List', size=256)
     }
     
     def onchange_model(self, cr, uid, ids, model_id, context=None):
         if context is None: context = {}
-        model_list = ""
-        if model_id:
-            model_obj = self.pool.get('ir.model')
-            model_data = model_obj.browse(cr, uid, model_id)
-            model_list = "[" + str(model_id) + ""
-            active_model_obj = self.pool.get(model_data.model)
-            if active_model_obj._inherits:
-                for key, val in active_model_obj._inherits.items():
-                    model_ids = model_obj.search(cr, uid, [('model', '=', key)])
-                    if model_ids:
-                        model_list += "," + str(model_ids[0]) + ""
-            model_list += "]"
-        return {'value': {'model_list': model_list}}
+        if not model_id:
+            return {'value': {'model_list': ''}}
+        model_list = [model_id]
+        model_obj = self.pool.get('ir.model')
+        active_model_obj = self.pool.get(model_obj.browse(cr, uid, model_id).model)
+        if active_model_obj._inherits:
+            for key, val in active_model_obj._inherits.items():
+                model_ids = model_obj.search(cr, uid, [('model', '=', key)])
+                if model_ids:
+                    model_list += model_ids
+        return {'value': {'model_list': str(model_list)}}
 
     def create_action(self, cr, uid, ids, context=None):
         vals = {}
         action_obj = self.pool.get('ir.actions.act_window')
         data_obj = self.pool.get('ir.model.data')
+        ir_values_obj = self.pool.get('ir.values')
         for data in self.browse(cr, uid, ids, context=context):
             src_obj = data.model_id.model
             button_name = _('Mass Editing (%s)') % data.name
             vals['ref_ir_act_window'] = action_obj.create(cr, uid, {
-                 'name': button_name, 
-                 'type': 'ir.actions.act_window', 
-                 'res_model': 'mass.editing.wizard', 
-                 'src_model': src_obj, 
-                 'view_type': 'form', 
-                 'context': "{'mass_editing_object' : %d}" % (data.id), 
-                 'view_mode':'form,tree', 
-                 'target': 'new', 
+                 'name': button_name,
+                 'type': 'ir.actions.act_window',
+                 'res_model': 'mass.editing.wizard',
+                 'src_model': src_obj,
+                 'view_type': 'form',
+                 'context': "{'mass_editing_object' : %d}" % (data.id),
+                 'view_mode':'form,tree',
+                 'target': 'new',
                  'auto_refresh':1
             }, context)
-            vals['ref_ir_value'] = self.pool.get('ir.values').create(cr, uid, {
-                 'name': button_name, 
-                 'model': src_obj, 
-                 'key2': 'client_action_multi', 
-                 'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']), 
-                 'object': True, 
+            vals['ref_ir_value'] = ir_values_obj.create(cr, uid, {
+                 'name': button_name,
+                 'model': src_obj,
+                 'key2': 'client_action_multi',
+                 'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']),
+                 'object': True,
              }, context)
         self.write(cr, uid, ids, {
-                    'ref_ir_act_window': vals.get('ref_ir_act_window', False), 
-                    'ref_ir_value': vals.get('ref_ir_value', False), 
+                    'ref_ir_act_window': vals.get('ref_ir_act_window', False),
+                    'ref_ir_value': vals.get('ref_ir_value', False),
                 }, context)
         return True
 
