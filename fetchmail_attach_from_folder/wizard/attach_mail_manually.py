@@ -46,7 +46,8 @@ class attach_mail_manually(TransientModel):
             defaults['mail_ids']=[]
             connection = folder.server_id.connect()
             connection.select(folder.path)
-            result, msgids = connection.search(None, 'UNDELETED')
+            result, msgids = connection.search(None, 
+                    'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
             if result != 'OK':
                 logger.error('Could not search mailbox %s on %s' % (
                     folder.path, this.server))
