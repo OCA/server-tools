@@ -193,7 +193,7 @@ class fetchmail_server(Model):
 
         if view_type == 'form':
             view = etree.fromstring(
-                    result['fields']['folder_ids']['views']['tree']['arch'])
+                    result['fields']['folder_ids']['views']['form']['arch'])
             modifiers={}
             docstr=''
             for algorithm in self.pool.get('fetchmail.server.folder')\
@@ -206,7 +206,8 @@ class fetchmail_server(Model):
                             modifiers[field][modifier].insert(0, '|')
                         modifiers[field][modifier].append(
                             ("match_algorithm","==",algorithm.__name__))
-                docstr+=_(algorithm.__doc__) or ''
+                docstr += _(algorithm.name) + '\n' + _(algorithm.__doc__) + \
+                        '\n\n'
 
             for field in view:
                 if field.tag == 'field' and field.get('name') in modifiers:
@@ -218,7 +219,7 @@ class fetchmail_server(Model):
                 if (field.tag == 'field' and
                         field.get('name') == 'match_algorithm'):
                     field.set('help', docstr)
-            result['fields']['folder_ids']['views']['tree']['arch'] = \
+            result['fields']['folder_ids']['views']['form']['arch'] = \
                     etree.tostring(view)
 
         return result
