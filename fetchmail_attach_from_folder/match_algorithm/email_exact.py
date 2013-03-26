@@ -25,6 +25,8 @@ from openerp.tools.safe_eval import safe_eval
 from openerp.addons.mail.mail_message import to_email
 
 class email_exact(base):
+    '''Search for exactly the mailadress as noted in the email'''
+
     name = 'Exact mailadress'
     required_fields = ['model_field', 'mail_field']
 

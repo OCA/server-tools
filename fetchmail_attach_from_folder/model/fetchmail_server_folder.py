@@ -48,17 +48,41 @@ class fetchmail_server_folder(Model):
                 'Path', size=256, help='The path to your mail '
                 'folder. Typically would be something like \'INBOX.myfolder\'',
                 required=True),
-            'model_id': fields.many2one('ir.model', 'Model', required=True),
-            'model_field': fields.char('Field (model)', size=128),
-            'model_order': fields.char('Order (model)', size=128),
+            'model_id': fields.many2one(
+                'ir.model', 'Model', required=True,
+                help='The model to attach emails to'),
+            'model_field': fields.char(
+                'Field (model)', size=128,
+                help='The field in your model that contains the field to match '
+                'against.\n'
+                'Examples:\n'
+                '\'email\' if your model is res.partner, or '
+                '\'partner_id.email\' if you\'re matching sale orders'),
+            'model_order': fields.char(
+                'Order (model)', size=128,
+                help='Fields to order by, this mostly useful in conjunction '
+                'with \'Use 1st match\''),
             'match_algorithm': fields.selection(
                 _get_match_algorithms_sel, 
-                'Match algorithm', required=True, translate=True),
-            'mail_field': fields.char('Field (email)', size=128),
+                'Match algorithm', required=True, translate=True,
+                help='The algorithm used to determine which object an email '
+                'matches.'),
+            'mail_field': fields.char(
+                'Field (email)', size=128,
+                help='The field in the email used for matching. Typically '
+                'this is \'to\' or \'from\''),
             'server_id': fields.many2one('fetchmail.server', 'Server'),
-            'delete_matching': fields.boolean('Delete matches'),
-            'flag_nonmatching': fields.boolean('Flag nonmatching'),
-            'match_first': fields.boolean('Use 1st match'),
+            'delete_matching': fields.boolean(
+                'Delete matches',
+                help='Delete matched emails from server'),
+            'flag_nonmatching': fields.boolean(
+                'Flag nonmatching',
+                help='Flag emails in the server that don\'t match any object '
+                'in OpenERP'),
+            'match_first': fields.boolean(
+                'Use 1st match',
+                help='If there are multiple matches, use the first one. If '
+                'not checked, multiple matches count as no match at all'),
             'domain': fields.char(
                 'Domain', size=128, help='Fill in a search '
                 'filter to narrow down objects to match')
