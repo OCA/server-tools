@@ -19,7 +19,7 @@
                                 nolabel="1"
                                 colspan="2"
                                 on_change="onchange_server_type(type, is_ssl, object_id)">
-                                <tree editable="bottom">
+                                <tree>
                                     <field name="sequence" invisible="1" />
                                     <field name="path" />
                                     <field name="model_id" />
@@ -38,6 +38,21 @@
                                         string="Attach mail manually"
                                         icon="gtk-redo" />
                                 </tree>
+                                <form col="6">
+                                    <field name="path" />
+                                    <field name="model_id" />
+                                    <field name="model_field" />
+                                    <field name="match_algorithm" />
+                                    <field name="mail_field" />
+                                    <newline />
+                                    <field name="delete_matching" />
+                                    <field name="flag_nonmatching" />
+                                    <field name="match_first" />
+                                    <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
+                                    <field name="domain" />
+                                    <label />
+                                    <button type="object" name="button_attach_mail_manually" string="Attach mail manually" icon="gtk-redo" />
+                                </form>
                             </field>
                         </group>
                     </xpath>
