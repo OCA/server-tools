@@ -24,6 +24,9 @@ from base import base
 from openerp.tools.safe_eval import safe_eval
 
 class openerp_standard(base):
+    '''No search at all. Use OpenERP's standard mechanism to attach mails to
+    mail.thread objects. Note that this algorithm always matches.'''
+
     name = 'OpenERP standard'
     readonly_fields = ['model_field', 'mail_field', 'match_first', 'domain',
             'model_order', 'flag_nonmatching']
