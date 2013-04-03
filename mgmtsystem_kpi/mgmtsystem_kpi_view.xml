@@ -7,7 +7,6 @@
         <record id="view_mgmtsystem_kpi_tree" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.tree</field>
             <field name="model">mgmtsystem.kpi</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Key Performance Indicators">
                     <field name="name"/>
@@ -21,7 +20,6 @@
         <record id="view_mgmtsystem_kpi_filter" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.filter</field>
             <field name="model">mgmtsystem.kpi</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="KPI">
                     <group>
@@ -42,7 +40,6 @@
         <record id="view_mgmtsystem_kpi_form" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.form</field>
             <field name="model">mgmtsystem.kpi</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Key Performance Indicator">
                     <group col="6" colspan="6">
@@ -100,13 +97,12 @@
         <record id="view_mgmtsystem_kpi_history_tree" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.history.tree</field>
             <field name="model">mgmtsystem.kpi.history</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="KPI History">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="value"/>
-                    <field name="color"/>
+                    <field name="color" widget="color"/>
                 </tree>
             </field>
         </record>
@@ -124,7 +120,6 @@
         <record id="view_mgmtsystem_kpi_category_tree" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.category.tree</field>
             <field name="model">mgmtsystem.kpi.category</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Categories">
                     <field name="name"/>
@@ -135,7 +130,6 @@
         <record id="view_mgmtsystem_kpi_category_form" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.category.form</field>
             <field name="model">mgmtsystem.kpi.category</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Category">
                     <field name="name"/>
@@ -165,7 +159,6 @@
         <record id="view_mgmtsystem_kpi_threshold_tree" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.threshold.tree</field>
             <field name="model">mgmtsystem.kpi.threshold</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Thresholds">
                     <field name="name"/>
@@ -177,7 +170,6 @@
         <record id="view_mgmtsystem_kpi_threshold_form" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.threshold.form</field>
             <field name="model">mgmtsystem.kpi.threshold</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Threshold">
                     <field name="name"/>
@@ -215,13 +207,12 @@
         <record id="view_mgmtsystem_kpi_threshold_range_tree" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.threshold.range.tree</field>
             <field name="model">mgmtsystem.kpi.threshold.range</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Ranges">
                     <field name="name"/>
                     <field name="min_value"/>
                     <field name="max_value"/>
-                    <field name="color"/>
+                    <field name="color" widget="color"/>
                     <field name="invalid_message"/>
                 </tree>
             </field>
@@ -230,7 +221,6 @@
         <record id="view_mgmtsystem_kpi_threshold_range_form" model="ir.ui.view">
             <field name="name">mgmtsystem.kpi.threshold.range.form</field>
             <field name="model">mgmtsystem.kpi.threshold.range</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Range">
                     <field name="name"/>

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name" : "Key Performance Indicator",
-    "version" : "1.0",
+    "version" : "1.1",
     "author" : "Savoir-faire Linux",
     "website" : "http://www.savoirfairelinux.com",
     "license" : "AGPL-3",
@@ -42,10 +42,15 @@ A threshold is a list of ranges and a range is:
  * a maximum value (fixed, sql query or python code)
  * color (RGB code like #00FF00 for green, #FFA500 for orange, 
    #FF0000 for red)
+
+This module depends on:
+ * base_external_dbsource (available in lp:openobject-extension)
+ * web_color (available in lp:web-addons)
     """,
     "depends" : [
         'mgmtsystem',
         'base_external_dbsource',
+        'web_color',
     ],
     "data" : [
         'mgmtsystem_kpi_view.xml',
