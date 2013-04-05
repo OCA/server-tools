@@ -34,21 +34,23 @@ class email_exact(base):
         mailaddresses = []
         fields = conf.mail_field.split(',')
         for field in fields:
-            mailaddresses+=to_email(mail_message[field])
-        return mailaddresses
+            if field in mail_message:
+                mailaddresses += to_email(mail_message[field])
+        return [ addr.lower() for addr in mailaddresses ]
 
     def _get_mailaddress_search_domain(
             self, conf, mail_message, operator='=', values=None):
         mailaddresses = values or self._get_mailaddresses(
                 conf, mail_message)
         if not mailaddresses:
-            return [(0,'=',1)]
-        return ((['|'] * (len(mailaddresses) - 1)) + [
+            return [(0, '=', 1)]
+        search_domain = ((['|'] * (len(mailaddresses) - 1)) + [
                 (conf.model_field, operator, addr) for addr in mailaddresses] +
                 safe_eval(conf.domain or '[]'))
+        return search_domain
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        return conf.pool.get(conf.model_id.model).search(
-                cr, uid, 
-                self._get_mailaddress_search_domain(conf, mail_message),
-                order=conf.model_order)
+        conf_model = conf.pool.get(conf.model_id.model)
+        search_domain = self._get_mailaddress_search_domain(conf, mail_message)
+        return conf_model.search(
+            cr, uid, search_domain, order=conf.model_order)
