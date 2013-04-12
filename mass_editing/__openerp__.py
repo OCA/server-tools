@@ -36,6 +36,7 @@
     'depends': ['base'],
     'init_xml': [],
     'update_xml': [
+        "security/ir.model.access.csv",
         'mass_editing_view.xml',
     ],
     'installable': True,
