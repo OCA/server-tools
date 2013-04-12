@@ -32,6 +32,7 @@
     """,
     'depends': ['base'],
     'data': [
+        "security/ir.model.access.csv",
         'mass_editing_view.xml',
     ],
     'installable': True,
