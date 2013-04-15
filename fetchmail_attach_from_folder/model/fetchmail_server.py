@@ -20,6 +20,7 @@
 #
 ##############################################################################
 
+import base64
 import simplejson
 from lxml import etree
 from openerp.osv.orm import Model, except_orm, browse_null
@@ -162,6 +163,24 @@ class fetchmail_server(Model):
                         cr, uid, object_id, context
                     ).partner_id.id
 
+            attachments=[]
+            if this.attach and mail_message.get('attachments'):
+                for attachment in mail_message['attachments']:
+                    fname, fcontent = attachment
+                    if isinstance(fcontent, unicode):
+                        fcontent = fcontent.encode('utf-8')
+                    data_attach = {
+                            'name': fname,
+                            'datas': base64.b64encode(str(fcontent)),
+                            'datas_fname': fname,
+                            'description': _('Mail attachment'),
+                            'res_model': folder.model_id.model,
+                            'res_id': object_id,
+                            }
+                    attachments.append(
+                        self.pool.get('ir.attachment').create(
+                            cr, uid, data_attach, context=context))
+
             self.pool.get('mail.message').create(
                 cr, uid,
                 {
@@ -180,11 +199,10 @@ class fetchmail_server(Model):
                     'subtype': mail_message.get('subtype'),
                     'headers': mail_message.get('headers'),
                     'state': folder.msg_state,
+                    'attachment_ids': [(6, 0, attachments)],
                 },
                 context)
-            if this.attach:
-                # TODO: create attachments
-                pass
+
             if folder.delete_matching:
                 connection.store(msgid, '+FLAGS', '\\DELETED')
 
