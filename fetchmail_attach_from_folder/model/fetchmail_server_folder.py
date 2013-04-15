@@ -87,11 +87,20 @@ class fetchmail_server_folder(Model):
         'not checked, multiple matches count as no match at all'),
         'domain': fields.char(
         'Domain', size=128, help='Fill in a search '
-        'filter to narrow down objects to match')
+        'filter to narrow down objects to match'),
+        'msg_state': fields.selection(
+        [
+            ('sent', 'Sent'),
+            ('received', 'Received'),
+        ],
+        'Message state',
+        help='The state messages fetched from this folder should be '
+        'assigned in OpenERP'),
     }
 
     _defaults = {
         'flag_nonmatching': True,
+        'msg_state': 'received',
     }
 
     def get_algorithm(self, cr, uid, ids, context=None):
