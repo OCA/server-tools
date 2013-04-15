@@ -74,60 +74,80 @@ class fetchmail_server(Model):
 
             connection = this.connect()
             for folder in this.folder_ids:
-                logger.info('start checking for emails in %s server %s',
-                            folder.path, this.name)
-                matcher = folder.get_algorithm()
+                this.handle_folder(connection, folder)
 
-                if connection.select(folder.path)[0] != 'OK':
-                    logger.error(
-                        'Could not open mailbox %s on %s' % (
-                        folder.path, this.server))
-                    connection.select()
-                    continue
-                result, msgids = connection.search(None, 'UNDELETED')
-                if result != 'OK':
-                    logger.error(
-                        'Could not search mailbox %s on %s' % (
-                        folder.path, this.server))
-                    continue
-                for msgid in msgids[0].split():
-                    result, msgdata = connection.fetch(msgid, '(RFC822)')
-                    if result != 'OK':
-                        logger.error(
-                            'Could not fetch %s in %s on %s' % (
-                            msgid, folder.path, this.server))
-                        continue
-
-                    mail_message = self.pool.get('mail.message').parse_message(
-                        msgdata[0][1], this.original)
-
-                    if self.pool.get('mail.message').search(cr, uid, [
-                        ('message_id', '=', mail_message['message-id'])]):
-                        continue
-
-                    found_ids = matcher.search_matches(
-                        cr, uid, folder,
-                        mail_message, msgdata[0][1])
-
-                    if found_ids and (len(found_ids) == 1 or
-                                      folder.match_first):
-                        try:
-                            matcher.handle_match(
-                                cr, uid, connection,
-                                found_ids[0], folder, mail_message,
-                                msgdata[0][1], msgid, context)
-                            cr.commit()
-                        except Exception, e:
-                            cr.rollback()
-                            logger.exception(
-                                "Failed to fetch mail %s from %s",
-                                msgid, this.name)
-                    elif folder.flag_nonmatching:
-                        connection.store(msgid, '+FLAGS', '\\FLAGGED')
             connection.close()
 
         return super(fetchmail_server, self).fetch_mail(
             cr, uid, check_original, context)
+
+    def handle_folder(self, cr, uid, ids, connection, folder, context=None):
+        for this in self.browse(cr, uid, ids, context=context):
+            logger.info('start checking for emails in %s server %s',
+                        folder.path, this.name)
+
+            match_algorithm = folder.get_algorithm()
+
+            if connection.select(folder.path)[0] != 'OK':
+                logger.error(
+                    'Could not open mailbox %s on %s' % (
+                    folder.path, this.server))
+                connection.select()
+                continue
+            result, msgids = this.get_msgids(connection)
+            if result != 'OK':
+                logger.error(
+                    'Could not search mailbox %s on %s' % (
+                    folder.path, this.server))
+                continue
+
+            for msgid in msgids[0].split():
+                this.apply_matching(connection, folder, msgid, match_algorithm)
+
+            logger.info('finished checking for emails in %s server %s',
+                        folder.path, this.name)
+
+    def get_msgids(self, cr, uid, ids, connection, context=None):
+        return connection.search(None, 'UNDELETED')
+
+    def apply_matching(self, cr, uid, ids, connection, folder, msgid,
+                       match_algorithm, context=None):
+
+        for this in self.browse(cr, uid, ids, context=context):
+            result, msgdata = connection.fetch(msgid, '(RFC822)')
+
+            if result != 'OK':
+                logger.error(
+                    'Could not fetch %s in %s on %s' % (
+                    msgid, folder.path, this.server))
+                continue
+
+            mail_message = self.pool.get('mail.message').parse_message(
+                msgdata[0][1], this.original)
+
+            if self.pool.get('mail.message').search(cr, uid, [
+                ('message_id', '=', mail_message['message-id'])]):
+                continue
+
+            found_ids = match_algorithm.search_matches(
+                cr, uid, folder,
+                mail_message, msgdata[0][1])
+
+            if found_ids and (len(found_ids) == 1 or
+                              folder.match_first):
+                try:
+                    match_algorithm.handle_match(
+                        cr, uid, connection,
+                        found_ids[0], folder, mail_message,
+                        msgdata[0][1], msgid, context)
+                    cr.commit()
+                except Exception, e:
+                    cr.rollback()
+                    logger.exception(
+                        "Failed to fetch mail %s from %s",
+                        msgid, this.name)
+            elif folder.flag_nonmatching:
+                connection.store(msgid, '+FLAGS', '\\FLAGGED')
 
     def attach_mail(
             self, cr, uid, ids, connection, object_id, folder,
