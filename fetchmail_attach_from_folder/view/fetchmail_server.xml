@@ -26,17 +26,6 @@
                                     <field name="model_field" />
                                     <field name="match_algorithm" />
                                     <field name="mail_field" />
-                                    <field name="delete_matching" />
-                                    <field name="flag_nonmatching" />
-                                    <field name="match_first" />
-                                    <field
-                                        name="model_order" 
-                                        attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
-                                    <field name="domain" />
-                                    <button type="object"
-                                        name="button_attach_mail_manually"
-                                        string="Attach mail manually"
-                                        icon="gtk-redo" />
                                 </tree>
                                 <form col="6">
                                     <field name="path" />
@@ -48,8 +37,14 @@
                                     <field name="delete_matching" />
                                     <field name="flag_nonmatching" />
                                     <field name="match_first" />
+                                    <field name="msg_state" />
                                     <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
                                     <field name="domain" />
+                                    <newline />
+                                    <label />
+                                    <label />
+                                    <label />
+                                    <label />
                                     <label />
                                     <button type="object" name="button_attach_mail_manually" string="Attach mail manually" icon="gtk-redo" />
                                 </form>

@@ -159,6 +159,7 @@ class fetchmail_server(Model):
                     'message_id': mail_message.get('message-id'),
                     'subtype': mail_message.get('subtype'),
                     'headers': mail_message.get('headers'),
+                    'state': folder.msg_state,
                 },
                 context)
             if this.attach:
