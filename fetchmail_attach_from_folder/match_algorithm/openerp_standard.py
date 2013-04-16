@@ -48,4 +48,4 @@ class openerp_standard(base):
         if folder.delete_matching:
             connection.store(msgid, '+FLAGS', '\\DELETED')
 
-        return result
+        return [result]
