@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record
+            id="view_mail_action_needed_search"
+            model="ir.ui.view">
+            <field name="name">view_mail_action_needed_search</field>
+            <field name="model">mail.message</field>
+            <field
+                name="inherit_id"
+                ref="mail.view_email_message_search" />
+            <field
+                name="arch"
+                type="xml">
+                <data>
+                    <field
+                        name="email_from"
+                        position="before">
+                        <separator orientation="vertical"/>
+                        <filter
+                            icon="terp-check"
+                            name="action"
+                            string="Action needed"
+                            domain="[('action_needed','=',True)]" />
+                    </field>
+                </data>
+            </field>
+        </record>
+        <record
+            id="view_mail_action_needed_tree"
+            model="ir.ui.view">
+            <field name="name">view_mail_action_needed_tree</field>
+            <field name="model">mail.message</field>
+            <field
+                name="inherit_id"
+                ref="mail.view_email_message_tree" />
+            <field
+                name="arch"
+                type="xml">
+                <data>
+                    <field
+                        name="state"
+                        position="after">
+                        <field
+                            name="action_needed"
+                            invisible="True" />
+                        <button
+                            name="set_action_needed_off"
+                            attrs="{'invisible': [('action_needed','=',False)]}"
+                            string="confirm action done"
+                            icon="gtk-no"
+                            type="object" />
+                        <button
+                            name="set_action_needed_on"
+                            attrs="{'invisible': [('action_needed','=',True)]}"
+                            string="set action needed"
+                            icon="gtk-yes"
+                            type="object" />
+                    </field>
+                </data>
+            </field>
+        </record>
+        <record
+            id="view_mail_action_needed_form"
+            model="ir.ui.view">
+            <field name="name">view_mail_action_needed_form</field>
+            <field name="model">mail.message</field>
+            <field
+                name="inherit_id"
+                ref="mail.view_email_message_form" />
+            <field
+                name="arch"
+                type="xml">
+                <data>
+                    <button
+                        name="%(mail.action_email_compose_message_wizard)d"
+                        position="after">
+                        <field
+                            name="action_needed"
+                            invisible="True" />
+                        <button
+                            name="set_action_needed_off"
+                            attrs="{'invisible': [('action_needed','=',False)]}"
+                            string="confirm action done"
+                            icon="gtk-no"
+                            type="object" />
+                        <button
+                            name="set_action_needed_on"
+                            attrs="{'invisible': [('action_needed','=',True)]}"
+                            string="set action needed"
+                            icon="gtk-yes"
+                            type="object" />
+                    </button>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
