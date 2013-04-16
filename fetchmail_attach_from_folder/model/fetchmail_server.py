@@ -83,6 +83,10 @@ class fetchmail_server(Model):
             cr, uid, check_original, context)
 
     def handle_folder(self, cr, uid, ids, connection, folder, context=None):
+        '''Return ids of objects matched'''
+
+        matched_object_ids = []
+
         for this in self.browse(cr, uid, ids, context=context):
             logger.info('start checking for emails in %s server %s',
                         folder.path, this.name)
@@ -103,16 +107,23 @@ class fetchmail_server(Model):
                 continue
 
             for msgid in msgids[0].split():
-                this.apply_matching(connection, folder, msgid, match_algorithm)
+                matched_object_ids += this.apply_matching(
+                        connection, folder, msgid, match_algorithm)
 
             logger.info('finished checking for emails in %s server %s',
                         folder.path, this.name)
 
+        return matched_object_ids
+
     def get_msgids(self, cr, uid, ids, connection, context=None):
+        '''Return imap ids of messages to process'''
         return connection.search(None, 'UNDELETED')
 
     def apply_matching(self, cr, uid, ids, connection, folder, msgid,
                        match_algorithm, context=None):
+        '''Return ids of objects matched'''
+
+        matched_object_ids = []
 
         for this in self.browse(cr, uid, ids, context=context):
             result, msgdata = connection.fetch(msgid, '(RFC822)')
@@ -142,6 +153,7 @@ class fetchmail_server(Model):
                         found_ids[0], folder, mail_message,
                         msgdata[0][1], msgid, context)
                     cr.commit()
+                    matched_object_ids += found_ids[:1]
                 except Exception, e:
                     cr.rollback()
                     logger.exception(
@@ -150,9 +162,15 @@ class fetchmail_server(Model):
             elif folder.flag_nonmatching:
                 connection.store(msgid, '+FLAGS', '\\FLAGGED')
 
+        return matched_object_ids
+
     def attach_mail(
             self, cr, uid, ids, connection, object_id, folder,
             mail_message, msgid, context=None):
+        '''Return ids of messages created'''
+
+        mail_message_ids = []
+
         for this in self.browse(cr, uid, ids, context):
             partner_id = None
             if folder.model_id.model == 'res.partner':
@@ -181,30 +199,32 @@ class fetchmail_server(Model):
                         self.pool.get('ir.attachment').create(
                             cr, uid, data_attach, context=context))
 
-            self.pool.get('mail.message').create(
-                cr, uid,
-                {
-                    'partner_id': partner_id,
-                    'model': folder.model_id.model,
-                    'res_id': object_id,
-                    'body_text': mail_message.get('body'),
-                    'body_html': mail_message.get('body_html'),
-                    'subject': mail_message.get('subject'),
-                    'email_to': mail_message.get('to'),
-                    'email_from': mail_message.get('from'),
-                    'email_cc': mail_message.get('cc'),
-                    'reply_to': mail_message.get('reply'),
-                    'date': mail_message.get('date'),
-                    'message_id': mail_message.get('message-id'),
-                    'subtype': mail_message.get('subtype'),
-                    'headers': mail_message.get('headers'),
-                    'state': folder.msg_state,
-                    'attachment_ids': [(6, 0, attachments)],
-                },
-                context)
+            mail_message_ids.append(
+                    self.pool.get('mail.message').create(
+                        cr, uid,
+                        {
+                            'partner_id': partner_id,
+                            'model': folder.model_id.model,
+                            'res_id': object_id,
+                            'body_text': mail_message.get('body'),
+                            'body_html': mail_message.get('body_html'),
+                            'subject': mail_message.get('subject'),
+                            'email_to': mail_message.get('to'),
+                            'email_from': mail_message.get('from'),
+                            'email_cc': mail_message.get('cc'),
+                            'reply_to': mail_message.get('reply'),
+                            'date': mail_message.get('date'),
+                            'message_id': mail_message.get('message-id'),
+                            'subtype': mail_message.get('subtype'),
+                            'headers': mail_message.get('headers'),
+                            'state': folder.msg_state,
+                            'attachment_ids': [(6, 0, attachments)],
+                        },
+                        context))
 
             if folder.delete_matching:
                 connection.store(msgid, '+FLAGS', '\\DELETED')
+        return mail_message_ids
 
     def button_confirm_login(self, cr, uid, ids, context=None):
         retval = super(fetchmail_server, self).button_confirm_login(cr, uid,
