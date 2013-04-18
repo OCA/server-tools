@@ -148,14 +148,15 @@ class fetchmail_server(Model):
             if found_ids and (len(found_ids) == 1 or
                               folder.match_first):
                 try:
+                    cr.execute('savepoint apply_matching')
                     match_algorithm.handle_match(
                         cr, uid, connection,
                         found_ids[0], folder, mail_message,
                         msgdata[0][1], msgid, context)
-                    cr.commit()
+                    cr.execute('release savepoint apply_matching')
                     matched_object_ids += found_ids[:1]
                 except Exception, e:
-                    cr.rollback()
+                    cr.execute('rollback to savepoint apply_matching')
                     logger.exception(
                         "Failed to fetch mail %s from %s",
                         msgid, this.name)
