@@ -46,7 +46,7 @@ class attribute_option(Model):
         else:
             return True
 
-class attribute_option_wizard(osv.osv_memory):
+class attribute_option_wizard(orm.TransientModel):
     _name = "attribute.option.wizard"
     _rec_name = 'attribute_id'
 
