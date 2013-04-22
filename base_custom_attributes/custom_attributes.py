@@ -24,8 +24,10 @@ from openerp.osv.orm import Model
 from openerp.osv import osv
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
+from openerp.osv.orm import setup_modifiers
+from tools.translate import _
 from lxml import etree
-from openerp.tools.translate import _
+
 from unidecode import unidecode # Debian package python-unidecode
 
 class attribute_option(Model):
@@ -47,7 +49,8 @@ class attribute_option(Model):
         else:
             return True
 
-class attribute_option_wizard(osv.osv_memory):
+
+class attribute_option_wizard(orm.TransientModel):
     _name = "attribute.option.wizard"
     _rec_name = 'attribute_id'
 
@@ -124,6 +127,7 @@ class custom_attribute(Model):
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
+        setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
 
     def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
