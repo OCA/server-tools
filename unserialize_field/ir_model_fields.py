@@ -33,6 +33,7 @@ class ir_model_fields(Model):
         for this in self.browse(cr, uid, ids, context=context):
             pool_obj = self.pool.get(this.model_id.model)
             self.create_database_column(cr, uid, pool_obj, this.name)
+            this.write({'state': 'manual'})
             while True:
                 ids = pool_obj.search(
                         cr, uid, 

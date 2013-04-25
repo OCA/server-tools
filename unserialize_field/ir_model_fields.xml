@@ -10,7 +10,7 @@
                     <field name="serialization_field_id" position="after">
                         <button type="object" name="action_unserialize_field"
                             string="Unserialize field" colspan="4"
-                            attrs="{'invisible': [('serialization_field_id','=',False)]}"
+                            attrs="{'invisible': ['|', ('serialization_field_id','=',False), ('state', '!=', 'manual')]}"
                             />
                     </field>
                 </data>
