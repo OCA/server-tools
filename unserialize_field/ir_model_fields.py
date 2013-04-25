@@ -46,7 +46,7 @@ class ir_model_fields(Model):
                                           context=context):
                     self.unserialize_field(cr, uid, pool_obj, data,
                                            this.serialization_field_id.name,
-                                           this.name)
+                                           this.name, context=context)
                 offset += 1
         return True
 
@@ -91,7 +91,8 @@ class ir_model_fields(Model):
         pool_obj._auto_init(cr, {})
 
     def unserialize_field(self, cr, uid, pool_obj, read_record,
-                          serialization_field_name, field_name):
+                          serialization_field_name, field_name,
+                          context=None):
         if not field_name in read_record[serialization_field_name]:
             return False
         pool_obj.write(
@@ -99,4 +100,5 @@ class ir_model_fields(Model):
                 {
                     field_name:
                         read_record[serialization_field_name][field_name],
-                })
+                },
+                context=context)
