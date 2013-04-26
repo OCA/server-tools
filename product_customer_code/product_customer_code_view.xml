@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <openerp>
     <data>
     
         <record model="ir.ui.view" id="view_product_customer_code_form">
             <field name="name">view.product.customer.code.form</field>
             <field name="model">product.customer.code</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Product Customer Code">
+                <form string="Product Customer Code" version="7.0">
                     <field name="product_code"/>
                     <field name="partner_id"/>
                      <field name="product_id"/>
@@ -18,7 +17,6 @@
         <record model="ir.ui.view" id="view_product_customer_code_tree">
             <field name="name">view.product.customer.code.tree</field>
             <field name="model">product.customer.code</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Product Customer Code">
                     <field name="product_code"/>
@@ -32,7 +30,6 @@
           <record id="action_product_customer_code_tree" model="ir.actions.act_window">
             <field name="name">Product Customer Code</field>
             <field name="res_model">product.customer.code</field>
-            <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_id" ref="view_product_customer_code_tree"/>
         </record>
@@ -40,7 +37,6 @@
         <record id="view_product_customer_code_search" model="ir.ui.view">
             <field name="name">view.product.customer.code.certificate.search</field>
             <field name="model">product.customer.code</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Product Customer Code">
                     <field name="product_code"/>
@@ -51,19 +47,14 @@
                     <group expand="0" string="Group By...">
                         <filter string="Company" icon="terp-partner" domain="[]" context="{'group_by':'company_id'}"/>
                         <filter string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_id'}"/>
-                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}" />
+                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
                         <separator orientation="vertical"/>
                     </group>
                 </search>
             </field>
         </record>
         
-         <menuitem action="action_product_customer_code_tree" 
-                id="menu_product_customer_code" sequence="50" 
-                parent="product.prod_config_main"
-                groups="group_product_customer_code_manager"
-            />
+         <menuitem action="action_product_customer_code_tree" id="menu_product_customer_code" sequence="50" parent="product.prod_config_main" groups="group_product_customer_code_manager"/>
 
     </data>
 </openerp>
-
