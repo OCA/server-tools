@@ -27,12 +27,13 @@ from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
 
-
 class product_product(osv.Model):
     _inherit = "product.product"
 
     _columns = {
-        'product_customer_code_ids': fields.one2many('product.customer.code', 'product_id', 'Customer Codes'),
+        'product_customer_code_ids': fields.one2many('product.customer.code',
+                                                     'product_id',
+                                                     'Customer Codes'),
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -43,7 +44,8 @@ class product_product(osv.Model):
             cr, uid, id, default=default, context=context)
         return res
 
-    def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
+    def name_search(self, cr, user, name='', args=None, operator='ilike',
+                    context=None, limit=80):
         res = super(product_product, self).name_search(
             cr, user, name, args, operator, context, limit)
         if not context:
@@ -53,8 +55,14 @@ class product_product(osv.Model):
             ids = []
             partner_id = context.get('partner_id', False)
             if partner_id:
-                id_prod_code = product_customer_code_obj.search(cr, user, [('product_code', '=', name), (
-                    'partner_id', '=', partner_id)], limit=limit, context=context)
+                id_prod_code = \
+                        product_customer_code_obj.search(cr, user,
+                                                         [('product_code',
+                                                                '=', name),
+                                                         ('partner_id', '=',
+                                                                 partner_id)],
+                                                         limit=limit,
+                                                         context=context)
                 # TODO: Search for product customer name
                 id_prod = id_prod_code and product_customer_code_obj.browse(
                     cr, user, id_prod_code, context=context) or []
