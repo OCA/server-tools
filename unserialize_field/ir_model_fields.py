@@ -33,7 +33,6 @@ class ir_model_fields(Model):
         for this in self.browse(cr, uid, ids, context=context):
             pool_obj = self.pool.get(this.model_id.model)
             self.create_database_column(cr, uid, pool_obj, this.name)
-            this.write({'state': 'manual'})
             while True:
                 ids = pool_obj.search(
                         cr, uid, 
@@ -54,7 +53,7 @@ class ir_model_fields(Model):
         old = pool_obj._columns[field_name]
         field_declaration_args = []
         field_declaration_kwargs = dict(
-                manual=False,
+                manual=old.manual,
                 string=old.string,
                 required=old.required,
                 readonly=old.readonly,
@@ -88,7 +87,7 @@ class ir_model_fields(Model):
                 **field_declaration_kwargs)
 
         pool_obj._columns[field_name] = field_declaration
-        pool_obj._auto_init(cr, {})
+        pool_obj._auto_init(cr, {'update_custom_fields': True})
 
     def unserialize_field(self, cr, uid, pool_obj, read_record,
                           serialization_field_name, field_name,
