@@ -32,8 +32,9 @@ class ir_model_fields(Model):
 
         for this in self.browse(cr, uid, ids, context=context):
             pool_obj = self.pool.get(this.model_id.model)
-            self.create_database_column(cr, uid, pool_obj, this.name)
-            while True:
+            needs_write = self.create_database_column(
+                cr, uid, pool_obj, this.name)
+            while needs_write:
                 ids = pool_obj.search(
                         cr, uid, 
                         [(this.serialization_field_id.name, '!=', '{}')],
@@ -50,6 +51,7 @@ class ir_model_fields(Model):
         return True
 
     def create_database_column(self, cr, uid, pool_obj, field_name):
+        needs_write = True
         old = pool_obj._columns[field_name]
         field_declaration_args = []
         field_declaration_kwargs = dict(
@@ -75,12 +77,14 @@ class ir_model_fields(Model):
         elif old._type == 'one2many':
             field_declaration_args = [old._obj, old._fields_id]
             field_declaration_kwargs['limit'] = old._limit
+            needs_write = False
         elif old._type == 'many2many':
             field_declaration_args = [old._obj]
             field_declaration_kwargs['rel'] = old._rel
             field_declaration_kwargs['id1'] = old._id1
             field_declaration_kwargs['id2'] = old._id2
             field_declaration_kwargs['limit'] = old._limit
+            needs_write = False
 
         field_declaration = getattr(fields, old._type)(
                 *field_declaration_args,
@@ -88,6 +92,7 @@ class ir_model_fields(Model):
 
         pool_obj._columns[field_name] = field_declaration
         pool_obj._auto_init(cr, {'update_custom_fields': True})
+        return needs_write
 
     def unserialize_field(self, cr, uid, pool_obj, read_record,
                           serialization_field_name, field_name,
@@ -101,3 +106,4 @@ class ir_model_fields(Model):
                         read_record[serialization_field_name][field_name],
                 },
                 context=context)
+        return True
