@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <menuitem
+            id="mail_user_menu"
+            name="Messages"
+            parent="base.menu_address_book"
+            action="mail.action_view_mail_message"
+            sequence="80" />
+    </data>
+</openerp>
