@@ -40,9 +40,9 @@ class product_customer_code(osv.Model):
                                             will be used when searching into
                                             a request for quotation."""),
         'product_name': fields.char('Customer Product Name', size=128,
-                                    help="This customer's product name will be
-                                         used when searching into a request
-                                         for quotation."),
+                                    help="""This customer's product name will
+                                            be used when searching into a
+                                            request for quotation."""),
         'product_id': fields.many2one('product.product', 'Product',
                                       required=True),
         'partner_id': fields.many2one('res.partner', 'Customer',
