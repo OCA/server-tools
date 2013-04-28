@@ -19,22 +19,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import orm
+from openerp.tools.translate import _
 
 
-class ir_model_fields(Model):
+class ir_model_fields(orm.Model):
     _inherit = 'ir.model.fields'
 
     def action_unserialize_field(self, cr, uid, ids, context=None):
         step = 1000
         offset = 0
 
+        # Prevent _auto_init to commit the transaction
+        # before the data is migrated safely
+        commit_org = cr.commit
+        cr.commit = lambda *args: None
+
         for this in self.browse(cr, uid, ids, context=context):
             pool_obj = self.pool.get(this.model_id.model)
-            needs_write = self.create_database_column(
-                cr, uid, pool_obj, this.name)
-            while needs_write:
+            self.create_database_column(cr, uid, pool_obj, this.name,
+                                        context=context)
+            while True:
                 ids = pool_obj.search(
                         cr, uid, 
                         [(this.serialization_field_id.name, '!=', '{}')],
@@ -48,62 +53,66 @@ class ir_model_fields(Model):
                                            this.serialization_field_id.name,
                                            this.name, context=context)
                 offset += 1
+        
+        cr.commit = commit_org    
         return True
 
-    def create_database_column(self, cr, uid, pool_obj, field_name):
-        needs_write = True
+    def create_database_column(self, cr, uid, pool_obj, field_name,
+                               context=None):
+        field_obj = self.pool.get('ir.model.fields')
+        field_ids = field_obj.search(
+            cr, uid, [
+                ('name', '=', field_name),
+                ('model', '=', pool_obj._name),
+                ], context=context)
+
         old = pool_obj._columns[field_name]
-        field_declaration_args = []
-        field_declaration_kwargs = dict(
-                manual=old.manual,
-                string=old.string,
-                required=old.required,
-                readonly=old.readonly,
-                domain=old._domain,
-                context=old._context,
-                states=old.states,
-                priority=old.priority,
-                change_default=old.change_default,
-                size=old.size,
-                ondelete=old.ondelete,
-                translate=old.translate,
-                select=old.select,
-                )
+        if not old.manual:
+            orm.except_orm(
+                _('Error'),
+                _('This operation can only be performed on manual fields'))
+        if old._type == 'many2many':
+            # Cross table name length of manually created many2many
+            # fields can easily become too large. Although it would
+            # probably work if the table name length was within bounds,
+            # this scenario has not been tested because of this limitation.
+            raise orm.except_orm(
+                _("Error"),
+                _("Many2many fields are not supported. See "
+                  "https://bugs.launchpad.net/openobject-server/+bug/1174078 "
+                  "for more information"))
+        if old._type == 'one2many':
+            # How to get a safe field name for the relation field
+            # on the target model?
+            raise orm.except_orm(
+                _("Error"),
+                _("One2many fields are not handled yet"))
+        
+        # ORM prohibits to change the 'storing system' of the field
+        cr.execute("""
+            UPDATE ir_model_fields
+            SET serialization_field_id = NULL
+            WHERE id = %s""" % (field_ids[0],))
 
-        if old._type == 'many2one':
-            field_declaration_args = [old._obj]
-        elif old._type == 'selection':
-            field_declaration_args = [old.selection]
-        elif old._type == 'one2many':
-            field_declaration_args = [old._obj, old._fields_id]
-            field_declaration_kwargs['limit'] = old._limit
-            needs_write = False
-        elif old._type == 'many2many':
-            field_declaration_args = [old._obj]
-            field_declaration_kwargs['rel'] = old._rel
-            field_declaration_kwargs['id1'] = old._id1
-            field_declaration_kwargs['id2'] = old._id2
-            field_declaration_kwargs['limit'] = old._limit
-            needs_write = False
-
-        field_declaration = getattr(fields, old._type)(
-                *field_declaration_args,
-                **field_declaration_kwargs)
-
-        pool_obj._columns[field_name] = field_declaration
+        del pool_obj._columns[field_name]
+        pool_obj.__init__(self.pool, cr)
         pool_obj._auto_init(cr, {'update_custom_fields': True})
-        return needs_write
 
     def unserialize_field(self, cr, uid, pool_obj, read_record,
                           serialization_field_name, field_name,
                           context=None):
-        if not field_name in read_record[serialization_field_name]:
+        serialized_values = read_record[serialization_field_name]
+        if not field_name in serialized_values:
             return False
+
+        value = serialized_values.pop(field_name)       
+        if pool_obj._columns[field_name]._type in ('many2many', 'one2many'):
+            value = [(6, 0, value)]
+
         pool_obj.write(
                 cr, uid, read_record['id'], 
                 {
-                    field_name:
-                        read_record[serialization_field_name][field_name],
+                    field_name: value,
+                    serialization_field_name: serialized_values,
                 },
                 context=context)
-        return True
