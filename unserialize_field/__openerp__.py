@@ -23,13 +23,23 @@
 {
     'name': 'Make database fields from fields that live in serialized fields',
     'version': '1.0',
-    'description': """To be able to search for fields with standard methods,
-they have to be database fields. This addon makes it possible to unserialize
-them afterwards.""",
+    'description': """
+Sparse, or serialized fields do not live as a column in the database table.
+Instead, their values are stored in JSON arrays in a separate field. As a
+result, these fields cannot be searched or sorted by.
+
+If such a sparse field is created as 'manual', this module can unserialize
+the field. Its field definition and values will then be migrated to a
+proper database column. A real life use case where you encounter many
+of such fields is the Magento-OpenERP connector.
+
+For technical reasons, many2many and one2many fields are not supported.
+""",
     'author': 'Therp BV',
     'website': 'http://www.therp.nl',
+    'version': '1.0',
     "category": "Tools",
-    "depends": [],
+    "depends": ['base'],
     "data": ['ir_model_fields.xml'],
     'installable': True,
     'active': False,
