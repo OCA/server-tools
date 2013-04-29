@@ -61,8 +61,6 @@ class ir_model_fields(orm.Model):
 
     def create_database_column(self, cr, uid, pool_obj, field_name,
                                context=None):
-        field_obj = self.pool.get('ir.model.fields')
-
         old = pool_obj._columns[field_name]
         if not old.manual:
             raise orm.except_orm(
