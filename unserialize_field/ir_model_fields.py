@@ -62,15 +62,10 @@ class ir_model_fields(orm.Model):
     def create_database_column(self, cr, uid, pool_obj, field_name,
                                context=None):
         field_obj = self.pool.get('ir.model.fields')
-        field_ids = field_obj.search(
-            cr, uid, [
-                ('name', '=', field_name),
-                ('model', '=', pool_obj._name),
-                ], context=context)
 
         old = pool_obj._columns[field_name]
         if not old.manual:
-            orm.except_orm(
+            raise orm.except_orm(
                 _('Error'),
                 _('This operation can only be performed on manual fields'))
         if old._type == 'many2many':
@@ -94,7 +89,8 @@ class ir_model_fields(orm.Model):
         cr.execute("""
             UPDATE ir_model_fields
             SET serialization_field_id = NULL
-            WHERE id = %s""" % (field_ids[0],))
+            WHERE name = %s and model = %s
+            """, (field_name, pool_obj._name))
 
         del pool_obj._columns[field_name]
         pool_obj.__init__(self.pool, cr)
@@ -111,10 +107,11 @@ class ir_model_fields(orm.Model):
         if pool_obj._columns[field_name]._type in ('many2many', 'one2many'):
             value = [(6, 0, value)]
 
-        pool_obj.write(
+        return pool_obj.write(
                 cr, uid, read_record['id'], 
                 {
                     field_name: value,
                     serialization_field_name: serialized_values,
                 },
                 context=context)
+    
