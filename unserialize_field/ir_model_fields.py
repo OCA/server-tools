@@ -35,26 +35,28 @@ class ir_model_fields(orm.Model):
         commit_org = cr.commit
         cr.commit = lambda *args: None
 
-        for this in self.browse(cr, uid, ids, context=context):
-            pool_obj = self.pool.get(this.model_id.model)
-            self.create_database_column(cr, uid, pool_obj, this.name,
-                                        context=context)
-            while True:
-                ids = pool_obj.search(
+        try:
+            for this in self.browse(cr, uid, ids, context=context):
+                pool_obj = self.pool.get(this.model_id.model)
+                self.create_database_column(cr, uid, pool_obj, this.name,
+                                            context=context)
+                while True:
+                    ids = pool_obj.search(
                         cr, uid, 
                         [(this.serialization_field_id.name, '!=', '{}')],
                         offset=offset*step, limit=step, context=context)
-                if not ids:
-                    break
-                for data in pool_obj.read(cr, uid, ids,
-                                          [this.serialization_field_id.name],
-                                          context=context):
-                    self.unserialize_field(cr, uid, pool_obj, data,
-                                           this.serialization_field_id.name,
-                                           this.name, context=context)
-                offset += 1
-        
-        cr.commit = commit_org    
+                    if not ids:
+                        break
+                    for data in pool_obj.read(cr, uid, ids,
+                                              [this.serialization_field_id.name],
+                                              context=context):
+                        self.unserialize_field(cr, uid, pool_obj, data,
+                                               this.serialization_field_id.name,
+                                               this.name, context=context)
+                    offset += 1       
+        finally:
+            cr.commit = commit_org    
+
         return True
 
     def create_database_column(self, cr, uid, pool_obj, field_name,
