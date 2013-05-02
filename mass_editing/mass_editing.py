@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import orm, fields
+import openerp.tools
+from openerp.tools.translate import _
 from lxml import etree
-from openerp import tools
 
-class ir_model_fields(osv.osv):
+class ir_model_fields(orm.Model):
     _inherit = 'ir.model.fields'
     
     def search(self, cr, uid, args, offset=0, limit=0, order=None, context=None, count=False):
@@ -33,23 +33,22 @@ class ir_model_fields(osv.osv):
             if domain[0] == 'model_id' and domain[2] and type(domain[2]) != list:
                 model_domain += [('model_id', 'in', map(int, domain[2][1:-1].split(',')))]
             else:
-                model_domain += domain
+                model_domain.append(domain)
         return super(ir_model_fields, self).search(cr, uid, model_domain, offset=offset, limit=limit, order=order, context=context, count=count)
     
-        
 ir_model_fields()
 
-class mass_object(osv.osv):
+class mass_object(orm.Model):
     _name = "mass.object"
 
     _columns = {
         'name' : fields.char("Name", size=64, required=True, select=1),
         'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1),
         'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'),
-        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True,
-                                            help="Sidebar action to make this template available on records "
-                                                 "of the related document model"),
-        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True,
+        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar Action', readonly=True,
+                                            help="Sidebar action to make this template available on records \
+                                                 of the related document model"),
+        'ref_ir_value':fields.many2one('ir.values', 'Sidebar Button', readonly=True,
                                        help="Sidebar button to open the sidebar action"),
         'model_list': fields.char('Model List', size=256)
     }
@@ -63,9 +62,8 @@ class mass_object(osv.osv):
         active_model_obj = self.pool.get(model_obj.browse(cr, uid, model_id).model)
         if active_model_obj._inherits:
             for key, val in active_model_obj._inherits.items():
-                model_ids = model_obj.search(cr, uid, [('model', '=', key)])
-                if model_ids:
-                    model_list += model_ids
+                model_ids = model_obj.search(cr, uid, [('model', '=', key)], context=context)
+                model_list += model_ids
         return {'value': {'model_list': str(model_list)}}
 
     def create_action(self, cr, uid, ids, context=None):
@@ -113,5 +111,4 @@ class mass_object(osv.osv):
         return True
 
 mass_object()
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
