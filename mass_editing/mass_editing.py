@@ -102,7 +102,7 @@ class mass_object(orm.Model):
                 }, context)
         return True
 
-    def unlink(self, cr, uid, ids, context=None):
+    def unlink_action(self, cr, uid, ids, context=None):        
         for template in self.browse(cr, uid, ids, context=context):
             try:
                 if template.ref_ir_act_window:
@@ -112,6 +112,10 @@ class mass_object(orm.Model):
                     ir_values_obj.unlink(cr, uid, template.ref_ir_value.id, context)
             except:
                 raise osv.except_osv(_("Warning"), _("Deletion of the action record failed."))
+        return True
+
+    def unlink(self, cr, uid, ids, context=None):
+        self.unlink_action(cr, uid, ids, context)
         return super(mass_object, self).unlink(cr, uid, ids, context)
 
     def copy(self, cr, uid, record_id, default=None, context=None):
