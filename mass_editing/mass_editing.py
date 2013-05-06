@@ -35,7 +35,7 @@ class ir_model_fields(orm.Model):
             else:
                 model_domain.append(domain)
         return super(ir_model_fields, self).search(cr, uid, model_domain, offset=offset, limit=limit, order=order, context=context, count=count)
-    
+
 ir_model_fields()
 
 class mass_object(orm.Model):
@@ -52,7 +52,11 @@ class mass_object(orm.Model):
                                        help="Sidebar button to open the sidebar action"),
         'model_list': fields.char('Model List', size=256)
     }
-    
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)', 'Name must be unique!'),
+    ]
+
     def onchange_model(self, cr, uid, ids, model_id, context=None):
         if context is None: context = {}
         if not model_id:
@@ -98,7 +102,7 @@ class mass_object(orm.Model):
                 }, context)
         return True
 
-    def unlink_action(self, cr, uid, ids, context=None):
+    def unlink(self, cr, uid, ids, context=None):
         for template in self.browse(cr, uid, ids, context=context):
             try:
                 if template.ref_ir_act_window:
@@ -108,7 +112,14 @@ class mass_object(orm.Model):
                     ir_values_obj.unlink(cr, uid, template.ref_ir_value.id, context)
             except:
                 raise osv.except_osv(_("Warning"), _("Deletion of the action record failed."))
-        return True
+        return super(mass_object, self).unlink(cr, uid, ids, context)
+
+    def copy(self, cr, uid, record_id, default=None, context=None):
+        if default is None:
+            default = {}
+
+        default.update({'name':'','field_ids': []})
+        return super(mass_object, self).copy(cr, uid, record_id, default, context)
 
 mass_object()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
