@@ -54,7 +54,7 @@ class mass_object(orm.Model):
     }
 
     _sql_constraints = [
-        ('name_uniq', 'unique (name)', 'Name must be unique!'),
+        ('name_uniq', 'unique (name)', _('Name must be unique!')),
     ]
 
     def onchange_model(self, cr, uid, ids, model_id, context=None):
@@ -102,7 +102,7 @@ class mass_object(orm.Model):
                 }, context)
         return True
 
-    def unlink_action(self, cr, uid, ids, context=None):        
+    def unlink_action(self, cr, uid, ids, context=None):
         for template in self.browse(cr, uid, ids, context=context):
             try:
                 if template.ref_ir_act_window:
