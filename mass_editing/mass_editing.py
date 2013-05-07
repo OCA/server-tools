@@ -36,23 +36,22 @@ class mass_object(osv.osv):
                                                  "of the related document model"),
         'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True,
                                        help="Sidebar button to open the sidebar action"),
-        'model_list': fields.char('Model List', size=256)
+        'model_ids': fields.many2many('ir.model', string='Model List')
     }
 
     def onchange_model(self, cr, uid, ids, model_id):
-        model_list = ""
+        model_ids = []
         if model_id:
             model_obj = self.pool.get('ir.model')
             model_data = model_obj.browse(cr, uid, model_id)
-            model_list = "[" + str(model_id) + ""
+            model_ids = [model_id]
             active_model_obj = self.pool.get(model_data.model)
             if active_model_obj._inherits:
                 for key, val in active_model_obj._inherits.items():
-                    model_ids = model_obj.search(cr, uid, [('model', '=', key)])
-                    if model_ids:
-                        model_list += "," + str(model_ids[0]) + ""
-            model_list += "]"
-        return {'value': {'model_list': model_list}}
+                    found_model_ids = model_obj.search(cr, uid, [('model', '=', key)])
+                    if found_model_ids:
+                        model_ids += found_model_ids[0]
+        return {'value': {'model_ids': [(6, 0, model_ids)]}}
 
     def create_action(self, cr, uid, ids, context=None):
         vals = {}
