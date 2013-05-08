@@ -10,11 +10,11 @@
                 <form string="Object">
                     <field name="name"/>
                     <field name="model_id" on_change="onchange_model(model_id)"/>
-                    <field name="model_list" invisible="1"/>
+                    <field name="model_ids" invisible="1"/>
                     <notebook colspan="4">
                         <page string="Fields">
                             <field name="field_ids" colspan="4" nolabel="1"
-                                domain="[('ttype', 'not in', ['one2many', 'reference', 'function']), ('model_id', 'in', model_list)]"/>
+                                domain="[('ttype', 'not in', ['one2many', 'reference', 'function']), ('model_id', 'in', model_ids[0][2])]"/>
                         </page>
                         <page string="Advanced">
                             <group colspan="2" col="2">

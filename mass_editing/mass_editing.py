@@ -50,7 +50,7 @@ class mass_object(orm.Model):
                                                  of the related document model"),
         'ref_ir_value':fields.many2one('ir.values', 'Sidebar Button', readonly=True,
                                        help="Sidebar button to open the sidebar action"),
-        'model_list': fields.char('Model List', size=256)
+        'model_ids': fields.many2many('ir.model', string='Model List')
     }
 
     _sql_constraints = [
@@ -60,15 +60,15 @@ class mass_object(orm.Model):
     def onchange_model(self, cr, uid, ids, model_id, context=None):
         if context is None: context = {}
         if not model_id:
-            return {'value': {'model_list': ''}}
-        model_list = [model_id]
+            return {'value': {'model_ids': [(6, 0, [])]}}
+        model_ids = [model_id]
         model_obj = self.pool.get('ir.model')
         active_model_obj = self.pool.get(model_obj.browse(cr, uid, model_id).model)
         if active_model_obj._inherits:
             for key, val in active_model_obj._inherits.items():
-                model_ids = model_obj.search(cr, uid, [('model', '=', key)], context=context)
-                model_list += model_ids
-        return {'value': {'model_list': str(model_list)}}
+                found_model_ids = model_obj.search(cr, uid, [('model', '=', key)], context=context)
+                model_ids += found_model_ids
+        return {'value': {'model_ids': [(6, 0, model_ids)]}}
 
     def create_action(self, cr, uid, ids, context=None):
         vals = {}
