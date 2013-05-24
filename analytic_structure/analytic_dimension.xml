@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_analytic_dimension" model="ir.ui.view">
+            <field name="name">analytic.dimension.view.form</field>
+            <field name="model">analytic.dimension</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Dimension" version="7.0">
+                    <label for="name" class="oe_edit_only" string="Dimension Name"/>
+                    <h1>
+                        <field name="name" class="oe_inline" placeholder="Dimension Name" style="width: 6em"/>
+                    </h1>
+                    <group colspan="4" col="4">
+                        <field name="validated"/>
+                        <newline />
+                        <field name="nc_ids" string="ANCs">
+                            <tree string="Analysis Codes" editable="bottom">
+                                <field name="name"/>
+                            </tree>
+                            <form string="Analysis Codes" version="7.0">
+                                <field name="name"/>
+                            </form>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_analytic_dimension" model="ir.actions.act_window">
+            <field name="name">Analytic Dimension</field>
+            <field name="res_model">analytic.dimension</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create Analytical Dimensions (AND) for your system.
+              </p>
+            </field>
+        </record>
+
+        <record id="view_analytic_structure" model="ir.ui.view">
+            <field name="name">analytic.structure.view.form</field>
+            <field name="model">analytic.structure</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Structure" version="7.0">
+                    <label for="model_name" class="oe_edit_only" string="Target Model Name"/>
+                    <h1>
+                        <field name="model_name" class="oe_inline" placeholder="Target Model Name" style="width: 6em"/>
+                    </h1>
+                    <group colspan="4" col="4">
+                        <field name="nd_id"/>
+                        <newline />
+                        <field name="ordering"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="tree_analytic_structure" model="ir.ui.view">
+            <field name="name">analytic.structure.view.tree</field>
+            <field name="model">analytic.structure</field>
+            <field name="arch" type="xml">
+                <tree string="Analytic Structure">
+                    <field name="model_name" placeholder="Target Model Name"/>
+                    <field name="nd_id"/>
+                    <field name="ordering"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_analytic_structure" model="ir.actions.act_window">
+            <field name="name">Analytic Structure</field>
+            <field name="res_model">analytic.structure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Define Analytical Structure (ANS) for objects in your system.
+              </p>
+            </field>
+        </record>
+
+        <!-- we add our config entries to the accounting configuration menu -->
+        <menuitem id="menu_analytic_config_root" name="Analytic" parent="base.menu_custom" sequence="5" />
+        <menuitem id="menu_analytic_dimension" name="Dimensions" parent="menu_analytic_config_root" sequence="10" action="action_analytic_dimension" />
+        <menuitem id="menu_analytic_structure" name="Structure" parent="menu_analytic_config_root" sequence="15" action="action_analytic_structure" />
+
+    </data>
+</openerp>
