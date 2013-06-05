@@ -50,7 +50,7 @@ class mass_object(osv.osv):
                 for key, val in active_model_obj._inherits.items():
                     found_model_ids = model_obj.search(cr, uid, [('model', '=', key)])
                     if found_model_ids:
-                        model_ids += found_model_ids[0]
+                        model_ids += [found_model_ids[0]]
         return {'value': {'model_ids': [(6, 0, model_ids)]}}
 
     def create_action(self, cr, uid, ids, context=None):
