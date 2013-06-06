@@ -33,6 +33,7 @@ to an object model.
     'website': 'http://www.openerp-experts.com',
     "depends" : ['base'],
     "data": [
+        'security/ir.model.access.csv',
         'analytic_dimension.xml',
     ],
     #'demo_xml': [],
