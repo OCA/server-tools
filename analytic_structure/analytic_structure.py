@@ -36,8 +36,7 @@ class analytic_structure(osv.Model):
     _columns = dict(
         model_name=fields.char("Object", size=128, required=True, select="1"),
         nd_id=fields.many2one(
-            "analytic.dimension", "Related Dimension", ondelete="restrict", required=True, select="1",
-            domain=[('ns_id', '=', None)]),
+            "analytic.dimension", "Related Dimension", ondelete="restrict", required=True, select="1"),
         ordering=fields.selection(ORDER_SELECTION, 'Analysis slot', required=True),
     )
     _sql_constraints = [
