@@ -16,4 +16,4 @@ storage/*
 .idea
 .pydevproject
 *.db
-
+.ropeproject/*
