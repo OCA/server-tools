@@ -23,6 +23,7 @@
     'version': '0.1',
     'category': 'Tools',
     'description': """
+https://twitter.com/nbessi/status/337869826028605441
 
 """,
     'author': 'Agile Business Group',
@@ -30,6 +31,7 @@
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [
+        'model_view.xml',
     ],
     "demo": [],
     'test': [
