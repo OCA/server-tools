@@ -17,9 +17,11 @@
                         <field name="nc_ids" string="ANCs">
                             <tree string="Analysis Codes" editable="bottom">
                                 <field name="name"/>
+                                <field name="description"/>
                             </tree>
                             <form string="Analysis Codes" version="7.0">
                                 <field name="name"/>
+                                <field name="description"/>
                             </form>
                         </field>
                     </group>
