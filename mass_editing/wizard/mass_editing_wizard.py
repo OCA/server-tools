@@ -49,6 +49,19 @@ class mass_editing_wizard(orm.TransientModel):
                     etree.SubElement(xml_group, 'separator', {'string': field_info[field.name]['string'], 'colspan': '2'})
                     etree.SubElement(xml_group, 'field', {'name': "selection__" + field.name, 'colspan': '2', 'nolabel':'1'})
                     etree.SubElement(xml_group, 'field', {'name': field.name, 'colspan':'4', 'nolabel':'1', 'attrs':"{'invisible':[('selection__" + field.name + "','=','remove_m2m')]}"})
+                elif field.ttype == "one2many":
+                    all_fields["selection__" + field.name] = {'type':'selection',
+						'string': field_info[field.name]['string'],
+						'selection':[('set', 'Set'),
+						('remove', 'Remove')]}
+                    all_fields[field.name] = {'type':field.ttype,
+						'string': field.field_description,
+						'relation': field.relation}
+                    etree.SubElement(xml_group, 'field', 
+						{'name': "selection__" + field.name, 'colspan':'2'})
+                    etree.SubElement(xml_group, 'field', 
+						{'name': field.name, 'colspan':'4', 'nolabel':'1',
+							'attrs':"{'invisible':[('selection__" + field.name + "','=','remove_o2m')]}"})
                 elif field.ttype == "many2one":
                     all_fields["selection__" + field.name] = {'type':'selection', 'string': field_info[field.name]['string'], 'selection':[('set', 'Set'), ('remove', 'Remove')]}
                     all_fields[field.name] = {'type':field.ttype, 'string': field.field_description, 'relation': field.relation}
