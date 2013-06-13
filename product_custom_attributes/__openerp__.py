@@ -43,5 +43,9 @@ Each attribute has custom fields (for example, you don't need the same field for
     'demo_xml': [],
     'installable': True,
     'active': False,
+    'external_dependencies' : {
+        'python' : ['unidecode'],
+    }
+
 }
 
