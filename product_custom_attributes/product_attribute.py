@@ -19,15 +19,14 @@
 #                                                                             #
 ###############################################################################
 
-from openerp.osv.orm import Model
-from openerp.osv import osv
+from openerp.osv import orm
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
 from lxml import etree
 from openerp.tools.translate import _
 from unidecode import unidecode # Debian package python-unidecode
 
-class attribute_option(Model):
+class attribute_option(orm.Model):
     _name = "attribute.option"
     _description = "Attribute Option"
     _order="sequence"
@@ -80,7 +79,7 @@ class attribute_option_wizard(orm.TransientModel):
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = super(attribute_option_wizard, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
-        if context and context.get("attribute_id"):
+        if view_type == 'form' and context and context.get("attribute_id"):
             attr_obj = self.pool.get("product.attribute")
             model_id = attr_obj.read(cr, uid, [context.get("attribute_id")], ['relation_model_id'])[0]['relation_model_id'][0]
             relation = self.pool.get("ir.model").read(cr, uid, [model_id], ["model"])[0]["model"]
@@ -100,7 +99,7 @@ class attribute_option_wizard(orm.TransientModel):
         return res
 
 
-class product_attribute(Model):
+class product_attribute(orm.Model):
     _name = "product.attribute"
     _description = "Product Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
@@ -187,7 +186,8 @@ class product_attribute(Model):
             name = 'x_%s' % name
         return  {'value' : {'name' : unidecode(name)}}
 
-class attribute_location(Model):
+
+class attribute_location(orm.Model):
     _name = "attribute.location"
     _description = "Attribute Location"
     _order="sequence"
@@ -208,8 +208,7 @@ store={
         }
 
 
-
-class attribute_group(Model):
+class attribute_group(orm.Model):
     _name= "attribute.group"
     _description = "Attribute Group"
     _order="sequence"
@@ -227,7 +226,8 @@ class attribute_group(Model):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
-class attribute_set(Model):
+
+class attribute_set(orm.Model):
     _name = "attribute.set"
     _description = "Attribute Set"
     _columns = {
