@@ -128,7 +128,7 @@ class product_product(Model):
             if button:
                 button = button[0]
                 button.getparent().remove(button)
-            attributes_notebook, toupdate_fields = self._build_attributes_notebook(cr, uid, context['attribute_group_ids'], context=context)
+            attributes_notebook, toupdate_fields = self.pool.get('custom.attribute')._build_attributes_notebook(cr, uid, context['attribute_group_ids'], context=context)
             result['fields'].update(self.fields_get(cr, uid, toupdate_fields, context))
             if context.get('open_attributes'):
                 placeholder = eview.xpath("//separator[@string='attributes_placeholder']")[0]

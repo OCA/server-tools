@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   product_custom_attributes for OpenERP                                      #
+#   base_custom_attributes for OpenERP                                        #
 #   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
@@ -22,23 +22,19 @@
 
 
 {
-    'name': 'product_custom_attributes',
+    'name': 'base_custom_attributes',
     'version': '0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """This module adds the possibility to easily create custom fields on products.
-Each product can be linked to an attribute set (like camera, fridge...).
-Each attribute has custom fields (for example, you don't need the same field for a frigde and a camera).
-In particular it's used by the Magento Magentoerpconnect module to match the EAV flexibility of Magento.
+    'description': """This module adds the possibility to easily create custom attributes in any OpenERP business object. See the product_custom_attributes module for instance.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product', 'base_custom_attributes'],
+    'depends': ['base'],
     'init_xml': [],
     'update_xml': [
-           'product_view.xml',
+           'security/ir.model.access.csv',
            'custom_attributes_view.xml',
-           'wizard/open_product_by_attribute_set.xml',
     ],
     'demo_xml': [],
     'installable': True,
