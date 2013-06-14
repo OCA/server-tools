@@ -27,7 +27,7 @@ class analytic_code(osv.Model):
     _columns = dict(
         name=fields.char("Name", size=128, translate=True, required=True),
         nd_id=fields.many2one(
-            "analytic.dimension", ondelete="restrict"),
+            "analytic.dimension", "Dimensions", ondelete="restrict"),
         active=fields.boolean('Active'),
         nd_name=fields.related('nd_id', 'name', type="char",
                                string="Dimension Name", store=False),
