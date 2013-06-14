@@ -28,8 +28,8 @@ class analytic_dimension(osv.Model):
     _columns = dict(
         name=fields.char("Name", size=128, translate=True, required=True),
         validated=fields.boolean("Validated"),
-        nc_ids=fields.one2many("analytic.code", "nd_id"),
-        ns_id=fields.one2many("analytic.structure", "nd_id"),
+        nc_ids=fields.one2many("analytic.code", "nd_id", "Codes"),
+        ns_id=fields.one2many("analytic.structure", "nd_id", "Structures"),
     )
 
     _sql_constraints = [
