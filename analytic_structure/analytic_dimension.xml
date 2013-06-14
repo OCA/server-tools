@@ -18,6 +18,7 @@
             <field name="name">Analytic Code</field>
             <field name="res_model">analytic.code</field>
             <field name="view_type">form</field>
+            <field name="view_id" ref="view_analytic_code"/>
             <field name="view_mode">tree, form</field>
         </record>
 
