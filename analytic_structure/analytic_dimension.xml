@@ -85,7 +85,7 @@
             <field name="name">analytic.structure.view.tree</field>
             <field name="model">analytic.structure</field>
             <field name="arch" type="xml">
-                <tree string="Analytic Structure">
+                <tree string="Analytic Structure" version="7.0">
                     <field name="model_name" placeholder="Target Model Name"/>
                     <field name="nd_id"/>
                     <field name="ordering"/>
@@ -96,8 +96,8 @@
         <record id="action_analytic_structure" model="ir.actions.act_window">
             <field name="name">Analytic Structure</field>
             <field name="res_model">analytic.structure</field>
-            <field name="view_type">tree</field>
-            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Define Analytical Structure (ANS) for objects in your system.
