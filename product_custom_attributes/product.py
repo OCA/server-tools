@@ -22,16 +22,10 @@
 from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
-from lxml import etree
+from openerp.osv.orm import setup_modifiers
 from tools.translate import _
+from lxml import etree
 
-class product_template(Model):
-
-    _inherit = "product.template"
-
-    _columns = {
-        'attribute_custom_tmpl': fields.serialized('Custom Template Attributes'),
-    }
 
 class product_product(Model):
 
@@ -51,7 +45,6 @@ class product_product(Model):
 
     _columns = {
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
-        'attribute_custom_variant': fields.serialized('Custom Variant Attributes'),
         'attribute_group_ids': fields.function(_attr_grp_ids, type='one2many',
         relation='attribute.group', string='Groups')
     }
@@ -95,12 +88,21 @@ class product_product(Model):
         kwargs = {'name': "%s" % attribute.name}
         if attribute.ttype == 'many2many':
             parent = etree.SubElement(page, 'group', colspan="2", col="4")
+            #FIXME the following isn't displayed in v7:
             sep = etree.SubElement(parent, 'separator',
                                     string="%s" % attribute.field_description, colspan="4")
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
-            kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+            if attribute.relation_model_id:
+                if attribute.domain:
+                    kwargs['domain'] = attribute.domain
+                else:
+                    ids = [op.value_ref.id for op in attribute.option_ids]
+                    kwargs['domain'] = "[('id', 'in', %s)]" % ids
+            else:
+                kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
+        setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
 
     def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
