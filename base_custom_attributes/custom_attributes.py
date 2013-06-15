@@ -105,16 +105,19 @@ class attribute_option_wizard(orm.TransientModel):
 
 class attribute_attribute(orm.Model):
     _name = "attribute.attribute"
-    _description = "Custom Attribute"
+    _description = "Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
 
     def _build_attribute_field(self, cr, uid, page, attribute, context=None):
-        parent = etree.SubElement(page, 'group')
+        parent = etree.SubElement(page, 'group', colspan="2", col="4")
         kwargs = {'name': "%s" % attribute.name}
-        if attribute.ttype == 'many2many':
-            parent = etree.SubElement(parent, 'group')
-            sep = etree.SubElement(parent, 'separator',
-                                    string="%s" % attribute.field_description)
+        if attribute.ttype in ['many2many', 'text']:
+            parent = etree.SubElement(parent, 'group', colspan="2", col="4")
+            sep = etree.SubElement(parent,
+                                   'separator',
+                                    string="%s" % attribute.field_description,
+                                    colspan="4")  
+        
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             if attribute.relation_model_id:

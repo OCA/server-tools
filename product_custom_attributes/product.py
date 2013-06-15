@@ -28,7 +28,6 @@ from lxml import etree
 
 
 class product_product(Model):
-
     _inherit = "product.product"
 
     def _attr_grp_ids(self, cr, uid, ids, field_names, arg=None, context=None):
@@ -83,41 +82,6 @@ class product_product(Model):
     def save_and_close_product_attributes(self, cr, uid, ids, context=None):
         return {'type': 'ir.actions.act_window_close'}
 
-    def _build_attribute_field(self, cr, uid, page, attribute, context=None):
-        parent = etree.SubElement(page, 'group', colspan="2", col="4")
-        kwargs = {'name': "%s" % attribute.name}
-        if attribute.ttype in ['many2many', 'text']:
-            parent = etree.SubElement(parent, 'group', colspan="2", col="4")
-            sep = etree.SubElement(parent,
-                                   'separator',
-                                    string="%s" % attribute.field_description,
-                                    colspan="4")
-            kwargs['nolabel'] = "1"
-        if attribute.ttype in ['many2one', 'many2many']:
-            if attribute.relation_model_id:
-                if attribute.domain:
-                    kwargs['domain'] = attribute.domain
-                else:
-                    ids = [op.value_ref.id for op in attribute.option_ids]
-                    kwargs['domain'] = "[('id', 'in', %s)]" % ids
-            else:
-                kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
-        field = etree.SubElement(parent, 'field', **kwargs)
-        setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
-        return parent
-
-    def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
-        notebook = etree.Element('notebook', name="attributes_notebook", colspan="4")
-        toupdate_fields = []
-        grp_obj = self.pool.get('attribute.group')
-        for group in grp_obj.browse(cr, uid, attribute_group_ids, context=context):
-            page = etree.SubElement(notebook, 'page', string=group.name.capitalize())
-            for attribute in group.attribute_ids:
-                if attribute.name not in toupdate_fields:
-                    toupdate_fields.append(attribute.name)
-                    self._build_attribute_field(cr, uid, page, attribute, context=context)
-        return notebook, toupdate_fields
-
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         if context is None:
             context = {}
@@ -129,7 +93,7 @@ class product_product(Model):
             if button:
                 button = button[0]
                 button.getparent().remove(button)
-            attributes_notebook, toupdate_fields = self.pool.get('custom.attribute')._build_attributes_notebook(cr, uid, context['attribute_group_ids'], context=context)
+            attributes_notebook, toupdate_fields = self.pool.get('attribute.attribute')._build_attributes_notebook(cr, uid, context['attribute_group_ids'], context=context)
             result['fields'].update(self.fields_get(cr, uid, toupdate_fields, context))
             if context.get('open_attributes'):
                 placeholder = eview.xpath("//separator[@string='attributes_placeholder']")[0]
