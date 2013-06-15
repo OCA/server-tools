@@ -84,13 +84,14 @@ class product_product(Model):
         return {'type': 'ir.actions.act_window_close'}
 
     def _build_attribute_field(self, cr, uid, page, attribute, context=None):
-        parent = page
+        parent = etree.SubElement(page, 'group', colspan="2", col="4")
         kwargs = {'name': "%s" % attribute.name}
-        if attribute.ttype == 'many2many':
-            parent = etree.SubElement(page, 'group', colspan="2", col="4")
-            #FIXME the following isn't displayed in v7:
-            sep = etree.SubElement(parent, 'separator',
-                                    string="%s" % attribute.field_description, colspan="4")
+        if attribute.ttype in ['many2many', 'text']:
+            parent = etree.SubElement(parent, 'group', colspan="2", col="4")
+            sep = etree.SubElement(parent,
+                                   'separator',
+                                    string="%s" % attribute.field_description,
+                                    colspan="4")
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             if attribute.relation_model_id:
