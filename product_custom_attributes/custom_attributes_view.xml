@@ -28,8 +28,9 @@
                                     <field name="attribute_id" />
                                     <field name="sequence" />
                                 </form>
-                                <tree string="Attribute Location">
+                                <tree string="Attribute Location" editable="top">
                                     <field name="attribute_id" />
+                                    <field name="sequence" />
                                 </tree>
                             </field>
                         </form>
