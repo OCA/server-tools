@@ -184,6 +184,17 @@ class attribute_attribute(orm.Model):
             [vals.get('relation_model_id')], ['model'])[0]['model']
         else:
             relation = 'attribute.option'
+
+        if vals['attribute_type'] == 'select':
+            vals['ttype'] = 'many2one'
+            vals['relation'] = relation
+        elif vals['attribute_type'] == 'multiselect':
+            vals['ttype'] = 'many2many'
+            vals['relation'] = relation
+            vals['serialized'] = True
+        else:
+            vals['ttype'] = vals['attribute_type']
+
         if vals.get('serialized'):
             field_obj = self.pool.get('ir.model.fields')
             serialized_ids = field_obj.search(cr, uid,
@@ -199,16 +210,6 @@ class attribute_attribute(orm.Model):
                     'model_id': vals['model_id'],
                 }
                 vals['serialization_field_id'] = field_obj.create(cr, uid, f_vals, {'manual': True})
-        if vals['attribute_type'] == 'select':
-            vals['ttype'] = 'many2one'
-            vals['relation'] = relation
-        elif vals['attribute_type'] == 'multiselect':
-            vals['ttype'] = 'many2many'
-            vals['relation'] = relation
-            if not vals.get('serialized'):
-                raise except_osv(_('Create Error'), _("The field serialized should be ticked for a multiselect field !"))
-        else:
-            vals['ttype'] = vals['attribute_type']
         vals['state'] = 'manual'
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
