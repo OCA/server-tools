@@ -17,25 +17,10 @@
             <field name="model">attribute.set</field>
             <field name="arch" type="xml">
                 <form string="Attribute Set">
-                    <field name="name" colspan="4"/>
-                    <field name="attribute_group_ids" colspan="4" >
-                        <form string="Attribute Groups">
-                            <field name="name" />
-                            <field name="sequence" />
-                            <field name="attribute_ids" colspan="4">
-                                <form string="Attribute Location">
-                                    <field name="attribute_id" />
-                                    <field name="sequence" />
-                                </form>
-                                <tree string="Attribute Location" editable="top">
-                                    <field name="attribute_id" />
-                                    <field name="sequence" />
-                                </tree>
-                            </field>
-                        </form>
-                        <tree string="Attribute Groups">
-                            <field name="name" />
-                        </tree>
+                    <field name="name"/>
+                    <field name="model_id" invisible="context.get('default_model_id')"/>
+                    <field name="attribute_group_ids" colspan="4"
+                           context="{'default_model_id': model_id, 'from_attribute_set':True}">
                     </field>
                 </form>
             </field>
@@ -47,6 +32,7 @@
             <field name="arch" type="xml">
                 <tree string="Attribute Set" >
                     <field name="name" />
+                    <field name="model_id" />
                 </tree>
             </field>
         </record>
@@ -57,6 +43,7 @@
             <field name="arch" type="xml">
                 <search string="Search Attribute Sets">
                     <field name="name"/>
+                    <field name="model_id" />
                </search>
             </field>
         </record>
@@ -86,14 +73,15 @@
                 <form string="Attribute Group">
                     <field name="name" />
                     <field name="sequence" />
-                    <field name="attribute_set_id" />
+                    <field name="model_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
                     <field name="attribute_ids" colspan="4" nolabel="1">
                         <form string="Attribute Location">
-                            <field name="attribute_id" />
+                            <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
                             <field name="sequence" />
                         </form>
                         <tree string="Attribute Location" editable="top">
-                            <field name="attribute_id" />
+                            <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
                             <field name="sequence" />
                         </tree>
                     </field>
@@ -108,7 +96,8 @@
                 <tree string="Attribute Group">
                     <field name="name" />
                     <field name="sequence" />
-                    <field name="attribute_set_id" />
+                    <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="model_id" invisible="context.get('from_attribute_set')"/>
                 </tree>
             </field>
         </record>
@@ -120,6 +109,7 @@
                 <search string="Search Attribute Groups">
                     <field name="name"/>
                     <field name="attribute_set_id"/>
+                    <field name="model_id" />
                </search>
             </field>
         </record>

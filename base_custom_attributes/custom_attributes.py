@@ -216,12 +216,21 @@ class custom_attribute(orm.Model):
         name = 'x_'
         if field_description:
             name = unidecode('x_%s' % field_description.replace(' ', '_').lower())
+
         return  {'value' : {'name' : name}}
 
     def onchange_name(self, cr, uid, ids, name, context=None):
         if not name.startswith('x_'):
             name = 'x_%s' % name
-        return  {'value' : {'name' : unidecode(name)}}
+        model_domain = []
+        model_id = context.get('default_model_id')
+        model = self.pool['ir.model'].browse(cr, uid, model_id, context=context)
+        model_obj = self.pool[model.model]
+        allowed_model = [x for x in model_obj._inherits] + [model.model]
+        return  {
+            'value' : {'name' : unidecode(name)},
+            'domain' : {'model_id': [['model', 'in', allowed_model]]},
+        }
 
 
 class attribute_group(orm.Model):
@@ -234,6 +243,7 @@ class attribute_group(orm.Model):
         'sequence': fields.integer('Sequence'),
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
+        'model_id': fields.many2one('ir.model', 'Model', required=True),
     }
 
     def create(self, cr, uid, vals, context=None):
@@ -249,6 +259,7 @@ class attribute_set(orm.Model):
     _columns = {
         'name': fields.char('Name', size=128, required=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
+        'model_id': fields.many2one('ir.model', 'Model', required=True),
         }
 
 class attribute_location(orm.Model):
