@@ -13,34 +13,6 @@
             id="menu_attribute_in_config_product" name="Attributes"
             parent="product.prod_config_main" sequence="20"/>
 
-        <record id="attribute_set_form_view" model="ir.ui.view">
-            <field name="name">attribute.set.form</field>
-            <field name="model">attribute.set</field>
-            <field name="arch" type="xml">
-                <form string="Attribute Set">
-                    <field name="name" colspan="4"/>
-                    <field name="attribute_group_ids" colspan="4" >
-                        <form string="Attribute Groups">
-                            <field name="name" />
-                            <field name="sequence" />
-                            <field name="attribute_ids" colspan="4">
-                                <form string="Attribute Location">
-                                    <field name="attribute_id" />
-                                    <field name="sequence" />
-                                </form>
-                                <tree string="Attribute Location" editable="top">
-                                    <field name="attribute_id" />
-                                    <field name="sequence" />
-                                </tree>
-                            </field>
-                        </form>
-                        <tree string="Attribute Groups">
-                            <field name="name" />
-                        </tree>
-                    </field>
-                </form>
-            </field>
-        </record>
 
         <record id="attribute_location_form_view" model="ir.ui.view">
             <field name="name">attribute.location.form</field>
@@ -55,36 +27,6 @@
             </field>
         </record>
 
-        <record id="attribute_set_tree_view" model="ir.ui.view">
-            <field name="name">attribute.set.tree</field>
-            <field name="model">attribute.set</field>
-            <field name="arch" type="xml">
-                <tree string="Attribute Set" >
-                    <field name="name" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="attribute_group_tree_view" model="ir.ui.view">
-            <field name="model">attribute.group</field>
-            <field name="inherit_id" ref="base_custom_attributes.attribute_group_tree_view" />
-            <field name="arch" type="xml">
-                <field name="sequence" position="after">
-                    <field name="attribute_set_id" />
-                </field>
-            </field>
-        </record>
-
-        <record id="attribute_group_form_view" model="ir.ui.view">
-            <field name="model">attribute.group</field>
-            <field name="inherit_id" ref="base_custom_attributes.attribute_group_form_view" />
-            <field name="arch" type="xml">
-                <field name="sequence" position="after">
-                    <field name="attribute_set_id" />
-                </field>
-            </field>
-        </record>
-
         <record id="attribute_location_tree_view" model="ir.ui.view">
             <field name="name">attribute.location.tree</field>
             <field name="model">attribute.location</field>
@@ -95,27 +37,6 @@
                     <field name="attribute_set_id" />
                     <field name="attribute_group_id" />
                 </tree>
-            </field>
-        </record>
-
-        <record id="view_attribute_set_search" model="ir.ui.view">
-            <field name="name">attribute.set.list</field>
-            <field name="model">attribute.set</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Sets">
-                    <field name="name"/>
-               </search>
-            </field>
-        </record>
-
-        <record id="view_attribute_group_search" model="ir.ui.view">
-            <field name="name">attribute.group.list</field>
-            <field name="model">attribute.group</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Groups">
-                    <field name="name"/>
-                    <field name="attribute_set_id"/>
-               </search>
             </field>
         </record>
 
