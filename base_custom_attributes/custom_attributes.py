@@ -220,17 +220,38 @@ class custom_attribute(orm.Model):
         return  {'value' : {'name' : name}}
 
     def onchange_name(self, cr, uid, ids, name, context=None):
+        res = {}
         if not name.startswith('x_'):
             name = 'x_%s' % name
+        res = {'value' : {'name' : unidecode(name)}}
+
+        #FILTER ON MODEL
         model_domain = []
-        model_id = context.get('default_model_id')
-        model = self.pool['ir.model'].browse(cr, uid, model_id, context=context)
-        model_obj = self.pool[model.model]
-        allowed_model = [x for x in model_obj._inherits] + [model.model]
-        return  {
-            'value' : {'name' : unidecode(name)},
-            'domain' : {'model_id': [['model', 'in', allowed_model]]},
-        }
+        model_name = context.get('force_model')
+        if not model_name:
+            model_id = context.get('default_model_id')
+            if model_id:
+                model = self.pool['ir.model'].browse(cr, uid, model_id, context=context)
+                model_name = model.model
+        if model_name:
+            model_obj = self.pool[model_name]
+            allowed_model = [x for x in model_obj._inherits] + [model_name]
+            res['domain'] = {'model_id': [['model', 'in', allowed_model]]}
+
+        return res
+
+    def _get_default_model(self, cr, uid, context=None):
+        if context and context.get('force_model'):
+            model_id = self.pool['ir.model'].search(cr, uid, [
+                    ['model', '=', context['force_model']]
+                    ], context=context)
+            if model_id:
+                return model_id[0]
+        return None
+
+    _defaults = {
+        'model_id': _get_default_model
+    }
 
 
 class attribute_group(orm.Model):
@@ -252,6 +273,19 @@ class attribute_group(orm.Model):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
+    def _get_default_model(self, cr, uid, context=None):
+        if context and context.get('force_model'):
+            model_id = self.pool['ir.model'].search(cr, uid, [
+                    ['model', '=', context['force_model']]
+                    ], context=context)
+            if model_id:
+                return model_id[0]
+        return None
+
+    _defaults = {
+        'model_id': _get_default_model
+    }
+
 
 class attribute_set(orm.Model):
     _name = "attribute.set"
@@ -261,6 +295,19 @@ class attribute_set(orm.Model):
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
         'model_id': fields.many2one('ir.model', 'Model', required=True),
         }
+
+    def _get_default_model(self, cr, uid, context=None):
+        if context and context.get('force_model'):
+            model_id = self.pool['ir.model'].search(cr, uid, [
+                    ['model', '=', context['force_model']]
+                    ], context=context)
+            if model_id:
+                return model_id[0]
+        return None
+
+    _defaults = {
+        'model_id': _get_default_model
+    }
 
 class attribute_location(orm.Model):
     _name = "attribute.location"

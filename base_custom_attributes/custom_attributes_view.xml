@@ -9,6 +9,9 @@
 <openerp>
     <data>
 
+        <menuitem
+            id="menu_attribute_in_admin" name="Attributes"
+            parent="base.next_id_9" sequence="1"/>
 
     <!-- ATTRIBUTE SET VIEW -->
 
@@ -18,7 +21,7 @@
             <field name="arch" type="xml">
                 <form string="Attribute Set">
                     <field name="name"/>
-                    <field name="model_id" invisible="context.get('default_model_id')"/>
+                    <field name="model_id" invisible="context.get('force_model')"/>
                     <field name="attribute_group_ids" colspan="4"
                            context="{'default_model_id': model_id, 'from_attribute_set':True}">
                     </field>
@@ -60,7 +63,7 @@
 
          <menuitem
              action="attribute_set_form_action" id="menu_attribute_set_action"
-             parent="base.next_id_9" sequence="1"/>
+             parent="menu_attribute_in_admin" sequence="10"/>
  
 
 
@@ -73,7 +76,7 @@
                 <form string="Attribute Group">
                     <field name="name" />
                     <field name="sequence" />
-                    <field name="model_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="model_id" invisible="context.get('from_attribute_set') or context.get('force_model')"/>
                     <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
                     <field name="attribute_ids" colspan="4" nolabel="1">
                         <form string="Attribute Location">
@@ -116,7 +119,7 @@
 
 
         <record id="attribute_group_form_action" model="ir.actions.act_window">
-            <field name="name">Custom Attribute Groups</field>
+            <field name="name">Attribute Groups</field>
             <field name="res_model">attribute.group</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -126,7 +129,7 @@
 
          <menuitem
              action="attribute_group_form_action" id="menu_attribute_group_action"
-             parent="base.next_id_9" sequence="2"/>
+             parent="menu_attribute_in_admin" sequence="20"/>
 
     <!-- ATTRIBUTE VIEW -->
 
@@ -181,7 +184,7 @@
         </record>
 
         <record id="custom_attribute_form_action" model="ir.actions.act_window">
-            <field name="name">Custom Attributes</field>
+            <field name="name">Attributes</field>
             <field name="res_model">custom.attribute</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -191,7 +194,7 @@
         </record>
         <menuitem
             action="custom_attribute_form_action" id="menu_custom_attribute_action"
-            parent="base.next_id_9" sequence="4"/>
+            parent="menu_attribute_in_admin" sequence="30"/>
 
     <!-- ATTRIBUTE OPTION VIEW -->
         <record id="attribute_option_form_view" model="ir.ui.view">
@@ -246,7 +249,7 @@
         </record>
 
         <record id="attribute_option_form_action" model="ir.actions.act_window">
-            <field name="name">Custom Attribute Options</field>
+            <field name="name">Attribute Options</field>
             <field name="res_model">attribute.option</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -258,7 +261,7 @@
 
         <menuitem
             action="attribute_option_form_action" id="menu_attribute_option_action"
-            parent="base.next_id_9" sequence="5"/>
+            parent="menu_attribute_in_admin" sequence="40"/>
 
     <!-- ATTRIBUTE OPTION WIZARD -->
         <record id="attribute_option_wizard_form_view" model="ir.ui.view">

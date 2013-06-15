@@ -13,80 +13,32 @@
             id="menu_attribute_in_config_product" name="Attributes"
             parent="product.prod_config_main" sequence="20"/>
 
-
-        <record id="attribute_location_form_view" model="ir.ui.view">
-            <field name="name">attribute.location.form</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <form string="Attribute Location">
-                    <field name="attribute_id" />
-                    <field name="sequence" />
-                    <field name="attribute_group_id" />
-                    <field name="attribute_set_id" />
-                </form>
-            </field>
-        </record>
-
-        <record id="attribute_location_tree_view" model="ir.ui.view">
-            <field name="name">attribute.location.tree</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <tree string="Attribute Location">
-                    <field name="attribute_id" />
-                    <field name="sequence" />
-                    <field name="attribute_set_id" />
-                    <field name="attribute_group_id" />
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_attribute_location_search" model="ir.ui.view">
-            <field name="name">attribute.location.list</field>
-            <field name="model">attribute.location</field>
-            <field name="arch" type="xml">
-                <search string="Search Attribute Locations">
-                    <field name="name"/>
-                    <field name="attribute_set_id"/>
-                    <field name="attribute_group_id"/>
-               </search>
-            </field>
-        </record>
-
         <record id="attribute_set_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Sets</field>
+            <field name="name">Product Attribute Sets</field>
             <field name="res_model">attribute.set</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_attribute_set_search"/>
-            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="search_view_id" ref="base_custom_attributes.view_attribute_set_search"/>
+            <field name="context">{"force_model": 'product.product'}</field>
             <field name="help"></field>
         </record>
 
-        <record id="attribute_location_form_action" model="ir.actions.act_window">
-            <field name="name">Attribute Locations</field>
-            <field name="res_model">attribute.location</field>
+        <record id="custom_attribute_form_action" model="ir.actions.act_window">
+            <field name="name">Product Attribute</field>
+            <field name="res_model">custom.attribute</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_attribute_location_search"/>
-            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="search_view_id" ref="base_custom_attributes.view_custom_attribute_search"/>
+            <field name="context">{"force_model": 'product.product'}</field>
             <field name="help"></field>
         </record>
 
          <menuitem
              action="attribute_set_form_action" id="menu_attribute_set_action"
              parent="product_custom_attributes.menu_attribute_in_config_product" sequence="1"/>
-         <menuitem
-             action="base_custom_attributes.attribute_group_form_action" id="menu_attribute_group_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="2"/>
-         <menuitem
-             action="attribute_location_form_action" id="menu_attribute_location_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="3"/>
-         <menuitem
-             action="base_custom_attributes.custom_attribute_form_action" id="menu_custom_attribute_action"
+        <menuitem
+             action="custom_attribute_form_action" id="menu_custom_attribute_action"
              parent="product_custom_attributes.menu_attribute_in_config_product" sequence="4"/>
-         <menuitem
-             action="base_custom_attributes.attribute_option_form_action" id="menu_attribute_option_action"
-             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="5"/>
 
     </data>
 </openerp>
