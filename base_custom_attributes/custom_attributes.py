@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   base_custom_attributes for OpenERP                                        #
+#   base_attribute.attributes for OpenERP                                        #
 #   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
 #   Copyright (C) 2013 Akretion Raphaël VALYI <raphael.valyi@akretion.com>    #
 #                                                                             #
@@ -37,7 +37,7 @@ class attribute_option(orm.Model):
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
         'value_ref': fields.reference('Reference', selection=[], size=128),
-        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
 
@@ -54,7 +54,7 @@ class attribute_option_wizard(orm.TransientModel):
     _rec_name = 'attribute_id'
 
     _columns = {
-        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
     }
 
     _defaults = {
@@ -65,7 +65,7 @@ class attribute_option_wizard(orm.TransientModel):
         return True
 
     def create(self, cr, uid, vals, context=None):
-        attr_obj = self.pool.get("custom.attribute")
+        attr_obj = self.pool.get("attribute.attribute")
         attr = attr_obj.browse(cr, uid, vals['attribute_id'])
         op_ids = [op.id for op in attr.option_ids]
         opt_obj = self.pool.get("attribute.option")
@@ -84,7 +84,7 @@ class attribute_option_wizard(orm.TransientModel):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         res = super(attribute_option_wizard, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
         if view_type == 'form' and context and context.get("attribute_id"):
-            attr_obj = self.pool.get("custom.attribute")
+            attr_obj = self.pool.get("attribute.attribute")
             model_id = attr_obj.read(cr, uid, [context.get("attribute_id")], ['relation_model_id'])[0]['relation_model_id'][0]
             relation = self.pool.get("ir.model").read(cr, uid, [model_id], ["model"])[0]["model"]
             res['fields'].update({'option_ids': {
@@ -103,8 +103,8 @@ class attribute_option_wizard(orm.TransientModel):
         return res
 
 
-class custom_attribute(orm.Model):
-    _name = "custom.attribute"
+class attribute_attribute(orm.Model):
+    _name = "attribute.attribute"
     _description = "Custom Attribute"
     _inherits = {'ir.model.fields': 'field_id'}
 
@@ -210,7 +210,7 @@ class custom_attribute(orm.Model):
         else:
             vals['ttype'] = vals['attribute_type']
         vals['state'] = 'manual'
-        return super(custom_attribute, self).create(cr, uid, vals, context)
+        return super(attribute_attribute, self).create(cr, uid, vals, context)
 
     def onchange_field_description(self, cr, uid, ids, field_description, context=None):
         name = 'x_'
@@ -313,14 +313,14 @@ class attribute_location(orm.Model):
     _name = "attribute.location"
     _description = "Attribute Location"
     _order="sequence"
-    _inherits = {'custom.attribute': 'attribute_id'}
+    _inherits = {'attribute.attribute': 'attribute_id'}
 
 
     def _get_attribute_loc_from_group(self, cr, uid, ids, context=None):
         return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
 
     _columns = {
-        'attribute_id': fields.many2one('custom.attribute', 'Product Attribute', required=True, ondelete="cascade"),
+        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True, ondelete="cascade"),
         'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
 store={
             'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
