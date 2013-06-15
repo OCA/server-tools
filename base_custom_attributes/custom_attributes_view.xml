@@ -141,21 +141,23 @@
                     <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
                     <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" />
-                    <field name="model_id" /><!-- TODO find a way to apply restriction domain dynamically-->
+                    <field name="model_id" />
                     <field name="serialized" />
                     <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
                     <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
                     <newline />
                     <group colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}">
-                    <field name="relation_model_id" on_change="relation_model_id_change(relation_model_id, option_ids, context)"/>
-                    <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
-                    <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False), ('domain', '!=', False)]}" type="object" string="Change Options"/>
-                    <field name="option_ids" colspan="4" nolabel="1">
-                        <tree string="Attribute Options" editable="top">
-                            <field name="sequence" invisible="1"/>
-                            <field name="name" on_change="name_change(name, parent.relation_model_id, context)"/>
-                        </tree>
-                    </field>
+                        <group groups="base.group_advanced_attribute">
+                            <field name="relation_model_id" on_change="relation_model_id_change(relation_model_id, option_ids, context)"/>
+                            <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
+                            <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False), ('domain', '!=', False)]}" type="object" string="Load Options"/>
+                        </group>
+                        <field name="option_ids" colspan="4" nolabel="1">
+                            <tree string="Attribute Options" editable="top">
+                                <field name="sequence" invisible="1"/>
+                                <field name="name" on_change="name_change(name, parent.relation_model_id, context)"/>
+                            </tree>
+                        </field>
                     </group>
                     <field name="create_date" invisible="1"/>
                 </form>
@@ -203,25 +205,13 @@
             <field name="arch" type="xml">
                 <form string="Attribute Option" col="6">
                     <field name="name" colspan="2"/>
-                    <field name="value_ref" colspan="2"/>
+                    <field name="value_ref" colspan="2" groups="base.group_advanced_attribute"/>
                     <field name="sequence" colspan="2"/>
                     <field name="attribute_id" colspan="2"/>
                 </form>
             </field>
         </record>
         
-        <record id="prio_attribute_option_tree_view" model="ir.ui.view">
-            <field name="name">attribute.option.tree.prio</field>
-            <field name="model">attribute.option</field>
-            <field eval="1" name="priority"/>
-            <field name="arch" type="xml">
-                <tree string="Attribute Option">
-                    <field name="name" />
-                    <field name="value_ref" />
-                </tree>
-            </field>
-        </record>
-
         <record id="attribute_option_tree_view" model="ir.ui.view">
             <field name="name">attribute.option.tree</field>
             <field name="model">attribute.option</field>
@@ -230,7 +220,7 @@
                 <tree string="Attribute Option">
                     <field name="name" />
                     <field name="sequence" />
-                    <field name="value_ref" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
                     <field name="attribute_id" />
                 </tree>
             </field>
@@ -242,7 +232,7 @@
             <field name="arch" type="xml">
                 <search string="Search Attribute Options">
                     <field name="name" />
-                    <field name="value_ref" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
                     <field name="attribute_id"/>
                </search>
             </field>

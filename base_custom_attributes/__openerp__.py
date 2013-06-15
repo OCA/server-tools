@@ -34,6 +34,7 @@
     'init_xml': [],
     'update_xml': [
            'security/ir.model.access.csv',
+           'security/attribute_security.xml',
            'custom_attributes_view.xml',
     ],
     'demo_xml': [],
