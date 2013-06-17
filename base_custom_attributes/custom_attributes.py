@@ -24,7 +24,7 @@ from openerp.osv import orm
 from openerp.osv import fields
 from openerp.osv.osv import except_osv
 from openerp.osv.orm import setup_modifiers
-from tools.translate import _
+from openerp.tools.translate import _
 from lxml import etree
 
 from unidecode import unidecode # Debian package python-unidecode
