@@ -40,7 +40,51 @@ sure to use ${body_text} and ${body_html} respectively in your template
 template.
 
 Then select this newly created template templates in one of your actual
-templates.""",
+templates.
+
+For example, create a template template
+-----
+Example Corp logo
+Example Corp header
+${object.body_text} <- this gets evaluated to the body_text of a template using this template template
+Example Corp
+Example street 42
+Example city
+Example Corp footer
+-----
+
+Then in your template you write
+
+-----
+Dear ${object.partner_id.name},
+
+Your order has been booked on date ${object.date} for a total amount of ${object.sum}.
+-----
+
+And it will be evaluated to
+
+-----
+Example Corp logo
+Example Corp header
+Dear Jane Doe,
+
+Your order has been booked on date 04/17/2013 for a total amount of 42.
+Example Corp
+Example street 42
+Example city
+Example Corp footer
+-----
+
+Given the way evaluation works internally (body_text of the template template is evaluated two times, first with the instance of email.template of your own template, then with the object your template refers to), you can do some trickery if you know that a template template is always used with the same kind of model (that is, models that have the same field name):
+
+In your template template:
+
+------
+Dear ${'${object.name}'}, <-- gets evaluated to "${object.name}" in the first step, then to the content of object.name
+${object.body_html}
+Best,
+Example Corp
+------""",
     'website': 'http://therp.nl',
     'images': [],
     'depends': ['email_template'],
