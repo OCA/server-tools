@@ -137,7 +137,7 @@
             <field name="name">attribute.attribute.form</field>
             <field name="model">attribute.attribute</field>
             <field name="arch" type="xml">
-                <form string="Product Attribute">
+                <form string="Attribute">
                     <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
                     <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" />
@@ -168,7 +168,7 @@
             <field name="name">attribute.attribute.tree</field>
             <field name="model">attribute.attribute</field>
             <field name="arch" type="xml">
-                <tree string="Product Attribute">
+                <tree string="Attribute">
                     <field name="name" />
                     <field name="attribute_type" />
                 </tree>
@@ -179,7 +179,7 @@
             <field name="name">attribute.attribute.list</field>
             <field name="model">attribute.attribute</field>
             <field name="arch" type="xml">
-                <search string="Search Product Attributes">
+                <search string="Search Attributes">
                     <field name="name"/>
                </search>
             </field>
