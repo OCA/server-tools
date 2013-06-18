@@ -21,12 +21,14 @@
 {                                                                                  
     'name' : 'Merge Duplicate Partner',                                                                   
     'version' : '0.1',                                                             
-    'author' : 'Vauxoo',                                                      
+    'author': 'OpenERP SA',
+    'website': 'http://www.openerp.com',
     'category' : 'Base',                                                          
     'description' : """     
 Merge Partners
 ==============
-We can merge duplicates partners and set the new id in all documents of partner merged
+We can merge duplicates partners and set the new id in all documents of
+partner merged
 
 We can merge partner using like mach parameter these fields:
 -Email
@@ -38,10 +40,9 @@ We can merge partner using like mach parameter these fields:
                                                                                    
 We can select which partner will be the main partner
 
-This feature is in the follow path Sales/Tools/Deduplicate Contacts also is created an action menu in the partner view
-
+This feature is in the follow path Sales/Tools/Deduplicate Contacts also is
+created an action menu in the partner view
     """,                                                                           
-    'website': 'http://www.vauxoo.com',                                            
     'images' : [],                                                                 
     'depends' : [
         'base',
