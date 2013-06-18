@@ -20,14 +20,12 @@
 #                                                                             #
 ###############################################################################
 
-from openerp.osv import orm
-from openerp.osv import fields
+from openerp.osv import orm, fields
 from openerp.osv.osv import except_osv
-from openerp.osv.orm import setup_modifiers
 from openerp.tools.translate import _
 from lxml import etree
-
 from unidecode import unidecode # Debian package python-unidecode
+
 
 class attribute_option(orm.Model):
     _name = "attribute.option"
@@ -129,7 +127,7 @@ class attribute_attribute(orm.Model):
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
-        setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
+        orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
 
     def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
@@ -207,8 +205,8 @@ class attribute_attribute(orm.Model):
                 vals['serialization_field_id'] = serialized_ids[0]
             else:
                 f_vals = {
-                    'name': 'x_custom_json_attrs',
-                    'field_description': 'Serialized JSON Attributes', 
+                    'name': u'x_custom_json_attrs',
+                    'field_description': u'Serialized JSON Attributes', 
                     'ttype': 'serialized',
                     'model_id': vals['model_id'],
                 }
@@ -217,16 +215,17 @@ class attribute_attribute(orm.Model):
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
     def onchange_field_description(self, cr, uid, ids, field_description, context=None):
-        name = 'x_'
+        name = u'x_'
         if field_description:
-            name = unidecode('x_%s' % field_description.replace(' ', '_').lower())
-
+            name = unidecode(u'x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
     def onchange_name(self, cr, uid, ids, name, context=None):
         res = {}
         if not name.startswith('x_'):
-            name = 'x_%s' % name
+            name = u'x_%s' % name
+        else:
+            name = u'%s' % name
         res = {'value' : {'name' : unidecode(name)}}
 
         #FILTER ON MODEL
