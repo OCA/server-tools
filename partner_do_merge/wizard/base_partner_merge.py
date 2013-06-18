@@ -321,7 +321,7 @@ class MergePartnerAutomatic(osv.TransientModel):
 
         if len(partner_ids) > 10:
             raise osv.except_osv(_('Error'), _(
-                """For safety reasons, you cannot merge more than 3 contacts
+                """For safety reasons, you cannot merge more than 10 contacts
                    together. You can re-open the wizard several
                    times if needed."""))
 
