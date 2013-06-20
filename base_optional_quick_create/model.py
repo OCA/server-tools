@@ -20,6 +20,7 @@
 
 from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
+from openerp.tools.translate import _
 
 class ir_model(orm.Model):
 
@@ -31,7 +32,7 @@ class ir_model(orm.Model):
 
     def _wrap_name_create(self, old_create, model):
         def wrapper(cr, uid, name, context=None):
-            raise Exception("Can't create quickly. Opening create form")
+            raise orm.except_orm(_('Error'), _("Can't create quickly. Opening create form"))
         return wrapper
 
     def _register_hook(self, cr, ids=None):
