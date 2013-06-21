@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_base_custom_attributes_attribute_group_salemanager","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_sale_manager",1,1,1,1
+"access_base_custom_attributes_attribute_attribute_salemanager","base_custom_attributes_product_attribute","base_custom_attributes.model_attribute_attribute","base.group_sale_manager",1,1,1,1
+"access_base_custom_attributes_attribute_option_salemanager","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_sale_manager",1,1,1,1
+"access_base_custom_attributes_attribute_group_manager","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_no_one",1,1,1,1
+"access_base_custom_attributes_attribute_attribute_manager","base_custom_attributes_attribute_attribute","base_custom_attributes.model_attribute_attribute","base.group_no_one",1,1,1,1
+"access_base_custom_attributes_attribute_option_manager","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_no_one",1,1,1,1
+"access_base_custom_attributes_attribute_group_user","base_custom_attributes_attribute_group","base_custom_attributes.model_attribute_group","base.group_user",1,0,0,0
+"access_base_custom_attributes_attribute_attribute_user","base_custom_attributes_attribute_attribute","base_custom_attributes.model_attribute_attribute","base.group_user",1,0,0,0
+"access_base_custom_attributes_attribute_option_user","base_custom_attributes_attribute_option","base_custom_attributes.model_attribute_option","base.group_user",1,0,0,0

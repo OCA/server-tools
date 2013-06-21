@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  base_custom_attributes for OpenERP
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <menuitem
+            id="menu_attribute_in_admin" name="Attributes"
+            parent="base.next_id_9" sequence="1"/>
+
+    <!-- ATTRIBUTE SET VIEW -->
+
+        <record id="attribute_set_form_view" model="ir.ui.view">
+            <field name="name">attribute.set.form</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Set">
+                    <field name="name"/>
+                    <field name="model_id" invisible="context.get('force_model')"/>
+                    <field name="attribute_group_ids" colspan="4"
+                           context="{'default_model_id': model_id, 'from_attribute_set':True}">
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_set_tree_view" model="ir.ui.view">
+            <field name="name">attribute.set.tree</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Set" >
+                    <field name="name" />
+                    <field name="model_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_set_search" model="ir.ui.view">
+            <field name="name">attribute.set.list</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Sets">
+                    <field name="name"/>
+                    <field name="model_id" />
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_set_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Sets</field>
+            <field name="res_model">attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_set_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_set_form_action" id="menu_attribute_set_action"
+             parent="menu_attribute_in_admin" sequence="10"/>
+ 
+
+
+    <!-- ATTRIBUTE GROUP VIEW -->
+
+        <record id="attribute_group_form_view" model="ir.ui.view">
+            <field name="name">attribute.group.form</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Group">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="model_id" invisible="context.get('from_attribute_set') or context.get('force_model')"/>
+                    <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="attribute_ids" colspan="4" nolabel="1">
+                        <form string="Attribute Location">
+                            <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
+                            <field name="sequence" />
+                        </form>
+                        <tree string="Attribute Location" editable="top">
+                            <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
+                            <field name="sequence" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_group_tree_view" model="ir.ui.view">
+            <field name="name">attribute.group.tree</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Group">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="model_id" invisible="context.get('from_attribute_set')"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_group_search" model="ir.ui.view">
+            <field name="name">attribute.group.list</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Groups">
+                    <field name="name"/>
+                    <field name="attribute_set_id"/>
+                    <field name="model_id" />
+               </search>
+            </field>
+        </record>
+
+
+        <record id="attribute_group_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Groups</field>
+            <field name="res_model">attribute.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_group_form_action" id="menu_attribute_group_action"
+             parent="menu_attribute_in_admin" sequence="20"/>
+
+    <!-- ATTRIBUTE VIEW -->
+
+        <record id="attribute_attribute_form_view" model="ir.ui.view">
+            <field name="name">attribute.attribute.form</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <form string="Attribute">
+                    <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
+                    <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
+                    <field name="attribute_type" />
+                    <field name="model_id" />
+                    <field name="serialized" attrs="{'invisible':[('attribute_type', '=', 'multiselect')]}"/>
+                    <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
+                    <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
+                    <newline />
+                    <group colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}">
+                        <group groups="base.group_advanced_attribute">
+                            <field name="relation_model_id" on_change="relation_model_id_change(relation_model_id, option_ids, context)"/>
+                            <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
+                            <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False), ('domain', '!=', False)]}" type="object" string="Load Options"/>
+                        </group>
+                        <field name="option_ids" colspan="4" nolabel="1">
+                            <tree string="Attribute Options" editable="top">
+                                <field name="sequence" invisible="1"/>
+                                <field name="name" on_change="name_change(name, parent.relation_model_id, context)"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <field name="create_date" invisible="1"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="attribute_attribute_tree_view" model="ir.ui.view">
+            <field name="name">attribute.attribute.tree</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute">
+                    <field name="name" />
+                    <field name="attribute_type" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_attribute_attribute_search" model="ir.ui.view">
+            <field name="name">attribute.attribute.list</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <search string="Search Attributes">
+                    <field name="name"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_attribute_form_action" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="res_model">attribute.attribute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_attribute_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+        <menuitem
+            action="attribute_attribute_form_action" id="menu_attribute_attribute_action"
+            parent="menu_attribute_in_admin" sequence="30"/>
+
+    <!-- ATTRIBUTE OPTION VIEW -->
+        <record id="attribute_option_form_view" model="ir.ui.view">
+            <field name="name">attribute.option.form</field>
+            <field name="model">attribute.option</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Option" col="6">
+                    <field name="name" colspan="2"/>
+                    <field name="value_ref" colspan="2" groups="base.group_advanced_attribute"/>
+                    <field name="sequence" colspan="2"/>
+                    <field name="attribute_id" colspan="2"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="attribute_option_tree_view" model="ir.ui.view">
+            <field name="name">attribute.option.tree</field>
+            <field name="model">attribute.option</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Attribute Option">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
+                    <field name="attribute_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_option_search" model="ir.ui.view">
+            <field name="name">attribute.option.list</field>
+            <field name="model">attribute.option</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Options">
+                    <field name="name" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
+                    <field name="attribute_id"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_option_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Options</field>
+            <field name="res_model">attribute.option</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="attribute_option_tree_view"/>
+            <field name="search_view_id" ref="view_attribute_option_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+        <menuitem
+            action="attribute_option_form_action" id="menu_attribute_option_action"
+            parent="menu_attribute_in_admin" sequence="40"/>
+
+    <!-- ATTRIBUTE OPTION WIZARD -->
+        <record id="attribute_option_wizard_form_view" model="ir.ui.view">
+            <field name="name">attribute.option.wizard</field>
+            <field name="model">attribute.option.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Options Wizard" col="6">
+                    <field name="attribute_id" invisible="1" colspan="2"/>
+                    <separator string="options_placeholder"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="validate" string="Validate" type="object" icon="gtk-convert"/>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
