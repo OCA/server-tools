@@ -34,7 +34,7 @@
     Using it for 6.1 modules instead of fields_view_get hacks and the like
     also lowers the effort it takes to port the module in question to 7.0
     """,
-    'author': 'Therp BV',
+    'author': ['Therp BV', 'OpenERP SA'],
     'website': 'http://www.therp.nl',
     "category": "Dependency",
     "depends": [
