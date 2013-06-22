@@ -3,6 +3,11 @@
 #
 #    OpenERP, Open Source Management Solution
 #    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
+#
+#    Code snippets from openobject-server 7.0
+#                          (C) 2004-2012 OpenERP S.A. (<http://openerp.com>)
+#
+#
 #    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
