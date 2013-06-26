@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+         <record id="view_analytic_search_global" model="ir.ui.view">
+            <field name="name"> view.analytic.search.global </field>
+            <field name="model">analytic.code</field>
+            <field name="arch" type="xml">
+                <search string="Analytic Codes"> 
+                    <!--<field name="name" filter_domain="['|',(name', 'ilike', self), ('nd_id', 'ilike', self)]"/>
+                    Easy searchable not working "error length of undefined"-->
+                    <group expand="0" string="Group By...">
+                        <filter string="Code Dimension" domain="" context="{'group_by':'nd_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
         <record id="view_analytic_code" model="ir.ui.view">
             <field name="name">analytic.code.view.form</field>
             <field name="model">analytic.code</field>
+
             <field name="arch" type="xml">
                 <tree string="Analytic Codes" version="7.0" editable="bottom">
                     <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="nd_id"/>
                 </tree>
             </field>
         </record>
@@ -17,6 +32,7 @@
         <record id="action_analytic_code" model="ir.actions.act_window">
             <field name="name">Analytic Code</field>
             <field name="res_model">analytic.code</field>
+            <field name="search_view_id" ref="view_analytic_search_global"/>
             <field name="view_type">form</field>
             <field name="view_id" ref="view_analytic_code"/>
             <field name="view_mode">tree, form</field>
@@ -105,6 +121,7 @@
             </field>
         </record>
 
+       
         <!-- we add our config entries to the accounting configuration menu -->
         <menuitem id="menu_analytic_config_root" name="Analytic" parent="base.menu_custom" sequence="5" />
         <menuitem id="menu_analytic_dimension" name="Dimensions" parent="menu_analytic_config_root" sequence="10" action="action_analytic_dimension" />
