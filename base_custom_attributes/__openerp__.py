@@ -40,5 +40,9 @@
     'demo_xml': [],
     'installable': True,
     'active': False,
+    'external_dependencies' : {
+        'python' : ['unidecode'],
+    }
+
 }
 
