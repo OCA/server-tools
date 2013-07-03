@@ -312,7 +312,7 @@ class MergePartnerAutomatic(osv.TransientModel):
                     dst_partner.id)
 
     @mute_logger('openerp.osv.expression', 'openerp.osv.orm')
-    def _merge(self, cr, uid, partner_ids, dst_partner=None, remove=None,context=None):
+    def _merge(self, cr, uid, partner_ids, dst_partner=None, context=None):
         proxy = self.pool.get('res.partner')
 
         partner_ids = proxy.exists(cr, uid, list(partner_ids), context=context)
@@ -376,12 +376,8 @@ class MergePartnerAutomatic(osv.TransientModel):
                                 (p.name, p.email or 'n/a', p.id) for p in
                                         src_partners)))
         
-        if remove == False:
-            for partner in src_partners:
-                partner.write({'active' : False})
-        else:
-            for partner in src_partners:
-                partner.unlink()
+        for partner in src_partners:
+            partner.write({'active' : False})
 
     def clean_emails(self, cr, uid, context=None):
         """
@@ -778,8 +774,7 @@ class MergePartnerAutomatic(osv.TransientModel):
         return self._next_screen(cr, uid, this, context)
 
     def merge_pbp(self, cr, uid, partner_ids, dst_partner_id, context=None):
-        self._merge(cr, uid, partner_ids, dst_partner_id, False,\
-            context=context)
+        self._merge(cr, uid, partner_ids, dst_partner_id, context=context)
         return True
 
     def merge_cb(self, cr, uid, ids, context=None):
