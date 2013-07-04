@@ -66,6 +66,10 @@ class res_partner(osv.Model):
                                         store=_display_name_store_triggers),
         'id': fields.integer('Id', readonly=True),
         'create_date': fields.datetime('Create Date', readonly=True),
+        'partner_merged_ids' : fields.many2many('res.partner',\
+            'partners_mergeds', 'partner_active', 'partner_id', 'Relation '\
+            'with partner merged', domain=['|', ('active','=',True), (\
+            'active','=',False)], readonly=True)
 
 
     }

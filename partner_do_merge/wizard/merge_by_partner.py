@@ -62,6 +62,13 @@ class wizard_merge_partner_by_partner(osv.osv_memory):
                     'adminpaq_id' : 0})
                 partner_obj.write(cr, uid, data.partner_id.id, {
                     'adminpaq_id' : adminpac_ids.values()[0]})
+            list_partners = data.partner_ids
+            if dst_partner in data.partner_ids:
+                list_partners.remove(dst_partner)
+            partner_mergeds = []
+            for x in list_partners:
+                partner_mergeds.append(x.id)
+            partner_obj.write(cr, uid, dst_partner.id, {'partner_merged_ids' : [(6, 0, partner_mergeds)]}, context=context)
         return True
     
     

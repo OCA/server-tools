@@ -51,6 +51,7 @@ created an action menu in the partner view
     'data': [                                                                      
         'wizard/base_partner_merge_view.xml',
         'wizard/merge_by_partner.xml',
+        'view/res_partner_view.xml',
     ],                                                                                 
     'js': [                                                                        
     ],                                                                                 
