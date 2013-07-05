@@ -1,0 +1,167 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* analytic_structure
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-05 12:08+0000\n"
+"PO-Revision-Date: 2013-07-05 12:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: analytic_structure
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_dimension
+msgid "Dimensions"
+msgstr ""
+
+#. module: analytic_structure
+#: model:ir.actions.act_window,help:analytic_structure.action_analytic_dimension
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Create Analytical Dimensions (AND) for your system.\n"
+"              </p>\n"
+"            "
+msgstr ""
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_structure
+msgid "analytic.structure"
+msgstr ""
+
+#. module: analytic_structure
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_config_root
+msgid "Analytic"
+msgstr "Analytique"
+
+#. module: analytic_structure
+#: view:analytic.dimension:0
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_dimension
+msgid "Analytic Dimension"
+msgstr "Dimension Analytique"
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+msgid "Target Model Name"
+msgstr "Nom du Model Cible"
+
+#. module: analytic_structure
+#: field:analytic.code,nd_id:0
+#: field:analytic.dimension,nc_ids:0
+#: field:analytic.dimension,ns_id:0
+msgid "unknown"
+msgstr "inconnu"
+
+#. module: analytic_structure
+#: field:analytic.structure,model_name:0
+msgid "Object"
+msgstr "Objet"
+
+#. module: analytic_structure
+#: sql_constraint:analytic.dimension:0
+msgid "name must be unique"
+msgstr "le nom doit être unique"
+
+#. module: analytic_structure
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_structure
+msgid "Structure"
+msgstr ""
+
+#. module: analytic_structure
+#: field:analytic.structure,ordering:0
+msgid "Analysis slot"
+msgstr "Emplacement d'analyse"
+
+#. module: analytic_structure
+#: field:analytic.code,name:0
+#: field:analytic.dimension,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_code
+msgid "analytic.code"
+msgstr ""
+
+#. module: analytic_structure
+#: sql_constraint:analytic.structure:0
+msgid "One dimension per Analysis slot per object"
+msgstr "Une dimension par analyse par objet"
+
+#. module: analytic_structure
+#: field:analytic.code,nd_name:0
+#: view:analytic.dimension:0
+msgid "Dimension Name"
+msgstr "Nom Dimension"
+
+#. module: analytic_structure
+#: view:analytic.dimension:0
+msgid "ANCs"
+msgstr ""
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_dimension
+msgid "analytic.dimension"
+msgstr ""
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_structure
+msgid "Analytic Structure"
+msgstr "Structure Analytique"
+
+#. module: analytic_structure
+#: selection:analytic.structure,ordering:0
+msgid "Analysis 4"
+msgstr "Analytique 4"
+
+#. module: analytic_structure
+#: selection:analytic.structure,ordering:0
+msgid "Analysis 5"
+msgstr "Analytique 5"
+
+#. module: analytic_structure
+#: selection:analytic.structure,ordering:0
+msgid "Analysis 1"
+msgstr "Analytique 1"
+
+#. module: analytic_structure
+#: selection:analytic.structure,ordering:0
+msgid "Analysis 2"
+msgstr "Analytique 2"
+
+#. module: analytic_structure
+#: selection:analytic.structure,ordering:0
+msgid "Analysis 3"
+msgstr "Analytique 3"
+
+#. module: analytic_structure
+#: model:ir.actions.act_window,help:analytic_structure.action_analytic_structure
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Define Analytical Structure (ANS) for objects in your system.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Défini la structure analytique (ANS) pour les objets dans votre système.\n"
+"              </p>\n"
+"            "
+
+#. module: analytic_structure
+#: view:analytic.dimension:0
+msgid "Analysis Codes"
+msgstr "Codes Analytiques"
+
+#. module: analytic_structure
+#: field:analytic.dimension,validated:0
+msgid "Validated"
+msgstr "Validé"
+
+#. module: analytic_structure
+#: field:analytic.structure,nd_id:0
+msgid "Related Dimension"
+msgstr "Dimension Associée"
+
