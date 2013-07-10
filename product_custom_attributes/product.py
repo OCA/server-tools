@@ -36,9 +36,9 @@ class product_product(Model):
             set_id = self.read(cr, uid, [i], fields=['attribute_set_id'],
                      context=context)[0]['attribute_set_id']
             if not set_id:
-                raise except_osv(_('User Error'), _('Please choose \
-                an attribute set before opening the product attributes'))
-            res[i] = self.pool.get('attribute.group').search(cr, uid,
+                res[i] = []
+            else:
+                res[i] = self.pool.get('attribute.group').search(cr, uid,
                       [('attribute_set_id', '=', set_id[0])])
         return res
 
