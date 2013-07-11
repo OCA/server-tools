@@ -69,9 +69,6 @@ class analytic_code(osv.Model):
                 ] + args, limit=limit, context=context,
                 )
             )
-            print '###'
-            print 'BLABLA'
-            print ids
             return self.name_get(cr, uid, ids)
         else:
             return super(analytic_code, self).name_search(
