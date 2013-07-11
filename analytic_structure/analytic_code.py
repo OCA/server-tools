@@ -50,3 +50,30 @@ class analytic_code(osv.Model):
                 name = name + ' ' + record['description']
                 res.append((record['id'], name))
         return res
+
+    def name_search(self, cr, uid, name, args=None, operator='ilike', 
+                    context=None, limit=100):
+        if not args:
+            args = []
+
+        if not context:
+            context = {}
+
+        ids = []
+        if name:
+            ids.extend(
+                self.search(cr, uid, [
+                    '|',
+                    ('name', operator, name),
+                    ('description', operator, name)
+                ] + args, limit=limit, context=context,
+                )
+            )
+            print '###'
+            print 'BLABLA'
+            print ids
+            return self.name_get(cr, uid, ids)
+        else:
+            return super(analytic_code, self).name_search(
+                cr, uid, name=name, args=args, operator=operator,
+                context=context, limit=limit)
