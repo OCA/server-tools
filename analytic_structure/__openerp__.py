@@ -34,6 +34,7 @@ to an object model.
     "depends" : ['base'],
     "data": [
         'security/ir.model.access.csv',
+        'security/record_rules.xml',
         'analytic_dimension.xml',
     ],
     #'demo_xml': [],
