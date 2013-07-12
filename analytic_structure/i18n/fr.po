@@ -29,6 +29,11 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 msgstr ""
 
 #. module: analytic_structure
+#: model:res.groups,name:analytic_structure.group_ans_manager
+msgid " Manage analytic structure"
+msgstr "Gestion des structures analytiques"
+
+#. module: analytic_structure
 #: model:ir.model,name:analytic_structure.model_analytic_structure
 msgid "analytic.structure"
 msgstr ""
