@@ -26,7 +26,10 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "                Create Analytical Dimensions (AND) for your system.\n"
 "              </p>\n"
 "            "
-msgstr ""
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Créez des dimensions analytiques (AND) pour votre système\n"
+"              </p>\n"
+"            "
 
 #. module: analytic_structure
 #: model:res.groups,name:analytic_structure.group_ans_manager
@@ -151,7 +154,7 @@ msgid "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Défini la structure analytique (ANS) pour les objets dans votre système.\n"
+"                Définissez la structure analytique (ANS) pour les objets dans votre système.\n"
 "              </p>\n"
 "            "
 
