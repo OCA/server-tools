@@ -27,7 +27,10 @@ class analytic_code(osv.Model):
     _columns = dict(
         name=fields.char("Name", size=128, translate=True, required=True),
         nd_id=fields.many2one(
-            "analytic.dimension", "Dimensions", ondelete="cascade"),
+            "analytic.dimension",
+            string="Dimension",
+            ondelete="cascade"
+        ),
         active=fields.boolean('Active'),
         nd_name=fields.related('nd_id', 'name', type="char",
                                string="Dimension Name", store=False),
@@ -40,18 +43,26 @@ class analytic_code(osv.Model):
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
             return []
+
         if isinstance(ids, (int, long)):
             ids = [ids]
-        reads = self.read(cr, uid, ids, ['name', 'description'], context=context)
+
+        reads = self.read(cr, uid, ids,
+                          [
+                              'name',
+                              'description'
+                          ], context=context
+                          )
         res = []
         for record in reads:
             name = record['name']
             if record['description']:
                 name = name + ' ' + record['description']
                 res.append((record['id'], name))
+
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike', 
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=100):
         if not args:
             args = []
