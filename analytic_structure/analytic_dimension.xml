@@ -14,6 +14,20 @@
                 </search>
             </field>
         </record>
+        
+        <!-- if nd_id is not filled the analytic code won't appear in the dimension list-->
+        <record id="analytic_dimension_form" model="ir.ui.view">
+            <field name="name">analytic.dimension.form</field>
+            <field name="model">analytic.code</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Dimension">
+                    <field name="active"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="nd_id" required="1"/>
+                </form>
+            </field>
+        </record>
 
         <record id="view_analytic_code" model="ir.ui.view">
             <field name="name">analytic.code.view.form</field>
@@ -35,7 +49,7 @@
             <field name="search_view_id" ref="view_analytic_search_global"/>
             <field name="view_type">form</field>
             <field name="view_id" ref="view_analytic_code"/>
-            <field name="view_mode">tree, form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <record id="view_analytic_dimension" model="ir.ui.view">
@@ -121,19 +135,6 @@
             </field>
         </record>
 
-       
-        <record id="analytic_dimension_form" model="ir.ui.view">
-            <field name="name">analytic.dimension.form</field>
-            <field name="model">analytic.code</field>
-            <field name="arch" type="xml">
-                <form string="Analytic Dimension">
-                    <field name="active"/>
-                    <field name="name"/>
-                    <field name="description"/>
-                    <field name="nd_id"/>
-                </form>
-            </field>
-        </record>
         <!-- we add our config entries to the accounting configuration menu -->
         <menuitem id="menu_analytic_config_root" name="Analytic" parent="base.menu_custom" sequence="5" />
         <menuitem id="menu_analytic_dimension" name="Dimensions" parent="menu_analytic_config_root" sequence="10" action="action_analytic_dimension" />
