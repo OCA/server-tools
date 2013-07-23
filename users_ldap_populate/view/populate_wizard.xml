@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="populate_wizard_view">
+            <field name="name">Add populate button to ldap view</field>
+            <field name="model">res.company.ldap.populate_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Add populate button to ldap view" version="7.0">
+                    <group col="4">
+                       <field name="users_created"/>
+                       <button icon="gtk-ok" string="OK" special="cancel"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
