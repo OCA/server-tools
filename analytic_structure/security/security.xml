@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="1">
+    <data>
         <record id="group_ans_manager" model="res.groups">
             <field name="name">Manage Analysis Structure</field>
             <field name="comment">the user will be able to create analysis codes</field>
