@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "LDAP Populate",
-    "version": "1.0",
+    "version": "1.2",
     "author": "Therp BV",
     "category": 'Tools',
     "description": """

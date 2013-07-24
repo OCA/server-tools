@@ -21,7 +21,7 @@
 
 {
 "name" : "Groups assignment",
-"version" : "1.0",
+"version" : "1.2",
 "depends" : ["auth_ldap"],
 "author" : "Therp BV",
 "description": """
