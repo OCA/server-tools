@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="company_form_view">
             <field name="name">res.company.form.inherit.users_ldap_groups</field>
             <field name="model">res.company</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="auth_ldap.company_form_view"/>
             <field name="arch" type="xml">
 
