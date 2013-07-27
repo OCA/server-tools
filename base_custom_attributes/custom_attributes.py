@@ -176,7 +176,6 @@ class attribute_attribute(orm.Model):
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
         'relation_model_id': fields.many2one('ir.model', 'Model'),
-        'domain': fields.char('Domain', size=256),
         }
 
     def create(self, cr, uid, vals, context=None):
