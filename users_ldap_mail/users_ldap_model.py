@@ -23,21 +23,22 @@ from openerp.osv import fields, orm
 
 
 class CompanyLDAP(orm.Model):
-    _inherit='res.company.ldap'
-    _columns={
+    _inherit = 'res.company.ldap'
+    _columns = {
         'name_attribute': fields.char('Name Attribute', size=64,
             help="Default in 'cn'. For an AD you could use 'displayName' instead."),
         'mail_attribute': fields.char('E-mail attribute', size=64,
             help="Active Directory uses the 'mail' attribute."),
-          }
-
+        }
+    _defaults = {
+        'mail_attribute': 'mail',
+        }
 
     def get_ldap_dicts(self, cr, ids=None):
         """ 
         Copy of auth_ldap's funtion, changing only the SQL, so that it returns
         all fields in the table.
         """
-
         if ids:
             id_clause = 'AND id IN (%s)'
             args = [tuple(ids)]
@@ -50,7 +51,6 @@ class CompanyLDAP(orm.Model):
             WHERE ldap_server != '' """ + id_clause + """ ORDER BY sequence
         """, args)
         return cr.dictfetchall()
-
 
     def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
         values = super(CompanyLDAP, self).map_ldap_attributes(cr, uid, conf,
