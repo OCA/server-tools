@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
 
                 <field name="ldap_filter" position="after">
-                    <field name="name_attribute"/>
+                    <field name="name_attribute" placeholder="e.g. displayName"/>
                     <field name="mail_attribute"/>
                 </field>
 
