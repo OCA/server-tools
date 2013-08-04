@@ -1,0 +1,56 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * users_ldap_populate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-31 13:08+0000\n"
+"PO-Revision-Date: 2012-07-31 13:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,ldap_id:0
+msgid "LDAP Configuration"
+msgstr "LDAP configuratie"
+
+#. module: users_ldap_populate
+#: view:res.company:0
+msgid "Populate user database"
+msgstr "Gebruikersbestand bevolken"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,name:0
+msgid "Name"
+msgstr "Naam"
+
+#. module: users_ldap_populate
+#: view:res.company:0
+msgid "Populate"
+msgstr "Bevolken"
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr "Gebruikersbestand bevolken op basis van LDAP"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_created:0
+msgid "Number of users created"
+msgstr "Aantal aangemaakte gebruikers"
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap
+msgid "res.company.ldap"
+msgstr "res.company.ldap"
+
+#. module: users_ldap_populate
+#: view:res.company.ldap.populate_wizard:0
+msgid "OK"
+msgstr "OK"
