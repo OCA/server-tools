@@ -23,6 +23,7 @@
 import psycopg2
 import logging
 from openerp.osv import orm
+from openerp.tools import SUPERUSER_ID
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 
@@ -44,6 +45,13 @@ class irCron(orm.Model):
         jobs = cr.dictfetchall()
 
         for job in jobs:
+            if uid != SUPERUSER_ID and (
+                    not job['active'] or not job['numbercall']):
+                raise orm.except_orm(
+                    _('Error'),
+                    _('Only the admin user is allowed to '
+                      'execute inactive cron jobs manually'))
+            
             try:
                 # Try to grab an exclusive lock on the job row
                 # until the end of the transaction
