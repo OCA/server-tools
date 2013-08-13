@@ -1,6 +1,6 @@
 { "name"         : "Product GTIN EAN8 EAN13 UPC JPC Support"
 , "version"      : "1.1"
-, "author"       : "ChriCar Beteiligungs- und Beratungs- GmbH"
+, "author"       : "ChriCar Beteiligungs- und Beratungs GmbH"
 , "website"      : "http://www.chricar.at/ChriCar"
 , "category"     : "Generic Modules/Others"
 , "depends"      : ["product"]

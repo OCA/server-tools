@@ -2,7 +2,7 @@
 #
 # Copyright (c) 2004 TINY SPRL. (http://tiny.be) All Rights Reserved.
 #                    Fabien Pinckaers <fp@tiny.Be>
-# Copyright (c) 2008 ChriCar Beteilugungs- und Beratungs- GmbH All Rights Reserved.
+# Copyright (c) 2008 ChriCar Beteilugungs- und Beratungs GmbH All Rights Reserved.
 #                    Ferdinand Gassauer <tiny@chricar.at>
 #
 # WARNING: This program as such is intended to be used by professional
