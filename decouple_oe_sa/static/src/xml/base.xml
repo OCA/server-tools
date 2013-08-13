@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="UserMenu">
+        <t t-jquery="a[data-menu='account'], a[data-menu='help']">
+            this.parent().remove();
+        </t>
+    </t>
+</templates>
