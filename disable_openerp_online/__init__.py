@@ -18,36 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    "name" : "Remove openerp.com bindings",
-    "version" : "1.0",
-    "author" : "Therp BV",
-    "complexity": "normal",
-    "description": """This module deactivates all bindings to openerp.com that
-    come with the standard code:
-    - update notifier code is deactivated and the function is overwritten
-    - apps and updates menu items in settings are removed
-    - help and account menu items in user menu are removed
-    """,
-    "category" : "",
-    "depends" : [
-        'base',
-        'mail',
-    ],
-    "data" : [
-        'data/ir_ui_menu.xml',
-        'data/ir_cron.xml',
-    ],
-    "js": [
-    ],
-    "css": [
-    ],
-    "qweb": [
-        'static/src/xml/base.xml',
-    ],
-    "auto_install": False,
-    "installable": True,
-    "external_dependencies" : {
-        'python' : [],
-    },
-}
+import model
+
+from openerp.tools.misc import upload_data_thread
+upload_data_thread.run = lambda x: None
