@@ -53,15 +53,6 @@ class wizard_merge_partner_by_partner(osv.osv_memory):
             if len(partner_ids) >= 2:
                 base_partner_obj.merge_pbp(cr, SUPERUSER_ID, partner_ids,\
                 dst_partner, context=context)
-            adminpac_ids = {}
-            for partner in data.partner_ids:
-                if partner.adminpaq_id:
-                    adminpac_ids.update({partner.id : partner.adminpaq_id})
-            if len(adminpac_ids) == 1:
-                partner_obj.write(cr, uid, adminpac_ids.keys()[0], {
-                    'adminpaq_id' : 0})
-                partner_obj.write(cr, uid, data.partner_id.id, {
-                    'adminpaq_id' : adminpac_ids.values()[0]})
             list_partners = data.partner_ids
             if dst_partner in data.partner_ids:
                 list_partners.remove(dst_partner)
