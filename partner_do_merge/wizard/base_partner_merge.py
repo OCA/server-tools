@@ -375,9 +375,9 @@ class MergePartnerAutomatic(osv.TransientModel):
                                     ", ".join('%s<%s>(ID %s)' %
                                 (p.name, p.email or 'n/a', p.id) for p in
                                         src_partners)))
-
+        
         for partner in src_partners:
-            partner.unlink()
+            partner.write({'active' : False})
 
     def clean_emails(self, cr, uid, context=None):
         """
@@ -478,13 +478,13 @@ class MergePartnerAutomatic(osv.TransientModel):
             for key in self._columns.keys()
             if key.startswith(group_by_str)
         ]
-
+        
         groups = [
             field
             for field in fields
             if getattr(this, '%s%s' % (group_by_str, field), False)
         ]
-
+        
         if not groups:
             raise osv.except_osv(_('Error'),
                                  _("""You have to specify a filter for your
@@ -536,7 +536,7 @@ class MergePartnerAutomatic(osv.TransientModel):
             })
 
         this.write(values)
-
+        
         return {
             'type': 'ir.actions.act_window',
             'res_model': this._name,
@@ -628,7 +628,7 @@ class MergePartnerAutomatic(osv.TransientModel):
         groups = self._compute_selected_groupby(this)
         query = self._generate_query(groups, this.maximum_group)
         self._process_query(cr, uid, ids, query, context=context)
-
+        
         return self._next_screen(cr, uid, this, context)
 
     def automatic_process_cb(self, cr, uid, ids, context=None):
@@ -773,12 +773,16 @@ class MergePartnerAutomatic(osv.TransientModel):
 
         return self._next_screen(cr, uid, this, context)
 
+    def merge_pbp(self, cr, uid, partner_ids, dst_partner_id, context=None):
+        self._merge(cr, uid, partner_ids, dst_partner_id, context=context)
+        return True
+
     def merge_cb(self, cr, uid, ids, context=None):
         assert is_integer_list(ids)
 
         context = dict(context or {}, active_test=False)
         this = self.browse(cr, uid, ids[0], context=context)
-
+        
         partner_ids = set(map(int, this.partner_ids))
         if not partner_ids:
             this.write({'state': 'finished'})
