@@ -21,6 +21,8 @@
 
 from openerp.osv import fields, orm
 
+import logging
+_log = logging.getLogger(__name__)
 
 class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
@@ -54,10 +56,16 @@ class CompanyLDAP(orm.Model):
 
     def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
         values = super(CompanyLDAP, self).map_ldap_attributes(cr, uid, conf,
-                    login, ldap_entry)
-        if conf.get('name_attribute'):
-            values['name'] = ldap_entry[1][conf['name_attribute']][0] 
-        if conf.get('mail_attribute'):
-            values['email'] = ldap_entry[1][conf['mail_attribute']][0] 
+                     login, ldap_entry)
+        mapping = [
+            ('name', 'name_attribute'),
+            ('email', 'mail_attribute'),
+            ]
+        for value_key, conf_name in mapping:
+            try:
+                values[value_key] = ldap_entry[1][conf[conf_name]][0] 
+            except KeyError:
+                _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
+                    conf.get(conf_name, values.get('login'))))
         return values
 
