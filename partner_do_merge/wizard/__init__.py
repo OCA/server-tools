@@ -1,2 +1,0 @@
-import base_partner_merge
-import merge_by_partner
