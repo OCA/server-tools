@@ -36,6 +36,5 @@ AD also supports the "mail" attribute, so it can be mapped into OpenERP.
     'users_ldap_view.xml',
 ],
 'installable': True,
-'auto_install': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
