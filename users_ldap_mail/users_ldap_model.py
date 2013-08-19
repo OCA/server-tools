@@ -66,6 +66,6 @@ class CompanyLDAP(orm.Model):
                 values[value_key] = ldap_entry[1][conf[conf_name]][0] 
             except KeyError:
                 _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
-                    conf.get(conf_name, values.get('login'))))
+                    conf.get(conf_name), values.get('login')))
         return values
 
