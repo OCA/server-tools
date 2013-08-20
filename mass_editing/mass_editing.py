@@ -96,6 +96,10 @@ class mass_object(osv.osv):
                 raise osv.except_osv(_("Warning"), _("Deletion of the action record failed."))
         return True
 
+    def unlink(self, cr, uid, ids, context=None):
+        self.unlink_action(cr, uid, ids, context)
+        return super(mass_object, self).unlink(cr, uid, ids, context)
+
 mass_object()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
