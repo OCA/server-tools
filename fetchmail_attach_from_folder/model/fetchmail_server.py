@@ -241,8 +241,6 @@ class fetchmail_server(Model):
                     raise except_orm(
                         _('Error'), _('Mailbox %s not found!') %
                         folder.path)
-                folder.get_algorithm().search_matches(
-                    cr, uid, folder, browse_null(), '')
             connection.close()
             this.write({'state': 'done'})
 

@@ -21,26 +21,26 @@
 ##############################################################################
 
 {
-    'name': 'Attach mails in an IMAP folder to existing objects',
+    'name': 'Make database fields from fields that live in serialized fields',
     'version': '1.0',
     'description': """
-    Adds the possibility to attach emails from a certain IMAP folder to objects,
-    ie partners. Matching is done via several algorithms, ie email address.
+Sparse, or serialized fields do not live as a column in the database table.
+Instead, their values are stored in JSON arrays in a separate field. As a
+result, these fields cannot be searched or sorted by.
 
-    This gives a simple possibility to archive emails in OpenERP without a mail
-    client integration.
-    """,
+If such a sparse field is created as 'manual', this module can unserialize
+the field. Its field definition and values will then be migrated to a
+proper database column. A real life use case where you encounter many
+of such fields is the Magento-OpenERP connector.
+
+For technical reasons, many2many and one2many fields are not supported.
+""",
     'author': 'Therp BV',
     'website': 'http://www.therp.nl',
+    'version': '1.0',
     "category": "Tools",
-    "depends": ['fetchmail'],
-    'data': [
-        'view/fetchmail_server.xml',
-        'wizard/attach_mail_manually.xml',
-        'security/ir.model.access.csv',
-        ],
-    'js': [],
+    "depends": ['base'],
+    "data": ['ir_model_fields.xml'],
     'installable': True,
     'active': False,
-    'certificate': '',
 }

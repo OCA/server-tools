@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
+#    This module copyright (C) 2013 Therp BV (<http://therp.nl>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,28 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import re
+from openerp.addons.web.controllers.main import Database
+from openerp.addons.web.common.http import jsonrequest
 
-{
-    'name': 'Attach mails in an IMAP folder to existing objects',
-    'version': '1.0',
-    'description': """
-    Adds the possibility to attach emails from a certain IMAP folder to objects,
-    ie partners. Matching is done via several algorithms, ie email address.
+get_list_org = Database.get_list.__closure__[0].cell_contents
 
-    This gives a simple possibility to archive emails in OpenERP without a mail
-    client integration.
-    """,
-    'author': 'Therp BV',
-    'website': 'http://www.therp.nl',
-    "category": "Tools",
-    "depends": ['fetchmail'],
-    'data': [
-        'view/fetchmail_server.xml',
-        'wizard/attach_mail_manually.xml',
-        'security/ir.model.access.csv',
-        ],
-    'js': [],
-    'installable': True,
-    'active': False,
-    'certificate': '',
-}
+@jsonrequest
+def get_list(self, req):
+    db_filter = req.httprequest.environ.get('HTTP_X_OPENERP_DBFILTER', '.*')
+    dbs = get_list_org(self, req)
+    return {'db_list': [db for db in 
+        dbs.get('db_list', [])
+        if re.match(db_filter, db)]}
+
+Database.get_list = get_list
