@@ -29,7 +29,7 @@
     "website" : "http://www.serpentcs.com",
     "description": """This module provides the functionality to add, update or remove the values of more than one records on the fly at the same time.
         You can configure mass editing for any OpenERP model. 
-        The video explaining the features is available at http://t.co/wukYMx1A
+        The video explaining the feature is available at http://t.co/wukYMx1A
         The menu is now Under Settings/Configuration.
         For more details/customization/feedback contact us on contact@serpentcs.com. 
     """,
