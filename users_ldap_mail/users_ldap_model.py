@@ -28,11 +28,12 @@ class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
     _columns = {
         'name_attribute': fields.char('Name Attribute', size=64,
-            help="Default in 'cn'. For an AD you could use 'displayName' instead."),
+            help="LDAP attribute for the user's name. Usually 'cn' or 'displayName'"),
         'mail_attribute': fields.char('E-mail attribute', size=64,
-            help="Active Directory uses the 'mail' attribute."),
+            help="LDAP attribute to use for e-mail addresses."),
         }
     _defaults = {
+        'name_attribute': 'cn',
         'mail_attribute': 'mail',
         }
 
