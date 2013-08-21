@@ -28,9 +28,10 @@ class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
     _columns = {
         'name_attribute': fields.char('Name Attribute', size=64,
-            help="LDAP attribute for the user's name. Usually 'cn' or 'displayName'"),
+            help="By default 'cn' is used. "
+                 "For ActiveDirectory you might use 'displayName' instead."),
         'mail_attribute': fields.char('E-mail attribute', size=64,
-            help="LDAP attribute to use for e-mail addresses."),
+            help="LDAP attribute to use to retrieve em-mail address."),
         }
     _defaults = {
         'name_attribute': 'cn',
@@ -64,7 +65,8 @@ class CompanyLDAP(orm.Model):
             ]
         for value_key, conf_name in mapping:
             try:
-                values[value_key] = ldap_entry[1][conf[conf_name]][0] 
+                if conf[conf_name]:
+                    values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
                 _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
                     conf.get(conf_name), values.get('login')))
