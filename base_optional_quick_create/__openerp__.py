@@ -22,6 +22,7 @@
     'name': "Optional quick create",
     'version': '0.1',
     'category': 'Tools',
+    'summary': "Avoid 'quick create' on m2o fields, on a 'by model' basis",
     'description': """
 This module allows to avoid to 'quick create' new records, through many2one fields, for a specific model.
 You can configure which models should allow 'quick create'. When specified, the 'quick create' option will always open the standard create form.
