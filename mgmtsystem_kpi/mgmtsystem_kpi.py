@@ -149,9 +149,11 @@ class mgmtsystem_kpi_threshold_range(osv.osv):
         'max_dbsource_id': fields.many2one('base.external.dbsource','External DB Source'),
         'color': fields.char('Color', help='RGB code with #', size=7, required=True),
         'threshold_ids': fields.many2many('mgmtsystem.kpi.threshold','mgmtsystem_kpi_threshold_range_rel', 'range_id', 'threshold_id', 'Thresholds'),
-    }
+        'company_id': fields.many2one('res.company', 'Company')
+        }
 
     _defaults = {
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
         'valid': True,
     }
 
@@ -196,9 +198,11 @@ class mgmtsystem_kpi_threshold(osv.osv):
         'valid': fields.function(_is_valid_threshold, string='Valid', type='boolean', required=True),
         'invalid_message': fields.function(_generate_invalid_message, string='Message', type='char', size=100),
         'kpi_ids': fields.one2many('mgmtsystem.kpi', 'threshold_id', 'KPIs'),
+        'company_id': fields.many2one('res.company', 'Company')
     }
 
     _defaults = {
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
         'valid': True,
     }
 
@@ -247,9 +251,11 @@ class mgmtsystem_kpi_history(osv.osv):
         'date': fields.datetime('Execution Date', required=True, readonly=True),
         'value': fields.float('Value', required=True, readonly=True),
         'color': fields.text('Color', required=True, readonly=True),
+        'company_id': fields.many2one('res.company', 'Company')
     }
 
     _defaults = {
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
         'name': lambda *a: time.strftime('%d %B %Y'),
         'date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
         'color': '#FFFFFF',
@@ -365,9 +371,11 @@ class mgmtsystem_kpi(osv.osv):
         'kpi_code': fields.text('KPI Code', help='SQL code must return the result as \'value\' (i.e. \'SELECT 5 AS value\').'),
         'history_ids': fields.one2many('mgmtsystem.kpi.history', 'kpi_id', 'History'),
         'active': fields.boolean('Active', help="Only active KPIs will be updated by the scheduler based on the periodicity configuration."),
+        'company_id': fields.many2one('res.company', 'Company')
     }
 
     _defaults = {
+        'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
         'active': True,
         'periodicity': 1,
         'periodicity_uom': 'day',
