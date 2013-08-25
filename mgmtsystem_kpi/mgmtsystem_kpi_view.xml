@@ -13,6 +13,7 @@
                     <field name="value" widget="progressbar"/>
                     <field name="category_id"/>
                     <field name="kpi_type"/>
+	            <field name="company_id" group="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -27,6 +28,7 @@
                         <separator orientation="vertical"/>
                         <field name="name"/>
                         <field name="category_id"/>
+	            	<field name="company_id" group="base.group_multi_company"/>
                     </group>
                     <newline />
                     <group expand="0" string="Group By...">
@@ -50,6 +52,7 @@
                         <field name="value" colspan="2"/>
                         <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
                         <field name="active" colspan="2"/>
+	            	<field name="company_id" group="base.group_multi_company"/>
                     </group>
                     <notebook colspan="6">
                         <page string="History">
@@ -103,6 +106,7 @@
                     <field name="date"/>
                     <field name="value"/>
                     <field name="color" widget="color"/>
+	            <field name="company_id" group="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -163,6 +167,7 @@
                 <tree string="Thresholds">
                     <field name="name"/>
                     <field name="invalid_message"/>
+	            <field name="company_id" group="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -183,6 +188,8 @@
                     <field name="kpi_ids" nolabel="1" colspan="2"/>
                     <newline/>
                     <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="2"/>
+                    <newline/>
+	            <field name="company_id" group="base.group_multi_company"/>
                 </form>
             </field>
         </record>
@@ -214,6 +221,7 @@
                     <field name="max_value"/>
                     <field name="color" widget="color"/>
                     <field name="invalid_message"/>
+	            <field name="company_id" group="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -225,6 +233,7 @@
                 <form string="Range">
                     <field name="name"/>
                     <field name="color"/>
+	            <field name="company_id" group="base.group_multi_company"/>
                     <newline/>
                     <separator string="Minimum" colspan="4"/>
                     <newline/>
