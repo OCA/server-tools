@@ -53,8 +53,9 @@ This module depends on:
         'web_color',
     ],
     "data" : [
-        'mgmtsystem_kpi_view.xml',
         'security/ir.model.access.csv',
+        'security/mgmtsystem_kpi_security.xml',
+        'mgmtsystem_kpi_view.xml',
     ],
     "images" : [
         "images/kpi_definition.png",
