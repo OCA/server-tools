@@ -34,6 +34,7 @@ class CompanyLDAP(orm.Model):
             help="LDAP attribute to use to retrieve em-mail address."),
         }
     _defaults = {
+        'name_attribute': 'cn',
         'mail_attribute': 'mail',
         }
 
