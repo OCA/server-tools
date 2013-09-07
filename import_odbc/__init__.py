@@ -19,6 +19,6 @@
 #
 ##############################################################################
 
-import import_odbc
+from . import import_odbc
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

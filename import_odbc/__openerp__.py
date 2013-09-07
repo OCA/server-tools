@@ -36,9 +36,9 @@ Features:
  * When errors are found, only the record with the error fails import. The other correct records are commited. However, the "last sync date" will only be automaticaly updated when no errors are found.
  * The import execution can be scheduled to run automatically.
 
-Examples: 
+Examples:
  * Importing suppliers to res.partner:
-      SELECT distinct 
+      SELECT distinct
             [SUPPLIER_CODE] as "ref"
           , [SUPPLIER_NAME] as "name"
           , 1 as "is_supplier"
@@ -50,13 +50,13 @@ Examples:
       SELECT PRODUCT_CODE as "ref"
            , PRODUCT_NAME as "name"
            , 'res_partner_id_'+SUPPLIER_ID as "partner_id/id"
-        FROM T_PRODUCTS 
-       WHERE DATE_CHANGED >= %(sync)s 
+        FROM T_PRODUCTS
+       WHERE DATE_CHANGED >= %(sync)s
 
 Improvements ideas waiting for a contributor:
  * Allow to import many2one fields (currently not supported). Done by adding a second SQL sentence to get child record list?
  * Allow "import sets" that can be executed at different time intervals using different scheduler jobs.
- * Allow to inactivate/delete OpenERP records when not present in an SQL result set. 
+ * Allow to inactivate/delete OpenERP records when not present in an SQL result set.
     """,
     'author': 'Daniel Reis',
     'website': 'http://launchpad.net/addons-tko',
@@ -68,7 +68,6 @@ Improvements ideas waiting for a contributor:
         'base',
         'base_external_dbsource',
     ],
-    'init': [],
     'data': [
         'import_odbc_view.xml',
         'security/ir.model.access.csv',
@@ -76,7 +75,7 @@ Improvements ideas waiting for a contributor:
     'demo': [
         'import_odbc_demo.xml',
     ],
-    'test': [], 
+    'test': [],
     'installable': True,
     'active': False,
 }

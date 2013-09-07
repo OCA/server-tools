@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Daniel Reis, 2011 
+#    Daniel Reis, 2011
 #    Additional contributions by Maxime Chambreuil, Savoir-faire Linux
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,11 @@
 This module allows you to define connections to foreign databases using ODBC,
 Oracle Client or SQLAlchemy.
 
-Databases sources can be configured in Settings > Configuration -> Data sources.
+Database sources can be configured in Settings > Configuration -> Data sources.
 
 Depending on the database, you need:
  * to install unixodbc and python-pyodbc packages to use ODBC connections.
- * to install FreeTDS driver (tdsodbc package) and configure it through ODBC to 
+ * to install FreeTDS driver (tdsodbc package) and configure it through ODBC to
    connect to Microsoft SQL Server.
  * to install and configure Oracle Instant Client and cx_Oracle python library
    to connect to Oracle.
@@ -44,7 +44,6 @@ Depending on the database, you need:
     'depends': [
         'base',
     ],
-    'init': [],
     'data': [
         'base_external_dbsource_view.xml',
         'security/ir.model.access.csv',
@@ -54,7 +53,7 @@ Depending on the database, you need:
     ],
     'test': [
         'dbsource_connect.yml',
-    ], 
+    ],
     'installable': True,
     'active': False,
 }

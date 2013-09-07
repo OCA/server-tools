@@ -19,6 +19,6 @@
 #
 ##############################################################################
 
-import base_external_dbsource
+from . import base_external_dbsource
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
