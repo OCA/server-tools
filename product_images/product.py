@@ -33,7 +33,7 @@ class product_product(orm.Model):
             default = {}
         original = self.read(cr, uid, id, fields=['default_code', 'image_ids'], context=context)
         default.update({
-            'images_ids': False,
+            'image_ids': False,
         })
         local_media_repository = self.pool.get('res.company').get_local_media_repository(cr, uid, context=context)
         if local_media_repository:
