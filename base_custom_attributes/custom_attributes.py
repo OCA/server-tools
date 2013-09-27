@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   base_attribute.attributes for OpenERP                                        #
-#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
-#   Copyright (C) 2013 Akretion Raphaël VALYI <raphael.valyi@akretion.com>    #
+#   base_attribute.attributes for OpenERP                                     #
+#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
+#   Copyright (C) 2013 Akretion Raphaël VALYI <raphael.valyi@akretion.com>
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -25,6 +25,15 @@ from openerp.osv.osv import except_osv
 from openerp.tools.translate import _
 from lxml import etree
 from unidecode import unidecode # Debian package python-unidecode
+import re
+
+
+def set_column_name(string):
+    """This function prevent portability problem in database column name
+    with other DBMS system
+    Use case : if you synchronise attributes with other applications """
+    string = unidecode(string.replace(' ', '_').lower())
+    return filter((lambda x: re.search('[0-9a-z_]', x)), string)
 
 
 class attribute_option(orm.Model):
@@ -33,15 +42,28 @@ class attribute_option(orm.Model):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, translate=True, required=True),
-        'value_ref': fields.reference('Reference', selection=[], size=128),
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
+        'name': fields.char(
+            'Name',
+            size=128,
+            translate=True,
+            required=True),
+        'value_ref': fields.reference(
+            'Reference',
+            selection=[],
+            size=128),
+        'attribute_id': fields.many2one(
+            'attribute.attribute',
+            'Product Attribute',
+            required=True),
         'sequence': fields.integer('Sequence'),
     }
 
     def name_change(self, cr, uid, ids, name, relation_model_id, context=None):
         if relation_model_id:
-            warning = {'title': _('Error!'), 'message': _("Use the 'Change Options' button instead to select appropriate model references'")}
+            warning = {'title': _('Error!'),
+                       'message': _("Use the 'Change Options' button "
+                                    "instead to select appropriate "
+                                    "model references'")}
             return {"value": {"name": False}, "warning": warning}
         else:
             return True
@@ -52,11 +74,15 @@ class attribute_option_wizard(orm.TransientModel):
     _rec_name = 'attribute_id'
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one(
+            'attribute.attribute',
+            'Product Attribute',
+            required=True),
     }
 
     _defaults = {
-        'attribute_id': lambda self, cr, uid, context: context.get('attribute_id', False)
+        'attribute_id': lambda self, cr, uid, context: context.get(
+                                                        'attribute_id', False)
     }
 
     def validate(self, cr, uid, ids, context=None):
@@ -79,12 +105,16 @@ class attribute_option_wizard(orm.TransientModel):
         res = super(attribute_option_wizard, self).create(cr, uid, vals, context)
         return res
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        res = super(attribute_option_wizard, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                                    context=None, toolbar=False, submenu=False):
+        res = super(attribute_option_wizard, self).fields_view_get(cr, uid,
+                                view_id, view_type, context, toolbar, submenu)
         if view_type == 'form' and context and context.get("attribute_id"):
             attr_obj = self.pool.get("attribute.attribute")
-            model_id = attr_obj.read(cr, uid, [context.get("attribute_id")], ['relation_model_id'])[0]['relation_model_id'][0]
-            relation = self.pool.get("ir.model").read(cr, uid, [model_id], ["model"])[0]["model"]
+            model_id = attr_obj.read(cr, uid, [context.get("attribute_id")],
+                            ['relation_model_id'])[0]['relation_model_id'][0]
+            relation = self.pool.get("ir.model").read(cr, uid, [model_id],
+                                                      ["model"])[0]["model"]
             res['fields'].update({'option_ids': {
                             'domain': [],
                             'string': "Options",
@@ -114,8 +144,8 @@ class attribute_attribute(orm.Model):
             sep = etree.SubElement(parent,
                                    'separator',
                                     string="%s" % attribute.field_description,
-                                    colspan="4")  
-        
+                                    colspan="4")
+
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             if attribute.relation_model_id:
@@ -125,25 +155,33 @@ class attribute_attribute(orm.Model):
                     ids = [op.value_ref.id for op in attribute.option_ids]
                     kwargs['domain'] = "[('id', 'in', %s)]" % ids
             else:
-                kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+                kwargs['domain'] = "[('attribute_id', '=', %s)]" % \
+                                                    attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
-        orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
+        orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name,
+                                                                    context))
         return parent
 
-    def _build_attributes_notebook(self, cr, uid, attribute_group_ids, context=None):
-        notebook = etree.Element('notebook', name="attributes_notebook", colspan="4")
+    def _build_attributes_notebook(self, cr, uid, attribute_group_ids,
+                                                                context=None):
+        notebook = etree.Element('notebook', name="attributes_notebook",
+                                                                    colspan="4")
         toupdate_fields = []
         grp_obj = self.pool.get('attribute.group')
-        for group in grp_obj.browse(cr, uid, attribute_group_ids, context=context):
-            page = etree.SubElement(notebook, 'page', string=group.name.capitalize())
+        for group in grp_obj.browse(cr, uid, attribute_group_ids,
+                                                                context=context):
+            page = etree.SubElement(notebook, 'page',
+                                                string=group.name.capitalize())
             for attribute in group.attribute_ids:
                 if attribute.name not in toupdate_fields:
                     toupdate_fields.append(attribute.name)
-                    self._build_attribute_field(cr, uid, page, attribute, context=context)
+                    self._build_attribute_field(cr, uid, page, attribute,
+                                                                context=context)
         return notebook, toupdate_fields
 
-    def relation_model_id_change(self, cr, uid, ids, relation_model_id, option_ids, context=None):
-        "removed selected options as they would be inconsistent" 
+    def relation_model_id_change(self, cr, uid, ids, relation_model_id,
+                                                    option_ids, context=None):
+        "removed selected options as they would be inconsistent"
         return {'value': {'option_ids': [(2, i[1]) for i in option_ids]}}
 
     def button_add_options(self, cr, uid, ids, context=None):
@@ -158,24 +196,38 @@ class attribute_attribute(orm.Model):
         }
 
     _columns = {
-        'field_id': fields.many2one('ir.model.fields', 'Ir Model Fields', required=True, ondelete="cascade"),
-        'attribute_type': fields.selection([('char','Char'),
-                                            ('text','Text'),
-                                            ('select','Select'),
-                                            ('multiselect','Multiselect'),
-                                            ('boolean','Boolean'),
-                                            ('integer','Integer'),
-                                            ('date','Date'),
-                                            ('datetime','Datetime'),
-                                            ('binary','Binary'),
-                                            ('float','Float')],
-                                           'Type', required=True),
-        'serialized': fields.boolean('Field serialized',
-                                     help="If serialized, the field will be stocked in the serialized field: "
-                                     "attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"),
-        'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
-        'create_date': fields.datetime('Created date', readonly=True),
-        'relation_model_id': fields.many2one('ir.model', 'Model'),
+        'field_id': fields.many2one(
+            'ir.model.fields',
+            'Ir Model Fields',
+            required=True,
+            ondelete="cascade"),
+        'attribute_type': fields.selection([
+                                    ('char','Char'),
+                                    ('text','Text'),
+                                    ('select','Select'),
+                                    ('multiselect','Multiselect'),
+                                    ('boolean','Boolean'),
+                                    ('integer','Integer'),
+                                    ('date','Date'),
+                                    ('datetime','Datetime'),
+                                    ('binary','Binary'),
+                                    ('float','Float')
+                                            ], 'Type', required=True),
+        'serialized': fields.boolean(
+            'Field serialized',
+            help="If serialized, the field will be stocked in the serialized "
+                "field: attribute_custom_tmpl or attribute_custom_variant "
+                "depending on the field based_on"),
+        'option_ids': fields.one2many(
+            'attribute.option',
+            'attribute_id',
+            'Attribute Options'),
+        'create_date': fields.datetime(
+            'Created date',
+            readonly=True),
+        'relation_model_id': fields.many2one(
+            'ir.model',
+            'Model'),
         }
 
     def create(self, cr, uid, vals, context=None):
@@ -205,19 +257,21 @@ class attribute_attribute(orm.Model):
             else:
                 f_vals = {
                     'name': u'x_custom_json_attrs',
-                    'field_description': u'Serialized JSON Attributes', 
+                    'field_description': u'Serialized JSON Attributes',
                     'ttype': 'serialized',
                     'model_id': vals['model_id'],
                 }
-                vals['serialization_field_id'] = field_obj.create(cr, uid, f_vals, {'manual': True})
+                vals['serialization_field_id'] = field_obj.create(cr, uid,
+                                                    f_vals, {'manual': True})
         vals['state'] = 'manual'
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
-    def onchange_field_description(self, cr, uid, ids, field_description, context=None):
+    def onchange_field_description(self, cr, uid, ids, field_description,
+                                                                context=None):
         name = u'x_'
         if field_description:
-            name = unidecode(u'x_%s' % field_description.replace(' ', '_').lower())
-        return  {'value' : {'name' : name}}
+            name = unicode('x_' + set_column_name(field_description))
+        return {'value' : {'name' : name}}
 
     def onchange_name(self, cr, uid, ids, name, context=None):
         res = {}
@@ -233,7 +287,8 @@ class attribute_attribute(orm.Model):
         if not model_name:
             model_id = context.get('default_model_id')
             if model_id:
-                model = self.pool['ir.model'].browse(cr, uid, model_id, context=context)
+                model = self.pool['ir.model'].browse(cr, uid, model_id,
+                                                                context=context)
                 model_name = model.model
         if model_name:
             model_obj = self.pool[model_name]
@@ -262,16 +317,28 @@ class attribute_group(orm.Model):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char(
+            'Name',
+            size=128,
+            required=True),
         'sequence': fields.integer('Sequence'),
-        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
-        'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
-        'model_id': fields.many2one('ir.model', 'Model', required=True),
+        'attribute_set_id': fields.many2one(
+            'attribute.set',
+            'Attribute Set'),
+        'attribute_ids': fields.one2many(
+            'attribute.location',
+            'attribute_group_id',
+            'Attributes'),
+        'model_id': fields.many2one(
+            'ir.model',
+            'Model',
+            required=True),
     }
 
     def create(self, cr, uid, vals, context=None):
         for attribute in vals['attribute_ids']:
-            if vals.get('attribute_set_id') and attribute[2] and not attribute[2].get('attribute_set_id'):
+            if vals.get('attribute_set_id') and attribute[2] and \
+                                    not attribute[2].get('attribute_set_id'):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
@@ -293,9 +360,18 @@ class attribute_set(orm.Model):
     _name = "attribute.set"
     _description = "Attribute Set"
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
-        'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
-        'model_id': fields.many2one('ir.model', 'Model', required=True),
+        'name': fields.char(
+            'Name',
+            size=128,
+            required=True),
+        'attribute_group_ids': fields.one2many(
+            'attribute.group',
+            'attribute_set_id',
+            'Attribute Groups'),
+        'model_id': fields.many2one(
+            'ir.model',
+            'Model',
+            required=True),
         }
 
     def _get_default_model(self, cr, uid, context=None):
@@ -319,14 +395,31 @@ class attribute_location(orm.Model):
 
 
     def _get_attribute_loc_from_group(self, cr, uid, ids, context=None):
-        return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
+        return self.pool.get('attribute.location').search(cr, uid, [
+                                    ('attribute_group_id', 'in', ids),
+                                                            ], context=context)
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True, ondelete="cascade"),
-        'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
-store={
-            'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
-        }),
-        'attribute_group_id': fields.many2one('attribute.group', 'Attribute Group', required=True),
+        'attribute_id': fields.many2one(
+            'attribute.attribute',
+            'Product Attribute',
+            required=True,
+            ondelete="cascade"),
+        'attribute_set_id': fields.related(
+            'attribute_group_id',
+            'attribute_set_id',
+            type='many2one',
+            relation='attribute.set',
+            string='Attribute Set',
+            readonly=True,
+            store={
+                'attribute.group': (_get_attribute_loc_from_group,
+                                                    ['attribute_set_id'], 10),
+            }),
+        'attribute_group_id':
+            fields.many2one(
+                'attribute.group',
+                'Attribute Group',
+                required=True),
         'sequence': fields.integer('Sequence'),
         }
