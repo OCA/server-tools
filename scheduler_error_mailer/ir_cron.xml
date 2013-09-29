@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (C) 2012 Akretion
+  Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
   The licence is in the file __openerp__.py
 -->
 
 <openerp>
-    <data>
-        <record id="ir_cron_error_mailer_view" model="ir.ui.view">
-            <field name="name">ir.cron.error.mailer.form</field>
-            <field name="model">ir.cron</field>
-            <field name="inherit_id" ref="base.ir_cron_view"/>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <field name="doall" position='after'>
-                    <group col="6" colspan="4">
-                        <separator string="Error Mailer" colspan="6"/>
-                        <field name="email_template" colspan="2"/>
-                    </group>
-                </field>
-            </field>
-        </record>
-    </data>
+<data>
+
+
+<record id="ir_cron_error_mailer_view" model="ir.ui.view">
+    <field name="name">ir.cron.error.mailer.form</field>
+    <field name="model">ir.cron</field>
+    <field name="inherit_id" ref="base.ir_cron_view"/>
+    <field name="arch" type="xml">
+        <field name="doall" position="after">
+            <field name="email_template" />
+        </field>
+    </field>
+</record>
+
+
+</data>
 </openerp>

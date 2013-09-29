@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Scheduler error mailer module for OpenERP
-#    Copyright (C) 2012 Akretion
+#    Scheduler Error Mailer module for OpenERP
+#    Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
 #    @author: Sébastien Beau <sebastien.beau@akretion.com>
+#    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +21,4 @@
 #
 ##############################################################################
 
-import ir_cron
-# import test_fail_scheduler
-
+from . import ir_cron
