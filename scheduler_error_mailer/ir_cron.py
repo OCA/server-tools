@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 #################################################################################
 #
-#    Scheduler error mailer module for OpenERP
-#    Copyright (C) 2012 Akretion
+#    Scheduler Error Mailer module for OpenERP
+#    Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
 #    @author: Sébastien Beau <sebastien.beau@akretion.com>
 #    @author David Beal <bealdavid@gmail.com>
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
@@ -22,28 +22,49 @@
 #
 ##############################################################################
 
-from osv import osv, fields
-from datetime import datetime
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
+import logging
 
+logger = logging.getLogger(__name__)
 
-class ir_cron(osv.osv):
+class ir_cron(orm.Model):
     _inherit = "ir.cron"
 
     _columns = {
-        'email_template' : fields.many2one('email.template', 'E-mail template'),
+        'email_template': fields.many2one('email.template',
+            'Error E-mail Template',
+            help="Select the email template that will be sent when this scheduler fails."),
     }
 
 
-    def _handle_callback_exception(self, cr, uid, model, func, args, job_id, job_exception):
+    def _handle_callback_exception(self, cr, uid, model_name, method_name, args, job_id, job_exception):
 
-        res = super(ir_cron, self)._handle_callback_exception(cr, uid, model, func, args, job_id, job_exception)
+        res = super(ir_cron, self)._handle_callback_exception(cr, uid,
+            model_name, method_name, args, job_id, job_exception)
 
         my_cron = self.browse(cr, uid, job_id)
 
-        if my_cron.email_template.id:
-            # we put the job_exception in context to be able to get it inside the mail template
-            context = {'job_exception': job_exception}
-            id_mail_messsage = self.pool.get('email.template').send_mail(cr, uid,
-                my_cron.email_template.id, my_cron.id, force_send=True, context=context)
+        if my_cron.email_template:
+            # we put the job_exception in context to be able to print it inside
+            # the email template
+            context = {
+                'job_exception': job_exception,
+                'dbname': cr.dbname,
+                }
+
+            logger.debug("Sending scheduler error email with context=%s" % context)
+            self.pool['email.template'].send_mail(cr, uid,
+                my_cron.email_template.id, my_cron.id, force_send=True,
+                context=context)
 
         return res
+
+
+class res_users(orm.Model):
+    _inherit = 'res.users'
+
+    def test_scheduler_failure(self, cr, uid, context=None):
+        """This function is used to test and debug this module"""
+        raise orm.except_orm(_('Error :'), _("Task failure with UID = %d." % uid))
+
