@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2013 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+<record id="test_scheduler_error_mailer" model="ir.cron">
+    <field name="name">Test Scheduler Error Mailer</field>
+    <field name="active" eval="False"/>
+    <field name="user_id" ref="base.user_root"/>
+    <field name="interval_number">1</field>
+    <field name="interval_type">hours</field>
+    <field name="numbercall">-1</field> <!-- don't limit the number of calls -->
+    <field name="doall" eval="True"/>
+    <field name="email_template" ref="scheduler_error_mailer"/>
+    <field name="model" eval="'res.users'"/>
+    <field name="function" eval="'test_scheduler_failure'" />
+    <field name="args" eval="'()'"/>
+</record>
+
+</data>
+</openerp>
