@@ -26,6 +26,13 @@ from openerp.osv.orm import setup_modifiers
 from tools.translate import _
 from lxml import etree
 
+class product_template(Model):
+    _inherit = "product.template"
+
+    _columns = {
+        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
+    }
+
 
 class product_product(Model):
     _inherit = "product.product"
@@ -43,7 +50,6 @@ class product_product(Model):
         return res
 
     _columns = {
-        'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_group_ids': fields.function(_attr_grp_ids, type='one2many',
         relation='attribute.group', string='Groups')
     }
