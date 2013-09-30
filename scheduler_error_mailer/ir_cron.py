@@ -48,7 +48,11 @@ class ir_cron(orm.Model):
         if my_cron.email_template:
             # we put the job_exception in context to be able to print it inside
             # the email template
-            context = {'job_exception': job_exception}
+            context = {
+                'job_exception': job_exception,
+                'dbname': cr.dbname,
+                }
+
             logger.debug("Sending scheduler error email with context=%s" % context)
             self.pool['email.template'].send_mail(cr, uid,
                 my_cron.email_template.id, my_cron.id, force_send=True,
