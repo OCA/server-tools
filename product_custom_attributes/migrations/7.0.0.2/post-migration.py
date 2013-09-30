@@ -27,7 +27,7 @@ logger = logging.getLogger('upgrade')
 def migrate(cr, version):
     logger.info("Migrating product_custom_attributes from version %s", version)
     cr.execute("UPDATE product_template pt "
-               "SET attribute_set_id = (SELECT pp.attribute_set_id_copy "
+               "SET attribute_set_id = (SELECT pp.attribute_set_id "
                "                        FROM product_product pp WHERE "
                "                        pp.product_tmpl_id = pt.id "
                "                        LIMIT 1)"
