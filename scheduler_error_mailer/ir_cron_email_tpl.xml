@@ -5,7 +5,7 @@
 -->
 
 <openerp>
-<data noupdate="0">
+<data noupdate="1">
 
 <!-- Error Email template  -->
 <record id="scheduler_error_mailer" model="email.template">
