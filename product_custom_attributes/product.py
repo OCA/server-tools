@@ -50,7 +50,7 @@ class product_product(Model):
         return res
 
     _columns = {
-        'attribute_group_ids': fields.function(_attr_grp_ids, type='one2many',
+        'attribute_group_ids': fields.function(_attr_grp_ids, type='many2many',
         relation='attribute.group', string='Groups')
     }
 
