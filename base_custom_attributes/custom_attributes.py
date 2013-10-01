@@ -252,7 +252,7 @@ class attribute_attribute(orm.Model):
                                         ('ttype', '=', 'serialized'),
                                         ('model_id', '=', vals['model_id']),
                                         ('name', '=', 'x_custom_json_attrs')
-                                                            ], context=context)
+                                                        ], context=context)
             if serialized_ids:
                 vals['serialization_field_id'] = serialized_ids[0]
             else:
