@@ -199,6 +199,19 @@
             parent="menu_attribute_in_admin" sequence="30"/>
 
     <!-- ATTRIBUTE OPTION VIEW -->
+        <record id="attribute_option_form_popup_view" model="ir.ui.view">
+            <field name="name">attribute.option.form.popup</field>
+            <field name="model">attribute.option</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <form string="Attribute Option" col="6">
+                    <field name="name" colspan="2"/>
+                    <field name="value_ref" colspan="2" groups="base.group_advanced_attribute"/>
+                    <field name="sequence" colspan="2"/>
+                </form>
+            </field>
+        </record>
+
         <record id="attribute_option_form_view" model="ir.ui.view">
             <field name="name">attribute.option.form</field>
             <field name="model">attribute.option</field>
@@ -247,6 +260,20 @@
             <field name="search_view_id" ref="view_attribute_option_search"/>
             <field name="context">{"search_default_user_id":uid}</field>
             <field name="help"></field>
+        </record>
+
+        <record id="attribute_option_form_action_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="act_window_id" ref="attribute_option_form_action"/>
+            <field name="view_id" ref="attribute_option_tree_view"/>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record id="attribute_option_form_action_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="act_window_id" ref="attribute_option_form_action"/>
+            <field name="view_id" ref="attribute_option_form_view"/>
+            <field name="view_mode">form</field>
         </record>
 
         <menuitem
