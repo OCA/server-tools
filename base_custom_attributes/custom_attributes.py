@@ -126,6 +126,7 @@ class attribute_attribute(orm.Model):
                     kwargs['domain'] = "[('id', 'in', %s)]" % ids
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+        kwargs['required'] = str(attribute.required)
         field = etree.SubElement(parent, 'field', **kwargs)
         orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
