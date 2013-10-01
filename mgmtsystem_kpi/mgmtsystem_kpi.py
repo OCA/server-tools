@@ -151,7 +151,7 @@ class mgmtsystem_kpi_threshold_range(orm.Model):
         'color': fields.char('Color', help='RGB code with #', size=7, required=True),
         'threshold_ids': fields.many2many('mgmtsystem.kpi.threshold', 'mgmtsystem_kpi_threshold_range_rel', 'range_id', 'threshold_id', 'Thresholds'),
         'company_id': fields.many2one('res.company', 'Company')
-        }
+    }
 
     _defaults = {
         'company_id': lambda self, cr, uid, c: self.pool.get('res.users').browse(cr, uid, uid, c).company_id.id,
@@ -320,13 +320,13 @@ class mgmtsystem_kpi(orm.Model):
 
         for obj in self.browse(cr, uid, ids):
             if obj.periodicity_uom == 'hour':
-                new_date = datetime.now()+relativedelta(hours=+obj.periodicity)
+                new_date = datetime.now() + relativedelta(hours=+obj.periodicity)
             elif obj.periodicity_uom == 'day':
-                new_date = datetime.now()+relativedelta(days=+obj.periodicity)
+                new_date = datetime.now() + relativedelta(days=+obj.periodicity)
             elif obj.periodicity_uom == 'week':
-                new_date = datetime.now()+relativedelta(weeks=+obj.periodicity)
+                new_date = datetime.now() + relativedelta(weeks=+obj.periodicity)
             elif obj.periodicity_uom == 'month':
-                new_date = datetime.now()+relativedelta(months=+obj.periodicity)
+                new_date = datetime.now() + relativedelta(months=+obj.periodicity)
 
             values = {
                 'next_execution_date': new_date.strftime('%Y-%m-%d %H:%M:%S'),
