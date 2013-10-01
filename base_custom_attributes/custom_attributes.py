@@ -81,8 +81,8 @@ class attribute_option_wizard(orm.TransientModel):
     }
 
     _defaults = {
-        'attribute_id': lambda self, cr, uid, context: context.get(
-                                                        'attribute_id', False)
+        'attribute_id': lambda self, cr, uid, context:
+                            context.get('attribute_id',False)
     }
 
     def validate(self, cr, uid, ids, context=None):
@@ -106,9 +106,9 @@ class attribute_option_wizard(orm.TransientModel):
         return res
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                                    context=None, toolbar=False, submenu=False):
-        res = super(attribute_option_wizard, self).fields_view_get(cr, uid,
-                                view_id, view_type, context, toolbar, submenu)
+                        context=None, toolbar=False, submenu=False):
+        res = super(attribute_option_wizard, self).fields_view_get(
+            cr, uid, view_id, view_type, context, toolbar, submenu)
         if view_type == 'form' and context and context.get("attribute_id"):
             attr_obj = self.pool.get("attribute.attribute")
             model_id = attr_obj.read(cr, uid, [context.get("attribute_id")],
@@ -159,28 +159,28 @@ class attribute_attribute(orm.Model):
                                                     attribute.attribute_id.id
         field = etree.SubElement(parent, 'field', **kwargs)
         orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name,
-                                                                    context))
+                                                   context))
         return parent
 
     def _build_attributes_notebook(self, cr, uid, attribute_group_ids,
-                                                                context=None):
+                                   context=None):
         notebook = etree.Element('notebook', name="attributes_notebook",
-                                                                    colspan="4")
+                                 colspan="4")
         toupdate_fields = []
         grp_obj = self.pool.get('attribute.group')
         for group in grp_obj.browse(cr, uid, attribute_group_ids,
-                                                                context=context):
+                                    context=context):
             page = etree.SubElement(notebook, 'page',
-                                                string=group.name.capitalize())
+                                    string=group.name.capitalize())
             for attribute in group.attribute_ids:
                 if attribute.name not in toupdate_fields:
                     toupdate_fields.append(attribute.name)
                     self._build_attribute_field(cr, uid, page, attribute,
-                                                                context=context)
+                                                context=context)
         return notebook, toupdate_fields
 
     def relation_model_id_change(self, cr, uid, ids, relation_model_id,
-                                                    option_ids, context=None):
+                                 option_ids, context=None):
         "removed selected options as they would be inconsistent"
         return {'value': {'option_ids': [(2, i[1]) for i in option_ids]}}
 
@@ -202,22 +202,22 @@ class attribute_attribute(orm.Model):
             required=True,
             ondelete="cascade"),
         'attribute_type': fields.selection([
-                                    ('char','Char'),
-                                    ('text','Text'),
-                                    ('select','Select'),
-                                    ('multiselect','Multiselect'),
-                                    ('boolean','Boolean'),
-                                    ('integer','Integer'),
-                                    ('date','Date'),
-                                    ('datetime','Datetime'),
-                                    ('binary','Binary'),
-                                    ('float','Float')
-                                            ], 'Type', required=True),
+                                            ('char','Char'),
+                                            ('text','Text'),
+                                            ('select','Select'),
+                                            ('multiselect','Multiselect'),
+                                            ('boolean','Boolean'),
+                                            ('integer','Integer'),
+                                            ('date','Date'),
+                                            ('datetime','Datetime'),
+                                            ('binary','Binary'),
+                                            ('float','Float')
+                                           ], 'Type', required=True),
         'serialized': fields.boolean(
             'Field serialized',
             help="If serialized, the field will be stocked in the serialized "
-                "field: attribute_custom_tmpl or attribute_custom_variant "
-                "depending on the field based_on"),
+                 "field: attribute_custom_tmpl or attribute_custom_variant "
+                 "depending on the field based_on"),
         'option_ids': fields.one2many(
             'attribute.option',
             'attribute_id',
@@ -236,7 +236,6 @@ class attribute_attribute(orm.Model):
             [vals.get('relation_model_id')], ['model'])[0]['model']
         else:
             relation = 'attribute.option'
-
         if vals['attribute_type'] == 'select':
             vals['ttype'] = 'many2one'
             vals['relation'] = relation
@@ -249,9 +248,11 @@ class attribute_attribute(orm.Model):
 
         if vals.get('serialized'):
             field_obj = self.pool.get('ir.model.fields')
-            serialized_ids = field_obj.search(cr, uid,
-            [('ttype', '=', 'serialized'), ('model_id', '=', vals['model_id']),
-            ('name', '=', 'x_custom_json_attrs')], context=context)
+            serialized_ids = field_obj.search(cr, uid, [
+                                        ('ttype', '=', 'serialized'),
+                                        ('model_id', '=', vals['model_id']),
+                                        ('name', '=', 'x_custom_json_attrs')
+                                                            ], context=context)
             if serialized_ids:
                 vals['serialization_field_id'] = serialized_ids[0]
             else:
@@ -261,13 +262,13 @@ class attribute_attribute(orm.Model):
                     'ttype': 'serialized',
                     'model_id': vals['model_id'],
                 }
-                vals['serialization_field_id'] = field_obj.create(cr, uid,
-                                                    f_vals, {'manual': True})
+                vals['serialization_field_id'] = field_obj.create(
+                    cr, uid, f_vals, {'manual': True})
         vals['state'] = 'manual'
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
     def onchange_field_description(self, cr, uid, ids, field_description,
-                                                                context=None):
+                                   context=None):
         name = u'x_'
         if field_description:
             name = unicode('x_' + set_column_name(field_description))
@@ -288,7 +289,7 @@ class attribute_attribute(orm.Model):
             model_id = context.get('default_model_id')
             if model_id:
                 model = self.pool['ir.model'].browse(cr, uid, model_id,
-                                                                context=context)
+                                                     context=context)
                 model_name = model.model
         if model_name:
             model_obj = self.pool[model_name]
@@ -300,8 +301,8 @@ class attribute_attribute(orm.Model):
     def _get_default_model(self, cr, uid, context=None):
         if context and context.get('force_model'):
             model_id = self.pool['ir.model'].search(cr, uid, [
-                    ['model', '=', context['force_model']]
-                    ], context=context)
+                                        ('model', '=', context['force_model'])
+                                                             ], context=context)
             if model_id:
                 return model_id[0]
         return None
@@ -338,15 +339,15 @@ class attribute_group(orm.Model):
     def create(self, cr, uid, vals, context=None):
         for attribute in vals['attribute_ids']:
             if vals.get('attribute_set_id') and attribute[2] and \
-                                    not attribute[2].get('attribute_set_id'):
+                not attribute[2].get('attribute_set_id'):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
     def _get_default_model(self, cr, uid, context=None):
         if context and context.get('force_model'):
-            model_id = self.pool['ir.model'].search(cr, uid, [
-                    ['model', '=', context['force_model']]
-                    ], context=context)
+            model_id = self.pool['ir.model'].search(
+                cr, uid, [['model', '=', context['force_model']]],
+                context=context)
             if model_id:
                 return model_id[0]
         return None
@@ -376,9 +377,9 @@ class attribute_set(orm.Model):
 
     def _get_default_model(self, cr, uid, context=None):
         if context and context.get('force_model'):
-            model_id = self.pool['ir.model'].search(cr, uid, [
-                    ['model', '=', context['force_model']]
-                    ], context=context)
+            model_id = self.pool['ir.model'].search(
+                cr, uid, [['model', '=', context['force_model']]],
+                context=context)
             if model_id:
                 return model_id[0]
         return None
@@ -395,9 +396,8 @@ class attribute_location(orm.Model):
 
 
     def _get_attribute_loc_from_group(self, cr, uid, ids, context=None):
-        return self.pool.get('attribute.location').search(cr, uid, [
-                                    ('attribute_group_id', 'in', ids),
-                                                            ], context=context)
+        return self.pool.get('attribute.location').search(
+            cr, uid, [('attribute_group_id', 'in', ids)], context=context)
 
     _columns = {
         'attribute_id': fields.many2one(
@@ -414,7 +414,7 @@ class attribute_location(orm.Model):
             readonly=True,
             store={
                 'attribute.group': (_get_attribute_loc_from_group,
-                                                    ['attribute_set_id'], 10),
+                                    ['attribute_set_id'], 10),
             }),
         'attribute_group_id':
             fields.many2one(
