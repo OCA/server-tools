@@ -35,5 +35,5 @@ class ir_model_fields(Model):
     }
     _sql_constraints = [
         ('name_model_uniq', 'unique (name, model_id)',
-                    'The name of the field has to be uniq for a given model !'),
+            'The name of the field has to be uniq for a given model !'),
     ]
