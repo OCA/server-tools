@@ -28,7 +28,7 @@ from unidecode import unidecode # Debian package python-unidecode
 import re
 
 
-def set_column_name(string):
+def safe_column_name(string):
     """This function prevent portability problem in database column name
     with other DBMS system
     Use case : if you synchronise attributes with other applications """
@@ -271,7 +271,7 @@ class attribute_attribute(orm.Model):
                                    context=None):
         name = u'x_'
         if field_description:
-            name = unicode('x_' + set_column_name(field_description))
+            name = unicode('x_' + safe_column_name(field_description))
         return {'value' : {'name' : name}}
 
     def onchange_name(self, cr, uid, ids, name, context=None):
