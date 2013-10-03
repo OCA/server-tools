@@ -33,7 +33,7 @@ def safe_column_name(string):
     with other DBMS system
     Use case : if you synchronise attributes with other applications """
     string = unidecode(string.replace(' ', '_').lower())
-    return filter((lambda x: re.search('[0-9a-z_]', x)), string)
+    return re.sub(r'[^0-9a-z_]','', string)
 
 
 class attribute_option(orm.Model):
