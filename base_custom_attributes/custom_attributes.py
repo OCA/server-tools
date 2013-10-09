@@ -179,6 +179,21 @@ class attribute_attribute(orm.Model):
         }
 
     def create(self, cr, uid, vals, context=None):
+        if vals.get('field_id'):
+            field_obj = self.pool.get('ir.model.fields')
+            field = field_obj.browse(cr, uid, vals['field_id'], context=context)
+            if vals.get('serialized'):
+                raise orm.except_orm(
+                    _('Error'),
+                    _("Can't create a serialized attribute on "
+                      "an existing ir.model.fields (%s)") % field.name)
+            if field.state != 'manual':
+                # the ir.model.fields already exists and we want to map
+                # an attribute on it. We can't change the field so we
+                # won't add the ttype, relation and so on.
+                return super(attribute_attribute, self).create(cr, uid, vals,
+                                                               context=context)
+
         if vals.get('relation_model_id'):
             relation = self.pool.get('ir.model').read(cr, uid,
             [vals.get('relation_model_id')], ['model'])[0]['model']
