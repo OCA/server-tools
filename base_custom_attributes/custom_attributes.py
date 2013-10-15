@@ -126,6 +126,8 @@ class attribute_attribute(orm.Model):
                     kwargs['domain'] = "[('id', 'in', %s)]" % ids
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+        kwargs['required'] = str(attribute.required or
+                                 attribute.required_on_views)
         field = etree.SubElement(parent, 'field', **kwargs)
         orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
@@ -176,6 +178,10 @@ class attribute_attribute(orm.Model):
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
         'relation_model_id': fields.many2one('ir.model', 'Model'),
+        'required_on_views': fields.boolean(
+            'Required (on views)',
+            help="If activated, the attribute will be mandatory on the views, "
+                 "but not in the database"),
         }
 
     def create(self, cr, uid, vals, context=None):
