@@ -138,7 +138,7 @@
             <field name="model">attribute.attribute</field>
             <field name="arch" type="xml">
                 <form string="Attribute">
-                    <field name="field_description" on_change="onchange_field_description(field_description, context)"/>
+                    <field name="field_description" on_change="onchange_field_description(field_description, name, create_date, context)"/>
                     <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}" on_change="onchange_name(name, context)"/>
                     <field name="attribute_type" />
                     <field name="model_id" />

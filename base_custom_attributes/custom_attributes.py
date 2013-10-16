@@ -219,9 +219,9 @@ class attribute_attribute(orm.Model):
         vals['state'] = 'manual'
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
-    def onchange_field_description(self, cr, uid, ids, field_description, context=None):
-        name = u'x_'
-        if field_description:
+    def onchange_field_description(self, cr, uid, ids, field_description, name, create_date, context=None):
+        name = name or u'x_'
+        if field_description and not create_date:
             name = unidecode(u'x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
