@@ -154,7 +154,7 @@ class CompanyLDAP(orm.Model):
         Execute ldap query as defined in conf
         """
         ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
-        return self.query(conf, ldap_filter), login_attr
+        return self.query(conf, ldap_filter)
 
     def populate_wizard(self, cr, uid, ids, context=None):
         """
