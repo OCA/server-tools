@@ -96,8 +96,7 @@ class CompanyLDAP(orm.Model):
                     "No login attribute found",
                     "Could not extract login attribute from filter %s" %
                     conf['ldap_filter'])
-            ldap_filter = filter_format(conf['ldap_filter'] % '*', ())
-            results = self.query(conf, ldap_filter)
+            results = self.get_ldap_entry_dicts(conf)
             #this happens with a misconfiguration or connectivity issues
             if not results:
                 deactivate_unknown = False
@@ -128,11 +127,34 @@ class CompanyLDAP(orm.Model):
         """
         Deactivate users not found in last populate run
         """
-        unknown_user_ids = self.pool.get('res.users').search(
-                cr, uid, [('id', 'not in', known_user_ids)], context=context)
-        self.pool.get('res.users').write(
-            cr, uid, unknown_user_ids, {'active': False}, context=context)
+        res_users = self.pool.get('res.users')
+        unknown_users_ids = []
+        for unknown_user in res_users.read(
+                cr, uid,
+                res_users.search(
+                    cr, uid,
+                    [('id', 'not in', known_user_ids)],
+                    context=context),
+                ['name'],
+                context=context):
+            present_in_ldap = False
+            for conf in self.get_ldap_dicts(cr, ids):
+                present_in_ldap |= self.get_ldap_entry_dicts(
+                        conf, user_name=unknown_user['name'])
+            if not present_in_ldap:
+                res_users.write(
+                        cr, uid, unknown_user['id'], {'active': False},
+                        context=context)
+                unknown_user_ids.append(unknown_user['id'])
+
         return len(unknown_user_ids)
+
+    def get_ldap_entry_dicts(self, conf, user_name='*'):
+        """
+        Execute ldap query as defined in conf
+        """
+        ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
+        return self.query(conf, ldap_filter), login_attr
 
     def populate_wizard(self, cr, uid, ids, context=None):
         """
