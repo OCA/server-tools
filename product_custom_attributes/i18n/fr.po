@@ -41,12 +41,12 @@ msgstr "Ouvrir les attributs"
 #: model:ir.actions.act_window,name:product_custom_attributes.open_product_by_attribute_set
 #: model:ir.ui.menu,name:product_custom_attributes.open_product_wizard
 msgid "Open Product By Attribute Set"
-msgstr "Ouvrir les articles par jeux d'attribut"
+msgstr "Ouvrir les articles par jeux d'attributs"
 
 #. module: product_custom_attributes
 #: view:open.product.by.attribute.set:0
 msgid "Open product by attributes set"
-msgstr "Ouvrir les articles par jeux d'attribut"
+msgstr "Ouvrir les articles par jeux d'attributs"
 
 #. module: product_custom_attributes
 #: model:ir.model.fields,field_description:product_custom_attributes.field_open_product_by_attribute_set_attribute_set_id
@@ -54,12 +54,12 @@ msgstr "Ouvrir les articles par jeux d'attribut"
 #: field:open.product.by.attribute.set,attribute_set_id:0
 #: field:product.template,attribute_set_id:0
 msgid "Attribute Set"
-msgstr "Jeux d'attribut"
+msgstr "Jeux d'attributs"
 
 #. module: product_custom_attributes
 #: view:open.product.by.attribute.set:0
 msgid "Open Product By attribute"
-msgstr "Ouvrir article pas attribut"
+msgstr "Ouvrir article par attribut"
 
 #. module: product_custom_attributes
 #: model:ir.model,name:product_custom_attributes.model_product_template
@@ -75,7 +75,7 @@ msgstr "Sauvegarder et fermer"
 #: model:ir.actions.act_window,name:product_custom_attributes.attribute_set_form_action
 #: model:ir.ui.menu,name:product_custom_attributes.menu_attribute_set_action
 msgid "Product Attribute Sets"
-msgstr "Jeux d'attribut de produit"
+msgstr "Jeux d'attributs de produit"
 
 #. module: product_custom_attributes
 #: model:ir.model.fields,field_description:product_custom_attributes.field_product_product_attribute_group_ids
@@ -103,7 +103,7 @@ msgstr "Attributs"
 #. module: product_custom_attributes
 #: model:ir.model,name:product_custom_attributes.model_open_product_by_attribute_set
 msgid "Wizard to open product by attributes set"
-msgstr "Assistant d'ouverture des articles par jeux d'attribut"
+msgstr "Assistant d'ouverture des articles par jeux d'attributs"
 
 #. module: product_custom_attributes
 #: model:ir.actions.act_window,name:product_custom_attributes.attribute_attribute_form_action
