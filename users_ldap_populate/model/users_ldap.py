@@ -98,9 +98,6 @@ class CompanyLDAP(orm.Model):
                     "Could not extract login attribute from filter %s" %
                     conf['ldap_filter'])
             results = self.get_ldap_entry_dicts(conf)
-            #this happens with a misconfiguration or connectivity issues
-            if not results:
-                deactivate_unknown = False
             for result in results:
                 user_id = self.get_or_create_user(
                         cr, uid, conf, result[1][login_attr][0], result)
