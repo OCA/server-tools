@@ -21,6 +21,7 @@
 
 import re
 from openerp.osv import orm, fields
+import ldap
 from ldap.filter import filter_format
 from openerp import SUPERUSER_ID, exceptions
 import logging
@@ -152,9 +153,18 @@ class CompanyLDAP(orm.Model):
     def get_ldap_entry_dicts(self, conf, user_name='*'):
         """
         Execute ldap query as defined in conf
+
+        Don't call self.query because it supresses possible exceptions
         """
         ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
-        return self.query(conf, ldap_filter)
+        conn = self.connect(conf)
+        conn.simple_bind_s(conf['ldap_binddn'] or '',
+                           conf['ldap_password'] or '')
+        results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
+                                 ldap_filter, None, timeout=60)
+        conn.unbind()
+
+        return results
 
     def populate_wizard(self, cr, uid, ids, context=None):
         """
