@@ -34,9 +34,9 @@ class attribute_option(orm.Model):
 
     def _get_model_list(self, cr, uid, context=None):
         model_pool = self.pool.get('ir.model')
-        ids = model_pool.search(cr, uid, [])
-        res = model_pool.read(cr, uid, ids, ['model', 'name'])
-        return [(r['model'], r['name']) for r in res] +  [('','')]
+        ids = model_pool.search(cr, uid, [], context=context)
+        res = model_pool.read(cr, uid, ids, ['model', 'name'], context=context)
+        return [(r['model'], r['name']) for r in res]
 
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
