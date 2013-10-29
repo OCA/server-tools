@@ -32,9 +32,15 @@ class attribute_option(orm.Model):
     _description = "Attribute Option"
     _order="sequence"
 
+    def _get_model_list(self, cr, uid, context=None):
+        model_pool = self.pool.get('ir.model')
+        ids = model_pool.search(cr, uid, [])
+        res = model_pool.read(cr, uid, ids, ['model', 'name'])
+        return [(r['model'], r['name']) for r in res] +  [('','')]
+
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
-        'value_ref': fields.reference('Reference', selection=[], size=128),
+        'value_ref': fields.reference('Reference', selection=_get_model_list, size=128),
         'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
