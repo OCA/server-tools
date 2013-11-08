@@ -128,6 +128,29 @@ class FetchmailServer(osv.osv):
             res[fetchmail.id] = config_vals
         return res
 
+    def _type_search(self, cr, uid, obj, name, args, context={}):
+        result_ids = []
+        # read all incomming servers values
+        all_ids = self.search(cr, uid, [], context=context)
+        results = self.read(cr, uid, all_ids, ['id','type'], context=context)
+        args = args[:]
+        i = 0
+        while i < len(args):
+            operator = args[i][1]
+            if operator == '=':
+                for res in results:
+                    if (res['type'] == args[i][2]) and (res['id'] not in result_ids):
+                        result_ids.append(res['id'])
+            elif operator == 'in':
+                for search_vals in args[i][2]:
+                    for res in results:
+                        if (res['type'] == search_vals) and (res['id'] not in result_ids):
+                           result_ids.append(res['id'])                
+            else:
+                continue
+            i += 1
+        return [('id', 'in', result_ids)]
+
     _columns = {
         'server': fields.function(_get_incom_conf,
                                   method=True,
@@ -146,6 +169,7 @@ class FetchmailServer(osv.osv):
                                 string='Type',
                                 type="char",
                                 multi='income_mail_config',
+                                fnct_search=_type_search,
                                 size=64,
                                 help="pop, imap, local"),
         'is_ssl': fields.function(_get_incom_conf,
