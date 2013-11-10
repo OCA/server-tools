@@ -7,13 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-07 01:08+0000\n"
-"PO-Revision-Date: 2013-11-07 03:28+0000\n"
-"Last-Translator: Julio Serna-http://www.vauxoo.com <Unknown>\n"
+"PO-Revision-Date: 2013-11-08 17:49+0000\n"
+"Last-Translator: hbto [Vauxoo] http://www.vauxoo.com "
+"<humbertoarocha@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-08 06:27+0000\n"
+"X-Launchpad-Export-Date: 2013-11-10 06:48+0000\n"
 "X-Generator: Launchpad (build 16820)\n"
 
 #. module: product_customer_code
@@ -75,6 +76,9 @@ msgid ""
 "into\n"
 "                                            a request for quotation."
 msgstr ""
+"El código de Producto del cliente\n"
+"                                            se usará cuando se busque en\n"
+"                                            una solicitud de cotización."
 
 #. module: product_customer_code
 #: field:product.product,product_customer_code_ids:0
@@ -84,7 +88,7 @@ msgstr "Código del Cliente"
 #. module: product_customer_code
 #: view:product.customer.code:0
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupar por ..."
 
 #. module: product_customer_code
 #: model:res.groups,name:product_customer_code.group_product_customer_code_user
@@ -99,7 +103,7 @@ msgstr "Nombre del producto"
 #. module: product_customer_code
 #: view:product.customer.code:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: product_customer_code
 #: model:ir.model,name:product_customer_code.model_product_customer_code
@@ -113,3 +117,6 @@ msgid ""
 "                                            be used when searching into a\n"
 "                                            request for quotation."
 msgstr ""
+"Este nombre de Producto del cliente\n"
+"                                            se usará cuando se busque en\n"
+"                                            una solicitud de cotización."
