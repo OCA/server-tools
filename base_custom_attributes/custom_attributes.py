@@ -268,7 +268,7 @@ class attribute_group(orm.Model):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, required=True, translate=True),
         'sequence': fields.integer('Sequence'),
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
@@ -299,7 +299,7 @@ class attribute_set(orm.Model):
     _name = "attribute.set"
     _description = "Attribute Set"
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, required=True, translate=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
         'model_id': fields.many2one('ir.model', 'Model', required=True),
         }
