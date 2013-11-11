@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   product_custom_attributes for OpenERP                                      #
-#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
+#   product_custom_attributes for OpenERP
+#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -27,8 +27,13 @@ class ir_model_fields(Model):
 
     _inherit = "ir.model.fields"
     _columns = {
-        'field_description': fields.char('Field Label', required=True, size=256, translate=True),
+        'field_description': fields.char(
+            'Field Label',
+            required=True,
+            size=256,
+            translate=True),
     }
     _sql_constraints = [
-        ('name_model_uniq', 'unique (name, model_id)', 'The name of the field has to be uniq for a given model !'),
+        ('name_model_uniq', 'unique (name, model_id)',
+            'The name of the field has to be uniq for a given model !'),
     ]
