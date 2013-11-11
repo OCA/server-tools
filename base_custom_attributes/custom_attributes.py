@@ -35,13 +35,13 @@ class attribute_option(orm.Model):
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
         'value_ref': fields.reference('Reference', selection=[], size=128),
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('attribute.attribute', 'Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
 
     def name_change(self, cr, uid, ids, name, relation_model_id, context=None):
         if relation_model_id:
-            warning = {'title': _('Error!'), 'message': _("Use the 'Change Options' button instead to select appropriate model references'")}
+            warning = {'title': _('Error!'), 'message': _("Use the 'Load Options' button instead to select appropriate model references.")}
             return {"value": {"name": False}, "warning": warning}
         else:
             return True
@@ -52,7 +52,7 @@ class attribute_option_wizard(orm.TransientModel):
     _rec_name = 'attribute_id'
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('attribute.attribute', 'Attribute', required=True),
     }
 
     _defaults = {
@@ -328,7 +328,7 @@ class attribute_location(orm.Model):
         return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True, ondelete="cascade"),
+        'attribute_id': fields.many2one('attribute.attribute', 'Attribute', required=True, ondelete="cascade"),
         'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
 store={
             'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
