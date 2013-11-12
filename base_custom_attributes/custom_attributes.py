@@ -132,6 +132,7 @@ class attribute_attribute(orm.Model):
                     kwargs['domain'] = "[('id', 'in', %s)]" % ids
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+        kwargs['context'] = "{'default_attribute_id': %s}" % attribute.attribute_id.id
         kwargs['required'] = str(attribute.required or
                                  attribute.required_on_views)
         field = etree.SubElement(parent, 'field', **kwargs)
