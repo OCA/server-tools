@@ -20,6 +20,7 @@
 #                                                                             #
 ###############################################################################
 
+import ast
 from openerp.osv import orm, fields
 from openerp.osv.osv import except_osv
 from openerp.tools.translate import _
@@ -125,7 +126,12 @@ class attribute_attribute(orm.Model):
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             if attribute.relation_model_id:
-                if attribute.domain:
+                # attribute.domain is a string, it may be an empty list
+                try:
+                    domain = ast.literal_eval(attribute.domain)
+                except ValueError:
+                    domain = None
+                if domain:
                     kwargs['domain'] = attribute.domain
                 else:
                     ids = [op.value_ref.id for op in attribute.option_ids]
