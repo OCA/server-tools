@@ -32,16 +32,22 @@ class attribute_option(orm.Model):
     _description = "Attribute Option"
     _order="sequence"
 
+    def _get_model_list(self, cr, uid, context=None):
+        model_pool = self.pool.get('ir.model')
+        ids = model_pool.search(cr, uid, [], context=context)
+        res = model_pool.read(cr, uid, ids, ['model', 'name'], context=context)
+        return [(r['model'], r['name']) for r in res]
+
     _columns = {
         'name': fields.char('Name', size=128, translate=True, required=True),
-        'value_ref': fields.reference('Reference', selection=[], size=128),
+        'value_ref': fields.reference('Reference', selection=_get_model_list, size=128),
         'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
         'sequence': fields.integer('Sequence'),
     }
 
     def name_change(self, cr, uid, ids, name, relation_model_id, context=None):
         if relation_model_id:
-            warning = {'title': _('Error!'), 'message': _("Use the 'Change Options' button instead to select appropriate model references'")}
+            warning = {'title': _('Error!'), 'message': _("Use the 'Load Options' button instead to select appropriate model references.")}
             return {"value": {"name": False}, "warning": warning}
         else:
             return True
@@ -52,7 +58,7 @@ class attribute_option_wizard(orm.TransientModel):
     _rec_name = 'attribute_id'
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True),
+        'attribute_id': fields.many2one('attribute.attribute', 'Attribute', required=True),
     }
 
     _defaults = {
@@ -127,6 +133,8 @@ class attribute_attribute(orm.Model):
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
         kwargs['context'] = "{'default_attribute_id': %s}" % attribute.attribute_id.id
+        kwargs['required'] = str(attribute.required or
+                                 attribute.required_on_views)
         field = etree.SubElement(parent, 'field', **kwargs)
         orm.setup_modifiers(field, self.fields_get(cr, uid, attribute.name, context))
         return parent
@@ -177,6 +185,10 @@ class attribute_attribute(orm.Model):
         'option_ids': fields.one2many('attribute.option', 'attribute_id', 'Attribute Options'),
         'create_date': fields.datetime('Created date', readonly=True),
         'relation_model_id': fields.many2one('ir.model', 'Model'),
+        'required_on_views': fields.boolean(
+            'Required (on views)',
+            help="If activated, the attribute will be mandatory on the views, "
+                 "but not in the database"),
         }
 
     def create(self, cr, uid, vals, context=None):
@@ -214,9 +226,9 @@ class attribute_attribute(orm.Model):
         vals['state'] = 'manual'
         return super(attribute_attribute, self).create(cr, uid, vals, context)
 
-    def onchange_field_description(self, cr, uid, ids, field_description, context=None):
-        name = u'x_'
-        if field_description:
+    def onchange_field_description(self, cr, uid, ids, field_description, name, create_date, context=None):
+        name = name or u'x_'
+        if field_description and not create_date:
             name = unidecode(u'x_%s' % field_description.replace(' ', '_').lower())
         return  {'value' : {'name' : name}}
 
@@ -263,7 +275,7 @@ class attribute_group(orm.Model):
     _order="sequence"
 
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, required=True, translate=True),
         'sequence': fields.integer('Sequence'),
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
         'attribute_ids': fields.one2many('attribute.location', 'attribute_group_id', 'Attributes'),
@@ -294,7 +306,7 @@ class attribute_set(orm.Model):
     _name = "attribute.set"
     _description = "Attribute Set"
     _columns = {
-        'name': fields.char('Name', size=128, required=True),
+        'name': fields.char('Name', size=128, required=True, translate=True),
         'attribute_group_ids': fields.one2many('attribute.group', 'attribute_set_id', 'Attribute Groups'),
         'model_id': fields.many2one('ir.model', 'Model', required=True),
         }
@@ -323,7 +335,7 @@ class attribute_location(orm.Model):
         return self.pool.get('attribute.location').search(cr, uid, [('attribute_group_id', 'in', ids)], context=context)
 
     _columns = {
-        'attribute_id': fields.many2one('attribute.attribute', 'Product Attribute', required=True, ondelete="cascade"),
+        'attribute_id': fields.many2one('attribute.attribute', 'Attribute', required=True, ondelete="cascade"),
         'attribute_set_id': fields.related('attribute_group_id', 'attribute_set_id', type='many2one', relation='attribute.set', string='Attribute Set', readonly=True,
 store={
             'attribute.group': (_get_attribute_loc_from_group, ['attribute_set_id'], 10),
