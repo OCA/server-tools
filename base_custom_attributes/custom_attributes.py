@@ -148,8 +148,7 @@ class attribute_attribute(orm.Model):
         kwargs = {'name': "%s" % attribute.name}
         if attribute.ttype in ['many2many', 'text']:
             parent = etree.SubElement(parent, 'group', colspan="2", col="4")
-            #seems to be unused
-            sep = etree.SubElement(parent,
+            etree.SubElement(parent,
                                    'separator',
                                     string="%s" % attribute.field_description,
                                     colspan="4")
