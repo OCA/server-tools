@@ -20,6 +20,7 @@
 #                                                                             #
 ###############################################################################
 
+import ast
 from openerp.osv import orm, fields
 from openerp.osv.osv import except_osv
 from openerp.tools.translate import _
@@ -41,6 +42,12 @@ class attribute_option(orm.Model):
     _description = "Attribute Option"
     _order="sequence"
 
+    def _get_model_list(self, cr, uid, context=None):
+        model_pool = self.pool.get('ir.model')
+        ids = model_pool.search(cr, uid, [], context=context)
+        res = model_pool.read(cr, uid, ids, ['model', 'name'], context=context)
+        return [(r['model'], r['name']) for r in res]
+
     _columns = {
         'name': fields.char(
             'Name',
@@ -49,7 +56,7 @@ class attribute_option(orm.Model):
             required=True),
         'value_ref': fields.reference(
             'Reference',
-            selection=[],
+            selection=_get_model_list,
             size=128),
         'attribute_id': fields.many2one(
             'attribute.attribute',
@@ -61,7 +68,7 @@ class attribute_option(orm.Model):
     def name_change(self, cr, uid, ids, name, relation_model_id, context=None):
         if relation_model_id:
             warning = {'title': _('Error!'),
-                       'message': _("Use the 'Change Options' button "
+                       'message': _("Use the 'Load Options' button "
                                     "instead to select appropriate "
                                     "model references'")}
             return {"value": {"name": False}, "warning": warning}
@@ -149,13 +156,19 @@ class attribute_attribute(orm.Model):
             kwargs['nolabel'] = "1"
         if attribute.ttype in ['many2one', 'many2many']:
             if attribute.relation_model_id:
-                if attribute.domain:
+                # attribute.domain is a string, it may be an empty list
+                try:
+                    domain = ast.literal_eval(attribute.domain)
+                except ValueError:
+                    domain = None
+                if domain:
                     kwargs['domain'] = attribute.domain
                 else:
                     ids = [op.value_ref.id for op in attribute.option_ids]
                     kwargs['domain'] = "[('id', 'in', %s)]" % ids
             else:
                 kwargs['domain'] = "[('attribute_id', '=', %s)]" % attribute.attribute_id.id
+        kwargs['context'] = "{'default_attribute_id': %s}" % attribute.attribute_id.id
         kwargs['required'] = str(attribute.required or
                                  attribute.required_on_views)
         field = etree.SubElement(parent, 'field', **kwargs)
@@ -323,7 +336,8 @@ class attribute_group(orm.Model):
         'name': fields.char(
             'Name',
             size=128,
-            required=True),
+            required=True,
+            translate=True),
         'sequence': fields.integer('Sequence'),
         'attribute_set_id': fields.many2one(
             'attribute.set',
@@ -366,7 +380,8 @@ class attribute_set(orm.Model):
         'name': fields.char(
             'Name',
             size=128,
-            required=True),
+            required=True,
+            translate=True),
         'attribute_group_ids': fields.one2many(
             'attribute.group',
             'attribute_set_id',
