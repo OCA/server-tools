@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  product_custom_attributes for OpenERP
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="product_product_form_view_set_button">
+            <field name="name">attributes.product.normal.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@string='Information']/group/group/field[@name='variants']/.." position="after">
+                    <group name="attribute_fields">
+                        <field name="attribute_set_id" />
+                        <button name="open_attributes" string="Open Attributes" type="object" icon="gtk-ok" attrs="{'invisible':[('attribute_set_id', '=', False)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_attributes_form_view">
+            <field name="name">product.attributes.normal.wizard</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <group name="name_set">
+                        <field name="name"/>
+                        <field name="attribute_set_id" />
+                    </group>
+                    <separator string="attributes_placeholder" colspan="4"/>
+                    <footer>
+                        <button name="save_and_close_product_attributes" string="Save and Close" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

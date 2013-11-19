@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  base_custom_attributes for OpenERP
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <menuitem
+            id="menu_attribute_in_config_product" name="Attributes"
+            parent="product.prod_config_main" sequence="20"/>
+
+        <record id="attribute_set_form_action" model="ir.actions.act_window">
+            <field name="name">Product Attribute Sets</field>
+            <field name="res_model">attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="base_custom_attributes.view_attribute_set_search"/>
+            <field name="context">{"force_model": 'product.product'}</field>
+            <field name="help"></field>
+        </record>
+
+        <record id="attribute_group_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Groups</field>
+            <field name="res_model">attribute.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="base_custom_attributes.view_attribute_attribute_search"/>
+            <field name="context">{"force_model": 'product.product'}</field>
+            <field name="help"></field>
+        </record>
+
+        <record id="attribute_attribute_form_action" model="ir.actions.act_window">
+            <field name="name">Product Attribute</field>
+            <field name="res_model">attribute.attribute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="base_custom_attributes.view_attribute_attribute_search"/>
+            <field name="context">{"force_model": 'product.product'}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_set_form_action" id="menu_attribute_set_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="1"/>
+        <menuitem
+             action="attribute_group_form_action" id="menu_attribute_group_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="2"/>
+        <menuitem
+             action="attribute_attribute_form_action" id="menu_attribute_attribute_action"
+             parent="product_custom_attributes.menu_attribute_in_config_product" sequence="4"/>
+
+    </data>
+</openerp>
