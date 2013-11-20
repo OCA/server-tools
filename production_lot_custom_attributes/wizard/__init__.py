@@ -1,8 +1,11 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   product_custom_attributes for OpenERP                                      #
-#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
+#   Author: Leonardo Pistone <leonardo.pistone@camptocamp.com>                #
+#   Copyright 2013 Camptocamp SA                                              #
+#                                                                             #
+#   Inspired by the module product_custom_attributes                          #
+#   by Benoît GUILLOT <benoit.guillot@akretion.com>, Akretion                 #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -19,11 +22,4 @@
 #                                                                             #
 ###############################################################################
 
-
-
-import open_product_by_attribute_set
-
-
-
-
-
+import open_lot_by_attribute_set

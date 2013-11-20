@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  lot_custom_attributes for OpenERP
+  Copyright (C) 2011-2013 Akretion (http://www.akretion.com/)
+  @author: Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <record id="open_lot_by_attribute_set_view" model="ir.ui.view">
+            <field name="name">open.lot.by.attribute.set.view</field>
+            <field name="model">open.lot.by.attribute.set</field>
+            <field name="arch" type="xml">
+                <form string="Open lot by attributes set" version="7.0">
+                    <group>
+                        <field name="attribute_set_id" />
+                    </group>
+                    <footer>
+                        <button name="open_lot_by_attribute" string="Open lot By attribute" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_lot_by_attribute_set" model="ir.actions.act_window">
+            <field name="name">Open lot By Attribute Set</field>
+            <field name="res_model">open.lot.by.attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="open_lot_by_attribute_set_view"/>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="open_lot_by_attribute_set" id="open_lot_wizard" parent="stock.menu_traceability"/>
+
+    </data>
+</openerp>
