@@ -22,4 +22,4 @@
 #                                                                             #
 ###############################################################################
 
-import open_lot_by_attribute_set
+from . import open_lot_by_attribute_set

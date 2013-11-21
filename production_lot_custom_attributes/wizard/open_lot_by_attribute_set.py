@@ -32,13 +32,16 @@ class open_lot_by_attribute_set(TransientModel):
     }
 
     def open_lot_by_attribute(self, cr, uid, ids, context=None):
+        """Opens a lot by attributes
+
+        :param cr: the current row, from the database cursor,
+        :param uid: the current user’s ID for security checks,
+        :param ids: List of account chart’s IDs # TODO FIX docstring
+
+        :return: dictionary of Lot list window for a given attributes set
+
         """
-        Opens a Lot by attributes
-        @param cr: the current row, from the database cursor,
-        @param uid: the current user’s ID for security checks,
-        @param ids: List of account chart’s IDs
-        @return: dictionary of Lot list window for a given attributes set
-        """
+        assert len(ids) == 1
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
         context = context or {}

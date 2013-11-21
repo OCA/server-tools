@@ -21,6 +21,5 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.     #
 #                                                                             #
 ###############################################################################
-
-import lot
-import wizard
+from . import lot
+from . import wizard

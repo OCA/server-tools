@@ -22,33 +22,37 @@
 #                                                                             #
 ###############################################################################
 
-{
-    'name': 'production_lot_custom_attributes',
-    'version': '0.1',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'description': """\
+{'name': 'production_lot_custom_attributes',
+ 'version': '0.1',
+ 'category': 'Generic Modules/Others',
+ 'license': 'AGPL-3',
+ 'description': """
+Production lot custom attributes
+================================
+
 This module adds the possibility to easily create custom fields on stock
 production lots. Each lot can be linked to an attribute set.
 Each attribute has custom fields (for example, you don't need the same field
-for a frigde and a camera).
+for a fridge and a camera).
 In particular it's used by the Magento Magentoerpconnect module to match the
 EAV flexibility of Magento.
 This module is inspired by the module product_custom_attributes by
-Benoît GUILLOT, Akretion""",
-    'author': 'Camptocamp',
-    'website': 'http://www.camptocamp.com/',
-    'depends': ['stock', 'base_custom_attributes'],
-    'init_xml': [],
-    'update_xml': [
-        'lot_view.xml',
-        'custom_attributes_view.xml',
-        'wizard/open_lot_by_attribute_set.xml',
-    ],
-    'test': [
-        'test/lot_attribute_test.yml',
-    ],
-    'demo_xml': [],
-    'installable': True,
-    'active': False,
-}
+Benoît GUILLOT, Akretion
+
+ """,
+ 'complexity': 'normal',
+ 'author': 'Camptocamp',
+ 'website': 'http://www.camptocamp.com/',
+ 'depends': ['stock', 'base_custom_attributes'],
+ 'init_xml': [],
+ 'update_xml': ['lot_view.xml',
+                'custom_attributes_view.xml',
+                'wizard/open_lot_by_attribute_set.xml'
+                ],
+ 'test': [
+     'test/lot_attribute_test.yml',
+ ],
+ 'demo_xml': [],
+ 'installable': True,
+ 'active': False,
+ }

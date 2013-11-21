@@ -33,15 +33,15 @@ class stock_production_lot(Model):
 
     def _attr_grp_ids(self, cr, uid, ids, field_names, arg=None, context=None):
         res = {}
-        for i in ids:
+        for prod_lot_id in ids:
             set_id = self.read(
-                cr, uid, [i], fields=['attribute_set_id'], context=context
-            )[0]['attribute_set_id']
+                cr, uid, prod_lot_id, fields=['attribute_set_id'], context=context
+            )['attribute_set_id']
             if not set_id:
-                res[i] = []
+                res[prod_lot_id] = []
             else:
-                res[i] = self.pool.get('attribute.group').search(
-                    cr, uid, [('attribute_set_id', '=', set_id[0])]
+                res[prod_lot_id] = self.pool.get('attribute.group').search(
+                    cr, uid, [('attribute_set_id', '=', set_id)]
                 )
         return res
 
@@ -97,12 +97,11 @@ class stock_production_lot(Model):
     def save_and_close_stock_attributes(self, cr, uid, ids, context=None):
         return {'type': 'ir.actions.act_window_close'}
 
-    def fields_view_get(
-        self, cr, uid, view_id=None, view_type='form', context=None,
-        toolbar=False, submenu=False
-    ):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
+                        toolbar=False, submenu=False):
+        if context is None:
+            context = {}
         attr_pool = self.pool.get('attribute.attribute')
-        context = context or {}
         result = super(stock_production_lot, self).fields_view_get(
             cr, uid, view_id, view_type, context, toolbar=toolbar,
             submenu=submenu
