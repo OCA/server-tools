@@ -34,31 +34,34 @@ class open_lot_by_attribute_set(TransientModel):
     def open_lot_by_attribute(self, cr, uid, ids, context=None):
         """Opens a lot by attributes
 
-        :param cr: the current row, from the database cursor,
-        :param uid: the current user’s ID for security checks,
-        :param ids: List of account chart’s IDs # TODO FIX docstring
-
-        :return: dictionary of Lot list window for a given attributes set
-
+        Returns a custom action built modifying the original one.
         """
-        assert len(ids) == 1
+
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
-        context = context or {}
-        attribute_set = self.browse(
-            cr, uid, ids[0], context=context
-        ).attribute_set_id
-        result = mod_obj.get_object_reference(
-            cr, uid, 'stock', 'action_production_lot_form')
-        id = result[1] if result else False
-        result = act_obj.read(cr, uid, [id], context=context)[0]
-        grp_ids = self.pool.get('attribute.group').search(
-            cr, uid, [('attribute_set_id', '=', attribute_set.id)])
-        ctx = (
-            "{'open_lot_by_attribute_set': %s, 'attribute_group_ids': %s}"
-            % (True, grp_ids)
-        )
-        result['context'] = ctx
-        result['domain'] = "[('attribute_set_id', '=', %s)]" % attribute_set.id
-        result['name'] = attribute_set.name
-        return result
+
+        if context is None:
+            context = {}
+
+        # we expect one wizard instance at a time
+        for wiz in self.browse(cr, uid, ids, context=context):
+            action_id = mod_obj.get_object_reference(
+                cr, uid, 'stock', 'action_production_lot_form')[1]
+            action = act_obj.read(cr, uid, [action_id], context=context)[0]
+
+            ctx = (
+                "{'open_lot_by_attribute_set': True, "
+                "'attribute_group_ids': %s}"
+                % [
+                    group.id
+                    for group in wiz.attribute_set_id.attribute_group_ids
+                ]
+            )
+
+            action['context'] = ctx
+            action['domain'] = (
+                "[('attribute_set_id', '=', %s)]"
+                % wiz.attribute_set_id.id
+            )
+            action['name'] = wiz.attribute_set_id.name
+            return action

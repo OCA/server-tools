@@ -31,74 +31,62 @@ from lxml import etree
 class stock_production_lot(Model):
     _inherit = "stock.production.lot"
 
-    def _attr_grp_ids(self, cr, uid, ids, field_names, arg=None, context=None):
-        res = {}
-        for prod_lot_id in ids:
-            set_id = self.read(
-                cr, uid, prod_lot_id, fields=['attribute_set_id'], context=context
-            )['attribute_set_id']
-            if not set_id:
-                res[prod_lot_id] = []
-            else:
-                res[prod_lot_id] = self.pool.get('attribute.group').search(
-                    cr, uid, [('attribute_set_id', '=', set_id)]
-                )
-        return res
-
     _columns = {
         'attribute_set_id': fields.many2one('attribute.set', 'Attribute Set'),
-        'attribute_group_ids': fields.function(
-            _attr_grp_ids,
+        'attribute_group_ids': fields.related(
+            'attribute_set_id',
+            'attribute_group_ids',
             type='many2many',
-            relation='attribute.group',
-            string='Groups')
+            relation='attribute.group'
+            )
     }
 
-    def _fix_size_bug(self, cr, uid, result, context=None):
-        """When created a field text dynamicaly, its size is limited to 64 in
-        the view. The bug is fixed but not merged
-        https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa
-        To remove when the fix will be merged"""
-        for field in result['fields']:
-            if result['fields'][field]['type'] == 'text':
-                if 'size' in result['fields'][field]:
-                    del result['fields'][field]['size']
-        return result
-
     def open_attributes(self, cr, uid, ids, context=None):
-        ir_model_data_obj = self.pool.get('ir.model.data')
-        ir_model_data_id = ir_model_data_obj.search(
-            cr, uid, [
-                ('model', '=', 'ir.ui.view'),
-                ('name', '=', 'lot_attributes_form_view')
-            ], context=context)
-        if ir_model_data_id:
-            res_id = ir_model_data_obj.read(
-                cr, uid, ir_model_data_id, fields=['res_id']
-            )[0]['res_id']
-        grp_ids = self._attr_grp_ids(
-            cr, uid, [ids[0]], [], None, context
-        )[ids[0]]
-        ctx = {'open_attributes': True, 'attribute_group_ids': grp_ids}
+        """Open the attributes of an object
 
-        return {
-            'name': 'Lot Attributes',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': [res_id],
-            'res_model': self._name,
-            'context': ctx,
-            'type': 'ir.actions.act_window',
-            'nodestroy': True,
-            'target': 'new',
-            'res_id': ids and ids[0] or False,
-        }
+        This method is called when the user presses the Open Attributes button
+        in the form view of the object. It opens a dinamically-built form view.
 
-    def save_and_close_stock_attributes(self, cr, uid, ids, context=None):
+        :param ids: this is normally a singleton. If a longer list is passed,
+                    we consider only the first item.
+
+        """
+
+        if context is None:
+            context = {}
+
+        model_data_pool = self.pool.get('ir.model.data')
+
+        for lot in self.browse(cr, uid, ids, context=context):
+            view_id = model_data_pool.get_object_reference(
+                cr, uid,
+                'production_lot_custom_attributes',
+                'lot_attributes_form_view')[1]
+            ctx = {
+                'open_attributes': True,
+                'attribute_group_ids': [
+                    group.id for group in lot.attribute_group_ids
+                ]
+            }
+
+            return {
+                'name': 'Lot Attributes',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'view_id': [view_id],
+                'res_model': self._name,
+                'context': ctx,
+                'type': 'ir.actions.act_window',
+                'nodestroy': True,
+                'target': 'new',
+                'res_id': lot.id,
+            }
+
+    def save_and_close_lot_attributes(self, cr, uid, ids, context=None):
         return {'type': 'ir.actions.act_window_close'}
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
-                        toolbar=False, submenu=False):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                        context=None, toolbar=False, submenu=False):
         if context is None:
             context = {}
         attr_pool = self.pool.get('attribute.attribute')
@@ -122,6 +110,8 @@ class stock_production_lot(Model):
                 self.fields_get(cr, uid, toupdate_fields, context)
             )
             if context.get('open_attributes'):
+                # i.e. the user pressed the open attributes button on the
+                # form view. We put the attributes in a separate form view
                 placeholder = eview.xpath(
                     "//separator[@string='attributes_placeholder']"
                 )[0]
@@ -129,6 +119,8 @@ class stock_production_lot(Model):
                     placeholder, attributes_notebook
                 )
             elif context.get('open_lot_by_attribute_set'):
+                # in this case, we know the attribute set beforehand, and we
+                # add the attributes to the current view
                 main_page = etree.Element(
                     'page', string=_('Custom Attributes')
                 )
@@ -138,5 +130,4 @@ class stock_production_lot(Model):
                 )[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
-            result = self._fix_size_bug(cr, uid, result, context=context)
         return result
