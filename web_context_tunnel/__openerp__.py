@@ -26,10 +26,11 @@ The idea here is to wrap the extra arguments needed by your on_change inside tha
 
 The issue with just position="attributes" and redefining the context, is that again, if two independent modules do it, they are incompatible unless a third module accounts for both of them.
 
-But with this module, an extension point can now use position="attributes" and instead of redefining the "context" attribute, you will now just define a new "context_foo" attribute. This module modifies the web client in such a way that before sending the Ajax on_change event request to the server, all the node attributes starting with "context" are merged into a single context dictionnary, keeping the keys and values from all extensions. In the rare case a module really wants to override the value in context, then it needs to still override the original context attribute (or the other original attribute).
+But with this module, an extension point can now use position="attributes" and instead of redefining the "context" attribute, you will now just define a new "context_foo" attribute this way: <attribute name="context_foo">{'my_extra_field': my_extra_field}</attribute>.
 
-Ad of course, if you should call your on_change by API or webservice instead of using the web client, simply ensure y
-u are wrapping the required extra arguments in the context dictionary.
+This module modifies the web client in such a way that before sending the Ajax on_change event request to the server, all the node attributes starting with "context" are merged into a single context dictionnary, keeping the keys and values from all extensions. In the rare case a module really wants to override the value in context, then it needs to still override the original context attribute (or the other original attribute).
+
+Ad of course, if you should call your on_change by API or webservice instead of using the web client, simply ensure you are wrapping the required extra arguments in the context dictionary.
 """,
     'version': '2.0',
     'depends': ['web'],
