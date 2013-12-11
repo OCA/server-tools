@@ -352,9 +352,9 @@ class attribute_group(orm.Model):
     }
 
     def create(self, cr, uid, vals, context=None):
-        for attribute in vals['attribute_ids']:
-            if vals.get('attribute_set_id') and attribute[2] and \
-                not attribute[2].get('attribute_set_id'):
+        for attribute in vals.get('attribute_ids', []):
+            if (vals.get('attribute_set_id') and attribute[2] and
+                    not attribute[2].get('attribute_set_id')):
                 attribute[2]['attribute_set_id'] = vals['attribute_set_id']
         return super(attribute_group, self).create(cr, uid, vals, context)
 
