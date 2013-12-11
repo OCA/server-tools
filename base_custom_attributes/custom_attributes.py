@@ -246,6 +246,35 @@ class attribute_attribute(orm.Model):
         }
 
     def create(self, cr, uid, vals, context=None):
+        """ Create an attribute.attribute
+
+        When a `field_id` is given, the attribute will be linked to the
+        existing field. The use case is to create an attribute on a field
+        created with Python `fields`.
+
+        """
+        if vals.get('field_id'):
+            # when a 'field_id' is given, we create an attribute on an
+            # existing 'ir.model.fields'.  As this model `_inherits`
+            # 'ir.model.fields', calling `create()` with a `field_id`
+            # will call `write` in `ir.model.fields`.
+            # When the existing field is not a 'manual' field, we are
+            # not allowed to write on it. So we call `create()` without
+            # changing the fields values.
+            field_obj = self.pool.get('ir.model.fields')
+            field = field_obj.browse(cr, uid, vals['field_id'], context=context)
+            if vals.get('serialized'):
+                raise orm.except_orm(
+                    _('Error'),
+                    _("Can't create a serialized attribute on "
+                      "an existing ir.model.fields (%s)") % field.name)
+            if field.state != 'manual':
+                # the ir.model.fields already exists and we want to map
+                # an attribute on it. We can't change the field so we
+                # won't add the ttype, relation and so on.
+                return super(attribute_attribute, self).create(cr, uid, vals,
+                                                               context=context)
+
         if vals.get('relation_model_id'):
             relation = self.pool.get('ir.model').read(
                 cr, uid, [vals.get('relation_model_id')], ['model'])[0]['model']
