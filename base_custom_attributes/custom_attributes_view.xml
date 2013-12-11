@@ -286,11 +286,14 @@
             <field name="name">attribute.option.wizard</field>
             <field name="model">attribute.option.wizard</field>
             <field name="arch" type="xml">
-                <form string="Options Wizard" col="6">
-                    <field name="attribute_id" invisible="1" colspan="2"/>
+                <form string="Options Wizard" version="7.0">
+                    <field name="attribute_id" invisible="1"/>
                     <separator string="options_placeholder"/>
-                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
-                    <button name="validate" string="Validate" type="object" icon="gtk-convert"/>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" icon="gtk-convert" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
                 </form>
             </field>
         </record>
