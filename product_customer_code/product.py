@@ -56,13 +56,13 @@ class product_product(osv.Model):
             partner_id = context.get('partner_id', False)
             if partner_id:
                 id_prod_code = \
-                        product_customer_code_obj.search(cr, user,
-                                                         [('product_code',
-                                                                '=', name),
-                                                         ('partner_id', '=',
-                                                                 partner_id)],
-                                                         limit=limit,
-                                                         context=context)
+                    product_customer_code_obj.search(cr, user,
+                                                     [('product_code',
+                                                       '=', name),
+                                                      ('partner_id', '=',
+                                                       partner_id)],
+                                                     limit=limit,
+                                                     context=context)
                 # TODO: Search for product customer name
                 id_prod = id_prod_code and product_customer_code_obj.browse(
                     cr, user, id_prod_code, context=context) or []

@@ -53,10 +53,10 @@ class product_customer_code(osv.Model):
 
     _defaults = {
         'company_id': lambda s, cr,
-                            uid, c: s.pool.get('res.company').\
-                                                _company_default_get(cr, uid,
-                                                       'product.customer.code',
-                                                                    context=c),
+        uid, c: s.pool.get('res.company').
+        _company_default_get(cr, uid,
+                             'product.customer.code',
+                             context=c),
     }
 
     _sql_constraints = [

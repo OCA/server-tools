@@ -24,24 +24,37 @@
 #
 ##############################################################################
 {
-    "name" : "Products Customer Code",
-    "version" : "1.0",
-    "author" : "Vauxoo",
-    "website" : "http://www.vauxoo.com/",
-    "license" : "AGPL-3",
-    "category" : "Generic Modules/Product",
-    "depends" : ["base", "product"],
-    "init_xml" : [],
-    "demo_xml" : [],
+    "name": "Products Customer Code",
+    "version": "1.0",
+    "author": "Vauxoo",
+    "website": "http://www.vauxoo.com/",
+    "license": "AGPL-3",
+    "category": "Generic Modules/Product",
+    "summary": "Add many Customers' Codes in product",
+    "depends": [
+            "base",
+            "product",
+    ],
     "description": """
-Add manies Codes of Customer's in product
+Customer' codes in product
+==========================
+
+This module does just like the product.supplierinfo but for customers instead. For instance it
+allows to have different references for the same product according to the customer.
+
+.. image:: product_customer_code/static/src/img/screenshot1.png
+
+.. tip::
+
+    You will need install some of the Apps which enable the product menu to see this module in
+    action, like Sales, Purchase or Warehouse Management
      """,
-    "update_xml" : ["security/product_customer_code_security.xml",
-                    "security/ir.model.access.csv",
-                    "product_customer_code_view.xml",
-                    "product_product_view.xml",
-                    
-                    ],
+    "data": [
+        "security/product_customer_code_security.xml",
+        "security/ir.model.access.csv",
+        "product_customer_code_view.xml",
+        "product_product_view.xml",
+    ],
     "active": False,
     "installable": True,
 }
