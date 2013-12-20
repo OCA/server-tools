@@ -18,7 +18,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator.line,duration_field_id:0
 msgid "Duration field"
-msgstr "Durata"
+msgstr "Campo durata"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:0
@@ -156,7 +156,7 @@ msgstr "Configuratore"
 #. module: super_calendar
 #: field:super.calendar.configurator.line,domain:0
 msgid "Domain"
-msgstr "Settore"
+msgstr "Domain"
 
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
@@ -181,7 +181,7 @@ msgstr "I miei oggetti"
 #. module: super_calendar
 #: field:super.calendar.configurator.line,date_stop_field_id:0
 msgid "End date field"
-msgstr "Data fine"
+msgstr "Campo data fine"
 
 #. module: super_calendar
 #: model:ir.model,name:super_calendar.model_super_calendar
