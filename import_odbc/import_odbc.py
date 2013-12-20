@@ -40,7 +40,9 @@ class import_odbc_dbtable(orm.Model):
         'model_target': fields.many2one('ir.model', 'Target object'),
         'noupdate': fields.boolean('No updates', help="Only create new records; disable updates to existing records."),
         'exec_order': fields.integer('Execution order', help="Defines the order to perform the import"),
-        'last_sync': fields.datetime('Last sync date', help="Datetime for the last succesfull sync. Later changes on the source may not be replicated on the destination"),
+        'last_sync': fields.datetime('Last sync date',
+                                     help="Datetime for the last succesfull sync."
+                                     "\nLater changes on the source may not be replicated on the destination"),
         'start_run': fields.datetime('Time started', readonly=True),
         'last_run': fields.datetime('Time ended', readonly=True),
         'last_record_count': fields.integer('Last record count', readonly=True),

@@ -30,20 +30,22 @@ CONNECTORS = []
 
 try:
     import sqlalchemy
-    import pymssql
-    CONNECTORS.append(('mssql', 'Microsoft SQL Server'))
+    CONNECTORS.append(('sqlite', 'SQLite'))
+    try:
+        import pymssql
+        CONNECTORS.append(('mssql', 'Microsoft SQL Server'))
+    except:
+        _logger.info('MS SQL Server not available. Please install "pymssql"\
+                      python package.')
+    try:
+        import MySQLdb
+        CONNECTORS.append(('mysql', 'MySQL'))
+    except:
+        _logger.info('MySQL not available. Please install "mysqldb"\
+                     python package.')
 except:
-    _logger.info('MS SQL Server not available. Please install "slqalchemy"\
-                 and "pymssql" python package.')
-
-try:
-    import sqlalchemy
-    import MySQLdb
-    CONNECTORS.append(('mysql', 'MySQL'))
-except:
-    _logger.info('MySQL not available. Please install "slqalchemy" and\
-                 "mysqldb" python package.')
-
+    _logger.info('SQL Alchemy not available. Please install "slqalchemy"\
+                 python package.')
 try:
     import pyodbc
     CONNECTORS.append(('pyodbc', 'ODBC'))
@@ -60,13 +62,6 @@ except:
 
 import psycopg2
 CONNECTORS.append(('postgresql', 'PostgreSQL'))
-
-try:
-    import sqlalchemy
-    CONNECTORS.append(('sqlite', 'SQLite'))
-except:
-    _logger.info('SQLAlchemy not available. Please install "slqalchemy" python\
-                 package.')
 
 
 class base_external_dbsource(orm.Model):
@@ -163,7 +158,7 @@ Sample connection strings:
             try:
                 conn = self.conn_open(cr, uid, obj.id)
             except Exception, e:
-                raise osv.except_osv(_("Connection test failed!"),
+                raise orm.except_orm(_("Connection test failed!"),
                                      _("Here is what we got instead:\n %s")
                                      % tools.ustr(e))
             finally:
@@ -174,7 +169,7 @@ Sample connection strings:
                     # ignored, just a consequence of the previous exception
                     pass
         #TODO: if OK a (wizard) message box should be displayed
-        raise osv.except_osv(_("Connection test succeeded!"),
+        raise orm.except_orm(_("Connection test succeeded!"),
                              _("Everything seems properly set up!"))
 
 #EOF
