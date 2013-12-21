@@ -30,7 +30,7 @@ come with the standard code:
 * update notifier code is deactivated and the function is overwritten
 * apps and updates menu items in settings are removed
 * help and account menu items in user menu are removed
-* prevent lookup of OPW for current database uuid and resultin 'unsupported' warning
+* prevent lookup of OPW for current database uuid and resulting 'unsupported' warning
     """,
     "category" : "",
     "depends" : [
