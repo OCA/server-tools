@@ -4,5 +4,4 @@ openerp.disable_openerp_online = function(instance) {
     instance.web.WebClient.include({
         show_annoucement_bar: function() {}
     });
-}
-
+};
