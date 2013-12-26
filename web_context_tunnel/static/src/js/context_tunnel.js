@@ -3,7 +3,6 @@ openerp.web_context_tunnel = function(instance) {
     instance.web.form.FormWidget.prototype.build_context = function() {
         var v_context = false;
         var fields_values = false;
-        console.log(this.node.attrs);
         // instead of using just the attr context, we merge any attr starting with context
         for (var key in this.node.attrs) {
             if (key.substring(0, 7) === "context") {
