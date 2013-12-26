@@ -16,7 +16,7 @@ that are not present in the base on_change signatures. As soon as two modules
 try to alter this signature to add their extra arguments, they are incompatible
 between them unless some extra glue module make them compatible again by
 taking all extra arguments into account. But this leads to a combinatorial 
-explosion to make modules compatibles.
+explosion to make modules compatible again.
 
 The solution
 ------------
@@ -37,13 +37,14 @@ several places to replace the "context" attribute that the client will send to
 the server.
 
 The idea here is to wrap the extra arguments needed by your on_change inside
-that context dictionary just as it were a regular Python kwargs. In the
-on_change override chain, the context is then propagated naturally, no matter
-of the module order and without any need to hack any on_change signature.
+that context dictionary just as it were a regular Python kwargs. That context
+should then be automatically propagated accross the on_change call chain,
+no matter of the module order and without any need to hack any on_change
+signature.
 
 The issue with just position="attributes" and redefining the context, is that
-again, if two independent modules do it, they are incompatible unless a third
-module accounts for both of them.
+again, if two independent modules redefine the context, they are incompatible
+unless a third module accounts for both of them.
 
 But with this module, an extension point can now use position="attributes" and
 instead of redefining the "context" attribute, you will now just define a new
@@ -60,10 +61,31 @@ attribute (or the other original attribute).
 And of course, if you should call your on_change by API or webservice instead
 of using the web client, simply ensure you are wrapping the required extra
 arguments in the context dictionary.
+
+Tests
+-----
+
+This module comes with a simple test in static/test/context_tunnel.js.
+To run it, open the page /web/tests?mod=web_context_tunnel in your browser
+as explained here https://doc.openerp.com/trunk/web/testing
+It should also by picked by the Python testing when testing with PhantomJS.
+
+As for testing modules using web_context_tunnel with YAML, yes it's possible.
+In fact you need to manually mimic the new web-client behavior by manually
+ensuring you add the extra context keys you will need later in your on_change.
+For instance, before the on_change is called, you can alter the context with
+a !python statement like context.update({'my_extra_field': my_extra_field}).
+
+You can see an example of module conversion to use web_context_tunnel here
+for instance:
+https://github.com/openerpbrasil/l10n_br_core/compare/develop...feature%2Fsale-web-context-tunnel
 """,
     'version': '2.0',
     'depends': ['web'],
     'js': ['static/src/js/context_tunnel.js'],
+    'test': [
+        'static/test/context_tunnel.js',
+    ],
     'css': [],
     'auto_install': False,
     'web_preload': False,
