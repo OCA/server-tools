@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name" : "Remove openerp.com bindings",
-    "version" : "1.0",
+    "version" : "1.1",
     "author" : "Therp BV",
     "complexity": "normal",
     "description": """
@@ -30,6 +30,7 @@ come with the standard code:
 * update notifier code is deactivated and the function is overwritten
 * apps and updates menu items in settings are removed
 * help and account menu items in user menu are removed
+* prevent lookup of OPW for current database uuid and resulting 'unsupported' warning
     """,
     "category" : "",
     "depends" : [
@@ -41,6 +42,7 @@ come with the standard code:
         'data/ir_cron.xml',
     ],
     "js": [
+        'static/src/js/disable_openerp_online.js',
     ],
     "css": [
     ],
