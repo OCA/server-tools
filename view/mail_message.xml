@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_message_form" model="ir.ui.view">
+            <field name="model">mail.message</field>
+            <field name="inherit_id" ref="mail.view_message_form"/>
+            <field name="arch" type="xml">
+                <sheet position="before">
+                    <header attrs="{'invisible': [('model', '!=', 'fetchmail.inbox')]}">
+                        <button string="Attach to existing object" type="object" name="fetchmail_inbox_attach_existing" class="oe_highlight" />
+                        <button string="Create object" type="object" name="fetchmail_inbox_create" />
+                    </header>
+                </sheet>
+                <xpath expr="//sheet/group" position="after">
+                    <group attrs="{'invisible': [('attachment_ids', '=', [[6, False, []]])]}" string="Attachments">
+                        <field name="attachment_ids" nolabel="1" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="tree_mail_message_fetchmail_inbox" model="ir.ui.view">
+            <field name="model">mail.message</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fetchmail inbox" create="false">
+                    <field name="date" />
+                    <field name="subject" />
+                    <field name="email_from" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

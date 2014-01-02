@@ -1,0 +1,157 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fetchmail_inbox
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-15 09:32+0000\n"
+"PO-Revision-Date: 2014-01-15 09:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fetchmail_inbox
+#: view:fetchmail.inbox.attach.existing.wizard:0
+msgid "Attach email to existing object"
+msgstr "Attach email to existing object"
+
+#. module: fetchmail_inbox
+#: view:fetchmail.inbox.attach.existing.wizard:0
+msgid "Attach to this object"
+msgstr "Koppelen aan dit item"
+
+#. module: fetchmail_inbox
+#: code:addons/fetchmail_inbox/wizard/fetchmail_inbox_attach_existing_wizard.py:67
+#, python-format
+msgid "You have to select an object!"
+msgstr "U moet een objecttype selecteren!"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox,message_follower_ids:0
+msgid "Followers"
+msgstr "Volgers"
+
+#. module: fetchmail_inbox
+#: model:ir.model,name:fetchmail_inbox.model_fetchmail_inbox_create_wizard
+msgid "Create object from mail"
+msgstr "Nieuw item aanmaken van deze email"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox.attach.existing.wizard,mail_id:0
+#: field:fetchmail.inbox.create.wizard,mail_id:0
+msgid "Email"
+msgstr "Email"
+
+#. module: fetchmail_inbox
+#: model:ir.actions.act_window,name:fetchmail_inbox.action_inbox
+#: model:ir.model,name:fetchmail_inbox.model_fetchmail_inbox
+#: model:ir.ui.menu,name:fetchmail_inbox.menu_inbox
+#: model:ir.ui.menu,name:fetchmail_inbox.menu_inbox_mail_feeds
+#: view:mail.message:0
+msgid "Fetchmail inbox"
+msgstr "Fetchmail inbox"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox,message_unread:0
+msgid "Unread Messages"
+msgstr "Ongelezen berichten"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox.attach.existing.wizard,res_id:0
+msgid "Object"
+msgstr "Object"
+
+#. module: fetchmail_inbox
+#: help:fetchmail.inbox,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Indien actief, dan vragen nieuwe berichten uw aandacht"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is een volger"
+
+#. module: fetchmail_inbox
+#: view:mail.message:0
+msgid "Attach to existing object"
+msgstr "Koppelen aan bestaand item"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox,message_ids:0
+msgid "Messages"
+msgstr "Berichten"
+
+#. module: fetchmail_inbox
+#: model:res.groups,name:fetchmail_inbox.group_fetchmail_inbox_manager
+msgid "Fetchmail Inbox Manager"
+msgstr "Fetchmail Inbox Manager"
+
+#. module: fetchmail_inbox
+#: code:addons/fetchmail_inbox/wizard/fetchmail_inbox_attach_existing_wizard.py:67
+#, python-format
+msgid "Error"
+msgstr "Fout"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox.attach.existing.wizard,res_model:0
+#: field:fetchmail.inbox.create.wizard,model_id:0
+msgid "Model"
+msgstr "Model"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox,message_summary:0
+msgid "Summary"
+msgstr "Samenvatting"
+
+#. module: fetchmail_inbox
+#: help:fetchmail.inbox,message_ids:0
+msgid "Messages and communication history"
+msgstr "Berichten- en communicatiegeschiedenis"
+
+#. module: fetchmail_inbox
+#: view:mail.message:0
+msgid "Attachments"
+msgstr "Bijlagen"
+
+#. module: fetchmail_inbox
+#: field:fetchmail.inbox.attach.existing.wizard,res_reference:0
+msgid "Reference"
+msgstr "Referentie"
+
+#. module: fetchmail_inbox
+#: help:fetchmail.inbox,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Bevat de chattersamenvatting (aantal berichten, etc.). Deze samenvatting staat in HTML-formaat zodat deze in de kanbanweergave kan worden weergegeven"
+
+#. module: fetchmail_inbox
+#: view:fetchmail.inbox.create.wizard:0
+#: view:mail.message:0
+msgid "Create object"
+msgstr "Object aanmaken"
+
+#. module: fetchmail_inbox
+#: model:ir.model,name:fetchmail_inbox.model_fetchmail_inbox_attach_existing_wizard
+msgid "Attach mail to existing object"
+msgstr "Email koppelen aan bestaand item"
+
+#. module: fetchmail_inbox
+#: view:fetchmail.inbox.attach.existing.wizard:0
+#: view:fetchmail.inbox.create.wizard:0
+msgid "Cancel"
+msgstr "Annuleer"
+
+#. module: fetchmail_inbox
+#: model:ir.model,name:fetchmail_inbox.model_mail_message
+msgid "Message"
+msgstr "Bericht"
+
+#. module: fetchmail_inbox
+#: view:fetchmail.inbox.create.wizard:0
+msgid "Create object from email"
+msgstr "Item aanmaken op basis van email"
+

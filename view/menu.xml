@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <act_window id="action_inbox"
+            res_model="mail.message"
+            view_mode="tree,form"
+            domain="[('model', '=', 'fetchmail.inbox')]"
+            name="Fetchmail inbox"
+            view_id="tree_mail_message_fetchmail_inbox"
+            />
+        <menuitem id="menu_inbox"
+            action="action_inbox"
+            parent="base.menu_email"
+            />
+        <menuitem id="menu_inbox_mail_feeds"
+            action="action_inbox"
+            parent="mail.mail_feeds"
+            groups="group_fetchmail_inbox_manager"
+            />
+    </data>
+</openerp>
