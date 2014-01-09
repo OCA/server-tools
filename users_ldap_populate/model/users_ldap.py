@@ -71,7 +71,7 @@ class CompanyLDAP(orm.Model):
         logger = logging.getLogger('orm.ldap')
         logger.debug("action_populate called on res.company.ldap ids %s", ids)
 
-        deactivate_unknown = True
+        deactivate_unknown = None
         known_user_ids = [uid]
         for this in self.read(cr, uid, ids,
                               [
@@ -79,6 +79,8 @@ class CompanyLDAP(orm.Model):
                                   'deactivate_unknown_users',
                               ],
                               context=context, load='_classic_write'):
+            if deactivate_unknown is None:
+                deactivate_unknown = True
             known_user_ids.extend(this['no_deactivate_user_ids'])
             deactivate_unknown &= this['deactivate_unknown_users']
 
