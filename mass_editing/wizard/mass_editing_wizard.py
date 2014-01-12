@@ -107,7 +107,10 @@ class mass_editing_wizard(osv.osv_memory):
                     elif val == 'remove':
                         dict.update({split_key: False})
                     elif val == 'remove_m2m':
-                        dict.update({split_key: [(5,0,[])]})
+                        m2m_list = []
+                        for m2m_id in vals.get(split_key, False)[0][2]:
+                            m2m_list.append((3, m2m_id))
+                        dict.update({split_key: m2m_list})
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:
