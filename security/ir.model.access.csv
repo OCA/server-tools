@@ -1,2 +1,2 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-crud_fetchmail_inbox_invoice,CRUD fetchmail inbox invoice,model_fetchmail_inbox_invoice,fetchmail_inbox.group_fetchmail_inbox_manager,1,1,1,1
+crud_fetchmail_inbox_invoice,CRUD fetchmail inbox invoice,model_fetchmail_inbox_invoice,account.group_account_user,1,1,1,1

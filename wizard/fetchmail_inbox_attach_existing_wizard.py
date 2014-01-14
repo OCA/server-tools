@@ -33,8 +33,11 @@ class FetchmailInboxAttachExistingWizard(TransientModel):
                 context.get('default_res_model') == 'account.invoice':
             mail = self.pool.get('mail.message').browse(
                     cr, user, context.get('default_mail_id'), context=context)
-            result['fields']['res_id']['context'].update(
-                    search_default_partner_id=mail.author_id and
-                        (mail.author_id.commercial_partner_id.id
-                            or mail.author_id.id))
+            result['fields']['res_id']['domain'] = [
+                ('type', 'in', ('in_invoice', 'in_refund'))]
+            result['fields']['res_id']['options'] = '{"quick_create": false}'
+            if mail.author_id:
+                result['fields']['res_id']['context'].update(
+                    search_default_partner_id=\
+                        mail.author_id.commercial_partner_id.id)
         return result

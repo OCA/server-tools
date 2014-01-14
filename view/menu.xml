@@ -6,13 +6,13 @@
             view_mode="tree,form"
             domain="[('model', '=', 'fetchmail.inbox.invoice')]"
             context="{'default_res_model': 'account.invoice'}"
-            name="Fetchmail inbox"
+            name="Invoices per mail"
             view_id="fetchmail_inbox.tree_mail_message_fetchmail_inbox"
             />
         <menuitem id="menu_inbox"
             action="action_inbox"
-            parent="account.menu_finance_receivables"
-            groups="fetchmail_inbox.group_fetchmail_inbox_manager"
+            parent="account.menu_finance_payables"
+            groups="account.group_account_user"
             />
     </data>
 </openerp>

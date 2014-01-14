@@ -1,0 +1,88 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fetchmail_inbox_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-15 09:57+0000\n"
+"PO-Revision-Date: 2014-01-15 09:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fetchmail_inbox_invoice
+#: view:mail.message:0
+msgid "Attach to existing invoice"
+msgstr "Koppelen aan bestaande factuur"
+
+#. module: fetchmail_inbox_invoice
+#: field:fetchmail.inbox.invoice,message_unread:0
+msgid "Unread Messages"
+msgstr "Ongelezen berichten"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.actions.act_window,name:fetchmail_inbox_invoice.action_inbox
+#: model:ir.ui.menu,name:fetchmail_inbox_invoice.menu_inbox
+msgid "Invoices per mail"
+msgstr "Facturen per mail"
+
+#. module: fetchmail_inbox_invoice
+#: field:fetchmail.inbox.invoice,message_ids:0
+msgid "Messages"
+msgstr "Berichten"
+
+#. module: fetchmail_inbox_invoice
+#: help:fetchmail.inbox.invoice,message_ids:0
+msgid "Messages and communication history"
+msgstr "Berichten- en communicatiegeschiedenis"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_fetchmail_inbox_invoice
+msgid "Fetchmail inbox for invoices"
+msgstr "Fetchmail inbox voor facturen"
+
+#. module: fetchmail_inbox_invoice
+#: help:fetchmail.inbox.invoice,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Bevat de chattersamenvatting (aantal berichten, etc.). Deze samenvatting staat in HTML-formaat zodat deze in de kanbanweergave kan worden weergegeven"
+
+#. module: fetchmail_inbox_invoice
+#: view:mail.message:0
+msgid "Create invoice"
+msgstr "Factuur aanmaken"
+
+#. module: fetchmail_inbox_invoice
+#: field:fetchmail.inbox.invoice,message_follower_ids:0
+msgid "Followers"
+msgstr "Volgers"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_fetchmail_inbox_attach_existing_wizard
+msgid "Attach mail to existing object"
+msgstr "Email koppelen aan bestaand item"
+
+#. module: fetchmail_inbox_invoice
+#: field:fetchmail.inbox.invoice,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is een volger"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_mail_message
+msgid "Message"
+msgstr "Bericht"
+
+#. module: fetchmail_inbox_invoice
+#: field:fetchmail.inbox.invoice,message_summary:0
+msgid "Summary"
+msgstr "Samenvatting"
+
+#. module: fetchmail_inbox_invoice
+#: help:fetchmail.inbox.invoice,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Indien actief, dan vragen nieuwe berichten uw aandacht"
+
