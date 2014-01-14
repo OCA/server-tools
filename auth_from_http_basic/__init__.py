@@ -19,14 +19,14 @@
 #
 ##############################################################################
 from openerp.addons.web.http import WebRequest
-from openerp.addons.web.controllers.main import db_list
+from openerp.addons.web.controllers import main as web_main
 
 old_init = WebRequest.init
 
 def init(self, params):
     old_init(self, params)
     if self.httprequest.authorization and not self.session._login:
-        dbs = db_list(self)
+        dbs = web_main.db_list(self)
         self.session.authenticate(
                 dbs and dbs[0],
                 self.httprequest.authorization.username,

@@ -30,8 +30,11 @@ webserver handle authentication and pass the login information via HTTP headers
 to the application it proxies.
 
 This addon allows for this setup. Technically, it picks up the HTTP
-Authorization header, extract a username and a password from that and tries to
-login into the first database found in the database list.
+Authorization header, extracts a username and a password and tries to login
+into the first database found in the database list.
+
+If you have to set a specific database, possibly depending on the login
+provided, use the addon dbfilter_from_header.
     """,
     "category" : "",
     "depends" : [
