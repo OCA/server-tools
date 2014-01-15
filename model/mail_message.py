@@ -89,7 +89,7 @@ class MailMessage(Model):
                     msg[field] = this[field].id
                 else:
                     msg[field] = this[field] or ''
-            msg['from'] = this.author_id.email or ''
+            msg['from'] = this.author_id.email or this['email_from'] or ''
             msg['to'] = ','.join([p.email for p in this.partner_ids])
             msg['partner_ids'] = [(4, p.id) for p in this.partner_ids]
             result[this.id] = msg
