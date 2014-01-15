@@ -35,6 +35,8 @@ into the first database found in the database list.
 
 If you have to set a specific database, possibly depending on the login
 provided, use the addon dbfilter_from_header.
+
+The addon has to be loaded as server-wide module.
     """,
     "category" : "",
     "depends" : [
