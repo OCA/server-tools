@@ -44,15 +44,13 @@ Benoît GUILLOT, Akretion
  'author': 'Camptocamp',
  'website': 'http://www.camptocamp.com/',
  'depends': ['stock', 'base_custom_attributes'],
- 'init_xml': [],
- 'update_xml': ['lot_view.xml',
-                'custom_attributes_view.xml',
-                'wizard/open_lot_by_attribute_set.xml'
-                ],
+ 'data': ['lot_view.xml',
+          'custom_attributes_view.xml',
+          'wizard/open_lot_by_attribute_set.xml'
+          ],
  'test': [
      'test/lot_attribute_test.yml',
  ],
- 'demo_xml': [],
  'installable': True,
  'active': False,
  }
