@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_attach_mail_manually">
+            <field name="name">fetchmail.attach.mail.manually</field>
+            <field name="model">fetchmail.attach.mail.manually</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form col="4" version="7.0" string="Attach mail manually">
+                    <group>
+                        <field name="folder_id" />
+                        <field name="mail_ids" nolabel="1" colspan="4">
+                            <tree editable="top">
+                                <field name="subject" />
+                                <field name="date" />
+                                <field name="object_id" />
+                            </tree>
+                        </field>
+                        <label string="" />
+                        <label string="" />
+                        <button special="cancel" string="Cancel" icon="gtk-cancel" />
+                        <button string="Save" type="object" name="attach_mails" icon="gtk-ok" />
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
