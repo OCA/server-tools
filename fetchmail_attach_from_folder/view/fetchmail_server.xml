@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_email_server_form">
+            <field name="name">fetchmail.server.form</field>
+            <field name="model">fetchmail.server</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <field name="object_id" position="attributes">
+                        <attribute name="attrs">{'required': [('type', '!=', 'imap')]}</attribute>
+                    </field>
+                    <xpath expr="//page[@string='Server &amp; Login']/group/group[3]" position="after">
+                        <group attrs="{'invisible': [('type','!=','imap')]}" string="Folders to monitor">
+                            <field
+                                name="folder_ids"
+                                nolabel="1"
+                                on_change="onchange_server_type(type, is_ssl, object_id)">
+                                <tree>
+                                    <field name="sequence" invisible="1" />
+                                    <field name="path" />
+                                    <field name="model_id" />
+                                    <field name="model_field" />
+                                    <field name="match_algorithm" />
+                                    <field name="mail_field" />
+                                </tree>
+                                <form col="6">
+                                    <field name="path" />
+                                    <field name="model_id" />
+                                    <field name="model_field" />
+                                    <field name="match_algorithm" />
+                                    <field name="mail_field" />
+                                    <newline />
+                                    <field name="delete_matching" />
+                                    <field name="flag_nonmatching" />
+                                    <field name="match_first" />
+                                    <field name="msg_state" />
+                                    <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
+                                    <field name="domain" />
+                                    <newline />
+                                    <label />
+                                    <label />
+                                    <label />
+                                    <label />
+                                    <label />
+                                    <button type="object" name="button_attach_mail_manually" string="Attach mail manually" icon="gtk-redo" />
+                                </form>
+                            </field>
+                        </group>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
