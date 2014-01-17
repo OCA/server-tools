@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.addons.web.http import WebRequest
+from openerp.addons.web.http import WebRequest, JsonRequest
 from openerp.addons.web.controllers import main as web_main
 
 old_init = WebRequest.init
@@ -38,3 +38,16 @@ def init(self, params):
                     ))
 
 WebRequest.init = init
+
+old_dispatch = JsonRequest.dispatch
+
+def dispatch(self, method):
+    response = old_dispatch(self, method)
+    if method.im_func == web_main.Session.destroy.im_func:
+        response.status = '301 logout'
+        response.headers.add(
+            'Location',
+            self.httprequest.url.replace('://', '://logout@'))
+    return response
+
+JsonRequest.dispatch = dispatch
