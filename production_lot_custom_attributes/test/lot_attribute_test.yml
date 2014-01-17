@@ -1,0 +1,48 @@
+-
+  In order to test Production Lot Custom Fields
+-
+  First I create an Attribute Set
+-
+  !record {model: attribute.set, id: lot_attribute_set_A}:
+    name: Serial Number Attribute Set A
+    model_id: stock.model_stock_production_lot
+    attribute_group_ids: 
+      - name: Components
+        model_id: stock.model_stock_production_lot
+        sequence: 1
+        attribute_ids:
+          - name: x_ram_amount
+            model_id: stock.model_stock_production_lot
+            field_description: Amount of RAM
+            attribute_type: float
+          - name: x_has_display
+            model_id: stock.model_stock_production_lot
+            field_description: Has Display
+            attribute_type: boolean
+      - name: Characteristics
+        model_id: stock.model_stock_production_lot
+        sequence: 2
+        attribute_ids:
+          - name: x_color
+            model_id: stock.model_stock_production_lot
+            field_description: Color
+            attribute_type: char
+          - name: x_length
+            model_id: stock.model_stock_production_lot
+            field_description: Length
+            attribute_type: float
+-
+  Then I create a Serial Number and set some Attributes
+-
+  !record {model: stock.production.lot, id: lot_A}:
+    product_id: product.product_product_7
+    name: 0005
+    attribute_set_id: lot_attribute_set_A
+    x_color: green
+    x_length: 12.5
+-
+  Now I check that my attributes are there
+-
+  !assert {model: stock.production.lot, id: lot_A, string: Lot Attributes do not work}:
+    - x_color == 'green'
+    - x_length == 12.5
