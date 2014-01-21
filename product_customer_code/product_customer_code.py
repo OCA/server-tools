@@ -23,11 +23,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
 
-class product_customer_code(osv.Model):
+class product_customer_code(orm.Model):
     _name = "product.customer.code"
     _description = "Add manies Code of Customer's"
 
