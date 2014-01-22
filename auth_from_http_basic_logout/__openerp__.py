@@ -29,6 +29,11 @@ a good user experience. As the former has to be a server wide module, this is
 the clientside complement which provides the javascript part.
 
 The addon has to be installed in the database in use.
+
+
+Funders:
+
+Open2bizz software & consultancy
     """,
     "category" : "",
     "depends" : [
