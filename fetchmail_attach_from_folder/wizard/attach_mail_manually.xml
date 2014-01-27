@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="view_attach_mail_manually">
             <field name="name">fetchmail.attach.mail.manually</field>
             <field name="model">fetchmail.attach.mail.manually</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form col="4" version="7.0" string="Attach mail manually">
                     <group>
