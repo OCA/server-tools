@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="view_email_server_form">
             <field name="name">fetchmail.server.form</field>
             <field name="model">fetchmail.server</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="fetchmail.view_email_server_form" />
             <field name="arch" type="xml">
                 <data>
