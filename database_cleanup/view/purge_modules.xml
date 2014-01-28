@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purge_modules_view" model="ir.ui.view">
+            <field name="name">Form view for purge modules wizard</field>
+            <field name="model">cleanup.purge.wizard.module</field>
+            <field name="arch" type="xml">
+                <form string="Purge modules" version="7.0">
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <button type="object" name="purge_all" string="Purge all modules" />
+                    <field name="purge_line_ids" colspan="4" nolabel="1">
+                        <tree string="Purge modules">
+                            <field name="name" />
+                            <field name="purged" invisible="0" />
+                            <button type="object" name="purge"
+                                    icon="gtk-cancel" string="Purge this module"
+                                    attrs="{'invisible': [('purged', '=', True)]}"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purge_modules" model="ir.actions.act_window">
+            <field name="name">Purge modules</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cleanup.purge.wizard.module</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+
+    </data>
+</openerp>
