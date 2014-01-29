@@ -103,7 +103,7 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
 
     def find(self, cr, uid, context=None):
         """
-        Search for columns that cannot be instanciated.
+        Search for columns that are not in the corresponding model.
         """
         res = []
         model_pool = self.pool['ir.model']

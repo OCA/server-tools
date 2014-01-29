@@ -76,7 +76,7 @@ class CleanupPurgeWizardModel(orm.TransientModel):
 
     def find(self, cr, uid, context=None):
         """
-        Search for models that cannot be instanciated.
+        Search for models that cannot be instantiated.
         """
         res = []
         cr.execute("SELECT model from ir_model")
