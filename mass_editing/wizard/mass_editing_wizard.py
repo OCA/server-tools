@@ -98,26 +98,26 @@ class mass_editing_wizard(osv.osv_memory):
     def create(self, cr, uid, vals, context=None):
         if context.get('active_model') and context.get('active_ids'):
             model_obj = self.pool.get(context.get('active_model'))
-            dict = {}
+            model_vals = {}
             for key ,val in vals.items():
                 if key.startswith('selection_'):
                     split_key= key.split('_',1)[1]
                     if val == 'set':
-                        dict.update({split_key: vals.get(split_key, False)})
+                        model_vals.update({split_key: vals.get(split_key, False)})
                     elif val == 'remove':
-                        dict.update({split_key: False})
+                        model_vals.update({split_key: False})
                     elif val == 'remove_m2m':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:
                             m2m_list.append((3, m2m_id))
-                        dict.update({split_key: m2m_list})
+                        model_vals.update({split_key: m2m_list})
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:
                             m2m_list.append((4, m2m_id))
-                        dict.update({split_key: m2m_list})
-            if dict:
-                model_obj.write(cr, uid, context.get('active_ids'), dict, context)
+                        model_vals.update({split_key: m2m_list})
+            if model_vals:
+                model_obj.write(cr, uid, context.get('active_ids'), model_vals, context)
         result = super(mass_editing_wizard, self).create(cr, uid, {}, context)
         return result
 
