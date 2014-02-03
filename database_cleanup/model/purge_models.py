@@ -51,6 +51,7 @@ class CleanupPurgeLineModel(orm.TransientModel):
         model_pool = self.pool['ir.model']
         attachment_pool = self.pool['ir.attachment']
         constraint_pool = self.pool['ir.model.constraint']
+        fields_pool = self.pool['ir.model.fields']
 
         local_context=(context or {}).copy()
         local_context.update({
@@ -68,14 +69,20 @@ class CleanupPurgeLineModel(orm.TransientModel):
                 attachment_ids = attachment_pool.search(
                     cr, uid, [('res_model', '=', line.name)], context=context)
                 if attachment_ids:
-                    attachment_pool.write(
-                        cr, uid, attachment_ids, {'res_model': False},
-                        context=context)
+                    cr.execute(
+                        "UPDATE ir_attachment SET res_model = FALSE "
+                        "WHERE id in %s",
+                        (tuple(attachment_ids), ))
                 constraint_ids = constraint_pool.search(
                     cr, uid, [('model', '=', line.name)], context=context)
                 if constraint_ids:
                     constraint_pool.unlink(
                         cr, uid, constraint_ids, context=context)
+                relation_ids = fields_pool.search(
+                    cr, uid, [('relation', '=', row[1])], context=context)
+                if relation_ids:
+                    fields_pool.unlink(cr, uid, relation_ids,
+                                       context=local_context)
                 model_pool.unlink(cr, uid, [row[0]], context=local_context)
                 line.write({'purged': True})
                 cr.commit()
