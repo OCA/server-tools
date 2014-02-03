@@ -85,8 +85,10 @@ class attach_mail_manually(TransientModel):
                         msgid, folder.path, this.server)) 
                     continue 
                 
-                mail_message = self.pool.get('mail.message').parse_message( 
-                        msgdata[0][1], this.folder_id.server_id.original)
+                mail_message = self.pool.get('mail.thread').message_parse(
+                    cr, uid, msgdata[0][1],
+                    save_original=this.folder_id.server_id.original,
+                    context=context)
 
                 this.folder_id.server_id.attach_mail(connection, 
                         mail.object_id.id, this.folder_id, mail_message, 
