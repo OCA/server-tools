@@ -24,26 +24,27 @@
                                     <field name="match_algorithm" />
                                     <field name="mail_field" />
                                 </tree>
-                                <form col="6">
-                                    <field name="path" />
-                                    <field name="model_id" />
-                                    <field name="model_field" />
-                                    <field name="match_algorithm" />
-                                    <field name="mail_field" />
-                                    <newline />
-                                    <field name="delete_matching" />
-                                    <field name="flag_nonmatching" />
-                                    <field name="match_first" />
-                                    <field name="msg_state" />
-                                    <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
-                                    <field name="domain" />
-                                    <newline />
-                                    <label />
-                                    <label />
-                                    <label />
-                                    <label />
-                                    <label />
-                                    <button type="object" name="button_attach_mail_manually" string="Attach mail manually" icon="gtk-redo" />
+                                <form version="7.0">
+                                    <header>
+                                        <button type="object" name="button_attach_mail_manually" string="Attach mail manually" icon="gtk-redo" />
+                                    </header>
+                                    <group>
+                                        <group>
+                                            <field name="path" />
+                                            <field name="model_id" />
+                                            <field name="model_field" />
+                                            <field name="match_algorithm" />
+                                            <field name="mail_field" />
+                                        </group>
+                                        <group>
+                                            <field name="delete_matching" />
+                                            <field name="flag_nonmatching" />
+                                            <field name="match_first" />
+                                            <field name="msg_state" />
+                                            <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" />
+                                            <field name="domain" />
+                                        </group>
+                                    </group>
                                 </form>
                             </field>
                         </group>
