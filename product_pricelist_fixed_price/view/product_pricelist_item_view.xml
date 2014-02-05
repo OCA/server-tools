@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_pricelist_item_fixedprice_form" model="ir.ui.view">
+            <field name="name">product.pricelist.item.fixedprice</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="arch" type="xml">
+                <group string="Price Computation" position="attributes">
+                    <attribute name="col">6</attribute>
+                </group>
+                <field name="base" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="base_pricelist_id" position="before">
+                    <field name="base_ext" on_change="onchange_base_ext(base_ext)"/>
+                </field>
+                <label string="Base Price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('base_ext', '=', -3)]}</attribute>
+                </label>
+                <label string="* ( 1 + " position="attributes">
+                    <attribute name="attrs">{'invisible': [('base_ext', '=', -3)]}</attribute>
+                </label>
+                <field name="price_discount" position="attributes">
+                    <attribute name="attrs">{'invisible': [('base_ext', '=', -3)]}</attribute>
+                </field>
+                <label string=" ) + " position="attributes">
+                    <attribute name="attrs">{'invisible': [('base_ext', '=', -3)]}</attribute>
+                </label>
+            </field>
+        </record>
+
+    </data>
+</openerp>

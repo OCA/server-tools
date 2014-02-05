@@ -4,46 +4,30 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.1\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-03-25 10:08+0000\n"
-"PO-Revision-Date: 2011-03-25 10:08+0000\n"
-"Last-Translator: <>\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-05 20:35+0000\n"
+"PO-Revision-Date: 2014-02-05 21:35+0100\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
-msgid "Max. Margin"
+msgid "Base Price"
 msgstr ""
 
 #. module: product_pricelist_fixed_price
-#: view:product.pricelist.item:0
-msgid "Min. Margin"
+#: help:product.pricelist.item,base_ext:0
+msgid "Base price for computation."
 msgstr ""
 
 #. module: product_pricelist_fixed_price
-#: view:product.pricelist.item:0
-msgid "Rounding Method"
-msgstr ""
-
-#. module: product_pricelist_fixed_price
-#: constraint:product.pricelist.item:0
-msgid "Error ! You cannot assign the Main Pricelist as Other Pricelist in PriceList Item!"
-msgstr ""
-
-#. module: product_pricelist_fixed_price
-#: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist
-msgid "Pricelist"
-msgstr ""
-
-#. module: product_pricelist_fixed_price
-#: code:addons/product_pricelist_fixed_price/pricelist.py:97
-#, python-format
-msgid "Warning !"
+#: field:product.pricelist.item,base_ext:0
+msgid "Based on"
 msgstr ""
 
 #. module: product_pricelist_fixed_price
@@ -52,8 +36,12 @@ msgid "Pricelist item"
 msgstr ""
 
 #. module: product_pricelist_fixed_price
-#: code:addons/product_pricelist_fixed_price/pricelist.py:32
-#: field:product.pricelist.item,fixed_price:0
+#: view:product.pricelist.item:0
+msgid "Price Computation"
+msgstr ""
+
+#. module: product_pricelist_fixed_price
+#: code:addons/product_pricelist_fixed_price/model/product_pricelist_item.py:32
 #, python-format
 msgid "Fixed Price"
 msgstr ""
