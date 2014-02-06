@@ -66,14 +66,13 @@ class CleanupPurgeLineModel(orm.TransientModel):
             row = cr.fetchone()
             if row:
                 self.logger.info('Purging model %s', row[1])
-                cr.execute(
-                    "UPDATE ir_attachment SET res_model = FALSE "
-                    "WHERE id in %s",
-                    (tuple(attachment_ids), ))
+                attachment_ids = attachment_pool.search(
+                    cr, uid, [('res_model', '=', line.name)], context=context)
                 if attachment_ids:
-                    attachment_pool.write(
-                        cr, uid, attachment_ids, {'res_model': False},
-                        context=context)
+                    cr.execute(
+                        "UPDATE ir_attachment SET res_model = FALSE "
+                        "WHERE id in %s",
+                        (tuple(attachment_ids), ))
                 constraint_ids = constraint_pool.search(
                     cr, uid, [('model', '=', line.name)], context=context)
                 if constraint_ids:
