@@ -56,11 +56,11 @@ class CleanupPurgeLineTable(orm.TransientModel):
                 FROM pg_attribute af, pg_attribute a,
                     (SELECT conname, conrelid, confrelid,conkey[i] AS conkey,
                          confkey[i] AS confkey
-                     FROM (select conname, conrelid, confrelid, conkey, confkey,
-                       generate_series(1,array_upper(conkey,1)) AS i
+                     FROM (select conname, conrelid, confrelid, conkey,
+                       confkey, generate_series(1,array_upper(conkey,1)) AS i
                        FROM pg_constraint WHERE contype = 'f') ss) ss2
                 WHERE af.attnum = confkey AND af.attrelid = confrelid AND
-                a.attnum = conkey AND a.attrelid = conrelid 
+                a.attnum = conkey AND a.attrelid = conrelid
                 AND confrelid::regclass = '%s'::regclass;
                 """ % line.name)
 
@@ -80,6 +80,7 @@ class CleanupPurgeLineTable(orm.TransientModel):
             cr.commit()
         return True
 
+
 class CleanupPurgeWizardTable(orm.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.table'
@@ -88,7 +89,7 @@ class CleanupPurgeWizardTable(orm.TransientModel):
         res = super(CleanupPurgeWizardTable, self).default_get(
             cr, uid, fields, context=context)
         if 'name' in fields:
-            res['name'] = _('Purge modules')
+            res['name'] = _('Purge tables')
         return res
 
     def find(self, cr, uid, context=None):
@@ -97,11 +98,11 @@ class CleanupPurgeWizardTable(orm.TransientModel):
         Ignore views for now.
         """
         model_ids = self.pool['ir.model'].search(cr, uid, [], context=context)
-        line_pool = self.pool['cleanup.purge.line.table']
-        known_tables = []
+        # Start out with known tables with no model
+        known_tables = ['wkf_witm_trans']
         for model in self.pool['ir.model'].browse(
                 cr, uid, model_ids, context=context):
-            
+
             model_pool = self.pool.get(model.model)
             if not model_pool:
                 continue
@@ -119,7 +120,7 @@ class CleanupPurgeWizardTable(orm.TransientModel):
             [("'%s'" % table) for table in known_tables])
         cr.execute(
             """
-            SELECT table_name FROM information_schema.tables 
+            SELECT table_name FROM information_schema.tables
             WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
             AND table_name NOT IN (%s)""" % known_tables_repr)
 

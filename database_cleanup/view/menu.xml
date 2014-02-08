@@ -32,8 +32,15 @@
 
         <record model="ir.ui.menu" id="menu_purge_tables">
             <field name="name">Purge obsolete tables</field>
-            <field name="sequence" eval="30" />
+            <field name="sequence" eval="40" />
             <field name="action" ref="action_purge_tables" />
+            <field name="parent_id" ref="menu_database_cleanup"/>
+        </record>
+
+        <record model="ir.ui.menu" id="menu_purge_data">
+            <field name="name">Purge obsolete data entries</field>
+            <field name="sequence" eval="50" />
+            <field name="action" ref="action_purge_data" />
             <field name="parent_id" ref="menu_database_cleanup"/>
         </record>
 
