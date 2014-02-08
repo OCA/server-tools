@@ -31,12 +31,13 @@
         'view/purge_models.xml',
         'view/purge_columns.xml',
         'view/purge_tables.xml',
+        'view/purge_data.xml',
         'view/menu.xml',
         ],
     'description': """\
 Clean your OpenERP database from remnants of modules, models, columns and
-tables left by uninstalled modules (prior to 7.0) or a homebrew database upgrade
-to a new major version of OpenERP.
+tables left by uninstalled modules (prior to 7.0) or a homebrew database
+upgrade to a new major version of OpenERP.
 
 After installation of this module, go to the Settings menu -> Technical ->
 Database cleanup. Go through the modules, models, columns and tables
