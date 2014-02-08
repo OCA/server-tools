@@ -72,6 +72,12 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.column'
 
+    # List of known columns in use without corresponding fields
+    # Format: {table: [fields]}
+    blacklist = {
+        'wkf_instance': ['uid'], # lp:1277899
+        }
+
     def default_get(self, cr, uid, fields, context=None):
         res = super(CleanupPurgeWizardColumn, self).default_get(
             cr, uid, fields, context=context)
@@ -90,6 +96,8 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
             if not (isinstance(model_pool._columns[c], fields.function)
                     and not model_pool._columns[c].store)]
         columns += orm.MAGIC_COLUMNS
+        columns += self.blacklist.get(model_pool._table, [])
+
         cr.execute("SELECT a.attname"
                    "  FROM pg_class c, pg_attribute a"
                    " WHERE c.relname=%s"
