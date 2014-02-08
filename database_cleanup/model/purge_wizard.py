@@ -36,6 +36,7 @@ class CleanupPurgeLine(orm.AbstractModel):
     def purge(self, cr, uid, ids, context=None):
         raise NotImplementedError
 
+
 class PurgeWizard(orm.AbstractModel):
     """ Abstract base class for the purge wizards """
     _name = 'cleanup.purge.wizard'
