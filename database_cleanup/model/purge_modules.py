@@ -50,7 +50,7 @@ class CleanupPurgeLineModule(orm.TransientModel):
         module_pool.write(
             cr, uid, module_ids, {'state': 'to remove'}, context=context)
         cr.commit()
-        _db, _pool = pooler.restart_pool(cr.dbname, update_module=True)        
+        _db, _pool = pooler.restart_pool(cr.dbname, update_module=True)
         module_pool.unlink(cr, uid, module_ids, context=context)
         return self.write(cr, uid, ids, {'purged': True}, context=context)
 
