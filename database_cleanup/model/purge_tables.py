@@ -98,7 +98,8 @@ class CleanupPurgeWizardTable(orm.TransientModel):
         """
         model_ids = self.pool['ir.model'].search(cr, uid, [], context=context)
         line_pool = self.pool['cleanup.purge.line.table']
-        known_tables = []
+        # Start out with known tables with no model
+        known_tables = ['wkf_witm_trans']
         for model in self.pool['ir.model'].browse(
                 cr, uid, model_ids, context=context):
             
