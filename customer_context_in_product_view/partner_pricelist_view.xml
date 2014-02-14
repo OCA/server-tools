@@ -8,7 +8,7 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="pricelist_id" position="after" >
-                    <field name="customer_context_id" widget="selection" context="{'pricelist': 'partner',
+                    <field name="customer_context_id" widget="selection" context="{'pricelist': 'customer_context',
                         'customer_context': self}" filter_domain="[]" groups="product.group_sale_pricelist"/>
                 </field>
             </field>
