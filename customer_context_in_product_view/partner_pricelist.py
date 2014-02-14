@@ -32,17 +32,10 @@ class ProductProduct(orm.Model):
     _inherit = 'product.product'
 
     _columns = {
-        'partner_id': fields.dummy(string='Customer', relation='res.partner',
-                                   type='many2one',
-                                   domain=[('customer', '=', True)]),
+        'customer_context_id': fields.dummy(
+                        string='Customer', relation='res.partner',
+                        type='many2one', domain=[('customer', '=', True)]),
         }
-
-    def onchange_partner(self, cr, uid, ids, partner_id, context=None):
-        '''returns partner pricelist id'''
-        res = self.pool['res.partner'].browse(
-                                        cr, uid, partner_id
-                                        ).property_product_pricelist.id
-        return res
 
 
 class ProductPricelist(orm.Model):
@@ -52,9 +45,9 @@ class ProductPricelist(orm.Model):
                     context=None, limit=100):
         if context is None:
             context = {}
-        if context.get('pricelist', False) == 'partner':
+        if context.get('pricelist', False) == 'customer_context':
             partner = self.pool['res.partner'].browse(cr, user,
-                                                      context['partner'])
+                                                      context['customer_context'])
             pricelist = partner.property_product_pricelist
             context['pricelist'] = pricelist.id
             return [(context['pricelist'], pricelist.name)]
