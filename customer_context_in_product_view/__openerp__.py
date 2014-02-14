@@ -20,8 +20,8 @@
 ##############################################################################
 
 {
-    'name': 'Product Partner Pricelist Enhancement',
-    'version': '1.0',
+    'name': 'Display Customer Price in Product View',
+    'version': '1.1',
     'category': 'Sales',
     'author': 'O4SB - Graeme Gellatly',
     'website': 'http://www.o4sb.com',
