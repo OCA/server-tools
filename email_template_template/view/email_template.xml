@@ -5,7 +5,6 @@
             <field name="name">email.template.form</field>
             <field name="model">email.template</field>
             <field name="inherit_id" ref="email_template.email_template_form" />
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <data>
                     <field name="name" position="after">

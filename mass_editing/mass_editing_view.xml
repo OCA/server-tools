@@ -5,7 +5,6 @@
         <record model="ir.ui.view" id="view_mass_object_form">
             <field name="name">mass.object.form</field>
             <field name="model">mass.object</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Object">
                     <field name="name"/>
@@ -35,7 +34,6 @@
         <record model="ir.ui.view" id="view_mass_object_tree">
             <field name="name">mass.object.tree</field>
             <field name="model">mass.object</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <tree string="Object">
                     <field name="name"/>
