@@ -8,7 +8,6 @@
             <!--parent python entity -->
             <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
             <!-- modulename.view -->
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="server"  attrs="{'required' : [('type', '!=', 'local')]}" position="replace">
                     <field name="server" />
