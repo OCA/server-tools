@@ -37,7 +37,7 @@ class CleanupPurgeLineData(orm.TransientModel):
 
     def purge(self, cr, uid, ids, context=None):
         """
-        Unlink columns upon manual confirmation.
+        Unlink data entries upon manual confirmation.
         """
         data_ids = []
         for line in self.browse(cr, uid, ids, context=context):
@@ -61,6 +61,9 @@ class CleanupPurgeWizardData(orm.TransientModel):
 
     def find(self, cr, uid, context=None):
         """
+        Collect all rows from ir_model_data that refer
+        to a nonexisting model, or to a nonexisting
+        row in the model's table.
         """
         res = []
         data_pool = self.pool['ir.model.data']
