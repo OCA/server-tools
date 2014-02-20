@@ -28,9 +28,9 @@ class CleanupPurgeLineData(orm.TransientModel):
     _name = 'cleanup.purge.line.data'
 
     _columns = {
-        'model_id': fields.many2one(
-            'ir.model', 'Model',
-            required=True, ondelete='CASCADE'),
+        'data_id': fields.many2one(
+            'ir.model.data', 'Data entry',
+            ondelete='SET NULL'),
         'wizard_id': fields.many2one(
             'cleanup.purge.wizard.data', 'Purge Wizard', readonly=True),
         }
@@ -99,7 +99,4 @@ class CleanupPurgeWizardData(orm.TransientModel):
         'purge_line_ids': fields.one2many(
             'cleanup.purge.line.data',
             'wizard_id', 'Data to purge'),
-        'data_id': fields.many2one(
-            'ir.model.data', 'Data entry',
-            ondelete='SET NULL'),
         }

@@ -6,7 +6,7 @@
             <field name="name">Form view for purge data wizard</field>
             <field name="model">cleanup.purge.wizard.data</field>
             <field name="arch" type="xml">
-                <form string="Purge data" version="7.0">
+                <form string="Purge data entries that refer to missing resources" version="7.0">
                     <h1>
                         <field name="name"/>
                     </h1>
@@ -14,7 +14,7 @@
                     <field name="purge_line_ids" colspan="4" nolabel="1">
                         <tree string="Purge data">
                             <field name="name" />
-                            <field name="model_id" />
+                            <field name="data_id" />
                             <field name="purged" invisible="0" />
                             <button type="object" name="purge"
                                     icon="gtk-cancel" string="Purge this data"
@@ -26,7 +26,7 @@
         </record>
 
         <record id="action_purge_data" model="ir.actions.act_window">
-            <field name="name">Purge data</field>
+            <field name="name">Purge data entries that refer to missing resources</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cleanup.purge.wizard.data</field>
             <field name="view_type">form</field>
