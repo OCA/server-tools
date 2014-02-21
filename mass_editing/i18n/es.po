@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20140206-002714\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-06 11:38+0000\n"
-"PO-Revision-Date: 2014-02-06 12:50+0100\n"
-"Last-Translator: Jairo Llopis <yajo.sk8@gmail.com>\n"
+"POT-Creation-Date: 2014-02-06 11:44+0000\n"
+"PO-Revision-Date: 2014-02-20 18:45+0000\n"
+"Last-Translator: Yajo <yajo.sk8@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Launchpad-Export-Date: 2014-02-21 06:39+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -48,7 +48,8 @@ msgid "Name must be unique!"
 msgstr "¡El nombre debe ser único!"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields view:mass.object:0
+#: model:ir.model,name:mass_editing.model_ir_model_fields
+#: view:mass.object:0
 #: field:mass.object,field_ids:0
 msgid "Fields"
 msgstr "Campos"
@@ -91,9 +92,8 @@ msgstr "Modelo"
 #. module: mass_editing
 #: help:mass.object,ref_ir_act_window:0
 msgid ""
-"Sidebar action to make this template available on "
-"records                                                  of the related "
-"document model"
+"Sidebar action to make this template available on records                    "
+"                              of the related document model"
 msgstr ""
 "Acción del menú contextual para hacer esta plantilla disponible en los "
 "registros del modelo de documento relacionado"
