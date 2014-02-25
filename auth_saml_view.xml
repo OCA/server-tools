@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_saml_provider_form">
+            <field name="name">auth.saml.provider.form</field>
+            <field name="model">auth.saml.provider</field>
+            <field name="arch" type="xml">
+                <form string="arch" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="enabled" />
+                        </group>
+                        <group>
+                            <field name="idp_metadata" />
+                            <field name="sp_metadata" />
+                            <field name="sp_pkey" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_saml_provider_list">
+            <field name="name">auth.saml.provider.list</field>
+            <field name="model">auth.saml.provider</field>
+            <field name="arch" type="xml">
+                <tree string="arch" version="7.0">
+                    <field name="name" />
+                    <field name="enabled" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_saml_provider">
+            <field name="name">Providers</field>
+            <field name="res_model">auth.saml.provider</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_saml_providers" name="SAML Providers"
+            parent="base.menu_users" sequence="30"
+            action="action_saml_provider" groups="base.group_no_one"/>
+    </data>
+</openerp>

@@ -1,0 +1,12 @@
+syntax: glob
+*.pyc
+**/*.pyc
+*.swp
+.tmp*
+tmp/*
+*.egg-info
+*.orig
+nose*
+.rope*
+.coverage
+cover/*

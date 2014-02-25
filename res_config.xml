@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_general_configuration">
+            <field name="name">base.config.settings.saml</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='module_auth_oauth']/.." position="after">
+                    <div attrs="{'invisible':[('module_auth_saml','=',False)]}">
+                        <div name="local">
+                            <div>
+                                <field name="auth_saml_local_enabled" class="oe_inline"/>
+                                <label for="auth_saml_local_enabled"/>
+                            </div>
+                            <div attrs="{'invisible':[('auth_saml_local_enabled','=',False)]}">
+                                <blockquote>
+                                    You must have an <a href="">authentic2 server</a> running on
+                                    <a href="http://localhost:8000">http://localhost:8000</a><br/>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
