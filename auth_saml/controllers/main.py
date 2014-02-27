@@ -76,11 +76,14 @@ class SAMLController(oeweb.Controller):
             registry = RegistryManager.get(dbname)
             with registry.cursor() as cr:
                 providers = registry.get('auth.saml.provider')
-                l = providers.read(
-                    cr, SUPERUSER_ID, providers.search(
-                        cr, SUPERUSER_ID, [('enabled', '=', True)]
+                if providers:
+                    l = providers.read(
+                        cr, SUPERUSER_ID, providers.search(
+                            cr, SUPERUSER_ID, [('enabled', '=', True)]
+                        )
                     )
-                )
+                else:
+                    l = []
 
         except Exception, e:
             _logger.exception("SAML2: %s" % str(e))
