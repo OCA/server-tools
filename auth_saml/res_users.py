@@ -17,8 +17,12 @@ class res_users(osv.Model):
             string='SAML Provider',
         ),
         'saml_uid': fields.char(
-            'OAuth User ID',
+            'SAML User ID',
             help="SAML Provider user_id",
+        ),
+        'saml_access_token': fields.char(
+            'Current SAML token for this user',
+            help="The current SAML token in use",
         ),
     }
 

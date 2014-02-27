@@ -10,9 +10,8 @@
                 <xpath expr="//page[@string='Access Rights']" position="after">
                     <page string="SAML">
                         <group>
-                            <field name="saml_provider"/>
+                            <field name="saml_provider_id"/>
                             <field name="saml_uid"/>
-                            <field name="saml_access_token"/>
                         </group>
                     </page>
                 </xpath>

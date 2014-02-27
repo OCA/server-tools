@@ -30,12 +30,12 @@ class base_config_settings(osv.TransientModel):
     _inherit = 'base.config.settings'
 
     _columns = {
-        'auth_saml_authentic_enabled': fields.boolean(
-            'Allow users to sign in with Google'
+        'auth_saml_local_enabled': fields.boolean(
+            'Allow users to sign in with a Local Authentic'
         ),
     }
 
-    def get_oauth_providers(self, cr, uid, fields, context=None):
+    def get_saml_providers(self, cr, uid, fields, context=None):
         local_id = self.pool.get('ir.model.data').get_object_reference(
             cr, uid, 'auth_saml', 'provider_local'
         )[1]
@@ -45,10 +45,10 @@ class base_config_settings(osv.TransientModel):
         )
 
         return {
-            'auth_oauth_google_enabled': rl[0]['enabled'],
+            'auth_saml_local_enabled': rl[0]['enabled'],
         }
 
-    def set_oauth_providers(self, cr, uid, ids, context=None):
+    def set_saml_providers(self, cr, uid, ids, context=None):
         local_id = self.pool.get('ir.model.data').get_object_reference(
             cr, uid, 'auth_saml', 'provider_local'
         )[1]

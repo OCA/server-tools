@@ -35,6 +35,8 @@ Allow users to login through Saml2 Provider.
     'depends': ['base', 'web', 'base_setup'],
     'data': [
         'auth_saml_data.xml',
+        'res_users.xml',
+        'res_config.xml',
         'auth_saml_view.xml',
         'security/ir.model.access.csv'
     ],
