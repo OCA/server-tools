@@ -53,12 +53,11 @@ openerp.auth_saml = function(instance) {
         },
         do_saml_sign_in: function(provider) {
             var state = this._saml_state(provider);
-            var params = {
-                RelayState: JSON.stringify(state),
-            };
-            var url = provider.auth_req + "&" + $.param(params);
+            this.rpc("/auth_saml/get_auth_request", { relaystate: JSON.stringify(state) }).done(this.on_request_loaded);
+        },
+        on_request_loaded: function(result) {
             // redirect to the saml idp
-            instance.web.redirect(url);
+            instance.web.redirect(result.auth_request);
         },
         _saml_state: function(provider) {
             // return the state object sent back with the redirected uri

@@ -43,7 +43,35 @@ class SAMLController(oeweb.Controller):
     _cp_path = '/auth_saml'
 
     @oeweb.jsonrequest
+    def get_auth_request(self, req, relaystate):
+        """state is the JSONified state object and we need to pass
+        it inside our request as the RelayState argument
+        """
+        state = simplejson.loads(relaystate)
+
+        dbname = state['d']
+        provider_id = state['p']
+        context = state.get('c', {})
+
+        registry = RegistryManager.get(dbname)
+        provider_osv = registry.get('auth.saml.provider')
+
+        auth_request = None
+
+        try:
+            with registry.cursor() as cr:
+                auth_request = provider_osv._get_auth_request(
+                    cr, SUPERUSER_ID, provider_id, state, context=context
+                )
+
+        except Exception, e:
+            _logger.exception("SAML2: %s" % str(e))
+
+        return {'auth_request': auth_request}
+
+    @oeweb.jsonrequest
     def list_providers(self, req, dbname):
+        l = []
         try:
             registry = RegistryManager.get(dbname)
             with registry.cursor() as cr:
@@ -56,7 +84,6 @@ class SAMLController(oeweb.Controller):
 
         except Exception, e:
             _logger.exception("SAML2: %s" % str(e))
-            l = []
 
         return l
 
@@ -73,6 +100,7 @@ class SAMLController(oeweb.Controller):
         provider = state['p']
         context = state.get('c', {})
         registry = RegistryManager.get(dbname)
+
         with registry.cursor() as cr:
             try:
                 u = registry.get('res.users')
@@ -92,13 +120,17 @@ class SAMLController(oeweb.Controller):
             except AttributeError, e:
                 print e
                 # auth_signup is not installed
-                _logger.error("auth_signup not installed on database %s: saml sign up cancelled." % (dbname,))
+                _logger.error("auth_signup not installed on database "
+                              "%s: saml sign up cancelled." % (dbname,))
                 url = "/#action=login&saml_error=1"
 
             except openerp.exceptions.AccessDenied:
                 # saml credentials not valid,
                 # user could be on a temporary session
-                _logger.info('SAML2: access denied, redirect to main page in case a valid session exists, without setting cookies')
+                _logger.info('SAML2: access denied, redirect to main page '
+                             'in case a valid session exists, '
+                             'without setting cookies')
+
                 url = "/#action=login&saml_error=3"
                 redirect = werkzeug.utils.redirect(url, 303)
                 redirect.autocorrect_location_header = False

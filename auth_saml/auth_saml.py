@@ -1,5 +1,6 @@
 from openerp.osv import osv, fields
 import lasso
+import simplejson
 
 
 class auth_saml_provider(osv.osv):
@@ -10,7 +11,7 @@ class auth_saml_provider(osv.osv):
     _order = 'name'
 
     def _get_lasso_for_provider(self, cr, uid, provider_id, context=None):
-        print cr, uid, provider_id, context
+        #print cr, uid, provider_id, context
         provider = self.browse(cr, uid, provider_id, context=context)
 
         # TODO: we should cache those results somewhere because it is
@@ -25,31 +26,28 @@ class auth_saml_provider(osv.osv):
         )
         return lasso.Login(server)
 
-    def _get_auth_request(self, cr, uid, ids, name, args, context=None):
+    def _get_auth_request(self, cr, uid, id_, state, context=None):
         """build an authentication request and give it back to our client
         WARNING: this method cannot be used for multiple ids
         """
-        result = {}
-        login = self._get_lasso_for_provider(cr, uid, ids[0], context=context)
+        login = self._get_lasso_for_provider(cr, uid, id_, context=context)
 
         # ! -- this is the part that MUST be performed on each call and
         # cannot be cached
         login.initAuthnRequest()
         login.request.nameIdPolicy.format = None
         login.request.nameIdPolicy.allowCreate = True
+        login.msgRelayState = simplejson.dumps(state)
         login.buildAuthnRequestMsg()
 
         # msgUrl is a fully encoded url ready for redirect use
-        result[ids[0]] = login.msgUrl
-        #print "*" * 35
-        #print result
-        return result
+        # obtained after the buildAuthnRequestMsg() call
+        return login.msgUrl
 
     _columns = {
         # Name of the OAuth2 entity, authentic, xcg...
         'name': fields.char('Provider name'),
         'idp_metadata': fields.text('IDP Configuration'),
-        'auth_req': fields.function(_get_auth_request),
         'sp_metadata': fields.text('SP Configuration'),
         'sp_pkey': fields.text(
             'Private key of our service provider (this openerpserver)'
