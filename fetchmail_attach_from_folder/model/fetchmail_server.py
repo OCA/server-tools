@@ -209,7 +209,7 @@ class fetchmail_server(Model):
                             'res_id': object_id,
                             'body_text': mail_message.get('body'),
                             'body_html': mail_message.get('body_html'),
-                            'subject': mail_message.get('subject'),
+                            'subject': mail_message.get('subject', ''),
                             'email_to': mail_message.get('to'),
                             'email_from': mail_message.get('from'),
                             'email_cc': mail_message.get('cc'),
