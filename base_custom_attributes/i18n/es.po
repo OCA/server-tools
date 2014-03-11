@@ -18,12 +18,12 @@ msgstr ""
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Binary"
-msgstr "Binary"
+msgstr "Binario"
 
 #. module: base_custom_attributes
 #: view:attribute.attribute:0
 msgid "Search Attributes"
-msgstr "Search Attributes"
+msgstr "Buscar Atributos"
 
 #. module: base_custom_attributes
 #: view:attribute.group:0
@@ -31,25 +31,25 @@ msgstr "Search Attributes"
 #: model:ir.model,name:base_custom_attributes.model_attribute_group
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_location_attribute_group_id
 msgid "Attribute Group"
-msgstr "Attribute Group"
+msgstr "Grupo Atributos"
 
 #. module: base_custom_attributes
 #: view:attribute.group:0
 #: model:ir.model,name:base_custom_attributes.model_attribute_location
 msgid "Attribute Location"
-msgstr "Attribute Location"
+msgstr "Localización Atributo"
 
 #. module: base_custom_attributes
 #: code:addons/base_custom_attributes/custom_attributes.py:203
 #: view:attribute.option.wizard:0
 #, python-format
 msgid "Options Wizard"
-msgstr "Options Wizard"
+msgstr "Opciones Wizard"
 
 #. module: base_custom_attributes
 #: view:attribute.group:0
 msgid "Search Attribute Groups"
-msgstr "Search Attribute Groups"
+msgstr ""
 
 #. module: base_custom_attributes
 #: field:attribute.location,attribute_id:0
@@ -59,7 +59,7 @@ msgstr "Search Attribute Groups"
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_option_attribute_id
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_option_wizard_attribute_id
 msgid "Product Attribute"
-msgstr "Product Attribute"
+msgstr "Atributo Producto"
 
 #. module: base_custom_attributes
 #: field:attribute.set,attribute_group_ids:0
@@ -67,12 +67,12 @@ msgstr "Product Attribute"
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_set_attribute_group_ids
 #: model:ir.ui.menu,name:base_custom_attributes.menu_attribute_group_action
 msgid "Attribute Groups"
-msgstr "Attribute Groups"
+msgstr ""
 
 #. module: base_custom_attributes
 #: view:attribute.option.wizard:0
 msgid "or"
-msgstr "or"
+msgstr "o"
 
 #. module: base_custom_attributes
 #: field:attribute.attribute,attribute_type:0
@@ -83,45 +83,45 @@ msgstr "Tipo de producto"
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Integer"
-msgstr "Integer"
+msgstr "Entero"
 
 #. module: base_custom_attributes
 #: field:attribute.attribute,create_date:0
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_attribute_create_date
 msgid "Created date"
-msgstr "Created date"
+msgstr "Fecha Creado"
 
 #. module: base_custom_attributes
 #: view:attribute.set:0
 msgid "Search Attribute Sets"
-msgstr "Search Attribute Sets"
+msgstr ""
 
 #. module: base_custom_attributes
 #: view:attribute.option:0
 #: model:ir.model,name:base_custom_attributes.model_attribute_option
 msgid "Attribute Option"
-msgstr "Attribute Option"
+msgstr ""
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Date"
-msgstr "Date"
+msgstr "Fecha"
 
 #. module: base_custom_attributes
 #: help:attribute.attribute,required_on_views:0
 msgid "If activated, the attribute will be mandatory on the views, but not in the database"
-msgstr "If activated, the attribute will be mandatory on the views, but not in the database"
+msgstr ""
 
 #. module: base_custom_attributes
 #: field:attribute.attribute,field_id:0
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_attribute_field_id
 msgid "Ir Model Fields"
-msgstr "Ir Model Fields"
+msgstr ""
 
 #. module: base_custom_attributes
 #: view:attribute.option.wizard:0
 msgid "options_placeholder"
-msgstr "options_placeholder"
+msgstr ""
 
 #. module: base_custom_attributes
 #: field:attribute.group,name:0
@@ -131,18 +131,18 @@ msgstr "options_placeholder"
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_option_name
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_set_name
 msgid "Name"
-msgstr "Name"
+msgstr "Nombre"
 
 #. module: base_custom_attributes
 #: help:attribute.attribute,serialized:0
 msgid "If serialized, the field will be stocked in the serialized field: attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"
-msgstr "If serialized, the field will be stocked in the serialized field: attribute_custom_tmpl or attribute_custom_variant depending on the field based_on"
+msgstr ""
 
 #. module: base_custom_attributes
 #: field:attribute.attribute,required_on_views:0
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_attribute_required_on_views
 msgid "Required (on views)"
-msgstr "Required (on views)"
+msgstr ""
 
 #. module: base_custom_attributes
 #: model:ir.model,name:base_custom_attributes.model_ir_model_fields
@@ -156,13 +156,13 @@ msgstr "Campos"
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_attribute_option_ids
 #: model:ir.ui.menu,name:base_custom_attributes.menu_attribute_option_action
 msgid "Attribute Options"
-msgstr "Attribute Options"
+msgstr ""
 
 #. module: base_custom_attributes
 #: field:attribute.attribute,serialized:0
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_attribute_serialized
 msgid "Field serialized"
-msgstr "Field serialized"
+msgstr ""
 
 #. module: base_custom_attributes
 #: code:addons/base_custom_attributes/custom_attributes.py:70
@@ -173,17 +173,17 @@ msgstr "Error!"
 #. module: base_custom_attributes
 #: view:attribute.option.wizard:0
 msgid "Validate"
-msgstr "Validate"
+msgstr "Validar"
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Multiselect"
-msgstr "Multiselect"
+msgstr ""
 
 #. module: base_custom_attributes
 #: view:attribute.option:0
 msgid "Search Attribute Options"
-msgstr "Search Attribute Options"
+msgstr ""
 
 #. module: base_custom_attributes
 #: code:addons/base_custom_attributes/custom_attributes.py:268
@@ -208,24 +208,24 @@ msgstr "Atributos"
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_group_model_id
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_set_model_id
 msgid "Model"
-msgstr "Model"
+msgstr "Modelo"
 
 #. module: base_custom_attributes
 #: model:ir.actions.act_window,name:base_custom_attributes.attribute_set_form_action
 #: model:ir.ui.menu,name:base_custom_attributes.menu_attribute_set_action
 msgid "Attribute Sets"
-msgstr "Attribute Sets"
+msgstr ""
 
 #. module: base_custom_attributes
 #: view:attribute.attribute:0
 msgid "Load Options"
-msgstr "Load Options"
+msgstr "Cargar Opciones"
 
 #. module: base_custom_attributes
 #: field:attribute.option,value_ref:0
 #: model:ir.model.fields,field_description:base_custom_attributes.field_attribute_option_value_ref
 msgid "Reference"
-msgstr "Reference"
+msgstr "Referencia"
 
 #. module: base_custom_attributes
 #: field:attribute.group,sequence:0
@@ -241,12 +241,12 @@ msgstr "Secuencia"
 #: view:attribute.attribute:0
 #: model:ir.model,name:base_custom_attributes.model_attribute_attribute
 msgid "Attribute"
-msgstr "Attribute"
+msgstr "Atributo"
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Float"
-msgstr "Float"
+msgstr "Flotante"
 
 #. module: base_custom_attributes
 #: field:attribute.group,attribute_set_id:0
@@ -262,51 +262,51 @@ msgstr "Conjunto Atributos"
 #: code:addons/base_custom_attributes/custom_attributes.py:269
 #, python-format
 msgid "Can't create a serialized attribute on an existing ir.model.fields (%s)"
-msgstr "Can't create a serialized attribute on an existing ir.model.fields (%s)"
+msgstr ""
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Datetime"
-msgstr "Datetime"
+msgstr ""
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Char"
-msgstr "Char"
+msgstr "Carácter"
 
 #. module: base_custom_attributes
 #: code:addons/base_custom_attributes/custom_attributes.py:71
 #, python-format
 msgid "Use the 'Load Options' button instead to select appropriate model references'"
-msgstr "Use the 'Load Options' button instead to select appropriate model references'"
+msgstr ""
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Boolean"
-msgstr "Boolean"
+msgstr "Boleano"
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Text"
-msgstr "Text"
+msgstr "Texto"
 
 #. module: base_custom_attributes
 #: view:attribute.option.wizard:0
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Cancelar"
 
 #. module: base_custom_attributes
 #: model:ir.model,name:base_custom_attributes.model_attribute_option_wizard
 msgid "attribute.option.wizard"
-msgstr "attribute.option.wizard"
+msgstr ""
 
 #. module: base_custom_attributes
 #: sql_constraint:ir.model.fields:0
 msgid "The name of the field has to be uniq for a given model !"
-msgstr "The name of the field has to be uniq for a given model !"
+msgstr ""
 
 #. module: base_custom_attributes
 #: selection:attribute.attribute,attribute_type:0
 msgid "Select"
-msgstr "Select"
+msgstr "Selección"
 
