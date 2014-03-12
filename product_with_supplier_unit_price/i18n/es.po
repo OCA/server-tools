@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openerp-product-attributes\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-02-08 12:12+0000\n"
-"PO-Revision-Date: 2014-03-11 12:51+0000\n"
+"POT-Creation-Date: 2012-03-19 02:12+0000\n"
+"PO-Revision-Date: 2014-03-11 12:50+0000\n"
 "Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +17,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2014-03-12 05:24+0000\n"
 "X-Generator: Launchpad (build 16963)\n"
 
-#. module: product_sequence
-#: model:ir.model,name:product_sequence.model_product_product
-msgid "Product"
-msgstr "Producto"
-
-#. module: product_sequence
-#: constraint:product.product:0
-msgid "Error: Invalid ean code"
-msgstr "Error: Código EAN no válido"
+#. module: product_with_supplier_unit_price
+#: field:product.supplierinfo,unit_price:0
+msgid "Unit Price"
+msgstr "Precio unitario"
