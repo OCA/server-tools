@@ -60,4 +60,6 @@ class auth_saml_provider(osv.osv):
 
     _defaults = {
         'enabled': False,
+        'css_class': 'zocial saml',
+        'body': 'Log in with Authentic',
     }
