@@ -80,7 +80,15 @@ class SAMLController(oeweb.Controller):
                     l = providers.read(
                         cr, SUPERUSER_ID, providers.search(
                             cr, SUPERUSER_ID, [('enabled', '=', True)]
-                        )
+                        ),
+                        [
+                            "id",
+                            "name",
+                            "enabled",
+                            "css_class",
+                            "body",
+                            "sequence",
+                        ],
                     )
                 else:
                     l = []
