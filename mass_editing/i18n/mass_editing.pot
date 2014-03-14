@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0-20140206-002714\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-06 11:44+0000\n"
-"PO-Revision-Date: 2014-02-06 11:44+0000\n"
+"POT-Creation-Date: 2014-03-14 17:40+0000\n"
+"PO-Revision-Date: 2014-03-14 17:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,7 @@ msgid "Display a button in the sidebar of related documents to open a compositio
 msgstr ""
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "mass.editing.wizard"
 msgstr ""
@@ -38,15 +39,23 @@ msgid "Name"
 msgstr ""
 
 #. module: mass_editing
-#: sql_constraint:mass.object:0
-msgid "Name must be unique!"
+#: code:addons/mass_editing/mass_editing.py:114
+#, python-format
+msgid "Deletion of the action record failed."
 msgstr ""
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:0
 #: field:mass.object,field_ids:0
 msgid "Fields"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:80
+#, python-format
+msgid "Mass Editing (%s)"
 msgstr ""
 
 #. module: mass_editing
@@ -55,6 +64,7 @@ msgid "Object"
 msgstr ""
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "mass.object"
 msgstr ""
@@ -62,6 +72,13 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.object,model_ids:0
 msgid "Model List"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:57
+#: sql_constraint:mass.object:0
+#, python-format
+msgid "Name must be unique!"
 msgstr ""
 
 #. module: mass_editing
@@ -82,6 +99,12 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.object,model_id:0
 msgid "Model"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:114
+#, python-format
+msgid "Warning"
 msgstr ""
 
 #. module: mass_editing
