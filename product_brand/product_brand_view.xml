@@ -76,9 +76,10 @@
            <field name="model">product.product</field>
            <field name="inherit_id" ref="product.product_normal_form_view" />
            <field name="arch" type="xml">
-                <field name="categ_id" position="after"  >
-                    <field name="product_brand_id"/>
-               </field>
+                <div name="options" position="before">
+                    <label for="product_brand_id" class="oe_edit_only"/>
+                    <h2><field name="product_brand_id"/></h2>
+               </div>
            </field>
         </record>
 
