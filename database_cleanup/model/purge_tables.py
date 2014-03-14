@@ -88,7 +88,7 @@ class CleanupPurgeWizardTable(orm.TransientModel):
         res = super(CleanupPurgeWizardTable, self).default_get(
             cr, uid, fields, context=context)
         if 'name' in fields:
-            res['name'] = _('Purge modules')
+            res['name'] = _('Purge tables')
         return res
 
     def find(self, cr, uid, context=None):

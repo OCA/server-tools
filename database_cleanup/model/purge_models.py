@@ -80,9 +80,14 @@ class CleanupPurgeLineModel(orm.TransientModel):
                         cr, uid, constraint_ids, context=context)
                 relation_ids = fields_pool.search(
                     cr, uid, [('relation', '=', row[1])], context=context)
-                if relation_ids:
-                    fields_pool.unlink(cr, uid, relation_ids,
-                                       context=local_context)
+                for relation in relation_ids:
+                    try:
+                        # Fails if the model on the target side
+                        # cannot be instantiated
+                        fields_pool.unlink(cr, uid, [relation],
+                                           context=local_context)
+                    except AttributeError:
+                        pass
                 model_pool.unlink(cr, uid, [row[0]], context=local_context)
                 line.write({'purged': True})
                 cr.commit()
