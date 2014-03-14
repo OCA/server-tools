@@ -6,24 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.6\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-11-26 08:13:54+0000\n"
-"PO-Revision-Date: 2009-11-26 08:13:54+0000\n"
+"POT-Creation-Date: 2009-07-08 18:00+0000\n"
+"PO-Revision-Date: 2014-03-11 12:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-03-12 05:24+0000\n"
+"X-Generator: Launchpad (build 16963)\n"
 
 #. module: product_extended
-#: model:ir.module.module,description:product_extended.module_meta_information
-msgid "\n"
-"Product extension. This module adds:\n"
-"  * Last purchase order for each product supplier \n"
-"  * New functional field: Available stock (real+outgoing stock)\n"
-"  * Computes standard price from the BoM of the product (optional for each product)\n"
-"  * Standard price is shown in the BoM and it can be computed with a wizard \n"
-""
+#: model:ir.module.module,shortdesc:product_extended.module_name_translation
+msgid "Product extension to track sales and purchases"
 msgstr ""
 
 #. module: product_extended
@@ -37,16 +32,6 @@ msgid "Standard Price"
 msgstr ""
 
 #. module: product_extended
-#: model:ir.module.module,shortdesc:product_extended.module_meta_information
-msgid "Product extension to track sales and purchases"
-msgstr ""
-
-#. module: product_extended
-#: help:product.product,calculate_price:0
-msgid "Check this box if the standard price must be computed from the BoM."
-msgstr ""
-
-#. module: product_extended
 #: field:product.supplierinfo,last_order_date:0
 msgid "Last Order date"
 msgstr ""
@@ -57,14 +42,17 @@ msgid "Stock available"
 msgstr ""
 
 #. module: product_extended
+#: field:product.product,calculate_price:0
+msgid "Compute price"
+msgstr ""
+
+#. module: product_extended
 #: field:product.supplierinfo,last_order:0
 msgid "Last Order"
 msgstr ""
 
 #. module: product_extended
-#: model:ir.actions.wizard,name:product_extended.id_compute_price
 #: view:product.product:0
-#: field:product.product,calculate_price:0
 msgid "Compute standard price"
 msgstr ""
 
@@ -72,4 +60,3 @@ msgstr ""
 #: field:product.product,orderpoint_ids:0
 msgid "Orderpoints"
 msgstr ""
-
