@@ -53,11 +53,11 @@ class CleanupPurgeLineModel(orm.TransientModel):
         constraint_pool = self.pool['ir.model.constraint']
         fields_pool = self.pool['ir.model.fields']
 
-        local_context=(context or {}).copy()
+        local_context = (context or {}).copy()
         local_context.update({
-                MODULE_UNINSTALL_FLAG: True,
-                'no_drop_table': True,
-                })
+            MODULE_UNINSTALL_FLAG: True,
+            'no_drop_table': True,
+            })
 
         for line in self.browse(cr, uid, ids, context=context):
             cr.execute(

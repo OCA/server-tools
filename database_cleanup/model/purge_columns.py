@@ -53,7 +53,7 @@ class CleanupPurgeLineColumn(orm.TransientModel):
                 'WHERE attrelid = '
                 '( SELECT oid FROM pg_class WHERE relname = %s ) '
                 'AND attname = %s',
-                (model_pool._table, line.name));
+                (model_pool._table, line.name))
             if not cr.fetchone()[0]:
                 continue
 
@@ -68,6 +68,7 @@ class CleanupPurgeLineColumn(orm.TransientModel):
             cr.commit()
         return True
 
+
 class CleanupPurgeWizardColumn(orm.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.column'
@@ -75,7 +76,7 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
     # List of known columns in use without corresponding fields
     # Format: {table: [fields]}
     blacklist = {
-        'wkf_instance': ['uid'], # lp:1277899
+        'wkf_instance': ['uid'],  # lp:1277899
         }
 
     def default_get(self, cr, uid, fields, context=None):
@@ -91,9 +92,9 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
         Iterate on the database columns to identify columns
         of fields which have been removed
         """
-        
+
         columns = list(set([
-            column for model_pool in model_pools 
+            column for model_pool in model_pools
             for column in model_pool._columns
             if not (isinstance(model_pool._columns[column], fields.function)
                     and not model_pool._columns[column].store)
@@ -123,7 +124,6 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
         res = []
         model_pool = self.pool['ir.model']
         model_ids = model_pool.search(cr, uid, [], context=context)
-        line_pool = self.pool['cleanup.purge.line.column']
 
         # mapping of tables to tuples (model id, [pool1, pool2, ...])
         table2model = {}
@@ -132,8 +132,9 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
             model_pool = self.pool.get(model.model)
             if not model_pool or not model_pool._auto:
                 continue
-            table2model.setdefault(model_pool._table, (model.id, []))[1].append(model_pool)
-        
+            table2model.setdefault(
+                model_pool._table, (model.id, []))[1].append(model_pool)
+
         for table, model_spec in table2model.iteritems():
             for column in self.get_orphaned_columns(
                     cr, uid, model_spec[1], context=context):

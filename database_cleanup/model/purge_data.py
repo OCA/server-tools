@@ -48,6 +48,7 @@ class CleanupPurgeLineData(orm.TransientModel):
         self.pool['ir.model.data'].unlink(cr, uid, data_ids, context=context)
         return self.write(cr, uid, ids, {'purged': True}, context=context)
 
+
 class CleanupPurgeWizardData(orm.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.data'
