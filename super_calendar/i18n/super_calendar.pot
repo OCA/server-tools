@@ -1,0 +1,210 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* super_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-14 17:41+0000\n"
+"PO-Revision-Date: 2014-03-14 17:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,duration_field_id:0
+msgid "Duration field"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:0
+msgid "Generate Calendar"
+msgstr ""
+
+#. module: super_calendar
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Field"
+msgstr ""
+
+#. module: super_calendar
+#: code:addons/super_calendar/super_calendar.py:61
+#, python-format
+msgid "The 'User' field of record %s (%s) does not refer to res.users"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,date_start:0
+msgid "Start date"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,user_field_id:0
+msgid "User field"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,description_type:0
+msgid "Description Type"
+msgstr ""
+
+#. module: super_calendar
+#: model:_description:0
+#: model:ir.model,name:super_calendar.model_super_calendar_configurator
+msgid "super.calendar.configurator"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,name:0
+#: view:super.calendar.configurator:0
+#: field:super.calendar.configurator.line,description:0
+msgid "Description"
+msgstr ""
+
+#. module: super_calendar
+#: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
+msgid "Calendar Configurators"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,model_description:0
+msgid "Model Description"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,date_start_field_id:0
+msgid "Start date field"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,user_id:0
+msgid "User"
+msgstr ""
+
+#. module: super_calendar
+#: model:ir.actions.act_window,name:super_calendar.super_calendar_action
+#: model:ir.ui.menu,name:super_calendar.super_calendar_menu
+msgid "Super Calendar"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:0
+msgid "Line"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:0
+msgid "Extended Filters..."
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,res_id:0
+msgid "Resource"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator,name:0
+msgid "Name"
+msgstr ""
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_configurators
+#: view:super.calendar.configurator:0
+msgid "Configurators"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:0
+#: field:super.calendar.configurator,line_ids:0
+msgid "Lines"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,description_code:0
+#: field:super.calendar.configurator.line,description_field_id:0
+msgid "Description field"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:0
+#: help:super.calendar.configurator.line,description_code:0
+msgid "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgstr ""
+
+#. module: super_calendar
+#: code:addons/super_calendar/super_calendar.py:60
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,model_id:0
+#: field:super.calendar.configurator.line,name:0
+msgid "Model"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:0
+#: field:super.calendar,configurator_id:0
+#: view:super.calendar.configurator:0
+#: field:super.calendar.configurator.line,configurator_id:0
+msgid "Configurator"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,domain:0
+msgid "Domain"
+msgstr ""
+
+#. module: super_calendar
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Code"
+msgstr ""
+
+#. module: super_calendar
+#: model:_description:0
+#: model:ir.model,name:super_calendar.model_super_calendar_configurator_line
+msgid "super.calendar.configurator.line"
+msgstr ""
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:0
+msgid "My Items"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,date_stop_field_id:0
+msgid "End date field"
+msgstr ""
+
+#. module: super_calendar
+#: model:_description:0
+#: model:ir.model,name:super_calendar.model_super_calendar
+msgid "super.calendar"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:0
+msgid "Search Calendar"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,duration:0
+msgid "Duration"
+msgstr ""
+
+#. module: super_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar_calendar
+#: view:super.calendar:0
+msgid "Calendar"
+msgstr ""
+
