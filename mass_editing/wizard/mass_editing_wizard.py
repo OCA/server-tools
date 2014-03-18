@@ -101,7 +101,7 @@ class mass_editing_wizard(osv.osv_memory):
             model_vals = {}
             for key, val in vals.items():
                 if key.startswith('selection_'):
-                    model_field= key.split('_',1)[1]
+                    model_field = key.split('_', 1)[1]
                     if val == 'set':
                         model_vals[model_field] = vals[model_field]
                     elif val == 'remove':
