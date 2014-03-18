@@ -117,7 +117,7 @@ class mass_editing_wizard(osv.osv_memory):
                             m2m_list.append((4, m2m_id))
                         model_vals[model_field] = m2m_list
             if model_vals:
-                model_obj.write(cr, uid, context.get('active_ids'), model_vals, context)
+                model_obj.write(cr, uid, context['active_ids'], model_vals, context)
         result = super(mass_editing_wizard, self).create(cr, uid, {}, context)
         return result
 
