@@ -103,19 +103,19 @@ class mass_editing_wizard(osv.osv_memory):
                 if key.startswith('selection_'):
                     model_field= key.split('_',1)[1]
                     if val == 'set':
-                        model_vals.update({model_field: vals[model_field]})
+                        model_vals[model_field] = vals[model_field]
                     elif val == 'remove':
-                        model_vals.update({model_field: False})
+                        model_vals[model_field] = False
                     elif val == 'remove_m2m':
                         m2m_list = []
                         for m2m_id in vals[model_field][0][2] or []:
                             m2m_list.append((3, m2m_id))
-                        model_vals.update({model_field: m2m_list})
+                        model_vals[model_field] = m2m_list
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals[model_field][0][2] or []:
                             m2m_list.append((4, m2m_id))
-                        model_vals.update({model_field: m2m_list})
+                        model_vals[model_field] = m2m_list
             if model_vals:
                 model_obj.write(cr, uid, context.get('active_ids'), model_vals, context)
         result = super(mass_editing_wizard, self).create(cr, uid, {}, context)
