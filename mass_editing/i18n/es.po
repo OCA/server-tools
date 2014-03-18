@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20140206-002714\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-06 11:44+0000\n"
+"POT-Creation-Date: 2014-03-14 17:40+0000\n"
 "PO-Revision-Date: 2014-02-20 18:45+0000\n"
 "Last-Translator: Yajo <yajo.sk8@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-08 06:54+0000\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Launchpad-Export-Date: 2014-03-18 06:21+0000\n"
+"X-Generator: Launchpad (build 16963)\n"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -33,6 +33,7 @@ msgstr ""
 "abrir un asistente de composición"
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "mass.editing.wizard"
 msgstr "mass.editing.wizard"
@@ -43,11 +44,13 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: mass_editing
-#: sql_constraint:mass.object:0
-msgid "Name must be unique!"
-msgstr "¡El nombre debe ser único!"
+#: code:addons/mass_editing/mass_editing.py:114
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr ""
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:0
 #: field:mass.object,field_ids:0
@@ -55,11 +58,18 @@ msgid "Fields"
 msgstr "Campos"
 
 #. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:80
+#, python-format
+msgid "Mass Editing (%s)"
+msgstr ""
+
+#. module: mass_editing
 #: view:mass.object:0
 msgid "Object"
 msgstr "Objeto"
 
 #. module: mass_editing
+#: model:_description:0
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "mass.object"
 msgstr "mass.object"
@@ -68,6 +78,13 @@ msgstr "mass.object"
 #: field:mass.object,model_ids:0
 msgid "Model List"
 msgstr "Lista de modelos"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:57
+#: sql_constraint:mass.object:0
+#, python-format
+msgid "Name must be unique!"
+msgstr "¡El nombre debe ser único!"
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
@@ -88,6 +105,12 @@ msgstr "Botón del menú contextual"
 #: field:mass.object,model_id:0
 msgid "Model"
 msgstr "Modelo"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:114
+#, python-format
+msgid "Warning"
+msgstr ""
 
 #. module: mass_editing
 #: help:mass.object,ref_ir_act_window:0
