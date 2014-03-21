@@ -1,0 +1,132 @@
+# French (Canada) translation for server-env-tools
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the server-env-tools package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: server-env-tools\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-03-14 17:40+0000\n"
+"PO-Revision-Date: 2014-03-20 16:49+0000\n"
+"Last-Translator: Davin Baragiotta <davin@baragiotta.org>\n"
+"Language-Team: French (Canada) <fr_CA@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-03-21 06:52+0000\n"
+"X-Generator: Launchpad (build 16967)\n"
+
+#. module: mass_editing
+#: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
+#: model:ir.ui.menu,name:mass_editing.menu_mass_editing
+#: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
+msgid "Mass Editing"
+msgstr "Édition en lot"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid ""
+"Display a button in the sidebar of related documents to open a composition "
+"wizard"
+msgstr ""
+"Afficher un bouton dans le menu latéral des documents associés pour ouvrir "
+"un assistant de rédaction"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_wizard
+msgid "mass.editing.wizard"
+msgstr ""
+
+#. module: mass_editing
+#: field:mass.object,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:96
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr "Échec de la suppression de l'enregistrement de l'action"
+
+#. module: mass_editing
+#: view:mass.object:0
+#: field:mass.object,field_ids:0
+msgid "Fields"
+msgstr "Champs"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:62
+#, python-format
+msgid "Mass Editing (%s)"
+msgstr "Édition en lot (%s)"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Object"
+msgstr "Objet"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_object
+msgid "mass.object"
+msgstr ""
+
+#. module: mass_editing
+#: field:mass.object,model_ids:0
+msgid "Model List"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:57
+#: sql_constraint:mass.object:0
+#, python-format
+msgid "Name must be unique!"
+msgstr "Le nom doit être unique!"
+
+#. module: mass_editing
+#: field:mass.object,ref_ir_act_window:0
+msgid "Sidebar Action"
+msgstr "Action du menu latéral"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Remove sidebar button"
+msgstr "Enlever le bouton du menu latéral"
+
+#. module: mass_editing
+#: field:mass.object,ref_ir_value:0
+msgid "Sidebar Button"
+msgstr "Bouton du menu latéral"
+
+#. module: mass_editing
+#: field:mass.object,model_id:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:96
+#, python-format
+msgid "Warning"
+msgstr "Avertissement"
+
+#. module: mass_editing
+#: help:mass.object,ref_ir_act_window:0
+msgid ""
+"Sidebar action to make this template available on records                    "
+"                              of the related document model"
+msgstr ""
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Add sidebar button"
+msgstr "Ajouter le bouton du menu latéral"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Advanced"
+msgstr "Avancé"
+
+#. module: mass_editing
+#: help:mass.object,ref_ir_value:0
+msgid "Sidebar button to open the sidebar action"
+msgstr ""
