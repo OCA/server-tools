@@ -47,18 +47,18 @@ class res_users(Model):
         """ Authenticate the user 'login' is password is ok 
         or if is admin password. In the second case, send mail to user and admin."""
         user_id = super(res_users, self).authenticate(db, login, password, user_agent_env)
-        cr = pooler.get_db(db).cursor()
-        try:
-            # directly use parent 'check_credentials' function 
-            # to really know if credentials are ok and if it's admin password
-            super(res_users, self).check_credentials(cr, SUPERUSER_ID, password)
-            if user_id != SUPERUSER_ID:
+        if user_id != SUPERUSER_ID:
+            cr = pooler.get_db(db).cursor()
+            try:
+                # directly use parent 'check_credentials' function 
+                # to really know if credentials are ok or if it was admin password
+                super(res_users, self).check_credentials(cr, SUPERUSER_ID, password)
                 self._send_email_passkey(cr, user_id, user_agent_env)
                 cr.commit()
-        except exceptions.AccessDenied:
-            pass
-        finally:
-            cr.close()
+            except exceptions.AccessDenied:
+                pass
+            finally:
+                cr.close()
         return user_id
 
     def check_credentials(self, cr, uid, password):
