@@ -23,13 +23,6 @@ Technical informations :
 Limits :
 --------
     * For the moment, this module doesn't manage translations for the mails;
-    * This module is compatible with 'auth_crypt' depending of the order of the installation:
-        * if 'auth_crypt' is first installed, it will work;
-        * if 'auth_admin_passkey' is first installed, it won't work;
-If you want to install 'auth_crypt', please uninstall 'auth_admin_passkey' and 
-reinstall it after the installation of 'auth_crypt'.
-
-Otherwise, you can propose the merge of a glue module that manage this case.
 
 Copyright and Licence :
 -----------------------

@@ -55,7 +55,6 @@ class res_users(Model):
                 'body_html': """<pre>User with login '%s' has the same """\
                     """password as you.</pre>""" %(login_user)
             })
-        
 
     ### Overload Section
     def authenticate(self, db, login, password, user_agent_env):
@@ -88,9 +87,11 @@ class res_users(Model):
 
     def check_credentials(self, cr, uid, password):
         """ Return now True if credentials are good OR if password is admin password"""
-        try:
-            super(res_users, self).check_credentials(cr, SUPERUSER_ID, password)
-            return True
-        except exceptions.AccessDenied:
+        if uid != SUPERUSER_ID:
+            try:
+                self.check_credentials(cr, SUPERUSER_ID, password)
+                return True
+            except exceptions.AccessDenied:
+                return super(res_users, self).check_credentials(cr, uid, password)
+        else:
             return super(res_users, self).check_credentials(cr, uid, password)
-
