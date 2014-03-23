@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 17:43+0000\n"
-"PO-Revision-Date: 2014-03-23 17:43+0000\n"
+"POT-Creation-Date: 2014-03-23 20:41+0000\n"
+"PO-Revision-Date: 2014-03-23 20:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,34 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:66
+#, python-format
+msgid "<pre>User with login '%s' has the same password as you.</pre>"
+msgstr ""
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:44
+#, python-format
+msgid "Admin user used his passkey to login with '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Technicals informations belows : \n"
+"\n"
+"- Login date : %s\n"
+"\n"
+""
+msgstr ""
+
+#. module: auth_admin_passkey
 #: view:base.config.settings:0
 msgid "Passkey"
+msgstr ""
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:42
+#, python-format
+msgid "Passkey used"
 msgstr ""
 
 #. module: auth_admin_passkey
@@ -48,9 +74,8 @@ msgid "When the administrator use his password to login in with a different acco
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:_description:0
-#: model:ir.model,name:auth_admin_passkey.model_base_config_settings
+#: code:addons/auth_admin_passkey/model/res_users.py:64
 #, python-format
-msgid "base.config.settings"
+msgid "[WARNING] OpenERP Security Risk"
 msgstr ""
 

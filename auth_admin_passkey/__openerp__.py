@@ -15,14 +15,11 @@ Functionnalities :
 ------------------
     * Administrator has now the possibility to login in with any login;
     * By default, OpenERP will send a mail to user and admin to indicate them;
+    * If a user has the same password as the admin, OpenERP will inform the admin;
 
 Technical informations :
 ------------------------
     * Create two ir_config_parameter to enable / disable mail sending;
-
-Limits :
---------
-    * For the moment, this module doesn't manage translations for the mails;
 
 Copyright and Licence :
 -----------------------

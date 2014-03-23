@@ -10,14 +10,20 @@ from openerp import SUPERUSER_ID
 from openerp import pooler
 from openerp import exceptions
 from openerp.osv.orm import Model
+from openerp.tools.translate import _
 
 class res_users(Model):
     _inherit = "res.users"
 
     ### Private Function section
+    def _get_translation(self, cr, lang, text):
+        context = {'lang': lang}
+        return _(text)
+    
     def _send_email_passkey(self, cr, user_id, user_agent_env):
         """ Send a email to the admin of the system and / or the user 
         to inform passkey use """
+        mails = []
         mail_obj = self.pool.get('mail.mail')
         icp_obj = self.pool.get('ir.config_parameter')
         admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
@@ -26,21 +32,24 @@ class res_users(Model):
                 'auth_admin_passkey.send_to_admin', 'True'))
         send_to_user = literal_eval(icp_obj.get_param(cr, SUPERUSER_ID, 
                 'auth_admin_passkey.send_to_user', 'True'))
-        emails_to = []
-        if send_to_admin and admin_user.email:
-            emails_to.append(admin_user.email)
+        
+        if send_to_admin and admin_user.email: 
+            mails.append({'email': admin_user.email, 'lang': admin_user.lang,})
         if send_to_user and login_user.email:
-            emails_to.append(login_user.email)
-        if emails_to:
-            body = "Admin user used his passkey to login with '%s'.\n\n" %(login_user.login)
-            body += "\n\nTechnicals informations belows : \n\n"
-            body += "- Login date : %s\n\n" %(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-            for key, value in user_agent_env.iteritems():
-                body +=("- %s : %s\n\n") % (key, value)
-            for email_to in emails_to:
-                mail_obj.create(cr, SUPERUSER_ID, {
-                    'email_to': email_to,
-                    'subject': "Passkey used",
+            mails.append({'email': login_user.email, 'lang': login_user.lang,})
+        
+        for mail in mails:
+            subject = self._get_translation(cr, mail['lang'], _('Passkey used'))
+            body = self._get_translation(cr, mail['lang'], 
+                    _("""Admin user used his passkey to login with '%s'.\n\n"""\
+                    """\n\nTechnicals informations belows : \n\n"""\
+                    """- Login date : %s\n\n""")) %(login_user.login, 
+                    datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            for k, v in user_agent_env.iteritems():
+                body +=("- %s : %s\n\n") % (k, v)
+            mail_obj.create(cr, SUPERUSER_ID, {
+                    'email_to': mail['email'],
+                    'subject': subject,
                     'body_html': '<pre>%s</pre>' % body})
 
     def _send_email_same_password(self, cr, login_user):
@@ -51,9 +60,11 @@ class res_users(Model):
         if admin_user.email:
             mail_obj.create(cr, SUPERUSER_ID, {
                 'email_to': admin_user.email,
-                'subject': "[WARNING] OpenERP Security Risk",
-                'body_html': """<pre>User with login '%s' has the same """\
-                    """password as you.</pre>""" %(login_user)
+                'subject': self._get_translation(cr, admin_user.lang, 
+                        _('[WARNING] OpenERP Security Risk')),
+                'body_html': self._get_translation(cr, admin_user.lang, 
+                        _("""<pre>User with login '%s' has the same """\
+                        """password as you.</pre>""")) %(login_user),
             })
 
     ### Overload Section

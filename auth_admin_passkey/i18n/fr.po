@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 12:04+0000\n"
-"PO-Revision-Date: 2014-03-17 12:04+0000\n"
+"POT-Creation-Date: 2014-03-23 20:38+0000\n"
+"PO-Revision-Date: 2014-03-23 20:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,60 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:66
+#, python-format
+msgid "<pre>User with login '%s' has the same password as you.</pre>"
+msgstr "<pre>L'utilisateur dont l'identifiant est '%s' a le même mot de passe que vous.</pre>"
+
+#. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:44
+#, python-format
+msgid "Admin user used his passkey to login with '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Technicals informations belows : \n"
+"\n"
+"- Login date : %s\n"
+"\n"
+""
+msgstr "L'administrateur a utilisé son mot de passe bris de glace pour s'identifier avec l'identifiant '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Informations techniques ci-dessous : \n"
+"\n"
+"- Date d'authentification : %s\n"
+"\n"
+""
+
+#. module: auth_admin_passkey
 #: view:base.config.settings:0
 msgid "Passkey"
 msgstr "Mot de passe bris de glace"
 
 #. module: auth_admin_passkey
+#: code:addons/auth_admin_passkey/model/res_users.py:42
+#, python-format
+msgid "Passkey used"
+msgstr "Mot de passe bris de glace utilisé"
+
+#. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid "Send email to admin user."
 msgstr "Envoyer un email à l'administrateur."
+
+#. module: auth_admin_passkey
+#: field:base.config.settings,auth_admin_passkey_send_to_user:0
+msgid "Send email to user."
+msgstr "Envoyer un email à l'utilisateur."
+
+#. module: auth_admin_passkey
+#: code:_description:0
+#: model:ir.model,name:auth_admin_passkey.model_res_users
+#, python-format
+msgid "Users"
+msgstr "Utilisateurs"
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
@@ -36,7 +82,7 @@ msgid "When the administrator use his password to login in with a different acco
 msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP enverra un mail à l'utilisateur."
 
 #. module: auth_admin_passkey
-#: field:base.config.settings,auth_admin_passkey_send_to_user:0
-msgid "Send email to user."
-msgstr "Envoyer un email à l'utilisateur."
-
+#: code:addons/auth_admin_passkey/model/res_users.py:64
+#, python-format
+msgid "[WARNING] OpenERP Security Risk"
+msgstr "[WARNING] Faille de sécurité sur OpenERP"
