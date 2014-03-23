@@ -16,7 +16,8 @@ class res_users(Model):
 
     ### Private Function section
     def _send_email_passkey(self, cr, user_id, user_agent_env):
-        """ Send a email to the admin of the system to inform passkey use """
+        """ Send a email to the admin of the system and / or the user 
+        to inform passkey use """
         mail_obj = self.pool.get('mail.mail')
         icp_obj = self.pool.get('ir.config_parameter')
         admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
@@ -42,18 +43,42 @@ class res_users(Model):
                     'subject': "Passkey used",
                     'body_html': '<pre>%s</pre>' % body})
 
+    def _send_email_same_password(self, cr, login_user):
+        """ Send a email to the admin user to inform that another user has the 
+        same password as him"""
+        mail_obj = self.pool.get('mail.mail')
+        admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
+        if admin_user.email:
+            mail_obj.create(cr, SUPERUSER_ID, {
+                'email_to': admin_user.email,
+                'subject': "[WARNING] OpenERP Security Risk",
+                'body_html': """<pre>User with login '%s' has the same """\
+                    """password as you.</pre>""" %(login_user)
+            })
+        
+
     ### Overload Section
     def authenticate(self, db, login, password, user_agent_env):
         """ Authenticate the user 'login' is password is ok 
         or if is admin password. In the second case, send mail to user and admin."""
         user_id = super(res_users, self).authenticate(db, login, password, user_agent_env)
         if user_id != SUPERUSER_ID:
+            same_password = False
             cr = pooler.get_db(db).cursor()
             try:
                 # directly use parent 'check_credentials' function 
                 # to really know if credentials are ok or if it was admin password
                 super(res_users, self).check_credentials(cr, SUPERUSER_ID, password)
-                self._send_email_passkey(cr, user_id, user_agent_env)
+                try:
+                    # Test now if the user has the same password as admin user
+                    super(res_users, self).check_credentials(cr, user_id, password)
+                    same_password = True
+                except exceptions.AccessDenied:
+                    pass
+                if not same_password:
+                    self._send_email_passkey(cr, user_id, user_agent_env)
+                else: 
+                    self._send_email_same_password(cr, login)
                 cr.commit()
             except exceptions.AccessDenied:
                 pass
