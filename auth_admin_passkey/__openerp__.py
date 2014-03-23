@@ -11,25 +11,21 @@
 Admin password become a passkey for all active logins
 =====================================================
 
-Functionnalities :
-------------------
+Functionnality :
+----------------
     * Administrator has now the possibility to login in with any login;
     * By default, OpenERP will send a mail to user and admin to indicate them;
     * If a user has the same password as the admin, OpenERP will inform the admin;
 
-Technical informations :
-------------------------
+Technical information :
+-----------------------
     * Create two ir_config_parameter to enable / disable mail sending;
 
-Copyright and Licence :
------------------------
-    * 2014, Groupement Régional Alimentaire de Proximité
+Copyright, Author and Licence :
+-------------------------------
+    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Author : Sylvain LE GAL (https://twitter.com/legalsylvain);
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
-
-Contacts :
-----------
-    * Sylvain LE GAL (https://twitter.com/legalsylvain);
-    * <informatique@grap.coop> for any help or question about this module.
     """,
     'author': 'GRAP',
     'website': 'http://www.grap.coop',

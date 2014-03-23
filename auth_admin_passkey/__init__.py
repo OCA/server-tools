@@ -3,4 +3,4 @@
 #    See __openerp__.py file for Copyright and Licence Informations.
 ################################################################################
 
-import model
+from . import model

@@ -69,9 +69,10 @@ class res_users(Model):
 
     ### Overload Section
     def authenticate(self, db, login, password, user_agent_env):
-        """ Authenticate the user 'login' is password is ok 
-        or if is admin password. In the second case, send mail to user and admin."""
-        user_id = super(res_users, self).authenticate(db, login, password, user_agent_env)
+        """ Authenticate the user 'login' is password is ok or if 
+        is admin password. In the second case, send mail to user and admin."""
+        user_id = super(res_users, self).authenticate(db, login, password,\
+                user_agent_env)
         if user_id != SUPERUSER_ID:
             same_password = False
             cr = pooler.get_db(db).cursor()
@@ -97,7 +98,8 @@ class res_users(Model):
         return user_id
 
     def check_credentials(self, cr, uid, password):
-        """ Return now True if credentials are good OR if password is admin password"""
+        """ Return now True if credentials are good OR if password is admin
+         password"""
         if uid != SUPERUSER_ID:
             try:
                 self.check_credentials(cr, SUPERUSER_ID, password)
