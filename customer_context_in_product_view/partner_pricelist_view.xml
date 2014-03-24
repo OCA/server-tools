@@ -30,7 +30,7 @@
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                    <button name="%(partner_price_in_product_view.act_res_partner_pricing)d" type="action"
+                    <button name="%(customer_context_in_product_view.act_res_partner_pricing)d" type="action"
                         string="Product Pricing" groups="base.group_sale_salesman"
                         attrs="{'invisibile': [('customer', '=', 'False')]}"/>
                 </xpath>
