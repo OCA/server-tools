@@ -80,7 +80,7 @@ sIbngHtWnT36PTZS
             </field>
             <field name="css_class">zocial saml</field>
             <field name="body">Log in with Authentic</field>
-            <field name="enabled" eval="True"/>
+            <field name="enabled" eval="False"/>
         </record>
     </data>
 </openerp>
