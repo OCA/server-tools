@@ -106,6 +106,17 @@ class SAMLController(oeweb.Controller):
         """
         saml_response = kw.get('SAMLResponse', None)
 
+        if not kw.get('RelayState', None):
+            # here we are in front of a client that went through
+            # some routes that "lost" its relaystate... this can happen
+            # if the client visited his IDP and successfully logged in
+            # then the IDP gave him a portal with his available applications
+            # but the provided link does not include the necessary relaystate
+            url = "/?type=signup"
+            redirect = werkzeug.utils.redirect(url, 303)
+            redirect.autocorrect_location_header = True
+            return redirect
+
         state = simplejson.loads(kw['RelayState'])
         dbname = state['d']
         provider = state['p']
