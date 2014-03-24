@@ -57,7 +57,8 @@ openerp.auth_saml = function(instance) {
         },
         on_request_loaded: function(result) {
             // redirect to the saml idp
-            instance.web.redirect(result.auth_request);
+            //instance.web.redirect(result.auth_request);
+            window.location.replace(result.auth_request);
         },
         _saml_state: function(provider) {
             // return the state object sent back with the redirected uri
