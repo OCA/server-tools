@@ -1,65 +1,48 @@
-# Spanish translation for openobject-addons
-# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
-# This file is distributed under the same license as the openobject-addons package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_pricelist_fixed_price
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: openobject-addons\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-25 10:08+0000\n"
-"PO-Revision-Date: 2014-03-11 12:48+0000\n"
-"Last-Translator: Graeme Gellatly <Unknown>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-05 20:35+0000\n"
+"PO-Revision-Date: 2014-02-05 21:36+0100\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-12 05:24+0000\n"
-"X-Generator: Launchpad (build 16963)\n"
+"Plural-Forms: \n"
 
 #. module: product_pricelist_fixed_price
 #: view:product.pricelist.item:0
-msgid "Max. Margin"
-msgstr "Margen máximo"
+msgid "Base Price"
+msgstr "Precio base"
 
 #. module: product_pricelist_fixed_price
-#: view:product.pricelist.item:0
-msgid "Min. Margin"
-msgstr "Margen mínimo"
+#: help:product.pricelist.item,base_ext:0
+msgid "Base price for computation."
+msgstr "Precio base para el cálculo."
 
 #. module: product_pricelist_fixed_price
-#: view:product.pricelist.item:0
-msgid "Rounding Method"
-msgstr "Método redondeo"
-
-#. module: product_pricelist_fixed_price
-#: constraint:product.pricelist.item:0
-msgid ""
-"Error ! You cannot assign the Main Pricelist as Other Pricelist in PriceList "
-"Item!"
-msgstr ""
-"¡Error!  No puede asignar la tarifa principal como otra tarifa en un "
-"elemento de la tarifa."
-
-#. module: product_pricelist_fixed_price
-#: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist
-msgid "Pricelist"
-msgstr "Lista de Precios"
-
-#. module: product_pricelist_fixed_price
-#: code:addons/product_pricelist_fixed_price/pricelist.py:97
-#, python-format
-msgid "Warning !"
-msgstr "¡Atención!"
+#: field:product.pricelist.item,base_ext:0
+msgid "Based on"
+msgstr "Basado en"
 
 #. module: product_pricelist_fixed_price
 #: model:ir.model,name:product_pricelist_fixed_price.model_product_pricelist_item
 msgid "Pricelist item"
-msgstr "Elemento de la tarifa"
+msgstr "Elemento de tarifa"
 
 #. module: product_pricelist_fixed_price
-#: code:addons/product_pricelist_fixed_price/pricelist.py:32
-#: field:product.pricelist.item,fixed_price:0
+#: view:product.pricelist.item:0
+msgid "Price Computation"
+msgstr "Cálculo del precio"
+
+#. module: product_pricelist_fixed_price
+#: code:addons/product_pricelist_fixed_price/model/product_pricelist_item.py:32
 #, python-format
 msgid "Fixed Price"
 msgstr "Precio fijo"
+

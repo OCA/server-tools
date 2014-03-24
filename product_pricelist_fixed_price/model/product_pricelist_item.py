@@ -19,29 +19,33 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
-{
-    "name": "Fixed price in pricelists",
-    "version": "2.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    "category": "Sales Management",
-    "description": """
-Fixed price on pricelist rule
-=============================
 
-Adds a new option on pricelist rules to set a fixed price. This is made using
-a trick that writes on the back 100% in the discount to the base price to get
-a zero base that will add only the price we put in the surcharge price.
-    """,
-    "website": "www.serviciosbaeza.com",
-    "license": "AGPL-3",
-    "depends": [
-        "product",
-    ],
-    "demo": [],
-    "data": [
-        'view/product_pricelist_item_view.xml',
-    ],
-    "installable": True,
-    "active": False,
-}
+class product_pricelist_item(orm.Model):
+    _inherit = 'product.pricelist.item'
+
+    def _price_field_get_ext(self, cr, uid, context=None):
+        result = super(product_pricelist_item, self)._price_field_get(
+                                    cr, uid, context=context)
+        result.append((-3, _('Fixed Price')))
+        return result
+
+    _columns = {
+        'base_ext': fields.selection(_price_field_get_ext, 'Based on',
+                                     required=True, size=-1,
+                                     help="Base price for computation."),
+    }
+    _defaults = {
+        'base_ext': -1,
+    }
+
+    def onchange_base_ext(self, cr, uid, ids, base_ext, context=None):
+        if base_ext == -3:
+            # Simulate be based on first found price that allows the trick
+            return {
+                'value': {'base': 1,
+                          'price_discount': -1,}
+            }
+        return {'value': {'base': base_ext}}
