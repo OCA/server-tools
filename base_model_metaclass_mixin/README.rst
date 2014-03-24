@@ -9,6 +9,6 @@ How to
     class oetest(osv.Model):
         __metaclass__ = BaseModelMetaclassMixin
 
-    #Class defined in BaseModelMetaclassMixin will be automatically added if they are not
+    #Functions defined in BaseModelMetaclassMixin will be automatically added if they are not
     #implemented in the osv.Model class
 
