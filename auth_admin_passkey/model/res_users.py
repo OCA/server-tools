@@ -24,8 +24,8 @@ class res_users(Model):
         """ Send a email to the admin of the system and / or the user 
         to inform passkey use """
         mails = []
-        mail_obj = self.pool.get('mail.mail')
-        icp_obj = self.pool.get('ir.config_parameter')
+        mail_obj = self.pool['mail.mail']
+        icp_obj = self.pool['ir.config_parameter']
         admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
         login_user = self.browse(cr, SUPERUSER_ID, user_id)
         send_to_admin = literal_eval(icp_obj.get_param(cr, SUPERUSER_ID, 
@@ -55,7 +55,7 @@ class res_users(Model):
     def _send_email_same_password(self, cr, login_user):
         """ Send a email to the admin user to inform that another user has the 
         same password as him"""
-        mail_obj = self.pool.get('mail.mail')
+        mail_obj = self.pool['mail.mail']
         admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
         if admin_user.email:
             mail_obj.create(cr, SUPERUSER_ID, {

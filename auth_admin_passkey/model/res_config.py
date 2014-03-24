@@ -13,7 +13,7 @@ class base_config_settings(TransientModel):
     ### Getter / Setter Section
     def get_default_auth_admin_passkey_send_to_admin(self, cr, uid, ids, 
                 context=None):
-        icp = self.pool('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         return {
             'auth_admin_passkey_send_to_admin' : safe_eval(icp.get_param(cr, 
                     uid, 'auth_admin_passkey.send_to_admin', 'True')),
@@ -21,13 +21,13 @@ class base_config_settings(TransientModel):
 
     def set_auth_admin_passkey_send_to_admin(self, cr, uid, ids, context=None):
         config = self.browse(cr, uid, ids[0], context=context)
-        icp = self.pool('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         icp.set_param(cr, uid, 'auth_admin_passkey.send_to_admin', 
                 repr(config.auth_admin_passkey_send_to_admin))
 
     def get_default_auth_admin_passkey_send_to_user(self, cr, uid, ids, 
                 context=None):
-        icp = self.pool('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         return {
             'auth_admin_passkey_send_to_user' : safe_eval(icp.get_param(cr, 
                     uid, 'auth_admin_passkey.send_to_user', 'True')),
@@ -35,7 +35,7 @@ class base_config_settings(TransientModel):
 
     def set_auth_admin_passkey_send_to_user(self, cr, uid, ids, context=None):
         config = self.browse(cr, uid, ids[0], context=context)
-        icp = self.pool('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         icp.set_param(cr, uid, 'auth_admin_passkey.send_to_user', 
                 repr(config.auth_admin_passkey_send_to_user))
 
