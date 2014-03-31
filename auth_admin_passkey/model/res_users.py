@@ -21,13 +21,13 @@
 ##############################################################################
 
 import datetime
-from ast import literal_eval
 
 from openerp import SUPERUSER_ID
 from openerp import pooler
 from openerp import exceptions
 from openerp.osv.orm import Model
 from openerp.tools.translate import _
+from openerp.tools.safe_eval import safe_eval
 
 
 class res_users(Model):
@@ -46,9 +46,9 @@ class res_users(Model):
         icp_obj = self.pool['ir.config_parameter']
         admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
         login_user = self.browse(cr, SUPERUSER_ID, user_id)
-        send_to_admin = literal_eval(icp_obj.get_param(
+        send_to_admin = safe_eval(icp_obj.get_param(
             cr, SUPERUSER_ID, 'auth_admin_passkey.send_to_admin', 'True'))
-        send_to_user = literal_eval(icp_obj.get_param(
+        send_to_user = safe_eval(icp_obj.get_param(
             cr, SUPERUSER_ID, 'auth_admin_passkey.send_to_user', 'True'))
 
         if send_to_admin and admin_user.email:
