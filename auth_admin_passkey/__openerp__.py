@@ -28,11 +28,11 @@
 Admin password become a passkey for all active logins
 =====================================================
 
-Functionnality :
-----------------
+Functionality :
+---------------
     * Administrator has now the possibility to login in with any login;
     * By default, OpenERP will send a mail to user and admin to indicate them;
-    * If a user has the same password as the admin, OpenERP will inform the admin;
+    * If a user and the admin has the same password, admin will be informed;
 
 Technical information :
 -----------------------
