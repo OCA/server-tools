@@ -23,23 +23,25 @@ from openerp.addons.web.controllers import main as web_main
 
 old_init = WebRequest.init
 
+
 def init(self, params):
     old_init(self, params)
     if self.httprequest.authorization and not self.session._login:
         dbs = web_main.db_list(self)
         self.session.authenticate(
-                dbs and dbs[0],
-                self.httprequest.authorization.username,
-                self.httprequest.authorization.password,
-                dict(
-                    base_location=self.httprequest.url_root.rstrip('/'),
-                    HTTP_HOST=self.httprequest.environ['HTTP_HOST'],
-                    REMOTE_ADDR=self.httprequest.environ['REMOTE_ADDR']
-                    ))
+            dbs and dbs[0],
+            self.httprequest.authorization.username,
+            self.httprequest.authorization.password,
+            dict(
+                base_location=self.httprequest.url_root.rstrip('/'),
+                HTTP_HOST=self.httprequest.environ['HTTP_HOST'],
+                REMOTE_ADDR=self.httprequest.environ['REMOTE_ADDR']
+                ))
 
 WebRequest.init = init
 
 old_dispatch = JsonRequest.dispatch
+
 
 def dispatch(self, method):
     response = old_dispatch(self, method)

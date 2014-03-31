@@ -19,9 +19,9 @@
 #
 ##############################################################################
 {
-    "name" : "Authenticate via HTTP basic authentication",
-    "version" : "1.0",
-    "author" : "Therp BV",
+    "name": "Authenticate via HTTP basic authentication",
+    "version": "1.0",
+    "author": "Therp BV",
     "complexity": "expert",
     "description": """
 In an environment where several web applications authenticate against the same
@@ -43,10 +43,10 @@ Funders:
 
 Open2bizz software & consultancy
     """,
-    "category" : "",
-    "depends" : [
+    "category": "",
+    "depends": [
     ],
-    "data" : [
+    "data": [
     ],
     "js": [
     ],
@@ -56,7 +56,7 @@ Open2bizz software & consultancy
     ],
     "auto_install": False,
     "installable": True,
-    "external_dependencies" : {
-        'python' : [],
+    "external_dependencies": {
+        'python': [],
     },
 }

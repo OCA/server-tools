@@ -19,9 +19,9 @@
 #
 ##############################################################################
 {
-    "name" : "Authenticate via HTTP basic authentication (logout helper)",
-    "version" : "1.0",
-    "author" : "Therp BV",
+    "name": "Authenticate via HTTP basic authentication (logout helper)",
+    "version": "1.0",
+    "author": "Therp BV",
     "complexity": "expert",
     "description": """
 With auth_from_http_basic, the logout procedure has to be bent a bit to provide
@@ -35,12 +35,12 @@ Funders:
 
 Open2bizz software & consultancy
     """,
-    "category" : "",
-    "depends" : [
+    "category": "",
+    "depends": [
         'web',
         'auth_from_http_basic',
     ],
-    "data" : [
+    "data": [
     ],
     "js": [
         'static/src/js/auth_from_http_basic_logout.js',
@@ -51,7 +51,7 @@ Open2bizz software & consultancy
     ],
     "auto_install": False,
     "installable": True,
-    "external_dependencies" : {
-        'python' : [],
+    "external_dependencies": {
+        'python': [],
     },
 }
