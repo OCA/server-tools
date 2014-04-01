@@ -21,6 +21,7 @@
 from openerp.osv import fields, osv
 import re
 from lxml import etree
+import json
 
 
 ORDER_SELECTION = (
@@ -105,15 +106,16 @@ class analytic_structure(osv.Model):
         path = "//field[re:match(@name, '{0}')]".format(regex)
         ns = {"re": "http://exslt.org/regular-expressions"}
 
-        pattern = '{{"invisible":{0}, "tree_invisible":{0}}}'
         doc = etree.XML(view['arch'])
         matches = doc.xpath(path, namespaces=ns)
 
         for match in matches:
             name = match.get('name')
             slot = re.search(regex, name).group(1)
-            is_invisible = str(not slot in ans_dict).lower()
-            match.set('modifiers', pattern.format(is_invisible))
+            is_invisible = not slot in ans_dict
+            modifiers = json.loads(match.get('modifiers', '{}'))
+            modifiers['invisible'] = modifiers['tree_invisible'] = is_invisible
+            match.set('modifiers', json.dumps(modifiers))
 
         view['arch'] = etree.tostring(doc)
         return view
