@@ -53,7 +53,7 @@ msgid "Admin user used his passkey to login with '%s'.\n"
 "- Login date : %s\n"
 "\n"
 ""
-msgstr "L'administrateur a utilisé son mot de passe bris de glace pour s'identifier avec l'identifiant '%s'.\n"
+msgstr "L'administrateur a utilisé son mot de passe \"bris de glace\" pour s'identifier avec l'identifiant '%s'.\n"
 "\n"
 "\n"
 "\n"
@@ -66,13 +66,13 @@ msgstr "L'administrateur a utilisé son mot de passe bris de glace pour s'identi
 #. module: auth_admin_passkey
 #: view:base.config.settings:0
 msgid "Passkey"
-msgstr "Mot de passe bris de glace"
+msgstr "Mot de passe \"bris de glace\""
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:42
 #, python-format
 msgid "Passkey used"
-msgstr "Mot de passe bris de glace utilisé"
+msgstr "Mot de passe \"bris de glace\" utilisé"
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_admin:0
