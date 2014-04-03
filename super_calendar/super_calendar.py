@@ -55,7 +55,7 @@ class super_calendar_configurator(orm.Model):
                 current_record_ids = current_pool.search(
                     cr,
                     uid,
-                    line.domain and eval(line.domain) or [],
+                    line.domain and safe_eval(line.domain) or [],
                     context=context)
 
                 for current_record_id in current_record_ids:
