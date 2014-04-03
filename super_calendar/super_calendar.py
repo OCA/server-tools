@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -25,7 +25,7 @@ import logging
 from mako.template import Template
 from datetime import datetime
 from openerp import tools
-from openerp.tools import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 
 def _models_get(self, cr, uid, context=None):
     obj = self.pool.get('ir.model')
@@ -44,20 +44,25 @@ class super_calendar_configurator(orm.Model):
     def generate_calendar_records(self, cr, uid, ids, context=None):
         configurator_ids = self.search(cr, uid, [])
         super_calendar_pool = self.pool.get('super.calendar')
-        
+
         # removing old records
         super_calendar_ids = super_calendar_pool.search(cr, uid, [], context=context)
         super_calendar_pool.unlink(cr, uid, super_calendar_ids, context=context)
-        
+
         for configurator in self.browse(cr, uid, configurator_ids, context):
             for line in configurator.line_ids:
                 current_pool = self.pool.get(line.name.model)
-                current_record_ids = current_pool.search(cr, uid, line.domain and eval(line.domain) or [], context=context)
+                current_record_ids = current_pool.search(
+                    cr,
+                    uid,
+                    line.domain and eval(line.domain) or [],
+                    context=context)
+
                 for current_record_id in current_record_ids:
                     current_record  = current_pool.browse(cr, uid, current_record_id, context=context)
                     if line.user_field_id and \
                         current_record[line.user_field_id.name] and current_record[line.user_field_id.name]._table_name != 'res.users':
-                        raise osv.except_osv(_('Error'), 
+                        raise osv.except_osv(_('Error'),
                             _("The 'User' field of record %s (%s) does not refer to res.users")
                             % (current_record[line.description_field_id.name], line.name.model))
                     if (((line.description_field_id
@@ -116,7 +121,7 @@ class super_calendar_configurator_line(orm.Model):
         'user_field_id': fields.many2one('ir.model.fields', 'User field',
             domain="['&',('ttype', '=', 'many2one'),('model_id', '=', name)]"),
         }
-        
+
 
 class super_calendar(orm.Model):
     _name = 'super.calendar'
