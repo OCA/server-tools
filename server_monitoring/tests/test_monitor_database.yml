@@ -1,0 +1,64 @@
+-
+ I record a process log
+-
+  !python {model: server.monitor.database}: |
+    id = self.log_measure(cr, uid, context=context)
+-
+ there should be some server.monitor.model.row.count in database
+-
+  !python {model: server.monitor.model.row.count}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert ids, 'No server.monitor.model.row.count instance count recorded'
+-
+ there should be some server.monitor.model.table.size in database
+-
+  !python {model: server.monitor.model.table.size}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert ids, 'No server.monitor.model.table.size recorded'
+-
+ there should be some server.monitor.model.table.activity.read in database
+-
+  !python {model: server.monitor.model.table.activity.read}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert ids, 'No server.monitor.model.table.activity.read recorded'
+-
+ there should be some server.monitor.model.table.activity.update in database
+-
+  !python {model: server.monitor.model.table.activity.update}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert ids, 'No server.monitor.model.table.activity.update recorded'
+-
+ I cleanup the database logs
+-
+  !python {model: server.monitor.database}: |
+    id = self.cleanup(cr, uid, -1, context=context)
+-
+ there should be no server.monitor.model.row.count in database
+-
+  !python {model: server.monitor.model.row.count}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server.monitor.model.row.count still present'
+-
+ there should be no server.monitor.model.table.size in database
+-
+  !python {model: server.monitor.model.table.size}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server.monitor.model.table.size still present'
+-
+ there should be no server.monitor.model.table.activity.read in database
+-
+  !python {model: server.monitor.model.table.activity.read}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server.monitor.model.table.activity.read still present'
+-
+ there should be no server.monitor.model.table.activity.update in database
+-
+  !python {model: server.monitor.model.table.activity.update}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server.monitor.model.table.activity.update still present'
+-
+ there should be no server.monitor.database in database
+-
+  !python {model: server.monitor.database}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server.monitor.database still present'
