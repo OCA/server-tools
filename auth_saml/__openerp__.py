@@ -27,7 +27,7 @@
     'category': 'Tools',
     'description': """
 Allow users to login through Saml2 Provider.
-=============================================
+===================================
 """,
     'author': 'XCG Consulting s.a.s.',
     'maintainer': 'XCG Consulting s.a.s.',
