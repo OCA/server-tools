@@ -23,7 +23,7 @@
 
 {
     'name': 'product_custom_attributes',
-    'version': '0.2',
+    'version': '0.2.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """This module adds the possibility to easily create custom fields on products.
