@@ -33,8 +33,8 @@ Product Brand Manager
 =====================
 
 This module allows your user to easily manage product brands. You can
-define brand, attach it a logo and a description.  It also allows to
-attach a partner to a brand.  One installed check the menu
+define brands, attach a logo and a description to them.  It also allows to
+attach a partner to a brand.  Once installed, check the menu
 Product/configuration/brand
 
 To do / To come:
