@@ -83,7 +83,7 @@ class CompanyLDAP(orm.Model):
     conf_all=self.read(cr, uid, conf['id'], ['only_ldap_groups'])
     if(conf_all['only_ldap_groups']):
         logger.debug('deleting all groups from user %d' % user_id)
-        userobj.write(cr, uid, user_id, {'groups_id': [(5, )]})
+        userobj.write(cr, uid, [user_id], {'groups_id': [(5, )]})
 
     for mapping in mappingobj.read(cr, uid, mappingobj.search(cr, uid, 
             [('ldap_id', '=', conf['id'])]), []):
@@ -93,6 +93,6 @@ class CompanyLDAP(orm.Model):
                 mapping['value'], conf, self, logger):
             logger.debug('adding user %d to group %s' % 
                     (user_id, mapping['group'][1]))
-            userobj.write(cr, uid, user_id, 
+            userobj.write(cr, uid, [user_id], 
                     {'groups_id': [(4, mapping['group'][0])]})
     return user_id
