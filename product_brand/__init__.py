@@ -24,4 +24,4 @@
 ###################################################################################
 # Product Brand is an Openobject module wich enable Brand management for products #
 ###################################################################################
-import product_brand
+from . import product_brand

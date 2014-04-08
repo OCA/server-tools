@@ -6,27 +6,48 @@
   Copyright (C) 2011 Akretion Benoît Guillot <benoit.guillot@akretion.com>
   The licence is in the file __openerp__.py
 -->
-<openerp>  
+<openerp>
     <data>
+        <record id="product_brand_search_form_view" model="ir.ui.view">
+            <field name="name">product.brand.search.form</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <search string="Product Brand">
+                   <field name="name"/>
+                   <field name="partner_id"/>
+                </search>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="view_product_brand_form">
             <field name="name">product.brand.form</field>
             <field name="model">product.brand</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="product.brand">
-                    <field name="name" select="1"/>
-                    <field name="logo" widget='image' />
-                    <field name="partner_id" select="1"/>
-                    <separator colspan="4" string="Description"/>
-                    <field colspan="4" name="description" nolabel="1"/>
+                <form string="Product Brand" version="7.0">
+                  <sheet>
+                      <field name="logo" widget="image" class="oe_avatar oe_left"/>
+                      <div class="oe_title">
+                        <div class="oe_edit_only">
+                          <label for="name" string="Brand Name"/>
+                        </div>
+                        <h1>
+                          <field name="name"/>
+                        </h1>
+                      </div>
+                      <group>
+                        <field name="partner_id"/>
+                      </group>
+                      <group string="Description">
+                        <field name="description" nolabel="1"/>
+                      </group>
+                  </sheet>
                 </form>
             </field>
         </record>
-        
+
         <record model="ir.ui.view" id="view_product_brand_tree">
             <field name="name">product.brand.tree</field>
             <field name="model">product.brand</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="product.brand">
                     <field name="name"/>
@@ -35,38 +56,51 @@
                 </tree>
             </field>
         </record>
-        
+
+        <record id="product_search_form_view" model="ir.ui.view">
+            <field name="name">product.search.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="product_brand_id"/>
+                </field>
+                <group string='Group by...' position="inside">
+                    <filter string="Brand" name="groupby_brand" domain="[]" context="{'group_by' : 'product_brand_id'}"/>
+                </group>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="normal_form_product_brand">
            <field name="name">product.normal.form</field>
            <field name="model">product.product</field>
-           <field name="type">form</field>
            <field name="inherit_id" ref="product.product_normal_form_view" />
            <field name="arch" type="xml">
-                <field name="categ_id" position="after"  >
-                    <field name="product_brand_id" select="1" />
-               </field>
+                <div name="options" position="before">
+                    <label for="product_brand_id" class="oe_edit_only"/>
+                    <h2><field name="product_brand_id"/></h2>
+               </div>
            </field>
         </record>
-        
+
         <record model="ir.ui.view" id="product_template_form_brand_add">
             <field name="name">product.template.product.form</field>
             <field name="model">product.template</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="product.product_template_form_view" />
             <field name="arch" type="xml">
                 <field name="categ_id" position="after"  >
-                  <field name="product_brand_id" select="1" />
+                  <field name="product_brand_id" />
                 </field>
               </field>
         </record>
-        
+
         <record model="ir.actions.act_window" id="action_product_brand">
             <field name="name">Brand</field>
             <field name="res_model">product.brand</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-        
+
         <menuitem name="Brand management" id="menu_product_brand" action="action_product_brand" parent="product.prod_config_main"/>
     </data>
 </openerp>

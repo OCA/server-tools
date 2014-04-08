@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.7\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-01-25 17:15:23+0000\n"
-"PO-Revision-Date: 2010-01-25 17:15:23+0000\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-14 12:55+0000\n"
+"PO-Revision-Date: 2014-03-14 12:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,14 +22,8 @@ msgid "product.brand"
 msgstr ""
 
 #. module: product_brand
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: product_brand
-#: help:product.product,product_brand_id:0
-#: help:product.template,product_brand_id:0
-msgid "Select a brand for this product"
+#: model:ir.model,name:product_brand.model_product_template
+msgid "Product Template"
 msgstr ""
 
 #. module: product_brand
@@ -44,25 +38,36 @@ msgid "Description"
 msgstr ""
 
 #. module: product_brand
+#: view:product.brand:0
 #: field:product.brand,name:0
 msgid "Brand Name"
 msgstr ""
 
 #. module: product_brand
+#: view:product.brand:0
+msgid "Product Brand"
+msgstr ""
+
+#. module: product_brand
+#: field:product.brand,logo:0
+msgid "Logo File"
+msgstr ""
+
+#. module: product_brand
 #: model:ir.actions.act_window,name:product_brand.action_product_brand
-#: field:product.product,product_brand_id:0
+#: view:product.product:0
 #: field:product.template,product_brand_id:0
 msgid "Brand"
 msgstr ""
 
 #. module: product_brand
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
+#: help:product.brand,partner_id:0
+msgid "Select a partner for this brand if it exists."
 msgstr ""
 
 #. module: product_brand
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
+#: view:product.product:0
+msgid "Group by..."
 msgstr ""
 
 #. module: product_brand
@@ -71,32 +76,7 @@ msgid "partner"
 msgstr ""
 
 #. module: product_brand
-#: model:ir.module.module,description:product_brand.module_meta_information
-msgid "This module allows your user to easily manage product brand. You can define brand, attach it a logo and a description.\n"
-"    It also allows to attach a partner to a brand.\n"
-"    One installed check the menu Product/configuration/brand\n"
-"    To do / To come :\n"
-"        - A view to seeing products by brand.\n"
-"    "
-msgstr ""
-
-#. module: product_brand
-#: field:product.brand,logo_id:0
-msgid "Logo"
-msgstr ""
-
-#. module: product_brand
-#: help:product.brand,logo_id:0
-msgid "Select picture file"
-msgstr ""
-
-#. module: product_brand
-#: model:ir.module.module,shortdesc:product_brand.module_meta_information
-msgid "Product Brand Manager"
-msgstr ""
-
-#. module: product_brand
-#: help:product.brand,partner_id:0
-msgid "Select a partner for this brand if it exist"
+#: help:product.template,product_brand_id:0
+msgid "Select a brand for this product."
 msgstr ""
 
