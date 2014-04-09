@@ -17,6 +17,7 @@ openerp.web_context_tunnel = function(instance) {
         }
         if (!v_context) {
             v_context = (this.field || {}).context || {};
+            v_context = new instance.web.CompoundContext(v_context);
         }
         return v_context;
     };
