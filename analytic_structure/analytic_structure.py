@@ -59,8 +59,9 @@ class analytic_structure(osv.Model):
         ),
     ]
 
-    def _get_dimensions_names(self, cr, uid, model, context=None):
-        """Get the names of the analysis dimensions linked to a given model."""
+    def get_dimensions_names(self, cr, uid, model, context=None):
+        """Return a dictionary that contains the ordering numbers (keys) and
+        names (values) of the analysis dimensions linked to a given model."""
 
         ans_ids = self.search(
             cr, uid,
@@ -79,7 +80,7 @@ class analytic_structure(osv.Model):
     ):
         """Set the label values for the analytic fields."""
 
-        ans_dict = self._get_dimensions_names(cr, uid, model, context=context)
+        ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
 
         regex = '{0}(\d+)_id'.format(prefix)
         match_fct = re.compile(regex).search
@@ -100,7 +101,7 @@ class analytic_structure(osv.Model):
     ):
         """Show or hide used/unused analytic fields."""
 
-        ans_dict = self._get_dimensions_names(cr, uid, model, context=context)
+        ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
 
         regex = '{0}(\d+)_id'.format(prefix)
         path = "//field[re:match(@name, '{0}')]".format(regex)
