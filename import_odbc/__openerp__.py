@@ -21,7 +21,7 @@
 
 {
     'name': 'Import data from SQL and ODBC data sources.',
-    'version': '61.3',
+    'version': '1.3',
     'category': 'Tools',
     'description': """
 Import data directly from other databases.
@@ -57,6 +57,11 @@ Improvements ideas waiting for a contributor:
  * Allow to import many2one fields (currently not supported). Done by adding a second SQL sentence to get child record list?
  * Allow "import sets" that can be executed at different time intervals using different scheduler jobs.
  * Allow to inactivate/delete OpenERP records when not present in an SQL result set.
+
+Contributors
+============
+
+* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
     """,
     'author': 'Daniel Reis',
     'website': 'http://launchpad.net/addons-tko',
