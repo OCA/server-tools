@@ -21,7 +21,7 @@
 
 {
     'name': 'External Database Sources',
-    'version': '61.3',
+    'version': '1.3',
     'category': 'Tools',
     'description': """
 This module allows you to define connections to foreign databases using ODBC,
@@ -35,6 +35,11 @@ Depending on the database, you need:
    connect to Microsoft SQL Server.
  * to install and configure Oracle Instant Client and cx_Oracle python library
    to connect to Oracle.
+
+Contributors
+============
+
+* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
     """,
     'author': 'Daniel Reis',
     'website': 'http://launchpad.net/addons-tko',
