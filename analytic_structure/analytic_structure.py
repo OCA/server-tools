@@ -114,9 +114,11 @@ class analytic_structure(osv.Model):
             name = match.get('name')
             slot = re.search(regex, name).group(1)
             is_invisible = not slot in ans_dict
-            modifiers = json.loads(match.get('modifiers', '{}'))
-            modifiers['invisible'] = modifiers['tree_invisible'] = is_invisible
-            match.set('modifiers', json.dumps(modifiers))
+            if is_invisible:
+                modifiers = json.loads(match.get('modifiers', '{}'))
+                modifiers['invisible'] = modifiers['tree_invisible'] = True
+                modifiers['required'] = False
+                match.set('modifiers', json.dumps(modifiers))
 
         view['arch'] = etree.tostring(doc)
         return view
