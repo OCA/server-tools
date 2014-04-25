@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="binary_storage_parameter" model="ir.config_parameter">
+            <field name="key">binary.location</field>
+            <field name="value">file:///filestore</field>
+        </record>
+    </data>
+</openerp>
