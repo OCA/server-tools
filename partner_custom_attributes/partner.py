@@ -41,21 +41,6 @@ class ResPartner(osv.Model):
             ),
     }
 
-    def _fix_size_bug(self, cr, uid, result, context=None):
-        """Workaround for the size of text fields. Return fixed fields.
-
-        When created a field text dinamically, its size is limited to 64 in
-        the view. The bug is fixed but not merged
-        https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa
-        To remove when the fix will be merged
-
-        """
-        for field in result['fields']:
-            if result['fields'][field]['type'] == 'text':
-                if 'size' in result['fields'][field]:
-                    del result['fields'][field]['size']
-        return result
-
     def open_attributes(self, cr, uid, ids, context=None):
         """Open the attributes of an object. Return action.
 
@@ -163,5 +148,4 @@ class ResPartner(osv.Model):
                 )[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
-            result = self._fix_size_bug(cr, uid, result, context=context)
         return result
