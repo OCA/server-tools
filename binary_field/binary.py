@@ -87,7 +87,7 @@ class BinaryBinary(orm.Model):
         base_location = self._get_location(cr, uid)
         # Hack for passing the field_key in the full path
         location = (base_location, field_key)
-        return self._file_read(cr, uid, base_location, binary.store_fname)
+        return self._file_read(cr, uid, location, binary.store_fname)
 
     def _file_read(self, cr, uid, location, fname):
         return self.pool['ir.attachment']._file_read(cr, uid, location, fname)
@@ -96,16 +96,7 @@ class BinaryBinary(orm.Model):
         return self.pool['ir.attachment']._file_write(cr, uid, location, value)
 
     def _file_delete(self, cr, uid, location, fname):
-        count = self.search(cr, 1, [('store_fname', '=', fname)], count=True)
-        if count <= 1:
-            full_path = self._full_path(cr, uid, location, fname)
-            try:
-                os.unlink(full_path)
-            except OSError:
-                _logger.error("_file_delete could not unlink %s", full_path)
-            except IOError:
-                # Harmless and needed for race conditions
-                _logger.error("_file_delete could not unlink %s", full_path)
+        return self.pool['ir.attachment']._file_delete(cr, uid, location, fname)
 
 
 class IrAttachment(orm.Model):
@@ -124,5 +115,3 @@ class IrAttachment(orm.Model):
             base_location = location
         return super(IrAttachment, self).\
             _full_path(cr, uid, base_location, path)
-
-

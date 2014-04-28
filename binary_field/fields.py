@@ -65,7 +65,7 @@ class BinaryField(fields.function):
                 cr, uid, binary_id, value, field_key, context=context)
         else:
             res_id = binary_obj.add(cr, uid, value, field_key, context=context)
-        obj.write(cr, uid, record_id, {'%s_info_id' % field_name: res_id}, context=context)
+            obj.write(cr, uid, record_id, {'%s_info_id' % field_name: res_id}, context=context)
         return True
 
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
