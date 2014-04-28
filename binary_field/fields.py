@@ -81,7 +81,21 @@ class BinaryField(fields.function):
 #                res[i] = val
         return result
 
+class ImageField(BinaryField):
+
+    def __init__(self, string, filters=None, **kwargs):
+        self.filters = filters
+        super(BinaryField, self).__init__(
+            string=string,
+            fnct=self._fnct_read,
+            fnct_inv=self._fnct_write,
+            type='image',
+            multi=False,
+            **kwargs)
+
+
 fields.BinaryField = BinaryField
+fields.ImageField = ImageField
 
 
 original__init__ = orm.BaseModel.__init__
@@ -93,6 +107,7 @@ def __init__(self, pool, cr):
         additionnal_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
+                print 'add field', '%s_info_id'%field
                 additionnal_field['%s_info_id'%field] = \
                     fields.many2one('binary.binary', 'Binary')
         self._columns.update(additionnal_field)
