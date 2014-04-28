@@ -7,7 +7,7 @@
 ##############################################################################
 {
     'name': "BaseModelMetaclassMixin",
-    'version': "0.2",
+    'version': "0.2.1",
     'author': "XCG Consulting",
     'category': "Custom Module",
     'description': """This module handles methods to modify OpenERP base
