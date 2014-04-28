@@ -21,16 +21,19 @@
 ###############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools import image_resize_image
+
 
 class BinaryField(fields.function):
 
     def __init__(self, string, filters=None, **kwargs):
+        if not kwargs.get('type'):
+            kwargs['type'] = 'binary'
         self.filters = filters
         super(BinaryField, self).__init__(
             string=string,
             fnct=self._fnct_read,
             fnct_inv=self._fnct_write,
-            type='binary',
             multi=False,
             **kwargs)
 
@@ -85,31 +88,72 @@ class ImageField(BinaryField):
 
     def __init__(self, string, filters=None, **kwargs):
         self.filters = filters
-        super(BinaryField, self).__init__(
+        super(ImageField, self).__init__(
             string=string,
-            fnct=self._fnct_read,
-            fnct_inv=self._fnct_write,
-            type='image',
-            multi=False,
             **kwargs)
+
+class ImageResizeField(ImageField):
+
+    def __init__(self, string, related_field, height, width, compute='on_write', filters=None, **kwargs):
+        self.filters = filters
+        self.height = height
+        self.width = width
+        self.compute = compute #on_read/on_write
+        self.related_field = related_field
+        super(ImageResizeField, self).__init__(
+            string=string,
+            **kwargs)
+            
+    def _get_binary(self, cr, uid, obj, field_name, record_id, context=None):
+        #Idée via le fonction store, je trigger le write
+        #et la en fonciton du mode soit simplement je vire les images
+        #soit je les vire et je les regénère
+        if context.get('bin_size'):
+            return 2
+        resize_field = obj._columns[field_name]
+        record = obj.browse(cr, uid, record_id, context=context)
+        original_image = record[resize_field.related_field]
+        size = (resize_field.height, resize_field.width)
+        return image_resize_image(original_image, size)
+ 
+
+#        binary_obj = obj.pool['binary.binary']
+#        binary_id = self._get_binary_id(
+#            cr, uid, obj, field_name, record_id, context=context)
+#        if not binary_id:
+#            return None
+#        field_key = "%s-%s" % (obj._name, field_name)
+#        return binary_obj.get_content(cr, uid, field_key, binary_id, context=context)
+#
+
+
 
 
 fields.BinaryField = BinaryField
 fields.ImageField = ImageField
+fields.ImageResizeField = ImageResizeField
 
 
 original__init__ = orm.BaseModel.__init__
 
 def __init__(self, pool, cr):
     original__init__(self, pool, cr)
-    if self.pool['binary.binary']:
-        print 'I should update something here'
+    if self.pool.get('binary.binary'):
         additionnal_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
-                print 'add field', '%s_info_id'%field
                 additionnal_field['%s_info_id'%field] = \
                     fields.many2one('binary.binary', 'Binary')
+
+            #Inject the store invalidation function for ImageResize
+            if isinstance(self._columns[field], ImageResizeField):
+                self._columns[field].store = {
+                    self._name: (
+                        lambda self, cr, uid, ids, c={}: ids,
+                        [self._columns[field].related_field],
+                        10),
+                }
+                
         self._columns.update(additionnal_field)
 
 orm.BaseModel.__init__ = __init__
