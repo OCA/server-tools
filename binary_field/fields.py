@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   Module for OpenERP 
+#   Module for OpenERP
 #   Copyright (C) 2014 Akretion (http://www.akretion.com).
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
@@ -34,7 +34,7 @@ class BinaryField(fields.function):
             'string': string,
             'fnct': self._fnct_read,
             'fnct_inv': self._fnct_write,
-            'multi': False, 
+            'multi': False,
             }
         new_kwargs.update(kwargs)
         self.filters = filters
@@ -42,7 +42,8 @@ class BinaryField(fields.function):
 
     def _get_binary_id(self, cr, uid, obj, field_name, record_id, context=None):
         cr.execute(
-            "SELECT " + field_name +"_info_id FROM " + obj._table + " WHERE id = %s",
+            "SELECT " + field_name + "_info_id FROM "
+            + obj._table + " WHERE id = %s",
             (record_id,))
         return cr.fetchone()[0]
 
@@ -53,7 +54,8 @@ class BinaryField(fields.function):
         if not binary_id:
             return None
         field_key = "%s-%s" % (obj._name, field_name)
-        return binary_obj.get_content(cr, uid, field_key, binary_id, context=context)
+        return binary_obj.get_content(
+            cr, uid, field_key, binary_id, context=context)
 
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
@@ -68,7 +70,8 @@ class BinaryField(fields.function):
                 res_id = binary_obj.update(
                     cr, uid, binary_id, value, field_key, context=context)
             else:
-                res_id = binary_obj.add(cr, uid, value, field_key, context=context)
+                res_id = binary_obj.add(
+                    cr, uid, value, field_key, context=context)
                 obj.write(cr, uid, record_id, {
                     '%s_info_id' % field_name: res_id,
                     }, context=context)
@@ -77,8 +80,8 @@ class BinaryField(fields.function):
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
         for record_id in ids:
-            result[record_id] = self._get_binary(cr, uid, obj, field_name,
-                                          record_id, context=context)
+            result[record_id] = self._get_binary(
+                cr, uid, obj, field_name, record_id, context=context)
 
 #TODO do not forget to add this for compatibility with binary field
 #            if val and context.get('bin_size_%s' % name, context.get('bin_size')):
@@ -86,6 +89,7 @@ class BinaryField(fields.function):
 #            else:
 #                res[i] = val
         return result
+
 
 class ImageField(BinaryField):
 
@@ -101,24 +105,24 @@ class ImageField(BinaryField):
             obj, cr, uid, ids, field_name, value, args, context=context)
         for name, field in obj._columns.items():
             if isinstance(field, ImageResizeField) \
-                and field.related_field == field_name:
-                    field._refresh_cache(
-                        obj, cr, uid, ids, name, context=context)
+                    and field.related_field == field_name:
+                field._refresh_cache(
+                    obj, cr, uid, ids, name, context=context)
         return True
 
 
 class ImageResizeField(ImageField):
 
-    def __init__(self, string, related_field, height, width, compute='on_write', filters=None, **kwargs):
+    def __init__(self, string, related_field, height, width,
+                 filters=None, **kwargs):
         self.filters = filters
         self.height = height
         self.width = width
-        self.compute = compute #on_read/on_write
         self.related_field = related_field
         super(ImageResizeField, self).__init__(
             string=string,
             **kwargs)
-            
+
     def _get_binary(self, cr, uid, obj, field_name, record_id, context=None):
         #Idée via le fonction store, je trigger le write
         #et la en fonciton du mode soit simplement je vire les images
@@ -126,14 +130,14 @@ class ImageResizeField(ImageField):
         if context.get('bin_size'):
             return 2
         return super(ImageResizeField, self)._get_binary(
-                cr, uid, obj, field_name, record_id, context=context)
+            cr, uid, obj, field_name, record_id, context=context)
 
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record_id in ids:
             _logger.debug('Refresh Image Cache from the field %s of object %s '
-                         'id : %s' % (field_name, obj._name, record_id))
+                          'id : %s' % (field_name, obj._name, record_id))
             field = obj._columns[field_name]
             record = obj.browse(cr, uid, record_id, context=context)
             original_image = record[field.related_field]
@@ -145,7 +149,7 @@ class ImageResizeField(ImageField):
             ctx = context.copy()
             ctx['refresh_image_cache'] = True
             self._fnct_write(obj, cr, uid, [record_id], field_name,
-                    resized_image, None, context=ctx)
+                             resized_image, None, context=ctx)
 
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
@@ -154,7 +158,7 @@ class ImageResizeField(ImageField):
         else:
             field = obj._columns[field_name].related_field
         return super(ImageResizeField, self)._fnct_write(
-                obj, cr, uid, ids, field, value, args, context=context)
+            obj, cr, uid, ids, field, value, args, context=context)
 
 
 fields.BinaryField = BinaryField
@@ -164,13 +168,14 @@ fields.ImageResizeField = ImageResizeField
 
 original__init__ = orm.BaseModel.__init__
 
+
 def __init__(self, pool, cr):
     original__init__(self, pool, cr)
     if self.pool.get('binary.binary'):
         additionnal_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
-                additionnal_field['%s_info_id'%field] = \
+                additionnal_field['%s_info_id' % field] = \
                     fields.many2one('binary.binary', 'Binary')
 
             #Inject the store invalidation function for ImageResize
@@ -181,7 +186,7 @@ def __init__(self, pool, cr):
                         [self._columns[field].related_field],
                         10),
                 }
-                
         self._columns.update(additionnal_field)
+
 
 orm.BaseModel.__init__ = __init__

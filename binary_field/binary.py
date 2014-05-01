@@ -25,7 +25,6 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
-from openerp.addons.base.ir import ir_attachment
 import os
 import logging
 
@@ -81,7 +80,7 @@ class BinaryBinary(orm.Model):
             'file_size': file_size,
             }, context=context)
         return True
-    
+
     def get_content(self, cr, uid, field_key, binary_id, context=None):
         binary = self.browse(cr, uid, binary_id, context=context)
         base_location = self._get_location(cr, uid)
@@ -106,7 +105,7 @@ class IrAttachment(orm.Model):
         #TODO add the posibility to customise the field_key
         #maybe we can add a the field key in the ir.config.parameter
         #and then retrieve an new path base on the config?
- 
+
         # Hack for passing the field_key in the full path
         if isinstance(location, tuple):
             base_location, field_key = location
