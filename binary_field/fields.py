@@ -46,6 +46,9 @@ class BinaryField(fields.function):
             + obj._table + " WHERE id = %s",
             (record_id,))
         return cr.fetchone()[0]
+    
+    def _build_field_key(self, obj, field_name):
+        return "%s-%s" % (obj._name, field_name)
 
     def _get_binary(self, cr, uid, obj, field_name, record_id, context=None):
         binary_obj = obj.pool['binary.binary']
@@ -53,7 +56,7 @@ class BinaryField(fields.function):
             cr, uid, obj, field_name, record_id, context=context)
         if not binary_id:
             return None
-        field_key = "%s-%s" % (obj._name, field_name)
+        field_key = self._build_field_key(obj, field_name)
         return binary_obj.get_content(
             cr, uid, field_key, binary_id, context=context)
 
@@ -63,7 +66,7 @@ class BinaryField(fields.function):
             ids = [ids]
         binary_obj = obj.pool['binary.binary']
         for record_id in ids:
-            field_key = "%s-%s" % (obj._name, field_name)
+            field_key = self._build_field_key(obj, field_name)
             binary_id = self._get_binary_id(
                 cr, uid, obj, field_name, record_id, context=context)
             if binary_id:
