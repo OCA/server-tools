@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_res_company_form" model="ir.ui.view">
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="binary_test"/>
+                    <field name="image_test" widget='image'/>
+                    <field name="image_test_resize" widget='image'/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
