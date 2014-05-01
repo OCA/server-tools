@@ -23,7 +23,9 @@
 from openerp.osv import fields, orm
 from openerp.tools import image_resize_image
 from openerp.tools.translate import _
+from openerp import tools
 import os
+import sys
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -49,7 +51,7 @@ class Storage(object):
     def add(self, value):
         if not value:
             return {}
-        file_size = len(value.decode('base64'))
+        file_size = sys.getsizeof(value.decode('base64'))
         binary_uid = self.pool['ir.attachment'].\
             _file_write(self.cr, self.uid, self.location, value)
         _logger.debug('Add binary %s/%s' % (self.field_key, binary_uid))
@@ -85,6 +87,11 @@ class BinaryField(fields.function):
         self.filters = filters
         super(BinaryField, self).__init__(**new_kwargs)
 
+    #No postprocess are needed
+    #we already take care of bin_size option in the context
+    def postprocess(self, cr, uid, obj, field, value=None, context=None):
+        return value
+
     def _prepare_binary_meta(self, cr, uid, field_name, res, context=None):
         return {
             '%s_uid' % field_name: res.get('binary_uid'),
@@ -112,16 +119,14 @@ class BinaryField(fields.function):
         for record in obj.browse(cr, uid, ids, context=context):
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
-                result[record.id] = storage.get(binary_uid)
+                #Compatibility with existing binary field
+                if context.get('bin_size_%s' % field_name, context.get('bin_size')):
+                    size = record['%s_file_size' % field_name]
+                    result[record.id] = tools.human_size(long(size))
+                else:
+                    result[record.id] = storage.get(binary_uid)
             else:
                 result[record.id] = None
-
-
-#TODO do not forget to add this for compatibility with binary field
-#            if val and context.get('bin_size_%s' % name, context.get('bin_size')):
-#                res[i] = tools.human_size(long(val))
-#            else:
-#                res[i] = val
         return result
 
 
@@ -157,20 +162,11 @@ class ImageResizeField(ImageField):
             string=string,
             **kwargs)
 
-    def _get_binary(self, cr, uid, obj, field_name, record_id, context=None):
-        #Idée via le fonction store, je trigger le write
-        #et la en fonciton du mode soit simplement je vire les images
-        #soit je les vire et je les regénère
-        if context.get('bin_size'):
-            return 2
-        return super(ImageResizeField, self)._get_binary(
-            cr, uid, obj, field_name, record_id, context=context)
-
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record_id in ids:
-            _logger.debug('Refresh Image Cache from the field %s of object %s '
+            _logger.debug('Refreshing Image Cache from the field %s of object %s '
                           'id : %s' % (field_name, obj._name, record_id))
             field = obj._columns[field_name]
             record = obj.browse(cr, uid, record_id, context=context)
@@ -234,11 +230,11 @@ class IrAttachment(orm.Model):
     _inherit = 'ir.attachment'
 
     def _full_path(self, cr, uid, location, path):
-        #TODO add the posibility to customise the field_key
-        #maybe we can add a the field key in the ir.config.parameter
-        #and then retrieve an new path base on the config?
-
         # Hack for passing the field_key in the full path
+        # For now I prefer to use this hack and to reuse
+        # the ir.attachment code
+        # An alternative way will to copy/paste and 
+        # adapt the ir.attachment code
         if isinstance(location, tuple):
             base_location, field_key = location
             path = os.path.join(field_key, path)
