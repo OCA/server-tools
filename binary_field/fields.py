@@ -33,11 +33,11 @@ _logger = logging.getLogger(__name__)
 
 class Storage(object):
 
-    def __init__(self, cr, uid, obj, field_name):
+    def __init__(self, cr, uid, record, field_name):
         self.cr = cr
         self.uid = uid
-        self.pool = obj.pool
-        self.field_key = ("%s-%s" % (obj._name, field_name)).replace('.', '')
+        self.pool = record._model.pool
+        self.field_key = ("%s-%s" % (record._name, field_name)).replace('.', '')
         base_location = self.pool.get('ir.config_parameter').\
             get_param(cr, uid, 'binary.location')
         if not base_location:
@@ -75,7 +75,7 @@ class Storage(object):
 
 class BinaryField(fields.function):
 
-    def __init__(self, string, filters=None, **kwargs):
+    def __init__(self, string, filters=None, get_storage=Storage, **kwargs):
         new_kwargs = {
             'type': 'binary',
             'string': string,
@@ -85,6 +85,7 @@ class BinaryField(fields.function):
             }
         new_kwargs.update(kwargs)
         self.filters = filters
+        self.get_storage = get_storage
         super(BinaryField, self).__init__(**new_kwargs)
 
     #No postprocess are needed
@@ -100,10 +101,10 @@ class BinaryField(fields.function):
 
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
-        storage = Storage(cr, uid, obj, field_name)
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record in obj.browse(cr, uid, ids, context=context):
+            storage = self.get_storage(cr, uid, record, field_name)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 res = storage.update(binary_uid, value)
@@ -115,8 +116,8 @@ class BinaryField(fields.function):
 
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
-        storage = Storage(cr, uid, obj, field_name)
         for record in obj.browse(cr, uid, ids, context=context):
+            storage = self.get_storage(cr, uid, record, field_name)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 #Compatibility with existing binary field
