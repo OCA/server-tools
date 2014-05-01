@@ -29,18 +29,13 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class BinaryBinary(orm.Model):
-    _name = 'binary.binary'
-    _description = 'binary.binary'
+class Storage(object):
 
-    _columns = {
-        #'name': fields.char('Name',size=256, required=True),
-        'store_fname': fields.char('Stored Filename', size=256),
-        #'extension': fields.char('Extension', size=4),
-        'file_size': fields.integer('File Size'),
-    }
-
-    def _get_location(self, cr, uid):
+    def __init__(self, cr, uid, obj, field_name):
+        self.cr = cr
+        self.uid = uid
+        self.pool = obj.pool
+        self.field_key = ("%s-%s" % (obj._name, field_name)).replace('.', '')
         base_location = self.pool.get('ir.config_parameter').\
             get_param(cr, uid, 'binary.location')
         if not base_location:
@@ -48,70 +43,32 @@ class BinaryBinary(orm.Model):
                 _('Configuration Error'),
                 _('The "binary.location" is empty, please fill it in'
                   'Configuration > Parameters > System Parameters'))
-        return base_location
+        self.base_location = base_location
+        self.location = (self.base_location, self.field_key)
 
-    def add(self, cr, uid, value, field_key, context=None):
+    def add(self, value):
         if not value:
-            return None
-        base_location = self._get_location(cr, uid)
-        # Hack for passing the field_key in the full path
-        location = (base_location, field_key)
+            return {}
         file_size = len(value.decode('base64'))
-        fname = self._file_write(cr, uid, location, value)
-        return self.create(cr, uid, {
-            'store_fname': fname,
+        binary_uid = self.pool['ir.attachment'].\
+            _file_write(self.cr, self.uid, self.location, value)
+        _logger.debug('Add binary %s/%s' % (self.field_key, binary_uid))
+        return {
+            'binary_uid': binary_uid,
             'file_size': file_size,
-            }, context=context)
+            }
 
-    def update(self, cr, uid, binary_id, value, field_key, context=None):
-        binary = self.browse(cr, uid, binary_id, context=context)
-        base_location = self._get_location(cr, uid)
-        # Hack for passing the field_key in the full path
-        location = (base_location, field_key)
-        self._file_delete(cr, uid, location, binary.store_fname)
+    def update(self, binary_uid, value):
+        _logger.debug('Delete binary %s/%s' % (self.field_key, binary_uid))
+        self.pool['ir.attachment'].\
+            _file_delete(self.cr, self.uid, self.location, binary_uid)
         if not value:
-            return None
-        fname = self._file_write(cr, uid, location, value)
-        file_size = len(value.decode('base64'))
-        self.write(cr, uid, binary_id, {
-            'store_fname': fname,
-            'file_size': file_size,
-            }, context=context)
-        return True
+            return {}
+        return self.add(value)
 
-    def get_content(self, cr, uid, field_key, binary_id, context=None):
-        binary = self.browse(cr, uid, binary_id, context=context)
-        base_location = self._get_location(cr, uid)
-        # Hack for passing the field_key in the full path
-        location = (base_location, field_key)
-        return self._file_read(cr, uid, location, binary.store_fname)
-
-    def _file_read(self, cr, uid, location, fname):
-        return self.pool['ir.attachment']._file_read(cr, uid, location, fname)
-
-    def _file_write(self, cr, uid, location, value):
-        return self.pool['ir.attachment']._file_write(cr, uid, location, value)
-
-    def _file_delete(self, cr, uid, location, fname):
-        return self.pool['ir.attachment']._file_delete(cr, uid, location, fname)
-
-
-class IrAttachment(orm.Model):
-    _inherit = 'ir.attachment'
-
-    def _full_path(self, cr, uid, location, path):
-        #TODO add the posibility to customise the field_key
-        #maybe we can add a the field key in the ir.config.parameter
-        #and then retrieve an new path base on the config?
-
-        # Hack for passing the field_key in the full path
-        if isinstance(location, tuple):
-            base_location, field_key = location
-            path = os.path.join(field_key, path)
-        else:
-            base_location = location
-        return super(IrAttachment, self).\
-            _full_path(cr, uid, base_location, path)
+    def get(self, binary_uid):
+        return self.pool['ir.attachment'].\
+            _file_read(self.cr, self.uid, self.location, binary_uid)
 
 
 class BinaryField(fields.function):
@@ -128,51 +85,37 @@ class BinaryField(fields.function):
         self.filters = filters
         super(BinaryField, self).__init__(**new_kwargs)
 
-    def _get_binary_id(self, cr, uid, obj, field_name, record_id, context=None):
-        cr.execute(
-            "SELECT " + field_name + "_info_id FROM "
-            + obj._table + " WHERE id = %s",
-            (record_id,))
-        return cr.fetchone()[0]
-    
-    def _build_field_key(self, obj, field_name):
-        return "%s-%s" % (obj._name, field_name)
-
-    def _get_binary(self, cr, uid, obj, field_name, record_id, context=None):
-        binary_obj = obj.pool['binary.binary']
-        binary_id = self._get_binary_id(
-            cr, uid, obj, field_name, record_id, context=context)
-        if not binary_id:
-            return None
-        field_key = self._build_field_key(obj, field_name)
-        return binary_obj.get_content(
-            cr, uid, field_key, binary_id, context=context)
+    def _prepare_binary_meta(self, cr, uid, field_name, res, context=None):
+        return {
+            '%s_uid' % field_name: res.get('binary_uid'),
+            '%s_file_size' % field_name: res.get('file_size'),
+            }
 
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
+        storage = Storage(cr, uid, obj, field_name)
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
-        binary_obj = obj.pool['binary.binary']
-        for record_id in ids:
-            field_key = self._build_field_key(obj, field_name)
-            binary_id = self._get_binary_id(
-                cr, uid, obj, field_name, record_id, context=context)
-            if binary_id:
-                res_id = binary_obj.update(
-                    cr, uid, binary_id, value, field_key, context=context)
+        for record in obj.browse(cr, uid, ids, context=context):
+            binary_uid = record['%s_uid' % field_name]
+            if binary_uid:
+                res = storage.update(binary_uid, value)
             else:
-                res_id = binary_obj.add(
-                    cr, uid, value, field_key, context=context)
-                obj.write(cr, uid, record_id, {
-                    '%s_info_id' % field_name: res_id,
-                    }, context=context)
+                res = storage.add(value)
+            vals = self._prepare_binary_meta(cr, uid, field_name, res, context=context)
+            record.write(vals)
         return True
 
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
-        for record_id in ids:
-            result[record_id] = self._get_binary(
-                cr, uid, obj, field_name, record_id, context=context)
+        storage = Storage(cr, uid, obj, field_name)
+        for record in obj.browse(cr, uid, ids, context=context):
+            binary_uid = record['%s_uid' % field_name]
+            if binary_uid:
+                result[record.id] = storage.get(binary_uid)
+            else:
+                result[record.id] = None
+
 
 #TODO do not forget to add this for compatibility with binary field
 #            if val and context.get('bin_size_%s' % name, context.get('bin_size')):
@@ -262,12 +205,16 @@ original__init__ = orm.BaseModel.__init__
 
 def __init__(self, pool, cr):
     original__init__(self, pool, cr)
-    if self.pool.get('binary.binary'):
+    if self.pool.get('binary.field.installed'):
         additionnal_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
-                additionnal_field['%s_uid' % field] = \
-                    fields.char('%s UID' % self._columns[field].string)
+                additionnal_field.update({
+                    '%s_uid' % field:
+                        fields.char('%s UID' % self._columns[field].string),
+                    '%s_file_size' % field:
+                        fields.char('%s File Size' % self._columns[field].string),
+                    })
 
             #Inject the store invalidation function for ImageResize
             if isinstance(self._columns[field], ImageResizeField):
@@ -281,3 +228,25 @@ def __init__(self, pool, cr):
 
 
 orm.BaseModel.__init__ = __init__
+
+
+class IrAttachment(orm.Model):
+    _inherit = 'ir.attachment'
+
+    def _full_path(self, cr, uid, location, path):
+        #TODO add the posibility to customise the field_key
+        #maybe we can add a the field key in the ir.config.parameter
+        #and then retrieve an new path base on the config?
+
+        # Hack for passing the field_key in the full path
+        if isinstance(location, tuple):
+            base_location, field_key = location
+            path = os.path.join(field_key, path)
+        else:
+            base_location = location
+        return super(IrAttachment, self).\
+            _full_path(cr, uid, base_location, path)
+
+
+class BinaryFieldInstalled(orm.AbstractModel):
+    _name = 'binary.field.installed'
