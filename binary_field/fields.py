@@ -22,8 +22,96 @@
 
 from openerp.osv import fields, orm
 from openerp.tools import image_resize_image
+from openerp.tools.translate import _
+import os
 import logging
+
 _logger = logging.getLogger(__name__)
+
+
+class BinaryBinary(orm.Model):
+    _name = 'binary.binary'
+    _description = 'binary.binary'
+
+    _columns = {
+        #'name': fields.char('Name',size=256, required=True),
+        'store_fname': fields.char('Stored Filename', size=256),
+        #'extension': fields.char('Extension', size=4),
+        'file_size': fields.integer('File Size'),
+    }
+
+    def _get_location(self, cr, uid):
+        base_location = self.pool.get('ir.config_parameter').\
+            get_param(cr, uid, 'binary.location')
+        if not base_location:
+            raise orm.except_orm(
+                _('Configuration Error'),
+                _('The "binary.location" is empty, please fill it in'
+                  'Configuration > Parameters > System Parameters'))
+        return base_location
+
+    def add(self, cr, uid, value, field_key, context=None):
+        if not value:
+            return None
+        base_location = self._get_location(cr, uid)
+        # Hack for passing the field_key in the full path
+        location = (base_location, field_key)
+        file_size = len(value.decode('base64'))
+        fname = self._file_write(cr, uid, location, value)
+        return self.create(cr, uid, {
+            'store_fname': fname,
+            'file_size': file_size,
+            }, context=context)
+
+    def update(self, cr, uid, binary_id, value, field_key, context=None):
+        binary = self.browse(cr, uid, binary_id, context=context)
+        base_location = self._get_location(cr, uid)
+        # Hack for passing the field_key in the full path
+        location = (base_location, field_key)
+        self._file_delete(cr, uid, location, binary.store_fname)
+        if not value:
+            return None
+        fname = self._file_write(cr, uid, location, value)
+        file_size = len(value.decode('base64'))
+        self.write(cr, uid, binary_id, {
+            'store_fname': fname,
+            'file_size': file_size,
+            }, context=context)
+        return True
+
+    def get_content(self, cr, uid, field_key, binary_id, context=None):
+        binary = self.browse(cr, uid, binary_id, context=context)
+        base_location = self._get_location(cr, uid)
+        # Hack for passing the field_key in the full path
+        location = (base_location, field_key)
+        return self._file_read(cr, uid, location, binary.store_fname)
+
+    def _file_read(self, cr, uid, location, fname):
+        return self.pool['ir.attachment']._file_read(cr, uid, location, fname)
+
+    def _file_write(self, cr, uid, location, value):
+        return self.pool['ir.attachment']._file_write(cr, uid, location, value)
+
+    def _file_delete(self, cr, uid, location, fname):
+        return self.pool['ir.attachment']._file_delete(cr, uid, location, fname)
+
+
+class IrAttachment(orm.Model):
+    _inherit = 'ir.attachment'
+
+    def _full_path(self, cr, uid, location, path):
+        #TODO add the posibility to customise the field_key
+        #maybe we can add a the field key in the ir.config.parameter
+        #and then retrieve an new path base on the config?
+
+        # Hack for passing the field_key in the full path
+        if isinstance(location, tuple):
+            base_location, field_key = location
+            path = os.path.join(field_key, path)
+        else:
+            base_location = location
+        return super(IrAttachment, self).\
+            _full_path(cr, uid, base_location, path)
 
 
 class BinaryField(fields.function):
@@ -178,8 +266,8 @@ def __init__(self, pool, cr):
         additionnal_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
-                additionnal_field['%s_info_id' % field] = \
-                    fields.many2one('binary.binary', 'Binary')
+                additionnal_field['%s_uid' % field] = \
+                    fields.char('%s UID' % self._columns[field].string)
 
             #Inject the store invalidation function for ImageResize
             if isinstance(self._columns[field], ImageResizeField):
