@@ -52,10 +52,7 @@ class ResPartner(osv.Model):
 
         """
 
-        if context is None:
-            context = {}
-
-        model_data_pool = self.pool.get('ir.model.data')
+        model_data_pool = self.pool['ir.model.data']
 
         for partner in self.browse(cr, uid, ids, context=context):
             view_id = model_data_pool.get_object_reference(
@@ -105,7 +102,7 @@ class ResPartner(osv.Model):
                 cr, None, 'view', context.get('lang'), source
             ) or source
 
-        attr_pool = self.pool.get('attribute.attribute')
+        attr_pool = self.pool['attribute.attribute']
 
         result = super(ResPartner, self).fields_view_get(
             cr, uid, view_id, view_type, context, toolbar=toolbar,

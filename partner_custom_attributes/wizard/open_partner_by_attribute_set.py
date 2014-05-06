@@ -40,11 +40,8 @@ class open_partner_by_attribute_set(TransientModel):
         Returns a custom action built modifying the original one.
         """
 
-        mod_obj = self.pool.get('ir.model.data')
-        act_obj = self.pool.get('ir.actions.act_window')
-
-        if context is None:
-            context = {}
+        mod_obj = self.pool['ir.model.data']
+        act_obj = self.pool['ir.actions.act_window']
 
         # we expect one wizard instance at a time
         for wiz in self.browse(cr, uid, ids, context=context):
