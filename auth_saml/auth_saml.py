@@ -54,12 +54,14 @@ class auth_saml_provider(osv.osv):
         ),
         'enabled': fields.boolean('Allowed'),
         'css_class': fields.char('CSS class'),
-        'body': fields.char('Body'),
+        'body': fields.char('Body',
+            required=True,
+        ),
         'sequence': fields.integer(),
     }
 
     _defaults = {
         'enabled': False,
         'css_class': 'zocial saml',
-        'body': 'Log in with Authentic',
+        'body': 'Authentic',
     }

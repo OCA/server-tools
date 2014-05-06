@@ -11,6 +11,7 @@
                         <group>
                             <field name="name" />
                             <field name="enabled" />
+                            <field name="body" />
                         </group>
                         <group>
                             <field name="idp_metadata" />
