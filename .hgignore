@@ -10,3 +10,6 @@ nose*
 .rope*
 .coverage
 cover/*
+.settings
+.pydevproject
+.project
