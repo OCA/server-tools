@@ -24,7 +24,7 @@
 """Partner customization: custom attributes."""
 
 from openerp.osv import fields, osv
-from tools.translate import translate
+from openerp.tools.translate import translate
 from lxml import etree
 
 
@@ -45,7 +45,7 @@ class ResPartner(osv.Model):
         """Open the attributes of an object. Return action.
 
         This method is called when the user presses the Open Attributes button
-        in the form view of the object. It opens a dinamically-built form view.
+        in the form view of the object. It opens a dynamically-built form view.
 
         :param ids: this is normally a singleton. If a longer list is passed,
                     we consider only the first item.
@@ -85,9 +85,9 @@ class ResPartner(osv.Model):
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
-        """Dinamically add attributes to the view. Return field_view_get.
+        """Dynamically add attributes to the view. Return field_view_get.
 
-        Modifies dinamically the view to show the attributes. If the users
+        Modifies dynamically the view to show the attributes. If the users
         presses the Open Attributes button, the attributes are shown in a
         new form field. Otherwise, if the attribute set is known beforehand,
         attributes are added to a new tab in the main form view.
