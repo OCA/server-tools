@@ -54,16 +54,6 @@ class product_product(Model):
         relation='attribute.group', string='Groups')
     }
 
-    def _fix_size_bug(self, cr, uid, result, context=None):
-    #When created a field text dynamicaly, its size is limited to 64 in the view.
-    #The bug is fixed but not merged
-    #https://code.launchpad.net/~openerp-dev/openerp-web/6.1-opw-579462-cpa/+merge/128003
-    #TO remove when the fix will be merged
-        for field in result['fields']:
-            if result['fields'][field]['type'] == 'text':
-                if 'size' in result['fields'][field]: del result['fields'][field]['size']
-        return result
-
     def open_attributes(self, cr, uid, ids, context=None):
         ir_model_data_obj = self.pool.get('ir.model.data')
         ir_model_data_id = ir_model_data_obj.search(cr, uid, [['model', '=', 'ir.ui.view'], ['name', '=', 'product_attributes_form_view']], context=context)
@@ -122,5 +112,4 @@ class product_product(Model):
                 )[0]
                 info_page.addnext(main_page)
             result['arch'] = etree.tostring(eview, pretty_print=True)
-            result = self._fix_size_bug(cr, uid, result, context=context)
         return result
