@@ -80,7 +80,7 @@ class TestAuthAdminPasskey(TransactionCase):
 
     def test_05_passkey_login_demo_succeed(self):
         """[New Feature]
-        Test the fail of login with 'demo' / 'admin'"""
+        Test the succeed of login with 'demo' / 'admin'"""
         res = self.ru_obj.authenticate(self.db, 'demo', 'admin', {})
         self.assertEqual(
             res, self.demo_user_id,
