@@ -24,21 +24,49 @@ from openerp.osv import fields, osv
 class analytic_code(osv.Model):
     _name = "analytic.code"
 
+    _parent_name = 'code_parent_id'
+    _parent_store = True
+    _parent_order = 'name'
+    _order = 'parent_left'
+
     _columns = dict(
         name=fields.char("Name", size=128, translate=True, required=True),
         nd_id=fields.many2one(
             "analytic.dimension",
             string="Dimension",
-            ondelete="cascade"
+            ondelete="cascade",
         ),
         active=fields.boolean('Active'),
         nd_name=fields.related('nd_id', 'name', type="char",
                                string="Dimension Name", store=False),
         description=fields.char('Description', size=512),
+        code_parent_id=fields.many2one(
+            'analytic.code',
+            u"Parent Code",
+            select=True,
+            ondelete='restrict',
+        ),
+        child_ids=fields.one2many(
+            'analytic.code',
+            'code_parent_id',
+            u"Child Codes",
+        ),
+        parent_left=fields.integer(u"Left parent", select=True),
+        parent_right=fields.integer(u"Right parent", select=True),
     )
+
     _defaults = {
         'active': 1,
     }
+
+    _constraints = [
+        # very useful base class constraint
+        (
+            osv.Model._check_recursion,
+            u"Error ! You can not create recursive analytic codes.",
+            ['parent_id']
+        ),
+    ]
 
     def name_get(self, cr, uid, ids, context=None):
         if not ids:
@@ -58,7 +86,7 @@ class analytic_code(osv.Model):
             name = record['name']
             if record['description']:
                 name = name + ' ' + record['description']
-                res.append((record['id'], name))
+            res.append((record['id'], name))
 
         return res
 

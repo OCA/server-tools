@@ -33,9 +33,5 @@ class analytic_dimension(osv.Model):
     )
 
     _sql_constraints = [
-        ('unique_name', 'unique(name)', 'name must be unique'),
+        ('unique_name', 'unique(name)', u"Name must be unique"),
     ]
-
-
-
-

@@ -38,6 +38,7 @@
                     <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
                     <field name="nd_id"/>
                 </tree>
             </field>
@@ -69,11 +70,15 @@
                                 <field name="active"/>
                                 <field name="name"/>
                                 <field name="description"/>
+                                <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                                <field name="nd_id" readonly="1" invisible="1" />
                             </tree>
                             <form string="Analysis Codes" version="7.0">
                                 <field name="active"/>
                                 <field name="name"/>
                                 <field name="description"/>
+                                <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                                <field name="nd_id" readonly="1" invisible="1" />
                             </form>
                         </field>
                     </group>
