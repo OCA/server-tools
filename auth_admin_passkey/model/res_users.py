@@ -96,7 +96,7 @@ class res_users(Model):
  is admin password. In the second case, send mail to user and admin."""
         user_id = super(res_users, self).authenticate(
             db, login, password, user_agent_env)
-        if user_id != SUPERUSER_ID:
+        if user_id and (user_id != SUPERUSER_ID):
             same_password = False
             cr = pooler.get_db(db).cursor()
             try:
