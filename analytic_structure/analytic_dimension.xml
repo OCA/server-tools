@@ -20,10 +20,11 @@
             <field name="name">analytic.dimension.form</field>
             <field name="model">analytic.code</field>
             <field name="arch" type="xml">
-                <form string="Analytic Dimension">
+                <form string="Analytic Code">
                     <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
                     <field name="nd_id" required="1"/>
                 </form>
             </field>

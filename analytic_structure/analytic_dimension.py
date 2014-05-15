@@ -30,6 +30,41 @@ class analytic_dimension(osv.Model):
         validated=fields.boolean("Validated"),
         nc_ids=fields.one2many("analytic.code", "nd_id", "Codes"),
         ns_id=fields.one2many("analytic.structure", "nd_id", "Structures"),
+        ns1_id=fields.one2many(
+            'analytic.structure',
+            'nd_id',
+            u"Structures 1",
+            domain=[('ordering', '=', 1)],
+            auto_join=True
+        ),
+        ns2_id=fields.one2many(
+            'analytic.structure',
+            'nd_id',
+            u"Structures 2",
+            domain=[('ordering', '=', 2)],
+            auto_join=True
+        ),
+        ns3_id=fields.one2many(
+            'analytic.structure',
+            'nd_id',
+            u"Structures 3",
+            domain=[('ordering', '=', 3)],
+            auto_join=True
+        ),
+        ns4_id=fields.one2many(
+            'analytic.structure',
+            'nd_id',
+            u"Structures 4",
+            domain=[('ordering', '=', 4)],
+            auto_join=True
+        ),
+        ns5_id=fields.one2many(
+            'analytic.structure',
+            'nd_id',
+            u"Structures 5",
+            domain=[('ordering', '=', 5)],
+            auto_join=True
+        ),
     )
 
     _sql_constraints = [
