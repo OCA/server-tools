@@ -31,7 +31,10 @@ to an object model.
 ==================================================================================
     """,
     'website': 'http://www.openerp-experts.com',
-    "depends" : ['base'],
+    "depends" : [
+        'base',
+        'oemetasl',
+    ],
     "data": [
         'security/security.xml',
         'security/ir.model.access.csv',

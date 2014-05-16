@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
+import MetaAnalytic
 import analytic_code
 import analytic_dimension
 import analytic_structure

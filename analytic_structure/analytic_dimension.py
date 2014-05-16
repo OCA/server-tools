@@ -20,9 +20,30 @@
 
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
+from openerp.addons.oemetasl import OEMetaSL
+from openerp.tools import config
+
+
+class MetaDimension(OEMetaSL):
+
+    def __new__(cls, name, bases, nmspc):
+
+        columns = nmspc['_columns']
+        size = int(config.get_misc('analytic', 'analytic_size', 5))
+        for n in xrange(1, size + 1):
+            columns['ns{}_id'.format(n)] = fields.one2many(
+                'analytic.structure',
+                'nd_id',
+                u"Structures {}".format(n),
+                domain=[('ordering', '=', n)],
+                auto_join=True
+            )
+        return super(MetaDimension, cls).__new__(cls, name, bases, nmspc)
 
 
 class analytic_dimension(osv.Model):
+
+    __metaclass__ = MetaDimension
     _name = "analytic.dimension"
 
     _columns = dict(
@@ -30,41 +51,6 @@ class analytic_dimension(osv.Model):
         validated=fields.boolean("Validated"),
         nc_ids=fields.one2many("analytic.code", "nd_id", "Codes"),
         ns_id=fields.one2many("analytic.structure", "nd_id", "Structures"),
-        ns1_id=fields.one2many(
-            'analytic.structure',
-            'nd_id',
-            u"Structures 1",
-            domain=[('ordering', '=', 1)],
-            auto_join=True
-        ),
-        ns2_id=fields.one2many(
-            'analytic.structure',
-            'nd_id',
-            u"Structures 2",
-            domain=[('ordering', '=', 2)],
-            auto_join=True
-        ),
-        ns3_id=fields.one2many(
-            'analytic.structure',
-            'nd_id',
-            u"Structures 3",
-            domain=[('ordering', '=', 3)],
-            auto_join=True
-        ),
-        ns4_id=fields.one2many(
-            'analytic.structure',
-            'nd_id',
-            u"Structures 4",
-            domain=[('ordering', '=', 4)],
-            auto_join=True
-        ),
-        ns5_id=fields.one2many(
-            'analytic.structure',
-            'nd_id',
-            u"Structures 5",
-            domain=[('ordering', '=', 5)],
-            auto_join=True
-        ),
     )
 
     _sql_constraints = [

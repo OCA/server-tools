@@ -19,23 +19,26 @@
 ##############################################################################
 
 from openerp.osv import fields, osv
+from openerp.tools import config
+from openerp.tools.translate import _
 import re
 from lxml import etree
 import json
 
 
-ORDER_SELECTION = (
-    ('1', 'Analysis 1'),
-    ('2', 'Analysis 2'),
-    ('3', 'Analysis 3'),
-    ('4', 'Analysis 4'),
-    ('5', 'Analysis 5')
-)
-
-
 class analytic_structure(osv.Model):
 
     _name = "analytic.structure"
+
+    def order_selection(self, cr, uid, context=None):
+        order_selection = getattr(self, '_order_selection', None)
+        if order_selection is None:
+            size = int(config.get_misc('analytic', 'analytic_size', 5))
+            order_selection = []
+            for n in xrange(1, size + 1):
+                order_selection.append((str(n), _(u"Analysis {}".format(n))))
+            setattr(self, '_order_selection', order_selection)
+        return order_selection
 
     _columns = dict(
         model_name=fields.char("Object", size=128, required=True, select="1"),
@@ -47,10 +50,11 @@ class analytic_structure(osv.Model):
             select="1"
         ),
         ordering=fields.selection(
-            ORDER_SELECTION,
+            order_selection,
             'Analysis slot',
             required=True),
     )
+
     _sql_constraints = [
         (
             'unique_ordering',
