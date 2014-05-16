@@ -50,7 +50,7 @@ class open_partner_by_attribute_set(TransientModel):
             action = act_obj.read(cr, uid, [action_id], context=context)[0]
 
             ctx = (
-                "{'open_lot_by_attribute_set': True, "
+                "{'open_partner_by_attribute_set': True, "
                 "'attribute_group_ids': %s}"
                 % [
                     group.id
