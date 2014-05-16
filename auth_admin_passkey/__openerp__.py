@@ -22,7 +22,7 @@
 
 {
     'name': 'Authentification - Admin Passkey',
-    'version': '2.1',
+    'version': '2.1.1',
     'category': 'base',
     'description': """
 Admin password become a passkey for all active logins
