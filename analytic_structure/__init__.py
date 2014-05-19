@@ -25,7 +25,7 @@
 from openerp.tools import config
 try:
     analytic_size = int(config.get_misc('analytic', 'analytic_size', 5))
-    assert analytic_size > 5
+    assert analytic_size >= 5
 except (ValueError, AssertionError):
     config.parser.error("analytic_size must be an integer greater/equal to 5")
 
