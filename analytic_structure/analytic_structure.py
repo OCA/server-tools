@@ -106,6 +106,7 @@ class analytic_structure(osv.Model):
         """Show or hide used/unused analytic fields."""
 
         ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
+        found_fields = {slot: False for slot in ans_dict}
 
         regex = '{0}(\d+)_id'.format(prefix)
         path = "//field[re:match(@name, '{0}')]".format(regex)
@@ -117,12 +118,59 @@ class analytic_structure(osv.Model):
         for match in matches:
             name = match.get('name')
             slot = re.search(regex, name).group(1)
-            is_invisible = not slot in ans_dict
-            if is_invisible:
+            if slot in found_fields:
+                # The analytic field is used and has been found in the view.
+                found_fields[slot] = True
+            else:
+                # No analytic structure defined for this field, hide it.
                 modifiers = json.loads(match.get('modifiers', '{}'))
                 modifiers['invisible'] = modifiers['tree_invisible'] = True
                 modifiers['required'] = False
                 match.set('modifiers', json.dumps(modifiers))
 
+        # Look for a div with the 'oe_analytic' class and the right prefix.
+        if prefix == 'a':
+            prefix_cond = '(@prefix="a" or not(@prefix))'
+        else:
+            prefix_cond = '@prefix="{pfx}"'.format(pfx=prefix)
+        condition = 'contains(@class, "oe_analytic") and ' + prefix_cond
+        parent_matches = doc.xpath('//div[{cond}]/..'.format(cond=condition))
+
+        if parent_matches:
+
+            parent = parent_matches[0]
+            div = parent.xpath("//div[{cond}]".format(cond=condition))[0]
+            for index, child in enumerate(parent):
+                if child == div:
+                    break
+            next_children = parent[index + 1:]
+            del parent[index:]
+
+            # Get all fields that are in the structure but not in the view.
+            sorted_fields = found_fields.items()
+            sorted_fields.sort(key=lambda i: int(i[0]))
+            div_fields = [
+                '{pfx}{n}_id'.format(pfx=prefix, n=slot)
+                for slot, found in sorted_fields if not found
+            ]
+
+            # First, we have to load the definitions for those fields.
+            div_fields_def = self.pool.get(view['model']).fields_get(
+                cr, uid, div_fields, context=context
+            )
+            view['fields'].update(div_fields_def)
+
+            # Now we can insert the fields in the view's architecture.
+            for field in div_fields:
+                attrs = {'name': field}
+                for attr, value in div.attrib.iteritems():
+                    if attr in ['class', 'prefix']:
+                        continue
+                    attrs[attr] = value
+                parent.append(etree.Element('field', attrs))
+
+            parent.extend(next_children)
+
         view['arch'] = etree.tostring(doc)
+
         return view

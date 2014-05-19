@@ -42,6 +42,9 @@ to an object model.
         'analytic_dimension.xml',
     ],
     #'demo_xml': [],
+    'css': [
+        'static/src/css/analytic_structure.css',
+    ],
     'test': [],
     'installable': True,
     'active': False,

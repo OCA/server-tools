@@ -20,7 +20,7 @@ class MetaAnalytic(OEMetaSL):
             orm_model_name = nmspc.get('_name', False)
             if orm_model_name is False:
                 orm_model_name = nmspc.get('_inherit')
-            analytic = {'a': orm_model_name}
+            analytic = {'a': orm_model_name.replace('.', '_')}
         elif isinstance(analytic, basestring):
             analytic = {'a': analytic}
         nmspc['_analytic'] = analytic
