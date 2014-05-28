@@ -29,6 +29,7 @@ import json
 class analytic_structure(osv.Model):
 
     _name = "analytic.structure"
+    _description = u"Analytic Structure"
 
     def order_selection(self, cr, uid, context=None):
         order_selection = getattr(self, '_order_selection', None)
@@ -52,7 +53,8 @@ class analytic_structure(osv.Model):
         ordering=fields.selection(
             order_selection,
             'Analysis slot',
-            required=True),
+            required=True
+        ),
     )
 
     _sql_constraints = [

@@ -21,11 +21,18 @@
             <field name="model">analytic.code</field>
             <field name="arch" type="xml">
                 <form string="Analytic Code">
+                    <field name="id" invisible="1"/>
                     <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
-                    <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
-                    <field name="nd_id" required="1"/>
+                    <field name="nd_id"
+                        invisible="context.get('default_nd_id', None) is not None"
+                        required="context.get('default_nd_id', None) is not False"
+                    />
+                    <field name="code_parent_id"
+                        attrs="{'readonly': [('nd_id', '=', False)]}"
+                        domain="[('id', '!=', id), ('nd_id', '=', nd_id)]"
+                    />
                 </form>
             </field>
         </record>
@@ -36,11 +43,18 @@
 
             <field name="arch" type="xml">
                 <tree string="Analytic Codes" version="7.0" editable="bottom">
+                    <field name="id" invisible="1"/>
                     <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
-                    <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
-                    <field name="nd_id"/>
+                    <field name="nd_id"
+                        invisible="context.get('default_nd_id', None) is not None"
+                        required="context.get('default_nd_id', None) is not False"
+                    />
+                    <field name="code_parent_id"
+                        attrs="{'readonly': [('nd_id', '=', False)]}"
+                        domain="[('id', '!=', id), ('nd_id', '=', nd_id)]"
+                    />
                 </tree>
             </field>
         </record>
@@ -59,6 +73,7 @@
             <field name="model">analytic.dimension</field>
             <field name="arch" type="xml">
                 <form string="Analytic Dimension" version="7.0">
+                    <field name="id" invisible="1" />
                     <label for="name" class="oe_edit_only" string="Dimension Name"/>
                     <h1>
                         <field name="name" class="oe_inline" placeholder="Dimension Name" style="width: 6em"/>
@@ -66,22 +81,7 @@
                     <group colspan="4" col="4">
                         <field name="validated"/>
                         <newline />
-                        <field name="nc_ids" string="ANCs">
-                            <tree string="Analysis Codes" editable="bottom">
-                                <field name="active"/>
-                                <field name="name"/>
-                                <field name="description"/>
-                                <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
-                                <field name="nd_id" readonly="1" invisible="1" />
-                            </tree>
-                            <form string="Analysis Codes" version="7.0">
-                                <field name="active"/>
-                                <field name="name"/>
-                                <field name="description"/>
-                                <field name="code_parent_id" domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
-                                <field name="nd_id" readonly="1" invisible="1" />
-                            </form>
-                        </field>
+                        <field name="nc_ids" string="ANCs" context="{'default_nd_id': id}" />
                     </group>
                 </form>
             </field>

@@ -38,8 +38,11 @@ class MetaAnalytic(OEMetaSL):
                 domain_field = 'nd_id.ns{n}_id.model_name'.format(n=n)
                 columns[col_name] = fields.many2one(
                     'analytic.code',
-                    u"Analysis Code 1",
-                    domain=[(domain_field, '=', model_name)],
+                    "Generated Analytic Field",
+                    domain=[
+                        (domain_field, '=', model_name),
+                        ('child_ids', '=', False)
+                    ],
                     track_visibility='onchange',
                 )
 

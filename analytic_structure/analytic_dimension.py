@@ -19,7 +19,6 @@
 ##############################################################################
 
 from openerp.osv import fields, osv
-from openerp.tools.translate import _
 from openerp.addons.oemetasl import OEMetaSL
 from openerp.tools import config
 
@@ -34,9 +33,9 @@ class MetaDimension(OEMetaSL):
             columns['ns{}_id'.format(n)] = fields.one2many(
                 'analytic.structure',
                 'nd_id',
-                u"Structures {}".format(n),
+                "Generated Subset of Structures",
                 domain=[('ordering', '=', n)],
-                auto_join=True
+                auto_join=True,
             )
         return super(MetaDimension, cls).__new__(cls, name, bases, nmspc)
 
@@ -45,9 +44,15 @@ class analytic_dimension(osv.Model):
 
     __metaclass__ = MetaDimension
     _name = "analytic.dimension"
+    _description = u"Analytic Dimension"
 
     _columns = dict(
-        name=fields.char("Name", size=128, translate=True, required=True),
+        name=fields.char(
+            "Name",
+            size=128,
+            translate=config.get_misc('analytic', 'translate', False),
+            required=True,
+        ),
         validated=fields.boolean("Validated"),
         nc_ids=fields.one2many("analytic.code", "nd_id", "Codes"),
         ns_id=fields.one2many("analytic.structure", "nd_id", "Structures"),

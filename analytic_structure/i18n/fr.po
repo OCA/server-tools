@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-14 15:35+0000\n"
-"PO-Revision-Date: 2014-05-14 17:42+0200\n"
+"POT-Creation-Date: 2014-05-28 13:23+0000\n"
+"PO-Revision-Date: 2014-05-28 15:24+0200\n"
 "Last-Translator: Jérémie Gavrel <jeremie.gavrel@xcg-consulting.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -46,11 +46,6 @@ msgstr ""
 "            "
 
 #. module: analytic_structure
-#: model:ir.model,name:analytic_structure.model_analytic_structure
-msgid "analytic.structure"
-msgstr "analytic.structure"
-
-#. module: analytic_structure
 #: sql_constraint:analytic.dimension:0
 msgid "Name must be unique"
 msgstr "Le nom doit être unique"
@@ -64,13 +59,6 @@ msgstr "Analytique"
 #: view:analytic.code:0
 msgid "Analytic Codes"
 msgstr "Codes Analytiques"
-
-#. module: analytic_structure
-#: view:analytic.code:0
-#: view:analytic.dimension:0
-#: model:ir.actions.act_window,name:analytic_structure.action_analytic_dimension
-msgid "Analytic Dimension"
-msgstr "Dimension Analytique"
 
 #. module: analytic_structure
 #: field:analytic.dimension,ns_id:0
@@ -108,9 +96,10 @@ msgid "Code Dimension"
 msgstr "Dimension du code"
 
 #. module: analytic_structure
-#: model:ir.model,name:analytic_structure.model_analytic_code
-msgid "analytic.code"
-msgstr "analytic.code"
+#: code:addons/analytic_structure/analytic_structure.py:40
+#, python-format
+msgid "Analysis {}"
+msgstr "Analytique {}"
 
 #. module: analytic_structure
 #: field:analytic.code,active:0
@@ -170,13 +159,9 @@ msgid "Dimension"
 msgstr "Dimension"
 
 #. module: analytic_structure
-#: model:ir.model,name:analytic_structure.model_analytic_dimension
-msgid "analytic.dimension"
-msgstr "analytic.dimension"
-
-#. module: analytic_structure
 #: view:analytic.structure:0
 #: model:ir.actions.act_window,name:analytic_structure.action_analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_structure
 msgid "Analytic Structure"
 msgstr "Structure Analytique"
 
@@ -186,29 +171,11 @@ msgid "Group By..."
 msgstr "Regrouper par…"
 
 #. module: analytic_structure
-#: selection:analytic.structure,ordering:0
-msgid "Analysis 4"
-msgstr "Analytique 4"
-
-#. module: analytic_structure
-#: selection:analytic.structure,ordering:0
-msgid "Analysis 5"
-msgstr "Analytique 5"
-
-#. module: analytic_structure
-#: selection:analytic.structure,ordering:0
-msgid "Analysis 1"
-msgstr "Analytique 1"
-
-#. module: analytic_structure
-#: selection:analytic.structure,ordering:0
-msgid "Analysis 2"
-msgstr "Analytique 2"
-
-#. module: analytic_structure
-#: selection:analytic.structure,ordering:0
-msgid "Analysis 3"
-msgstr "Analytique 3"
+#: view:analytic.dimension:0
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_dimension
+#: model:ir.model,name:analytic_structure.model_analytic_dimension
+msgid "Analytic Dimension"
+msgstr "Dimension Analytique"
 
 #. module: analytic_structure
 #: model:ir.actions.act_window,help:analytic_structure.action_analytic_structure
@@ -224,14 +191,25 @@ msgstr ""
 "            "
 
 #. module: analytic_structure
+#: view:analytic.code:0
 #: model:ir.actions.act_window,name:analytic_structure.action_analytic_code
+#: model:ir.model,name:analytic_structure.model_analytic_code
 msgid "Analytic Code"
 msgstr "Code Analytique"
 
 #. module: analytic_structure
-#: view:analytic.dimension:0
-msgid "Analysis Codes"
-msgstr "Codes Analytiques"
+#: field:analytic.dimension,ns10_id:0
+#: field:analytic.dimension,ns1_id:0
+#: field:analytic.dimension,ns2_id:0
+#: field:analytic.dimension,ns3_id:0
+#: field:analytic.dimension,ns4_id:0
+#: field:analytic.dimension,ns5_id:0
+#: field:analytic.dimension,ns6_id:0
+#: field:analytic.dimension,ns7_id:0
+#: field:analytic.dimension,ns8_id:0
+#: field:analytic.dimension,ns9_id:0
+msgid "Generated Subset of Structures"
+msgstr "Sous-ensemble de structures autogénéré"
 
 #. module: analytic_structure
 #: field:analytic.dimension,validated:0
@@ -248,8 +226,29 @@ msgstr "Dimension Associée"
 msgid "Right parent"
 msgstr "Parent droit"
 
-#~ msgid "unknown"
-#~ msgstr "inconnu"
+#~ msgid "analytic.structure"
+#~ msgstr "analytic.structure"
 
-#~ msgid "name must be unique"
-#~ msgstr "le nom doit être unique"
+#~ msgid "analytic.code"
+#~ msgstr "analytic.code"
+
+#~ msgid "analytic.dimension"
+#~ msgstr "analytic.dimension"
+
+#~ msgid "Analysis 4"
+#~ msgstr "Analytique 4"
+
+#~ msgid "Analysis 5"
+#~ msgstr "Analytique 5"
+
+#~ msgid "Analysis 1"
+#~ msgstr "Analytique 1"
+
+#~ msgid "Analysis 2"
+#~ msgstr "Analytique 2"
+
+#~ msgid "Analysis 3"
+#~ msgstr "Analytique 3"
+
+#~ msgid "Analysis Codes"
+#~ msgstr "Codes Analytiques"

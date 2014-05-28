@@ -1,11 +1,23 @@
 == Configure your OpenERP server for analytic fields ==
 
 
-By default, up to 5 analytic dimensions can be associated with an object.
-You can increase this number by setting an option in the configuration file:
+In your OpenERP server's configuration file, you can set several optional
+parameters related to the analytic module.
 
 [analytic]
-analytic_size = 10
+key = value ...
+
+
+Those options must be grouped under the [analytic] category. If the category
+doesn't exist, add it to your configuration file.
+
+key (default value): description
+
+analytic_size (5): define the maximum number of analytic dimensions
+that can be associated with a model.
+
+translate (False): enable or disable the translation of field values on
+analytic dimensions (name) and codes (name and description).
 
 
 
