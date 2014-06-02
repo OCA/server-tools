@@ -23,7 +23,7 @@ from openerp.addons.oemetasl import OEMetaSL
 from openerp.tools import config
 
 
-class MetaDimension(OEMetaSL):
+class _dimension_meta(OEMetaSL):
 
     def __new__(cls, name, bases, nmspc):
 
@@ -37,12 +37,12 @@ class MetaDimension(OEMetaSL):
                 domain=[('ordering', '=', n)],
                 auto_join=True,
             )
-        return super(MetaDimension, cls).__new__(cls, name, bases, nmspc)
+        return super(_dimension_meta, cls).__new__(cls, name, bases, nmspc)
 
 
 class analytic_dimension(osv.Model):
 
-    __metaclass__ = MetaDimension
+    __metaclass__ = _dimension_meta
     _name = "analytic.dimension"
     _description = u"Analytic Dimension"
 

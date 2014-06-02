@@ -21,7 +21,7 @@ analytic dimensions (name) and codes (name and description).
 
 
 
-== Add analytic fields to a model ==
+== Add the MetaAnalytic metaclass to a model ==
 
 
 At the beginning of the source file, import the MetaAnalytic metaclass:
@@ -34,15 +34,23 @@ Inside your Model class, define MetaAnalytic to be used as metaclass:
 __metaclass__ = MetaAnalytic
 
 
-Then, add the _analytic attribute to your class.
+
+== Add analytic fields to a model ==
+
+
+First of all, make sure you are using the MetaAnalytic metaclass.
+Then, add the _analytic attribute to your class, using the following syntax.
+
 
 Use the analytic fields associated with the model:
 
 _analytic = True
 
+
 Use analytic fields associated with another model:
 
 _analytic = 'account_move_line'
+
 
 Use several analytic field structures, associated with different prefixes:
 
@@ -81,3 +89,60 @@ If possible, create a separate record and use the context to specify the view:
     'form_view_ref' : 'module.view_id',
     'tree_view_ref' : 'model.view_id'
 }"/>
+
+
+
+== Bind an analytic dimension to a model ==
+
+
+First of all, make sure you are using the MetaAnalytic metaclass.
+Then, add the _dimension attribute to your class, using the following syntax.
+
+
+Bind the model to an analytic dimension named after the model, using default values:
+
+_dimension = True
+
+
+Bind the model to an analytic dimension with a specified name, using default values:
+
+_dimension = 'Funding Source'
+
+
+Bind the model to an analytic dimension, using either custom or default values:
+
+_dimension = {
+    'name': 'School',
+    'column': 'analytic_code_id',
+    'ref_id': 'school_analytic_dimension',
+    'ref_module': 'my_module',
+    'sync_parent': False,
+    'use_inherits': False,
+}
+
+
+key (default value): description
+
+name (= _description or _name): The name of the analytic dimension.
+This name is only used when creating the dimension in the database.
+
+column (analytic_id): The column that links each record to an analytic code.
+
+ref_id (= _name + analytic_dimension_id): The external ID that will
+be used by the analytic dimension. By setting this value, you can allow two
+models to use the same dimension, or a model to use an already existing one.
+
+ref_module (analytic_structure): The module associated with the dimension
+record. Change this value in order to use a dimension defined in a data file.
+
+sync_parent (False): Controls the synchronization of the codes' parent-child
+hierarchy with that of the model. When using an inherited, renamed parent field,
+you must give the parent field name rather than simply True.
+
+use_inherits (special): Determines whether the analytic codes should be bound
+to the records by inheritance, or through a simple many2one field.
+Inheritance allows for better synchronization, but can only be used if there
+are no duplicate fields between the two objects.
+The default value is True if the model has no 'name' and 'code_parent_id' field
+as well as no inheritance of any kind, and False otherwise. If the object has
+inheritances that do not cause conflicts, you can set it to True.
