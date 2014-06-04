@@ -1,6 +1,8 @@
 syntax: glob
 **/*.pyc
 *.pyc
+**/*.pyo
+*.pyo
 *.swp
 .tmp*
 *.egg-info
