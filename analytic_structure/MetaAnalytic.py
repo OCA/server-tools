@@ -162,7 +162,7 @@ class MetaAnalytic(OEMetaSL):
 
         column = dimension.get('column', 'analytic_id')
 
-        ref_module = dimension.get('ref_module', 'analytic_structure')
+        ref_module = dimension.get('ref_module', '')
 
         ref_id = dimension.get('ref_id', None)
         if ref_id is None:
@@ -274,7 +274,6 @@ class MetaAnalytic(OEMetaSL):
             code_vals = {
                 'name': vals.get('name'),
                 'nd_id': self._bound_dimension_id,
-                'active': True,
             }
             if sync_parent:
                 cp = self._get_code_parent(cr, uid, vals, context=context)
@@ -302,9 +301,10 @@ class MetaAnalytic(OEMetaSL):
                 parent_id = vals.get(sync_parent, None)
                 if parent_id is not None:
                     if parent_id:
-                        return self.read(
+                        res = self.read(
                             cr, uid, parent_id, [column], context=context
-                        )[column][0]
+                        )[column]
+                        return res[0] if res else False
                     else:
                         return False
                 return None
@@ -332,6 +332,15 @@ class MetaAnalytic(OEMetaSL):
                         code_osv = self.pool.get('analytic.code')
                         records = self.browse(cr, uid, ids, context=context)
                         code_ids = [getattr(rec, column).id for rec in records]
+                        # If updating a single record with no code, create it.
+                        if code_ids == [False]:
+                            code_vals['nd_id'] = self._bound_dimension_id
+                            code_vals.setdefault('name', self.read(
+                                cr, uid, ids[0], ['name'], context=context
+                            )['name'])
+                            vals[column] = code_osv.create(
+                                cr, uid, code_vals, context=context
+                            )
                         code_osv.write(
                             cr, uid, code_ids, code_vals, context=context
                         )

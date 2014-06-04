@@ -135,7 +135,7 @@ ref_id (= _name + analytic_dimension_id): The external ID that will
 be used by the analytic dimension. By setting this value, you can allow two
 models to use the same dimension, or a model to use an already existing one.
 
-ref_module (analytic_structure): The module associated with the dimension
+ref_module (empty string): The name of the module associated with the dimension
 record. Change this value in order to use a dimension defined in a data file.
 
 sync_parent (False): Controls the synchronization of the codes' parent-child
