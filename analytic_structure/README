@@ -117,7 +117,10 @@ _dimension = {
     'ref_id': 'school_analytic_dimension',
     'ref_module': 'my_module',
     'sync_parent': False,
+    'rel_description': True,
+    'rel_active': (u"Active", 'active_code'),
     'use_inherits': False,
+    'use_code_name_methods': False,
 }
 
 
@@ -126,7 +129,7 @@ key (default value): description
 name (= _description or _name): The name of the analytic dimension.
 This name is only used when creating the dimension in the database.
 
-column (analytic_id): The column that links each record to an analytic code.
+column (analytic_id): The field that links each record to an analytic code.
 
 ref_id (= _name + analytic_dimension_id): The external ID that will
 be used by the analytic dimension. By setting this value, you can allow two
@@ -146,3 +149,20 @@ are no duplicate fields between the two objects.
 The default value is True if the model has no 'name' and 'code_parent_id' field
 as well as no inheritance of any kind, and False otherwise. If the object has
 inheritances that do not cause conflicts, you can set it to True.
+
+rel_active (False): Create a related field in the model, targeting the
+analytic code field 'active' and with an appropriate store parameter.
+This is useful when the model doesn't inherit analytic_code and/or when it
+already has a field named 'active'.
+Can take a pair of string values: (field label, field name).
+If given a string, the default field name 'active' will be used.
+If given True, the default field label 'Active' will also be used.
+
+rel_description (False): Same as rel_active for the code field 'description'.
+If given a string, the default field name 'description' will be used.
+If given True, the default field label 'Description' will also be used.
+
+use_code_name_methods (False): Set to True in order to override the methods
+name_get and name_search, using those of analytic code.
+This allows the analytic code's description to be displayed (and searched)
+along with the entry's name in many2one fields targeting the model.

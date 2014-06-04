@@ -173,15 +173,30 @@ class MetaAnalytic(OEMetaSL):
         if sync_parent is True:
             sync_parent = nmspc.get('_parent_name', 'parent_id')
 
-        # By default, only use inherits if we can be sure there are no 'name'
-        # or 'code_parent_id' field.
+        rel_description = dimension.get('rel_description', tuple())
+        if rel_description is True:
+            rel_description = u"Description"
+        if isinstance(rel_description, basestring):
+            rel_description = (rel_description, 'description')
+
+        rel_active = dimension.get('rel_active', tuple())
+        if rel_active is True:
+            rel_active = u"Active"
+        if isinstance(rel_active, basestring):
+            rel_active = (rel_active, 'active')
+
+        # By default, only use inherits if we can be sure there is no conflict
+        # on the required fields 'name' and 'nd_id'.
+        # There can still be conflicts on analytic_code's optional fields.
         use_inherits = dimension.get('use_inherits', None)
         if use_inherits is None:
             use_inherits = not (
-                any(col in columns for col in ('name', 'code_parent_id'))
+                any(col in columns for col in ('name', 'nd_id'))
                 or nmspc.get('_inherits', False)
                 or nmspc.get('_inherit', False)
             )
+
+        use_code_name_methods = dimension.get('use_code_name_methods', False)
 
         if use_inherits:
             inherits = nmspc.get('_inherits', {})
@@ -196,6 +211,36 @@ class MetaAnalytic(OEMetaSL):
                 required=True,
                 ondelete='restrict'
             )
+
+        rel_cols = [cols for cols in [
+                rel_description + ('description', 'char'),
+                rel_active + ('active', 'boolean')
+            ] if len(cols) == 4
+        ]
+
+        if rel_cols:
+            # NOT a method nor a class member. 'self' is the analytic_code OSV.
+            def _record_from_code_id(self, cr, uid, ids, context=None):
+                """Get the entries to update from the modified codes."""
+                osv = self.pool.get(orm_name)
+                domain = [(column, 'in', ids)]
+                return osv.search(cr, uid, domain, context=context)
+
+            for string, model_col, code_col, data_type in rel_cols:
+                columns[model_col] = fields.related(
+                    column,
+                    code_col,
+                    string=string,
+                    type=data_type,
+                    relation="analytic.code",
+                    store={
+                        'analytic.code': (
+                            _record_from_code_id,
+                            [code_col],
+                            10
+                        )
+                    }
+                )
 
         # In order to preserve inheritance, possible overrides, and OEMetaSL's
         # expected behavior, work on a new class that inherits the given bases,
@@ -294,5 +339,38 @@ class MetaAnalytic(OEMetaSL):
                 return super(superclass, self).write(
                     cr, uid, ids, vals, context=context
                 )
+
+        if use_code_name_methods:
+
+            @AddMethod(superclass)
+            def name_get(self, cr, uid, ids, context=None):
+                """Return the analytic code's name."""
+
+                code_osv = self.pool.get('analytic.code')
+                code_reads = self.read(cr, uid, ids, [column], context=context)
+                code_ids = {
+                    code_read[column][0]: code_read['id']
+                    for code_read in code_reads
+                    if code_read[column] is not False
+                }
+                names = code_osv.name_get(cr, uid, code_ids.keys(), context)
+                return [(code_ids[cid], name) for cid, name in names]
+
+            @AddMethod(superclass)
+            def name_search(
+                self, cr, uid, name, args=None, operator='ilike', context=None,
+                limit=100
+            ):
+                """Return the records whose analytic code matches the name."""
+
+                code_osv = self.pool.get('analytic.code')
+                args.append(('nd_id', '=', self._bound_dimension_id))
+                code_res = code_osv.name_search(
+                    cr, uid, name, args, operator, context, limit
+                )
+                code_ids, names = sorted(zip(*code_res), key=lambda t: t[0])
+                dom = [(column, 'in', code_ids)]
+                ids = self.search(cr, uid, dom, order=column, context=context)
+                return zip(ids, names)
 
         return (superclass,)

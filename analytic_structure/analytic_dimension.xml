@@ -6,8 +6,8 @@
             <field name="model">analytic.code</field>
             <field name="arch" type="xml">
                 <search string="Analytic Codes"> 
-                    <!--<field name="name" filter_domain="['|',(name', 'ilike', self), ('nd_id', 'ilike', self)]"/>
-                    Easy searchable not working "error length of undefined"-->
+                    <field name="name" filter_domain="['|',('name', 'ilike', self), ('description', 'ilike', self)]"/>
+                    <field name="nd_name" filter_domain="[('nd_name', 'ilike', self)]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Code Dimension" domain="" context="{'group_by':'nd_id'}"/>
                     </group>
