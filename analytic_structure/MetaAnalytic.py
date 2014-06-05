@@ -293,8 +293,8 @@ class MetaAnalytic(OEMetaSL):
             """Create the analytic code."""
 
             code_vals = {
-                'name': vals.get('name'),
                 'nd_id': self._bound_dimension_id,
+                'name': vals.get(rel_name[1] if rel_name else 'name'),
             }
             if sync_parent:
                 cp = self._get_code_parent(cr, uid, vals, context=context)
