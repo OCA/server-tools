@@ -23,6 +23,7 @@
                 <form string="Analytic Code">
                     <field name="id" invisible="1"/>
                     <field name="active"/>
+                    <field name="usable"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="nd_id"
@@ -45,6 +46,7 @@
                 <tree string="Analytic Codes" version="7.0" editable="bottom">
                     <field name="id" invisible="1"/>
                     <field name="active"/>
+                    <field name="usable"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="nd_id"

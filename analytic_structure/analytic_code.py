@@ -45,6 +45,7 @@ class analytic_code(osv.Model):
             required=True,
         ),
         active=fields.boolean('Active'),
+        usable=fields.boolean('Usable'),
         nd_name=fields.related('nd_id', 'name', type="char",
                                string="Dimension Name", store=False),
         description=fields.char(
@@ -69,6 +70,7 @@ class analytic_code(osv.Model):
 
     _defaults = {
         'active': 1,
+        'usable': 1,
     }
 
     _constraints = [

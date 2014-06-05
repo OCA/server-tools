@@ -76,7 +76,6 @@ class MetaAnalytic(OEMetaSL):
             analytic = {'a': orm_name.replace('.', '_')}
         elif isinstance(analytic, basestring):
             analytic = {'a': analytic}
-#        nmspc['_analytic'] = analytic
 
         size = int(config.get_misc('analytic', 'analytic_size', 5))
 
@@ -90,7 +89,7 @@ class MetaAnalytic(OEMetaSL):
                     "Generated Analytic Field",
                     domain=[
                         (domain_field, '=', model_name),
-                        ('child_ids', '=', False)
+                        ('usable', '=', True)
                     ],
                     track_visibility='onchange',
                 )
@@ -173,6 +172,12 @@ class MetaAnalytic(OEMetaSL):
         if sync_parent is True:
             sync_parent = nmspc.get('_parent_name', 'parent_id')
 
+        rel_name = dimension.get('rel_name', tuple())
+        if rel_name is True:
+            rel_name = u"Name"
+        if isinstance(rel_name, basestring):
+            rel_name = (rel_name, 'name')
+
         rel_description = dimension.get('rel_description', tuple())
         if rel_description is True:
             rel_description = u"Description"
@@ -184,6 +189,12 @@ class MetaAnalytic(OEMetaSL):
             rel_active = u"Active"
         if isinstance(rel_active, basestring):
             rel_active = (rel_active, 'active')
+
+        rel_usable = dimension.get('rel_usable', tuple())
+        if rel_usable is True:
+            rel_usable = u"Usable"
+        if isinstance(rel_usable, basestring):
+            rel_usable = (rel_usable, 'usable')
 
         # By default, only use inherits if we can be sure there is no conflict
         # on the required fields 'name' and 'nd_id'.
@@ -213,9 +224,11 @@ class MetaAnalytic(OEMetaSL):
             )
 
         rel_cols = [cols for cols in [
-                rel_description + ('description', 'char'),
-                rel_active + ('active', 'boolean')
-            ] if len(cols) == 4
+                rel_name + ('name', 'char', True, ''),
+                rel_description + ('description', 'char', False, ''),
+                rel_active + ('active', 'boolean', False, True),
+                rel_usable + ('usable', 'boolean', False, True),
+            ] if len(cols) == 6
         ]
 
         if rel_cols:
@@ -226,13 +239,19 @@ class MetaAnalytic(OEMetaSL):
                 domain = [(column, 'in', ids)]
                 return osv.search(cr, uid, domain, context=context)
 
-            for string, model_col, code_col, data_type in rel_cols:
+            defaults = nmspc.get('_defaults', None)
+            if defaults is None:
+                defaults = {}
+                nmspc['_defaults'] = defaults
+
+            for string, model_col, code_col, dtype, req, default in rel_cols:
                 columns[model_col] = fields.related(
                     column,
                     code_col,
                     string=string,
-                    type=data_type,
+                    type=dtype,
                     relation="analytic.code",
+                    required=req,
                     store={
                         'analytic.code': (
                             _record_from_code_id,
@@ -241,6 +260,8 @@ class MetaAnalytic(OEMetaSL):
                         )
                     }
                 )
+                if model_col not in defaults:
+                    defaults[model_col] = default
 
         # In order to preserve inheritance, possible overrides, and OEMetaSL's
         # expected behavior, work on a new class that inherits the given bases,
@@ -326,7 +347,7 @@ class MetaAnalytic(OEMetaSL):
                 if use_inherits:
                     vals.update(code_vals)
                 else:
-                    if 'name' in vals:
+                    if 'name' in vals and not rel_name:
                         code_vals['name'] = vals.get('name')
                     if code_vals:
                         code_osv = self.pool.get('analytic.code')
@@ -335,9 +356,10 @@ class MetaAnalytic(OEMetaSL):
                         # If updating a single record with no code, create it.
                         if code_ids == [False]:
                             code_vals['nd_id'] = self._bound_dimension_id
-                            code_vals.setdefault('name', self.read(
-                                cr, uid, ids[0], ['name'], context=context
-                            )['name'])
+                            if not rel_name:
+                                code_vals.setdefault('name', self.read(
+                                    cr, uid, ids[0], ['name'], context=context
+                                )['name'])
                             vals[column] = code_osv.create(
                                 cr, uid, code_vals, context=context
                             )
