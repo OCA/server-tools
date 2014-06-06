@@ -399,6 +399,8 @@ class MetaAnalytic(OEMetaSL):
                 code_res = code_osv.name_search(
                     cr, uid, name, args, operator, context, limit
                 )
+                if not code_res:
+                    return []
                 code_ids, names = sorted(zip(*code_res), key=lambda t: t[0])
                 dom = [(column, 'in', code_ids)]
                 ids = self.search(cr, uid, dom, order=column, context=context)
