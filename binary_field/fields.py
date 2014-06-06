@@ -164,6 +164,8 @@ class ImageResizeField(ImageField):
             **kwargs)
 
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
+        if context is None:
+            context = {}
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record_id in ids:
@@ -203,25 +205,25 @@ original__init__ = orm.BaseModel.__init__
 def __init__(self, pool, cr):
     original__init__(self, pool, cr)
     if self.pool.get('binary.field.installed'):
-        additionnal_field = {}
+        additional_field = {}
         for field in self._columns:
             if isinstance(self._columns[field], BinaryField):
-                additionnal_field.update({
+                additional_field.update({
                     '%s_uid' % field:
                         fields.char('%s UID' % self._columns[field].string),
                     '%s_file_size' % field:
-                        fields.char('%s File Size' % self._columns[field].string),
+                        fields.integer('%s File Size' % self._columns[field].string),
                     })
 
             #Inject the store invalidation function for ImageResize
             if isinstance(self._columns[field], ImageResizeField):
                 self._columns[field].store = {
                     self._name: (
-                        lambda self, cr, uid, ids, c={}: ids,
+                        lambda self, cr, uid, ids, c=None: ids,
                         [self._columns[field].related_field],
                         10),
                 }
-        self._columns.update(additionnal_field)
+        self._columns.update(additional_field)
 
 
 orm.BaseModel.__init__ = __init__
