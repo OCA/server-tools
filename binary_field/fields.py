@@ -33,19 +33,24 @@ _logger = logging.getLogger(__name__)
 
 class Storage(object):
 
-    def __init__(self, cr, uid, record, field_name):
+    def __init__(self, cr, uid, record, field_name, config=None):
         self.cr = cr
         self.uid = uid
         self.pool = record._model.pool
-        self.field_key = ("%s-%s" % (record._name, field_name)).replace('.', '')
-        base_location = self.pool.get('ir.config_parameter').\
-            get_param(cr, uid, 'binary.location')
-        if not base_location:
-            raise orm.except_orm(
-                _('Configuration Error'),
-                _('The "binary.location" is empty, please fill it in'
-                  'Configuration > Parameters > System Parameters'))
-        self.base_location = base_location
+        if config and config.get('field_key'):
+            self.field_key = config['field_key']
+        else:
+            self.field_key = ("%s-%s" % (record._name, field_name)).replace('.', '')
+        if config and config.get('base_location'):
+            self.base_location = config['base_location']
+        else:
+            self.base_location = self.pool.get('ir.config_parameter').\
+                get_param(cr, uid, 'binary.location')
+            if not self.base_location:
+                raise orm.except_orm(
+                    _('Configuration Error'),
+                    _('The "binary.location" is empty, please fill it in'
+                      'Configuration > Parameters > System Parameters'))
         self.location = (self.base_location, self.field_key)
 
     def add(self, value):
@@ -75,7 +80,8 @@ class Storage(object):
 
 class BinaryField(fields.function):
 
-    def __init__(self, string, filters=None, get_storage=Storage, **kwargs):
+    def __init__(self, string, filters=None, get_storage=Storage,
+                 config=None, **kwargs):
         new_kwargs = {
             'type': 'binary',
             'string': string,
@@ -86,6 +92,7 @@ class BinaryField(fields.function):
         new_kwargs.update(kwargs)
         self.filters = filters
         self.get_storage = get_storage
+        self.config = config
         super(BinaryField, self).__init__(**new_kwargs)
 
     #No postprocess are needed
@@ -104,7 +111,8 @@ class BinaryField(fields.function):
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record in obj.browse(cr, uid, ids, context=context):
-            storage = self.get_storage(cr, uid, record, field_name)
+            storage = self.get_storage(cr, uid, record, field_name,
+                                       config=self.config)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 res = storage.update(binary_uid, value)
@@ -117,7 +125,8 @@ class BinaryField(fields.function):
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
         for record in obj.browse(cr, uid, ids, context=context):
-            storage = self.get_storage(cr, uid, record, field_name)
+            storage = self.get_storage(cr, uid, record, field_name,
+                                       config=self.config)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 #Compatibility with existing binary field
