@@ -80,8 +80,7 @@ class Storage(object):
 
 class BinaryField(fields.function):
 
-    def __init__(self, string, filters=None, get_storage=Storage,
-                 config=None, **kwargs):
+    def __init__(self, string, get_storage=Storage, config=None, **kwargs):
         new_kwargs = {
             'type': 'binary',
             'string': string,
@@ -90,7 +89,6 @@ class BinaryField(fields.function):
             'multi': False,
             }
         new_kwargs.update(kwargs)
-        self.filters = filters
         self.get_storage = get_storage
         self.config = config
         super(BinaryField, self).__init__(**new_kwargs)
@@ -142,12 +140,6 @@ class BinaryField(fields.function):
 
 class ImageField(BinaryField):
 
-    def __init__(self, string, filters=None, **kwargs):
-        self.filters = filters
-        super(ImageField, self).__init__(
-            string=string,
-            **kwargs)
-
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
         super(ImageField, self)._fnct_write(
@@ -162,9 +154,7 @@ class ImageField(BinaryField):
 
 class ImageResizeField(ImageField):
 
-    def __init__(self, string, related_field, height, width,
-                 filters=None, **kwargs):
-        self.filters = filters
+    def __init__(self, string, related_field, height, width, **kwargs):
         self.height = height
         self.width = width
         self.related_field = related_field
