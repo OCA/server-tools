@@ -27,13 +27,44 @@
  'license': 'AGPL-3',
  'category': 'Framework',
  'description': """This module extend the fields class in order to add 3 new
-type of fields
+type of fields.
 - BinaryStore
 - ImageStore
 - ImageRezise
 
-Now let's do it ;)
+All of this fields will be store on the file system by default and not in the
+database. If you want to store it on an other support (database, S3, ftp, SFTP...)
+Then you should create your own 'storage class' and use your custom 'storage 
+class' instead
+
+The default Storage class will store the field on the file system and build 
+the path like that
  
+ BASE_LOCATION/DB_NAME/MODEL-FIELD/XXX/YYYYY
+
+with
+
+- BASE_LOCATION: the base location configured in ir.config_parameter
+- DB_NAME:  your database name
+- MODEL-FIELD: the concatenation of the name of the model with the name of the
+field, for example 'product_product-image'
+- XXX: the first 3 letter of the file name build with their sha1 hash
+- YYYYYY: file name build with their sha1 hash
+
+Here is an example of field declaration
+
+    'binary_test': fields.BinaryField('Test Binary'),
+    'image_test': fields.ImageField('Test Image',
+        config={
+            'field_key': 'StoreMeHere',
+            'base_location': 'file:///testpath',
+            }),
+    'image_test_resize': fields.ImageResizeField(
+        related_field='image_test',
+        string='Test Image small',
+        height=64,
+        width=64,
+        ),
  """,
  'depends': [
      'base',

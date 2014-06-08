@@ -81,6 +81,16 @@ class Storage(object):
 class BinaryField(fields.function):
 
     def __init__(self, string, get_storage=Storage, config=None, **kwargs):
+        """Init a BinaryField field
+        :params string: Name of the field
+        :type string: str
+        :params get_storage: Storage Class for processing the field
+                            by default use the Storage on filesystem
+        :type get_storage: :py:class`binary_field.Storage'
+        :params config: configuration used by the storage class
+        :type config: what you want it's depend of the Storage class
+                      implementation
+        """
         new_kwargs = {
             'type': 'binary',
             'string': string,
@@ -155,6 +165,22 @@ class ImageField(BinaryField):
 class ImageResizeField(ImageField):
 
     def __init__(self, string, related_field, height, width, **kwargs):
+        """Init a BinaryField field
+        :params string: Name of the field
+        :type string: str
+        :params related_field: reference field that should be resized
+        :type related_field: str
+        :params height: height of the image resized
+        :type height: integer
+        :params width: width of the image resized
+        :type width: integer
+        :params get_storage: Storage Class for processing the field
+                            by default use the Storage on filesystem
+        :type get_storage: :py:class`binary_field.Storage'
+        :params config: configuration used by the storage class
+        :type config: what you want it's depend of the Storage class
+                      implementation
+        """
         self.height = height
         self.width = width
         self.related_field = related_field
