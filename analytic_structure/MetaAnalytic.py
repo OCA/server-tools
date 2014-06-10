@@ -401,9 +401,14 @@ class MetaAnalytic(OEMetaSL):
                 )
                 if not code_res:
                     return []
-                code_ids, names = sorted(zip(*code_res), key=lambda t: t[0])
-                dom = [(column, 'in', code_ids)]
-                ids = self.search(cr, uid, dom, order=column, context=context)
-                return zip(ids, names)
+                dom = [(column, 'in', zip(*code_res)[0])]
+                ids = self.search(cr, uid, dom, context=context)
+                code_reads = self.read(cr, uid, ids, [column], context=context)
+                code_ids = {
+                    code_read[column][0]: code_read['id']
+                    for code_read in code_reads
+                    if code_read[column] is not False
+                }
+                return [(code_ids[cid], name) for cid, name in code_res]
 
         return (superclass,)
