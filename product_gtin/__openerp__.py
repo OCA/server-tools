@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Product GTIN module for OpenERP
 #    Copyright (C) 2004-2011 Tiny SPRL (<http://tiny.be>).
 #    Copyright (C) 2010-2011 Camptocamp Austria (<http://www.camptocamp.at>)
 #
@@ -25,15 +25,15 @@
     "version": "1.1",
     "author":  "ChriCar Beteiligungs- und Beratungs- GmbH",
     "website": "http://www.chricar.at/ChriCar",
-    "category": "Generic Modules/Others",
+    "category": "Sales Management",
     "depends": ["product"],
     "description": """
-    Replaces the EAN13 code completion with a checkroutine for EAN13, EAN8, JPC, UPC and GTIN
-    makes EAN visible in simplified view
+Product GTIN module
+===================
+
+Replaces the EAN13 field on products, partners and packaging by a field with the same technical name that accepts EAN13, EAN8, JPC, UPC and GTIN.
     """,
     "demo": [],
     "data": ["product_gtin_view.xml"],
-    "auto_install": False,
     "installable": True,
-    'application': False,
 }

@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* chricar_product_gtin
+#	* product_gtin
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1rc1\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-23 22:06+0000\n"
-"PO-Revision-Date: 2012-01-23 22:06+0000\n"
+"POT-Creation-Date: 2014-06-10 22:04+0000\n"
+"PO-Revision-Date: 2014-06-10 22:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,25 +15,25 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_product_packaging
-msgid "Packaging"
-msgstr ""
-
-#. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_res_partner
-msgid "Partner"
-msgstr ""
-
-#. module: chricar_product_gtin
-#: model:ir.model,name:chricar_product_gtin.model_product_product
-msgid "Product"
-msgstr ""
-
-#. module: chricar_product_gtin
+#. module: product_gtin
 #: constraint:product.packaging:0
 #: constraint:product.product:0
 #: constraint:res.partner:0
 msgid "Error: Invalid EAN code"
+msgstr ""
+
+#. module: product_gtin
+#: model:ir.model,name:product_gtin.model_product_packaging
+msgid "Packaging"
+msgstr ""
+
+#. module: product_gtin
+#: model:ir.model,name:product_gtin.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: product_gtin
+#: model:ir.model,name:product_gtin.model_product_product
+msgid "Product"
 msgstr ""
 
