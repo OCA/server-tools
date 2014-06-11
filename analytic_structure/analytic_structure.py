@@ -128,6 +128,8 @@ class analytic_structure(osv.Model):
                 modifiers = json.loads(match.get('modifiers', '{}'))
                 modifiers['invisible'] = modifiers['tree_invisible'] = True
                 modifiers['required'] = False
+                match.set('invisible', 'true')
+                match.set('required', 'false')
                 match.set('modifiers', json.dumps(modifiers))
 
         # Look for a div with the 'oe_analytic' class and the right prefix.
