@@ -301,6 +301,14 @@ class MetaAnalytic(OEMetaSL):
                 if cp is not None:
                     code_vals['code_parent_id'] = cp
 
+            # OpenERP bug: related fields do not work properly on creation.
+            for rel in rel_cols:
+                model_col, code_col = rel[1:3]
+                if model_col in vals:
+                    code_vals[code_col] = vals[model_col]
+                elif model_col in self._defaults:
+                    code_vals[code_col] = self._defaults[model_col]
+
             if use_inherits:
                 vals.update(code_vals)
             else:
@@ -339,6 +347,10 @@ class MetaAnalytic(OEMetaSL):
 
                 code_vals = {}
 
+                # The 'bound analytic code' field should never be set to False.
+                if vals.get(column, True) is False:
+                    del vals[column]
+
                 if sync_parent:
                     cp = self._get_code_parent(cr, uid, vals, context=context)
                     if cp is not None:
@@ -363,9 +375,10 @@ class MetaAnalytic(OEMetaSL):
                             vals[column] = code_osv.create(
                                 cr, uid, code_vals, context=context
                             )
-                        code_osv.write(
-                            cr, uid, code_ids, code_vals, context=context
-                        )
+                        else:
+                            code_osv.write(
+                                cr, uid, code_ids, code_vals, context=context
+                            )
 
                 return super(superclass, self).write(
                     cr, uid, ids, vals, context=context
@@ -379,13 +392,13 @@ class MetaAnalytic(OEMetaSL):
 
                 code_osv = self.pool.get('analytic.code')
                 code_reads = self.read(cr, uid, ids, [column], context=context)
-                code_ids = {
+                c2m = {    # Code IDs to model IDs
                     code_read[column][0]: code_read['id']
                     for code_read in code_reads
                     if code_read[column] is not False
                 }
-                names = code_osv.name_get(cr, uid, code_ids.keys(), context)
-                return [(code_ids[cid], name) for cid, name in names]
+                names = code_osv.name_get(cr, uid, c2m.keys(), context=context)
+                return [(c2m[cid], name) for cid, name in names if cid in c2m]
 
             @AddMethod(superclass)
             def name_search(
@@ -396,19 +409,19 @@ class MetaAnalytic(OEMetaSL):
 
                 code_osv = self.pool.get('analytic.code')
                 args.append(('nd_id', '=', self._bound_dimension_id))
-                code_res = code_osv.name_search(
+                names = code_osv.name_search(
                     cr, uid, name, args, operator, context, limit
                 )
-                if not code_res:
+                if not names:
                     return []
-                dom = [(column, 'in', zip(*code_res)[0])]
+                dom = [(column, 'in', zip(*names)[0])]
                 ids = self.search(cr, uid, dom, context=context)
                 code_reads = self.read(cr, uid, ids, [column], context=context)
-                code_ids = {
+                c2m = {    # Code IDs to model IDs
                     code_read[column][0]: code_read['id']
                     for code_read in code_reads
                     if code_read[column] is not False
                 }
-                return [(code_ids[cid], name) for cid, name in code_res]
+                return [(c2m[cid], name) for cid, name in names if cid in c2m]
 
         return (superclass,)
