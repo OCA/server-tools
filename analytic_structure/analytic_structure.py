@@ -65,20 +65,33 @@ class analytic_structure(osv.Model):
         ),
     ]
 
-    def get_dimensions_names(self, cr, uid, model, context=None):
-        """Return a dictionary that contains the ordering numbers (keys) and
-        names (values) of the analysis dimensions linked to a given model."""
-
+    def get_structures(self, cr, uid, model, context=None):
+        """Return the browse records of every analytic structure entry
+        associated with the given model.
+        """
         ans_ids = self.search(
             cr, uid,
             [('model_name', '=', model)],
             context=context
         )
-        ans_brs = self.browse(cr, uid, ans_ids, context=context)
+        return self.browse(cr, uid, ans_ids, context=context)
 
+    def get_dimensions(self, cr, uid, model, context=None):
+        """Return a dictionary that contains the identifier (keys) and ordering
+        number (values) of the analytic dimensions linked to the given model.
+        """
+        return {
+            ans.nd_id.id: ans.ordering
+            for ans in self.get_structures(cr, uid, model, context=context)
+        }
+
+    def get_dimensions_names(self, cr, uid, model, context=None):
+        """Return a dictionary that contains the ordering numbers (keys) and
+        names (values) of the analytic dimensions linked to the given model.
+        """
         return {
             ans.ordering: ans.nd_id.name
-            for ans in ans_brs
+            for ans in self.get_structures(cr, uid, model, context=context)
         }
 
     def analytic_fields_get(
