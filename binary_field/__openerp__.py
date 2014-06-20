@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   Module for OpenERP 
+#   Module for OpenERP
 #   Copyright (C) 2013 Akretion (http://www.akretion.com).
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
@@ -33,13 +33,14 @@ type of fields.
 - ImageRezise
 
 All of this fields will be store on the file system by default and not in the
-database. If you want to store it on an other support (database, S3, ftp, SFTP...)
-Then you should create your own 'storage class' and use your custom 'storage 
+database. If you want to store it on an other support (database, S3, ftp,
+SFTP...)
+Then you should create your own 'storage class' and use your custom 'storage
 class' instead
 
-The default Storage class will store the field on the file system and build 
+The default Storage class will store the field on the file system and build
 the path like that
- 
+
  BASE_LOCATION/DB_NAME/MODEL-FIELD/XXX/YYYYY
 
 with
@@ -75,7 +76,3 @@ Here is an example of field declaration
  'installable': True,
  'application': True,
 }
-
-
-
-

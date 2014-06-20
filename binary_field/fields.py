@@ -40,7 +40,8 @@ class Storage(object):
         if config and config.get('field_key'):
             self.field_key = config['field_key']
         else:
-            self.field_key = ("%s-%s" % (record._name, field_name)).replace('.', '')
+            self.field_key = (
+                "%s-%s" % (record._name, field_name)).replace('.', '')
         if config and config.get('base_location'):
             self.base_location = config['base_location']
         else:
@@ -103,8 +104,8 @@ class BinaryField(fields.function):
         self.config = config
         super(BinaryField, self).__init__(**new_kwargs)
 
-    #No postprocess are needed
-    #we already take care of bin_size option in the context
+    # No postprocess are needed
+    # we already take care of bin_size option in the context
     def postprocess(self, cr, uid, obj, field, value=None, context=None):
         return value
 
@@ -126,7 +127,8 @@ class BinaryField(fields.function):
                 res = storage.update(binary_uid, value)
             else:
                 res = storage.add(value)
-            vals = self._prepare_binary_meta(cr, uid, field_name, res, context=context)
+            vals = self._prepare_binary_meta(
+                cr, uid, field_name, res, context=context)
             record.write(vals)
         return True
 
@@ -137,8 +139,10 @@ class BinaryField(fields.function):
                                        config=self.config)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
-                #Compatibility with existing binary field
-                if context.get('bin_size_%s' % field_name, context.get('bin_size')):
+                # Compatibility with existing binary field
+                if context.get(
+                    'bin_size_%s' % field_name, context.get('bin_size')
+                ):
                     size = record['%s_file_size' % field_name]
                     result[record.id] = tools.human_size(long(size))
                 else:
@@ -194,8 +198,8 @@ class ImageResizeField(ImageField):
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for record_id in ids:
-            _logger.debug('Refreshing Image Cache from the field %s of object %s '
-                          'id : %s' % (field_name, obj._name, record_id))
+            _logger.debug('Refreshing Image Cache from the field %s of object '
+                          '%s id : %s' % (field_name, obj._name, record_id))
             field = obj._columns[field_name]
             record = obj.browse(cr, uid, record_id, context=context)
             original_image = record[field.related_field]
@@ -237,10 +241,11 @@ def __init__(self, pool, cr):
                     '%s_uid' % field:
                         fields.char('%s UID' % self._columns[field].string),
                     '%s_file_size' % field:
-                        fields.integer('%s File Size' % self._columns[field].string),
+                        fields.integer(
+                            '%s File Size' % self._columns[field].string),
                     })
 
-            #Inject the store invalidation function for ImageResize
+            # Inject the store invalidation function for ImageResize
             if isinstance(self._columns[field], ImageResizeField):
                 self._columns[field].store = {
                     self._name: (
@@ -261,7 +266,7 @@ class IrAttachment(orm.Model):
         # Hack for passing the field_key in the full path
         # For now I prefer to use this hack and to reuse
         # the ir.attachment code
-        # An alternative way will to copy/paste and 
+        # An alternative way will to copy/paste and
         # adapt the ir.attachment code
         if isinstance(location, tuple):
             base_location, field_key = location
