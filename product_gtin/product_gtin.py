@@ -1,105 +1,109 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2004-2006 TINY SPRL. (http://tiny.be) All Rights Reserved.
+#    Product GTIN module for OpenERP
+#    Copyright (C) 2004-2011 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2010-2011 Camptocamp (<http://www.camptocamp.at>)
 #
-# $Id: account.py 1005 2005-07-25 08:41:42Z nicoe $
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
 #
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
+from openerp.osv import orm, fields
+import operator
 
-import netsvc
-from osv import fields, osv
-#import pooler
-#import wizard
-import math
-#from _common import rounding
 
-#import product 
-    
-# need to replace the check_ean_key function 
-class product_product(osv.osv):
+def is_pair(x):
+    return not x % 2
+
+
+def check_ean(eancode):
+    if not eancode:
+        return True
+    if not len(eancode) in [8, 12, 13, 14]:
+        return False
+    try:
+        int(eancode)
+    except:
+        return False
+    sum = 0
+    ean13_len = int(len(eancode))
+    for i in range(ean13_len-1):
+        pos = int(ean13_len-2-i)
+        if is_pair(i):
+            sum += 3 * int(eancode[pos])
+        else:
+            sum += int(eancode[pos])
+    check = 10 - operator.mod(sum, 10)
+    if check == 10:
+        check = 0
+    if check != int(eancode[ean13_len-1]):  # last digit
+        return False
+    return True
+
+
+class product_product(orm.Model):
     _inherit = "product.product"
-    _name = "product.product"
+
+    def _check_ean_key(self, cr, uid, ids):
+        for rec in self.browse(cr, uid, ids):
+            if not check_ean(rec.ean13):
+                return False
+        return True
+
     _columns = {
-        'ean13':    fields.char('EAN UPC JPC GTIN', size=14),
+        'ean13': fields.char(
+            'EAN', size=14,
+            help="Code for EAN8 EAN13 UPC JPC GTIN "
+            "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
     }
-    def _check_ean_key(self, cr, uid, ids):
-        def is_pair(x):
-            return not x%2
-        for product in self.browse(cr, uid, ids):
-                        if not product.ean13:
-                                continue
-                        if not len(product.ean13) in [8,12,13,14]:
-                                return False
-                        try:
-                                int(product.ean13)
-                        except:
-                                return False
-                        sum=0
-                        ean_len=len(product.ean13)
-                        for i in range(ean_len-1):
-                                pos=int(ean_len-2-i)
-                                if is_pair(i):
-                                        sum += 3 * int(product.ean13[pos])
-                                else:
-                                        sum += int(product.ean13[pos])
-                        check = int(math.ceil(sum / 10.0) * 10 - sum)
-                        if check != int(product.ean13[ean_len-1]): # last digit
-                                return False
-        return True
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN,UPC,JPC,GTIN code', ['ean13'])]
-product_product()
 
-class res_partner(osv.osv):
+    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean13'])]
+
+
+class product_packaging(orm.Model):
+    _inherit = "product.packaging"
+
+    def _check_ean_key(self, cr, uid, ids):
+        for rec in self.browse(cr, uid, ids):
+            if not check_ean(rec.ean):
+                return False
+        return True
+
+    _columns = {
+        'ean': fields.char(
+            'EAN', size=14,
+            help='Barcode number for EAN8 EAN13 UPC JPC GTIN'),
+        }
+
+    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean'])]
+
+
+class res_partner(orm.Model):
     _inherit = "res.partner"
+
     def _check_ean_key(self, cr, uid, ids):
-        def is_pair(x):
-            return not x%2
-        for partner in self.browse(cr, uid, ids):
-                        if not partner.ean13:
-                                continue
-                        if not len(partner.ean13) in [8,12,13,14]:
-                                return False
-                        try:
-                                int(partner.ean13)
-                        except:
-                                return False
-                        sum=0
-                        ean_len=len(partner.ean13)
-                        for i in range(ean_len-1):
-                                pos=int(ean_len-2-i)
-                                if is_pair(i):
-                                        sum += 3 * int(partner.ean13[pos])
-                                else:
-                                        sum += int(partner.ean13[pos])
-                        check = int(math.ceil(sum / 10.0) * 10 - sum)
-                        if check != int(partner.ean13[ean_len-1]): # last digit
-                                return False
+        for rec in self.browse(cr, uid, ids):
+            if not check_ean(rec.ean13):
+                return False
         return True
 
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN,UPC,JPC,GTIN code', ['ean13'])]
+    _columns = {
+        'ean13': fields.char(
+            'EAN', size=14,
+            help="Code for EAN8 EAN13 UPC JPC GTIN "
+            "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
+        }
 
-res_partner()
-
+    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean13'])]
