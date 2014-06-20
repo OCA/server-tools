@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+  <data>
+
+    <record id="open_partner_by_attribute_set_view" model="ir.ui.view">
+      <field name="name">open.partner.by.attribute.set.view</field>
+      <field name="model">open.partner.by.attribute.set</field>
+      <field name="arch" type="xml">
+        <form string="Open partner by attributes set" version="7.0">
+          <group>
+            <field name="attribute_set_id" />
+          </group>
+          <footer>
+            <button name="open_partner_by_attribute" string="Open Partner By attribute" type="object" class="oe_highlight"/>
+            or
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="open_partner_by_attribute_set" model="ir.actions.act_window">
+      <field name="name">Open Partner By Attribute Set</field>
+      <field name="res_model">open.partner.by.attribute.set</field>
+      <field name="view_type">form</field>
+      <field name="target">new</field>
+      <field name="view_id" ref="open_partner_by_attribute_set_view"/>
+      <field name="help"/>
+    </record>
+
+    <menuitem action="open_partner_by_attribute_set" id="open_partner_wizard" parent="base.menu_sales"/>
+
+  </data>
+</openerp>
