@@ -384,6 +384,7 @@ class MetaAnalytic(OEMetaSL):
                 """
 
                 code_vals = {}
+                new = False
 
                 if not isinstance(ids, (list, tuple)):
                     ids = [ids]
@@ -397,26 +398,24 @@ class MetaAnalytic(OEMetaSL):
                     if cp is not None:
                         code_vals['code_parent_id'] = cp
 
-                print "WTF"
-
                 if use_inherits:
                     vals.update(code_vals)
                 else:
-                    if not rel_name and 'name' in vals:
-                        code_vals['name'] = vals['name']
-                    elif rel_name and rel_name[1] in vals:
-                        code_vals['name'] = vals[rel_name[1]]
+                    name_col = rel_name[1] if rel_name else 'name'
+                    if name_col in vals:
+                        code_vals['name'] = vals[name_col]
                     code_osv = self.pool['analytic.code']
                     records = self.browse(cr, uid, ids, context=context)
                     code_ids = [getattr(rec, column).id for rec in records]
+
                     # If updating a single record with no code, create it.
-                    print code_vals, code_ids
                     if code_ids == [False]:
+                        new = ids[0]
                         code_vals['nd_id'] = self._bound_dimension_id
-                        if not rel_name:
-                            code_vals.setdefault('name', self.read(
-                                cr, uid, ids[0], ['name'], context=context
-                            )['name'])
+                        if 'name' not in code_vals:
+                            code_vals['name'] = self.read(
+                                cr, uid, new, [name_col], context=context
+                            )[name_col]
                         vals[column] = code_osv.create(
                             cr, uid, code_vals, context=context
                         )
@@ -425,9 +424,14 @@ class MetaAnalytic(OEMetaSL):
                             cr, uid, code_ids, code_vals, context=context
                         )
 
-                return super(superclass, self).write(
+                res = super(superclass, self).write(
                     cr, uid, ids, vals, context=context
                 )
+
+                if code_ref_ids and new is not False:
+                    self._generate_code_ref_id(cr, uid, new, context=context)
+
+                return res
 
         if use_code_name_methods:
 
@@ -452,7 +456,6 @@ class MetaAnalytic(OEMetaSL):
             ):
                 """Return the records whose analytic code matches the name."""
 
-                print self._name
                 code_osv = self.pool.get('analytic.code')
                 args.append(('nd_id', '=', self._bound_dimension_id))
                 names = code_osv.name_search(
