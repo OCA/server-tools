@@ -385,6 +385,9 @@ class MetaAnalytic(OEMetaSL):
 
                 code_vals = {}
 
+                if not isinstance(ids, (list, tuple)):
+                    ids = [ids]
+
                 # The 'bound analytic code' field should never be set to False.
                 if vals.get(column, True) is False:
                     del vals[column]
@@ -394,29 +397,33 @@ class MetaAnalytic(OEMetaSL):
                     if cp is not None:
                         code_vals['code_parent_id'] = cp
 
+                print "WTF"
+
                 if use_inherits:
                     vals.update(code_vals)
                 else:
-                    if 'name' in vals and not rel_name:
-                        code_vals['name'] = vals.get('name')
-                    if code_vals:
-                        code_osv = self.pool.get('analytic.code')
-                        records = self.browse(cr, uid, ids, context=context)
-                        code_ids = [getattr(rec, column).id for rec in records]
-                        # If updating a single record with no code, create it.
-                        if code_ids == [False]:
-                            code_vals['nd_id'] = self._bound_dimension_id
-                            if not rel_name:
-                                code_vals.setdefault('name', self.read(
-                                    cr, uid, ids[0], ['name'], context=context
-                                )['name'])
-                            vals[column] = code_osv.create(
-                                cr, uid, code_vals, context=context
-                            )
-                        else:
-                            code_osv.write(
-                                cr, uid, code_ids, code_vals, context=context
-                            )
+                    if not rel_name and 'name' in vals:
+                        code_vals['name'] = vals['name']
+                    elif rel_name and rel_name[1] in vals:
+                        code_vals['name'] = vals[rel_name[1]]
+                    code_osv = self.pool['analytic.code']
+                    records = self.browse(cr, uid, ids, context=context)
+                    code_ids = [getattr(rec, column).id for rec in records]
+                    # If updating a single record with no code, create it.
+                    print code_vals, code_ids
+                    if code_ids == [False]:
+                        code_vals['nd_id'] = self._bound_dimension_id
+                        if not rel_name:
+                            code_vals.setdefault('name', self.read(
+                                cr, uid, ids[0], ['name'], context=context
+                            )['name'])
+                        vals[column] = code_osv.create(
+                            cr, uid, code_vals, context=context
+                        )
+                    elif code_vals:
+                        code_osv.write(
+                            cr, uid, code_ids, code_vals, context=context
+                        )
 
                 return super(superclass, self).write(
                     cr, uid, ids, vals, context=context
