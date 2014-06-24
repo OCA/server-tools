@@ -87,7 +87,7 @@ If possible, create a separate record and use the context to specify the view:
 
 <field name="order_line" colspan="4" nolabel="1" context="{
     'form_view_ref' : 'module.view_id',
-    'tree_view_ref' : 'model.view_id'
+    'tree_view_ref' : 'module.view_id'
 }"/>
 
 

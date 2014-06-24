@@ -41,6 +41,21 @@ class analytic_structure(osv.Model):
             setattr(self, '_order_selection', order_selection)
         return order_selection
 
+    def _check_unique_ordering_no_company(self, cr, uid, ids, context=None):
+        columns = ['company_id', 'model_name', 'ordering']
+        structures = self.read(cr, uid, ids, columns, context=context)
+        for structure in structures:
+            if structure['company_id']:
+                continue    # Already checked by the SQL constraint.
+            domain = [
+                ('model_name', '=', structure['model_name']),
+                ('ordering', '=', structure['ordering']),
+            ]
+            count = self.search(cr, uid, domain, count=True, context=context)
+            if count > 1:
+                return False
+        return True
+
     _columns = dict(
         model_name=fields.char("Object", size=128, required=True, select="1"),
         nd_id=fields.many2one(
@@ -55,13 +70,30 @@ class analytic_structure(osv.Model):
             'Analysis slot',
             required=True
         ),
+        company_id=fields.many2one(
+            'res.company',
+            'Company'
+        ),
     )
+
+    _defaults = {
+        'company_id': False,
+    }
+
+    _constraints = [
+        (
+            _check_unique_ordering_no_company,
+            u"One dimension per Analysis slot per object when the structure "
+            u"is common to all companies.",
+            ['company_id', 'model_name', 'ordering']
+        )
+    ]
 
     _sql_constraints = [
         (
             'unique_ordering',
-            'unique(model_name,ordering)',
-            'One dimension per Analysis slot per object'
+            'unique(company_id,model_name,ordering)',
+            u"One dimension per Analysis slot per object per company."
         ),
     ]
 

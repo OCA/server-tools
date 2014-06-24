@@ -209,6 +209,12 @@ class MetaAnalytic(OEMetaSL):
 
         use_code_name_methods = dimension.get('use_code_name_methods', False)
 
+        code_ref_ids = dimension.get('code_ref_ids', False)
+        if code_ref_ids is True:
+            code_ref_ids = ref_id
+
+        code_ref_module = dimension.get('code_ref_module', '')
+
         if use_inherits:
             inherits = nmspc.get('_inherits', {})
             inherits['analytic.code'] = column
@@ -276,7 +282,7 @@ class MetaAnalytic(OEMetaSL):
 
             super(superclass, self).__init__(pool, cr)
 
-            data_osv = self.pool.get('ir.model.data')
+            data_osv = self.pool['ir.model.data']
             try:
                 self._bound_dimension_id = data_osv.get_object_reference(
                     cr, SUPERUSER_ID, ref_module, ref_id
@@ -288,14 +294,43 @@ class MetaAnalytic(OEMetaSL):
                     xml_id=ref_id, noupdate=True
                 )
 
+        if code_ref_ids:
+            prefix = config.get_misc('analytic', 'code_ref_prefix', False)
+
+            # This function is called as a method and can be overridden.
+            @AddMethod(superclass)
+            def _generate_code_ref_id(self, cr, uid, ids, context=None):
+                data_osv = self.pool['ir.model.data']
+                records = self.browse(cr, uid, ids, context=None)
+                if not isinstance(records, list):
+                    records = [records]
+
+                for record in records:
+                    code = record[column]
+                    code_ref_id_builder = [prefix] if prefix else []
+                    if 'company_id' in record and record.company_id:
+                        code_ref_id_builder.append(record.company_id.code)
+                    code_ref_id_builder.append('ANC')
+                    code_ref_id_builder.append(code_ref_ids)
+                    code_ref_id_builder.append(code.name)
+
+                    vals = {
+                        'name': "_".join(code_ref_id_builder),
+                        'module': code_ref_module,
+                        'model': 'analytic.code',
+                        'res_id': code.id,
+                    }
+                    data_osv.create(cr, uid, vals, context=context)
+
         @AddMethod(superclass)
         def create(self, cr, uid, vals, context=None):
             """Create the analytic code."""
 
-            code_vals = {
-                'nd_id': self._bound_dimension_id,
-                'name': vals.get(rel_name[1] if rel_name else 'name'),
-            }
+            code_vals = {'nd_id': self._bound_dimension_id}
+            if use_inherits:
+                code_vals.update(vals)
+            else:
+                code_vals['name'] = vals.get('name')
             if sync_parent:
                 cp = self._get_code_parent(cr, uid, vals, context=context)
                 if cp is not None:
@@ -309,16 +344,19 @@ class MetaAnalytic(OEMetaSL):
                 elif model_col in self._defaults:
                     code_vals[code_col] = self._defaults[model_col]
 
-            if use_inherits:
-                vals.update(code_vals)
-            else:
-                code_osv = self.pool.get('analytic.code')
-                code_id = code_osv.create(cr, uid, code_vals, context=context)
-                vals[column] = code_id
+            # We also have to create the code separately, even with inherits.
+            code_osv = self.pool.get('analytic.code')
+            code_id = code_osv.create(cr, uid, code_vals, context=context)
+            vals[column] = code_id
 
-            return super(superclass, self).create(
+            res = super(superclass, self).create(
                 cr, uid, vals, context=context
             )
+
+            if code_ref_ids:
+                self._generate_code_ref_id(cr, uid, res, context=context)
+
+            return res
 
         if sync_parent:
             # This function is called as a method and can be overridden.
@@ -407,6 +445,7 @@ class MetaAnalytic(OEMetaSL):
             ):
                 """Return the records whose analytic code matches the name."""
 
+                print self._name
                 code_osv = self.pool.get('analytic.code')
                 args.append(('nd_id', '=', self._bound_dimension_id))
                 names = code_osv.name_search(

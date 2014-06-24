@@ -114,6 +114,8 @@
                         <field name="nd_id"/>
                         <newline />
                         <field name="ordering"/>
+                        <newline />
+                        <field name="company_id" placeholder="All" />
                     </group>
                 </form>
             </field>
