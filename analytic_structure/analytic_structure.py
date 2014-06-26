@@ -127,13 +127,13 @@ class analytic_structure(osv.Model):
         }
 
     def analytic_fields_get(
-        self, cr, uid, model, fields, prefix='a', context=None
+        self, cr, uid, model, fields, prefix='a', suffix='id', context=None
     ):
         """Set the label values for the analytic fields."""
 
         ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
 
-        regex = '{0}(\d+)_id'.format(prefix)
+        regex = '{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
         match_fct = re.compile(regex).search
         matches = filter(None, map(match_fct, fields.keys()))
 
@@ -147,15 +147,46 @@ class analytic_structure(osv.Model):
 
         return fields
 
+    def analytic_fields_subview_get(
+        self, cr, uid, model, field, prefix='a', suffix='id', context=None
+    ):
+        """Apply analytic_fields_view_get to all subviews defined for a
+        given relational field.
+        The field argument is a field descriptor found inside the return value
+        of fields_view_get. This method both updates and returns it:
+
+        fvg_res = super(model_class, self).fields_view_get(...)
+        field = fvg_res['fields'].get(field_name)
+        analytic_fields_subview_get(cr, uid, 'analytic_model', field)
+        # or...
+        if field_name in fvg_res['fields']:
+            fvg_res['fields'][field_name] = analytic_fields_subview_get(...)
+
+        Avoid using subviews with analytic fields. It is better to define a new
+        ir.ui.view record and pass it with the context key [type]_view_ref.
+        """
+
+        try:
+            field_subviews = field['views']
+        except:
+            return field
+
+        for view_mode, subview in field_subviews.iteritems():
+            subview['model'] = field['relation']
+            field_subviews[view_mode] = self.analytic_fields_view_get(
+                cr, uid, model, subview, context=context
+            )
+        return field
+
     def analytic_fields_view_get(
-        self, cr, uid, model, view, prefix='a', context=None
+        self, cr, uid, model, view, prefix='a', suffix='id', context=None
     ):
         """Show or hide used/unused analytic fields."""
 
         ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
         found_fields = {slot: False for slot in ans_dict}
 
-        regex = '{0}(\d+)_id'.format(prefix)
+        regex = '{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
         path = "//field[re:match(@name, '{0}')]".format(regex)
         ns = {"re": "http://exslt.org/regular-expressions"}
 
@@ -178,11 +209,16 @@ class analytic_structure(osv.Model):
                 match.set('modifiers', json.dumps(modifiers))
 
         # Look for a div with the 'oe_analytic' class and the right prefix.
+        cls_cond = 'contains(@class, "oe_analytic")'
         if prefix == 'a':
-            prefix_cond = '(@prefix="a" or not(@prefix))'
+            pre_cond = '(@prefix="a" or not(@prefix))'
         else:
-            prefix_cond = '@prefix="{pfx}"'.format(pfx=prefix)
-        condition = 'contains(@class, "oe_analytic") and ' + prefix_cond
+            pre_cond = '@prefix="{pre}"'.format(pre=prefix)
+        if suffix == 'id':
+            suf_cond = '(@suffix="id" or not(@suffix))'
+        else:
+            suf_cond = '@suffix="{suf}"'.format(suf=suffix)
+        condition = '{0} and {1} and {2}'.format(cls_cond, pre_cond, suf_cond)
         parent_matches = doc.xpath('//div[{cond}]/..'.format(cond=condition))
 
         if parent_matches:
@@ -199,7 +235,7 @@ class analytic_structure(osv.Model):
             sorted_fields = found_fields.items()
             sorted_fields.sort(key=lambda i: int(i[0]))
             div_fields = [
-                '{pfx}{n}_id'.format(pfx=prefix, n=slot)
+                '{pre}{n}_{suf}'.format(pre=prefix, n=slot, suf=suffix)
                 for slot, found in sorted_fields if not found
             ]
 

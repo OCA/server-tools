@@ -36,28 +36,34 @@ class MetaAnalytic(OEMetaSL):
 
     def __new__(cls, name, bases, nmspc):
 
-        analytic = nmspc.get('_analytic', False)
-        dimension = nmspc.get('_dimension', False)
+        analytic = nmspc.get('_analytic', {})
+        para = nmspc.get('_para_analytic', {})
+        dimension = nmspc.get('_dimension', {})
 
         columns = nmspc.get('_columns', None)
         if columns is None:
             columns = {}
             nmspc['_columns'] = columns
 
+        defaults = nmspc.get('_defaults', None)
+        if defaults is None:
+            defaults = {}
+            nmspc['_defaults'] = defaults
+
         orm_name = nmspc.get('_name', None)
         if orm_name is None:
             orm_name = nmspc.get('_inherit')
 
         # Analytic fields should be defined in the _analytic attribute.
-        if analytic:
+        if analytic or para:
             bases = cls._setup_analytic_fields(
-                analytic, columns, orm_name, name, bases, nmspc
+                analytic, para, columns, defaults, orm_name, name, bases, nmspc
             )
 
         # The bound dimension should be defined in the _dimension attribute.
         if dimension:
             bases = cls._setup_bound_dimension(
-                dimension, columns, orm_name, name, bases, nmspc
+                dimension, columns, defaults, orm_name, name, bases, nmspc
             )
 
         return super(MetaAnalytic, cls).__new__(cls, name, bases, nmspc)
@@ -67,9 +73,9 @@ class MetaAnalytic(OEMetaSL):
 
     @classmethod
     def _setup_analytic_fields(
-        cls, analytic, columns, orm_name, name, bases, nmspc
+        cls, analytic, para, columns, defaults, orm_name, name, bases, nmspc
     ):
-        """Generate analytic fields on the model."""
+        """Generate analytic and para-analytic fields on the model."""
 
         # If _analytic uses a shortcut, convert it into a prefix-model mapping.
         if analytic is True:
@@ -77,12 +83,18 @@ class MetaAnalytic(OEMetaSL):
         elif isinstance(analytic, basestring):
             analytic = {'a': analytic}
 
+        col_pattern = '{pre}{n}_{suf}'
         size = int(config.get_misc('analytic', 'analytic_size', 5))
 
-        # Generate the analytic fields directly into the _columns attribute.
+        # Generate the fields directly into the _columns attribute.
+        all_analytic = []
+
         for prefix, model_name in analytic.iteritems():
+            # Analytic fields
+            all_analytic.append((model_name, prefix, 'id'))
+
             for n in xrange(1, size + 1):
-                col_name = '{pfx}{n}_id'.format(pfx=prefix, n=n)
+                col_name = col_pattern.format(pre=prefix, n=n, suf='id')
                 domain_field = 'nd_id.ns{n}_id.model_name'.format(n=n)
                 columns[col_name] = fields.many2one(
                     'analytic.code',
@@ -93,6 +105,23 @@ class MetaAnalytic(OEMetaSL):
                     ],
                     track_visibility='onchange',
                 )
+
+        for key, value in para.iteritems():
+            # Para-analytic fields
+            prefix, suffix = key
+            model_name = value['model']
+            all_analytic.append((model_name, prefix, suffix))
+            if suffix == 'id':
+                raise ValueError("Para-analytic suffix cannot be 'id'")
+
+            field_type = value['type']
+            args = value['args']
+            kwargs = value['kwargs']
+            for n in xrange(1, size + 1):
+                col_name = col_pattern.format(pre=prefix, n=n, suf=suffix)
+                columns[col_name] = field_type(*args, **kwargs)
+                if 'default' in value:
+                    defaults[col_name] = value['default']
 
         # In order to preserve inheritance, possible overrides, and OEMetaSL's
         # expected behavior, work on a new class that inherits the given bases,
@@ -114,9 +143,9 @@ class MetaAnalytic(OEMetaSL):
 
             analytic_osv = self.pool.get('analytic.structure')
 
-            for prefix, model_name in analytic.iteritems():
+            for model_name, prefix, suffix in all_analytic:
                 res = analytic_osv.analytic_fields_get(
-                    cr, uid, model_name, res, prefix=prefix, context=context
+                    cr, uid, model_name, res, prefix, suffix, context=context
                 )
 
             return res
@@ -135,9 +164,9 @@ class MetaAnalytic(OEMetaSL):
 
             analytic_osv = self.pool.get('analytic.structure')
 
-            for prefix, model_name in analytic.iteritems():
+            for model_name, prefix, suffix in all_analytic:
                 res = analytic_osv.analytic_fields_view_get(
-                    cr, uid, model_name, res, prefix=prefix, context=context
+                    cr, uid, model_name, res, prefix, suffix, context=context
                 )
 
             return res
@@ -146,7 +175,7 @@ class MetaAnalytic(OEMetaSL):
 
     @classmethod
     def _setup_bound_dimension(
-        cls, dimension, columns, orm_name, name, bases, nmspc
+        cls, dimension, columns, defaults, orm_name, name, bases, nmspc
     ):
         """Bind a dimension to the model, creating a code for each record."""
 
@@ -244,11 +273,6 @@ class MetaAnalytic(OEMetaSL):
                 osv = self.pool.get(orm_name)
                 domain = [(column, 'in', ids)]
                 return osv.search(cr, uid, domain, context=context)
-
-            defaults = nmspc.get('_defaults', None)
-            if defaults is None:
-                defaults = {}
-                nmspc['_defaults'] = defaults
 
             for string, model_col, code_col, dtype, req, default in rel_cols:
                 columns[model_col] = fields.related(
