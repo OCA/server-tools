@@ -240,21 +240,22 @@ class analytic_structure(osv.Model):
             ]
 
             # First, we have to load the definitions for those fields.
-            div_fields_def = self.pool.get(view['model']).fields_get(
-                cr, uid, div_fields, context=context
-            )
-            view['fields'].update(div_fields_def)
+            if div_fields:
+                div_fields_def = self.pool.get(view['model']).fields_get(
+                    cr, uid, div_fields, context=context
+                )
+                view['fields'].update(div_fields_def)
 
-            # Now we can insert the fields in the view's architecture.
-            for field in div_fields:
-                attrs = {'name': field}
-                for attr, value in div.attrib.iteritems():
-                    if attr in ['class', 'prefix']:
-                        continue
-                    attrs[attr] = value
-                parent.append(etree.Element('field', attrs))
+                # Now we can insert the fields in the view's architecture.
+                for field in div_fields:
+                    attrs = {'name': field}
+                    for attr, value in div.attrib.iteritems():
+                        if attr in ['class', 'prefix']:
+                            continue
+                        attrs[attr] = value
+                    parent.append(etree.Element('field', attrs))
 
-            parent.extend(next_children)
+                parent.extend(next_children)
 
         view['arch'] = etree.tostring(doc)
 
