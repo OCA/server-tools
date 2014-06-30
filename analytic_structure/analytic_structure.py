@@ -97,6 +97,62 @@ class analytic_structure(osv.Model):
         ),
     ]
 
+    def format_field_name(self, ordering, prefix='a', suffix='id'):
+        """Return an analytic field's name from its slot, prefix and suffix.
+        """
+        return '{pre}{n}_{suf}'.format(pre=prefix, n=ordering, suf=suffix)
+
+    def extract_values(
+        self, cr, uid, source, model, prefix='a', suffix='id', dest_model=None,
+        dest_prefix=None, dest_suffix=None, context=None
+    ):
+        """For the given source and destination structures, defined by model,
+        prefix and suffix, extract the values of all analytic fields from a
+        source. Return the ID of those values, mapped with the field attributed
+        to their dimension in the destination structure.
+
+        Use this method to copy analytic data from an object to another.
+        The source data can be a browse_record from browse or a dict from read.
+        The return value is a dictionary. It can be directly passed as the vals
+        or defaults attribute for the ORM methods create, write and copy.
+
+        If not specified, the model, prefix and suffix for the destination
+        fields are the same as those for the source fields.
+        When a destination model is specified, only the values for dimensions
+        present in both models will be returned (at their appropriate slot).
+        """
+
+        if dest_prefix is None:
+            dest_prefix = prefix
+        if dest_suffix is None:
+            dest_suffix = suffix
+
+        def add_field():
+            src = self.format_field_name(slot, prefix, suffix)
+            dest = self.format_field_name(dest_slot, dest_prefix, dest_suffix)
+            if src in source:
+                try:
+                    res[dest] = source[src].id
+                except AttributeError:
+                    res[dest] = source[src]
+
+        res = {}
+        src_dim = self.get_dimensions(cr, uid, model, context=context)
+
+        if dest_model is None or dest_model == model:
+            for slot in src_dim.itervalues():
+                dest_slot = slot
+                add_field()
+
+        else:
+            dest_dim = self.get_dimensions(cr, uid, dest_model, context)
+            for dimension, slot in src_dim.iteritems():
+                if dimension in dest_dim:
+                    dest_slot = dest_dim[dimension]
+                    add_field()
+
+        return res
+
     def get_structures(self, cr, uid, model, context=None):
         """Return the browse records of every analytic structure entry
         associated with the given model.
@@ -235,7 +291,7 @@ class analytic_structure(osv.Model):
             sorted_fields = found_fields.items()
             sorted_fields.sort(key=lambda i: int(i[0]))
             div_fields = [
-                '{pre}{n}_{suf}'.format(pre=prefix, n=slot, suf=suffix)
+                self.format_field_name(slot, prefix, suffix)
                 for slot, found in sorted_fields if not found
             ]
 
