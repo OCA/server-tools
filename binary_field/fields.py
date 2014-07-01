@@ -288,8 +288,7 @@ original__init__ = orm.BaseModel.__init__
 
 
 def __init__(self, pool, cr):
-    original__init__(self, pool, cr)
-    if self.pool.get('binary.field.installed'):
+    if pool.get('binary.field.installed'):
         additional_field = {}
         for field_name in self._columns:
             field = self._columns[field_name]
@@ -301,8 +300,8 @@ def __init__(self, pool, cr):
                         fields.integer(
                             '%s File Size' % self._columns[field_name].string),
                     })
-                #import pdb; pdb.set_trace()
         self._columns.update(additional_field)
+    original__init__(self, pool, cr)
 
 
 orm.BaseModel.__init__ = __init__
