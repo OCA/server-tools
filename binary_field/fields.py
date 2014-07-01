@@ -90,8 +90,10 @@ class FileSystemStorage(Storage):
         return fname
 
     def _file_delete(self, cr, uid, fname):
-        #TODO FIXME
-        count = 1 #self.search(cr, 1, [('store_fname','=',fname)], count=True)
+        obj = self.pool[self.model_name]
+        count = obj.search(cr, 1, [
+            ('%s_uid' % self.field_name, '=', fname),
+            ], count=True)
         full_path = self._full_path(cr, uid, fname)
         if count <= 1 and os.path.exists(full_path):
             try:
