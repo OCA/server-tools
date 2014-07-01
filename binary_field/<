@@ -20,7 +20,6 @@
 #
 ###############################################################################
 
-import hashlib
 from openerp.osv import fields, orm
 from openerp.tools import image_resize_image
 from openerp.tools.translate import _
@@ -34,102 +33,55 @@ _logger = logging.getLogger(__name__)
 
 class Storage(object):
 
-    def __init__(self, cr, uid, model_name, field_name, record, config):
+    def __init__(self, cr, uid, record, field_name, config=None):
         self.cr = cr
         self.uid = uid
         self.pool = record._model.pool
-        self.field_name = field_name
-        self.model_name = model_name
-        self.config = config
-
-
-class FileSystemStorage(Storage):
-
-    def _full_path(self, cr, uid, fname):
-        return os.path.join(
-            self.config['base_path'],
-            self.cr.dbname,
-            '%s-%s' % (self.model_name, self.field_name),
-            fname)
-
-    # Code extracted from Odoo V8 in ir_attachment.py
-    # Copyright (C) 2004-2014 OPENERP SA
-    # Licence AGPL V3
-    def _get_path(self, cr, uid, bin_data):
-        sha = hashlib.sha1(bin_data).hexdigest()
-        # scatter files across 256 dirs
-        # we use '/' in the db (even on windows)
-        fname = sha[:2] + '/' + sha
-        full_path = self._full_path(cr, uid, fname)
-        dirname = os.path.dirname(full_path)
-        if not os.path.isdir(dirname):
-            os.makedirs(dirname)
-        return fname, full_path
-
-    def _file_read(self, cr, uid, fname, bin_size=False):
-        full_path = self._full_path(cr, uid, fname)
-        r = ''
-        try:
-            if bin_size:
-                r = os.path.getsize(full_path)
-            else:
-                r = open(full_path,'rb').read().encode('base64')
-        except IOError:
-            _logger.error("_read_file reading %s",full_path)
-        return r
-
-    def _file_write(self, cr, uid, value):
-        bin_value = value.decode('base64')
-        fname, full_path = self._get_path(cr, uid, bin_value)
-        if not os.path.exists(full_path):
-            try:
-                with open(full_path, 'wb') as fp:
-                    fp.write(bin_value)
-            except IOError:
-                _logger.error("_file_write writing %s", full_path)
-        return fname
-
-    def _file_delete(self, cr, uid, fname):
-        #TODO FIXME
-        count = 1 #self.search(cr, 1, [('store_fname','=',fname)], count=True)
-        full_path = self._full_path(cr, uid, fname)
-        if count <= 1 and os.path.exists(full_path):
-            try:
-                os.unlink(full_path)
-            except OSError:
-                _logger.error("_file_delete could not unlink %s",full_path)
-            except IOError:
-                # Harmless and needed for race conditions
-                _logger.error("_file_delete could not unlink %s",full_path)
-    # END of extraction
+        if config and config.get('field_key'):
+            self.field_key = config['field_key']
+        else:
+            self.field_key = (
+                "%s-%s" % (record._name, field_name)).replace('.', '')
+        if config and config.get('base_location'):
+            self.base_location = config['base_location']
+        else:
+            self.base_location = self.pool.get('ir.config_parameter').\
+                get_param(cr, uid, 'binary.location')
+            if not self.base_location:
+                raise orm.except_orm(
+                    _('Configuration Error'),
+                    _('The "binary.location" is empty, please fill it in'
+                      'Configuration > Parameters > System Parameters'))
+        self.location = (self.base_location, self.field_key)
 
     def add(self, value):
         if not value:
             return {}
         file_size = sys.getsizeof(value.decode('base64'))
-        _logger.debug('Add binary to model: %s, field: %s'
-                      % (self.model_name, self.field_name))
-        binary_uid = self._file_write(self.cr, self.uid, value)       
+        binary_uid = self.pool['ir.attachment'].\
+            _file_write(self.cr, self.uid, self.location, value)
+        _logger.debug('Add binary %s/%s' % (self.field_key, binary_uid))
         return {
             'binary_uid': binary_uid,
             'file_size': file_size,
             }
 
     def update(self, binary_uid, value):
-        _logger.debug('Delete binary model: %s, field: %s, uid: %s'
-                      % (self.model_name, self.field_name, binary_uid))
-        self._file_delete(self.cr, self.uid, binary_uid)
+        _logger.debug('Delete binary %s/%s' % (self.field_key, binary_uid))
+        self.pool['ir.attachment'].\
+            _file_delete(self.cr, self.uid, self.location, binary_uid)
         if not value:
             return {}
         return self.add(value)
 
     def get(self, binary_uid):
-        return self._file_read(self.cr, self.uid, binary_uid)
+        return self.pool['ir.attachment'].\
+            _file_read(self.cr, self.uid, self.location, binary_uid)
 
 
 class BinaryField(fields.function):
 
-    def __init__(self, string, **kwargs):
+    def __init__(self, string, get_storage=Storage, config=None, **kwargs):
         """Init a BinaryField field
         :params string: Name of the field
         :type string: str
@@ -143,11 +95,14 @@ class BinaryField(fields.function):
         new_kwargs = {
             'type': 'binary',
             'string': string,
+            'fnct': self._fnct_read,
             'fnct_inv': self._fnct_write,
             'multi': False,
             }
         new_kwargs.update(kwargs)
-        super(BinaryField, self).__init__(self._fnct_read, **new_kwargs)
+        self.get_storage = get_storage
+        self.config = config
+        super(BinaryField, self).__init__(**new_kwargs)
 
     # No postprocess are needed
     # we already take care of bin_size option in the context
@@ -164,9 +119,9 @@ class BinaryField(fields.function):
                     context=None):
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
-        storage_obj = obj.pool['storage.configuration']
         for record in obj.browse(cr, uid, ids, context=context):
-            storage = storage_obj.get_storage(cr, uid, field_name, record)
+            storage = self.get_storage(cr, uid, record, field_name,
+                                       config=self.config)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 res = storage.update(binary_uid, value)
@@ -179,9 +134,9 @@ class BinaryField(fields.function):
 
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
-        storage_obj = obj.pool['storage.configuration']
         for record in obj.browse(cr, uid, ids, context=context):
-            storage = storage_obj.get_storage(cr, uid, field_name, record)
+            storage = self.get_storage(cr, uid, record, field_name,
+                                       config=self.config)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
                 # Compatibility with existing binary field
@@ -217,14 +172,12 @@ class ImageField(BinaryField):
         :params width: width of the image resized
         :type width: integer
         """
-        super(ImageField, self).__init__(
+        super(BinaryField, self).__init__(
             string,
             get_storage=get_storage,
             config=config,
             **kwargs)
-        self.resize_based_on = resize_based_on
-        self.height = height
-        self.width = width
+        self.resize_base_on = resize_based_on
 
     def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
                     context=None):
@@ -236,7 +189,7 @@ class ImageField(BinaryField):
         # We have to store the image on the related field and not on the
         # resized image field
         if related_field_name and not context.get('refresh_image_cache'):
-            return self._fnct_write(
+            return super(ImageField, self)._fnct_write(
                 obj, cr, uid, ids, related_field_name, value, args,
                 context=context)
         else:
@@ -244,19 +197,12 @@ class ImageField(BinaryField):
                 obj, cr, uid, ids, field_name, value, args, context=context)
             
             for name, field in obj._columns.items():
-                if isinstance(field, ImageField)\
-                   and field.resize_based_on == field_name:
+                if field.resize_based_on == field_name:
                     field._refresh_cache(
                         obj, cr, uid, ids, name, context=context)
         return True
 
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
-        """Refresh the cache of the small image
-        :params ids: list of object id to refresh
-        :type ids: list
-        :params field_name: Name of the field to refresh the cache
-        :type field_name: str
-        """
         if context is None:
             context = {}
         if not isinstance(ids, (list, tuple)):
@@ -266,7 +212,7 @@ class ImageField(BinaryField):
                           '%s id : %s' % (field_name, obj._name, record_id))
             field = obj._columns[field_name]
             record = obj.browse(cr, uid, record_id, context=context)
-            original_image = record[field.resize_based_on]
+            original_image = record[field.related_field]
             if original_image:
                 size = (field.height, field.width)
                 resized_image = image_resize_image(original_image, size)
@@ -299,11 +245,29 @@ def __init__(self, pool, cr):
                         fields.integer(
                             '%s File Size' % self._columns[field_name].string),
                     })
-                #import pdb; pdb.set_trace()
+                import pdb; pdb.set_trace()
         self._columns.update(additional_field)
 
 
 orm.BaseModel.__init__ = __init__
+
+
+class IrAttachment(orm.Model):
+    _inherit = 'ir.attachment'
+
+    def _full_path(self, cr, uid, location, path):
+        # Hack for passing the field_key in the full path
+        # For now I prefer to use this hack and to reuse
+        # the ir.attachment code
+        # An alternative way will to copy/paste and
+        # adapt the ir.attachment code
+        if isinstance(location, tuple):
+            base_location, field_key = location
+            path = os.path.join(field_key, path)
+        else:
+            base_location = location
+        return super(IrAttachment, self).\
+            _full_path(cr, uid, base_location, path)
 
 
 class BinaryFieldInstalled(orm.AbstractModel):

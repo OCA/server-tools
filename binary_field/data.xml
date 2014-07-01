@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="binary_storage_parameter" model="ir.config_parameter">
-            <field name="key">binary.location</field>
-            <field name="value">file:///filestore</field>
+        <record id="default_filesystem_storage" model="storage.configuration">
+            <field name="type">filesystem</field>
+            <field name="name">Default File System Storage</field>
+            <field name="base_path">openerp/filestore/</field>
+            <field name="is_default">1</field>
         </record>
     </data>
 </openerp>

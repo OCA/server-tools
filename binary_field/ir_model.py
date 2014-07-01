@@ -2,7 +2,7 @@
 ###############################################################################
 #
 #   Module for OpenERP
-#   Copyright (C) 2013 Akretion (http://www.akretion.com).
+#   Copyright (C) 2014 Akretion (http://www.akretion.com).
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,16 @@
 #
 ###############################################################################
 
-from . import fields
-from . import storage
-from . import ir_model
+from openerp.osv import fields, orm
+
+class IrModelFields(orm.Model):
+    _inherit = 'ir.model.fields'
+    
+    _columns = {
+        'storage_id': fields.many2one(
+            'storage.configuration',
+            'Custom Storage',
+            help=("Select a custom storage configuration. "
+                  "If the field is empty the default one will be use")
+            ),
+        }

@@ -72,6 +72,8 @@ Here is an example of field declaration
  ],
  'data': [
      'data.xml',
+     'ir_model_view.xml',
+     'storage_view.xml',
  ],
  'installable': True,
  'application': True,
