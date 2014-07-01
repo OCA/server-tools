@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data>
+    <data noupdate="1">
         <record id="default_filesystem_storage" model="storage.configuration">
             <field name="type">filesystem</field>
             <field name="name">Default File System Storage</field>
