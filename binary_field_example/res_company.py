@@ -28,14 +28,10 @@ class ResCompany(orm.Model):
     
     _columns = {
         'binary_test': fields.BinaryField('Test Binary'),
-        'image_test': fields.ImageField('Test Image',
-            config={
-                'field_key': 'StoreMeHere',
-                'base_location': 'file:///testpath',
-                }),
-        'image_test_resize': fields.ImageResizeField(
-            related_field='image_test',
-            string='Test Image small',
+        'image_test': fields.ImageField('Test Image'),
+        'image_test_resize': fields.ImageField(
+            'Test Image small',
+            resize_based_on='image_test',
             height=64,
             width=64,
             ),

@@ -95,14 +95,13 @@ class BinaryField(fields.function):
         new_kwargs = {
             'type': 'binary',
             'string': string,
-            'fnct': self._fnct_read,
             'fnct_inv': self._fnct_write,
             'multi': False,
             }
         new_kwargs.update(kwargs)
         self.get_storage = get_storage
         self.config = config
-        super(BinaryField, self).__init__(**new_kwargs)
+        super(BinaryField, self).__init__(self._fnct_read, **new_kwargs)
 
     # No postprocess are needed
     # we already take care of bin_size option in the context
@@ -154,45 +153,64 @@ class BinaryField(fields.function):
 
 class ImageField(BinaryField):
 
-    def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
-                    context=None):
-        super(ImageField, self)._fnct_write(
-            obj, cr, uid, ids, field_name, value, args, context=context)
-        for name, field in obj._columns.items():
-            if isinstance(field, ImageResizeField) \
-                    and field.related_field == field_name:
-                field._refresh_cache(
-                    obj, cr, uid, ids, name, context=context)
-        return True
-
-
-class ImageResizeField(ImageField):
-
-    def __init__(self, string, related_field, height, width, **kwargs):
-        """Init a BinaryField field
+    def __init__(self, string, get_storage=Storage, config=None, 
+            resize_based_on=None, height=64, width=64, **kwargs):
+        """Init a ImageField field
         :params string: Name of the field
         :type string: str
-        :params related_field: reference field that should be resized
-        :type related_field: str
-        :params height: height of the image resized
-        :type height: integer
-        :params width: width of the image resized
-        :type width: integer
         :params get_storage: Storage Class for processing the field
                             by default use the Storage on filesystem
         :type get_storage: :py:class`binary_field.Storage'
         :params config: configuration used by the storage class
         :type config: what you want it's depend of the Storage class
                       implementation
+        :params resize_based_on: reference field that should be resized
+        :type resize_based_on: str
+        :params height: height of the image resized
+        :type height: integer
+        :params width: width of the image resized
+        :type width: integer
         """
+        super(ImageField, self).__init__(
+            string,
+            get_storage=get_storage,
+            config=config,
+            **kwargs)
+        self.resize_based_on = resize_based_on
         self.height = height
         self.width = width
-        self.related_field = related_field
-        super(ImageResizeField, self).__init__(
-            string=string,
-            **kwargs)
+
+    def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
+                    context=None):
+        if context is None:
+            context = {}
+        related_field_name = obj._columns[field_name].resize_based_on
+
+        # If we write an original image in a field with the option resized
+        # We have to store the image on the related field and not on the
+        # resized image field
+        if related_field_name and not context.get('refresh_image_cache'):
+            return self._fnct_write(
+                obj, cr, uid, ids, related_field_name, value, args,
+                context=context)
+        else:
+            super(ImageField, self)._fnct_write(
+                obj, cr, uid, ids, field_name, value, args, context=context)
+            
+            for name, field in obj._columns.items():
+                if isinstance(field, ImageField)\
+                   and field.resize_based_on == field_name:
+                    field._refresh_cache(
+                        obj, cr, uid, ids, name, context=context)
+        return True
 
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
+        """Refresh the cache of the small image
+        :params ids: list of object id to refresh
+        :type ids: list
+        :params field_name: Name of the field to refresh the cache
+        :type field_name: str
+        """
         if context is None:
             context = {}
         if not isinstance(ids, (list, tuple)):
@@ -202,7 +220,7 @@ class ImageResizeField(ImageField):
                           '%s id : %s' % (field_name, obj._name, record_id))
             field = obj._columns[field_name]
             record = obj.browse(cr, uid, record_id, context=context)
-            original_image = record[field.related_field]
+            original_image = record[field.resize_based_on]
             if original_image:
                 size = (field.height, field.width)
                 resized_image = image_resize_image(original_image, size)
@@ -213,19 +231,9 @@ class ImageResizeField(ImageField):
             self._fnct_write(obj, cr, uid, [record_id], field_name,
                              resized_image, None, context=ctx)
 
-    def _fnct_write(self, obj, cr, uid, ids, field_name, value, args,
-                    context=None):
-        if context is not None and context.get('refresh_image_cache'):
-            field = field_name
-        else:
-            field = obj._columns[field_name].related_field
-        return super(ImageResizeField, self)._fnct_write(
-            obj, cr, uid, ids, field, value, args, context=context)
-
 
 fields.BinaryField = BinaryField
 fields.ImageField = ImageField
-fields.ImageResizeField = ImageResizeField
 
 
 original__init__ = orm.BaseModel.__init__
@@ -235,24 +243,17 @@ def __init__(self, pool, cr):
     original__init__(self, pool, cr)
     if self.pool.get('binary.field.installed'):
         additional_field = {}
-        for field in self._columns:
-            if isinstance(self._columns[field], BinaryField):
+        for field_name in self._columns:
+            field = self._columns[field_name]
+            if isinstance(field, BinaryField):
                 additional_field.update({
-                    '%s_uid' % field:
-                        fields.char('%s UID' % self._columns[field].string),
-                    '%s_file_size' % field:
+                    '%s_uid' % field_name:
+                        fields.char('%s UID' % self._columns[field_name].string),
+                    '%s_file_size' % field_name:
                         fields.integer(
-                            '%s File Size' % self._columns[field].string),
+                            '%s File Size' % self._columns[field_name].string),
                     })
-
-            # Inject the store invalidation function for ImageResize
-            if isinstance(self._columns[field], ImageResizeField):
-                self._columns[field].store = {
-                    self._name: (
-                        lambda self, cr, uid, ids, c=None: ids,
-                        [self._columns[field].related_field],
-                        10),
-                }
+                #import pdb; pdb.set_trace()
         self._columns.update(additional_field)
 
 
