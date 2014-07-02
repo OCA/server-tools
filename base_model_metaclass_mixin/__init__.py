@@ -1,4 +1,4 @@
-from openerp.osv import osv
+from openerp.osv import orm
 from openerp.tools.translate import _
 
 __all__ = ['BaseModelMetaclassMixin']
@@ -23,7 +23,7 @@ def get_overrides():
         yield func_name, func
 
 
-class BaseModelMetaclassMixin(osv.MetaModel):
+class BaseModelMetaclassMixin(orm.MetaModel):
     def __init__(cls, name, bases, nmspc):
         super(BaseModelMetaclassMixin, cls).__init__(name, bases, nmspc)
 
