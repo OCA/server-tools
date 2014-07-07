@@ -19,9 +19,9 @@
 #
 ##############################################################################
 {
-    "name" : "Remove openerp.com bindings",
-    "version" : "1.1",
-    "author" : "Therp BV",
+    "name": "Remove openerp.com bindings",
+    "version": "1.1",
+    "author": "Therp BV",
     "complexity": "normal",
     "description": """
 This module deactivates all bindings to openerp.com that
@@ -30,14 +30,15 @@ come with the standard code:
 * update notifier code is deactivated and the function is overwritten
 * apps and updates menu items in settings are removed
 * help and account menu items in user menu are removed
-* prevent lookup of OPW for current database uuid and resulting 'unsupported' warning
+* prevent lookup of OPW for current database uuid and resulting"""
+    """ 'unsupported' warning
     """,
-    "category" : "",
-    "depends" : [
+    "category": "",
+    "depends": [
         'base',
         'mail',
     ],
-    "data" : [
+    "data": [
         'data/ir_ui_menu.xml',
         'data/ir_cron.xml',
     ],
@@ -51,7 +52,7 @@ come with the standard code:
     ],
     "auto_install": False,
     "installable": True,
-    "external_dependencies" : {
-        'python' : [],
+    "external_dependencies": {
+        'python': [],
     },
 }

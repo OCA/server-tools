@@ -91,7 +91,7 @@ class TestAuthAdminPasskey(TransactionCase):
         Test the correct behaviour of login with 'bad_login' / 'admin'"""
         exception_raised = False
         try:
-            res = self.ru_obj.authenticate(self.db, 'bad_login', 'admin', {})
+            self.ru_obj.authenticate(self.db, 'bad_login', 'admin', {})
         except:
             exception_raised = True
         self.assertEqual(
