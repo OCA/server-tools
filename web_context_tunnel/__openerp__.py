@@ -88,5 +88,6 @@ https://github.com/openerpbrasil/l10n_br_core/compare/develop...feature%2Fsale-w
     ],
     'css': [],
     'auto_install': False,
+    'installable': True,
     'web_preload': False,
 }
