@@ -18,6 +18,8 @@
                     <field name="name"/>
                     <field name="type"/>
                     <field name="base_path"/>
+                    <field name="external_storage_server"/>
+                    <field name="base_external_url" attrs="{'invisible': [('external_storage_server','=', False)], 'required': [('external_storage_server','=', True)]}"/>
                 </form>
             </field>
         </record>

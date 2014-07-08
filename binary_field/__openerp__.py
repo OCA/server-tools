@@ -68,12 +68,15 @@ Here is an example of field declaration
         ),
  """,
  'depends': [
-     'base',
+     'web',
  ],
  'data': [
      'data.xml',
      'ir_model_view.xml',
      'storage_view.xml',
+ ],
+ 'js': [
+     'static/src/js/widget.js',
  ],
  'installable': True,
  'application': True,

@@ -114,4 +114,15 @@ class StorageConfiguration(orm.Model):
             'Is default',
             help=('Tic that box in order to select '
                  'the default storage configuration')),
+        'external_storage_server': fields.boolean(
+            'External Storage Server',
+            help=('Tic that box if you want to server the file with an '
+                 'external server. For example, if you choose the storage '
+                 'on File system, the binary file can be serve directly with '
+                 'nginx or apache...')),
+        'base_external_url': fields.char(
+            'Base external URL',
+            help=('When you use an external server for storing the binary '
+                  'you have to enter the base of the url where the binary can'
+                  ' be accesible.')),
     }

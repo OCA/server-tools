@@ -41,6 +41,7 @@ class Storage(object):
         self.field_name = field_name
         self.model_name = model_name
         self.config = config
+        self.external_storage_server = config['external_storage_server']
 
 
 class FileSystemStorage(Storage):
@@ -126,7 +127,18 @@ class FileSystemStorage(Storage):
         return self.add(value)
 
     def get(self, binary_uid):
+        if not binary_uid:
+            return None
         return self._file_read(self.cr, self.uid, binary_uid)
+
+    def get_url(self, binary_uid):
+        if not binary_uid:
+            return None
+        return os.path.join(
+            self.config['base_external_url'],
+            self.cr.dbname,
+            '%s-%s' % (self.model_name, self.field_name),
+            binary_uid)
 
 
 class BinaryField(fields.function):
@@ -179,6 +191,17 @@ class BinaryField(fields.function):
             record.write(vals)
         return True
 
+    def _read_binary(self, storage, record, field_name, binary_uid,
+                     context=None):
+        # Compatibility with existing binary field
+        if context.get(
+            'bin_size_%s' % field_name, context.get('bin_size')
+        ):
+            size = record['%s_file_size' % field_name]
+            return tools.human_size(long(size))
+        else:
+            return storage.get(binary_uid)
+
     def _fnct_read(self, obj, cr, uid, ids, field_name, args, context=None):
         result = {}
         storage_obj = obj.pool['storage.configuration']
@@ -186,14 +209,8 @@ class BinaryField(fields.function):
             storage = storage_obj.get_storage(cr, uid, field_name, record)
             binary_uid = record['%s_uid' % field_name]
             if binary_uid:
-                # Compatibility with existing binary field
-                if context.get(
-                    'bin_size_%s' % field_name, context.get('bin_size')
-                ):
-                    size = record['%s_file_size' % field_name]
-                    result[record.id] = tools.human_size(long(size))
-                else:
-                    result[record.id] = storage.get(binary_uid)
+                result[record.id] = self._read_binary(
+                    storage, record, field_name, binary_uid, context=context)
             else:
                 result[record.id] = None
         return result
@@ -252,6 +269,22 @@ class ImageField(BinaryField):
                         obj, cr, uid, ids, name, context=context)
         return True
 
+    def _read_binary(self, storage, record, field_name, binary_uid,
+                     context=None):
+        if not context.get('bin_size_%s' % field_name)\
+             and not context.get('bin_base64_%s' % field_name)\
+             and storage.external_storage_server:
+            if context.get('bin_size'):
+                # To avoid useless call by default for the image
+                # We never return the bin size but the url
+                # SO I remove the key in order to avoid the 
+                # automatic conversion in the orm
+                context.pop('bin_size')
+            return storage.get_url(binary_uid)
+        else:
+            return super(ImageField, self)._read_binary(
+                storage, record, field_name, binary_uid, context=context)
+
     def _refresh_cache(self, obj, cr, uid, ids, field_name, context=None):
         """Refresh the cache of the small image
         :params ids: list of object id to refresh
@@ -263,21 +296,23 @@ class ImageField(BinaryField):
             context = {}
         if not isinstance(ids, (list, tuple)):
             ids = [ids]
+        ctx = context.copy()
+        field = obj._columns[field_name]
+        ctx['bin_base64_%s' % field.resize_based_on] = True
         for record_id in ids:
             _logger.debug('Refreshing Image Cache from the field %s of object '
                           '%s id : %s' % (field_name, obj._name, record_id))
-            field = obj._columns[field_name]
-            record = obj.browse(cr, uid, record_id, context=context)
+            record = obj.browse(cr, uid, record_id, context=ctx)
             original_image = record[field.resize_based_on]
             if original_image:
                 size = (field.height, field.width)
                 resized_image = image_resize_image(original_image, size)
             else:
                 resized_image = None
-            ctx = context.copy()
-            ctx['refresh_image_cache'] = True
+            write_ctx = ctx.copy()
+            write_ctx['refresh_image_cache'] = True
             self._fnct_write(obj, cr, uid, [record_id], field_name,
-                             resized_image, None, context=ctx)
+                             resized_image, None, context=write_ctx)
 
 
 fields.BinaryField = BinaryField
