@@ -37,7 +37,7 @@ the upcoming e-commerce system for Open ERP by Open Labs
         'views/product_images_view.xml',
         'views/company_view.xml'
     ],
-    'installable': True,
+    'installable': False,
     "active": False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

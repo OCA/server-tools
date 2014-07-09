@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
+#    Product GTIN module for OpenERP
+#    Copyright (C) 2004-2011 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2010-2011 Camptocamp Austria (<http://www.camptocamp.at>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,23 +21,19 @@
 ##############################################################################
 
 {
-    "name": "Product Weight Calculation",
-    "version": "0.1",
-    "author": "Savoir-faire Linux",
-    "website": "http://www.savoirfairelinux.com",
-    "license": "AGPL-3",
-    "category": "Warehouse",
+    "name": "Product GTIN EAN8 EAN13 UPC JPC Support",
+    "version": "1.1",
+    "author":  "ChriCar Beteiligungs- und Beratungs- GmbH",
+    "website": "http://www.chricar.at/ChriCar",
+    "category": "Sales Management",
+    "depends": ["product"],
     "description": """
-    This module updates product net weight based on it's components weight
+Product GTIN module
+===================
+
+Replaces the EAN13 field on products, partners and packaging by a field with the same technical name that accepts EAN13, EAN8, JPC, UPC and GTIN.
     """,
-    "depends": [
-        "base",
-        "mrp",
-    ],
     "demo": [],
-    "data": [
-        "wizard/product_weight_update_view.xml",
-        "product_view.xml",
-    ],
-    "installable": True,
+    "data": [],
+    'installable': False,
 }
