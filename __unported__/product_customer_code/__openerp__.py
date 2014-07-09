@@ -56,5 +56,5 @@ allows to have different references for the same product according to the custom
         "product_product_view.xml",
     ],
     "active": False,
-    "installable": True,
+    'installable': False,
 }

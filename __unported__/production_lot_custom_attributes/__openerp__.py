@@ -51,6 +51,6 @@ Benoît GUILLOT, Akretion
  'test': [
      'test/lot_attribute_test.yml',
  ],
- 'installable': True,
+ 'installable': False,
  'active': False,
  }

@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   Author: Leonardo Pistone <leonardo.pistone@camptocamp.com>                #
-#   Copyright 2014 Camptocamp SA                                              #
-#                                                                             #
-#   Inspired by the module product_custom_attributes                          #
-#   by Benoît GUILLOT <benoit.guillot@akretion.com>, Akretion                 #
+#   base_custom_attributes for OpenERP                                        #
+#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -22,31 +19,30 @@
 #                                                                             #
 ###############################################################################
 
-{'name': 'Partner Custom Attributes',
- 'version': '0.1.0',
- 'category': 'Generic Modules/Others',
- 'license': 'AGPL-3',
- 'description': """
-Partner custom attributes
-=========================
 
-This module adds the possibility to easily create custom fields on Partners.
-Each partner can be linked to an attribute set.  Each attribute has custom
-fields.
 
-This module is inspired by the module product_custom_attributes by Benoît
-GUILLOT, Akretion
+{
+    'name': 'base_custom_attributes',
+    'version': '0.1.1',
+    'category': 'Generic Modules/Others',
+    'license': 'AGPL-3',
+    'description': """This module adds the possibility to easily create custom attributes in any OpenERP business object. See the product_custom_attributes module for instance.
+    """,
+    'author': 'Akretion',
+    'website': 'http://www.akretion.com/',
+    'depends': ['base'],
+    'init_xml': [],
+    'update_xml': [
+           'security/ir.model.access.csv',
+           'security/attribute_security.xml',
+           'custom_attributes_view.xml',
+    ],
+    'demo_xml': [],
+    'installable': False,
+    'active': False,
+    'external_dependencies' : {
+        'python' : ['unidecode'],
+    }
 
-""",
- 'complexity': 'normal',
- 'author': 'Camptocamp',
- 'website': 'http://www.camptocamp.com/',
- 'depends': ['base_custom_attributes'],
- 'data': ['partner_view.xml',
-          'custom_attributes_view.xml',
-          'wizard/open_partner_by_attribute_set.xml'
-          ],
- 'test': ['test/partner_attribute_test.yml'],
- 'installable': True,
- 'active': False,
- }
+}
+

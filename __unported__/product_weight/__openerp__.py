@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution - module extension
-#    Copyright (C) 2014- O4SB (<http://o4sb.com>).
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2013 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,18 +21,23 @@
 ##############################################################################
 
 {
-    'name': 'Display Customer Price in Product View',
-    'version': '1.1.1',
-    'category': 'Sales',
-    'author': 'O4SB - Graeme Gellatly',
-    'website': 'http://www.o4sb.com',
-    'depends': ['base', 'product'],
-    'description': '''
-    This module provide :
-        An entry in product search view to show Partner Pricing so when
-        viewing a list of products you can see the customers pricing.
-    ''',
-    'data': ['partner_pricelist_view.xml'],
-    'installable': True,
-    'active': False,
+    "name": "Product Weight Calculation",
+    "version": "0.1",
+    "author": "Savoir-faire Linux",
+    "website": "http://www.savoirfairelinux.com",
+    "license": "AGPL-3",
+    "category": "Warehouse",
+    "description": """
+    This module updates product net weight based on it's components weight
+    """,
+    "depends": [
+        "base",
+        "mrp",
+    ],
+    "demo": [],
+    "data": [
+        "wizard/product_weight_update_view.xml",
+        "product_view.xml",
+    ],
+    'installable': False,
 }
