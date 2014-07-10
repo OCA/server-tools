@@ -1,0 +1,14 @@
+syntax: glob
+
+*.swp
+*.orig
+*.pyc
+*.pyo
+*.log
+*\#
+*.\#*
+*~
+
+.pydevproject
+.project
+.installed.cfg
