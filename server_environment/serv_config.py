@@ -23,7 +23,7 @@ import os
 import ConfigParser
 from lxml import etree
 
-from openerp.osv import osv, fields, orm
+from openerp.osv import fields, orm
 from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -46,11 +46,12 @@ if not system_base_config.get('running_env', False):
 
 ck_path = os.path.join(_dir, system_base_config['running_env'])
 
-if not os.path.exists(ck_path) :
+if not os.path.exists(ck_path):
     raise Exception(
         "Provided server environment does not exist, "
         "please add a folder %s" % ck_path
     )
+
 
 def setboolean(obj, attr, _bool=_boolean_states):
     """Replace the attribute with a boolean."""
@@ -115,7 +116,7 @@ class ServerConfiguration(orm.TransientModel):
     _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
-        res = super(ServerConfiguration, self).__init__(pool, cr)
+        super(ServerConfiguration, self).__init__(pool, cr)
         self.running_env = system_base_config['running_env']
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
@@ -186,7 +187,6 @@ class ServerConfiguration(orm.TransientModel):
             res['arch'] = xarch
             res['fields'] = xfields
         return res
-
 
     def default_get(self, cr, uid, fields_list, context=None):
         res = {}
