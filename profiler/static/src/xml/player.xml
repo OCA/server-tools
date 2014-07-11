@@ -1,0 +1,18 @@
+<templates>
+    <t t-name="profiler.player">
+        <div  class="oe_topbar_item profiler_player">
+            <img class="profiler_enable" 
+                 title="Enable the profiler"
+                 src="/web/static/src/img/icons/gtk-media-record.png"/>
+            <img class="profiler_disable" 
+                 title="Disable the profiler"
+                 src="/web/static/src/img/icons/gtk-media-pause.png"/>
+            <img class="profiler_clear"
+                 title="Clean previous profiling"
+                 src="/web/static/src/img/icons/gtk-media-stop.png"/>
+            <img class="profiler_dump"
+                 title="Dump the previous profiling"
+                 src="/web/static/src/img/icons/gtk-floppy.png"/>
+        </div>
+    </t>
+</templates>

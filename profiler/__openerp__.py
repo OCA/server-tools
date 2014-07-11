@@ -31,18 +31,16 @@
     'website': 'http://anybox.fr',
     'depends': ['base', 'web'],
     'data': [
-        'view/menu.xml',
-    ],
-    'test': [
-    ],
-    'demo': [
+        'security/group.xml',
     ],
     'js': [
-        'static/src/js/profiler.js',
+        'static/src/js/player.js',
     ],
     'qweb': [
+        'static/src/xml/player.xml',
     ],
     'css': [
+        'static/src/css/player.css',
     ],
     'installable': True,
     'application': False,

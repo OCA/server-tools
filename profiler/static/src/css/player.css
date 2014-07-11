@@ -1,0 +1,21 @@
+.openerp .oe_topbar_item.profiler_player img {
+    cursor: pointer;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_enabled img.profiler_enable {
+    display: None;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_enabled img.profiler_dump {
+    display: None;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_disabled img.profiler_disable {
+    display: None;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_clear img.profiler_disable {
+    display: None;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_clear img.profiler_clear {
+    display: None;
+}
+.openerp .oe_topbar_item.profiler_player.profiler_player_clear img.profiler_dump {
+    display: None;
+}
