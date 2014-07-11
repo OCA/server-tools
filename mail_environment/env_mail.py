@@ -27,7 +27,7 @@ from server_environment import serv_config
 
 class IrMail(osv.osv):
     _inherit = "ir.mail_server"
-    
+
     def _get_smtp_conf(self, cursor, uid, ids, name, args, context=None):
         """
         Return configuration
@@ -52,44 +52,49 @@ class IrMail(osv.osv):
         return res
 
     _columns = {
-        'smtp_host': fields.function(_get_smtp_conf, 
-                                     method=True,
-                                     string='SMTP Server',
-                                     type="char",
-                                     multi='outgoing_mail_config',
-                                     size=128),
-        'smtp_port': fields.function(_get_smtp_conf,
-                                     method=True,
-                                     string='SMTP Port',
-                                     type="integer",
-                                     multi='outgoing_mail_config',
-                                     help="SMTP Port. Usually 465 for SSL, and 25 or 587 for other cases.",
-                                     size=5),
-        'smtp_user': fields.function(_get_smtp_conf,
-                                     method=True,
-                                     string='Username',
-                                     type="char",
-                                     multi='outgoing_mail_config',
-                                     help="Optional username for SMTP authentication",
-                                     size=64),
-        'smtp_pass': fields.function(_get_smtp_conf,
-                                     method=True,
-                                     string='Password',
-                                     type="char",
-                                     multi='outgoing_mail_config',
-                                     help="Optional password for SMTP authentication",
-                                     size=64),
-        'smtp_encryption' :fields.function(_get_smtp_conf,
-                                           method=True,
-                                           string='smtp_encryption',
-                                           type="char",
-                                           multi='outgoing_mail_config',
-                                           help="Choose the connection encryption scheme:\n"
-                                                 "- none: SMTP sessions are done in cleartext.\n"
-                                                 "- starttls: TLS encryption is requested at start of SMTP session (Recommended)\n"
-                                                 "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",
-                                            size=64)}
-                                            
+        'smtp_host': fields.function(
+            _get_smtp_conf,
+            method=True,
+            string='SMTP Server',
+            type="char",
+            multi='outgoing_mail_config',
+            size=128),
+        'smtp_port': fields.function(
+            _get_smtp_conf,
+            method=True,
+            string='SMTP Port',
+            type="integer",
+            multi='outgoing_mail_config',
+            help="SMTP Port. Usually 465 for SSL, and 25 or 587 for other cases.",
+            size=5),
+        'smtp_user': fields.function(
+            _get_smtp_conf,
+            method=True,
+            string='Username',
+            type="char",
+            multi='outgoing_mail_config',
+            help="Optional username for SMTP authentication",
+            size=64),
+        'smtp_pass': fields.function(
+            _get_smtp_conf,
+            method=True,
+            string='Password',
+            type="char",
+            multi='outgoing_mail_config',
+            help="Optional password for SMTP authentication",
+            size=64),
+        'smtp_encryption': fields.function(
+            _get_smtp_conf,
+            method=True,
+            string='smtp_encryption',
+            type="char",
+            multi='outgoing_mail_config',
+            help="Choose the connection encryption scheme:\n"
+                 "- none: SMTP sessions are done in cleartext.\n"
+                 "- starttls: TLS encryption is requested at start of SMTP session (Recommended)\n"
+                 "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",
+            size=64)}
+
 IrMail()
 
 
@@ -108,13 +113,15 @@ class FetchmailServer(osv.osv):
             key_types = {'port': int,
                          'is_ssl': lambda a: bool(int(a)),
                          'attach': lambda a: bool(int(a)),
-                         'original': lambda a: bool(int(a)),}
+                         'original': lambda a: bool(int(a)),
+                         }
 
             # default vals
             config_vals = {'port': 993,
                            'is_ssl': 0,
                            'attach': 0,
-                           'original': 0}
+                           'original': 0,
+                           }
             if serv_config.has_section(global_section_name):
                 config_vals.update(serv_config.items(global_section_name))
 
@@ -132,7 +139,7 @@ class FetchmailServer(osv.osv):
         result_ids = []
         # read all incomming servers values
         all_ids = self.search(cr, uid, [], context=context)
-        results = self.read(cr, uid, all_ids, ['id','type'], context=context)
+        results = self.read(cr, uid, all_ids, ['id', 'type'], context=context)
         args = args[:]
         i = 0
         while i < len(args):
@@ -145,64 +152,74 @@ class FetchmailServer(osv.osv):
                 for search_vals in args[i][2]:
                     for res in results:
                         if (res['type'] == search_vals) and (res['id'] not in result_ids):
-                           result_ids.append(res['id'])                
+                            result_ids.append(res['id'])
             else:
                 continue
             i += 1
         return [('id', 'in', result_ids)]
 
     _columns = {
-        'server': fields.function(_get_incom_conf,
-                                  method=True,
-                                  string='Server',
-                                  type="char",
-                                  multi='income_mail_config',
-                                  size=256, help="Hostname or IP of the mail server"),
-        'port': fields.function(_get_incom_conf,
-                                method=True,
-                                string='Port',
-                                type="integer",
-                                multi='income_mail_config',
-                                help="Hostname or IP of the mail server"),
-        'type': fields.function(_get_incom_conf,
-                                method=True,
-                                string='Type',
-                                type="char",
-                                multi='income_mail_config',
-                                fnct_search=_type_search,
-                                size=64,
-                                help="pop, imap, local"),
-        'is_ssl': fields.function(_get_incom_conf,
-                                  method=True,
-                                  string='Is SSL',
-                                  type="boolean",
-                                  multi='income_mail_config',
-                                  help='Connections are encrypted with SSL/TLS through'
-                                       ' a dedicated port (default: IMAPS=993, POP3S=995)'),
-        'attach': fields.function(_get_incom_conf,
-                                  method=True,
-                                  string='Keep Attachments',
-                                  type="boolean",
-                                  multi='income_mail_config',
-                                  help="Whether attachments should be downloaded. "
-                                 "If not enabled, incoming emails will be stripped of any attachments before being processed"),
-        'original': fields.function(_get_incom_conf,
-                                    method=True,
-                                    string='Keep Original',
-                                    type="boolean",
-                                    multi='income_mail_config',
-                                    help="Whether a full original copy of each email should be kept for reference"
-                                    "and attached to each processed message. This will usually double the size of your message database."),
-        'user': fields.function(_get_incom_conf,
-                                method=True,
-                                string='Username',
-                                type="char",
-                                multi='income_mail_config',
-                                size=64),
-        'password': fields.function(_get_incom_conf,
-                                    method=True,
-                                    string='password',
-                                    type="char",
-                                    multi='income_mail_config',
-                                    size=64)}
-FetchmailServer()                                              
+        'server': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Server',
+            type="char",
+            multi='income_mail_config',
+            size=256, help="Hostname or IP of the mail server"),
+        'port': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Port',
+            type="integer",
+            multi='income_mail_config',
+            help="Hostname or IP of the mail server"),
+        'type': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Type',
+            type="char",
+            multi='income_mail_config',
+            fnct_search=_type_search,
+            size=64,
+            help="pop, imap, local"),
+        'is_ssl': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Is SSL',
+            type="boolean",
+            multi='income_mail_config',
+            help='Connections are encrypted with SSL/TLS through'
+                 ' a dedicated port (default: IMAPS=993, POP3S=995)'),
+        'attach': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Keep Attachments',
+            type="boolean",
+            multi='income_mail_config',
+            help="Whether attachments should be downloaded. "
+                 "If not enabled, incoming emails will be stripped of any "
+                 "attachments before being processed"),
+        'original': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Keep Original',
+            type="boolean",
+            multi='income_mail_config',
+            help="Whether a full original copy of each email should be kept "
+                 "for reference and attached to each processed message. This "
+                 "will usually double the size of your message database."),
+        'user': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='Username',
+            type="char",
+            multi='income_mail_config',
+            size=64),
+        'password': fields.function(
+            _get_incom_conf,
+            method=True,
+            string='password',
+            type="char",
+            multi='income_mail_config',
+            size=64)}
+FetchmailServer()
