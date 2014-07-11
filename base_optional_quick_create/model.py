@@ -22,10 +22,11 @@ from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
 
+
 class ir_model(orm.Model):
 
     _inherit = 'ir.model'
-    
+
     _columns = {
         'avoid_quick_create': fields.boolean('Avoid quick create'),
         }
