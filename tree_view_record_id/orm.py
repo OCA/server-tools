@@ -38,13 +38,11 @@ def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
         self, cr, uid, view_id=view_id, view_type=view_type, context=context,
         toolbar=toolbar, submenu=submenu)
     if view_type == 'tree':
-        compatible_tree = False
+        compatible_tree = res.get('field_parent', True) is False
         # Tree views with res['field_parent'] different from False
         # looks like 'Products by Category'.
         # We don't modify these views
         # to avoid to break them (js error)
-        if res.get('field_parent', True) is False:
-            compatible_tree = True
         if compatible_tree and DUMMY_MODEL in self.pool.models.keys():
             doc = etree.XML(res['arch'])
             if doc.xpath("//tree") and len(doc.xpath("//field[@name='id']")) == 0:

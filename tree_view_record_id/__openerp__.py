@@ -25,9 +25,9 @@
     'category': 'Other modules',
     'sequence': 10,
     'author': 'Akretion',
-    'summary': "Add id field to tree views",
+    'summary': "Adds id field to tree views",
     'description': """
-Add Id field to all non arborescent tree views.
+Adds Id field to all non arborescent tree views.
 Id field is the primary key of the table (Odoo model).
 Arborescent views like 'Products by Category' or 'Chart of accounts' haven't this field included.
     """,
