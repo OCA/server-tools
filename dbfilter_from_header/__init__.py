@@ -23,6 +23,7 @@ from openerp.addons.web.controllers import main as web_main
 
 db_list_org = web_main.db_list
 
+
 def db_list(req, force=False):
     db_filter = req.httprequest.environ.get('HTTP_X_OPENERP_DBFILTER', '.*')
     dbs = db_list_org(req, force=force)
