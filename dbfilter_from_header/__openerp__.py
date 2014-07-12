@@ -19,14 +19,15 @@
 #
 ##############################################################################
 {
-    "name" : "dbfilter_from_header",
-    "version" : "1.0",
-    "author" : "Therp BV",
+    "name": "dbfilter_from_header",
+    "version": "8.0.1.0.0",
+    "author": "Therp BV,Odoo Community Association (OCA)",
+    "license": "AGPL-3",
     "complexity": "normal",
     "description": """
     This addon lets you pass a dbfilter as a HTTP header.
 
-    This is interesting for setups where database names can't be mapped to 
+    This is interesting for setups where database names can't be mapped to
     proxied host names.
 
     In nginx, use
@@ -34,11 +35,11 @@
 
     The addon has to be loaded as server-wide module.
     """,
-    "category" : "Tools",
-    "depends" : [
+    "category": "Tools",
+    "depends": [
         'web',
     ],
-    "data" : [
+    "data": [
     ],
     "js": [
     ],
@@ -46,7 +47,7 @@
     ],
     "auto_install": False,
     "installable": True,
-    "external_dependencies" : {
-        'python' : [],
+    "external_dependencies": {
+        'python': [],
     },
 }
