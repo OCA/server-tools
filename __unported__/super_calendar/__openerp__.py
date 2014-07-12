@@ -72,7 +72,7 @@ As you can see, several filters are available. A typical usage consists in filte
         ],
     'demo': [],
     'test': [],
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
 }

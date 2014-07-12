@@ -95,6 +95,6 @@ In your template template:
         'view/email_template.xml',
     ],
     "license": 'AGPL-3',
-    'installable': True,
+    'installable': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

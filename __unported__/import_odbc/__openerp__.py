@@ -81,7 +81,7 @@ Contributors
         'import_odbc_demo.xml',
     ],
     'test': [],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
 

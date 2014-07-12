@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Scheduler Error Mailer module for OpenERP
-#    Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
-#    @author: Sébastien Beau <sebastien.beau@akretion.com>
-#    @author David Beal <bealdavid@gmail.com>
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
+#    OpenERP, Open Source Management Solution
+#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,27 +20,27 @@
 #
 ##############################################################################
 
-
 {
-    'name': 'Scheduler Error Mailer',
-    'summary': 'Send an e-mail when a scheduler fails',
+    'name': 'Attach mails in an IMAP folder to existing objects',
     'version': '1.0',
-    'category': 'Extra Tools',
-    'license': 'AGPL-3',
     'description': """
-Scheduler Error Mailer
-======================
+Adds the possibility to attach emails from a certain IMAP folder to objects,
+ie partners. Matching is done via several algorithms, ie email address.
 
-This module adds the possibility to send an e-mail when a scheduler raises an error.""",
-    'author': 'Akretion',
-    'website': 'http://www.akretion.com/',
-    'depends': ['email_template'],
+This gives a simple possibility to archive emails in OpenERP without a mail
+client integration.
+    """,
+    'author': 'Therp BV',
+    'website': 'http://www.therp.nl',
+    "category": "Tools",
+    "depends": ['fetchmail'],
     'data': [
-        'ir_cron.xml',
-        'ir_cron_email_tpl.xml',
-    ],
-    'demo': ['ir_cron_demo.xml'],
-    'images': ['images/scheduler_error_mailer.jpg'],
-    'installable': True,
+        'view/fetchmail_server.xml',
+        'wizard/attach_mail_manually.xml',
+        'security/ir.model.access.csv',
+        ],
+    'js': [],
+    'installable': False,
     'active': False,
+    'certificate': '',
 }

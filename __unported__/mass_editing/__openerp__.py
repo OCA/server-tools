@@ -41,7 +41,7 @@ This module provides the functionality to add, update or remove the values"""
         "security/ir.model.access.csv",
         'mass_editing_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
 }

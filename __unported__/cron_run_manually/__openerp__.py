@@ -33,5 +33,5 @@ of the scheduler.
 """,
     'depends': ['base'],
     'data': ['view/ir_cron.xml'],
-    'installable': True,
+    'installable': False,
     }

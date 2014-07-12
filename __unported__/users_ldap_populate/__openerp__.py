@@ -44,6 +44,6 @@ Substitute res.company.ldap.id with the actual id of the res.company.ldap object
         'view/users_ldap.xml',
         'view/populate_wizard.xml',
         ],
-    'installable': True,
+    'installable': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

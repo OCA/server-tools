@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
+#    Copyright (C) 2013 Daniel Reis (https://launchpad.com/~dreis-pt)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,26 +20,21 @@
 ##############################################################################
 
 {
-    'name': 'Attach mails in an IMAP folder to existing objects',
-    'version': '1.0',
-    'description': """
-Adds the possibility to attach emails from a certain IMAP folder to objects,
-ie partners. Matching is done via several algorithms, ie email address.
+'name': "LDAP mapping for user name and e-mail",
+'version': "1.0",
+'depends': ["auth_ldap"],
+'author': "Daniel Reis (https://launchpad.com/~dreis-pt)",
+'description': """\
+Allows to define the LDAP attributes to use to retrieve user name and e-mail address.
 
-This gives a simple possibility to archive emails in OpenERP without a mail
-client integration.
-    """,
-    'author': 'Therp BV',
-    'website': 'http://www.therp.nl',
-    "category": "Tools",
-    "depends": ['fetchmail'],
-    'data': [
-        'view/fetchmail_server.xml',
-        'wizard/attach_mail_manually.xml',
-        'security/ir.model.access.csv',
-        ],
-    'js': [],
-    'installable': True,
-    'active': False,
-    'certificate': '',
+The default attribute used for the name is "cn".
+For Active Directory, you might prefer to use "displayName" instead.
+AD also supports the "mail" attribute, so it can be mapped into OpenERP.
+""",
+'category': "Tools",
+'data': [
+    'users_ldap_view.xml',
+],
+'installable': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
