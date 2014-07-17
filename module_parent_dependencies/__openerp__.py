@@ -23,16 +23,19 @@
 {
     'name': 'Parent Dependencies of Modules',
     'version': '0.1',
-    'summary': 'Display the parent dependencies of a module',
+    'summary': """allows to see the list of modules dependencies of a given"""
+    """ module, at the full depth of the dependency tree""",
     'category': 'Tools',
     'description': """
-Display the parent dependencies of a module
-===========================================
+allows to see the list of modules dependencies of a given module, at the"""
+    """ full depth of the dependency tree
+========================================================================"""
+    """==================================
 
 Functionality:
 --------------
-    * This module display to the admin user, the possibility to see the list"""
-    """ of the modules that depends (directly or indirectly) on a module.
+    * This module allows to see the list of the modules that depends"""
+    """ (directly or indirectly) on a given module.
 
 Copyright, Authors and Licence:
 -------------------------------
