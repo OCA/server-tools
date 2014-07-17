@@ -2,4 +2,4 @@
   Connect to local Postgres.
 - 
   !python {model: base.external.dbsource}: |
-    self.connection_test(cr, uid, [ref("demo_postgresql")]
+    self.connection_test(cr, uid, [ref("demo_postgresql")])
