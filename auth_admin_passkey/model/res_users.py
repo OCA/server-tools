@@ -35,7 +35,7 @@ class res_users(Model):
 
     # Private Function section
     def _get_translation(self, cr, lang, text):
-        context = {'lang': lang}
+        context = {'lang': lang}  # noqa: _() checks page for locals
         return _(text)
 
     def _send_email_passkey(self, cr, user_id, user_agent_env):

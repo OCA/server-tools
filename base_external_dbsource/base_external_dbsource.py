@@ -34,13 +34,15 @@ try:
     try:
         import pymssql
         CONNECTORS.append(('mssql', 'Microsoft SQL Server'))
-    except:
+        assert pymssql
+    except ImportError, AssertionError:
         _logger.info('MS SQL Server not available. Please install "pymssql"\
                       python package.')
     try:
         import MySQLdb
         CONNECTORS.append(('mysql', 'MySQL'))
-    except:
+        assert MySQLdb
+    except ImportError, AssertionError:
         _logger.info('MySQL not available. Please install "mysqldb"\
                      python package.')
 except:
@@ -90,15 +92,15 @@ Sample connection strings:
     }
 
     def conn_open(self, cr, uid, id1):
-        #Get dbsource record
+        # Get dbsource record
         data = self.browse(cr, uid, id1)
-        #Build the full connection string
+        # Build the full connection string
         connStr = data.conn_string
         if data.password:
             if '%s' not in data.conn_string:
                 connStr += ';PWD=%s'
             connStr = connStr % data.password
-        #Try to connect
+        # Try to connect
         if data.connector == 'cx_Oracle':
             os.environ['NLS_LANG'] = 'AMERICAN_AMERICA.UTF8'
             conn = cx_Oracle.connect(connStr)
@@ -134,13 +136,13 @@ Sample connection strings:
         for obj in data:
             conn = self.conn_open(cr, uid, obj.id)
             if obj.connector in ["sqlite", "mysql", "mssql"]:
-                #using sqlalchemy
+                # using sqlalchemy
                 cur = conn.execute(sqlquery, sqlparams)
                 if metadata:
                     cols = cur.keys()
                 rows = [r for r in cur]
             else:
-                #using other db connectors
+                # using other db connectors
                 cur = conn.cursor()
                 cur.execute(sqlquery, sqlparams)
                 if metadata:
@@ -168,8 +170,6 @@ Sample connection strings:
                 except Exception:
                     # ignored, just a consequence of the previous exception
                     pass
-        #TODO: if OK a (wizard) message box should be displayed
+        # TODO: if OK a (wizard) message box should be displayed
         raise orm.except_orm(_("Connection test succeeded!"),
                              _("Everything seems properly set up!"))
-
-#EOF
