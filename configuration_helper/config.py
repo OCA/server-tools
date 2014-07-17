@@ -40,7 +40,7 @@ class AbstractConfigSettings(orm.AbstractModel):
         super(AbstractConfigSettings, self).__init__(pool, cr)
         if self._companyObject:
             for field_key in self._companyObject._columns:
-                #allows to exclude some field
+                # allows to exclude some field
                 if self._filter_field(field_key):
                     args = ('company_id', field_key)
                     kwargs = {

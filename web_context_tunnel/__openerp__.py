@@ -3,7 +3,7 @@
     'category': 'Hidden',
     'author': 'Akretion',
     'license': 'AGPL-3',
-    'description':"""
+    'description': """
 Web Context Tunnel.
 ===================
 
@@ -15,7 +15,7 @@ arguments. This is annoying as modules often need to pass extra arguments
 that are not present in the base on_change signatures. As soon as two modules
 try to alter this signature to add their extra arguments, they are incompatible
 between them unless some extra glue module make them compatible again by
-taking all extra arguments into account. But this leads to a combinatorial 
+taking all extra arguments into account. But this leads to a combinatorial
 explosion to make modules compatible again.
 
 The solution
