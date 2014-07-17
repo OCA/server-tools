@@ -24,6 +24,7 @@ from base import base
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.mail import email_split
 
+
 class email_exact(base):
     '''Search for exactly the mailadress as noted in the email'''
 
@@ -36,17 +37,17 @@ class email_exact(base):
         for field in fields:
             if field in mail_message:
                 mailaddresses += email_split(mail_message[field])
-        return [ addr.lower() for addr in mailaddresses ]
+        return [addr.lower() for addr in mailaddresses]
 
     def _get_mailaddress_search_domain(
             self, conf, mail_message, operator='=', values=None):
         mailaddresses = values or self._get_mailaddresses(
-                conf, mail_message)
+            conf, mail_message)
         if not mailaddresses:
             return [(0, '=', 1)]
         search_domain = ((['|'] * (len(mailaddresses) - 1)) + [
-                (conf.model_field, operator, addr) for addr in mailaddresses] +
-                safe_eval(conf.domain or '[]'))
+            (conf.model_field, operator, addr) for addr in mailaddresses] +
+            safe_eval(conf.domain or '[]'))
         return search_domain
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
