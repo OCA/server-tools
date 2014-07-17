@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    Code snippets from openobject-server copyright (C) 2004-2013 OpenERP S.A.
+#    Author: David BEAL
+#    Copyright 2014 Akretion
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,18 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Call cron jobs from their form view',
-    'version': '0.1',
-    'author': ["Therp BV", "OpenERP S.A."],
-    'license': 'AGPL-3',
-    'category': 'Tools',
-    'description': """
-This module adds a button to the cron scheduled task form in OpenERP
-that allows the administrator to run the job immediately, independently
-of the scheduler.
-""",
-    'depends': ['base'],
-    'data': ['view/ir_cron.xml'],
-    'installable': True,
-    }
+from . import config   # noqa
