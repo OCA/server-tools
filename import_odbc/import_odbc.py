@@ -90,23 +90,23 @@ class import_odbc_dbtable(orm.Model):
             except:
                 errmsg = str(sys.exc_info()[1])
         if errmsg and not table_obj.ignore_rel_errors:
-            #Fail
+            # Fail
             append_to_log(log, 'ERROR', data, errmsg)
             log['last_error_count'] += 1
             return False
         if errmsg and table_obj.ignore_rel_errors:
-            #Warn and retry ignoring many2one fields...
+            # Warn and retry ignoring many2one fields...
             append_to_log(log, 'WARN', data, errmsg)
             log['last_warn_count'] += 1
-            #Try ignoring each many2one (tip: in the SQL sentence select more problematic FKs first)
+            # Try ignoring each many2one (tip: in the SQL sentence select more problematic FKs first)
             i = find_m2o(cols)
             if i >= 0:
-                #Try again without the [i] column
+                # Try again without the [i] column
                 del cols[i]
                 del data[i]
                 self._import_data(cr, uid, cols, data, model_obj, table_obj, log)
             else:
-                #Fail
+                # Fail
                 append_to_log(log, 'ERROR', data, 'Removed all m2o keys and still fails.')
                 log['last_error_count'] += 1
                 return False
@@ -117,7 +117,7 @@ class import_odbc_dbtable(orm.Model):
         actions = self.read(cr, uid, ids, ['id', 'exec_order'])
         actions.sort(key=lambda x: (x['exec_order'], x['id']))
 
-        #Consider each dbtable:
+        # Consider each dbtable:
         for action_ref in actions:
             obj = self.browse(cr, uid, action_ref['id'])
             if not obj.enabled:
@@ -126,9 +126,9 @@ class import_odbc_dbtable(orm.Model):
             _logger.setLevel(obj.raise_import_errors and logging.DEBUG or _loglvl)
             _logger.debug('Importing %s...' % obj.name)
 
-            #now() microseconds are stripped to avoid problem with SQL smalldate
-            #TODO: convert UTC Now to local timezone
-            #http://stackoverflow.com/questions/4770297/python-convert-utc-datetime-string-to-local-datetime
+            # now() microseconds are stripped to avoid problem with SQL smalldate
+            # TODO: convert UTC Now to local timezone
+            # http://stackoverflow.com/questions/4770297/python-convert-utc-datetime-string-to-local-datetime
             model_name = obj.model_target.model
             model_obj = self.pool.get(model_name)
             xml_prefix = model_name.replace('.', '_') + "_id_"
@@ -140,7 +140,7 @@ class import_odbc_dbtable(orm.Model):
                    'last_log': list()}
             self.write(cr, uid, [obj.id], log)
 
-            #Prepare SQL sentence; replace "%s" with the last_sync date
+            # Prepare SQL sentence; replace "%s" with the last_sync date
             if obj.last_sync:
                 sync = datetime.strptime(obj.last_sync, "%Y-%m-%d %H:%M:%S")
             else:
@@ -149,30 +149,30 @@ class import_odbc_dbtable(orm.Model):
             res = db_model.execute(cr, uid, [obj.dbsource_id.id],
                                    obj.sql_source, params, metadata=True)
 
-            #Exclude columns titled "None"; add (xml_)"id" column
+            # Exclude columns titled "None"; add (xml_)"id" column
             cidx = [i for i, x in enumerate(res['cols']) if x.upper() != 'NONE']
             cols = [x for i, x in enumerate(res['cols']) if x.upper() != 'NONE'] + ['id']
 
-            #Import each row:
+            # Import each row:
             for row in res['rows']:
-                #Build data row; import only columns present in the "cols" list
+                # Build data row; import only columns present in the "cols" list
                 data = list()
                 for i in cidx:
-                    #TODO: Handle imported datetimes properly - convert from localtime to UTC!
+                    # TODO: Handle imported datetimes properly - convert from localtime to UTC!
                     v = row[i]
                     if isinstance(v, str):
                         v = v.strip()
                     data.append(v)
                 data.append(xml_prefix + str(row[0]).strip())
 
-                #Import the row; on error, write line to the log
+                # Import the row; on error, write line to the log
                 log['last_record_count'] += 1
                 self._import_data(cr, uid, cols, data, model_obj, obj, log)
                 if log['last_record_count'] % 500 == 0:
                     _logger.info('...%s rows processed...' % (log['last_record_count']))
 
-            #Finished importing all rows
-            #If no errors, write new sync date
+            # Finished importing all rows
+            # If no errors, write new sync date
             if not (log['last_error_count'] or log['last_warn_count']):
                 log['last_sync'] = log['start_run']
             level = logging.DEBUG
@@ -183,14 +183,14 @@ class import_odbc_dbtable(orm.Model):
             _logger.log(level, 'Imported %s , %d rows, %d errors, %d warnings.' % (
                 model_name, log['last_record_count'], log['last_error_count'],
                 log['last_warn_count']))
-            #Write run log, either if the table import is active or inactive
+            # Write run log, either if the table import is active or inactive
             if log['last_log']:
                 log['last_log'].insert(0, 'LEVEL|== Line ==    |== Relationship ==|== Message ==')
             log.update({'last_log': '\n'.join(log['last_log'])})
             log.update({'last_run': datetime.now().replace(microsecond=0)})
             self.write(cr, uid, [obj.id], log)
 
-        #Finished
+        # Finished
         _logger.debug('Import job FINISHED.')
         return True
 
@@ -214,5 +214,3 @@ class import_odbc_dbtable(orm.Model):
             'res_id': new_create_id,
             'type': 'ir.actions.act_window',
             }
-
-#EOF
