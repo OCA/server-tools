@@ -32,10 +32,11 @@ class ir_model_fields(orm.Model):
             count=False):
         model_domain = []
         for domain in args:
-            if domain[0] == 'model_id' and domain[2]\
-                    and type(domain[2]) != list:
-                model_domain += [(
-                    'model_id', 'in', map(int, domain[2][1:-1].split(',')))]
+            if (len(domain) > 2 and domain[0] == 'model_id'
+                    and isinstance(domain[2], basestring)):
+                model_domain += [
+                    ('model_id', 'in', map(int, domain[2][1:-1].split(',')))
+                ]
             else:
                 model_domain.append(domain)
         return super(ir_model_fields, self).search(
