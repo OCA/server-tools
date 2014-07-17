@@ -40,7 +40,7 @@ Arborescent views like 'Products by Category' or 'Chart of accounts' haven't thi
     'demo': [
     ],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
     'application': False,
     'images': [
     ],
