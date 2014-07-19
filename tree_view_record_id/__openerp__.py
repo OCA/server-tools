@@ -27,9 +27,12 @@
     'author': 'Akretion',
     'summary': "Adds id field to tree views",
     'description': """
-Adds Id field to all non arborescent tree views.
-Id field is the primary key of the table (Odoo model).
-Arborescent views like 'Products by Category' or 'Chart of accounts' haven't this field included.
+Adds Id field in all tree views of any modules/models, except:
+
+* Arborescent tree views like 'Products by Category', 'Chart of accounts', etc.
+* Tree views (like in wizard 'Change password') built on transient models which don't have this column in their table.
+
+Id field is the primary key of standard sql tables defined by the orm (Odoo model).
     """,
     'website': 'http://www.akretion.com',
     'depends': [

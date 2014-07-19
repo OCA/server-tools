@@ -43,6 +43,10 @@ def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
         # looks like 'Products by Category'.
         # We don't modify these views
         # to avoid to break them (js error)
+        if '_transient_max_count' in self.pool[res['model']].__dict__.keys():
+            # model with '_transient_max_count' key are transient model
+            # transient models haven't 'id' column in mostly case
+            compatible_tree = False
         if compatible_tree and DUMMY_MODEL in self.pool.models.keys():
             doc = etree.XML(res['arch'])
             if doc.xpath("//tree") and len(doc.xpath("//field[@name='id']")) == 0:
