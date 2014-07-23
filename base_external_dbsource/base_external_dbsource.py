@@ -35,14 +35,14 @@ try:
         import pymssql
         CONNECTORS.append(('mssql', 'Microsoft SQL Server'))
         assert pymssql
-    except ImportError, AssertionError:
+    except (ImportError, AssertionError):
         _logger.info('MS SQL Server not available. Please install "pymssql"\
                       python package.')
     try:
         import MySQLdb
         CONNECTORS.append(('mysql', 'MySQL'))
         assert MySQLdb
-    except ImportError, AssertionError:
+    except (ImportError, AssertionError):
         _logger.info('MySQL not available. Please install "mysqldb"\
                      python package.')
 except:
@@ -159,7 +159,7 @@ Sample connection strings:
             conn = False
             try:
                 conn = self.conn_open(cr, uid, obj.id)
-            except Exception, e:
+            except Exception as e:
                 raise orm.except_orm(_("Connection test failed!"),
                                      _("Here is what we got instead:\n %s")
                                      % tools.ustr(e))

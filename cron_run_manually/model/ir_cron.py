@@ -70,7 +70,7 @@ class irCron(orm.Model):
                 args = safe_eval('tuple(%s)' % (job['args'] or ''))
                 method(cr, job['user_id'], *args)
 
-            except psycopg2.OperationalError, e:
+            except psycopg2.OperationalError as e:
                 # User friendly error if the lock could not be claimed
                 if e.pgcode == '55P03':
                     raise orm.except_orm(
