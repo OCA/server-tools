@@ -131,4 +131,3 @@ for a login and password outside OpenErp and are automatically logged in the sys
     "auto_install": False,
     "application": False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
