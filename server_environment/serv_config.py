@@ -93,7 +93,7 @@ def _load_config():
     config_p.optionxform = str
     try:
         config_p.read(conf_files)
-    except Exception, e:
+    except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
 
     return config_p
