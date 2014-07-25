@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="auth_from_http_remote_user.default_login_page_disabled">
+            <field name="key">auth_from_http_remote_user.default_login_page_disabled</field>
+            <field name="value">False</field>
+        </record>
+    </data>
+</openerp>
