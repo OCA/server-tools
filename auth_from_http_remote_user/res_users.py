@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import tools
 from openerp.modules.registry import RegistryManager
 from openerp.osv import orm, fields
+from openerp import SUPERUSER_ID
 import openerp.exceptions
 from openerp.addons.auth_from_http_remote_user import utils
 
@@ -35,22 +35,17 @@ class res_users(orm.Model):
     }
 
     def copy(self, cr, uid, rid, defaults=None, context=None):
+        defaults = defaults or {}
         defaults['sso_key'] = False
         return super(res_users, self).copy(cr, uid, rid, defaults, context)
 
-    def login(self, db, login, password):
-        result = super(res_users, self).login(db, login, password)
-        if result:
-            return result
-        else:
-            with RegistryManager.get(db).cursor() as cr:
-                cr.execute("""UPDATE res_users
-                                SET login_date=now() AT TIME ZONE 'UTC'
-                                WHERE login=%s AND sso_key=%s AND active=%s RETURNING id""",
-                           (tools.ustr(login), tools.ustr(password), True))
-                res = cr.fetchone()
-                cr.commit()
-                return res[0] if res else False
+    def check_credentials(self, cr, uid, password):
+        try:
+            return super(res_users, self).check_credentials(cr, uid, password)
+        except openerp.exceptions.AccessDenied:
+            res = self.search(cr, SUPERUSER_ID, [('id', '=', uid), ('sso_key', '=', password)])
+            if not res:
+                raise openerp.exceptions.AccessDenied()
 
     def check(self, db, uid, passwd):
         try:
