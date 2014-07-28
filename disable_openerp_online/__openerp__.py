@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    "name": "Remove openerp.com bindings",
+    "name": "Remove odoo.com bindings",
     "version": "1.1",
     "author": "Therp BV",
     "complexity": "normal",
