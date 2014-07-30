@@ -27,7 +27,7 @@ Allow users to be automatically logged in.
 ==========================================
 
 This module initialize the session by looking for the field HTTP_REMOTE_USER in
-the HEADER of the HTTP request and trying to bind the given value to a user
+the HEADER of the HTTP request and trying to bind the given value to a user.
 This module must be loaded at startup; Add the *--load* parameter to the startup
 command: ::
 
@@ -36,6 +36,31 @@ command: ::
 If the field is not found or no user matches the given one, it can lets the
 system redirect to the login page (default) or issue a login error page
 depending of the configuration.
+
+Use case.
+---------
+
+The module allows integration with external security systems that can pass along
+authentication of a user via Remote_User HTTP header field. In many cases, this
+is achieved via server like Apache HTTPD or nginx proxying Odoo.
+
+.. important:: When proxying your Odoo server with Apache or nginx, It's
+   important to filter out the Remote_User HTTP header field before your
+   request is processed by the proxy to avoid security issues. In apache you
+   can do it by using the RequestHeader directive in your VirtualHost
+   section  ::
+
+    <VirtualHost *:80>
+     ServerName MY_VHOST.com
+     ProxyRequests Off
+    ...
+
+     RequestHeader unset Remote-User early
+     ProxyPass / http://127.0.0.1:8069/  retry=10
+     ProxyPassReverse  / http://127.0.0.1:8069/
+     ProxyPreserveHost On
+    </VirtualHost>
+
 
 How to test the module with Apache [#]_
 ----------------------------------------
@@ -60,7 +85,7 @@ with the following content: ::
      ProxyRequests Off
      <Location />
        AuthType Basic
-       AuthName "Test OpenErp auth_from_http_remote_user"
+       AuthName "Test Odoo auth_from_http_remote_user"
        AuthBasicProvider file
        AuthUserFile /etc/apache2/MY_VHOST.htpasswd
        Require valid-user
@@ -71,6 +96,7 @@ with the following content: ::
        RequestHeader set Remote-User "%{RU}e" env=RU
      </Location>
 
+     RequestHeader unset Remote-User early
      ProxyPass / http://127.0.0.1:8069/  retry=10
      ProxyPassReverse  / http://127.0.0.1:8069/
      ProxyPreserveHost On
@@ -79,9 +105,9 @@ with the following content: ::
 .. important:: The *RequestHeader* directive is used to add the *Remote-User*
    field in the http headers. By default an *'Http-'* prefix is added to the
    field name.
-   In OpenErp, header's fields name are normalized. As result of this
+   In Odoo, header's fields name are normalized. As result of this
    normalization, the 'Http-Remote-User' is available as 'HTTP_REMOTE_USER'.
-   If you don't know how your specified field is seen by OpenErp, run your
+   If you don't know how your specified field is seen by Odoo, run your
    server in debug mode once the module is activated and look for an entry
    like: ::
 
@@ -114,7 +140,7 @@ Finally reload the configuration: ::
    $ sudo service apache2 reload
 
 Open your browser and go to MY_VHOST.com. If everything is well configured, you
-are prompted for a login and password outside OpenErp and are automatically
+are prompted for a login and password outside Odoo and are automatically
 logged in the system.
 
 .. [#] Based on a ubuntu 12.04 env
