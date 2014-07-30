@@ -21,9 +21,10 @@
 
 from openerp import SUPERUSER_ID
 
-from openerp.addons.web import http
+import openerp
+from openerp import http
+from openerp.http import request
 from openerp.addons.web.controllers import main
-from openerp.modules.registry import RegistryManager
 from .. import utils
 
 import random
@@ -33,20 +34,17 @@ import openerp.tools.config as config
 _logger = logging.getLogger(__name__)
 
 
-class Session(main.Session):
-    _cp_path = "/web/session"
+class Home(main.Home):
 
     _REQUIRED_ATTRIBUTES = ['HTTP_REMOTE_USER']
     _OPTIONAL_ATTRIBUTES = []
 
-    def _get_db(self, db):
-        if db is not None and len(db) > 0:
-            return db
-        db = config['db_name']
-        if db is None or len(db) == 0:
-            _logger.error("No db found for SSO. Specify one in the URL using parameter "
-                          "db=? or provide a default one in the configuration")
-            raise http.AuthenticationError()
+    @http.route('/web', type='http', auth="none")
+    def web_client(self, s_action=None, **kw):
+        main.ensure_db()
+        if not request.session.uid:
+            self._bind_http_remote_user(http.request.session.db)
+        return super(Home, self).web_client(s_action, **kw)
 
     def _get_user_id_from_attributes(self, res_users, cr, attrs):
         login = attrs.get('HTTP_REMOTE_USER', None)
@@ -56,12 +54,12 @@ class Session(main.Session):
             return user_ids[0]
         return None
 
-    def _get_attributes_form_header(self, req):
+    def _get_attributes_form_header(self):
         attrs = {}
 
         all_attrs = self._REQUIRED_ATTRIBUTES + self._OPTIONAL_ATTRIBUTES
 
-        headers = req.httprequest.headers.environ
+        headers = http.request.httprequest.headers.environ
 
         for attr in all_attrs:
             value = headers.get(attr, None)
@@ -78,10 +76,9 @@ class Session(main.Session):
             _logger.error("Required fields '%s' not found in http headers\n %s", missings, headers)
         return attrs
 
-    def _bind_http_remote_user(self, req, db_name):
-        db_name = self._get_db(db_name)
+    def _bind_http_remote_user(self, db_name):
         try:
-            registry = RegistryManager.get(db_name)
+            registry = openerp.registry(db_name)
             with registry.cursor() as cr:
                 modules = registry.get('ir.module.module')
                 installed = modules.search_count(cr, SUPERUSER_ID, ['&',
@@ -95,7 +92,7 @@ class Session(main.Session):
 
                 # get the user
                 res_users = registry.get('res.users')
-                attrs = self._get_attributes_form_header(req)
+                attrs = self._get_attributes_form_header()
                 user_id = self._get_user_id_from_attributes(res_users, cr, attrs)
 
                 if user_id is None:
@@ -107,18 +104,12 @@ class Session(main.Session):
                 key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
                 res_users.write(cr, SUPERUSER_ID, [user_id], {'sso_key': key})
                 login = res_users.browse(cr, SUPERUSER_ID, user_id).login
-                req.session.bind(db_name, user_id, login, key)
+            request.session.authenticate(db_name, login=login, password=key, uid=user_id)
         except http.AuthenticationError, e:
             raise e
         except Exception, e:
             _logger.error("Error binding Http Remote User session", exc_info=True)
             raise e
-
-    @http.jsonrequest
-    def get_http_remote_user_session_info(self, req, db):
-        if not req.session._login:
-            self._bind_http_remote_user(req, db)
-        return self.session_info(req)
 
 randrange = random.SystemRandom().randrange
 

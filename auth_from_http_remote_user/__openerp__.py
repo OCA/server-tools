@@ -119,7 +119,6 @@ for a login and password outside OpenErp and are automatically logged in the sys
     'website': 'http://www.acsone.eu',
     'depends': ['web'],
     "license": "AGPL-3",
-    "js": ['static/src/js/auth_from_http_remote_user.js'],
     'data': [
         'res_config_view.xml',
         'res_config_data.xml'],
