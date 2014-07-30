@@ -29,6 +29,7 @@ from .. import utils
 
 import random
 import logging
+import werkzeug
 
 _logger = logging.getLogger(__name__)
 
@@ -42,7 +43,10 @@ class Home(main.Home):
     def web_client(self, s_action=None, **kw):
         main.ensure_db()
         if not request.session.uid:
-            self._bind_http_remote_user(http.request.session.db)
+            try:
+                self._bind_http_remote_user(http.request.session.db)
+            except http.AuthenticationError:
+                return werkzeug.exceptions.Unauthorized()
         return super(Home, self).web_client(s_action, **kw)
 
     def _get_user_id_from_attributes(self, res_users, cr, attrs):
