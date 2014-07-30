@@ -34,21 +34,22 @@ command: ::
   --load=web,web_kanban,auth_from_http_remote_user, ...
 
 If the field is not found or no user matches the given one, it can lets the
-system redirect to the login page (default) or issue a login error page depending
-of the configuration.
+system redirect to the login page (default) or issue a login error page
+depending of the configuration.
 
 How to test the module with Apache [#]_
 ----------------------------------------
 
-Apache can be used as a reverse proxy providing the authentication and adding the
-required field in the Http headers.
+Apache can be used as a reverse proxy providing the authentication and adding
+the required field in the Http headers.
 
 Install apache:  ::
 
    $ sudo apt-get install apache2
 
 
-Define a new vhost to Apache by putting a new file in /etc/apache2/sites-available: ::
+Define a new vhost to Apache by putting a new file in
+/etc/apache2/sites-available: ::
 
    $ sudo vi  /etc/apache2/sites-available/MY_VHOST.com
 
@@ -75,16 +76,20 @@ with the following content: ::
      ProxyPreserveHost On
    </VirtualHost>
 
-.. important:: The *RequestHeader* directive is used to add the *Remote-User* field
-   in the http headers. By default an *'Http-'* prefix is added to the field name.
-   In OpenErp, header's fields name are normalized. As result of this normalization,
-   the 'Http-Remote-User' is available as 'HTTP_REMOTE_USER'. If you don't know how
-   your specified field is seen by OpenErp, run your server in debug mode once the
-   module is activated and look for an entry like: ::
+.. important:: The *RequestHeader* directive is used to add the *Remote-User*
+   field in the http headers. By default an *'Http-'* prefix is added to the
+   field name.
+   In OpenErp, header's fields name are normalized. As result of this
+   normalization, the 'Http-Remote-User' is available as 'HTTP_REMOTE_USER'.
+   If you don't know how your specified field is seen by OpenErp, run your
+   server in debug mode once the module is activated and look for an entry
+   like: ::
 
-     DEBUG openerp1 openerp.addons.auth_from_http_remote_user.controllers.session:
+     DEBUG openerp1 openerp.addons.auth_from_http_remote_user.controllers.
+     session:
      Field 'HTTP_MY_REMOTE_USER' not found in http headers
-     {'HTTP_AUTHORIZATION': 'Basic YWRtaW46YWRtaW4=', ..., 'HTTP_REMOTE_USER': 'demo')
+     {'HTTP_AUTHORIZATION': 'Basic YWRtaW46YWRtaW4=', ...,
+     'HTTP_REMOTE_USER': 'demo')
 
 Enable the required apache modules: ::
 
@@ -108,8 +113,9 @@ Finally reload the configuration: ::
 
    $ sudo service apache2 reload
 
-Open your browser and go to MY_VHOST.com. If everything is well configured, you are prompted
-for a login and password outside OpenErp and are automatically logged in the system.
+Open your browser and go to MY_VHOST.com. If everything is well configured, you
+are prompted for a login and password outside OpenErp and are automatically
+logged in the system.
 
 .. [#] Based on a ubuntu 12.04 env
 

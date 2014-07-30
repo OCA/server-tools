@@ -40,21 +40,28 @@ Otherwise the normal login page will be displayed.
 
     def is_default_login_page_disabled(self, cr, uid, fields, context=None):
         ir_config_obj = self.pool['ir.config_parameter']
-        default_login_page_disabled = ir_config_obj.get_param(cr,
-                                                              uid,
-                                                              'auth_from_http_remote_user.default_login_page_disabled')
+        default_login_page_disabled = \
+            ir_config_obj.get_param(cr,
+                                    uid,
+                                    'auth_from_http_remote_user.'
+                                    'default_login_page_disabled')
         if isinstance(default_login_page_disabled, types.BooleanType):
             return default_login_page_disabled
         return safe_eval(default_login_page_disabled)
 
-    def get_default_default_login_page_disabled(self, cr, uid, fields, context=None):
-        default_login_page_disabled = self.is_default_login_page_disabled(cr, uid, fields, context)
+    def get_default_default_login_page_disabled(self, cr, uid, fields,
+                                                context=None):
+        default_login_page_disabled = \
+            self.is_default_login_page_disabled(cr, uid, fields, context)
         return {'default_login_page_disabled': default_login_page_disabled}
 
-    def set_default_default_login_page_disabled(self, cr, uid, ids, context=None):
+    def set_default_default_login_page_disabled(self, cr, uid, ids,
+                                                context=None):
         config = self.browse(cr, uid, ids[0], context)
         ir_config_parameter_obj = self.pool['ir.config_parameter']
+        param_value = repr(config.default_login_page_disabled)
         ir_config_parameter_obj.set_param(cr,
                                           uid,
-                                          'auth_from_http_remote_user.default_login_page_disabled',
-                                          repr(config.default_login_page_disabled))
+                                          'auth_from_http_remote_user.'
+                                          'default_login_page_disabled',
+                                          param_value)

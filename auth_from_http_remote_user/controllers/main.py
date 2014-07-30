@@ -29,7 +29,6 @@ from .. import utils
 
 import random
 import logging
-import openerp.tools.config as config
 
 _logger = logging.getLogger(__name__)
 
@@ -48,7 +47,8 @@ class Home(main.Home):
 
     def _get_user_id_from_attributes(self, res_users, cr, attrs):
         login = attrs.get('HTTP_REMOTE_USER', None)
-        user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login), ('active', '=', True)])
+        user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login),
+                                                       ('active', '=', True)])
         assert len(user_ids) < 2
         if user_ids:
             return user_ids[0]
@@ -69,11 +69,13 @@ class Home(main.Home):
         attrs_found = set(attrs.keys())
         attrs_missing = set(all_attrs) - attrs_found
         if len(attrs_found) > 0:
-            _logger.debug("Fields '%s' not found in http headers\n %s", attrs_missing, headers)
+            _logger.debug("Fields '%s' not found in http headers\n %s",
+                          attrs_missing, headers)
 
         missings = set(self._REQUIRED_ATTRIBUTES) - attrs_found
         if len(missings) > 0:
-            _logger.error("Required fields '%s' not found in http headers\n %s", missings, headers)
+            _logger.error("Required fields '%s' not found in http headers\n %s",
+                          missings, headers)
         return attrs
 
     def _bind_http_remote_user(self, db_name):
@@ -81,19 +83,26 @@ class Home(main.Home):
             registry = openerp.registry(db_name)
             with registry.cursor() as cr:
                 modules = registry.get('ir.module.module')
-                installed = modules.search_count(cr, SUPERUSER_ID, ['&',
-                                                                    ('name', '=', 'auth_from_http_remote_user'),
-                                                                    ('state', '=', 'installed')]) == 1
+                domain = ['&',
+                          ('name', '=', 'auth_from_http_remote_user'),
+                          ('state', '=', 'installed')]
+                installed = modules.search_count(cr, SUPERUSER_ID, domain) == 1
                 if not installed:
                     return
-                config = registry.get('auth_from_http_remote_user.config.settings')
+                config = registry.get('auth_from_http_remote_user.'
+                                      'config.settings')
                 # get parameters for SSO
-                default_login_page_disabled = config.is_default_login_page_disabled(cr, SUPERUSER_ID, None)
+                default_login_page_disabled = \
+                    config.is_default_login_page_disabled(cr,
+                                                          SUPERUSER_ID,
+                                                          None)
 
                 # get the user
                 res_users = registry.get('res.users')
                 attrs = self._get_attributes_form_header()
-                user_id = self._get_user_id_from_attributes(res_users, cr, attrs)
+                user_id = self._get_user_id_from_attributes(res_users,
+                                                            cr,
+                                                            attrs)
 
                 if user_id is None:
                     if default_login_page_disabled:
@@ -104,11 +113,13 @@ class Home(main.Home):
                 key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
                 res_users.write(cr, SUPERUSER_ID, [user_id], {'sso_key': key})
                 login = res_users.browse(cr, SUPERUSER_ID, user_id).login
-            request.session.authenticate(db_name, login=login, password=key, uid=user_id)
+            request.session.authenticate(db_name, login=login,
+                                         password=key, uid=user_id)
         except http.AuthenticationError, e:
             raise e
         except Exception, e:
-            _logger.error("Error binding Http Remote User session", exc_info=True)
+            _logger.error("Error binding Http Remote User session",
+                          exc_info=True)
             raise e
 
 randrange = random.SystemRandom().randrange

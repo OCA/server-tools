@@ -43,7 +43,8 @@ class res_users(orm.Model):
         try:
             return super(res_users, self).check_credentials(cr, uid, password)
         except openerp.exceptions.AccessDenied:
-            res = self.search(cr, SUPERUSER_ID, [('id', '=', uid), ('sso_key', '=', password)])
+            res = self.search(cr, SUPERUSER_ID, [('id', '=', uid),
+                                                 ('sso_key', '=', password)])
             if not res:
                 raise openerp.exceptions.AccessDenied()
 
