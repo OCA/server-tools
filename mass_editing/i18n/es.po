@@ -59,7 +59,7 @@ msgstr "Campos"
 #: code:addons/mass_editing/mass_editing.py:62
 #, python-format
 msgid "Mass Editing (%s)"
-msgstr "Edición Masica (%s)"
+msgstr "Edición Masiva (%s)"
 
 #. module: mass_editing
 #: view:mass.object:0
