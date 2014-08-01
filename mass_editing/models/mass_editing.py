@@ -20,11 +20,12 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields, osv
+from openerp import SUPERUSER_ID
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
 
-class ir_model_fields(orm.Model):
+class IrModelFields(orm.Model):
     _inherit = 'ir.model.fields'
 
     def search(
@@ -38,14 +39,12 @@ class ir_model_fields(orm.Model):
                     'model_id', 'in', map(int, domain[2][1:-1].split(',')))]
             else:
                 model_domain.append(domain)
-        return super(ir_model_fields, self).search(
+        return super(IrModelFields, self).search(
             cr, uid, model_domain, offset=offset, limit=limit, order=order,
             context=context, count=count)
 
-ir_model_fields()
 
-
-class mass_object(orm.Model):
+class MassObject(orm.Model):
     _name = "mass.object"
 
     _columns = {
@@ -75,7 +74,7 @@ class mass_object(orm.Model):
         if not model_id:
             return {'value': {'model_ids': [(6, 0, [])]}}
         model_ids = [model_id]
-        model_obj = self.pool.get('ir.model')
+        model_obj = self.pool['ir.model']
         active_model_obj = self.pool.get(model_obj.browse(
             cr, uid, model_id).model)
         if active_model_obj._inherits:
@@ -87,12 +86,12 @@ class mass_object(orm.Model):
 
     def create_action(self, cr, uid, ids, context=None):
         vals = {}
-        action_obj = self.pool.get('ir.actions.act_window')
-        ir_values_obj = self.pool.get('ir.values')
+        action_obj = self.pool['ir.actions.act_window']
+        ir_values_obj = self.pool['ir.values']
         for data in self.browse(cr, uid, ids, context=context):
             src_obj = data.model_id.model
             button_name = _('Mass Editing (%s)') % data.name
-            vals['ref_ir_act_window'] = action_obj.create(cr, uid, {
+            vals['ref_ir_act_window'] = action_obj.create(cr, SUPERUSER_ID, {
                 'name': button_name,
                 'type': 'ir.actions.act_window',
                 'res_model': 'mass.editing.wizard',
@@ -103,7 +102,7 @@ class mass_object(orm.Model):
                 'target': 'new',
                 'auto_refresh': 1,
                 }, context)
-            vals['ref_ir_value'] = ir_values_obj.create(cr, uid, {
+            vals['ref_ir_value'] = ir_values_obj.create(cr, SUPERUSER_ID, {
                 'name': button_name,
                 'model': src_obj,
                 'key2': 'client_action_multi',
@@ -122,28 +121,28 @@ class mass_object(orm.Model):
         for template in self.browse(cr, uid, ids, context=context):
             try:
                 if template.ref_ir_act_window:
-                    self.pool.get('ir.actions.act_window').unlink(
-                        cr, uid, template.ref_ir_act_window.id, context)
+                    act_window_obj = self.pool['ir.actions.act_window']
+                    act_window_obj.unlink(
+                        cr, SUPERUSER_ID, [template.ref_ir_act_window.id],
+                        context=context)
                 if template.ref_ir_value:
-                    ir_values_obj = self.pool.get('ir.values')
+                    ir_values_obj = self.pool['ir.values']
                     ir_values_obj.unlink(
-                        cr, uid, template.ref_ir_value.id, context)
+                        cr, SUPERUSER_ID, template.ref_ir_value.id,
+                        context=context)
             except:
-                raise osv.except_osv(
+                raise orm.except_orm(
                     _("Warning"),
                     _("Deletion of the action record failed."))
         return True
 
     def unlink(self, cr, uid, ids, context=None):
-        self.unlink_action(cr, uid, ids, context)
-        return super(mass_object, self).unlink(cr, uid, ids, context)
+        self.unlink_action(cr, uid, ids, context=context)
+        return super(MassObject, self).unlink(cr, uid, ids, context=context)
 
     def copy(self, cr, uid, record_id, default=None, context=None):
         if default is None:
             default = {}
         default.update({'name': '', 'field_ids': []})
-        return super(mass_object, self).copy(
-            cr, uid, record_id, default, context)
-
-mass_object()
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        return super(MassObject, self).copy(
+            cr, uid, record_id, default, context=context)

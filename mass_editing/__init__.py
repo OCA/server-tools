@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    This module uses OpenERP, Open Source Management Solution Framework.
-#    Copyright (C) 2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C):
+#        2012-Today Serpent Consulting Services (<http://www.serpentcs.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,8 +20,5 @@
 #
 ##############################################################################
 
-import mass_editing
-import wizard
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
+from . import models
+from . import wizard

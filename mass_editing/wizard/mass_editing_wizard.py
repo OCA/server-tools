@@ -25,19 +25,16 @@ import openerp.tools as tools
 from lxml import etree
 
 
-class mass_editing_wizard(orm.TransientModel):
+class MassEditingWizard(orm.TransientModel):
     _name = 'mass.editing.wizard'
-
-    _columns = {
-    }
 
     def fields_view_get(
             self, cr, uid, view_id=None, view_type='form', context=None,
             toolbar=False, submenu=False):
-        result = super(mass_editing_wizard, self).fields_view_get(
+        result = super(MassEditingWizard, self).fields_view_get(
             cr, uid, view_id, view_type, context, toolbar, submenu)
         if context.get('mass_editing_object'):
-            mass_object = self.pool.get('mass.object')
+            mass_object = self.pool['mass.object']
             editing_data = mass_object.browse(
                 cr, uid, context.get('mass_editing_object'), context)
             all_fields = {}
@@ -47,7 +44,7 @@ class mass_editing_wizard(orm.TransientModel):
             etree.SubElement(xml_group, 'label', {
                 'string': '', 'colspan': '2'})
             xml_group = etree.SubElement(xml_form, 'group', {'colspan': '4'})
-            model_obj = self.pool.get(context.get('active_model'))
+            model_obj = self.pool[context.get('active_model')]
             field_info = model_obj.fields_get(cr, uid, [], context)
             for field in editing_data.field_ids:
                 if field.ttype == "many2many":
@@ -175,10 +172,11 @@ class mass_editing_wizard(orm.TransientModel):
                 xml_form, 'separator', {'string': '', 'colspan': '4'})
             xml_group3 = etree.SubElement(xml_form, 'footer', {})
             etree.SubElement(xml_group3, 'button', {
-                'string': 'Close', 'icon': "gtk-close", 'special': 'cancel'})
-            etree.SubElement(xml_group3, 'button', {
                 'string': 'Apply', 'icon': "gtk-execute",
-                'type': 'object', 'name': "action_apply"})
+                'type': 'object', 'name': "action_apply",
+                'class': "oe_highlight"})
+            etree.SubElement(xml_group3, 'button', {
+                'string': 'Close', 'icon': "gtk-close", 'special': 'cancel'})
             root = xml_form.getroottree()
             result['arch'] = etree.tostring(root)
             result['fields'] = all_fields
@@ -207,11 +205,8 @@ class mass_editing_wizard(orm.TransientModel):
             if dict:
                 model_obj.write(
                     cr, uid, context.get('active_ids'), dict, context)
-        result = super(mass_editing_wizard, self).create(cr, uid, {}, context)
+        result = super(MassEditingWizard, self).create(cr, uid, {}, context)
         return result
 
     def action_apply(self, cr, uid, ids, context=None):
         return {'type': 'ir.actions.act_window_close'}
-
-mass_editing_wizard()
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
