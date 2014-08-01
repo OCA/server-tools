@@ -7,26 +7,51 @@
             <field name="model">mass.object</field>
             <field name="arch" type="xml">
                 <form string="Object">
-                    <field name="name"/>
-                    <field name="model_id" on_change="onchange_model(model_id)"/>
-                    <field name="model_ids" invisible="1"/>
-                    <notebook colspan="4">
-                        <page string="Fields">
-                            <field name="field_ids" colspan="4" nolabel="1"
-                                domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_ids[0][2])]"/>
-                        </page>
-                        <page string="Advanced">
-                            <group colspan="2" col="2">
-                                <button name="create_action" string="Add sidebar button" type="object" icon="gtk-execute"
-                                        colspan="2" attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"
-                                        help="Display a button in the sidebar of related documents to open a composition wizard"/>
-                                <field name="ref_ir_act_window" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
-                                <field name="ref_ir_value" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
-                                <button name="unlink_action" string="Remove sidebar button" type="object" icon="gtk-delete"
-                                         attrs="{'invisible':[('ref_ir_act_window','=',False)]}" colspan="2" />
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" required="1" />
+                            </h1>
+                            <group>
+                                <field name="model_id" required="1"
+                                    on_change="onchange_model_id(model_id)" />
+                                <field name="model_ids" invisible="1" />
                             </group>
-                        </page>
-                    </notebook>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <field name="ref_ir_act_window"
+                                invisible="1" />
+                            <button class="oe_inline oe_stat_button"
+                                name="create_action" type="object"
+                                attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"
+                                icon="fa-plus"
+                                help="Display a button in the sidebar of related documents to open a composition wizard">
+                                <div>Add<br />Sidebar Button</div>
+                            </button>
+                            <button name="unlink_action" type="object"
+                                class="oe_stat_button" icon="fa-minus"
+                                attrs="{'invisible':[('ref_ir_act_window','=',False)]}"
+                                help="Remove the contextual action to use this template on related documents"
+                                widget="statinfo">
+                                <div>Remove<br />Sidebar Button</div>
+                            </button>
+                        </div>
+
+                        <notebook colspan="4">
+                            <page string="Fields">
+                                <field name="field_ids" colspan="4"
+                                    nolabel="1"
+                                    domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_ids[0][2])]" />
+                            </page>
+                            <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window','=',False)]}">
+                                <group colspan="2" col="2">
+                                    <field name="ref_ir_act_window" />
+                                    <field name="ref_ir_value" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -36,8 +61,8 @@
             <field name="model">mass.object</field>
             <field name="arch" type="xml">
                 <tree string="Object">
-                    <field name="name"/>
-                    <field name="model_id"/>
+                    <field name="name" />
+                    <field name="model_id" />
                 </tree>
             </field>
         </record>
@@ -51,21 +76,23 @@
         </record>
 
         <record id="action_mass_object_form_view1" model="ir.actions.act_window.view">
-            <field eval="10" name="sequence"/>
+            <field eval="10" name="sequence" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_mass_object_tree"/>
-            <field name="act_window_id" ref="action_mass_object_form"/>
+            <field name="view_id" ref="view_mass_object_tree" />
+            <field name="act_window_id" ref="action_mass_object_form" />
         </record>
         <record id="action_mass_object_form_view2" model="ir.actions.act_window.view">
-            <field eval="20" name="sequence"/>
+            <field eval="20" name="sequence" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_mass_object_form"/>
-            <field name="act_window_id" ref="action_mass_object_form"/>
+            <field name="view_id" ref="view_mass_object_form" />
+            <field name="act_window_id" ref="action_mass_object_form" />
         </record>
 
-        <menuitem id="menu_mass_editing" name="Mass Editing" parent="base.menu_config" sequence="6"/>
+        <menuitem id="menu_mass_editing" name="Mass Editing"
+            parent="base.menu_administration" sequence="6" />
 
-        <menuitem id="menu_mass_object_view" action="action_mass_object_form" parent="menu_mass_editing"/>
+        <menuitem id="menu_mass_object_view" action="action_mass_object_form"
+            parent="menu_mass_editing" />
 
     </data>
 </openerp>

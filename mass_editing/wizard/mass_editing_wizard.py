@@ -43,7 +43,8 @@ class MassEditingWizard(orm.TransientModel):
             xml_group = etree.SubElement(xml_form, 'group', {'colspan': '4'})
             etree.SubElement(xml_group, 'label', {
                 'string': '', 'colspan': '2'})
-            xml_group = etree.SubElement(xml_form, 'group', {'colspan': '4'})
+            xml_group = etree.SubElement(xml_form, 'group', {'colspan': '4',
+                                                             'col': '4'})
             model_obj = self.pool[context.get('active_model')]
             field_info = model_obj.fields_get(cr, uid, [], context)
             for field in editing_data.field_ids:
