@@ -55,6 +55,7 @@ class Home(main.Home):
         if not login:
             _logger.error("Required fields '%s' not found in http headers\n %s",
                           self._REMOTE_USER_ATTRIBUTE, headers)
+            return None
         user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login),
                                                        ('active', '=', True)])
         assert len(user_ids) < 2
