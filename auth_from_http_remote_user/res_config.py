@@ -21,15 +21,15 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.safe_eval import safe_eval
-import types
 
 
 class auth_from_http_remote_user_configuration(orm.TransientModel):
-    _name = 'auth_from_http_remote_user.config.settings'
-    _inherit = 'res.config.settings'
+    _inherit = 'base.config.settings'
 
     _columns = {
-        'default_login_page_disabled': fields.boolean("Disable login page",
+        'default_login_page_disabled': fields.boolean("Disable login page when "
+                                                      "login with HTTP Remote "
+                                                      "User",
                                                       help="""
 Disable the default login page.
 If the HTTP_REMOTE_HEADER field is not found or no user matches the given one,
@@ -39,29 +39,26 @@ Otherwise the normal login page will be displayed.
     }
 
     def is_default_login_page_disabled(self, cr, uid, fields, context=None):
-        ir_config_obj = self.pool['ir.config_parameter']
-        default_login_page_disabled = \
-            ir_config_obj.get_param(cr,
-                                    uid,
-                                    'auth_from_http_remote_user.'
-                                    'default_login_page_disabled')
-        if isinstance(default_login_page_disabled, types.BooleanType):
-            return default_login_page_disabled
-        return safe_eval(default_login_page_disabled)
+        vals = self.get_default_default_login_page_disabled(cr,
+                                                            uid,
+                                                            fields,
+                                                            context=context)
+        return vals.get('default_login_page_disabled', False)
 
     def get_default_default_login_page_disabled(self, cr, uid, fields,
                                                 context=None):
-        default_login_page_disabled = \
-            self.is_default_login_page_disabled(cr, uid, fields, context)
-        return {'default_login_page_disabled': default_login_page_disabled}
+        icp = self.pool.get('ir.config_parameter')
+        # we use safe_eval on the result, since the value of
+        # the parameter is a nonempty string
+        is_disabled = icp.get_param(cr, uid, 'default_login_page_disabled',
+                                    'False')
+        return {'default_login_page_disabled': safe_eval(is_disabled)}
 
     def set_default_default_login_page_disabled(self, cr, uid, ids,
                                                 context=None):
-        config = self.browse(cr, uid, ids[0], context)
-        ir_config_parameter_obj = self.pool['ir.config_parameter']
-        param_value = repr(config.default_login_page_disabled)
-        ir_config_parameter_obj.set_param(cr,
-                                          uid,
-                                          'auth_from_http_remote_user.'
-                                          'default_login_page_disabled',
-                                          param_value)
+        config = self.browse(cr, uid, ids[0], context=context)
+        icp = self.pool.get('ir.config_parameter')
+        # we store the repr of the value, since the value of the parameter
+        # is a required string
+        icp.set_param(cr, uid, 'default_login_page_disabled',
+                      repr(config.default_login_page_disabled))

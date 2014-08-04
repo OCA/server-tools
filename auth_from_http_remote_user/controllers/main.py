@@ -93,8 +93,7 @@ class Home(main.Home):
                 installed = modules.search_count(cr, SUPERUSER_ID, domain) == 1
                 if not installed:
                     return
-                config = registry.get('auth_from_http_remote_user.'
-                                      'config.settings')
+                config = registry.get('base.config.settings')
                 # get parameters for SSO
                 default_login_page_disabled = \
                     config.is_default_login_page_disabled(cr,

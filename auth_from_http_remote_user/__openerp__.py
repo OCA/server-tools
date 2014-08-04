@@ -149,7 +149,7 @@ logged in the system.
     'author': 'Acsone SA/NV',
     'maintainer': 'ACSONE SA/NV',
     'website': 'http://www.acsone.eu',
-    'depends': ['web'],
+    'depends': ['base', 'web', 'base_setup'],
     "license": "AGPL-3",
     'data': [
         'res_config_view.xml',
