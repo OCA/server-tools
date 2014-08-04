@@ -28,8 +28,8 @@ Allow users to be automatically logged in.
 
 This module initialize the session by looking for the field HTTP_REMOTE_USER in
 the HEADER of the HTTP request and trying to bind the given value to a user.
-This module must be loaded at startup; Add the *--load* parameter to the startup
-command: ::
+To be active, the module must be installed in the expected databases and loaded
+at startup; Add the *--load* parameter to the startup command: ::
 
   --load=web,web_kanban,auth_from_http_remote_user, ...
 
