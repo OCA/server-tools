@@ -82,7 +82,6 @@ class Home(main.Home):
                                                           SUPERUSER_ID,
                                                           None)
 
-
                 if user_id is None:
                     if default_login_page_disabled:
                         raise http.AuthenticationError()
