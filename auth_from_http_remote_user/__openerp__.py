@@ -40,9 +40,9 @@ depending of the configuration.
 Use case.
 ---------
 
-The module allows integration with external security systems that can pass along
-authentication of a user via Remote_User HTTP header field. In many cases, this
-is achieved via server like Apache HTTPD or nginx proxying Odoo.
+The module allows integration with external security systems [#]_ that can pass
+along authentication of a user via Remote_User HTTP header field. In many cases,
+this is achieved via server like Apache HTTPD or nginx proxying Odoo.
 
 .. important:: When proxying your Odoo server with Apache or nginx, It's
    important to filter out the Remote_User HTTP header field before your
@@ -143,6 +143,7 @@ Open your browser and go to MY_VHOST.com. If everything is well configured, you
 are prompted for a login and password outside Odoo and are automatically
 logged in the system.
 
+.. [#] Shibolleth, Tivoli access manager, ..
 .. [#] Based on a ubuntu 12.04 env
 
 """,
