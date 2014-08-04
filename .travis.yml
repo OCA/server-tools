@@ -5,17 +5,20 @@ python:
 virtualenv:
   system_site_packages: true
 
+env:
+ - VERSION="8.0" ODOO_REPO="odoo/odoo"
+ - VERSION="8.0" ODOO_REPO="OCA/OCB"
+
 install:
- - git clone https://github.com/yvaucher/maintainer-quality-tools.git $HOME/maintainer-quality-tools
+ - git clone https://github.com/OCA/maintainer-quality-tools.git $HOME/maintainer-quality-tools
  - export PATH=$HOME/maintainer-quality-tools/travis:$PATH
- - travis_install_nightly 8.0
- - pip install coveralls flake8
+ - travis_install_nightly 
  - pip install python-ldap
  - printf '[options]\n\nrunning_env = dev' > /tmp/odoo.cfg
 
 script:
     - travis_run_flake8
-    - travis_run_tests 8.0 /tmp/odoo.cfg
+    - travis_run_tests /tmp/odoo.cfg
 
 after_success:
   coveralls
