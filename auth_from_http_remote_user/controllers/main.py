@@ -36,8 +36,7 @@ _logger = logging.getLogger(__name__)
 
 class Home(main.Home):
 
-    _REQUIRED_ATTRIBUTES = ['HTTP_REMOTE_USER']
-    _OPTIONAL_ATTRIBUTES = []
+    _REMOTE_USER_ATTRIBUTE = 'HTTP_REMOTE_USER'
 
     @http.route('/web', type='http', auth="none")
     def web_client(self, s_action=None, **kw):
@@ -49,38 +48,18 @@ class Home(main.Home):
                 return werkzeug.exceptions.Unauthorized()
         return super(Home, self).web_client(s_action, **kw)
 
-    def _get_user_id_from_attributes(self, res_users, cr, attrs):
-        login = attrs.get('HTTP_REMOTE_USER', None)
+    def _get_user_id_from_attributes(self, res_users, cr):
+        headers = http.request.httprequest.headers.environ
+        login = headers.get(self._REMOTE_USER_ATTRIBUTE, None)
+        if not login:
+            _logger.error("Required fields '%s' not found in http headers\n %s",
+                          self._REMOTE_USER_ATTRIBUTE, headers)
         user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login),
                                                        ('active', '=', True)])
         assert len(user_ids) < 2
         if user_ids:
             return user_ids[0]
         return None
-
-    def _get_attributes_form_header(self):
-        attrs = {}
-
-        all_attrs = self._REQUIRED_ATTRIBUTES + self._OPTIONAL_ATTRIBUTES
-
-        headers = http.request.httprequest.headers.environ
-
-        for attr in all_attrs:
-            value = headers.get(attr, None)
-            if value is not None:
-                attrs[attr] = value
-
-        attrs_found = set(attrs.keys())
-        attrs_missing = set(all_attrs) - attrs_found
-        if len(attrs_found) > 0:
-            _logger.debug("Fields '%s' not found in http headers\n %s",
-                          attrs_missing, headers)
-
-        missings = set(self._REQUIRED_ATTRIBUTES) - attrs_found
-        if len(missings) > 0:
-            _logger.error("Required fields '%s' not found in http headers\n %s",
-                          missings, headers)
-        return attrs
 
     def _bind_http_remote_user(self, db_name):
         try:
@@ -102,10 +81,8 @@ class Home(main.Home):
 
                 # get the user
                 res_users = registry.get('res.users')
-                attrs = self._get_attributes_form_header()
                 user_id = self._get_user_id_from_attributes(res_users,
-                                                            cr,
-                                                            attrs)
+                                                            cr)
 
                 if user_id is None:
                     if default_login_page_disabled:
