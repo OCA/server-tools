@@ -20,5 +20,23 @@
 #
 ##############################################################################
 
-from . import ir_model_fields
-from . import mass_object
+from openerp.osv import orm
+
+
+class IrModelFields(orm.Model):
+    _inherit = 'ir.model.fields'
+
+    def search(
+            self, cr, uid, args, offset=0, limit=0, order=None, context=None,
+            count=False):
+        model_domain = []
+        for domain in args:
+            if domain[0] == 'model_id' and domain[2]\
+                    and type(domain[2]) != list:
+                model_domain += [(
+                    'model_id', 'in', map(int, domain[2][1:-1].split(',')))]
+            else:
+                model_domain.append(domain)
+        return super(IrModelFields, self).search(
+            cr, uid, model_domain, offset=offset, limit=limit, order=order,
+            context=context, count=count)
