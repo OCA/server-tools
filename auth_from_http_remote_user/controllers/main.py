@@ -49,12 +49,7 @@ class Home(main.Home):
             return werkzeug.exceptions.Unauthorized().get_response()
         return super(Home, self).web_client(s_action, **kw)
 
-    def _get_user_id_from_headers(self, res_users, headers, cr):
-        login = headers.get(self._REMOTE_USER_ATTRIBUTE, None)
-        if not login:
-            _logger.info("Expected fields '%s' not found in http headers\n %s",
-                         self._REMOTE_USER_ATTRIBUTE, headers)
-            return None
+    def _search_user(self, res_users, login, cr):
         user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login),
                                                        ('active', '=', True)])
         assert len(user_ids) < 2
@@ -67,24 +62,30 @@ class Home(main.Home):
             registry = openerp.registry(db_name)
             with registry.cursor() as cr:
                 if AuthFromHttpRemoteUserInstalled._name not in registry:
+                    # module not installed in database,
+                    # continue usual behavior
                     return
-                res_users = registry.get('res.users')
-                # get the user
-                headers = http.request.httprequest.headers.environ
-                user_id = self._get_user_id_from_headers(res_users,
-                                                         headers,
-                                                         cr)
 
+                headers = http.request.httprequest.headers.environ
+
+                login = headers.get(self._REMOTE_USER_ATTRIBUTE, None)
+                if not login:
+                    # no HTTP_REMOTE_USER header,
+                    # continue usual behavior
+                    return
+
+                res_users = registry.get('res.users')
+
+                user_id = self._search_user(res_users, login, cr)
                 if not user_id:
-                    if self._REMOTE_USER_ATTRIBUTE in headers:
-                        request.session.logout(keep_db=True)
-                        raise http.AuthenticationError()
-                    else:
-                        return None
+                    # HTTP_REMOTE_USER login not found in database
+                    request.session.logout(keep_db=True)
+                    raise http.AuthenticationError()
 
                 request_uid = request.session.uid
                 if request_uid:
                     if request_uid == user_id:
+                        # already authenticated
                         return
                     else:
                         request.session.logout(keep_db=True)
