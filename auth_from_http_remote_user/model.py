@@ -18,8 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import orm
 
-from . import controllers
-from . import res_config
-from . import res_users
-from . import model
+
+class AuthFromHttpRemoteUserInstalled(orm.AbstractModel):
+    """An abstract model used to safely now if the module is installed
+    """
+    _name = 'auth_from_http_remote_user.installed'

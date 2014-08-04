@@ -25,6 +25,8 @@ import openerp
 from openerp import http
 from openerp.http import request
 from openerp.addons.web.controllers import main
+from openerp.addons.auth_from_http_remote_user.model import \
+    AuthFromHttpRemoteUserInstalled
 from .. import utils
 
 import random
@@ -41,11 +43,10 @@ class Home(main.Home):
     @http.route('/web', type='http', auth="none")
     def web_client(self, s_action=None, **kw):
         main.ensure_db()
-        if not request.session.uid:
-            try:
-                self._bind_http_remote_user(http.request.session.db)
-            except http.AuthenticationError:
-                return werkzeug.exceptions.Unauthorized().get_response()
+        try:
+            self._bind_http_remote_user(http.request.session.db)
+        except http.AuthenticationError:
+            return werkzeug.exceptions.Unauthorized().get_response()
         return super(Home, self).web_client(s_action, **kw)
 
     def _get_user_id_from_attributes(self, res_users, cr):
@@ -65,13 +66,15 @@ class Home(main.Home):
         try:
             registry = openerp.registry(db_name)
             with registry.cursor() as cr:
-                modules = registry.get('ir.module.module')
-                domain = ['&',
-                          ('name', '=', 'auth_from_http_remote_user'),
-                          ('state', '=', 'installed')]
-                installed = modules.search_count(cr, SUPERUSER_ID, domain) == 1
-                if not installed:
+                if AuthFromHttpRemoteUserInstalled._name not in registry:
                     return
+                res_users = registry.get('res.users')
+                # get the user
+                user_id = self._get_user_id_from_attributes(res_users,
+                                                            cr)
+                if request.session.uid and request.session.uid == user_id:
+                    return
+
                 config = registry.get('base.config.settings')
                 # get parameters for SSO
                 default_login_page_disabled = \
@@ -79,10 +82,6 @@ class Home(main.Home):
                                                           SUPERUSER_ID,
                                                           None)
 
-                # get the user
-                res_users = registry.get('res.users')
-                user_id = self._get_user_id_from_attributes(res_users,
-                                                            cr)
 
                 if user_id is None:
                     if default_login_page_disabled:
