@@ -33,9 +33,8 @@ at startup; Add the *--load* parameter to the startup command: ::
 
   --load=web,web_kanban,auth_from_http_remote_user, ...
 
-If the field is not found or no user matches the given one, it can lets the
-system redirect to the login page (default) or issue a login error page
-depending of the configuration.
+If the field is found in the header and no user matches the given one, the
+system issue a login error page. (*401* `Unauthorized`)
 
 Use case.
 ---------
@@ -152,9 +151,7 @@ logged in the system.
     'website': 'http://www.acsone.eu',
     'depends': ['base', 'web', 'base_setup'],
     "license": "AGPL-3",
-    'data': [
-        'res_config_view.xml',
-        'res_config_data.xml'],
+    'data': [],
     "demo": [],
     "test": [],
     "active": False,

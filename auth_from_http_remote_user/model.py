@@ -22,6 +22,6 @@ from openerp.osv import orm
 
 
 class AuthFromHttpRemoteUserInstalled(orm.AbstractModel):
-    """An abstract model used to safely now if the module is installed
+    """An abstract model used to safely know if the module is installed
     """
     _name = 'auth_from_http_remote_user.installed'
