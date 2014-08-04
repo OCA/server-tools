@@ -45,7 +45,7 @@ class Home(main.Home):
             try:
                 self._bind_http_remote_user(http.request.session.db)
             except http.AuthenticationError:
-                return werkzeug.exceptions.Unauthorized()
+                return werkzeug.exceptions.Unauthorized().get_response()
         return super(Home, self).web_client(s_action, **kw)
 
     def _get_user_id_from_attributes(self, res_users, cr):
