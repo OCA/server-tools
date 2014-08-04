@@ -23,27 +23,28 @@
     "name": "Mass Editing",
     "version": "1.3",
     "author": "Serpent Consulting Services",
+    "contributors": [
+        "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",
+    ],
     "category": "Tools",
     "website": "http://www.serpentcs.com",
     "description": """
-This module provides the functionality to add, update or remove the values"""
-    """of more than one records on the fly at the same time.
+    This module provides the functionality to add, update or remove the values
+    of more than one records on the fly at the same time.
     You can configure mass editing for any OpenERP model.
-    The video explaining the features and how-to for OpenERP Version 6"""
-    """ is here http://t.co/wukYMx1A
-    The video explaining the features and how-to for OpenERP Version 7 is"""
-    """ here : http://www.youtube.com/watch?v=9BH0o74A748&feature=youtu.be
-    For more details/customization/feedback contact us on"""
-    """ contact@serpentcs.com.
+    The video explaining the features and how-to for OpenERP Version 6
+    is here http://t.co/wukYMx1A
+    The video explaining the features and how-to for OpenERP Version 7 is
+    here : http://www.youtube.com/watch?v=9BH0o74A748&feature=youtu.be
+    For more details/customization/feedback contact us on
+    contact@serpentcs.com.
     """,
     'depends': ['base'],
     'data': [
         "security/ir.model.access.csv",
-        'mass_editing_view.xml',
+        'views/mass_editing_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'application': True,
     'auto_install': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
