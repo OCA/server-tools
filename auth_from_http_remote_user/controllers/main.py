@@ -93,7 +93,6 @@ class Home(main.Home):
                 # generate a specific key for authentication
                 key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
                 res_users.write(cr, SUPERUSER_ID, [user_id], {'sso_key': key})
-                login = res_users.browse(cr, SUPERUSER_ID, user_id).login
             request.session.authenticate(db_name, login=login,
                                          password=key, uid=user_id)
         except http.AuthenticationError, e:
