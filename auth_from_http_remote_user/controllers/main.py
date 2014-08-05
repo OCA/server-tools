@@ -74,21 +74,20 @@ class Home(main.Home):
                     # continue usual behavior
                     return
 
-                res_users = registry.get('res.users')
+                request_login = request.session.login
+                if request_login:
+                    if request_login == login:
+                        # already authenticated
+                        return
+                    else:
+                        request.session.logout(keep_db=True)
 
+                res_users = registry.get('res.users')
                 user_id = self._search_user(res_users, login, cr)
                 if not user_id:
                     # HTTP_REMOTE_USER login not found in database
                     request.session.logout(keep_db=True)
                     raise http.AuthenticationError()
-
-                request_uid = request.session.uid
-                if request_uid:
-                    if request_uid == user_id:
-                        # already authenticated
-                        return
-                    else:
-                        request.session.logout(keep_db=True)
 
                 # generate a specific key for authentication
                 key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
