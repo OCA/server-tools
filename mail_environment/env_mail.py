@@ -91,12 +91,12 @@ class IrMail(osv.osv):
             string='smtp_encryption',
             type="char",
             multi='outgoing_mail_config',
-            help=("Choose the connection encryption scheme:\n"
-                  "- none: SMTP sessions are done in cleartext.\n"
-                  "- starttls: TLS encryption is requested at start "
-                  "of SMTP session (Recommended)\n"
-                  "- ssl: SMTP sessions are encrypted with SSL/TLS "
-                  "through a dedicated port (default: 465)"),
+            help="Choose the connection encryption scheme:\n"
+                 "- none: SMTP sessions are done in cleartext.\n"
+                 "- starttls: TLS encryption is requested at start "
+                 "of SMTP session (Recommended)\n"
+                 "- ssl: SMTP sessions are encrypted with SSL/TLS "
+                 "through a dedicated port (default: 465)",
             size=64)}
 
 IrMail()
