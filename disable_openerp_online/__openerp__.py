@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    "name": "Remove openerp.com bindings",
+    "name": "Remove odoo.com bindings",
     "version": "1.1",
     "author": "Therp BV",
     "complexity": "normal",
@@ -30,8 +30,8 @@ come with the standard code:
 * update notifier code is deactivated and the function is overwritten
 * apps and updates menu items in settings are removed
 * help and account menu items in user menu are removed
-* prevent lookup of OPW for current database uuid and resulting"""
-    """ 'unsupported' warning
+* prevent lookup of OPW for current database uuid and resulting
+  'unsupported' warning
     """,
     "category": "",
     "depends": [
@@ -39,13 +39,9 @@ come with the standard code:
         'mail',
     ],
     "data": [
+        "views/disable_openerp_online.xml",
         'data/ir_ui_menu.xml',
         'data/ir_cron.xml',
-    ],
-    "js": [
-        'static/src/js/disable_openerp_online.js',
-    ],
-    "css": [
     ],
     "qweb": [
         'static/src/xml/base.xml',
