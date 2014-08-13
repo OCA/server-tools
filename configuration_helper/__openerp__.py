@@ -35,8 +35,8 @@ Configuration Helper
 
 This module :
 
-  * create automatically related fields in 'whatiwant.config.settings'
-    using those defined in 'res.company' : it avoid duplicated field definitions.
+  * create automatically related fields in 'whatiwant.config.settings' using
+    those defined in 'res.company' : it avoid duplicated field definitions.
   * company_id field with default value is created
   * onchange_company_id is defined to update all related fields
   * supported fields: char, text, integer, float, datetime, date, boolean, m2o
@@ -59,8 +59,11 @@ How to use
 
 Roadmap
 -------
-  * support (or check support) for these field types : o2m, m2m, reference, property, selection
-  * automatically generate a default view for 'whatiwant.config.settings' (in --debug ?)
+
+  * support (or check support) for these field types : o2m, m2m, reference,
+    property, selection
+  * automatically generate a default view for 'whatiwant.config.settings'
+    (in --debug?)
 
 
 Contributors
@@ -68,8 +71,8 @@ Contributors
 
 * David BEAL <david.beal@akretion.com>
 * Sébastien BEAU <sebastien.beau@akretion.com>
-* Yannick Vaucher, Camptocamp, (code refactoring from his module 'delivery_carrier_label_postlogistics')
-
+* Yannick Vaucher, Camptocamp, (code refactoring from his module
+  'delivery_carrier_label_postlogistics')
  """,
     'website': 'http://www.akretion.com/',
     'data': [

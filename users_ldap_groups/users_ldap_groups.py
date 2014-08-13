@@ -41,7 +41,8 @@ class CompanyLDAPGroupMapping(orm.Model):
         return tuple(operators)
 
     _columns = {
-        'ldap_id': fields.many2one('res.company.ldap', 'LDAP server', required=True),
+        'ldap_id': fields.many2one('res.company.ldap', 'LDAP server',
+                                   required=True),
         'ldap_attribute': fields.char(
             'LDAP attribute', size=64,
             help='The LDAP attribute to check.\n'
@@ -72,17 +73,23 @@ class CompanyLDAP(orm.Model):
         'only_ldap_groups': fields.boolean(
             'Only ldap groups',
             help='If this is checked, manual changes to group membership are '
-                 'undone on every login (so OpenERP groups are always synchronous '
-                 'with LDAP groups). If not, manually added groups are preserved.')
+                 'undone on every login (so OpenERP groups are always '
+                 'synchronous with LDAP groups). If not, manually added '
+                 'groups are preserved.')
     }
 
     _default = {
         'only_ldap_groups': False,
     }
 
-    def get_or_create_user(self, cr, uid, conf, login, ldap_entry, context=None):
-        user_id = super(CompanyLDAP, self).get_or_create_user(cr, uid, conf, login,
-                                                              ldap_entry, context)
+    def get_or_create_user(self, cr, uid,
+                           conf,
+                           login,
+                           ldap_entry,
+                           context=None):
+        _super = super(CompanyLDAP, self)
+        user_id = _super.get_or_create_user(cr, uid, conf, login,
+                                            ldap_entry, context)
         if not user_id:
             return user_id
         logger = logging.getLogger('users_ldap_groups')
@@ -90,16 +97,24 @@ class CompanyLDAP(orm.Model):
         userobj = self.pool.get('res.users')
         conf_all = self.read(cr, uid, conf['id'], ['only_ldap_groups'])
         if(conf_all['only_ldap_groups']):
-            logger.debug('deleting all groups from user %d' % user_id)
-            userobj.write(cr, uid, [user_id], {'groups_id': [(5, )]}, context=context)
-
-        for mapping in mappingobj.read(cr, uid, mappingobj.search(
-                cr, uid, [('ldap_id', '=', conf['id'])]), []):
-            operator = getattr(users_ldap_groups_operators, mapping['operator'])()
-            logger.debug('checking mapping %s' % mapping)
-            if operator.check_value(ldap_entry, mapping['ldap_attribute'],
-                                    mapping['value'], conf, self, logger):
-                logger.debug('adding user %d to group %s' %
+            logger.debug('deleting all groups from user %d', user_id)
+            userobj.write(cr, uid,
+                          [user_id],
+                          {'groups_id': [(5, )]},
+                          context=context)
+        mapping_ids = mappingobj.search(cr, uid,
+                                        [('ldap_id', '=', conf['id'])])
+        for mapping in mappingobj.read(cr, uid, mapping_ids, []):
+            operator = getattr(users_ldap_groups_operators,
+                               mapping['operator'])()
+            logger.debug('checking mapping %s', mapping)
+            if operator.check_value(ldap_entry,
+                                    mapping['ldap_attribute'],
+                                    mapping['value'],
+                                    conf,
+                                    self,
+                                    logger):
+                logger.debug('adding user %d to group %s',
                              (user_id, mapping['group'][1]))
                 userobj.write(cr, uid, [user_id],
                               {'groups_id': [(4, mapping['group'][0])]},

@@ -26,11 +26,12 @@
     'complexity': "expert",
     "description": """If an organisation's email layout is a bit more
 complicated, changes can be tedious when having to do that across several email
-templates. So this addon allows to define templates for mails that is referenced
-by other mail templates.
-This way we can put the layout parts into the template template and only content
-in the other templates. Changing the layout is then only a matter of changing
-the template template.
+templates. So this addon allows to define templates for mails that is
+referenced by other mail templates.
+
+This way we can put the layout parts into the template template and only
+content in the other templates. Changing the layout is then only a matter of
+changing the template template.
 
 -----
 Usage
@@ -49,7 +50,8 @@ For example, create a template template
 
    Example Corp logo
    Example Corp header
-   ${object.body_text} <- this gets evaluated to the body_text of a template using this template template
+   ${object.body_text} <- this gets evaluated to the body_text of a
+                          template using this template template
    Example Corp
    Example street 42
    Example city
@@ -61,7 +63,8 @@ Then in your template you write
 
    Dear ${object.partner_id.name},
 
-   Your order has been booked on date ${object.date} for a total amount of ${object.sum}.
+   Your order has been booked on date ${object.date}
+   for a total amount of ${object.sum}.
 
 And it will be evaluated to
 
@@ -71,7 +74,8 @@ And it will be evaluated to
     Example Corp header
     Dear Jane Doe,
 
-    Your order has been booked on date 04/17/2013 for a total amount of 42.
+    Your order has been booked on date 04/17/2013
+    for a total amount of 42.
     Example Corp
     Example street 42
     Example city
@@ -80,8 +84,8 @@ And it will be evaluated to
 Given the way evaluation works internally (body_text of the template template
 is evaluated two times, first with the instance of email.template of your own
 template, then with the object your template refers to), you can do some
-trickery if you know that a template template is always used with the same
-kind of model (that is, models that have the same field name):
+trickery if you know that a template template is always used with the same kind
+of model (that is, models that have the same field name):
 
 In your template template:
 

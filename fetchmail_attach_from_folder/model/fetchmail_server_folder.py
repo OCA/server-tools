@@ -31,11 +31,13 @@ class fetchmail_server_folder(Model):
 
     def _get_match_algorithms(self):
         def get_all_subclasses(cls):
-            return cls.__subclasses__() + [subsub
-                                           for sub in cls.__subclasses__()
-                                           for subsub in get_all_subclasses(sub)]
-        return dict([(cls.__name__, cls) for cls in get_all_subclasses(
-            match_algorithm.base.base)])
+            return (cls.__subclasses__() +
+                    [subsub
+                     for sub in cls.__subclasses__()
+                     for subsub in get_all_subclasses(sub)])
+        return dict([(cls.__name__, cls)
+                     for cls in get_all_subclasses(
+                         match_algorithm.base.base)])
 
     def _get_match_algorithms_sel(self, cr, uid, context=None):
         algorithms = []

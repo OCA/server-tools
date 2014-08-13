@@ -44,25 +44,26 @@ Super calendar → Configuration → Configurators
 and create a new configurator. For instance, if you want to see meetings and
 phone calls, you can create the following lines
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/meetings.png
+.. image:: data/meetings.png
    :width: 400 px
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/phone_calls.png
+.. image:: data/phone_calls.png
    :width: 400 px
 
 Then, you can use the ‘Generate Calendar’ button or wait for the scheduled
 action (‘Generate Calendar Records’) to be run.
 
-When the calendar is generated, you can visualize it by the ‘super calendar’ main menu.
+When the calendar is generated, you can visualize it by the ‘super calendar’
+main menu.
 
 Here is a sample monthly calendar:
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/month_calendar.png
+.. image:: data/month_calendar.png
    :width: 400 px
 
 And here is the weekly one:
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/week_calendar.png
+.. image:: data/week_calendar.png
    :width: 400 px
 
 As you can see, several filters are available. A typical usage consists in
