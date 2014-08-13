@@ -39,22 +39,23 @@ class AbstractConfigSettings(orm.AbstractModel):
     def __init__(self, pool, cr):
         super(AbstractConfigSettings, self).__init__(pool, cr)
         if self._companyObject:
-            for field_key in self._companyObject._columns:
+            company_cols = self._companyObject._columns
+            for field_key in company_cols:
                 # allows to exclude some field
                 if self._filter_field(field_key):
                     args = ('company_id', field_key)
                     kwargs = {
-                        'string': self._companyObject._columns[field_key].string,
-                        'help': self._companyObject._columns[field_key].help,
-                        'type': self._companyObject._columns[field_key]._type,
+                        'string': company_cols[field_key].string,
+                        'help': company_cols[field_key].help,
+                        'type': company_cols[field_key]._type,
                     }
-                    if '_obj' in self._companyObject._columns[field_key].__dict__.keys():
+                    if '_obj' in company_cols[field_key].__dict__:
                         kwargs['relation'] = \
-                            self._companyObject._columns[field_key]._obj
+                            company_cols[field_key]._obj
                     if '_domain' in \
-                            self._companyObject._columns[field_key].__dict__.keys():
+                            company_cols[field_key].__dict__:
                         kwargs['domain'] = \
-                            self._companyObject._columns[field_key]._domain
+                            company_cols[field_key]._domain
                     field_key = re.sub('^' + self._prefix, '', field_key)
                     self._columns[field_key] = \
                         fields.related(*args, **kwargs)
@@ -74,7 +75,10 @@ class AbstractConfigSettings(orm.AbstractModel):
         'company_id': _default_company,
     }
 
-    def field_to_populate_as_related(self, cr, uid, field, company_cols, context=None):
+    def field_to_populate_as_related(self, cr, uid,
+                                     field,
+                                     company_cols,
+                                     context=None):
         """Only fields which comes from company with the right prefix
            must be defined as related"""
         if self._prefix + field in company_cols:

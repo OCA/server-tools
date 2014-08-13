@@ -93,15 +93,16 @@ class fetchmail_server(Model):
             match_algorithm = folder.get_algorithm()
 
             if connection.select(folder.path)[0] != 'OK':
-                logger.error(
-                    'Could not open mailbox %s on %s' % (folder.path, this.server))
+                logger.error('Could not open mailbox %s on %s',
+                             folder.path,
+                             this.server)
                 connection.select()
                 continue
             result, msgids = this.get_msgids(connection)
             if result != 'OK':
-                logger.error(
-                    'Could not search mailbox %s on %s' % (
-                        folder.path, this.server))
+                logger.error('Could not search mailbox %s on %s',
+                             folder.path,
+                             this.server)
                 continue
 
             for msgid in msgids[0].split():
@@ -127,8 +128,10 @@ class fetchmail_server(Model):
             result, msgdata = connection.fetch(msgid, '(RFC822)')
 
             if result != 'OK':
-                logger.error(
-                    'Could not fetch %s in %s on %s' % (msgid, folder.path, this.server))
+                logger.error('Could not fetch %s in %s on %s',
+                             msgid,
+                             folder.path,
+                             this.server)
                 continue
 
             mail_message = self.pool.get('mail.thread').message_parse(

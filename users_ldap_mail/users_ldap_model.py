@@ -60,8 +60,9 @@ class CompanyLDAP(orm.Model):
         return cr.dictfetchall()
 
     def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
-        values = super(CompanyLDAP, self).map_ldap_attributes(cr, uid, conf,
-                                                              login, ldap_entry)
+        _super = super(CompanyLDAP, self)
+        values = _super.map_ldap_attributes(cr, uid, conf,
+                                            login, ldap_entry)
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
@@ -71,6 +72,7 @@ class CompanyLDAP(orm.Model):
                 if conf[conf_name]:
                     values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
-                _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
-                    conf.get(conf_name), values.get('login')))
+                _log.warning('No LDAP attribute "%s" found for login  "%s"',
+                             conf.get(conf_name),
+                             values.get('login'))
         return values

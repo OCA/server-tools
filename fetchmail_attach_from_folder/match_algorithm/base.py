@@ -26,10 +26,10 @@ class base(object):
     '''Name shown to the user'''
 
     required_fields = []
-    '''Fields on fetchmail_server folder that are required for this algorithm'''
+    '''Fields on fetchmail_server folder required for this algorithm'''
 
     readonly_fields = []
-    '''Fields on fetchmail_server folder that are readonly for this algorithm'''
+    '''Fields on fetchmail_server folder readonly for this algorithm'''
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
         '''Returns ids found for model with mail_message'''

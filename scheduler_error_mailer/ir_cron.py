@@ -36,10 +36,16 @@ class ir_cron(orm.Model):
         'email_template': fields.many2one(
             'email.template',
             'Error E-mail Template',
-            help="Select the email template that will be sent when this scheduler fails."),
+            help="Select the email template that will be sent "
+                 "when this scheduler fails."),
     }
 
-    def _handle_callback_exception(self, cr, uid, model_name, method_name, args, job_id, job_exception):
+    def _handle_callback_exception(self, cr, uid,
+                                   model_name,
+                                   method_name,
+                                   args,
+                                   job_id,
+                                   job_exception):
 
         res = super(ir_cron, self)._handle_callback_exception(
             cr, uid, model_name, method_name, args, job_id, job_exception)
@@ -54,7 +60,8 @@ class ir_cron(orm.Model):
                 'dbname': cr.dbname,
                 }
 
-            logger.debug("Sending scheduler error email with context=%s" % context)
+            logger.debug("Sending scheduler error email with context=%s",
+                         context)
             self.pool['email.template'].send_mail(
                 cr, uid, my_cron.email_template.id, my_cron.id,
                 force_send=True, context=context)
@@ -67,4 +74,5 @@ class res_users(orm.Model):
 
     def test_scheduler_failure(self, cr, uid, context=None):
         """This function is used to test and debug this module"""
-        raise orm.except_orm(_('Error :'), _("Task failure with UID = %d." % uid))
+        raise orm.except_orm(_('Error :'),
+                             _("Task failure with UID = %d.") % uid)
