@@ -230,11 +230,8 @@ class import_odbc_dbtable(orm.Model):
                         log['last_warn_count'])
             # Write run log, either if the table import is active or inactive
             if log['last_log']:
-                log['last_log'].insert(0,
-                                       'LEVEL|'
-                                       '== Line ==    |'
-                                       '== Relationship ==|'
-                                       '== Message ==')
+                _line = 'LEVEL|== Line ==    |== Relationship ==|== Message =='
+                log['last_log'].insert(0, _line)
             log.update({'last_log': '\n'.join(log['last_log'])})
             log.update({'last_run': datetime.now().replace(microsecond=0)})
             self.write(cr, uid, [obj.id], log)
