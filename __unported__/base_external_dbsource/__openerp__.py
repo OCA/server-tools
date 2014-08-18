@@ -57,7 +57,7 @@ Contributors
         'base_external_dbsource_demo.xml',
     ],
     'test': [
-        'dbsource_connect.yml',
+        'test/dbsource_connect.yml',
     ],
     'installable': False,
     'active': False,

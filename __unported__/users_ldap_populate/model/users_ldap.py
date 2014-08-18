@@ -21,18 +21,18 @@
 
 import re
 from ldap.filter import filter_format
-from openerp.osv import orm, fields
-import openerp.exceptions
+from openerp.osv import orm
 import logging
+
 
 class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
-    
+
     def action_populate(self, cr, uid, ids, context=None):
         """
         Prepopulate the user table from one or more LDAP resources.
-        
-        Obviously, the option to create users must be toggled in 
+
+        Obviously, the option to create users must be toggled in
         the LDAP configuration.
 
         Return the number of users created (as far as we can tell).
@@ -54,7 +54,7 @@ class CompanyLDAP(orm.Model):
             if attribute_match:
                 login_attr = attribute_match.group(1)
             else:
-                raise osv.except_osv(
+                raise orm.except_orm(
                     "No login attribute found",
                     "Could not extract login attribute from filter %s" %
                     conf['ldap_filter'])

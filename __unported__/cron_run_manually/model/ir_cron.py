@@ -27,9 +27,10 @@ from openerp.tools import SUPERUSER_ID
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 
+
 class irCron(orm.Model):
     _inherit = 'ir.cron'
-    
+
     def run_manually(self, cr, uid, ids, context=None):
         """
         Run a job from the cron form view.
@@ -51,7 +52,7 @@ class irCron(orm.Model):
                     _('Error'),
                     _('Only the admin user is allowed to '
                       'execute inactive cron jobs manually'))
-            
+
             try:
                 # Try to grab an exclusive lock on the job row
                 # until the end of the transaction
@@ -67,9 +68,9 @@ class irCron(orm.Model):
                 model = self.pool.get(job['model'])
                 method = getattr(model, job['function'])
                 args = safe_eval('tuple(%s)' % (job['args'] or ''))
-                method(cr, job['user_id'], *args) 
-                    
-            except psycopg2.OperationalError, e:
+                method(cr, job['user_id'], *args)
+
+            except psycopg2.OperationalError as e:
                 # User friendly error if the lock could not be claimed
                 if e.pgcode == '55P03':
                     raise orm.except_orm(

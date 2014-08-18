@@ -60,7 +60,7 @@ Then in your template you write
 ::
 
    Dear ${object.partner_id.name},
-   
+
    Your order has been booked on date ${object.date} for a total amount of ${object.sum}.
 
 And it will be evaluated to
@@ -77,13 +77,18 @@ And it will be evaluated to
     Example city
     Example Corp footer
 
-Given the way evaluation works internally (body_text of the template template is evaluated two times, first with the instance of email.template of your own template, then with the object your template refers to), you can do some trickery if you know that a template template is always used with the same kind of model (that is, models that have the same field name):
+Given the way evaluation works internally (body_text of the template template
+is evaluated two times, first with the instance of email.template of your own
+template, then with the object your template refers to), you can do some
+trickery if you know that a template template is always used with the same
+kind of model (that is, models that have the same field name):
 
 In your template template:
 
 ::
 
-    Dear ${'${object.name}'}, <-- gets evaluated to "${object.name}" in the first step, then to the content of object.name
+    Dear ${'${object.name}'}, <-- gets evaluated to "${object.name}" in the
+    first step, then to the content of object.name
     ${object.body_html}
     Best,
     Example Corp
