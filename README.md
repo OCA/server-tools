@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/OCA/server-tools.svg?branch=master)](https://travis-ci.org/OCA/server-tools)
-[![Coverage Status](https://coveralls.io/repos/OCA/server-tools/badge.png?branch=master)](https://coveralls.io/r/OCA/server-tools?branch=master)
+[![Build Status](https://travis-ci.org/OCA/server-tools.svg?branch=8.0)](https://travis-ci.org/OCA/server-tools)
+[![Coverage Status](https://coveralls.io/repos/OCA/server-tools/badge.png?branch=8.0)](https://coveralls.io/r/OCA/server-tools?branch=8.0)
 
 Server Environment And Tools
 ============================
