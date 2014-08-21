@@ -20,17 +20,23 @@
         <record model="ir.ui.view" id="view_dbsource_form">
             <field name="name">base.external.dbsource.form</field>
             <field name="model">base.external.dbsource</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="External DB Source">
-                    <field name="name"/>
-                    <field name="password" password="True"/>
-                    <newline/>
-		    <field name="connector" colspan="2"/>
-                    <newline/>
-		    <field name="conn_string" colspan="4"/>
-                    <newline/>
-                    <button name="connection_test" string="Test Connection" type="object" icon="gtk-network" colspan="4"/>
+                <form string="External DB Source" version="7.0">
+                <sheet>
+                    <group>
+                        <group>
+                        <field name="name"/>
+                        </group>
+                        <group>
+                        <field name="password" password="True"/>
+                        </group>
+                    </group>
+                    <group col="1">
+		                <field name="connector"/>
+		                <field name="conn_string"/>
+                        <button name="connection_test" string="Test Connection" type="object" icon="gtk-network"/>
+                    </group>
+                </sheet>
                 </form>
             </field>
         </record>
