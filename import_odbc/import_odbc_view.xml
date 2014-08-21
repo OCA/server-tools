@@ -7,31 +7,42 @@
         <record model="ir.ui.view" id="view_import_dbtable_form">
             <field name="name">import.odbc.dbtable.form</field>
             <field name="model">import.odbc.dbtable</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
 	        <form string="Table">
-	            <field name="name" search="1"/>
-	            <field name="exec_order"/>
-	            <field name="model_target"/>
-	            <field name="dbsource_id" search="1"/>
-	            <field name="noupdate"/>
-	            <field name="enabled"/>
-	            <field name="ignore_rel_errors"/>
-	            <field name="raise_import_errors"/>
-                    <field name="last_sync"/>
-                    <group colspan="2">
+	            <group>
+	                <group>
+	                    <field name="name" search="1"/>
+	                    <field name="model_target"/>	            
+	                    <field name="noupdate"/>	            
+	                    <field name="ignore_rel_errors"/>
+                        <field name="last_sync"/>
                         <button name="import_run" string="Run Import" type="object" icon="gtk-execute"/>
-                        <button name="import_schedule" string="Schedule Import" type="object" icon="gtk-paste"/>
                     </group>
-	            <field name="sql_source" colspan="4"/>
-                    <separator string="Last execution" colspan="4"/>
-                    <field name="last_record_count"/>
-                    <field name="start_run"/>
-                    <field name="last_warn_count"/>
-	            <field name="last_run"/>
-                    <field name="last_error_count"/>
-                    <field name="last_log" colspan="4"/>
-                </form>
+                    <group>                        
+                        <field name="exec_order"/>
+                        <field name="dbsource_id" search="1"/>
+                        <field name="enabled"/>
+                        <field name="raise_import_errors"/>
+                        <button name="import_schedule" string="Schedule Import" type="object" icon="gtk-paste"/>
+                    </group> 
+                </group>
+                <group>              
+	                <field name="sql_source" colspan="4"/>
+	            </group>
+                <separator string="Last execution" colspan="4"/>
+                <group>
+                    <group> 
+                        <field name="last_record_count"/>                    
+                        <field name="last_warn_count"/>	            
+                        <field name="last_error_count"/>
+                    </group>
+                    <group>                                     
+                        <field name="start_run"/>
+                        <field name="last_run"/>
+                        <field name="last_log" colspan="4"/>
+                    </group>
+                </group>
+            </form>
             </field>
         </record>
 
