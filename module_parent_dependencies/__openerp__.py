@@ -34,8 +34,8 @@ allows to see the list of modules dependencies of a given module, at the"""
 
 Functionality:
 --------------
-    * This module allows to see the list of the modules that depends"""
-    """ (directly or indirectly) on a given module.
+    * This module allows to see the list of modules dependencies of a"""
+    """ given module, at the full depth of the dependency tree.
 
 Copyright, Authors and Licence:
 -------------------------------
