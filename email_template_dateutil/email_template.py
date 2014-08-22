@@ -21,6 +21,11 @@
 ##############################################################################
 
 from datetime import datetime
+import logging
+_logger = logging.getLogger(__name__)
+
+import pytz
+from jinja2 import contextfilter
 
 from openerp.tools import (
     DEFAULT_SERVER_DATETIME_FORMAT as DTFMT,
@@ -29,17 +34,36 @@ from openerp.tools import (
 from openerp.addons.email_template import email_template
 
 
-def format_date(dtstr, new_format):
+@contextfilter
+def format_date(context, dtstr, new_format, tz=None):
     if not dtstr:
         return dtstr
 
     try:
-        return datetime.strptime(dtstr, DTFMT).strftime(new_format)
+        date = datetime.strptime(dtstr, DTFMT)
     except ValueError:
         # Maybe this is a date, not datetime
-        pass
+        date = datetime.strptime(dtstr, DFMT)
 
-    return datetime.strptime(dtstr, DFMT).strftime(new_format)
+    if tz:
+        tz_name = tz
+    elif context.get("user") and context["user"].tz:
+        tz_name = context["user"].tz
+    else:
+        tz_name = context.get("ctx", {}).get("tz")
+
+    if tz_name:
+        try:
+            utc = pytz.timezone('UTC')
+            context_tz = pytz.timezone(tz_name)
+            utc_timestamp = utc.localize(date, is_dst=False)  # UTC = no DST
+            date = utc_timestamp.astimezone(context_tz)
+        except Exception:
+            _logger.debug("failed to compute context/client-specific timestamp, "
+                          "using the UTC value",
+                          exc_info=True)
+
+    return date.strftime(new_format)
 
 
 email_template.mako_template_env.filters.update(

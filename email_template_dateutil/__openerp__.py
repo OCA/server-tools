@@ -32,7 +32,10 @@
     'description': """
 This module adds an extra filter in email templates:
 
-format_date(format) : parses and formats a date or datetime string
+format_date(format, tz=tzname) : parses and formats a date or datetime string.
+    Optional parameter tz allows specifying the timezone to use. Otherwise, the
+    user's timezone or server timezone will be used. If none are found, time is
+    left in UTC
 
 Example: ${ object.date_field|format_date('%m/%d/%Y') }
 
