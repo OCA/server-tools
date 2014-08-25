@@ -59,8 +59,8 @@ def format_date(context, dtstr, new_format, tz=None):
             utc_timestamp = utc.localize(date, is_dst=False)  # UTC = no DST
             date = utc_timestamp.astimezone(context_tz)
         except Exception:
-            _logger.debug("failed to compute context/client-specific timestamp, "
-                          "using the UTC value",
+            _logger.debug("failed to compute context/client-specific "
+                          "timestamp, using the UTC value",
                           exc_info=True)
 
     return date.strftime(new_format)
