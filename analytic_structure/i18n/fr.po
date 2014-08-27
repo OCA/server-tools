@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 08:38+0000\n"
-"PO-Revision-Date: 2014-08-27 10:46+0100\n"
+"POT-Creation-Date: 2014-08-27 14:15+0000\n"
+"PO-Revision-Date: 2014-08-27 16:17+0100\n"
 "Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.5.4\n"
+
+#. module: analytic_structure
+#: field:analytic.code,usable_per_company:0
+msgid "Usable in my company"
+msgstr "Utilisable dans ma société"
 
 #. module: analytic_structure
 #: view:analytic.structure:0
@@ -108,6 +113,11 @@ msgid "Code Dimension"
 msgstr "Dimension du code"
 
 #. module: analytic_structure
+#: field:analytic.code,blacklist_ids:0
+msgid "Blacklist"
+msgstr "Liste noire"
+
+#. module: analytic_structure
 #: code:addons/analytic_structure/analytic_structure.py:40
 #, python-format
 msgid "Analysis {}"
@@ -137,6 +147,11 @@ msgstr ""
 "dans votre système.\n"
 "              </p>\n"
 "            "
+
+#. module: analytic_structure
+#: help:analytic.code,blacklist_ids:0
+msgid "Companies the code is hidden in."
+msgstr "Sociétés dans lesquelles le code n'est pas utilisable."
 
 #. module: analytic_structure
 #: field:analytic.code,nd_name:0 view:analytic.dimension:0
