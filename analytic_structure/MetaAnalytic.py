@@ -1,7 +1,8 @@
+from openerp import SUPERUSER_ID
 from openerp.osv import fields
 from openerp.tools import config
+
 from openerp.addons.oemetasl import OEMetaSL
-from openerp import SUPERUSER_ID
 
 
 class AddMethod(object):
@@ -258,7 +259,8 @@ class MetaAnalytic(OEMetaSL):
                 ondelete='restrict'
             )
 
-        rel_cols = [cols for cols in [
+        rel_cols = [
+            cols for cols in [
                 rel_name + ('name', 'char', True, ''),
                 rel_description + ('description', 'char', False, ''),
                 rel_active + ('active', 'boolean', False, True),
@@ -465,7 +467,7 @@ class MetaAnalytic(OEMetaSL):
 
                 code_osv = self.pool.get('analytic.code')
                 code_reads = self.read(cr, uid, ids, [column], context=context)
-                c2m = {    # Code IDs to model IDs
+                c2m = {  # Code IDs to model IDs
                     code_read[column][0]: code_read['id']
                     for code_read in code_reads
                     if code_read[column] is not False
@@ -490,11 +492,15 @@ class MetaAnalytic(OEMetaSL):
                 dom = [(column, 'in', zip(*names)[0])]
                 ids = self.search(cr, uid, dom, context=context)
                 code_reads = self.read(cr, uid, ids, [column], context=context)
-                c2m = {    # Code IDs to model IDs
+                c2m = {  # Code IDs to model IDs
                     code_read[column][0]: code_read['id']
                     for code_read in code_reads
                     if code_read[column] is not False
                 }
-                return [(c2m[cid], name) for cid, name in names if cid in c2m]
+                return [
+                    (c2m[cid], cname)
+                    for cid, cname in names
+                    if cid in c2m
+                ]
 
         return (superclass,)

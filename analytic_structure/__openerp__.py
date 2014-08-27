@@ -19,19 +19,18 @@
 #
 ##############################################################################
 
-
 {
-    "name" : "Analytic Structure",
-    "version" : "1.3.9",
-    "author" : "XCG Consulting",
+    "name": "Analytic Structure",
+    "version": "1.3.9",
+    "author": "XCG Consulting",
     "category": 'Dependency',
     "description": """
-This module allows to use several analytic dimensions through a structure related
-to an object model.
-==================================================================================
+This module allows to use several analytic dimensions through a structure
+related to an object model.
+=========================================================================
     """,
     'website': 'http://www.openerp-experts.com',
-    "depends" : [
+    "depends": [
         'base',
         'oemetasl',
     ],
@@ -41,7 +40,7 @@ to an object model.
         'security/record_rules.xml',
         'analytic_dimension.xml',
     ],
-    #'demo_xml': [],
+    # 'demo_xml': [],
     'css': [
         'static/src/css/analytic_structure.css',
     ],

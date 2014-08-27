@@ -291,8 +291,8 @@ class analytic_structure(osv.Model):
             sorted_fields = found_fields.items()
             sorted_fields.sort(key=lambda i: int(i[0]))
             div_fields = [
-                self.format_field_name(slot, prefix, suffix)
-                for slot, found in sorted_fields if not found
+                self.format_field_name(ordering, prefix, suffix)
+                for ordering, found in sorted_fields if not found
             ]
 
             # First, we have to load the definitions for those fields.
