@@ -28,7 +28,7 @@ import json
 
 class analytic_structure(osv.Model):
 
-    _name = "analytic.structure"
+    _name = 'analytic.structure'
     _description = u"Analytic Structure"
 
     def order_selection(self, cr, uid, context=None):
@@ -46,7 +46,7 @@ class analytic_structure(osv.Model):
         structures = self.read(cr, uid, ids, columns, context=context)
         for structure in structures:
             if structure['company_id']:
-                continue    # Already checked by the SQL constraint.
+                continue  # Already checked by the SQL constraint.
             domain = [
                 ('model_name', '=', structure['model_name']),
                 ('ordering', '=', structure['ordering']),
@@ -56,25 +56,30 @@ class analytic_structure(osv.Model):
                 return False
         return True
 
-    _columns = dict(
-        model_name=fields.char("Object", size=128, required=True, select="1"),
-        nd_id=fields.many2one(
-            "analytic.dimension",
-            "Related Dimension",
-            ondelete="restrict",
+    _columns = {
+        'model_name': fields.char(
+            u"Object",
+            size=128,
             required=True,
-            select="1"
+            select='1',
         ),
-        ordering=fields.selection(
+        'nd_id': fields.many2one(
+            'analytic.dimension',
+            u"Related Dimension",
+            ondelete='restrict',
+            required=True,
+            select='1',
+        ),
+        'ordering': fields.selection(
             order_selection,
-            'Analysis slot',
-            required=True
+            u"Analysis slot",
+            required=True,
         ),
-        company_id=fields.many2one(
+        'company_id': fields.many2one(
             'res.company',
-            'Company'
+            u"Company",
         ),
-    )
+    }
 
     _defaults = {
         'company_id': False,

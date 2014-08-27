@@ -43,20 +43,20 @@ class _dimension_meta(OEMetaSL):
 class analytic_dimension(osv.Model):
 
     __metaclass__ = _dimension_meta
-    _name = "analytic.dimension"
+    _name = 'analytic.dimension'
     _description = u"Analytic Dimension"
 
-    _columns = dict(
-        name=fields.char(
-            "Name",
+    _columns = {
+        'name': fields.char(
+            u"Name",
             size=128,
             translate=config.get_misc('analytic', 'translate', False),
             required=True,
         ),
-        validated=fields.boolean("Validated"),
-        nc_ids=fields.one2many("analytic.code", "nd_id", "Codes"),
-        ns_id=fields.one2many("analytic.structure", "nd_id", "Structures"),
-    )
+        'validated': fields.boolean(u"Validated"),
+        'nc_ids': fields.one2many('analytic.code', 'nd_id', u"Codes"),
+        'ns_id': fields.one2many('analytic.structure', 'nd_id', u"Structures"),
+    }
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', u"Name must be unique"),

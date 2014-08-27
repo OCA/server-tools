@@ -23,7 +23,7 @@ from openerp.tools import config
 
 
 class analytic_code(osv.Model):
-    _name = "analytic.code"
+    _name = 'analytic.code'
     _description = u"Analytic Code"
 
     _parent_name = 'code_parent_id'
@@ -31,42 +31,47 @@ class analytic_code(osv.Model):
     _parent_order = 'name'
     _order = 'parent_left'
 
-    _columns = dict(
-        name=fields.char(
-            "Name",
+    _columns = {
+        'name': fields.char(
+            u"Name",
             size=128,
             translate=config.get_misc('analytic', 'translate', False),
             required=True,
         ),
-        nd_id=fields.many2one(
-            "analytic.dimension",
-            string="Dimension",
-            ondelete="cascade",
+        'nd_id': fields.many2one(
+            'analytic.dimension',
+            string=u"Dimension",
+            ondelete='cascade',
             required=True,
         ),
-        active=fields.boolean('Active'),
-        usable=fields.boolean('Usable'),
-        nd_name=fields.related('nd_id', 'name', type="char",
-                               string="Dimension Name", store=False),
-        description=fields.char(
-            'Description',
+        'active': fields.boolean(u"Active"),
+        'usable': fields.boolean(u"Usable"),
+        'nd_name': fields.related(
+            'nd_id',
+            'name',
+            type='char',
+            string=u"Dimension Name",
+            store=False
+        ),
+        'description': fields.char(
+            u"Description",
             size=512,
             translate=config.get_misc('analytic', 'translate', False),
         ),
-        code_parent_id=fields.many2one(
+        'code_parent_id': fields.many2one(
             'analytic.code',
             u"Parent Code",
             select=True,
             ondelete='restrict',
         ),
-        child_ids=fields.one2many(
+        'child_ids': fields.one2many(
             'analytic.code',
             'code_parent_id',
             u"Child Codes",
         ),
-        parent_left=fields.integer(u"Left parent", select=True),
-        parent_right=fields.integer(u"Right parent", select=True),
-    )
+        'parent_left': fields.integer(u"Left parent", select=True),
+        'parent_right': fields.integer(u"Right parent", select=True),
+    }
 
     _defaults = {
         'active': 1,
