@@ -39,6 +39,7 @@ related to an object model.
         'security/ir.model.access.csv',
         'security/record_rules.xml',
         'analytic_views.xml',
+        'analytic_menus.xml',
     ],
     # 'demo_xml': [],
     'css': [

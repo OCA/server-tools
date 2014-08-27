@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- This file contains menu items to configure analytic values. -->
+
+        <!-- Actions. -->
+
+        <record id="action_analytic_code" model="ir.actions.act_window">
+            <field name="name">Codes</field>
+            <field name="res_model">analytic.code</field>
+            <field name="search_view_id" ref="view_analytic_search_global" />
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_analytic_code" />
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_analytic_dimension" model="ir.actions.act_window">
+            <field name="name">Dimensions</field>
+            <field name="res_model">analytic.dimension</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Analytical Dimensions (AND) for your system.
+                </p>
+            </field>
+        </record>
+        <record id="action_analytic_structure" model="ir.actions.act_window">
+            <field name="name">Structures</field>
+            <field name="res_model">analytic.structure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Define Analytical Structures (ANS) for objects in
+                    your system.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu items. -->
+
+        <menuitem id="menu_analytic_config_root" name="Analytic"
+            parent="base.menu_custom" sequence="5" />
+        <menuitem id="menu_analytic_dimension" name="Dimensions"
+            parent="menu_analytic_config_root" sequence="10"
+            action="action_analytic_dimension" />
+        <menuitem id="menu_analytic_structure" name="Structures"
+            parent="menu_analytic_config_root" sequence="15"
+            action="action_analytic_structure" />
+        <menuitem id="menu_analytic_code" name="Codes"
+            parent="menu_analytic_config_root" sequence="20" action="action_analytic_code" />
+
+    </data>
+</openerp>
