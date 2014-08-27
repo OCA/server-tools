@@ -31,6 +31,77 @@ class analytic_code(osv.Model):
     _parent_order = 'name'
     _order = 'parent_left'
 
+    def _read_usable_per_company(
+        self, cr, uid, ids, field_name, arg, context
+    ):
+        """Mark the code as usable when it is not in the blacklist (depending
+        on the current user's company).
+        """
+
+        anc_obj = self.pool['analytic.code']
+        user_obj = self.pool['res.users']
+
+        company_id = user_obj.read(
+            cr, uid, [uid], ['company_id'], context=context
+        )[0]['company_id'][0]
+
+        ret = {}
+
+        for anc in anc_obj.browse(cr, uid, ids, context=context):
+            blacklist = (company.id for company in anc.blacklist_ids)
+            ret[anc.id] = company_id not in blacklist
+
+        return ret
+
+    def _write_usable_per_company(
+        self, cr, uid, anc_id, field_name, field_value, arg, context
+    ):
+        """Update the blacklist depending on the current user's company.
+        """
+
+        anc_obj = self.pool['analytic.code']
+        user_obj = self.pool['res.users']
+
+        company_id = user_obj.read(
+            cr, uid, [uid], ['company_id'], context=context
+        )[0]['company_id'][0]
+
+        anc = anc_obj.browse(cr, uid, anc_id, context=context)
+        blacklist = (company.id for company in anc.blacklist_ids)
+
+        to_write = None
+        if field_value and company_id in blacklist:
+            to_write = [(3, company_id)]  # Unlink.
+        elif not field_value and company_id not in blacklist:
+            to_write = [(4, company_id)]  # Link.
+
+        if to_write:
+            anc_obj.write(
+                cr, uid, [anc_id], {'blacklist_ids': to_write}, context=context
+            )
+
+        return True
+
+    def _search_usable_per_company(
+        self, cr, uid, model_again, field_name, criterion, context
+    ):
+        """Update the domain to take the blacklist into account (depending on
+        the current user's company).
+        """
+
+        user_obj = self.pool['res.users']
+
+        company_id = user_obj.read(
+            cr, uid, [uid], ['company_id'], context=context
+        )[0]['company_id'][0]
+
+        # We assume the criterion was "usable_per_company = True".
+        return [
+            '|',
+            ('blacklist_ids', '=', False),
+            ('blacklist_ids.id', '!=', company_id),
+        ]
+
     _columns = {
         'name': fields.char(
             u"Name",
@@ -46,6 +117,23 @@ class analytic_code(osv.Model):
         ),
         'active': fields.boolean(u"Active"),
         'usable': fields.boolean(u"Usable"),
+        'blacklist_ids': fields.many2many(
+            'res.company',
+            'analytic_code_company_rel',
+            'code_id',
+            'company_id',
+            u"Blacklist",
+            help=u"Companies the code is hidden in.",
+        ),
+        'usable_per_company': fields.function(
+            _read_usable_per_company,
+            fnct_inv=_write_usable_per_company,
+            fnct_search=_search_usable_per_company,
+            method=True,
+            type='boolean',
+            store=False,  # Not persistent as it dpeends on the company.
+            string=u"Usable in my company",
+        ),
         'nd_name': fields.related(
             'nd_id',
             'name',
@@ -74,8 +162,9 @@ class analytic_code(osv.Model):
     }
 
     _defaults = {
-        'active': 1,
-        'usable': 1,
+        'active': lambda *a: True,
+        'usable': lambda *a: True,
+        'usable_per_company': lambda *a: True,
     }
 
     _constraints = [

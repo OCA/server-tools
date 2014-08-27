@@ -82,7 +82,7 @@ class analytic_structure(osv.Model):
     }
 
     _defaults = {
-        'company_id': False,
+        'company_id': lambda *a: False,
     }
 
     _constraints = [

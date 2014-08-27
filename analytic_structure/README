@@ -166,3 +166,19 @@ use_code_name_methods (False): Set to True in order to override the methods
 name_get and name_search, using those of analytic code.
 This allows the analytic code's description to be displayed (and searched)
 along with the entry's name in many2one fields targeting the model.
+
+
+
+=== Active / Usable / Usable in my company ===
+
+
+Differences between the various "active" fields:
+
+- Active: Controls whether the code is in the referential; when inactive, a
+code is invisible.
+
+- Usable: Controls whether the code can be selected; unlike "active", it is
+still in the referential.
+
+- Usable per company: Controls whether the code can be selected by users in the
+company of the current user; unlike "active", it is still in the referential.

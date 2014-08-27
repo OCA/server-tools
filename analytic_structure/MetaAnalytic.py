@@ -102,7 +102,8 @@ class MetaAnalytic(OEMetaSL):
                     "Generated Analytic Field",
                     domain=[
                         (domain_field, '=', model_name),
-                        ('usable', '=', True)
+                        ('usable', '=', True),
+                        ('usable_per_company', '=', True),
                     ],
                     track_visibility='onchange',
                 )

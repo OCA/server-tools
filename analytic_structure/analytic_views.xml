@@ -29,10 +29,11 @@
             <field name="model">analytic.code</field>
 
             <field name="arch" type="xml">
-                <tree string="Analytic Codes" version="7.0" editable="bottom">
+                <tree string="Analytic Codes" version="7.0">
                     <field name="id" invisible="1" />
                     <field name="active" />
                     <field name="usable" />
+                    <field name="usable_per_company" />
                     <field name="name" />
                     <field name="description" />
                     <field name="nd_id"
@@ -52,16 +53,30 @@
             <field name="model">analytic.code</field>
             <field name="arch" type="xml">
                 <form string="Analytic Code">
-                    <field name="id" invisible="1" />
-                    <field name="active" />
-                    <field name="usable" />
-                    <field name="name" />
-                    <field name="description" />
-                    <field name="nd_id"
-                        invisible="context.get('default_nd_id', None) is not None"
-                        required="context.get('default_nd_id', None) is not False" />
-                    <field name="code_parent_id" attrs="{'readonly': [('nd_id', '=', False)]}"
-                        domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                    <group>
+                        <field name="id" invisible="1" />
+
+                        <group>
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="nd_id"
+                                invisible="context.get('default_nd_id', None) is not None"
+                                required="context.get('default_nd_id', None) is not False" />
+                            <field name="code_parent_id"
+                                attrs="{'readonly': [('nd_id', '=', False)]}"
+                                domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                        </group>
+
+                        <group>
+                            <field name="active" />
+                            <field name="usable" />
+                            <field name="usable_per_company" />
+                        </group>
+
+                        <group colspan="2">
+                            <field name="blacklist_ids" groups="base.group_multi_company" />
+                        </group>
+                    </group>
                 </form>
             </field>
         </record>
