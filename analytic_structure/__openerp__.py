@@ -20,9 +20,9 @@
 ##############################################################################
 
 {
-    "name": "Analytic Structure",
-    "version": "1.3.9",
-    "author": "XCG Consulting",
+    "name" : "Analytic Structure",
+    "version" : "1.4",
+    "author" : "XCG Consulting",
     "category": 'Dependency',
     "description": """
 This module allows to use several analytic dimensions through a structure
