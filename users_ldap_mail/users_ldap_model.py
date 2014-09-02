@@ -60,8 +60,8 @@ class CompanyLDAP(orm.Model):
         return cr.dictfetchall()
 
     def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
-        values = super(CompanyLDAP, self).map_ldap_attributes(cr, uid, conf,
-                                                              login, ldap_entry)
+        values = super(CompanyLDAP, self).map_ldap_attributes(
+            cr, uid, conf, login, ldap_entry)
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
