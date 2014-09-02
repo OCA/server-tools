@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import users_ldap_model
+from . import users_ldap_model
