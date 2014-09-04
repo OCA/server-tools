@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="res_groups_google_api_super" model="res.groups">
+            <field name="name">Google API / Manager</field>
+        </record>
+        <record id="res_groups_google_api_user" model="res.groups">
+            <field name="name">Google API / User</field>
+        </record>
+    </data>
+</openerp>

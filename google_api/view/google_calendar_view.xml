@@ -1,0 +1,143 @@
+<openerp>
+    <data>
+        <!-- google.api.account -->
+        <record model="ir.ui.view" id="google_api_account_search_view">
+            <field name="name">google.api.account.search</field>
+            <field name="model">google.api.account</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_account_form">
+            <field name="name">google.api.account.form</field>
+            <field name="model">google.api.account</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Google API Account" version="7.0">
+                    <header>
+                        <button string="Authorize" type="object"
+                            name="do_authorize" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" default_focus="1" />
+                                <field name="synchronize" />
+                                <field name="use_local_browser" />
+                            </group>
+                            <group>
+                                <field name="secrets_path" />
+                                <field name="credential_path" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_account_tree_view">
+            <field name="name">google.api.account.tree</field>
+            <field name="model">google.api.account</field>
+            <field name="arch" type="xml">
+                <tree string="Google API Accounts">
+                    <field name="name" />
+                    <field name="synchronize" />
+                    <field name="secrets_path" />
+                    <field name="credential_path" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="google_api_account_list_action">
+            <field name="name">Google API Accounts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">google.api.account</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="google_api_account_tree_view" />
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="google_api_account_search_view" />
+        </record>
+
+        <!-- google.api.calendar -->
+        <record model="ir.ui.view" id="google_api_calendar_search_view">
+            <field name="name">google.api.calendar.search</field>
+            <field name="model">google.api.calendar</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="account_id" />
+                    <field name="calendar_id" />
+                    <field name="user_id" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_calendar_form">
+            <field name="name">google.api.calendar.form</field>
+            <field name="model">google.api.calendar</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Google Calendar" version="7.0">
+                    <header>
+                        <button string="Synchronize" type="object"
+                            name="do_synchronize" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="account_id"
+                                    default_focus="1" />
+                                <field name="calendar_id" />
+                            </group>
+                            <group>
+                                <field name="user_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_calendar_tree_view">
+            <field name="name">google.api.calendar.tree</field>
+            <field name="model">google.api.calendar</field>
+            <field name="arch" type="xml">
+                <tree string="Google Calendars">
+                    <field name="account_id" />
+                    <field name="calendar_id" />
+                    <field name="user_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="google_api_calendar_list_action">
+            <field name="name">Google Calendars</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">google.api.calendar</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="google_api_calendar_tree_view" />
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="google_api_calendar_search_view" />
+        </record>
+
+        <!-- define the menus -->
+        <menuitem name="Google API" id="menu_base_google_api"
+            groups="google_api.res_groups_google_api_super" sequence="70" />
+
+        <!-- Configuration menu -->
+        <menuitem id="google_api.menu_config" parent="google_api.menu_base_google_api"
+            name="Configuration" sequence="100" groups="base.group_system" />
+        <menuitem id="menu_google_api_accounts" action="google_api_account_list_action"
+            name="Accounts" parent="google_api.menu_config" sequence="10"
+            groups="google_api.res_groups_google_api_super" />
+        <menuitem id="menu_google_api_calendars" action="google_api_calendar_list_action"
+            name="Calendars" parent="google_api.menu_config" sequence="20"
+            groups="google_api.res_groups_google_api_super" />
+
+
+    </data>
+</openerp>

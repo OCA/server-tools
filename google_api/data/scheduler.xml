@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="cron_google_calendar_sync" model="ir.cron">
+            <field name="name">Google Calendar Synchronization</field>
+            <field name="interval_number">16</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model">google.api.calendar</field>
+            <field name="function">synchronize_accounts</field>
+            <field name="args">()</field>
+        </record>
+    </data>
+</openerp>

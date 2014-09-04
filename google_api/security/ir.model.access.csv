@@ -1,0 +1,7 @@
+"id","group_id:id","name","model_id","perm_create","perm_unlink","perm_write","perm_read"
+"gc10_1","res_groups_google_api_super","Google API Manager","google.api.account",1,1,1,1
+"gc10_2","res_groups_google_api_super","Google API Manager","google.api.calendar",1,1,1,1
+"gc10_3","res_groups_google_api_super","Google API Manager","crm.meeting.deleted",1,1,1,1
+"gc20_1","res_groups_google_api_user","Google API User","google.api.account",0,0,0,1
+"gc20_2","res_groups_google_api_user","Google API User","google.api.calendar",0,0,1,1
+"gc20_3","res_groups_google_api_user","Google API User","crm.meeting.deleted",1,1,1,1
