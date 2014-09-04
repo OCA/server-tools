@@ -272,7 +272,7 @@ class CrmMeetingDeleted(orm.Model):
     }
 
 
-class google_api_account(orm.Model):
+class GoogleApiAccount(orm.Model):
 
     _name = 'google.api.account'
     _columns = {
