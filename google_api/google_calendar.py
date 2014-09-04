@@ -20,7 +20,6 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
-from openerp import pooler
 from openerp.tools.translate import _
 
 import argparse
@@ -30,7 +29,6 @@ from oauth2client import file
 from oauth2client import client
 from oauth2client import tools
 
-import time, datetime
 import dateutil.parser
 import pytz
 import logging

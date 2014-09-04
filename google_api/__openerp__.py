@@ -23,7 +23,9 @@
     'author': 'solutions2use',
     'website': "http://www.solutions2use.com",
     'version': "1.0",
-    "depends": ['base_calendar'],
+    "depends": [
+        'base_calendar'
+    ],
     'description':
 """
 OpenERP solution for synchronizing crm_meeting with google calendar
