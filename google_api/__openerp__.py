@@ -27,8 +27,7 @@
     "depends": [
         'base_calendar'
     ],
-    'description':
-"""
+    'description': """
 Odoo solution for synchronizing crm_meeting with Google Calendar
 
 Installation notes

@@ -170,7 +170,8 @@ class CrmMeeting(orm.Model):
                                 'calendar', 'v3', http=http)
 
                             start_utc = dateutil.parser.parse(event.date)
-                            end_utc = dateutil.parser.parse(event.date_deadline)
+                            end_utc = dateutil.parser.parse(
+                                event.date_deadline)
                             if event.allday:
                                 tz = (
                                     pytz.timezone(instance.user_id.tz)
@@ -391,7 +392,8 @@ class GoogleApiCalendar(orm.Model):
                 ('google_event_id', '!=', False)
             ]
         )
-        data = meeting_pool.read(cr, uid, google_event_ids, ['google_event_id'])
+        data = meeting_pool.read(
+            cr, uid, google_event_ids, ['google_event_id'])
         google_event_ids = []
         for item in data:
             google_event_ids.append(item['google_event_id'])
@@ -400,7 +402,8 @@ class GoogleApiCalendar(orm.Model):
         page_token = None
         while True:
             events = service.events().list(
-                calendarId=instance.calendar_id, pageToken=page_token).execute()
+                calendarId=instance.calendar_id,
+                pageToken=page_token).execute()
             for event in events['items']:
                 is_deleted = del_pool.search(
                     cr, uid,
