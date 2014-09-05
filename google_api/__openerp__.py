@@ -22,6 +22,7 @@
     'name': 'Google Calendar',
     'author': 'solutions2use',
     'website': "http://www.solutions2use.com",
+    'license': 'AGPL-3',
     'version': "1.0",
     "depends": [
         'base_calendar'
