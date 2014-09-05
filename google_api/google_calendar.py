@@ -432,7 +432,7 @@ class GoogleApiCalendar(orm.Model):
                                 updated_oe['write_date']).strftime(
                                     '%Y-%m-%d %H:%M:%S')
                             # in this case do nothing,
-                            #everything is synchronized
+                            # everything is synchronized
                             if updated_google == updated_oe:
                                 if event['id'] in google_event_ids:
                                     google_event_ids.remove(event['id'])
