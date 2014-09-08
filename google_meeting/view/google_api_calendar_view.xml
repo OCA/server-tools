@@ -1,0 +1,66 @@
+<openerp>
+    <data>
+        <!-- google.api.calendar -->
+        <record model="ir.ui.view" id="google_api_calendar_search_view">
+            <field name="name">google.api.calendar.search</field>
+            <field name="model">google.api.calendar</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="account_id" />
+                    <field name="calendar_id" />
+                    <field name="user_id" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_calendar_form">
+            <field name="name">google.api.calendar.form</field>
+            <field name="model">google.api.calendar</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Google Calendar" version="7.0">
+                    <header>
+                        <button string="Synchronize" type="object"
+                            name="do_synchronize" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="account_id"
+                                    default_focus="1" />
+                                <field name="calendar_id" />
+                            </group>
+                            <group>
+                                <field name="user_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_calendar_tree_view">
+            <field name="name">google.api.calendar.tree</field>
+            <field name="model">google.api.calendar</field>
+            <field name="arch" type="xml">
+                <tree string="Google Calendars">
+                    <field name="account_id" />
+                    <field name="calendar_id" />
+                    <field name="user_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="google_api_calendar_list_action">
+            <field name="name">Google Calendars</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">google.api.calendar</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="google_api_calendar_tree_view" />
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="google_api_calendar_search_view" />
+        </record>
+
+    </data>
+</openerp>

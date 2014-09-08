@@ -144,7 +144,9 @@ Contributors
         'data/scheduler.xml',
         'security/res_groups.xml',
         'security/ir.model.access.csv',
-        'view/google_calendar_view.xml'
+        'view/google_api_account_view.xml',
+        'view/google_api_calendar_view.xml',
+        'view/menu_view.xml',
     ],
     'demo': [],
     'test': [],

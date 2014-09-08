@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 solutions2use (<http://www.solutions2.com>).
+#    Copyright (C) 2013 solutions2use (<http://www.solutions2use.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,13 @@
 #
 ##############################################################################
 
-from . import crm_meeting
-from . import crm_meeting_deleted
-from . import google_api_account
-from . import google_api_calendar
+from openerp.osv import fields, orm
+
+
+class CrmMeetingDeleted(orm.Model):
+
+    _name = 'crm.meeting.deleted'
+    _columns = {
+        'google_event_id': fields.char('Google Calendar Event ID'),
+        'user_id': fields.many2one('res.users', 'User'),
+    }

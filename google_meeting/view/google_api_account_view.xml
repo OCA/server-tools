@@ -1,0 +1,66 @@
+<openerp>
+    <data>
+        <!-- google.api.account -->
+        <record model="ir.ui.view" id="google_api_account_search_view">
+            <field name="name">google.api.account.search</field>
+            <field name="model">google.api.account</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_account_form">
+            <field name="name">google.api.account.form</field>
+            <field name="model">google.api.account</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Google API Account" version="7.0">
+                    <header>
+                        <button string="Authorize" type="object"
+                            name="do_authorize" class="oe_highlight" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" default_focus="1" />
+                                <field name="synchronize" />
+                                <field name="use_local_browser" />
+                            </group>
+                            <group>
+                                <field name="secrets_path" />
+                                <field name="credential_path" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="google_api_account_tree_view">
+            <field name="name">google.api.account.tree</field>
+            <field name="model">google.api.account</field>
+            <field name="arch" type="xml">
+                <tree string="Google API Accounts">
+                    <field name="name" />
+                    <field name="synchronize" />
+                    <field name="secrets_path" />
+                    <field name="credential_path" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="google_api_account_list_action">
+            <field name="name">Google API Accounts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">google.api.account</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="google_api_account_tree_view" />
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="google_api_account_search_view" />
+        </record>
+
+    </data>
+</openerp>
