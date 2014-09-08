@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Google Calendar',
+    'name': 'Google Meeting',
     'author': 'solutions2use',
     'website': "http://www.solutions2use.com",
     'license': 'AGPL-3',
@@ -36,8 +36,8 @@ Before you are able running this module you must install google api client
 for python :
 
 https://developers.google.com/api-client-library/python/start/installation
-Now install the google_api module in your Odoo 7.0 system. If any errors occur
-this has to do with the needed dependencies the module need (apiclient,
+Now install the google_meeting module in your Odoo 7.0 system. If any errors
+occur this has to do with the needed dependencies the module need (apiclient,
 httplib2, oauth2client, uritemplate, argparse).
 
 In **Settings->Users->Users** enable **Google API / Manager**
@@ -70,8 +70,8 @@ Click on the create button ,give your account a name.
 
 In **Secrets path** enter the full path of your json file you just have
 downloaded (i.g: /srv/odoo/google_calendar/client_secrets.json).
-In **Credential path** enter a full path (filename included) where google_api
-will find/create the credential file
+In **Credential path** enter a full path (filename included) where
+google_meeting will find/create the credential file
 (i.g: /srv/odoo/google_calendar/credentials.dat). The first time this
 credentials file does not exists.
 
@@ -82,7 +82,7 @@ It's important that you have your browser opened on the same machine as
 Odoo-Server is running.
 
 If everything goes well a new page opens in your browser, asking to accept
-that the Odoo module google_api wants to manage your calendars and to view
+that the Odoo module google_meeting wants to manage your calendars and to view
 your calendars (if not visible you have to login first). Click the accept
 button. Now the credential file is created.
 
@@ -126,13 +126,13 @@ Save your data and click the button **Synchronize** to test it.
 In **Messaging->Organizer->Calendar** you can see if events were
 created/changed and/or deleted.
 
-The module google_api synchronizes every 15 minutes. You can change this in
+The module google_meeting synchronizes every 15 minutes. You can change this in
 **Settings->Technical->Scheduler**.
 
 You also have the possibility you use the notifications option of google,
 in this case google triggers some link you must define.
 In this trigger you can call the do_synchronize method of the
-google_api module.
+google_meeting module.
 
 Contributors
 ------------
