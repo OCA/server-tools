@@ -116,7 +116,10 @@ class ServerConfiguration(models.TransientModel):
     _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
-        # env.sudo is not available
+        """Add columns to model dynamically
+        and init some properties
+
+        """
         self._add_columns()
         super(ServerConfiguration, self).__init__(pool, cr)
         self.running_env = system_base_config['running_env']
@@ -128,6 +131,7 @@ class ServerConfiguration(models.TransientModel):
         return '%s | %s' % (section, key)
 
     def _add_columns(self):
+        """Add columns to model dynamically"""
         cols = chain(
             self._get_base_cols(),
             self._get_env_cols(),
@@ -169,11 +173,6 @@ class ServerConfiguration(models.TransientModel):
             key = self._format_key('system', col)
             res[key] = item
             self._conf_defaults[key] = item
-        return res
-
-    def _merge_fields_desc(self, cr, user, res, cols, env, context=None):
-        for col, field in cols.items():
-            res[col] = cols[col].get_description(env)
         return res
 
     def _group(self, items):
