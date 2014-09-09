@@ -22,8 +22,9 @@
 import os
 import ConfigParser
 from lxml import etree
+from itertools import chain
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -109,32 +110,78 @@ class _Defaults(dict):
         return dict.__setitem__(self, key, func)
 
 
-class ServerConfiguration(orm.TransientModel):
+class ServerConfiguration(models.TransientModel):
     """Display server configuration."""
     _name = 'server.config'
-    _columns = {}
     _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
+        # env.sudo is not available
+        self._add_columns()
         super(ServerConfiguration, self).__init__(pool, cr)
         self.running_env = system_base_config['running_env']
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
         self._arch = None
-        self._build_osv()
 
-    def _group(self, items, prefix):
+    def _format_key(self, section, key):
+        return '%s | %s' % (section, key)
+
+    def _add_columns(self):
+        cols = chain(
+            self._get_base_cols(),
+            self._get_env_cols(),
+            self._get_system_cols()
+        )
+        for col in cols:
+            print col
+            setattr(ServerConfiguration,
+                    col,
+                    fields.Char(string=col, readonly=True))
+
+    def _get_base_cols(self):
+        """ Compute base fields"""
+        res = {}
+        for col, item in system_base_config.options.items():
+            key = self._format_key('openerp', col)
+            # fld = fields.Char(string=col, readonly=True)
+            # fld.name = key
+            # fld.model_name = self._model
+            res[key] = item
+            self._conf_defaults[key] = item
+        return res
+
+    def _get_env_cols(self, sections=None):
+        """ Compute base fields"""
+        res = {}
+        sections = sections if sections else serv_config.sections()
+        for section in sections:
+            for col, item in serv_config.items(section):
+                key = self._format_key(section, col)
+                res[key] = item
+                self._conf_defaults[key] = item
+        return res
+
+    def _get_system_cols(self):
+        """ Compute system fields"""
+        res = {}
+        for col, item in get_server_environment():
+            key = self._format_key('system', col)
+            res[key] = item
+            self._conf_defaults[key] = item
+        return res
+
+    def _merge_fields_desc(self, cr, user, res, cols, env, context=None):
+        for col, field in cols.items():
+            res[col] = cols[col].get_description(env)
+        return res
+
+    def _group(self, items):
         """Return an XML chunk which represents a group of fields."""
         names = []
-        for k, v in items:
-            key = '%s\\%s' % (prefix, k)
-            # Mask passwords
-            if 'passw' in k and not self.show_passwords:
-                v = '**********'
-            self._columns[key] = fields.char(k, size=1024)
-            self._conf_defaults[key] = v
-            names.append(key)
 
+        for key in sorted(items):
+            names.append(key)
         return ('<group col="2" colspan="4">' +
                 ''.join(['<field name="%s" readonly="1"/>' %
                          _escape(name) for name in names]) +
@@ -148,23 +195,23 @@ class ServerConfiguration(orm.TransientModel):
 
         # OpenERP server configuration
         rcfile = system_base_config.rcfile
-        items = sorted(system_base_config.options.items())
+        items = self._get_base_cols()
         arch += '<page string="OpenERP">'
         arch += '<separator string="%s" colspan="4"/>' % _escape(rcfile)
-        arch += self._group(items, prefix='openerp')
+        arch += self._group(items)
         arch += '<separator colspan="4"/></page>'
 
         arch += '<page string="Environment based configurations">'
         for section in sorted(serv_config.sections()):
-            items = sorted(serv_config.items(section))
+            items = self._get_env_cols(sections=[section])
             arch += '<separator string="[%s]" colspan="4"/>' % _escape(section)
-            arch += self._group(items, prefix=section)
+            arch += self._group(items)
         arch += '<separator colspan="4"/></page>'
 
         # System information
         arch += '<page string="System">'
         arch += '<separator string="Server Environment" colspan="4"/>'
-        arch += self._group(get_server_environment(), prefix='system')
+        arch += self._group(self._get_system_cols())
         arch += '<separator colspan="4"/></page>'
 
         arch += '</notebook></form>'
@@ -173,6 +220,7 @@ class ServerConfiguration(orm.TransientModel):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False,  submenu=False):
         """Overwrite the default method to render the custom view."""
+        self._build_osv()
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,
                                                                view_type,
@@ -191,5 +239,8 @@ class ServerConfiguration(orm.TransientModel):
     def default_get(self, cr, uid, fields_list, context=None):
         res = {}
         for key in self._conf_defaults:
-            res[key] = self._conf_defaults[key]()
+            if 'passw' in key and not self.show_passwords:
+                res[key] = '**********'
+            else:
+                res[key] = self._conf_defaults[key]()
         return res
