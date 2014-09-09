@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="google_api_account_search_view">
             <field name="name">google.api.account.search</field>
             <field name="model">google.api.account</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search">
                     <field name="name" />
@@ -15,7 +14,6 @@
         <record model="ir.ui.view" id="google_api_account_form">
             <field name="name">google.api.account.form</field>
             <field name="model">google.api.account</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Google API Account" version="7.0">
                     <header>

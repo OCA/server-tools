@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="google_api_calendar_search_view">
             <field name="name">google.api.calendar.search</field>
             <field name="model">google.api.calendar</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Search">
                     <field name="account_id" />
@@ -17,7 +16,6 @@
         <record model="ir.ui.view" id="google_api_calendar_form">
             <field name="name">google.api.calendar.form</field>
             <field name="model">google.api.calendar</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Google Calendar" version="7.0">
                     <header>
