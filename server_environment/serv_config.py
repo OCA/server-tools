@@ -126,6 +126,7 @@ class ServerConfiguration(models.TransientModel):
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
         self._arch = None
+        self._build_osv()
 
     def _format_key(self, section, key):
         return '%s | %s' % (section, key)
@@ -217,7 +218,6 @@ class ServerConfiguration(models.TransientModel):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False,  submenu=False):
         """Overwrite the default method to render the custom view."""
-        self._build_osv()
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,
                                                                view_type,
