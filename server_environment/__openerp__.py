@@ -21,7 +21,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "1.0",
+    "version": "1.1",
     "depends": ["base", "server_environment_files"],
     "author": "Camptocamp",
     "description": """\
