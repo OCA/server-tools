@@ -133,15 +133,16 @@ class ServerConfiguration(models.TransientModel):
     def _add_columns(self):
         """Add columns to model dynamically"""
         cols = chain(
-            self._get_base_cols(),
-            self._get_env_cols(),
-            self._get_system_cols()
+            self._get_base_cols().items(),
+            self._get_env_cols().items(),
+            self._get_system_cols().items()
         )
-        for col in cols:
-            print col
+        for col, value in cols:
+            col_name = col.replace('.', '_')
             setattr(ServerConfiguration,
-                    col,
+                    col_name,
                     fields.Char(string=col, readonly=True))
+            self._conf_defaults[col_name] = value
 
     def _get_base_cols(self):
         """ Compute base fields"""
@@ -152,7 +153,6 @@ class ServerConfiguration(models.TransientModel):
             # fld.name = key
             # fld.model_name = self._model
             res[key] = item
-            self._conf_defaults[key] = item
         return res
 
     def _get_env_cols(self, sections=None):
@@ -163,7 +163,6 @@ class ServerConfiguration(models.TransientModel):
             for col, item in serv_config.items(section):
                 key = self._format_key(section, col)
                 res[key] = item
-                self._conf_defaults[key] = item
         return res
 
     def _get_system_cols(self):
@@ -172,7 +171,6 @@ class ServerConfiguration(models.TransientModel):
         for col, item in get_server_environment():
             key = self._format_key('system', col)
             res[key] = item
-            self._conf_defaults[key] = item
         return res
 
     def _group(self, items):
@@ -180,7 +178,7 @@ class ServerConfiguration(models.TransientModel):
         names = []
 
         for key in sorted(items):
-            names.append(key)
+            names.append(key.replace('.', '_'))
         return ('<group col="2" colspan="4">' +
                 ''.join(['<field name="%s" readonly="1"/>' %
                          _escape(name) for name in names]) +

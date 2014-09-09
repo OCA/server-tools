@@ -53,7 +53,7 @@ def get_server_environment():
         lsbinfo = 'not lsb compliant'
     return (
         ('platform', platform.platform()),
-        ('os name', os.name),
+        ('os.name', os.name),
         ('lsb_release', lsbinfo),
         ('release', platform.release()),
         ('version', platform.version()),
