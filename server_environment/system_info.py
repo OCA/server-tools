@@ -37,9 +37,12 @@ def _get_output(cmd):
 def get_server_environment():
     # inspired by server/bin/service/web_services.py
     try:
-        rev_id = _get_output('bzr revision-info')
-    except Exception as e:
-        rev_id = 'Exception: %s' % (e,)
+        rev_id = 'git:%s' % _get_output('git rev-parse HEAD')
+    except Exception:
+        try:
+            rev_id = 'bzr: %s' % _get_output('bzr revision-info')
+        except Exception:
+            rev_id = 'Can not retrive revison from git or bzr'
 
     os_lang = '.'.join([x for x in locale.getdefaultlocale() if x])
     if not os_lang:
@@ -50,7 +53,7 @@ def get_server_environment():
         lsbinfo = 'not lsb compliant'
     return (
         ('platform', platform.platform()),
-        ('os.name', os.name),
+        ('os name', os.name),
         ('lsb_release', lsbinfo),
         ('release', platform.release()),
         ('version', platform.version()),
