@@ -226,7 +226,7 @@ class CrmMeeting(orm.Model):
             context = {}
 
         if context.get('stop_google_calendar_sync', False):
-            return self.unlink(self, cr, uid, ids, context=context)
+            return orm.Model.unlink(self, cr, uid, ids, context=context)
 
         del_pool = self.pool.get('crm.meeting.deleted')
 
@@ -255,4 +255,4 @@ class CrmMeeting(orm.Model):
                                 'user_id': id['user_id'][0]}
                         del_pool.create(cr, uid, vals)
 
-        return self.unlink(self, cr, uid, ids, context=context)
+        return orm.Model.unlink(self, cr, uid, ids, context=context)
