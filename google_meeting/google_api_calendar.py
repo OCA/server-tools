@@ -159,10 +159,7 @@ class GoogleApiCalendar(orm.Model):
                                     event = {
                                         'summary': updated_event.name,
                                         'description': (
-                                            updated_event.description
-                                            if updated_event.description
-                                            else ''
-                                        ),
+                                            updated_event.description or ''),
                                         'location': updated_event.location,
                                         'start': {'date': start.strftime(
                                             '%Y-%m-%d')},
@@ -175,10 +172,7 @@ class GoogleApiCalendar(orm.Model):
                                     event = {
                                         'summary': updated_event.name,
                                         'description': (
-                                            updated_event.description
-                                            if updated_event.description
-                                            else ''
-                                        ),
+                                            updated_event.description or ''),
                                         'location': updated_event.location,
                                         'start': {
                                             'dateTime': start_utc.strftime(

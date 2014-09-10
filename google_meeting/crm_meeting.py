@@ -179,10 +179,7 @@ class CrmMeeting(orm.Model):
                                     end_utc).astimezone(tz)
                                 upd_event = {
                                     'summary': event.name,
-                                    'description': (
-                                        event.description
-                                        if event.description else ''
-                                    ),
+                                    'description': event.description or '',
                                     'location': event.location,
                                     'start': {'date': start.strftime(
                                         '%Y-%m-%d')},
@@ -193,10 +190,7 @@ class CrmMeeting(orm.Model):
                             else:
                                 upd_event = {
                                     'summary': event.name,
-                                    'description': (
-                                        event.description
-                                        if event.description else ''
-                                    ),
+                                    'description': event.description or '',
                                     'location': event.location,
                                     'start': {'dateTime': start_utc.strftime(
                                         '%Y-%m-%dT%H:%M:%S.000Z')},
