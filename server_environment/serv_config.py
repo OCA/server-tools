@@ -150,9 +150,6 @@ class ServerConfiguration(models.TransientModel):
         res = {}
         for col, item in system_base_config.options.items():
             key = self._format_key('openerp', col)
-            # fld = fields.Char(string=col, readonly=True)
-            # fld.name = key
-            # fld.model_name = self._model
             res[key] = item
         return res
 
