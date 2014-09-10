@@ -86,16 +86,16 @@ class CrmMeeting(orm.Model):
                 end = pytz.utc.localize(end_utc).astimezone(tz)
                 new_event = {
                     'summary': vals['name'],
-                    'description': vals.get('description', ''),
-                    'location': vals.get('location', ''),
+                    'description': vals.get('description') or '',
+                    'location': vals.get('location') or '',
                     'start': {'date': start.strftime('%Y-%m-%d')},
                     'end': {'date': end.strftime('%Y-%m-%d')},
                 }
             else:
                 new_event = {
                     'summary': vals['name'],
-                    'description': vals.get('description', ''),
-                    'location': vals.get('location', ''),
+                    'description': vals.get('description') or '',
+                    'location': vals.get('location') or '',
                     'start': {
                         'dateTime': start_utc.strftime(
                             '%Y-%m-%dT%H:%M:%S.000Z'
