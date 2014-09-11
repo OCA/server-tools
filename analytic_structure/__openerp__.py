@@ -21,7 +21,7 @@
 
 {
     "name" : "Analytic Structure",
-    "version" : "1.4.1",
+    "version" : "1.5.0",
     "author" : "XCG Consulting",
     "category": 'Dependency',
     "description": """
