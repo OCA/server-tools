@@ -1,0 +1,136 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* module_repository
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-10 18:37+0000\n"
+"PO-Revision-Date: 2014-09-10 18:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Bazaar"
+msgstr "Bazaar"
+
+#. module: module_repository
+#: field:ir.module.repository,branch:0
+msgid "Branch"
+msgstr "Branche"
+
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Branch:"
+msgstr "Branche :"
+
+#. module: module_repository
+#: field:ir.module.repository,path:0
+msgid "Complete path of the Repository"
+msgstr "Chemin complet du dépôt"
+
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Git"
+msgstr "Git"
+
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Local Changes:"
+msgstr "Changements Locaux :"
+
+#. module: module_repository
+#: code:_description:0
+#: model:ir.model,name:module_repository.model_ir_module_module
+#, python-format
+msgid "Module"
+msgstr "Module"
+
+#. module: module_repository
+#: view:ir.module.repository:0
+#: field:ir.module.repository,module_ids:0
+msgid "Modules"
+msgstr "Modules"
+
+#. module: module_repository
+#: code:_description:0
+#: model:ir.model,name:module_repository.model_ir_module_repository
+#, python-format
+msgid "Modules Repository"
+msgstr "Dépôt de Modules"
+
+#. module: module_repository
+#: field:ir.module.repository,name:0
+msgid "Name of the Repository"
+msgstr "Nom du dépôt"
+
+#. module: module_repository
+#: field:ir.module.repository,installed_module_qty:0
+msgid "Quantity of Installed Modules"
+msgstr "Nombre de Modules Installés"
+
+#. module: module_repository
+#: field:ir.module.repository,local_modification_qty:0
+msgid "Quantity of Local Modifications"
+msgstr "Nombre de Modifications Locales"
+
+#. module: module_repository
+#: field:ir.module.repository,module_qty:0
+msgid "Quantity of Modules"
+msgstr "Nombre de Modules"
+
+#. module: module_repository
+#: view:ir.module.repository:0
+#: model:ir.ui.menu,name:module_repository.menu_ir_module_repository
+msgid "Repositories"
+msgstr "Dépôts"
+
+#. module: module_repository
+#: model:ir.actions.act_window,name:module_repository.action_ir_module_repository
+#: view:ir.module.module:0
+#: field:ir.module.module,repository_id:0
+#: view:ir.module.repository:0
+msgid "Repository"
+msgstr "Dépôt"
+
+#. module: module_repository
+#: field:ir.module.repository,revision:0
+msgid "Revision"
+msgstr "Révision"
+
+#. module: module_repository
+#: view:ir.module.repository:0
+msgid "Revision:"
+msgstr "Révision :"
+
+#. module: module_repository
+#: field:ir.module.repository,state:0
+msgid "State"
+msgstr "Etat"
+
+#. module: module_repository
+#: field:ir.module.repository,type:0
+msgid "Type of Repository"
+msgstr "Type de dépôt"
+
+#. module: module_repository
+#: help:ir.module.repository,type:0
+msgid "Type of Repository: Git, Bazaar, etc..."
+msgstr "Type de dépôt : Git, Bazaar, etc..."
+
+#. module: module_repository
+#: field:ir.module.repository,url:0
+msgid "URL"
+msgstr "URL"
+
+#. module: module_repository
+#: selection:ir.module.repository,type:0
+msgid "Unknown"
+msgstr "Inconnu"
+
