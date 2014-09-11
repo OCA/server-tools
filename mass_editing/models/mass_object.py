@@ -49,7 +49,7 @@ class MassObject(orm.Model):
         ('name_uniq', 'unique (name)', _('Name must be unique!')),
     ]
 
-    def onchange_model(self, cr, uid, ids, model_id, context=None):
+    def onchange_model_id(self, cr, uid, ids, model_id, context=None):
         if context is None:
             context = {}
         if not model_id:
