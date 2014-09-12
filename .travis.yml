@@ -1,0 +1,25 @@
+language: python
+
+python:
+  - "2.7"
+
+env:
+  - VERSION="7.0" ODOO_REPO="odoo/odoo"
+  - VERSION="7.0" ODOO_REPO="OCA/OCB"
+
+virtualenv:
+  system_site_packages: true
+
+install:
+  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - travis_install_nightly ${VERSION}
+  - sudo pip install python-ldap
+  - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
+
+script:
+  - travis_run_flake8
+  - travis_run_tests ${VERSION}
+
+after_success:
+  coveralls

@@ -31,11 +31,13 @@ class fetchmail_server_folder(Model):
 
     def _get_match_algorithms(self):
         def get_all_subclasses(cls):
-            return cls.__subclasses__() + [subsub
-                                           for sub in cls.__subclasses__()
-                                           for subsub in get_all_subclasses(sub)]
-        return dict([(cls.__name__, cls) for cls in get_all_subclasses(
-            match_algorithm.base.base)])
+            return (cls.__subclasses__() +
+                    [subsub
+                     for sub in cls.__subclasses__()
+                     for subsub in get_all_subclasses(sub)])
+        return dict([(cls.__name__, cls)
+                     for cls in get_all_subclasses(
+                         match_algorithm.base.base)])
 
     def _get_match_algorithms_sel(self, cr, uid, context=None):
         algorithms = []
@@ -47,55 +49,66 @@ class fetchmail_server_folder(Model):
     _columns = {
         'sequence': fields.integer('Sequence'),
         'path': fields.char(
-        'Path', size=256, help='The path to your mail '
-        "folder. Typically would be something like 'INBOX.myfolder'",
-        required=True),
+            'Path', size=256, help='The path to your mail '
+            "folder. Typically would be something like 'INBOX.myfolder'",
+            required=True
+        ),
         'model_id': fields.many2one(
-        'ir.model', 'Model', required=True,
-        help='The model to attach emails to'),
+            'ir.model', 'Model', required=True,
+            help='The model to attach emails to'
+        ),
         'model_field': fields.char(
-        'Field (model)', size=128,
-        help='The field in your model that contains the field to match '
-        'against.\n'
-        'Examples:\n'
-        "'email' if your model is res.partner, or "
-        "'partner_id.email' if you're matching sale orders"),
+            'Field (model)', size=128,
+            help='The field in your model that contains the field to match '
+                 'against.\n'
+                 'Examples:\n'
+                 "'email' if your model is res.partner, or "
+                 "'partner_id.email' if you're matching sale orders"
+        ),
         'model_order': fields.char(
-        'Order (model)', size=128,
-        help='Fields to order by, this mostly useful in conjunction '
-        "with 'Use 1st match'"),
+            'Order (model)', size=128,
+            help='Fields to order by, this mostly useful in conjunction '
+                 "with 'Use 1st match'"
+        ),
         'match_algorithm': fields.selection(
-        _get_match_algorithms_sel,
-        'Match algorithm', required=True, translate=True,
-        help='The algorithm used to determine which object an email '
-        'matches.'),
+            _get_match_algorithms_sel,
+            'Match algorithm', required=True, translate=True,
+            help='The algorithm used to determine which object an email '
+                 'matches.'
+        ),
         'mail_field': fields.char(
-        'Field (email)', size=128,
-        help='The field in the email used for matching. Typically '
-        "this is 'to' or 'from'"),
+            'Field (email)', size=128,
+            help='The field in the email used for matching. Typically '
+                 "this is 'to' or 'from'"
+        ),
         'server_id': fields.many2one('fetchmail.server', 'Server'),
         'delete_matching': fields.boolean(
-        'Delete matches',
-        help='Delete matched emails from server'),
+            'Delete matches',
+            help='Delete matched emails from server'
+        ),
         'flag_nonmatching': fields.boolean(
-        'Flag nonmatching',
-        help="Flag emails in the server that don't match any object "
-        'in OpenERP'),
+            'Flag nonmatching',
+            help="Flag emails in the server that don't match any object "
+                 'in OpenERP'
+        ),
         'match_first': fields.boolean(
-        'Use 1st match',
-        help='If there are multiple matches, use the first one. If '
-        'not checked, multiple matches count as no match at all'),
+            'Use 1st match',
+            help='If there are multiple matches, use the first one. If '
+                 'not checked, multiple matches count as no match at all'
+        ),
         'domain': fields.char(
-        'Domain', size=128, help='Fill in a search '
-        'filter to narrow down objects to match'),
+            'Domain', size=128, help='Fill in a search '
+            'filter to narrow down objects to match'
+        ),
         'msg_state': fields.selection(
-        [
-            ('sent', 'Sent'),
-            ('received', 'Received'),
-        ],
-        'Message state',
-        help='The state messages fetched from this folder should be '
-        'assigned in OpenERP'),
+            [
+                ('sent', 'Sent'),
+                ('received', 'Received'),
+            ],
+            'Message state',
+            help='The state messages fetched from this folder should be '
+                 'assigned in OpenERP'
+        ),
     }
 
     _defaults = {

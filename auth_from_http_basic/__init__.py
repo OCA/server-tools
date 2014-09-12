@@ -36,7 +36,8 @@ def init(self, params):
                 base_location=self.httprequest.url_root.rstrip('/'),
                 HTTP_HOST=self.httprequest.environ['HTTP_HOST'],
                 REMOTE_ADDR=self.httprequest.environ['REMOTE_ADDR']
-                ))
+            )
+        )
 
 WebRequest.init = init
 

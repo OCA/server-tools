@@ -38,7 +38,7 @@ def get_server_environment():
     # inspired by server/bin/service/web_services.py
     try:
         rev_id = _get_output('bzr revision-info')
-    except Exception, e:
+    except Exception as e:
         rev_id = 'Exception: %s' % (e,)
 
     os_lang = '.'.join([x for x in locale.getdefaultlocale() if x])
