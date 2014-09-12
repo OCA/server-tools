@@ -15,7 +15,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly ${VERSION}
   - sudo pip install python-ldap
-  - sudo apt-get install python-git python-bzrlib
+  - sudo apt-get install python-git python-bzrlib bzr
   - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
 
 script:

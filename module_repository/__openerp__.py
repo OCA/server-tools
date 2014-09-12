@@ -70,8 +70,8 @@ Copyright, Authors and Licence:
         'static/src/img/screenshots/ir_module_module_kanban.png',
     ],
     'external_dependencies': {
-        'python': ['bzrlib'],
-        'bin': ['python-git'],
+        'python': ['git', 'bzrlib'],
+        'bin': ['bzr'],
     },
     'css': [
         'static/src/css/css.css',
