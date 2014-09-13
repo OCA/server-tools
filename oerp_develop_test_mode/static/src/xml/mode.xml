@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+  <t t-extend="WebClient">
+    <t t-jquery="table.oe_webclient" t-operation="prepend">
+      <td colspan="2" class="mode_bar" style="
+    text-align: center;
+    font-size: 20px;
+">
+        <span class="mode_message"></span>
+      </td>
+    </t>
+  </t>
+</templates>
