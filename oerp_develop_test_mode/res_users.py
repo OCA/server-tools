@@ -24,7 +24,7 @@ from openerp.tools import config
 from openerp import SUPERUSER_ID
 from openerp import pooler
 
-DEVELOP = True
+DEVELOP = False
 TEST = False
 
 
