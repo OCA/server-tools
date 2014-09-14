@@ -13,6 +13,10 @@ from lxml import etree
 import os
 
 """ procedural code is executed even if the module is not installed
+
+    TRY TO SWITCH to _register_hook() in the model to avoid
+    execution when not installed in V 8.0 version
+
 """
 
 
