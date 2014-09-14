@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Scheduler Error Mailer module for OpenERP
 #    Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
-#    @author: Sébastien Beau <sebastien.beau@akretion.com>
-#    @author David Beal <bealdavid@gmail.com>
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
+#    @author: Sébastien Beau
+#    @author Alexis de Lattre
+#    @author David Beal
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -33,7 +32,18 @@
 Scheduler Error Mailer
 ======================
 
-This module adds the possibility to send an e-mail when a scheduler raises an error.""",
+This module adds the possibility to send an e-mail
+when a scheduler raises an error.
+
+
+Contributors
+------------
+
+* Sébastien BEAU <sebastien.beau@akretion.com>
+* Alexis de Lattre <alexis.delattre@akretion.com>
+* David BEAL <david.beal@akretion.com>
+
+""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': ['email_template'],
