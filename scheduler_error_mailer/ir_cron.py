@@ -4,7 +4,7 @@
 #    Scheduler Error Mailer module for OpenERP
 #    Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
 #    @author: Sébastien Beau <sebastien.beau@akretion.com>
-#    @author David Beal <bealdavid@gmail.com>
+#    @author David Beal <david.beal@akretion.com>
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -28,15 +28,16 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class ir_cron(orm.Model):
     _inherit = "ir.cron"
 
     _columns = {
-        'email_template': fields.many2one('email.template',
+        'email_template_id': fields.many2one('email.template',
             'Error E-mail Template',
+            oldname="email_template",
             help="Select the email template that will be sent when this scheduler fails."),
     }
-
 
     def _handle_callback_exception(self, cr, uid, model_name, method_name, args, job_id, job_exception):
 
@@ -45,7 +46,7 @@ class ir_cron(orm.Model):
 
         my_cron = self.browse(cr, uid, job_id)
 
-        if my_cron.email_template:
+        if my_cron.email_template_id:
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
@@ -55,7 +56,7 @@ class ir_cron(orm.Model):
 
             logger.debug("Sending scheduler error email with context=%s" % context)
             self.pool['email.template'].send_mail(cr, uid,
-                my_cron.email_template.id, my_cron.id, force_send=True,
+                my_cron.email_template_id.id, my_cron.id, force_send=True,
                 context=context)
 
         return res

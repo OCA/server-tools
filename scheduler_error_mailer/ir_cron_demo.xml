@@ -17,7 +17,7 @@
     <field name="interval_type">hours</field>
     <field name="numbercall">-1</field> <!-- don't limit the number of calls -->
     <field name="doall" eval="True"/>
-    <field name="email_template" ref="scheduler_error_mailer"/>
+    <field name="email_template_id" ref="scheduler_error_mailer"/>
     <field name="model" eval="'res.users'"/>
     <field name="function" eval="'test_scheduler_failure'" />
     <field name="args" eval="'()'"/>
