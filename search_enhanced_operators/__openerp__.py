@@ -30,7 +30,7 @@
     'license':  'AGPL-3',
     "description": """
     Allows =ilike operator to advanced search option.
-    Use % as a placeholder. 
+    Use % as a placeholder.
     Example: "Zip matches 1%" gives all zip starting with 1
     """,
     'data': [
