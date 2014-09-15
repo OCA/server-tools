@@ -11,7 +11,6 @@ def name_boolean_group(id):
     return 'in_group_' + str(id)
 
 
-
 class res_users(osv.osv):
     _inherit = 'res.users'
 
