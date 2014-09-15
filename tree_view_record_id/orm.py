@@ -36,8 +36,8 @@ class DummyModel(orm.Model):
 fields_view_get_orginal = orm.BaseModel.fields_view_get
 
 
-def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
-                    toolbar=False, submenu=False):
+def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                    context=None, toolbar=False, submenu=False):
     res = fields_view_get_orginal(
         self, cr, uid, view_id=view_id, view_type=view_type, context=context,
         toolbar=toolbar, submenu=submenu)
@@ -53,7 +53,8 @@ def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None,
             compatible_tree = False
         if compatible_tree and DUMMY_MODEL in self.pool.models.keys():
             doc = etree.XML(res['arch'])
-            if doc.xpath("//tree") and len(doc.xpath("//field[@name='id']")) == 0:
+            if (doc.xpath("//tree") and
+                    len(doc.xpath("//field[@name='id']"))) == 0:
                 node = doc.xpath("//tree")[0]
                 node.append(etree.Element("field", name="id", string="Id"))
                 res['arch'] = etree.tostring(node)
