@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * scheduler_error_mailer
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-26 07:36+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: scheduler_error_mailer
+#: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
+"\n"
+"<strong>\n"
+"${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n"
+"</strong>\n"
+"\n"
+"<p>You may check the logs of the OpenERP server to get more information about this failure.</p>\n"
+"\n"
+"<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
+"<ul>\n"
+"<li>Model : ${object.model or ''}</li>\n"
+"<li>Method : ${object.function or ''}</li>\n"
+"<li>Arguments : ${object.args or ''}</li>\n"
+"<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n"
+"<li>Number of calls : ${object.numbercall or '0'}</li>\n"
+"<li>Repeat missed : ${object.doall}</li>\n"
+"<li>User : ${object.user_id.name or ''}</li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"-- <br/>\n"
+"Automatic e-mail sent by OpenERP. Do not reply.<br/>\n"
+"Database : ${ctx.get('dbname')}\n"
+"</p>\n"
+"</div>\n"
+"    "
+msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n<p>OpenERP je poskušal zagnati razporejevalec <em>${object.name or ''}</em> v podatkovni bazi <em>${ctx.get('dbname')}</em> , a ni uspel. Obvestilo o napaki:</p>\n\n<strong>\n${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n</strong>\n\n<p>Preverite dnevnike OpenERP strežnika za pridobitev več informacij o težavi.</p>\n\n<p>Lastnosti razporejevalca <em>${object.name or ''}</em> :</p>\n<ul>\n<li>Model : ${object.model or ''}</li>\n<li>Metoda : ${object.function or ''}</li>\n<li>Argumenti : ${object.args or ''}</li>\n<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n<li>Število klicev : ${object.numbercall or '0'}</li>\n<li>Zgrešene ponovitve : ${object.doall}</li>\n<li>Uporabnik : ${object.user_id.name or ''}</li>\n</ul>\n\n<p>\n-- <br/>\nSamodejno sporočilo poslano iz OpenERP. Ne odgovarjajte.<br/>\nPodatkovna baza : ${ctx.get('dbname')}\n</p>\n</div>\n    "
+
+#. module: scheduler_error_mailer
+#: code:addons/scheduler_error_mailer/ir_cron.py:75
+#, python-format
+msgid "Error :"
+msgstr "Napaka:"
+
+#. module: scheduler_error_mailer
+#: field:ir.cron,email_template_id:0
+msgid "Error E-mail Template"
+msgstr "Predloga obvestila o napaki"
+
+#. module: scheduler_error_mailer
+#: help:ir.cron,email_template_id:0
+msgid "Select the email template that will be sent when this scheduler fails."
+msgstr "Izberite predlogo za razpošiljanje ob napakah razporejevalca."
+
+#. module: scheduler_error_mailer
+#: code:addons/scheduler_error_mailer/ir_cron.py:76
+#, python-format
+msgid "Task failure with UID = %d."
+msgstr "Napaka pri opravilu UID = %d."
+
+#. module: scheduler_error_mailer
+#: model:email.template,subject:scheduler_error_mailer.scheduler_error_mailer
+msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
+msgstr "[DB ${ctx.get('dbname')}] Razporejevalec '${object.name or ''}' NEUSPEŠEN"
