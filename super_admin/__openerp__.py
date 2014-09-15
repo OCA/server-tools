@@ -27,7 +27,7 @@
     'complexity': "easy",
     'category': 'Hidden',
     'description': """
-        Mark All Super Admin users as member of all group by default
+        Mark Super Admin users as member of all group by default
     """,
     'author': 'Bizzappdev',
     'website': 'www.bizzappdev.com',
