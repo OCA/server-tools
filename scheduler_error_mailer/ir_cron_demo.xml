@@ -17,9 +17,9 @@
     <field name="interval_type">hours</field>
     <field name="numbercall">-1</field> <!-- don't limit the number of calls -->
     <field name="doall" eval="True"/>
-    <field name="email_template" ref="scheduler_error_mailer"/>
     <field name="model">ir.cron</field>
     <field name="function">_test_scheduler_failure</field>
+    <field name="email_template_id" ref="scheduler_error_mailer"/>
 </record>
 
 </data>
