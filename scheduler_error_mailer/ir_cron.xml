@@ -14,7 +14,7 @@
     <field name="inherit_id" ref="base.ir_cron_view"/>
     <field name="arch" type="xml">
         <field name="doall" position="after">
-            <field name="email_template" />
+            <field name="email_template_id" />
         </field>
     </field>
 </record>
