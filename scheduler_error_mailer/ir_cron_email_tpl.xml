@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2012-2013 Akretion (http://www.akretion.com/)
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+<!-- Error Email template  -->
+<record id="scheduler_error_mailer" model="email.template">
+    <field name="name">Scheduler Error</field>
+    <field name="email_from">${object.user_id.user_email or ''}</field>
+    <field name="email_to">${object.user_id.user_email or ''}</field>
+    <field name="subject">[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED</field>
+    <field name="model_id" ref="base.model_ir_cron"/>
+    <field name="auto_delete" eval="True"/>
+    <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>
+
+<strong>
+${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}
+</strong>
+
+<p>You may check the logs of the OpenERP server to get more information about this failure.</p>
+
+<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>
+<ul>
+<li>Model : ${object.model or ''}</li>
+<li>Method : ${object.function or ''}</li>
+<li>Arguments : ${object.args or ''}</li>
+<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>
+<li>Number of calls : ${object.numbercall or '0'}</li>
+<li>Repeat missed : ${object.doall}</li>
+<li>User : ${object.user_id.name or ''}</li>
+</ul>
+
+<p>
+-- <br/>
+Automatic e-mail sent by OpenERP. Do not reply.<br/>
+Database : ${ctx.get('dbname')}
+</p>
+</div>
+    ]]></field>
+</record>
+
+</data>
+</openerp>
