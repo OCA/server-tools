@@ -38,7 +38,6 @@ class Cron(models.Model):
                 _('Only the admin user is allowed to '
                   'execute inactive cron jobs manually'))
 
-        _logger.warn(self.__dict__)
         try:
             # Try to grab an exclusive lock on the job row
             # until the end of the transaction
