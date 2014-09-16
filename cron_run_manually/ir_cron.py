@@ -61,17 +61,8 @@ class Cron(models.Model):
 
         _logger.info('Job `%s` triggered from form', self.name)
 
-        # Prepare execution
-        method = getattr(self.env[self.model], self.function)
-        args = safe_eval('tuple(%s)' % (self.args or ''))
-
-        # Hack the UID
-        old_uid = self.env.uid
-        self.env.uid = self.user_id
-
         # Execute the cron job
-        try:
-            method(*args)
-        finally:
-            # Revert UID to original
-            self.env.uid = old_uid
+        method = getattr(self.sudo(self.user_id).env[self.model],
+                         self.function)
+        args = safe_eval('tuple(%s)' % (self.args or ''))
+        method(*args)
