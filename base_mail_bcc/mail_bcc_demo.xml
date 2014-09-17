@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="mail_bcc" model="ir.config_parameter">
             <field name="key">mail.always_bcc_to</field>
-            <field name="value"></field>
+            <field name="value">root@localhost<field>
         </record>
     </data>
 </openerp>

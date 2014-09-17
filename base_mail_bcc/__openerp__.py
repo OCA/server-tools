@@ -36,9 +36,9 @@ mail.always_bcc_to as a comma-separated list of email addresses.
     """,
     "summary": "Add BCC to all emails",
     'data': [
-	'mail_bcc_data.xml'
     ],
     'demo': [
+       'mail_bcc_demo.xml'
     ],
     'test': [
     ],
