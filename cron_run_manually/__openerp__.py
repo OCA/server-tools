@@ -30,5 +30,8 @@ of the scheduler.
 """,
     'depends': ['base'],
     'data': ['view/ir_cron.xml'],
+    "test": [
+        "tests/correct_uid.yml",
+    ],
     'installable': True,
 }
