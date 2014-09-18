@@ -65,3 +65,9 @@ class Cron(models.Model):
                          self.function)
         args = safe_eval('tuple(%s)' % (self.args or ''))
         return method(*args)
+
+    @api.model
+    def _current_uid(self):
+        """This function returns the current UID, for testing purposes."""
+
+        return self.env.uid
