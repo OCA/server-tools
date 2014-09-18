@@ -67,10 +67,9 @@ class ir_cron(orm.Model):
 
         return res
 
-
-class res_users(orm.Model):
-    _inherit = 'res.users'
-
-    def test_scheduler_failure(self, cr, uid, context=None):
+    def _test_scheduler_failure(self, cr, uid, context=None):
         """This function is used to test and debug this module"""
-        raise orm.except_orm(_('Error :'), _("Task failure with UID = %d." % uid))
+
+        raise orm.except_orm(
+            _('Error :'),
+            _("Task failure with UID = %d.") % uid)
