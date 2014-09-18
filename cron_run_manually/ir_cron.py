@@ -64,4 +64,4 @@ class Cron(models.Model):
         method = getattr(self.sudo(self.user_id).env[self.model],
                          self.function)
         args = safe_eval('tuple(%s)' % (self.args or ''))
-        method(*args)
+        return method(*args)
