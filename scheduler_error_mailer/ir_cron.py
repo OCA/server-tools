@@ -22,6 +22,7 @@
 #
 ##############################################################################
 
+from openerp import SUPERUSER_ID
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import logging
@@ -61,7 +62,7 @@ class ir_cron(orm.Model):
                           context)
 
             self.pool['email.template'].send_mail(
-                cr, uid, my_cron.email_template.id, my_cron.id,
+                cr, SUPERUSER_ID, my_cron.email_template.id, my_cron.id,
                 force_send=True, context=context)
 
         return res
