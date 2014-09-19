@@ -68,7 +68,7 @@ Tests
 This module comes with a simple test in static/test/context_tunnel.js.
 To run it, open the page /web/tests?mod=web_context_tunnel in your browser
 as explained here https://doc.openerp.com/trunk/web/testing
-It should also by picked by the Python testing when testing with PhantomJS.
+It should also be picked by the Python testing when testing with PhantomJS.
 
 As for testing modules using web_context_tunnel with YAML, yes it's possible.
 In fact you need to manually mimic the new web-client behavior by manually
@@ -82,12 +82,13 @@ https://github.com/openerpbrasil/l10n_br_core/compare/develop...feature%2Fsale-w
 """,
     'version': '2.0',
     'depends': ['web'],
-    'js': ['static/src/js/context_tunnel.js'],
+    'data': [
+        'views/web_context_tunnel.xml',
+    ],
     'test': [
         'static/test/context_tunnel.js',
     ],
     'css': [],
     'auto_install': False,
-    'installable': False,
     'web_preload': False,
 }

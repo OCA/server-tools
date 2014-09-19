@@ -1,7 +1,9 @@
 openerp.testing.section('context_tunnel', {
+    dependencies: ['web.list', 'web.form'],
+    templates: true
 }, function (test) {
-    test.dependencies = window['oe_all_dependencies'];
     test("context composition", function (instance) {
+        new openerp.web_context_tunnel(instance);
         var field_manager = new instance.web.form.DefaultFieldManager();
         var node = {'attrs': {'context': {'key1': 'value1', 'key2': 'value2'}, 'context_2': {'key3': 'value3'}, 'context_3': {'key4': 'value4'}}}
         var w = new instance.web.form.FormWidget(field_manager, node);
