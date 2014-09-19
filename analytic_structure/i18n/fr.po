@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 14:15+0000\n"
-"PO-Revision-Date: 2014-08-27 16:17+0100\n"
+"POT-Creation-Date: 2014-09-19 10:18+0000\n"
+"PO-Revision-Date: 2014-09-19 12:20+0100\n"
 "Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,11 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.5.4\n"
-
-#. module: analytic_structure
-#: field:analytic.code,usable_per_company:0
-msgid "Usable in my company"
-msgstr "Utilisable dans ma société"
 
 #. module: analytic_structure
 #: view:analytic.structure:0
@@ -59,6 +54,11 @@ msgstr "analytic.structure"
 #: sql_constraint:analytic.dimension:0
 msgid "Name must be unique"
 msgstr "Le nom doit être unique"
+
+#. module: analytic_structure
+#: field:analytic.code,view_type:0
+msgid "View type"
+msgstr "Type vue"
 
 #. module: analytic_structure
 #: model:ir.ui.menu,name:analytic_structure.menu_analytic_config_root
@@ -124,9 +124,10 @@ msgid "Analysis {}"
 msgstr "Analytique {}"
 
 #. module: analytic_structure
-#: model:ir.model,name:analytic_structure.model_analytic_code
-msgid "analytic.code"
-msgstr "analytic.code"
+#: help:analytic.code,disabled_per_company:0
+msgid ""
+"Determines whether an analytic code is disabled for the current company."
+msgstr "Définit si un code analytique est désactivé pour la société actuelle."
 
 #. module: analytic_structure
 #: field:analytic.code,active:0
@@ -196,14 +197,19 @@ msgid "Analysis slot"
 msgstr "Emplacement d'analyse"
 
 #. module: analytic_structure
-#: field:analytic.code,usable:0
-msgid "Usable"
-msgstr "Utilisable"
+#: model:ir.model,name:analytic_structure.model_analytic_code
+msgid "analytic.code"
+msgstr "analytic.code"
 
 #. module: analytic_structure
 #: model:res.groups,comment:analytic_structure.group_ans_manager
 msgid "the user will be able to create analysis codes"
 msgstr "L'utilisateur sera capable de créer des codes analytiques"
+
+#. module: analytic_structure
+#: field:analytic.code,disabled_per_company:0
+msgid "Disabled in my company"
+msgstr "Désactivé dans ma société"
 
 #. module: analytic_structure
 #: field:analytic.code,child_ids:0
@@ -241,6 +247,11 @@ msgid "Group By..."
 msgstr "Regrouper par…"
 
 #. module: analytic_structure
+#: help:analytic.code,active:0
+msgid "Determines whether an analytic code is in the referential."
+msgstr "Définit si un code analytique fait partie du référentiel."
+
+#. module: analytic_structure
 #: view:analytic.dimension:0
 msgid "Analytic Dimension"
 msgstr "Dimension analytique"
@@ -271,6 +282,18 @@ msgstr "Dimension associée"
 #: field:analytic.code,parent_right:0
 msgid "Right parent"
 msgstr "Parent droit"
+
+#. module: analytic_structure
+#: help:analytic.code,view_type:0
+msgid ""
+"Determines whether an analytic code is not selectable (but still in the "
+"referential)."
+msgstr ""
+"Définit si un code analytique n'est pas sélectionnable (tout en restant "
+"présent dans le référentiel)."
+
+#~ msgid "Usable"
+#~ msgstr "Utilisable"
 
 #~ msgid "Structure"
 #~ msgstr "Structure"

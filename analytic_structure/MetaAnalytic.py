@@ -227,6 +227,16 @@ class MetaAnalytic(OEMetaSL):
         if isinstance(rel_view_type, basestring):
             rel_view_type = (rel_view_type, 'view_type')
 
+        rel_disabled_per_company = dimension.get(
+            'rel_disabled_per_company', tuple()
+        )
+        if rel_disabled_per_company is True:
+            rel_disabled_per_company = u"Disabled in my company"
+        if isinstance(rel_disabled_per_company, basestring):
+            rel_disabled_per_company = (
+                rel_disabled_per_company, 'disabled_per_company'
+            )
+
         # By default, only use inherits if we can be sure there is no conflict
         # on the required fields 'name' and 'nd_id'.
         # There can still be conflicts on analytic_code's optional fields.
