@@ -102,7 +102,7 @@ class MetaAnalytic(OEMetaSL):
                     "Generated Analytic Field",
                     domain=[
                         (domain_field, '=', model_name),
-                        ('usable', '=', True),
+                        ('view_type', '=', False),
                         ('usable_per_company', '=', True),
                     ],
                     track_visibility='onchange',
@@ -221,11 +221,11 @@ class MetaAnalytic(OEMetaSL):
         if isinstance(rel_active, basestring):
             rel_active = (rel_active, 'active')
 
-        rel_usable = dimension.get('rel_usable', tuple())
-        if rel_usable is True:
-            rel_usable = u"Usable"
-        if isinstance(rel_usable, basestring):
-            rel_usable = (rel_usable, 'usable')
+        rel_view_type = dimension.get('rel_view_type', tuple())
+        if rel_view_type is True:
+            rel_view_type = u"View type"
+        if isinstance(rel_view_type, basestring):
+            rel_view_type = (rel_view_type, 'view_type')
 
         # By default, only use inherits if we can be sure there is no conflict
         # on the required fields 'name' and 'nd_id'.
@@ -265,7 +265,7 @@ class MetaAnalytic(OEMetaSL):
                 rel_name + ('name', 'char', True, ''),
                 rel_description + ('description', 'char', False, ''),
                 rel_active + ('active', 'boolean', False, True),
-                rel_usable + ('usable', 'boolean', False, True),
+                rel_view_type + ('view_type', 'boolean', False, False),
             ] if len(cols) == 6
         ]
 

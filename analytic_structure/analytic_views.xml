@@ -32,7 +32,7 @@
                 <tree string="Analytic Codes" version="7.0">
                     <field name="id" invisible="1" />
                     <field name="active" />
-                    <field name="usable" />
+                    <field name="view_type" invisible="1" />
                     <field name="usable_per_company" />
                     <field name="name" />
                     <field name="description" />
@@ -69,7 +69,7 @@
 
                         <group>
                             <field name="active" />
-                            <field name="usable" />
+                            <field name="view_type" invisible="1" />
                             <field name="usable_per_company" />
                         </group>
 

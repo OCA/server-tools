@@ -115,8 +115,20 @@ class analytic_code(osv.Model):
             ondelete='cascade',
             required=True,
         ),
-        'active': fields.boolean(u"Active"),
-        'usable': fields.boolean(u"Usable"),
+
+        'active': fields.boolean(
+            u"Active",
+            help=(
+                u"Determines whether an analytic code is in the referential."
+            ),
+        ),
+        'view_type': fields.boolean(
+            u"View type",
+            help=(
+                u"Determines whether an analytic code is not selectable (but "
+                u"still in the referential)."
+            ),
+        ),
         'blacklist_ids': fields.many2many(
             'res.company',
             'analytic_code_company_rel',
@@ -134,6 +146,7 @@ class analytic_code(osv.Model):
             store=False,  # Not persistent as it dpeends on the company.
             string=u"Usable in my company",
         ),
+
         'nd_name': fields.related(
             'nd_id',
             'name',
@@ -163,7 +176,7 @@ class analytic_code(osv.Model):
 
     _defaults = {
         'active': lambda *a: True,
-        'usable': lambda *a: True,
+        'view_type': lambda *a: False,
         'usable_per_company': lambda *a: True,
     }
 
