@@ -169,16 +169,15 @@ along with the entry's name in many2one fields targeting the model.
 
 
 
-=== Active / Usable / Usable in my company ===
+=== Active / View type / Disabled in my company ===
 
 
 Differences between the various "active" fields:
 
-- Active: Controls whether the code is in the referential; when inactive, a
-code is invisible.
+- Active: Determines whether an analytic code is in the referential.
 
-- Usable: Controls whether the code can be selected; unlike "active", it is
-still in the referential.
+- View type: Determines whether an analytic code is not selectable (but still
+in the referential).
 
-- Usable per company: Controls whether the code can be selected by users in the
-company of the current user; unlike "active", it is still in the referential.
+- Usable per company: Determines whether an analytic code is disabled for the
+current company.
