@@ -103,7 +103,7 @@ class MetaAnalytic(OEMetaSL):
                     domain=[
                         (domain_field, '=', model_name),
                         ('view_type', '=', False),
-                        ('usable_per_company', '=', True),
+                        ('disabled_per_company', '=', False),
                     ],
                     track_visibility='onchange',
                 )

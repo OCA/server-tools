@@ -31,11 +31,11 @@ class analytic_code(osv.Model):
     _parent_order = 'name'
     _order = 'parent_left'
 
-    def _read_usable_per_company(
+    def _read_disabled_per_company(
         self, cr, uid, ids, field_name, arg, context
     ):
-        """Mark the code as usable when it is not in the blacklist (depending
-        on the current user's company).
+        """Mark the code as disabled when it is in the blacklist (depending on
+        the current user's company).
         """
 
         anc_obj = self.pool['analytic.code']
@@ -49,11 +49,11 @@ class analytic_code(osv.Model):
 
         for anc in anc_obj.browse(cr, uid, ids, context=context):
             blacklist = (company.id for company in anc.blacklist_ids)
-            ret[anc.id] = company_id not in blacklist
+            ret[anc.id] = company_id in blacklist
 
         return ret
 
-    def _write_usable_per_company(
+    def _write_disabled_per_company(
         self, cr, uid, anc_id, field_name, field_value, arg, context
     ):
         """Update the blacklist depending on the current user's company.
@@ -70,10 +70,10 @@ class analytic_code(osv.Model):
         blacklist = (company.id for company in anc.blacklist_ids)
 
         to_write = None
-        if field_value and company_id in blacklist:
-            to_write = [(3, company_id)]  # Unlink.
-        elif not field_value and company_id not in blacklist:
+        if field_value and company_id not in blacklist:
             to_write = [(4, company_id)]  # Link.
+        elif not field_value and company_id in blacklist:
+            to_write = [(3, company_id)]  # Unlink.
 
         if to_write:
             anc_obj.write(
@@ -82,7 +82,7 @@ class analytic_code(osv.Model):
 
         return True
 
-    def _search_usable_per_company(
+    def _search_disabled_per_company(
         self, cr, uid, model_again, field_name, criterion, context
     ):
         """Update the domain to take the blacklist into account (depending on
@@ -95,7 +95,7 @@ class analytic_code(osv.Model):
             cr, uid, [uid], ['company_id'], context=context
         )[0]['company_id'][0]
 
-        # We assume the criterion was "usable_per_company = True".
+        # We assume the criterion was "disabled_per_company = False".
         return [
             '|',
             ('blacklist_ids', '=', False),
@@ -137,14 +137,18 @@ class analytic_code(osv.Model):
             u"Blacklist",
             help=u"Companies the code is hidden in.",
         ),
-        'usable_per_company': fields.function(
-            _read_usable_per_company,
-            fnct_inv=_write_usable_per_company,
-            fnct_search=_search_usable_per_company,
+        'disabled_per_company': fields.function(
+            _read_disabled_per_company,
+            fnct_inv=_write_disabled_per_company,
+            fnct_search=_search_disabled_per_company,
             method=True,
             type='boolean',
-            store=False,  # Not persistent as it dpeends on the company.
-            string=u"Usable in my company",
+            store=False,  # Not persistent as it depends on the company.
+            string=u"Disabled in my company",
+            help=(
+                u"Determines whether an analytic code is disabled for the "
+                u"current company."
+            ),
         ),
 
         'nd_name': fields.related(
@@ -177,7 +181,7 @@ class analytic_code(osv.Model):
     _defaults = {
         'active': lambda *a: True,
         'view_type': lambda *a: False,
-        'usable_per_company': lambda *a: True,
+        'disabled_per_company': lambda *a: False,
     }
 
     _constraints = [
