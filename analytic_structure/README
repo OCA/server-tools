@@ -179,5 +179,5 @@ Differences between the various "active" fields:
 - View type: Determines whether an analytic code is not selectable (but still
 in the referential).
 
-- Usable per company: Determines whether an analytic code is disabled for the
+- Disabled per company: Determines whether an analytic code is disabled for the
 current company.
