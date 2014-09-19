@@ -19,5 +19,5 @@
     function: _current_uid
 
 - I execute the cron job manually to check its running UID
-- !assert {model: ir.cron, id: check_uid_job}: |
-    self.run_manually()[0] == self.user_id
+- !python {model: ir.cron, id: check_uid_job}: |
+    assert self.run_manually()[0] == self.user_id.id, "Wrong UID in cron job"
