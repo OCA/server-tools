@@ -25,39 +25,41 @@ from openerp.osv import orm
 import logging
 
 
+_logger = logging.getLogger(__name__)
+
+
 class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
 
     def action_populate(self, cr, uid, ids, context=None):
-        """
-        Prepopulate the user table from one or more LDAP resources.
+        """Prepopulate the user table from one or more LDAP resources.
 
         Obviously, the option to create users must be toggled in
         the LDAP configuration.
 
         Return the number of users created (as far as we can tell).
         """
+
         if isinstance(ids, (int, float)):
             ids = [ids]
 
         users_pool = self.pool.get('res.users')
         users_no_before = users_pool.search(
             cr, uid, [], context=context, count=True)
-        logger = logging.getLogger('orm.ldap')
-        logger.debug("action_populate called on res.company.ldap ids %s", ids)
+        _logger.debug("action_populate called on res.company.ldap ids %s", ids)
 
         for conf in self.get_ldap_dicts(cr, ids):
             if not conf['create_user']:
                 continue
             attribute_match = re.search(
-                '([a-zA-Z_]+)=\%s', conf['ldap_filter'])
+                r'([a-zA-Z_]+)=\%s', conf['ldap_filter'])
             if attribute_match:
                 login_attr = attribute_match.group(1)
             else:
                 raise orm.except_orm(
-                    "No login attribute found",
-                    "Could not extract login attribute from filter %s" %
-                    conf['ldap_filter'])
+                    _("No login attribute found"),
+                    _("Could not extract login attribute from filter %s") %
+                        conf['ldap_filter'])
             ldap_filter = filter_format(conf['ldap_filter'] % '*', ())
             for result in self.query(conf, ldap_filter):
                 self.get_or_create_user(
@@ -66,7 +68,7 @@ class CompanyLDAP(orm.Model):
         users_no_after = users_pool.search(
             cr, uid, [], context=context, count=True)
         users_created = users_no_after - users_no_before
-        logger.debug("%d users created", users_created)
+        _logger.debug("%d users created", users_created)
         return users_created
 
     def populate_wizard(self, cr, uid, ids, context=None):
@@ -74,6 +76,7 @@ class CompanyLDAP(orm.Model):
         GUI wrapper for the populate method that reports back
         the number of users created.
         """
+
         if not ids:
             return
         if isinstance(ids, (int, float)):
@@ -93,4 +96,4 @@ class CompanyLDAP(orm.Model):
             'target': 'new',
             'res_id': res_id,
             'nodestroy': True,
-            }
+        }

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from osv import orm, fields
+from openerp.osv import orm, fields
 
 
 class CompanyLDAPPopulateWizard(orm.TransientModel):
