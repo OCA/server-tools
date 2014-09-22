@@ -18,5 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import fields
-import base_field_serialized
+from . import fields
+from . import base_field_serialized

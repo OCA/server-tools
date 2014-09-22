@@ -23,7 +23,6 @@
     "version": "1.0",
     "author": "Therp BV",
     "license": "AGPL-3",
-    "complexity": "normal",
     "description": """This addon restores serialized fields for Odoo 8.0
     """,
     "category": "Hidden/Dependency",
