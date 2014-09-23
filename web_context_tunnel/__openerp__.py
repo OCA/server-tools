@@ -78,7 +78,7 @@ a !python statement like context.update({'my_extra_field': my_extra_field}).
 
 You can see an example of module conversion to use web_context_tunnel here
 for instance:
-https://github.com/openerpbrasil/l10n_br_core/compare/develop...feature%2Fsale-web-context-tunnel
+https://github.com/openerpbrasil/l10n_br_core/commit/33065366726a83dbc69b9f0031c81d82362fbfae
 """,
     'version': '2.0',
     'depends': ['web'],
