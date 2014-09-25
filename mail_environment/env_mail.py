@@ -140,7 +140,9 @@ class FetchmailServer(osv.osv):
             res[fetchmail.id] = config_vals
         return res
 
-    def _type_search(self, cr, uid, obj, name, args, context={}):
+    def _type_search(self, cr, uid, obj, name, args, context=None):
+        if context is None:
+            context = self.pool['res.users'].context_get(cr, uid)
         result_ids = []
         # read all incomming servers values
         all_ids = self.search(cr, uid, [], context=context)
