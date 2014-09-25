@@ -44,7 +44,7 @@ class fetchmail_server(Model):
 
     def __init__(self, pool, cr):
         self._columns['object_id'].required = False
-        return super(fetchmail_server, self).__init__(pool, cr)
+        super(fetchmail_server, self).__init__(pool, cr)
 
     def onchange_server_type(
             self, cr, uid, ids, server_type=False, ssl=False,
