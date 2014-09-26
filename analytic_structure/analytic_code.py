@@ -96,11 +96,14 @@ class analytic_code(osv.Model):
         )[0]['company_id'][0]
 
         # We assume the criterion was "disabled_per_company = False".
-        return [
+        dom = [
             '|',
             ('blacklist_ids', '=', False),
-            ('blacklist_ids.id', '!=', company_id),
+            ('blacklist_ids', '!=', company_id),  # Not blacklists_ids.id!
         ]
+        if criterion[0][2] is True:
+            dom = ['!'] + dom
+        return dom
 
     _columns = {
         'name': fields.char(
