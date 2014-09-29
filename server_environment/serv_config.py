@@ -56,7 +56,7 @@ if not os.path.exists(ck_path):
 def setboolean(obj, attr, _bool=None):
     """Replace the attribute with a boolean."""
     if _bool is None:
-        _bool = dict(_boolean_states) # we copy original dict
+        _bool = dict(_boolean_states)  # we copy original dict
     res = _bool[getattr(obj, attr).lower()]
     setattr(obj, attr, res)
     return res
