@@ -363,28 +363,40 @@ class MetaAnalytic(OEMetaSL):
         def create(self, cr, uid, vals, context=None):
             """Create the analytic code."""
 
-            code_vals = {'nd_id': self._bound_dimension_id}
-            if use_inherits:
-                code_vals.update(vals)
-            else:
-                code_vals['name'] = vals.get('name')
+            code_vals = {}
+
             if sync_parent:
                 cp = self._get_code_parent(cr, uid, vals, context=context)
                 if cp is not None:
                     code_vals['code_parent_id'] = cp
 
-            # OpenERP bug: related fields do not work properly on creation.
-            for rel in rel_cols:
-                model_col, code_col = rel[1:3]
-                if model_col in vals:
-                    code_vals[code_col] = vals[model_col]
-                elif model_col in self._defaults:
-                    code_vals[code_col] = self._defaults[model_col]
+            # Direct changes to the 'bound analytic code' field are ignored
+            # unless the 'force_code_id' context key is passed as True.
+            force_code_id = vals.pop(column, False)
 
-            # We also have to create the code separately, even with inherits.
-            code_osv = self.pool.get('analytic.code')
-            code_id = code_osv.create(cr, uid, code_vals, context=context)
-            vals[column] = code_id
+            if context and context.get('force_code_id', False) == True:
+                self._force_code(cr, uid, force_code_id, code_vals, context)
+                vals[column] = force_code_id
+
+            else:
+                if use_inherits:
+                    code_vals.update(vals)
+                else:
+                    code_vals['name'] = vals.get('name')
+
+                # OpenERP bug: related fields do not work properly on creation.
+                for rel in rel_cols:
+                    model_col, code_col = rel[1:3]
+                    if model_col in vals:
+                        code_vals[code_col] = vals[model_col]
+                    elif model_col in self._defaults:
+                        code_vals[code_col] = self._defaults[model_col]
+
+                # We have to create the code separately, even with inherits.
+                code_osv = self.pool['analytic.code']
+                code_vals['nd_id'] = self._bound_dimension_id
+                code_id = code_osv.create(cr, uid, code_vals, context=context)
+                vals[column] = code_id
 
             res = super(superclass, self).create(
                 cr, uid, vals, context=context
@@ -394,6 +406,91 @@ class MetaAnalytic(OEMetaSL):
                 self._generate_code_ref_id(cr, uid, res, context=context)
 
             return res
+
+        @AddMethod(superclass)
+        def write(self, cr, uid, ids, vals, context=None):
+            """Update the analytic code's name if it is not inherited,
+            and its parent code if parent-child relations are synchronized.
+            """
+
+            code_vals = {}
+            new = False
+
+            if not isinstance(ids, (list, tuple)):
+                ids = [ids]
+
+            if sync_parent:
+                cp = self._get_code_parent(cr, uid, vals, context=context)
+                if cp is not None:
+                    code_vals['code_parent_id'] = cp
+
+            # Direct changes to the 'bound analytic code' field are ignored
+            # unless the 'force_code_id' context key is passed as True.
+            force_code_id = vals.pop(column, False)
+
+            if context and context.get('force_code_id', False) == True:
+                self._force_code(cr, uid, force_code_id, code_vals, context)
+                vals[column] = force_code_id
+
+            elif use_inherits:
+                vals.update(code_vals)
+
+            else:
+                name_col = rel_name[1] if rel_name else 'name'
+                if name_col in vals:
+                    code_vals['name'] = vals[name_col]
+                records = self.browse(cr, uid, ids, context=context)
+                code_ids = [getattr(rec, column).id for rec in records]
+
+                # If updating a single record with no code, create it.
+                if code_ids == [False]:
+                    new = ids[0]
+                    code_osv = self.pool['analytic.code']
+                    code_vals['nd_id'] = self._bound_dimension_id
+                    if 'name' not in code_vals:
+                        code_vals['name'] = self.read(
+                            cr, uid, new, [name_col], context=context
+                        )[name_col]
+                    vals[column] = code_osv.create(
+                        cr, uid, code_vals, context=context
+                    )
+                elif code_vals:
+                    code_osv.write(
+                        cr, uid, code_ids, code_vals, context=context
+                    )
+
+            res = super(superclass, self).write(
+                cr, uid, ids, vals, context=context
+            )
+
+            if code_ref_ids and new is not False:
+                self._generate_code_ref_id(cr, uid, new, context=context)
+
+            return res
+
+        @AddMethod(superclass)
+        def _force_code(self, cr, uid, force_code_id, code_vals, context=None):
+
+            code_osv = self.pool['analytic.code']
+
+            if not force_code_id:
+                raise ValueError(
+                    "An analytic code ID MUST be specified if the " \
+                    "force_code_id key is enabled in the context"
+                )
+            force_code_dim = code_osv.read(
+                cr, uid, force_code_id, ['nd_id'], context=context
+            )['nd_id'][0]
+            print force_code_dim, self._bound_dimension_id
+            if force_code_dim != self._bound_dimension_id:
+                raise ValueError(
+                    "If specified, codes must belong to the bound " \
+                    "analytic dimension {}".format(dimension_name)
+                )
+            if code_vals:
+                code_osv.write(
+                    cr, uid, force_code_id, code_vals, context=context
+                )
 
         if sync_parent:
             # This function is called as a method and can be overridden.
@@ -412,63 +509,6 @@ class MetaAnalytic(OEMetaSL):
                     else:
                         return False
                 return None
-
-        if sync_parent or not use_inherits:
-            @AddMethod(superclass)
-            def write(self, cr, uid, ids, vals, context=None):
-                """Update the analytic code's name if it is not inherited,
-                and its parent code if parent-child relations are synchronized.
-                """
-
-                code_vals = {}
-                new = False
-
-                if not isinstance(ids, (list, tuple)):
-                    ids = [ids]
-
-                # The 'bound analytic code' field should never be set to False.
-                if vals.get(column, True) is False:
-                    del vals[column]
-
-                if sync_parent:
-                    cp = self._get_code_parent(cr, uid, vals, context=context)
-                    if cp is not None:
-                        code_vals['code_parent_id'] = cp
-
-                if use_inherits:
-                    vals.update(code_vals)
-                else:
-                    name_col = rel_name[1] if rel_name else 'name'
-                    if name_col in vals:
-                        code_vals['name'] = vals[name_col]
-                    code_osv = self.pool['analytic.code']
-                    records = self.browse(cr, uid, ids, context=context)
-                    code_ids = [getattr(rec, column).id for rec in records]
-
-                    # If updating a single record with no code, create it.
-                    if code_ids == [False]:
-                        new = ids[0]
-                        code_vals['nd_id'] = self._bound_dimension_id
-                        if 'name' not in code_vals:
-                            code_vals['name'] = self.read(
-                                cr, uid, new, [name_col], context=context
-                            )[name_col]
-                        vals[column] = code_osv.create(
-                            cr, uid, code_vals, context=context
-                        )
-                    elif code_vals:
-                        code_osv.write(
-                            cr, uid, code_ids, code_vals, context=context
-                        )
-
-                res = super(superclass, self).write(
-                    cr, uid, ids, vals, context=context
-                )
-
-                if code_ref_ids and new is not False:
-                    self._generate_code_ref_id(cr, uid, new, context=context)
-
-                return res
 
         if use_code_name_methods:
 
