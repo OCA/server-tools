@@ -309,7 +309,7 @@ class analytic_structure(osv.Model):
 
                 # Now we can insert the fields in the view's architecture.
                 for field in div_fields:
-                    attrs = {'name': field}
+                    attrs = {'name': field, 'modifiers': '{}'}
                     for attr, value in div.attrib.iteritems():
                         if attr in ['class', 'prefix']:
                             continue
