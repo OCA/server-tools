@@ -443,9 +443,9 @@ class MetaAnalytic(OEMetaSL):
                 code_ids = [getattr(rec, column).id for rec in records]
 
                 # If updating a single record with no code, create it.
+                code_osv = self.pool['analytic.code']
                 if code_ids == [False]:
                     new = ids[0]
-                    code_osv = self.pool['analytic.code']
                     code_vals['nd_id'] = self._bound_dimension_id
                     if 'name' not in code_vals:
                         code_vals['name'] = self.read(
