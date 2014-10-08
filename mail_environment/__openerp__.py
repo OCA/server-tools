@@ -63,7 +63,7 @@ password = openerp
                 'fetchmail',
                 'server_environment',
                 'server_environment_files',
-                'crm'],
+                ],
     'init_xml': [],
     'update_xml': ['mail_view.xml'],
     'demo_xml': [],
