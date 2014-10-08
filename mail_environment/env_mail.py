@@ -53,46 +53,49 @@ class IrMail(orm.Model):
     _columns = {
         'smtp_host': fields.function(
             _get_smtp_conf,
-            method=True,
             string='SMTP Server',
             type="char",
             multi='outgoing_mail_config',
-            size=128),
+            states={'draft': [('readonly', True)]},
+            help="Hostname or IP of SMTP server"),
         'smtp_port': fields.function(
             _get_smtp_conf,
-            method=True,
             string='SMTP Port',
             type="integer",
             multi='outgoing_mail_config',
+            states={'draft': [('readonly', True)]},
             help="SMTP Port. Usually 465 for SSL, and 25 or 587 for other cases.",
             size=5),
         'smtp_user': fields.function(
             _get_smtp_conf,
-            method=True,
             string='Username',
             type="char",
             multi='outgoing_mail_config',
+            states={'draft': [('readonly', True)]},
             help="Optional username for SMTP authentication",
             size=64),
         'smtp_pass': fields.function(
             _get_smtp_conf,
-            method=True,
             string='Password',
             type="char",
             multi='outgoing_mail_config',
+            states={'draft': [('readonly', True)]},
             help="Optional password for SMTP authentication",
             size=64),
         'smtp_encryption': fields.function(
             _get_smtp_conf,
-            method=True,
             string='smtp_encryption',
-            type="char",
+            type="selection",
             multi='outgoing_mail_config',
+            selection=[('none','None'),
+                       ('starttls','TLS (STARTTLS)'),
+                       ('ssl','SSL/TLS')],
+            states={'draft': [('readonly', True)]},
             help="Choose the connection encryption scheme:\n"
                  "- none: SMTP sessions are done in cleartext.\n"
                  "- starttls: TLS encryption is requested at start of SMTP session (Recommended)\n"
-                 "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",
-            size=64)}
+                 "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",)
+    }
 
 
 class FetchmailServer(orm.Model):
@@ -158,64 +161,65 @@ class FetchmailServer(orm.Model):
     _columns = {
         'server': fields.function(
             _get_incom_conf,
-            method=True,
             string='Server',
             type="char",
             multi='income_mail_config',
-            size=256, help="Hostname or IP of the mail server"),
+            states={'draft': [('readonly', True)]},
+            help="Hostname or IP of the mail server"),
         'port': fields.function(
             _get_incom_conf,
-            method=True,
             string='Port',
             type="integer",
-            multi='income_mail_config',
-            help="Hostname or IP of the mail server"),
+            states={'draft': [('readonly', True)]},
+            multi='income_mail_config'),
         'type': fields.function(
             _get_incom_conf,
-            method=True,
             string='Type',
-            type="char",
+            type="selection",
+            selection=[('pop', 'POP Server'),
+                       ('imap', 'IMAP Server'),
+                       ('local', 'Local Server'),
+                       ],
             multi='income_mail_config',
             fnct_search=_type_search,
-            size=64,
+            states={'draft': [('readonly', True)]},
             help="pop, imap, local"),
         'is_ssl': fields.function(
             _get_incom_conf,
-            method=True,
             string='Is SSL',
             type="boolean",
             multi='income_mail_config',
+            states={'draft': [('readonly', True)]},
             help='Connections are encrypted with SSL/TLS through'
                  ' a dedicated port (default: IMAPS=993, POP3S=995)'),
         'attach': fields.function(
             _get_incom_conf,
-            method=True,
             string='Keep Attachments',
             type="boolean",
             multi='income_mail_config',
+            states={'draft': [('readonly', True)]},
             help="Whether attachments should be downloaded. "
                  "If not enabled, incoming emails will be stripped of any "
                  "attachments before being processed"),
         'original': fields.function(
             _get_incom_conf,
-            method=True,
             string='Keep Original',
             type="boolean",
             multi='income_mail_config',
+            states={'draft': [('readonly', True)]},
             help="Whether a full original copy of each email should be kept "
                  "for reference and attached to each processed message. This "
                  "will usually double the size of your message database."),
         'user': fields.function(
             _get_incom_conf,
-            method=True,
             string='Username',
             type="char",
-            multi='income_mail_config',
-            size=64),
+            states={'draft': [('readonly', True)]},
+            multi='income_mail_config'),
         'password': fields.function(
             _get_incom_conf,
-            method=True,
             string='password',
             type="char",
-            multi='income_mail_config',
-            size=64)}
+            states={'draft': [('readonly', True)]},
+            multi='income_mail_config')
+    }
