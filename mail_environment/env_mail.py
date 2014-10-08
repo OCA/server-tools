@@ -19,13 +19,12 @@
 #
 ##############################################################################
 
-from osv import fields
-from osv import osv
+from openerp.osv import orm, fields
 
-from server_environment import serv_config
+from openerp.addons.server_environment import serv_config
 
 
-class IrMail(osv.osv):
+class IrMail(orm.Model):
     _inherit = "ir.mail_server"
 
     def _get_smtp_conf(self, cursor, uid, ids, name, args, context=None):
@@ -95,10 +94,8 @@ class IrMail(osv.osv):
                  "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",
             size=64)}
 
-IrMail()
 
-
-class FetchmailServer(osv.osv):
+class FetchmailServer(orm.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 
@@ -222,4 +219,3 @@ class FetchmailServer(osv.osv):
             type="char",
             multi='income_mail_config',
             size=64)}
-FetchmailServer()
