@@ -40,7 +40,8 @@ class IrMail(orm.Model):
             if serv_config.has_section(global_section_name):
                 config_vals.update((serv_config.items(global_section_name)))
 
-            custom_section_name = '.'.join((global_section_name, mail_server.name))
+            custom_section_name = '.'.join((global_section_name,
+                                            mail_server.name))
             if serv_config.has_section(custom_section_name):
                 config_vals.update(serv_config.items(custom_section_name))
 
@@ -64,7 +65,8 @@ class IrMail(orm.Model):
             type="integer",
             multi='outgoing_mail_config',
             states={'draft': [('readonly', True)]},
-            help="SMTP Port. Usually 465 for SSL, and 25 or 587 for other cases.",
+            help="SMTP Port. Usually 465 for SSL, "
+                 "and 25 or 587 for other cases.",
             size=5),
         'smtp_user': fields.function(
             _get_smtp_conf,
@@ -87,14 +89,16 @@ class IrMail(orm.Model):
             string='smtp_encryption',
             type="selection",
             multi='outgoing_mail_config',
-            selection=[('none','None'),
-                       ('starttls','TLS (STARTTLS)'),
-                       ('ssl','SSL/TLS')],
+            selection=[('none', 'None'),
+                       ('starttls', 'TLS (STARTTLS)'),
+                       ('ssl', 'SSL/TLS')],
             states={'draft': [('readonly', True)]},
             help="Choose the connection encryption scheme:\n"
                  "- none: SMTP sessions are done in cleartext.\n"
-                 "- starttls: TLS encryption is requested at start of SMTP session (Recommended)\n"
-                 "- ssl: SMTP sessions are encrypted with SSL/TLS through a dedicated port (default: 465)",)
+                 "- starttls: TLS encryption is requested at start "
+                 "of SMTP session (Recommended)\n"
+                 "- ssl: SMTP sessions are encrypted with SSL/TLS "
+                 "through a dedicated port (default: 465)")
     }
 
 
@@ -125,7 +129,8 @@ class FetchmailServer(orm.Model):
             if serv_config.has_section(global_section_name):
                 config_vals.update(serv_config.items(global_section_name))
 
-            custom_section_name = '.'.join((global_section_name, fetchmail.name))
+            custom_section_name = '.'.join((global_section_name,
+                                            fetchmail.name))
             if serv_config.has_section(custom_section_name):
                 config_vals.update(serv_config.items(custom_section_name))
 
@@ -137,7 +142,7 @@ class FetchmailServer(orm.Model):
 
     def _type_search(self, cr, uid, obj, name, args, context=None):
         result_ids = []
-        # read all incomming servers values
+        # read all incoming servers values
         all_ids = self.search(cr, uid, [], context=context)
         results = self.read(cr, uid, all_ids, ['id', 'type'], context=context)
         args = args[:]
@@ -146,12 +151,14 @@ class FetchmailServer(orm.Model):
             operator = args[i][1]
             if operator == '=':
                 for res in results:
-                    if (res['type'] == args[i][2]) and (res['id'] not in result_ids):
+                    if (res['type'] == args[i][2] and
+                            res['id'] not in result_ids):
                         result_ids.append(res['id'])
             elif operator == 'in':
                 for search_vals in args[i][2]:
                     for res in results:
-                        if (res['type'] == search_vals) and (res['id'] not in result_ids):
+                        if (res['type'] == search_vals and
+                                res['id'] not in result_ids):
                             result_ids.append(res['id'])
             else:
                 continue
