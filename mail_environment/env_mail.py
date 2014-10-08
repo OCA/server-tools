@@ -27,12 +27,12 @@ from openerp.addons.server_environment import serv_config
 class IrMail(orm.Model):
     _inherit = "ir.mail_server"
 
-    def _get_smtp_conf(self, cursor, uid, ids, name, args, context=None):
+    def _get_smtp_conf(self, cr, uid, ids, name, args, context=None):
         """
         Return configuration
         """
         res = {}
-        for mail_server in self.browse(cursor, uid, ids):
+        for mail_server in self.browse(cr, uid, ids, context=context):
             global_section_name = 'outgoing_mail'
 
             # default vals
@@ -99,12 +99,12 @@ class FetchmailServer(orm.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 
-    def _get_incom_conf(self, cursor, uid, ids, name, args, context=None):
+    def _get_incom_conf(self, cr, uid, ids, name, args, context=None):
         """
         Return configuration
         """
         res = {}
-        for fetchmail in self.browse(cursor, uid, ids):
+        for fetchmail in self.browse(cr, uid, ids, context=context):
             global_section_name = 'incoming_mail'
 
             key_types = {'port': int,
@@ -132,7 +132,7 @@ class FetchmailServer(orm.Model):
             res[fetchmail.id] = config_vals
         return res
 
-    def _type_search(self, cr, uid, obj, name, args, context={}):
+    def _type_search(self, cr, uid, obj, name, args, context=None):
         result_ids = []
         # read all incomming servers values
         all_ids = self.search(cr, uid, [], context=context)
