@@ -1,4 +1,5 @@
 from openerp.osv import orm
+from openerp.osv import osv
 from openerp.tools.translate import _
 
 __all__ = ['BaseModelMetaclassMixin']
