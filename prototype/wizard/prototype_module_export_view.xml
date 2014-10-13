@@ -21,7 +21,7 @@
             <p>Here is the exported module: <field name="data" readonly="1" filename="name"/></p>
           </div>
           <footer states="choose">
-            <button name="act_getfile" string="Export" type="object" class="oe_highlight"/> or
+            <button name="action_export" string="Export" type="object" class="oe_highlight"/> or
             <button special="cancel" string="Cancel" type="object" class="oe_link"/>
           </footer>
           <footer states="get">
