@@ -45,10 +45,10 @@ Contributors
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
 * Savoir-faire Linux <support@savoirfairelinux.com>
 
-More informations
------------------
-* Module developped and tested with Odoo version 8.0
-* For questions, please contact our support services \
+More information
+----------------
+* Module developed and tested with Odoo version 8.0
+* For questions, please contact our support services
 (support@savoirfairelinux.com)
 """,
     'depends': [

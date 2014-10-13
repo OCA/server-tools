@@ -19,12 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, osv
+from openerp import fields, models
 
 
-class ir_model_fields(osv.osv):
+class ir_model_fields(models.Model):
     _inherit = "ir.model.fields"
 
-    _columns = {
-        'notes': fields.text('Notes'),
-    }
+    notes = fields.Text('Notes')

@@ -87,7 +87,7 @@ msgid "Demo filters"
 msgstr ""
 
 #. module: prototype
-#: view:prototype:prototype.view_prototype_form field:prototype,depends:0
+#: view:prototype:prototype.view_prototype_form field:prototype,dependencies:0
 msgid "Dependencies"
 msgstr ""
 
@@ -190,7 +190,7 @@ msgid "Module"
 msgstr ""
 
 #. module: prototype
-#: field:prototype,shortdesc:0
+#: field:prototype,human_name:0
 msgid "Module Name"
 msgstr ""
 

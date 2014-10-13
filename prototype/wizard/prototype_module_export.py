@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-##############################################################################
+# #############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2010 - 2014 Savoir-faire Linux
-#    (<http://www.savoirfairelinux.com>).
+# OpenERP, Open Source Management Solution
+# This module copyright (C) 2010 - 2014 Savoir-faire Linux
+# (<http://www.savoirfairelinux.com>).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
 #    License, or (at your option) any later version.
 #
@@ -19,49 +19,103 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields,osv
-from openerp.tools.translate import _
+import StringIO
+import base64
+import zipfile
+from collections import namedtuple
+from openerp import fields, models, api
 
 
-class prototype_module_export(osv.osv_memory):
+class prototype_module_export(models.TransientModel):
     _name = "prototype.module.export"
 
-    _columns = {
-        'name': fields.char('File Name', readonly=True),
-        'api_version': fields.selection([('8.0','8.0'),
-                                         ('7.0', '7.0')], 'API version',
-                                         required=True),
-        'data': fields.binary('File', readonly=True),
-        'state': fields.selection([('choose', 'choose'),   #  choose version
-                                   ('get', 'get')])        #  get module
-    }
-    _defaults = {
-        'state': 'choose',
-        'api_version': '8.0',
-    }
+    name = fields.Char('File Name', readonly=True)
+    # It is implemented in order to manage previous and next versions
+    # of odoo
+    api_version = fields.Selection(
+        [
+            ('8.0', '8.0'),
+            # ('7.0', '7.0')
+        ],
+        'API version',
+        required=True,
+        default='8.0'
+    )
+    data = fields.Binary('File', readonly=True)
+    state = fields.Selection(
+        [
+            ('choose', 'choose'),  # choose version
+            ('get', 'get')  # get module
+        ],
+        default='choose'
+    )
 
-    def act_getfile(self, cr, uid, ids, context=None):
+    @api.model
+    def action_export(self, ids):
         """
         Export a zip file containing the module based on the information
         provided in the prototype, using the templates chosen in the wizard.
         """
-        this = self.browse(cr, uid, ids)[0]
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        wizard = self.browse(ids)
 
-        # TODO: Implement the export logic here
-        filename = 'new'
-        this.name = "%s.%s" % (filename, 'zip')
-        out = 'toto'
-        # /TODO
+        active_model = self._context.get('active_model')
 
-        self.write(cr, uid, ids, {'state': 'get',
-                                  'data': out,
-                                  'name':this.name}, context=context)
+        # checking if the wizard was called by a prototype.
+        assert active_model == 'prototype', \
+            '{} has to be called from a "prototype" , not a "{}"'.format(
+                self, active_model
+            )
+
+        # getting the prototype of the wizard
+        prototype = self.env[active_model].browse(
+            self._context.get('active_id')
+        )
+
+        # setting the jinja environment.
+        # They will help the program to find the template to render the files
+        # with.
+        prototype.set_jinja_env(wizard.api_version)
+
+        # generate_files ask the prototype to investigate the input
+        # and to generate the file templates according to it.
+        # zip_files, in another hand, put all the template files into a package
+        # ready to be saved by the user.
+        zip_details = self.zip_files(prototype.generate_files())
+
+        wizard.write(
+            {
+                'name': '{}.zip'.format(prototype.name),
+                'state': 'get',
+                'data': base64.encodestring(zip_details.stringIO.getvalue())
+            }
+        )
+
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'prototype.module.export',
             'view_mode': 'form',
             'view_type': 'form',
-            'res_id': this.id,
+            'res_id': wizard.id,
             'views': [(False, 'form')],
             'target': 'new',
         }
+
+    @staticmethod
+    def zip_files(file_details):
+        """Takes a set of file and zips them.
+        :param file_details: tuple (filename, filecontent)
+        :return: tuple (zip_file, stringIO)
+        """
+        zip_details = namedtuple('Zip_details', ['zip_file', 'stringIO'])
+        out = StringIO.StringIO()
+
+        with zipfile.ZipFile(out, 'w') as target:
+            for filename, filecontent in file_details:
+                info = zipfile.ZipInfo(filename)
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 2175008768  # specifies mode 0644
+                target.writestr(info, filecontent)
+
+            return zip_details(zip_file=target, stringIO=out)
