@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': "sentry",
+    'name': "Sentry Logger",
 
     'summary': "Sentry integration",
     'description': """
@@ -47,7 +47,7 @@ Contributors
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['web'],
     'external_dependencies': {
         'python': ['raven', 'raven_sanitize_openerp', 'bzrlib', 'git'],
     },
@@ -55,6 +55,10 @@ Contributors
     ],
 
     'demo': [
+    ],
+
+    'qweb': [
+        'static/src/xml/base.xml',
     ],
 
     'tests': [

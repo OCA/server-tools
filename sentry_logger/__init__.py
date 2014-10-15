@@ -24,6 +24,7 @@ import logging
 import cgitb
 
 from openerp.tools import config
+from openerp.addons.web.controllers.main import Session
 
 from .odoo_sentry_client import OdooClient
 from .odoo_sentry_handler import OdooSentryHandler
@@ -49,3 +50,15 @@ if config.get(u'sentry_dsn'):
 else:
     root_logger.warn(u"Sentry DSN not defined in config file")
     client = None
+
+
+# Inject sentry_activated to session to display error message or not
+old_session_info = Session.session_info
+
+
+def session_info(self, req):
+    res = old_session_info(self, req)
+    res['sentry_activated'] = bool(client)
+    return res
+
+Session.session_info = session_info
