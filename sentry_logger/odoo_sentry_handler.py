@@ -29,4 +29,6 @@ class OdooSentryHandler(SentryHandler, object):
     def can_record(self, record):
         if record.exc_info and record.exc_info[0] is except_orm:
             return False
+        if record.module == 'osv' and record.msg == 'Uncaught exception':
+            return False
         return super(OdooSentryHandler, self).can_record(record)
