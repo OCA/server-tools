@@ -98,6 +98,10 @@ class res_users(osv.Model):
         assert len(user_ids) == 1
 
         user = self.browse(cr, uid, user_ids[0], context=context)
+        # WARNING: writing this means you can only log-in once with a single
+        # user...
+        # TODO add a new table with access tokens linked to users
+        # in order to be able to log multiple times with the same user
         user.write({'saml_access_token': saml_response})
 
         return user.login
