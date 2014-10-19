@@ -23,19 +23,19 @@
 {
     'name': 'Parent Dependencies of Modules',
     'version': '0.1',
-    'summary': "allows to see the list of modules dependencies of a given"
-    " module, at the full depth of the dependency tree",
+    'summary': "allows to see the list of installed modules dependencies of"
+    " a given module, at the full depth of the dependency tree",
     'category': 'Tools',
     'description': """
-allows to see the list of modules dependencies of a given module, at the"""
-    """ full depth of the dependency tree
-========================================================================"""
-    """==================================
+allows to see the list of installed modules dependencies of a given module,
+ at the full depth of the dependency tree
+===========================================================================
+=========================================
 
 Functionality:
 --------------
-    * This module allows to see the list of modules dependencies of a"""
-    """ given module, at the full depth of the dependency tree.
+    * This module allows to see the list of installed modules dependencies of a
+    given module, at the full depth of the dependency tree.
 
 Copyright, Authors and Licence:
 -------------------------------

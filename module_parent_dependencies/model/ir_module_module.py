@@ -28,20 +28,20 @@ class module(Model):
     _inherit = 'ir.module.module'
 
     # Field function Section
-    def _get_all_parent_ids(
+    def _get_all_installed_parent_ids(
             self, cr, uid, ids, field_name, arg, context=None):
-        res = self._get_direct_parent_ids(
+        res = self._get_direct_installed_parent_ids(
             cr, uid, ids, field_name, arg, context=context)
         for id in ids:
             parent_ids = list(res[id])
-            undirect_parent_ids = self._get_all_parent_ids(
+            undirect_parent_ids = self._get_all_installed_parent_ids(
                 cr, uid, res[id], field_name, arg, context=context)
             for parent_id in parent_ids:
                 res[id] += undirect_parent_ids[parent_id]
             res[id] = list(set(res[id]))
         return res
 
-    def _get_direct_parent_ids(
+    def _get_direct_installed_parent_ids(
             self, cr, uid, ids, field_name, arg, context=None):
         res = {}
         imd_obj = self.pool['ir.module.module.dependency']
@@ -62,11 +62,12 @@ class module(Model):
 
     # Column Section
     _columns = {
-        'direct_parent_ids': fields.function(
-            _get_direct_parent_ids, type='many2many',
-            relation='ir.module.module', string='Direct Parent Modules'),
-        'all_parent_ids': fields.function(
-            _get_all_parent_ids, type='many2many',
+        'direct_installed_parent_ids': fields.function(
+            _get_direct_installed_parent_ids, type='many2many',
             relation='ir.module.module',
-            string='Direct and Indirect Parent Modules'),
+            string='Direct Parent Installed Modules'),
+        'all_installed_parent_ids': fields.function(
+            _get_all_installed_parent_ids, type='many2many',
+            relation='ir.module.module',
+            string='Direct and Indirect Parent Installed Modules'),
     }
