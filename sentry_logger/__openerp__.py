@@ -33,6 +33,12 @@ Integration with Sentry Error reporting engine.
 Insert sentry DSN to ~/.openerp_serverrc with value:
     sentry_dsn = sync+<Your Sentry DSN>
 
+
+Optional Dependencies
+---------------------
+
+* bzrlib (for revno reporting on module repositories from LP)
+
 Contributors
 ------------
 * Sandy Carter (sandy.carter@savoirfairelinux.com)
@@ -49,7 +55,11 @@ Contributors
     # any module necessary for this one to work correctly
     'depends': ['web'],
     'external_dependencies': {
-        'python': ['raven', 'raven_sanitize_openerp', 'bzrlib', 'git'],
+        'python': [
+            'raven',
+            'raven_sanitize_openerp',
+            'git',
+        ],
     },
     'data': [
     ],
