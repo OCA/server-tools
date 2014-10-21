@@ -125,9 +125,9 @@ class super_calendar_configurator(orm.Model):
                         False
                     ),
                     'configurator_id': configurator.id,
-                    'res_id': line.name.model+','+str(record['id']),
+                    'res_id': line.name.model + ',' + str(record['id']),
                     'model_id': line.name.id,
-                    }
+                }
                 return super_calendar_values
 
 
@@ -142,15 +142,14 @@ class super_calendar_configurator_line(orm.Model):
         'description_type': fields.selection([
             ('field', 'Field'),
             ('code', 'Code'),
-            ], string="Description Type"),
+        ], string="Description Type"),
         'description_field_id': fields.many2one(
             'ir.model.fields', 'Description field',
             domain="[('model_id', '=', name),('ttype', '=', 'char')]"),
         'description_code': fields.text(
             'Description field',
             help="Use '${o}' to refer to the involved object. "
-                 "E.g.: '${o.project_id.name}'"
-            ),
+                 "E.g.: '${o.project_id.name}'"),
         'date_start_field_id': fields.many2one(
             'ir.model.fields', 'Start date field',
             domain="['&','|',('ttype', '=', 'datetime'),"

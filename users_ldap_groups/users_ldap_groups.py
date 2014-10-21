@@ -59,7 +59,7 @@ class CompanyLDAPGroupMapping(orm.Model):
         'group': fields.many2one(
             'res.groups', 'OpenERP group',
             help='The OpenERP group to assign', required=True),
-        }
+    }
 
 
 class CompanyLDAP(orm.Model):

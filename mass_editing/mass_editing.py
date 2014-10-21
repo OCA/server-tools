@@ -103,7 +103,7 @@ class mass_object(orm.Model):
                 'view_mode': 'form,tree',
                 'target': 'new',
                 'auto_refresh': 1,
-                }, context)
+            }, context)
             vals['ref_ir_value'] = ir_values_obj.create(cr, uid, {
                 'name': button_name,
                 'model': src_obj,
@@ -112,11 +112,11 @@ class mass_object(orm.Model):
                     "ir.actions.act_window,"
                     + str(vals['ref_ir_act_window'])),
                 'object': True,
-                }, context)
+            }, context)
         self.write(cr, uid, ids, {
             'ref_ir_act_window': vals.get('ref_ir_act_window', False),
             'ref_ir_value': vals.get('ref_ir_value', False),
-            }, context)
+        }, context)
         return True
 
     def unlink_action(self, cr, uid, ids, context=None):
