@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record id="group_fetchmail_inbox_manager" model="res.groups">
-            <field name="name">Fetchmail Inbox Manager</field>
-        </record>
-    </data>
-</openerp>
