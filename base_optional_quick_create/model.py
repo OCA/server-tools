@@ -29,7 +29,7 @@ class ir_model(orm.Model):
 
     _columns = {
         'avoid_quick_create': fields.boolean('Avoid quick create'),
-        }
+    }
 
     def _wrap_name_create(self, old_create, model):
         def wrapper(cr, uid, name, context=None):

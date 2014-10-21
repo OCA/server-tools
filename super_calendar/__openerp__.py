@@ -80,7 +80,7 @@ add it to a dashboard.
         'super_calendar_view.xml',
         'cron_data.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'demo': [],
     'test': [],
     'installable': True,

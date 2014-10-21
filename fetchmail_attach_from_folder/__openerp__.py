@@ -38,7 +38,7 @@ client integration.
         'view/fetchmail_server.xml',
         'wizard/attach_mail_manually.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'js': [],
     'installable': True,
     'active': False,

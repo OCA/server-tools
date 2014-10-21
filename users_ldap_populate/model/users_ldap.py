@@ -93,4 +93,4 @@ class CompanyLDAP(orm.Model):
             'target': 'new',
             'res_id': res_id,
             'nodestroy': True,
-            }
+        }

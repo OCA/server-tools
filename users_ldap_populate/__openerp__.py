@@ -40,11 +40,11 @@ object you want to query.
 """,
     "depends": [
         'auth_ldap',
-        ],
+    ],
     "data": [
         'view/users_ldap.xml',
         'view/populate_wizard.xml',
-        ],
+    ],
     'installable': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

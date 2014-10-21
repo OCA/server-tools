@@ -31,7 +31,7 @@ class CompanyLDAPPopulateWizard(orm.TransientModel):
             'res.company.ldap', 'LDAP Configuration'),
         'users_created': fields.integer(
             'Number of users created', readonly=True),
-        }
+    }
 
     def create(self, cr, uid, vals, context=None):
         ldap_pool = self.pool.get('res.company.ldap')

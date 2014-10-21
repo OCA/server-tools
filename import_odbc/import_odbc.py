@@ -67,8 +67,7 @@ class import_odbc_dbtable(orm.Model):
         'last_log': fields.text('Last run log', readonly=True),
         'ignore_rel_errors': fields.boolean(
             'Ignore relationship errors',
-            help="On error try to reimport rows ignoring relationships."
-            ),
+            help="On error try to reimport rows ignoring relationships."),
         'raise_import_errors': fields.boolean(
             'Raise import errors',
             help="Import errors not handled, intended for debugging purposes."
@@ -95,7 +94,7 @@ class import_odbc_dbtable(orm.Model):
                           + ': '
                           + obj_id.split('_')[-1])
             if ': .' in msg and not rel_id:
-                rel_id = msg[msg.find(': .')+3:]
+                rel_id = msg[msg.find(': .') + 3:]
                 if '_id_' in rel_id:
                     rel_id = ('.'.join(rel_id.split('_')[:-2])
                               + ': '
@@ -251,7 +250,7 @@ class import_odbc_dbtable(orm.Model):
             'function': 'import_run',
             'doall': False,
             'active': True
-            })
+        })
         return {
             'name': 'Import ODBC tables',
             'view_type': 'form',
@@ -259,4 +258,4 @@ class import_odbc_dbtable(orm.Model):
             'res_model': 'ir.cron',
             'res_id': new_create_id,
             'type': 'ir.actions.act_window',
-            }
+        }

@@ -182,7 +182,7 @@ class fetchmail_server(Model):
                 partner_id = self.pool.get(
                     folder.model_id.model).browse(
                         cr, uid, object_id, context
-                    ).partner_id.id
+                ).partner_id.id
 
             attachments = []
             if this.attach and mail_message.get('attachments'):
