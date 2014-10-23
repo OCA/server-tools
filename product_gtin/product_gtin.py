@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Product GTIN module for OpenERP
+#    Product GTIN module for Odoo
 #    Copyright (C) 2004-2011 Tiny SPRL (<http://tiny.be>).
 #    Copyright (C) 2010-2011 Camptocamp (<http://www.camptocamp.at>)
 #
@@ -38,9 +38,9 @@ def check_ean(eancode):
     except:
         return False
     sum = 0
-    ean13_len = int(len(eancode))
-    for i in range(ean13_len-1):
-        pos = int(ean13_len-2-i)
+    ean_len = int(len(eancode))
+    for i in range(ean_len-1):
+        pos = int(ean_len-2-i)
         if is_pair(i):
             sum += 3 * int(eancode[pos])
         else:
@@ -48,7 +48,7 @@ def check_ean(eancode):
     check = 10 - operator.mod(sum, 10)
     if check == 10:
         check = 0
-    if check != int(eancode[ean13_len-1]):  # last digit
+    if check != int(eancode[-1]):
         return False
     return True
 

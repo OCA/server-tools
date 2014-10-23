@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Product GTIN module for OpenERP
-#    Copyright (C) 2004-2011 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2010-2011 Camptocamp Austria (<http://www.camptocamp.at>)
+#    Product GTIN module for Odoo
+#    Copyright (c) 2004 TINY SPRL. (http://tiny.be) All Rights Reserved.
+#                       Fabien Pinckaers <fp@tiny.Be>
+#    Copyright (c) 2008 ChriCar Beteilugungs- und Beratungs- GmbH
+#                       All Rights Reserved.
+#                       Ferdinand Gassauer <tiny@chricar.at>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,20 +23,4 @@
 #
 ##############################################################################
 
-{
-    "name": "Product GTIN EAN8 EAN13 UPC JPC Support",
-    "version": "1.1",
-    "author":  "ChriCar Beteiligungs- und Beratungs- GmbH",
-    "website": "http://www.chricar.at/ChriCar",
-    "category": "Sales Management",
-    "depends": ["product"],
-    "description": """
-Product GTIN module
-===================
-
-Replaces the EAN13 field on products, partners and packaging by a field with the same technical name that accepts EAN13, EAN8, JPC, UPC and GTIN.
-    """,
-    "demo": [],
-    "data": [],
-    'installable': False,
-}
+from . import product_gtin
