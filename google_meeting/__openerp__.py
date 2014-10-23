@@ -149,6 +149,9 @@ Contributors
         'view/google_api_calendar_view.xml',
         'view/menu_view.xml',
     ],
+    'external_dependencies': {
+        'python': ['google-api-python-client'],
+    },
     'demo': [],
     'test': [],
     'installable': True,
