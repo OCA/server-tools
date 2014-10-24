@@ -17,4 +17,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import model
+
+{
+    'name': "Optional quick create",
+    'version': '0.1',
+    'category': 'Tools',
+    'summary': "Avoid 'quick create' on m2o fields, on a 'by model' basis",
+    'description': """
+This module allows to avoid to *quick create* new records, through many2one
+fields, for a specific model.
+You can configure which models should allow *quick create*.
+When specified, the *quick create* option will always open the standard create
+form.
+
+Got the idea from https://twitter.com/nbessi/status/337869826028605441
+""",
+    'author': 'Agile Business Group',
+    'website': 'http://www.agilebg.com',
+    'license': 'AGPL-3',
+    "depends": ['base'],
+    "data": [
+        'model_view.xml',
+    ],
+    "demo": [],
+    'test': [],
+    "installable": True
+}

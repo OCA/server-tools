@@ -24,7 +24,6 @@ from openerp.tools.translate import _
 
 
 class ir_model(orm.Model):
-
     _inherit = 'ir.model'
 
     _columns = {
@@ -33,7 +32,9 @@ class ir_model(orm.Model):
 
     def _wrap_name_create(self, old_create, model):
         def wrapper(cr, uid, name, context=None):
-            raise orm.except_orm(_('Error'), _("Can't create quickly. Opening create form"))
+            raise orm.except_orm(
+                _('Error'),
+                _("Can't create quickly. Opening create form"))
         return wrapper
 
     def _register_hook(self, cr, ids=None):
@@ -44,7 +45,8 @@ class ir_model(orm.Model):
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
                 if not hasattr(model_obj, 'check_quick_create'):
-                    model_obj.name_create = self._wrap_name_create(model_obj.name_create, model_name)
+                    model_obj.name_create = self._wrap_name_create(
+                        model_obj.name_create, model_name)
                     model_obj.check_quick_create = True
         return True
 
@@ -56,6 +58,6 @@ class ir_model(orm.Model):
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(ir_model, self).write(cr, uid, ids, vals, context=context)
+        res = super(ir_model, self).write(cr, uid, ids, vals, context=context)
         self._register_hook(cr, ids)
-        return True
+        return res

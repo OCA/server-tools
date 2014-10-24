@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="base.view_model_form"></field>
             <field name="arch" type="xml">
                 <field name="osv_memory" position="after">
-                    <field name="avoid_quick_create"></field>
+                    <field name="avoid_quick_create"/>
                 </field>
             </field>
         </record>
