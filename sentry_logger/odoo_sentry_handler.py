@@ -21,13 +21,14 @@
 ###############################################################################
 
 from openerp.osv.orm import except_orm
+from openerp.osv.osv import except_osv
 from raven.handlers.logging import SentryHandler
 
 
 class OdooSentryHandler(SentryHandler, object):
 
     def can_record(self, record):
-        if record.exc_info and record.exc_info[0] is except_orm:
+        if record.exc_info and record.exc_info[0] in (except_orm, except_osv):
             return False
         if record.module == 'osv' and record.msg == 'Uncaught exception':
             return False
