@@ -44,7 +44,7 @@ class ir_model(orm.Model):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
-                if not hasattr(model_obj, 'check_quick_create'):
+                if model_obj and not hasattr(model_obj, 'check_quick_create'):
                     model_obj.name_create = self._wrap_name_create(
                         model_obj.name_create, model_name)
                     model_obj.check_quick_create = True
