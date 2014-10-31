@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_transbot_project","access_transbot_project","model_transbot_project","base.group_no_one",1,1,1,1
+"access_transbot_project_branch","access_transbot_project_branch","model_transbot_project_branch","base.group_no_one",1,1,1,1
+"access_transbot_project_branch_translation","access_transbot_project_branch_translation","model_transbot_project_branch_translation","base.group_no_one",1,1,1,1
+"access_transbot_log","access_transbot_log","model_transbot_log","base.group_no_one",1,1,1,1

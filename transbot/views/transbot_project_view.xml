@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="transbot_project_tree" model="ir.ui.view">
+            <field name="name">Github project tree</field>
+            <field name="model">transbot.project</field>
+            <field name="arch" type="xml">
+                <tree string="Github projects">
+                    <field name="organization"/>
+                    <field name="project"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="transbot_project_form" model="ir.ui.view">
+            <field name="name">Github project form</field>
+            <field name="model">transbot.project</field>
+            <field name="arch" type="xml">
+                <form string="Github project">
+                    <header>
+                        <button name="check_github_updates"
+                                type="object"
+                                string="Check Github updates"
+                                attrs="{'invisible': [('branches', '=', [])]}"/>
+                        <button name="check_transifex_updates"
+                                type="object"
+                                string="Check Transifex updates"
+                                attrs="{'invisible': [('branches', '=', [])]}"/>
+                    </header>
+                    <group>
+                        <field name="organization"/>
+                        <field name="project"/>
+                    </group>
+                    <notebook>
+                        <page string="Branches">
+                            <button name="get_branches" string="Get branches" type="object"/>
+                            <field name="branches" nolabel="1" colspan="4">
+                                <tree editable="bottom" delete="false" create="false">
+                                    <field name="active"/>
+                                    <field name="name"/>
+                                    <field name="last_commit_sha"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Log">
+                            <field name="logs" nolabel="1">
+                                <tree string="Transbot log" colors="gray: type == 'debug'; red: type == 'error'">
+                                    <field name="date"/>
+                                    <field name="type"/>
+                                    <field name="log"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_transbot_project" model="ir.actions.act_window">
+            <field name="name">Github projects</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transbot.project</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_transbot_project" action="action_transbot_project" parent="menu_transbot" sequence="1"/>
+
+    </data>
+</openerp>
