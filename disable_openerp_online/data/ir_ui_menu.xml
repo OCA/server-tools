@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <delete model="ir.ui.menu" id="base.module_mi" />
-        <delete model="ir.ui.menu" id="base.menu_module_updates" />
+        <delete model="ir.ui.menu" search="[('parent_id', '=', ref('base.menu_management')), ('name', '=', 'Apps')]" />
+        <delete model="ir.ui.menu" search="[('parent_id', '=', ref('base.menu_management')), ('name', '=', 'Updates')]" />
     </data>
 </openerp>

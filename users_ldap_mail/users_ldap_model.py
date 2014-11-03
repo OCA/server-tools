@@ -24,22 +24,25 @@ from openerp.osv import fields, orm
 import logging
 _log = logging.getLogger(__name__)
 
+
 class CompanyLDAP(orm.Model):
     _inherit = 'res.company.ldap'
     _columns = {
-        'name_attribute': fields.char('Name Attribute', size=64,
+        'name_attribute': fields.char(
+            'Name Attribute', size=64,
             help="By default 'cn' is used. "
                  "For ActiveDirectory you might use 'displayName' instead."),
-        'mail_attribute': fields.char('E-mail attribute', size=64,
+        'mail_attribute': fields.char(
+            'E-mail attribute', size=64,
             help="LDAP attribute to use to retrieve em-mail address."),
-        }
+    }
     _defaults = {
         'name_attribute': 'cn',
         'mail_attribute': 'mail',
-        }
+    }
 
     def get_ldap_dicts(self, cr, ids=None):
-        """ 
+        """
         Copy of auth_ldap's funtion, changing only the SQL, so that it returns
         all fields in the table.
         """
@@ -57,18 +60,19 @@ class CompanyLDAP(orm.Model):
         return cr.dictfetchall()
 
     def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
-        values = super(CompanyLDAP, self).map_ldap_attributes(cr, uid, conf,
-                     login, ldap_entry)
+        _super = super(CompanyLDAP, self)
+        values = _super.map_ldap_attributes(cr, uid, conf,
+                                            login, ldap_entry)
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
-            ]
+        ]
         for value_key, conf_name in mapping:
             try:
                 if conf[conf_name]:
                     values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
-                _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
-                    conf.get(conf_name), values.get('login')))
+                _log.warning('No LDAP attribute "%s" found for login  "%s"',
+                             conf.get(conf_name),
+                             values.get('login'))
         return values
-

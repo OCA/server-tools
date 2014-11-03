@@ -22,54 +22,60 @@
 
 from openerp.osv import fields
 from openerp.osv.orm import TransientModel
+import logging
+logger = logging.getLogger(__name__)
 
 
 class attach_mail_manually(TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
     _columns = {
-            'folder_id': fields.many2one('fetchmail.server.folder', 'Folder',
-                readonly=True),
-            'mail_ids': fields.one2many(
-                'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails'),
-            }
+        'folder_id': fields.many2one('fetchmail.server.folder', 'Folder',
+                                     readonly=True),
+        'mail_ids': fields.one2many(
+            'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails'),
+    }
 
     def default_get(self, cr, uid, fields_list, context=None):
         if context is None:
             context = {}
 
-        defaults = super(attach_mail_manually, self).default_get(cr, uid, 
-                                fields_list, context)
+        defaults = super(attach_mail_manually, self).default_get(
+            cr, uid, fields_list, context
+        )
 
-        for folder in self.pool.get('fetchmail.server.folder').browse(cr, uid,
+        for folder in self.pool.get('fetchmail.server.folder').browse(
+                cr, uid,
                 [context.get('default_folder_id')], context):
-            defaults['mail_ids']=[]
+            defaults['mail_ids'] = []
             connection = folder.server_id.connect()
             connection.select(folder.path)
-            result, msgids = connection.search(None, 
-                    'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
+            result, msgids = connection.search(
+                None,
+                'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
             if result != 'OK':
                 logger.error('Could not search mailbox %s on %s' % (
-                    folder.path, this.server))
+                    folder.path, folder.server_id.name))
                 continue
-            attach_mail_manually_mail._columns['object_id'].selection=[
-                    (folder.model_id.model, folder.model_id.name)]
+            attach_mail_manually_mail._columns['object_id'].selection = [
+                (folder.model_id.model, folder.model_id.name)]
             for msgid in msgids[0].split():
                 result, msgdata = connection.fetch(msgid, '(RFC822)')
                 if result != 'OK':
                     logger.error('Could not fetch %s in %s on %s' % (
-                        msgid, folder.path, this.server))
+                        msgid, folder.path, folder.server_id.name))
                     continue
                 mail_message = self.pool.get('mail.thread').message_parse(
-                        cr, uid, msgdata[0][1],
-                        save_original=folder.server_id.original, 
-                        context=context)
+                    cr, uid, msgdata[0][1],
+                    save_original=folder.server_id.original,
+                    context=context
+                )
                 defaults['mail_ids'].append((0, 0, {
                     'msgid': msgid,
                     'subject': mail_message.get('subject', ''),
                     'date': mail_message.get('date', ''),
-                    'object_id': folder.model_id.model+',False'
-                    }))
+                    'object_id': folder.model_id.model + ',False'
+                }))
             connection.close()
 
         return defaults
@@ -79,36 +85,45 @@ class attach_mail_manually(TransientModel):
             for mail in this.mail_ids:
                 connection = this.folder_id.server_id.connect()
                 connection.select(this.folder_id.path)
-                result, msgdata = connection.fetch(mail.msgid, '(RFC822)') 
-                if result != 'OK': 
-                    logger.error('Could not fetch %s in %s on %s' % ( 
-                        msgid, folder.path, this.server)) 
-                    continue 
-                
+                result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
+                if result != 'OK':
+                    logger.error('Could not fetch %s in %s on %s' % (
+                        mail.msgid, this.folder_id.path, this.server))
+                    continue
+
                 mail_message = self.pool.get('mail.thread').message_parse(
                     cr, uid, msgdata[0][1],
                     save_original=this.folder_id.server_id.original,
                     context=context)
 
-                this.folder_id.server_id.attach_mail(connection, 
-                        mail.object_id.id, this.folder_id, mail_message, 
-                        mail.msgid)
+                this.folder_id.server_id.attach_mail(
+                    connection,
+                    mail.object_id.id, this.folder_id, mail_message,
+                    mail.msgid
+                )
                 connection.close()
         return {'type': 'ir.actions.act_window_close'}
+
 
 class attach_mail_manually_mail(TransientModel):
     _name = 'fetchmail.attach.mail.manually.mail'
 
     _columns = {
-            'wizard_id': fields.many2one('fetchmail.attach.mail.manually', 
-                readonly=True),
-            'msgid': fields.char('Message id', size=16, readonly=True),
-            'subject': fields.char('Subject', size=128, readonly=True),
-            'date': fields.datetime('Date', readonly=True),
-            'object_id': fields.reference('Object', 
-                selection=lambda self, cr, uid, context: 
-                    [(m.model, m.name) for m in 
-                        self.pool.get('ir.model').browse(cr, uid,
-                            self.pool.get('ir.model').search(cr, uid, []),
-                            context)], size=128),
-            }
+        'wizard_id': fields.many2one('fetchmail.attach.mail.manually',
+                                     readonly=True),
+        'msgid': fields.char('Message id', size=16, readonly=True),
+        'subject': fields.char('Subject', size=128, readonly=True),
+        'date': fields.datetime('Date', readonly=True),
+        'object_id': fields.reference(
+            'Object',
+            selection=lambda self, cr, uid, context: [
+                (m.model, m.name)
+                for m in self.pool.get('ir.model').browse(
+                    cr, uid,
+                    self.pool.get('ir.model').search(cr, uid, []),
+                    context
+                )
+            ],
+            size=128,
+        ),
+    }

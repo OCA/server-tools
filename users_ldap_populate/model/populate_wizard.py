@@ -19,9 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from osv import orm, fields
 
-class CompanyLDAPPopulateWizard(osv.TransientModel):
+
+class CompanyLDAPPopulateWizard(orm.TransientModel):
     _name = 'res.company.ldap.populate_wizard'
     _description = 'Populate users from LDAP'
     _columns = {
@@ -30,11 +31,10 @@ class CompanyLDAPPopulateWizard(osv.TransientModel):
             'res.company.ldap', 'LDAP Configuration'),
         'users_created': fields.integer(
             'Number of users created', readonly=True),
-        }
+    }
 
     def create(self, cr, uid, vals, context=None):
         ldap_pool = self.pool.get('res.company.ldap')
-        users_pool = self.pool.get('res.users')
         if 'ldap_id' in vals:
             vals['users_created'] = ldap_pool.action_populate(
                 cr, uid, vals['ldap_id'], context=context)

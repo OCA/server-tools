@@ -28,7 +28,7 @@ class email_template(Model):
 
     def _get_is_template_template(self, cr, uid, ids, fields_name, arg,
                                   context=None):
-        cr.execute('''select 
+        cr.execute('''select
                 id, (select count(*) > 0 from email_template e
                     where email_template_id=email_template.id)
                 from email_template
@@ -40,12 +40,12 @@ class email_template(Model):
         'is_template_template': fields.function(
             _get_is_template_template, type='boolean',
             string='Is a template template'),
-        }
+    }
 
     def get_email_template(self, cr, uid, template_id=False, record_id=None,
                            context=None):
         this = super(email_template, self).get_email_template(
-                cr, uid, template_id, record_id, context)
+            cr, uid, template_id, record_id, context)
 
         if this.email_template_id and not this.is_template_template:
             for field in ['body_html']:

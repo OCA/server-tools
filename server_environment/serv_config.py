@@ -23,7 +23,7 @@ import os
 import ConfigParser
 from lxml import etree
 
-from openerp.osv import osv, fields, orm
+from openerp.osv import fields, orm
 from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -46,14 +46,17 @@ if not system_base_config.get('running_env', False):
 
 ck_path = os.path.join(_dir, system_base_config['running_env'])
 
-if not os.path.exists(ck_path) :
+if not os.path.exists(ck_path):
     raise Exception(
         "Provided server environment does not exist, "
         "please add a folder %s" % ck_path
     )
 
-def setboolean(obj, attr, _bool=_boolean_states):
+
+def setboolean(obj, attr, _bool=None):
     """Replace the attribute with a boolean."""
+    if _bool is None:
+        _bool = dict(_boolean_states)  # we copy original dict
     res = _bool[getattr(obj, attr).lower()]
     setattr(obj, attr, res)
     return res
@@ -92,7 +95,7 @@ def _load_config():
     config_p.optionxform = str
     try:
         config_p.read(conf_files)
-    except Exception, e:
+    except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
 
     return config_p
@@ -115,7 +118,7 @@ class ServerConfiguration(orm.TransientModel):
     _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
-        res = super(ServerConfiguration, self).__init__(pool, cr)
+        super(ServerConfiguration, self).__init__(pool, cr)
         self.running_env = system_base_config['running_env']
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
@@ -169,8 +172,9 @@ class ServerConfiguration(orm.TransientModel):
         arch += '</notebook></form>'
         self._arch = etree.fromstring(arch)
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False,  submenu=False):
+    def fields_view_get(
+            self, cr, uid, view_id=None, view_type='form', context=None,
+            toolbar=False, submenu=False):
         """Overwrite the default method to render the custom view."""
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,
@@ -186,7 +190,6 @@ class ServerConfiguration(orm.TransientModel):
             res['arch'] = xarch
             res['fields'] = xfields
         return res
-
 
     def default_get(self, cr, uid, fields_list, context=None):
         res = {}

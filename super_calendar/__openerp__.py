@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -26,9 +26,13 @@
     'description': """
 This module allows to create configurable calendars.
 
-Through the 'calendar configurator' object, you can specify which models have to be merged in the super calendar. For each model, you have to define the 'description' and 'date_start' fields at least. Then you can define 'duration' and the 'user_id' fields.
+Through the 'calendar configurator' object, you can specify which models have
+to be merged in the super calendar. For each model, you have to define the
+'description' and 'date_start' fields at least. Then you can define 'duration'
+and the 'user_id' fields.
 
-The 'super.calendar' object contains the the merged calendars. The 'super.calendar' can be updated by 'ir.cron' or manually.
+The 'super.calendar' object contains the the merged calendars. The
+'super.calendar' can be updated by 'ir.cron' or manually.
 
 Configuration
 =============
@@ -37,39 +41,46 @@ After installing the module you can go to
 
 Super calendar → Configuration → Configurators
 
-and create a new configurator. For instance, if you want to see meetings and phone calls, you can create the following lines
+and create a new configurator. For instance, if you want to see meetings and
+phone calls, you can create the following lines
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/meetings.png
+.. image:: data/meetings.png
    :width: 400 px
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/phone_calls.png
+.. image:: data/phone_calls.png
    :width: 400 px
 
-Then, you can use the ‘Generate Calendar’ button or wait for the scheduled action (‘Generate Calendar Records’) to be run.
+Then, you can use the ‘Generate Calendar’ button or wait for the scheduled
+action (‘Generate Calendar Records’) to be run.
 
-When the calendar is generated, you can visualize it by the ‘super calendar’ main menu.
+When the calendar is generated, you can visualize it by the ‘super calendar’
+main menu.
 
 Here is a sample monthly calendar:
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/month_calendar.png
+.. image:: data/month_calendar.png
    :width: 400 px
 
 And here is the weekly one:
 
-.. image:: http://planet.domsense.com/wp-content/uploads/2012/04/week_calendar.png
+.. image:: data/week_calendar.png
    :width: 400 px
 
-As you can see, several filters are available. A typical usage consists in filtering by ‘Configurator’ (if you have several configurators, ‘Scheduled calls and meetings’ can be one of them) and by your user. Once you filtered, you can save the filter as ‘Advanced filter’ or even add it to a dashboard.
+As you can see, several filters are available. A typical usage consists in
+filtering by ‘Configurator’ (if you have several configurators,
+‘Scheduled calls and meetings’ can be one of them) and by your user.
+Once you filtered, you can save the filter as ‘Advanced filter’ or even
+add it to a dashboard.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    'depends' : ['base'],
-    "data" : [
+    'depends': ['base'],
+    "data": [
         'super_calendar_view.xml',
         'cron_data.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'demo': [],
     'test': [],
     'installable': True,

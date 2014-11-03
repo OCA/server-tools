@@ -49,7 +49,7 @@ Copyright, Author and Licence :
     'license': 'AGPL-3',
     'depends': [
         'mail',
-        ],
+    ],
     'data': [
         'data/ir_config_parameter.xml',
         'view/res_config_view.xml',

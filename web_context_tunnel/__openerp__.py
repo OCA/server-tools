@@ -3,7 +3,7 @@
     'category': 'Hidden',
     'author': 'Akretion',
     'license': 'AGPL-3',
-    'description':"""
+    'description': """
 Web Context Tunnel.
 ===================
 
@@ -15,7 +15,7 @@ arguments. This is annoying as modules often need to pass extra arguments
 that are not present in the base on_change signatures. As soon as two modules
 try to alter this signature to add their extra arguments, they are incompatible
 between them unless some extra glue module make them compatible again by
-taking all extra arguments into account. But this leads to a combinatorial 
+taking all extra arguments into account. But this leads to a combinatorial
 explosion to make modules compatible again.
 
 The solution
@@ -78,7 +78,7 @@ a !python statement like context.update({'my_extra_field': my_extra_field}).
 
 You can see an example of module conversion to use web_context_tunnel here
 for instance:
-https://github.com/openerpbrasil/l10n_br_core/compare/develop...feature%2Fsale-web-context-tunnel
+https://github.com/openerpbrasil/l10n_br_core/commit/33065366726a83dbc69b9f0031c81d82362fbfae
 """,
     'version': '2.0',
     'depends': ['web'],

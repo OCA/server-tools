@@ -23,12 +23,11 @@
 import base64
 import simplejson
 from lxml import etree
-from openerp.osv.orm import Model, except_orm, browse_null
+from openerp.osv.orm import Model, except_orm
 from openerp.tools.translate import _
 from openerp.osv import fields
 from openerp.addons.fetchmail.fetchmail import _logger as logger
 from openerp.tools.misc import UnquoteEvalContext
-from openerp.tools.safe_eval import safe_eval
 
 
 class fetchmail_server(Model):
@@ -36,7 +35,7 @@ class fetchmail_server(Model):
 
     _columns = {
         'folder_ids': fields.one2many(
-        'fetchmail.server.folder', 'server_id', 'Folders'),
+            'fetchmail.server.folder', 'server_id', 'Folders'),
     }
 
     _defaults = {
@@ -45,7 +44,7 @@ class fetchmail_server(Model):
 
     def __init__(self, pool, cr):
         self._columns['object_id'].required = False
-        return super(fetchmail_server, self).__init__(pool, cr)
+        super(fetchmail_server, self).__init__(pool, cr)
 
     def onchange_server_type(
             self, cr, uid, ids, server_type=False, ssl=False,
@@ -94,21 +93,21 @@ class fetchmail_server(Model):
             match_algorithm = folder.get_algorithm()
 
             if connection.select(folder.path)[0] != 'OK':
-                logger.error(
-                    'Could not open mailbox %s on %s' % (
-                    folder.path, this.server))
+                logger.error('Could not open mailbox %s on %s',
+                             folder.path,
+                             this.server)
                 connection.select()
                 continue
             result, msgids = this.get_msgids(connection)
             if result != 'OK':
-                logger.error(
-                    'Could not search mailbox %s on %s' % (
-                    folder.path, this.server))
+                logger.error('Could not search mailbox %s on %s',
+                             folder.path,
+                             this.server)
                 continue
 
             for msgid in msgids[0].split():
                 matched_object_ids += this.apply_matching(
-                        connection, folder, msgid, match_algorithm)
+                    connection, folder, msgid, match_algorithm)
 
             logger.info('finished checking for emails in %s server %s',
                         folder.path, this.name)
@@ -129,17 +128,19 @@ class fetchmail_server(Model):
             result, msgdata = connection.fetch(msgid, '(RFC822)')
 
             if result != 'OK':
-                logger.error(
-                    'Could not fetch %s in %s on %s' % (
-                    msgid, folder.path, this.server))
+                logger.error('Could not fetch %s in %s on %s',
+                             msgid,
+                             folder.path,
+                             this.server)
                 continue
 
             mail_message = self.pool.get('mail.thread').message_parse(
-                    cr, uid, msgdata[0][1], save_original=this.original,
-                    context=context)
+                cr, uid, msgdata[0][1], save_original=this.original,
+                context=context)
 
-            if self.pool.get('mail.message').search(cr, uid, [
-                ('message_id', '=', mail_message['message_id'])]):
+            if self.pool.get('mail.message').search(
+                cr, uid, [
+                    ('message_id', '=', mail_message['message_id'])]):
                 continue
 
             found_ids = match_algorithm.search_matches(
@@ -156,7 +157,7 @@ class fetchmail_server(Model):
                         msgdata[0][1], msgid, context)
                     cr.execute('release savepoint apply_matching')
                     matched_object_ids += found_ids[:1]
-                except Exception, e:
+                except Exception:
                     cr.execute('rollback to savepoint apply_matching')
                     logger.exception(
                         "Failed to fetch mail %s from %s",
@@ -181,42 +182,42 @@ class fetchmail_server(Model):
                 partner_id = self.pool.get(
                     folder.model_id.model).browse(
                         cr, uid, object_id, context
-                    ).partner_id.id
+                ).partner_id.id
 
-            attachments=[]
+            attachments = []
             if this.attach and mail_message.get('attachments'):
                 for attachment in mail_message['attachments']:
                     fname, fcontent = attachment
                     if isinstance(fcontent, unicode):
                         fcontent = fcontent.encode('utf-8')
                     data_attach = {
-                            'name': fname,
-                            'datas': base64.b64encode(str(fcontent)),
-                            'datas_fname': fname,
-                            'description': _('Mail attachment'),
-                            'res_model': folder.model_id.model,
-                            'res_id': object_id,
-                            }
+                        'name': fname,
+                        'datas': base64.b64encode(str(fcontent)),
+                        'datas_fname': fname,
+                        'description': _('Mail attachment'),
+                        'res_model': folder.model_id.model,
+                        'res_id': object_id,
+                    }
                     attachments.append(
                         self.pool.get('ir.attachment').create(
                             cr, uid, data_attach, context=context))
 
             mail_message_ids.append(
-                    self.pool.get('mail.message').create(
-                        cr, uid,
-                        {
-                            'author_id': partner_id,
-                            'model': folder.model_id.model,
-                            'res_id': object_id,
-                            'type': 'email',
-                            'body': mail_message.get('body'),
-                            'subject': mail_message.get('subject'),
-                            'email_from': mail_message.get('from'),
-                            'date': mail_message.get('date'),
-                            'message_id': mail_message.get('message_id'),
-                            'attachment_ids': [(6, 0, attachments)],
-                        },
-                        context))
+                self.pool.get('mail.message').create(
+                    cr, uid,
+                    {
+                        'author_id': partner_id,
+                        'model': folder.model_id.model,
+                        'res_id': object_id,
+                        'type': 'email',
+                        'body': mail_message.get('body'),
+                        'subject': mail_message.get('subject'),
+                        'email_from': mail_message.get('from'),
+                        'date': mail_message.get('date'),
+                        'message_id': mail_message.get('message_id'),
+                        'attachment_ids': [(6, 0, attachments)],
+                    },
+                    context))
 
             if folder.delete_matching:
                 connection.store(msgid, '+FLAGS', '\\DELETED')

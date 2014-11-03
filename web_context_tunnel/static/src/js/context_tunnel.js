@@ -22,6 +22,3 @@ openerp.web_context_tunnel = function(instance) {
         return v_context;
     };
 };
-
-
-// vim:et fdc=0 fdl=0:
