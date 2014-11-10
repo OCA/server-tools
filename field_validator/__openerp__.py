@@ -22,18 +22,20 @@
     'name': "Field Validator",
     'version': '0.1',
     'category': 'Tools',
-    'summary': "Checks for whitespace before fields",
+    'summary': "",
     'description': """
-This module delete eventually whitespace before strings in fields.
 
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['base'],
-    "data": [],
+    "data": [
+        'ir_model_field_view.xml',
+        ],
     "demo": [],
     'test': [
+        'test/validator.yml',
     ],
     "active": False,
     "installable": True

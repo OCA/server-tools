@@ -1,0 +1,6 @@
+-
+    Try fields validator
+-
+    !python {model: ir.model.field}: |
+        field_ids = self.search(cr, uid, [('name', '=', 'email'), ('model', '=', 'res.partner')]
+        assert len(field_ids) == 1, 'There must be 1 email field'
