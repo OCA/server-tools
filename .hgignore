@@ -9,6 +9,7 @@ tmp/*
 nose*
 .rope*
 .coverage
+.idea
 cover/*
 .settings
 .pydevproject
