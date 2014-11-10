@@ -74,7 +74,7 @@ class res_users(osv.Model):
 
             :param provider: saml provider id (int)
             :param validation: result of validation of access token (dict)
-            :param params: saml parameters (dict)
+            :param saml_response: saml parameters response from the IDP
             :return: user login (str)
             :raise: openerp.exceptions.AccessDenied if signin failed
 
