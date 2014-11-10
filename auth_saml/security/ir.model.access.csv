@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_auth_saml_provider,auth_saml_provider,model_auth_saml_provider,base.group_system,1,1,1,1
+access_auth_saml_token,access_auth_saml_token,model_auth_saml_token,,0,0,0,0
