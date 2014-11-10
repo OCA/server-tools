@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import logging
 import lasso
 
@@ -19,10 +20,6 @@ class res_users(osv.Model):
         'saml_uid': fields.char(
             'SAML User ID',
             help="SAML Provider user_id",
-        ),
-        'saml_access_token': fields.char(
-            'Current SAML token for this user',
-            help="The current SAML token in use",
         ),
     }
 
@@ -53,10 +50,8 @@ class res_users(osv.Model):
             raise Exception('Invalid assertion')
 
         # TODO use a real token validation from LASSO
-        validation = {}
-
         # TODO push into the validation result a real UPN
-        validation['user_id'] = login.assertion.subject.nameId.content
+        validation = {'user_id': login.assertion.subject.nameId.content}
 
         """
         if p.data_endpoint:
@@ -80,6 +75,7 @@ class res_users(osv.Model):
 
             This method can be overridden to add alternative signin methods.
         """
+        token_osv = self.pool.get('auth_saml.token')
         saml_uid = validation['user_id']
 
         user_ids = self.search(
@@ -97,12 +93,35 @@ class res_users(osv.Model):
         # production code...
         assert len(user_ids) == 1
 
+        # browse the user because we'll need this in the response
         user = self.browse(cr, uid, user_ids[0], context=context)
-        # WARNING: writing this means you can only log-in once with a single
-        # user...
-        # TODO add a new table with access tokens linked to users
-        # in order to be able to log multiple times with the same user
-        user.write({'saml_access_token': saml_response})
+
+        user_id = user.id
+
+        # now find if a token for this user/provider already exists
+        token_ids = token_osv.search(
+            cr, uid,
+            [
+                ('saml_provider_id', '=', provider),
+                ('user_id', '=', user_id),
+            ]
+        )
+        if token_ids:
+            token_osv.write(
+                cr, uid, token_ids,
+                {'saml_access_token': saml_response},
+                context=context
+            )
+        else:
+            token_osv.create(
+                cr, uid,
+                {
+                    'saml_access_token': saml_response,
+                    'saml_provider_id': provider,
+                    'user_id': user_id,
+                },
+                context=context
+            )
 
         return user.login
 
@@ -125,26 +144,30 @@ class res_users(osv.Model):
             raise openerp.exceptions.AccessDenied()
 
         # return user credentials
-        return (cr.dbname, login, saml_response)
+        return cr.dbname, login, saml_response
 
     def check_credentials(self, cr, uid, token):
         """token can be a password if the user has used the normal form...
         but we are more interested in the case when they are tokens
         and the interesting code is inside the except clause
         """
+        token_osv = self.pool.get('auth_saml.token')
         try:
-            return super(res_users, self).check_credentials(cr, uid, token)
+            super(res_users, self).check_credentials(cr, uid, token)
 
         except openerp.exceptions.AccessDenied:
-            res = self.search(
+            # since normal auth did not succeed we now try to find if the user
+            # has an active token attached to his uid
+            res = token_osv.search(
                 cr, SUPERUSER_ID,
                 [
-                    ('id', '=', uid),
+                    ('user_id', '=', uid),
                     ('saml_access_token', '=', token),
                 ]
             )
 
+            # if the user is not found we re-raise the AccessDenied
             if not res:
                 # TODO: maybe raise a defined exception instead of the last
-                # exception that occured in our execution frame
+                # exception that occurred in our execution frame
                 raise
