@@ -20,15 +20,26 @@
 #
 ###############################################################################
 
+from psycopg2._psycopg import TransactionRollbackError
+
 from openerp.osv.orm import except_orm
 from openerp.osv.osv import except_osv
+from openerp.addons.web.session import SessionExpiredException
 from raven.handlers.logging import SentryHandler
+
+
+odoo_exception_black_list = [
+    except_orm,
+    except_osv,
+    SessionExpiredException,
+    TransactionRollbackError,
+]
 
 
 class OdooSentryHandler(SentryHandler, object):
 
     def can_record(self, record):
-        if record.exc_info and record.exc_info[0] in (except_orm, except_osv):
+        if record.exc_info and record.exc_info[0] in odoo_exception_black_list:
             return False
         if record.module == 'osv' and record.msg == 'Uncaught exception':
             return False
