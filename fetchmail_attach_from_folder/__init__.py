@@ -20,6 +20,8 @@
 #
 ##############################################################################
 
-import match_algorithm
-import model
-import wizard
+from . import (
+    match_algorithm,
+    model,
+    wizard,
+)

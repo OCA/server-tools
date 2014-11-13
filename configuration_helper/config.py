@@ -106,7 +106,7 @@ class AbstractConfigSettings(orm.AbstractModel):
         return {'value': values}
 
     def create(self, cr, uid, values, context=None):
-        id = super(AbstractConfigSettings, self).create(
+        obj_id = super(AbstractConfigSettings, self).create(
             cr, uid, values, context=context)
         # Hack: to avoid some nasty bug, related fields are not written
         # upon record creation.  Hence we write on those fields here.
@@ -114,5 +114,5 @@ class AbstractConfigSettings(orm.AbstractModel):
         for fname, field in self._columns.iteritems():
             if isinstance(field, fields.related) and fname in values:
                 vals[fname] = values[fname]
-        self.write(cr, uid, [id], vals, context)
-        return id
+        self.write(cr, uid, [obj_id], vals, context)
+        return obj_id

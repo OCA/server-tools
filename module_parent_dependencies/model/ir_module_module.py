@@ -32,13 +32,13 @@ class module(Model):
             self, cr, uid, ids, field_name, arg, context=None):
         res = self._get_direct_installed_parent_ids(
             cr, uid, ids, field_name, arg, context=context)
-        for id in ids:
-            parent_ids = list(res[id])
+        for i in ids:
+            parent_ids = list(res[i])
             undirect_parent_ids = self._get_all_installed_parent_ids(
-                cr, uid, res[id], field_name, arg, context=context)
+                cr, uid, res[i], field_name, arg, context=context)
             for parent_id in parent_ids:
-                res[id] += undirect_parent_ids[parent_id]
-            res[id] = list(set(res[id]))
+                res[i] += undirect_parent_ids[parent_id]
+            res[i] = list(set(res[i]))
         return res
 
     def _get_direct_installed_parent_ids(

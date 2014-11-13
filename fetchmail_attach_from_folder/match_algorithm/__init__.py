@@ -20,7 +20,9 @@
 #
 ##############################################################################
 
-import base
-import email_exact
-import email_domain
-import openerp_standard
+from . import (
+    base,
+    email_exact,
+    email_domain,
+    openerp_standard,
+)
