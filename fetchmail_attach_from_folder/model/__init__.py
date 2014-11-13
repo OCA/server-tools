@@ -20,5 +20,7 @@
 #
 ##############################################################################
 
-import fetchmail_server
-import fetchmail_server_folder
+from . import (
+    fetchmail_server,
+    fetchmail_server_folder,
+)

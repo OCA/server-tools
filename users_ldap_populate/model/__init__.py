@@ -1,2 +1,4 @@
-import users_ldap
-import populate_wizard
+from . import (
+    users_ldap,
+    populate_wizard,
+)

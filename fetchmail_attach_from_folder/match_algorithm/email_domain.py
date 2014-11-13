@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from email_exact import email_exact
+from .email_exact import email_exact
 
 
 class email_domain(email_exact):
