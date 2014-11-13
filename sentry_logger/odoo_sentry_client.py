@@ -120,4 +120,13 @@ class OdooClient(Client):
             event_type, data, date, time_spent, extra, stack, public_key,
             tags, **kwargs)
         res['modules'] = dict(res['modules'].items() + self.revnos.items())
+        # Sanitize frames from dispatch since they contain passwords
+        try:
+            for values in res['exception']['values']:
+                values['stacktrace']['frames'] = [
+                    f for f in values['stacktrace']['frames']
+                    if f.get('function') not in ['dispatch', 'dispatch_rpc']
+                ]
+        except KeyError:
+            pass
         return res
