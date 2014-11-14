@@ -26,6 +26,7 @@ from openerp.tests.common import TransactionCase
 
 
 class TestAuthAdminPasskey(TransactionCase):
+
     """Tests for 'Auth Admin Passkey' Module"""
 
     # Overload Section

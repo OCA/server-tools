@@ -24,7 +24,6 @@ from server_environment import serv_config
 import logging
 
 
-
 class external_referential(osv.osv):
     _inherit = 'external.referential'
 
@@ -33,22 +32,24 @@ class external_referential(osv.osv):
         for referential in self.browse(cr, uid, ids, context):
             values[referential.id] = {}
             for field_name in field_names:
-                section_name = '.'.join((self._name.replace('.', '_'), referential.name))
+                section_name = '.'.join(
+                    (self._name.replace('.', '_'), referential.name))
                 try:
                     value = serv_config.get(section_name, field_name)
                     values[referential.id].update({field_name: value})
                 except:
                     logger = logging.getLogger(__name__)
-                    logger.exception('error trying to read field %s in section %s', field_name, section_name)
+                    logger.exception(
+                        'error trying to read field %s in section %s', field_name, section_name)
         return values
 
     _columns = {
         'location': fields.function(_get_environment_config_by_name, type='char', size=200,
-                    method=True, string='Location', multi='connection_config'),
+                                    method=True, string='Location', multi='connection_config'),
         'apiusername': fields.function(_get_environment_config_by_name, type='char', size=64,
-                       method=True, string='User Name', multi='connection_config'),
+                                       method=True, string='User Name', multi='connection_config'),
         'apipass': fields.function(_get_environment_config_by_name, type='char', size=64,
-                   method=True, string='Password', multi='connection_config'),
+                                   method=True, string='Password', multi='connection_config'),
     }
 
 external_referential()

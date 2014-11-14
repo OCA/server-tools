@@ -112,6 +112,7 @@ class _Defaults(dict):
 
 
 class ServerConfiguration(orm.TransientModel):
+
     """Display server configuration."""
     _name = 'server.config'
     _columns = {}

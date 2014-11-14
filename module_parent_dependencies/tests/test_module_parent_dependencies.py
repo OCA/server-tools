@@ -24,6 +24,7 @@ from openerp.tests.common import TransactionCase
 
 
 class TestmoduleParentDependencies(TransactionCase):
+
     """Tests for 'Parent Dependencies module' Module"""
 
     def setUp(self):

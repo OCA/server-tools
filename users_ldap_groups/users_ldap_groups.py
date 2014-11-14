@@ -21,7 +21,7 @@
 
 from openerp.osv import fields, orm
 import logging
-import users_ldap_groups_operators
+from . import users_ldap_groups_operators
 import inspect
 
 
