@@ -72,7 +72,7 @@ def format_date(context, dtstr, new_format=None, tz=None):
             try:
                 utc = pytz.timezone('UTC')
                 context_tz = pytz.timezone(tz_name)
-                utc_timestamp = utc.localize(date, is_dst=False)  # UTC = no DST
+                utc_timestamp = utc.localize(date, is_dst=False)
                 date = utc_timestamp.astimezone(context_tz)
             except Exception:
                 _logger.debug("failed to compute context/client-specific "
