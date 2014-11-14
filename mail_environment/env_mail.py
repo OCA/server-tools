@@ -103,6 +103,7 @@ IrMail()
 
 
 class FetchmailServer(osv.osv):
+
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 

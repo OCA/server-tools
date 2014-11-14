@@ -26,6 +26,7 @@ DUMMY_MODEL = 'module.%s.installed' % module_name.replace('_', '.')
 
 
 class DummyModel(orm.Model):
+
     """ Allow to check if module is installed or not
         in fields_view_get method to avoid code execution if not
         Only executed if the module is installed

@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import base_external_referentials
+from . import base_external_referentials

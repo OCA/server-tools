@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import model
+from . import model
 
 from openerp.tools.misc import upload_data_thread
 upload_data_thread.run = lambda x: None

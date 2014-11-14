@@ -26,6 +26,7 @@ class LDAPOperator:
 
 
 class contains(LDAPOperator):
+
     def check_value(self,
                     ldap_entry,
                     attribute, value,
@@ -37,6 +38,7 @@ class contains(LDAPOperator):
 
 
 class equals(LDAPOperator):
+
     def check_value(self,
                     ldap_entry,
                     attribute, value,
@@ -48,6 +50,7 @@ class equals(LDAPOperator):
 
 
 class query(LDAPOperator):
+
     def check_value(self,
                     ldap_entry,
                     attribute,
