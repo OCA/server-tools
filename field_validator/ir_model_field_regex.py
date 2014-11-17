@@ -18,28 +18,16 @@
 #
 ##############################################################################
 
-{
-    'name': "Field Validator",
-    'version': '0.1',
-    'category': 'Tools',
-    'summary': "",
-    'description': """
+from openerp.osv import orm, fields
 
-""",
-    'author': 'Agile Business Group',
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['base'],
-    "data": [
-        'ir_model_view.xml',
-        'security/ir.model.access.csv',
-        ],
-    "demo": [
-        'ir_model_demo.xml',
-        ],
-    'test': [
-        'test/validator.yml',
-    ],
-    "active": False,
-    "installable": True
-}
+
+class IrModelFieldsRegex(orm.Model):
+    _name = "ir.model.fields.regex"
+    _columns = {
+        'name': fields.char('Description', size=512, required=True),
+        'regex': fields.char(
+            'Regular Expression', size=512, required=True,
+            help="Regular expression used to validate the field. For example, "
+                 "you can add the expression\n%s\nto the email field"
+            % r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b'),
+        }

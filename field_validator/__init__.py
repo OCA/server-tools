@@ -17,4 +17,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import ir_model_field
+from . import ir_model
+from . import ir_model_field_regex
