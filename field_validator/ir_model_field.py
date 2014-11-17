@@ -25,9 +25,9 @@ import openerp
 from openerp import SUPERUSER_ID
 
 
-class IrModelField(orm.Model):
+class IrModelFields(orm.Model):
 
-    _inherit = 'ir.model.field'
+    _inherit = 'ir.model.fields'
     _columns = {
         'regex_validator': fields.char(
             'Validator', size=256,
@@ -69,6 +69,8 @@ class IrModelField(orm.Model):
     def _register_hook(self, cr, ids=None):
         """ Wrap the methods `create` and `write` of the model
         """
+        if ids is None:
+            ids = self.search(cr, SUPERUSER_ID, [])
         updated = False
         for field in self.browse(cr, SUPERUSER_ID, ids):
             model = field.model_id.model
@@ -82,7 +84,7 @@ class IrModelField(orm.Model):
         return updated
 
     def create(self, cr, uid, vals, context=None):
-        res_id = super(IrModelField, self).create(
+        res_id = super(IrModelFields, self).create(
             cr, uid, vals, context=context)
         if vals.get('regex_validator'):
             if self._register_hook(cr, [res_id]):
@@ -93,7 +95,7 @@ class IrModelField(orm.Model):
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(IrModelField, self).write(cr, uid, ids, vals, context=context)
+        super(IrModelFields, self).write(cr, uid, ids, vals, context=context)
         if vals.get('regex_validator'):
             if self._register_hook(cr, ids):
                 openerp.modules.registry.RegistryManager.\

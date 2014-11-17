@@ -1,12 +1,8 @@
 -
-    Try fields validator
+  Try fields validator
 -
-    !python {model: ir.model.field}: |
-    	from nose.tools import *
-   		from openerp.exceptions import Warning
-        field_ids = self.search(cr, uid, [('name', '=', 'email'), ('model', '=', 'res.partner')]
-        assert len(field_ids) == 1, 'There must be 1 email field'
-        self.write(cr, uid, field_ids, {'regex_validator': r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b'}
-        partner_id = self.pool.get('res.partner').create(cr, uid, {'name': 'test_partner'})
-        with assert_raises(Error):
-        	self.pool.get('res.partner').write(cr, uid, partner_id, {'email': 'jhon'})
+  !python {model: ir.model.fields}: |
+    from openerp.exceptions import Warning
+    field_ids = self.search(cr, uid, [('name', '=', 'email'), ('model', '=', 'res.partner')])
+    assert len(field_ids) == 1, 'There must be 1 email field'
+    self.write(cr, uid, field_ids, {'regex_validator': r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b'})
