@@ -19,12 +19,15 @@
 ##############################################################################
 
 {
-    'name': "Field Validator",
+    'name': "Fields Validator",
     'version': '0.1',
     'category': 'Tools',
     'summary': "",
     'description': """
-
+This module allows to set a regular expresion as field validator.
+When the regular expresion is set, write and create operations on the involved
+field are blocked, if the regular expression is not satisfied.
+See demo and test data for an example with partner email.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
