@@ -43,12 +43,9 @@ Make sure you've correctly defined the filestore in your database:
 Then go to your document list, select all the documents you want to extract.
 Then, "More > Document Extraction"
     """,
-    "demo": [],
     "data": [
         'view/view.xml',
         'view/action.xml',
         'data/ir_values.xml',
     ],
-    'installable': True,
-    'active': False,
 }

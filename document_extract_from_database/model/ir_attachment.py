@@ -19,16 +19,17 @@
 #
 ###############################################################################
 
-from openerp.osv import orm
 import base64
 
+from openerp.osv.orm import Model
 
-class ir_attachment(orm.Model):
+
+class ir_attachment(Model):
     _inherit = 'ir.attachment'
 
     def _write_again(self, cr, uid, id, context=None):
         current_data = self.browse(cr, uid, id, context=context)
-        location = self.pool.get('ir.config_parameter').\
+        location = self.pool['ir.config_parameter'].\
             get_param(cr, uid, 'ir_attachment.location')
         if current_data.db_datas and location:
             vals = {

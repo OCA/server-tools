@@ -19,17 +19,17 @@
 #
 ###############################################################################
 
-from openerp.osv import orm
+from openerp.osv.orm import TransientModel
 
 
-class document_multiple_action(orm.TransientModel):
-    _name = "document.multiple.action"
-    _description = "Multiple action on document"
+class document_multiple_action(TransientModel):
+    _name = 'document.multiple.action'
+    _description = 'Multiple action on document'
 
     def write_again(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        document_obj = self.pool.get('ir.attachment')
+        document_obj = self.pool['ir.attachment']
         document_ids = context.get('active_ids')
         if document_ids:
             document_obj.write_again(cr, uid, document_ids, context=context)
