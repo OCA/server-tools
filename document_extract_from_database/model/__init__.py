@@ -20,3 +20,4 @@
 #################################################################################
 
 from . import attachment
+from . import document_multiple_action
