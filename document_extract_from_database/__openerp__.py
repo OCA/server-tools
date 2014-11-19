@@ -45,7 +45,7 @@ Then, "More > Document Extraction"
     """,
     "demo": [],
     "data": [
-        'document_view.xml'
+        'view/view.xml'
     ],
     'installable': True,
     'active': False,
