@@ -19,20 +19,23 @@
 #
 ###############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
 import base64
+
 
 class document_multiple_action(orm.TransientModel):
     _name = "document.multiple.action"
     _description = "Multiple action on document"
 
     def write_again(self, cr, uid, ids, context=None):
-        if context is None: context = {}
+        if context is None:
+            context = {}
         document_obj = self.pool.get('ir.attachment')
         document_ids = context.get('active_ids')
         if document_ids:
             document_obj.write_again(cr, uid, document_ids, context=context)
         return True
+
 
 class document_file(orm.Model):
     _inherit = 'ir.attachment'
@@ -50,10 +53,8 @@ class document_file(orm.Model):
         return True
 
     def write_again(self, cr, uid, ids, context=None):
-        if context==None:
+        if context is None:
             context = {}
         for document_id in ids:
             self._write_again(cr, uid, document_id, context=context)
         return True
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

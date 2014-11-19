@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#################################################################################
+###############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 Julius Network Solutions SARL <contact@julius.fr>
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#################################################################################
+###############################################################################
 
 {
     "name": "Extract Documents from database",
@@ -32,7 +32,8 @@
     "description": """
 Button to extract documents from your database
 ==============================================
-If you want to extract the document stored in your database this module is for you.
+If you want to extract the document stored in your database this module is for
+you.
 
 Make sure you've correctly defined the filestore in your database:
 "Settings > Parameters > System Parameters", add for example:
@@ -42,12 +43,10 @@ Make sure you've correctly defined the filestore in your database:
 Then go to your document list, select all the documents you want to extract.
 Then, "More > Document Extraction"
     """,
-    "demo" : [],
-    "data" : [
+    "demo": [],
+    "data": [
         'document_view.xml'
     ],
-    'installable' : True,
-    'active' : False,
+    'installable': True,
+    'active': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
