@@ -19,5 +19,5 @@
 #
 #################################################################################
 
-from . import attachment
+from . import ir_attachment
 from . import document_multiple_action

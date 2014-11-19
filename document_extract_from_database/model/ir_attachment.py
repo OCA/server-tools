@@ -23,7 +23,7 @@ from openerp.osv import orm
 import base64
 
 
-class document_file(orm.Model):
+class ir_attachment(orm.Model):
     _inherit = 'ir.attachment'
 
     def _write_again(self, cr, uid, id, context=None):
