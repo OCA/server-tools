@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_document_multiple_action_form" model="ir.ui.view">
+            <field name="name">Document multiple action</field>
+            <field name="model">document.multiple.action</field>
+            <field name="arch" type="xml">
+                <form string="Document Extraction" version="7.0">
+                    <div>
+                        <p>
+                            <label string="If you click on 'Write again', the selected document which are stored in the database will be extracted into the filestore location."/>
+                        </p>
+                    </div>
+                    <footer>
+                        <button name="write_again" string="Extract documents" class="oe_highlight" type="object"/> or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_view_document_multiple_action_form" model="ir.actions.act_window">
+            <field name="name">Document Extraction</field>
+            <field name="res_model">document.multiple.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_document_multiple_action_form"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        <record model="ir.values" id="document_multiple_action">
+            <field name="model_id" ref="base.model_ir_attachment" />
+            <field name="name">Document Extraction</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_document_multiple_action_form'))" />
+            <field name="key">action</field>
+            <field name="model">ir.attachment</field>
+        </record>
+
+    </data>
+</openerp>
