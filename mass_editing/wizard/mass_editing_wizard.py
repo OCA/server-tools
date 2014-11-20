@@ -111,7 +111,6 @@ class mass_editing_wizard(orm.TransientModel):
                         'size': field.size or 256}
                     etree.SubElement(xml_group, 'field', {
                         'name': "selection__" + field.name,
-                        'colspan': '2',
                         'colspan': '2'})
                     etree.SubElement(xml_group, 'field', {
                         'name': field.name, 'nolabel': '1',
