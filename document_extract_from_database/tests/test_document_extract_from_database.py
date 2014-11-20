@@ -50,6 +50,9 @@ class TestDocumentExtractFromDatabase(TransactionCase):
             """LR/w38AB6kDMQ1kMu8AAAAASUVORK5CYII=""",
         })
 
+        # Get Data Before
+        data_before = self.ia_obj.browse(cr, uid, ia_id).datas
+
         # Change setting for attachment to save on filesystem
         self.icp_obj.create(cr, uid, {
             'key': 'ir_attachment.location',
@@ -59,6 +62,15 @@ class TestDocumentExtractFromDatabase(TransactionCase):
         # Run Write Again Functionnality
         self.dma_obj.write_again(cr, uid, 0, {'active_ids': [ia_id]})
 
+        data_after = self.ia_obj.browse(cr, uid, ia_id).datas
+
+        # Test if datas have not changed
+        ia = self.ia_obj.browse(cr, uid, ia_id)
+        self.assertEqual(
+            data_before, data_after,
+            "Datas have changed after exporting into filesystem.")
+
+        # Test if the file is in the file system
         ia = self.ia_obj.browse(cr, uid, ia_id)
         self.assertNotEqual(
             ia.store_fname, None,
