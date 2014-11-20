@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from email_exact import email_exact
+from . import email_exact
 
 
-class email_domain(email_exact):
+class email_domain(email_exact.email_exact):
     '''Search objects by domain name of email address.
     Beware of match_first here, this is most likely to get it wrong (gmail)'''
     name = 'Domain of email address'

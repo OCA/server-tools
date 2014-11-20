@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from base import base
+from . import base
 
 
-class openerp_standard(base):
+class openerp_standard(base.base):
     '''No search at all. Use OpenERP's standard mechanism to attach mails to
     mail.thread objects. Note that this algorithm always matches.'''
 

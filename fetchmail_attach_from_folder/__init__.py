@@ -20,6 +20,6 @@
 #
 ##############################################################################
 
-import match_algorithm
-import model
-import wizard
+from . import match_algorithm
+from . import model
+from . import wizard
