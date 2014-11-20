@@ -20,8 +20,8 @@
 ###############################################################################
 
 {
-    "name": "Extract Documents from database",
-    "summary": "Extract documents from database to the defined filestore",
+    "name": "Export Documents from database",
+    "summary": "Export Existing Documents from Database to File System",
     "version": "1.0",
     "author": "Julius Network Solutions",
     "website": "http://julius.fr",
@@ -30,18 +30,17 @@
         "document",
     ],
     "description": """
-Button to extract documents from your database
-==============================================
-If you want to extract the document stored in your database this module is for
-you.
+Add a Button to export existing documents from database to File System
+======================================================================
 
-Make sure you've correctly defined the filestore in your database:
-"Settings > Parameters > System Parameters", add for example:
-    * "key": "ir_attachment.location"
-    * "value": "file:///filestore"
 
-Then go to your document list, select all the documents you want to extract.
-Then, "More > Document Extraction"
+* Make sure you've correctly defined the filestore in your database:
+    * "Settings > Parameters > System Parameters":
+        * "key": "ir_attachment.location"
+        * "value": "file:///filestore"
+
+* Go to your document list, select all the documents you want to extract.
+* Click on "More > Documents Export"
     """,
     "data": [
         'view/view.xml',

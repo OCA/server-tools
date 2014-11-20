@@ -4,7 +4,7 @@
 
         <record model="ir.values" id="document_multiple_action">
             <field name="model_id" ref="base.model_ir_attachment" />
-            <field name="name">Document Extraction</field>
+            <field name="name">Documents Export</field>
             <field name="key2">client_action_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_document_multiple_action_form'))" />
             <field name="key">action</field>

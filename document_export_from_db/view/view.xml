@@ -6,7 +6,7 @@
             <field name="name">Document multiple action</field>
             <field name="model">document.multiple.action</field>
             <field name="arch" type="xml">
-                <form string="Document Extraction" version="7.0">
+                <form string="Documents Export" version="7.0">
                     <div>
                         <p>
                             <label string="If you click on 'Write again', the selected document which are stored in the database will be extracted into the filestore location."/>

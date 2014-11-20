@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* document_extract_from_database
+#	* document_export_from_db
 #
 msgid ""
 msgstr ""
@@ -15,42 +15,42 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: view:document.multiple.action:0
 msgid "Cancel"
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: view:document.multiple.action:0
-#: model:ir.actions.act_window,name:document_extract_from_database.action_view_document_multiple_action_form
-msgid "Document Extraction"
+#: model:ir.actions.act_window,name:document_export_from_db.action_view_document_multiple_action_form
+msgid "Documents Export"
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: view:document.multiple.action:0
 msgid "Extract documents"
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: view:document.multiple.action:0
 msgid "If you click on 'Write again', the selected document which are stored in the database will be extracted into the filestore location."
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: code:_description:0
-#: model:ir.model,name:document_extract_from_database.model_document_multiple_action
+#: model:ir.model,name:document_export_from_db.model_document_multiple_action
 #, python-format
 msgid "Multiple action on document"
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: code:_description:0
-#: model:ir.model,name:document_extract_from_database.model_ir_attachment
+#: model:ir.model,name:document_export_from_db.model_ir_attachment
 #, python-format
 msgid "ir.attachment"
 msgstr ""
 
-#. module: document_extract_from_database
+#. module: document_export_from_db
 #: view:document.multiple.action:0
 msgid "or"
 msgstr ""
