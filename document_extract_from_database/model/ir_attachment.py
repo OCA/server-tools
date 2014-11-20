@@ -19,29 +19,23 @@
 #
 ###############################################################################
 
-import base64
-
 from openerp.osv.orm import Model
 
 
 class ir_attachment(Model):
     _inherit = 'ir.attachment'
 
-    def _write_again(self, cr, uid, id, context=None):
-        current_data = self.browse(cr, uid, id, context=context)
-        location = self.pool['ir.config_parameter'].\
-            get_param(cr, uid, 'ir_attachment.location')
-        if current_data.db_datas and location:
-            vals = {
-                'datas': base64.encodestring(current_data.db_datas),
-                'db_datas': False,
-            }
-            self.write(cr, uid, id, vals, context=context)
-        return True
-
     def write_again(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        for document_id in ids:
-            self._write_again(cr, uid, document_id, context=context)
+        location = self.pool['ir.config_parameter'].get_param(
+            cr, uid, 'ir_attachment.location')
+        if not location:
+            return True
+        for ia in self.browse(cr, uid, ids, context=context):
+            if ia.db_datas:
+                super(ir_attachment, self).write(cr, uid, ia.id, {
+                    'datas': ia.datas,
+                    'db_datas': False,
+                }, context=context)
         return True
