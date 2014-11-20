@@ -19,4 +19,5 @@
 #
 ##############################################################################
 
-import users_ldap_groups
+from . import users_ldap_groups
+from . import users_ldap_groups_operators
