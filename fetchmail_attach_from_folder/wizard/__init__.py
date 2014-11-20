@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-import attach_mail_manually
+from . import attach_mail_manually

@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from base import base
+from .base import base
 
 
 class openerp_standard(base):

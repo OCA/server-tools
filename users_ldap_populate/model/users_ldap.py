@@ -50,7 +50,7 @@ class CompanyLDAP(orm.Model):
             if not conf['create_user']:
                 continue
             attribute_match = re.search(
-                '([a-zA-Z_]+)=\%s', conf['ldap_filter'])
+                r'([a-zA-Z_]+)=\%s', conf['ldap_filter'])
             if attribute_match:
                 login_attr = attribute_match.group(1)
             else:
