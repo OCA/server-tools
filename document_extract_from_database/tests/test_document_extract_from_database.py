@@ -64,8 +64,8 @@ class TestDocumentExtractFromDatabase(TransactionCase):
         data_after = self.ia_obj.browse(cr, uid, ia_id).datas
 
         # Test if datas have not changed
-        # FIXME: After rewriting document, there is \n in 'datas' field
-        # The file is still readable.
+        # Note: Replace \n char by nothing, because datas field are different
+        # when ir_attachement is in Database or in File System
         ia = self.ia_obj.browse(cr, uid, ia_id)
         self.assertEqual(
             data_before, data_after.replace('\n', ''),
