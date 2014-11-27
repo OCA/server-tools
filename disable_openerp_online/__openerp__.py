@@ -28,7 +28,7 @@ This module deactivates all bindings to openerp.com that
 come with the standard code:
 
 * update notifier code is deactivated and the function is overwritten
-* apps and updates menu items in settings are removed
+* apps and updates menu items in settings are hidden inside Tools\Parameters
 * help and account menu items in user menu are removed
 * prevent lookup of OPW for current database uuid and resulting
   'unsupported' warning
@@ -40,15 +40,11 @@ come with the standard code:
     ],
     "data": [
         "views/disable_openerp_online.xml",
-        'data/ir_ui_menu.xml',
+        'views/ir_ui_menu.xml',
         'data/ir_cron.xml',
     ],
     "qweb": [
         'static/src/xml/base.xml',
     ],
-    "auto_install": False,
     "installable": True,
-    "external_dependencies": {
-        'python': [],
-    },
 }
