@@ -20,7 +20,7 @@
 import logging
 from openerp import _, api, exceptions, models, SUPERUSER_ID
 from openerp.tools.safe_eval import safe_eval
-
+from psycopg2 import OperationalError
 
 _logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ class Cron(models.Model):
                 (self.id,),
                 log_exceptions=False)
 
-        except Exception as e:
+        except OperationalError as e:
             # User friendly error if the lock could not be claimed
             if getattr(e, "pgcode", None) == '55P03':
                 raise exceptions.Warning(
