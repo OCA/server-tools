@@ -1,4 +1,4 @@
 import controllers
 import auth_saml
 import res_users
-import token
+import saml_token
