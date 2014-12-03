@@ -18,5 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import test_serialized
-from test_serialized import TestBaseFieldSerialized
+from . import test_serialized
