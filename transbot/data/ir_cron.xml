@@ -12,7 +12,7 @@
             <field name="priority">5</field>
             <field name="doall" eval="False"/>
             <field name="model">transbot.project</field>
-            <field name="function">check_github_updates</field>
+            <field name="function">check_github_updates_cron</field>
             <field name="args" eval="'(None, )'"/>
         </record>
 
@@ -26,7 +26,7 @@
             <field name="priority">10</field>
             <field name="doall" eval="False"/>
             <field name="model">transbot.project</field>
-            <field name="function">check_transifex_updates</field>
+            <field name="function">check_transifex_updates_cron</field>
             <field name="args" eval="'(None, )'"/>
         </record>
     </data>

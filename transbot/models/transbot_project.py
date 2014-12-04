@@ -163,6 +163,15 @@ class GithubProject(models.Model):
                         gh, gh_repo, gh_branch, branch, trans_files)
                 branch.last_commit_sha = gh_branch.commit.sha
 
+    @api.multi
+    def check_github_updates_cron(self):
+        try:
+            return self.check_github_updates
+        except Exception as e:
+            self.env['transbot.log'].log_message(
+                _("Error executing Github update.\nDetails: %s" % e.message),
+                log_type='error')
+
     def _upload_templates_transifex(
             self, gh, gh_repo, gh_branch, branch, pot_files):
         transbot_settings = self.env['transbot.config.settings']
@@ -427,6 +436,15 @@ class GithubProject(models.Model):
                                         'branch': branch.id})
                 # Force an update of last commit of the branch
                 branch.last_commit_sha = gh_branch.commit.sha
+
+    @api.multi
+    def check_transifex_updates_cron(self):
+        try:
+            return self.check_transifex_updates
+        except Exception as e:
+            self.env['transbot.log'].log_message(
+                _("Error executing Transifex update.\nDetails: %s" %
+                  e.message), log_type='error')
 
     def _add_or_replace_github_translation(
             self, gh_repo, gh_branch, project_slug, resource_slug, lang_code,
