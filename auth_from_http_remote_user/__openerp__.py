@@ -40,8 +40,8 @@ Use case.
 ---------
 
 The module allows integration with external security systems [#]_ that can pass
-along authentication of a user via Remote_User HTTP header field. In many cases,
-this is achieved via server like Apache HTTPD or nginx proxying Odoo.
+along authentication of a user via Remote_User HTTP header field. In many
+cases, this is achieved via server like Apache HTTPD or nginx proxying Odoo.
 
 .. important:: When proxying your Odoo server with Apache or nginx, It's
    important to filter out the Remote_User HTTP header field before your

@@ -68,10 +68,10 @@ class test_res_users(common.TransactionCase):
 
     @unittest.skipIf(os.environ.get('TRAVIS'),
                      'When run by travis, tests runs on a database with all '
-                     'required addons from server-tools and their dependencies '
-                     'installed. Even if `auth_from_http_remote_user` does not '
-                     'require the `mail` module, The previous installation of '
-                     'the mail module has created the column '
+                     'required addons from server-tools and their dependencies'
+                     ' installed. Even if `auth_from_http_remote_user` does '
+                     'not require the `mail` module, The previous installation'
+                     ' of the mail module has created the column '
                      '`notification_email_send` as REQUIRED into the table '
                      'res_partner. BTW, it\'s no more possible to copy a '
                      'res_user without an intefirty error')
@@ -81,8 +81,10 @@ class test_res_users(common.TransactionCase):
         res_users_obj = self.registry('res.users')
         vals = {'sso_key': '123'}
         res_users_obj.write(self.cr, self.uid, self.uid, vals)
-        read_vals = res_users_obj.read(self.cr, self.uid, self.uid, ['sso_key'])
+        read_vals = res_users_obj.read(
+            self.cr, self.uid, self.uid, ['sso_key'])
         self.assertDictContainsSubset(vals, read_vals)
         copy = res_users_obj.copy(self.cr, self.uid, self.uid)
-        read_vals = res_users_obj.read(self.cr, self.uid, copy, ['sso_key'])
+        read_vals = res_users_obj.read(
+            self.cr, self.uid, copy, ['sso_key'])
         self.assertFalse(read_vals.get('sso_key'))
