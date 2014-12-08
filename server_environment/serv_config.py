@@ -215,7 +215,7 @@ class ServerConfiguration(models.TransientModel):
         self._arch = etree.fromstring(arch)
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False,  submenu=False):
+                        context=None, toolbar=False, submenu=False):
         """Overwrite the default method to render the custom view."""
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,

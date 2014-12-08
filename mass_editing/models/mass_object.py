@@ -72,30 +72,39 @@ class MassObject(orm.Model):
         for data in self.browse(cr, uid, ids, context=context):
             src_obj = data.model_id.model
             button_name = _('Mass Editing (%s)') % data.name
-            vals['ref_ir_act_window'] = action_obj.create(cr, SUPERUSER_ID, {
-                'name': button_name,
-                'type': 'ir.actions.act_window',
-                'res_model': 'mass.editing.wizard',
-                'src_model': src_obj,
-                'view_type': 'form',
-                'context': "{'mass_editing_object' : %d}" % (data.id),
-                'view_mode': 'form,tree',
-                'target': 'new',
-                'auto_refresh': 1,
-                }, context)
-            vals['ref_ir_value'] = ir_values_obj.create(cr, SUPERUSER_ID, {
-                'name': button_name,
-                'model': src_obj,
-                'key2': 'client_action_multi',
-                'value': (
-                    "ir.actions.act_window,"
-                    + str(vals['ref_ir_act_window'])),
-                'object': True,
-                }, context)
-        self.write(cr, uid, ids, {
-            'ref_ir_act_window': vals.get('ref_ir_act_window', False),
-            'ref_ir_value': vals.get('ref_ir_value', False),
-            }, context)
+            vals['ref_ir_act_window'] = action_obj.create(
+                cr, SUPERUSER_ID,
+                {
+                    'name': button_name,
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'mass.editing.wizard',
+                    'src_model': src_obj,
+                    'view_type': 'form',
+                    'context': "{'mass_editing_object' : %d}" % (data.id),
+                    'view_mode': 'form,tree',
+                    'target': 'new',
+                    'auto_refresh': 1,
+                },
+                context)
+            vals['ref_ir_value'] = ir_values_obj.create(
+                cr, SUPERUSER_ID,
+                {
+                    'name': button_name,
+                    'model': src_obj,
+                    'key2': 'client_action_multi',
+                    'value': (
+                        "ir.actions.act_window,"
+                        + str(vals['ref_ir_act_window'])),
+                    'object': True,
+                },
+                context)
+        self.write(
+            cr, uid, ids,
+            {
+                'ref_ir_act_window': vals.get('ref_ir_act_window', False),
+                'ref_ir_value': vals.get('ref_ir_value', False),
+            },
+            context)
         return True
 
     def unlink_action(self, cr, uid, ids, context=None):
