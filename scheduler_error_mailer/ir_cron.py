@@ -22,11 +22,13 @@
 #
 ##############################################################################
 
+from openerp import SUPERUSER_ID
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import logging
 
-logger = logging.getLogger(__name__)
+
+_logger = logging.getLogger(__name__)
 
 
 class ir_cron(orm.Model):
@@ -36,10 +38,12 @@ class ir_cron(orm.Model):
         'email_template': fields.many2one(
             'email.template',
             'Error E-mail Template',
-            help="Select the email template that will be sent when this scheduler fails."),
+            help="Select the email template that will be "
+                 "sent when this scheduler fails."),
     }
 
-    def _handle_callback_exception(self, cr, uid, model_name, method_name, args, job_id, job_exception):
+    def _handle_callback_exception(self, cr, uid, model_name, method_name,
+                                   args, job_id, job_exception):
 
         res = super(ir_cron, self)._handle_callback_exception(
             cr, uid, model_name, method_name, args, job_id, job_exception)
@@ -52,19 +56,20 @@ class ir_cron(orm.Model):
             context = {
                 'job_exception': job_exception,
                 'dbname': cr.dbname,
-                }
+            }
 
-            logger.debug("Sending scheduler error email with context=%s" % context)
+            _logger.debug("Sending scheduler error email with context=%s",
+                          context)
+
             self.pool['email.template'].send_mail(
-                cr, uid, my_cron.email_template.id, my_cron.id,
+                cr, SUPERUSER_ID, my_cron.email_template.id, my_cron.id,
                 force_send=True, context=context)
 
         return res
 
-
-class res_users(orm.Model):
-    _inherit = 'res.users'
-
-    def test_scheduler_failure(self, cr, uid, context=None):
+    def _test_scheduler_failure(self, cr, uid, context=None):
         """This function is used to test and debug this module"""
-        raise orm.except_orm(_('Error :'), _("Task failure with UID = %d." % uid))
+
+        raise orm.except_orm(
+            _('Error :'),
+            _("Task failure with UID = %d.") % uid)
