@@ -35,11 +35,12 @@ class CompanyLDAP(orm.Model):
         'mail_attribute': fields.char(
             'E-mail attribute', size=64,
             help="LDAP attribute to use to retrieve em-mail address."),
-        }
+    }
+
     _defaults = {
         'name_attribute': 'cn',
         'mail_attribute': 'mail',
-        }
+    }
 
     def get_ldap_dicts(self, cr, ids=None):
         """
@@ -65,7 +66,7 @@ class CompanyLDAP(orm.Model):
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
-            ]
+        ]
         for value_key, conf_name in mapping:
             try:
                 if conf[conf_name]:
