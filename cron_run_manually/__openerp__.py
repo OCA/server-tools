@@ -28,7 +28,7 @@ This module adds a button to the cron scheduled task form in OpenERP
 that allows the administrator to run the job immediately, independently
 of the scheduler.
 """,
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     'data': ['view/ir_cron.xml'],
     "test": [
         "tests/correct_uid.yml",
