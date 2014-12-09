@@ -21,9 +21,9 @@
 ##############################################################################
 
 {
-    'name': 'Password Secure',
-    'version': '2.0',
-    'category': 'GRAP - Custom',
+    'name': 'Authentification - Generate Password',
+    'version': '1.0',
+    'category': 'Tools',
     'description': """
 Password Secure
 ===============
@@ -48,7 +48,7 @@ Settings:
 
 Copyright, Author and Licence :
 -------------------------------
-    * Copyright : 2014, Groupement Régional Alimentaire de Proximité;
+    * Copyright : 2014, Groupement Regional Alimentaire de Proximite;
     * Author : Sylvain LE GAL (https://twitter.com/legalsylvain);
     * Licence : AGPL-3 (http://www.gnu.org/licenses/)
     """,
