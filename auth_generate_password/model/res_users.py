@@ -34,6 +34,8 @@ class res_users(Model):
     _inherit = 'res.users'
 
     def generate_password(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
         mm_obj = self.pool['mail.mail']
         icp_obj = self.pool['ir.config_parameter']
         imd_obj = self.pool['ir.model.data']
@@ -42,6 +44,9 @@ class res_users(Model):
             cr, uid, 'auth_generate_password.password_size'))
         password_chars = eval(icp_obj.get_param(
             cr, uid, 'auth_generate_password.password_chars'))
+        et = imd_obj.get_object(
+            cr, uid, 'auth_generate_password', 'generate_password_template')
+
         for ru in self.browse(cr, uid, ids, context=context):
             if not ru.email:
                 raise osv.except_osv(
@@ -53,9 +58,8 @@ class res_users(Model):
             self._set_new_password(
                 cr, uid, ru.id, None, password, None, context=None)
             # Send Mail
-            et = imd_obj.get_object(
-                cr, uid, 'auth_generate_password',
-                'generate_password_template')
+            context['generated_password'] = password
             mail_id = et_obj.send_mail(
                 cr, uid, et.id, ru.id, True, context=context)
+            del context['generated_password']
         return {}
