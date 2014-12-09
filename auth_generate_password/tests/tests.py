@@ -20,6 +20,7 @@
 #
 ##############################################################################
 
+# import threading
 from openerp.tests.common import TransactionCase
 
 
@@ -44,6 +45,10 @@ class TestAuthGeneratePassword(TransactionCase):
         cr, uid = self.cr, self.uid
         ru_ids = [self.demo_ru_id, self.extra_ru_id]
         mm_qty_before = len(self.mm_obj.search(cr, uid, []))
+#        threading.currentThread().testing = True
+        self.ims_obj = self.registry('ir.mail_server')
+        ims_ids = self.ims_obj.search(cr, uid, [])
+        self.ims_obj.unlink(cr, uid, ims_ids)
         self.ru_obj.generate_password(cr, uid, ru_ids)
         mm_qty_after = len(self.mm_obj.search(cr, uid, []))
 
