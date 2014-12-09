@@ -31,7 +31,7 @@
 Your OpenERP credentials has been changed:
 <ul>
 <li>Login : ${object.login}</li>
-<li>New Password : ${object.password}</li>
+<li>New Password : ${ctx.get('generated_password')}</li>
 </ul>
 Please,
 <ul>
