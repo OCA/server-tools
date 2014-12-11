@@ -52,6 +52,7 @@ class CleanupPurgeLineModel(orm.TransientModel):
         attachment_pool = self.pool['ir.attachment']
         constraint_pool = self.pool['ir.model.constraint']
         fields_pool = self.pool['ir.model.fields']
+        relation_pool = self.pool['ir.model.relation']
 
         local_context = (context or {}).copy()
         local_context.update({
@@ -86,8 +87,15 @@ class CleanupPurgeLineModel(orm.TransientModel):
                         # cannot be instantiated
                         fields_pool.unlink(cr, uid, [relation],
                                            context=local_context)
+                    except KeyError:
+                        pass
                     except AttributeError:
                         pass
+                relation_ids = relation_pool.search(
+                    cr, uid, [('model', '=', line.name)], context=context)
+                for relation in relation_ids:
+                    relation_pool.unlink(cr, uid, [relation],
+                                         context=local_context)
                 model_pool.unlink(cr, uid, [row[0]], context=local_context)
                 line.write({'purged': True})
                 cr.commit()
