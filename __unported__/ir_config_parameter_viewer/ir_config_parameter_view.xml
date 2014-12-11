@@ -1,0 +1,36 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_config_list">
+            <field name="name">ir.config_parameter.list</field>
+            <field name="model">ir.config_parameter</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <tree string="Technical configuration parameters">
+                    <field name="key" select="1"/>
+                    <field name="value" select="1" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_config_form">
+            <field name="name">ir.config_parameter.form</field>
+            <field name="model">ir.config_parameter</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <form string="Technical configuration parameters">
+                    <field name="key" select="1"/>
+                    <field name="value" select="1" />
+                </form>
+            </field>
+        </record>
+        <record id="view_config_action" model="ir.actions.act_window">
+            <field name="name">Technical config parameters</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.config_parameter</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_config_list"/>
+        </record>
+
+        <menuitem name="Technical config parameters" id="technical_config_parameters"
+            parent="base.next_id_15" action="view_config_action" groups="base.group_extended"/>
+    </data>
+</openerp>

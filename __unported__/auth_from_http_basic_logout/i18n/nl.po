@@ -1,0 +1,27 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-18 16:31+0000\n"
+"PO-Revision-Date: 2014-04-03 05:38+0000\n"
+"Last-Translator: Holger Brunn (Therp) <hbrunn@therp.nl>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-05-24 06:46+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
+
+#. module: auth_from_http_basic_logout
+#. openerp-web
+#: code:addons/auth_from_http_basic_logout/static/src/js/auth_from_http_basic_logout.js:37
+#, python-format
+msgid ""
+"<p style=\"background: white\">You have been logged out successfully. <a "
+"href=\"#\">Click here to log in again.</a></p>"
+msgstr ""
+"<p style=\"background: white\">U bent afgemeld. <a href=\"#\">Klik hier om "
+"weer in te loggen.</a></p>"

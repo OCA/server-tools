@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="email_template_form" model="ir.ui.view">
+            <field name="name">email.template.form</field>
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <field name="name" position="after">
+                        <field name="is_template_template" invisible="1" />
+                        <field name="email_template_id" domain="[('email_template_id', '=', False), ('model_id', '=', %(email_template.model_email_template)s)]"
+                            attrs="{'readonly': [('is_template_template','=',True), ('email_template_id','=',False)]}"
+                            context="{'default_model_id': %(email_template.model_email_template)s}"
+                            />
+
+                    </field>
+                    <field name="model_id" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': [('is_template_template','=',True)]}
+                        </attribute>
+                    </field>
+                    <field name="email_from" position="attributes">
+                        <attribute name="required">0</attribute>
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="email_to" position="attributes">
+                        <attribute name="required">0</attribute>
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="email_cc" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="email_recipients" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="reply_to" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="lang" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="user_signature" position="attributes">
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                    <field name="subject" position="attributes">
+                        <attribute name="required">0</attribute>
+                        <attribute name="attrs">
+                            {'readonly': ['|',('is_template_template','=',True),('model_id', '=', %(email_template.model_email_template)s)]}
+                        </attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

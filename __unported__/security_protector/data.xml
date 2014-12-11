@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate="1">
+        <record id="security_protector_config_param" model="ir.config_parameter">
+            <field name="key">protect_security?</field>
+            <field name="value">1</field>
+        </record>
+    </data>
+</openerp>
