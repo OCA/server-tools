@@ -61,6 +61,6 @@ Copyright, Author and Licence :
     'images': [],
     'post_load': '',
     'application': False,
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
