@@ -110,9 +110,9 @@ class CleanupPurgeWizardTable(orm.TransientModel):
             known_tables += [
                 column._sql_names(model_pool)[0]
                 for column in model_pool._columns.values()
-                if column._type == 'many2many'
-                # unstored function fields of type m2m don't have _rel
-                and hasattr(column, '_rel')
+                if (column._type == 'many2many' and
+                    hasattr(column, '_rel'))  # unstored function fields of
+                                              # type m2m don't have _rel
                 ]
 
         # Cannot pass table names as a psycopg argument
