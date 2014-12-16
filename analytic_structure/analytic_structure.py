@@ -269,7 +269,7 @@ class analytic_structure(osv.Model):
                 match.set('required', 'false')
                 match.set('modifiers', json.dumps(modifiers))
 
-        # Look for a div with the 'oe_analytic' class and the right prefix.
+        # Look for any element with the 'oe_analytic' class and the right prefix.
         cls_cond = 'contains(@class, "oe_analytic")'
         if prefix == 'a':
             pre_cond = '(@prefix="a" or not(@prefix))'
@@ -280,14 +280,14 @@ class analytic_structure(osv.Model):
         else:
             suf_cond = '@suffix="{suf}"'.format(suf=suffix)
         condition = '{0} and {1} and {2}'.format(cls_cond, pre_cond, suf_cond)
-        parent_matches = doc.xpath('//div[{cond}]/..'.format(cond=condition))
+        parent_matches = doc.xpath('//*[{cond}]/..'.format(cond=condition))
 
         if parent_matches:
 
             parent = parent_matches[0]
-            div = parent.xpath("//div[{cond}]".format(cond=condition))[0]
+            elem = parent.xpath("//*[{cond}]".format(cond=condition))[0]
             for index, child in enumerate(parent):
-                if child == div:
+                if child == elem:
                     break
             next_children = parent[index + 1:]
             del parent[index:]
@@ -295,22 +295,22 @@ class analytic_structure(osv.Model):
             # Get all fields that are in the structure but not in the view.
             sorted_fields = found_fields.items()
             sorted_fields.sort(key=lambda i: int(i[0]))
-            div_fields = [
+            elem_fields = [
                 self.format_field_name(ordering, prefix, suffix)
                 for ordering, found in sorted_fields if not found
             ]
 
             # First, we have to load the definitions for those fields.
-            if div_fields:
-                div_fields_def = self.pool.get(view['model']).fields_get(
-                    cr, uid, div_fields, context=context
+            if elem_fields:
+                elem_fields_def = self.pool.get(view['model']).fields_get(
+                    cr, uid, elem_fields, context=context
                 )
-                view['fields'].update(div_fields_def)
+                view['fields'].update(elem_fields_def)
 
                 # Now we can insert the fields in the view's architecture.
-                for field in div_fields:
+                for field in elem_fields:
                     attrs = {'name': field, 'modifiers': '{}'}
-                    for attr, value in div.attrib.iteritems():
+                    for attr, value in elem.attrib.iteritems():
                         if attr in ['class', 'prefix']:
                             continue
                         attrs[attr] = value
