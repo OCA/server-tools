@@ -39,6 +39,12 @@ Optional Dependencies
 
 * bzrlib (for revno reporting on module repositories from LP)
 
+Notes
+-----
+
+Module may slow down spawning of workers (~1s) due to the access of openerp
+configuration
+
 Contributors
 ------------
 * Sandy Carter (sandy.carter@savoirfairelinux.com)
