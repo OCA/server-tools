@@ -12,11 +12,6 @@ env:
 virtualenv:
   system_site_packages: true
 
-env:
-  - VERSION="8.0" LINT_CHECK="1"
- - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
- - VERSION="8.0" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
-
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
