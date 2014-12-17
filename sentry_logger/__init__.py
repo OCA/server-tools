@@ -26,39 +26,39 @@ import cgitb
 from openerp.tools import config
 from openerp.addons.web.controllers.main import Session
 
-from .odoo_sentry_client import OdooClient
-from .odoo_sentry_handler import OdooSentryHandler
+try:
+    from .odoo_sentry_client import OdooClient
+    from .odoo_sentry_handler import OdooSentryHandler
 
+    root_logger = logging.root
 
-root_logger = logging.root
-
-processors = (
-    'raven.processors.SanitizePasswordsProcessor',
-    'raven_sanitize_openerp.OpenerpPasswordsProcessor'
-)
-if config.get(u'sentry_dsn'):
-    cgitb.enable()
-    # Get DSN info from config file or ~/.openerp_serverrc (recommended)
-    dsn = config.get('sentry_dsn')
-    # Create Client
-    client = OdooClient(
-        dsn=dsn,
-        processors=processors,
+    processors = (
+        'raven.processors.SanitizePasswordsProcessor',
+        'raven_sanitize_openerp.OpenerpPasswordsProcessor'
     )
-    handler = OdooSentryHandler(client, level=logging.ERROR)
-    root_logger.addHandler(handler)
-else:
-    root_logger.warn(u"Sentry DSN not defined in config file")
-    client = None
+    if config.get(u'sentry_dsn'):
+        cgitb.enable()
+        # Get DSN info from config file or ~/.openerp_serverrc (recommended)
+        dsn = config.get('sentry_dsn')
+        # Create Client
+        client = OdooClient(
+            dsn=dsn,
+            processors=processors,
+        )
+        handler = OdooSentryHandler(client, level=logging.ERROR)
+        root_logger.addHandler(handler)
+    else:
+        root_logger.warn(u"Sentry DSN not defined in config file")
+        client = None
 
+    # Inject sentry_activated to session to display error message or not
+    old_session_info = Session.session_info
 
-# Inject sentry_activated to session to display error message or not
-old_session_info = Session.session_info
+    def session_info(self, req):
+        res = old_session_info(self, req)
+        res['sentry_activated'] = bool(client)
+        return res
 
-
-def session_info(self, req):
-    res = old_session_info(self, req)
-    res['sentry_activated'] = bool(client)
-    return res
-
-Session.session_info = session_info
+    Session.session_info = session_info
+except ImportError:
+    pass
