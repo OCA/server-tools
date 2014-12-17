@@ -26,6 +26,8 @@ import cgitb
 from openerp.tools import config
 from openerp.addons.web.controllers.main import Session
 
+_DEFAULT_LOGGING_LEVEL = logging.ERROR
+
 try:
     from .odoo_sentry_client import OdooClient
     from .odoo_sentry_handler import OdooSentryHandler
@@ -40,12 +42,17 @@ try:
         cgitb.enable()
         # Get DSN info from config file or ~/.openerp_serverrc (recommended)
         dsn = config.get('sentry_dsn')
+        level = config.get('sentry_logging_level')
+        if not level:
+            level = _DEFAULT_LOGGING_LEVEL
+        else:
+            level = eval(level)
         # Create Client
         client = OdooClient(
             dsn=dsn,
             processors=processors,
         )
-        handler = OdooSentryHandler(client, level=logging.ERROR)
+        handler = OdooSentryHandler(client, level=level)
         root_logger.addHandler(handler)
     else:
         root_logger.warn(u"Sentry DSN not defined in config file")
