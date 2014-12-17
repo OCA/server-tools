@@ -27,7 +27,7 @@ class ProductTemplate(models.Model):
     manufacturer = fields.Many2one('res.partner', 'Manufacturer')
     manufacturer_pname = fields.Char('Manufacturer Product Name')
     manufacturer_pref = fields.Char('Manufacturer Product Code')
-    attribute_ids = fields.One2many('product.manufacturer.attribute',
+    manufacturer_attribute_ids = fields.One2many('product.manufacturer.attribute',
                                     'product_id', 'Attributes')
 
 
@@ -37,5 +37,5 @@ class ProductAttribute(models.Model):
 
     name = fields.Char('Attribute', required=True)
     value = fields.Char('Value')
-    product_id = fields.Many2one('product.product', 'Product',
+    product_id = fields.Many2one('product.template', 'Product',
                                  ondelete='cascade')
