@@ -31,7 +31,7 @@ Integration with Sentry Error reporting engine.
 
 Settings:
 ---------
-You have to add extra parametesr in your odoo config file (~/.openerp_serverrc)
+You have to add extra parameters in your odoo config file (~/.openerp_serverrc)
     * mandatory parameters:
         * Insert sentry DSN with value:
           sentry_dsn = sync+<Your Sentry DSN>
