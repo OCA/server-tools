@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm, osv, osv
+from openerp.osv import fields, orm, osv
 
 
 class BaseRecursiveModel(orm.AbstractModel):
@@ -29,8 +29,10 @@ class BaseRecursiveModel(orm.AbstractModel):
     """
 
     def name_get(self, cr, uid, ids, context=None):
-        # Return the categories' display name,
-        # including their direct parent by default.
+        """
+        Return the categories' display name,
+        including their direct parent by default.
+        """
         if context is None:
             context = {}
         if context.get('category_display') == 'short':
@@ -57,11 +59,13 @@ class BaseRecursiveModel(orm.AbstractModel):
             self, cr, uid, name, args=None, operator='ilike',
             context=None, limit=100
     ):
-        # Search all category which contain name
-        # in their own name or in their parents
-        if not args:
+        """
+        Search all category which contain name
+        in their own name or in their parents
+        """
+        if args is None:
             args = []
-        if not context:
+        if context is None:
             context = {}
         if name:
             name = name.split(' / ')[-1]
@@ -89,7 +93,7 @@ class BaseRecursiveModel(orm.AbstractModel):
     _constraints = [
         (
             osv.osv._check_recursion,
-            'Error ! You can not create recursive categories.', ['parent_id']
+            'Error! You can not create recursive categories.', ['parent_id']
         )
     ]
     _parent_name = "parent_id"

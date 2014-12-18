@@ -45,7 +45,7 @@ msgstr "Erstellt am"
 
 #. module: base_recursive_model
 #: constraint:base.recursive.model:0
-msgid "Error ! You can not create recursive categories."
+msgid "Error! You can not create recursive categories."
 msgstr "Fehler? Du kannst keine rekursiven Kategorien erzeugen"
 
 #. module: base_recursive_model

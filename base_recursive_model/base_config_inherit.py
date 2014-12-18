@@ -44,22 +44,29 @@ class BaseConfigInheritModel(orm.AbstractModel):
         ),
     }
 
-    def _prepare_config(self, cr, uid, id, record, vals={}, context=None):
-        # This function can be overridden by inheriting model
-        # to specify the field contains in the configuration
-        res = {}
-        for key, value in vals.iteritems():
-            res[key] = value
-        return res
+    def _prepare_config(self, cr, uid, id, record, vals=None, context=None):
+        """
+        This function can be overridden by inheriting model
+        to specify the field contains in the configuration
+        """
+
+        if vals is None:
+            vals = {}
+
+        return vals
 
     def _get_external_config(self, cr, uid, record, context=None):
-        # This function can be overridden in inheriting model
-        # to specify how the configuration can be recovered from other models
+        """
+        This function can be overridden in inheriting model
+        to specify how the configuration can be recovered from other models
+        """
         return {}
 
     def _get_child_ids(self, cr, uid, ids, context=None):
-        # This function can be overriden in inheriting model
-        # to specify how the children are found
+        """
+        This function can be overriden in inheriting model
+        to specify how the children are found
+        """
         return self.search(
             cr, uid,
             [('parent_id', 'in', ids)], context=context
@@ -68,17 +75,20 @@ class BaseConfigInheritModel(orm.AbstractModel):
     def _update_stored_config_external_children(
             self, cr, uid, ids, context=None
     ):
-        # This function can be overriden in inheriting model
-        # to trigger the compute of children models
+        """
+        This function can be overriden in inheriting model
+        to trigger the compute of children models
+        """
         return True
 
-    def _update_stored_config(self, cr, uid, ids, context=None):
-        # When called, this function will purge all stored configuration
-        # and recompute them, by recover it from parent and checking
-        # if the configuration isn't override in the current record.
-        config_obj = self.pool.get(self._base_config_inherit_model)
-        config_del_obj = self.pool.get('base.config.inherit.line.del')
+    def _purge_existing_configuration(self, cr, uid, ids, context=None):
+        """
+        Purge all computed configuration in the given record
+        """
+        config_obj = self.pool[self._base_config_inherit_model]
+        config_del_obj = self.pool['base.config.inherit.line.del']
 
+        # Purge all existing configuration
         config_stored_ids = config_obj.search(
             cr, uid,
             [
@@ -95,61 +105,94 @@ class BaseConfigInheritModel(orm.AbstractModel):
         )
         config_del_obj.unlink(cr, uid, config_del_ids, context=context)
 
+    def _get_parent_configuration(
+            self, cr, uid, record, config_lines, config_line_dels, context=None
+    ):
+
+        config_obj = self.pool[self._base_config_inherit_model]
+        config_del_obj = self.pool['base.config.inherit.line.del']
+
+        # First, get the deleted lines from parent
+        parent_config_del_ids = config_del_obj.search(
+            cr, uid,
+            [
+                ('model', '=', self._name),
+                ('res_id', '=', record.parent_id.id)
+            ],
+            context=context
+        )
+        for config_line_del in config_del_obj.browse(
+                cr, uid, parent_config_del_ids, context=context
+        ):
+            config_line_dels[config_line_del['key']] = {
+                'model': self._name,
+                'res_id': record.id,
+                'key': config_line_del['key']
+            }
+            if config_line_del['key'] in config_lines:
+                del config_lines[config_line_del['key']]
+
+        # Get parent config
+        parent_config_ids = config_obj.search(
+            cr, uid,
+            [
+                ('model', '=', self._name),
+                ('res_id', '=', record.parent_id.id),
+                ('stored', '=', True)
+            ],
+            context=context
+        )
+        for config_line in config_obj.browse(
+            cr, uid, parent_config_ids, context=context
+        ):
+            key = getattr(
+                config_line, self._base_config_inherit_key
+            ).id
+            config_lines[key] = self._prepare_config(
+                cr, uid, record.id, config_line, context=context
+            )
+
+        return config_lines, config_line_dels
+
+    def _update_stored_config(self, cr, uid, ids, context=None):
+        """
+        When called, this function will purge all stored configuration
+        and recompute them, by recover it from parent and checking
+        if the configuration isn't override in the current record.
+        """
+
+        config_obj = self.pool[self._base_config_inherit_model]
+        config_del_obj = self.pool['base.config.inherit.line.del']
+
+        self._purge_existing_configuration(cr, uid, ids, context=context)
+
         for record in self.browse(cr, uid, ids, context=context):
 
             config_lines = {}
             config_line_dels = {}
 
+            # Get configuration from other model, if exist
             for key, config in self._get_external_config(
                 cr, uid, record, context=context
             ).iteritems():
                 config_lines[key] = config
 
+            # Get configuration from parent, if exist
             if 'parent_id' in record and record.parent_id:
-                parent_config_del_ids = config_del_obj.search(
-                    cr, uid,
-                    [
-                        ('model', '=', self._name),
-                        ('res_id', '=', record.parent_id.id)
-                    ],
-                    context=context
-                )
-                for config_line_del in config_del_obj.browse(
-                        cr, uid, parent_config_del_ids, context=context
-                ):
-                    config_line_dels[config_line_del['key']] = {
-                        'model': self._name,
-                        'res_id': record.id,
-                        'key': config_line_del['key']
-                    }
-                    if config_line_del['key'] in config_lines:
-                        del config_lines[key]
 
-                parent_config_ids = config_obj.search(
-                    cr, uid,
-                    [
-                        ('model', '=', self._name),
-                        ('res_id', '=', record.parent_id.id),
-                        ('stored', '=', True)
-                    ],
-                    context=context
-                )
-                for config_line in config_obj.browse(
-                    cr, uid, parent_config_ids, context=context
-                ):
-                    key = getattr(
-                        config_line, self._base_config_inherit_key
-                    ).id
-                    config_lines[key] = self._prepare_config(
-                        cr, uid, record.id, config_line, context=context
+                config_lines, config_line_dels = \
+                    self._get_parent_configuration(
+                        cr, uid, record,
+                        config_lines, config_line_dels, context=context
                     )
 
+            # Modify the configuration for the current object
             for config_line in getattr(record, self._base_config_inherit_o2m):
                 key = getattr(config_line, self._base_config_inherit_key).id
                 if config_line.action == 'add':
                     config_lines[key] = self._prepare_config(
                         cr, uid, record.id, config_line,
-                        vals={}, context=context
+                        vals=None, context=context
                     )
                     if key in config_line_dels:
                         del config_line_dels[key]
@@ -168,6 +211,7 @@ class BaseConfigInheritModel(orm.AbstractModel):
                 config['sequence'], config[self._base_config_inherit_key]
             ))
 
+            # Create the computed configuration
             for config_line in config_lines_list:
                 config_obj.create(cr, uid, config_line, context=context)
 
@@ -176,11 +220,13 @@ class BaseConfigInheritModel(orm.AbstractModel):
                     cr, uid, config_line_del, context=context
                 )
 
+        # Update children
         if 'parent_id' in self._columns:
             child_ids = self._get_child_ids(cr, uid, ids, context=context)
             if child_ids:
                 self._update_stored_config(cr, uid, child_ids, context=context)
 
+        # Update impacted models
         self._update_stored_config_external_children(
             cr, uid, ids, context=context
         )
