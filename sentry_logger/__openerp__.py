@@ -38,7 +38,7 @@ You have to add extra parameters in your odoo config file (~/.openerp_serverrc)
     * optional parameters:
         * Define the level of log sent to sentry:
           sentry_logging_level = logging.WARNING
-          (by default loggin.ERROR)
+          (by default logging.ERROR)
 
 Optional Dependencies
 ---------------------
