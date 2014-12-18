@@ -24,9 +24,6 @@
     'category': 'base',
     'author': 'Yannick Buron',
     'license': 'AGPL-3',
-    'description': """
-
-""",
     'website': 'https://github.com/YannickB/community-management',
     'depends': ['base'],
     'data': ['security/ir.model.access.csv'],
