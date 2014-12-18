@@ -18,5 +18,5 @@
 #
 ##############################################################################
 
-import base_config_inherit
-import base_recursive_model
+from . import base_config_inherit
+from . import base_recursive_model
