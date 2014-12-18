@@ -42,11 +42,10 @@ try:
         cgitb.enable()
         # Get DSN info from config file or ~/.openerp_serverrc (recommended)
         dsn = config.get('sentry_dsn')
-        level = config.get('sentry_logging_level')
-        if not level:
+        try:
+            level = getattr(logging, config.get('sentry_logging_level'))
+        except (AttributeError, TypeError):
             level = _DEFAULT_LOGGING_LEVEL
-        else:
-            level = eval(level)
         # Create Client
         client = OdooClient(
             dsn=dsn,
