@@ -24,7 +24,7 @@
     'category': 'base',
     'author': 'Yannick Buron',
     'license': 'AGPL-3',
-    'website': 'https://github.com/YannickB/community-management',
+    'website': 'https://github.com/OCA/server-tools',
     'depends': ['base'],
     'data': ['security/ir.model.access.csv'],
     'installable': True,
