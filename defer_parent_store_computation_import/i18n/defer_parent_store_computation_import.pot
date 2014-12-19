@@ -1,0 +1,33 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* defer_parent_store_computation_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-19 01:13+0000\n"
+"PO-Revision-Date: 2014-12-19 01:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: defer_parent_store_computation_import
+#: model:ir.model,name:defer_parent_store_computation_import.model_base_import_import
+msgid "base_import.import"
+msgstr ""
+
+#. module: defer_parent_store_computation_import
+#: field:base_import.import,defer_parent_store_computation:0
+msgid "Defer Parent Store Computation"
+msgstr ""
+
+#. module: defer_parent_store_computation_import
+#. openerp-web
+#: code:addons/defer_parent_store_computation_import/static/src/xml/defer_parent_store_computation_import.xml:9
+#, python-format
+msgid "Use deferred parent store computation method"
+msgstr ""

@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<templates>
+
+  <t t-extend="ImportView">
+    <t t-jquery="div.oe_import_box" t-operation="append">
+
+      <input type="checkbox" class="oe_import_use_deferred_store_computation"
+             id="oe_import_use_deferred_store_computation"/>
+      <label for="oe_import_has_header">Use deferred parent store computation method</label>
+
+    </t>
+  </t>
+
+</templates>
