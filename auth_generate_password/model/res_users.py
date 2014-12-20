@@ -25,8 +25,7 @@
 import string # flake8: noqa
 import random
 
-from openerp.osv.orm import Model
-from openerp.osv.osv import except_osv
+from openerp.osv.orm import Model, except_orm
 from openerp.tools.translate import _
 
 
@@ -49,7 +48,7 @@ class res_users(Model):
 
         for ru in self.browse(cr, uid, ids, context=context):
             if not ru.email:
-                raise osv.except_osv(
+                raise except_orm(
                     _("Cannot send email: user has no email address."),
                     user.name)
             # Generate Password
