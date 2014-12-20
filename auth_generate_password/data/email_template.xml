@@ -36,7 +36,7 @@ Your OpenERP credentials has been changed:
 Please,
 <ul>
 <li>remember this password and delete this email;</li>
-<li>Communicate the password to your team, if you are many people to use the same credentials;</li>
+<li>Communicate the password to your team, if there are many people that are using the same credentials;</li>
 </ul>]]>
             </field>
         </record>
