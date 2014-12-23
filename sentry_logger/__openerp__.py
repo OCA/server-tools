@@ -27,12 +27,18 @@
     'description': """
 Sentry
 ======
-
 Integration with Sentry Error reporting engine.
 
-Insert sentry DSN to ~/.openerp_serverrc with value:
-    sentry_dsn = sync+<Your Sentry DSN>
-
+Settings:
+---------
+You have to add extra parameters in your odoo config file (~/.openerp_serverrc)
+    * mandatory parameters:
+        * Insert sentry DSN with value:
+          sentry_dsn = sync+<Your Sentry DSN>
+    * optional parameters:
+        * Define the level of log sent to sentry:
+          sentry_logging_level = WARNING
+          (by default ERROR)
 
 Optional Dependencies
 ---------------------
