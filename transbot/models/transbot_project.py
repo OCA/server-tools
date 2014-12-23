@@ -235,8 +235,8 @@ class GithubProject(models.Model):
         uni = unicodedata.normalize('NFKD',
                                     name).encode('ascii',
                                                  'ignore').decode('ascii')
-        slug = re.sub('[\W_]', ' ', uni).strip().lower()
-        slug = re.sub('[-\s]+', '-', slug)
+        slug = re.sub(r'[\W_]', ' ', uni).strip().lower()
+        slug = re.sub(r'[-\s]+', '-', slug)
         return slug
 
     def _get_hash_for_strings(self, strings):
@@ -262,7 +262,7 @@ class GithubProject(models.Model):
                 'repository_url': gh_repo.html_url,
                 'license': 'permissive_open_source',
                 'auto_join': True,
-                'fill_up_resources': True,
+                # 'fill_up_resources': True,
                 'private': False,
             }
             if organization:
@@ -301,11 +301,19 @@ class GithubProject(models.Model):
                 'priority': 0,
                 'content': file_contents,
             }
-            tx.post('/api/2/project/%s/resources' % project_slug,
-                    json.dumps(resource))
-            self.env['transbot.log'].log_message(
-                _("New resource '%s' created for project '%s' in Transifex.") %
-                (resource_name, project_slug), project=branch.project.id)
+            try:
+                tx.post('/api/2/project/%s/resources' % project_slug,
+                        json.dumps(resource))
+                self.env['transbot.log'].log_message(
+                    _("New resource '%s' created for project '%s' in "
+                      "Transifex.") % (resource_name, project_slug),
+                    project=branch.project.id)
+            except RequestError as e:
+                self.env['transbot.log'].log_message(
+                    _("Error updating resource '%s' of project '%s' in "
+                      "Transifex. Reason: %s") % (resource_slug,
+                                                  project_slug, e),
+                    log_type='error', project=branch.project.id)
         else:
             resource = {'content': file_contents}
             tx.put('/api/2/project/%s/resource/%s/content' %
@@ -449,6 +457,9 @@ class GithubProject(models.Model):
     def _add_or_replace_github_translation(
             self, gh_repo, gh_branch, project_slug, resource_slug, lang_code,
             project):
+        if lang_code == 'en':
+            # We ignore english, because it's already in the template
+            return
         tx = self.env['transbot.config.settings'].get_transifex_connection()
         # Get file
         po_file = tx.get('/api/2/project/%s/resource/%s/translation/%s' %
