@@ -14,7 +14,8 @@ class MaterializedSqlView(SharedSetupTransactionCase):
 
         self.context = {'ascyn': False}
         mdl_id = self.registry('ir.model').search(
-            self.cr, self.uid, [('model', '=', self.demo_matview_mdl._name)])[0]
+            self.cr, self.uid, [
+                ('model', '=', self.demo_matview_mdl._name)])[0]
         values = {'name': u"Model test",
                   'model_id': mdl_id,
                   'sql_definition': self.demo_matview_mdl._sql_view_definition,
@@ -69,23 +70,28 @@ class MaterializedSqlView(SharedSetupTransactionCase):
         self.assertEquals(
             [id],
             self.matview_mdl.search_materialized_sql_view_ids_from_matview_name(
-                self.cr, self.uid, 'test_mat_view_name', context=self.context))
+                self.cr,
+                self.uid,
+                'test_mat_view_name',
+                context=self.context))
 
     def test_launch_refresh_materialized_sql_view(self):
         cr, uid, mat_mdl = self.cr, self.uid, self.matview_mdl
         group_id = self.ref('base.group_user')
         user_count = self.demo_matview_mdl.read(
             cr, uid, group_id, ['user_count'])['user_count']
-        self.users_mdl.create(cr, uid, {'name': u"Test user",
-                                        'login': u"ttt",
-                                        'company_id':
-                                        self.ref('base.main_company'),
-                                        'customer': False,
-                                        'email': 'demo@yourcompany.example.com',
-                                        'street': u"Avenue des Choux",
-                                        'city': u"Namue",
-                                        'zip': '5101',
-                                        'country_id': self.ref('base.be'), },
+        self.users_mdl.create(cr,
+                              uid,
+                              {'name': u"Test user",
+                               'login': u"ttt",
+                               'company_id': self.ref('base.main_company'),
+                                  'customer': False,
+                                  'email': 'demo@yourcompany.example.com',
+                                  'street': u"Avenue des Choux",
+                                  'city': u"Namue",
+                                  'zip': '5101',
+                                  'country_id': self.ref('base.be'),
+                               },
                               context=self.context)
         self.assertEquals(
             self.demo_matview_mdl.read(cr, uid, group_id, ['user_count'],
@@ -109,17 +115,18 @@ class MaterializedSqlView(SharedSetupTransactionCase):
 
         user_count = self.demo_matview_mdl.read(
             cr, uid, group_id, ['user_count'])['user_count']
-        self.users_mdl.create(cr, uid, {'name': u"Test user2",
-                                        'login': u"test2",
-                                        'company_id':
-                                        self.ref('base.main_company'),
-                                        'customer': False,
-                                        'email': 'demo@yourcompany.example.com',
-                                        'street': u"Avenue des Choux",
-                                        'city': u"Namue",
-                                        'zip': '5101',
-                                        'country_id':
-                                        self.ref('base.be'), },
+        self.users_mdl.create(cr,
+                              uid,
+                              {'name': u"Test user2",
+                               'login': u"test2",
+                               'company_id': self.ref('base.main_company'),
+                                  'customer': False,
+                                  'email': 'demo@yourcompany.example.com',
+                                  'street': u"Avenue des Choux",
+                                  'city': u"Namue",
+                                  'zip': '5101',
+                                  'country_id': self.ref('base.be'),
+                               },
                               context=self.context)
         self.assertEquals(
             self.demo_matview_mdl.read(cr, uid, group_id, ['user_count'],

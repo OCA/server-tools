@@ -125,19 +125,22 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
             # As far matview_mdl is refered by its view name, to get one or more
             # instance is technicly the same.
             id = ids[0]
-            rec = matview_mdl.read(cr, uid, id, ['pg_version', 'sql_definition',
-                                                 'view_name', 'state'],
-                                   context=context)
+            rec = matview_mdl.read(
+                cr, uid, id, [
+                    'pg_version', 'sql_definition', 'view_name', 'state'],
+                context=context)
             pg_version = context.get(
                 'force_pg_version', cr._cnx.server_version)
             if(rec['pg_version'] != pg_version or
                rec['sql_definition'] != self._sql_view_definition or
                rec['view_name'] != self._sql_view_name or
                rec['state'] in ['nonexistent', 'aborted']):
-                self.drop_materialized_view_if_exist(cr, uid, rec['pg_version'],
-                                                     view_name=rec[
-                                                         'view_name'],
-                                                     context=context)
+                self.drop_materialized_view_if_exist(
+                    cr,
+                    uid,
+                    rec['pg_version'],
+                    view_name=rec['view_name'],
+                    context=context)
             else:
                 return []
         return self.create_materialized_view(cr, uid, context=context)
@@ -288,10 +291,12 @@ class PGNoMaterializedViewSupport(PGMaterializedViewManager):
         cr.execute("DELETE FROM %(mat_view_name)s" %
                    dict(mat_view_name=mat_view_name,
                         ))
-        cr.execute("INSERT INTO %(mat_view_name)s SELECT * FROM %(view_name)s" %
-                   dict(mat_view_name=mat_view_name,
-                        view_name=view_name,
-                        ))
+        cr.execute(
+            "INSERT INTO %(mat_view_name)s SELECT * FROM %(view_name)s" %
+            dict(
+                mat_view_name=mat_view_name,
+                view_name=view_name,
+            ))
 
     def drop_mat_view(self, cr, view_name, mat_view_name):
         cr.execute("DROP TABLE IF EXISTS %s CASCADE" % (mat_view_name))

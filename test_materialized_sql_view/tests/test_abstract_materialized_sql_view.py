@@ -41,16 +41,18 @@ class AbstractMaterializedSqlViewTester(SharedSetupTransactionCase):
             cr, uid, self.group_id, ['user_count'],
             context=self.context)['user_count']
         # add user on group_id
-        self.users_mdl.create(cr, uid, {'name': u"Test user",
-                                        'login': u"ttt",
-                                        'company_id':
-                                        self.ref('base.main_company').id,
-                                        'customer': False,
-                                        'email': 'demo@yourcompany.example.com',
-                                        'street': u"Avenue des Choux",
-                                        'city': u"Namue",
-                                        'zip': '5101',
-                                        'country_id': self.ref('base.be').id, },
+        self.users_mdl.create(cr,
+                              uid,
+                              {'name': u"Test user",
+                               'login': u"ttt",
+                               'company_id': self.ref('base.main_company').id,
+                                  'customer': False,
+                                  'email': 'demo@yourcompany.example.com',
+                                  'street': u"Avenue des Choux",
+                                  'city': u"Namue",
+                                  'zip': '5101',
+                                  'country_id': self.ref('base.be').id,
+                               },
                               context=self.context)
         # The user count havn't increase until we refresh the view
         self.assertEquals(self.demo_matview_mdl.read(
@@ -150,10 +152,9 @@ class AbstractMaterializedSqlViewTester(SharedSetupTransactionCase):
             self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs(
                 cr, SUPERUSER_ID, context=ctxt)
         )
-        self.mat_view_mdl.write_values(cr, uid,
-                                       self.demo_matview_mdl._sql_mat_view_name,
-                                       {'sql_definition': 'SELECT 1'},
-                                       context=ctxt)
+        self.mat_view_mdl.write_values(
+            cr, uid, self.demo_matview_mdl._sql_mat_view_name, {
+                'sql_definition': 'SELECT 1'}, context=ctxt)
         self.assertNotEquals(
             [],
             self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs(
@@ -165,10 +166,9 @@ class AbstractMaterializedSqlViewTester(SharedSetupTransactionCase):
                 cr, SUPERUSER_ID, context=ctxt))
         cr.execute("ALTER VIEW %s RENAME TO test" %
                    self.demo_matview_mdl._sql_view_name)
-        self.mat_view_mdl.write_values(cr, uid,
-                                       self.demo_matview_mdl._sql_mat_view_name,
-                                       {'view_name': 'test'},
-                                       context=ctxt)
+        self.mat_view_mdl.write_values(
+            cr, uid, self.demo_matview_mdl._sql_mat_view_name, {
+                'view_name': 'test'}, context=ctxt)
         self.assertNotEquals(
             [],
             self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs(

@@ -17,23 +17,25 @@ class MaterializedSqlView(osv.Model):
 
     _columns = {
         'name': fields.char('Name', required=True),
-        'model_id': fields.many2one('ir.model', 'Model', required=True,
-                                    delete='cascade', readonly=True),
-        'view_name': fields.char('SQL view name', required=True, readonly=True),
-        'matview_name': fields.char('Materialized SQL View Name', required=True,
-                                    readonly=True),
-        'pg_version': fields.integer('Mat view pg version', required=True,
-                                     readonly=True),
+        'model_id': fields.many2one(
+            'ir.model', 'Model', required=True, delete='cascade',
+            readonly=True),
+        'view_name': fields.char(
+            'SQL view name', required=True, readonly=True),
+        'matview_name': fields.char(
+            'Materialized SQL View Name', required=True, readonly=True),
+        'pg_version': fields.integer(
+            'Mat view pg version', required=True, readonly=True),
         'sql_definition': fields.text('sql', required=True, readonly=True),
-        'last_refresh_start_date': fields.datetime('Last refreshed start date',
-                                                   readonly=True),
-        'last_refresh_end_date': fields.datetime('Last refreshed end date',
-                                                 readonly=True),
-        'last_error_message': fields.text('Last error', readonly=True),
-        'state': fields.selection(MATERIALIZED_SQL_VIEW_STATES, 'State',
-                                  required=True,
-                                  readonly=True)
-    }
+        'last_refresh_start_date': fields.datetime(
+            'Last refreshed start date', readonly=True),
+        'last_refresh_end_date': fields.datetime(
+            'Last refreshed end date', readonly=True),
+        'last_error_message': fields.text(
+            'Last error', readonly=True),
+        'state': fields.selection(
+            MATERIALIZED_SQL_VIEW_STATES, 'State', required=True,
+            readonly=True)}
 
     _defaults = {
         'state': 'nonexistent',
@@ -49,7 +51,12 @@ class MaterializedSqlView(osv.Model):
         else:
             return self.refresh_materialized_view(cr, uid, ids, context)
 
-    def schedul_refresh_materialized_sql_view(self, cr, uid, ids, context=None):
+    def schedul_refresh_materialized_sql_view(
+            self,
+            cr,
+            uid,
+            ids,
+            context=None):
         if not context:
             context = {}
         uid = context.get('delegate_user', uid)
@@ -88,7 +95,10 @@ class MaterializedSqlView(osv.Model):
                 context=context)['model']
             matview_mdl = self.pool.get(model)
             result.append(
-                matview_mdl.refresh_materialized_view(cr, uid, context=context))
+                matview_mdl.refresh_materialized_view(
+                    cr,
+                    uid,
+                    context=context))
             matviews_performed.append(matview['matview_name'])
         return result
 
@@ -143,7 +153,12 @@ class MaterializedSqlView(osv.Model):
             if vals.get('view_name'):
                 values.update({'view_name': vals.get('view_name')})
         values.update({'pg_version': pg_version})
-        return self.write_values(cr, uid, matview_name, values, context=context)
+        return self.write_values(
+            cr,
+            uid,
+            matview_name,
+            values,
+            context=context)
 
     def after_drop_view(self, cr, uid, matview_name, context=None):
         # Do not unlink here, we don't want to use on other record when refresh
