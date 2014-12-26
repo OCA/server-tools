@@ -4,6 +4,7 @@ from openerp.osv import osv, fields
 
 
 class ModelTestUsingSqlMatView(osv.Model):
+
     """This model is only used to test materialized_sql_view module.
        As an example we will calulate the number of res.users per res.groups
     """
@@ -21,9 +22,10 @@ class ModelTestUsingSqlMatView(osv.Model):
         'user_count': fields.integer('Users count')
     }
 
-    _sql_view_definition = """SELECT g.id, g.name, g.id as group_id, count(*) as user_count
-              FROM res_groups g
-                    INNER JOIN res_groups_users_rel rel ON g.id = rel.gid
-                    INNER JOIN res_users u ON rel.uid = u.id
-              GROUP BY g.id, g.name
-           """
+    _sql_view_definition = """
+            SELECT g.id, g.name, g.id as group_id, count(*) as user_count
+            FROM res_groups g
+                INNER JOIN res_groups_users_rel rel ON g.id = rel.gid
+                INNER JOIN res_users u ON rel.uid = u.id
+            GROUP BY g.id, g.name
+        """
