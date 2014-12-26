@@ -54,6 +54,7 @@ class MaterializedSqlView(SharedSetupTransactionCase):
         self.matview_mdl.unlink(self.cr, self.uid, [id], context=self.context)
 
     def test_search_materialized_sql_view_ids_from_matview_name(self):
+        mat_mdl = self.matview_mdl
         users_mdl_id = self.registry('ir.model').search(
             self.cr, self.uid, [('model', '=', 'res.users')],
             context=self.context)[0]
@@ -69,7 +70,7 @@ class MaterializedSqlView(SharedSetupTransactionCase):
         id = self.matview_mdl.create(self.cr, self.uid, values)
         self.assertEquals(
             [id],
-            self.matview_mdl.search_materialized_sql_view_ids_from_matview_name(
+            mat_mdl.search_materialized_sql_view_ids_from_matview_name(
                 self.cr,
                 self.uid,
                 'test_mat_view_name',

@@ -69,8 +69,9 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
             cr, uid, 'before_create_view', pg_version, context=context)
         try:
             pg = PGMaterializedViewManager.getInstance(pg_version)
-            # make sure there is no existing views create uppon the same version
-            # this could be possible if materialized.sql.view entry is deleted
+            # make sure there is no existing views create uppon the same
+            # version this could be possible if materialized.sql.view entry is
+            # deleted.
             # TODO: maybe move it in create_or_upgrade_pg_matview_if_needs and
             # automaticly detect if it's a mat view or a table cf utests
             pg.drop_mat_view(cr, self._sql_view_name, self._sql_mat_view_name)
@@ -122,8 +123,8 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
         ids = matview_mdl.search_materialized_sql_view_ids_from_matview_name(
             cr, uid, self._sql_mat_view_name, context=context)
         if ids:
-            # As far matview_mdl is refered by its view name, to get one or more
-            # instance is technicly the same.
+            # As far matview_mdl is refered by its view name, to get one or
+            # more instance is technicly the same.
             id = ids[0]
             rec = matview_mdl.read(
                 cr, uid, id, [

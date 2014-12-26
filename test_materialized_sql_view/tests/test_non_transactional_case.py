@@ -17,7 +17,7 @@ class NonTransactionalCase(TransactionCase):
             cr.execute("test")
 
         cr, uid = self.cr, self.uid
-        demo.before_refresh_materialized_view = before_refresh_materialized_view
+        demo.before_refresh_materialized_view = before_refresh_materialized_view  # noqa
         self.demo_matview_mdl.refresh_materialized_view(
             cr, uid, context=self.context)
         self.demo_matview_mdl.before_refresh_materialized_view = save_method
