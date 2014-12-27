@@ -12,16 +12,18 @@
                 <notebook position="inside">
                     <page string="Limit">
                         <group colspan="2" col="2">
-                            <separator string="Warning on the Max Number" colspan="4"/>
+                            <separator string="Warning on the Max Number"
+                                       colspan="4"/>
                                 <field name="number_max"/>
-                                <field name="number_max_warn_bfr"/>
-                                <field name="number_warn_active"/>
+                                <field name="number_max_warning_before"/>
+                                <field name="number_warning_active"/>
                         </group>
                         <group colspan="2" col="2">
-                            <separator string="Warning on the DeadLine" colspan="4"/>
-                                <field name="limit_dat"/>
-                                <field name="limit_dat_warn_bfr"/>
-                                <field name="dat_warn_active"/>
+                            <separator string="Warning on the DeadLine"
+                                       colspan="4"/>
+                                <field name="limit_date"/>
+                                <field name="limit_date_warning_before"/>
+                                <field name="date_warning_active"/>
                         </group>
                     </page>
                 </notebook>

@@ -2,7 +2,7 @@
 ###############################################################################
 #                                                                             #
 #  sequence_limit for OpenERP                                                 #
-#   Copyright (C) 2012-14 Akretion Chafique DELLI <chafique.delli@akretion.com>  #
+#  Copyright (C) 2012-14 Akretion Chafique DELLI <chafique.delli@akretion.com>#
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #

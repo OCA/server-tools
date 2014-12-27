@@ -25,12 +25,17 @@
     'version': '0.1',
     'category': 'Generic Modules/Others',
     'licence': 'AGPL-3',
-    'description': """Module for warning pop-up upon reaching the maximum number or deadline of sequence""",
+    'description': """
+Module for warning pop-up upon reaching the maximum number or deadline of sequence.
+Can be used for example by e-tailers, in the case of editing shipping label
+when the transport company attribute a series of revolving number for each type of shipping label.
+Well, the module can be alerted when approaching the last number component series.
+    """,
     'author': 'AKRETION',
     'website': 'http://wwww.akretion.com/',
-    'depends': [
-        'email_template',
-    ],
+    'depends': ['base',
+                'email_template',
+                ],
     'data': [
         'ir_sequence_view.xml',
         'sequence_limit_mail_template.xml',
