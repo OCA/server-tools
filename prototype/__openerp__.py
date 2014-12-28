@@ -29,30 +29,9 @@
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Prototype your module',
-    'description': """
-This module allows the administrator to prototype new features and export
-them as module.
-
-Usage
-=====
-
-Go to Settings > Modules > Prototype, create a new prototype, fill in the
-information and export your module.
-
-Contributors
-============
-
-* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
-* Savoir-faire Linux <support@savoirfairelinux.com>
-
-More information
-----------------
-* Module developed and tested with Odoo version 8.0
-* For questions, please contact our support services
-(support@savoirfairelinux.com)
-""",
     'depends': [
         'base',
+        'admin_technical_features',
     ],
     'external_dependencies': {
         'python': [],
