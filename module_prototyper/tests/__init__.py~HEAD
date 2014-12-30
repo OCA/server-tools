@@ -19,10 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import fields, models
-
-
-class ir_model_fields(models.Model):
-    _inherit = "ir.model.fields"
-
-    notes = fields.Text('Notes')
+from . import (
+    test_prototype_module_export,
+    test_prototype
+)

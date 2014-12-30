@@ -42,8 +42,8 @@ You will get a zip file containing your module ready to be installed and complia
 conventions of the OCA. You can then provide the module to a developer who have to implement 
 things like default values or onchange methods.
 
-Known issues / Roadmap
-======================
+Roadmap
+=======
 
  * `#104`_ - Include controllers.py and templates.xml from scaffold.
  * Attach images to the prototype and export them to be used in the 'images' module manifest.
@@ -52,7 +52,13 @@ Known issues / Roadmap
 
 .. _#104: https://github.com/OCA/server-tools/issues/104
 
-Please report any idea or issue to https://github.com/OCA/server-tools/issues.
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
+`here <https://github.com/OCA/server-tools/issues/new?body=module:%20module_prototyper%0Aversion:%200.3%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -63,7 +69,9 @@ Contributors
 * David Arnold <blaggacao@users.noreply.github.com>
 * Jordi Riera <jordi.riera@savoirfairelinux.com>
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
+* El hadji Dem <elhadji.dem@savoirfairelinux.com>
 * Savoir-faire Linux <support@savoirfairelinux.com>
+* Vincent Vinet <vincent.vinet@savoirfairelinux.com>
 
 Maintainer
 ----------
@@ -77,3 +85,48 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
+
+Versions
+========
+
+v0.1
+----
+
+All the features are not implemented but the minimal is done.
+With this version you can:
+
+    The set up of openerp.py is covered, description, maintainer, website, name, technical name...
+    Views and menus can be set through odoo and gathered in prototype. The files will be automatically generated and add to the data section of the openerp.py. Be aware some advanced feature as domain or context might still missing.
+    Dependencies can be set throught the Dependency page
+    Custom fields can be added. A file by model will be generated with all the fields of the model. The init.py files are updated accordingly. Be aware that some features are not implemented yet, as the domain, the context.
+
+This version should be enought for:
+
+    set up the client module
+    create a new field in a view.
+
+Features that you might expect in next version:
+
+    better generation of fields (many2many fields, domain, context)
+    Generation of data and demo data files.
+    Security files (rules, ir.model.access.csv)
+    openerp's description editing README.rst and index.html
+    module screenshots
+
+v0.2
+----
+
+    Renamed from prototype to module_prototyper as discussed in #108
+    menu in Settings that gather element used to create a prototype (menu views, views, fields)
+
+v0.3
+----
+    Replace ir.ui.model by ir.ui.view in generated xml views
+    Improve pep8 compatibility of generation of models
+
+
+Known bugs
+----------
+
+    icon file extension might be wrong. The extension is hard coded for now. It is planned add Document as dependency to handle it.
+

@@ -7,8 +7,8 @@
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -19,23 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 import StringIO
 import base64
+import os
 import zipfile
 from collections import namedtuple
+
 from openerp import fields, models, api
 
 
-class prototype_module_export(models.TransientModel):
-    _name = "prototype.module.export"
+class PrototypeModuleExport(models.TransientModel):
+    _name = "module_prototyper.module.export"
 
     name = fields.Char('File Name', readonly=True)
-    # It is implemented in order to manage previous and next versions
-    # of odoo
     api_version = fields.Selection(
         [
             ('8.0', '8.0'),
-            # ('7.0', '7.0')
         ],
         'API version',
         required=True,
@@ -63,30 +63,26 @@ class prototype_module_export(models.TransientModel):
         active_model = self._context.get('active_model')
 
         # checking if the wizard was called by a prototype.
-        assert active_model == 'prototype', \
-            '{} has to be called from a "prototype" , not a "{}"'.format(
-                self, active_model
-            )
-
-        # getting the prototype of the wizard
-        prototype = self.env[active_model].browse(
-            self._context.get('active_id')
+        msg = '{} has to be called from a "module_prototyper" , not a "{}"'
+        assert active_model == 'module_prototyper', msg.format(
+            self, active_model
         )
 
-        # setting the jinja environment.
-        # They will help the program to find the template to render the files
-        # with.
-        prototype.set_jinja_env(wizard.api_version)
+        # getting the prototype of the wizard
+        prototypes = self.env[active_model].browse(
+            [self._context.get('active_id')]
+        )
 
-        # generate_files ask the prototype to investigate the input
-        # and to generate the file templates according to it.
-        # zip_files, in another hand, put all the template files into a package
-        # ready to be saved by the user.
-        zip_details = self.zip_files(prototype.generate_files())
+        zip_details = self.zip_files(wizard, prototypes)
+
+        if len(prototypes) == 1:
+            zip_name = prototypes[0].name
+        else:
+            zip_name = "prototyper_export"
 
         wizard.write(
             {
-                'name': '{}.zip'.format(prototype.name),
+                'name': '{}.zip'.format(zip_name),
                 'state': 'get',
                 'data': base64.encodestring(zip_details.stringIO.getvalue())
             }
@@ -94,7 +90,7 @@ class prototype_module_export(models.TransientModel):
 
         return {
             'type': 'ir.actions.act_window',
-            'res_model': 'prototype.module.export',
+            'res_model': 'module_prototyper.module.export',
             'view_mode': 'form',
             'view_type': 'form',
             'res_id': wizard.id,
@@ -103,19 +99,34 @@ class prototype_module_export(models.TransientModel):
         }
 
     @staticmethod
-    def zip_files(file_details):
+    def zip_files(wizard, prototypes):
         """Takes a set of file and zips them.
-        :param file_details: tuple (filename, filecontent)
+        :param file_details: tuple (filename, file_content)
         :return: tuple (zip_file, stringIO)
         """
         zip_details = namedtuple('Zip_details', ['zip_file', 'stringIO'])
         out = StringIO.StringIO()
 
         with zipfile.ZipFile(out, 'w') as target:
-            for filename, filecontent in file_details:
-                info = zipfile.ZipInfo(filename)
-                info.compress_type = zipfile.ZIP_DEFLATED
-                info.external_attr = 2175008768  # specifies mode 0644
-                target.writestr(info, filecontent)
+            for prototype in prototypes:
+                # setting the jinja environment.
+                # They will help the program to find the template to render the
+                # files with.
+                prototype.set_jinja_env(wizard.api_version)
+
+                # generate_files ask the prototype to investigate the input and
+                # to generate the file templates according to it.  zip_files,
+                # in another hand, put all the template files into a package
+                # ready to be saved by the user.
+                file_details = prototype.generate_files()
+                for filename, file_content in file_details:
+                    if isinstance(file_content, unicode):
+                        file_content = file_content.encode('utf-8')
+                    # Prefix all names with module technical name
+                    filename = os.path.join(prototype.name, filename)
+                    info = zipfile.ZipInfo(filename)
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    info.external_attr = 2175008768  # specifies mode 0644
+                    target.writestr(info, file_content)
 
             return zip_details(zip_file=target, stringIO=out)

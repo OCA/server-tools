@@ -42,8 +42,8 @@ You will get a zip file containing your module ready to be installed and complia
 conventions of the OCA. You can then provide the module to a developer who have to implement 
 things like default values or onchange methods.
 
-Roadmap
-=======
+Known issues / Roadmap
+======================
 
  * `#104`_ - Include controllers.py and templates.xml from scaffold.
  * Attach images to the prototype and export them to be used in the 'images' module manifest.
