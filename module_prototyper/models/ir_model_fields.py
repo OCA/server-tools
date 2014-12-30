@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
-#    This module copyright (C) {{ export_year }} {{ author }}
-#    ({{ website }}).
+#    OpenERP, Open Source Management Solution
+#    This module copyright (C) 2010 - 2014 Savoir-faire Linux
+#    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,4 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{% block body %}{% endblock %}
+from openerp import fields, models
+
+
+class ir_model_fields(models.Model):
+    """Addition of text fields to fields."""
+    _inherit = "ir.model.fields"
+
+    notes = fields.Text('Notes to developers.')
+    helper = fields.Text('Helper')

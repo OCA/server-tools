@@ -22,10 +22,10 @@ from jinja2.exceptions import TemplateNotFound
 from openerp.tests import common
 
 
-class test_prototype(common.TransactionCase):
+class TestModulePrototyper(common.TransactionCase):
     def setUp(self):
-        super(test_prototype, self).setUp()
-        self.main_model = self.env['prototype']
+        super(TestModulePrototyper, self).setUp()
+        self.main_model = self.env['module_prototyper']
         self.module_category_model = self.env['ir.module.category']
         self.module_module_model = self.env['ir.module.module']
 

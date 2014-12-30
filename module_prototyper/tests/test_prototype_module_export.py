@@ -27,8 +27,8 @@ import StringIO
 class test_prototype_module_export(common.TransactionCase):
     def setUp(self):
         super(test_prototype_module_export, self).setUp()
-        self.main_model = self.env['prototype.module.export']
-        self.prototype_model = self.env['prototype']
+        self.main_model = self.env['module_prototyper.module.export']
+        self.prototype_model = self.env['module_prototyper']
         self.module_category_model = self.env[
             'ir.module.category'
         ]

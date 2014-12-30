@@ -19,4 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import prototype_module_export
+from . import (
+    module_prototyper,
+    ir_model_fields,
+)

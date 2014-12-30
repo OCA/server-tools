@@ -7,8 +7,8 @@
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,8 +26,8 @@ from collections import namedtuple
 from openerp import fields, models, api
 
 
-class prototype_module_export(models.TransientModel):
-    _name = "prototype.module.export"
+class PrototypeModuleExport(models.TransientModel):
+    _name = "module_prototyper.module.export"
 
     name = fields.Char('File Name', readonly=True)
     # It is implemented in order to manage previous and next versions
@@ -63,10 +63,10 @@ class prototype_module_export(models.TransientModel):
         active_model = self._context.get('active_model')
 
         # checking if the wizard was called by a prototype.
-        assert active_model == 'prototype', \
-            '{} has to be called from a "prototype" , not a "{}"'.format(
-                self, active_model
-            )
+        msg = '{} has to be called from a "module_prototyper" , not a "{}"'
+        assert active_model == 'module_prototyper', msg.format(
+            self, active_model
+        )
 
         # getting the prototype of the wizard
         prototype = self.env[active_model].browse(
@@ -94,7 +94,7 @@ class prototype_module_export(models.TransientModel):
 
         return {
             'type': 'ir.actions.act_window',
-            'res_model': 'prototype.module.export',
+            'res_model': 'module_prototyper.module.export',
             'view_mode': 'form',
             'view_type': 'form',
             'res_id': wizard.id,
@@ -105,17 +105,17 @@ class prototype_module_export(models.TransientModel):
     @staticmethod
     def zip_files(file_details):
         """Takes a set of file and zips them.
-        :param file_details: tuple (filename, filecontent)
+        :param file_details: tuple (filename, file_content)
         :return: tuple (zip_file, stringIO)
         """
         zip_details = namedtuple('Zip_details', ['zip_file', 'stringIO'])
         out = StringIO.StringIO()
 
         with zipfile.ZipFile(out, 'w') as target:
-            for filename, filecontent in file_details:
+            for filename, file_content in file_details:
                 info = zipfile.ZipInfo(filename)
                 info.compress_type = zipfile.ZIP_DEFLATED
                 info.external_attr = 2175008768  # specifies mode 0644
-                target.writestr(info, filecontent)
+                target.writestr(info, file_content)
 
             return zip_details(zip_file=target, stringIO=out)

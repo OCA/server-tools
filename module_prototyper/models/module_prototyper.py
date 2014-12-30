@@ -30,10 +30,18 @@ from jinja2 import Environment, FileSystemLoader
 from openerp import models, api, fields
 
 
-class Prototype(models.Model):
-    _name = "prototype"
-    _description = "Prototype"
+class ModulePrototyper(models.Model):
+    """Module Prototyper gathers different information from all over the
+    database to build a prototype of module.
+    We are calling it a prototype as it will most likely need to be reviewed
+    by a developer to fix glitch that would sneak it during the generation of
+    files but also to add not supported features.
+    """
+    _name = "module_prototyper"
+    _description = "Module Prototyper"
 
+    # In prevision of odoo might support other licences than AGPL in
+    # (near) future.
     licence = fields.Char(
         'Licence',
         default='AGPL-3',
@@ -72,48 +80,48 @@ class Prototype(models.Model):
     )
     # Relations
     dependency_ids = fields.Many2many(
-        'ir.module.module', 'prototype_module_rel',
-        'prototype_id', 'module_id',
+        'ir.module.module', 'module_prototyper_module_rel',
+        'module_prototyper_id', 'module_id',
         'Dependencies'
     )
     data_ids = fields.Many2many(
         'ir.filters',
         'prototype_data_rel',
-        'prototype_id', 'filter_id',
+        'module_prototyper_id', 'filter_id',
         'Data filters',
         help="The records matching the filters will be added as data."
     )
     demo_ids = fields.Many2many(
         'ir.filters',
         'prototype_demo_rel',
-        'prototype_id', 'filter_id',
+        'module_prototyper_id', 'filter_id',
         'Demo filters',
         help="The records matching the filters will be added as demo data."
     )
     field_ids = fields.Many2many(
         'ir.model.fields', 'prototype_fields_rel',
-        'prototype_id', 'field_id', 'Fields'
+        'module_prototyper_id', 'field_id', 'Fields'
     )
     menu_ids = fields.Many2many(
         'ir.ui.menu', 'prototype_menu_rel',
-        'prototype_id', 'menu_id', 'Menu Items'
+        'module_prototyper_id', 'menu_id', 'Menu Items'
     )
     view_ids = fields.Many2many(
         'ir.ui.view', 'prototype_view_rel',
-        'prototype_id', 'view_id', 'Views'
+        'module_prototyper_id', 'view_id', 'Views'
     )
     group_ids = fields.Many2many(
         'res.groups', 'prototype_groups_rel',
-        'prototype_id', 'group_id', 'Groups'
+        'module_prototyper_id', 'group_id', 'Groups'
     )
     right_ids = fields.Many2many(
         'ir.model.access', 'prototype_rights_rel',
-        'prototype_id', 'right_id',
+        'module_prototyper_id', 'right_id',
         'Access Rights'
     )
     rule_ids = fields.Many2many(
         'ir.rule', 'prototype_rule_rel',
-        'prototype_id', 'rule_id', 'Record Rules'
+        'module_prototyper_id', 'rule_id', 'Record Rules'
     )
 
     __data_files = []
@@ -176,12 +184,23 @@ class Prototype(models.Model):
         # must be the last as the other generations might add information
         # to put in the __openerp__: additional dependencies, views files, etc.
         file_details.append(self.generate_module_openerp_file_details())
-        file_details.append(self.save_icon())
+        if self.icon_image:
+            file_details.append(self.save_icon())
 
         return file_details
 
     @api.model
     def save_icon(self):
+        """Save the icon of the prototype as a image.
+        The image is used afterwards as the icon of the exported module.
+
+        :return: FileDetails instance
+        """
+        # TODO: The image is not always a jpg.
+        # 2 ways to do it:
+        #   * find a way to detect image type from the data
+        #   * add document as a dependency.
+        # The second options seems to be better, as Document is a base module.
         return self.File_details(
             os.path.join('static', 'description', 'icon.jpg'),
             base64.b64decode(self.icon_image)
@@ -234,8 +253,8 @@ class Prototype(models.Model):
         # })
 
         files.append(self.generate_models_init_details(relations.keys()))
-        for model, fields in relations.iteritems():
-            files.append(self.generate_model_details(model, fields))
+        for model, custom_fields in relations.iteritems():
+            files.append(self.generate_model_details(model, custom_fields))
 
         return files
 

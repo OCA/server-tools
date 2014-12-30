@@ -3,8 +3,8 @@
     <data>
         <!-- TODO: put here a reminder on what to do at the first edition -->
 
-        {% for view in views %}
-            <record id="{{ view.name|replace('.', '_')}}_view" model="ir.ui.model">
+        {% for view in views -%}
+            <record id="{{ view.name|replace('.', '_')}}_view" model="ir.ui.view">
                 <field name="name">{{ view.name }}.view</field>
                 <field name="model">{{ view.model }}</field>
                 <field name="view_type">{{ view.type }}</field>
@@ -15,7 +15,7 @@
                     Be careful, custom field have a x_ prefix that has to be
                     removed
                     #}
-                    {{ view.arch|replace('<?xml version="1.0"?>', '')|replace('"x_', '"') }}
+                    {{ view.arch|replace('"', "'")|replace("<?xml version='1.0'?>", "")|replace("'x_", "'")|replace("> </field>", "/>") }}
                 </field>
             </record>
         {% endfor %}

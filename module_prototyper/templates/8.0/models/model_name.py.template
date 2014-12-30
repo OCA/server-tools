@@ -6,16 +6,17 @@ from openerp.tools.translate import _
 
 class {{ name }}(models.Model):
     _inherit = "{{ inherit }}"
-    {% if description %}_description = "{{ description }}"{% endif %}
+    {% if description -%}_description = "{{ description }}"{% endif %}
 
     {% for field in fields -%}
+    {% if field.notes -%}# {{ field.notes }}{% endif %}
     {{ field.name }} = fields.{{ field.ttype|capitalize }}(
         string=_("{{ field.field_description }}"),
         required={{ field.required }},
         translate={{ field.translate }},
         readonly={{ field.readonly }},
-        help=_('{{ field.notes }}'),
-    )
-    {% endfor %}
+        {% if field.size -%}size={{ field.size }},{% endif %}
+        {% if field.helper -%}help=_("{{ field.helper }}"),{% endif %}
+    ){% endfor %}
 
 {% endblock %}

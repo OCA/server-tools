@@ -19,28 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Prototype',
-    'version': '0.1',
-    'author': 'Savoir-faire Linux',
-    'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
-    'license': 'AGPL-3',
-    'category': 'Others',
-    'summary': 'Prototype your module',
-    'depends': [
-        'base',
-        'admin_technical_features',
-    ],
-    'external_dependencies': {
-        'python': [],
-    },
-    'data': [
-        'wizard/prototype_module_export_view.xml',
-        'views/prototype_view.xml',
-        'views/ir_model_fields_view.xml',
-        'security/ir.model.access.csv',
-    ],
-    'installable': True,
-}
+from . import module_prototyper_module_export

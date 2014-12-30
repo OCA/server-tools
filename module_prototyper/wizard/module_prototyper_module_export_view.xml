@@ -4,7 +4,7 @@
 
     <record id="view_module_export_wizard" model="ir.ui.view">
       <field name="name">Export Module</field>
-      <field name="model">prototype.module.export</field>
+      <field name="model">module_prototyper.module.export</field>
       <field name="arch" type="xml">
         <form string="Export Module">
           <field name="name" invisible="1"/>
@@ -33,7 +33,7 @@
 
     <record id="button_module_export_action" model="ir.actions.act_window">
       <field name="name">Export Module</field>
-      <field name="res_model">prototype.module.export</field>
+      <field name="res_model">module_prototyper.module.export</field>
       <field name="view_type">form</field>
       <field name="view_id" ref="view_module_export_wizard"/>
       <field name="target">new</field>

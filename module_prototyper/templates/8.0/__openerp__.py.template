@@ -3,7 +3,6 @@
 {
     'name': '{{ prototype.name }}',
     'version': '{{ prototype.version }}',
-    
     'author': '{{ prototype.author }}',
     'maintainer': '{{ prototype.maintainer }}',
     'website': '{{ prototype.website }}',
@@ -17,8 +16,8 @@
     'description': """
 {{ prototype.description }}
 
-* Module exported by the prototype module for version 8.0.
-* If you have any questions, please contact Savoir-faire Linux \
+* Module exported by the Module Prototyper module for version 8.0.
+* If you have any questions, please contact Savoir-faire Linux
 (support@savoirfairelinux.com)
 """,
 
