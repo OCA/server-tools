@@ -35,7 +35,8 @@ class ir_cron(orm.Model):
     _inherit = "ir.cron"
 
     _columns = {
-        'email_template_id': fields.many2one('email.template',
+        'email_template_id': fields.many2one(
+            'email.template',
             'Error E-mail Template',
             oldname="email_template",
             help="Select the email template that will be "
