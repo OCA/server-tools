@@ -1,0 +1,6 @@
+{% extends "header.template" %}
+{% block body %}
+{% for model in models -%}
+from . import {{ model }}
+{% endfor %}
+{% endblock %}
