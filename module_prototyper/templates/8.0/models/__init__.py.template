@@ -1,9 +1,6 @@
 {% extends "header.template" %}
 {% block body %}
-{% for model in models %}
-{% if loop.first %}
-
-{% endif %}
-from . import {{ unprefix(model) }}
+{% for model in models -%}
+from . import {{ model }}
 {% endfor %}
 {% endblock %}

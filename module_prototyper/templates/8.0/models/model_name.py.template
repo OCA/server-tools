@@ -1,68 +1,22 @@
 {% extends "header.template" %}
 {% block body %}
-
 from openerp import models, fields
 from openerp.tools.translate import _
 
 
-class {{ unprefix(name) }}(models.Model):
-    {% if model.state == 'base' and not is_prefixed(model.model) %}
-    _inherit = "{{ unprefix(model.model) }}"
-    {% else %}
-    _name = "{{ unprefix(model.model) }}"
-    {% endif %}
-    {% if description %}
-    _description = "{{ description }}"
-    {% endif %}
+class {{ name }}(models.Model):
+    _inherit = "{{ inherit }}"
+    {% if description -%}_description = "{{ description }}"{% endif %}
 
-    {% for field in fields %}
-        {% for line in wrap(field.notes, replace_whitespace=False) %}
-            {% if line %}
-    # {{line}}
-            {% else %}
-    #
-            {% endif %}
-        {% endfor %}
-    {{ unprefix(field.name) }} = fields.{{ field.ttype|capitalize }}(
+    {% for field in fields -%}
+    {% if field.notes -%}# {{ field.notes }}{% endif %}
+    {{ field.name }} = fields.{{ field.ttype|capitalize }}(
         string=_("{{ field.field_description }}"),
-        {% if field.selection %}
-        selection={{ field.selection }},
-        {% endif %}
-        {% if field.relation %}
-        comodel_name="{{ unprefix(field.relation) }}",
-        {% endif %}
-        {% if field.ttype == 'one2many' %}
-        inverse_name="{{ unprefix(field.relation_field) }}",
-        {% endif %}
-        {% if field.column1 %}
-        column1="{{ field.column1 }}",
-        {% endif %}
-        {% if field.column2 %}
-        column1="{{ field.column2 }}",
-        {% endif %}
         required={{ field.required }},
         translate={{ field.translate }},
         readonly={{ field.readonly }},
-        {% if field.size %}
-        size={{ field.size }},
-        {% endif %}
-        {% if field.ttype in ('many2one', 'many2many', 'one2many') %}
-            {% if field.domain %}
-        domain={{ field.domain }},
-            {% endif %}
-            {% if field.client_context %}
-        context={{ field.client_context }},
-            {% endif %}
-        {% endif %}
-        {% if field.limit %}
-        limit={{ field.limit }},
-        {% endif %}
-        {% if field.ttype == 'many2one' and field.on_delete %}
-        on_delete="{{ field.on_delete }}",
-        {% endif %}
-        {% if field.helper %}
-        help=_("{{ field.helper }}"),
-        {% endif %}
-    )
-    {% endfor %}
+        {% if field.size -%}size={{ field.size }},{% endif %}
+        {% if field.helper -%}help=_("{{ field.helper }}"),{% endif %}
+    ){% endfor %}
+
 {% endblock %}

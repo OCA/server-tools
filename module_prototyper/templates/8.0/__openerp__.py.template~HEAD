@@ -1,17 +1,19 @@
 {% extends "header.template" %}
 {% block body %}
+
 {
-    'name': '{{ prototype.name }}',
+    'name': '{{ prototype.human_name }}',
     'version': '{{ prototype.version }}',
     'author': '{{ prototype.author }}',
     'maintainer': '{{ prototype.maintainer }}',
     'website': '{{ prototype.website }}',
-    'license': '{{ prototype.licence }}',
-    
+    'license': '{{ prototype.license }}',
+
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
+    # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml # noqa
     # for the full list
-    'category': '{{ prototype.category_id.name }}',
+    {# Use with_context({}) to get english category #}
+    'category': '{{ prototype.with_context({}).category_id.name }}',
     'summary': '{{ prototype.summary }}',
     'description': """
 {{ prototype.description }}
@@ -23,33 +25,36 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        {% for dependency in prototype.dependency_ids -%}
+        {% for dependency in prototype.dependency_ids %}
             '{{ dependency.name }}',
-        {% endfor -%}],
+        {% endfor %}
+    ],
     'external_dependencies': {
         'python': [],
     },
-    
+
     # always loaded
     'data': [
-        {% for data_file in data_files -%}
+        {% for data_file in data_files %}
             '{{ data_file }}',
-        {% endfor -%}],
+        {% endfor %}
+    ],
     # only loaded in demonstration mode
     'demo': [
-        {% for demo_file in prototype.demo_ids -%}
-            '{{ demo_file.name }}',
-        {% endfor -%}],
-    
+        {% for demo_file in demo_files %}
+            '{{ demo_file }}',
+        {% endfor %}
+    ],
+
     # used for Javascript Web CLient Testing with QUnit / PhantomJS
-    # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client
+    # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client  # noqa
     'js': [],
     'css': [],
     'qweb': [],
 
     'installable': True,
-    # Install this module automatically if all dependency have been previously and independently installed.
-    # Used for synergetic or glue modules.
+    # Install this module automatically if all dependency have been previously
+    # and independently installed.  Used for synergetic or glue modules.
     'auto_install': {{ prototype.auto_install }},
     'application': {{ prototype.application }},
 }
