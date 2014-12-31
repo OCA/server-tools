@@ -401,8 +401,13 @@ class GithubProject(models.Model):
                 gh_branch = gh_repo.get_branch(branch.name)
                 # Check resources in Transifex
                 project_slug = self.get_project_slug(gh_repo, gh_branch)
-                resources = tx.get('/api/2/project/%s/resources/' %
-                                   project_slug)
+                try:
+                    resources = tx.get('/api/2/project/%s/resources/' %
+                                       project_slug)
+                except NotFoundError:
+                    # There's still no Transifex project for this branch,
+                    # because there isn't any template on GitHub
+                    continue
                 for resource in resources:
                     # Check if exists on Github (there's a module for it)
                     try:
@@ -418,6 +423,8 @@ class GithubProject(models.Model):
                     resource = tx.get(
                         '/api/2/project/%s/resource/%s?details' %
                         (project_slug, resource['slug']))
+                    if not resource['wordcount']:
+                        continue
                     for lang in resource['available_languages']:
                         strings = tx.get(
                             '/api/2/project/%s/resource/%s/translation/%s/'
