@@ -22,6 +22,7 @@
 
 from openerp import models, fields, api, _
 from hashlib import md5
+from datetime import datetime
 import os.path
 import json
 import re
@@ -419,12 +420,10 @@ class GithubProject(models.Model):
                               "Github. Deleted module?"), log_type='error',
                             project=project.id)
                         continue
-                    # Get translations
                     resource = tx.get(
                         '/api/2/project/%s/resource/%s?details' %
                         (project_slug, resource['slug']))
-                    if not resource['wordcount']:
-                        continue
+                    # Get translations
                     for lang in resource['available_languages']:
                         strings = tx.get(
                             '/api/2/project/%s/resource/%s/translation/%s/'
@@ -449,7 +448,8 @@ class GithubProject(models.Model):
                                         'resource': resource['slug'],
                                         'language': lang['code'],
                                         'branch': branch.id})
-                # Force an update of last commit of the branch
+                # Force an update of the last commit of the branch
+                gh_branch = gh_repo.get_branch(branch.name)
                 branch.last_commit_sha = gh_branch.commit.sha
 
     @api.multi
@@ -460,6 +460,28 @@ class GithubProject(models.Model):
             self.env['transbot.log'].log_message(
                 _("Error executing Transifex update.\nDetails: %s" %
                   e.message), log_type='error')
+
+    def check_and_touch_resource(self, branch, resource, last_update):
+        """An attempt of optimizing the query caching last check date.
+        It can be used for now because there's no info on last update on a
+        translation.
+        :param branch:
+        :param resource:
+        :param last_update:
+        :return: True if the resource has been updated
+        """
+        res_model = self.env['transbot.project.branch.resource']
+        res = res_model.search([('branch', '=', branch.id),
+                                ('resource', '=', resource)])
+        if res:
+            result = (fields.Datetime.from_string(res.last_update) <
+                      datetime.strptime(last_update, '%Y-%m-%dT%H:%M:%S.%f'))
+            res.last_update = fields.Datetime.now()
+            return result
+        else:
+            res_model.create({'resource': resource,
+                              'branch': branch.id})
+            return True
 
     def _add_or_replace_github_translation(
             self, gh_repo, gh_branch, project_slug, resource_slug, lang_code,
@@ -486,6 +508,7 @@ class GithubProject(models.Model):
         self.env['transbot.log'].log_message(
             _("Language '%s' for module '%s' updated on Github.") %
             (lang_code, resource_slug), project=project.id)
+        return sha
 
 
 class GithubProjectBranch(models.Model):
@@ -497,6 +520,16 @@ class GithubProjectBranch(models.Model):
                               string="Project", readonly=True, required=True,
                               ondelete="cascade")
     last_commit_sha = fields.Char(string="Last commit SHA", readonly=True)
+
+
+class GithubProjectBranchResource(models.Model):
+    _name = 'transbot.project.branch.resource'
+
+    resource = fields.Char(string="Resource")
+    last_update = fields.Datetime(string="Last updated",
+                                  default=fields.Datetime.now())
+    branch = fields.Many2one(comodel_name='transbot.project.branch',
+                             string="Branch")
 
 
 class GithubProjectBranchTranslation(models.Model):
