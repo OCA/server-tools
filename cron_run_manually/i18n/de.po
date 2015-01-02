@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-14 17:41+0000\n"
-"PO-Revision-Date: 2015-01-02 15:44+0100\n"
+"PO-Revision-Date: 2015-01-02 17:20+0100\n"
 "Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Nur der Administrator darf inaktive Cron-Aufgaben manuell ausführen"
 #: model:_description:0
 #: model:ir.model,name:cron_run_manually.model_ir_cron
 msgid "ir.cron"
-msgstr ""
+msgstr "ir.cron"
 
 #. module: cron_run_manually
 #: code:addons/cron_run_manually/model/ir_cron.py:51
