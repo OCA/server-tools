@@ -42,8 +42,7 @@ msgstr ""
 #: code:addons/auth_admin_passkey/model/res_users.py:66
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr ""
-"<pre>Anwender mit Anmeldename '%s' verwendet das gleiche Kennwort.</pre>"
+msgstr "<pre>Anwender mit Anmeldename '%s' verwendet das gleiche Kennwort.</pre>"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:44
