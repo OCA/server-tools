@@ -1,7 +1,7 @@
 from anybox.testing.openerp import SharedSetupTransactionCase
-from materialized_sql_view.model.abstract_materialized_sql_view import PGMaterializedViewManager  # noqa
-from materialized_sql_view.model.abstract_materialized_sql_view import PGNoMaterializedViewSupport  # noqa
-from materialized_sql_view.model.abstract_materialized_sql_view import PG090300
+from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGMaterializedViewManager  # noqa
+from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGNoMaterializedViewSupport  # noqa
+from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PG090300  # noqa
 import psycopg2
 
 
