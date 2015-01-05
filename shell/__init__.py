@@ -1,1 +1,1 @@
-from cli import shell
+from .cli import shell
