@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-from anybox.testing.openerp import SharedSetupTransactionCase
+from openerp.tests.common import TransactionCase
 from openerp.osv import osv
 from openerp import SUPERUSER_ID
 
 
-class AbstractMaterializedSqlViewTester(SharedSetupTransactionCase):
+class AbstractMaterializedSqlViewTester(TransactionCase):
 
     @classmethod
-    def initTestData(self):
-        super(AbstractMaterializedSqlViewTester, self).initTestData()
-        self.demo_matview_mdl = self.registry('test.materialized.view')
-        self.mat_view_mdl = self.registry('materialized.sql.view')
-        self.users_mdl = self.registry('res.users')
-        self.context = {'ascyn': False}
-        self.ref = self.env.ref
-        self.user_id = self.ref('base.partner_demo').id
-        self.group_id = self.ref('base.group_user').id
+    def setup(cls):
+        super(AbstractMaterializedSqlViewTester, cls).setUp()
+        cls.demo_matview_mdl = cls.registry('test.materialized.view')
+        cls.mat_view_mdl = cls.registry('materialized.sql.view')
+        cls.users_mdl = cls.registry('res.users')
+        cls.context = {'ascyn': False}
+        cls.ref = cls.env.ref
+        cls.user_id = cls.ref('base.partner_demo').id
+        cls.group_id = cls.ref('base.group_user').id
 
     def test_write_forbidden(self):
         self.assertRaises(osv.except_osv,

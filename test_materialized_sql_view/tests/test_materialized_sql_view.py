@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from anybox.testing.openerp import SharedSetupTransactionCase
+from openerp.tests.common import TransactionCase
 from datetime import datetime
 
 
-class MaterializedSqlView(SharedSetupTransactionCase):
+class MaterializedSqlView(TransactionCase):
 
     @classmethod
     def initTestData(self):

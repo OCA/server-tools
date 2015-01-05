@@ -1,4 +1,4 @@
-from anybox.testing.openerp import TransactionCase
+from openerp.tests.common import TransactionCase
 
 
 class NonTransactionalCase(TransactionCase):

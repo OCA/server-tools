@@ -1,11 +1,11 @@
-from anybox.testing.openerp import SharedSetupTransactionCase
+from openerp.tests.common import TransactionCase
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGMaterializedViewManager  # noqa
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGNoMaterializedViewSupport  # noqa
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PG090300  # noqa
 import psycopg2
 
 
-class PGMaterializedViewManagerTester(SharedSetupTransactionCase):
+class PGMaterializedViewManagerTester(TransactionCase):
 
     @classmethod
     def initTestData(cls):
