@@ -1,15 +1,15 @@
-from openerp.tests.common import TransactionCase
+from openerp.tests.common import SingleTransactionCase
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGMaterializedViewManager  # noqa
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGNoMaterializedViewSupport  # noqa
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PG090300  # noqa
 import psycopg2
 
 
-class PGMaterializedViewManagerTester(TransactionCase):
+class PGMaterializedViewManagerTester(SingleTransactionCase):
 
     @classmethod
-    def initTestData(cls):
-        super(PGMaterializedViewManagerTester, cls).initTestData()
+    def setUpClass(cls):
+        super(PGMaterializedViewManagerTester, cls).setUpClass()
         cls.users_mdl = cls.registry('res.users')
         cls.pg_manager = PGMaterializedViewManager
         cls.sql = 'SELECT * FROM res_users'

@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
-from openerp.tests.common import TransactionCase
+from openerp.tests.common import SingleTransactionCase
 from datetime import datetime
+from .assertions import OpenErpAssertions
 
 
-class MaterializedSqlView(TransactionCase):
+class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
 
     @classmethod
-    def initTestData(self):
-        super(MaterializedSqlView, self).initTestData()
-        self.matview_mdl = self.registry('materialized.sql.view')
-        self.demo_matview_mdl = self.registry('test.materialized.view')
-        self.users_mdl = self.registry('res.users')
+    def setUpClass(cls):
+        super(MaterializedSqlView, cls).setUpClass()
+        cls.matview_mdl = cls.registry('materialized.sql.view')
+        cls.demo_matview_mdl = cls.registry('test.materialized.view')
+        cls.users_mdl = cls.registry('res.users')
 
-        self.context = {'ascyn': False}
-        mdl_id = self.registry('ir.model').search(
-            self.cr, self.uid, [
-                ('model', '=', self.demo_matview_mdl._name)])[0]
+        cls.context = {'ascyn': False}
+        mdl_id = cls.registry('ir.model').search(
+            cls.cr, cls.uid, [
+                ('model', '=', cls.demo_matview_mdl._name)])[0]
         values = {'name': u"Model test",
                   'model_id': mdl_id,
-                  'sql_definition': self.demo_matview_mdl._sql_view_definition,
-                  'view_name': self.demo_matview_mdl._sql_view_name,
-                  'matview_name': self.demo_matview_mdl._sql_mat_view_name,
+                  'sql_definition': cls.demo_matview_mdl._sql_view_definition,
+                  'view_name': cls.demo_matview_mdl._sql_view_name,
+                  'matview_name': cls.demo_matview_mdl._sql_mat_view_name,
                   'pg_version': 90205,
                   'state': 'nonexistent'
                   }
-        self.matview_id = self.matview_mdl.create(
-            self.cr, self.uid, values, context=self.context)
+        cls.matview_id = cls.matview_mdl.create(
+            cls.cr, cls.uid, values, context=cls.context)
 
     def test_simple_case(self):
         """Test some simple case, create/read/write/unlink"""
@@ -108,7 +109,6 @@ class MaterializedSqlView(TransactionCase):
             user_count + 1)
         for rec in mat_mdl.read(cr, uid, ids, ['state'], context=self.context):
             self.assertEquals(rec['state'], 'refreshed')
-        # Read user count, there is one more now!
 
     def test_launch_refresh_materialized_sql_view_by_name(self):
         cr, uid, mat_mdl = self.cr, self.uid, self.matview_mdl
