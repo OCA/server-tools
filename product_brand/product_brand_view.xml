@@ -77,7 +77,7 @@
             <field name="inherit_id" ref="product.product_template_form_view" />
             <field name="arch" type="xml">
                 <field name="name" position="after"  >
-                  <field name="product_brand_id" placeholder="Marque"/>
+                  <field name="product_brand_id" placeholder="Brand"/>
                 </field>
               </field>
         </record>
