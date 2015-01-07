@@ -34,10 +34,8 @@ You can now define the following for a product:
     * Manufacturer
     * Manufacturer Product Name
     * Manufacturer Product Code
-    * Product Attributes
     """,
     'data': [
-        'security/ir.model.access.csv',
         'views/product_manufacturer_view.xml'
     ],
     'auto_install': False,
