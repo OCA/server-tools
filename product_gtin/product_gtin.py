@@ -31,7 +31,7 @@ def is_pair(x):
 def check_ean(eancode):
     if not eancode:
         return True
-    if not len(eancode) in [8, 12, 13, 14]:
+    if not len(eancode) in [8, 11, 12, 13, 14]:
         return False
     try:
         int(eancode)
