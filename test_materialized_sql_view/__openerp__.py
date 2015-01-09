@@ -23,10 +23,10 @@
 # =============================================================================
 {
     'name': 'Test Materialized Sql View',
-    'version': '0.0.1',
+    'version': '0.1',
     'category': 'Tools',
     'description': """
-        This  v7.0 odoo module, is used to unit test materialized_sql_view
+        This odoo module, is used to unit test materialized_sql_view
         module and add sample to developers that want use materialized_sql_view
         module.
     """,
