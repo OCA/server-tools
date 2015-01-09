@@ -1,0 +1,228 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* materialized_sql_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-07 22:05+0000\n"
+"PO-Revision-Date: 2016-03-07 23:06+0100\n"
+"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:11
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Aborted"
+msgstr "Echoué"
+
+#. module: materialized_sql_view
+#: model:res.groups,comment:materialized_sql_view.manager_group
+msgid ""
+"Allow to show and manualy launch \n"
+"            refresh materialized SQL view."
+msgstr ""
+"Permet d'administrer et relancer \n"
+"manuellement les vues sql materialisées"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:267
+#, python-format
+msgid "Create data on materialized view is forbidden"
+msgstr "Il est impossible d'ajouter des données sur une vue matérialisée"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:268
+#, python-format
+msgid ""
+"Create data on materialized view is forbidden, because data would be lost at "
+"the next refresh"
+msgstr ""
+"Créer des données sur une vue matérialisée est impossible, créer la donnée "
+"source et/ou rafraîchir la vue SQL."
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:8
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Creating"
+msgstr "Création"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_error_message:0
+msgid "Last error"
+msgstr "Dernière erreur"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_refresh_end_date:0
+msgid "Last refreshed end date"
+msgstr "Date de fin de dernier rafraîchissement"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_refresh_start_date:0
+msgid "Last refreshed start date"
+msgstr "Date de début de dernier rafraîchissement"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,pg_version:0
+msgid "Mat view pg version"
+msgstr "Version de PG de la vue mat."
+
+#. module: materialized_sql_view
+#: code:_description:0
+#: model:ir.model,name:materialized_sql_view.model_materialized_sql_view
+#: view:materialized.sql.view:0
+#, python-format
+msgid "Materialized SQL View"
+msgstr "Vue SQL materialisée"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,matview_name:0
+msgid "Materialized SQL View Name"
+msgstr "Nom de la vue materialisée"
+
+#. module: materialized_sql_view
+#: model:ir.actions.act_window,name:materialized_sql_view.act_open_materialized_sql_view_view
+#: model:ir.ui.menu,name:materialized_sql_view.menu_materialized_sql_view
+msgid "Materialized SQL view"
+msgstr "Vue SQL materialisée"
+
+#. module: materialized_sql_view
+#: model:res.groups,name:materialized_sql_view.manager_group
+msgid "Materialized sql view Manager"
+msgstr "Gestion des vues sql materialisées"
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0 field:materialized.sql.view,model_id:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:7
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Nonexistent"
+msgstr "Inéxistante"
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "Pretty materialized sql view name"
+msgstr "Nom de la vue materialisée"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:57
+#, python-format
+msgid "Properties must be defined in subclass"
+msgstr "La propriété doit être défini dans la classe fille"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:65
+#, python-format
+msgid "Refresh materialized views"
+msgstr "Actualise la vue SQL materialisée"
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "Refresh now"
+msgstr "Rafraîchir"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:10
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Refreshed"
+msgstr "Rafraîchi"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:9
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Refreshing"
+msgstr "Rafraîchissement en cours"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:273
+#, python-format
+msgid "Remove data on materialized view is forbidden"
+msgstr "Supprimer des données d'une vue SQL matérialisée est impossible."
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:274
+#, python-format
+msgid ""
+"Remove data on materialized viewis forbidden, because data would be lost at "
+"the next refresh"
+msgstr ""
+"Supprimer des données dans une vue matérialisée est impossible, supprimer la "
+"donnée source et/ou rafraîchir la vue SQL."
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "SQL materialized view name (in the database)"
+msgstr "Nom de la vue matérialisée (dans la DB)"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,view_name:0
+msgid "SQL view name"
+msgstr "Nom de la vue SQL"
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "SQL view name (in the database)"
+msgstr "Nom de la vue SQL (dans la BD)"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,state:0
+msgid "State"
+msgstr "Statut"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:261
+#, python-format
+msgid "Write on materialized view is forbidden"
+msgstr "Il est impossible d'écrire des données sur une vue matérialisée"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:262
+#, python-format
+msgid ""
+"Write on materialized view is forbidden, because data would be lost at the "
+"next refreh"
+msgstr ""
+"Écrire sur une vue SQL matérialisée est impossible, modifier la donnée "
+"source et/ou rafraîchir la vue SQL."
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:58
+#, python-format
+msgid "_sql_view_definition properties should be redifined in sub class"
+msgstr ""
+"L'attribut _sql_view_definition doit être surchargé dans la classe fille"
+
+#. module: materialized_sql_view
+#: code:_description:0
+#: model:ir.model,name:materialized_sql_view.model_abstract_materialized_sql_view
+#, python-format
+msgid "abstract.materialized.sql.view"
+msgstr "abstract.materialized.sql.view"
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,sql_definition:0
+msgid "sql"
+msgstr "sql"
+
+#~ msgid "This is an helper class to manage materialized SQL view"
+#~ msgstr "Classe d'aire pour gérer les vues SQL materialisées"
