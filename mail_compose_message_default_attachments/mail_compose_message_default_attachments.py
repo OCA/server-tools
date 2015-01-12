@@ -28,9 +28,9 @@ class mail_compose_message(orm.Model):
 
     def onchange_template_id(self, cr, uid, ids, template_id, composition_mode,
                              model, res_id, context=None):
-        res = super(mail_compose_message, self).onchange_template_id(cr,
-                    uid, ids, template_id, composition_mode, model, res_id,
-                    context)
+        res = super(mail_compose_message, self).\
+            onchange_template_id(cr, uid, ids, template_id, composition_mode,
+                                 model, res_id, context)
         if 'default_attachment_ids' in context:
             res['value']['attachment_ids'] = context['default_attachment_ids']
         return res
