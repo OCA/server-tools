@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
 from openerp import models, fields, api, exceptions
 from openerp.tools.safe_eval import safe_eval
-from openerp import SUPERUSER_ID, _
+from openerp import _
 
 
 class res_groups(models.Model):
@@ -52,7 +51,7 @@ class res_groups(models.Model):
     def _check_dynamic_group_condition(self):
         try:
             self.filtered('is_dynamic').eval_dynamic_group_condition()
-        except (NameError, SyntaxError, TypeError) as e:
+        except (NameError, SyntaxError, TypeError):
             raise exceptions.ValidationError(
                 _('The condition doesn\'t evaluate correctly!'))
 
