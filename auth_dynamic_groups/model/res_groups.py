@@ -29,13 +29,12 @@ class res_groups(Model):
     _inherit = 'res.groups'
 
     _columns = {
-            'is_dynamic': fields.boolean('Dynamic'),
-            'dynamic_group_condition': fields.text(
-                'Condition', help='''
-                The condition to be met for a user to be a member of this
-                group. It is evaluated as python code at login time, you get
-                `user' passed as a browse record''')
-            }
+        'is_dynamic': fields.boolean('Dynamic'),
+        'dynamic_group_condition': fields.text(
+            'Condition', help='The condition to be met for a user to be a '
+            'member of this group. It is evaluated as python code at login '
+            'time, you get `user` passed as a browse record')
+    }
 
     def eval_dynamic_group_condition(self, cr, uid, ids, context=None):
         result = True
@@ -43,14 +42,14 @@ class res_groups(Model):
                                                  context=context)
         for this in self.browse(cr, uid, ids, context=context):
             result &= bool(
-                    safe_eval(
-                        this.dynamic_group_condition,
-                        {
-                            'user': user,
-                            'any': any,
-                            'all': all,
-                            'filter': filter,
-                        }))
+                safe_eval(
+                    this.dynamic_group_condition,
+                    {
+                        'user': user,
+                        'any': any,
+                        'all': all,
+                        'filter': filter,
+                    }))
         return result
 
     def _check_dynamic_group_condition(self, cr, uid, ids, context=None):
@@ -64,10 +63,10 @@ class res_groups(Model):
         return True
 
     _constraints = [
-            (_check_dynamic_group_condition,
-                'The condition doesn\'t evaluate correctly!',
-                ['dynamic_group_condition']),
-            ]
+        (_check_dynamic_group_condition,
+         'The condition doesn\'t evaluate correctly!',
+         ['dynamic_group_condition']),
+    ]
 
     def action_evaluate(self, cr, uid, ids, context=None):
         user_obj = self.pool.get('res.users')

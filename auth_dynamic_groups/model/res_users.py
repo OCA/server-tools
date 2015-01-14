@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
 from openerp.osv.orm import Model
-from openerp.osv import fields
 from openerp import pooler, SUPERUSER_ID
+
 
 class res_users(Model):
     _inherit = 'res.users'
@@ -40,14 +39,16 @@ class res_users(Model):
         user = pool.get('res.users').browse(cr, SUPERUSER_ID, uid)
         groups_obj = pool.get('res.groups')
         user.write(
-                {
-                    'groups_id': [(4, dynamic_group.id)
-                        if dynamic_group.eval_dynamic_group_condition()
-                        else (3, dynamic_group.id)
-                        for dynamic_group in groups_obj.browse(
-                            cr, uid,
-                            groups_obj.search(cr, uid,
-                                [('is_dynamic', '=', True)]))]
-                })
+            {
+                'groups_id': [
+                    (4, dynamic_group.id)
+                    if dynamic_group.eval_dynamic_group_condition()
+                    else (3, dynamic_group.id)
+                    for dynamic_group in groups_obj.browse(
+                        cr, uid,
+                        groups_obj.search(cr, uid,
+                                          [('is_dynamic', '=', True)]))
+                ],
+            })
         cr.commit()
         cr.close()
