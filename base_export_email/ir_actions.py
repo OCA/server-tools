@@ -3,14 +3,6 @@
 #
 #    Authors: Laetitia Gangloff
 #    Copyright (c) 2015 Acsone SA/NV (http://www.acsone.eu)
-#    All Rights Reserved
-#
-#    WARNING: This program as such is intended to be used by professional
-#    programmers who take the whole responsibility of assessing all potential
-#    consequences resulting from its eventual inadequacies and bugs.
-#    End users who are looking for a ready-to-use solution with commercial
-#    guarantees and support are strongly advised to contact a Free Software
-#    Service Company.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -56,10 +48,14 @@ class actions_server(orm.Model):
                 'fields_to_export': fields.text(
                     'Fields to export',
                     help="The list of fields to export. \
-                          The format is ['name', 'seller_ids/product_name']")
+                          The format is ['name', 'seller_ids/product_name']"),
+                'export_format': fields.selection([('csv', 'CSV'),
+                                                   ('xls', 'Excel')],
+                                                  'Export Formats'),
                 }
 
-    _defaults = {'fields_to_export': '[]'}
+    _defaults = {'fields_to_export': '[]',
+                 'export_format': 'csv'}
 
     def onchange_model_id(self, cr, uid, ids, model_id, context=None):
         """
@@ -76,9 +72,6 @@ class actions_server(orm.Model):
         return {'value': data}
 
     def _search_data(self, cr, uid, action, context=None):
-        """
-         search data to export
-        """
         obj_pool = self.pool[action.model]
         domain = action.filter_id and safe_eval(
             action.filter_id.domain, {'time': time}) or []
@@ -89,9 +82,6 @@ class actions_server(orm.Model):
                                context=ctx)
 
     def _export_data(self, cr, uid, obj_ids, action, context=None):
-        """
-        export data
-        """
         obj_pool = self.pool[action.model]
         export_fields = []
         if action.fields_to_export:
@@ -119,7 +109,10 @@ class actions_server(orm.Model):
             (4, partner_id) for partner_id in values.pop('partner_ids',
                                                          [])
         ]
-        export = main.CSVExport()
+        if action.export_format == 'csv':
+            export = main.CSVExport()
+        else:
+            export = main.ExcelExport()
         filename = export.filename(action.model)
         content = export.from_data(export_fields, export_data)
         if isinstance(content, unicode):

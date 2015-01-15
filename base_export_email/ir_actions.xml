@@ -28,6 +28,7 @@
                 <notebook position="inside">
                     <page string="Export data by email configuration" attrs="{'invisible':[('state','!=','export_email')]}">
                         <group>
+                            <field name="export_format" attrs="{'required':[('state','=','export_email')]}"/>
                             <field name="filter_id" domain="[('model_id','=',model)]"/>
                             <field name="email_template_id" attrs="{'required':[('state','=','export_email')]}" 
                             domain="[('model_id', '=', model_id)]"/>

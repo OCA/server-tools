@@ -3,14 +3,6 @@
 #
 #    Authors: Laetitia Gangloff
 #    Copyright (c) 2015 Acsone SA/NV (http://www.acsone.eu)
-#    All Rights Reserved
-#
-#    WARNING: This program as such is intended to be used by professional
-#    programmers who take the whole responsibility of assessing all potential
-#    consequences resulting from its eventual inadequacies and bugs.
-#    End users who are looking for a ready-to-use solution with commercial
-#    guarantees and support are strongly advised to contact a Free Software
-#    Service Company.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -40,7 +32,16 @@
 Base export email addon
 =========================
 
-- Add server action type to send by email a data export
+Add server action type to send by email a data export
+For this new action type you need to fill the following fields :
+- Filter : it defines the filter to use on the data.
+- Template : it is the mail template to send the email.
+- Saved export : it is a saved export list.
+- Fields to export : it is the list of field to export. It can be used alone
+                     or to complete the saved export list.
+
+Example of use : in a cron for a periodic export of some data
+                 to see the evolution.
 
 """,
     "data": ["ir_actions.xml"],
