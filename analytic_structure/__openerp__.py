@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Account Analytic Online, for OpenERP
-#    Copyright (C) 2013 XCG Consulting (www.xcg-consulting.fr)
+#    Copyright (C) 2013 XCG Consulting (http://odoo.consulting)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
