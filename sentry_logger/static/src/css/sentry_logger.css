@@ -1,0 +1,48 @@
+.error_details {
+    display:none;
+    height:auto;
+    margin:0;
+    float: left;
+}
+.show {
+    display: none;
+}
+.hide:target + .show {
+    display: inline;
+}
+.hide:target {
+    display: none;
+}
+.hide:target ~ .error_details {
+    display:inline;
+}
+
+
+/*style the (+) and (-) */
+.hide, .show {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 1px 1px 2px #000;
+    background: #dddddd;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.hide:hover, .show:hover {
+    color: #eee;
+    text-shadow: 0 0 1px #666;
+    text-decoration: none;
+    box-shadow: 0 0 4px #222 inset;
+    opacity: 1;
+
+}
+
+.error_details p{
+    height:auto;
+    margin:0;
+}
