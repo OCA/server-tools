@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2015 Domatix (http://domatix.com)
-#                       Angel Moua <angel.moya@domatix.com>
+#                       Angel Moya <angel.moya@domatix.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
