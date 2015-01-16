@@ -1,3 +1,15 @@
+### README ###
+
+
+###  Oemetaslfor Odoo/OpenERP ###
+
+
+This module handles methods and MetaClass to modify OpenERP base methods.
+For Exemple, we override copy method to restrict the copy in Odoo/OpenERP.
+But you can implement the method you need.
+
+
+
 How to
 ======
 ::
