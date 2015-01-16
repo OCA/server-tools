@@ -62,7 +62,7 @@ Contributors
     # Categories can be used to filter modules in modules listing
     # Check <odoo>/addons/base/module/module_data.xml of the full list
     'category': 'Extra Tools',
-    'version': '1.0',
+    'version': '1.1',
 
     # any module necessary for this one to work correctly
     'depends': ['web'],
@@ -81,6 +81,10 @@ Contributors
 
     'qweb': [
         'static/src/xml/base.xml',
+    ],
+
+    'css': [
+        'static/src/css/sentry_logger.css',
     ],
 
     'tests': [

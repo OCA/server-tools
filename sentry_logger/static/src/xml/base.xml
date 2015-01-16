@@ -10,6 +10,14 @@
         <div class="oe_view_nocontent">
 A detailed report has been sent to the technical support team.
         </div>
+        <a href="#hide1" class="hide" id="hide1">+</a>
+        <a href="#show1" class="show" id="show1">-</a>
+        <h3>Details</h3>
+        <div class="error_details">
+          <pre><t t-esc="error.message"/></pre>
+          <hr/>
+          <pre><t t-esc="error.data.debug"/></pre>
+        </div>
       </div>
 
       <!-- Original error message -->
