@@ -21,7 +21,7 @@
 ##############################################################################
 {
     "name": "Mass Editing",
-    "version": "1.3",
+    "version": "1.4",
     "author": "Serpent Consulting Services",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",

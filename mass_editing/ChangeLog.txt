@@ -1,6 +1,9 @@
 ===============================================================================
  Version Change Log (mass_editing)
 ===============================================================================
+1.4	* Dec 27, 2014 : Serpent Consulting Services
+	* Corrected the icon.jpg location and made as per v8 standard.
+
 1.3	* March 11,2013 : Serpent Consulting Services
 	* Improved and optimized the code of mass_editing
 
