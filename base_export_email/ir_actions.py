@@ -37,24 +37,25 @@ class actions_server(orm.Model):
                                                  _('Export data by email')))
         return
 
-    _columns = {'model': fields.related('model_id', 'model',
-                                        type="char", size=256, string='Model'),
-                'filter_id': fields.many2one(
-                    'ir.filters', string='Filter', ondelete='restrict'),
-                'email_template_id': fields.many2one(
-                    'email.template', string='Template', ondelete='restrict'),
-                'saved_export_id': fields.many2one(
-                    'ir.exports', string='Saved export', ondelete='restrict'),
-                'fields_to_export': fields.text(
-                    'Fields to export',
-                    help="The list of fields to export. \
+    _columns = {
+        'model': fields.related('model_id', 'model',
+                                type="char", size=256, string='Model'),
+        'filter_id': fields.many2one(
+            'ir.filters', string='Filter', ondelete='restrict'),
+        'email_template_id': fields.many2one(
+            'email.template', string='Template', ondelete='restrict'),
+        'saved_export_id': fields.many2one(
+            'ir.exports', string='Saved export', ondelete='restrict'),
+        'fields_to_export': fields.text(
+            'Fields to export',
+            help="The list of fields to export. \
                           The format is ['name', 'seller_ids/product_name']"),
-                'export_format': fields.selection([('csv', 'CSV'),
-                                                   ('xls', 'Excel')],
-                                                  'Export Formats'),
-                }
+        'export_format': fields.selection([('csv', 'CSV'),
+                                           ('xls', 'Excel')],
+                                          'Export Formats'),
+    }
 
-    def get_email_template(self, cr, uid, context=None):
+    def _get_email_template(self, cr, uid, context=None):
         email_template_id = 0
         try:
             model_data_obj = self.pool['ir.model.data']
@@ -64,11 +65,12 @@ class actions_server(orm.Model):
             pass
         return email_template_id
 
-    _defaults = {'fields_to_export': '[]',
-                 'export_format': 'csv',
-                 'email_template_id': lambda self, cr, uid, c:
-                 self.get_email_template(cr, uid, context=c),
-                 }
+    _defaults = {
+        'fields_to_export': '[]',
+        'export_format': 'csv',
+        'email_template_id': lambda self, cr, uid, c:
+        self._get_email_template(cr, uid, context=c),
+    }
 
     def onchange_model_id(self, cr, uid, ids, model_id, context=None):
         """
@@ -148,7 +150,6 @@ class actions_server(orm.Model):
         """
         for action in self.browse(cr, uid, ids, context):
             if action.state == 'export_email':
-                ids.remove(action.id)
                 # search data to export
                 obj_ids = self._search_data(cr, uid, action, context=context)
                 # export data
