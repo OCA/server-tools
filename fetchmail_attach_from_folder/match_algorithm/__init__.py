@@ -19,8 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import base
-import email_exact
-import email_domain
-import openerp_standard
+from . import base
+from . import email_exact
+from . import email_domain
+from . import openerp_standard

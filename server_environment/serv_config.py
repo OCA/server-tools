@@ -53,8 +53,10 @@ if not os.path.exists(ck_path):
     )
 
 
-def setboolean(obj, attr, _bool=_boolean_states):
+def setboolean(obj, attr, _bool=None):
     """Replace the attribute with a boolean."""
+    if _bool is None:
+        _bool = _boolean_states
     res = _bool[getattr(obj, attr).lower()]
     setattr(obj, attr, res)
     return res
@@ -116,13 +118,12 @@ class ServerConfiguration(orm.TransientModel):
     _conf_defaults = _Defaults()
 
     def __init__(self, pool, cr):
-        res = super(ServerConfiguration, self).__init__(pool, cr)
+        super(ServerConfiguration, self).__init__(pool, cr)
         self.running_env = system_base_config['running_env']
         # Only show passwords in development
         self.show_passwords = self.running_env in ('dev',)
         self._arch = None
         self._build_osv()
-        return res
 
     def _group(self, items, prefix):
         """Return an XML chunk which represents a group of fields."""
