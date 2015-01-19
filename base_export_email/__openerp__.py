@@ -44,7 +44,8 @@ Example of use : in a cron for a periodic export of some data
                  to see the evolution.
 
 """,
-    "data": ["ir_actions.xml"],
+    "data": ["ir_actions_view.xml",
+             "ir_actions_data.xml"],
     "demo": [],
     "test": [],
     "active": False,

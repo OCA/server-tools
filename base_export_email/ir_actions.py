@@ -54,8 +54,21 @@ class actions_server(orm.Model):
                                                   'Export Formats'),
                 }
 
+    def get_email_template(self, cr, uid, context=None):
+        email_template_id = 0
+        try:
+            model_data_obj = self.pool['ir.model.data']
+            email_template_id = model_data_obj.get_object_reference(
+                cr, uid, 'base_export_email', 'export_data_email_template')[1]
+        except ValueError:
+            pass
+        return email_template_id
+
     _defaults = {'fields_to_export': '[]',
-                 'export_format': 'csv'}
+                 'export_format': 'csv',
+                 'email_template_id': lambda self, cr, uid, c:
+                 self.get_email_template(cr, uid, context=c),
+                 }
 
     def onchange_model_id(self, cr, uid, ids, model_id, context=None):
         """
@@ -63,7 +76,6 @@ class actions_server(orm.Model):
         """
         data = {'model': False,
                 'filter_id': False,
-                'email_template_id': False,
                 'saved_export_id': False}
         if model_id:
             model = self.pool['ir.model'].browse(cr, uid, model_id,
@@ -104,7 +116,7 @@ class actions_server(orm.Model):
         mail_compose = self.pool['mail.compose.message']
         values = mail_compose.onchange_template_id(
             cr, uid, 0, action.email_template_id, 'comment',
-            action.model, 0, context=context)['value']
+            'ir.actions.server', action.id, context=context)['value']
         values['partner_ids'] = [
             (4, partner_id) for partner_id in values.pop('partner_ids',
                                                          [])

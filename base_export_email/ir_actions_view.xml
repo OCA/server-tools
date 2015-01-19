@@ -31,7 +31,7 @@
                             <field name="export_format" attrs="{'required':[('state','=','export_email')]}"/>
                             <field name="filter_id" domain="[('model_id','=',model)]"/>
                             <field name="email_template_id" attrs="{'required':[('state','=','export_email')]}" 
-                            domain="[('model_id', '=', model_id)]"/>
+                            domain="[('model_id.model', '=', 'ir.actions.server')]"/>
                             <field name ="fields_to_export" attrs="{'required': [('state', '=', 'export_email'), ('saved_export_id', '=', False)]}" />
                             <field name ="saved_export_id" attrs="{'required': [('state', '=', 'export_email'), ('fields_to_export', '=', False)]}"
                             domain="[('resource','=',model)]"/>
