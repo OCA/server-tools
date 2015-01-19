@@ -26,7 +26,7 @@
     'description': """
 Extend mail and fetch mail with server environment module.
 
-In config files, sections outgoint_mail and incoming_mails are default values
+In config files, sections outgoing_mail and incoming_mails are default values
 for all Outgoing Mail Servers and Fetchmail Servers.
 For each server, you can (re)define values with a section named
 "outgoing_mail.resource_name" where resource_name is the name of your server.
@@ -59,10 +59,14 @@ password = openerp
     'author': 'Camptocamp',
     'license': 'AGPL-3',
     'website': 'http://openerp.camptocamp.com',
-    'depends': ['mail', 'fetchmail', 'server_environment', 'server_environment_files', 'crm'],
+    'depends': ['mail',
+                'fetchmail',
+                'server_environment',
+                'server_environment_files',
+                ],
     'init_xml': [],
     'update_xml': ['mail_view.xml'],
     'demo_xml': [],
-    'installable': False,
+    'installable': True,
     'active': False,
 }
