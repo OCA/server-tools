@@ -26,7 +26,7 @@
     'description': """
 Extend mail and fetch mail with server environment module.
 
-In config files, sections outgoint_mail and incoming_mails are default values
+In config files, sections outgoing_mail and incoming_mails are default values
 for all Outgoing Mail Servers and Fetchmail Servers.
 For each server, you can (re)define values with a section named
 "outgoing_mail.resource_name" where resource_name is the name of your server.
