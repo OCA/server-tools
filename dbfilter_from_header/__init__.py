@@ -24,12 +24,16 @@ from openerp.addons.web.common.http import jsonrequest
 
 get_list_org = Database.get_list.__closure__[0].cell_contents
 
+
 @jsonrequest
 def get_list(self, req):
     db_filter = req.httprequest.environ.get('HTTP_X_OPENERP_DBFILTER', '.*')
     dbs = get_list_org(self, req)
-    return {'db_list': [db for db in 
-        dbs.get('db_list', [])
-        if re.match(db_filter, db)]}
+    return {
+        'db_list': [
+            db for db in dbs.get('db_list', [])
+            if re.match(db_filter, db)
+        ]
+    }
 
 Database.get_list = get_list

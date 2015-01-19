@@ -9,9 +9,11 @@
  'description': """
     Prevent security to be changed when module is updated
     This module overwrite ir model acces write delete function.
-    Only acces edited trough the UI or with manual_security_override in context set to True will be altered.
+    Only acces edited trough the UI or with manual_security_override in context
+    set to True will be altered.
     When you try to delete a acces write it simply set all perms to false
-    you can deactivate this behavior in ir.config_parameter by chanching the protect_security? key to 0
+    you can deactivate this behavior in ir.config_parameter by chanching the
+    protect_security? key to 0
  """,
  'author': 'Camptocamp',
  'website': 'http://openerp.camptocamp.com',

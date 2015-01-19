@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2012 Serpent Consulting Services
+#       (<http://www.serpentcs.com>)
 #    Copyright (C) 2010-Today OpenERP SA (<http://www.openerp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,4 +25,3 @@ import mass_editing
 import wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

@@ -27,7 +27,7 @@
     Adds a menu to the customer address book that enables ordinary users to
     look at customer or other mail. Also adds an 'action needed' boolean to
     mail messages, to quickly select all mails that still have to be acted on.
-    
+
     The action_needed flag will be shown to users in a tree view as a red
     circle, no action needed will be green. In a form users either have the
     button 'confirm action done' (if action needed), or the button 'set
@@ -40,7 +40,7 @@
     'data': [
         'view/mail_user_menu.xml',
         'view/mail_user_view.xml',
-        ],
+    ],
     'js': [],
     'installable': True,
     'active': False,

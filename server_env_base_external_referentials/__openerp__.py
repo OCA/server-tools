@@ -25,10 +25,13 @@
     "depends": ["base", 'server_environment', 'base_external_referentials'],
     "author": "Camptocamp",
     'license': 'AGPL-3',
-    "description": """This module is based on the server_environment module to use files for configuration.
-Thus we can have a different file for each environment (dev, test, staging, prod).
-This module define the config variables for the base_external_referential module.
-In the configuration file, you can configure the url, login and password of the referentials
+    "description": """This module is based on the server_environment module to
+use files for configuration. Thus we can have a different file for each
+environment (dev, test, staging, prod).
+This module define the config variables for the base_external_referential
+module.
+In the configuration file, you can configure the url, login and password of the
+referentials.
 
 Exemple of the section to put in the configuration file :
 

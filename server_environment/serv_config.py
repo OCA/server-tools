@@ -23,7 +23,7 @@ import os
 import ConfigParser
 from lxml import etree
 
-from openerp.osv import osv, fields, orm
+from openerp.osv import fields, orm
 from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -46,11 +46,12 @@ if not system_base_config.get('running_env', False):
 
 ck_path = os.path.join(_dir, system_base_config['running_env'])
 
-if not os.path.exists(ck_path) :
+if not os.path.exists(ck_path):
     raise Exception(
         "Provided server environment does not exist, "
         "please add a folder %s" % ck_path
     )
+
 
 def setboolean(obj, attr, _bool=_boolean_states):
     """Replace the attribute with a boolean."""
@@ -121,6 +122,7 @@ class ServerConfiguration(orm.TransientModel):
         self.show_passwords = self.running_env in ('dev',)
         self._arch = None
         self._build_osv()
+        return res
 
     def _group(self, items, prefix):
         """Return an XML chunk which represents a group of fields."""
@@ -170,7 +172,7 @@ class ServerConfiguration(orm.TransientModel):
         self._arch = etree.fromstring(arch)
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False,  submenu=False):
+                        context=None, toolbar=False, submenu=False):
         """Overwrite the default method to render the custom view."""
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,
@@ -186,7 +188,6 @@ class ServerConfiguration(orm.TransientModel):
             res['arch'] = xarch
             res['fields'] = xfields
         return res
-
 
     def default_get(self, cr, uid, fields_list, context=None):
         res = {}
