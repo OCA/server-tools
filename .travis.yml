@@ -4,8 +4,7 @@ python:
   - "2.7"
 
 env:
-  - VERSION="6.1" ODOO_REPO="odoo/odoo"
-  - VERSION="6.1" UNIT_TEST="1"
+  - VERSION="6.1" ODOO_REPO="odoo/odoo" EXCLUDE="server_environment"
 
 virtualenv:
   system_site_packages: true

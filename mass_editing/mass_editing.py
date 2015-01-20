@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Serpent Consulting Services (<http://www.serpentcs.com>)
+#    Copyright (C) 2012 Serpent Consulting Services
+#       (<http://www.serpentcs.com>)
 #    Copyright (C) 2010-Today OpenERP SA (<http://www.openerp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,23 +20,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>
 #
 ##############################################################################
-
-
 from osv import fields, osv
 from tools.translate import _
+
 
 class mass_object(osv.osv):
     _name = "mass.object"
 
     _columns = {
-        'name' : fields.char("Name", size=64, required=True, select=1),
-        'model_id' : fields.many2one('ir.model', 'Model', required=True, select=1),
-        'field_ids' : fields.many2many('ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id', 'Fields'),
-        'ref_ir_act_window':fields.many2one('ir.actions.act_window', 'Sidebar action', readonly=True,
-                                            help="Sidebar action to make this template available on records "
-                                                 "of the related document model"),
-        'ref_ir_value':fields.many2one('ir.values', 'Sidebar button', readonly=True,
-                                       help="Sidebar button to open the sidebar action"),
+        'name': fields.char("Name", size=64, required=True, select=1),
+        'model_id': fields.many2one(
+            'ir.model', 'Model', required=True, select=1),
+        'field_ids': fields.many2many(
+            'ir.model.fields', 'mass_field_rel', 'mass_id', 'field_id',
+            'Fields'),
+        'ref_ir_act_window': fields.many2one(
+            'ir.actions.act_window', 'Sidebar action', readonly=True,
+            help="Sidebar action to make this template available on records "
+                 "of the related document model"),
+        'ref_ir_value': fields.many2one(
+            'ir.values', 'Sidebar button', readonly=True,
+            help="Sidebar button to open the sidebar action"),
         'model_ids': fields.many2many('ir.model', string='Model List')
     }
 
@@ -48,7 +53,8 @@ class mass_object(osv.osv):
             active_model_obj = self.pool.get(model_data.model)
             if active_model_obj._inherits:
                 for key, val in active_model_obj._inherits.items():
-                    found_model_ids = model_obj.search(cr, uid, [('model', '=', key)])
+                    found_model_ids = model_obj.search(
+                        cr, uid, [('model', '=', key)])
                     if found_model_ids:
                         model_ids.append(found_model_ids[0])
         return {'value': {'model_ids': [(6, 0, model_ids)]}}
@@ -56,44 +62,57 @@ class mass_object(osv.osv):
     def create_action(self, cr, uid, ids, context=None):
         vals = {}
         action_obj = self.pool.get('ir.actions.act_window')
-        data_obj = self.pool.get('ir.model.data')
         for data in self.browse(cr, uid, ids, context=context):
             src_obj = data.model_id.model
             button_name = _('Mass Editing (%s)') % data.name
-            vals['ref_ir_act_window'] = action_obj.create(cr, uid, {
-                 'name': button_name,
-                 'type': 'ir.actions.act_window',
-                 'res_model': 'mass.editing.wizard',
-                 'src_model': src_obj,
-                 'view_type': 'form',
-                 'context': "{'mass_editing_object' : %d}" % (data.id),
-                 'view_mode':'form,tree',
-                 'target': 'new',
-                 'auto_refresh':1
-            }, context)
-            vals['ref_ir_value'] = self.pool.get('ir.values').create(cr, uid, {
-                 'name': button_name,
-                 'model': src_obj,
-                 'key2': 'client_action_multi',
-                 'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']),
-                 'object': True,
-             }, context)
-        self.write(cr, uid, ids, {
-                    'ref_ir_act_window': vals.get('ref_ir_act_window',False),
-                    'ref_ir_value': vals.get('ref_ir_value',False),
-                }, context)
+            vals['ref_ir_act_window'] = action_obj.create(
+                cr, uid,
+                {
+                    'name': button_name,
+                    'type': 'ir.actions.act_window',
+                    'res_model': 'mass.editing.wizard',
+                    'src_model': src_obj,
+                    'view_type': 'form',
+                    'context': "{'mass_editing_object' : %d}" % (data.id),
+                    'view_mode': 'form,tree',
+                    'target': 'new',
+                    'auto_refresh': 1
+                },
+                context)
+            vals['ref_ir_value'] = self.pool.get('ir.values').create(
+                cr, uid,
+                {
+                    'name': button_name,
+                    'model': src_obj,
+                    'key2': 'client_action_multi',
+                    'value': "ir.actions.act_window," + str(
+                        vals['ref_ir_act_window']),
+                    'object': True,
+                },
+                context)
+        self.write(
+            cr, uid, ids,
+            {
+                'ref_ir_act_window': vals.get('ref_ir_act_window', False),
+                'ref_ir_value': vals.get('ref_ir_value', False),
+            },
+            context)
         return True
 
     def unlink_action(self, cr, uid, ids, context=None):
         for template in self.browse(cr, uid, ids, context=context):
             try:
                 if template.ref_ir_act_window:
-                    self.pool.get('ir.actions.act_window').unlink(cr, uid, template.ref_ir_act_window.id, context)
+                    self.pool.get('ir.actions.act_window').unlink(
+                        cr, uid, template.ref_ir_act_window.id, context)
                 if template.ref_ir_value:
                     ir_values_obj = self.pool.get('ir.values')
-                    ir_values_obj.unlink(cr, uid, template.ref_ir_value.id, context)
+                    ir_values_obj.unlink(
+                        cr, uid, template.ref_ir_value.id, context)
             except:
-                raise osv.except_osv(_("Warning"), _("Deletion of the action record failed."))
+                raise osv.except_osv(
+                    _("Warning"),
+                    _("Deletion of the action record failed."))
         return True
 
     def unlink(self, cr, uid, ids, context=None):

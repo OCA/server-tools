@@ -42,20 +42,22 @@ class ir_model_fields(orm.Model):
                                             context=context)
                 while True:
                     ids = pool_obj.search(
-                        cr, uid, 
+                        cr, uid,
                         [(this.serialization_field_id.name, '!=', '{}')],
-                        offset=offset*step, limit=step, context=context)
+                        offset=offset * step, limit=step, context=context)
                     if not ids:
                         break
-                    for data in pool_obj.read(cr, uid, ids,
-                                              [this.serialization_field_id.name],
-                                              context=context):
-                        self.unserialize_field(cr, uid, pool_obj, data,
-                                               this.serialization_field_id.name,
-                                               this.name, context=context)
-                    offset += 1       
+                    for data in pool_obj.read(
+                            cr, uid, ids,
+                            [this.serialization_field_id.name],
+                            context=context):
+                        self.unserialize_field(
+                            cr, uid, pool_obj, data,
+                            this.serialization_field_id.name,
+                            this.name, context=context)
+                    offset += 1
         finally:
-            cr.commit = commit_org    
+            cr.commit = commit_org
 
         return True
 
@@ -82,7 +84,7 @@ class ir_model_fields(orm.Model):
             raise orm.except_orm(
                 _("Error"),
                 _("One2many fields are not handled yet"))
-        
+
         # ORM prohibits to change the 'storing system' of the field
         cr.execute("""
             UPDATE ir_model_fields
@@ -98,18 +100,17 @@ class ir_model_fields(orm.Model):
                           serialization_field_name, field_name,
                           context=None):
         serialized_values = read_record[serialization_field_name]
-        if not field_name in serialized_values:
+        if field_name not in serialized_values:
             return False
 
-        value = serialized_values.pop(field_name)       
+        value = serialized_values.pop(field_name)
         if pool_obj._columns[field_name]._type in ('many2many', 'one2many'):
             value = [(6, 0, value)]
 
         return pool_obj.write(
-                cr, uid, read_record['id'], 
-                {
-                    field_name: value,
-                    serialization_field_name: serialized_values,
-                },
-                context=context)
-    
+            cr, uid, read_record['id'],
+            {
+                field_name: value,
+                serialization_field_name: serialized_values,
+            },
+            context=context)

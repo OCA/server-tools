@@ -19,7 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import match_algorithm
-import model
-import wizard
+from . import match_algorithm
+from . import model
+from . import wizard

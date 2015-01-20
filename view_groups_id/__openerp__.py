@@ -19,13 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': 'group_ids for ir.ui.view',
     'version': '1.0',
     'description': """This addon is a backport of OpenERP 7.0's groups_id for
     views.
-    
+
     The greatness lies in the fact that with that, you can have specific
     inherited views for specific groups, so you can radically change a view
     for some groups without having to redefine any of the window actions
@@ -39,14 +38,10 @@
     "category": "Dependency",
     "depends": [
         'base',
-        ],
-    'css': [
-        ],
+    ],
     'data': [
         'view/ir_ui_view.xml',
-        ],
-    'js': [
-        ],
+    ],
     'installable': True,
     'active': False,
     'certificate': '',

@@ -33,23 +33,25 @@ class ir_ui_view(Model):
     _inherit = 'ir.ui.view'
 
     _columns = {
-            'groups_id': fields.many2many(
-                'res.groups', 'ir_ui_view_group_rel', 'view_id', 'group_id',
-                string='Groups', help="If this field is empty, the view "
-                "applies to all users. Otherwise, the view applies to the "
-                "users of those groups only."),
-            }
+        'groups_id': fields.many2many(
+            'res.groups', 'ir_ui_view_group_rel', 'view_id', 'group_id',
+            string='Groups', help="If this field is empty, the view "
+            "applies to all users. Otherwise, the view applies to the "
+            "users of those groups only."),
+    }
 
     def get_inheriting_views_arch(self, cr, uid, view_id, model, context=None):
         user_groups = frozenset(self.pool.get('res.users').browse(
             cr, SUPERUSER_ID, uid, context).groups_id)
 
-        view_ids = [v[1] for v in 
-            super(ir_ui_view, self).get_inheriting_views_arch(
-                cr, uid, view_id, model, context=context)]
+        view_ids = [
+            v[1] for v in super(ir_ui_view, self).get_inheriting_views_arch(
+                cr, uid, view_id, model, context=context)
+        ]
 
         # filter views based on user groups
-        return [(view.arch, view.id)
-                for view in self.browse(cr, SUPERUSER_ID, view_ids, context)
-                if not (view.groups_id and 
-                    user_groups.isdisjoint(view.groups_id))]
+        return [
+            (view.arch, view.id)
+            for view in self.browse(cr, SUPERUSER_ID, view_ids, context)
+            if not (view.groups_id and user_groups.isdisjoint(view.groups_id))
+        ]
