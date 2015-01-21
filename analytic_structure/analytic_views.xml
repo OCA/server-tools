@@ -95,8 +95,6 @@
                             style="width: 6em" />
                     </h1>
                     <group colspan="4" col="4">
-                        <field name="validated" />
-                        <newline />
                         <field name="nc_ids" string="ANCs"
                             context="{'default_nd_id': id}" />
                     </group>

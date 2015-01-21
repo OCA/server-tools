@@ -53,7 +53,6 @@ class analytic_dimension(osv.Model):
             translate=config.get_misc('analytic', 'translate', False),
             required=True,
         ),
-        'validated': fields.boolean(u"Validated"),
         'nc_ids': fields.one2many('analytic.code', 'nd_id', u"Codes"),
         'ns_id': fields.one2many('analytic.structure', 'nd_id', u"Structures"),
     }
