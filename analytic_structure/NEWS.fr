@@ -1,3 +1,13 @@
+analytic_structure 1.9
+
+- Ajout de la license et du copyright (AGPL & XCG)
+
+- Champ validé retiré.
+
+analytic_structure 1.8
+
+- Fix sur Odoo8: Trouver la classe oe_analytic dans tout les éléments, pas seulement les div.
+
 analytic_structure 1.7
 
 Production release

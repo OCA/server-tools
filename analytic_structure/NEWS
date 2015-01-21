@@ -1,3 +1,13 @@
+analytic_structure 1.9
+
+- Add License and Copyright (AGPL & XCG)
+
+- Remove field 'validated'
+
+analytic_structure 1.8
+
+- Odoo8 Fix: Find the class oe_analytic on all elements (not only div)
+
 analytic_structure 1.7
 
 Production release
