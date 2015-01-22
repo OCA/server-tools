@@ -428,5 +428,3 @@ class auditlog_rule(models.Model):
                     ir_value.unlink()
         self.write({'state': 'draft'})
         return True
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
