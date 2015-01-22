@@ -89,14 +89,14 @@ class auditlog_rule(models.Model):
         u"Log Creates", default=True,
         help=(u"Select this if you want to keep track of creation on any "
               u"record of the model of this rule"))
-    #log_action = fields.Boolean(
-    #    "Log Action",
-    #    help=("Select this if you want to keep track of actions on the "
-    #          "model of this rule"))
-    #log_workflow = fields.Boolean(
-    #    "Log Workflow",
-    #    help=("Select this if you want to keep track of workflow on any "
-    #          "record of the model of this rule"))
+    # log_action = fields.Boolean(
+    #     "Log Action",
+    #     help=("Select this if you want to keep track of actions on the "
+    #           "model of this rule"))
+    # log_workflow = fields.Boolean(
+    #     "Log Workflow",
+    #     help=("Select this if you want to keep track of workflow on any "
+    #           "record of the model of this rule"))
     state = fields.Selection(
         [('draft', "Draft"), ('subscribed', "Subscribed")],
         string=u"State", required=True, default='draft')
@@ -205,33 +205,36 @@ class auditlog_rule(models.Model):
         """Instanciate a read method that log its calls."""
         # FIXME: read() seems a bit tricky, improve to handle old/new api
 
-        #@api.v7
-        #def read(self, cr, user, ids, fields=None, context=None, load='_classic_read', **kwargs):
-        #    print "LOG READ", fields, load, kwargs
-        #    # avoid loops
-        #    if self.env.context.get('auditlog_method_intercepted'):
-        #        return read.origin(self, cr, user, ids, fields, context, load, **kwargs)
-        #    # call original method with a modified context
-        #    context = dict(self.env.context, auditlog_method_intercepted=True)
-        #    result = read.origin(
-        #        self.with_context(context),
-        #        cr, user, ids, fields, context, load, **kwargs)
-        #    print "RESULT", result
-        #    return result
+        # @api.v7
+        # def read(self, cr, user, ids, fields=None, context=None,
+        #          load='_classic_read', **kwargs):
+        #     print "LOG READ", fields, load, kwargs
+        #     # avoid loops
+        #     if self.env.context.get('auditlog_method_intercepted'):
+        #         return read.origin(
+        #             self, cr, user, ids, fields, context, load, **kwargs)
+        #     # call original method with a modified context
+        #     context = dict(
+        #         self.env.context, auditlog_method_intercepted=True)
+        #     result = read.origin(
+        #         self.with_context(context),
+        #         cr, user, ids, fields, context, load, **kwargs)
+        #     print "RESULT", result
+        #     return result
 
-
-        #@api.v8
-        #def read(self, fields=None, load='_classic_read', **kwargs):
-        #    print "LOG READ", fields, load, kwargs
-        #    # avoid loops
-        #    if self.env.context.get('auditlog_method_intercepted'):
-        #        return read.origin(self, fields, load, **kwargs)
-        #    # call original method with a modified context
-        #    context = dict(self.env.context, auditlog_method_intercepted=True)
-        #    result = read.origin(
-        #        self.with_context(context), fields, load, **kwargs)
-        #    print "RESULT", result
-        #    return result
+        # @api.v8
+        # def read(self, fields=None, load='_classic_read', **kwargs):
+        #     print "LOG READ", fields, load, kwargs
+        #     # avoid loops
+        #     if self.env.context.get('auditlog_method_intercepted'):
+        #         return read.origin(self, fields, load, **kwargs)
+        #     # call original method with a modified context
+        #     context = dict(
+        #         self.env.context, auditlog_method_intercepted=True)
+        #     result = read.origin(
+        #         self.with_context(context), fields, load, **kwargs)
+        #     print "RESULT", result
+        #     return result
 
         def read(self, *args, **kwargs):
             result = read.origin(self, *args, **kwargs)
@@ -385,7 +388,8 @@ class auditlog_rule(models.Model):
                 act_window.unlink()
             if value:
                 ir_value = ir_values_model.search(
-                    [('model', '=', rule.model_id.model), ('value', '=', value)])
+                    [('model', '=', rule.model_id.model),
+                     ('value', '=', value)])
                 if ir_value:
                     ir_value.unlink()
         self.write({'state': 'draft'})
