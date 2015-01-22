@@ -169,6 +169,8 @@ class auditlog_rule(models.Model):
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
 
+    # Unable to find a way to declare the `create` method with the new API,
+    # errors occurs with the `_register_hook()` BaseModel method.
     def create(self, cr, uid, vals, context=None):
         """Update the registry when a new rule is created."""
         res_id = super(auditlog_rule, self).create(
@@ -177,6 +179,8 @@ class auditlog_rule(models.Model):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
         return res_id
 
+    # Unable to find a way to declare the `write` method with the new API,
+    # errors occurs with the `_register_hook()` BaseModel method.
     def write(self, cr, uid, ids, vals, context=None):
         """Update the registry when existing rules are updated."""
         if isinstance(ids, (int, long)):
@@ -277,9 +281,7 @@ class auditlog_rule(models.Model):
         if new_values is None:
             new_values = EMPTY_DICT
         log_model = self.env['auditlog.log']
-        log_line_model = self.env['auditlog.log.line']
         ir_model = self.env['ir.model']
-        ir_model_field = self.env['ir.model.fields']
         model = ir_model.search([('model', '=', res_model)])
         for res_id in res_ids:
             model_model = self.env[res_model]
@@ -295,52 +297,84 @@ class auditlog_rule(models.Model):
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT),
                 old_values.get(res_id, EMPTY_DICT))
-            # 'write' case (old_values and new_values defined)
-            for fchanged in diff.changed():
-                if fchanged in FIELDS_BLACKLIST:
-                    continue
-                field_ = ir_model_field.search(
-                    [('model_id', '=', model.id), ('name', '=', fchanged)])
-                log_vals = {
-                    'field_id': field_.id,
-                    'field_name': field_.name,
-                    'field_description': field_.field_description,
-                    'log_id': log.id,
-                    'old_value': old_values[res_id][fchanged],
-                    'old_value_text': old_values[res_id][fchanged],
-                    'new_value': new_values[res_id][fchanged],
-                    'new_value_text': new_values[res_id][fchanged],
-                }
-                # for *2many fields, log the name_get
-                if field_.relation and '2many' in field_.ttype:
-                    old_value_text = self.env[field_.relation].browse(
-                        log_vals['old_value']).name_get()
-                    log_vals['old_value_text'] = old_value_text
-                    new_value_text = self.env[field_.relation].browse(
-                        log_vals['new_value']).name_get()
-                    log_vals['new_value_text'] = new_value_text
-                log_line_model.create(log_vals)
-            # 'create' case (old_values => EMPTY_DICT)
-            for fchanged in diff.added():
-                if fchanged in FIELDS_BLACKLIST:
-                    continue
-                field_ = ir_model_field.search(
-                    [('model_id', '=', model.id), ('name', '=', fchanged)])
-                log_vals = {
-                    'field_id': field_.id,
-                    'field_name': field_.name,
-                    'field_description': field_.field_description,
-                    'log_id': log.id,
-                    'old_value': False,
-                    'old_value_text': False,
-                    'new_value': new_values[res_id][fchanged],
-                    'new_value_text': new_values[res_id][fchanged],
-                }
-                if field_.relation and '2many' in field_.ttype:
-                    new_value_text = self.env[field_.relation].browse(
-                        log_vals['new_value']).name_get()
-                    log_vals['new_value_text'] = new_value_text
-                log_line_model.create(log_vals)
+            self._create_log_line_on_write(
+                log, diff.changed(), old_values, new_values)
+            self._create_log_line_on_create(log, diff.added(), new_values)
+
+    def _create_log_line_on_write(
+            self, log, fields_list, old_values, new_values):
+        """Log field updated on a 'write' operation."""
+        log_line_model = self.env['auditlog.log.line']
+        ir_model_field = self.env['ir.model.fields']
+        for field_name in fields_list:
+            if field_name in FIELDS_BLACKLIST:
+                continue
+            field = ir_model_field.search(
+                [('model_id', '=', log.model_id.id),
+                 ('name', '=', field_name)])
+            log_vals = self._prepare_log_line_vals_on_write(
+                log, field, old_values, new_values)
+            log_line_model.create(log_vals)
+
+    def _prepare_log_line_vals_on_write(
+            self, log, field, old_values, new_values):
+        """Prepare the dictionary of values used to create a log line on a
+        'write' operation.
+        """
+        vals = {
+            'field_id': field.id,
+            'field_name': field.name,
+            'field_description': field.field_description,
+            'log_id': log.id,
+            'old_value': old_values[log.res_id][field.name],
+            'old_value_text': old_values[log.res_id][field.name],
+            'new_value': new_values[log.res_id][field.name],
+            'new_value_text': new_values[log.res_id][field.name],
+        }
+        # for *2many fields, log the name_get
+        if field.relation and '2many' in field.ttype:
+            old_value_text = self.env[field.relation].browse(
+                vals['old_value']).name_get()
+            vals['old_value_text'] = old_value_text
+            new_value_text = self.env[field.relation].browse(
+                vals['new_value']).name_get()
+            vals['new_value_text'] = new_value_text
+        return vals
+
+    def _create_log_line_on_create(
+            self, log, fields_list, new_values):
+        """Log field filled on a 'create' operation."""
+        log_line_model = self.env['auditlog.log.line']
+        ir_model_field = self.env['ir.model.fields']
+        for field_name in fields_list:
+            if field_name in FIELDS_BLACKLIST:
+                continue
+            field = ir_model_field.search(
+                [('model_id', '=', log.model_id.id),
+                 ('name', '=', field_name)])
+            log_vals = self._prepare_log_line_vals_on_create(
+                log, field, new_values)
+            log_line_model.create(log_vals)
+
+    def _prepare_log_line_vals_on_create(self, log, field, new_values):
+        """Prepare the dictionary of values used to create a log line on a
+        'create' operation.
+        """
+        vals = {
+            'field_id': field.id,
+            'field_name': field.name,
+            'field_description': field.field_description,
+            'log_id': log.id,
+            'old_value': False,
+            'old_value_text': False,
+            'new_value': new_values[log.res_id][field.name],
+            'new_value_text': new_values[log.res_id][field.name],
+        }
+        if field.relation and '2many' in field.ttype:
+            new_value_text = self.env[field.relation].browse(
+                vals['new_value']).name_get()
+            vals['new_value_text'] = new_value_text
+        return vals
 
     @api.multi
     def subscribe(self):
@@ -375,9 +409,9 @@ class auditlog_rule(models.Model):
         act_window_model = self.env['ir.actions.act_window']
         ir_values_model = self.env['ir.values']
         value = ''
+        # Revert patched methods
         self._revert_methods()
         for rule in self:
-            # Revert patched methods
             # Remove the shortcut to view logs
             act_window = act_window_model.search(
                 [('name', '=', 'View Log'),
