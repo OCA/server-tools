@@ -56,5 +56,3 @@ class auditlog_log_line(models.Model):
     new_value_text = fields.Text(u"New value Text")
     field_name = fields.Char(u"Technical name", size=64)
     field_description = fields.Char(u"Description", size=64)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
