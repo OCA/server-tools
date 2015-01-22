@@ -179,9 +179,9 @@
                         <filter name="group_by_res_id"
                             string="Resource ID"
                             domain="[]" context="{'group_by':'res_id'}"/>
-                        <filter name="group_by_create_date"
+                        <filter name="group_by_timestamp"
                             string="Date"
-                            domain="[]" context="{'group_by':'create_date'}"/>
+                            domain="[]" context="{'group_by':'timestamp'}"/>
                     </group>
                 </search>
             </field>
