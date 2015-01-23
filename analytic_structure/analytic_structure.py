@@ -310,7 +310,7 @@ class analytic_structure(osv.Model):
                 # Now we can insert the fields in the view's architecture.
                 for field in elem_fields:
                     attrs = {'name': field}
-                    modifiers = json.loads(elem.attrib.get('modifiers', {}))
+                    modifiers = json.loads(elem.attrib.get('modifiers', '{}'))
                     attrs['modifiers'] = json.dumps({
                         attr: value for attr, value in modifiers.iteritems()
                         if attr != 'readonly' or
