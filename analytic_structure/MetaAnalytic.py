@@ -90,7 +90,6 @@ class MetaAnalytic(OEMetaSL):
                 lambda self, cr, uid, ids, *a: {i: '' for i in ids},
                 string=u"Analytic Dimensions",
                 readonly=True,
-                invisible=True,
                 store=False,
             )
 
