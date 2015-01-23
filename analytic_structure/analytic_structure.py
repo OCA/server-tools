@@ -269,8 +269,8 @@ class analytic_structure(osv.Model):
                 match.set('required', 'false')
                 match.set('modifiers', json.dumps(modifiers))
 
-        # Look for any element with the 'oe_analytic' class and the right prefix.
-        cls_cond = 'contains(@class, "oe_analytic")'
+        # Look for any field named 'analytic_dimensions' and with the right prefix.
+        name_cond = '@name="analytic_dimensions"'
         if prefix == 'a':
             pre_cond = '(@prefix="a" or not(@prefix))'
         else:
@@ -279,13 +279,13 @@ class analytic_structure(osv.Model):
             suf_cond = '(@suffix="id" or not(@suffix))'
         else:
             suf_cond = '@suffix="{suf}"'.format(suf=suffix)
-        condition = '{0} and {1} and {2}'.format(cls_cond, pre_cond, suf_cond)
-        parent_matches = doc.xpath('//*[{cond}]/..'.format(cond=condition))
+        condition = '{0} and {1} and {2}'.format(name_cond, pre_cond, suf_cond)
+        parent_matches = doc.xpath('//field[{cond}]/..'.format(cond=condition))
 
         if parent_matches:
 
             parent = parent_matches[0]
-            elem = parent.xpath("//*[{cond}]".format(cond=condition))[0]
+            elem = parent.xpath("//field[{cond}]".format(cond=condition))[0]
             for index, child in enumerate(parent):
                 if child == elem:
                     break
@@ -311,7 +311,7 @@ class analytic_structure(osv.Model):
                 for field in elem_fields:
                     attrs = {'name': field, 'modifiers': '{}'}
                     for attr, value in elem.attrib.iteritems():
-                        if attr in ['class', 'prefix']:
+                        if attr in ['name', 'prefix']:
                             continue
                         attrs[attr] = value
                     parent.append(etree.Element('field', attrs))

@@ -84,6 +84,14 @@ class MetaAnalytic(OEMetaSL):
         elif isinstance(analytic, basestring):
             analytic = {'a': analytic}
 
+        # Create a field that will be used for replacement in the view
+        if analytic:
+            columns['analytic_dimensions'] = fields.char(
+                string=u"",
+                readonly=True,
+                invisible=True,
+            )
+
         col_pattern = '{pre}{n}_{suf}'
         size = int(config.get_misc('analytic', 'analytic_size', 5))
 
@@ -481,7 +489,6 @@ class MetaAnalytic(OEMetaSL):
             force_code_dim = code_osv.read(
                 cr, uid, force_code_id, ['nd_id'], context=context
             )['nd_id'][0]
-            print force_code_dim, self._bound_dimension_id
             if force_code_dim != self._bound_dimension_id:
                 raise ValueError(
                     "If specified, codes must belong to the bound " \
