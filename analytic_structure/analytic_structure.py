@@ -313,7 +313,7 @@ class analytic_structure(osv.Model):
                     modifiers = json.loads(elem.attrib.get('modifiers', {}))
                     attrs['modifiers'] = json.dumps({
                         attr: value for attr, value in modifiers.iteritems()
-                        if attr == 'readonly' or
+                        if attr != 'readonly' or
                         elem.attrib.get(attr, 'False') in ('True', 'true', '1')
                     })
                     for attr, value in elem.attrib.iteritems():
