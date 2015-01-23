@@ -86,10 +86,12 @@ class MetaAnalytic(OEMetaSL):
 
         # Create a field that will be used for replacement in the view
         if analytic:
-            columns['analytic_dimensions'] = fields.char(
-                string=u"",
+            columns['analytic_dimensions'] = fields.function(
+                lambda self, cr, uid, ids, *a: {i: '' for i in ids},
+                string=u"Analytic Dimensions",
                 readonly=True,
                 invisible=True,
+                store=False,
             )
 
         col_pattern = '{pre}{n}_{suf}'
