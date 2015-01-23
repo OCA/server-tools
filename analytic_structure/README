@@ -72,12 +72,12 @@ Analytic fields can be added to the view individually, like any other field:
 '1' is the dimension's ordering as defined by the analytic structure.
 
 
-You can also use a div to insert every analytic field within a given structure
-(defined by its prefix) that wasn't explicitly placed in the view.
+You can also use a field named 'analytic_dimensions' to insert every analytic field within a given structure
+(defined by its prefix) that wasn't explicitly placed in the view. This field is automatically generated when
+you call the Metaclass
 
-<div class="oe_analytic" required="1" prefix="t" />
+<field name="analytic_dimensions" required="1" prefix="t" />
 
-The class, oe_analytic, mark the div that will be replaced by analytic fields.
 The prefix can be omitted for a structure that uses the default prefix 'a'.
 Any other attribute will be propagated to the analytic fields.
 
