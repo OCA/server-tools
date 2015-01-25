@@ -121,7 +121,6 @@ msgid ""
 "                             of the related document model"
 msgstr ""
 "Dejanje stranske vrstice, ki omogoči razpoložljivost te predloge na zapisih   "
-"                  "
 "                             povezanega modela dokumenta"
 
 #. module: mass_editing
