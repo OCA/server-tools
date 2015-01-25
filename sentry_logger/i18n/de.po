@@ -1,0 +1,35 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sentry_logger
+#
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-15 22:09+0000\n"
+"PO-Revision-Date: 2015-01-02 16:16+0100\n"
+"Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
+
+#. module: sentry_logger
+#. openerp-web
+#: code:addons/sentry_logger/static/src/xml/base.xml:8
+#, python-format
+msgid "A detailed report has been sent to the technical support team."
+msgstr ""
+"Ein ausführlicher Bericht wurde an das Team zum technischen Support gesendet."
+
+#. module: sentry_logger
+#. openerp-web
+#: code:addons/sentry_logger/static/src/xml/base.xml:7
+#, python-format
+msgid "An internal OpenERP error has occurred."
+msgstr "Ein interner OpenERP-Fehler ist aufgetreten."
+
