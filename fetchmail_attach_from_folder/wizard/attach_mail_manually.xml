@@ -5,22 +5,21 @@
             <field name="name">fetchmail.attach.mail.manually</field>
             <field name="model">fetchmail.attach.mail.manually</field>
             <field name="arch" type="xml">
-                <form col="4" version="7.0" string="Attach mail manually">
-                    <sheet>
-                        <group>
-                            <field name="folder_id" />
-                            <field name="mail_ids" nolabel="1" colspan="4">
-                                <tree editable="top" create="0">
-                                    <field name="subject" />
-                                    <field name="date" />
-                                    <field name="object_id" />
-                                </tree>
-                            </field>
-                        </group>
-                    </sheet>
+                <form col="4" string="Attach mail manually">
+                    <group>
+                        <field name="folder_id" />
+                        <field name="mail_ids" nolabel="1" colspan="4">
+                            <tree editable="top" create="0">
+                                <field name="subject" />
+                                <field name="date" />
+                                <field name="object_id" />
+                            </tree>
+                        </field>
+                    </group>
                     <footer>
-                        <button string="Save" type="object" name="attach_mails" icon="gtk-ok" />
-                        <button special="cancel" string="Cancel" icon="gtk-cancel" />
+                        <button string="Save" type="object" name="attach_mails" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
                     </footer>
                 </form>
             </field>
