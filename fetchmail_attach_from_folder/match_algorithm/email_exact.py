@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from base import base
+from .base import base
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.mail import email_split
 

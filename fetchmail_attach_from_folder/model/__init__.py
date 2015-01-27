@@ -20,6 +20,5 @@
 #
 ##############################################################################
 
-import match_algorithm
-import model
-import wizard
+from . import fetchmail_server
+from . import fetchmail_server_folder

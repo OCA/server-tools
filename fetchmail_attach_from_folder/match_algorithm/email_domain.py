@@ -20,39 +20,26 @@
 #
 ##############################################################################
 
-from base import base
+from .email_exact import email_exact
 
 
-class openerp_standard(base):
-    '''No search at all. Use OpenERP's standard mechanism to attach mails to
-    mail.thread objects. Note that this algorithm always matches.'''
-
-    name = 'OpenERP standard'
-    readonly_fields = [
-        'model_field',
-        'mail_field',
-        'match_first',
-        'domain',
-        'model_order',
-        'flag_nonmatching',
-    ]
+class email_domain(email_exact):
+    '''Search objects by domain name of email address.
+    Beware of match_first here, this is most likely to get it wrong (gmail)'''
+    name = 'Domain of email address'
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        '''Always match. Duplicates will be fished out by message_id'''
-        return [True]
-
-    def handle_match(
-            self, cr, uid, connection, object_id, folder,
-            mail_message, mail_message_org, msgid, context):
-        result = folder.pool.get('mail.thread').message_process(
-            cr, uid,
-            folder.model_id.model, mail_message_org,
-            save_original=folder.server_id.original,
-            strip_attachments=(not folder.server_id.attach),
-            context=context
-        )
-
-        if folder.delete_matching:
-            connection.store(msgid, '+FLAGS', '\\DELETED')
-
-        return [result]
+        ids = super(email_domain, self).search_matches(
+            cr, uid, conf, mail_message, mail_message_org)
+        if not ids:
+            domains = []
+            for addr in self._get_mailaddresses(conf, mail_message):
+                domains.append(addr.split('@')[-1])
+            ids = conf.pool.get(conf.model_id.model).search(
+                cr, uid,
+                self._get_mailaddress_search_domain(
+                    conf, mail_message,
+                    operator='like',
+                    values=['%@' + domain for domain in set(domains)]),
+                order=conf.model_order)
+        return ids

@@ -20,26 +20,19 @@
 #
 ##############################################################################
 
-from email_exact import email_exact
-
-
-class email_domain(email_exact):
-    '''Search objects by domain name of email address.
-    Beware of match_first here, this is most likely to get it wrong (gmail)'''
-    name = 'Domain of email address'
-
-    def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        ids = super(email_domain, self).search_matches(
-            cr, uid, conf, mail_message, mail_message_org)
-        if not ids:
-            domains = []
-            for addr in self._get_mailaddresses(conf, mail_message):
-                domains.append(addr.split('@')[-1])
-            ids = conf.pool.get(conf.model_id.model).search(
-                cr, uid,
-                self._get_mailaddress_search_domain(
-                    conf, mail_message,
-                    operator='like',
-                    values=['%@'+domain for domain in set(domains)]),
-                order=conf.model_order)
-        return ids
+{
+    'name': 'Email gateway - folders',
+    'summary': 'Attach mails in an IMAP folder to existing objects',
+    'version': '1.0',
+    'author': 'Therp BV',
+    'website': 'http://www.therp.nl',
+    "category": "Tools",
+    "depends": ['fetchmail'],
+    'data': [
+        'view/fetchmail_server.xml',
+        'wizard/attach_mail_manually.xml',
+        'security/ir.model.access.csv',
+    ],
+    'installable': True,
+    'active': True,
+}

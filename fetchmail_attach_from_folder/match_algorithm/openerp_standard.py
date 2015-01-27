@@ -20,24 +20,39 @@
 #
 ##############################################################################
 
+from .base import base
 
-class base(object):
-    name = None
-    '''Name shown to the user'''
 
-    required_fields = []
-    '''Fields on fetchmail_server folder that are required for this algorithm'''
+class openerp_standard(base):
+    '''No search at all. Use OpenERP's standard mechanism to attach mails to
+    mail.thread objects. Note that this algorithm always matches.'''
 
-    readonly_fields = []
-    '''Fields on fetchmail_server folder that are readonly for this algorithm'''
+    name = 'OpenERP standard'
+    readonly_fields = [
+        'model_field',
+        'mail_field',
+        'match_first',
+        'domain',
+        'model_order',
+        'flag_nonmatching',
+    ]
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        '''Returns ids found for model with mail_message'''
-        return []
+        '''Always match. Duplicates will be fished out by message_id'''
+        return [True]
 
     def handle_match(
             self, cr, uid, connection, object_id, folder,
-            mail_message, mail_message_org, msgid, context=None):
-        '''Do whatever it takes to handle a match'''
-        return folder.server_id.attach_mail(connection, object_id, folder,
-                                            mail_message, msgid)
+            mail_message, mail_message_org, msgid, context):
+        result = folder.pool.get('mail.thread').message_process(
+            cr, uid,
+            folder.model_id.model, mail_message_org,
+            save_original=folder.server_id.original,
+            strip_attachments=(not folder.server_id.attach),
+            context=context
+        )
+
+        if folder.delete_matching:
+            connection.store(msgid, '+FLAGS', '\\DELETED')
+
+        return [result]
