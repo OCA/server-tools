@@ -19,22 +19,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import fields
-from openerp.osv.orm import TransientModel
+from openerp import fields, models
 import logging
-logger = logging.getLogger(__name__)
 
 
-class attach_mail_manually(TransientModel):
+class attach_mail_manually(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
-    _columns = {
-        'folder_id': fields.many2one('fetchmail.server.folder', 'Folder',
-                                     readonly=True),
-        'mail_ids': fields.one2many(
-            'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails'),
-    }
+    folder_id = fields.Many2one(
+        'fetchmail.server.folder', 'Folder', readonly=True)
+    mail_ids = fields.One2many(
+        'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails')
 
     def default_get(self, cr, uid, fields_list, context=None):
         if context is None:
@@ -54,15 +49,13 @@ class attach_mail_manually(TransientModel):
                 None,
                 'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
             if result != 'OK':
-                logger.error('Could not search mailbox %s on %s' % (
+                logging.error('Could not search mailbox %s on %s' % (
                     folder.path, folder.server_id.name))
                 continue
-            attach_mail_manually_mail._columns['object_id'].selection = [
-                (folder.model_id.model, folder.model_id.name)]
             for msgid in msgids[0].split():
                 result, msgdata = connection.fetch(msgid, '(RFC822)')
                 if result != 'OK':
-                    logger.error('Could not fetch %s in %s on %s' % (
+                    logging.error('Could not fetch %s in %s on %s' % (
                         msgid, folder.path, folder.server_id.name))
                     continue
                 mail_message = self.pool.get('mail.thread').message_parse(
@@ -74,7 +67,7 @@ class attach_mail_manually(TransientModel):
                     'msgid': msgid,
                     'subject': mail_message.get('subject', ''),
                     'date': mail_message.get('date', ''),
-                    'object_id': folder.model_id.model + ',False'
+                    'object_id': '%s,-1' % folder.model_id.model,
                 }))
             connection.close()
 
@@ -87,7 +80,7 @@ class attach_mail_manually(TransientModel):
                 connection.select(this.folder_id.path)
                 result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
                 if result != 'OK':
-                    logger.error('Could not fetch %s in %s on %s' % (
+                    logging.error('Could not fetch %s in %s on %s' % (
                         mail.msgid, this.folder_id.path, this.server))
                     continue
 
@@ -104,26 +97,32 @@ class attach_mail_manually(TransientModel):
                 connection.close()
         return {'type': 'ir.actions.act_window_close'}
 
+    def fields_view_get(self, cr, user, view_id=None, view_type='form',
+                        context=None, toolbar=False, submenu=False):
+        result = super(attach_mail_manually, self).fields_view_get(
+            cr, user, view_id, view_type, context, toolbar, submenu)
 
-class attach_mail_manually_mail(TransientModel):
+        tree = result['fields']['mail_ids']['views']['tree']
+        for folder in self.pool['fetchmail.server.folder'].browse(
+                cr, user, [context.get('default_folder_id')], context):
+            tree['fields']['object_id']['selection'] = [
+                (folder.model_id.model, folder.model_id.name)
+            ]
+
+        return result
+
+
+class attach_mail_manually_mail(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually.mail'
 
-    _columns = {
-        'wizard_id': fields.many2one('fetchmail.attach.mail.manually',
-                                     readonly=True),
-        'msgid': fields.char('Message id', size=16, readonly=True),
-        'subject': fields.char('Subject', size=128, readonly=True),
-        'date': fields.datetime('Date', readonly=True),
-        'object_id': fields.reference(
-            'Object',
-            selection=lambda self, cr, uid, context: [
-                (m.model, m.name)
-                for m in self.pool.get('ir.model').browse(
-                    cr, uid,
-                    self.pool.get('ir.model').search(cr, uid, []),
-                    context
-                )
-            ],
-            size=128,
-        ),
-    }
+    wizard_id = fields.Many2one(
+        'fetchmail.attach.mail.manually', readonly=True)
+    msgid = fields.Char('Message id', readonly=True)
+    subject = fields.Char('Subject', readonly=True)
+    date = fields.Datetime('Date', readonly=True)
+    object_id = fields.Reference(
+        lambda self: [
+            (m.model, m.name)
+            for m in self.env['ir.model'].search([])
+        ],
+        string='Object')
