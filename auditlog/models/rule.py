@@ -130,7 +130,6 @@ class auditlog_rule(models.Model):
             if not self.pool.get(rule.model_id.model):
                 # ignore rules for models not loadable currently
                 continue
-            model_cache[rule.model_id.model] = rule.model_id.id
             model_model = self.env[rule.model_id.model]
             # CRUD
             #   -> create
