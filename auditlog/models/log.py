@@ -27,7 +27,7 @@ from openerp import models, fields
 class auditlog_log(models.Model):
     _name = 'auditlog.log'
     _description = "Auditlog - Log"
-    _order = "timestamp desc"
+    _order = "create_date desc"
 
     name = fields.Char("Resource Name", size=64)
     model_id = fields.Many2one(
@@ -36,8 +36,6 @@ class auditlog_log(models.Model):
     user_id = fields.Many2one(
         'res.users', string=u"User")
     method = fields.Char(u"Method", size=64)
-    timestamp = fields.Datetime(
-        u"Date", default=lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'))
     line_ids = fields.One2many(
         'auditlog.log.line', 'log_id', string=u"Fields updated")
 
