@@ -107,7 +107,7 @@
                     <sheet>
                         <group string="Log">
                             <group colspan="1">
-                                <field name="timestamp" required="1" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
                                 <field name="user_id" readonly="1"/>
                                 <field name="method" readonly="1"/>
                             </group>
@@ -150,7 +150,7 @@
             <field name="model">auditlog.log</field>
             <field name="arch" type="xml">
                 <tree string="Logs" create="false">
-                    <field name="timestamp"/>
+                    <field name="create_date"/>
                     <field name="name"/>
                     <field name="model_id"/>
                     <field name="res_id"/>
@@ -179,9 +179,9 @@
                         <filter name="group_by_res_id"
                             string="Resource ID"
                             domain="[]" context="{'group_by':'res_id'}"/>
-                        <filter name="group_by_timestamp"
+                        <filter name="group_by_create_date"
                             string="Date"
-                            domain="[]" context="{'group_by':'timestamp'}"/>
+                            domain="[]" context="{'group_by':'create_date'}"/>
                     </group>
                 </search>
             </field>
