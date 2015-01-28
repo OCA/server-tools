@@ -20,3 +20,17 @@
 ##############################################################################
 
 from . import models
+
+
+def pre_init_hook(cr):
+    cr.execute("SELECT 1 FROM pg_class WHERE relname = 'audittrail_rule'")
+    if cr.fetchall():
+        migrate_from_audittrail(cr)
+
+
+def migrate_from_audittrail(cr):
+    cr.execute('ALTER TABLE audittrail_rule RENAME TO auditlog_rule')
+    cr.execute('ALTER TABLE auditlog_rule RENAME COLUMN object_id TO model_id')
+    cr.execute('ALTER TABLE audittrail_log RENAME TO auditlog_log')
+    cr.execute('ALTER TABLE auditlog_log RENAME COLUMN object_id TO model_id')
+    cr.execute('ALTER TABLE audittrail_log_line RENAME TO auditlog_log_line')
