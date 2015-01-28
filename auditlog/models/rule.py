@@ -123,6 +123,9 @@ class auditlog_rule(models.Model):
         for rule in self:
             if rule.state != 'subscribed':
                 continue
+            if not self.pool.get(rule.model_id.model):
+                # ignore rules for models not loadable currently
+                continue
             model_model = self.env[rule.model_id.model]
             # CRUD
             #   -> create
