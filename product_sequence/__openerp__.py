@@ -2,12 +2,13 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2011 Zikzakmedia S.L. (http://zikzakmedia.com)
+#    All Rights Reserved.
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -21,23 +22,18 @@
 ##############################################################################
 
 {
-    'name' : 'Product Sequence',
-    'version' : '0.1',
-    "author": "Zikzakmedia SL",
-    "website": "http://www.zikzakmedia.com",
-    "license" : "AGPL-3",
-    "category" : "Generic Modules/Inventory Control",
-    "description": """
-This module allows to associate a sequence to the product reference.
-The reference (default code) is unique (SQL constraint) and required.
-Note: This module is incompatible with nan_product_sequence.
-    """,
-    'depends' : [
+    'name': 'Product Sequence',
+    'version': '0.1',
+    'author': 'Zikzakmedia SL',
+    'website': 'http://www.zikzakmedia.com',
+    'license': 'AGPL-3',
+    'category': 'Generic Modules/Inventory Control',
+    'depends': [
         'product',
     ],
-    "data" : [
-        'product_sequence.xml',
+    'data': [
+        'data/product_sequence.xml',
     ],
-    'installable': False,
-    'active': False,
+    'auto_install': False,
+    'installable': True,
 }
