@@ -40,3 +40,5 @@ def migrate_from_audittrail(cr):
     cr.execute('ALTER TABLE audittrail_log_line RENAME TO auditlog_log_line')
     cr.execute('ALTER TABLE audittrail_log_line_id_seq '
                'RENAME TO auditlog_log_line_id_seq')
+    cr.execute("UPDATE ir_model_data SET model='auditlog.rule' "
+               "WHERE model='audittrail.rule'")
