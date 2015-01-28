@@ -52,12 +52,6 @@ msgstr ""
 #: field:auditlog.log.line,create_date:0
 #: field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr ""
-
-#. module: auditlog
-#: view:auditlog.log:auditlog.view_auditlog_log_search
-#: field:auditlog.log,timestamp:0
-msgid "Date"
 msgstr "Date"
 
 #. module: auditlog
