@@ -123,13 +123,15 @@ class auditlog_rule(models.Model):
     def _patch_methods(self):
         """Patch ORM methods of models defined in rules to log their calls."""
         updated = False
-        model_cache = self.pool._auditlog_model_cache
+        self.pool._auditlog_field_cache = {}
+        model_cache = self.pool._auditlog_model_cache = {}
         for rule in self:
             if rule.state != 'subscribed':
                 continue
             if not self.pool.get(rule.model_id.model):
                 # ignore rules for models not loadable currently
                 continue
+            model_cache[rule.model_id.model] = rule.model_id
             model_model = self.env[rule.model_id.model]
             # CRUD
             #   -> create
@@ -305,13 +307,14 @@ class auditlog_rule(models.Model):
         if new_values is None:
             new_values = EMPTY_DICT
         log_model = self.env['auditlog.log']
+        ir_model = self.env['ir.model']
         for res_id in res_ids:
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
             vals = {
-                'name': res_name,
-                'model_id': self.pool._auditlog_model_cache[res_model],
+                'name': res_name and res_name[0] and res_name[0][1] or False,
+                'model_id': self.pool._auditlog_model_cache[res_model].id,
                 'res_id': res_id,
                 'method': method,
                 'user_id': uid,
@@ -383,6 +386,18 @@ class auditlog_rule(models.Model):
             vals['old_value_text'] = old_value_text
         return vals
 
+    def _get_field(self, model, field_name):
+        cache = self.pool._auditlog_field_cache
+        if field_name not in cache.get(model.model, {}):
+            cache.setdefault(model.model, {})
+            cache[model.model][field_name] = self.env['ir.model.fields']\
+                .search(
+                    [
+                        ('model_id', '=', model.id),
+                        ('name', '=', field_name),
+                    ])
+        return cache[model.model][field_name]
+
     def _create_log_line_on_write(
             self, log, fields_list, old_values, new_values):
         """Log field updated on a 'write' operation."""
@@ -391,11 +406,9 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
-            # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
-                log_vals = self._prepare_log_line_vals_on_write(
-                    log, field, old_values, new_values)
-                log_line_model.create(log_vals)
+            log_vals = self._prepare_log_line_vals_on_write(
+                log, field, old_values, new_values)
+            log_line_model.create(log_vals)
 
     def _prepare_log_line_vals_on_write(
             self, log, field, old_values, new_values):
@@ -438,11 +451,9 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
-            # not all fields have an ir.models.field entry (ie. related fields)
-            if field:
-                log_vals = self._prepare_log_line_vals_on_create(
-                    log, field, new_values)
-                log_line_model.create(log_vals)
+            log_vals = self._prepare_log_line_vals_on_create(
+                log, field, new_values)
+            log_line_model.create(log_vals)
 
     def _prepare_log_line_vals_on_create(self, log, field, new_values):
         """Prepare the dictionary of values used to create a log line on a
