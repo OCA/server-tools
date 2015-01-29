@@ -303,7 +303,7 @@ class auditlog_rule(models.Model):
                 'method': method,
                 'user_id': uid,
             }
-            vals.update(additional_log_values)
+            vals.update(additional_log_values or {})
             log = log_model.create(vals)
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT),
