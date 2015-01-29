@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
+from openerp import models, fields, api, modules, _, SUPERUSER_ID
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
