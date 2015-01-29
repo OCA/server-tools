@@ -123,8 +123,7 @@ class auditlog_rule(models.Model):
     def _patch_methods(self):
         """Patch ORM methods of models defined in rules to log their calls."""
         updated = False
-        self.pool._auditlog_field_cache = {}
-        model_cache = self.pool._auditlog_model_cache = {}
+        model_cache = self.pool._auditlog_model_cache
         for rule in self:
             if rule.state != 'subscribed':
                 continue
