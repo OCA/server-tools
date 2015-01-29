@@ -19,8 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, modules
-from openerp.tools.translate import _
+from openerp import models, fields, api, modules, _, SUPERUSER_ID
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -113,8 +112,8 @@ class auditlog_rule(models.Model):
         """Get all rules and apply them to log method calls."""
         super(auditlog_rule, self)._register_hook(cr)
         if ids is None:
-            ids = self.search(cr, 1, [('state', '=', 'subscribed')])
-        return self._patch_methods(cr, 1, ids)
+            ids = self.search(cr, SUPERUSER_ID, [('state', '=', 'subscribed')])
+        return self._patch_methods(cr, SUPERUSER_ID, ids)
 
     @api.multi
     def _patch_methods(self):
