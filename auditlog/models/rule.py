@@ -274,7 +274,8 @@ class auditlog_rule(models.Model):
         return unlink
 
     def create_logs(self, uid, res_model, res_ids, method,
-                    old_values=None, new_values=None):
+                    old_values=None, new_values=None,
+                    additional_log_values=None):
         """Create logs. `old_values` and `new_values` are dictionnaries, e.g:
             {RES_ID: {'FIELD': VALUE, ...}}
         """
@@ -295,6 +296,7 @@ class auditlog_rule(models.Model):
                 'method': method,
                 'user_id': uid,
             }
+            vals.update(additional_log_values)
             log = log_model.create(vals)
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT),
