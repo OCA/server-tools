@@ -274,8 +274,10 @@ class auditlog_rule(models.Model):
         @api.multi
         def unlink(self, **kwargs):
             rule_model = self.env['auditlog.rule']
+            old_values = dict(
+                (d['id'], d) for d in self.sudo().read(list(self._columns)))
             rule_model.sudo().create_logs(
-                self.env.uid, self._name, self.ids, 'unlink')
+                self.env.uid, self._name, self.ids, 'unlink', old_values)
             return unlink.origin(self, **kwargs)
         return unlink
 
