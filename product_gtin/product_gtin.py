@@ -124,7 +124,8 @@ class product_product(orm.Model):
             "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
     }
 
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN/GTIN code', ['ean13'])]
+    _constraints = [(_check_ean_key,
+                     'Error: Invalid EAN/GTIN code', ['ean13'])]
 
 
 class product_packaging(orm.Model):
