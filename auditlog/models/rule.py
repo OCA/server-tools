@@ -292,7 +292,6 @@ class auditlog_rule(models.Model):
         if new_values is None:
             new_values = EMPTY_DICT
         log_model = self.env['auditlog.log']
-        ir_model = self.env['ir.model']
         for res_id in res_ids:
             model_model = self.env[res_model]
             res_name = model_model.browse(res_id).name_get()
