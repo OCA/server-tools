@@ -34,7 +34,7 @@ class fetchmail_server(models.Model):
 
     folder_ids = fields.One2many(
         'fetchmail.server.folder', 'server_id', 'Folders')
-    object_id = fields.Many2one(required=True)
+    object_id = fields.Many2one(required=False)
 
     _defaults = {
         'type': 'imap',
