@@ -26,6 +26,7 @@ from lxml import etree
 from openerp import models, fields, api, exceptions
 from openerp.tools.translate import _
 from openerp.tools.misc import UnquoteEvalContext
+_logger = logging.getLogger(__name__)
 
 
 class fetchmail_server(models.Model):
@@ -80,21 +81,21 @@ class fetchmail_server(models.Model):
         matched_object_ids = []
 
         for this in self:
-            logging.info(
+            _logger.info(
                 'start checking for emails in %s server %s',
                 folder.path, this.name)
 
             match_algorithm = folder.get_algorithm()
 
             if connection.select(folder.path)[0] != 'OK':
-                logging.error(
+                _logger.error(
                     'Could not open mailbox %s on %s',
                     folder.path, this.server)
                 connection.select()
                 continue
             result, msgids = this.get_msgids(connection)
             if result != 'OK':
-                logging.error(
+                _logger.error(
                     'Could not search mailbox %s on %s',
                     folder.path, this.server)
                 continue
@@ -103,7 +104,7 @@ class fetchmail_server(models.Model):
                 matched_object_ids += this.apply_matching(
                     connection, folder, msgid, match_algorithm)
 
-            logging.info(
+            _logger.info(
                 'finished checking for emails in %s server %s',
                 folder.path, this.name)
 
@@ -124,7 +125,7 @@ class fetchmail_server(models.Model):
             result, msgdata = connection.fetch(msgid, '(RFC822)')
 
             if result != 'OK':
-                logging.error(
+                _logger.error(
                     'Could not fetch %s in %s on %s',
                     msgid, folder.path, this.server)
                 continue
@@ -151,7 +152,7 @@ class fetchmail_server(models.Model):
                     matched_object_ids += found_ids[:1]
                 except Exception:
                     self.env.cr.execute('rollback to savepoint apply_matching')
-                    logging.exception(
+                    _logger.exception(
                         "Failed to fetch mail %s from %s", msgid, this.name)
             elif folder.flag_nonmatching:
                 connection.store(msgid, '+FLAGS', '\\FLAGGED')
