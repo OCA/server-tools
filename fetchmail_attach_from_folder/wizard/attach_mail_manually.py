@@ -21,6 +21,7 @@
 ##############################################################################
 from openerp import fields, models
 import logging
+_logger = logging.getLogger(__name__)
 
 
 class attach_mail_manually(models.TransientModel):
@@ -49,14 +50,14 @@ class attach_mail_manually(models.TransientModel):
                 None,
                 'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
             if result != 'OK':
-                logging.error('Could not search mailbox %s on %s' % (
-                    folder.path, folder.server_id.name))
+                _logger.error('Could not search mailbox %s on %s',
+                              folder.path, folder.server_id.name)
                 continue
             for msgid in msgids[0].split():
                 result, msgdata = connection.fetch(msgid, '(RFC822)')
                 if result != 'OK':
-                    logging.error('Could not fetch %s in %s on %s' % (
-                        msgid, folder.path, folder.server_id.name))
+                    _logger.error('Could not fetch %s in %s on %s',
+                                  msgid, folder.path, folder.server_id.name)
                     continue
                 mail_message = self.pool.get('mail.thread').message_parse(
                     cr, uid, msgdata[0][1],
@@ -80,8 +81,8 @@ class attach_mail_manually(models.TransientModel):
                 connection.select(this.folder_id.path)
                 result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
                 if result != 'OK':
-                    logging.error('Could not fetch %s in %s on %s' % (
-                        mail.msgid, this.folder_id.path, this.server))
+                    _logger.error('Could not fetch %s in %s on %s',
+                                  mail.msgid, this.folder_id.path, this.server)
                     continue
 
                 mail_message = self.pool.get('mail.thread').message_parse(
