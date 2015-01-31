@@ -20,27 +20,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Attach mails in an IMAP folder to existing objects',
-    'version': '1.0',
-    'description': """
-Adds the possibility to attach emails from a certain IMAP folder to objects,
-ie partners. Matching is done via several algorithms, ie email address.
-
-This gives a simple possibility to archive emails in OpenERP without a mail
-client integration.
-    """,
-    'author': 'Therp BV',
-    'website': 'http://www.therp.nl',
-    "category": "Tools",
-    "depends": ['fetchmail'],
-    'data': [
-        'view/fetchmail_server.xml',
-        'wizard/attach_mail_manually.xml',
-        'security/ir.model.access.csv',
-        ],
-    'js': [],
-    'installable': False,
-    'active': False,
-    'certificate': '',
-}
+from . import attach_mail_manually

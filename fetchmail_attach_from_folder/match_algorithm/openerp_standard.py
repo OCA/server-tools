@@ -20,14 +20,14 @@
 #
 ##############################################################################
 
-from base import base
+from .base import base
 
 
 class openerp_standard(base):
     '''No search at all. Use OpenERP's standard mechanism to attach mails to
     mail.thread objects. Note that this algorithm always matches.'''
 
-    name = 'OpenERP standard'
+    name = 'Odoo standard'
     readonly_fields = [
         'model_field',
         'mail_field',
