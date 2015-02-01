@@ -24,33 +24,32 @@ from openerp.tests.common import TransactionCase
 class TestAuditlog(TransactionCase):
     def test_LogCreation(self):
         auditlog_log = self.env['auditlog.log']
-        user_model_id = self.env.ref('base.model_res_users').id
+        groups_model_id = self.env.ref('base.model_res_groups').id
         self.env['auditlog.rule'].create({
-            'name': 'testrule for users',
-            'model_id': user_model_id,
+            'name': 'testrule for groups',
+            'model_id': groups_model_id,
             'log_create': True,
             'log_write': True,
             'log_unlink': True,
             'state': 'subscribed',
         })
-        user = self.env['res.users'].create({
-            'login': 'testuser',
-            'name': 'testuser',
+        group = self.env['res.groups'].create({
+            'name': 'testgroup',
         })
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', user_model_id),
+            ('model_id', '=', groups_model_id),
             ('method', '=', 'create'),
-            ('res_id', '=', user.id),
+            ('res_id', '=', group.id),
         ]))
-        user.write({'name': 'Test User'})
+        group.write({'name': 'Testgroup'})
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', user_model_id),
+            ('model_id', '=', groups_model_id),
             ('method', '=', 'write'),
-            ('res_id', '=', user.id),
+            ('res_id', '=', group.id),
         ]))
-        user.unlink()
+        group.unlink()
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', user_model_id),
+            ('model_id', '=', groups_model_id),
             ('method', '=', 'unlink'),
-            ('res_id', '=', user.id),
+            ('res_id', '=', group.id),
         ]))
