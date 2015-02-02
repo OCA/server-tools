@@ -20,7 +20,19 @@
 #
 ##############################################################################
 
-import base
-import email_exact
-import email_domain
-import openerp_standard
+{
+    'name': 'Email gateway - folders',
+    'summary': 'Attach mails in an IMAP folder to existing objects',
+    'version': '1.0',
+    'author': 'Therp BV',
+    'website': 'http://www.therp.nl',
+    "category": "Tools",
+    "depends": ['fetchmail'],
+    'data': [
+        'view/fetchmail_server.xml',
+        'wizard/attach_mail_manually.xml',
+        'security/ir.model.access.csv',
+    ],
+    'installable': True,
+    'active': True,
+}
