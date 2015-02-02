@@ -28,29 +28,6 @@ def is_pair(x):
     return not x % 2
 
 
-def check_ean(eancode):
-    if not eancode:
-        return True
-    if not len(eancode) in [8, 11, 12, 13, 14]:
-        return False
-    try:
-        int(eancode)
-    except:
-        return False
-    check = True
-    if len(eancode) == 8:
-        check = check_ean8(eancode)
-    if len(eancode) == 11:
-        check = check_ean11(eancode)
-    if len(eancode) == 12:
-        check = check_upc(eancode)
-    if len(eancode) == 13:
-        check = check_ean13(eancode)
-    if len(eancode) == 14:
-        check = check_gtin14(eancode)
-    return check
-
-
 def check_ean8(eancode):
     sum = 0
     ean_len = int(len(eancode))
@@ -106,6 +83,26 @@ def check_ean11(eancode):
 
 def check_gtin14(eancode):
     pass
+
+
+DICT_CHECK_EAN = {8: check_ean8,
+                  11: check_ean11,
+                  12: check_upc,
+                  13: check_ean13,
+                  14: check_gtin14,
+                  }
+
+
+def check_ean(eancode):
+    if not eancode:
+        return True
+    if not len(eancode) in [8, 11, 12, 13, 14]:
+        return False
+    try:
+        int(eancode)
+    except:
+        return False
+    return DICT_CHECK_EAN[len(eancode)](eancode)
 
 
 class product_product(orm.Model):
