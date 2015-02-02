@@ -267,13 +267,14 @@ class PGMaterializedViewManager(object):
 
     @abstractmethod
     def drop_mat_view(self, cr, view_name, mat_view_name):
-        """Abstract Method to overwrite in subclass to drop materialized view and clean
-           every thing to its authority
+        """Abstract Method to overwrite in subclass to drop materialized view
+           and clean every thing to its authority
         """
 
     def is_existed_relation(self, cr, relname):
-        cr.execute("select count(*) from pg_class where relname like '%(relname)s'" %
-                   {'relname': relname})
+        cr.execute(
+            "select count(*) from pg_class where relname like '%(relname)s'" %
+            {'relname': relname})
         return cr.fetchone()[0] > 0
 
     @classmethod

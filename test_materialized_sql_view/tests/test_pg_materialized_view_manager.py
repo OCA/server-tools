@@ -62,7 +62,8 @@ class PGMaterializedViewManagerTester(SingleTransactionCase):
 
     def test_is_existed_relation(self):
         pg = self.pg_manager.getInstance(self.cr._cnx.server_version)
-        pg.create_mat_view(self.cr, self.sql, self.view_name, self.mat_view_name)
+        pg.create_mat_view(self.cr, self.sql, self.view_name,
+                           self.mat_view_name)
         self.assertTrue(pg.is_existed_relation(self.cr, self.view_name))
         self.assertTrue(pg.is_existed_relation(self.cr, self.view_name))
         pg.drop_mat_view(self.cr, self.view_name, self.mat_view_name)
