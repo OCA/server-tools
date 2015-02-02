@@ -117,6 +117,7 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
         """Compare everything that can cause the needs to drop and recreate
            materialized view. Return True if something done.
         """
+        self.safe_properties()
         matview_mdl = self.pool.get('materialized.sql.view')
         if not context:
             context = {}
