@@ -11,6 +11,9 @@ Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
 operations to log for a given data model.
 Then, check logs in the `Reporting / Audit / Logs` menu.
 
+During installation, it will migrate any existing data from the `audittrail`
+module (rules and logs).
+
 For further information, please visit:
 
  * https://www.odoo.com/forum/help-1
