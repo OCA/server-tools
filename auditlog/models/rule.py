@@ -424,7 +424,6 @@ class auditlog_rule(models.Model):
         """Unsubscribe Auditing Rule on model."""
         act_window_model = self.env['ir.actions.act_window']
         ir_values_model = self.env['ir.values']
-        value = ''
         # Revert patched methods
         self._revert_methods()
         for rule in self:
@@ -436,7 +435,6 @@ class auditlog_rule(models.Model):
             if act_window:
                 value = 'ir.actions.act_window,%s' % act_window.id
                 act_window.unlink()
-            if value:
                 ir_value = ir_values_model.search(
                     [('model', '=', rule.model_id.model),
                      ('value', '=', value)])
