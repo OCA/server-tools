@@ -25,10 +25,6 @@
     'name': 'Materialized Sql View',
     'version': '0.1',
     'category': 'Tools',
-    'description': """
-This odoo module, add utilities to manage materialized SQL view
-and necessary user interface to interact with.
-    """,
     'author': 'Pierre Verkest',
     'depends': [
         'base',
