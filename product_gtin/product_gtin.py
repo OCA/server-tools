@@ -28,15 +28,39 @@ def is_pair(x):
     return not x % 2
 
 
-def check_ean(eancode):
-    if not eancode:
-        return True
-    if not len(eancode) in [8, 11, 12, 13, 14]:
+def check_ean8(eancode):
+    sum = 0
+    ean_len = int(len(eancode))
+    for i in range(ean_len-1):
+        if is_pair(i):
+            sum += 3 * int(eancode[i])
+        else:
+            sum += int(eancode[i])
+    check = 10 - operator.mod(sum, 10)
+    if check == 10:
+        check = 0
+    if check != int(eancode[-1]):
         return False
-    try:
-        int(eancode)
-    except:
+    return True
+
+
+def check_upc(eancode):
+    sum_pair = 0
+    ean_len = int(len(eancode))
+    for i in range(ean_len-1):
+        if is_pair(i):
+            sum_pair += int(eancode[i])
+    sum = sum_pair * 3
+    for i in range(ean_len-1):
+        if not is_pair(i):
+            sum += int(eancode[i])
+    check = ((sum/10 + 1) * 10) - sum
+    if check != int(eancode[-1]):
         return False
+    return True
+
+
+def check_ean13(eancode):
     sum = 0
     ean_len = int(len(eancode))
     for i in range(ean_len-1):
@@ -53,6 +77,34 @@ def check_ean(eancode):
     return True
 
 
+def check_ean11(eancode):
+    pass
+
+
+def check_gtin14(eancode):
+    pass
+
+
+DICT_CHECK_EAN = {8: check_ean8,
+                  11: check_ean11,
+                  12: check_upc,
+                  13: check_ean13,
+                  14: check_gtin14,
+                  }
+
+
+def check_ean(eancode):
+    if not eancode:
+        return True
+    if not len(eancode) in DICT_CHECK_EAN:
+        return False
+    try:
+        int(eancode)
+    except:
+        return False
+    return DICT_CHECK_EAN[len(eancode)](eancode)
+
+
 class product_product(orm.Model):
     _inherit = "product.product"
 
@@ -64,12 +116,13 @@ class product_product(orm.Model):
 
     _columns = {
         'ean13': fields.char(
-            'EAN', size=14,
+            'EAN/GTIN', size=14,
             help="Code for EAN8 EAN13 UPC JPC GTIN "
             "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
     }
 
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean13'])]
+    _constraints = [(_check_ean_key,
+                     'Error: Invalid EAN/GTIN code', ['ean13'])]
 
 
 class product_packaging(orm.Model):
