@@ -96,7 +96,7 @@ DICT_CHECK_EAN = {8: check_ean8,
 def check_ean(eancode):
     if not eancode:
         return True
-    if not len(eancode) in [8, 11, 12, 13, 14]:
+    if not len(eancode) in DICT_CHECK_EAN:
         return False
     try:
         int(eancode)
