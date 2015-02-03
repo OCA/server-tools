@@ -24,6 +24,11 @@ from openerp.osv import orm, fields
 import operator
 
 
+CONSTRAINT_MESSAGE = 'Error: Invalid EAN/GTIN code'
+HELP_MESSAGE = ("EAN8 EAN13 UPC JPC GTIN \n"
+                "http://en.wikipedia.org/wiki/Global_Trade_Item_Number")
+
+
 def is_pair(x):
     return not x % 2
 
@@ -117,12 +122,10 @@ class product_product(orm.Model):
     _columns = {
         'ean13': fields.char(
             'EAN/GTIN', size=14,
-            help="Code for EAN8 EAN13 UPC JPC GTIN "
-            "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
+            help="Code for %s" % HELP_MESSAGE),
     }
 
-    _constraints = [(_check_ean_key,
-                     'Error: Invalid EAN/GTIN code', ['ean13'])]
+    _constraints = [(_check_ean_key, CONSTRAINT_MESSAGE, ['ean13'])]
 
 
 class product_packaging(orm.Model):
@@ -137,10 +140,10 @@ class product_packaging(orm.Model):
     _columns = {
         'ean': fields.char(
             'EAN', size=14,
-            help='Barcode number for EAN8 EAN13 UPC JPC GTIN'),
+            help='Barcode number for %s' % HELP_MESSAGE),
         }
 
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean'])]
+    _constraints = [(_check_ean_key, CONSTRAINT_MESSAGE, ['ean'])]
 
 
 class res_partner(orm.Model):
@@ -155,8 +158,7 @@ class res_partner(orm.Model):
     _columns = {
         'ean13': fields.char(
             'EAN', size=14,
-            help="Code for EAN8 EAN13 UPC JPC GTIN "
-            "http://en.wikipedia.org/wiki/Global_Trade_Item_Number"),
+            help="Code for %s" % HELP_MESSAGE),
         }
 
-    _constraints = [(_check_ean_key, 'Error: Invalid EAN code', ['ean13'])]
+    _constraints = [(_check_ean_key, CONSTRAINT_MESSAGE, ['ean13'])]
