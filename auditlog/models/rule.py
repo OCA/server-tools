@@ -130,7 +130,7 @@ class auditlog_rule(models.Model):
             if not self.pool.get(rule.model_id.model):
                 # ignore rules for models not loadable currently
                 continue
-            model_cache[rule.model_id.model] = rule.model_id
+            model_cache[rule.model_id.model] = rule.model_id.id
             model_model = self.env[rule.model_id.model]
             # CRUD
             #   -> create
@@ -312,7 +312,7 @@ class auditlog_rule(models.Model):
             res_name = name and name[0] and name[0][1]
             vals = {
                 'name': res_name and res_name[0] and res_name[0][1] or False,
-                'model_id': self.pool._auditlog_model_cache[res_model].id,
+                'model_id': self.pool._auditlog_model_cache[res_model],
                 'res_id': res_id,
                 'method': method,
                 'user_id': uid,
@@ -388,12 +388,13 @@ class auditlog_rule(models.Model):
         cache = self.pool._auditlog_field_cache
         if field_name not in cache.get(model.model, {}):
             cache.setdefault(model.model, {})
-            cache[model.model][field_name] = self.env['ir.model.fields']\
-                .search(
-                    [
-                        ('model_id', '=', model.id),
-                        ('name', '=', field_name),
-                    ])
+            # We use 'search()' then 'read()' instead of the 'search_read()'
+            # to take advantage of the 'classic_write' loading
+            field_model = self.env['ir.model.fields']
+            field = field_model.search(
+                [('model_id', '=', model.id), ('name', '=', field_name)])
+            field_data = field.read(load='_classic_write')[0]
+            cache[model.model][field_name] = field_data
         return cache[model.model][field_name]
 
     def _create_log_line_on_write(
@@ -414,7 +415,7 @@ class auditlog_rule(models.Model):
         'write' operation.
         """
         vals = {
-            'field_id': field.id,
+            'field_id': field['id'],
             'log_id': log.id,
             'old_value': old_values[log.res_id][field['name']],
             'old_value_text': old_values[log.res_id][field['name']],
@@ -423,18 +424,8 @@ class auditlog_rule(models.Model):
         }
         # for *2many fields, log the name_get
         if field['relation'] and '2many' in field['ttype']:
-            # Filter IDs to prevent a 'name_get()' call on deleted resources
-            existing_ids = self.env[field['relation']]._search(
-                [('id', 'in', vals['old_value'])])
-            old_value_text = []
-            if existing_ids:
-                existing_values = self.env[field['relation']].browse(
-                    existing_ids).name_get()
-                old_value_text.extend(existing_values)
-            # Deleted resources will have a 'DELETED' text representation
-            deleted_ids = set(vals['old_value']) - set(existing_ids)
-            for deleted_id in deleted_ids:
-                old_value_text.append((deleted_id, 'DELETED'))
+            old_value_text = self.env[field['relation']].browse(
+                vals['old_value']).name_get()
             vals['old_value_text'] = old_value_text
             new_value_text = self.env[field['relation']].browse(
                 vals['new_value']).name_get()
@@ -458,7 +449,7 @@ class auditlog_rule(models.Model):
         'create' operation.
         """
         vals = {
-            'field_id': field.id,
+            'field_id': field['id'],
             'log_id': log.id,
             'old_value': False,
             'old_value_text': False,
