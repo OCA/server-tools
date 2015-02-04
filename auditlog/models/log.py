@@ -50,5 +50,6 @@ class auditlog_log_line(models.Model):
     new_value = fields.Text(u"New Value")
     old_value_text = fields.Text(u"Old value Text")
     new_value_text = fields.Text(u"New value Text")
-    field_name = fields.Char(u"Technical name", size=64)
-    field_description = fields.Char(u"Description", size=64)
+    field_name = fields.Char(u"Technical name", related='field_id.name')
+    field_description = fields.Char(
+        u"Description", related='field_id.field_description')
