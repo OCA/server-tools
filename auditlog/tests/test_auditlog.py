@@ -23,6 +23,7 @@ from openerp.tests.common import TransactionCase
 
 class TestAuditlog(TransactionCase):
     def test_LogCreation(self):
+        """First test, caching some data."""
         auditlog_log = self.env['auditlog.log']
         groups_model_id = self.env.ref('base.model_res_groups').id
         self.env['auditlog.rule'].create({
@@ -34,14 +35,14 @@ class TestAuditlog(TransactionCase):
             'state': 'subscribed',
         })
         group = self.env['res.groups'].create({
-            'name': 'testgroup',
+            'name': 'testgroup1',
         })
         self.assertTrue(auditlog_log.search([
             ('model_id', '=', groups_model_id),
             ('method', '=', 'create'),
             ('res_id', '=', group.id),
         ]))
-        group.write({'name': 'Testgroup'})
+        group.write({'name': 'Testgroup1'})
         self.assertTrue(auditlog_log.search([
             ('model_id', '=', groups_model_id),
             ('method', '=', 'write'),
@@ -53,3 +54,9 @@ class TestAuditlog(TransactionCase):
             ('method', '=', 'unlink'),
             ('res_id', '=', group.id),
         ]))
+
+    def test_LogCreation2(self):
+        """Second test, using cached data of the first one."""
+        self.env['res.groups'].create({
+            'name': 'testgroup2',
+        })
