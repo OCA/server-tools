@@ -43,7 +43,7 @@ class auditlog_log_line(models.Model):
     _description = "Auditlog - Log details (fields updated)"
 
     field_id = fields.Many2one(
-        'ir.model.fields', string=u"Field", required=True)
+        'ir.model.fields', ondelete='cascade', string=u"Field", required=True)
     log_id = fields.Many2one(
         'auditlog.log', string=u"Log", ondelete='cascade')
     old_value = fields.Text(u"Old Value")
