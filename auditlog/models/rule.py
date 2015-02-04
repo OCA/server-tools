@@ -414,7 +414,7 @@ class auditlog_rule(models.Model):
         'write' operation.
         """
         vals = {
-            'field_id': field['id'],
+            'field_id': field.id,
             'log_id': log.id,
             'old_value': old_values[log.res_id][field['name']],
             'old_value_text': old_values[log.res_id][field['name']],
@@ -458,7 +458,7 @@ class auditlog_rule(models.Model):
         'create' operation.
         """
         vals = {
-            'field_id': field['id'],
+            'field_id': field.id,
             'log_id': log.id,
             'old_value': False,
             'old_value_text': False,
