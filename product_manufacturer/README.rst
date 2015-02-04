@@ -6,3 +6,4 @@ You can now define the following for a product:
     * Manufacturer
     * Manufacturer Product Name
     * Manufacturer Product Code
+    * Manufacturer Product URL
