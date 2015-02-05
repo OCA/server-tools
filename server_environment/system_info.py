@@ -30,7 +30,8 @@ from openerp.tools.config import config
 
 def _get_output(cmd):
     bindir = config['root_path']
-    p = subprocess.Popen(cmd, shell=True, cwd=bindir, stdout=subprocess.PIPE)
+    p = subprocess.Popen(cmd, shell=True, cwd=bindir, stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT)
     return p.communicate()[0].rstrip()
 
 
