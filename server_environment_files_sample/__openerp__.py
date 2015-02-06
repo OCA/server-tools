@@ -41,6 +41,7 @@ server_environment_files lives before this one in the addons-path
 variable of the OpenERP configuration file.
     """,
     "website": "http://www.camptocamp.com",
+    "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
     "installable": True,
