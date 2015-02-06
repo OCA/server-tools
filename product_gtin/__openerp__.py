@@ -25,6 +25,7 @@
     "version": "1.1",
     "author":  "ChriCar Beteiligungs- und Beratungs- GmbH",
     "website": "http://www.chricar.at/ChriCar",
+    "license": "AGPL-3",
     "category": "Sales Management",
     "depends": ["product"],
     "description": """
