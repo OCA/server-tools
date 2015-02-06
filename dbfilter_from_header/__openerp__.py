@@ -22,6 +22,7 @@
     "name": "dbfilter_from_header",
     "version": "1.0",
     "author": "Therp BV",
+    "license": "AGPL-3",
     "complexity": "normal",
     "description": """
     This addon lets you pass a dbfilter as a HTTP header.
