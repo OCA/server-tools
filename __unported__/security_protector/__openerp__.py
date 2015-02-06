@@ -15,6 +15,7 @@
  """,
  'author': 'Camptocamp',
  'website': 'http://openerp.camptocamp.com',
+ 'license': 'AGPL-3',
  'depends': ['base'],
  'init_xml': ['data.xml'],
  'update_xml': ['security_view.xml'],

@@ -22,6 +22,7 @@
     "name": "Remove odoo.com bindings",
     "version": "1.1",
     "author": "Therp BV",
+    "license": "AGPL-3",
     "complexity": "normal",
     "description": """
 This module deactivates all bindings to openerp.com that

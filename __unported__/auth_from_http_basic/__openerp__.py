@@ -22,6 +22,7 @@
     "name": "Authenticate via HTTP basic authentication",
     "version": "1.0",
     "author": "Therp BV",
+    "license": "AGPL-3",
     "complexity": "expert",
     "description": """
 In an environment where several web applications authenticate against the same

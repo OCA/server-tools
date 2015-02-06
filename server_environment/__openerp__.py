@@ -77,6 +77,7 @@ Example usage
     serv_config.get('external_service.ftp', 'tls')
     """,
     "website": "http://www.camptocamp.com",
+    "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [
         'serv_config.xml',
