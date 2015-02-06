@@ -78,6 +78,7 @@ Contributors
     """,
     'author': 'Daniel Reis',
     'website': 'http://launchpad.net/addons-tko',
+    'license': 'AGPL-3',
     'images': [
         'images/snapshot1.png',
         'images/snapshot2.png',

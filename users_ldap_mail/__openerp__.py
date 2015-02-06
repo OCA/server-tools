@@ -24,6 +24,7 @@
     'version': "1.0",
     'depends': ["auth_ldap"],
     'author': "Daniel Reis (https://launchpad.com/~dreis-pt)",
+    'license': 'AGPL-3',
     'description': """\
 Allows to define the LDAP attributes to use to retrieve user name and e-mail
 address.
