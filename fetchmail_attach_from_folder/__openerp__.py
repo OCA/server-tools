@@ -26,6 +26,7 @@
     'version': '1.0',
     'author': 'Therp BV',
     'website': 'http://www.therp.nl',
+    'license': 'AGPL-3',
     "category": "Tools",
     "depends": ['fetchmail'],
     'data': [
