@@ -54,3 +54,4 @@ docs/_build/
 # Backup files
 *~
 *.swp
+*.DS_Store
