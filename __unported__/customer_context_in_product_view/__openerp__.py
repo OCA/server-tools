@@ -25,6 +25,7 @@
     'category': 'Sales',
     'author': 'O4SB - Graeme Gellatly',
     'website': 'http://www.o4sb.com',
+    'license': 'AGPL-3',
     'depends': ['base', 'product'],
     'description': '''
     This module provide :

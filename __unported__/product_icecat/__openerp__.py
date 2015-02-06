@@ -24,6 +24,7 @@
     "version" : "1.0",
     "author" : "Zikzakmedia",
     "website" : "http://www.zikzakmedia.com",
+    "license": "AGPL-3",
     "category" : "Added functionality",
     "depends" : ["base","product","product_images_olbs"],
     "init_xml" : [],

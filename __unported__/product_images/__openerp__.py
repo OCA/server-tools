@@ -23,6 +23,7 @@
     "version" : "0.2",
     "author" : "Sharoon Thomas, Open Labs Business Solutions, Akretion",
     "website" : "http://openlabs.co.in/",
+    "license": "GPL-2 or any later version",
     "category" : "Generic Modules",
     "depends" : ['product_sequence'],
     "description": """

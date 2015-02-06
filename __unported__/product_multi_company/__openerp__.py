@@ -23,6 +23,7 @@
     "name" : "Product multi company ",
     "version" : "1.1",
     "author" : "OpenERP SA",
+    "license": "AGPL-3",
     "category" : "Generic Modules/Inventory Control",
     "depends" : [ "product"],
     "init_xml" : [],

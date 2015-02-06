@@ -21,6 +21,7 @@
     "author": "Sharoon Thomas",
     "contributors": ["Mikel Arregi <mikelarregi@avanzosc.es>"],
     "website": "",
+    "license": "GPL-3 or any later version",
     "category": "Product Management",
     "depends": ['base', 'product'],
     "description": """

@@ -34,6 +34,7 @@
     'category': 'Product',
     'summary': ' brand',
     'author': 'NetAndCo, Akretion, Prisnet Telecommunications SA',
+    'license': 'AGPL-3',
     'depends': ['product'],
     'data': [
         'product_brand_view.xml',

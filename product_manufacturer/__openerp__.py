@@ -21,6 +21,7 @@
     'name': 'Products Manufacturers',
     'version': '1.0',
     'author': 'OpenERP SA',
+    'license': 'AGPL-3',
     'contributors': ['Acysos SL <info@acysos.com>'],
     'category': 'Purchase Management',
     'depends': ['product'],
