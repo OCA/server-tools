@@ -33,12 +33,9 @@ class PrototypeModuleExport(models.TransientModel):
     _name = "module_prototyper.module.export"
 
     name = fields.Char('File Name', readonly=True)
-    # It is implemented in order to manage previous and next versions
-    # of odoo
     api_version = fields.Selection(
         [
             ('8.0', '8.0'),
-            # ('7.0', '7.0')
         ],
         'API version',
         required=True,
