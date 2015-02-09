@@ -351,8 +351,18 @@ class auditlog_rule(models.Model):
         }
         # for *2many fields, log the name_get
         if field['relation'] and '2many' in field['ttype']:
-            old_value_text = self.env[field['relation']].browse(
-                vals['old_value']).name_get()
+            # Filter IDs to prevent a 'name_get()' call on deleted resources
+            existing_ids = self.env[field['relation']]._search(
+                [('id', 'in', vals['old_value'])])
+            old_value_text = []
+            if existing_ids:
+                existing_values = self.env[field['relation']].browse(
+                    existing_ids).name_get()
+                old_value_text.extend(existing_values)
+            # Deleted resources will have a 'DELETED' text representation
+            deleted_ids = set(vals['old_value']) - set(existing_ids)
+            for deleted_id in deleted_ids:
+                old_value_text.append((deleted_id, 'DELETED'))
             vals['old_value_text'] = old_value_text
             new_value_text = self.env[field['relation']].browse(
                 vals['new_value']).name_get()
