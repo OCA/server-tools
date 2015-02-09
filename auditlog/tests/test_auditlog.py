@@ -60,3 +60,18 @@ class TestAuditlog(TransactionCase):
         self.env['res.groups'].create({
             'name': 'testgroup2',
         })
+
+    def test_LogCreation3(self):
+        """Third test, two groups, the latter being the parent of the former.
+        Then we remove it right after (with (2, X) tuple) to test the creation
+        of a 'write' log with a deleted resource (so with no text
+        representation).
+        """
+        testgroup3 = self.env['res.groups'].create({
+            'name': 'testgroup3',
+        })
+        testgroup4 = self.env['res.groups'].create({
+            'name': 'testgroup4',
+            'implied_ids': [(4, testgroup3.id)],
+        })
+        testgroup4.write({'implied_ids': [(2, testgroup3.id)]})
