@@ -28,7 +28,7 @@
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Others',
-    'summary': 'Prototype your module',
+    'summary': 'Prototype your module.',
     'depends': [
         'admin_technical_features',
     ],
