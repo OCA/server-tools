@@ -19,14 +19,13 @@
             <field name="model">module_prototyper</field>
             <field name="arch" type="xml">
                 <form string="Module">
-                    <link rel="stylesheet"
-                          href="/base/static/src/css/description.css"/>
                     <sheet>
                         <field name="icon_image" widget="image"
                                class="oe_avatar oe_left"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="human_name"/>
+                                <field name="human_name"
+                                       placeholder="ex: Module Prototyper"/>
                             </h1>
                             <div>
                                 <button name="%(button_module_export_action)d"
@@ -35,15 +34,21 @@
                         </div>
                         <group>
                             <group>
-                                <field name="name"/>
-                                <field name="summary"/>
-                                <field name="category_id"/>
+                                <field name="name"
+                                       placeholder="ex: module_prototyper"/>
+                                <field name="summary"
+                                       placeholder="ex: Prototype your module."/>
+                                <field name="category_id"
+                                       placeholder="ex: Others, Sales, Website"/>
                                 <field name="version"/>
                             </group>
                             <group>
-                                <field name="author"/>
-                                <field name="website" widget="url"/>
-                                <field name="maintainer"/>
+                                <field name="author"
+                                       placeholder="ex: Odoo Community Association"/>
+                                <field name="website" widget="url"
+                                       placeholder="ex: http://odoo-community.org/"/>
+                                <field name="maintainer"
+                                       placeholder="ex: Odoo Community Association"/>
                                 <field name="auto_install"/>
                                 <field name="application"/>
                             </group>
@@ -57,10 +62,10 @@
                             </page>
                             <!--Not implemented yet-->
                             <!--<page string="Data &amp; Demo">-->
-                                <!--<label for="data_ids"/>-->
-                                <!--<field name="data_ids"/>-->
-                                <!--<label for="demo_ids"/>-->
-                                <!--<field name="demo_ids"/>-->
+                            <!--<label for="data_ids"/>-->
+                            <!--<field name="data_ids"/>-->
+                            <!--<label for="demo_ids"/>-->
+                            <!--<field name="demo_ids"/>-->
                             <!--</page>-->
                             <page string="Fields">
                                 <label for="field_ids"/>
@@ -74,12 +79,12 @@
                             </page>
                             <!--Not implemented yet-->
                             <!--<page string="Security">-->
-                                <!--<label for="group_ids"/>-->
-                                <!--<field name="group_ids"/>-->
-                                <!--<label for="right_ids"/>-->
-                                <!--<field name="right_ids"/>-->
-                                <!--<label for="rule_ids"/>-->
-                                <!--<field name="rule_ids"/>-->
+                            <!--<label for="group_ids"/>-->
+                            <!--<field name="group_ids"/>-->
+                            <!--<label for="right_ids"/>-->
+                            <!--<field name="right_ids"/>-->
+                            <!--<label for="rule_ids"/>-->
+                            <!--<field name="rule_ids"/>-->
                             <!--</page>-->
                         </notebook>
                     </sheet>
