@@ -19,8 +19,6 @@
             <field name="model">module_prototyper</field>
             <field name="arch" type="xml">
                 <form string="Module">
-                    <link rel="stylesheet"
-                          href="/base/static/src/css/description.css"/>
                     <sheet>
                         <field name="icon_image" widget="image"
                                class="oe_avatar oe_left"/>
