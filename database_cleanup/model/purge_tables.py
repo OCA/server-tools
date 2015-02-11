@@ -37,45 +37,13 @@ class CleanupPurgeLineTable(orm.TransientModel):
         Unlink tables upon manual confirmation.
         """
         lines = self.browse(cr, uid, ids, context=context)
-        tables = [line.name for line in lines]
         for line in lines:
             if line.purged:
                 continue
 
-            # Retrieve constraints on the tables to be dropped
-            # This query is referenced in numerous places
-            # on the Internet but credits probably go to Tom Lane
-            # in this post http://www.postgresql.org/\
-            # message-id/22895.1226088573@sss.pgh.pa.us
-            # Only using the constraint name and the source table,
-            # but I'm leaving the rest in for easier debugging
-            cr.execute(
-                """
-                SELECT conname, confrelid::regclass, af.attname AS fcol,
-                    conrelid::regclass, a.attname AS col
-                FROM pg_attribute af, pg_attribute a,
-                    (SELECT conname, conrelid, confrelid,conkey[i] AS conkey,
-                         confkey[i] AS confkey
-                     FROM (select conname, conrelid, confrelid, conkey,
-                       confkey, generate_series(1,array_upper(conkey,1)) AS i
-                       FROM pg_constraint WHERE contype = 'f') ss) ss2
-                WHERE af.attnum = confkey AND af.attrelid = confrelid AND
-                a.attnum = conkey AND a.attrelid = conrelid
-                AND confrelid::regclass = '%s'::regclass;
-                """ % line.name)
-
-            for constraint in cr.fetchall():
-                if constraint[3] in tables:
-                    self.logger.info(
-                        'Dropping constraint %s on table %s (to be dropped)',
-                        constraint[0], constraint[3])
-                    cr.execute(
-                        "ALTER TABLE %s DROP CONSTRAINT %s" % (
-                            constraint[3], constraint[0]))
-
             self.logger.info(
-                'Dropping table %s', line.name)
-            cr.execute("DROP TABLE \"%s\"" % (line.name,))
+                'Dropping table %s and all dependent objects', line.name)
+            cr.execute("DROP TABLE \"%s\" CASCADE" % (line.name,))
             line.write({'purged': True})
             cr.commit()
         return True
