@@ -12,6 +12,7 @@
                         <field name="manufacturer" context="{'default_supplier':True, 'default_customer':False}"/>
                         <field name="manufacturer_pname"/>
                         <field name="manufacturer_pref"/>
+                        <field name="manufacturer_purl"/>
                     </group>
                 </group>
             </field>
