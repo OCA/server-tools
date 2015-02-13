@@ -7,15 +7,15 @@ the standard ``cProfile`` into OpenERP/Odoo.
 Basic usage
 -----------
 
-After installation, a new menu "Profiler" gets available in the
-administration menu, with four items:
+After installation, a player is add on the header bar, with
+four items:
 
-* Start profiling
-* Stop profiling
-* Dump stats: retrieve from the browser a stats file, in the standard
-  cProfile format (see Python documentation and performance wiki page
-  for exploitation tips).
-* Clear stats
+|player|
+
+* Start profiling |start_profiling|
+* Stop profiling |stop_profiling|
+* Download stats: download stats file |dump_stats|
+* Clear stats |clear_stats|
 
 Advantages
 ----------
@@ -27,6 +27,11 @@ module allows to do it in OpenERP context such that:
   (although it could be pretty simple depending on the need)
 * subtleties about threads are taken care of. In particular, the
   accumulation of stats over several requests is correct.
+* Quick access UI to avoid statistics pollution
+* Use the standard cProfile format, see Python documentation and performance
+  wiki page for exploitation tips. Also do not miss `RunSnakeRun 
+  <http://www.vrplumber.com/programming/runsnakerun/>`_ GUI tool to help you to
+  interpret it easly.
 
 Caveats
 -------
@@ -39,10 +44,25 @@ Caveats
   finish uninstalling.
 * requests not going through web controllers are currently not taken
   into account
-* UI is currently quite crude, but that's good enough for now
+
 
 Credit
 ------
 
 Remotely inspired from ZopeProfiler, although there is no online
 visualisation and there may never be one.
+
+.. |player| image:: https://bytebucket.org/anybox/odoo_profiler/raw/default/doc/static/player.png
+    :alt: Player to manage profiler
+.. |start_profiling| image:: https://bytebucket.org/anybox/odoo_profiler/raw/default/doc/static/start_profiling.png
+    :alt: Start profiling
+    :height: 35px
+.. |stop_profiling| image:: https://bytebucket.org/anybox/odoo_profiler/raw/default/doc/static/stop_profiling.png
+    :alt: Stop profiling
+    :height: 35px
+.. |dump_stats| image:: https://bytebucket.org/anybox/odoo_profiler/raw/default/doc/static/dump_stats.png
+    :alt: Download cprofile stats file
+    :height: 35px
+.. |clear_stats| image:: https://bytebucket.org/anybox/odoo_profiler/raw/default/doc/static/clear_stats.png
+    :alt: Clear and remove stats file
+    :height: 35px
