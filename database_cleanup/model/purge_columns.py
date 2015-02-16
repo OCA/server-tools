@@ -96,8 +96,9 @@ class CleanupPurgeWizardColumn(orm.TransientModel):
         columns = list(set([
             column for model_pool in model_pools
             for column in model_pool._columns
-            if not (isinstance(model_pool._columns[column], fields.function)
-                    and not model_pool._columns[column].store)
+            if not (isinstance(model_pool._columns[column],
+                               fields.function) and
+                    not model_pool._columns[column].store)
             ]))
         columns += orm.MAGIC_COLUMNS
         columns += self.blacklist.get(model_pools[0]._table, [])
