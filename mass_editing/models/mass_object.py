@@ -93,8 +93,8 @@ class MassObject(orm.Model):
                     'model': src_obj,
                     'key2': 'client_action_multi',
                     'value': (
-                        "ir.actions.act_window,"
-                        + str(vals['ref_ir_act_window'])),
+                        "ir.actions.act_window," +
+                        str(vals['ref_ir_act_window'])),
                     'object': True,
                 },
                 context)
