@@ -99,6 +99,32 @@
               </field>
         </record>
 
+         <record id="view_product_template_kanban_brand" model="ir.ui.view">
+            <field name="name">product kanban view: add brand</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//h4" position="after">
+                  <div>
+                    <a t-if="record.product_brand_id" name="fds" type="action">
+                      <field name="product_brand_id"/>
+                    </a>
+                  </div>
+                </xpath>
+              </field>
+        </record>
+
+         <record id="view_product_template_tree_brand" model="ir.ui.view">
+            <field name="name">product tree view: add brand</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                  <field name="product_brand_id"/>
+                </field>
+              </field>
+        </record>
+
         <record model="ir.actions.act_window" id="action_product_brand">
             <field name="name">Brand</field>
             <field name="res_model">product.brand</field>
