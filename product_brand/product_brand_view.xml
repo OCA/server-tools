@@ -19,6 +19,14 @@
             </field>
         </record>
 
+        <act_window
+            id="action_open_brand_products"
+            name="Brand Products"
+            res_model="product.template"
+            view_type="form"
+            view_mode="tree,form"
+            domain="[('product_brand_id', '=', active_id)]"/>
+
         <record model="ir.ui.view" id="view_product_brand_form">
             <field name="name">product.brand.form</field>
             <field name="model">product.brand</field>
@@ -33,6 +41,15 @@
                         <h1>
                           <field name="name"/>
                         </h1>
+                      </div>
+                      <div class="oe_right oe_button_box">
+                        <button
+                            class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(action_open_brand_products)d"
+                            icon="fa-cubes">
+                          <field name="products_count" string="Products" widget="statinfo" />
+                        </button>
                       </div>
                       <group>
                         <field name="partner_id"/>
@@ -89,6 +106,10 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem name="Brand management" id="menu_product_brand" action="action_product_brand" parent="product.prod_config_main"/>
+        <menuitem
+            name="Product Brands"
+            id="menu_product_brand"
+            action="action_product_brand"
+            parent="base.menu_product"/>
     </data>
 </openerp>

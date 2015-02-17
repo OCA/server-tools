@@ -33,6 +33,16 @@ from openerp.osv import orm, fields
 
 class product_brand(orm.Model):
     _name = 'product.brand'
+
+    def _get_products_count(self, cr, uid, ids, fields, arg, context=None):
+        product_model = self.pool['product.template']
+        res = {}
+        for brand in self.browse(cr, uid, ids, context=context):
+            n_products = product_model.search(
+                cr, uid, [('product_brand_id', '=', brand.id)], count=True)
+            res[brand.id] = n_products
+        return res
+
     _columns = {
         'name': fields.char('Brand Name'),
         'description': fields.text('Description', translate=True),
@@ -42,6 +52,11 @@ class product_brand(orm.Model):
             ondelete='restrict'
         ),
         'logo': fields.binary('Logo File'),
+        'products_count': fields.function(
+            _get_products_count,
+            string='Branded Products',
+            type='integer',
+        ),
     }
 
 
