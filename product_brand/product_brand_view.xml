@@ -24,10 +24,10 @@
             name="Brand Products"
             res_model="product.template"
             view_type="form"
-            view_mode="tree,form"
+            view_mode="kanban,form,tree"
             domain="[('product_brand_id', '=', active_id)]"/>
 
-        <record model="ir.ui.view" id="view_product_brand_form">
+        <record id="view_product_brand_form" model="ir.ui.view">
             <field name="name">product.brand.form</field>
             <field name="model">product.brand</field>
             <field name="arch" type="xml">
@@ -62,7 +62,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_product_brand_tree">
+        <record id="view_product_brand_tree" model="ir.ui.view">
             <field name="name">product.brand.tree</field>
             <field name="model">product.brand</field>
             <field name="arch" type="xml">
@@ -71,6 +71,41 @@
                     <field name="description"/>
                     <field name="partner_id"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="view_product_brand_kanban" model="ir.ui.view">
+            <field name="name">product.brand.kanban</field>
+            <field name="model">product.brand</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="logo"/>
+                    <field name="products_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open">
+                                  <img t-att-src="kanban_image('product.product', 'logo', record.id.value)"
+                                       class="oe_kanban_image"/>
+                                </a>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                    <div>
+                                      <a name="%(product_brand.action_open_brand_products)d"
+                                         type="action">
+                                        <t t-esc="record.products_count.value"/> Products
+                                      </a>
+                                    </div>
+                                    <field name="description"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
             </field>
         </record>
 
@@ -88,7 +123,7 @@
             </field>
         </record>
 
-         <record model="ir.ui.view" id="product_template_form_brand_add">
+         <record id="product_template_form_brand_add" model="ir.ui.view">
             <field name="name">product.template.product.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view" />
@@ -155,7 +190,7 @@
             <field name="name">Brand</field>
             <field name="res_model">product.brand</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,form,tree</field>
         </record>
 
         <menuitem
