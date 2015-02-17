@@ -35,7 +35,6 @@ For further information, please visit:
 Known issues / Roadmap
 ======================
 
-* A view to list or sort products by brand
 * add a field with brands assiciated to a Customer or Supplier on 
   the Customers/Suppliers Form View
 
@@ -49,6 +48,7 @@ Mathieu Lemercier <mathieu@netandco.net>
 Franck Bret <franck@netandco.net>
 Seraphine Lantible <s.lantible@gmail.com>
 Gunnar Wagner <vrms@netcologne.de>
+Leonardo Donelli <donelli@webmonks.it>
 
 Maintainer
 ----------
