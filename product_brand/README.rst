@@ -1,5 +1,5 @@
-Product Brand Manage [product_brand]
-===========
+Product Brand Manager [product_brand]
+=====================================
 
 This module allows odoo users to easily manage product brands. You can
 define brands, attach a logo and a description to them. 
@@ -44,11 +44,11 @@ Credits
 Contributors
 ------------
 
-Mathieu Lemercier <mathieu@netandco.net>
-Franck Bret <franck@netandco.net>
-Seraphine Lantible <s.lantible@gmail.com>
-Gunnar Wagner <vrms@netcologne.de>
-Leonardo Donelli <donelli@webmonks.it>
+* Mathieu Lemercier <mathieu@netandco.net>
+* Franck Bret <franck@netandco.net>
+* Seraphine Lantible <s.lantible@gmail.com>
+* Gunnar Wagner <vrms@netcologne.de>
+* Leonardo Donelli <donelli@webmonks.it>
 
 Maintainer
 ----------

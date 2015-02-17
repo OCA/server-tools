@@ -32,7 +32,7 @@
     'name': 'Product Brand Manager',
     'version': '0.1',
     'category': 'Product',
-    'summary': ' brand',
+    'summary': 'Add brand to products',
     'author': 'NetAndCo, Akretion, Prisnet Telecommunications SA'
               ', MONK Software, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
@@ -40,6 +40,6 @@
     'data': [
         'product_brand_view.xml',
         'security/ir.model.access.csv'
-        ],
+    ],
     'installable': True,
 }
