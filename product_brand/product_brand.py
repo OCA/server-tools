@@ -30,7 +30,7 @@
 # Product Brand is an Openobject module wich enable Brand management for      #
 # products                                                                    #
 ###############################################################################
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class ProductBrand(models.Model):
@@ -45,16 +45,21 @@ class ProductBrand(models.Model):
         ondelete='restrict'
     )
     logo = fields.Binary('Logo File')
+    product_ids = fields.One2many(
+        'product.template',
+        'product_brand_id',
+        string='Brand Products',
+    )
     products_count = fields.Integer(
         string='Number of products',
         compute='_get_products_count',
     )
 
+    @api.one
+    @api.depends('product_ids')
     def _get_products_count(self):
-        for brand in self:
-            brand.products_count = self.env['product.template'].search_count(
-                [('product_brand_id', '=', brand.id)]
-            )
+        self.products_count = len(self.product_ids)
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
