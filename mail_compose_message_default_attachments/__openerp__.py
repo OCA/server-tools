@@ -22,8 +22,9 @@
     'name': 'Compose Message Default Attachments',
     'version': '1.0',
     'category': 'Patch',
-    'description': "Patch mail.compose.message to add attachment_ids (given \
-                    as default_attachment_ids in context) to email template.",
+    'description': """Patch mail.compose.message to add attachment_ids
+                    (given as default_attachment_ids in context) to
+                    email template.""",
     'author': 'initOS GmbH & Co. KG',
     'website': 'http://www.initos.com',
     'depends': [

@@ -22,7 +22,7 @@ from openerp.osv import orm
 
 
 class mail_compose_message(orm.Model):
-    """Patch mail.compose.message to add attachment_ids (given as \
+    """Patch mail.compose.message to add attachment_ids (given as
     default_attachment_ids in context) to email template."""
     _inherit = 'mail.compose.message'
 
