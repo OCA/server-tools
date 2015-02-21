@@ -23,11 +23,12 @@ import os
 import re
 import base64
 from datetime import date
-YEAR = date.today().year
 
 from collections import namedtuple
 from jinja2 import Environment, FileSystemLoader
 from openerp import models, api, fields
+
+YEAR = date.today().year
 
 
 class ModulePrototyper(models.Model):
