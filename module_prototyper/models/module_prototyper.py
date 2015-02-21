@@ -25,9 +25,10 @@ import lxml.etree
 import os
 import re
 import textwrap
+import base64
+from datetime import date
 
 from collections import namedtuple
-from datetime import date
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -38,6 +39,8 @@ from .default_description import get_default_description
 from . import licenses
 
 _logger = logging.getLogger(__name__)
+
+YEAR = date.today().year
 
 
 class ModulePrototyper(models.Model):
