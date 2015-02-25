@@ -24,6 +24,8 @@ from openerp.tools.translate import _
 from openerp.addons.web.controllers import main
 from openerp.tools.safe_eval import safe_eval
 import time
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 import base64
 
 
@@ -88,7 +90,10 @@ class actions_server(orm.Model):
     def _search_data(self, cr, uid, action, context=None):
         obj_pool = self.pool[action.model]
         domain = action.filter_id and safe_eval(
-            action.filter_id.domain, {'time': time}) or []
+            action.filter_id.domain, {'time': time,
+                                      'datetime': datetime,
+                                      'relativedelta': relativedelta,
+                                      }) or []
         ctx = action.filter_id and safe_eval(
             action.filter_id.context) or context
         return obj_pool.search(cr, uid, domain,
