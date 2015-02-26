@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#    
+#    Copyright (C) 2011 - TODAY Denero Team. (<http://www.deneroteam.com>)
+#    All Rights Reserved
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+{
+    'name': 'User Password Settings',
+    'version': '1.0',
+    'category': 'base',
+    'sequence': 3,
+    'summary': 'User Password Settings',
+    'author': 'Dhaval Patel<dhaval@deneroteam.com>',
+    'website': 'http://www.deneroteam.com',
+    'description': """
+A setting module to manage user password settings
+-- Minimum Password length in character
+-- Use Capital Letter
+-- Use digit
+-- Use special character
+""",
+    'depends': [
+        'base', 'base_setup',
+    ],
+    'data': [
+        # Datas
+        "data/auth_password_settings_data.xml",
+        # Security
+        
+        # Views
+        "views/res_config_view.xml",
+        # Menus
+        
+        # Wizards
+        
+    ],
+    'demo': [
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
