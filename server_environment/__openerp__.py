@@ -22,7 +22,7 @@
 {
     "name": "server configuration environment files",
     "version": "1.1",
-    "depends": ["base", "server_environment_files"],
+    "depends": ["base"],
     "author": "Camptocamp",
     "description": """\
 Environment file pattern for OpenERP
