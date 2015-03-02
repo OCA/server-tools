@@ -30,7 +30,7 @@ ie partners. Matching is done via several algorithms, ie email address.
 This gives a simple possibility to archive emails in OpenERP without a mail
 client integration.
     """,
-    'author': 'Therp BV',
+    'author': "Therp BV,Odoo Community Association (OCA)",
     'website': 'http://www.therp.nl',
     "category": "Tools",
     "depends": ['fetchmail'],

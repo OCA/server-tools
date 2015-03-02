@@ -24,7 +24,7 @@
     'version': '0.1',
     'category': 'Other modules',
     'sequence': 10,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'summary': "Adds id field to tree views",
     'description': """
 Adds Id field in all tree views of any modules/models, except:

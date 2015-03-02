@@ -41,7 +41,7 @@ Contributors
 
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
     """,
-    'author': 'Daniel Reis',
+    'author': "Daniel Reis,Odoo Community Association (OCA)",
     'website': 'http://launchpad.net/addons-tko',
     'images': [
         'images/screenshot01.png',

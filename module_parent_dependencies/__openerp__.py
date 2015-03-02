@@ -41,7 +41,7 @@ Copyright, Authors and Licence:
 -------------------------------
     * Copyright: 2014, GRAP: Groupement Régional Alimentaire de Proximité;
     * Author: Sylvain LE GAL (https://twitter.com/legalsylvain);""",
-    'author': 'GRAP',
+    'author': "GRAP,Odoo Community Association (OCA)",
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [

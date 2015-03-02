@@ -9,7 +9,7 @@
  'description': """
    Create view to inspect/change technical parameters
  """,
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'website': 'http://openerp.camptocamp.com',
  'depends': ['base'],
  'init_xml': [],

@@ -23,7 +23,7 @@
     "name": "Export Documents from database",
     "summary": "Export Existing Documents from Database to File System",
     "version": "1.0",
-    "author": "Julius Network Solutions",
+    "author": "Julius Network Solutions,Odoo Community Association (OCA)",
     "website": "http://julius.fr",
     "category": "Tools",
     "depends": [

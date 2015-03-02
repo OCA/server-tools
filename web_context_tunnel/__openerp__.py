@@ -1,7 +1,7 @@
 {
     'name': 'Web Context Tunnel',
     'category': 'Hidden',
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'description': """
 Web Context Tunnel.

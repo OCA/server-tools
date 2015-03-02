@@ -21,7 +21,7 @@
 {
     "name": "Authenticate via HTTP basic authentication",
     "version": "1.0",
-    "author": "Therp BV",
+    "author": "Therp BV,Odoo Community Association (OCA)",
     "complexity": "expert",
     "description": """
 In an environment where several web applications authenticate against the same
