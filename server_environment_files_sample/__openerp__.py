@@ -23,7 +23,7 @@
     "name": "Example server configuration environment files repository module",
     "version": "1.0",
     "depends": ["base"],
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "description": """\
 File store for environment file sample module
 =============================================
