@@ -23,7 +23,7 @@
     "name": "server configuration environment files",
     "version": "1.1",
     "depends": ["base", "server_environment_files"],
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "description": """\
 Environment file pattern for OpenERP
 ====================================

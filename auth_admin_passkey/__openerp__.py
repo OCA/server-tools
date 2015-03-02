@@ -24,7 +24,7 @@
     'name': 'Authentification - Admin Passkey',
     'version': '2.1.1',
     'category': 'base',
-    'author': 'GRAP',
+    'author': "GRAP,Odoo Community Association (OCA)",
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [

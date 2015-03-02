@@ -13,7 +13,7 @@
     When you try to delete a acces write it simply set all perms to false
     you can deactivate this behavior in ir.config_parameter by chanching the protect_security? key to 0
  """,
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'website': 'http://openerp.camptocamp.com',
  'license': 'AGPL-3',
  'depends': ['base'],
