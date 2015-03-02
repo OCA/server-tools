@@ -39,7 +39,7 @@ GUILLOT, Akretion
 
 """,
  'complexity': 'normal',
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'website': 'http://www.camptocamp.com/',
  'depends': ['base_custom_attributes'],
  'data': ['partner_view.xml',

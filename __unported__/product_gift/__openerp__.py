@@ -26,7 +26,7 @@
     'category': 'Generic Modules',
     'license': 'AGPL-3',
     'description': """This module adds the gift_wrap feature and gives the possibility to add a gift message on the order or the order line.""",
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['sale','product', 'stock'],
     'init_xml': [],

@@ -23,7 +23,7 @@
     'name': 'Display Customer Price in Product View',
     'version': '1.1.1',
     'category': 'Sales',
-    'author': 'O4SB - Graeme Gellatly',
+    'author': "O4SB - Graeme Gellatly,Odoo Community Association (OCA)",
     'website': 'http://www.o4sb.com',
     'license': 'AGPL-3',
     'depends': ['base', 'product'],

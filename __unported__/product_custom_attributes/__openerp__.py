@@ -31,7 +31,7 @@ Each product can be linked to an attribute set (like camera, fridge...).
 Each attribute has custom fields (for example, you don't need the same field for a frigde and a camera).
 In particular it's used by the Magento Magentoerpconnect module to match the EAV flexibility of Magento.
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['product', 'base_custom_attributes'],
     'init_xml': [],

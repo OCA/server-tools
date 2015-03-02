@@ -28,7 +28,7 @@
     'license': 'AGPL-3',
     'description': """This module adds the possibility to easily create custom attributes in any OpenERP business object. See the product_custom_attributes module for instance.
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['base'],
     'init_xml': [],

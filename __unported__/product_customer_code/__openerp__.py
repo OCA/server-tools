@@ -26,7 +26,7 @@
 {
     "name": "Products Customer Code",
     "version": "1.0",
-    "author": "Vauxoo",
+    "author": "Vauxoo,Odoo Community Association (OCA)",
     "website": "http://www.vauxoo.com/",
     "license": "AGPL-3",
     "category": "Generic Modules/Product",

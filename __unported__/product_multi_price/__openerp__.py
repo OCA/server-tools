@@ -26,7 +26,7 @@
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """empty""",
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['product','account', 'sale','product_prices_on_variant'],
     'init_xml': [],

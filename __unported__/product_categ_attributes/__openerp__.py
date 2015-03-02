@@ -28,7 +28,7 @@
     'license': 'AGPL-3',
     'description': """Makes it possible to inherit product attributes from its categories
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['product_custom_attributes', 'product_m2mcategories'],
     'init_xml': [],

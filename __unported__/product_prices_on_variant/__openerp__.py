@@ -31,7 +31,7 @@
     This module is needed by product_multi_price. Be careful when using this module.
     As this change the original behaviour of OpenERP when using variant.
     """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': [
         'product',

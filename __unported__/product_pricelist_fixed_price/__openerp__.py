@@ -23,7 +23,7 @@
 {
     "name": "Fixed price in pricelists",
     "version": "2.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza,Odoo Community Association (OCA)",
     "category": "Sales Management",
     "description": """
 Fixed price on pricelist rule
