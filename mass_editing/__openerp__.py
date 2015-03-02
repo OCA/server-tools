@@ -22,7 +22,7 @@
 {
     "name": "Mass Editing",
     "version": "1.3",
-    "author": "Serpent Consulting Services",
+    "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",
     ],
