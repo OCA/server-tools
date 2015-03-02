@@ -22,7 +22,7 @@
 {
     'name': "Audit Log",
     'version': "1.0",
-    'author': "ABF OSIELL",
+    'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'website': "http://www.osiell.com",
     'category': "Tools",
     'depends': [
