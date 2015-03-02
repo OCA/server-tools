@@ -24,7 +24,7 @@
     'name': 'Email gateway - folders',
     'summary': 'Attach mails in an IMAP folder to existing objects',
     'version': '1.0',
-    'author': 'Therp BV',
+    'author': "Therp BV,Odoo Community Association (OCA)",
     'website': 'http://www.therp.nl',
     'license': 'AGPL-3',
     "category": "Tools",
