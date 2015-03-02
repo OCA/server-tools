@@ -35,7 +35,7 @@ of such fields is the Magento-OpenERP connector.
 
 For technical reasons, many2many and one2many fields are not supported.
 """,
-    'author': 'Therp BV',
+    'author': "Therp BV,Odoo Community Association (OCA)",
     'website': 'http://www.therp.nl',
     'version': '1.0',
     "category": "Tools",

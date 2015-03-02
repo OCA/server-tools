@@ -33,7 +33,7 @@
     button 'confirm action done' (if action needed), or the button 'set
     action needed.
     ''',
-    'author': 'Therp BV',
+    'author': "Therp BV,Odoo Community Association (OCA)",
     'website': 'http://www.therp.nl',
     'category': 'Tools',
     'depends': ['mail'],

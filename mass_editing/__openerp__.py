@@ -23,7 +23,7 @@
 {
     "name": "Mass Editing",
     "version": "1.1",
-    "author": "Serpent Consulting Services",
+    "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "category": "Tools",
     "website": "http://www.serpentcs.com",
     "description": """This module provides the functionality to add, update or
