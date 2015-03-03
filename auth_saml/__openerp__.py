@@ -32,12 +32,16 @@ Allow users to login through Saml2 Provider.
     'maintainer': 'XCG Consulting s.a.s.',
     'website': 'http://www.xcg-consulting.fr',
     'depends': ['base', 'web', 'base_setup'],
+
     'data': [
-        'auth_saml_data.xml',
-        'res_users.xml',
-        'auth_saml_view.xml',
-        'security/ir.model.access.csv'
+        'data/auth_saml.xml',
+
+        'security/ir.model.access.csv',
+
+        'views/auth_saml.xml',
+        'views/res_users.xml',
     ],
+
     'js': ['static/src/js/auth_saml.js'],
     'css': [
         'static/lib/zocial/css/zocial.css',
