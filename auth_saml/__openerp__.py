@@ -35,10 +35,12 @@ Allow users to login through Saml2 Provider.
 
     'data': [
         'data/auth_saml.xml',
+        'data/ir_config_parameter.xml',
 
         'security/ir.model.access.csv',
 
         'views/auth_saml.xml',
+        'views/base_settings.xml',
         'views/res_users.xml',
     ],
 

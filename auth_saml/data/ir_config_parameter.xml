@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Add a setting; to be manipulated via "general settings". -->
+
+        <record id="allow_saml_uid_and_internal_password" model="ir.config_parameter">
+            <field name="key">auth_saml.allow_saml.uid_and_internal_password</field>
+            <field name="value">0</field>
+        </record>
+
+    </data>
+</openerp>

@@ -84,3 +84,5 @@ Copy the metadata from your identity provider::
 and make sure the URLs point where they should. Edit the file if necessary.
 
 Then save its content into the corresponding box in the openerp SAML2 Provider form.
+
+There are additional SAML-related settings in Configuration > General settings.

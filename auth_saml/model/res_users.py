@@ -28,6 +28,10 @@ class res_users(osv.Model):
         password.
         """
 
+        if self._allow_saml_uid_and_internal_password(cr, context):
+            # The constraint is a no-op in this case.
+            return True
+
         users = self.browse(cr, uid, ids, context=context)
         for user in users:
             if user.password and user.saml_uid:
@@ -201,8 +205,15 @@ class res_users(osv.Model):
         """
 
         if vals and vals.get('saml_uid'):
-            vals['password'] = False
+            if not self._allow_saml_uid_and_internal_password(cr, context):
+                vals['password'] = False
 
         return super(res_users, self).write(
             cr, uid, ids, vals, context=context
+        )
+
+    def _allow_saml_uid_and_internal_password(self, cr, context):
+        setting_obj = self.pool['base.config.settings']
+        return setting_obj.allow_saml_uid_and_internal_password(
+            cr, context=context
         )
