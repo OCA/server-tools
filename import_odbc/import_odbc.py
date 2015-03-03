@@ -90,15 +90,13 @@ class import_odbc_dbtable(orm.Model):
 
         def append_to_log(log, level, obj_id='', msg='', rel_id=''):
             if '_id_' in obj_id:
-                obj_id = ('.'.join(obj_id.split('_')[:-2])
-                          + ': '
-                          + obj_id.split('_')[-1])
+                obj_id = ('.'.join(obj_id.split('_')[:-2]) +
+                          ': ' + obj_id.split('_')[-1])
             if ': .' in msg and not rel_id:
                 rel_id = msg[msg.find(': .') + 3:]
                 if '_id_' in rel_id:
-                    rel_id = ('.'.join(rel_id.split('_')[:-2])
-                              + ': '
-                              + rel_id.split('_')[-1])
+                    rel_id = ('.'.join(rel_id.split('_')[:-2]) +
+                              ': ' + rel_id.split('_')[-1])
                     msg = msg[:msg.find(': .')]
             log['last_log'].append('%s|%s\t|%s\t|%s' % (level.ljust(5),
                                                         obj_id,

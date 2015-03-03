@@ -32,8 +32,9 @@ class ir_model_fields(orm.Model):
             count=False):
         model_domain = []
         for domain in args:
-            if (len(domain) > 2 and domain[0] == 'model_id'
-                    and isinstance(domain[2], basestring)):
+            if (len(domain) > 2 and
+                    domain[0] == 'model_id' and
+                    isinstance(domain[2], basestring)):
                 model_domain += [
                     ('model_id', 'in', map(int, domain[2][1:-1].split(',')))
                 ]
@@ -109,8 +110,7 @@ class mass_object(orm.Model):
                 'model': src_obj,
                 'key2': 'client_action_multi',
                 'value': (
-                    "ir.actions.act_window,"
-                    + str(vals['ref_ir_act_window'])),
+                    "ir.actions.act_window,%s" % vals['ref_ir_act_window']),
                 'object': True,
             }, context)
         self.write(cr, uid, ids, {
