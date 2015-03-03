@@ -1,4 +1,5 @@
-from openerp.osv import osv, fields
+from openerp.osv import fields
+from openerp.osv import osv
 import lasso
 import simplejson
 
@@ -11,7 +12,6 @@ class auth_saml_provider(osv.osv):
     _order = 'name'
 
     def _get_lasso_for_provider(self, cr, uid, provider_id, context=None):
-        #print cr, uid, provider_id, context
         provider = self.browse(cr, uid, provider_id, context=context)
 
         # TODO: we should cache those results somewhere because it is
@@ -54,7 +54,8 @@ class auth_saml_provider(osv.osv):
         ),
         'enabled': fields.boolean('Allowed'),
         'css_class': fields.char('CSS class'),
-        'body': fields.char('Body',
+        'body': fields.char(
+            'Body',
             required=True,
         ),
         'sequence': fields.integer(),
