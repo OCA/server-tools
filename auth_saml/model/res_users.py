@@ -194,3 +194,15 @@ class res_users(osv.Model):
                 # TODO: maybe raise a defined exception instead of the last
                 # exception that occurred in our execution frame
                 raise
+
+    def write(self, cr, uid, ids, vals, context=None):
+        """Override to clear out the user's password when setting an SAML user
+        ID (as they can't cohabit).
+        """
+
+        if vals and vals.get('saml_uid'):
+            vals['password'] = False
+
+        return super(res_users, self).write(
+            cr, uid, ids, vals, context=context
+        )
