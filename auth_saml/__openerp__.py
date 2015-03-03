@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Saml2 Authentication, for OpenERP
-#    Copyright (C) 2010-2014 XCG Consulting (http://odoo.consulting)
+#    Saml2 Authentication for Odoo
+#    Copyright (C) 2010-2015 XCG Consulting <http://odoo.consulting>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
