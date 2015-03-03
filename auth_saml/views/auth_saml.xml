@@ -2,6 +2,8 @@
 <openerp>
     <data>
 
+        <!-- Views for the auth.saml.provider model. -->
+
         <record model="ir.ui.view" id="view_saml_provider_list">
             <field name="name">auth.saml.provider.list</field>
             <field name="model">auth.saml.provider</field>
@@ -33,6 +35,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- Menu command to open the SAML provider list. -->
 
         <record model="ir.actions.act_window" id="action_saml_provider">
             <field name="name">Providers</field>
