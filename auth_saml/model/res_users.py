@@ -23,6 +23,29 @@ class res_users(osv.Model):
         ),
     }
 
+    def _no_password_with_saml(self, cr, uid, ids, context=None):
+        """Ensure no Odoo user posesses both an SAML user ID and an Odoo
+        password.
+        """
+
+        users = self.browse(cr, uid, ids, context=context)
+        for user in users:
+            if user.password and user.saml_uid:
+                return False
+
+        return True
+
+    _constraints = [
+        (
+            _no_password_with_saml,
+            (
+                'SAML2 authentication: An Odoo user cannot posess both an '
+                'SAML user ID and an Odoo password.'
+            ),
+            ['password', 'saml_uid']
+        ),
+    ]
+
     _sql_constraints = [
         (
             'uniq_users_saml_provider_saml_uid',
