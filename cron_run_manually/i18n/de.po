@@ -1,0 +1,51 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* cron_run_manually
+#
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-14 17:41+0000\n"
+"PO-Revision-Date: 2015-01-02 17:20+0100\n"
+"Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/model/ir_cron.py:77
+#, python-format
+msgid "Another process/thread is already busy executing this job"
+msgstr "Ein anderer Vorgang/Thread ist mit diesem Auftrag bereits beschäftigt"
+
+#. module: cron_run_manually
+#: view:ir.cron:0
+msgid "Run now"
+msgstr "Jetzt ausführen"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/model/ir_cron.py:52
+#, python-format
+msgid "Only the admin user is allowed to execute inactive cron jobs manually"
+msgstr "Nur der Administrator darf inaktive Cron-Aufgaben manuell ausführen"
+
+#. module: cron_run_manually
+#: model:_description:0
+#: model:ir.model,name:cron_run_manually.model_ir_cron
+msgid "ir.cron"
+msgstr "ir.cron"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/model/ir_cron.py:51
+#: code:addons/cron_run_manually/model/ir_cron.py:76
+#, python-format
+msgid "Error"
+msgstr "Fehler"
+
+

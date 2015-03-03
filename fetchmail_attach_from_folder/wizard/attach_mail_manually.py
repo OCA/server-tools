@@ -74,8 +74,8 @@ class attach_mail_manually(TransientModel):
                     'msgid': msgid,
                     'subject': mail_message.get('subject', ''),
                     'date': mail_message.get('date', ''),
-                    'object_id': folder.model_id.model+',False'
-                    }))
+                    'object_id': folder.model_id.model + ',False'
+                }))
             connection.close()
 
         return defaults

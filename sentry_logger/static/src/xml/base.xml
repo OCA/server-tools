@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<templates>
+
+  <t t-extend="CrashManager.error">
+    <t t-jquery="div.oe_error_detail" t-operation="replace">
+
+      <!-- Hide traceback from users -->
+      <div t-if="session.sentry_activated" class="oe_error_detail">
+        <h2>An internal OpenERP error has occurred.</h2>
+        <div class="oe_view_nocontent">
+A detailed report has been sent to the technical support team.
+        </div>
+        <a href="#hide1" class="hide" id="hide1">+</a>
+        <a href="#show1" class="show" id="show1">-</a>
+        <h3>Details</h3>
+        <div class="error_details">
+          <pre><t t-esc="error.message"/></pre>
+          <hr/>
+          <pre><t t-esc="error.data.debug"/></pre>
+        </div>
+      </div>
+
+      <!-- Original error message -->
+      <div t-if="!session.sentry_activated" class="oe_error_detail">
+        <pre><t t-esc="error.message"/></pre>
+        <hr/>
+        <pre><t t-esc="error.data.debug"/></pre>
+      </div>
+
+    </t>
+  </t>
+
+</templates>

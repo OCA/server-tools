@@ -1,0 +1,3 @@
+Icon File is a mix of icons:
+* Licence: Creative Common Attribution (by) - Designer: Kevin Muselet <http://pit-tux.deviantart.com/>
+* Licence: GNU/GPL - Designer: Alessandro Rei <http://www.mentalrey.it/>

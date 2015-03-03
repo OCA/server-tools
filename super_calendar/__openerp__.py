@@ -72,7 +72,7 @@ filtering by ‘Configurator’ (if you have several configurators,
 Once you filtered, you can save the filter as ‘Advanced filter’ or even
 add it to a dashboard.
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     'depends': ['base'],
@@ -80,7 +80,7 @@ add it to a dashboard.
         'super_calendar_view.xml',
         'cron_data.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'demo': [],
     'test': [],
     'installable': True,

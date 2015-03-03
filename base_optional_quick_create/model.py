@@ -29,7 +29,7 @@ class ir_model(orm.Model):
 
     _columns = {
         'avoid_quick_create': fields.boolean('Avoid quick create'),
-        }
+    }
 
     def _wrap_name_create(self, old_create, model):
         def wrapper(cr, uid, name, context=None):
@@ -45,7 +45,7 @@ class ir_model(orm.Model):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
-                if not hasattr(model_obj, 'check_quick_create'):
+                if model_obj and not hasattr(model_obj, 'check_quick_create'):
                     model_obj.name_create = self._wrap_name_create(
                         model_obj.name_create,
                         model_name)

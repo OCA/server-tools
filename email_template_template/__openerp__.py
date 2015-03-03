@@ -21,7 +21,7 @@
 {
     "name": "Templates for email templates",
     "version": "1.0",
-    "author": "Therp BV",
+    "author": "Therp BV,Odoo Community Association (OCA)",
     "category": 'Tools',
     'complexity': "expert",
     "description": """If an organisation's email layout is a bit more

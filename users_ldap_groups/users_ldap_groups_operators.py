@@ -57,8 +57,7 @@ class query(LDAPOperator):
                     logger):
         query_string = Template(value).safe_substitute(dict(
             [(attr, ldap_entry[1][attribute][0]) for attr in ldap_entry[1]]
-            )
-        )
+        ))
         logger.debug('evaluating query group mapping, filter: %s',
                      query_string)
         results = company.query(ldap_config, query_string)

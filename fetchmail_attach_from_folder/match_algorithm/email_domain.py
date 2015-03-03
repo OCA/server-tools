@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from email_exact import email_exact
+from .email_exact import email_exact
 
 
 class email_domain(email_exact):
@@ -40,6 +40,6 @@ class email_domain(email_exact):
                 self._get_mailaddress_search_domain(
                     conf, mail_message,
                     operator='like',
-                    values=['%@'+domain for domain in set(domains)]),
+                    values=['%@' + domain for domain in set(domains)]),
                 order=conf.model_order)
         return ids

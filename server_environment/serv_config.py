@@ -53,8 +53,10 @@ if not os.path.exists(ck_path):
     )
 
 
-def setboolean(obj, attr, _bool=_boolean_states):
+def setboolean(obj, attr, _bool=None):
     """Replace the attribute with a boolean."""
+    if _bool is None:
+        _bool = dict(_boolean_states)  # we copy original dict
     res = _bool[getattr(obj, attr).lower()]
     setattr(obj, attr, res)
     return res
@@ -170,8 +172,9 @@ class ServerConfiguration(orm.TransientModel):
         arch += '</notebook></form>'
         self._arch = etree.fromstring(arch)
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False,  submenu=False):
+    def fields_view_get(
+            self, cr, uid, view_id=None, view_type='form', context=None,
+            toolbar=False, submenu=False):
         """Overwrite the default method to render the custom view."""
         res = super(ServerConfiguration, self).fields_view_get(cr, uid,
                                                                view_id,

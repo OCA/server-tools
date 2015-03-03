@@ -19,10 +19,12 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
 import logging
-import users_ldap_groups_operators
 import inspect
+
+from openerp.osv import fields, orm
+
+from . import users_ldap_groups_operators
 
 
 class CompanyLDAPGroupMapping(orm.Model):
@@ -59,7 +61,7 @@ class CompanyLDAPGroupMapping(orm.Model):
         'group': fields.many2one(
             'res.groups', 'OpenERP group',
             help='The OpenERP group to assign', required=True),
-        }
+    }
 
 
 class CompanyLDAP(orm.Model):

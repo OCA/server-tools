@@ -58,7 +58,7 @@ class ir_cron(orm.Model):
             context = {
                 'job_exception': job_exception,
                 'dbname': cr.dbname,
-                }
+            }
 
             logger.debug("Sending scheduler error email with context=%s",
                          context)

@@ -40,7 +40,7 @@ class email_template(Model):
         'is_template_template': fields.function(
             _get_is_template_template, type='boolean',
             string='Is a template template'),
-        }
+    }
 
     def get_email_template(self, cr, uid, template_id=False, record_id=None,
                            context=None):
