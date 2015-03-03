@@ -23,7 +23,8 @@
 {
     "name": "Product GTIN EAN8 EAN13 UPC JPC Support",
     "version": "1.1",
-    "author": "ChriCar Beteiligungs- und Beratungs- GmbH,Odoo Community Association (OCA)",
+    "author": "ChriCar Beteiligungs- und Beratungs- GmbH,"
+              "Odoo Community Association (OCA)",
     "website": "http://www.chricar.at/ChriCar",
     "license": "AGPL-3",
     "category": "Sales Management",
