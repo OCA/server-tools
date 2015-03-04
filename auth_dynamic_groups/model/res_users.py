@@ -46,8 +46,8 @@ class res_users(Model):
                     if dynamic_group.eval_dynamic_group_condition()
                     else (3, dynamic_group.id)
                     for dynamic_group in groups_obj.browse(
-                        cr, uid,
-                        groups_obj.search(cr, uid,
+                        cr, SUPERUSER_ID,
+                        groups_obj.search(cr, SUPERUSER_ID,
                                           [('is_dynamic', '=', True)]))
                 ],
             })
