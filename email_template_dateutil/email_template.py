@@ -22,7 +22,6 @@
 
 from datetime import datetime
 import logging
-_logger = logging.getLogger(__name__)
 
 import pytz
 from jinja2 import contextfilter
@@ -32,6 +31,9 @@ from openerp.tools import (
     DEFAULT_SERVER_DATE_FORMAT as DFMT,
 )
 from openerp.addons.email_template import email_template
+
+
+_logger = logging.getLogger(__name__)
 
 
 @contextfilter

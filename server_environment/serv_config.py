@@ -107,8 +107,9 @@ class _Defaults(dict):
     __slots__ = ()
 
     def __setitem__(self, key, value):
-        func = lambda *a: str(value)
-        return dict.__setitem__(self, key, func)
+        return dict.__setitem__(self,
+                                key,
+                                lambda *a: str(value))
 
 
 class ServerConfiguration(orm.TransientModel):

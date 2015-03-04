@@ -21,9 +21,14 @@
 
 import os
 import logging
+
+import psycopg2
+
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import openerp.tools as tools
+
+
 _logger = logging.getLogger(__name__)
 
 CONNECTORS = []
@@ -62,7 +67,6 @@ except:
     _logger.info('Oracle libraries not available. Please install "cx_Oracle"\
                  python package.')
 
-import psycopg2
 CONNECTORS.append(('postgresql', 'PostgreSQL'))
 
 
