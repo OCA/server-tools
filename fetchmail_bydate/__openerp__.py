@@ -30,7 +30,7 @@
                 This module allows to fetch email by last message internal date and unseen messages.
     """,
     'author': "Innoviu srl, Agile Business Group, Odoo Community Association (OCA)",
-    'website': 'http://www.innoviu.it, http://www.agilebg.com',
+    'website': 'http://www.innoviu.it  http://www.agilebg.com',
     'license': 'AGPL-3',
     'depends': ['fetchmail', 'mail'],
     "data": [
@@ -39,6 +39,5 @@
     'demo': [],
     'test': [],
     'installable': True,
-    'application': True,
     'auto_install': False,
 }
