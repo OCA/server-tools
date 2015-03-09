@@ -124,15 +124,14 @@ class FetchmailServer(orm.Model):
             count, failed = 0, 0
             last_date = False
             imap_server = False
-            if server.type == 'imap':
+            if server.type == 'imap' and server.last_internal_date:
                 try:
                     imap_server = server.connect()
                     imap_server.select()
-                    if server.last_internal_date:
-                        count, failed, last_date = self._fetch_from_data_imap(
-                            cr, uid, server, imap_server, mail_thread,
-                            action_pool, count, failed, context=context
-                        )
+                    count, failed, last_date = self._fetch_from_data_imap(
+                        cr, uid, server, imap_server, mail_thread,
+                        action_pool, count, failed, context=context
+                    )
                 except Exception:
                     _logger.exception(
                         "General failure when trying to fetch mail \
@@ -144,8 +143,13 @@ class FetchmailServer(orm.Model):
                     if imap_server:
                         imap_server.close()
                         imap_server.logout()
-            if last_date:
-                vals = {'last_internal_date': last_date}
-                server.write(vals)
+                if last_date:
+                    _logger.info(
+                        "Fetched %d email(s) on %s server %s; \
+                        %d succeeded, %d failed.", count,
+                        server.type, server.name,
+                        (count - failed), failed)
+                    vals = {'last_internal_date': last_date}
+                    server.write(vals)
         return super(FetchmailServer, self).fetch_mail(
             cr, uid, ids, context=context)
