@@ -34,6 +34,15 @@ def is_pair(x):
 
 
 def check_ean8(eancode):
+    """Check if the given ean code answer ean8 requirements
+    For more details: http://en.wikipedia.org/wiki/EAN-8
+
+    :param eancode: string, ean-8 code
+    :return: boolean
+    """
+    if not eancode or not eancode.isdigit():
+        return False
+
     sum = 0
     ean_len = int(len(eancode))
     for i in range(ean_len-1):
@@ -44,28 +53,46 @@ def check_ean8(eancode):
     check = 10 - operator.mod(sum, 10)
     if check == 10:
         check = 0
-    if check != int(eancode[-1]):
+
+    return check == int(eancode[-1])
+
+
+def check_upc(upccode):
+    """Check if the given code answers upc requirements
+    For more details:
+    http://en.wikipedia.org/wiki/Universal_Product_Code
+
+    :param upccode: string, upc code
+    :return: bool
+    """
+    if not upccode or not upccode.isdigit():
         return False
-    return True
 
-
-def check_upc(eancode):
     sum_pair = 0
-    ean_len = int(len(eancode))
+    ean_len = int(len(upccode))
     for i in range(ean_len-1):
         if is_pair(i):
-            sum_pair += int(eancode[i])
+            sum_pair += int(upccode[i])
     sum = sum_pair * 3
     for i in range(ean_len-1):
         if not is_pair(i):
-            sum += int(eancode[i])
+            sum += int(upccode[i])
     check = ((sum/10 + 1) * 10) - sum
-    if check != int(eancode[-1]):
-        return False
-    return True
+
+    return check == int(upccode[-1])
 
 
 def check_ean13(eancode):
+    """Check if the given ean code answer ean8 requirements
+    For more details:
+    http://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29
+
+    :param eancode: string, ean-8 code
+    :return: boolean
+    """
+    if not eancode or not eancode.isdigit():
+        return False
+
     sum = 0
     ean_len = int(len(eancode))
     for i in range(ean_len-1):
@@ -77,9 +104,8 @@ def check_ean13(eancode):
     check = 10 - operator.mod(sum, 10)
     if check == 10:
         check = 0
-    if check != int(eancode[-1]):
-        return False
-    return True
+
+    return check == int(eancode[-1])
 
 
 def check_ean11(eancode):
