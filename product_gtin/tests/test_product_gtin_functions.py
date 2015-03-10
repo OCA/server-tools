@@ -68,11 +68,10 @@ class TestCheckUpc(unittest2.TestCase):
     """The codes have been tested against
     http://www.hipaaspace.com/Medical_Data_Validation/Universal_Product_Code/UPC_Validation.aspx  # noqa
     """
-    def test_ean8_codes(self):
-        """Ean8 codes should not be valid for UPC."""
-        for code in VALID_EAN8_CODES:
+    def test_upc_codes(self):
+        for code in VALID_UPC_CODES:
             _logger.debug('code: {}'.format(code))
-            self.assertFalse(product_gtin.check_upc(code))
+            self.assertTrue(product_gtin.check_upc(code))
 
     def test_returns_wrong_upc_codes(self):
         self.assertFalse(product_gtin.check_upc(""))
@@ -80,12 +79,16 @@ class TestCheckUpc(unittest2.TestCase):
         self.assertFalse(product_gtin.check_upc("odoo_oca"))
         # less than 12 numbers
         self.assertFalse(product_gtin.check_upc("12345678901"))
-        # 12-14 random numbers
+        # 12 random numbers
         self.assertFalse(product_gtin.check_upc("123456789013"))
-        self.assertFalse(product_gtin.check_upc("1234567890123"))
-        self.assertFalse(product_gtin.check_upc("12345678901234"))
-        # more than 14 numbers
-        self.assertFalse(product_gtin.check_upc("1234567898012345"))
+        # more than 12 numbers
+        self.assertFalse(product_gtin.check_upc("12345678980123"))
+
+    def test_ean8_codes(self):
+        """Ean8 codes should not be valid for UPC."""
+        for code in VALID_EAN8_CODES:
+            _logger.debug('code: {}'.format(code))
+            self.assertFalse(product_gtin.check_upc(code))
 
     def test_ean13_codes(self):
         """Ean13 codes should not be valid for UPC."""
@@ -158,4 +161,15 @@ class TestCheckEan(unittest2.TestCase):
     def test_dict_check_ean(self):
         """Check if the dict DICT_CHECK_EAN exists."""
         self.assertTrue(product_gtin.DICT_CHECK_EAN)
+
+    def test_dict_pair(self):
+        self.assertEqual(
+            product_gtin.DICT_CHECK_EAN[8], product_gtin.check_ean8
+        )
+        self.assertEqual(
+            product_gtin.DICT_CHECK_EAN[12], product_gtin.check_upc
+        )
+        self.assertEqual(
+            product_gtin.DICT_CHECK_EAN[13], product_gtin.check_ean13
+        )
 

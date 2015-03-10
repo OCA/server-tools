@@ -19,6 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import logging
+_logger = logging.getLogger(__name__)
 
 from openerp.osv import orm, fields
 import operator
@@ -41,6 +43,10 @@ def check_ean8(eancode):
     :return: boolean
     """
     if not eancode or not eancode.isdigit():
+        return False
+
+    if not len(eancode) == 8:
+        _logger.warn('Ean8 code has to have a length of 8 characters.')
         return False
 
     sum = 0
@@ -68,6 +74,10 @@ def check_upc(upccode):
     if not upccode or not upccode.isdigit():
         return False
 
+    if not len(upccode) == 12:
+        _logger.warn('UPC code has to have a length of 12 characters.')
+        return False
+
     sum_pair = 0
     ean_len = int(len(upccode))
     for i in range(ean_len-1):
@@ -91,6 +101,10 @@ def check_ean13(eancode):
     :return: boolean
     """
     if not eancode or not eancode.isdigit():
+        return False
+
+    if not len(eancode) == 13:
+        _logger.warn('Ean13 code has to have a length of 13 characters.')
         return False
 
     sum = 0
