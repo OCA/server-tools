@@ -69,7 +69,7 @@ class super_calendar_configurator(models.Model):
                 current_pool = self.env[line.name.model]
                 domain = line.domain and safe_eval(line.domain) or []
                 current_record_ids = current_pool.search(domain)
- 
+
                 for cur_rec in current_record_ids:
                     f_user = line.user_field_id and line.user_field_id.name
                     f_descr = (line.description_field_id and
@@ -77,13 +77,13 @@ class super_calendar_configurator(models.Model):
                     f_date_start = (line.date_start_field_id and
                                     line.date_start_field_id.name)
                     f_date_stop = (line.date_stop_field_id and
-                                    line.date_stop_field_id.name)
+                                   line.date_stop_field_id.name)
                     f_duration = (line.duration_field_id and
                                   line.duration_field_id.name)
                     if (f_user and
                             cur_rec[f_user] and
                             cur_rec[f_user]._model._name != 'res.users'):
-                        raise orm.except_orm(
+                        raise Exception(
                             _('Error'),
                             _("The 'User' field of record %s (%s) "
                               "does not refer to res.users")
@@ -230,6 +230,6 @@ class super_calendar(models.Model):
         size=128,
     )
     model_id = fields.Many2one(
-         comodel_name='ir.model',
-         string='Model',
-     )
+        comodel_name='ir.model',
+        string='Model',
+    )
