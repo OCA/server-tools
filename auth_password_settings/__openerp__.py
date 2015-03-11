@@ -33,13 +33,13 @@
         # Datas
         "data/auth_password_settings_data.xml",
         # Security
-        
+
         # Views
         "views/res_config_view.xml",
         # Menus
-        
+
         # Wizards
-        
+
     ],
     'demo': [
     ],
