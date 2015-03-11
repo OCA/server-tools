@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
+#    Author: Dhaval Patel
 #    Copyright (C) 2011 - TODAY Denero Team. (<http://www.deneroteam.com>)
-#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -26,13 +26,6 @@
     'summary': 'User Password Settings',
     'author': 'Dhaval Patel<dhaval@deneroteam.com>',
     'website': 'http://www.deneroteam.com',
-    'description': """
-A setting module to manage user password settings
--- Minimum Password length in character
--- Use Capital Letter
--- Use digit
--- Use special character
-""",
     'depends': [
         'base', 'base_setup',
     ],
