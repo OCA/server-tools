@@ -23,67 +23,98 @@ from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 import string
 
+
 class res_users(osv.osv):
     _inherit = "res.users"
-    
+
     def _validate_password(self, cr, uid, password, context=None):
         icp = self.pool.get('ir.config_parameter')
         password_rules = []
         config_data = {
-            'auth_password_min_character': safe_eval(icp.get_param(cr, uid,
-                'auth_password_settings.auth_password_min_character', '6')),
-            'auth_password_has_capital_letter': safe_eval(icp.get_param(cr, uid,
-                'auth_password_settings.auth_password_has_capital_letter',
-                'False')),
-            'auth_password_has_digit': safe_eval(icp.get_param(cr, uid, 
-                'auth_password_settings.auth_password_has_digit', 'False')),
-            'auth_password_has_special_letter': safe_eval(icp.get_param(cr, uid,
-                'auth_password_settings.auth_password_has_special_letter',
-                'False')),
+            'auth_password_min_character': safe_eval(
+                icp.get_param(
+                    cr,
+                    uid,
+                    'auth_password_settings.auth_password_min_character',
+                    '6'
+                )),
+            'auth_password_has_capital_letter': safe_eval(
+                icp.get_param(
+                    cr,
+                    uid,
+                    'auth_password_settings.auth_password_has_capital_letter',
+                    'False'
+                )),
+            'auth_password_has_digit': safe_eval(
+                icp.get_param(
+                    cr,
+                    uid,
+                    'auth_password_settings.auth_password_has_digit',
+                    'False'
+                )),
+            'auth_password_has_special_letter': safe_eval(
+                icp.get_param(
+                    cr,
+                    uid,
+                    'auth_password_settings.auth_password_has_special_letter',
+                    'False'
+                )),
         }
         password_rules.append(
-            lambda s: len(s) >= config_data.get('auth_password_min_character',6)
-                or _('Has %s or more characters') % ( 
+            lambda s:
+                len(s) >= config_data.get('auth_password_min_character', 6) or
+                _('Has %s or more characters') % (
                         config_data.get('auth_password_min_character', 6)
-                        ) 
                     )
-        if (config_data.get('auth_password_has_capital_letter', False)) :
-            password_rules.append(lambda s: any(x.isupper() for x in s) 
-                or _('Has at least One Capital letter'))
-        
-        if (config_data.get('auth_password_has_digit', False)) :
-            password_rules.append(lambda s: any(x.isdigit() for x in s)
-                or _('Has one Number'))
-        
-        if (config_data.get('auth_password_has_special_letter', False)) :
+        )
+
+        if (config_data.get('auth_password_has_capital_letter', False)):
             password_rules.append(
-                lambda s: any(x in string.punctuation for x in s) 
-                    or _('Has one Special letter'))
-        problems = [ p for p in [r(password) 
-            for r in password_rules] if p != True]
+                lambda s: any(x.isupper() for x in s) or
+                _('Has at least One Capital letter')
+            )
+
+        if (config_data.get('auth_password_has_digit', False)):
+            password_rules.append(
+                lambda s: any(x.isdigit() for x in s) or
+                _('Has one Number')
+            )
+
+        if (config_data.get('auth_password_has_special_letter', False)):
+            password_rules.append(
+                lambda s: any(x in string.punctuation for x in s) or
+                _('Has one Special letter')
+            )
+
+        problems = [
+            p for p in [
+                r(password) for r in password_rules
+            ] if not p]
+
         return problems
-        
-        
-    
+
     def write(self, cr, uid, ids, values, context=None):
-        if(values.has_key('password')):
-            problems = self._validate_password(cr, uid, values['password'], 
-                context=context)
+        if('password' in values):
+            problems = self._validate_password(
+                cr, uid, values['password'], context=context)
             if(problems):
                 raise osv.except_osv(
-                    _('Error!'), _
-                    ("Password must match following rules\n %s ")
-                         % ( "\n-- ".join(problems) ) 
-                )            
+                    _('Error!'),
+                    _("Password must match following rules\n %s ")
+                    % ("\n-- ".join(problems))
+                )
         return super(res_users, self).write(cr, uid, ids, values, context)
 
     def _set_password(self, cr, uid, id, password, context=None):
         if(password):
-            problems = self._validate_password(cr,uid,password,context=context)
+            problems = self._validate_password(
+                cr, uid, password, context=context)
             if(problems):
                 raise osv.except_osv(
-                    _('Error!'), _
-                    ("Password must match following rules\n %s ")
-                         % ( "\n-- ".join(problems) ) 
+                    _('Error!'),
+                    _("Password must match following rules\n %s ")
+                    % ("\n-- ".join(problems))
                 )
-        return super(res_users, self)._set_password(cr, uid, id, password, context=context)
+        return super(res_users, self)._set_password(
+            cr, uid, id, password, context=context
+        )
