@@ -93,11 +93,11 @@ def check_upc(upccode):
 
 
 def check_ean13(eancode):
-    """Check if the given ean code answer ean8 requirements
+    """Check if the given ean code answer ean13 requirements
     For more details:
     http://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29
 
-    :param eancode: string, ean-8 code
+    :param eancode: string, ean-13 code
     :return: boolean
     """
     if not eancode or not eancode.isdigit():

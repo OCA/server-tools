@@ -172,4 +172,3 @@ class TestCheckEan(unittest2.TestCase):
         self.assertEqual(
             product_gtin.DICT_CHECK_EAN[13], product_gtin.check_ean13
         )
-
