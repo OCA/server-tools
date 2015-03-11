@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 Innoviu srl (<http://www.innoviu.it>).
+#    Copyright (C) 2015 Innoviu srl (<http://www.innoviu.com>).
 #    Copyright (C) 2015 Agile Business Group http://www.agilebg.com
 #    @authors
 #       Roberto Onnis <roberto.onnis@innoviu.com>
@@ -36,7 +36,10 @@ class FetchmailServer(orm.Model):
     _inherit = "fetchmail.server"
 
     _columns = {
-        'last_internal_date': fields.datetime('Last Download Date'),
+        'last_internal_date': fields.datetime(
+            'Last Download Date',
+            help="Remote emails with a date greater than this will be "
+                 "downloaded. Only available with IMAP"),
     }
 
     def _fetch_from_date_imap(self, cr, uid,

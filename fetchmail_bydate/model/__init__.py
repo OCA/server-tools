@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 Innoviu srl (<http://www.innoviu.it>).
+#    Copyright (C) 2015 Innoviu srl (<http://www.innoviu.com>).
 #    Copyright (C) 2015 Agile Business Group http://www.agilebg.com
 #    @authors
 #       Roberto Onnis <roberto.onnis@innoviu.com>
