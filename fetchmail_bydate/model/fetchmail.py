@@ -36,10 +36,10 @@ class FetchmailServer(orm.Model):
     _inherit = "fetchmail.server"
 
     _columns = {
-        'last_download_date': fields.datetime('Last Download Date'),
+        'last_internal_date': fields.datetime('Last Download Date'),
     }
 
-    def _fetch_from_data_imap(self, cr, uid,
+    def _fetch_from_date_imap(self, cr, uid,
                               server, imap_server,
                               mail_thread, action_pool,
                               count, failed,
@@ -47,23 +47,23 @@ class FetchmailServer(orm.Model):
         messages = []
         date_uids = {}
         last_date = False
-        last_download_date = datetime.strptime(
-            server.last_download_date, "%Y-%m-%d %H:%M:%S")
+        last_internal_date = datetime.strptime(
+            server.last_internal_date, "%Y-%m-%d %H:%M:%S")
         search_status, uids = imap_server.search(
             None,
-            'SINCE', '%s' % last_download_date.strftime('%d-%b-%Y')
+            'SINCE', '%s' % last_internal_date.strftime('%d-%b-%Y')
             )
         new_uids = uids[0].split()
         for new_uid in new_uids:
-            fetch_status, data = imap_server.fetch(
+            fetch_status, date = imap_server.fetch(
                 int(new_uid),
                 'INTERNALDATE'
                 )
-            internaldate = imaplib.Internaldate2tuple(data[0])
+            internaldate = imaplib.Internaldate2tuple(date[0])
             internaldate_msg = datetime.fromtimestamp(
                 time.mktime(internaldate)
                 )
-            if internaldate_msg > last_download_date:
+            if internaldate_msg > last_internal_date:
                 messages.append(new_uid)
                 date_uids[new_uid] = internaldate_msg
         for num in messages:
@@ -71,7 +71,6 @@ class FetchmailServer(orm.Model):
             # recent message, even if it has already been synced
             res_id = None
             result, data = imap_server.fetch(num, '(RFC822)')
-            imap_server.store(num, '-FLAGS', '\\Seen')
             if data and data[0]:
                 try:
                     res_id = mail_thread.message_process(
@@ -98,35 +97,32 @@ class FetchmailServer(orm.Model):
                                 "thread_model",
                                 server.object_id.model)
                         }, context=context)
-            imap_server.store(num, '+FLAGS', '\\Seen')
-            cr.commit()
-            count += 1
-            last_date = not failed and date_uids[num] or False
+                imap_server.store(num, '+FLAGS', '\\Seen')
+                cr.commit()
+                count += 1
+                last_date = not failed and date_uids[num] or False
         return count, failed, last_date
 
     def fetch_mail(self, cr, uid, ids, context=None):
-        """WARNING: meant for cron usage only -
-        will commit() after each email!
-        """
         if context is None:
             context = {}
         context['fetchmail_cron_running'] = True
         mail_thread = self.pool.get('mail.thread')
         action_pool = self.pool.get('ir.actions.server')
         for server in self.browse(cr, uid, ids, context=context):
-            _logger.info(
-                'start checking for new emails by date on %s server %s',
-                server.type, server.name)
-            context.update({'fetchmail_server_id': server.id,
-                            'server_type': server.type})
-            count, failed = 0, 0
-            last_date = False
-            imap_server = False
-            if server.type == 'imap' and server.last_download_date:
+            if server.type == 'imap' and server.last_internal_date:
+                _logger.info(
+                    'start checking for new emails by date on %s server %s',
+                    server.type, server.name)
+                context.update({'fetchmail_server_id': server.id,
+                                'server_type': server.type})
+                count, failed = 0, 0
+                last_date = False
+                imap_server = False
                 try:
                     imap_server = server.connect()
                     imap_server.select()
-                    count, failed, last_date = self._fetch_from_data_imap(
+                    count, failed, last_date = self._fetch_from_date_imap(
                         cr, uid, server, imap_server, mail_thread,
                         action_pool, count, failed, context=context
                     )
@@ -147,7 +143,7 @@ class FetchmailServer(orm.Model):
                         %d succeeded, %d failed.", count,
                         server.type, server.name,
                         (count - failed), failed)
-                    vals = {'last_download_date': last_date}
+                    vals = {'last_internal_date': last_date}
                     server.write(vals)
         return super(FetchmailServer, self).fetch_mail(
             cr, uid, ids, context=context)
