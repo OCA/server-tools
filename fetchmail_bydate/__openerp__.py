@@ -25,12 +25,18 @@
     'name': "Fetchmail by Date",
     "version": "1.0",
     'category': 'Mailing',
-    'summary': 'This module allows to fetch email by last message internal date and unseen messages.',
+    'summary': 'Fetchmail by date and unseen messages',
     'description': """
-                This module allows to fetch email by last message internal date and unseen messages.
-    """,
-    'author': "Innoviu srl, Agile Business Group, Odoo Community Association (OCA)",
-    'website': 'http://www.innoviu.it',
+This module allows to fetch new emails (using IMAP) using their date,
+in addition to 'unseen' status.
+
+To enable this, you have to set a 'Last Download Date' in the fetchmail.server
+After that, emails with an internal date greater than the saved one will be
+downloaded.
+""",
+    'author': "Innoviu, Agile Business Group, "
+              "Odoo Community Association (OCA)",
+    'website': 'http://www.innoviu.com',
     'license': 'AGPL-3',
     'depends': ['fetchmail', 'mail'],
     "data": [
