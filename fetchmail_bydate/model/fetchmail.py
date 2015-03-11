@@ -36,7 +36,7 @@ class FetchmailServer(orm.Model):
     _inherit = "fetchmail.server"
 
     _columns = {
-        'last_internal_date': fields.datetime('Last Internal Date'),
+        'last_download_date': fields.datetime('Last Download Date'),
     }
 
     def _fetch_from_data_imap(self, cr, uid,
@@ -47,13 +47,11 @@ class FetchmailServer(orm.Model):
         messages = []
         date_uids = {}
         last_date = False
-        last_internal_date = datetime.strptime(
-            server.last_internal_date, "%Y-%m-%d %H:%M:%S")
-        #~ timestamp1 = time.mktime(last_internal_date.timetuple())
-        #~ intDate = imaplib.Time2Internaldate(timestamp1)
+        last_download_date = datetime.strptime(
+            server.last_download_date, "%Y-%m-%d %H:%M:%S")
         search_status, uids = imap_server.search(
             None,
-            'SINCE', '%s' % last_internal_date.strftime('%d-%b-%Y')
+            'SINCE', '%s' % last_download_date.strftime('%d-%b-%Y')
             )
         new_uids = uids[0].split()
         for new_uid in new_uids:
@@ -65,7 +63,7 @@ class FetchmailServer(orm.Model):
             internaldate_msg = datetime.fromtimestamp(
                 time.mktime(internaldate)
                 )
-            if internaldate_msg > last_internal_date:
+            if internaldate_msg > last_download_date:
                 messages.append(new_uid)
                 date_uids[new_uid] = internaldate_msg
         for num in messages:
@@ -124,7 +122,7 @@ class FetchmailServer(orm.Model):
             count, failed = 0, 0
             last_date = False
             imap_server = False
-            if server.type == 'imap' and server.last_internal_date:
+            if server.type == 'imap' and server.last_download_date:
                 try:
                     imap_server = server.connect()
                     imap_server.select()
@@ -149,7 +147,7 @@ class FetchmailServer(orm.Model):
                         %d succeeded, %d failed.", count,
                         server.type, server.name,
                         (count - failed), failed)
-                    vals = {'last_internal_date': last_date}
+                    vals = {'last_download_date': last_date}
                     server.write(vals)
         return super(FetchmailServer, self).fetch_mail(
             cr, uid, ids, context=context)
