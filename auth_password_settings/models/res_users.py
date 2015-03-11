@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp.osv import osv
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 import string
@@ -63,9 +63,9 @@ class res_users(osv.osv):
         password_rules.append(
             lambda s:
                 len(s) >= config_data.get('auth_password_min_character', 6) or
-                _('Has %s or more characters') % (
-                        config_data.get('auth_password_min_character', 6)
-                    )
+                _('Has %s or more characters') % (config_data.get(
+                    'auth_password_min_character', 6)
+                )
         )
 
         if (config_data.get('auth_password_has_capital_letter', False)):
