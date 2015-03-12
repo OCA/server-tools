@@ -1,7 +1,7 @@
 Enforce users to set password more complex
 =========================================
 This module will allow adminstrator to set password determination rules.
-TO do this, User need to go Settings / Configuration / General Configuration
+To do this, User need to go Settings / Configuration / General Configuration
 General Configuration will have Password Settings section to set determination rules.
 -- Minimum Password length in character
 -- Use Capital Letter
