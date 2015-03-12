@@ -38,12 +38,12 @@ class BaseConfigSettings(osv.osv_memory):
             help="Use capital letters to determine the Capital letter that\
             must be used in the password "),
         'auth_password_has_digit': fields.boolean(
-            'Use degits',
-            help="Use capital letters to determine the digit(numaric letter)\
+            'Use digits',
+            help="Use digits to determine the digit(numaric letter)\
             that must be used in the password "),
         'auth_password_has_special_letter': fields.boolean(
             'Use Special Characters',
-            help="Use capital letters to determine the special letter (e.g. #,\
+            help="Use special letters to determine the special letter (e.g. #,\
             $,!,^, &) that must be used in the password"),
     }
 
