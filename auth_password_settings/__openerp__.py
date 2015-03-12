@@ -24,8 +24,10 @@
     'category': 'base',
     'sequence': 3,
     'summary': 'User Password Settings',
-    'author': 'Dhaval Patel<dhaval@deneroteam.com>',
+    'author': 'Denero Team,Odoo Community Association (OCA)',
     'website': 'http://www.deneroteam.com',
+    'maintainer': 'Denero Team',
+    'license': 'AGPL-3',
     'depends': [
         'base', 'base_setup',
     ],
