@@ -83,7 +83,7 @@ class BaseConfigSettings(osv.osv_memory):
         if (config.auth_password_min_character < 5):
             raise osv.except_osv(
                 _('Error!'),
-                _('Password Lenght should not be less then 5.')
+                _('Password Length should not be less then 5.')
             )
         icp = self.pool.get('ir.config_parameter')
         icp.set_param(
