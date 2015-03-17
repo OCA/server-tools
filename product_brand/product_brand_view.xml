@@ -95,6 +95,7 @@
                 <kanban>
                     <field name="logo"/>
                     <field name="products_count"/>
+                    <field name="description"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_vignette oe_semantic_html_override">
@@ -114,7 +115,12 @@
                                             <t t-esc="record.products_count.value"/> Products
                                         </a>
                                     </div>
-                                    <field name="description"/>
+                                    <span>
+                                        <t t-esc="record.description.value.substr(0,200)"/>
+                                        <t t-if="record.description.value.length > 200">
+                                            <a type="open"><b>...</b></a>
+                                        </t>
+                                    </span>
                                 </div>
                             </div>
                         </t>
