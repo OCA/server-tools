@@ -48,7 +48,7 @@ Module developed and tested with Odoo version 8.0
 For questions, please contact our support services \
 (support@savoirfairelinux.com)
 """,
-    'depends': [],
+    'depends': ['base_import'],
     'external_dependencies': {
         'python': [],
     },
