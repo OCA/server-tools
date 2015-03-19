@@ -1,0 +1,163 @@
+# Dutch translation for openobject-addons
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-11-24 13:49+0000\n"
+"PO-Revision-Date: 2012-03-20 14:35+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-04-20 05:35+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
+
+#. module: auto_backup
+#: help:db.backup,name:0
+msgid "Database you want to schedule backups for"
+msgstr "Datbase welke u wilt opnemen in de backups planning"
+
+#. module: auto_backup
+#: constraint:ir.model:0
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"De objectnaam moet beginnen met x_ en mag geen speciale tekens bevatten!"
+
+#. module: auto_backup
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Ongeldige modelnaam in de actie definitie."
+
+#. module: auto_backup
+#: model:ir.model,name:auto_backup.model_db_backup
+msgid "db.backup"
+msgstr "db.backup"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"1) Go to Administration / Configuration / Scheduler / Scheduled Actions"
+msgstr "1) Ga naar Instellingen / Instellingen / Planner / Geplande acties"
+
+#. module: auto_backup
+#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
+#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
+msgid "Configure Backup"
+msgstr "Backup instellen"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Test"
+msgstr "Test"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "IP Configuration"
+msgstr "IP instellingen"
+
+#. module: auto_backup
+#: help:db.backup,bkp_dir:0
+msgid "Absolute path for storing the backups"
+msgstr "Absolute pad voor het opslaan van de backups"
+
+#. module: auto_backup
+#: model:ir.module.module,shortdesc:auto_backup.module_meta_information
+msgid "Database Auto-Backup"
+msgstr "Database Auto-Backup"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Database Configuration"
+msgstr "Database Instellingen"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "4) Set other values as per your preference"
+msgstr "4) Stel naar voorkeur de andere waarden in"
+
+#. module: auto_backup
+#: field:db.backup,host:0
+msgid "Host"
+msgstr "Server"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"Automatic backup of all the databases under this can be scheduled as "
+"follows: "
+msgstr ""
+"Automatische backup van alle databases kan als volgt worden ingeplant. "
+
+#. module: auto_backup
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "Ongeldige XML voor weergave opbouw!"
+
+#. module: auto_backup
+#: field:db.backup,bkp_dir:0
+msgid "Backup Directory"
+msgstr "Backup Directory"
+
+#. module: auto_backup
+#: field:db.backup,name:0
+msgid "Database"
+msgstr "Database"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "2) Schedule new action(create a new record)"
+msgstr "2) Plan een actie (maak een nieuwe regel)"
+
+#. module: auto_backup
+#: model:ir.module.module,description:auto_backup.module_meta_information
+msgid ""
+"The generic Open ERP Database Auto-Backup system enables the user to make "
+"configurations for the automatic backup of the database.\n"
+"User simply requires to specify host & port under IP Configuration & "
+"database(on specified host running at specified port) and backup "
+"directory(in which all the backups of the specified database will be stored) "
+"under Database Configuration.\n"
+"\n"
+"Automatic backup for all such configured databases under this can then be "
+"scheduled as follows:  \n"
+"                      \n"
+"1) Go to Administration / Configuration / Scheduler / Scheduled Actions\n"
+"2) Schedule new action(create a new record)\n"
+"3) Set 'Object' to 'db.backup' and 'Function' to 'schedule_backup' under "
+"page 'Technical Data'\n"
+"4) Set other values as per your preference"
+msgstr ""
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"3) Set 'Object' to 'db.backup' and 'Function' to 'schedule_backup' under "
+"page 'Technical Data'"
+msgstr ""
+"3) Stel 'Object' in op 'db.backup' en 'methode' in op 'schedule_backup' op "
+"het tabblad van de technische gegevens."
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Help"
+msgstr "Hulp"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"This configures the scheduler for automatic backup of the given database "
+"running on given host at given port on regular intervals."
+msgstr ""
+"Dit stelt de planner voor automatische back-up, van de gegeven database op "
+"bepaalde host op bepaalde poort op regelmatige tijdstippen, in."
+
+#. module: auto_backup
+#: field:db.backup,port:0
+msgid "Port"
+msgstr "Poort"

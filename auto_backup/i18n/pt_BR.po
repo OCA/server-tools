@@ -1,0 +1,183 @@
+# Brazilian Portuguese translation for openobject-addons
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-11-24 13:49+0000\n"
+"PO-Revision-Date: 2013-07-20 09:39+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-07-22 05:50+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
+
+#. module: auto_backup
+#: help:db.backup,name:0
+msgid "Database you want to schedule backups for"
+msgstr "Banco de dados que você deseja agendar backups para"
+
+#. module: auto_backup
+#: constraint:ir.model:0
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"O nome do objeto deve iniciar com x_ e não conter qualquer caractere "
+"especial!"
+
+#. module: auto_backup
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nome do modelo inválida na definição da ação."
+
+#. module: auto_backup
+#: model:ir.model,name:auto_backup.model_db_backup
+msgid "db.backup"
+msgstr "db.backup"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"1) Go to Administration / Configuration / Scheduler / Scheduled Actions"
+msgstr ""
+"1) Vá para Administração / Configuração / Programador / Ações Programadas"
+
+#. module: auto_backup
+#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
+#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
+msgid "Configure Backup"
+msgstr "Configurar backup"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Test"
+msgstr "Teste"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "IP Configuration"
+msgstr "Configuração de IP"
+
+#. module: auto_backup
+#: help:db.backup,bkp_dir:0
+msgid "Absolute path for storing the backups"
+msgstr "Caminho absoluto para armazenar os backups"
+
+#. module: auto_backup
+#: model:ir.module.module,shortdesc:auto_backup.module_meta_information
+msgid "Database Auto-Backup"
+msgstr "Banco de Dados Auto-Backup"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Database Configuration"
+msgstr "Configuração do Banco de Dados"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "4) Set other values as per your preference"
+msgstr "4) Defina outros valores como por sua preferência"
+
+#. module: auto_backup
+#: field:db.backup,host:0
+msgid "Host"
+msgstr "Host"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"Automatic backup of all the databases under this can be scheduled as "
+"follows: "
+msgstr ""
+"Backup automático de todos os bancos de dados sob este pode ser programado "
+"como segue: "
+
+#. module: auto_backup
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "Inválido XML para Ver Arquitetura!"
+
+#. module: auto_backup
+#: field:db.backup,bkp_dir:0
+msgid "Backup Directory"
+msgstr "Diretório de backup"
+
+#. module: auto_backup
+#: field:db.backup,name:0
+msgid "Database"
+msgstr "Banco de Dados"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "2) Schedule new action(create a new record)"
+msgstr "2) Programe nova ação (criar um novo registro)"
+
+#. module: auto_backup
+#: model:ir.module.module,description:auto_backup.module_meta_information
+msgid ""
+"The generic Open ERP Database Auto-Backup system enables the user to make "
+"configurations for the automatic backup of the database.\n"
+"User simply requires to specify host & port under IP Configuration & "
+"database(on specified host running at specified port) and backup "
+"directory(in which all the backups of the specified database will be stored) "
+"under Database Configuration.\n"
+"\n"
+"Automatic backup for all such configured databases under this can then be "
+"scheduled as follows:  \n"
+"                      \n"
+"1) Go to Administration / Configuration / Scheduler / Scheduled Actions\n"
+"2) Schedule new action(create a new record)\n"
+"3) Set 'Object' to 'db.backup' and 'Function' to 'schedule_backup' under "
+"page 'Technical Data'\n"
+"4) Set other values as per your preference"
+msgstr ""
+"O sistema Auto-Backup genérico Aberto ERP banco de dados permite que o "
+"usuário faça configurações para o backup automático do banco de dados. \n"
+"usuário requer simplesmente para especificar anfitrião e porta em "
+"Configuração do IP e banco de dados (on especificado host executando na "
+"porta especificada) eo diretório de backup (em . que todos os backups de "
+"banco de dados especificado serão armazenados) em Configuração do banco de "
+"dados \n"
+"de backup automático de todos esses bancos de dados configurados sob este "
+"pode ser programado como segue:\n"
+"  \n"
+"                      \n"
+"1) Vá para Administração / Configuração / Programador / Ações Programadas \n"
+"2) Programe nova ação (criar um novo registro) \n"
+"3) Defina 'objeto' para 'db.backup' e 'função' para 'schedule_backup' em "
+"página \"Dados Técnicos\" \n"
+"4 ) Defina outros valores de acordo com sua preferência"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"3) Set 'Object' to 'db.backup' and 'Function' to 'schedule_backup' under "
+"page 'Technical Data'"
+msgstr ""
+"3) Defina 'objeto' para 'db.backup' e 'função' para 'schedule_backup \"em\" "
+"Dados Técnicos \"página"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid "Help"
+msgstr "Ajudar"
+
+#. module: auto_backup
+#: view:db.backup:0
+msgid ""
+"This configures the scheduler for automatic backup of the given database "
+"running on given host at given port on regular intervals."
+msgstr ""
+"Isso configura o agendador de backup automático de um determinado banco de "
+"dados rodando em determinado host em determinada porta em intervalos "
+"regulares."
+
+#. module: auto_backup
+#: field:db.backup,port:0
+msgid "Port"
+msgstr "Porto"
