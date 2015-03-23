@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="users_select_iter_form_view" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="tz" position="after">
+                    <field name="select_iter"/>
+                    <button name="iter_selection_next"
+                        string="next value"
+                        context="{'selection_field': 'select_iter'}"
+                        icon="gtk-go-forward"
+                        type="object" colspan="2"/>
+                    </field>
+                </field>
+            </record>
+
+
+        </data>
+    </openerp>
