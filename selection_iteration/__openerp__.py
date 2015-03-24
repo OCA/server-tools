@@ -36,7 +36,7 @@
     <button name="iter_selection_next" string="Next Value"
        context="{'selection_field': '$selection_field'}" type="object"
        icon="gtk-go-forward"/>
-   
+
     For more information see the example in the module.
     """,
     'depends': [
