@@ -21,29 +21,29 @@
 ###############################################################################
 
 {
- 'name': 'Selection iteration',
- 'version': '0.0.1',
- 'author': 'Akretion',
- 'website': 'www.akretion.com',
- 'license': 'AGPL-3',
- 'category': 'Generic Modules',
- 'description': """
- Allow to iterate on selection values with a button.\n\n
- - The model must inherit from 'abstract.selection.rotate'\n
- - override _get_values_from_selection method to match with 
-    your selection field \n
- - Just create a button like:\n
- <button name="iter_selection_next" string="Next Value"
-    context="{'selection_field': '$selection_field'}" type="object"
-    icon="gtk-go-forward"/>
-
- For more information see the example in the module.
- """,
- 'depends': [
-     'base',
- ],
- 'data': [
- ],
- 'installable': True,
- 'application': False,
+    'name': 'Selection iteration',
+    'version': '0.0.1',
+    'author': 'Akretion',
+    'website': 'www.akretion.com',
+    'license': 'AGPL-3',
+    'category': 'Generic Modules',
+    'description': """
+    Allow to iterate on selection values with a button.\n\n
+    - The model must inherit from 'abstract.selection.rotate'\n
+    - override _get_values_from_selection method to match with
+       your selection field \n
+    - Just create a button like:\n
+    <button name="iter_selection_next" string="Next Value"
+       context="{'selection_field': '$selection_field'}" type="object"
+       icon="gtk-go-forward"/>
+   
+    For more information see the example in the module.
+    """,
+    'depends': [
+        'base',
+    ],
+    'data': [
+    ],
+    'installable': True,
+    'application': False,
 }
