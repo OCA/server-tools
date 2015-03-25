@@ -38,7 +38,7 @@ class UsersExample(orm.Model):
     def __get_selection_values(self, cr, uid, context=None):
         # intermediate method for inherit
         # if not present you cannot inherit selection method
-        return _get_selection_values(cr, uid, context=context)
+        return self._get_selection_values(cr, uid, context=context)
 
     _columns = {
         "select_iter": fields.selection(
