@@ -26,11 +26,6 @@ from openerp.osv import orm, fields
 class UsersExample(orm.Model):
     _inherit = ['res.users', 'abstract.selection.rotate']
     _name = 'res.users'
-    
-    def __get_selection_values(self, cr, uid, context=None):
-        # intermediate method for inherit
-        # if not present you cannot inherit selection method
-        return _get_selection_values(cr, uid, context=context)
 
     def _get_selection_values(self, cr, uid, context=None):
         # with the method above you can inherit this method
@@ -39,6 +34,11 @@ class UsersExample(orm.Model):
             ('val2', 'Val2'),
             ('val3', 'Val3'),
             ]
+
+    def __get_selection_values(self, cr, uid, context=None):
+        # intermediate method for inherit
+        # if not present you cannot inherit selection method
+        return _get_selection_values(cr, uid, context=context)
 
     _columns = {
         "select_iter": fields.selection(
