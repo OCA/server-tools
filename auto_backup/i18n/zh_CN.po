@@ -1,0 +1,298 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auto_backup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-26 14:17+0000\n"
+"PO-Revision-Date: 2015-03-27 00:16+0800\n"
+"Last-Translator: <>\n"
+"Language-Team: Talway <1473162392@qq.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#. module: auto_backup
+#: code:addons/auto_backup/backup_scheduler.py:137
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#. module: auto_backup
+#: help:db.backup,bkp_dir:0
+msgid "Absolute path for storing the backups"
+msgstr "备份绝对路径"
+
+#. module: auto_backup
+#: field:db.backup,sendmailsftpfail:0
+msgid "Auto. E-mail on backup fail"
+msgstr "FTP备份失败自动邮件通知你"
+
+#. module: auto_backup
+#: field:db.backup,autoremove:0
+msgid "Auto. Remove Backups"
+msgstr "自动删除备份"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Automatic backups of the database can be scheduled as follows:"
+msgstr "数据库的自动备份时间安排如下："
+
+#. module: auto_backup
+#: field:db.backup,bkp_dir:0
+msgid "Backup Directory"
+msgstr "备份目录"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_tree
+msgid "Backups"
+msgstr "备份"
+
+#. module: auto_backup
+#: help:db.backup,daystokeepsftp:0
+msgid ""
+"Choose after how many days the backup should be deleted from the FTP server. For example:\n"
+"If you fill in 5 the backups will be removed after 5 days from the FTP server."
+msgstr ""
+"选择后多少天备份应被删除从 FTP 服务器。例如： \n"
+"如果你填写 5， 将5 天后 从FTP 服务器 删除备份文件。"
+
+#. module: auto_backup
+#: help:db.backup,daystokeep:0
+msgid ""
+"Choose after how many days the backup should be deleted. For example:\n"
+"If you fill in 5 the backups will be removed after 5 days."
+msgstr ""
+"选择后多少天备份应被删除。例如： \n"
+"如果你填写5，将 5 天后删除备份。"
+
+#. module: auto_backup
+#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
+#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
+msgid "Configure Backup"
+msgstr "数据库备份"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Contact us!"
+msgstr "邮件联系我们！"
+
+#. module: auto_backup
+#: field:db.backup,create_uid:0
+msgid "Created by"
+msgstr "创建者"
+
+#. module: auto_backup
+#: field:db.backup,create_date:0
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: auto_backup
+#: field:db.backup,name:0
+msgid "Database"
+msgstr "数据库"
+
+#. module: auto_backup
+#: help:db.backup,name:0
+msgid "Database you want to schedule backups for"
+msgstr "计划备份的数据库"
+
+#. module: auto_backup
+#: field:db.backup,emailtonotify:0
+msgid "E-mail to notify"
+msgstr "E-mail邮件地址"
+
+#. module: auto_backup
+#: code:addons/auto_backup/backup_scheduler.py:106 constraint:db.backup:0
+#, python-format
+msgid "Error ! No such database exists!"
+msgstr "错误 ！这个数据库不存在 ！"
+
+#. module: auto_backup
+#: help:db.backup,emailtonotify:0
+msgid "Fill in the e-mail where you want to be notified that the backup failed on the FTP."
+msgstr "FTP备份失败时，邮件通知你详细信息"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "For example: /odoo/backups/"
+msgstr "例如： /odoo/backups/"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Go to Settings / Technical / Automation / Scheduled Actions."
+msgstr "点击   设置 / 技术 / 自动化 / 计划的动作"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Help"
+msgstr "帮助"
+
+#. module: auto_backup
+#: field:db.backup,host:0
+msgid "Host"
+msgstr "服务器"
+
+#. module: auto_backup
+#: field:db.backup,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auto_backup
+#: field:db.backup,sftpip:0
+msgid "IP Address SFTP Server"
+msgstr " SFTP 服务器 IP 地址"
+
+#. module: auto_backup
+#: help:db.backup,sendmailsftpfail:0
+msgid "If you check this option you can choose to automaticly get e-mailed when the backup to the external server failed."
+msgstr "如果您选中此选项，您可以选择自动收到通过邮件发送到外部服务器备份失败的信息。"
+
+#. module: auto_backup
+#: help:db.backup,autoremove:0
+msgid "If you check this option you can choose to automaticly remove the backup after xx days"
+msgstr "如果您选中此选项，您可以选择 xx 天后自动删除备份"
+
+#. module: auto_backup
+#: help:db.backup,sftpwrite:0
+msgid "If you check this option you can specify the details needed to write to a remote server with SFTP."
+msgstr "如果您选中此选项，您可以指定需要写入 sftp 的远程服务器的详细信息。"
+
+#. module: auto_backup
+#: field:db.backup,write_uid:0
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: auto_backup
+#: field:db.backup,write_date:0
+msgid "Last Updated on"
+msgstr "上次更新日期"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Local backup configuration"
+msgstr "本地备份配置"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Need more help?"
+msgstr "需要更多帮助吗？"
+
+#. module: auto_backup
+#: field:db.backup,sftppassword:0
+msgid "Password User SFTP Server"
+msgstr " SFTP服务器密码"
+
+#. module: auto_backup
+#: field:db.backup,sftppath:0
+msgid "Path external server"
+msgstr "服务器目录"
+
+#. module: auto_backup
+#: field:db.backup,port:0
+msgid "Port"
+msgstr "端口"
+
+#. module: auto_backup
+#: field:db.backup,daystokeepsftp:0
+msgid "Remove SFTP after x days"
+msgstr "多少天后从服务器删除"
+
+#. module: auto_backup
+#: field:db.backup,daystokeep:0
+msgid "Remove after x days"
+msgstr "多少天后删除"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "SFTP"
+msgstr "SFTP"
+
+#. module: auto_backup
+#: field:db.backup,sftpport:0
+msgid "SFTP Port"
+msgstr "SFTP 端口"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_search
+msgid "Search options"
+msgstr "搜索选项"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Search the action named 'Backup scheduler'."
+msgstr "搜索计划备份调度程序“Backup scheduler”。"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Set the scheduler to active and fill in how often you want backups generated."
+msgstr "设置计划动作为有效，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Test"
+msgstr "测试"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Test SFTP Connection"
+msgstr "测试 SFTP 连接"
+
+#. module: auto_backup
+#: help:db.backup,sftpip:0
+msgid "The IP address from your remote server. For example 192.168.0.1"
+msgstr "SFTP服务器的 IP 地址。例如： 192.168.0.1"
+
+#. module: auto_backup
+#: help:db.backup,sftppath:0
+msgid ""
+"The location to the folder where the dumps should be written to. For example /odoo/backups/.\n"
+"Files will then be written to /odoo/backups/ on your remote server."
+msgstr ""
+"转储应将写入的文件夹位置。例如 /odoo/backups/远程服务器上，然后将写入 /odoo/backups/.\n"
+"Files。"
+
+#. module: auto_backup
+#: help:db.backup,sftppassword:0
+msgid "The password from the user where the SFTP connection should be made with. This is the password from the user on the external server."
+msgstr "从 SFTP 服务器连接该用户的密码。这是SFTP服务器上的用户密码。"
+
+#. module: auto_backup
+#: help:db.backup,sftpport:0
+msgid "The port on the FTP server that accepts SSH/SFTP calls."
+msgstr "接受 SSH/SFTP 使用的FTP 服务器上的端口。"
+
+#. module: auto_backup
+#: help:db.backup,sftpusername:0
+msgid "The username where the SFTP connection should be made with. This is the user on the external server."
+msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "This configures the scheduler for automatic backup of the given database running on given host at given port on regular intervals."
+msgstr "配置适用指定数据库备份 在设置服务器端口定期运行"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Use SFTP with caution! This writes files to external servers under the path you specify."
+msgstr "请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存在设置的目录下面。"
+
+#. module: auto_backup
+#: field:db.backup,sftpusername:0
+msgid "Username SFTP Server"
+msgstr "SFTP服务器用户名"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Warning:"
+msgstr "警告："
+
+#. module: auto_backup
+#: field:db.backup,sftpwrite:0
+msgid "Write to external server with sftp"
+msgstr "备份到外部 sftp 服务器"
