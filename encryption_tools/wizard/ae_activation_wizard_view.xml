@@ -1,0 +1,23 @@
+<openerp>
+    <data>
+        <record id="ae_activation_wiz_view" model="ir.ui.view">
+            <field name="name">ae.activation.wizard.view</field>
+            <field name="model">ae.activation.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h3>
+                            <label string="Do not lose this password. If you do, you will not be able to retreive any values encrypted with it. " />
+                        </h3>
+                        <group col="4">
+                            <field name="password" required="1" />
+                            <field name="password_verify" required="1" string="Verify" />
+                            <separator colspan="4" />
+                            <button class="oe_highlight" type="object" string="Activate" name="do_activate" colspan="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

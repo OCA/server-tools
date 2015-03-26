@@ -1,0 +1,21 @@
+
+<openerp>
+    <data>
+        <record id="ae_migrate_wiz_view" model="ir.ui.view">
+            <field name="name">ae.migrate.wizard.view</field>
+            <field name="model">ae.migrate.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="password" required="1" />
+                            <field name="iv" required="1" string="Verify" />
+                            <separator colspan="4" />
+                            <button class="oe_highlight" type="object" string="Migrate key and fields" name="do_migrate" colspan="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

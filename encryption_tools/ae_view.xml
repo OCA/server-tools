@@ -1,0 +1,70 @@
+<openerp>
+    <data>
+        <record id="ae_key_pair_form" model="ir.ui.view">
+            <field name="name">ae.key.pair.form</field>
+            <field name="model">ae.key.pair</field>
+            <field name="arch" type="xml"> 
+                <form>
+                    <header>
+                        <button name="launch_activate_wizard" string="Activate" type="object" states="draft" />
+                        <button name="launch_pw_change_wizard" string="Change Password" type="object" states="active" />
+                        <td align="right">
+                            <field name="state" widget="statusbar" />
+                        </td> 
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" placeholder="Key Name" />
+                        </h1>
+                        <group>
+                            <field name="create_date" />
+                            <field name="create_uid" />
+                        </group>
+                        <group string="Public key">
+                            <field name="public_key" nolabel="1" />
+                        </group>
+<!-- TEST FIELDS. Not for production.
+                        <group>
+                            <field name="plain" />
+                            <field name="cipher" />
+                            <separator colspan="2" />
+                            <field name="password" />
+                        </group>
+                        <group>
+                            <button name="test_encrypt" type="object" string="Test Encrypt" />
+                            <button name="test_decrypt" type="object" string="Test Decrypt" />
+                        </group>
+-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="ae_key_pair_tree" model="ir.ui.view">
+            <field name="name">ae.key.pair.tree</field>
+            <field name="model">ae.key.pair</field>
+            <field name="arch" type="xml"> 
+                <tree>
+                    <field name="name" />
+                    <field name="state" />
+                    <field name="create_uid" />
+                    <field name="create_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_ae_key_pair" model="ir.actions.act_window">
+            <field name="name">Key Pair</field>
+            <field name="res_model">ae.key.pair</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Encryption Keys"
+            id="menu_ae_keys"
+            parent="base.menu_security"
+            action="action_ae_key_pair"
+            sequence="3"/>
+    </data>
+</openerp>
