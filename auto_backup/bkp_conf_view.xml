@@ -28,6 +28,8 @@ background-repeat: no-repeat;background-position: 10px center;color: #9F6000;bac
 						<field name="sftpwrite"/>
 						<field name="sftpip" 
 						attrs="{'invisible':[('sftpwrite', '==', False)],'required':[('sftpwrite', '==', True)]}"/>
+						<field name="sftpport" 
+						attrs="{'invisible':[('sftpwrite', '==', False)],'required':[('sftpwrite', '==', True)]}"/>
 						<field name="sftpusername" 
 						attrs="{'invisible':[('sftpwrite', '==', False)],'required':[('sftpwrite', '==', True)]}"/>
 						<field name="sftppassword"

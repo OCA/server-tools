@@ -30,7 +30,7 @@ import re
 try:
     import pysftp
 except ImportError:
-    raise ImportError('This module needs pysftp to automaticly write backups to the FTP through SFTP. Please install pysftp on your system. (sudo pip install pysftp)')
+    raise ImportError('This module needs pysftp to automaticly write backups to the FTP through SFTP.Please install pysftp on your system.(sudo pip install pysftp)')
 from openerp.osv import fields,osv,orm
 from openerp import tools
 from openerp import netsvc
@@ -51,7 +51,9 @@ addons_path = tools.config['addons_path'] + '/auto_backup/DBbackups'
 class db_backup(osv.Model):
     _name = 'db.backup'
     
-    def get_db_list(self, cr, user, ids, host='localhost', port='8069', context={}):
+    def get_db_list(self, cr, user, ids, host, port, context={}):
+        print("Host: " + host)
+        print("Port: " + port)
         uri = 'http://' + host + ':' + port
         conn = xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
         db_list = execute(conn, 'list')
@@ -75,6 +77,7 @@ class db_backup(osv.Model):
                     'sftpwrite': fields.boolean('Write to external server with sftp', help="If you check this option you can specify the details needed to write to a remote server with SFTP."),
                     'sftppath': fields.char('Path external server', help="The location to the folder where the dumps should be written to. For example /odoo/backups/.\nFiles will then be written to /odoo/backups/ on your remote server."),
                     'sftpip': fields.char('IP Address SFTP Server', help="The IP address from your remote server. For example 192.168.0.1"),
+                    'sftpport': fields.integer("SFTP Port", help="The port on the FTP server that accepts SSH/SFTP calls."),
                     'sftpusername': fields.char('Username SFTP Server', help="The username where the SFTP connection should be made with. This is the user on the external server."),
                     'sftppassword': fields.char('Password User SFTP Server', help="The password from the user where the SFTP connection should be made with. This is the password from the user on the external server."),
                     'daystokeepsftp': fields.integer('Remove SFTP after x days', help="Choose after how many days the backup should be deleted from the FTP server. For example:\nIf you fill in 5 the backups will be removed after 5 days from the FTP server."),
@@ -89,6 +92,7 @@ class db_backup(osv.Model):
                     'port' : lambda *a : '8069',
                     'name': _get_db_name,
                     'daystokeepsftp': 30,
+                    'sftpport': 22,
                  }
     
     def _check_db_exist(self, cr, user, ids):
@@ -114,11 +118,12 @@ class db_backup(osv.Model):
             try:
                 pathToWriteTo = rec.sftppath
                 ipHost = rec.sftpip
+                portHost = rec.sftpport
                 usernameLogin = rec.sftpusername
                 passwordLogin = rec.sftppassword
                 #Connect with external server over SFTP, so we know sure that everything works.
                 srv = pysftp.Connection(host=ipHost, username=usernameLogin,
-password=passwordLogin)
+password=passwordLogin,port=portHost)
                 srv.close()
                 #We have a success.
                 messageTitle = "Connection Test Succeeded!"
@@ -169,11 +174,12 @@ password=passwordLogin)
                     dir = rec.bkp_dir
                     pathToWriteTo = rec.sftppath
                     ipHost = rec.sftpip
+                    portHost = rec.sftpport
                     usernameLogin = rec.sftpusername
                     passwordLogin = rec.sftppassword
                     #Connect with external server over SFTP
                     srv = pysftp.Connection(host=ipHost, username=usernameLogin,
-password=passwordLogin)
+password=passwordLogin, port=portHost)
                     #Move to the correct directory on external server. If the user made a typo in his path with multiple slashes (/odoo//backups/) it will be fixed by this regex.
                     pathToWriteTo = re.sub('([/]{2,5})+','/',pathToWriteTo)
                     print(pathToWriteTo)
