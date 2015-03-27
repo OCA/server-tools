@@ -26,17 +26,17 @@ msgstr "%s"
 #. module: auto_backup
 #: help:db.backup,bkp_dir:0
 msgid "Absolute path for storing the backups"
-msgstr "备份据对路径"
+msgstr "备份绝对路径"
 
 #. module: auto_backup
 #: field:db.backup,sendmailsftpfail:0
 msgid "Auto. E-mail on backup fail"
-msgstr "自动。电子邮件备份失败"
+msgstr "FTP备份失败自动邮件通知你"
 
 #. module: auto_backup
 #: field:db.backup,autoremove:0
 msgid "Auto. Remove Backups"
-msgstr "自动 删除备份"
+msgstr "自动删除备份"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -69,7 +69,7 @@ msgid ""
 "If you fill in 5 the backups will be removed after 5 days."
 msgstr ""
 "选择后多少天备份应被删除。例如： \n"
-"如果 你填写 5 ，将 5 天后删除备份。"
+"如果你填写5，将 5 天后删除备份。"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
@@ -80,7 +80,7 @@ msgstr "数据库备份"
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Contact us!"
-msgstr "联系我们！"
+msgstr "邮件联系我们！"
 
 #. module: auto_backup
 #: field:db.backup,create_uid:0
@@ -105,7 +105,7 @@ msgstr "计划备份的数据库"
 #. module: auto_backup
 #: field:db.backup,emailtonotify:0
 msgid "E-mail to notify"
-msgstr "邮件通知"
+msgstr "E-mail邮件地址"
 
 #. module: auto_backup
 #: code:addons/auto_backup/backup_scheduler.py:106 constraint:db.backup:0
@@ -246,7 +246,7 @@ msgstr "测试 SFTP 连接"
 #. module: auto_backup
 #: help:db.backup,sftpip:0
 msgid "The IP address from your remote server. For example 192.168.0.1"
-msgstr "远程服务器的 IP 地址。例如： 192.168.0.1"
+msgstr "SFTP服务器的 IP 地址。例如： 192.168.0.1"
 
 #. module: auto_backup
 #: help:db.backup,sftppath:0
@@ -285,7 +285,7 @@ msgstr "请注意你的 SFTP服务器网络安全！数据库备份文件将备�
 #. module: auto_backup
 #: field:db.backup,sftpusername:0
 msgid "Username SFTP Server"
-msgstr "SFTP 服务器 用户名"
+msgstr "SFTP服务器用户名"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
