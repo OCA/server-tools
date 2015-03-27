@@ -61,7 +61,8 @@ class ResUsers(orm.Model):
         'login_date': fields.function(_get_login_date,
                                       string='Latest connection',
                                       type='date', select=1,
-                                      readonly=True, store=False),
+                                      readonly=True, store=False,
+                                      nodrop=True),
     }
 
     # Re-defining the login function in order to use the new table

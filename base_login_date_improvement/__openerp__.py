@@ -32,7 +32,8 @@ This creates a new table and a function field to avoid this.
 """,
  "website": "http://camptocamp.com",
  "depends": ['base'],
- "data": [],
+ "data": ['security/ir.model.access.csv',
+          ],
  "auto_install": False,
  "installable": True
  }
