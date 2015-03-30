@@ -64,14 +64,11 @@ class MailNotification(models.Model):
     def _notify(
             self, partners_to_notify=None, force_send=False,
             user_signature=True):
-        if self.env.context.get('mail_notify_noemail'):
-            return super(MailNotification, self)._notify(
-                partners_to_notify=partners_to_notify, force_send=force_send,
-                user_signature=user_signature)
         ctx = self.env.context.copy()
-        ctx.update({
-            'partners_to_notify': partners_to_notify,
-        })
+        if not self.env.context.get('mail_notify_noemail'):
+            ctx.update({
+                'partners_to_notify': partners_to_notify,
+            })
         return super(MailNotification, self._model)._notify(
             self.env.cr, self.env.uid, self.id,
             partners_to_notify=partners_to_notify,
