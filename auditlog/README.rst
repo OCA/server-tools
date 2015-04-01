@@ -21,7 +21,6 @@ For further information, please visit:
 Known issues / Roadmap
 ======================
 
- * log ``read`` operations
  * log only operations triggered by some users (currently it logs all users)
  * group logs by HTTP query (thanks to werzeug)?
  * group HTTP query by user session?
