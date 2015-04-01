@@ -29,6 +29,7 @@ class TestAuditlog(TransactionCase):
         self.env['auditlog.rule'].create({
             'name': 'testrule for groups',
             'model_id': groups_model_id,
+            'log_read': True,
             'log_create': True,
             'log_write': True,
             'log_unlink': True,
@@ -75,3 +76,38 @@ class TestAuditlog(TransactionCase):
             'implied_ids': [(4, testgroup3.id)],
         })
         testgroup4.write({'implied_ids': [(2, testgroup3.id)]})
+
+    def test_LogInheritedField(self):
+        """Check the log works well when updating an inherited field
+        (e.g. field 'lang' on 'res.users' inherited from 'res.partner').
+        """
+        auditlog_log = self.env['auditlog.log']
+        users_model_id = self.env.ref('base.model_res_users').id
+        self.env['auditlog.rule'].create({
+            'name': 'testrule for users',
+            'model_id': users_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+        })
+        # Log 'create'
+        user = self.env['res.users'].create({
+            'name': 'testuser_inheritedfield',
+            'login': 'testuser.inheritedfield@company.com',
+            'lang': 'en_US',    # field inherited from 'res.partner'
+        })
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', users_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', user.id),
+        ]))
+        # Log 'read'
+        data = user.read()[0]
+        self.assertIn('lang', data)
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', users_model_id),
+            ('method', '=', 'read'),
+            ('res_id', '=', user.id),
+        ]))
