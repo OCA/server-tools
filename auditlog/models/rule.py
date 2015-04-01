@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, modules, _, SUPERUSER_ID
+from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -228,36 +228,22 @@ class auditlog_rule(models.Model):
         def read(self, *args, **kwargs):
             result = read.origin(self, *args, **kwargs)
             # Sometimes the result is not a list but a dictionary
-            # Also, we can not modify the current result as it will break calls
-            result2 = result
-            if not isinstance(result2, list):
-                result2 = [result]
-            read_values = dict((d['id'], d) for d in result2)
+            try:
+                read_values = dict((d['id'], d) for d in result)
+            except TypeError:
+                read_values = dict((d['id'], d) for d in [result])
             # Old API
             if args and isinstance(args[0], sql_db.Cursor):
                 cr, uid, ids = args[0], args[1], args[2]
                 if isinstance(ids, (int, long)):
                     ids = [ids]
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if kwargs.get('context', {}).get('auditlog_disabled'):
-                    return result
-                env = api.Environment(cr, uid, {'auditlog_disabled': True})
+                env = api.Environment(cr, uid, {})
                 rule_model = env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     env.uid, self._name, ids,
                     'read', read_values)
             # New API
             else:
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if self.env.context.get('auditlog_disabled'):
-                    return result
-                self = self.with_context(auditlog_disabled=True)
                 rule_model = self.env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     self.env.uid, self._name, self.ids,
@@ -308,10 +294,13 @@ class auditlog_rule(models.Model):
         log_model = self.env['auditlog.log']
         for res_id in res_ids:
             model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1]
+            # Avoid recursivity with the 'read' method called by 'name_get()'
+            res_name = "%s,%s" % (res_model, res_id)
+            if method is not 'read':
+                name = model_model.browse(res_id).name_get()
+                res_name = name and name[0] and name[0][1] or res_name
             vals = {
-                'name': res_name and res_name[0] and res_name[0][1] or False,
+                'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
                 'res_id': res_id,
                 'method': method,
@@ -340,7 +329,8 @@ class auditlog_rule(models.Model):
             # - search the field in the current model and those it inherits
             field_model = self.env['ir.model.fields']
             all_model_ids = [model.id]
-            all_model_ids.extend(model.inherited_model_ids.ids)
+            all_model_ids.extend(
+                inherited.id for inherited in model.inherited_model_ids)
             field = field_model.search(
                 [('model_id', 'in', all_model_ids), ('name', '=', field_name)])
             # The field can be a dummy one, like 'in_group_X' on 'res.users'
@@ -360,7 +350,6 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
-            # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_read(
                     log, field, read_values)
@@ -383,19 +372,6 @@ class auditlog_rule(models.Model):
                 vals['old_value']).name_get()
             vals['old_value_text'] = old_value_text
         return vals
-
-    def _get_field(self, model, field_name):
-        cache = self.pool._auditlog_field_cache
-        if field_name not in cache.get(model.model, {}):
-            cache.setdefault(model.model, {})
-            # We use 'search()' then 'read()' instead of the 'search_read()'
-            # to take advantage of the 'classic_write' loading
-            field_model = self.env['ir.model.fields']
-            field = field_model.search(
-                [('model_id', '=', model.id), ('name', '=', field_name)])
-            field_data = field.read(load='_classic_write')[0]
-            cache[model.model][field_name] = field_data
-        return cache[model.model][field_name]
 
     def _create_log_line_on_write(
             self, log, fields_list, old_values, new_values):
