@@ -219,9 +219,11 @@ class auditlog_rule(models.Model):
         def read(self, *args, **kwargs):
             result = read.origin(self, *args, **kwargs)
             # Sometimes the result is not a list but a dictionary
-            if not isinstance(result, list):
-                result = [result]
-            read_values = dict((d['id'], d) for d in result)
+            # Also, we can not modify the current result as it will break calls
+            result2 = result
+            if not isinstance(result2, list):
+                result2 = [result]
+            read_values = dict((d['id'], d) for d in result2)
             # Old API
             if args and isinstance(args[0], sql_db.Cursor):
                 cr, uid, ids = args[0], args[1], args[2]
