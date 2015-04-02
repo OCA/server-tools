@@ -96,7 +96,9 @@ class TestAuditlog(TransactionCase):
         user = self.env['res.users'].create({
             'name': 'testuser_inheritedfield',
             'login': 'testuser.inheritedfield@company.com',
-            'lang': 'en_US',    # field inherited from 'res.partner'
+            # fields inherited from 'res.partner'
+            'lang': 'en_US',
+            'notify_email': 'none',
         })
         self.assertTrue(auditlog_log.search([
             ('model_id', '=', users_model_id),
