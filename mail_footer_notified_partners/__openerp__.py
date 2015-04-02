@@ -27,7 +27,7 @@
     'summary': """
         This module adds into the footer the partner's name notified by this
         email""",
-    'author': "ACSONE SA/NV",
+    'author': "ACSONE SA/NV,Odoo Community Association (OCA)",
     'website': "http://acsone.eu",
     'category': 'Mail',
     'version': '0.1',

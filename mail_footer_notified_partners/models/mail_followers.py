@@ -27,7 +27,7 @@ from openerp import models, api
 from openerp import tools
 from openerp.tools.translate import _
 
-ADDITIONAL_FOOTER = _('This message was also sent to')
+ADDITIONAL_FOOTER = _('This message was also sent to: ')
 
 
 class MailNotification(models.Model):
@@ -52,7 +52,7 @@ class MailNotification(models.Model):
                 partner.notify_email != 'none'
             ]
             additional_footer =\
-                '<br /><small>%s: %s</small><br />' %\
+                u'<br /><small>%s%s</small><br />' %\
                 (ADDITIONAL_FOOTER, ', '.join(partners_name))
             footer = tools.append_content_to_html(
                 footer, additional_footer, plaintext=False,
