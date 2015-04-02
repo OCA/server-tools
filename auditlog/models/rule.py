@@ -219,10 +219,9 @@ class auditlog_rule(models.Model):
         def read(self, *args, **kwargs):
             result = read.origin(self, *args, **kwargs)
             # Sometimes the result is not a list but a dictionary
-            try:
-                read_values = dict((d['id'], d) for d in result)
-            except TypeError:
-                read_values = dict((d['id'], d) for d in [result])
+            if not isinstance(result, list):
+                result = [result]
+            read_values = dict((d['id'], d) for d in result)
             # Old API
             if args and isinstance(args[0], sql_db.Cursor):
                 cr, uid, ids = args[0], args[1], args[2]
@@ -318,8 +317,7 @@ class auditlog_rule(models.Model):
             # - search the field in the current model and those it inherits
             field_model = self.env['ir.model.fields']
             all_model_ids = [model.id]
-            all_model_ids.extend(
-                inherited.id for inherited in model.inherited_model_ids)
+            all_model_ids.extend(model.inherited_model_ids.ids)
             field = field_model.search(
                 [('model_id', 'in', all_model_ids), ('name', '=', field_name)])
             # The field can be a dummy one, like 'in_group_X' on 'res.users'
