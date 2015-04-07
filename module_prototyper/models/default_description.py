@@ -1,0 +1,87 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    This module copyright (C) 2015 Savoir-faire Linux
+#    (<http://www.savoirfairelinux.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+
+def get_default_description(self):
+    """
+    Extract the content of default description because the text is very huge
+    in module_prototyper model
+    """
+    return """
+    Module name
+    ===========
+
+    This module was written to extend the functionality of ... to support ...
+    and allow you to ...
+
+    Installation
+    ============
+
+    To install this module, you need to:
+
+     * do this ...
+
+    Configuration
+    =============
+
+    To configure this module, you need to:
+
+     * go to ...
+
+    Usage
+    =====
+
+    To use this module, you need to:
+
+     * go to ...
+
+    For further information, please visit:
+
+     * https://www.odoo.com/forum/help-1
+
+    Known issues / Roadmap
+    ======================
+
+     * ...
+
+    Credits
+    =======
+
+    Contributors
+    ------------
+
+    * Firsname Lastname <email.address@example.org>
+
+    Maintainer
+    ----------
+
+    .. image:: http://odoo-community.org/logo.png
+       :alt: Odoo Community Association
+       :target: http://odoo-community.org
+
+    This module is maintained by the OCA.
+
+    OCA, or the Odoo Community Association, is a nonprofit organization whose
+    mission is to support the collaborative development of Odoo features and
+    promote its widespread use.
+
+    To contribute to this module, please visit http://odoo-community.org."""
