@@ -19,6 +19,7 @@
 #
 ##############################################################################
 import logging
+import psycopg2
 import openerp.exceptions
 from openerp import pooler, SUPERUSER_ID
 from openerp.osv import orm, fields
@@ -34,6 +35,12 @@ class ResUsersLogin(orm.Model):
         'user_id': fields.many2one('res.users', 'User', required=True),
         'login_dt': fields.date('Latest connection'),
     }
+
+    _sql_constraints = [
+        ('user_id_unique',
+         'unique(user_id)',
+         'The user can only have one login line !')
+    ]
 
 
 class ResUsers(orm.Model):
@@ -72,37 +79,43 @@ class ResUsers(orm.Model):
         user_id = False
         cr = pooler.get_db(db).cursor()
         try:
-            cr.autocommit(True)
             # check if user exists
             res = self.search(cr, SUPERUSER_ID, [('login', '=', login)])
             if res:
                 user_id = res[0]
-                # check credentials
-                self.check_credentials(cr, user_id, password)
                 try:
-                    update_clause = ('NO KEY UPDATE'
-                                     if cr._cnx.server_version >= 90300
-                                     else 'UPDATE')
-                    cr.execute("SELECT login_dt "
-                               "FROM res_users_login "
-                               "WHERE user_id=%%s "
-                               "FOR %s NOWAIT" % update_clause,
-                               (user_id,), log_exceptions=False)
-                    # create login line if not existing
-                    result = cr.fetchone()
-                    if not result:
-                        cr.execute("INSERT INTO res_users_login "
-                                   "(user_id) VALUES (%s)", (user_id,))
-                    cr.execute("UPDATE res_users_login "
-                               "SET login_dt = now() AT TIME ZONE 'UTC' "
-                               "WHERE user_id=%s", (user_id,))
-                except Exception:
-                    _logger.debug("Failed to update last_login "
-                                  "for db:%s login:%s",
-                                  db, login, exc_info=True)
-        except openerp.exceptions.AccessDenied:
-            _logger.info("Login failed for db:%s login:%s", db, login)
-            user_id = False
+                    # check credentials
+                    self.check_credentials(cr, user_id, password)
+                except openerp.exceptions.AccessDenied:
+                    _logger.info("Login failed for db:%s login:%s", db, login)
+                    user_id = False
+
+                if user_id:
+                    try:
+                        update_clause = ('NO KEY UPDATE'
+                                         if cr._cnx.server_version >= 90300
+                                         else 'UPDATE')
+                        cr.execute("SELECT login_dt "
+                                   "FROM res_users_login "
+                                   "WHERE user_id=%%s "
+                                   "FOR %s NOWAIT" % update_clause,
+                                   (user_id,), log_exceptions=False)
+                        # create login line if not existing
+                        result = cr.fetchone()
+                        if not result:
+                            cr.execute("INSERT INTO res_users_login "
+                                       "(user_id) VALUES (%s)", (user_id,))
+                        cr.execute("UPDATE res_users_login "
+                                   "SET login_dt = now() AT TIME ZONE 'UTC' "
+                                   "WHERE user_id=%s", (user_id,))
+                        cr.commit()
+                    except psycopg2.OperationalError:
+                        _logger.warning("Failed to update last_login "
+                                        "for db:%s login:%s",
+                                        db, login, exc_info=True)
+                        cr.rollback()
+        except Exception:
+            pass
         finally:
             cr.close()
 
