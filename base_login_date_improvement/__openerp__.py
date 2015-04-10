@@ -28,12 +28,14 @@ Module to separate the login date from res.users; on long transactions,
 "re-logging" by opening a new tab changes the current res.user row,
 which creates concurrency issues with PostgreSQL in the first transaction.
 
-This creates a new table and a function field to avoid this.
+This creates a new table and a function field to avoid this. In order to
+avoid breaking modules which access via SQL the login_date column, a cron
+(inactive by default) can be used to sync data.
 """,
  "website": "http://camptocamp.com",
  "depends": ['base'],
  "data": ['security/ir.model.access.csv',
-          ],
+          'cron.xml'],
  "auto_install": False,
  "installable": True
  }

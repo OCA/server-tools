@@ -39,8 +39,22 @@ class ResUsersLogin(orm.Model):
     _sql_constraints = [
         ('user_id_unique',
          'unique(user_id)',
-         'The user can only have one login line !')
+         'The user can only have one login line!')
     ]
+
+    # Cron method
+    def cron_sync_login_date(self, cr, uid, context=None):
+        # Simple SQL query to update the original login_date column.
+        try:
+            cr.execute("UPDATE res_users SET login_date = "
+                       "(SELECT login_dt FROM res_users_login "
+                       "WHERE res_users_login.user_id = res_users.id)")
+            cr.commit()
+        except Exception as e:
+            cr.rollback()
+            _logger.exception('Could not synchronize login dates: %s', e)
+
+        return True
 
 
 class ResUsers(orm.Model):
@@ -114,8 +128,9 @@ class ResUsers(orm.Model):
                                         "for db:%s login:%s",
                                         db, login, exc_info=True)
                         cr.rollback()
-        except Exception:
-            pass
+        except Exception as e:
+            _logger.exception('Login exception: %s', e)
+            user_id = False
         finally:
             cr.close()
 
