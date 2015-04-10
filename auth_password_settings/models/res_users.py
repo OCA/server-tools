@@ -85,12 +85,10 @@ class res_users(osv.osv):
                 lambda s: any(x in string.punctuation for x in s) or
                 _('Has one Special letter')
             )
-
         problems = [
             p for p in [
                 r(password) for r in password_rules
-            ] if not p]
-
+            ] if p and p != True]
         return problems
 
     def write(self, cr, uid, ids, values, context=None):
