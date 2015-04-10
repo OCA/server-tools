@@ -88,7 +88,7 @@ class res_users(osv.osv):
         problems = [
             p for p in [
                 r(password) for r in password_rules
-            ] if p and p != True]
+            ] if p and p is not True]
         return problems
 
     def write(self, cr, uid, ids, values, context=None):
