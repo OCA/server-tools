@@ -106,22 +106,22 @@ class ResUsers(orm.Model):
 
                 if user_id:
                     try:
-                        update_clause = ('NO KEY UPDATE'
-                                         if cr._cnx.server_version >= 90300
-                                         else 'UPDATE')
                         cr.execute("SELECT login_dt "
                                    "FROM res_users_login "
                                    "WHERE user_id=%%s "
-                                   "FOR %s NOWAIT" % update_clause,
-                                   (user_id,), log_exceptions=False)
+                                   "FOR UPDATE NOWAIT", (user_id,),
+                                   log_exceptions=False)
                         # create login line if not existing
                         result = cr.fetchone()
-                        if not result:
+                        if result:
+                            cr.execute("UPDATE res_users_login "
+                                       "SET login_dt = now() "
+                                       "AT TIME ZONE 'UTC' "
+                                       "WHERE user_id=%s", (user_id,))
+                        else:
                             cr.execute("INSERT INTO res_users_login "
-                                       "(user_id) VALUES (%s)", (user_id,))
-                        cr.execute("UPDATE res_users_login "
-                                   "SET login_dt = now() AT TIME ZONE 'UTC' "
-                                   "WHERE user_id=%s", (user_id,))
+                                       "(user_id, login_dt) "
+                                       "VALUES (%s, now())", (user_id,))
                         cr.commit()
                     except psycopg2.OperationalError:
                         _logger.warning("Failed to update last_login "
