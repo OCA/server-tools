@@ -108,7 +108,7 @@ class ResUsers(orm.Model):
                     try:
                         cr.execute("SELECT login_dt "
                                    "FROM res_users_login "
-                                   "WHERE user_id=%%s "
+                                   "WHERE user_id=%s "
                                    "FOR UPDATE NOWAIT", (user_id,),
                                    log_exceptions=False)
                         # create login line if not existing
