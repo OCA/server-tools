@@ -19,12 +19,15 @@
 #
 ##############################################################################
 
-{"name": "Base Login Date Improvement",
+{"name": "Base Concurrency",
  "version": "1.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Specific Module",
  "description": """
-Module to separate the login date from res.users; on long transactions,
+Module to regroup all workarounds/fixes to avoid concurrency issues in SQL.
+
+* res.users login_date:
+the login date is now separated from res.users; on long transactions,
 "re-logging" by opening a new tab changes the current res.user row,
 which creates concurrency issues with PostgreSQL in the first transaction.
 
