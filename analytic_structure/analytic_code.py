@@ -18,11 +18,11 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp import models, fields, api
 from openerp.tools import config
 
 
-class analytic_code(osv.Model):
+class analytic_code(models.Model):
     _name = 'analytic.code'
     _description = u"Analytic Code"
 
@@ -31,69 +31,44 @@ class analytic_code(osv.Model):
     _parent_order = 'name'
     _order = 'parent_left'
 
-    def _read_disabled_per_company(
-        self, cr, uid, ids, field_name, arg, context
-    ):
+    @api.depends('blacklist_ids')
+    def _read_disabled_per_company(self):
         """Mark the code as disabled when it is in the blacklist (depending on
         the current user's company).
         """
 
-        anc_obj = self.pool['analytic.code']
-        user_obj = self.pool['res.users']
+        company_id = self.env.user.company_id.id
 
-        company_id = user_obj.read(
-            cr, uid, [uid], ['company_id'], context=context
-        )[0]['company_id'][0]
-
-        ret = {}
-
-        for anc in anc_obj.browse(cr, uid, ids, context=context):
+        for anc in self:
             blacklist = (company.id for company in anc.blacklist_ids)
-            ret[anc.id] = company_id in blacklist
+            anc.disabled_per_company = company_id in blacklist
 
-        return ret
-
-    def _write_disabled_per_company(
-        self, cr, uid, anc_id, field_name, field_value, arg, context
-    ):
+    def _write_disabled_per_company(self):
         """Update the blacklist depending on the current user's company.
         """
 
-        anc_obj = self.pool['analytic.code']
-        user_obj = self.pool['res.users']
+        company_id = self.env.user.company_id.id
 
-        company_id = user_obj.read(
-            cr, uid, [uid], ['company_id'], context=context
-        )[0]['company_id'][0]
-
-        anc = anc_obj.browse(cr, uid, anc_id, context=context)
-        blacklist = (company.id for company in anc.blacklist_ids)
-
-        to_write = None
-        if field_value and company_id not in blacklist:
-            to_write = [(4, company_id)]  # Link.
-        elif not field_value and company_id in blacklist:
-            to_write = [(3, company_id)]  # Unlink.
-
-        if to_write:
-            anc_obj.write(
-                cr, uid, [anc_id], {'blacklist_ids': to_write}, context=context
-            )
+        for anc in self:
+            blacklist = (company.id for company in anc.blacklist_ids)
+    
+            to_write = None
+            if anc.disabled_per_company and company_id not in blacklist:
+                to_write = [(4, company_id)]  # Link.
+            elif not anc.disabled_per_company and company_id in blacklist:
+                to_write = [(3, company_id)]  # Unlink.
+    
+            if to_write:
+                anc.write({'blacklist_ids': to_write})
 
         return True
 
-    def _search_disabled_per_company(
-        self, cr, uid, model_again, field_name, criterion, context
-    ):
+    def _search_disabled_per_company(self, operator, value):
         """Update the domain to take the blacklist into account (depending on
         the current user's company).
         """
 
-        user_obj = self.pool['res.users']
-
-        company_id = user_obj.read(
-            cr, uid, [uid], ['company_id'], context=context
-        )[0]['company_id'][0]
+        company_id = self.env.user.company_id.id
 
         # We assume the criterion was "disabled_per_company = False".
         dom = [
@@ -101,96 +76,86 @@ class analytic_code(osv.Model):
             ('blacklist_ids', '=', False),
             ('blacklist_ids', '!=', company_id),  # Not blacklists_ids.id!
         ]
-        if criterion[0][2] is True:
+        if value is True:
             dom = ['!'] + dom
         return dom
 
-    _columns = {
-        'name': fields.char(
-            u"Name",
-            size=128,
-            translate=config.get_misc('analytic', 'translate', False),
-            required=True,
-        ),
-        'nd_id': fields.many2one(
-            'analytic.dimension',
-            string=u"Dimension",
-            ondelete='cascade',
-            required=True,
-        ),
+    name = fields.Char(
+        u"Name",
+        size=128,
+        translate=config.get_misc('analytic', 'translate', False),
+        required=True,
+    )
+    nd_id = fields.Many2one(
+        'analytic.dimension',
+        string=u"Dimension",
+        ondelete='cascade',
+        required=True,
+    )    
 
-        'active': fields.boolean(
-            u"Active",
-            help=(
-                u"Determines whether an analytic code is in the referential."
-            ),
+    active = fields.Boolean(
+        u"Active",
+        help=(
+            u"Determines whether an analytic code is in the referential."
         ),
-        'view_type': fields.boolean(
-            u"View type",
-            help=(
-                u"Determines whether an analytic code is not selectable (but "
-                u"still in the referential)."
-            ),
+        default = lambda *a: True
+    )
+    view_type = fields.Boolean(
+        u"View type",
+        help=(
+            u"Determines whether an analytic code is not selectable (but "
+            u"still in the referential)."
         ),
-        'blacklist_ids': fields.many2many(
-            'res.company',
-            'analytic_code_company_rel',
-            'code_id',
-            'company_id',
-            u"Blacklist",
-            help=u"Companies the code is hidden in.",
+        default = lambda *a: False
+    )
+    blacklist_ids = fields.Many2many(
+        'res.company',
+        'analytic_code_company_rel',
+        'code_id',
+        'company_id',
+        u"Blacklist",
+        help=u"Companies the code is hidden in.",
+    )
+    disabled_per_company = fields.Boolean(
+        string  = u"Disable in my company",
+        compute = _read_disabled_per_company,
+        inverse = _write_disabled_per_company,
+        search  = _search_disabled_per_company,
+        help=(
+            u"Determines whether an analytic code is disabled for the "
+            u"current company."
         ),
-        'disabled_per_company': fields.function(
-            _read_disabled_per_company,
-            fnct_inv=_write_disabled_per_company,
-            fnct_search=_search_disabled_per_company,
-            method=True,
-            type='boolean',
-            store=False,  # Not persistent as it depends on the company.
-            string=u"Disabled in my company",
-            help=(
-                u"Determines whether an analytic code is disabled for the "
-                u"current company."
-            ),
-        ),
+        default = lambda *a: False
+    )
 
-        'nd_name': fields.related(
-            'nd_id',
-            'name',
-            type='char',
-            string=u"Dimension Name",
-            store=False
-        ),
-        'description': fields.char(
-            u"Description",
-            size=512,
-            translate=config.get_misc('analytic', 'translate', False),
-        ),
-        'code_parent_id': fields.many2one(
-            'analytic.code',
-            u"Parent Code",
-            select=True,
-            ondelete='restrict',
-        ),
-        'child_ids': fields.one2many(
-            'analytic.code',
-            'code_parent_id',
-            u"Child Codes",
-        ),
-        'parent_left': fields.integer(u"Left parent", select=True),
-        'parent_right': fields.integer(u"Right parent", select=True),
-    }
-
-    _defaults = {
-        'active': lambda *a: True,
-        'view_type': lambda *a: False,
-        'disabled_per_company': lambda *a: False,
-    }
+    nd_name = fields.Char(
+        related = 'nd_id.name',
+        string=u"Dimension Name",
+        store=False
+    )
+    description = fields.Char(
+        u"Description",
+        size=512,
+        translate=config.get_misc('analytic', 'translate', False),
+    )
+    code_parent_id = fields.Many2one(
+        'analytic.code',
+        u"Parent Code",
+        select=True,
+        ondelete='restrict',
+    )
+    child_ids = fields.One2many(
+        'analytic.code',
+        'code_parent_id',
+        u"Child Codes",
+    )
+    parent_left = fields.Integer(u"Left parent", select=True)
+    parent_right = fields.Integer(u"Right parent", select=True)
 
     _constraints = [
         # very useful base class constraint
         (
-            osv.Model._check_recursion,
+            models.Model._check_recursion,
             u"Error ! You can not create recursive analytic codes.",
             ['parent_id']
         ),

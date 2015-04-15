@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp import models, fields, api
 from openerp.addons.oemetasl import OEMetaSL
 from openerp.tools import config
 
@@ -27,10 +27,9 @@ class _dimension_meta(OEMetaSL):
 
     def __new__(cls, name, bases, nmspc):
 
-        columns = nmspc['_columns']
         size = int(config.get_misc('analytic', 'analytic_size', 5))
         for n in xrange(1, size + 1):
-            columns['ns{}_id'.format(n)] = fields.one2many(
+            nmspc['ns{}_id'.format(n)] = fields.One2many(
                 'analytic.structure',
                 'nd_id',
                 "Generated Subset of Structures",
@@ -40,22 +39,28 @@ class _dimension_meta(OEMetaSL):
         return super(_dimension_meta, cls).__new__(cls, name, bases, nmspc)
 
 
-class analytic_dimension(osv.Model):
+class analytic_dimension(models.Model):
 
     __metaclass__ = _dimension_meta
     _name = 'analytic.dimension'
     _description = u"Analytic Dimension"
 
-    _columns = {
-        'name': fields.char(
-            u"Name",
-            size=128,
-            translate=config.get_misc('analytic', 'translate', False),
-            required=True,
-        ),
-        'nc_ids': fields.one2many('analytic.code', 'nd_id', u"Codes"),
-        'ns_id': fields.one2many('analytic.structure', 'nd_id', u"Structures"),
-    }
+    name = fields.Char(
+        string=u"Name",
+        size=128,
+        translate=config.get_misc('analytic', 'translate', False),
+        required=True,
+    )
+        
+    nc_ids = fields.One2many(
+        comodel_name='analytic.code',
+        inverse_name='nd_id',
+        string=u"Codes")
+        
+    ns_id = fields.One2many(
+        comodel_name='analytic.structure',
+        inverse_name='nd_id',
+        string=u"Structures")
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', u"Name must be unique"),

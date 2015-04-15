@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp import fields, models, api
 from openerp.tools import config
 from openerp.tools.translate import _
 import re
@@ -26,12 +26,12 @@ from lxml import etree
 import json
 
 
-class analytic_structure(osv.Model):
+class analytic_structure(models.Model):
 
     _name = 'analytic.structure'
     _description = u"Analytic Structure"
 
-    def order_selection(self, cr, uid, context=None):
+    def order_selection(self):
         order_selection = getattr(self, '_order_selection', None)
         if order_selection is None:
             size = int(config.get_misc('analytic', 'analytic_size', 5))
@@ -41,9 +41,10 @@ class analytic_structure(osv.Model):
             setattr(self, '_order_selection', order_selection)
         return order_selection
 
-    def _check_unique_ordering_no_company(self, cr, uid, ids, context=None):
+    @api.constrains('company_id', 'model_name', 'ordering')
+    def _check_unique_ordering_no_company(self):
         columns = ['company_id', 'model_name', 'ordering']
-        structures = self.read(cr, uid, ids, columns, context=context)
+        structures = self.read(columns)
         for structure in structures:
             if structure['company_id']:
                 continue  # Already checked by the SQL constraint.
@@ -51,48 +52,33 @@ class analytic_structure(osv.Model):
                 ('model_name', '=', structure['model_name']),
                 ('ordering', '=', structure['ordering']),
             ]
-            count = self.search(cr, uid, domain, count=True, context=context)
+            count = self.search_count(domain)
             if count > 1:
-                return False
-        return True
+                raise exceptions.ValidationError(u"One dimension per Analysis slot per object when the structure is common to all companies.")
 
-    _columns = {
-        'model_name': fields.char(
-            u"Object",
-            size=128,
-            required=True,
-            select='1',
-        ),
-        'nd_id': fields.many2one(
-            'analytic.dimension',
-            u"Related Dimension",
-            ondelete='restrict',
-            required=True,
-            select='1',
-        ),
-        'ordering': fields.selection(
-            order_selection,
-            u"Analysis slot",
-            required=True,
-        ),
-        'company_id': fields.many2one(
-            'res.company',
-            u"Company",
-        ),
-    }
-
-    _defaults = {
-        'company_id': lambda *a: False,
-    }
-
-    _constraints = [
-        (
-            _check_unique_ordering_no_company,
-            u"One dimension per Analysis slot per object when the structure "
-            u"is common to all companies.",
-            ['company_id', 'model_name', 'ordering']
-        )
-    ]
+    model_name = fields.Char(
+        u"Object",
+        size=128,
+        required=True,
+        select='1',
+    )
+    nd_id = fields.Many2one(
+        'analytic.dimension',
+        u"Related Dimension",
+        ondelete='restrict',
+        required=True,
+        select='1',
+    )
+    ordering = fields.Selection(
+        order_selection,
+        u"Analysis slot",
+        required=True,
+    )
+    company_id = fields.Many2one(
+        'res.company',
+        u"Company",
+        default = lambda *a: False
+    )
 
     _sql_constraints = [
         (

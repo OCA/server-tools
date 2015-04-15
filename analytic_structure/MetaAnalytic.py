@@ -1,5 +1,5 @@
 from openerp import SUPERUSER_ID
-from openerp.osv import fields
+from openerp import fields, api
 from openerp.tools import config
 
 from openerp.addons.oemetasl import OEMetaSL
@@ -30,7 +30,7 @@ class MetaAnalytic(OEMetaSL):
 
     Notes:
     * This metaclass may directly modify attributes that are used by OpenERP,
-    specifically _columns and _inherits.
+    specifically _inherits and the fields of the class.
     * New superclasses are used to define or override methods, in order to
     avoid interacting with OEMetaSL or the model's own method (re)definitions.
     """
@@ -40,11 +40,6 @@ class MetaAnalytic(OEMetaSL):
         analytic = nmspc.get('_analytic', {})
         para = nmspc.get('_para_analytic', {})
         dimension = nmspc.get('_dimension', {})
-
-        columns = nmspc.get('_columns', None)
-        if columns is None:
-            columns = {}
-            nmspc['_columns'] = columns
 
         defaults = nmspc.get('_defaults', None)
         if defaults is None:
@@ -58,13 +53,13 @@ class MetaAnalytic(OEMetaSL):
         # Analytic fields should be defined in the _analytic attribute.
         if analytic or para:
             bases = cls._setup_analytic_fields(
-                analytic, para, columns, defaults, orm_name, name, bases, nmspc
+                analytic, para, defaults, orm_name, name, bases, nmspc
             )
 
         # The bound dimension should be defined in the _dimension attribute.
         if dimension:
             bases = cls._setup_bound_dimension(
-                dimension, columns, defaults, orm_name, name, bases, nmspc
+                dimension, defaults, orm_name, name, bases, nmspc
             )
 
         return super(MetaAnalytic, cls).__new__(cls, name, bases, nmspc)
@@ -74,7 +69,7 @@ class MetaAnalytic(OEMetaSL):
 
     @classmethod
     def _setup_analytic_fields(
-        cls, analytic, para, columns, defaults, orm_name, name, bases, nmspc
+        cls, analytic, para, defaults, orm_name, name, bases, nmspc
     ):
         """Generate analytic and para-analytic fields on the model."""
 
@@ -86,17 +81,16 @@ class MetaAnalytic(OEMetaSL):
 
         # Create a field that will be used for replacement in the view
         if analytic:
-            columns['analytic_dimensions'] = fields.function(
-                lambda self, cr, uid, ids, *a: {i: '' for i in ids},
-                string=u"Analytic Dimensions",
-                readonly=True,
-                store=False,
+            nmspc['analytic_dimensions'] = fields.Char(
+                string  = u"Analytic Dimensions",
+                compute = lambda self, cr, uid, ids, *a: {i: '' for i in ids},
+                readonly=True
             )
 
         col_pattern = '{pre}{n}_{suf}'
         size = int(config.get_misc('analytic', 'analytic_size', 5))
 
-        # Generate the fields directly into the _columns attribute.
+        # Generate the fields directly into the nmspc.
         all_analytic = []
 
         for prefix, model_name in analytic.iteritems():
@@ -106,7 +100,7 @@ class MetaAnalytic(OEMetaSL):
             for n in xrange(1, size + 1):
                 col_name = col_pattern.format(pre=prefix, n=n, suf='id')
                 domain_field = 'nd_id.ns{n}_id.model_name'.format(n=n)
-                columns[col_name] = fields.many2one(
+                nmspc[col_name] = fields.Many2one(
                     'analytic.code',
                     "Generated Analytic Field",
                     domain=[
@@ -130,7 +124,7 @@ class MetaAnalytic(OEMetaSL):
             kwargs = value['kwargs']
             for n in xrange(1, size + 1):
                 col_name = col_pattern.format(pre=prefix, n=n, suf=suffix)
-                columns[col_name] = field_type(*args, **kwargs)
+                nmspc[col_name] = field_type(*args, **kwargs)
                 if 'default' in value:
                     defaults[col_name] = value['default']
 
@@ -186,7 +180,7 @@ class MetaAnalytic(OEMetaSL):
 
     @classmethod
     def _setup_bound_dimension(
-        cls, dimension, columns, defaults, orm_name, name, bases, nmspc
+        cls, dimension, defaults, orm_name, name, bases, nmspc
     ):
         """Bind a dimension to the model, creating a code for each record."""
 
@@ -252,7 +246,7 @@ class MetaAnalytic(OEMetaSL):
         use_inherits = dimension.get('use_inherits', None)
         if use_inherits is None:
             use_inherits = not (
-                any(col in columns for col in ('name', 'nd_id'))
+                any(field in nmspc for field in ('name', 'nd_id'))
                 or nmspc.get('_inherits', False)
                 or nmspc.get('_inherit', False)
             )
@@ -271,8 +265,8 @@ class MetaAnalytic(OEMetaSL):
             nmspc['_inherits'] = inherits
 
         # Default column for the underlying analytic code.
-        if column not in columns:
-            columns[column] = fields.many2one(
+        if column not in nmspc:
+            nmspc[column] = fields.Many2one(
                 'analytic.code',
                 u"Bound Analytic Code",
                 required=True,
@@ -297,20 +291,12 @@ class MetaAnalytic(OEMetaSL):
                 return osv.search(cr, uid, domain, context=context)
 
             for string, model_col, code_col, dtype, req, default in rel_cols:
-                columns[model_col] = fields.related(
-                    column,
-                    code_col,
-                    string=string,
-                    type=dtype,
+                nmspc[model_col] = getattr(fields, dtype)(
+                    string = string,
+                    related = ".".join([column, code_cod]),
                     relation="analytic.code",
                     required=req,
-                    store={
-                        'analytic.code': (
-                            _record_from_code_id,
-                            [code_col],
-                            10
-                        )
-                    }
+                    store=True
                 )
                 if model_col not in defaults:
                     defaults[model_col] = default
