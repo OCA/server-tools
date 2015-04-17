@@ -83,7 +83,7 @@ class MetaAnalytic(OEMetaSL):
         if analytic:
             nmspc['analytic_dimensions'] = fields.Char(
                 string  = u"Analytic Dimensions",
-                compute = lambda self, cr, uid, ids, *a: {i: '' for i in ids},
+                compute = api.one(lambda self : setattr(self, 'analytic_dimensions', '')),
                 readonly=True
             )
 
