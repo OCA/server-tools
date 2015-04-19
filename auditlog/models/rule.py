@@ -233,7 +233,7 @@ class auditlog_rule(models.Model):
                 # If the call came from auditlog itself, skip logging:
                 # avoid logs on `read` produced by auditlog during internal
                 # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations).
+                # 'ir.model.fields'... (no interest in logging such operations)
                 if kwargs.get('context', {}).get('auditlog_disabled'):
                     return result
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
@@ -246,7 +246,7 @@ class auditlog_rule(models.Model):
                 # If the call came from auditlog itself, skip logging:
                 # avoid logs on `read` produced by auditlog during internal
                 # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations).
+                # 'ir.model.fields'... (no interest in logging such operations)
                 if self.env.context.get('auditlog_disabled'):
                     return result
                 self = self.with_context(auditlog_disabled=True)
@@ -301,7 +301,7 @@ class auditlog_rule(models.Model):
         for res_id in res_ids:
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1] or res_name
+            res_name = name and name[0] and name[0][1]
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
