@@ -198,6 +198,12 @@ class auditlog_rule(models.Model):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
         return True
 
+    @api.multi
+    def unlink(self):
+        """Unsubscribe rules before removing them."""
+        self.unsubscribe()
+        return super(auditlog_rule, self).unlink()
+
     def _make_create(self):
         """Instanciate a create method that log its calls."""
         @api.model
