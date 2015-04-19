@@ -289,7 +289,7 @@ class auditlog_rule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             old_values = dict(
-                (d['id'], d) for d in self.sudo().read(list(self._columns)))
+                (d['id'], d) for d in self.sudo().read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', old_values)
             return unlink.origin(self, **kwargs)
