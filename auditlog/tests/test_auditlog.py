@@ -22,45 +22,58 @@ from openerp.tests.common import TransactionCase
 
 
 class TestAuditlog(TransactionCase):
-    def test_LogCreation(self):
-        """First test, caching some data."""
-        auditlog_log = self.env['auditlog.log']
-        groups_model_id = self.env.ref('base.model_res_groups').id
-        self.env['auditlog.rule'].create({
+    def setUp(self):
+        super(TestAuditlog, self).setUp()
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
             'name': 'testrule for groups',
-            'model_id': groups_model_id,
+            'model_id': self.groups_model_id,
             'log_read': True,
             'log_create': True,
             'log_write': True,
             'log_unlink': True,
             'state': 'subscribed',
         })
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlog, self).tearDown()
+
+    def test_LogCreation(self):
+        """First test, caching some data."""
+        auditlog_log = self.env['auditlog.log']
         group = self.env['res.groups'].create({
             'name': 'testgroup1',
         })
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', groups_model_id),
+            ('model_id', '=', self.groups_model_id),
             ('method', '=', 'create'),
             ('res_id', '=', group.id),
-        ]))
+        ]).ensure_one())
         group.write({'name': 'Testgroup1'})
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', groups_model_id),
+            ('model_id', '=', self.groups_model_id),
             ('method', '=', 'write'),
             ('res_id', '=', group.id),
-        ]))
+        ]).ensure_one())
         group.unlink()
         self.assertTrue(auditlog_log.search([
-            ('model_id', '=', groups_model_id),
+            ('model_id', '=', self.groups_model_id),
             ('method', '=', 'unlink'),
             ('res_id', '=', group.id),
-        ]))
+        ]).ensure_one())
 
     def test_LogCreation2(self):
         """Second test, using cached data of the first one."""
-        self.env['res.groups'].create({
+        auditlog_log = self.env['auditlog.log']
+        testgroup2 = self.env['res.groups'].create({
             'name': 'testgroup2',
         })
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', testgroup2.id),
+        ]).ensure_one())
 
     def test_LogCreation3(self):
         """Third test, two groups, the latter being the parent of the former.
@@ -68,7 +81,8 @@ class TestAuditlog(TransactionCase):
         of a 'write' log with a deleted resource (so with no text
         representation).
         """
-        testgroup3 = self.env['res.groups'].create({
+        auditlog_log = self.env['auditlog.log']
+        testgroup3 = testgroup3 = self.env['res.groups'].create({
             'name': 'testgroup3',
         })
         testgroup4 = self.env['res.groups'].create({
@@ -76,6 +90,21 @@ class TestAuditlog(TransactionCase):
             'implied_ids': [(4, testgroup3.id)],
         })
         testgroup4.write({'implied_ids': [(2, testgroup3.id)]})
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', testgroup3.id),
+        ]).ensure_one())
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', testgroup4.id),
+        ]).ensure_one())
+        self.assertTrue(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'write'),
+            ('res_id', '=', testgroup4.id),
+        ]).ensure_one())
 
     def test_LogInheritedField(self):
         """Check the log works well when updating an inherited field
@@ -102,7 +131,7 @@ class TestAuditlog(TransactionCase):
             ('model_id', '=', users_model_id),
             ('method', '=', 'create'),
             ('res_id', '=', user.id),
-        ]))
+        ]).ensure_one())
         # Log 'read'
         data = user.read()[0]
         self.assertIn('lang', data)
