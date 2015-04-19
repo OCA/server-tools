@@ -202,6 +202,7 @@ class auditlog_rule(models.Model):
         """Instanciate a create method that log its calls."""
         @api.model
         def create(self, vals, **kwargs):
+            self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             new_record = create.origin(self, vals, **kwargs)
             new_values = dict(
@@ -229,13 +230,26 @@ class auditlog_rule(models.Model):
                 cr, uid, ids = args[0], args[1], args[2]
                 if isinstance(ids, (int, long)):
                     ids = [ids]
-                env = api.Environment(cr, uid, {})
+                # If the call came from auditlog itself, skip logging:
+                # avoid logs on `read` produced by auditlog during internal
+                # processing: read data of relevant records, 'ir.model',
+                # 'ir.model.fields'... (no interest in logging such operations).
+                if kwargs.get('context', {}).get('auditlog_disabled'):
+                    return result
+                env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     env.uid, self._name, ids,
                     'read', read_values)
             # New API
             else:
+                # If the call came from auditlog itself, skip logging:
+                # avoid logs on `read` produced by auditlog during internal
+                # processing: read data of relevant records, 'ir.model',
+                # 'ir.model.fields'... (no interest in logging such operations).
+                if self.env.context.get('auditlog_disabled'):
+                    return result
+                self = self.with_context(auditlog_disabled=True)
                 rule_model = self.env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     self.env.uid, self._name, self.ids,
@@ -247,6 +261,7 @@ class auditlog_rule(models.Model):
         """Instanciate a write method that log its calls."""
         @api.multi
         def write(self, vals, **kwargs):
+            self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             old_values = dict(
                 (d['id'], d) for d in self.sudo().read(list(self._columns)))
@@ -263,6 +278,7 @@ class auditlog_rule(models.Model):
         """Instanciate an unlink method that log its calls."""
         @api.multi
         def unlink(self, **kwargs):
+            self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             old_values = dict(
                 (d['id'], d) for d in self.sudo().read(list(self._columns)))
@@ -284,11 +300,8 @@ class auditlog_rule(models.Model):
         log_model = self.env['auditlog.log']
         for res_id in res_ids:
             model_model = self.env[res_model]
-            # Avoid recursivity with the 'read' method called by 'name_get()'
-            res_name = "%s,%s" % (res_model, res_id)
-            if method is not 'read':
-                name = model_model.browse(res_id).name_get()
-                res_name = name and name[0] and name[0][1] or res_name
+            name = model_model.browse(res_id).name_get()
+            res_name = name and name[0] and name[0][1] or res_name
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
