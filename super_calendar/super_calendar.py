@@ -120,7 +120,7 @@ class super_calendar_configurator(orm.Model):
                 parse_dict = {'o': record}
                 mytemplate = Template(line.description_code)
                 name = mytemplate.render(**parse_dict)
-            super_calendar_values = {
+            return {
                 'name': name,
                 'model_description': line.description,
                 'date_start': record[line.date_start_field_id.name],
@@ -135,7 +135,7 @@ class super_calendar_configurator(orm.Model):
                 'res_id': line.name.model + ',' + str(record['id']),
                 'model_id': line.name.id,
             }
-        return super_calendar_values
+        return {}
 
 
 class super_calendar_configurator_line(orm.Model):
