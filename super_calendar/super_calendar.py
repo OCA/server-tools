@@ -3,6 +3,8 @@
 #
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+#    Copyright (C) 2015 FactorLibre (<http://www.factorlibre.com>)
+#                       Ismael Calvo <ismael.calvo@factorlibre.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -57,15 +59,13 @@ class super_calendar_configurator(orm.Model):
 
         for configurator in self.browse(cr, uid, configurator_ids, context):
             for line in configurator.line_ids:
-                values = self._generate_record_from_line(cr, uid,
-                                                         configurator,
-                                                         line,
-                                                         context)
-                super_calendar_pool.create(cr, uid, values, context=context)
+                self._generate_record_from_line(cr, uid, configurator,
+                                                line, context)
         self._logger.info('Calendar generated')
         return True
 
     def _generate_record_from_line(self, cr, uid, configurator, line, context):
+        super_calendar_pool = self.pool.get('super.calendar')
         current_pool = self.pool.get(line.name.model)
         current_record_ids = current_pool.search(
             cr,
@@ -128,7 +128,9 @@ class super_calendar_configurator(orm.Model):
                     'res_id': line.name.model + ',' + str(record['id']),
                     'model_id': line.name.id,
                 }
-                return super_calendar_values
+                super_calendar_pool.create(cr, uid, super_calendar_values,
+                                           context=context)
+        return True
 
 
 class super_calendar_configurator_line(orm.Model):
