@@ -275,10 +275,10 @@ class MetaAnalytic(OEMetaSL):
 
         rel_cols = [
             cols for cols in [
-                rel_name + ('name', 'char', True, ''),
-                rel_description + ('description', 'char', False, ''),
-                rel_active + ('active', 'boolean', False, True),
-                rel_view_type + ('view_type', 'boolean', False, False),
+                rel_name + ('name', 'Char', True, ''),
+                rel_description + ('description', 'Char', False, ''),
+                rel_active + ('active', 'Boolean', False, True),
+                rel_view_type + ('view_type', 'Boolean', False, False),
             ] if len(cols) == 6
         ]
 
@@ -293,7 +293,7 @@ class MetaAnalytic(OEMetaSL):
             for string, model_col, code_col, dtype, req, default in rel_cols:
                 nmspc[model_col] = getattr(fields, dtype)(
                     string = string,
-                    related = ".".join([column, code_cod]),
+                    related = ".".join([column, code_col]),
                     relation="analytic.code",
                     required=req,
                     store=True
@@ -308,11 +308,18 @@ class MetaAnalytic(OEMetaSL):
         # Set _register to False in order to prevent its instantiation.
         superclass = type(superclass_name, bases, {'_register': False})
 
+
+        # We must keep the old api here !!!!!!!
+        # If we switch to the new, the method is call through a wrapper
+        # then, 'self' is a !#@*ing (!) object of the same type of __cls__
+        # but totally temporary.
+        # We don't want that cause we set _bound_dimension_id.
+        # Keep the old api until we fix all this module.
         @AddMethod(superclass)
-        def __init__(self, pool, cr):
+        def _setup_complete(self, cr, ids):
             """Load or create the analytic dimension bound to the model."""
 
-            super(superclass, self).__init__(pool, cr)
+            super(superclass, self)._setup_complete(cr, ids)
 
             data_osv = self.pool['ir.model.data']
             try:
@@ -355,6 +362,7 @@ class MetaAnalytic(OEMetaSL):
                     data_osv.create(cr, uid, vals, context=context)
 
         @AddMethod(superclass)
+        @api.cr_uid_context
         def create(self, cr, uid, vals, context=None):
             """Create the analytic code."""
 
@@ -403,6 +411,7 @@ class MetaAnalytic(OEMetaSL):
             return res
 
         @AddMethod(superclass)
+        @api.cr_uid_ids_context
         def write(self, cr, uid, ids, vals, context=None):
             """Update the analytic code's name if it is not inherited,
             and its parent code if parent-child relations are synchronized.
