@@ -67,7 +67,7 @@ class super_calendar_configurator(orm.Model):
                     context=context)
 
                 for current_record_id in current_record_ids:
-                    vaues = self._generate_record_from_line(cr, uid,
+                    values = self._generate_record_from_line(cr, uid,
                                                             configurator,
                                                             line,
                                                             current_record_id,
