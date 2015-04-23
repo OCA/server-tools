@@ -25,8 +25,9 @@
 {
     'name': "Mail Footer Notified Partners",
     'summary': """
-        This module adds into the footer the partner's name notified by this
-        email""",
+        This module adds the list of notified partners in the footer of
+        notification e-mails sent by Odoo.
+        """,
     'author': "ACSONE SA/NV,Odoo Community Association (OCA)",
     'website': "http://acsone.eu",
     'category': 'Mail',

@@ -4,7 +4,7 @@
 Mail Footer Notified Partners
 =============================
 
-This module adds into the footer the partner's name notified by this email
+This module adds the list of notified partners in the footer of notification e-mails sent by Odoo.
 
 Usage
 =====
