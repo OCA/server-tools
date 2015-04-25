@@ -18,6 +18,7 @@
 
 from __future__ import print_function
 import code
+import logging
 import os
 import signal
 import sys
@@ -62,6 +63,7 @@ class Shell(Command):
                       ' to get one.')
             for i in sorted(local_vars):
                 print('%s: %s' % (i, local_vars[i]))
+            logging.disable(logging.CRITICAL)
             Console(locals=local_vars).interact()
 
     def shell(self, dbname):
