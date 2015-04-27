@@ -60,9 +60,14 @@ class Cron(models.Model):
 
         _logger.info('Job `%s` triggered from form', self.name)
 
+        # Do not propagate active_test to the method to execute
+        ctx = dict(self.env.context)
+        ctx.pop('active_test', None)
+
         # Execute the cron job
-        method = getattr(self.sudo(self.user_id).env[self.model],
-                         self.function)
+        method = getattr(
+            self.with_context(ctx).sudo(self.user_id).env[self.model],
+            self.function)
         args = safe_eval('tuple(%s)' % (self.args or ''))
         return method(*args)
 
