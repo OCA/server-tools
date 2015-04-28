@@ -34,6 +34,26 @@ class IrModel(orm.Model):
             return True
         return super(IrModel, self)._drop_table(cr, uid, ids, context=context)
 
+    def _inherited_models(self, cr, uid, ids, field_name, arg, context=None):
+        """this function crashes for undefined models"""
+        result = dict((i, []) for i in ids)
+        existing_model_ids = [
+            this.id for this in self.browse(cr, uid, ids, context=context)
+            if self.pool.get(this.model)
+        ]
+        super_result = super(IrModel, self)._inherited_models(
+            cr, uid, existing_model_ids, field_name, arg, context=context)
+        result.update(super_result)
+        return result
+
+    def _register_hook(self, cr):
+        # patch the function field instead of overwriting it
+        if self._columns['inherited_model_ids']._fnct !=\
+                self._inherited_models.__func__:
+            self._columns['inherited_model_ids']._fnct =\
+                self._inherited_models.__func__
+        return super(IrModel, self)._register_hook(cr)
+
 
 class CleanupPurgeLineModel(orm.TransientModel):
     _inherit = 'cleanup.purge.line'
