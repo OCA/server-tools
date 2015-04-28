@@ -23,6 +23,44 @@ from openerp import pooler
 from openerp.osv import orm, fields
 from openerp.modules.module import get_module_path
 from openerp.tools.translate import _
+from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
+
+
+class IrModelConstraint(orm.Model):
+    _inherit = 'ir.model.constraint'
+
+    def _module_data_uninstall(self, cr, uid, ids, context=None):
+        """this function crashes for constraints on undefined models"""
+        for this in self.browse(cr, uid, ids, context=context):
+            if not self.pool.get(this.model.model):
+                ids.remove(this.id)
+                this.unlink()
+        return super(IrModelConstraint, self)._module_data_uninstall(
+            cr, uid, ids, context=context)
+
+
+class IrModelData(orm.Model):
+    _inherit = 'ir.model.data'
+
+    def _module_data_uninstall(self, cr, uid, modules_to_remove, context=None):
+        """this function crashes for xmlids on undefined models or fields
+        referring to undefined models"""
+        if context is None:
+            context = {}
+        ids = self.search(cr, uid, [('module', 'in', modules_to_remove)])
+        for this in self.browse(cr, uid, ids, context=context):
+            if this.model == 'ir.model.fields':
+                ctx = context.copy()
+                ctx[MODULE_UNINSTALL_FLAG] = True
+                field = self.pool[this.model].browse(
+                    cr, uid, this.res_id, context=ctx)
+                if not self.pool.get(field.model):
+                    this.unlink()
+                    continue
+            if not self.pool.get(this.model):
+                this.unlink()
+        return super(IrModelData, self)._module_data_uninstall(
+            cr, uid, modules_to_remove, context=context)
 
 
 class CleanupPurgeLineModule(orm.TransientModel):
