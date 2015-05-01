@@ -39,8 +39,12 @@ class QWeb(models.Model):
                             generated_attributes, qwebcontext):
         tformat = template_attributes['usertime']
         if not tformat:
-            # No format, use default time and date formats from user lang
-            lang = qwebcontext['user'].lang
+            # No format, use default time and date formats from qwebcontext
+            lang = (
+                qwebcontext['env'].lang or
+                qwebcontext['env'].context['lang'] or
+                qwebcontext['user'].lang
+            )
             if lang:
                 lang = qwebcontext['env']['res.lang'].search(
                     [('code', '=', lang)]
