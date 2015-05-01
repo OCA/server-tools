@@ -25,10 +25,9 @@ import lxml.etree
 import os
 import re
 import textwrap
-import base64
-from datetime import date
 
 from collections import namedtuple
+from datetime import date
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -82,15 +81,15 @@ class ModulePrototyper(models.Model):
     description = fields.Text(
         'Description',
         required=True,
-        help=('Enter the description of your module, what it does, how to'
-              'install, configure and use it, the roadmap or known issues.'
+        help=('Enter the description of your module, what it does, how to '
+              'install, configure and use it, the roadmap or known issues. '
               'The description will be exported in README.rst'),
         default=get_default_description
     )
     author = fields.Char('Author', required=True, help=('Enter your name'))
     maintainer = fields.Char(
         'Maintainer',
-        help=('Enter the name of the person or organization who will'
+        help=('Enter the name of the person or organization who will '
               'maintain this module')
     )
     website = fields.Char('Website', help=('Enter the URL of your website'))
@@ -120,7 +119,7 @@ class ModulePrototyper(models.Model):
         'ir.module.module', 'module_prototyper_module_rel',
         'module_prototyper_id', 'module_id',
         'Dependencies',
-        help=('Enter the list of required modules that need to be installed'
+        help=('Enter the list of required modules that need to be installed '
               'for your module to work properly')
     )
     data_ids = fields.Many2many(
@@ -140,34 +139,34 @@ class ModulePrototyper(models.Model):
     field_ids = fields.Many2many(
         'ir.model.fields', 'prototype_fields_rel',
         'module_prototyper_id', 'field_id', 'Fields',
-        help=('Enter the list of fields that you have created or modified'
-              'and want to export in this module. New models will be'
+        help=('Enter the list of fields that you have created or modified '
+              'and want to export in this module. New models will be '
               'exported as long as you choose one of his fields.')
     )
     menu_ids = fields.Many2many(
         'ir.ui.menu', 'prototype_menu_rel',
         'module_prototyper_id', 'menu_id', 'Menu Items',
-        help=('Enter the list of menu items that you have created and want'
-              'to export in this module. Related windows actions will be'
+        help=('Enter the list of menu items that you have created and want '
+              'to export in this module. Related windows actions will be '
               'exported as well.')
     )
     view_ids = fields.Many2many(
         'ir.ui.view', 'prototype_view_rel',
         'module_prototyper_id', 'view_id', 'Views',
-        help=('Enter the list of views that you have created and want to'
+        help=('Enter the list of views that you have created and want to '
               'export in this module.')
     )
     group_ids = fields.Many2many(
         'res.groups', 'prototype_groups_rel',
         'module_prototyper_id', 'group_id', 'Groups',
-        help=('Enter the list of groups that you have created and want to'
+        help=('Enter the list of groups that you have created and want to '
               'export in this module.')
     )
     right_ids = fields.Many2many(
         'ir.model.access', 'prototype_rights_rel',
         'module_prototyper_id', 'right_id',
         'Access Rights',
-        help=('Enter the list of access rights that you have created and'
+        help=('Enter the list of access rights that you have created and '
               'want to export in this module.')
     )
     rule_ids = fields.Many2many(

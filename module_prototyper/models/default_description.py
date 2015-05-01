@@ -61,8 +61,8 @@ For further information, please visit:
 
  * https://www.odoo.com/forum/help-1
 
-Roadmap
-=======
+Known issues / Roadmap
+======================
 
  * ...
 
