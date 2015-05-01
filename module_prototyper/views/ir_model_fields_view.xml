@@ -15,6 +15,22 @@
                     <field name="notes"
                            placeholder="Notes to help developers to understand the work or advanced features that should be added, ie: onchange, etc."/>
                 </field>
+                <field name="relation_field" position="after">
+                  <field name="column1"
+                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                    />
+                  <field name="column2"
+                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                    />
+                </field>
+                <field name="translate" position="after">
+                  <field name="limit"
+                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                    />
+                  <field name="context"
+                    attrs="{'invisible': [('type', 'not in', ['many2one','one2many','many2many'])]}"
+                    />
+                </field>
             </field>
         </record>
 

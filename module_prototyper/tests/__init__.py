@@ -23,8 +23,3 @@ from . import (
     test_prototype_module_export,
     test_prototype
 )
-
-checks = [
-    test_prototype_module_export,
-    test_prototype,
-]
