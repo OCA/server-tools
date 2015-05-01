@@ -17,8 +17,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import ast
+import lxml.etree
+
+try:
+    import pep8
+except ImportError:
+    pep8 = None
+
 from jinja2 import Environment
 from jinja2.exceptions import TemplateNotFound
+
 from openerp.tests import common
 
 
@@ -58,6 +67,27 @@ class TestModulePrototyper(common.TransactionCase):
             self.assertIsInstance(file_details, tuple)
             self.assertIsInstance(file_details.filename, basestring)
             self.assertIsInstance(file_details.filecontent, basestring)
+
+            name, contents = file_details
+            if name.endswith(".py"):
+                # We have a "coding utf-8" line in there, we need to encode
+                contents = contents.encode("utf-8")
+                ast.parse(contents)
+                if pep8:
+                    checker = pep8.Checker(
+                        name,
+                        contents.splitlines(True))
+                    res = checker.check_all()
+                    self.assertFalse(
+                        res,
+                        "Python file {0} has pep8 errors:\n"
+                        "{1}\n{2}".format(name, checker.report.messages,
+                                          repr(contents))
+                    )
+
+            elif name.endswith(".xml"):
+                # TODO validate valid odoo xml
+                lxml.etree.fromstring(contents)
 
     def test_generate_files_raise_templatenotfound_if_not_found(self):
         self.prototype.set_jinja_env('t_api_version')

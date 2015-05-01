@@ -2,21 +2,25 @@
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
-#    This module copyright (C) {{ export_year }} {% if author %}{{ author }}{% endif %}
-#    {% if website %}({{ website }}).{% endif %}
+{% if author %}
+#    This module copyright (C) {{ export_year }} {{ author }}
+{% else %}
+#    This module copyright (C) {{ export_year }}
+{% endif %}
+{% if website %}
+#    ({{ website }}).
+{% endif %}
+{% if license_text %}
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
+{% for line in license_text %}
+{% if line.strip() %}
+#    {{ line }}
+{% else %}
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{% endif %}
+{% endfor %}
+{% endif %}
 #
 ##############################################################################
-{% block body %}{% endblock %}
+{% block body %}
+{% endblock %}

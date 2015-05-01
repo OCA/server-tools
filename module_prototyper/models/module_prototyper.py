@@ -19,16 +19,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import base64
+import lxml.etree
 import os
 import re
-import base64
-from datetime import date
+import textwrap
 
 from collections import namedtuple
+from datetime import date
+
 from jinja2 import Environment, FileSystemLoader
+
 from openerp import models, api, fields
+
 from .default_description import get_default_description
-YEAR = date.today().year
+from . import licenses
 
 
 class ModulePrototyper(models.Model):
@@ -42,15 +47,18 @@ class ModulePrototyper(models.Model):
     _description = "Module Prototyper"
 
     license = fields.Selection(
-        [('GPL-2', 'GPL Version 2'),
-         ('GPL-2 or any later version', 'GPL-2 or later version'),
-         ('GPL-3', 'GPL Version 3'),
-         ('GPL-3 or any later version', 'GPL-3 or later version'),
-         ('AGPL-3', 'Affero GPL-3'),
-         ('Other OSI approved licence', 'Other OSI Approved Licence'),
-         ('Other proprietary', 'Other Proprietary')],
+        [
+            (licenses.GPL3, 'GPL Version 3'),
+            (licenses.GPL3_L, 'GPL-3 or later version'),
+            (licenses.LGPL3, 'LGPL-3'),
+            (licenses.LGPL3_L, 'LGPL-3 or later version'),
+            (licenses.AGPL3, 'Affero GPL-3'),
+            (licenses.AGPL3_L, 'Affero GPL-3 or later version'),
+            (licenses.OSI, 'Other OSI Approved Licence'),
+            ('Other proprietary', 'Other Proprietary')
+        ],
         string='License',
-        default='AGPL-3',
+        default=licenses.AGPL3_L,
     )
     name = fields.Char(
         'Technical Name', required=True,
@@ -68,15 +76,15 @@ class ModulePrototyper(models.Model):
     description = fields.Text(
         'Description',
         required=True,
-        help=('Enter the description of your module, what it does, how to'
-              'install, configure and use it, the roadmap or known issues.'
+        help=('Enter the description of your module, what it does, how to '
+              'install, configure and use it, the roadmap or known issues. '
               'The description will be exported in README.rst'),
         default=get_default_description
     )
     author = fields.Char('Author', required=True, help=('Enter your name'))
     maintainer = fields.Char(
         'Maintainer',
-        help=('Enter the name of the person or organization who will'
+        help=('Enter the name of the person or organization who will '
               'maintain this module')
     )
     website = fields.Char('Website', help=('Enter the URL of your website'))
@@ -106,7 +114,7 @@ class ModulePrototyper(models.Model):
         'ir.module.module', 'module_prototyper_module_rel',
         'module_prototyper_id', 'module_id',
         'Dependencies',
-        help=('Enter the list of required modules that need to be installed'
+        help=('Enter the list of required modules that need to be installed '
               'for your module to work properly')
     )
     data_ids = fields.Many2many(
@@ -126,40 +134,40 @@ class ModulePrototyper(models.Model):
     field_ids = fields.Many2many(
         'ir.model.fields', 'prototype_fields_rel',
         'module_prototyper_id', 'field_id', 'Fields',
-        help=('Enter the list of fields that you have created or modified'
-              'and want to export in this module. New models will be'
+        help=('Enter the list of fields that you have created or modified '
+              'and want to export in this module. New models will be '
               'exported as long as you choose one of his fields.')
     )
     menu_ids = fields.Many2many(
         'ir.ui.menu', 'prototype_menu_rel',
         'module_prototyper_id', 'menu_id', 'Menu Items',
-        help=('Enter the list of menu items that you have created and want'
-              'to export in this module. Related windows actions will be'
+        help=('Enter the list of menu items that you have created and want '
+              'to export in this module. Related windows actions will be '
               'exported as well.')
     )
     view_ids = fields.Many2many(
         'ir.ui.view', 'prototype_view_rel',
         'module_prototyper_id', 'view_id', 'Views',
-        help=('Enter the list of views that you have created and want to'
+        help=('Enter the list of views that you have created and want to '
               'export in this module.')
     )
     group_ids = fields.Many2many(
         'res.groups', 'prototype_groups_rel',
         'module_prototyper_id', 'group_id', 'Groups',
-        help=('Enter the list of groups that you have created and want to'
+        help=('Enter the list of groups that you have created and want to '
               'export in this module.')
     )
     right_ids = fields.Many2many(
         'ir.model.access', 'prototype_rights_rel',
         'module_prototyper_id', 'right_id',
         'Access Rights',
-        help=('Enter the list of access rights that you have created and'
+        help=('Enter the list of access rights that you have created and '
               'want to export in this module.')
     )
     rule_ids = fields.Many2many(
         'ir.rule', 'prototype_rule_rel',
         'module_prototyper_id', 'rule_id', 'Record Rules',
-        help=('Enter the list of record rules that you have created and'
+        help=('Enter the list of record rules that you have created and '
               'want to export in this module.')
     )
 
@@ -178,6 +186,8 @@ class ModulePrototyper(models.Model):
         """
         if self._env is None:
             self._env = Environment(
+                lstrip_blocks=True,
+                trim_blocks=True,
                 loader=FileSystemLoader(
                     os.path.join(self.template_path, api_version)
                 )
@@ -337,7 +347,11 @@ class ModulePrototyper(models.Model):
         """Wrapper to generate the menus files."""
         relations = {}
         for menu in self.menu_ids:
-            relations.setdefault(menu.action.res_model, []).append(menu)
+            if menu.action and menu.action.res_model:
+                model = menu.action.res_model
+            else:
+                model = 'ir_ui'
+            relations.setdefault(model, []).append(menu)
 
         menus_details = []
         for model_name, menus in relations.iteritems():
@@ -368,13 +382,32 @@ class ModulePrototyper(models.Model):
             'models/{}.py'.format(python_friendly_name),
             'models/model_name.py.template',
             name=python_friendly_name,
-            inherit=model.model,
+            model=model,
             fields=field_descriptions,
         )
 
-    @staticmethod
-    def friendly_name(name):
+    @classmethod
+    def unprefix(cls, name):
+        if not name:
+            return name
+        return re.sub('^x_', '', name)
+
+    @classmethod
+    def friendly_name(cls, name):
         return name.replace('.', '_')
+
+    @classmethod
+    def fixup_arch(cls, archstr):
+        doc = lxml.etree.fromstring(archstr)
+        for elem in doc.xpath("//*[@name]"):
+            elem.attrib["name"] = cls.unprefix(elem.attrib["name"])
+
+        for elem in doc.xpath("//field"):
+            # Make fields self-closed by removing useless whitespace
+            if elem.text and not elem.text.strip():
+                elem.text = None
+
+        return lxml.etree.tostring(doc)
 
     @api.model
     def generate_file_details(self, filename, template, **kwargs):
@@ -388,10 +421,41 @@ class ModulePrototyper(models.Model):
         # keywords used in several templates.
         kwargs.update(
             {
-                'export_year': YEAR,
+                'export_year': date.today().year,
                 'author': self.author,
                 'website': self.website,
+                'license_text': licenses.get_license_text(self.license),
                 'cr': self._cr,
+                # Utility functions
+                'fixup_arch': self.fixup_arch,
+                'unprefix': self.unprefix,
+                'wrap': wrap,
+
             }
         )
         return self.File_details(filename, template.render(kwargs))
+
+
+# Utility functions for rendering templates
+def wrap(text, **kwargs):
+    """ Wrap some text for inclusion in a template, returning lines
+
+    keyword arguments available, from textwrap.TextWrapper:
+
+        width=70
+        initial_indent=''
+        subsequent_indent=''
+        expand_tabs=True
+        replace_whitespace=True
+        fix_sentence_endings=False
+        break_long_words=True
+        drop_whitespace=True
+        break_on_hyphens=True
+    """
+    if not text:
+        return []
+    wrapper = textwrap.TextWrapper(**kwargs)
+    # We join the lines and split them again to offer a stable api for
+    # the jinja2 templates, regardless of replace_whitspace=True|False
+    text = "\n".join(wrapper.wrap(text))
+    return text.splitlines()
