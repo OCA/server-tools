@@ -27,6 +27,7 @@ import logging
 import pytz
 
 from openerp import models
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 _logger = logging.getLogger(__name__)
 
@@ -37,6 +38,17 @@ class QWeb(models.Model):
     def render_tag_usertime(self, element, template_attributes,
                             generated_attributes, qwebcontext):
         tformat = template_attributes['usertime']
+        if not tformat:
+            # No format, use default time and date formats from user lang
+            lang = qwebcontext['user'].lang
+            if lang:
+                lang = qwebcontext['env']['res.lang'].search(
+                    [('code', '=', lang)]
+                )
+                tformat = "{0.date_format} {0.time_format}".format(lang)
+            else:
+                tformat = DEFAULT_SERVER_DATETIME_FORMAT
+
         now = datetime.now()
 
         tz_name = qwebcontext['user'].tz

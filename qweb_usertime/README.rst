@@ -9,6 +9,12 @@ the current time in the timezone of the user. It can be used as::
 
     <t t-usertime="%Y-%m-%d %H:%M:%S" />
 
+or, if you want to use the default date and time formats based on the users
+language::
+
+    <t t-usertime="" />
+
+
 Credits
 =======
 
