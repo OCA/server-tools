@@ -53,7 +53,7 @@ class MailNotification(models.Model):
                 (_('This message was also sent to: '),
                  ', '.join(partners_name))
             footer = tools.append_content_to_html(
-                footer, additional_footer, plaintext=False,
+                additional_footer, footer, plaintext=False,
                 container_tag='div')
 
         return footer
