@@ -159,7 +159,7 @@ password=passwordLogin,port=portHost)
                 try:
                     bkp = execute(conn, 'dump', tools.config['admin_passwd'], rec.name)
                 except:
-                    logger.notifyChannel('backup', netsvc.LOG_INFO, "Could'nt backup database %s. Bad database administrator password for server running at http://%s:%s" %(rec.name, rec.host, rec.port))
+                    logger.notifyChannel('backup', netsvc.LOG_INFO, "Couldn't backup database %s. Bad database administrator password for server running at http://%s:%s" %(rec.name, rec.host, rec.port))
                     continue
                 bkp = base64.decodestring(bkp)
                 fp.write(bkp)
