@@ -29,25 +29,6 @@
     'license': 'AGPL-3',
     'category': 'Administration',
     'summary': 'Checks the technical features box for admin user.',
-    'description': """
-Base Partner Compute Field
-==========================
-Checks the technical features box for administrator user.
-
-.. image:: /admin_technical_features/static/admin_technical_features.png
-
-Contributors
-------------
-* Bruno Joliveau <bruno.joliveau@savoirfairelinux.com>
-* Sandy Carter <sandy.carter@savoirfairelinux.com>
-* Jordi Riera<jordi.riera@savoirfairelinux.com>
-
-More information
-----------------
-Module developed and tested with Odoo version 8.0
-For questions, please contact our support services \
-(support@savoirfairelinux.com)
-""",
     'depends': ['base_import'],
     'external_dependencies': {
         'python': [],
