@@ -30,7 +30,7 @@ class IrModelConstraint(orm.Model):
     _inherit = 'ir.model.constraint'
 
     def _module_data_uninstall(self, cr, uid, ids, context=None):
-        '''this function crashes for constraints on undefined models'''
+        """this function crashes for constraints on undefined models"""
         for this in self.browse(cr, uid, ids, context=context):
             if not self.pool.get(this.model.model):
                 ids.remove(this.id)
@@ -43,8 +43,8 @@ class IrModelData(orm.Model):
     _inherit = 'ir.model.data'
 
     def _module_data_uninstall(self, cr, uid, modules_to_remove, context=None):
-        '''this function crashes for xmlids on undefined models or fields
-        referring to undefined models'''
+        """this function crashes for xmlids on undefined models or fields
+        referring to undefined models"""
         ids = self.search(cr, uid, [('module', 'in', modules_to_remove)])
         for this in self.browse(cr, uid, ids, context=context):
             if this.model == 'ir.model.fields':
