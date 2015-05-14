@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_sales_config" model="ir.ui.view">
+            <field name="name">transbot settings</field>
+            <field name="model">transbot.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="Configure Transbot" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <group string="Transifex">
+                        <field name="transifex_url" string="Base URL"/>
+                        <field name="transifex_user" string="User"/>
+                        <field name="transifex_password" string="Password" password="True"/>
+                        <field name="transifex_organization" string="Organization"/>
+                        <field name="transifex_team" string="Team"/>
+                    </group>
+                    <button name="check_transifex" type="object" string="Check connection"/>
+                    <group string="Github">
+                        <field name="github_token" string="Token"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_transbot_configuration" model="ir.actions.act_window">
+            <field name="name">Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transbot.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_transbot_configuration" action="action_transbot_configuration" parent="menu_transbot" sequence="10"/>
+
+    </data>
+</openerp>
