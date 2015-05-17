@@ -1,29 +1,30 @@
+# -*- coding: utf-8 -*-
+# License, author and contributors information in:
+# __openerp__.py file at the root folder of this module.
+
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+import logging
 
-
-class auditlog_rule(models.Model):
+class AuditlogRule(models.Model):
     _inherit = 'auditlog.rule'
+    _logger = logging.getLogger(__name__)
 
     @api.model
-    def check_selected_rules_to_modify(self, mode='unsubscription'):
-        if mode == 'subscription':
-            state = 'subscribed'
-            error_msg = _('There are selected rules which are already '
-                          'subscribed. Please, uncheck them first.')
+    def set_subscription_state(self, state='subscribed'):
+        active_ids = self.env.context.get('active_ids', -1)
+        active_rules = self.search([('id', 'in', active_ids)])
+        if state == 'subscribed':
+            # We must subscribe unsubscribed rules only
+            unsubscribed_rules = active_rules.filtered(
+                lambda r: r.state != 'subscribed')
+            self._logger.warning('>>> unsubscribed_rules: {}'.format(unsubscribed_rules))
+            unsubscribed_rules.subscribe()
         else:
-            state = 'draft'
-            error_msg = _('There are selected rules which are already '
-                          'unsubscribed. Please, uncheck them first.')
-        active_ids = self.env.context.get('active_ids')
-        active_rules = self.search([('id', 'in', active_ids)]) 
-        if any(rule.state == state for rule in active_rules):
-            raise ValidationError(error_msg)
-        else:
-            if mode == 'subscription':
-                active_rules.subscribe()
-            else:
-                active_rules.unsubscribe()
+            # We must unsubscribe subscribed rules only
+            subscribed_rules = active_rules.filtered(
+                lambda r: r.state != 'draft')
+            self._logger.warning('>>> subscribed_rules: {}'.format(subscribed_rules))
+            subscribed_rules.unsubscribe()
         return {
             'name': _('Rules'),
             'views': [(False, 'tree'), (False, 'form'),],

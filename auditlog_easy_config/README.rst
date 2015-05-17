@@ -1,32 +1,37 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Auditlog Easy Config
-====================
+Audit Log Easy Config
+=====================
 
-This module was written to extend the functionality of the module *Auditlog* to make it more
-comfortable and useful. The options added in this extension are:
+This module was written to extend the functionality of the *Audit Log* module
+(technical name *auditlog*) to make it more comfortable and quick in its
+configuration. Options added in this extension are:
 
-* Rules multi creation: create and subscribe a rule for each existing model in the database,
-setting the type of actions you want to track (creations, updates or deletions).
-* Rules multi subscription: subscribe the selected rules in the tree view.
-* Rules multi unsubscription: unsubscribe the selected rules in the tree view.
+* Rules multi-creation: create and subscribe a rule for each existing model
+  in the database, setting the type of actions you want to track (creations,
+  updates or deletions).
+* Rules multi-subscription: subscribe selected rules in the tree view.
+* Rules multi-unsubscription: unsubscribe selected rules in the tree view.
+* Rules multi-edit: modify trcked actions in selected rules in the tree view.
 
 Installation
 ============
 
 To install this module, you need to:
 
-* Check that you have the *Auditlog* model available in your modules list, and if so, install
-the *Auditlog Easy Config*.
+* Check that you have the *Audit Log* (technical name *auditlog*) module
+  available in your modules list, and if so, install *Audit Log Easy Config*
+  (technical name *auditlog_easy_config*) module.
 
 Usage
 =====
 
 To use this module, you need to:
 
-* You will be able to see the implemented options only if you have *Settings* as the
-*Administration* access rights. If so, go to *Reporting*, section *Audit*.
+* You will be able to see the implemented options only if
+  you have *Settings* as the *Administration* access rights.
+  If so, go to *Reporting*, section *Audit*.
 
 Known issues / Roadmap
 ======================
@@ -40,6 +45,7 @@ Contributors
 ------------
 
 * Juan Formoso <jfv@anubia.es>
+* Alejandro Santana <alejandrosantana@anubia.es>
 
 Maintainer
 ----------

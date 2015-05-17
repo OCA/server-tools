@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Mandate module for openERP
-#    Copyright (C) 2015 Anubía, soluciones en la nube,SL (http://www.anubia.es)
-#    @author: Juan Formoso <jfv@anubia.es>,
+#    Module for Odoo
+#
+#    Copyright (c) All rights reserved:
+#        (c) 2015      Anubía, soluciones en la nube,SL (http://www.anubia.es)
+#                      Juan Formoso <jfv@anubia.es>,
+#                      Alejandro Santana <alejandrosantana@anubia.es>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,13 +24,16 @@
 ##############################################################################
 
 {
-    'name': 'Auditlog Easy Config',
-    'summary': 'Auditlog all models in the database',
-    'version': '0.1',
-    'license': 'AGPL-3',
-    'author': 'Juan Formoso <jfv@anubia.es>',
-    'website': 'http://www.anubia.es',
+    'name': 'Audit Log Easy Config',
+    'summary': 'Auditlog config all models in the database',
+    'version': '0.2',
     'category': 'Tools',
+    'license': 'AGPL-3',
+    'author': 'Odoo Community Association (OCA), '
+              'Juan Formoso <jfv@anubia.es>, '
+              'Alejandro Santana <alejandrosantana@anubia.es>',
+    'maintainer': 'Odoo Community Association (OCA)',
+    'website': 'http://odoo-community.org',
     'depends': [
         'auditlog',
     ],
@@ -36,11 +42,5 @@
          'wizards/auditlog_all_models_view.xml',
          'views/auditlog_rule_view.xml',
     ],
-    'demo': [],
-    'test': [],
-    'description': '''
-    This module allows the user to apply auditlog to all the models currently
-    installed in the database.
-    ''',
     'installable': True,
 }
