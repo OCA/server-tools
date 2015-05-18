@@ -6,20 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 13:33+0000\n"
-"PO-Revision-Date: 2015-05-17 21:12+0100\n"
+"POT-Creation-Date: 2015-05-18 15:34+0000\n"
+"PO-Revision-Date: 2015-05-18 19:01+0100\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 "Language: Spanish\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
 msgid "Action"
 msgstr "Acción"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid ""
+"Are you sure you want to set all selected rules with the new tracked actions?"
+msgstr ""
+"¿Está seguro de que desea establecer las acciones a registrar en todas las "
+"reglas seleccionadas?"
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
@@ -42,27 +57,45 @@ msgid "Auditlog - Rule"
 msgstr "Auditlog - Regla"
 
 #. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+msgid "Check this to overwrite all existing rules."
+msgstr "Marque esta opción para sobreescribir las reglas existentes."
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "Close"
+msgstr "Cancelar"
+
+#. module: auditlog
+#: field:auditlog.all.models.wizard,create_uid:0
 #: field:auditlog.log,create_uid:0 field:auditlog.log.line,create_uid:0
 #: field:auditlog.rule,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,create_date:0
 #: field:auditlog.log,create_date:0 field:auditlog.log.line,create_date:0
 #: field:auditlog.rule,create_date:0
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_description:0
-msgid "Description"
-msgstr "Descripción"
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "Date"
+msgstr "Fecha"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
 msgstr "No suscrito"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+msgid "Existing rules"
+msgstr "Reglas existentes"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
@@ -82,18 +115,19 @@ msgid "Group By..."
 msgstr "Agrupar por..."
 
 #. module: auditlog
-#: field:auditlog.log,id:0 field:auditlog.log.line,id:0
-#: field:auditlog.rule,id:0
+#: field:auditlog.all.models.wizard,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
-#: field:auditlog.log,write_uid:0 field:auditlog.log.line,write_uid:0
-#: field:auditlog.rule,write_uid:0
+#: field:auditlog.all.models.wizard,write_uid:0 field:auditlog.log,write_uid:0
+#: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,write_date:0
 #: field:auditlog.log,write_date:0 field:auditlog.log.line,write_date:0
 #: field:auditlog.rule,write_date:0
 msgid "Last Updated on"
@@ -111,21 +145,24 @@ msgid "Log - Field updated"
 msgstr "Registro - Campo actualizado"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,log_create:0
 #: field:auditlog.rule,log_create:0
 msgid "Log Creates"
 msgstr "Registrar creaciones"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,log_unlink:0
 #: field:auditlog.rule,log_unlink:0
 msgid "Log Deletes"
 msgstr "Registrar borrados"
 
 #. module: auditlog
-#: field:auditlog.rule,log_read:0
+#: field:auditlog.all.models.wizard,log_read:0 field:auditlog.rule,log_read:0
 msgid "Log Reads"
 msgstr "Registrar lecturas"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,log_write:0
 #: field:auditlog.rule,log_write:0
 msgid "Log Writes"
 msgstr "Registrar modificaciones"
@@ -175,6 +212,11 @@ msgid "Old value Text"
 msgstr "Texto del valor anterior"
 
 #. module: auditlog
+#: field:auditlog.all.models.wizard,overwrite_rules:0
+msgid "Overwrite all existing rules"
+msgstr "Sobreescribir todas las reglas existentes"
+
+#. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,res_id:0
 msgid "Resource ID"
@@ -191,17 +233,34 @@ msgid "Rule"
 msgstr "Regla"
 
 #. module: auditlog
+#: code:addons/auditlog/wizards/auditlog_all_models.py:92
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_tree
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
+#, python-format
 msgid "Rules"
 msgstr "Reglas"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "Rules tracked actions"
+msgstr "Acciones registradas de las reglas"
 
 #. module: auditlog
 #: help:auditlog.rule,model_id:0
 msgid "Select model for which you want to generate log."
 msgstr "Seleccione el modelo que quiere registrar."
+
+#. module: auditlog
+#: help:auditlog.all.models.wizard,log_create:0
+msgid ""
+"Select this if you want to keep track of creation on any record of existing "
+"models."
+msgstr ""
+"Marque esta casilla si desea registrar la creación de cualquier registro de "
+"los modelos existentes"
 
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
@@ -211,6 +270,15 @@ msgid ""
 msgstr ""
 "Marque esta casilla si desea registrar la creación de cualquier registro del "
 "modelo de esta regla"
+
+#. module: auditlog
+#: help:auditlog.all.models.wizard,log_unlink:0
+msgid ""
+"Select this if you want to keep track of deletion on any record of existing "
+"models."
+msgstr ""
+"Marque esta casilla si desea registrar el borrado de cualquier registro de "
+"los modelos existentes"
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
@@ -231,6 +299,24 @@ msgstr ""
 "del modelo de esta regla"
 
 #. module: auditlog
+#: help:auditlog.all.models.wizard,log_write:0
+msgid ""
+"Select this if you want to keep track of modifications on any record of "
+"existing models."
+msgstr ""
+"Marque esta casilla si desea registrar la modificación de cualquier registro "
+"de los modelos existentes"
+
+#. module: auditlog
+#: help:auditlog.all.models.wizard,log_read:0
+msgid ""
+"Select this if you want to keep track of read/open on any record of existing "
+"models."
+msgstr ""
+"Marque esta casilla si desea registrar la lectura/apertura de cualquier "
+"registro de los modelos existentes"
+
+#. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
@@ -238,6 +324,32 @@ msgid ""
 msgstr ""
 "Marque esta casilla si desea registrar la lectura/apertura de cualquier "
 "registro del modelo de esta regla"
+
+#. module: auditlog
+#: help:auditlog.all.models.wizard,overwrite_rules:0
+msgid ""
+"Select this if you want to overwrite the current existing rules in the "
+"database."
+msgstr ""
+"Marque esta casilla si desea sobreescribir las reglas existentes en la base "
+"de datos"
+
+#. module: auditlog
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_set_tracked_actions_wizard_view
+msgid "Set options"
+msgstr "Establecer opciones"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_all_models_form
+#: model:ir.ui.menu,name:auditlog.menu_auditlog_all_models
+msgid "Set rules for every model"
+msgstr "Crear reglas para todos los modelos"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "Set selected rules tracked actions"
+msgstr "Establecer las acciones registradas para las reglas seleccionadas"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -251,15 +363,29 @@ msgid "Subscribe"
 msgstr "Suscribir"
 
 #. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+msgid "Subscribe all"
+msgstr "Subscribe all"
+
+#. module: auditlog
+#: model:ir.actions.server,name:auditlog.act_subscribe_rules
+msgid "Subscribe rules"
+msgstr "Subscribe rules"
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Subscribed"
 msgstr "Suscrito"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_name:0
-msgid "Technical name"
-msgstr "Nombre técnico"
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+msgid ""
+"The operation could take a few minutes. Are you sure you want to subscribe a "
+"rule for each model in the database?"
+msgstr ""
+"Esta operación puede llevar varios minutos. ¿Seguro que desea suscribir una "
+"regla para cada modelo de la base de datos?"
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
@@ -271,9 +397,28 @@ msgstr ""
 "No puede definir otra: por favor, modifique el existente."
 
 #. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+msgid ""
+"This wizard allows you to set rules for every model currently existing in the database."
+msgstr ""
+"Este asistente permite crear reglas para todos los modelos existentes en la base de datos."
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "This wizard allows you to set tracked actions in selected rules."
+msgstr ""
+"Este asistente permite establecer qué acciones se registrarán en las reglas "
+"seleccionadas."
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
 msgstr "Desuscribir"
+
+#. module: auditlog
+#: model:ir.actions.server,name:auditlog.act_unsubscribe_rules
+msgid "Unsubscribe rules"
+msgstr "Desuscribir reglas"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -290,3 +435,20 @@ msgstr "Usuarios"
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Values"
 msgstr "Valores"
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:414
+#, python-format
+msgid "View logs"
+msgstr "Registros"
+
+#. module: auditlog
+#: help:auditlog.rule,user_ids:0
+msgid "if  User is not added then it will applicable for all users"
+msgstr "si no especifica un usuario, se aplicará a todos los usuarios"
+
+#. module: auditlog
+#: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog.auditlog_set_tracked_actions_wizard_view
+msgid "or"
+msgstr "o"

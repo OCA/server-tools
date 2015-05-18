@@ -51,11 +51,10 @@
             <field name="model">auditlog.all.models.wizard</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Set rules for all models">
+                <form string="Set rules for every model">
                     <group cols="8">
                         <p>
-                        This wizard allows you to set rules for every model
-                        currently existing in the database.
+                        This wizard allows you to set rules for every model currently existing in the database.
                         </p>
                     </group>
                     <group cols="8">
@@ -77,7 +76,7 @@
                             type="object"
                             icon="gtk-execute"
                             class="oe_highlight"
-                            confirm="The operation could take a few minutes.\nAre you sure you want to subscribe a rule for each model in the database?" />
+                            confirm="The operation could take a few minutes. Are you sure you want to subscribe a rule for each model in the database?" />
                         or
                         <button string="Close" class="oe_link"
                                 special="cancel" />
@@ -87,7 +86,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_auditlog_all_models_form">
-            <field name="name">Set rules for all models</field>
+            <field name="name">Set rules for every model</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">auditlog.all.models.wizard</field>
             <field name="view_type">form</field>

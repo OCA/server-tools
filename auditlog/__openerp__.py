@@ -33,6 +33,7 @@
               'Holger Brunn <hbrunn@therp.nl>, '
               'Juan Formoso <jfv@anubia.es>, '
               'Alejandro Santana <alejandrosantana@anubia.es>',
+    'summary': 'Log CRUD operations',
     'website': 'http://www.osiell.com',
     'category': 'Tools',
     'license': 'AGPL-3',
