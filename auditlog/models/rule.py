@@ -449,3 +449,39 @@ class auditlog_rule(models.Model):
                     ir_value.unlink()
         self.write({'state': 'draft'})
         return True
+
+    @api.model
+    def subscribe_selected(self):
+        active_ids = self.env.context.get('active_ids', -1)
+        active_rules = self.search([('id', 'in', active_ids)])
+        # We must subscribe unsubscribed rules only
+        unsubscribed_rules = active_rules.filtered(
+            lambda r: r.state != 'subscribed')
+        self._logger.warning('>>> unsubscribed_rules: {}'.format(unsubscribed_rules))
+        return unsubscribed_rules.subscribe()
+        # return {
+        #     'name': _('Rules'),
+        #     'views': [(False, 'tree'), (False, 'form'),],
+        #     'res_model': 'auditlog.rule',
+        #     'type': 'ir.actions.act_window',
+        #     'target': 'current',
+        #     'flags': {'tree': {'action_buttons': True},
+        #               'form': {'action_buttons': True},}
+        # }
+
+    @api.model
+    def unsubscribe_selected(self):
+        active_ids = self.env.context.get('active_ids', -1)
+        active_rules = self.search([('id', 'in', active_ids)])
+        # We must unsubscribe subscribed rules only
+        subscribed_rules = active_rules.filtered(lambda r: r.state != 'draft')
+        return subscribed_rules.unsubscribe()
+        # return {
+        #     'name': _('Rules'),
+        #     'views': [(False, 'tree'), (False, 'form'),],
+        #     'res_model': 'auditlog.rule',
+        #     'type': 'ir.actions.act_window',
+        #     'target': 'current',
+        #     'flags': {'tree': {'action_buttons': True},
+        #               'form': {'action_buttons': True},}
+        # }

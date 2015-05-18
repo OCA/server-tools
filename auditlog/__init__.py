@@ -20,6 +20,7 @@
 ##############################################################################
 
 from . import models
+from . import wizards
 
 
 def pre_init_hook(cr):

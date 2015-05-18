@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 ABF OSIELL (<http://osiell.com>).
+#    Module for Odoo
+#
+#    Copyright (c) All rights reserved:
+#        (c) 2013      ABF OSIELL (<http://osiell.com>).
+#                      Holger Brunn <hbrunn@therp.nl>
+#        (c) 2015      Anubía, soluciones en la nube,SL (http://www.anubia.es)
+#                      Juan Formoso <jfv@anubia.es>,
+#                      Alejandro Santana <alejandrosantana@anubia.es>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,16 +26,22 @@
 ##############################################################################
 
 {
-    'name': "Audit Log",
-    'version': "1.0",
-    'author': "ABF OSIELL,Odoo Community Association (OCA)",
-    'website': "http://www.osiell.com",
-    'category': "Tools",
+    'name': 'Audit Log',
+    'version': '1.1',
+    'author': 'Odoo Community Association (OCA), '
+              'ABF OSIELL, '
+              'Holger Brunn <hbrunn@therp.nl>, '
+              'Juan Formoso <jfv@anubia.es>, '
+              'Alejandro Santana <alejandrosantana@anubia.es>',
+    'website': 'http://www.osiell.com',
+    'category': 'Tools',
+    'license': 'AGPL-3',
     'depends': [
         'base',
     ],
     'data': [
         'security/ir.model.access.csv',
+        'wizards/auditlog_all_models_view.xml',
         'views/auditlog_view.xml',
     ],
     'application': True,
