@@ -1,2 +1,0 @@
-import product
-import wizard
