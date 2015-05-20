@@ -26,6 +26,7 @@ from openerp.osv import orm, fields
 class CleanupPurgeLine(orm.AbstractModel):
     """ Abstract base class for the purge wizard lines """
     _name = 'cleanup.purge.line'
+    _order = 'name'
     _columns = {
         'name': fields.char('Name', size=256, readonly=True),
         'purged': fields.boolean('Purged', readonly=True),
