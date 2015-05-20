@@ -45,13 +45,15 @@ class IrModelData(orm.Model):
     def _module_data_uninstall(self, cr, uid, modules_to_remove, context=None):
         """this function crashes for xmlids on undefined models or fields
         referring to undefined models"""
+        if context is None:
+            context = {}
         ids = self.search(cr, uid, [('module', 'in', modules_to_remove)])
         for this in self.browse(cr, uid, ids, context=context):
             if this.model == 'ir.model.fields':
+                ctx = context.copy()
+                ctx[MODULE_UNINSTALL_FLAG] = True
                 field = self.pool[this.model].browse(
-                    cr, uid, [this.res_id],
-                    context=dict(
-                        context or {}, **{MODULE_UNINSTALL_FLAG: True}))[0]
+                    cr, uid, this.res_id, context=ctx)
                 if not self.pool.get(field.model):
                     this.unlink()
                     continue
