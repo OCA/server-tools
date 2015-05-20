@@ -303,7 +303,7 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_set_tracked_actions_wizard_view
-msgid "Set options"
+msgid "Set tracked actions"
 msgstr ""
 
 #. module: auditlog

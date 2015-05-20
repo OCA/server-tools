@@ -457,7 +457,6 @@ class auditlog_rule(models.Model):
         # We must subscribe unsubscribed rules only
         unsubscribed_rules = active_rules.filtered(
             lambda r: r.state != 'subscribed')
-        self._logger.warning('>>> unsubscribed_rules: {}'.format(unsubscribed_rules))
         return unsubscribed_rules.subscribe()
         # return {
         #     'name': _('Rules'),

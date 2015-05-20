@@ -2,6 +2,7 @@
 <openerp>
     <data>
         <!-- MODIFY SELECTED -->
+        <!-- Wizard view -->
         <record model="ir.ui.view" id="auditlog_set_tracked_actions_wizard_view">
             <field name="name">auditlog.edit.models.wizard.view</field>
             <field name="model">auditlog.all.models.wizard</field>
@@ -34,8 +35,9 @@
             </field>
         </record>
 
+        <!-- Action -->
         <record model="ir.actions.act_window" id="action_auditlog_set_tracked_actions_wizard_view">
-            <field name="name">Set options</field>
+            <field name="name">Set tracked actions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">auditlog.all.models.wizard</field>
             <field name="view_type">form</field>
@@ -43,6 +45,15 @@
             <field name="view_id" ref="auditlog_set_tracked_actions_wizard_view" />
             <field name="target">new</field>
         </record>
+
+        <!-- Values -->
+        <record id="ir_tracked_actions_rules" model="ir.values">
+            <field name="name">Set tracked actions</field>
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'auditlog.rule'"/>
+            <field name="value" eval="'ir.actions.act_window,%d'%action_auditlog_set_tracked_actions_wizard_view"/>
+        </record>
+
 
 
         <!-- CREATE ALL -->

@@ -29,10 +29,12 @@
     'name': 'Audit Log',
     'version': '1.1',
     'author': 'Odoo Community Association (OCA), '
-              'ABF OSIELL, '
-              'Holger Brunn <hbrunn@therp.nl>, '
-              'Juan Formoso <jfv@anubia.es>, '
-              'Alejandro Santana <alejandrosantana@anubia.es>',
+              'ABF OSIELL',
+    'contributors': [
+        'Holger Brunn <hbrunn@therp.nl>, '
+        'Juan Formoso <jfv@anubia.es>, '
+        'Alejandro Santana <alejandrosantana@anubia.es>',
+    ],
     'summary': 'Log CRUD operations',
     'website': 'http://www.osiell.com',
     'category': 'Tools',
@@ -42,8 +44,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'wizards/auditlog_all_models_view.xml',
         'views/auditlog_view.xml',
+        'wizards/auditlog_all_models_view.xml',
     ],
     'application': True,
     'installable': True,

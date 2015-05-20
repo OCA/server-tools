@@ -336,8 +336,8 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_set_tracked_actions_wizard_view
-msgid "Set options"
-msgstr "Establecer opciones"
+msgid "Set tracked actions"
+msgstr "Establecer acciones a registrar"
 
 #. module: auditlog
 #: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
@@ -365,12 +365,12 @@ msgstr "Suscribir"
 #. module: auditlog
 #: view:auditlog.all.models.wizard:auditlog.auditlog_all_models_wizard_view
 msgid "Subscribe all"
-msgstr "Subscribe all"
+msgstr "Suscribir todas"
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.act_subscribe_rules
 msgid "Subscribe rules"
-msgstr "Subscribe rules"
+msgstr "Suscribir reglas"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
