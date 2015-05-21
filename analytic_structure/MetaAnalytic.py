@@ -363,6 +363,7 @@ class MetaAnalytic(OEMetaSL):
 
         @AddMethod(superclass)
         @api.cr_uid_context
+        @api.returns(orm_name)
         def create(self, cr, uid, vals, context=None):
             """Create the analytic code."""
 
