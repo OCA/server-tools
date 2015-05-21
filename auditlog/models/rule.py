@@ -521,7 +521,19 @@ class AuditlogRule(models.Model):
             unsubscribed_rules = active_rules.filtered(
                 lambda r: r.state != 'subscribed')
             unsubscribed_rules.subscribe()
+<<<<<<< HEAD
         return {}
+=======
+        return {
+            'name': _('Rules'),
+            'views': [(False, 'tree'), (False, 'form'),],
+            'res_model': 'auditlog.rule',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'flags': {'tree': {'action_buttons': True},
+                      'form': {'action_buttons': True},}
+        }
+>>>>>>> [FIX] auditlog: Fixed rst title rendering issue, fixed methods for multiple selected rules.
 
     @api.model
     def unsubscribe_selected(self):
@@ -529,7 +541,21 @@ class AuditlogRule(models.Model):
         if active_ids:
             active_rules = self.search([('id', 'in', active_ids)])
             # We must unsubscribe subscribed rules only
+<<<<<<< HEAD
             subscribed_rules = active_rules.filtered(
                 lambda r: r.state != 'draft')
             subscribed_rules.unsubscribe()
         return {}
+=======
+            subscribed_rules = active_rules.filtered(lambda r: r.state != 'draft')
+            subscribed_rules.unsubscribe()
+        return {
+            'name': _('Rules'),
+            'views': [(False, 'tree'), (False, 'form'),],
+            'res_model': 'auditlog.rule',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+            'flags': {'tree': {'action_buttons': True},
+                      'form': {'action_buttons': True},}
+        }
+>>>>>>> [FIX] auditlog: Fixed rst title rendering issue, fixed methods for multiple selected rules.

@@ -17,7 +17,7 @@ This module allows the administrators to:
   view at once.
 
 Usage
-=====
+-----
 
 * Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
   operations to log for a given data model.
@@ -43,7 +43,7 @@ For further information, please visit:
 * https://www.odoo.com/forum/help-1
 
 Known issues / Roadmap
-======================
+----------------------
 
  * log only operations triggered by some users (currently it logs all users)
  * group logs by HTTP query (thanks to werzeug)?
@@ -60,18 +60,16 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 
 
 Credits
-=======
+-------
 
-Contributors
-------------
+**Contributors**
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
 * Juan Formoso <jfv@anubia.es>
 * Alejandro Santana <alejandrosantana@anubia.es>
 
-Maintainer
-----------
+**Maintainer**
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
