@@ -16,7 +16,7 @@ This module allows the administrators to:
 * modify tracked actions in selected rules in the tree view at once.
 
 Usage
-=====
+-----
 
 * Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
   operations to log for a given data model.
@@ -42,7 +42,7 @@ For further information, please visit:
 * https://www.odoo.com/forum/help-1
 
 Known issues / Roadmap
-======================
+----------------------
 
 * log ``read`` operations
 * log only operations triggered by some users (currently it logs all users)
@@ -50,18 +50,16 @@ Known issues / Roadmap
 * group HTTP query by user session?
 
 Credits
-=======
+-------
 
-Contributors
-------------
+**Contributors**
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
 * Juan Formoso <jfv@anubia.es>
 * Alejandro Santana <alejandrosantana@anubia.es>
 
-Maintainer
-----------
+**Maintainer**
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
