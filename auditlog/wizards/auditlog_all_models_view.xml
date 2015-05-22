@@ -108,6 +108,6 @@
 
         <menuitem id="menu_auditlog_all_models" name="Set rules for every model"
             parent="auditlog.menu_audit" action="action_auditlog_all_models_form"
-            sequence="0"/>
+            sequence="100"/>
     </data>
 </openerp>

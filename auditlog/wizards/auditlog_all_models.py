@@ -9,7 +9,7 @@ class AuditlogAllModelsWizard(models.TransientModel):
     _name = 'auditlog.all.models.wizard'
 
     FORBIDDEN_MODELS = ['auditlog.log', 'auditlog.log.line', 'auditlog.rule',
-                        'audittail.rules.users', 'auditlog.all.models.wizard']
+                        'auditlog.all.models.wizard']
     log_create = fields.Boolean(
         string=u'Log Creates',
         default=True,
@@ -49,9 +49,11 @@ class AuditlogAllModelsWizard(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
 
     @api.multi
-    def create_all(self, models):
+    def create_all(self, models, context=None):
         """Create rules for auditing changes on
         every model existing in the database."""
+        if context is None:
+            context = {}
         rule_obj = self.env['auditlog.rule']
         new_records = rule_obj
         for model in models:
@@ -68,9 +70,11 @@ class AuditlogAllModelsWizard(models.TransientModel):
         return new_records
 
     @api.multi
-    def subscribe_all(self):
+    def subscribe_all(self, context=None):
         """Create -if necessary- and subscribe rules for auditing changes on
         every model existing in the database."""
+        if context is None:
+            context = {}
         existing_rules = self.env['auditlog.rule'].search([])
         existing_rules_models_ids = existing_rules.mapped('model_id.id')
         if self.overwrite_rules:
@@ -90,10 +94,12 @@ class AuditlogAllModelsWizard(models.TransientModel):
         new_rules.subscribe()
         return {
             'name': _('Rules'),
-            'views': [(False, 'tree'), (False, 'form'),],
+            'views': [(False, 'tree'), (False, 'form'), ],
             'res_model': 'auditlog.rule',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'flags': {'tree': {'action_buttons': True},
-                      'form': {'action_buttons': True},}
+            'flags': {
+                'tree': {'action_buttons': True},
+                'form': {'action_buttons': True},
+            }
         }

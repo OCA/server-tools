@@ -46,7 +46,7 @@ Known issues / Roadmap
 
 * log ``read`` operations
 * log only operations triggered by some users (currently it logs all users)
-* group logs by HTTP query (thanks to werzeug)?
+* group logs by HTTP query (thanks to werkzeug)?
 * group HTTP query by user session?
 
 Credits
