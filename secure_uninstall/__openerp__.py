@@ -25,7 +25,7 @@
     'author': "Akretion,Odoo Community Association (OCA)",
     'maintener': 'Akretion',
     'category': 'Base',
-    'summary': "Ask password ot authorize uninstall",
+    'summary': "Ask password to authorize uninstall",
     'depends': [
         'base',
     ],

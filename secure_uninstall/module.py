@@ -29,9 +29,8 @@ class Module(orm.Model):
     def button_uninstall(self, cr, uid, ids, context=None):
         if 'uninstall_authorized' in context:
             del context['uninstall_authorized']
-            res = super(Module, self).button_uninstall(
+            super(Module, self).button_uninstall(
                 cr, uid, ids, context=context)
-            print res
             return self._button_immediate_function(
                 cr, uid, ids, self.button_uninstall, context=context)
         else:
@@ -59,7 +58,6 @@ class UninstallCheckWizard(orm.TransientModel):
 
     def check_password(self, cr, uid, ids, context=None):
         for elm in self.browse(cr, uid, ids, context=context):
-
             config_passwd = config.get("admin_passwd")
             if not config_passwd:
                 raise orm.except_orm(
@@ -80,3 +78,4 @@ class UninstallCheckWizard(orm.TransientModel):
             module_id = context.get('module_id')
             self.pool['ir.module.module'].button_uninstall(
                 cr, uid, [module_id], context=context)
+        return True
