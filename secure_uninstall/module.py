@@ -52,7 +52,7 @@ class UninstallCheckWizard(orm.TransientModel):
 
     _columns = {
         'password': fields.char(
-            string='Password',
+            string='Password', required=True,
             help="'admin_passwd' value from Odoo configuration file")
     }
 
