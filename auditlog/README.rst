@@ -6,17 +6,18 @@ Track user operation on data models
 
 This module allows the administrators to:
 
-* log user operations performed on data
-  models such as ``create``, ``read``, ``write`` and ``delete``.
+* log user operations performed on data models such as
+  ``create``, ``read``, ``write`` and ``delete``,
 * create and subscribe a rule for each existing model
-  in the database at once, setting the type of actions you want to track
-  (creations, updates or deletions).
-* subscribe selected rules in the tree view at once.
-* unsubscribe selected rules in the tree view at once.
-* modify tracked actions in selected rules in the tree view at once.
+  in the database at once, setting the type of actions
+  you want to track (creations, updates or deletions),
+* subscribe selected rules in the tree view at once,
+* unsubscribe selected rules in the tree view at once,
+* modify tracked actions in selected rules in the tree
+  view at once.
 
 Usage
------
+=====
 
 * Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
   operations to log for a given data model.
@@ -42,7 +43,7 @@ For further information, please visit:
 * https://www.odoo.com/forum/help-1
 
 Known issues / Roadmap
-----------------------
+======================
 
 * log ``read`` operations
 * log only operations triggered by some users (currently it logs all users)
@@ -50,16 +51,18 @@ Known issues / Roadmap
 * group HTTP query by user session?
 
 Credits
--------
+=======
 
-**Contributors**
+Contributors
+------------
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
 * Juan Formoso <jfv@anubia.es>
 * Alejandro Santana <alejandrosantana@anubia.es>
 
-**Maintainer**
+Maintainer
+----------
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
