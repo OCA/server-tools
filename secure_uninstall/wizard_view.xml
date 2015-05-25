@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+
+<record id="view_uninstall_wizard_form" model="ir.ui.view">
+    <field name="model">uninstall.check.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Check" version="7.0">
+            <p class="oe_inline oe_grey">
+Uninstall module process remove all data managed by the module
+            </p>
+            <label string="If you want uninstall module, write required password"
+                   colspan="4" />
+            <field name="password"/>
+            <button icon="gtk-ok" name="check_password" string="Apply" type="object"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+        </form>
+    </field>
+</record>
+
+
+    </data>
+</openerp>
