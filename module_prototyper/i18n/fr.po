@@ -153,7 +153,7 @@ msgstr "Groupes"
 #. module: module_prototyper
 #: field:ir.model.fields,helper:0
 msgid "Helper"
-msgstr "Texte d'aider"
+msgstr "Texte d'aide"
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
@@ -189,8 +189,8 @@ msgstr "Mis à jour le"
 
 #. module: module_prototyper
 #: field:module_prototyper,licence:0
-msgid "Licence"
-msgstr ""
+msgid "License"
+msgstr "Licence"
 
 #. module: module_prototyper
 #: field:module_prototyper,maintainer:0
@@ -230,8 +230,8 @@ msgstr ""
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0
-msgid "Notes to developers."
-msgstr "Notes aux développeurs."
+msgid "Notes to developers"
+msgstr "Notes aux développeurs"
 
 #. module: module_prototyper
 #: view:ir.model.fields:module_prototyper.view_ir_model_fields_form
