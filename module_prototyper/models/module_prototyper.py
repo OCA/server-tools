@@ -20,6 +20,7 @@
 #
 ##############################################################################
 import base64
+import logging
 import lxml.etree
 import os
 import re
@@ -31,9 +32,12 @@ from datetime import date
 from jinja2 import Environment, FileSystemLoader
 
 from openerp import models, api, fields
+from openerp.tools.safe_eval import safe_eval
 
 from .default_description import get_default_description
 from . import licenses
+
+_logger = logging.getLogger(__name__)
 
 
 class ModulePrototyper(models.Model):
@@ -53,7 +57,6 @@ class ModulePrototyper(models.Model):
             (licenses.LGPL3, 'LGPL-3'),
             (licenses.LGPL3_L, 'LGPL-3 or later version'),
             (licenses.AGPL3, 'Affero GPL-3'),
-            (licenses.AGPL3_L, 'Affero GPL-3 or later version'),
             (licenses.OSI, 'Other OSI Approved Licence'),
             ('Other proprietary', 'Other Proprietary')
         ],
@@ -170,10 +173,29 @@ class ModulePrototyper(models.Model):
         help=('Enter the list of record rules that you have created and '
               'want to export in this module.')
     )
+    report_ids = fields.Many2many(
+        'ir.actions.report.xml', 'prototype_report_rel',
+        'module_prototyper_id', 'report_id', 'Reports',
+        help=('Enter the list of reports that you have created and '
+              'want to export in this module.')
+    )
+    activity_ids = fields.Many2many(
+        'workflow.activity', 'prototype_wf_activity_rel',
+        'module_prototyper_id', 'activity_id', 'Activities',
+        help=('Enter the list of workflow activities that you have created '
+              'and want to export in this module')
+    )
+    transition_ids = fields.Many2many(
+        'workflow.transition', 'prototype_wf_transition_rel',
+        'module_prototyper_id', 'transition_id', 'Transitions',
+        help=('Enter the list of workflow transitions that you have created '
+              'and want to export in this module')
+    )
 
-    __data_files = []
-    __field_descriptions = {}
     _env = None
+    _data_files = ()
+    _demo_files = ()
+    _field_descriptions = None
     File_details = namedtuple('file_details', ['filename', 'filecontent'])
     template_path = '{}/../templates/'.format(os.path.dirname(__file__))
 
@@ -211,10 +233,8 @@ class ModulePrototyper(models.Model):
                 for attr_name in dir(field)
                 if not attr_name[0] == '_'
             })
-            # custom fields start with the prefix x_.
-            # it has to be removed.
-            field_description['name'] = re.sub(r'^x_', '', field.name)
-            self.__field_descriptions[field] = field_description
+            field_description['name'] = self.unprefix(field.name)
+            self._field_descriptions[field] = field_description
 
     @api.model
     def generate_files(self):
@@ -224,12 +244,17 @@ class ModulePrototyper(models.Model):
         assert self._env is not None, \
             'Run set_env(api_version) before to generate files.'
 
+        # Avoid sharing these across instances
+        self._data_files = []
+        self._demo_files = []
+        self._field_descriptions = {}
         self.set_field_descriptions()
         file_details = []
         file_details.extend(self.generate_models_details())
         file_details.extend(self.generate_views_details())
         file_details.extend(self.generate_menus_details())
         file_details.append(self.generate_module_init_file_details())
+        file_details.extend(self.generate_data_files())
         # must be the last as the other generations might add information
         # to put in the __openerp__: additional dependencies, views files, etc.
         file_details.append(self.generate_module_openerp_file_details())
@@ -262,7 +287,8 @@ class ModulePrototyper(models.Model):
             '__openerp__.py',
             '__openerp__.py.template',
             prototype=self,
-            data_files=self.__data_files,
+            data_files=self._data_files,
+            demo_fiels=self._demo_files,
         )
 
     @api.model
@@ -278,7 +304,8 @@ class ModulePrototyper(models.Model):
 
     @api.model
     def generate_models_details(self):
-        """Finds the models from the list of fields and generates
+        """
+        Finds the models from the list of fields and generates
         the __init__ file and each models files (one by class).
         """
         files = []
@@ -291,7 +318,8 @@ class ModulePrototyper(models.Model):
         # dependencies = set([dep.id for dep in self.dependencies])
 
         relations = {}
-        for field in self.__field_descriptions.itervalues():
+        field_descriptions = self._field_descriptions or {}
+        for field in field_descriptions.itervalues():
             model = field.get('model_id')
             relations.setdefault(model, []).append(field)
             # dependencies.add(model.id)
@@ -329,7 +357,7 @@ class ModulePrototyper(models.Model):
         views_details = []
         for model, views in relations.iteritems():
             filepath = 'views/{}_view.xml'.format(
-                self.friendly_name(model)
+                self.friendly_name(self.unprefix(model))
             )
             views_details.append(
                 self.generate_file_details(
@@ -338,7 +366,7 @@ class ModulePrototyper(models.Model):
                     views=views
                 )
             )
-            self.__data_files.append(filepath)
+            self._data_files.append(filepath)
 
         return views_details
 
@@ -348,13 +376,14 @@ class ModulePrototyper(models.Model):
         relations = {}
         for menu in self.menu_ids:
             if menu.action and menu.action.res_model:
-                model = menu.action.res_model
+                model = self.unprefix(menu.action.res_model)
             else:
                 model = 'ir_ui'
             relations.setdefault(model, []).append(menu)
 
         menus_details = []
         for model_name, menus in relations.iteritems():
+            model_name = self.unprefix(model_name)
             filepath = 'views/{}_menus.xml'.format(
                 self.friendly_name(model_name)
             )
@@ -365,7 +394,7 @@ class ModulePrototyper(models.Model):
                     menus=menus,
                 )
             )
-            self.__data_files.append(filepath)
+            self._data_files.append(filepath)
 
         return menus_details
 
@@ -377,7 +406,7 @@ class ModulePrototyper(models.Model):
         :param field_descriptions: list of ir.model.fields records.
         :return: FileDetails instance.
         """
-        python_friendly_name = self.friendly_name(model.model)
+        python_friendly_name = self.friendly_name(self.unprefix(model.model))
         return self.generate_file_details(
             'models/{}.py'.format(python_friendly_name),
             'models/model_name.py.template',
@@ -386,6 +415,42 @@ class ModulePrototyper(models.Model):
             fields=field_descriptions,
         )
 
+    @api.model
+    def generate_data_files(self):
+        """ Generate data and demo files """
+        data, demo = {}, {}
+        filters = [
+            (data, ir_filter)
+            for ir_filter in self.data_ids
+        ] + [
+            (demo, ir_filter)
+            for ir_filter in self.demo_ids
+        ]
+
+        for target, ir_filter in filters:
+            model = ir_filter.model_id
+            model_obj = self.env[model]
+            target.setdefault(model, model_obj.browse([]))
+            target[model] |= model_obj.search(safe_eval(ir_filter.domain))
+
+        res = []
+        for prefix, model_data, file_list in [
+                ('data', data, self._data_files),
+                ('demo', demo, self._demo_files)]:
+            for model_name, records in model_data.iteritems():
+                fname = self.friendly_name(self.unprefix(model_name))
+                filename = '{0}/{1}.xml'.format(prefix, fname)
+                self._data_files.append(filename)
+
+                res.append(self.generate_file_details(
+                    filename,
+                    'data/model_name.xml.template',
+                    model=model_name,
+                    records=records,
+                ))
+
+        return res
+
     @classmethod
     def unprefix(cls, name):
         if not name:
@@ -393,14 +458,43 @@ class ModulePrototyper(models.Model):
         return re.sub('^x_', '', name)
 
     @classmethod
+    def is_prefixed(cls, name):
+        return bool(re.match('^x_', name))
+
+    @classmethod
     def friendly_name(cls, name):
         return name.replace('.', '_')
+
+    @classmethod
+    def fixup_domain(cls, domain):
+        """ Fix a domain according to unprefixing of fields """
+        res = []
+        for elem in domain:
+            if len(elem) == 3:
+                elem = list(elem)
+                elem[0] = cls.unprefix(elem[0])
+            res.append(elem)
+        return res
 
     @classmethod
     def fixup_arch(cls, archstr):
         doc = lxml.etree.fromstring(archstr)
         for elem in doc.xpath("//*[@name]"):
             elem.attrib["name"] = cls.unprefix(elem.attrib["name"])
+
+        for elem in doc.xpath("//*[@attrs]"):
+            try:
+                attrs = safe_eval(elem.attrib["attrs"])
+            except Exception:
+                _logger.error("Unable to eval attribute: %s, skipping",
+                              elem.attrib["attrs"])
+                continue
+
+            if isinstance(attrs, dict):
+                for key, val in attrs.iteritems():
+                    if isinstance(val, (list, tuple)):
+                        attrs[key] = cls.fixup_domain(val)
+                elem.attrib["attrs"] = repr(attrs)
 
         for elem in doc.xpath("//field"):
             # Make fields self-closed by removing useless whitespace
@@ -428,6 +522,7 @@ class ModulePrototyper(models.Model):
                 'cr': self._cr,
                 # Utility functions
                 'fixup_arch': self.fixup_arch,
+                'is_prefixed': self.is_prefixed,
                 'unprefix': self.unprefix,
                 'wrap': wrap,
 
