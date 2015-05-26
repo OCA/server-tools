@@ -42,7 +42,7 @@ class ir_model_fields(models.Model):
                "relation table"),
     )
     limit = fields.Integer('Read limit', help=_("Read limit"))
-    context = fields.Char(
+    client_context = fields.Char(
         'Context',
         help=_("Context to use on the client side when handling the field "
                "(python dictionary)"),

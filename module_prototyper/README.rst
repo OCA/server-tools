@@ -65,6 +65,7 @@ Contributors
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
 * El hadji Dem <elhadji.dem@savoirfairelinux.com>
 * Savoir-faire Linux <support@savoirfairelinux.com>
+* Vincent Vinet <vincent.vinet@savoirfairelinux.com>
 
 Maintainer
 ----------

@@ -19,7 +19,7 @@
                   id="menu_action_{{ unprefix(menu.name)|replace('.', '_') }}_{{ menu.action.view_type }}"
                   {% if menu.parent_id %}parent="{{ menu.parent_id.get_xml_id(cr,1,1).values()[0] }}"{% endif %}
                   sequence="{{ menu.sequence }}"
-                  groups="{% for group in menu.groups_id %}{{ group.get_xml_id(cr,1,1).values()[0] }},{% endfor %}"
+                  groups="{% for group in menu.groups_id %}{{ group.get_xml_id(cr,1,1).values()[0] }}{% if not loop.last %},{% endif %}{% endfor %}"
                   />
         {% if not loop.last %}
 

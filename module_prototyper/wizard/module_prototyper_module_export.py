@@ -19,10 +19,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 import StringIO
 import base64
+import os
 import zipfile
 from collections import namedtuple
+
 from openerp import fields, models, api
 
 
@@ -66,24 +69,20 @@ class PrototypeModuleExport(models.TransientModel):
         )
 
         # getting the prototype of the wizard
-        prototype = self.env[active_model].browse(
-            self._context.get('active_id')
+        prototypes = self.env[active_model].browse(
+            [self._context.get('active_id')]
         )
 
-        # setting the jinja environment.
-        # They will help the program to find the template to render the files
-        # with.
-        prototype.set_jinja_env(wizard.api_version)
+        zip_details = self.zip_files(wizard, prototypes)
 
-        # generate_files ask the prototype to investigate the input
-        # and to generate the file templates according to it.
-        # zip_files, in another hand, put all the template files into a package
-        # ready to be saved by the user.
-        zip_details = self.zip_files(prototype.generate_files())
+        if len(prototypes) == 1:
+            zip_name = prototypes[0].name
+        else:
+            zip_name = "prototyper_export"
 
         wizard.write(
             {
-                'name': '{}.zip'.format(prototype.name),
+                'name': '{}.zip'.format(zip_name),
                 'state': 'get',
                 'data': base64.encodestring(zip_details.stringIO.getvalue())
             }
@@ -100,7 +99,7 @@ class PrototypeModuleExport(models.TransientModel):
         }
 
     @staticmethod
-    def zip_files(file_details):
+    def zip_files(wizard, prototypes):
         """Takes a set of file and zips them.
         :param file_details: tuple (filename, file_content)
         :return: tuple (zip_file, stringIO)
@@ -109,10 +108,25 @@ class PrototypeModuleExport(models.TransientModel):
         out = StringIO.StringIO()
 
         with zipfile.ZipFile(out, 'w') as target:
-            for filename, file_content in file_details:
-                info = zipfile.ZipInfo(filename)
-                info.compress_type = zipfile.ZIP_DEFLATED
-                info.external_attr = 2175008768  # specifies mode 0644
-                target.writestr(info, file_content)
+            for prototype in prototypes:
+                # setting the jinja environment.
+                # They will help the program to find the template to render the
+                # files with.
+                prototype.set_jinja_env(wizard.api_version)
+
+                # generate_files ask the prototype to investigate the input and
+                # to generate the file templates according to it.  zip_files,
+                # in another hand, put all the template files into a package
+                # ready to be saved by the user.
+                file_details = prototype.generate_files()
+                for filename, file_content in file_details:
+                    if isinstance(file_content, unicode):
+                        file_content = file_content.encode('utf-8')
+                    # Prefix all names with module technical name
+                    filename = os.path.join(prototype.name, filename)
+                    info = zipfile.ZipInfo(filename)
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    info.external_attr = 2175008768  # specifies mode 0644
+                    target.writestr(info, file_content)
 
             return zip_details(zip_file=target, stringIO=out)
