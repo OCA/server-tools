@@ -6,10 +6,10 @@ from openerp.tools.translate import _
 
 
 class {{ unprefix(name) }}(models.Model):
-    {% if model.state == 'base' %}
-    _name = "{{ model.model }}"
+    {% if model.state == 'base' and not is_prefixed(model.model) %}
+    _inherit = "{{ unprefix(model.model) }}"
     {% else %}
-    _inherit = "{{ model.model }}"
+    _name = "{{ unprefix(model.model) }}"
     {% endif %}
     {% if description %}
     _description = "{{ description }}"
@@ -26,10 +26,13 @@ class {{ unprefix(name) }}(models.Model):
     {{ unprefix(field.name) }} = fields.{{ field.ttype|capitalize }}(
         string=_("{{ field.field_description }}"),
         {% if field.selection %}
-        selection={{ selection }},
+        selection={{ field.selection }},
         {% endif %}
         {% if field.relation %}
-        comodel_name="{{ field.relation }}",
+        comodel_name="{{ unprefix(field.relation) }}",
+        {% endif %}
+        {% if field.ttype == 'one2many' %}
+        inverse_name="{{ unprefix(field.relation_field) }}",
         {% endif %}
         {% if field.column1 %}
         column1="{{ field.column1 }}",
@@ -43,11 +46,13 @@ class {{ unprefix(name) }}(models.Model):
         {% if field.size %}
         size={{ field.size }},
         {% endif %}
-        {% if field.domain %}
+        {% if field.ttype in ('many2one', 'many2many', 'one2many') %}
+            {% if field.domain %}
         domain={{ field.domain }},
-        {% endif %}
-        {% if field.context %}
-        context={{ field.context }},
+            {% endif %}
+            {% if field.client_context %}
+        context={{ field.client_context }},
+            {% endif %}
         {% endif %}
         {% if field.limit %}
         limit={{ field.limit }},

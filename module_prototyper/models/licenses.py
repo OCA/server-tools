@@ -68,6 +68,6 @@ def get_license_text(license):
         name, version = GPL_LICENSES[license]
         return BASE_GPL.format(name=name, version=version).splitlines()
     elif license == OSI:
-        return BASE_OSI
+        return BASE_OSI.splitlines()
     else:
         return ""

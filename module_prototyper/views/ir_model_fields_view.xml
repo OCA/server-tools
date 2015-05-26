@@ -27,8 +27,8 @@
                   <field name="limit"
                     attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
                     />
-                  <field name="context"
-                    attrs="{'invisible': [('type', 'not in', ['many2one','one2many','many2many'])]}"
+                  <field name="client_context"
+                    attrs="{'invisible': [('ttype', 'not in', ['many2one','one2many','many2many'])]}"
                     />
                 </field>
             </field>

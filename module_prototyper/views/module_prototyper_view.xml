@@ -61,13 +61,6 @@
                             <page string="Dependencies">
                                 <field name="dependency_ids"/>
                             </page>
-                            <!--Not implemented yet-->
-                            <!--<page string="Data &amp; Demo">-->
-                            <!--<label for="data_ids"/>-->
-                            <!--<field name="data_ids"/>-->
-                            <!--<label for="demo_ids"/>-->
-                            <!--<field name="demo_ids"/>-->
-                            <!--</page>-->
                             <page string="Fields">
                                 <label for="field_ids"/>
                                 <field name="field_ids"/>
@@ -78,15 +71,30 @@
                                 <label for="menu_ids"/>
                                 <field name="menu_ids"/>
                             </page>
-                            <!--Not implemented yet-->
-                            <!--<page string="Security">-->
-                            <!--<label for="group_ids"/>-->
-                            <!--<field name="group_ids"/>-->
-                            <!--<label for="right_ids"/>-->
-                            <!--<field name="right_ids"/>-->
-                            <!--<label for="rule_ids"/>-->
-                            <!--<field name="rule_ids"/>-->
-                            <!--</page>-->
+                            <page string="Data &amp; Demo">
+                                <label for="data_ids"/>
+                                <field name="data_ids"/>
+                                <label for="demo_ids"/>
+                                <field name="demo_ids"/>
+                            </page>
+                            <page string="Reports">
+                                <label for="report_ids" />
+                                <field name="report_ids" />
+                            </page>
+                            <page string="Security">
+                                <label for="group_ids"/>
+                                <field name="group_ids"/>
+                                <label for="right_ids"/>
+                                <field name="right_ids"/>
+                                <label for="rule_ids"/>
+                                <field name="rule_ids"/>
+                            </page>
+                            <page string="Workflows">
+                                <label for="activity_ids" />
+                                <field name="activity_ids" />
+                                <label for="transition_ids" />
+                                <field name="transition_ids" />
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

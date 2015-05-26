@@ -4,6 +4,6 @@
 {% if loop.first %}
 
 {% endif %}
-from . import {{ model }}
+from . import {{ unprefix(model) }}
 {% endfor %}
 {% endblock %}
