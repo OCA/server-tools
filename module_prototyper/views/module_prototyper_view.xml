@@ -41,6 +41,7 @@
                                 <field name="category_id"
                                        placeholder="ex: Others, Sales, Website"/>
                                 <field name="version"/>
+                                <field name="license"/>
                             </group>
                             <group>
                                 <field name="author"
