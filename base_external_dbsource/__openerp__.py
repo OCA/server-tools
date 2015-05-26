@@ -60,8 +60,5 @@ Contributors
     'test': [
         'test/dbsource_connect.yml',
     ],
-    'installable': False,
-    'active': False,
+    'installable': True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
