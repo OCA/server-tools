@@ -28,11 +28,14 @@ class Module(orm.Model):
 
     def button_uninstall(self, cr, uid, ids, context=None):
         if 'uninstall_authorized' in context:
-            del context['uninstall_authorized']
+            if not context:
+                context = {}
+            ctx = context.copy()
+            del ctx['uninstall_authorized']
             super(Module, self).button_uninstall(
-                cr, uid, ids, context=context)
+                cr, uid, ids, context=ctx)
             return self._button_immediate_function(
-                cr, uid, ids, self.button_uninstall, context=context)
+                cr, uid, ids, self.button_uninstall, context=ctx)
         else:
             _, view_id = self.pool['ir.model.data'].get_object_reference(
                 cr, uid, 'secure_uninstall', 'view_uninstall_wizard_form')
@@ -69,7 +72,7 @@ class UninstallCheckWizard(orm.TransientModel):
                 raise orm.except_orm(
                     "Password Error",
                     "Issue\n_____\nProvided password '%s' doesn't match with "
-                    "'admin_passwd' comes from your "
+                    "'admin_passwd' found in the "
                     "Odoo server configuration file."
                     "\n\nResolution\n__________\n"
                     "Please check your password and retry or cancel"
