@@ -22,7 +22,7 @@
 {
     'name': 'Configuration Helper',
     'version': '0.8',
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'maintainer': 'Akretion',
     'category': 'server',
     'complexity': 'normal',

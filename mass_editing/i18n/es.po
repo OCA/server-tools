@@ -1,0 +1,134 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* mass_editing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140206-002714\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-14 17:40+0000\n"
+"PO-Revision-Date: 2014-03-24 17:44+0000\n"
+"Last-Translator: Alberto Garcia (Factor Libre) "
+"<alberto.garcia@factorlibre.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-05-24 06:46+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
+
+#. module: mass_editing
+#: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
+#: model:ir.ui.menu,name:mass_editing.menu_mass_editing
+#: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
+msgid "Mass Editing"
+msgstr "Edición masiva"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid ""
+"Display a button in the sidebar of related documents to open a composition "
+"wizard"
+msgstr ""
+"Mostrar un botón en el menú contextual de los documentos relacionados para "
+"abrir un asistente de composición"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_wizard
+msgid "mass.editing.wizard"
+msgstr "mass.editing.wizard"
+
+#. module: mass_editing
+#: field:mass.object,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:96
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr "Borrado del registro de la acción fallido"
+
+#. module: mass_editing
+#: view:mass.object:0
+#: field:mass.object,field_ids:0
+msgid "Fields"
+msgstr "Campos"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:62
+#, python-format
+msgid "Mass Editing (%s)"
+msgstr "Edición Masiva (%s)"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Object"
+msgstr "Objeto"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_object
+msgid "mass.object"
+msgstr "mass.object"
+
+#. module: mass_editing
+#: field:mass.object,model_ids:0
+msgid "Model List"
+msgstr "Lista de modelos"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:57
+#: sql_constraint:mass.object:0
+#, python-format
+msgid "Name must be unique!"
+msgstr "¡El nombre debe ser único!"
+
+#. module: mass_editing
+#: field:mass.object,ref_ir_act_window:0
+msgid "Sidebar Action"
+msgstr "Acción del menú contextual"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Remove sidebar button"
+msgstr "Eliminar botón del menú contextual"
+
+#. module: mass_editing
+#: field:mass.object,ref_ir_value:0
+msgid "Sidebar Button"
+msgstr "Botón del menú contextual"
+
+#. module: mass_editing
+#: field:mass.object,model_id:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: mass_editing
+#: code:addons/mass_editing/mass_editing.py:96
+#, python-format
+msgid "Warning"
+msgstr "Advertencia"
+
+#. module: mass_editing
+#: help:mass.object,ref_ir_act_window:0
+msgid ""
+"Sidebar action to make this template available on records                    "
+"                              of the related document model"
+msgstr ""
+"Acción del menú contextual para hacer esta plantilla disponible en los "
+"registros del modelo de documento relacionado"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Add sidebar button"
+msgstr "Añadir botón al menú contextual"
+
+#. module: mass_editing
+#: view:mass.object:0
+msgid "Advanced"
+msgstr "Avanzado"
+
+#. module: mass_editing
+#: help:mass.object,ref_ir_value:0
+msgid "Sidebar button to open the sidebar action"
+msgstr "Botón del menú contextual para abrir la acción del menú contextual"

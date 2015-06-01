@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="ir_cron_view" model="ir.ui.view">
+            <field name="model">ir.cron</field>
+            <field name="inherit_id" ref="base.ir_cron_view" />
+            <field name="arch" type="xml">
+                <field name="args" position="after">
+                    <button name="run_manually"
+                            string="Run now"
+                            type="object"
+                            />
+                </field>
+            </field>
+        </record>
+
+        <record id="ir_cron_view_tree_inherited" model="ir.ui.view">
+            <field name="name">ir.cron.tree</field>
+            <field name="inherit_id" ref="base.ir_cron_view_tree"/>
+            <field name="model">ir.cron</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="numbercall" position="after">
+                    <button icon="gtk-go-forward"
+                            name="run_manually"
+                            string="Run Now"
+                            type="object"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
