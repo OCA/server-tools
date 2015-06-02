@@ -1,0 +1,23 @@
+- I create a user that will run the job.
+- !record {model: res.users, id: worker_user, view: False}:
+    company_id: base.main_company
+    name: worker
+    login: worker
+    password: worker
+    email: worker@example.com
+
+- Create a cron job to check the UID
+- !record {model: ir.cron, id: check_uid_job}:
+    name: Check UID
+    active: True
+    user_id: worker_user
+    interval_number: 1
+    interval_type: days
+    numbercall: -1
+    doall: False
+    model: ir.cron
+    function: _current_uid
+
+- I execute the cron job manually to check its running UID
+- !python {model: ir.cron, id: check_uid_job}: |
+    assert self.run_manually()[0] == self.user_id.id, "Wrong UID in cron job"

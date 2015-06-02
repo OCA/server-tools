@@ -23,7 +23,7 @@
     "name": "Example server configuration environment files repository module",
     "version": "1.0",
     "depends": ["base"],
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "description": """\
 File store for environment file sample module
 =============================================
@@ -41,6 +41,7 @@ server_environment_files lives before this one in the addons-path
 variable of the OpenERP configuration file.
     """,
     "website": "http://www.camptocamp.com",
+    "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
     "installable": True,

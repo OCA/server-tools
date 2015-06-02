@@ -23,7 +23,7 @@
     "name": "Server environment for base_external_referential",
     "version": "1.0",
     "depends": ["base", 'server_environment', 'base_external_referentials'],
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     "description": """This module is based on the server_environment module to use files for configuration.
 Thus we can have a different file for each environment (dev, test, staging, prod).
