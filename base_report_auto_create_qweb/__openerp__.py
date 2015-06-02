@@ -34,6 +34,9 @@
     ],
     "category": "Tools",
     "summary": "",
-    "data": [],
+    "data": [
+        "wizard/report_duplicate_view.xml",
+        "views/report_xml_view.xml",
+    ],
     "installable": True,
 }
