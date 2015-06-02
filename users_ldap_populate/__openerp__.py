@@ -21,7 +21,8 @@
 {
     "name": "LDAP Populate",
     "version": "1.2",
-    "author": "Therp BV",
+    "author": "Therp BV,Odoo Community Association (OCA)",
+    "license": "AGPL-3",
     "category": 'Tools',
     "description": """
 This module allows to prepopulate the user database with all entries in the

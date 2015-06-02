@@ -31,8 +31,13 @@ class BaseFieldSerializedTestModel(models.Model):
 class TestBaseFieldSerialized(TransactionCase):
     def test_ReadWrite(self):
         BaseFieldSerializedTestModel._build_model(self.registry, self.cr)
-        self.env['base.field.serialized.test.model']._auto_init()
-        record = self.env['base.field.serialized.test.model'].create(
+        testmodel = self.env['base.field.serialized.test.model']
+        testmodel._prepare_setup()
+        testmodel._setup_base(False)
+        testmodel._setup_fields()
+        testmodel._setup_complete()
+        testmodel._auto_init()
+        record = testmodel.create(
             {'serialized': ['hello world']})
         self.assertEqual(record.serialized, ['hello world'])
         self.env.invalidate_all()

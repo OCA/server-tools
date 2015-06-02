@@ -34,8 +34,9 @@ class CompanyLDAPGroupMapping(orm.Model):
         operators = []
         members = inspect.getmembers(
             users_ldap_groups_operators,
-            lambda cls: inspect.isclass(cls)
-            and cls != users_ldap_groups_operators.LDAPOperator)
+            lambda cls:
+            inspect.isclass(cls) and
+            cls != users_ldap_groups_operators.LDAPOperator)
         for name, operator in members:
             operators.append((name, name))
         return tuple(operators)
