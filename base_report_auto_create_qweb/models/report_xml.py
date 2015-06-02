@@ -18,12 +18,12 @@ class IrActionsReport(models.Model):
                 _("Template Name must contain at least a dot in it's name"))
         report_xml = super(IrActionsReport, self).create(values)
         if values.get('report_type') in ['qweb-pdf', 'qweb-html']:
-            report_views = self.env.context.get('report_views', False)
+            report_view_ids = self.env.context.get('report_views', False)
             suffix = self.env.context.get('suffix', 'copy')
             report_name = values['report_name']
             module = report_name.split('.')[0]
             name = report_name.split('.')[1]
-            for report_view in report_views:
+            for report_view in self.env['ir.ui.view'].browse(report_view_ids):
                 origin_name = name.replace(('_%s' % suffix), '')
                 new_report_name = '%s_%s' % (origin_name, suffix)
                 qweb_view_data = {
@@ -51,7 +51,7 @@ class IrActionsReport(models.Model):
                                        report_xml.id),
                 }
                 self.env['ir.values'].create(value_view_data)
-            if not report_views:
+            if not report_view_ids:
                 qweb_view_data = {
                     'name': name,
                     'mode': 'primary',
@@ -89,5 +89,5 @@ class IrActionsReport(models.Model):
             ('type', '=', 'qweb')])
         return super(IrActionsReport,
                      self.with_context(
-                         report_views=report_views,
+                         report_views=report_views.ids,
                          suffix=suffix.lower())).copy(default=default)
