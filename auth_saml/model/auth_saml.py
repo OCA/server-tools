@@ -52,7 +52,7 @@ class auth_saml_provider(osv.osv):
         'sp_pkey': fields.text(
             'Private key of our service provider (this openerpserver)'
         ),
-        'enabled': fields.boolean('Allowed'),
+        'enabled': fields.boolean('Enabled'),
         'css_class': fields.char('CSS class'),
         'body': fields.char(
             'Body',
