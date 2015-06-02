@@ -289,3 +289,4 @@ class BaseConfigInheritLineDel(orm.Model):
         'res_id': fields.integer('Related Document ID', select=1),
         'key': fields.integer('Key')
     }
+
