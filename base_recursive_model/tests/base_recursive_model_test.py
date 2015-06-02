@@ -68,7 +68,8 @@ class BaseConfigInheritTestModel(orm.Model):
         res = {
             'model': self._name,
             'res_id': id,
-            'test_field': 'test_field' in record and record.test_field.id or False,
+            'test_field': 'test_field' in record
+                          and record.test_field.id or False,
             'sequence': 'sequence' in record
                         and record.sequence or False,
             'stored': True
@@ -81,7 +82,8 @@ class BaseConfigInheritTestModel(orm.Model):
 
     def get_config(self, cr, uid, id, context=None):
         res = []
-        for line in self.browse(cr, uid, id, context=context).test_config_result_ids:
+        for line in self.browse(cr, uid, id, context=context)\
+                .test_config_result_ids:
             res.append(line.test_field.name)
         return res
 
