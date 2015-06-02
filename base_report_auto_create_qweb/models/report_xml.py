@@ -18,7 +18,7 @@ class IrActionsReport(models.Model):
                 _("Template Name must contain at least a dot in it's name"))
         report_xml = super(IrActionsReport, self).create(values)
         if values.get('report_type') in ['qweb-pdf', 'qweb-html']:
-            report_views = self.env.context.get('report_views')
+            report_views = self.env.context.get('report_views', False)
             suffix = self.env.context.get('suffix', 'copy')
             report_name = values['report_name']
             module = report_name.split('.')[0]
