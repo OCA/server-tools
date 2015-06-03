@@ -19,9 +19,9 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
                 ('model', '=', cls.demo_matview_mdl._name)])[0]
         values = {'name': u"Model test",
                   'model_id': mdl_id,
-                  'sql_definition': cls.demo_matview_mdl._sql_view_definition,
-                  'view_name': cls.demo_matview_mdl._sql_view_name,
-                  'matview_name': cls.demo_matview_mdl._sql_mat_view_name,
+                  'sql_definition': cls.demo_matview_mdl.sql_view_definition,
+                  'view_name': cls.demo_matview_mdl.sql_view_name,
+                  'matview_name': cls.demo_matview_mdl.sql_mat_view_name,
                   'pg_version': 90205,
                   'state': 'nonexistent'
                   }
