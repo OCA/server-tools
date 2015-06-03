@@ -25,7 +25,8 @@
     'name': 'Materialized Sql View',
     'version': '0.1',
     'category': 'Tools',
-    'author': 'Pierre Verkest',
+    'author': 'Pierre Verkest,Odoo Community Association (OCA)',
+    'maintainer': 'Odoo Community Association (OCA)',
     'depends': [
         'base',
         'web',

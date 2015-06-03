@@ -30,7 +30,8 @@
         module and add sample to developers that want use materialized_sql_view
         module.
     """,
-    'author': 'Pierre Verkest',
+    'author': 'Pierre Verkest,Odoo Community Association (OCA)',
+    'maintainer': 'Odoo Community Association (OCA)',
     'depends': [
         'base',
         'web',
