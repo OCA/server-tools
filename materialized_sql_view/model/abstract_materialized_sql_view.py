@@ -3,7 +3,6 @@
 import psycopg2
 import logging
 from openerp.osv import osv
-from openerp.exceptions import except_orm
 from openerp import SUPERUSER_ID
 from abc import ABCMeta, abstractmethod
 
@@ -49,7 +48,7 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
     @property
     def sql_view_definition(self):
         if not self._sql_view_definition:
-            raise except_orm(u"Properties must be defined in subclass",
+            raise ValueError(u"Properties must be defined in subclass",
                              u"_sql_view_definition properties should be "
                              u"redifined in sub class"
                              )

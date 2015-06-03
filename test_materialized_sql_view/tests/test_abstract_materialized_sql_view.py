@@ -78,7 +78,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
                           self.demo_matview_mdl._table + '_view')
         sql = self.demo_matview_mdl.sql_view_definition
         self.demo_matview_mdl._sql_view_definition = None
-        with self.assertRaises(osv.except_osv):
+        with self.assertRaises(ValueError):
             self.demo_matview_mdl.sql_view_definition
         # Set it back to iniatial value, this is used in some other unit test
         self.demo_matview_mdl._sql_view_definition = sql
