@@ -34,12 +34,6 @@
     'depends': [
         'base',
         'web',
-        # mail is required for running test using openerp tests in Travis
-        # as it will be installed whith close module like
-        # disable_openerp_online, this make sure to import module in the good
-        # way
-        # This is not necessary using nosetests.
-        'mail',
         'materialized_sql_view',
     ],
     'demo_xml': [
