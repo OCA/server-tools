@@ -318,8 +318,8 @@ class PGNoMaterializedViewSupport(PGMaterializedViewManager):
             ))
 
     def drop_mat_view(self, cr, view_name, mat_view_name):
-        cr.execute("DROP TABLE IF EXISTS %s CASCADE" % (mat_view_name))
-        cr.execute("DROP VIEW IF EXISTS %s CASCADE" % (view_name,))
+        cr.execute("DROP TABLE IF EXISTS %s" % (mat_view_name))
+        cr.execute("DROP VIEW IF EXISTS %s" % (view_name,))
 
 
 class PG090300(PGMaterializedViewManager):
@@ -339,6 +339,6 @@ class PG090300(PGMaterializedViewManager):
                         ))
 
     def drop_mat_view(self, cr, view_name, mat_view_name):
-        cr.execute("DROP MATERIALIZED VIEW IF EXISTS %s CASCADE" %
+        cr.execute("DROP MATERIALIZED VIEW IF EXISTS %s" %
                    (mat_view_name))
-        cr.execute("DROP VIEW IF EXISTS %s CASCADE" % (view_name,))
+        cr.execute("DROP VIEW IF EXISTS %s" % (view_name,))
