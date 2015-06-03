@@ -86,6 +86,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
         self.demo_matview_mdl._sql_view_definition = sql
 
     def test_change_matview_state(self):
+        self.demo_matview_mdl.safe_properties()
         self.demo_matview_mdl.change_matview_state(self.cr, self.uid,
                                                    'after_refresh_view',
                                                    self.cr._cnx.server_version,

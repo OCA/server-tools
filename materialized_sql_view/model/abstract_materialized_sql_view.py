@@ -19,15 +19,15 @@ class AbstractMaterializedSqlView(osv.AbstractModel):
     _description = u"This is an helper class to manage materialized SQL view"
     _auto = False
 
-    _sql_mat_view_name = ''
+    _sql_mat_view_name = None
     """The name of the materialized sql view.
        Must be defined in inherit class (using inherit = [])
     """
-    _sql_view_name = ''
+    _sql_view_name = None
     """The name of the sql view used to generate the materialized view
        Must be defined in inherit class (using inherit = [])
     """
-    _sql_view_definition = ''
+    _sql_view_definition = None
     """The sql query to generate the view (without any create views)
     """
 
