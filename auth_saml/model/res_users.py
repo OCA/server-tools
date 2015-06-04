@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 import logging
+# this is our very own dependency
 import lasso
+# this is an odoo8 dep so it should be present 'by default'
+import passlib
 
 import openerp
 from openerp.osv import osv, fields
@@ -28,7 +31,7 @@ class res_users(osv.Model):
         password.
         """
 
-        if self._allow_saml_uid_and_internal_password(cr, context):
+        if self._allow_saml_uid_and_internal_password(cr, uid, context):
             # The constraint is a no-op in this case.
             return True
 
@@ -43,7 +46,7 @@ class res_users(osv.Model):
         (
             _no_password_with_saml,
             (
-                'SAML2 authentication: An Odoo user cannot posess both an '
+                'SAML2 authentication: An Odoo user cannot possess both a '
                 'SAML user ID and an Odoo password.'
             ),
             ['password', 'saml_uid']
@@ -58,20 +61,22 @@ class res_users(osv.Model):
         ),
     ]
 
-    def _auth_saml_validate(self, cr, uid, provider, token, context=None):
+    def _auth_saml_validate(self, cr, uid, provider_id, token, context=None):
         """ return the validation data corresponding to the access token """
 
         p = self.pool.get('auth.saml.provider')
         # we are not yet logged in, so the userid cannot have access to the
         # fields we need yet
         login = p._get_lasso_for_provider(
-            cr, SUPERUSER_ID, provider, context=context
+            cr, SUPERUSER_ID, provider_id, context=context
         )
 
         try:
             login.processAuthnResponseMsg(token)
         except (lasso.DsError, lasso.ProfileCannotVerifySignatureError):
             raise Exception('Lasso Profile cannot verify signature')
+        except lasso.ProfileStatusNotSuccessError:
+            raise Exception('Profile Status Not Success Error')
         except lasso.Error, e:
             raise Exception(repr(e))
 
@@ -186,7 +191,7 @@ class res_users(osv.Model):
         try:
             super(res_users, self).check_credentials(cr, uid, token)
 
-        except openerp.exceptions.AccessDenied:
+        except (openerp.exceptions.AccessDenied, passlib.exc.PasswordSizeError):
             # since normal auth did not succeed we now try to find if the user
             # has an active token attached to his uid
             res = token_osv.search(
@@ -209,7 +214,7 @@ class res_users(osv.Model):
         """
 
         if vals and vals.get('saml_uid'):
-            if not self._allow_saml_uid_and_internal_password(cr, context):
+            if not self._allow_saml_uid_and_internal_password(cr, uid, context):
                 vals['password'] = False
 
         return super(res_users, self).write(
@@ -217,6 +222,10 @@ class res_users(osv.Model):
         )
 
     def _allow_saml_uid_and_internal_password(self, cr, uid, context):
+
+        # super user is always allowed to have a password in the database
+        # as opposed to other users... Doing so avoids being locked out
+        # of your own instance in case there is an issue with your IDP
         if uid == SUPERUSER_ID:
             return true
         setting_obj = self.pool['base.config.settings']
