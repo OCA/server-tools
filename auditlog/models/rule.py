@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
+from openerp import exceptions
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -305,9 +306,12 @@ class auditlog_rule(models.Model):
             new_values = EMPTY_DICT
         log_model = self.env['auditlog.log']
         for res_id in res_ids:
-            model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1]
+            try:
+                model_model = self.env[res_model]
+                name = model_model.browse(res_id).name_get()
+                res_name = name and name[0] and name[0][1]
+            except exceptions.MissingError:
+                res_name = 'DELETED'
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
