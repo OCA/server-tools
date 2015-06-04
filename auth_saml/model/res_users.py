@@ -62,7 +62,11 @@ class res_users(osv.Model):
         """ return the validation data corresponding to the access token """
 
         p = self.pool.get('auth.saml.provider')
-        login = p._get_lasso_for_provider(cr, uid, provider, context=context)
+        # we are not yet logged in, so the userid cannot have access to the
+        # fields we need yet
+        login = p._get_lasso_for_provider(
+            cr, SUPERUSER_ID, provider, context=context
+        )
 
         try:
             login.processAuthnResponseMsg(token)

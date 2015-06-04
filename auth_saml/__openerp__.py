@@ -31,7 +31,11 @@ Allow users to login through Saml2 Provider.
     'author': 'XCG Consulting s.a.s.',
     'maintainer': 'XCG Consulting s.a.s.',
     'website': 'http://www.xcg-consulting.fr',
-    'depends': ['base', 'web', 'base_setup'],
+    'depends': [
+        'base',
+        'base_setup',
+        'web',
+    ],
 
     'data': [
         'data/auth_saml.xml',
@@ -49,7 +53,6 @@ Allow users to login through Saml2 Provider.
         'static/lib/zocial/css/zocial.css',
         'static/src/css/auth_saml.css',
     ],
-    'qweb': ['static/src/xml/auth_saml.xml'],
     'installable': True,
     'auto_install': False,
 }

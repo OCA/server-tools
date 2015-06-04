@@ -5,11 +5,13 @@ import simplejson
 import werkzeug.utils
 
 import openerp
+from openerp import http
+from openerp.http import request
 from openerp import SUPERUSER_ID
-import openerp.addons.web.http as oeweb
+# import openerp.addons.web.http as oeweb
 from openerp.addons.web.controllers.main import set_cookie_and_redirect
+from openerp.addons.web.controllers.main import ensure_db
 from openerp.addons.web.controllers.main import login_and_redirect
-from openerp.modules.registry import RegistryManager
 
 _logger = logging.getLogger(__name__)
 
@@ -40,74 +42,105 @@ def fragment_to_query_string(func):
 # ----------------------------------------------------------
 # Controller
 # ----------------------------------------------------------
-class SAMLController(oeweb.Controller):
-    _cp_path = '/auth_saml'
+class SAMLLogin(openerp.addons.web.controllers.main.Home):
 
-    @oeweb.jsonrequest
-    def get_auth_request(self, req, relaystate):
+    def list_providers(self):
+        try:
+            provider_obj = request.registry.get('auth.saml.provider')
+            providers = provider_obj.search_read(
+                request.cr, SUPERUSER_ID, [('enabled', '=', True)]
+            )
+        except Exception, e:
+            _logger.exception("SAML2: %s" % str(e))
+            providers = []
+
+        return providers
+
+    @http.route()
+    def web_login(self, *args, **kw):
+        ensure_db()
+        if (
+            request.httprequest.method == 'GET' and
+            request.session.uid and
+            request.params.get('redirect')
+        ):
+
+            # Redirect if already logged in and redirect param is present
+            return http.redirect_with_hash(request.params.get('redirect'))
+
+        providers = self.list_providers()
+
+        response = super(SAMLLogin, self).web_login(*args, **kw)
+        if response.is_qweb:
+            error = request.params.get('saml_error')
+            if error == '1':
+                error = _("Sign up is not allowed on this database.")
+            elif error == '2':
+                error = _("Access Denied")
+            elif error == '3':
+                error = _(
+                    "You do not have access to this database or your "
+                    "invitation has expired. Please ask for an invitation "
+                    "and be sure to follow the link in your invitation email."
+                )
+            else:
+                error = None
+
+            response.qcontext['providers'] = providers
+
+            if error:
+                response.qcontext['error'] = error
+
+        return response
+
+
+class AuthSAMLController(http.Controller):
+
+    @http.route('/auth_saml/get_auth_request', type='http', auth='none')
+    def get_auth_request(self, pid):
         """state is the JSONified state object and we need to pass
         it inside our request as the RelayState argument
         """
-        state = simplejson.loads(relaystate)
 
-        dbname = state['d']
-        provider_id = state['p']
-        context = state.get('c', {})
-
-        registry = RegistryManager.get(dbname)
-        provider_osv = registry.get('auth.saml.provider')
+        provider_id = int(pid)
+        provider_osv = request.registry.get('auth.saml.provider')
 
         auth_request = None
 
         try:
-            with registry.cursor() as cr:
+            with request.registry.cursor() as cr:
                 auth_request = provider_osv._get_auth_request(
-                    cr, SUPERUSER_ID, provider_id, state, context=context
+                    cr, SUPERUSER_ID, provider_id, pid
                 )
 
         except Exception, e:
             _logger.exception("SAML2: %s" % str(e))
 
-        return {'auth_request': auth_request}
+        # store a RelayState on the request to our IDP so that the IDP
+        # can send us back this info alongside the obtained token
+        params = {
+            "RelayState":  simplejson.dumps({
+                "d": request.session.db,
+                "p": pid,
+            }),
+        }
+        url = auth_request + "&" + werkzeug.url_encode(params)
+        print "*"*35
+        print url
+        print "*"*35
+        redirect = werkzeug.utils.redirect(url, 303)
+        redirect.autocorrect_location_header = True
+        return redirect
 
-    @oeweb.jsonrequest
-    def list_providers(self, req, dbname):
-        l = []
-        try:
-            registry = RegistryManager.get(dbname)
-            with registry.cursor() as cr:
-                providers = registry.get('auth.saml.provider')
-                if providers:
-                    l = providers.read(
-                        cr, SUPERUSER_ID, providers.search(
-                            cr, SUPERUSER_ID, [('enabled', '=', True)]
-                        ),
-                        [
-                            "id",
-                            "name",
-                            "enabled",
-                            "css_class",
-                            "body",
-                            "sequence",
-                        ],
-                    )
-                else:
-                    l = []
-
-        except Exception, e:
-            _logger.exception("SAML2: %s" % str(e))
-
-        return l
-
-    @oeweb.httprequest
+    @http.route('/auth_saml/signin', type='http', auth='none')
     @fragment_to_query_string
     def signin(self, req, **kw):
-        """JS client obtained a saml token and passed it back
+        """client obtained a saml token and passed it back
         to us... we need to validate it
         """
         saml_response = kw.get('SAMLResponse', None)
 
-        if not kw.get('RelayState', None):
+        if kw.get('RelayState', None) is None:
             # here we are in front of a client that went through
             # some routes that "lost" its relaystate... this can happen
             # if the client visited his IDP and successfully logged in
@@ -119,16 +152,17 @@ class SAMLController(oeweb.Controller):
             return redirect
 
         state = simplejson.loads(kw['RelayState'])
-        dbname = state['d']
-        provider = state['p']
-        context = state.get('c', {})
-        registry = RegistryManager.get(dbname)
+        print "*"*35
+        print state
+        print "*"*35
+        # THIS IS FALSE TODO TODO
+        provider = state
 
-        with registry.cursor() as cr:
+        with request.registry.cursor() as cr:
             try:
-                u = registry.get('res.users')
+                u = request.registry.get('res.users')
                 credentials = u.auth_saml(
-                    cr, SUPERUSER_ID, provider, saml_response, context=context
+                    cr, SUPERUSER_ID, provider, saml_response
                 )
                 cr.commit()
                 action = state.get('a')
@@ -141,10 +175,10 @@ class SAMLController(oeweb.Controller):
                 return login_and_redirect(req, *credentials, redirect_url=url)
 
             except AttributeError, e:
-                print e
+                # print e
                 # auth_signup is not installed
                 _logger.error("auth_signup not installed on database "
-                              "%s: saml sign up cancelled." % (dbname,))
+                              "saml sign up cancelled.")
                 url = "/#action=login&saml_error=1"
 
             except openerp.exceptions.AccessDenied:
@@ -164,6 +198,6 @@ class SAMLController(oeweb.Controller):
                 _logger.exception("SAML2: %s" % str(e))
                 url = "/#action=login&saml_error=2"
 
-        return set_cookie_and_redirect(req, url)
+        return set_cookie_and_redirect(url)
 
 # vim:expandtab:tabstop=4:softtabstop=4:shiftwidth=4:
