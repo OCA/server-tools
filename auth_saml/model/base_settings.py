@@ -26,11 +26,12 @@ class base_settings(orm.TransientModel):
         ),
     }
 
-    def allow_saml_uid_and_internal_password(self, cr, context=None):
+    def allow_saml_uid_and_internal_password(self, cr, uid, context=None):
         """Read the allow_saml_uid_and_internal_password setting.
         Use the admin account to bypass security restrictions.
         """
 
+        # ignore the uid, the result of the method does not depend on it
         uid = SUPERUSER_ID
 
         config_obj = self.pool['ir.config_parameter']
