@@ -124,13 +124,14 @@ class AuthSAMLController(http.Controller):
         state = self.get_state(provider_id)
 
         try:
-            with request.registry.cursor() as cr:
-                auth_request = provider_osv._get_auth_request(
-                    cr, SUPERUSER_ID, provider_id, state=state
-                )
+            auth_request = provider_osv._get_auth_request(
+                request.cr, SUPERUSER_ID, provider_id, state
+            )
 
         except Exception, e:
             _logger.exception("SAML2: %s" % str(e))
+
+        # TODO: handle case when auth_request comes back as None
 
         # store a RelayState on the request to our IDP so that the IDP
         # can send us back this info alongside the obtained token

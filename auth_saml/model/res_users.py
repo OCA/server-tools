@@ -6,37 +6,38 @@ import lasso
 import passlib
 
 import openerp
-from openerp.osv import osv, fields
+from openerp import api
+from openerp import models
+from openerp import fields
 from openerp import SUPERUSER_ID
+from openerp.addons.base.res.res_users import res_users as baseuser
 
 _logger = logging.getLogger(__name__)
 
 
-class res_users(osv.Model):
+class res_users(models.Model):
     _inherit = 'res.users'
 
-    _columns = {
-        'saml_provider_id': fields.many2one(
-            'auth.saml.provider',
-            string='SAML Provider',
-        ),
-        'saml_uid': fields.char(
-            'SAML User ID',
-            help="SAML Provider user_id",
-        ),
-    }
+    saml_provider_id = fields.Many2one(
+        'auth.saml.provider',
+        string='SAML Provider',
+    )
+    saml_uid = fields.Char(
+        'SAML User ID',
+        help="SAML Provider user_id",
+    )
 
-    def _no_password_with_saml(self, cr, uid, ids, context=None):
+    @api.multi
+    def _no_password_with_saml(self):
         """Ensure no Odoo user posesses both an SAML user ID and an Odoo
         password.
         """
 
-        if self._allow_saml_uid_and_internal_password(cr, uid, context):
+        if self._allow_saml_uid_and_internal_password():
             # The constraint is a no-op in this case.
             return True
 
-        users = self.browse(cr, uid, ids, context=context)
-        for user in users:
+        for user in self:
             if user.password and user.saml_uid:
                 return False
 
@@ -61,15 +62,16 @@ class res_users(osv.Model):
         ),
     ]
 
-    def _auth_saml_validate(self, cr, uid, provider_id, token, context=None):
+    @api.multi
+    def _auth_saml_validate(self, provider_id, token):
         """ return the validation data corresponding to the access token """
 
-        p = self.pool.get('auth.saml.provider')
+        pobj = self.env['auth.saml.provider']
+        p = pobj.browse(provider_id)
+
         # we are not yet logged in, so the userid cannot have access to the
         # fields we need yet
-        login = p._get_lasso_for_provider(
-            cr, SUPERUSER_ID, provider_id, context=context
-        )
+        login = p.sudo()._get_lasso_for_provider()
 
         try:
             login.processAuthnResponseMsg(token)
@@ -87,19 +89,10 @@ class res_users(osv.Model):
 
         # TODO use a real token validation from LASSO
         # TODO push into the validation result a real UPN
-        validation = {'user_id': login.assertion.subject.nameId.content}
+        return {'user_id': login.assertion.subject.nameId.content}
 
-        """
-        if p.data_endpoint:
-            data = self._auth_oauth_rpc(cr, uid, p.data_endpoint, access_token)
-            validation.update(data)
-        """
-
-        return validation
-
-    def _auth_saml_signin(
-        self, cr, uid, provider, validation, saml_response, context=None
-    ):
+    @api.multi
+    def _auth_saml_signin(self, provider, validation, saml_response):
         """ retrieve and sign into openerp the user corresponding to provider
         and validated access token
 
@@ -111,11 +104,10 @@ class res_users(osv.Model):
 
             This method can be overridden to add alternative signin methods.
         """
-        token_osv = self.pool.get('auth_saml.token')
+        token_osv = self.env['auth_saml.token']
         saml_uid = validation['user_id']
 
         user_ids = self.search(
-            cr, uid,
             [
                 ("saml_uid", "=", saml_uid),
                 ('saml_provider_id', '=', provider),
@@ -128,59 +120,48 @@ class res_users(osv.Model):
         # TODO replace assert by proper raise... asserts do not execute in
         # production code...
         assert len(user_ids) == 1
-
-        # browse the user because we'll need this in the response
-        user = self.browse(cr, uid, user_ids[0], context=context)
-
-        user_id = user.id
+        user = user_ids[0]
 
         # now find if a token for this user/provider already exists
         token_ids = token_osv.search(
-            cr, uid,
             [
                 ('saml_provider_id', '=', provider),
-                ('user_id', '=', user_id),
+                ('user_id', '=', user.id),
             ]
         )
+
         if token_ids:
-            token_osv.write(
-                cr, uid, token_ids,
+            token_ids.write(
                 {'saml_access_token': saml_response},
-                context=context
             )
         else:
             token_osv.create(
-                cr, uid,
                 {
                     'saml_access_token': saml_response,
                     'saml_provider_id': provider,
-                    'user_id': user_id,
+                    'user_id': user.id,
                 },
-                context=context
             )
 
         return user.login
 
-    def auth_saml(self, cr, uid, provider, saml_response, context=None):
+    @api.model
+    def auth_saml(self, provider, saml_response):
 
-        validation = self._auth_saml_validate(
-            cr, uid, provider, saml_response
-        )
+        validation = self._auth_saml_validate(provider, saml_response)
 
         # required check
         if not validation.get('user_id'):
             raise openerp.exceptions.AccessDenied()
 
         # retrieve and sign in user
-        login = self._auth_saml_signin(
-            cr, uid, provider, validation, saml_response, context=context
-        )
+        login = self._auth_saml_signin(provider, validation, saml_response)
 
         if not login:
             raise openerp.exceptions.AccessDenied()
 
         # return user credentials
-        return cr.dbname, login, saml_response
+        return self.env.cr.dbname, login, saml_response
 
     def check_credentials(self, cr, uid, token):
         """token can be a password if the user has used the normal form...
@@ -188,8 +169,14 @@ class res_users(osv.Model):
         and the interesting code is inside the except clause
         """
         token_osv = self.pool.get('auth_saml.token')
+
         try:
-            super(res_users, self).check_credentials(cr, uid, token)
+            baseuser.check_credentials(
+                self,
+                cr,
+                uid,
+                token
+            )
 
         except (openerp.exceptions.AccessDenied, passlib.exc.PasswordSizeError):
             # since normal auth did not succeed we now try to find if the user
