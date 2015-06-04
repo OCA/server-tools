@@ -227,7 +227,8 @@ class res_users(osv.Model):
         # as opposed to other users... Doing so avoids being locked out
         # of your own instance in case there is an issue with your IDP
         if uid == SUPERUSER_ID:
-            return true
+            return True
+
         setting_obj = self.pool['base.config.settings']
         return setting_obj.allow_saml_uid_and_internal_password(
             cr, uid, context=context
