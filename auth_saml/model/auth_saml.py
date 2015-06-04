@@ -2,6 +2,7 @@ from openerp.osv import fields
 from openerp.osv import osv
 import lasso
 import simplejson
+from openerp import SUPERUSER_ID
 
 
 class auth_saml_provider(osv.osv):
@@ -11,8 +12,9 @@ class auth_saml_provider(osv.osv):
     _description = 'SAML2 provider'
     _order = 'name'
 
-    def _get_lasso_for_provider(self, cr, uid, provider_id, context=None):
-        provider = self.browse(cr, uid, provider_id, context=context)
+    def _get_lasso_for_provider(self, cr, uid, pid, context=None):
+        # user is not connected yet... so use SUPERUSER_ID
+        provider = self.browse(cr, SUPERUSER_ID, pid, context=context)
 
         # TODO: we should cache those results somewhere because it is
         # really costy to always recreate a login variable from buffers
@@ -26,11 +28,11 @@ class auth_saml_provider(osv.osv):
         )
         return lasso.Login(server)
 
-    def _get_auth_request(self, cr, uid, id_, state, context=None):
+    def _get_auth_request(self, cr, uid, pid, state, context=None):
         """build an authentication request and give it back to our client
         WARNING: this method cannot be used for multiple ids
         """
-        login = self._get_lasso_for_provider(cr, uid, id_, context=context)
+        login = self._get_lasso_for_provider(cr, uid, pid, context=context)
 
         # ! -- this is the part that MUST be performed on each call and
         # cannot be cached
