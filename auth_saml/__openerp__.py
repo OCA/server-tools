@@ -47,12 +47,6 @@ Allow users to login through Saml2 Provider.
         'views/base_settings.xml',
         'views/res_users.xml',
     ],
-
-    'js': ['static/src/js/auth_saml.js'],
-    'css': [
-        'static/lib/zocial/css/zocial.css',
-        'static/src/css/auth_saml.css',
-    ],
     'installable': True,
     'auto_install': False,
 }
