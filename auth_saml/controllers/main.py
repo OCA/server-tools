@@ -96,6 +96,21 @@ class SAMLLogin(openerp.addons.web.controllers.main.Home):
 
 class AuthSAMLController(http.Controller):
 
+    def get_state(self, provider_id):
+        redirect = request.params.get('redirect') or 'web'
+        if not redirect.startswith(('//', 'http://', 'https://')):
+            redirect = '%s%s' % (
+                request.httprequest.url_root,
+                redirect[1:] if redirect[0] == '/' else redirect
+            )
+
+        state = {
+            "d": request.session.db,
+            "p": provider_id,
+            "r": werkzeug.url_quote_plus(redirect),
+        }
+        return state
+
     @http.route('/auth_saml/get_auth_request', type='http', auth='none')
     def get_auth_request(self, pid):
         """state is the JSONified state object and we need to pass
@@ -106,11 +121,12 @@ class AuthSAMLController(http.Controller):
         provider_osv = request.registry.get('auth.saml.provider')
 
         auth_request = None
+        state = self.get_state(provider_id)
 
         try:
             with request.registry.cursor() as cr:
                 auth_request = provider_osv._get_auth_request(
-                    cr, SUPERUSER_ID, provider_id, pid
+                    cr, SUPERUSER_ID, provider_id, state=state
                 )
 
         except Exception, e:
@@ -125,9 +141,6 @@ class AuthSAMLController(http.Controller):
             }),
         }
         url = auth_request + "&" + werkzeug.url_encode(params)
-        print "*"*35
-        print url
-        print "*"*35
         redirect = werkzeug.utils.redirect(url, 303)
         redirect.autocorrect_location_header = True
         return redirect
@@ -152,11 +165,7 @@ class AuthSAMLController(http.Controller):
             return redirect
 
         state = simplejson.loads(kw['RelayState'])
-        print "*"*35
-        print state
-        print "*"*35
-        # THIS IS FALSE TODO TODO
-        provider = state
+        provider = state['p']
 
         with request.registry.cursor() as cr:
             try:
@@ -172,10 +181,10 @@ class AuthSAMLController(http.Controller):
                     url = '/#action=%s' % action
                 elif menu:
                     url = '/#menu_id=%s' % menu
-                return login_and_redirect(req, *credentials, redirect_url=url)
+
+                return login_and_redirect(*credentials, redirect_url=url)
 
             except AttributeError, e:
-                # print e
                 # auth_signup is not installed
                 _logger.error("auth_signup not installed on database "
                               "saml sign up cancelled.")
