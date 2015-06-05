@@ -10,7 +10,11 @@ from openerp import api
 from openerp import models
 from openerp import fields
 from openerp import SUPERUSER_ID
+from openerp.exceptions import ValidationError
+# import real addons name of base.res.res_users in order to call it without
+# user the super() call
 from openerp.addons.base.res.res_users import res_users as baseuser
+from openerp import _
 
 _logger = logging.getLogger(__name__)
 
@@ -27,32 +31,28 @@ class res_users(models.Model):
         help="SAML Provider user_id",
     )
 
-    @api.multi
-    def _no_password_with_saml(self):
+    @api.one
+    @api.constrains('password_crypt', 'password', 'saml_uid')
+    def check_no_password_with_saml(self):
         """Ensure no Odoo user posesses both an SAML user ID and an Odoo
-        password.
+        password. Except admin which is not constrained by this rule.
         """
+        if self._allow_saml_and_password():
+            pass
 
-        if self._allow_saml_uid_and_internal_password():
-            # The constraint is a no-op in this case.
-            return True
-
-        for user in self:
-            if user.password and user.saml_uid:
-                return False
-
-        return True
-
-    _constraints = [
-        (
-            _no_password_with_saml,
-            (
-                'SAML2 authentication: An Odoo user cannot possess both a '
-                'SAML user ID and an Odoo password.'
-            ),
-            ['password', 'saml_uid']
-        ),
-    ]
+        else:
+            # Super admin is the only user we allow to have a local password
+            # in the database
+            if (
+                self.password_crypt and
+                self.saml_uid and
+                self.id is not SUPERUSER_ID
+            ):
+                raise ValidationError(
+                    _("This database disallows users to have both passwords "
+                      "and SAML IDs. Errors for login %s" % (self.login)
+                      )
+                )
 
     _sql_constraints = [
         (
@@ -163,6 +163,7 @@ class res_users(models.Model):
         # return user credentials
         return self.env.cr.dbname, login, saml_response
 
+    # This method is using the old v7 API because it is called BEFORE the login
     def check_credentials(self, cr, uid, token):
         """token can be a password if the user has used the normal form...
         but we are more interested in the case when they are tokens
@@ -195,28 +196,20 @@ class res_users(models.Model):
                 # exception that occurred in our execution frame
                 raise
 
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         """Override to clear out the user's password when setting an SAML user
         ID (as they can't cohabit).
         """
 
         if vals and vals.get('saml_uid'):
-            if not self._allow_saml_uid_and_internal_password(cr, uid, context):
+            if not self._allow_saml_and_password():
                 vals['password'] = False
 
-        return super(res_users, self).write(
-            cr, uid, ids, vals, context=context
-        )
+        return super(res_users, self).write(vals)
 
-    def _allow_saml_uid_and_internal_password(self, cr, uid, context):
+    @api.model
+    def _allow_saml_and_password(self):
 
-        # super user is always allowed to have a password in the database
-        # as opposed to other users... Doing so avoids being locked out
-        # of your own instance in case there is an issue with your IDP
-        if uid == SUPERUSER_ID:
-            return True
-
-        setting_obj = self.pool['base.config.settings']
-        return setting_obj.allow_saml_uid_and_internal_password(
-            cr, uid, context=context
-        )
+        settings_obj = self.env['base.config.settings']
+        return settings_obj.allow_saml_and_password()

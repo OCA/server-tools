@@ -26,7 +26,11 @@
     'category': 'Tools',
     'description': """
 Allow users to login through Saml2 Provider.
-===================================
+============================================
+
+WARNING: this module requires auth_crypt. This is because you still have the
+    option if not recommended to allow users to have a password stored in odoo
+    at the same time as having a SALM provider and id.
 """,
     'author': 'XCG Consulting s.a.s.',
     'maintainer': 'XCG Consulting s.a.s.',
@@ -35,6 +39,7 @@ Allow users to login through Saml2 Provider.
         'base',
         'base_setup',
         'web',
+        'auth_crypt',
     ],
 
     'data': [

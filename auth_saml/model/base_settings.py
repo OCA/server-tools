@@ -1,6 +1,6 @@
-from openerp import SUPERUSER_ID
 from openerp.osv import fields
 from openerp.osv import orm
+from openerp import api
 
 
 _SAML_UID_AND_PASS_SETTING = 'auth_saml.allow_saml.uid_and_internal_password'
@@ -26,33 +26,27 @@ class base_settings(orm.TransientModel):
         ),
     }
 
-    def allow_saml_uid_and_internal_password(self, cr, uid, context=None):
+    # take care to name the function with another name to not clash with column
+    @api.model
+    def allow_saml_and_password(self):
         """Read the allow_saml_uid_and_internal_password setting.
         Use the admin account to bypass security restrictions.
         """
 
-        # ignore the uid, the result of the method does not depend on it
-        uid = SUPERUSER_ID
-
-        config_obj = self.pool['ir.config_parameter']
-
-        config_ids = config_obj.search(
-            cr, uid,
+        config_obj = self.env['ir.config_parameter']
+        config_objs = config_obj.sudo().search(
             [('key', '=', _SAML_UID_AND_PASS_SETTING)],
             limit=1,
-            context=context
         )
-        if not config_ids:
+
+        # no configuration found reply with default value
+        if len(config_objs) == 0:
             return False
 
-        config = config_obj.browse(
-            cr, uid, config_ids, context=context
-        )[0]
-        return (True if config.value == '1' else False)
+        return (True if config_objs.value == '1' else False)
 
-    def get_default_allow_saml_uid_and_internal_password(
-        self, cr, uid, fields, context=None
-    ):
+    @api.multi
+    def get_default_allow_saml_uid_and_internal_password(self, fields):
         """Read the allow_saml_uid_and_internal_password setting. This function
         is called when the form is shown.
         """
@@ -61,39 +55,32 @@ class base_settings(orm.TransientModel):
 
         if 'allow_saml_uid_and_internal_password' in fields:
             ret['allow_saml_uid_and_internal_password'] = (
-                self.allow_saml_uid_and_internal_password(cr, context)
+                self.allow_saml_uid_and_internal_password()
             )
 
         return ret
 
-    def set_allow_saml_uid_and_internal_password(
-        self, cr, uid, ids, context=None
-    ):
+    @api.multi
+    def set_allow_saml_uid_and_internal_password(self):
         """Update the allow_saml_uid_and_internal_password setting. This
         function is called when saving the form.
         """
 
-        dlg = self.browse(cr, uid, ids, context=context)[0]
-
         setting_value = (
-            '1' if dlg.allow_saml_uid_and_internal_password else '0'
+            '1' if self.allow_saml_uid_and_internal_password else '0'
         )
 
-        config_obj = self.pool['ir.config_parameter']
+        config_obj = self.env['ir.config_parameter']
         config_ids = config_obj.search(
-            cr, uid,
             [('key', '=', _SAML_UID_AND_PASS_SETTING)],
             limit=1,
-            context=context
         )
+
         if config_ids:
-            config_obj.write(
-                cr, uid, config_ids, {'value': setting_value}, context=context
-            )
+            config_ids.write({'value': setting_value})
+
         else:
             # The setting doesn't exist; create it.
             config_obj.create(
-                cr, uid,
                 {'key': _SAML_UID_AND_PASS_SETTING, 'value': setting_value},
-                context=context
             )
