@@ -1,12 +1,12 @@
-from openerp.osv import fields
-from openerp.osv import orm
+from openerp import fields
+from openerp import models
 from openerp import api
 
 
 _SAML_UID_AND_PASS_SETTING = 'auth_saml.allow_saml.uid_and_internal_password'
 
 
-class base_settings(orm.TransientModel):
+class base_settings(models.TransientModel):
     """Inherit from base.config.settings to add a setting. This is only here
     for easier access; the setting is not actually stored by this (transient)
     collection. Instead, it is kept in sync with the
@@ -17,14 +17,12 @@ class base_settings(orm.TransientModel):
 
     _inherit = 'base.config.settings'
 
-    _columns = {
-        'allow_saml_uid_and_internal_password': fields.boolean(
-            (
-                'Allow SAML users to posess an Odoo password (warning: '
-                'decreases security)'
-            ),
+    allow_saml_uid_and_internal_password = fields.Boolean(
+        (
+            'Allow SAML users to posess an Odoo password (warning: '
+            'decreases security)'
         ),
-    }
+    )
 
     # take care to name the function with another name to not clash with column
     @api.model
