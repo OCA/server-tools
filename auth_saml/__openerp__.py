@@ -31,10 +31,20 @@ Allow users to login through Saml2 Provider.
 WARNING: this module requires auth_crypt. This is because you still have the
     option if not recommended to allow users to have a password stored in odoo
     at the same time as having a SALM provider and id.
+
+This module is covered by the Gnu Affero General Public License, AGPLV3 or later
+
+The full source code and history can always be downloaded, modified
+and redistributed from here:
+
+    https://bitbucket.org/xcg/auth_saml/
+    or
+    https://github.com/xcgd/auth_saml
+
 """,
     'author': 'XCG Consulting s.a.s.',
     'maintainer': 'XCG Consulting s.a.s.',
-    'website': 'http://www.xcg-consulting.fr',
+    'website': 'http://odoo.consulting',
     'depends': [
         'base',
         'base_setup',
