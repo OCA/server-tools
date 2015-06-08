@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+    <record id="sql_export_view_form" model="ir.ui.view">
+        <field name="name">Sql_export_form_view</field>
+        <field name="model">sql.export</field>
+        <field name="arch" type="xml">
+            <form string="SQL export">
+                <group col="2">
+                    <group colspan="2" col="5">
+                        <label for="name" colspan="1"/>
+                        <field name="name" colspan="2" nolabel="1"/>
+                        <button name="export_sql_query" string="Execute Query" type="object" class="oe_highlight" icon="gtk-execute" colspan="2"/>
+                        <label for="query" colspan="1"/>
+                        <field name="query" nolabel="1" colspan="4"/>
+                        <label for="Copy Options" colspan="1"/>
+                        <field name="copy_options" nolabel="1" colspan="4"/>
+                    </group>
+                    <group colspan="2" col="2" groups="sql_export.group_sql_request_editor">
+                        <separator string="Allowed Users" colspan="1"/>
+                        <separator string="Allowed Users Groups" colspan="1"/>
+                        <field name="user_ids" nolabel="1"/>
+                        <field name="group_ids" nolabel="1"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="sql_export_view_tree" model="ir.ui.view">
+        <field name="name">Sql_export_tree_view</field>
+        <field name="model">sql.export</field>
+        <field name="arch" type="xml">
+            <tree string="SQL Export">
+                    <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sql_export_tree_action" model="ir.actions.act_window">
+        <field name="name">SQL Export</field>
+        <field name="res_model">sql.export</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="sql_export_menu" name="Sql Export" parent="base.menu_reporting" sequence="80"/>
+
+    <menuitem id="sql_export_menu_view" name="Sql Export" parent="sql_export_menu" action="sql_export_tree_action" sequence="1"/>
+
+
+</data>
+</openerp>
