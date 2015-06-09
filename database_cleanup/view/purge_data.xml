@@ -20,6 +20,18 @@
                                     icon="gtk-cancel" string="Purge this data"
                                     attrs="{'invisible': [('purged', '=', True)]}"/>
                         </tree>
+                        <form string="Purge data">
+                            <group>
+                                <field name="name" />
+                                <field name="data_id" />
+                                <field name="purged" invisible="0" />
+                            </group>
+                            <footer>
+                                <button type="object" name="purge"
+                                        icon="gtk-cancel" string="Purge this data"
+                                        attrs="{'invisible': [('purged', '=', True)]}"/>
+                            </footer>
+                        </form>
                     </field>
                 </form>
             </field>

@@ -19,6 +19,17 @@
                                     icon="gtk-cancel" string="Purge this module"
                                     attrs="{'invisible': [('purged', '=', True)]}"/>
                         </tree>
+                        <form string="Purge modules">
+                            <group>
+                                <field name="name" />
+                                <field name="purged" invisible="0" />
+                            </group>
+                            <footer>
+                                <button type="object" name="purge"
+                                        icon="gtk-cancel" string="Purge this module"
+                                        attrs="{'invisible': [('purged', '=', True)]}"/>
+                            </footer>
+                        </form>
                     </field>
                 </form>
             </field>
