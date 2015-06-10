@@ -99,7 +99,7 @@
                             <field name="configurator_id" readonly="1"/>
                             <field name="model_id" readonly="1"/>
                             <field name="model_description" readonly="1"/>
-                            <field name="res_id"/>
+                            <field name="res_id" readonly="1"/>
                         </group>
                     </sheet>
                 </form>
@@ -110,7 +110,8 @@
             <field name="name">super_calendar</field>
             <field name="model">super.calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Calendar" color="model_description" date_start="date_start" date_delay="duration">
+                <calendar string="Calendar" color="model_id" date_start="date_start" date_delay="duration" quick_add="false">
+                <!--The color attribute should be: model_description but v8 calendars require many2one fields-->
                     <field name="name"/>
                 </calendar>
             </field>
