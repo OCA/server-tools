@@ -39,7 +39,7 @@ def _models_get(self):
     return [(model.model, model.name) for model in model_ids]
 
 
-class super_calendar_configurator(models.Model):
+class SuperCalendarConfigurator(models.Model):
     _logger = logging.getLogger(__name__)
     _name = 'super.calendar.configurator'
 
@@ -66,77 +66,81 @@ class super_calendar_configurator(models.Model):
         # Rebuild all calendar records
         for configurator in configurator_ids:
             for line in configurator.line_ids:
-                current_pool = self.env[line.name.model]
-                domain = line.domain and safe_eval(line.domain) or []
-                current_record_ids = current_pool.search(domain)
-
-                for cur_rec in current_record_ids:
-                    f_user = line.user_field_id and line.user_field_id.name
-                    f_descr = (line.description_field_id and
-                               line.description_field_id.name)
-                    f_date_start = (line.date_start_field_id and
-                                    line.date_start_field_id.name)
-                    f_date_stop = (line.date_stop_field_id and
-                                   line.date_stop_field_id.name)
-                    f_duration = (line.duration_field_id and
-                                  line.duration_field_id.name)
-                    if (f_user and
-                            cur_rec[f_user] and
-                            cur_rec[f_user]._model._name != 'res.users'):
-                        raise Exception(
-                            _('Error'),
-                            _("The 'User' field of record %s (%s) "
-                              "does not refer to res.users")
-                            % (cur_rec[f_descr], line.name.model))
-
-                    if (((f_descr and cur_rec[f_descr]) or
-                            line.description_code) and
-                            cur_rec[f_date_start]):
-                        duration = False
-                        if (not line.duration_field_id and
-                                line.date_stop_field_id and
-                                cur_rec[f_date_start] and
-                                cur_rec[f_date_stop]):
-                            date_start = datetime.strptime(
-                                cur_rec[f_date_start],
-                                tools.DEFAULT_SERVER_DATETIME_FORMAT
-                            )
-                            date_stop = datetime.strptime(
-                                cur_rec[f_date_stop],
-                                tools.DEFAULT_SERVER_DATETIME_FORMAT
-                            )
-                            date_diff = (date_stop - date_start)
-                            duration = date_diff.total_seconds() / 3600
-                        elif line.duration_field_id:
-                            duration = cur_rec[f_duration]
-                        if line.description_type != 'code':
-                            name = cur_rec[f_descr]
-                        else:
-                            parse_dict = {'o': cur_rec}
-                            mytemplate = Template(line.description_code)
-                            name = mytemplate.render(**parse_dict)
-
-                        super_calendar_values = {
-                            'name': name,
-                            'model_description': line.description,
-                            'date_start': cur_rec[f_date_start],
-                            'duration': duration,
-                            'user_id': (
-                                f_user and
-                                cur_rec[f_user] and
-                                cur_rec[f_user].id or
-                                False
-                            ),
-                            'configurator_id': configurator.id,
-                            'res_id': line.name.model+','+str(cur_rec['id']),
-                            'model_id': line.name.id,
-                        }
-                        super_calendar_pool.create(super_calendar_values)
+                self._generate_record_from_line(configurator, line)
         self._logger.info('Calendar generated')
         return True
 
+    @api.multi
+    def _generate_record_from_line(self, configurator, line):
+        super_calendar_pool = self.env['super.calendar']
+        current_pool = self.env[line.name.model]
+        domain = line.domain and safe_eval(line.domain) or []
+        current_record_ids = current_pool.search(domain)
+        for cur_rec in current_record_ids:
+            f_user = line.user_field_id and line.user_field_id.name
+            f_descr = (line.description_field_id and
+                       line.description_field_id.name)
+            f_date_start = (line.date_start_field_id and
+                            line.date_start_field_id.name)
+            f_date_stop = (line.date_stop_field_id and
+                           line.date_stop_field_id.name)
+            f_duration = (line.duration_field_id and
+                          line.duration_field_id.name)
+            if (f_user and
+                    cur_rec[f_user] and
+                    cur_rec[f_user]._model._name != 'res.users'):
+                raise Exception(
+                    _('Error'),
+                    _("The 'User' field of record %s (%s) "
+                      "does not refer to res.users")
+                    % (cur_rec[f_descr], line.name.model))
 
-class super_calendar_configurator_line(models.Model):
+            if (((f_descr and cur_rec[f_descr]) or
+                    line.description_code) and
+                    cur_rec[f_date_start]):
+                duration = False
+                if (not line.duration_field_id and
+                        line.date_stop_field_id and
+                        cur_rec[f_date_start] and
+                        cur_rec[f_date_stop]):
+                    date_start = datetime.strptime(
+                        cur_rec[f_date_start],
+                        tools.DEFAULT_SERVER_DATETIME_FORMAT
+                    )
+                    date_stop = datetime.strptime(
+                        cur_rec[f_date_stop],
+                        tools.DEFAULT_SERVER_DATETIME_FORMAT
+                    )
+                    date_diff = (date_stop - date_start)
+                    duration = date_diff.total_seconds() / 3600
+                elif line.duration_field_id:
+                    duration = cur_rec[f_duration]
+                if line.description_type != 'code':
+                    name = cur_rec[f_descr]
+                else:
+                    parse_dict = {'o': cur_rec}
+                    mytemplate = Template(line.description_code)
+                    name = mytemplate.render(**parse_dict)
+
+                super_calendar_values = {
+                    'name': name,
+                    'model_description': line.description,
+                    'date_start': cur_rec[f_date_start],
+                    'duration': duration,
+                    'user_id': (
+                        f_user and
+                        cur_rec[f_user] and
+                        cur_rec[f_user].id or
+                        False
+                    ),
+                    'configurator_id': configurator.id,
+                    'res_id': line.name.model+','+str(cur_rec['id']),
+                    'model_id': line.name.id,
+                }
+                super_calendar_pool.create(super_calendar_values)
+
+
+class SuperCalendarConfiguratorLine(models.Model):
     _name = 'super.calendar.configurator.line'
 
     name = fields.Many2one(
@@ -196,7 +200,7 @@ class super_calendar_configurator_line(models.Model):
     )
 
 
-class super_calendar(models.Model):
+class SuperCalendar(models.Model):
     _name = 'super.calendar'
 
     name = fields.Char(
