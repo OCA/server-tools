@@ -389,9 +389,10 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
-            log_vals = self._prepare_log_line_vals_on_write(
-                log, field, old_values, new_values)
-            log_line_model.create(log_vals)
+            if field:
+                log_vals = self._prepare_log_line_vals_on_write(
+                    log, field, old_values, new_values)
+                log_line_model.create(log_vals)
 
     def _prepare_log_line_vals_on_write(
             self, log, field, old_values, new_values):
@@ -434,9 +435,10 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
-            log_vals = self._prepare_log_line_vals_on_create(
-                log, field, new_values)
-            log_line_model.create(log_vals)
+            if field:
+                log_vals = self._prepare_log_line_vals_on_create(
+                    log, field, new_values)
+                log_line_model.create(log_vals)
 
     def _prepare_log_line_vals_on_create(self, log, field, new_values):
         """Prepare the dictionary of values used to create a log line on a
