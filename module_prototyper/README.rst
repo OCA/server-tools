@@ -42,8 +42,8 @@ You will get a zip file containing your module ready to be installed and complia
 conventions of the OCA. You can then provide the module to a developer who have to implement 
 things like default values or onchange methods.
 
-Known issues / Roadmap
-======================
+Roadmap
+=======
 
  * `#104`_ - Include controllers.py and templates.xml from scaffold.
  * Attach images to the prototype and export them to be used in the 'images' module manifest.
@@ -52,7 +52,13 @@ Known issues / Roadmap
 
 .. _#104: https://github.com/OCA/server-tools/issues/104
 
-Please report any idea or issue to https://github.com/OCA/server-tools/issues.
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
+`here <https://github.com/OCA/server-tools/issues/new?body=module:%20module_prototyper%0Aversion:%200.3%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
