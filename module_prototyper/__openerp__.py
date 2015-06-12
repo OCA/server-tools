@@ -23,7 +23,7 @@
 {
     'name': 'Module Prototyper',
     'version': '0.3',
-    'author': 'Savoir-faire Linux',
+    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
