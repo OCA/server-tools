@@ -21,26 +21,47 @@
 ##############################################################################
 
 {
-    'name': 'Module Prototyper',
-    'version': '0.3',
-    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
+    'name': 'Prototype',
+    'version': '0.1',
+    'author': 'Savoir-faire Linux',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Others',
-    'summary': 'Prototype your module.',
+    'summary': 'Prototype your module',
+    'description': """
+This module allows the administrator to prototype new features and export
+them as module.
+
+Usage
+=====
+
+Go to Settings > Modules > Prototype, create a new prototype, fill in the
+information and export your module.
+
+Contributors
+============
+
+* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
+* Savoir-faire Linux <support@savoirfairelinux.com>
+
+More informations
+-----------------
+* Module developped and tested with Odoo version 8.0
+* For questions, please contact our support services \
+(support@savoirfairelinux.com)
+""",
     'depends': [
-        'admin_technical_features',
+        'base',
     ],
     'external_dependencies': {
         'python': [],
     },
     'data': [
-        'wizard/module_prototyper_module_export_view.xml',
-        'views/module_prototyper_view.xml',
+        'wizard/prototype_module_export_view.xml',
+        'views/prototype_view.xml',
         'views/ir_model_fields_view.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
-    'application': True,
 }

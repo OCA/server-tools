@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="view_prototype_tree" model="ir.ui.view">
+      <field name="name">prototype.tree</field>
+      <field name="model">prototype</field>
+      <field name="arch" type="xml">
+        <tree string="Prototype">
+          <field name="name"/>
+          <field name="shortdesc"/>
+          <field name="summary"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_prototype_form" model="ir.ui.view">
+      <field name="name">prototype.form</field>
+      <field name="model">prototype</field>
+      <field name="arch" type="xml">
+        <form string="Module">
+          <link rel="stylesheet" href="/base/static/src/css/description.css"/>
+          <sheet>
+            <field name="icon_image" widget="image" class="oe_avatar oe_left"/>
+            <div class="oe_title">
+              <h1><field name="summary"/></h1>
+              <div>
+                <button name="%(button_module_export_action)d" string="Export" type="action"/>
+              </div>
+            </div>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="shortdesc"/>
+                <field name="category_id"/>
+                <field name="version"/>
+              </group>
+              <group>
+                <field name="author"/>
+                <field name="website" widget="url"/>
+                <field name="maintainer"/>
+                <field name="auto_install"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Description">
+                <field name="description"/>
+              </page>
+              <page string="Dependencies">
+                <field name="depends"/>
+              </page>
+              <page string="Data &amp; Demo">
+                <label for="data"/>
+                <field name="data"/>
+                <label for="demo"/>
+                <field name="demo"/>
+              </page>
+              <page string="Models">
+                <label for="fields"/>
+                <field name="fields" domain="[('state', '=', 'manual')]"/>
+              </page>
+              <page string="Interface">
+                <label for="menu"/>
+                <field name="menu"/>
+                <label for="views"/>
+                <field name="views"/>
+              </page>
+              <page string="Security">
+                <label for="groups"/>
+                <field name="groups"/>
+                <label for="rights"/>
+                <field name="rights"/>
+                <label for="rules"/>
+                <field name="rules"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="open_prototype_list" model="ir.actions.act_window">
+      <field name="name">Prototype</field>
+      <field name="res_model">prototype</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_prototype_tree"/>
+    </record>
+
+    <menuitem id="menu_open_prototype" 
+              action="open_prototype_list" 
+              parent="base.menu_management" 
+              sequence="30" 
+              groups="base.group_system"/>
+
+  </data>
+</openerp>

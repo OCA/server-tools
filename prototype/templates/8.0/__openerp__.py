@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2010 - 2014 Savoir-faire Linux
-#    (<http://www.savoirfairelinux.com>).
+#    Odoo, Open Source Management Solution
+#    This module copyright (C) $export_date $author
+#    (<$website>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,26 +21,30 @@
 ##############################################################################
 
 {
-    'name': 'Module Prototyper',
-    'version': '0.3',
-    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
-    'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
+    'name': '$name',
+    'version': '$version',
+    'author': '$author',
+    'maintainer': '$maintainer',
+    'website': '$website',
     'license': 'AGPL-3',
-    'category': 'Others',
-    'summary': 'Prototype your module.',
+    'category': '$category',
+    'summary': '$summary',
+    'description': """
+$description
+
+* Module exported by the prototype module for version 8.0.
+* If you have any questions, please contact Savoir-faire Linux \
+(support@savoirfairelinux.com)
+""",
     'depends': [
-        'admin_technical_features',
+        $depends
     ],
     'external_dependencies': {
         'python': [],
     },
     'data': [
-        'wizard/module_prototyper_module_export_view.xml',
-        'views/module_prototyper_view.xml',
-        'views/ir_model_fields_view.xml',
-        'security/ir.model.access.csv',
+        $data
     ],
     'installable': True,
-    'application': True,
+    'auto_install': $auto_install,
 }

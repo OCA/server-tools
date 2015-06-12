@@ -19,28 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import fields, osv
 
-{
-    'name': 'Module Prototyper',
-    'version': '0.3',
-    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
-    'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
-    'license': 'AGPL-3',
-    'category': 'Others',
-    'summary': 'Prototype your module.',
-    'depends': [
-        'admin_technical_features',
-    ],
-    'external_dependencies': {
-        'python': [],
-    },
-    'data': [
-        'wizard/module_prototyper_module_export_view.xml',
-        'views/module_prototyper_view.xml',
-        'views/ir_model_fields_view.xml',
-        'security/ir.model.access.csv',
-    ],
-    'installable': True,
-    'application': True,
-}
+
+class ir_model_fields(osv.osv):
+    _inherit = "ir.model.fields"
+
+    _columns = {
+        'notes': fields.text('Notes'),
+    }

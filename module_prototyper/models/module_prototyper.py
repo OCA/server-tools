@@ -61,7 +61,7 @@ class ModulePrototyper(models.Model):
             ('Other proprietary', 'Other Proprietary')
         ],
         string='License',
-        default=licenses.AGPL3_L,
+        default=licenses.AGPL3,
     )
     name = fields.Char(
         'Technical Name', required=True,
