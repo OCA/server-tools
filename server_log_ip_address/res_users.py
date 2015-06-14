@@ -19,7 +19,6 @@
 ###############################################################################
 
 from openerp import models
-from openerp import SUPERUSER_ID
 from openerp.http import request
 import logging
 
@@ -29,7 +28,7 @@ _logger = logging.getLogger(__name__)
 class ResUsers(models.Model):
     _inherit = "res.users"
 
-    def _get_ipaddress(self, cr, uid, context=None):
+    def _get_ipaddress(self):
         if 'HTTP_X_FORWARDED_FOR' in request.httprequest.environ:
             ip_adds = request.httprequest.environ[
                 'HTTP_X_FORWARDED_FOR'].split(",")
@@ -38,31 +37,17 @@ class ResUsers(models.Model):
             ip = request.httprequest.environ['REMOTE_ADDR']
         return ip
 
-    def _get_log_info(self, cr, uid, db, login, x_ctx=''):
+    def _get_log_info(self, db, login, x_ctx=''):
         msg = "%s from %s using database %s with IP address: %s " \
-            % (x_ctx, login, db, self._get_ipaddress(cr, SUPERUSER_ID))
+            % (x_ctx, login, db, self._get_ipaddress())
         _logger.info(msg)
         return True
 
     def _login(self, db, login, password):
 
         user_id = super(ResUsers, self)._login(db, login, password)
-        cr = self.pool.cursor()
-        try:
-            if user_id:
-                self._get_log_info(cr,
-                                   SUPERUSER_ID,
-                                   db,
-                                   login,
-                                   x_ctx='Login Successfully')
-            else:
-                self._get_log_info(cr,
-                                   SUPERUSER_ID,
-                                   db,
-                                   login,
-                                   x_ctx='Login Failed')
-        except:
-            _logger.info("Something went wrong : no cursor !")
-        finally:
-            cr.close()
+        if user_id:
+            self._get_log_info(db, login, x_ctx='Login Successfully')
+        else:
+            self._get_log_info(db, login, x_ctx='Login Failed')
         return user_id
