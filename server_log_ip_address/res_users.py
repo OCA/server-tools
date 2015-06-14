@@ -45,21 +45,24 @@ class ResUsers(models.Model):
         return True
 
     def _login(self, db, login, password):
-        cr = self.pool.cursor()
+
         user_id = super(ResUsers, self)._login(db, login, password)
-
-        if user_id:
-            self._get_log_info(cr,
-                               SUPERUSER_ID,
-                               db,
-                               login,
-                               x_ctx='Login Successfully')
-        else:
-            self._get_log_info(cr,
-                               SUPERUSER_ID,
-                               db,
-                               login,
-                               x_ctx='Login Failed')
-
-        cr.close()
+        cr = self.pool.cursor()
+        try:
+            if user_id:
+                self._get_log_info(cr,
+                                   SUPERUSER_ID,
+                                   db,
+                                   login,
+                                   x_ctx='Login Successfully')
+            else:
+                self._get_log_info(cr,
+                                   SUPERUSER_ID,
+                                   db,
+                                   login,
+                                   x_ctx='Login Failed')
+        except:
+            _logger.info("Something went wrong : no cursor !")
+        finally:
+            cr.close()
         return user_id
