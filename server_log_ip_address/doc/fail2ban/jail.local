@@ -1,0 +1,9 @@
+# This config assumes odoo is behind a proxy (Apache or Nginx)
+# If you run Odoo stand-alone set port to 8069 or whatever port Odoo is listening to
+# Adjust also the logpath
+[odoo]
+enabled = true
+port    = http,https
+filter  = odoo
+logpath = /var/log/odoo/odoo-server.log
+maxretry = 3
