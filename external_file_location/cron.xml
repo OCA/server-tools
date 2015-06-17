@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.cron" id="cronjob_run_exchange_tasks">
+            <field name='name'>Run file exchange tasks</field>
+            <field name='interval_number'>30</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="doall" eval="False" />
+            <field name="model">external.file.task</field>
+            <field name="function">_run</field>
+            <field name="args">([])</field>
+        </record>
+
+    </data>
+</openerp>
