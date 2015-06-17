@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_location_form" model="ir.ui.view">
+            <field name="model">external.file.location</field>
+            <field name="arch" type="xml">
+                <form string="Location" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <div class="oe_title" style="width: 390px;" colspan="4">
+                                <label class="oe_edit_only" for="name" string="Name"/>
+                                <h1><field name="name" class="oe_inline"/></h1>
+                            </div>
+                            <newline/>
+                            <field name="protocol" colspan="2"/>
+                            <newline/>
+                            <field name="address" colspan="2"/>
+                            <field name="port" colspan="2" attrs="{'invisible': [('hide_port', '=', True)], 'required': [('hide_port', '=', False)]}"/>
+                            <field name="login" colspan="2" attrs="{'invisible': [('hide_login', '=', True)], 'required': [('hide_login', '=', False)]}"/>
+                            <field name="password" password="1" colspan="2" attrs="{'invisible': [('hide_password', '=', True)]}"/>
+                            <separator string="Tasks" colspan="4"/>
+                            <field name="task_ids" colspan="4" nolabel="1" context="{'hide_location': True, 'protocol': protocol}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="name"/>
+                                    <field name="method"/>
+                                    <field name="filename"/>
+                                    <field name="filepath"/>
+                                    <button name="run" type="object" string="Run" icon="gtk-execute"/>
+                                </tree>
+                            </field>
+                            <field name="hide_login" invisible="1"/>
+                            <field name="hide_password" invisible="1"/>
+                            <field name="hide_port" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_location_tree" model="ir.ui.view">
+            <field name="model">external.file.location</field>
+            <field name="arch" type="xml">
+                <tree string="Location">
+                    <field name="name" select="1"/>
+                    <field name="protocol"/>
+                    <field name="address"/>
+                    <field name="login"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_location" model="ir.actions.act_window">
+            <field name="name">Locations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">external.file.location</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+        </record>
+
+        <menuitem id="menu_ir_location" 
+            parent="menu_file_exchange"
+            sequence="20"
+            action="action_location"/>
+
+    </data>
+</openerp>
+ 
