@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- SEARCH -->
+        <record id="attachment_metadata_view_search" model="ir.ui.view">
+            <field name="name">ir.attachment.metadata.search</field>
+            <field name="model">ir.attachment.metadata</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="external_file_location.view_external_attachment_search"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="fetchmail_server_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Views and menus for the new object prepare.ir.attachment.metadata -->
+        <record id="view_attachment_metadata_condition_tree" model="ir.ui.view">
+            <field name="name">view_attachment_metadata_condition_tree</field>
+            <field name="model">ir.attachment.metadata.condition</field>
+            <field name="arch" type="xml">
+                <tree string="Configuration for ir.attachment.metadata">
+                    <field name="from_email"/>
+                    <field name="mail_subject"/>
+                    <field name="type"/>
+                    <field name="file_extension"/>
+                    <field name="server_id"/>
+                </tree>
+           </field>
+        </record>
+
+        <record id="view_attachment_metadata_condition_form" model="ir.ui.view">
+            <field name="name">view_attachment_metadata_condition_form</field>
+            <field name="model">ir.attachment.metadata.condition</field>
+            <field name="arch" type="xml">
+                <form string="Configuration for ir.attachment.metadata">
+                    <sheet>
+                        <group col="4">
+                            <field name="from_email" attrs="{'required': [('type', '=', 'normal')]}"/>
+                            <field name="mail_subject" attrs="{'required': [('type', '=', 'normal')]}"/>
+                            <field name="type"/>
+                            <field name="file_extension"/>
+                            <field name="server_id"/>
+                        </group>
+                    </sheet>
+                </form>
+           </field>
+        </record>
+
+        <record id="action_attachment_metadata_configuration" model="ir.actions.act_window">
+            <field name="name">Configuration</field>
+            <field name="res_model">ir.attachment.metadata.condition</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_attachment_metadata_configuration"
+                  action="action_attachment_metadata_configuration"
+                  parent="external_file_location.menu_file_exchange"
+                  sequence="50" />
+
+    </data>
+</openerp>
+ 

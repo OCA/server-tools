@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_email_server_form">
+            <field name="model">fetchmail.server</field>
+            <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                </field>
+                <field name="object_id" position="after">
+                    <field name="file_type"/> <!-- TODO attrs="{'invisible': [('object_id','!=', 'file.document')]}"/>-->
+                </field>
+                <field name="action_id" position="after">
+                    <field name="attachment_metadata_condition_ids" nolabel="1" colspan="4"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
