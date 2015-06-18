@@ -43,8 +43,5 @@ the recipient is not found in the system.
     ],
     'demo': [],
     'test': [],
-    'external_dependencies': {
-        'python': ['num2words'],
-    },
     'installable': True,
 }
