@@ -73,6 +73,13 @@ class SuperCalendarConfigurator(models.Model):
     @api.multi
     def _generate_record_from_line(self, configurator, line):
         super_calendar_pool = self.env['super.calendar']
+        values = self._get_record_values_from_line(configurator, line)
+        for record in values:
+            super_calendar_pool.create(values[record])
+
+    @api.multi
+    def _get_record_values_from_line(self, configurator, line):
+        res = {}
         current_pool = self.env[line.name.model]
         domain = line.domain and safe_eval(line.domain) or []
         current_record_ids = current_pool.search(domain)
@@ -137,7 +144,8 @@ class SuperCalendarConfigurator(models.Model):
                     'res_id': line.name.model+','+str(cur_rec['id']),
                     'model_id': line.name.id,
                 }
-                super_calendar_pool.create(super_calendar_values)
+                res[cur_rec] = super_calendar_values
+        return res
 
 
 class SuperCalendarConfiguratorLine(models.Model):
