@@ -177,7 +177,8 @@ class SuperCalendarConfiguratorLine(models.Model):
     description_field_id = fields.Many2one(
         comodel_name='ir.model.fields',
         string='Description field',
-        domain="[('model_id', '=', name), ('ttype', '=', 'char')]",
+        domain=("['&','|',('ttype', '=', 'char'),('ttype', '=', 'text'),"
+                "('model_id', '=', name)]"),
     )
     description_code = fields.Text(
         string='Description field',
