@@ -24,14 +24,12 @@
                     <field name="line_ids" nolabel="1" colspan="4">
                         <tree string="Lines">
                             <field name="name"/>
-                            <field name="description"/>
                             <field name="domain"/>
                         </tree>
                         <form string="Line">
                             <group>
                                 <group>
                                     <field name="name"/>
-                                    <field name="description"/>
                                     <field name="domain"/>
                                     <field name="user_field_id"/>
                                 </group>
@@ -80,7 +78,6 @@
                     <field name="user_id"/>
                     <field name="configurator_id"/>
                     <field name="model_id"/>
-                    <field name="model_description"/>
                 </tree>
             </field>
         </record>
@@ -98,7 +95,6 @@
                             <field name="user_id" readonly="1"/>
                             <field name="configurator_id" readonly="1"/>
                             <field name="model_id" readonly="1"/>
-                            <field name="model_description" readonly="1"/>
                             <field name="res_id" readonly="1"/>
                         </group>
                     </sheet>
@@ -111,7 +107,6 @@
             <field name="model">super.calendar</field>
             <field name="arch" type="xml">
                 <calendar string="Calendar" color="model_id" date_start="date_start" date_delay="duration" quick_add="false">
-                <!--The color attribute should be: model_description but v8 calendars require many2one fields-->
                     <field name="name"/>
                 </calendar>
             </field>
@@ -125,7 +120,6 @@
                     <field name="name"/>
                     <field name="configurator_id" select="1"/>
                     <field name="model_id" select="1"/>
-                    <field name="model_description" select="1"/>
                     <field name="user_id" widget="selection" >
                         <filter domain="[('user_id','=',uid)]" help="My Items" icon="terp-personal"/>
                     </field>
