@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* super_calendar_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-23 21:07+0000\n"
+"PO-Revision-Date: 2015-06-23 17:09-0500\n"
+"Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
+"Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. module: super_calendar_product
+#: code:addons/super_calendar_product/models/super_calendar.py:62
+#, python-format
+msgid "Error"
+msgstr "Erreur"
+
+#. module: super_calendar_product
+#: view:super.calendar:super_calendar_product.super_calendar_search
+msgid "Group all elements associated to the same product."
+msgstr "Regrouper tous les éléments associés au même produit."
+
+#. module: super_calendar_product
+#: view:super.calendar:super_calendar_product.super_calendar_search
+#: field:super.calendar,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: super_calendar_product
+#: field:super.calendar.configurator.line,product_field_id:0
+msgid "Product field"
+msgstr "Champ produit"
+
+#. module: super_calendar_product
+#: code:addons/super_calendar_product/models/super_calendar.py:63
+#, python-format
+msgid "The 'Product' field of record %s (%s) does not refer to product.product"
+msgstr ""
+"Le champ 'Produit' de l'enregistrement %s (%s) ne réfère pas à product."
+"product"
