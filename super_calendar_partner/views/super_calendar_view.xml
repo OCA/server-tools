@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Configurator -->
+
+    <record model="ir.ui.view" id="super_calendar_configurator_form">
+       <field name="name">super_calendar_configurator_form</field>
+       <field name="model">super.calendar.configurator</field>
+       <field name="inherit_id" ref="super_calendar.super_calendar_configurator_form"/>
+       <field name="arch" type="xml">
+
+         <xpath expr="//group[@string='Description']" position="before">
+           <group string="Links">
+             <field name="partner_field_id" />
+           </group>
+         </xpath>
+
+       </field>
+     </record>
+
+
+    <!-- Calendar -->
+
+    <record id="super_calendar_tree" model="ir.ui.view">
+      <field name="name">super_calendar_tree</field>
+      <field name="inherit_id" ref="super_calendar.super_calendar_tree"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="model_id" position="after">
+          <field name="partner_id" />
+        </field>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="super_calendar_form">
+      <field name="name">super_calendar_form</field>
+      <field name="inherit_id" ref="super_calendar.super_calendar_form"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="res_id" position="after">
+          <group string="Links">
+            <field name="partner_id" />
+          </group>
+        </field>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="super_calendar_search">
+      <field name="name">super_calendar_search</field>
+      <field name="inherit_id" ref="super_calendar.super_calendar_search"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="user_id" position="after">
+          <field name="partner_id" filter_domain="['|','|',('partner_id.display_name','ilike',self),('partner_id.ref','=',self),('partner_id.email','ilike',self)]"/>
+        </field>
+
+        <xpath expr="//group[@string='Extended Filters...']" position="after">
+          <group expand="1" string="Group By">
+            <filter string="Partner"
+                    name="group_partner"
+                    context="{'group_by':'partner_id'}"
+                    help="Group all elements associated to the same partner."/>
+          </group>
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</openerp>
