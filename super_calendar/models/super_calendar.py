@@ -131,7 +131,6 @@ class SuperCalendarConfigurator(models.Model):
 
                 super_calendar_values = {
                     'name': name,
-                    'model_description': line.description,
                     'date_start': cur_rec[f_date_start],
                     'duration': duration,
                     'user_id': (
@@ -154,11 +153,6 @@ class SuperCalendarConfiguratorLine(models.Model):
     name = fields.Many2one(
         comodel_name='ir.model',
         string='Model',
-        required=True,
-    )
-    description = fields.Char(
-        string='Description',
-        size=128,
         required=True,
     )
     domain = fields.Char(
@@ -215,11 +209,6 @@ class SuperCalendar(models.Model):
     name = fields.Char(
         string='Description',
         size=512,
-        required=True,
-    )
-    model_description = fields.Char(
-        string='Model Description',
-        size=128,
         required=True,
     )
     date_start = fields.Datetime(
