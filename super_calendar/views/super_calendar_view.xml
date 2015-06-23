@@ -36,23 +36,27 @@
                                 <group>
                                     <field name="date_start_field_id"/>
                                     <field name="duration_field_id"/>
-                                    <field name="date_stop_field_id" attrs="{'readonly':[('duration_field_id','!=',False)]}"/>
+                                    <field name="date_stop_field_id"
+                                           attrs="{'readonly':[('duration_field_id','!=',False)], 'visible': [('duration_field_id','!=',False)]}"/>
                                 </group>
                             </group>
                             <group string="Description">
                                 <field name="description_type"/>
                                 <newline/>
-                                <field name="description_field_id" attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
+                                <field name="description_field_id"
+                                       attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
                                 <group colspan="4" col="1" attrs="{'invisible':[('description_type','!=','code')]}">
                                     <label string="Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'" />
-                                    <field name="description_code" nolabel="1" attrs="{'required':[('description_type','==','code')]}"/>
+                                    <field name="description_code" nolabel="1"
+                                           attrs="{'required':[('description_type','==','code')]}"/>
                                 </group>
                             </group>
 
                         </form>
                     </field>
                     <newline/>
-                    <button name="generate_calendar_records" string="Generate Calendar" type="object" icon="gtk-go-forward" colspan="2"/>
+                    <button name="generate_calendar_records"
+                            string="Generate Calendar" type="object" icon="gtk-go-forward" colspan="2"/>
                 </form>
             </field>
         </record>
@@ -106,7 +110,9 @@
             <field name="name">super_calendar</field>
             <field name="model">super.calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Calendar" color="model_id" date_start="date_start" date_delay="duration" quick_add="false">
+                <calendar string="Calendar" color="model_id"
+                          date_start="date_start" date_delay="duration"
+                          quick_add="false">
                     <field name="name"/>
                 </calendar>
             </field>
@@ -141,10 +147,15 @@
             <field name="view_id" ref="super_calendar"/>
         </record>
 
-        <menuitem id="super_calendar_menu" name="Super Calendar" action="super_calendar_action"/>
-        <menuitem id="super_calendar_calendar" name="Calendar" parent="super_calendar_menu" />
-        <menuitem id="super_calendar_calendar_calendar" name="Calendar" parent="super_calendar_calendar" action="super_calendar_action"/>
-        <menuitem id="super_calendar_configuration" name="Configuration" parent="super_calendar_menu" />
-        <menuitem id="super_calendar_configurators" name="Configurators" parent="super_calendar_configuration" action="super_calendar_configurator"/>
+        <menuitem id="super_calendar_menu" name="Super Calendar"
+                  action="super_calendar_action"/>
+        <menuitem id="super_calendar_calendar" name="Calendar"
+                  parent="super_calendar_menu" />
+        <menuitem id="super_calendar_calendar_calendar" name="Calendar"
+                  parent="super_calendar_calendar" action="super_calendar_action"/>
+        <menuitem id="super_calendar_configuration" name="Configuration"
+                  parent="super_calendar_menu" />
+        <menuitem id="super_calendar_configurators" name="Configurators"
+                  parent="super_calendar_configuration" action="super_calendar_configurator"/>
     </data>
 </openerp>
