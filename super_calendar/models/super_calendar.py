@@ -54,16 +54,22 @@ class SuperCalendarConfigurator(models.Model):
         string='Lines',
     )
 
-    @api.multi
-    def generate_calendar_records(self):
-        configurator_ids = self.search([])
+    def _clear_super_calendar_records(self):
+        """ Remove old super_calendar records """
         super_calendar_pool = self.env['super.calendar']
-
-        # Remove old records
         super_calendar_ids = super_calendar_pool.search([])
         super_calendar_ids.unlink()
 
+    @api.multi
+    def generate_calendar_records(self):
+        """ At every CRON execution, every 'super calendar' data is deleted
+        and regenerated again. """
+
+        # Remove old records
+        self._clear_super_calendar_records()
+
         # Rebuild all calendar records
+        configurator_ids = self.search([])
         for configurator in configurator_ids:
             for line in configurator.line_ids:
                 self._generate_record_from_line(configurator, line)

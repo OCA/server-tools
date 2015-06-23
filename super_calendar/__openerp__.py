@@ -28,7 +28,7 @@
     'category': 'Generic Modules/Others',
     'summary': 'This module allows to create configurable calendars.',
     'author': ('Agile Business Group, '
-               'Alejandro Santana <alejandrosantana@anubia.es>, '
+               'Alejandro Santana, '
                'Odoo Community Association (OCA)'),
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
