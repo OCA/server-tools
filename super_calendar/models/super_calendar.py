@@ -173,6 +173,7 @@ class SuperCalendarConfiguratorLine(models.Model):
         [('field', 'Field'),
          ('code', 'Code')],
         string="Description Type",
+        default='field',
     )
     description_field_id = fields.Many2one(
         comodel_name='ir.model.fields',
