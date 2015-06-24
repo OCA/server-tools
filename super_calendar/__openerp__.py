@@ -2,11 +2,13 @@
 ##############################################################################
 #
 #    Copyright (c) All rights reserved:
-#        (c) 2012      Agile Business Group sagl (<http://www.agilebg.com>)
+#        (c) 2012-2015 Agile Business Group sagl (<http://www.agilebg.com>)
 #                      Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #        (c) 2012      Domsense srl (<http://www.domsense.com>)
 #        (c) 2015      Anubía, soluciones en la nube,SL (http://www.anubia.es)
 #                      Alejandro Santana <alejandrosantana@anubia.es>
+#        (c) 2015      Savoir-faire Linux <http://www.savoirfairelinux.com>)
+#                      Agathe Mollé <agathe.molle@savoirfairelinux.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -29,6 +31,7 @@
     'summary': 'This module allows to create configurable calendars.',
     'author': ('Agile Business Group, '
                'Alejandro Santana, '
+               'Agathe Mollé, '
                'Odoo Community Association (OCA)'),
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
