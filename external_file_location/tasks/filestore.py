@@ -42,10 +42,12 @@ class FileStoreImportTask(FileStoreTask):
     _synchronize_type = 'import'
 
     def run(self):
+        att_ids = []
         with osfs.OSFS(self.host) as fs_conn:
             files_to_process = self._get_files(fs_conn, self.path)
             for file_to_process in files_to_process:
-                self._process_file(fs_conn, file_to_process)
+                att_ids.append(self._process_file(fs_conn, file_to_process))
+        return att_ids
 
 
 class FileStoreExportTask(FileStoreTask):

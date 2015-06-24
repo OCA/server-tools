@@ -92,7 +92,7 @@ class AbstractFSTask(AbstractTask):
     def _process_file(self, conn, file_to_process):
             if self.md5_check:
                 self.ext_hash = self._get_hash(file_to_process[1], conn)
-            self._handle_new_source(
+            att_id = self._handle_new_source(
                 conn,
                 self.path,
                 self.file_name,
@@ -108,6 +108,7 @@ class AbstractFSTask(AbstractTask):
                     conn,
                     file_to_process[1],
                     self._source_name(self.move_path, file_to_process[0]))
+            return att_id
 
     def _handle_existing_target(self, fs_conn, target_name, filedata):
         raise Exception("%s already exists" % target_name)

@@ -44,13 +44,15 @@ class SftpImportTask(SftpTask):
     def run(self):
         connection_string = "{}:{}".format(self.host, self.port)
         root = "/home/{}".format(self.user)
+        att_ids = []
         with sftpfs.SFTPFS(connection=connection_string,
                            root_path=root,
                            username=self.user,
                            password=self.pwd) as sftp_conn:
             files_to_process = self._get_files(sftp_conn, self.path)
             for file_to_process in files_to_process:
-                self._process_file(sftp_conn, file_to_process)
+                att_ids.append(self._process_file(sftp_conn, file_to_process))
+        return att_ids
 
 
 class SftpExportTask(SftpTask):
