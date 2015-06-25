@@ -4,4 +4,8 @@
 #    __openerp__.py file at the root folder of this module.    #
 ################################################################
 
-from . import super_calendar
+from . import (
+    super_calendar,
+    super_calendar_configurator,
+    super_calendar_configurator_line,
+)

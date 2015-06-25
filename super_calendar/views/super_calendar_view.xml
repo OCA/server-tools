@@ -93,13 +93,13 @@
                 <form string="Calendar">
                     <sheet>
                         <group>
-                            <field name="name" readonly="1"/>
-                            <field name="date_start" readonly="1"/>
-                            <field name="duration" readonly="1"/>
-                            <field name="user_id" readonly="1"/>
-                            <field name="configurator_id" readonly="1"/>
-                            <field name="model_id" readonly="1"/>
-                            <field name="res_id" readonly="1"/>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                            <field name="duration"/>
+                            <field name="user_id"/>
+                            <field name="configurator_id"/>
+                            <field name="model_id"/>
+                            <field name="res_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -132,7 +132,6 @@
                     <newline/>
                     <group expand="0" string="Extended Filters..." colspan="4" col="8">
                         <field name="date_start" />
-                        <!--<field name="date_stop" />-->
                         <field name="duration" />
                     </group>
                 </search>

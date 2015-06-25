@@ -29,46 +29,57 @@
 from openerp import fields, models
 
 
-def _models_get(self):
-    model_obj = self.env['ir.model']
-    model_list = model_obj.search([])
-    return [(model.model, model.name) for model in model_list]
+class SuperCalendarConfiguratorLine(models.Model):
+    _name = 'super.calendar.configurator.line'
 
-
-class SuperCalendar(models.Model):
-    _name = 'super.calendar'
-
-    name = fields.Char(
-        string='Description',
+    name = fields.Many2one(
+        comodel_name='ir.model',
+        string='Model',
         required=True,
-        readonly=True,
     )
-    date_start = fields.Datetime(
-        string='Start date',
-        required=True,
-        readonly=True,
-    )
-    duration = fields.Float(
-        string='Duration',
-        readonly=True,
-    )
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        string='User',
-        readonly=True,
+    domain = fields.Char(
+        string='Domain',
     )
     configurator_id = fields.Many2one(
         comodel_name='super.calendar.configurator',
         string='Configurator',
-        readonly=True,
     )
-    res_id = fields.Reference(
-        selection=_models_get,
-        string='Resource',
-        readonly=True,
+    description_type = fields.Selection(
+        [('field', 'Field'),
+         ('code', 'Code')],
+        string="Description Type",
+        default='field',
     )
-    model_id = fields.Many2one(
-        comodel_name='ir.model',
-        string='Model',
-        readonly=True,
+    description_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='Description field',
+        domain="[('ttype', 'in', ('char', 'text')), ('model_id', '=', name)]",
+    )
+    description_code = fields.Text(
+        string='Description field',
+        help=("""Use '${o}' to refer to the involved object.
+E.g.: '${o.project_id.name}'"""),
+    )
+    date_start_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='Start date field',
+        domain="[('ttype', 'in', ('datetime', 'date')), "
+               "('model_id', '=', name)]",
+        required=True,
+    )
+    date_stop_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='End date field',
+        domain="[('ttype', 'in', ('datetime', 'date')), "
+               "('model_id', '=', name)]",
+    )
+    duration_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='Duration field',
+        domain="[('ttype', '=', 'float'), ('model_id', '=', name)]",
+    )
+    user_field_id = fields.Many2one(
+        comodel_name='ir.model.fields',
+        string='User field',
+        domain="[('ttype', '=', 'many2one'), ('model_id', '=', name)]",
     )
