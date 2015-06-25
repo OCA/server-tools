@@ -20,12 +20,10 @@ Python code.
 Configuration
 =============
 
-After installation of the module, you can import the mixin class that it
-provides and have any model inherit from it in your python class definition.
-
-You can then assign your class a *_language_path* member to indicate where
-to find the language into which its reports are to be translated. See the
-following code example:
+With a dependency on this module, you can have any model inherit from the mixin
+model in your python class definition. You can then assign your class a
+*_language_path* member to indicate where to find the language into which its
+reports are to be translated. See the following code example:
 
 .. code::
 
