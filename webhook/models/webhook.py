@@ -132,4 +132,13 @@ class Webhook(models.TransientModel):
             raise exceptions.ValidationError(_(
                 'att "%s" not found' % self.env.method_event_name))
         webhook_method = getattr(self, self.env.method_event_name)
-        return webhook_method()
+        res_webhook_method = webhook_method()
+        # TODO: Why return a list and not the value returned
+        res_webhook_method2 = isinstance(res_webhook_method, list) \
+            and len(res_webhook_method) == 1 and \
+            res_webhook_method[0] or res_webhook_method
+        if res_webhook_method2 is NotImplemented:
+            raise exceptions.ValidationError(_(
+                'Not implemented method "%s" yet' % (
+                    self.env.method_event_name)))
+        return res_webhook_method

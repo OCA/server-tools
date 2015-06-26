@@ -10,8 +10,7 @@
 #                moylop260@vauxoo.com
 ############################################################################
 
-from pprint import pprint
-import sys
+# from pprint import pprint
 
 from openerp import api, models
 
@@ -38,6 +37,7 @@ class Webhook(models.Model):
     @api.one
     def run_webhook_github_pull_request(self):
         """
+        Implementation example:
         sys.stdout.write("I'm here: run_webhook_github_pull_request\n")
         # pprint(self.env.request.jsonrequest)
         sys.stdout.write("PR change in: %s/%s/pull/%s\n" % (
@@ -46,11 +46,12 @@ class Webhook(models.Model):
             self.env.request.jsonrequest['pull_request']['number']
         ))
         """
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_push(self):
         """
+        Implementation example:
         sys.stdout.write("I'm here: run_webhook_github_push\n")
         pprint(self.env.request.jsonrequest)
         sys.stdout.write("Push change in: %s/%s\n" % (
@@ -63,83 +64,81 @@ class Webhook(models.Model):
             self.env.request.jsonrequest['ref'] + "\n")
         sys.stdout.write(
             "self.env.request.jsonrequest['base_ref']")
-        sys.stdout.write(
-            self.env.request.jsonrequest['base_ref'] + "\n")
         """
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_commit_comment(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_create(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_delete(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_deployment(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_deployment_status(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_fork(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_gollum(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_issue_comment(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_issues(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_member(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_membership(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_page_build(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_public(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_pull_request_review_comment(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_repository(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_release(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_status(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_team_add(self):
-        return True
+        return NotImplemented
 
     @api.one
     def run_webhook_github_watch(self):
-        return True
+        return NotImplemented
