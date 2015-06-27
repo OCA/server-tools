@@ -3,9 +3,9 @@
 
 Language path mixin
 ===================
-This is a technical module to restore the possibility of Odoo to print reports
-in other languages than the user's language (for instance, the customer's
-language in the case of a sale order).
+This is a technical module to restore the possibility of Odoo to print RML
+reports in other languages than the user's language (for instance, the
+customer's language in the case of a sale order).
 
 Odoo 8.0 has lost that capability due to an unlucky combination of technical
 aspects of the deprecated RML report functionality and the new API. While the
