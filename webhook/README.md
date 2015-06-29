@@ -2,73 +2,68 @@ Webhook
 ---------------
 
 Module to receive [global webhooks](https://es.wikipedia.org/wiki/Webhook) events.
-This module create dummy method to process events you will need create a new module to add your logic to process the events.
+This module invoke methods to process webhook events.
+You will need create a new module to add your logic to process the events with methods called:
+`def run_CONSUMER_EVENT*`
+Example with gihub consumer and push event.
+```python
+@api.one
+def run_github_push_task(self):
+    # You will have all request data in 
+    # variable: self.env.request
+    pass
+```
 
-Your new module need have a inherit to `webhook` class and add override methods to work with your custom `webhook` module.
+Where CONSUMER is the name of you webhook consumer. e.g. github (Extract from field `name` of `webhook` model)
+Where EVENT is the name of the event from webhook `request` data.
+Where `*` is your particular method to process this event.
 
-Method override `set_driver_remote_address` - Update dict `self.env.webhook_driver_address` key equal to name of your webhook consumer and value with list of all ip or subnet address (with `ip/integer`) owned by your webhook consumer.
+To configure a new webhook you need add all ip or subnet address (with `ip/integer`) owned by your webhook consumer in webhook.address model as data.
+
 Example with github:
-```python
-@api.one
-def set_driver_remote_address(self):
-    super(Webhook, self).set_driver_remote_address()
-    self.env.webhook_driver_address.update({
-        'github': ['192.30.252.0/22'] # https://help.github.com/articles/what-ip-addresses-does-github-use-that-i-should-whitelist/#current-ip-addresses
-    })
+```xml
+<!--webhook github data of remote address-->
+<record model="webhook.address" id="webhook_address_github">
+    <field name="name">192.30.252.0/22</field>
+    <field name="webhook_id" ref="webhook_github"/>
+</record>
 ```
 
-Method override `set_event` - Update your variable `self.env.webhook_event` with logic to get event from request of your webhook consumer.
+You need to add a python code to extract event name from webhook request info into `python_code_get_event` field of webhook model.
+You can get all full data of request webhook from variable `request`
 Example with github:
-```python
-@api.one
-def set_event(self):
-    super(Webhook, self).set_event()
-    if not self.env.webhook_event and self.env.webhook_driver_name == 'github':
-        self.env.webhook_event = self.env.request.httprequest.headers.get('X-Github-Event')
+```xml
+<!--webhook github data-->
+<record model="webhook" id="webhook_github">
+    <field name="name">github</field>
+    <field name="python_code_get_event">request.httprequest.headers.get('X-Github-Event')</field>
+</record>
 ```
 
+Full example of create a new webhook configuration data.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
 
-Add new methods named `"run_webhook_" + consumer_name + "_" + consumer_event` auto invoke in each webhook request.
-Example with githup:
-```python
-@api.one
-def run_webhook_github_push(self):
-    # logic to run webhook event called "push" of "github"
-    sys.stdout.write("Push event in: %s/%s\n" % (
-        self.env.request.jsonrequest['repository']['owner']['name'],
-        self.env.request.jsonrequest['repository']['name']
-    ))
+        <!--webhook github data-->
+        <record model="webhook" id="webhook_github">
+            <field name="name">github</field>
+            <field name="python_code_get_event">request.httprequest.headers.get('X-Github-Event')</field>
+        </record>
+        <!--webhook github data of remote address-->
+        <record model="webhook.address" id="webhook_address_github">
+            <field name="name">192.30.252.0/22</field>
+            <field name="webhook_id" ref="webhook_github"/>
+        </record>
+
+    </data>
+</openerp>
 ```
 
-You can access to full request webhook data in variable `self.env.request`
+External Dependecies
+---------------
+Install python package ipaddress
+You can use pip to install
+`pip install ipaddress`
 
-Complete example with github:
-```python
-NAME_OF_YOUR_WEBHOOK_CONSUMER='github'
-IP_OR_SUBNET_YOUR_WEBHOOK = ['192.30.252.0/22'] # https://help.github.com/articles/what-ip-addresses-does-github-use-that-i-should-whitelist/#current-ip-addresses
-
-class Webhook(models.Model):
-    _inherit = 'webhook'
-
-    @api.one
-    def set_driver_remote_address(self):
-        super(Webhook, self).set_driver_remote_address()
-        self.env.webhook_driver_address.update({
-            NAME_OF_YOUR_WEBHOOK_CONSUMER: IP_OR_SUBNET_YOUR_WEBHOOK
-        })
-
-    @api.one
-    def set_event(self):
-        super(Webhook, self).set_event()
-        if not self.env.webhook_event and \
-                self.env.webhook_driver_name == NAME_OF_YOUR_WEBHOOK_CONSUMER:
-            self.env.webhook_event = self.env.request.httprequest.headers.get('X-Github-Event')
-
-    @api.one
-    def run_webhook_github_push(self):
-        # logic to run webhook event called "push" of "github"
-        sys.stdout.write("Push event in: %s/%s\n" % (
-            self.env.request.jsonrequest['repository']['owner']['name'],
-            self.env.request.jsonrequest['repository']['name']
-        ))
-```

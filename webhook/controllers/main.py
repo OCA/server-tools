@@ -10,9 +10,12 @@
 #                moylop260@vauxoo.com
 ############################################################################
 
+import pprint
+
 from openerp.addons.web import http
 from openerp.http import request
-from openerp import SUPERUSER_ID
+from openerp import SUPERUSER_ID, exceptions
+from openerp.tools.translate import _
 
 
 class WebhookController(http.Controller):
@@ -27,8 +30,10 @@ class WebhookController(http.Controller):
         '''
         cr, context = request.cr, request.context
         webhook_registry = request.registry['webhook']
-        webhook_id = webhook_registry.create(
-            cr, SUPERUSER_ID, {}, context=context)
-        webhook = webhook_registry.browse(
-            cr, SUPERUSER_ID, webhook_id, context=context)
+        webhook = webhook_registry.search_with_request(
+            cr, SUPERUSER_ID, request, context=context)
+        if not webhook:
+            raise exceptions.ValidationError(_(
+                'webhook consumer not found %s' % (
+                    pprint.pformat(request.jsonrequest)[:450])))
         webhook.run_webhook(request)
