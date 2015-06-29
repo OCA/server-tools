@@ -20,20 +20,20 @@
     "name": "Report Management",
     "version": "1.0",
     "depends": [
-        "base",
         "report",
     ],
     "author": "OdooMRP team, "
               "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA), ",
     "website": "http://www.odoomrp.com",
+    'license': 'AGPL-3',
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
     "category": "Tools",
-    "summary": "",
     "data": [
         "wizard/report_duplicate_view.xml",
         "views/report_xml_view.xml",
