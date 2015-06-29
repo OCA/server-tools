@@ -8,14 +8,16 @@
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <form>
-                    <field name="name"/>
-                    <field name="address_ids" widget="one2many_list">
-                        <tree string="Address" editable="top">
-                            <field name="name"/>
-                        </tree>
-                    </field>
-                    <field name="python_code_get_event"/>
-                    <field name="active"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="address_ids" widget="one2many_list">
+                            <tree string="Address" editable="top">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                        <field name="python_code_get_event"/>
+                        <field name="active"/>
+                    </group>
                 </form>
             </field>
         </record>
