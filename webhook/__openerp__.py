@@ -18,7 +18,12 @@
     'depends': [
         'web',
     ],
+    'external_dependencies': {
+        'python': ['ipaddress'],
+    },
     'data': [
+        'views/webhook_views.xml',
+        'data/webhook_data.xml',
     ],
     'qweb': [
     ],
