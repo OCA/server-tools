@@ -69,7 +69,7 @@ class IrActionsReport(models.Model):
                     name, qweb_name, module, model, arch)
             if not report_view_ids:
                 arch = ('<?xml version="1.0"?>\n'
-                        '<t t-name="%s">\n</t>' % report_name)
+                        '<t t-name="%s">\n</t>' % report)
                 report_xml._create_qweb(name, report_name, module, model, arch)
         return report_xml
 
