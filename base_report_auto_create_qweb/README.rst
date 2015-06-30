@@ -1,8 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Report Management
-=================
+Report qweb auto generation
+===========================
 
 When creating a report in Settings > Technical > Actions > Reports or
 Settings > Technical > Reports > Reports it will create an empty Qweb template
