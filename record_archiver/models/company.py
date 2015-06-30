@@ -23,7 +23,7 @@ class Company(orm.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'lifespan_ids': fields.one2many(
+        'record_lifespan_ids': fields.one2many(
             'record.lifespan',
             'company_id',
             string="Record Lifespans"),
