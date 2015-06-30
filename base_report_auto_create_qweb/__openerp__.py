@@ -17,7 +17,7 @@
 ##############################################################################
 
 {
-    "name": "Report Management",
+    "name": "Report qweb auto generation",
     "version": "1.0",
     "depends": [
         "report",
