@@ -33,7 +33,14 @@ class WebhookController(http.Controller):
         webhook = webhook_registry.search_with_request(
             cr, SUPERUSER_ID, request, context=context)
         if not webhook:
+            remote_addr = ''
+            if hasattr(request, 'httprequest'):
+                if hasattr(request.httprequest, 'remote_addr'):
+                    remote_addr = request.httprequest.remote_addr
             raise exceptions.ValidationError(_(
-                'webhook consumer not found %s' % (
-                    pprint.pformat(request.jsonrequest)[:450])))
+                'webhook consumer from remote address [%s] '
+                'not found jsonrequest [%s]' % (
+                    remote_addr,
+                    pprint.pformat(request.jsonrequest)[:450]
+                )))
         webhook.run_webhook(request)
