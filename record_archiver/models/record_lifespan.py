@@ -39,9 +39,18 @@ class RecordLifespan(orm.Model):
     _order = 'model'
 
     _columns = {
-        'model': fields.char(
-            "Model",
-            required=True),
+        'model_id': fields.many2one(
+            'ir.model',
+            string='Model',
+            required=True,
+        ),
+        'model': fields.related(
+            'model_id', 'model',
+            string='Model Name',
+            type='char',
+            readonly=True,
+            store=True,
+        ),
         'months': fields.integer(
             "Months",
             required=True,
@@ -55,7 +64,7 @@ class RecordLifespan(orm.Model):
     }
 
     _sql_constraints = [
-        ('model_uniq', 'unique(model, company_id)',
+        ('model_uniq', 'unique(model_id, company_id)',
          "A model can only have 1 lifespan per company"),
         ('months_gt_0', 'check (months > 0)',
          "Months must be a value greater than 0"),
@@ -81,7 +90,7 @@ class RecordLifespan(orm.Model):
         model = self.pool[lifespan.model]
         domain = [('write_date', '<', expiration_date),
                   ('company_id', '=', lifespan.company_id.id)]
-        if 'state' in model._columns.keys():
+        if 'state' in model._columns:
             domain += [('state', 'in', ('done', 'cancel'))]
         return domain
 
@@ -95,12 +104,12 @@ class RecordLifespan(orm.Model):
 
         """
         today = datetime.today()
-        model = self.pool[lifespan.model]
+        model = self.pool.get(lifespan.model)
         if not model:
             raise orm.except_orm(
                 _('Error'),
                 _('Model %s not found') % lifespan.model)
-        if 'active' not in model._columns.keys():
+        if 'active' not in model._columns:
             raise orm.except_orm(
                 _('Error'),
                 _('Model %s has no active field') % lifespan.model)
