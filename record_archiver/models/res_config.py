@@ -29,8 +29,8 @@ class RecordArchiverConfigSettings(orm.TransientModel):
 
     _columns = {
         'company_id': fields.many2one('res.company', 'Company', required=True),
-        'lifespan_ids': fields.related(
-            'company_id', 'lifespan_ids',
+        'record_lifespan_ids': fields.related(
+            'company_id', 'record_lifespan_ids',
             string='Record Lifespans',
             type='one2many',
             relation='record.lifespan'),
@@ -63,8 +63,8 @@ class RecordArchiverConfigSettings(orm.TransientModel):
             return {'value': {}}
         company = self.pool.get('res.company'
                                 ).browse(cr, uid, company_id, context=context)
-        lifespan_ids = [l.id for l in company.lifespan_ids]
+        lifespan_ids = [l.id for l in company.record_lifespan_ids]
         values = {
-            'lifespan_ids': lifespan_ids,
+            'record_lifespan_ids': lifespan_ids,
         }
         return {'value': values}
