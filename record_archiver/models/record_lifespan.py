@@ -43,6 +43,7 @@ class RecordLifespan(orm.Model):
             'ir.model',
             string='Model',
             required=True,
+            domain=[('has_an_active_field', '=', True)],
         ),
         'model': fields.related(
             'model_id', 'model',
