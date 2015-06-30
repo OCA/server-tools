@@ -2,11 +2,11 @@
 <openerp>
   <data>
 
-    <record id="view_rusty_record_reaper_runner_config_settings" model="ir.ui.view">
-      <field name="name">rusty record reaper runner settings</field>
-      <field name="model">rusty.record.reaper.runner.config.settings</field>
+    <record id="view_record_archiver_config_settings" model="ir.ui.view">
+      <field name="name">record archiver settings</field>
+      <field name="model">record.archiver.config.settings</field>
       <field name="arch" type="xml">
-        <form string="Configure Rusty Reacord Reaper Runner" version="7.0" class="oe_form_configuration">
+        <form string="Configure Records Archiver" version="7.0" class="oe_form_configuration">
           <header>
             <button string="Apply" type="object" name="execute" class="oe_highlight"/>
             or
@@ -24,8 +24,10 @@
               </div>
             </div>
           </group>
-          <separator string="Record life span"/>
-          All following type of record will be harvested by the cron based on write_date. If a record has made his time, it will be deactivated.
+          <separator string="Record lifespan"/>
+          All following type of record will be harvested by the cron
+          based on write_date. If a record has made his time, it will be
+          deactivated.
           <group>
             <div>
               <div>
@@ -42,17 +44,17 @@
       </field>
     </record>
 
-    <record id="action_rusty_record_reaper_runner_config" model="ir.actions.act_window">
-      <field name="name">Configure Rusty Record Reaper Runner</field>
+    <record id="action_record_archiver_config" model="ir.actions.act_window">
+      <field name="name">Configure Records Archiver</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">rusty.record.reaper.runner.config.settings</field>
+      <field name="res_model">record.archiver.config.settings</field>
       <field name="view_mode">form</field>
       <field name="target">inline</field>
     </record>
 
-    <menuitem id="menu_rusty_record_reaper_runner_config" name="Rusty Record Reaper Runner"
+    <menuitem id="menu_record_archiver__config" name="Records Archiver"
               parent="base.menu_config"
-              sequence="70" action="action_rusty_record_reaper_runner_config"/>
+              sequence="70" action="action_record_archiver_config"/>
 
   </data>
 </openerp>

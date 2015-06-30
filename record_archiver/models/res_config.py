@@ -23,8 +23,8 @@ from openerp.osv import orm, fields
 _logger = logging.getLogger(__name__)
 
 
-class RustyRecordReaperRunnerConfigSettings(orm.TransientModel):
-    _name = 'rusty.record.reaper.runner.config.settings'
+class RecordArchiverConfigSettings(orm.TransientModel):
+    _name = 'record.archiver.config.settings'
     _inherit = 'res.config.settings'
 
     _columns = {
@@ -45,8 +45,8 @@ class RustyRecordReaperRunnerConfigSettings(orm.TransientModel):
     }
 
     def create(self, cr, uid, values, context=None):
-        rec_id = super(RustyRecordReaperRunnerConfigSettings, self
-                       ).create(cr, uid, values, context=context)
+        _super = super(RecordArchiverConfigSettings, self)
+        rec_id = _super.create(cr, uid, values, context=context)
         # Hack: to avoid some nasty bug, related fields are not written upon
         # record creation.
         # Hence we write on those fields here.

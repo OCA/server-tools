@@ -17,17 +17,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-{'name': 'Rusty Record Reaper Runner',
+{'name': 'Records Archiver',
  'version': '0.1',
  'description': """
- Define a cron job to deactivate old records in order to optimize performances.
+Create a cron job that deactivates old records in order to optimize
+performance.
 
- Records are deactivated base on last activity on them (write_date).
+Records are deactivated based on their last activity (write_date).
 
- You can configure lifespan of each type of record in
- Settings -> Configuration -> Rusty Record Reaper Runner
+You can configure lifespan of each type of record in
+`Settings -> Configuration -> Records Archiver`
 
- Lifespan is defined per record per company.
+Lifespan is defined per record per company.
  """,
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',

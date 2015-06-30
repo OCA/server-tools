@@ -29,9 +29,10 @@ _logger = logging.getLogger(__name__)
 
 
 class RecordLifespan(orm.Model):
-    """Instead of writing this info on ir.model
-    here is a new object to be able to configure rec lifespan
-    per company
+    """ Configure records lifespans per model
+
+    After the lifespan is expired (compared to the `write_date` of the
+    records), the records are deactivated.
     """
     _name = 'record.lifespan'
 
@@ -45,7 +46,7 @@ class RecordLifespan(orm.Model):
             "Months",
             required=True,
             help="Number of month after which the records will be set to "
-                 "inactive based on write date"),
+                 "inactive based on their write date"),
         'company_id': fields.many2one(
             'res.company',
             string="Company",
@@ -60,30 +61,27 @@ class RecordLifespan(orm.Model):
          "Months must be a value greater than 0"),
     ]
 
-    def _scheduler_rusty_record_reaper(self, cr, uid, context=None):
+    def _scheduler_record_archiver(self, cr, uid, context=None):
         lifespan_ids = self.search(cr, uid, [], context=context)
-        _logger.info('Record Reaper starts harvesting rusty records')
+        _logger.info('Records archiver starts archiving records')
         for lifespan_id in lifespan_ids:
             try:
-                self.harvest_rusty_records(
-                    cr, uid, [lifespan_id], context=context)
+                self.archive_records(cr, uid, [lifespan_id], context=context)
             except osv.except_osv as e:
-                _logger.error("Reaper error:\n%s", e[1])
+                _logger.error("Archiver error:\n%s", e[1])
         _logger.info('Rusty Records now rest in peace')
         return True
 
-    def harvest_rusty_records(self, cr, uid, ids, context=None):
+    def archive_records(self, cr, uid, ids, context=None):
         """ Search and deactivate old records for each configured lifespan
 
         Only done and cancelled records will be deactivated.
         """
-        if context is None:
-            context = {}
         lifespans = self.browse(cr, uid, ids, context=context)
         today = datetime.today()
         for lifespan in lifespans:
 
-            model = self.pool.get(lifespan.model)
+            model = self.pool[lifespan.model]
             if not model:
                 raise osv.except_osv(
                     _('Error'),
