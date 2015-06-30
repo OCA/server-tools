@@ -11,7 +11,7 @@
       <field name="numbercall">-1</field>
       <field eval="False" name="doall"/>
       <field eval="'record.lifespan'" name="model"/>
-      <field eval="'_scheduler_record_archiver'" name="function"/>
+      <field eval="'_scheduler_archive_records'" name="function"/>
       <field eval="'()'" name="args"/>
     </record>
 
