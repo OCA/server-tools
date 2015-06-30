@@ -21,7 +21,7 @@ import logging
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from openerp.osv import orm, fields, osv
+from openerp.osv import orm, fields
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 from openerp.tools.translate import _
 
@@ -61,50 +61,70 @@ class RecordLifespan(orm.Model):
          "Months must be a value greater than 0"),
     ]
 
-    def _scheduler_record_archiver(self, cr, uid, context=None):
+    def _scheduler_archive_records(self, cr, uid, context=None):
         lifespan_ids = self.search(cr, uid, [], context=context)
         _logger.info('Records archiver starts archiving records')
         for lifespan_id in lifespan_ids:
             try:
                 self.archive_records(cr, uid, [lifespan_id], context=context)
-            except osv.except_osv as e:
+            except orm.except_orm as e:
                 _logger.error("Archiver error:\n%s", e[1])
         _logger.info('Rusty Records now rest in peace')
         return True
 
-    def archive_records(self, cr, uid, ids, context=None):
-        """ Search and deactivate old records for each configured lifespan
+    def _archive_domain(self, cr, uid, lifespan, expiration_date,
+                        context=None):
+        """ Returns the domain used to find the records to archive.
 
-        Only done and cancelled records will be deactivated.
+        Can be inherited to change the archived records for a model.
         """
-        lifespans = self.browse(cr, uid, ids, context=context)
+        model = self.pool[lifespan.model]
+        domain = [('write_date', '<', expiration_date),
+                  ('company_id', '=', lifespan.company_id.id)]
+        if 'state' in model._columns.keys():
+            domain += [('state', 'in', ('done', 'cancel'))]
+        return domain
+
+    def _archive_lifespan_records(self, cr, uid, lifespan, context=None):
+        """ Archive the records for a lifespan, so for a model.
+
+        Can be inherited to customize the archive strategy.
+        The default strategy is to change the field ``active`` to False
+        on the records having a ``write_date`` older than the lifespan.
+        Only done and canceled records will be deactivated.
+
+        """
         today = datetime.today()
-        for lifespan in lifespans:
+        model = self.pool[lifespan.model]
+        if not model:
+            raise orm.except_orm(
+                _('Error'),
+                _('Model %s not found') % lifespan.model)
+        if 'active' not in model._columns.keys():
+            raise orm.except_orm(
+                _('Error'),
+                _('Model %s has no active field') % lifespan.model)
 
-            model = self.pool[lifespan.model]
-            if not model:
-                raise osv.except_osv(
-                    _('Error'),
-                    _('Model %s not found') % lifespan.model)
-            if 'active' not in model._columns.keys():
-                raise osv.except_osv(
-                    _('Error'),
-                    _('Model %s has no active field') % lifespan.model)
-            delta = relativedelta(months=lifespan.months)
-            expiration_date = (today - delta).strftime(DATE_FORMAT)
-            domain = [('write_date', '<', expiration_date),
-                      ('company_id', '=', lifespan.company_id.id)]
-            if 'state' in model._columns.keys():
-                domain += [('state', 'in', ('done', 'cancel'))]
-            rec_ids = model.search(cr, uid, domain, context=context)
+        delta = relativedelta(months=lifespan.months)
+        expiration_date = (today - delta).strftime(DATE_FORMAT)
 
-            if not rec_ids:
-                continue
-            # use a SQL query to bypass tracking always messages on write for
-            # object inheriting mail.thread
-            query = ("UPDATE %s SET active = FALSE WHERE id in %%s"
-                     ) % model._table
-            cr.execute(query, (tuple(rec_ids),))
-            _logger.info(
-                'Archived %s %s older than %s',
-                len(rec_ids), lifespan.model, expiration_date)
+        domain = self._archive_domain(cr, uid, lifespan, expiration_date,
+                                      context=context)
+        rec_ids = model.search(cr, uid, domain, context=context)
+        if not rec_ids:
+            return
+
+        # use a SQL query to bypass tracking always messages on write for
+        # object inheriting mail.thread
+        query = ("UPDATE %s SET active = FALSE WHERE id in %%s"
+                 ) % model._table
+        cr.execute(query, (tuple(rec_ids),))
+        _logger.info(
+            'Archived %s %s older than %s',
+            len(rec_ids), lifespan.model, expiration_date)
+
+    def archive_records(self, cr, uid, ids, context=None):
+        """ Call the archiver for several record lifespans """
+        for lifespan in self.browse(cr, uid, ids, context=context):
+            self._archive_lifespan_records(cr, uid, lifespan, context=context)
+        return True
