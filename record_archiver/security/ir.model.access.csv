@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_record_lifespan,Record Lifespan,record_archiver.model_record_lifespan,base.group_no_one,1,1,1,1
