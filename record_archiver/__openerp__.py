@@ -37,7 +37,7 @@ Lifespan is defined per record per company.
  'complexity': "easy",  # easy, normal, expert
  'depends': ['base'],
  'website': 'www.camptocamp.com',
- 'data': ['views/res_config.xml',
+ 'data': ['views/record_lifespan_view.xml',
           'data/cron.xml'],
  'test': [],
  'installable': True,

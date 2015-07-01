@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_record_lifespan_tree" model="ir.ui.view">
+      <field name="name">record.lifespan.tree</field>
+      <field name="model">record.lifespan</field>
+      <field name="arch" type="xml">
+        <tree string="Records Archiver Lifespans" editable="bottom">
+          <field name="model_id"/>
+          <field name="months"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_record_lifespan_search" model="ir.ui.view">
+      <field name="name">record.lifespan.search</field>
+      <field name="model">record.lifespan</field>
+      <field name="arch" type="xml">
+        <search string="Records Archiver Lifespans">
+          <field name="model_id"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_record_lifespan_view">
+      <field name="name">Records Archiver Lifespans</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">record.lifespan</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree</field>
+      <field name="search_view_id" ref="view_record_lifespan_search"/>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to define a new lifespan for a type of records.
+        </p><p>
+          Every record of model with a lifespan will be set to inactive
+          after the the defined months are elapsed. The lifespan is
+          based on the last write on a record.
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="menu_record_lifespan_config"
+      parent="base.menu_config"
+      sequence="20"
+      action="action_record_lifespan_view"/>
+
+  </data>
+</openerp>
