@@ -57,16 +57,9 @@ class RecordLifespan(orm.Model):
             required=True,
             help="Number of month after which the records will be set to "
                  "inactive based on their write date"),
-        'company_id': fields.many2one(
-            'res.company',
-            string="Company",
-            ondelete="cascade",
-            required=True),
     }
 
     _sql_constraints = [
-        ('model_uniq', 'unique(model_id, company_id)',
-         "A model can only have 1 lifespan per company"),
         ('months_gt_0', 'check (months > 0)',
          "Months must be a value greater than 0"),
     ]
@@ -90,7 +83,7 @@ class RecordLifespan(orm.Model):
         """
         model = self.pool[lifespan.model]
         domain = [('write_date', '<', expiration_date),
-                  ('company_id', '=', lifespan.company_id.id)]
+                  ]
         if 'state' in model._columns:
             domain += [('state', 'in', ('done', 'cancel'))]
         return domain
