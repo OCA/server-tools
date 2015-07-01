@@ -54,9 +54,9 @@ class IrModel(orm.Model):
                                               load='_classic_write',
                                               context=context)
             model_ids = [field['model_id'] for field in active_fields]
-            if operator == '=':
+            if operator == '=' or not value:
                 domain.append(('id', 'in', model_ids))
-            elif operator == '!=':
+            elif operator == '!=' or value:
                 domain.append(('id', 'not in', model_ids))
             else:
                 raise AssertionError('operator %s not allowed' % operator)
