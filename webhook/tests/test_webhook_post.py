@@ -26,6 +26,12 @@ class Webhook(models.Model):
 
     @api.one
     def run_wehook_test_get_foo(self):
+        """
+        This method is just to test webhook.
+        This needs receive a json request with
+        next json values: {'foo': 'bar'}
+        If value is different will raise a error.
+        """
         if 'bar' != self.env.request.jsonrequest['foo']:
             raise exceptions.ValidationError(
                 "Wrong value received")
@@ -39,12 +45,27 @@ class TestWebhookPost(HttpCase):
         self.url = self.get_webhook_url()
 
     def get_webhook_url(self, url='/webhook'):
+        """
+        :param string url: Full url of last url of webhook to use.
+                    If you use a full url will return url
+                    without changes
+                    default: /webhook
+        """
         if url.startswith('/'):
             url = self.url_base + url
         return url
 
     def post_webhook_event(self, event, url, data, remote_ip=None,
                            headers=None, params=None):
+        """
+        :param string event String: Name of webhook event.
+        :param string url: Full url of webhook services.
+        :param dict data: Payload data of request.
+        :param string remote_ip: Remote IP of webhook to set in
+                                 test variable.
+        :param dict headers: Request headers with main data.
+        :param dict params: Extra values to send to webhook.
+        """
         if headers is None:
             headers = {}
         if remote_ip is None:
@@ -62,11 +83,22 @@ class TestWebhookPost(HttpCase):
         return response.json()
 
     def test_webhook_ping(self):
-        json_response = self.post_webhook_event('ping', self.url, {})
+        """
+        Test to check that 'ping' generic method work fine!
+        'ping' event don't need to add it in inherit class.
+        """
+        json_response = self.post_webhook_event(
+            'ping', self.url, {})
         has_error = json_response.get('error', False)
-        self.assertEqual(has_error, False, 'Error in webhook ping test!')
+        self.assertEqual(
+            has_error, False, 'Error in webhook ping test!')
 
     def test_webhook_get_foo(self):
+        """
+        Test to check that 'get_foo' event from 'webhook_test'
+        work fine!
+        This event is defined in inherit method of test.
+        """
         json_response = self.post_webhook_event(
             'get_foo', self.url, {'foo': 'bar'})
         self.assertEqual(
