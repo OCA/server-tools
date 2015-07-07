@@ -19,7 +19,11 @@
         'web',
     ],
     'external_dependencies': {
-        'python': ['ipaddress'],
+        'python': [
+            'ipaddress',
+            'json',
+            'request',
+        ],
     },
     'data': [
         'views/webhook_views.xml',
@@ -28,6 +32,7 @@
     'qweb': [
     ],
     'demo': [
+        'demo/webhook_demo.xml',
     ],
     'test': [
     ],
