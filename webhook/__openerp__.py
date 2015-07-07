@@ -21,7 +21,6 @@
     'external_dependencies': {
         'python': [
             'ipaddress',
-            'json',
             'request',
         ],
     },
