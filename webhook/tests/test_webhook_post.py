@@ -48,11 +48,12 @@ class TestWebhookPost(HttpCase):
         """
         :param string url: Full url of last url of webhook to use.
                     If you use a full url will return url
-                    without changes
+                    plus session_id
                     default: /webhook
         """
         if url.startswith('/'):
             url = self.url_base + url
+        url += '?session_id=' + self.session_id
         return url
 
     def post_webhook_event(self, event, url, data, remote_ip=None,
