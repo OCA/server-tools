@@ -360,6 +360,7 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
+            # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_read(
                     log, field, read_values)
@@ -391,6 +392,7 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
+            # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_write(
                     log, field, old_values, new_values)
@@ -437,6 +439,7 @@ class auditlog_rule(models.Model):
             if field_name in FIELDS_BLACKLIST:
                 continue
             field = self._get_field(log.model_id, field_name)
+            # not all fields have an ir.models.field entry (ie. related fields)
             if field:
                 log_vals = self._prepare_log_line_vals_on_create(
                     log, field, new_values)
