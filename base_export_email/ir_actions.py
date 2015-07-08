@@ -35,8 +35,9 @@ class actions_server(orm.Model):
     def __init__(self, pool, cr):
         super(actions_server, self).__init__(pool, cr)
         # add state 'export_email'
-        self._columns['state'].selection.append(('export_email',
-                                                 _('Export data by email')))
+        new_state = ('export_email', _('Export data by email'))
+        if new_state not in self._columns['state'].selection:
+            self._columns['state'].selection.append(new_state)
         return
 
     _columns = {
@@ -114,7 +115,23 @@ class actions_server(orm.Model):
             cr, uid, obj_ids, export_fields,
             context=context).get('datas', [])
 
-    def _send_email(self, cr, uid, action, export_fields, export_data,
+    def _send_data_email(self, cr, uid, action, export_fields, export_data,
+                         context=None):
+        """
+        Prepare the exported data to send with the template
+        of the configuration
+        """
+        if action.export_format == 'csv':
+            export = main.CSVExport()
+        else:
+            export = main.ExcelExport()
+        filename = export.filename(action.model)
+        content = export.from_data(export_fields, export_data)
+
+        return self._send_email(cr, uid, action, filename, content,
+                                context=context)
+
+    def _send_email(self, cr, uid, action, filename, content,
                     context=None):
         """
         Prepare a message with the exported data to send with the
@@ -128,17 +145,15 @@ class actions_server(orm.Model):
             (4, partner_id) for partner_id in values.pop('partner_ids',
                                                          [])
         ]
-        if action.export_format == 'csv':
-            export = main.CSVExport()
+        if context and context.get('encoded_base_64'):
+            data = content
         else:
-            export = main.ExcelExport()
-        filename = export.filename(action.model)
-        content = export.from_data(export_fields, export_data)
-        if isinstance(content, unicode):
-            content = content.encode('utf-8')
+            if isinstance(content, unicode):
+                content = content.encode('utf-8')
+            data = base64.b64encode(str(content))
         data_attach = {
             'name': filename,
-            'datas': base64.b64encode(str(content)),
+            'datas': data,
             'datas_fname': filename,
             'description': filename,
         }
@@ -162,7 +177,7 @@ class actions_server(orm.Model):
                     cr, uid, obj_ids, action, context=context)
                 # Prepare a message with the exported data to send with the
                 # template of the configuration
-                self._send_email(
+                self._send_data_email(
                     cr, uid, action, export_fields, export_data,
                     context=context)
         return super(actions_server, self).run(cr, uid, ids, context=context)
