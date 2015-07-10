@@ -10,8 +10,6 @@
 #                moylop260@vauxoo.com
 ############################################################################
 
-from . import models
-from . import controllers
-from . import tests
+from . import test_webhook_post
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
