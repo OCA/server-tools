@@ -21,6 +21,7 @@
 
 import time
 from openerp.osv import orm
+from openerp.tools.safe_eval import safe_eval
 
 
 class IrActionsServer(orm.Model):
@@ -60,7 +61,7 @@ class IrActionsServer(orm.Model):
             }
 
             try:
-                address = eval(str(action.email), cxt)
+                address = safe_eval(str(action.email), cxt)
             except Exception:
                 address = str(action.email)
 
