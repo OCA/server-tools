@@ -4,7 +4,7 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
-#
+#    Copyright (C) 2015 Agile Business Group <http://www.agilebg.com>
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -20,5 +20,5 @@
 #
 ##############################################################################
 
-import backup_scheduler
+from . import model
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
