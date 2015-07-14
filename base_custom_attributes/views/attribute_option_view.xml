@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="attribute_option_form_popup_view" model="ir.ui.view">
+            <field name="name">attribute.option.form.popup</field>
+            <field name="model">attribute.option</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <form string="Attribute Option" col="6">
+                    <group>
+                        <field name="name" colspan="2"/>
+                        <field name="value_ref" colspan="2" groups="base.group_advanced_attribute"/>
+                        <field name="sequence" colspan="2"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_option_form_view" model="ir.ui.view">
+            <field name="name">attribute.option.form</field>
+            <field name="model">attribute.option</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Option" col="6">
+                    <group>
+                        <field name="name" colspan="2"/>
+                        <field name="value_ref" colspan="2" groups="base.group_advanced_attribute"/>
+                        <field name="sequence" colspan="2"/>
+                        <field name="attribute_id" colspan="2"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="attribute_option_tree_view" model="ir.ui.view">
+            <field name="name">attribute.option.tree</field>
+            <field name="model">attribute.option</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Attribute Option">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
+                    <field name="attribute_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_option_search" model="ir.ui.view">
+            <field name="name">attribute.option.list</field>
+            <field name="model">attribute.option</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Options">
+                    <field name="name" />
+                    <field name="value_ref" groups="base.group_advanced_attribute"/>
+                    <field name="attribute_id"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_option_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Options</field>
+            <field name="res_model">attribute.option</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="attribute_option_tree_view"/>
+            <field name="search_view_id" ref="view_attribute_option_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+        <record id="attribute_option_form_action_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="act_window_id" ref="attribute_option_form_action"/>
+            <field name="view_id" ref="attribute_option_tree_view"/>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record id="attribute_option_form_action_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="act_window_id" ref="attribute_option_form_action"/>
+            <field name="view_id" ref="attribute_option_form_view"/>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem
+            action="attribute_option_form_action" id="menu_attribute_option_action"
+            parent="menu_attribute_in_admin" sequence="40"/>
+
+    </data>
+</openerp>
