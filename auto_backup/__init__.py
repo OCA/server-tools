@@ -20,21 +20,5 @@
 #
 ##############################################################################
 
-{
-    "name" : "Database Auto-Backup",
-    "version" : "1.0",
-    "author" : "VanRoey.be - Yenthe Van Ginneken, Agile Business Group",
-    "website" : "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
-    "category" : "Tools",
-    "summary": "Backups data base",
-    "depends" : ['base'],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
-        "view/bkp_conf_view.xml",
-        "data/backup_data.xml"
-    ],
-    "active": False,
-    "installable": True
-}
+from . import model
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
