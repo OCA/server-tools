@@ -1,0 +1,311 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_attach_from_folder
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-26 07:28+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,active:0
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "Attach mail manually"
+msgstr "Ročno pripenjanje e-pošte"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,create_uid:0
+#: field:fetchmail.attach.mail.manually.mail,create_uid:0
+#: field:fetchmail.server.folder,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,create_date:0
+#: field:fetchmail.attach.mail.manually.mail,create_date:0
+#: field:fetchmail.server.folder,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,date:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,delete_matching:0
+msgid "Delete matched emails from server"
+msgstr "Izbris ujemajočih se e-poštnih sporočil iz strežnika"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,delete_matching:0
+msgid "Delete matches"
+msgstr "Izbris ujemajočih"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,domain:0
+msgid "Domain"
+msgstr "Domena"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,mail_ids:0
+msgid "Emails"
+msgstr "E-poštna sporočila"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,mail_field:0
+msgid "Field (email)"
+msgstr "Polje (e-pošta)"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_field:0
+msgid "Field (model)"
+msgstr "Polje (model)"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_order:0
+msgid ""
+"Field(s) to order by, this mostly useful in conjunction with 'Use 1st match'"
+msgstr "Polje(a) za razvrščanje. Uporabljajo se večinoma v sklopu 'Uporabi 1. ujemanje'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,domain:0
+msgid "Fill in a search filter to narrow down objects to match"
+msgstr "Izpolni iskalni filter za zožitev ujemajočih se objektov"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,flag_nonmatching:0
+msgid "Flag emails in the server that don't match any object in Odoo"
+msgstr "Označi e-poštna sporočila na strežniku, ki se ne ujemajo z nobenim objektom v Odoo"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,flag_nonmatching:0
+msgid "Flag nonmatching"
+msgstr "Označi ne ujemajoča"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,folder_id:0
+msgid "Folder"
+msgstr "Mapa"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server,folder_ids:0
+msgid "Folders"
+msgstr "Mape"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "Folders to monitor"
+msgstr "Mape za nadziranje"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,id:0
+#: field:fetchmail.attach.mail.manually.mail,id:0
+#: field:fetchmail.server.folder,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "INBOX.subfolder1"
+msgstr "INBOX.podmapa1"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,match_first:0
+msgid ""
+"If there are multiple matches, use the first one. If not checked, multiple "
+"matches count as no match at all"
+msgstr "Ko je več ujemajočih se sporočil, uporabi prvo. Če ni označeno, se več ujemajočih se sporočil smatra kot, da sploh ni ujemajočih se sporočil"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,write_uid:0
+#: field:fetchmail.attach.mail.manually.mail,write_uid:0
+#: field:fetchmail.server.folder,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,write_date:0
+#: field:fetchmail.attach.mail.manually.mail,write_date:0
+#: field:fetchmail.server.folder,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:187
+#, python-format
+msgid "Mail attachment"
+msgstr "E-poštna priponka"
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:223
+#, python-format
+msgid "Mailbox %s not found!"
+msgstr "Poštni predal %s ni najden!"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,match_algorithm:0
+msgid "Match algorithm"
+msgstr "Algoritem ujemanja"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,msgid:0
+msgid "Message id"
+msgstr "ID sporočila"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,msg_state:0
+msgid "Message state"
+msgstr "Stanje sporočila"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_id:0
+msgid "Model"
+msgstr "Model"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,object_id:0
+msgid "Object"
+msgstr "Objekt"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_order:0
+msgid "Order (model)"
+msgstr "Vrstni red (model)"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "POP/IMAP strežnik"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,path:0
+msgid "Path"
+msgstr "Pot"
+
+#. module: fetchmail_attach_from_folder
+#: selection:fetchmail.server.folder,msg_state:0
+msgid "Received"
+msgstr "Prejeto"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Save"
+msgstr "Shrani"
+
+#. module: fetchmail_attach_from_folder
+#: selection:fetchmail.server.folder,msg_state:0
+msgid "Sent"
+msgstr "Poslano"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,sequence:0
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,server_id:0
+msgid "Server"
+msgstr "Strežnik"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,subject:0
+msgid "Subject"
+msgstr "Zadeva"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,match_algorithm:0
+msgid "The algorithm used to determine which object an email matches."
+msgstr "Algoritem, ki se uporablja za določanje objekta, ki mu e-pošta priprada."
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,mail_field:0
+msgid ""
+"The field in the email used for matching. Typically this is 'to' or 'from'"
+msgstr "Polje v e-poštnem sporočilu, ki se uporablja za primerjavo. Tipično je to 'za' ali 'od'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_field:0
+msgid ""
+"The field in your model that contains the field to match against.\n"
+"Examples:\n"
+"'email' if your model is res.partner, or 'partner_id.email' if you're matching sale orders"
+msgstr "Polje modela, ki vsebuje polje za ujemanje.\nPrimeri:\n'e-pošta' če je model res.partner ali 'partner_id.email', če ujemate prodajne naloge"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_id:0
+msgid "The model to attach emails to"
+msgstr "Model, ki mu pripenjamo e-pošto"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,path:0
+msgid ""
+"The path to your mail folder. Typically would be something like "
+"'INBOX.myfolder'"
+msgstr "Pot do e-poštne mape. Običajno je to nekaj kot 'INBOX.mojamapa'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,msg_state:0
+msgid "The state messages fetched from this folder should be assigned in Odoo"
+msgstr "Stanje, ki se dodeli sporočilom prenesenim iz te mape."
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,match_first:0
+msgid "Use 1st match"
+msgstr "Uporabi 1. ujemanje"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,wizard_id:0
+msgid "Wizard id"
+msgstr "ID čarovnika"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "[('state', '=', 'open')]"
+msgstr "[('state', '=', 'open')]"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "email"
+msgstr "e-pošta"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "name asc,type desc"
+msgstr "name asc,type desc"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "or"
+msgstr "ali"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "to,from"
+msgstr "to,from"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "{'required': [('type', '!=', 'imap')]}"
+msgstr "{'required': [('type', '!=', 'imap')]}"
