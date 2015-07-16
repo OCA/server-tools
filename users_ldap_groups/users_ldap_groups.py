@@ -23,8 +23,36 @@ from openerp import models
 from openerp import fields
 from openerp import api
 import logging
-import users_ldap_groups_operators
-import inspect
+from string import Template
+
+
+class LDAPOperator(models.TransientModel):
+    _name = "res.company.ldap.operator"
+
+    def operators(self):
+        return ('contains', 'equals', 'query')
+
+    def contains(self, ldap_entry, attribute, value, ldap_config, company,
+                 logger):
+        return (attribute in ldap_entry[1]) and \
+            (value in ldap_entry[1][attribute])
+
+    def equals(self, ldap_entry, attribute, value, ldap_config, company,
+               logger):
+        return attribute in ldap_entry[1] and \
+            unicode(value) == unicode(ldap_entry[1][attribute])
+
+    def query(self, ldap_entry, attribute, value, ldap_config, company,
+              logger):
+        query_string = Template(value).safe_substitute(dict(
+            [(attr, ldap_entry[1][attribute][0]) for attr in ldap_entry[1]]
+            )
+        )
+        logger.debug('evaluating query group mapping, filter: %s' %
+                     query_string)
+        results = company.query(ldap_config, query_string)
+        logger.debug(results)
+        return bool(results)
 
 
 class CompanyLDAPGroupMapping(models.Model):
@@ -33,19 +61,13 @@ class CompanyLDAPGroupMapping(models.Model):
     _order = 'ldap_attribute'
 
     def _get_operators(self):
-        operators = []
-        members = inspect.getmembers(
-            users_ldap_groups_operators,
-            lambda cls:
-            inspect.isclass(cls) and
-            cls != users_ldap_groups_operators.LDAPOperator)
-        for name, operator in members:
-            operators.append((name, name))
+        op_obj = self.env['res.company.ldap.operator']
+        operators = [(op, op) for op in op_obj.operators()]
         return tuple(operators)
 
     ldap_id = fields.Many2one('res.company.ldap', 'LDAP server', required=True)
     ldap_attribute = fields.Char(
-        'LDAP attribute', size=64,
+        'LDAP attribute',
         help='The LDAP attribute to check.\n'
              'For active directory, use memberOf.')
     operator = fields.Selection(
@@ -53,7 +75,7 @@ class CompanyLDAPGroupMapping(models.Model):
         help='The operator to check the attribute against the value\n'
         'For active directory, use \'contains\'', required=True)
     value = fields.Char(
-        'Value', size=1024,
+        'Value',
         help='The value to check the attribute against.\n'
         'For active directory, use the dn of the desired group',
         required=True)
@@ -81,6 +103,7 @@ class CompanyLDAP(models.Model):
 
     @api.model
     def get_or_create_user(self, conf, login, ldap_entry):
+        op_obj = self.env['res.company.ldap.operator']
         id_ = conf['id']
         this = self.browse(id_)
         user_id = super(CompanyLDAP, self).get_or_create_user(
@@ -95,11 +118,10 @@ class CompanyLDAP(models.Model):
             user.write({'groups_id': [(5, )]})
 
         for mapping in this.group_mappings:
-            operator = mapping.operator
-            operator = getattr(users_ldap_groups_operators, mapping.operator)()
+            operator = getattr(op_obj, mapping.operator)
             logger.debug('checking mapping %s' % mapping)
-            if operator.check_value(ldap_entry, mapping['ldap_attribute'],
-                                    mapping['value'], conf, self, logger):
+            if operator(ldap_entry, mapping['ldap_attribute'],
+                        mapping['value'], conf, self, logger):
                 logger.debug('adding user %d to group %s' %
                              (user_id, mapping.group.name))
                 user.write({'groups_id': [(4, mapping.group.id)]})

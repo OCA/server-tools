@@ -27,28 +27,6 @@
     "license": "AGPL-3",
     "description": """
 Adds user accounts to groups based on rules defined by the administrator.
-
-Usage:
-
-Define mappings in Settings->Companies->[your company]->tab configuration->[
-your ldap server].
-
-Decide whether you want only groups mapped from ldap (Only ldap groups=y) or a
-mix of manually set groups and ldap groups (Only ldap groups=n). Setting this
-to 'no' will result in users never losing privileges when you remove them from
-a ldap group, so that's a potential security issue. It is still the default to
-prevent losing group information by accident.
-
-For active directory, use LDAP attribute 'memberOf' and operator 'contains'.
-Fill in the DN of the windows group as value and choose an OpenERP group users
-with this windows group are to be assigned to.
-
-For posix accounts, use operator 'query' and a value like
-(&(cn=bzr)(objectClass=posixGroup)(memberUid=$uid))
-
-The operator query matches if the filter in value returns something, and value
-can contain $[attribute] which will be replaced by the first value of the
-user's ldap record's attribute named [attribute].
 """,
     "category": "Tools",
     "data": [
