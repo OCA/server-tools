@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import users_ldap_groups
+import users_ldap_groups  # noqa
