@@ -2,7 +2,9 @@
 ###############################################################################
 #                                                                             #
 #   base_attribute.attributes for OpenERP                                     #
-#   Copyright (C) 2015 Odoo Community Association (OCA)                       #
+#   Copyright (C) 2011 Akretion Benoît GUILLOT <benoit.guillot@akretion.com>  #
+#   Copyright (C) 2013 Akretion Raphaël VALYI <raphael.valyi@akretion.com>    #
+#   Copyright (C) 2015 Savoir-faire Linux                                     #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
