@@ -94,10 +94,12 @@ class fetchmail_server_folder(models.Model):
         'Message state',
         help='The state messages fetched from this folder should be '
         'assigned in Odoo')
+    active = fields.Boolean('Active')
 
     _defaults = {
         'flag_nonmatching': True,
         'msg_state': 'received',
+        'active': True,
     }
 
     @api.multi
