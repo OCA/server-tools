@@ -26,22 +26,28 @@ class LDAPOperator:
 
 
 class contains(LDAPOperator):
-    def check_value(self, ldap_entry, attribute, value, ldap_config, company, logger):
-        return (attribute in ldap_entry[1]) and (value in ldap_entry[1][attribute])
+    def check_value(self, ldap_entry, attribute, value, ldap_config, company,
+                    logger):
+        return (attribute in ldap_entry[1]) and \
+            (value in ldap_entry[1][attribute])
 
 
 class equals(LDAPOperator):
-    def check_value(self, ldap_entry, attribute, value, ldap_config, company, logger):
-        return attribute in ldap_entry[1] and unicode(value) == unicode(ldap_entry[1][attribute])
+    def check_value(self, ldap_entry, attribute, value, ldap_config, company,
+                    logger):
+        return attribute in ldap_entry[1] and \
+            unicode(value) == unicode(ldap_entry[1][attribute])
 
 
 class query(LDAPOperator):
-    def check_value(self, ldap_entry, attribute, value, ldap_config, company, logger):
+    def check_value(self, ldap_entry, attribute, value, ldap_config, company,
+                    logger):
         query_string = Template(value).safe_substitute(dict(
             [(attr, ldap_entry[1][attribute][0]) for attr in ldap_entry[1]]
             )
         )
-        logger.debug('evaluating query group mapping, filter: %s' % query_string)
+        logger.debug('evaluating query group mapping, filter: %s' %
+                     query_string)
         results = company.query(ldap_config, query_string)
         logger.debug(results)
         return bool(results)
