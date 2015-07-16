@@ -92,7 +92,7 @@ class CompanyLDAP(models.Model):
         logger = logging.getLogger('users_ldap_groups')
         if self.only_ldap_groups:
             logger.debug('deleting all groups from user %d' % user_id)
-            userobj.write([user_id], {'groups_id': [(5, )]})
+            user.write({'groups_id': [(5, )]})
 
         for mapping in this.group_mappings:
             operator = mapping.operator
