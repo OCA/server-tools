@@ -16,7 +16,8 @@
                                 name="folder_ids"
                                 nolabel="1"
                                 on_change="onchange_server_type(type, is_ssl, object_id)">
-                                <tree>
+                                <tree colors="gray:active==False">
+                                    <field name="active" invisible="True" />
                                     <field name="sequence" widget="handle" />
                                     <field name="path" />
                                     <field name="model_id" />
@@ -37,6 +38,7 @@
                                             <field name="mail_field" placeholder="to,from" />
                                         </group>
                                         <group>
+                                            <field name="active" />
                                             <field name="delete_matching" />
                                             <field name="flag_nonmatching" />
                                             <field name="match_first" />

@@ -1,0 +1,311 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * fetchmail_attach_from_folder
+# 
+# Translators:
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 22:09+0000\n"
+"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,active:0
+msgid "Active"
+msgstr "Ativo"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "Attach mail manually"
+msgstr "Anexar mail manualmente"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,create_uid:0
+#: field:fetchmail.attach.mail.manually.mail,create_uid:0
+#: field:fetchmail.server.folder,create_uid:0
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,create_date:0
+#: field:fetchmail.attach.mail.manually.mail,create_date:0
+#: field:fetchmail.server.folder,create_date:0
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,date:0
+msgid "Date"
+msgstr "Data"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,delete_matching:0
+msgid "Delete matched emails from server"
+msgstr "Excluir emails correspondentes do servidor"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,delete_matching:0
+msgid "Delete matches"
+msgstr "Excluir correspondentes"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,domain:0
+msgid "Domain"
+msgstr "Domínio"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,mail_ids:0
+msgid "Emails"
+msgstr "Emails"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,mail_field:0
+msgid "Field (email)"
+msgstr "Campo (email)"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_field:0
+msgid "Field (model)"
+msgstr "Campo (modelo)"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_order:0
+msgid ""
+"Field(s) to order by, this mostly useful in conjunction with 'Use 1st match'"
+msgstr "Campo(s) para classificar, muito útil em conjunção com 'Use 1st match'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,domain:0
+msgid "Fill in a search filter to narrow down objects to match"
+msgstr "Preencha um filtro de pesquisa para diminuir os objetos para combinar"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,flag_nonmatching:0
+msgid "Flag emails in the server that don't match any object in Odoo"
+msgstr "E-mails assinalados no servidor que não correspondem a qualquer objeto em Odoo"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,flag_nonmatching:0
+msgid "Flag nonmatching"
+msgstr "Sinal sem correspondente"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,folder_id:0
+msgid "Folder"
+msgstr "Pasta"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server,folder_ids:0
+msgid "Folders"
+msgstr "Pastas"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "Folders to monitor"
+msgstr "Pastas para monitorar"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,id:0
+#: field:fetchmail.attach.mail.manually.mail,id:0
+#: field:fetchmail.server.folder,id:0
+msgid "ID"
+msgstr "Identificação"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "INBOX.subfolder1"
+msgstr "INBOX.subpasta1"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,match_first:0
+msgid ""
+"If there are multiple matches, use the first one. If not checked, multiple "
+"matches count as no match at all"
+msgstr "Se há multiplas combinações, use a primeira. Se não verificado, múltiplas combinações contam como nenhuma combinação"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,write_uid:0
+#: field:fetchmail.attach.mail.manually.mail,write_uid:0
+#: field:fetchmail.server.folder,write_uid:0
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,write_date:0
+#: field:fetchmail.attach.mail.manually.mail,write_date:0
+#: field:fetchmail.server.folder,write_date:0
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:187
+#, python-format
+msgid "Mail attachment"
+msgstr "Anexo de Email"
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:223
+#, python-format
+msgid "Mailbox %s not found!"
+msgstr "Caixa de entrada %s não encontrada!"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,match_algorithm:0
+msgid "Match algorithm"
+msgstr "Algoritmo correspondente"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,msgid:0
+msgid "Message id"
+msgstr "Identificação da mensagem"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,msg_state:0
+msgid "Message state"
+msgstr "Estado da mensagem"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_id:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,object_id:0
+msgid "Object"
+msgstr "Objeto"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,model_order:0
+msgid "Order (model)"
+msgstr "Pedido (modelo)"
+
+#. module: fetchmail_attach_from_folder
+#: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "Servidor POP/IMAP"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,path:0
+msgid "Path"
+msgstr "Caminho"
+
+#. module: fetchmail_attach_from_folder
+#: selection:fetchmail.server.folder,msg_state:0
+msgid "Received"
+msgstr "Recebido"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "Save"
+msgstr "Salvar"
+
+#. module: fetchmail_attach_from_folder
+#: selection:fetchmail.server.folder,msg_state:0
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,sequence:0
+msgid "Sequence"
+msgstr "Sequência"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,server_id:0
+msgid "Server"
+msgstr "Servidor"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,subject:0
+msgid "Subject"
+msgstr "Título"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,match_algorithm:0
+msgid "The algorithm used to determine which object an email matches."
+msgstr "O algoritmo usado para determinar qual objeto combina com o email."
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,mail_field:0
+msgid ""
+"The field in the email used for matching. Typically this is 'to' or 'from'"
+msgstr "O campo no email usado para combinação. Tipicamente é  'to' ou 'from'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_field:0
+msgid ""
+"The field in your model that contains the field to match against.\n"
+"Examples:\n"
+"'email' if your model is res.partner, or 'partner_id.email' if you're matching sale orders"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,model_id:0
+msgid "The model to attach emails to"
+msgstr "O modelo para anexar emails ao"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,path:0
+msgid ""
+"The path to your mail folder. Typically would be something like "
+"'INBOX.myfolder'"
+msgstr "O caminho para sua pasta de mail. Tipicamente seria alguma coisa como 'INBOX.myfolder'"
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,msg_state:0
+msgid "The state messages fetched from this folder should be assigned in Odoo"
+msgstr "As mensagens de estado trazidas desta pasta devem ser atribuídas no Odoo"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,match_first:0
+msgid "Use 1st match"
+msgstr "Use a 1a combinação"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually.mail,wizard_id:0
+msgid "Wizard id"
+msgstr "Identificação do assistente"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "[('state', '=', 'open')]"
+msgstr "[('state', '=', 'open')]"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "email"
+msgstr "email"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "name asc,type desc"
+msgstr "nome asc, tipo desc"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
+msgid "or"
+msgstr "ou"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "to,from"
+msgstr "para,de"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "{'required': [('type', '!=', 'imap')]}"
+msgstr "{'required': [('type', '!=', 'imap')]}"
