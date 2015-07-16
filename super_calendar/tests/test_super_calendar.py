@@ -47,10 +47,9 @@ class TestSuperCalendar(TransactionCase):
         self.ModelFieldsObj = self.env['ir.model.fields']
         self.ModelObj = self.env['ir.model']
 
-        self.partner_A = self.PartnerObj.create({
-            'name': 'Partner A',
+        self.partner_A = self.env.ref("base.main_partner")
+        self.partner_A.write({
             'date': (datetime.today() + relativedelta(days=3)),
-            'email': 'Partner A email'
         })
 
         self.super_calendar_configurator = \
