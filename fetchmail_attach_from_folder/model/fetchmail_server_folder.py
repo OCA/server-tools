@@ -26,6 +26,7 @@ from .. import match_algorithm
 class fetchmail_server_folder(models.Model):
     _name = 'fetchmail.server.folder'
     _rec_name = 'path'
+    _order = 'sequence'
 
     def _get_match_algorithms(self):
         def get_all_subclasses(cls):
