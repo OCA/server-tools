@@ -33,7 +33,8 @@ class fetchmail_server(models.Model):
     _inherit = 'fetchmail.server'
 
     folder_ids = fields.One2many(
-        'fetchmail.server.folder', 'server_id', 'Folders')
+        'fetchmail.server.folder', 'server_id', 'Folders',
+        context={'active_test': False})
     object_id = fields.Many2one(required=False)
 
     _defaults = {
@@ -67,7 +68,7 @@ class fetchmail_server(models.Model):
                 })
 
             connection = this.connect()
-            for folder in this.folder_ids:
+            for folder in this.folder_ids.filtered('active'):
                 this.handle_folder(connection, folder)
             connection.close()
 
@@ -216,7 +217,7 @@ class fetchmail_server(models.Model):
             this.write({'state': 'draft'})
             connection = this.connect()
             connection.select()
-            for folder in this.folder_ids:
+            for folder in this.folder_ids.filtered('active'):
                 if connection.select(folder.path)[0] != 'OK':
                     raise exceptions.ValidationError(
                         _('Mailbox %s not found!') % folder.path)
