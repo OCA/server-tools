@@ -79,32 +79,28 @@ class CompanyLDAP(models.Model):
         'only_ldap_groups': False,
     }
 
-    @api.multi
-    def get_or_create_user(self, cr, uid, conf, login, ldap_entry,
-                           context=None):
+    @api.model
+    def get_or_create_user(self, conf, login, ldap_entry):
+        id_ = conf['id']
+        this = self.browse(id_)
         user_id = super(CompanyLDAP, self).get_or_create_user(
-            cr, uid, conf, login, ldap_entry, context)
+            conf, login, ldap_entry)
         if not user_id:
             return user_id
+        userobj = self.env['res.users']
+        user = userobj.browse(user_id)
         logger = logging.getLogger('users_ldap_groups')
-        mappingobj = self.pool.get('res.company.ldap.group_mapping')
-        userobj = self.pool.get('res.users')
-        conf_all = self.read(cr, uid, conf['id'], ['only_ldap_groups'])
-        if(conf_all['only_ldap_groups']):
+        if self.only_ldap_groups:
             logger.debug('deleting all groups from user %d' % user_id)
-            userobj.write(
-                cr, uid, [user_id], {'groups_id': [(5, )]}, context=context)
+            userobj.write([user_id], {'groups_id': [(5, )]})
 
-        for mapping in mappingobj.read(cr, uid, mappingobj.search(
-                cr, uid, [('ldap_id', '=', conf['id'])]), []):
-            operator = getattr(users_ldap_groups_operators,
-                               mapping['operator'])()
+        for mapping in this.group_mappings:
+            operator = mapping.operator
+            operator = getattr(users_ldap_groups_operators, mapping.operator)()
             logger.debug('checking mapping %s' % mapping)
             if operator.check_value(ldap_entry, mapping['ldap_attribute'],
                                     mapping['value'], conf, self, logger):
                 logger.debug('adding user %d to group %s' %
-                             (user_id, mapping['group'][1]))
-                userobj.write(cr, uid, [user_id],
-                              {'groups_id': [(4, mapping['group'][0])]},
-                              context=context)
+                             (user_id, mapping.group.name))
+                user.write({'groups_id': [(4, mapping.group.id)]})
         return user_id
