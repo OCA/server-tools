@@ -30,13 +30,13 @@ Adds user accounts to groups based on rules defined by the administrator.
 
 Usage:
 
-Define mappings in Settings->Companies->[your company]->tab configuration->[your
-ldap server].
+Define mappings in Settings->Companies->[your company]->tab configuration->[
+your ldap server].
 
 Decide whether you want only groups mapped from ldap (Only ldap groups=y) or a
-mix of manually set groups and ldap groups (Only ldap groups=n). Setting this to
-'no' will result in users never losing privileges when you remove them from a
-ldap group, so that's a potential security issue. It is still the default to
+mix of manually set groups and ldap groups (Only ldap groups=n). Setting this
+to 'no' will result in users never losing privileges when you remove them from
+a ldap group, so that's a potential security issue. It is still the default to
 prevent losing group information by accident.
 
 For active directory, use LDAP attribute 'memberOf' and operator 'contains'.
