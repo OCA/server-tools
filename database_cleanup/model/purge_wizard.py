@@ -73,6 +73,15 @@ class PurgeWizard(orm.AbstractModel):
             },
         }
 
+    def select_lines(self, cr, uid, ids, context=None):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Select lines to purge',
+            'views': [(False, 'tree'), (False, 'form')],
+            'res_model': self._columns['purge_line_ids']._obj,
+            'domain': [('wizard_id', 'in', ids)],
+        }
+
     _columns = {
         'name': fields.char('Name', size=64, readonly=True),
         }
