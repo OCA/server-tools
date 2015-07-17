@@ -20,6 +20,7 @@
 #
 ###############################################################################
 
+import os
 import logging
 import cgitb
 
@@ -54,7 +55,12 @@ try:
         handler = OdooSentryHandler(client, level=level)
         root_logger.addHandler(handler)
     else:
-        root_logger.warn(u"Sentry DSN not defined in config file")
+        msg = u"Sentry DSN not defined in config file"
+        if os.environ.get('OCA_CI'):
+            # don't fail the build on runbot for this
+            root_logger.info(msg)
+        else:
+            root_logger.warn(msg)
         client = None
 
     # Inject sentry_activated to session to display error message or not
