@@ -11,14 +11,19 @@
                         <field name="name"/>
                     </h1>
                     <button type="object" name="purge_all" string="Purge all modules" />
+                    <button type="object" name="select_lines" string="Select lines" />
                     <field name="purge_line_ids" colspan="4" nolabel="1">
-                        <tree string="Purge modules">
-                            <field name="name" />
-                            <field name="purged" invisible="0" />
-                            <button type="object" name="purge"
-                                    icon="gtk-cancel" string="Purge this module"
-                                    attrs="{'invisible': [('purged', '=', True)]}"/>
-                        </tree>
+                        <form string="Purge modules">
+                            <group>
+                                <field name="name" />
+                                <field name="purged" invisible="0" />
+                            </group>
+                            <footer>
+                                <button type="object" name="purge"
+                                        icon="gtk-cancel" string="Purge this module"
+                                        attrs="{'invisible': [('purged', '=', True)]}"/>
+                            </footer>
+                        </form>
                     </field>
                 </form>
             </field>
@@ -29,19 +34,36 @@
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="database_cleanup.model_cleanup_purge_wizard_module" />
-            <field name="code">
-wizard_id = self.create(cr, uid, {}, context=context)
-action = {
-    'type': 'ir.actions.act_window',
-    'views': [(False, 'form')],
-    'res_model': 'cleanup.purge.wizard.module',
-    'res_id': wizard_id,
-    'flags': {
-        'action_buttons': False,
-        'sidebar': False,
-    },
-}
+            <field name="code">action = self.get_wizard_action(cr, uid, context=context)</field>
+        </record>
+
+        <record id="purge_module_line_tree" model="ir.ui.view">
+            <field name="model">cleanup.purge.line.module</field>
+            <field name="arch" type="xml">
+                <tree string="Purge modules">
+                    <field name="name" />
+                    <field name="purged" invisible="0" />
+                    <button type="object" name="purge"
+                        icon="gtk-cancel" string="Purge this module"
+                        attrs="{'invisible': [('purged', '=', True)]}"/>
+                </tree>
             </field>
+        </record>
+
+        <record id="action_purge_module_line" model="ir.actions.server">
+            <field name="name">Purge</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_module" />
+            <field name="code">self.purge(cr, uid, context.get('active_ids', []), context)</field>
+        </record>
+
+        <record id="action_purge_module_line_value" model="ir.values">
+            <field name="name">Purge</field>
+            <field name="key">action</field>
+            <field name="key2">client_action_multi</field>
+            <field name="model">cleanup.purge.line.module</field>
+            <field name="value" eval="'ir.actions.server,%d' % ref('database_cleanup.action_purge_module_line')" />
         </record>
 
     </data>
