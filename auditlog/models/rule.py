@@ -207,6 +207,7 @@ class auditlog_rule(models.Model):
     def _make_create(self):
         """Instanciate a create method that log its calls."""
         @api.model
+        @api.returns('self', lambda value: value.id)
         def create(self, vals, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
