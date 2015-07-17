@@ -64,9 +64,8 @@ password = openerp
                 'server_environment',
                 'server_environment_files',
                 ],
-    'init_xml': [],
-    'update_xml': ['mail_view.xml'],
-    'demo_xml': [],
+    'data': ['mail_view.xml'],
+    'demo': [],
     'installable': True,
     'active': False,
 }
