@@ -7,7 +7,6 @@
         <record model="ir.ui.view" id="view_import_dbtable_form">
             <field name="name">import.odbc.dbtable.form</field>
             <field name="model">import.odbc.dbtable</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
 	        <form string="Table">
 	            <field name="name" search="1"/>
@@ -40,7 +39,6 @@
         <record id="view_import_dbtable_tree" model="ir.ui.view">
             <field name="name">import.odbc.dbtable.tree</field>
 	    <field name="model">import.odbc.dbtable</field>
-	    <field name="type">tree</field>
 	    <field name="arch" type="xml">
                 <tree string="Tables" colors="grey: enabled==False; red:last_error_count&gt;0; blue:last_warn_count&gt;0">
 			<field name="exec_order"/>
@@ -61,7 +59,6 @@
        <record id="view_import_dbtable_filter" model="ir.ui.view">
            <field name="name">import.odbc.dbtable.filter</field>
            <field name="model">import.odbc.dbtable</field>
-           <field name="type">search</field>
            <field name="arch" type="xml">
                <search string="Search ODBC Imports">
                    <field name="name"/>

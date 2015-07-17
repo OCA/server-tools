@@ -7,7 +7,6 @@
         <record model="ir.ui.view" id="view_dbsource_tree">
             <field name="name">base.external.dbsource.tree</field>
             <field name="model">base.external.dbsource</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="External DB Sources">
                     <field name="name"/>
@@ -20,7 +19,6 @@
         <record model="ir.ui.view" id="view_dbsource_form">
             <field name="name">base.external.dbsource.form</field>
             <field name="model">base.external.dbsource</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="External DB Source">
                     <field name="name"/>
