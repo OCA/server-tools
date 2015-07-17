@@ -26,7 +26,7 @@ import logging
 from string import Template
 
 
-class LDAPOperator(models.TransientModel):
+class LDAPOperator(models.AbstractModel):
     _name = "res.company.ldap.operator"
 
     def operators(self):
