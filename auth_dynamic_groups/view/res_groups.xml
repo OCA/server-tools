@@ -2,7 +2,6 @@
     <data>
         <record model="ir.ui.view" id="view_groups_form">
             <field name="inherit_id" ref="base.view_groups_form" />
-            <field name="view_type">form</field>
             <field name="model">res.groups</field>
             <field name="arch" type="xml">
                 <data>
