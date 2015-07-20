@@ -58,7 +58,7 @@ class DictDiffer(object):
                    if self.past_dict[o] == self.current_dict[o])
 
 
-class auditlog_rule(models.Model):
+class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
@@ -68,7 +68,7 @@ class auditlog_rule(models.Model):
         help=u"Select model for which you want to generate log.")
     user_ids = fields.Many2many(
         'res.users',
-        'audittail_rules_users',
+        'auditlog_rules_users',
         'user_id', 'rule_id',
         string=u"Users",
         help=u"if  User is not added then it will applicable for all users")
@@ -110,7 +110,7 @@ class auditlog_rule(models.Model):
 
     def _register_hook(self, cr, ids=None):
         """Get all rules and apply them to log method calls."""
-        super(auditlog_rule, self)._register_hook(cr)
+        super(AuditlogRule, self)._register_hook(cr)
         if not hasattr(self.pool, '_auditlog_field_cache'):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, '_auditlog_model_cache'):
@@ -181,7 +181,7 @@ class auditlog_rule(models.Model):
     # errors occurs with the `_register_hook()` BaseModel method.
     def create(self, cr, uid, vals, context=None):
         """Update the registry when a new rule is created."""
-        res_id = super(auditlog_rule, self).create(
+        res_id = super(AuditlogRule, self).create(
             cr, uid, vals, context=context)
         if self._register_hook(cr, [res_id]):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
@@ -193,7 +193,7 @@ class auditlog_rule(models.Model):
         """Update the registry when existing rules are updated."""
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(auditlog_rule, self).write(cr, uid, ids, vals, context=context)
+        super(AuditlogRule, self).write(cr, uid, ids, vals, context=context)
         if self._register_hook(cr, ids):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
         return True
@@ -511,3 +511,25 @@ class auditlog_rule(models.Model):
                     ir_value.unlink()
         self.write({'state': 'draft'})
         return True
+
+    @api.model
+    def subscribe_selected(self):
+        active_ids = self.env.context.get('active_ids', False)
+        if active_ids:
+            active_rules = self.search([('id', 'in', active_ids)])
+            # We must subscribe unsubscribed rules only
+            unsubscribed_rules = active_rules.filtered(
+                lambda r: r.state != 'subscribed')
+            unsubscribed_rules.subscribe()
+        return {}
+
+    @api.model
+    def unsubscribe_selected(self):
+        active_ids = self.env.context.get('active_ids', False)
+        if active_ids:
+            active_rules = self.search([('id', 'in', active_ids)])
+            # We must unsubscribe subscribed rules only
+            subscribed_rules = active_rules.filtered(
+                lambda r: r.state != 'draft')
+            subscribed_rules.unsubscribe()
+        return {}
