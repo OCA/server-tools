@@ -41,6 +41,7 @@ defined by the orm (Odoo model).
         'base',
     ],
     'data': [
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],
