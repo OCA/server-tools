@@ -23,7 +23,7 @@ from ..base_suspend_security import BaseSuspendSecurityUid
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
-    
+
     @classmethod
     def _browse(cls, env, ids):
         """be sure we browse ints, ids laread is normalized"""
