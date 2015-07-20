@@ -202,7 +202,7 @@ class AuditlogRule(models.Model):
     def unlink(self):
         """Unsubscribe rules before removing them."""
         self.unsubscribe()
-        return super(auditlog_rule, self).unlink()
+        return super(AuditlogRule, self).unlink()
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
