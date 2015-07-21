@@ -1,3 +1,5 @@
+- Fix issues when there is no analytic structure
+
 analytic_structure 1.9
 
 - Add License and Copyright (AGPL & XCG)
