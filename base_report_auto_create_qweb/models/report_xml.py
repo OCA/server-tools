@@ -61,15 +61,18 @@ class IrActionsReport(models.Model):
             report_name = report.split('.')[1]
             for report_view in self.env['ir.ui.view'].browse(report_view_ids):
                 origin_name = report_name.replace(('_%s' % suffix), '')
+                origin_module = module.replace(('_%s' % suffix), '')
                 new_report_name = '%s_%s' % (origin_name, suffix)
                 qweb_name = report_view.name.replace(
                     origin_name, new_report_name)
-                arch = report_view.arch.replace(origin_name, new_report_name)
+                arch = report_view.arch.replace(
+                    origin_name, new_report_name).replace(origin_module + '.',
+                                                          module + '.')
                 report_xml._create_qweb(
                     name, qweb_name, module, model, arch)
             if not report_view_ids:
                 arch = ('<?xml version="1.0"?>\n'
-                        '<t t-name="%s">\n</t>' % report)
+                        '<t t-name="%s">\n</t>' % report_name)
                 report_xml._create_qweb(name, report_name, module, model, arch)
         return report_xml
 
@@ -79,7 +82,10 @@ class IrActionsReport(models.Model):
             default = {}
         suffix = self.env.context.get('suffix', 'copy')
         default['name'] = '%s (%s)' % (self.name, suffix)
-        default['report_name'] = '%s_%s' % (self.report_name, suffix.lower())
+        module = '%s_%s' % (
+            self.report_name.split('.')[0], suffix.lower())
+        report = '%s_%s' % (self.report_name.split('.')[1], suffix.lower())
+        default['report_name'] = '%s.%s' % (module, report)
         report_views = self.env['ir.ui.view'].search([
             ('name', 'ilike', self.report_name.split('.')[1]),
             ('type', '=', 'qweb')])
