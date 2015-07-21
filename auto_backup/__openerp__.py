@@ -31,9 +31,7 @@
     "category" : "Tools",
     "summary": "Backups data base",
     "depends" : ['base','email_template'],
-    "demo_xml" : [
-        "data/backup_data.xml"
-    ],
+    "demo" : [],
     "data" : [
         "view/bkp_conf_view.xml",
         "data/backup_data.xml",
