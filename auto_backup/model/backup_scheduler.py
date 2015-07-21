@@ -163,8 +163,8 @@ class db_backup(osv.Model):
     _defaults = {
         # 'bkp_dir' : lambda *a : addons_path,
         'bkp_dir': '/odoo/backups',
-        'host': lambda *a: 'localhost',
-        'port': lambda *a: '8069',
+        'host': 'localhost',
+        'port': '8069',
         'name': _get_db_name,
         'daystokeepsftp': 30,
         'sftpport': 22,
