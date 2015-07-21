@@ -244,9 +244,6 @@ class db_backup(osv.Model):
                         tools.config['admin_passwd'],
                         rec.name)
                 except:
-<<<<<<< HEAD
-                    logger.notifyChannel('backup', netsvc.LOG_INFO, "Could'nt backup database %s. Bad database administrator password for server running at http://%s:%s" %(rec.name, rec.host, rec.port))
-=======
                     _logger.notifyChannel(
                         'backup', netsvc.LOG_INFO,
                         _(
@@ -254,7 +251,6 @@ class db_backup(osv.Model):
                             "Bad database administrator"
                             "password for server running at http://%s:%s"
                         ) % (rec.name, rec.host, rec.port))
->>>>>>> f331fab... [FIX] bug logger --> _logger call
                     continue
                 bkp = base64.decodestring(bkp)
                 fp = open(file_path, 'wb')
@@ -400,8 +396,4 @@ class db_backup(osv.Model):
 
 db_backup()
 
-<<<<<<< HEAD
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-=======
 #  vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
->>>>>>> f331fab... [FIX] bug logger --> _logger call
