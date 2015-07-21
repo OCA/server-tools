@@ -46,19 +46,3 @@ class TestsAutoBackup(common.TransactionCase):
             }
         )
         self.assertEqual(this.host, 'localhost')
-        cronbk = self.cron_model.search([('name', '=', 'Backup scheduler')])
-        import pdb;pdb.set_trace()
-        cronbk.write(
-            {
-                'active': True,
-                'doall': True
-            }
-        )
-        filetime = (
-            datetime.now() + timedelta(minutes=1)
-        ).strftime('%d_%m_%Y_%H_%M_%S')
-
-        bkp_file = '%s_%s.dimp.zip' % (
-            filetime, this.name)
-        file_path = os.path.join(this.bkp_dir, bkp_file)
-        self.assertEqual(os.path.isfile(file_path), True)
