@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="email_template_autobackup_error_noificaiton" model="email.template">
+      <field name="name">Auto Backup Error notification</field>
+      <field name="email_from">auto_backup@${object.name}</field>
+      <field name="subject">Backup from ${object.host} - (${object.sftpip}) failed</field>
+      <field name="email_to">${object.emailtonotify}</field>
+      <field name="model_id" ref="auto_backup.model_db_backup" />
+      <field name="body_html">
+        <![CDATA[
+                 <p>Dear,</p>
+
+                 <p>The backup for the server ${object.host} (IP: ${object.sftpip}) failed.</p>
+                 <p>Please check the following details:</p>
+                 <p>IP address SFTP server: ${object.sftpip}</p>
+                 <p>Username: ${object.sftpusername}</p>
+                 <p>Password: ${object.sftppassword}</p>
+                 <p>Error details: ${object.lasterrorlog}</p>
+                 <p>With kind regards</p>
+
+        ]]></field>
+    </record>
+
+  </data>
+</openerp>
