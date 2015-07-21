@@ -20,8 +20,7 @@
 ##############################################################################
 
 import logging
-from osv import fields
-from osv import osv
+from openerp.osv import orm, fields
 from dateutil import relativedelta
 from datetime import datetime
 
@@ -30,7 +29,7 @@ from server_environment import serv_config
 _logger = logging.getLogger(__name__)
 
 
-class FetchmailServer(osv.osv):
+class FetchmailServer(orm.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 
@@ -43,7 +42,7 @@ class FetchmailServer(osv.osv):
             global_section_name = 'incoming_mail'
 
             # default vals
-            config_vals = {'cleanup_days': 30,
+            config_vals = {'cleanup_days': "30",
                            'cleanup_folder': False}
             if serv_config.has_section(global_section_name):
                 config_vals.update(serv_config.items(global_section_name))
@@ -53,12 +52,8 @@ class FetchmailServer(osv.osv):
             if serv_config.has_section(custom_section_name):
                 config_vals.update(serv_config.items(custom_section_name))
 
-            if config_vals.get('cleanup_days'):
-                config_vals['cleanup_days'] = \
-                    int(config_vals['cleanup_days'])
-            if config_vals.get('cleanup_folder'):
-                config_vals['cleanup_folder'] = \
-                    config_vals['cleanup_folder']
+            # convert string value to integer
+            config_vals['cleanup_days'] = int(config_vals['cleanup_days'])
             res[fetchmail.id] = config_vals
         return res
 
