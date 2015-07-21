@@ -19,13 +19,10 @@
 #
 ##############################################################################
 
-import base64
+
 from openerp.tests import common
-from openerp.exceptions import except_orm, Warning
-from openerp.modules.module import get_module_resource
-import os
-import time
-from datetime import datetime, date, timedelta
+from openerp.exceptions import except_orm
+
 
 class TestsAutoBackup(common.TransactionCase):
 
@@ -33,7 +30,6 @@ class TestsAutoBackup(common.TransactionCase):
         super(TestsAutoBackup, self).setUp()
         self.abk_model = self.env["db.backup"]
         self.cron_model = self.env["ir.cron"]
-
 
     def test_0(self):
         with self.assertRaises(except_orm):
