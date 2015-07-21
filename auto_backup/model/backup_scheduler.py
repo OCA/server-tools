@@ -2,7 +2,7 @@
 ##############################################################################
 #     OpenERP, Open Source Management Solution
 #     Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
-#     $Id$
+#     Copyright 2015 Agile Business Group <http://www.agilebg.com>
 #
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
@@ -33,9 +33,10 @@ except ImportError:
         'through SFTP.Please install pysftp on your system.'
         '(sudo pip install pysftp)'
     )
-from openerp.osv import fields, osv
+from openerp import models, fields, api, _
+from openerp.exceptions import except_orm, Warning
 from openerp import tools
-from openerp import netsvc, _
+from openerp import netsvc
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -48,142 +49,146 @@ def execute(connector, method, *args):
         raise e
     return res
 
-addons_path = tools.config['addons_path'] + '/auto_backup/DBbackups'
 
-
-class db_backup(osv.Model):
+class db_backup(models.Model):
     _name = 'db.backup'
 
-    def get_db_list(self, cr, user, ids, host, port, context={}):
-        print("Host: " + host)
-        print("Port: " + port)
-        uri = 'http://' + host + ':' + port
-        conn = xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
+    def get_connection(self, host, port):
+        uri = 'http://%s:%s' % (host, port)
+        return xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
+
+    def get_db_list(self, host, port):
+        conn = self.get_connection(host, port)
         db_list = execute(conn, 'list')
         return db_list
 
-    def _get_db_name(self, cr, uid, vals, context=None):
-        # attach_pool = self.pool.get("ir.logging")
-        dbName = cr.dbname
-        return dbName
+    @api.model
+    def _get_db_name(self):
+        return self.env.cr.dbname
 
-    _columns = {
-        # Columns local server
-        'host': fields.char('Host', size=100, required='True'),
-        'port': fields.char('Port', size=10, required='True'),
-        'name': fields.char(
-            'Database', size=100, required='True',
-            help='Database you want to schedule backups for'
-        ),
-        'bkp_dir': fields.char(
-            'Backup Directory', size=100,
-            help='Absolute path for storing the backups',
-            required='True'
-        ),
-        'autoremove': fields.boolean(
-            'Auto. Remove Backups',
-            help=(
-                "If you check this option you can choose to "
-                "automaticly remove the backup after xx days"
-            )
-        ),
-        'daystokeep': fields.integer(
-            'Remove after x days',
-            help=(
-                "Choose after how many days the backup should be "
-                "deleted. For example:\nIf you fill in 5 the backups "
-                "will be removed after 5 days."
-            ), required=True
-        ),
-        # Columns for external server (SFTP)
-        'sftpwrite': fields.boolean(
-            'Write to external server with sftp',
-            help=(
-                "If you check this option you can specify the details "
-                "needed to write to a remote server with SFTP."
-            )
-        ),
-        'sftppath': fields.char(
-            'Path external server',
-            help=(
-                "The location to the folder where the dumps should be "
-                "written to. For example /odoo/backups/.\nFiles will then"
-                " be written to /odoo/backups/ on your remote server."
-            )
-        ),
-        'sftpip': fields.char(
-            'IP Address SFTP Server',
-            help=(
-                "The IP address from your remote"
-                " server. For example 192.168.0.1"
-            )
-        ),
-        'sftpport': fields.integer(
-            "SFTP Port",
-            help="The port on the FTP server that accepts SSH/SFTP calls."
-        ),
-        'sftpusername': fields.char(
-            'Username SFTP Server',
-            help=(
-                "The username where the SFTP connection "
-                "should be made with. This is the user on the external server."
-            )
-        ),
-        'sftppassword': fields.char(
-            'Password User SFTP Server',
-            help=(
-                "The password from the user where the SFTP connection "
-                "should be made with. This is the password from the user"
-                " on the external server."
-            )
-        ),
-        'daystokeepsftp': fields.integer(
-            'Remove SFTP after x days',
-            help=(
-                "Choose after how many days the backup should be deleted "
-                "from the FTP server. For example:\nIf you fill in 5 the "
-                "backups will be removed after 5 days from the FTP server."
-            )
-        ),
-        'sendmailsftpfail': fields.boolean(
-            'Auto. E-mail on backup fail', help=(
-                "If you check this option you can choose to automaticly"
-                " get e-mailed when the backup to the external server failed."
-            )
-        ),
-        'emailtonotify': fields.char(
-            'E-mail to notify',
-            help=(
-                "Fill in the e-mail where you want to be"
-                " notified that the backup failed on the FTP."
-            )
-        ),
-    }
+    # Columns local server
+    host = fields.Char(
+        string='Host', default='localhost', size=100, required=True)
+    port = fields.Char(
+        string='Port', default='8069', size=10, required=True)
+    name = fields.Char(
+        string='Database', size=100, required=True,
+        default=_get_db_name,
+        help='Database you want to schedule backups for'
+    )
+    bkp_dir = fields.Char(
+        string='Backup Directory', size=100,
+        default='/odoo/backups',
+        help='Absolute path for storing the backups',
+        required=True
+    )
+    autoremove = fields.Boolean(
+        string='Auto. Remove Backups',
+        help=(
+            "If you check this option you can choose to "
+            "automaticly remove the backup after xx days"
+        )
+    )
+    daystokeep = fields.Integer(
+        string='Remove after x days',
+        default=30,
+        help=(
+            "Choose after how many days the backup should be "
+            "deleted. For example:\nIf you fill in 5 the backups "
+            "will be removed after 5 days."
+        ), required=True
+    )
+    sftpwrite = fields.Boolean(
+        string='Write to external server with sftp',
+        help=(
+            "If you check this option you can specify the details "
+            "needed to write to a remote server with SFTP."
+        )
+    )
+    sftppath = fields.Char(
+        string='Path external server',
+        help=(
+            "The location to the folder where the dumps should be "
+            "written to. For example /odoo/backups/.\nFiles will then"
+            " be written to /odoo/backups/ on your remote server."
+        )
+    )
+    sftpip = fields.Char(
+        string='IP Address SFTP Server',
+        help=(
+            "The IP address from your remote"
+            " server. For example 192.168.0.1"
+        )
+    )
+    sftpport = fields.Integer(
+        string="SFTP Port",
+        default=22,
+        help="The port on the FTP server that accepts SSH/SFTP calls."
+    )
+    sftpusername = fields.Char(
+        string='Username SFTP Server',
+        help=(
+            "The username where the SFTP connection "
+            "should be made with. This is the user on the external server."
+        )
+    )
+    sftppassword = fields.Char(
+        string='Password User SFTP Server',
+        help=(
+            "The password from the user where the SFTP connection "
+            "should be made with. This is the password from the user"
+            " on the external server."
+        )
+    )
+    daystokeepsftp = fields.Integer(
+        string='Remove SFTP after x days',
+        default=30,
+        help=(
+            "Choose after how many days the backup should be deleted "
+            "from the FTP server. For example:\nIf you fill in 5 the "
+            "backups will be removed after 5 days from the FTP server."
+        )
+    )
+    sendmailsftpfail = fields.Boolean(
+        string='Auto. E-mail on backup fail',
+        help=(
+            "If you check this option you can choose to automaticly"
+            " get e-mailed when the backup to the external server failed."
+        )
+    )
+    emailtonotify = fields.Char(
+        string='E-mail to notify',
+        help=(
+            "Fill in the e-mail where you want to be"
+            " notified that the backup failed on the FTP."
+        )
+    )
+    lasterrorlog = fields.Text(
+        string='E-mail to notify',
+        help=(
+            "Fill in the e-mail where you want to be"
+            " notified that the backup failed on the FTP."
+        )
+    )
 
-    _defaults = {
-        # 'bkp_dir' : lambda *a : addons_path,
-        'bkp_dir': '/odoo/backups',
-        'host': 'localhost',
-        'port': '8069',
-        'name': _get_db_name,
-        'daystokeepsftp': 30,
-        'sftpport': 22,
-    }
-
-    def _check_db_exist(self, cr, user, ids):
-        for rec in self.browse(cr, user, ids):
-            db_list = self.get_db_list(cr, user, ids, rec.host, rec.port)
+    @api.multi
+    def _check_db_exist(self):
+        for rec in self:
+            db_list = self.get_db_list(rec.host, rec.port)
             if rec.name in db_list:
                 return True
-        return False
+            return False
 
     _constraints = [
-        (_check_db_exist, _('Error ! No such database exists!'), [])
+        (
+            _check_db_exist,
+            _('Error ! No such database exists!'), ['name']
+        )
     ]
 
-    def test_sftp_connection(self, cr, uid, ids, context=None):
-        conf_ids = self.search(cr, uid, [])
-        confs = self.browse(cr, uid, conf_ids)
+    @api.multi
+    def test_sftp_connection(self):
+        confs = self.search([])
         # Check if there is a success or fail and write messages
         messageTitle = ""
         messageContent = ""
@@ -211,38 +216,35 @@ class db_backup(osv.Model):
                         "\nYour IP address seems to be too short.\n")
                 messageContent += "Here is what we got instead:\n"
         if "Failed" in messageTitle:
-            raise osv.except_osv(
+            raise except_orm(
                 _(messageTitle), _(
                     messageContent + "%s") %
                 tools.ustr(e))
         else:
-            raise osv.except_osv(_(messageTitle), _(messageContent))
+            raise Warning(_(messageTitle), _(messageContent))
 
-    def schedule_backup(self, cr, user, context={}):
-        conf_ids = self.search(cr, user, [])
-        confs = self.browse(cr, user, conf_ids)
-        for rec in confs:
-            db_list = self.get_db_list(cr, user, [], rec.host, rec.port)
+    @api.model
+    def schedule_backup(self):
+        for rec in self.search([]):
+            db_list = self.get_db_list(rec.host, rec.port)
             if rec.name in db_list:
+                file_path = ''
+                bkp_file = ''
                 try:
                     if not os.path.isdir(rec.bkp_dir):
                         os.makedirs(rec.bkp_dir)
                 except:
                     raise
                 # Create name for dumpfile.
-                bkp_file = '%s_%s.dump' % (
+                bkp_file = '%s_%s.dimp.zip' % (
                     time.strftime('%d_%m_%Y_%H_%M_%S'),
                     rec.name)
                 file_path = os.path.join(rec.bkp_dir, bkp_file)
-                uri = 'http://' + rec.host + ':' + rec.port
-                conn = xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
+                conn = self.get_connection(rec.host, rec.port)
                 bkp = ''
                 try:
                     bkp = execute(
-                        conn,
-                        'dump',
-                        tools.config['admin_passwd'],
-                        rec.name)
+                        conn, 'dump', tools.config['admin_passwd'], rec.name)
                 except:
                     _logger.notifyChannel(
                         'backup', netsvc.LOG_INFO,
@@ -251,7 +253,7 @@ class db_backup(osv.Model):
                             "Bad database administrator"
                             "password for server running at http://%s:%s"
                         ) % (rec.name, rec.host, rec.port))
-                    continue
+                    return False
                 bkp = base64.decodestring(bkp)
                 fp = open(file_path, 'wb')
                 fp.write(bkp)
@@ -261,7 +263,7 @@ class db_backup(osv.Model):
                     'backup', netsvc.LOG_INFO,
                     "database %s doesn't exist on http://%s:%s" %
                     (rec.name, rec.host, rec.port))
-
+                return False
             # Check if user wants to write to SFTP or not.
             if rec.sftpwrite is True:
                 try:
@@ -282,7 +284,6 @@ class db_backup(osv.Model):
                     # user made a typo in his path with multiple slashes
                     # (/odoo//backups/) it will be fixed by this regex.
                     pathToWriteTo = re.sub('([/]{2,5})+', '/', pathToWriteTo)
-                    print(pathToWriteTo)
                     try:
                         srv.chdir(pathToWriteTo)
                     except IOError:
@@ -308,7 +309,6 @@ class db_backup(osv.Model):
                     for f in os.listdir(dir):
                         fullpath = os.path.join(dir, f)
                         if os.path.isfile(fullpath):
-                            print(fullpath)
                             srv.put(fullpath)
 
                     # Navigate in to the correct folder.
@@ -319,19 +319,23 @@ class db_backup(osv.Model):
                     for file in srv.listdir(pathToWriteTo):
                         # Get the full path
                         fullpath = os.path.join(pathToWriteTo, file)
-                        # Get the timestamp from the file on the external
-                        # server
-                        timestamp = srv.stat(fullpath).st_atime
-                        createtime = datetime.datetime.fromtimestamp(timestamp)
-                        now = datetime.datetime.now()
-                        delta = now - createtime
-                        # If the file is older than the daystokeepsftp (the
-                        # days to keep that the user filled in on the Odoo form
-                        # it will be removed.
-                        if delta.days >= rec.daystokeepsftp:
-                            # Only delete files, no directories!
-                            if srv.isfile(fullpath) and ".dump" in file:
-                                print("Delete: " + file)
+                        if srv.isfile(fullpath) and ".dump.zip" in file:
+                            # Get the timestamp from the file on the external
+                            # server
+                            timestamp = srv.stat(fullpath).st_atime
+                            createtime = (
+                                datetime.datetime.fromtimestamp(timestamp)
+                            )
+                            now = datetime.datetime.now()
+                            delta = now - createtime
+                            # If the file is older than the daystokeepsftp (the
+                            # days to keep that the user filled in on the Odoo
+                            # form it will be removed.
+                            if (
+                                rec.daystokeepsftp > 0 and
+                                delta.days >= rec.daystokeepsftp
+                            ):
+                                # Only delete files, no directories!
                                 srv.unlink(file)
                     # Close the SFTP session.
                     srv.close()
@@ -345,25 +349,13 @@ class db_backup(osv.Model):
                     # an e-mail notification about this.
                     if rec.sendmailsftpfail:
                         try:
-                            ir_mail_server = self.pool.get('ir.mail_server')
-                            message = (
-                                "Dear,\n\nThe backup for the server %s"
-                                " (IP: %s) failed.Please check"
-                                " the following details:\n\n"
-                                "IP address SFTP server: %s \nUsername: %s"
-                                "\nPassword: %s"
-                                "\n\nError details: %s \n\nWith kind regards"
-                            ) % (
-                                rec.host, rec.sftpip, rec.sftpip,
-                                rec.sftpusername, rec.sftppassword,
-                                tools.ustr(e)
+                            self.write({'lasterrorlog': tools.ustr(e)})
+                            abk_template = self.env.ref(
+                                'auto_backup.'
+                                'email_template_autobackup_error_noificaiton',
+                                False
                             )
-                            msg = ir_mail_server.build_email(
-                                "auto_backup@" + rec.name + ".com",
-                                [rec.emailtonotify],
-                                "Backup from " + rec.host + "(" + rec.sftpip +
-                                ") failed", message)
-                            ir_mail_server.send_email(cr, user, msg)
+                            abk_template.send_mail(self.id)
                         except Exception:
                             pass
 
@@ -383,17 +375,16 @@ class db_backup(osv.Model):
                 dir = rec.bkp_dir
                 # Loop over all files in the directory.
                 for f in os.listdir(dir):
-                    fullpath = os.path.join(dir, f)
-                    timestamp = os.stat(fullpath).st_ctime
-                    createtime = datetime.datetime.fromtimestamp(timestamp)
-                    now = datetime.datetime.now()
-                    delta = now - createtime
-                    if delta.days >= rec.daystokeep:
-                        # Only delete files (which are .dump), no directories.
-                        if os.path.isfile(fullpath) and ".dump" in f:
-                            print("Delete: " + fullpath)
+                    if os.path.isfile(fullpath) and ".dump.zip" in f:
+                        fullpath = os.path.join(dir, f)
+                        timestamp = os.stat(fullpath).st_ctime
+                        createtime = (
+                            datetime.datetime.fromtimestamp(timestamp)
+                        )
+                        now = datetime.datetime.now()
+                        delta = now - createtime
+                        if delta.days >= rec.daystokeep:
                             os.remove(fullpath)
-
-db_backup()
+        return True
 
 #  vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
