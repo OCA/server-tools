@@ -19,7 +19,6 @@
 #
 ##############################################################################
 
-
 from openerp.tests import common
 from openerp.exceptions import except_orm
 
