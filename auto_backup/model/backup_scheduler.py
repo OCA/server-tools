@@ -359,18 +359,18 @@ class db_backup(models.Model):
                         except Exception:
                             pass
 
-            """Remove all old files (on local server) in case this is configured..
-            This is done after the SFTP writing to prevent unusual behaviour:
-            If the user would set local back-ups to be kept 0 days and the SFTP
-            to keep backups xx days there wouldn't be any new back-ups added
-            to the SFTP.
-            If we'd remove the dump files before they're writen to the SFTP
-            there willbe nothing to write. Meaning that if an user doesn't want
-            to keep back-ups locally and only wants them on the SFTP
-            (NAS for example) there wouldn't be any writing to the
-            remote server if this if statement was before the SFTP write method
-            right above this comment.
-            """
+        # Remove all old files (on local server) in case this is configured..
+        # This is done after the SFTP writing to prevent unusual behaviour:
+        # If the user would set local back-ups to be kept 0 days and the SFTP
+        # to keep backups xx days there wouldn't be any new back-ups added
+        # to the SFTP.
+        # If we'd remove the dump files before they're writen to the SFTP
+        # there willbe nothing to write. Meaning that if an user doesn't want
+        # to keep back-ups locally and only wants them on the SFTP
+        # (NAS for example) there wouldn't be any writing to the
+        # remote server if this if statement was before the SFTP write method
+        # right above this comment.
+
             if rec.autoremove is True:
                 dir = rec.bkp_dir
                 # Loop over all files in the directory.
