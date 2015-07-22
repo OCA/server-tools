@@ -22,6 +22,7 @@ Known issues / Roadmap
 ======================
 
  * log only operations triggered by some users (currently it logs all users)
+ * log only operations triggered on selected fields (currently it logs all fields on a model)
  * group logs by HTTP query (thanks to werzeug)?
  * group HTTP query by user session?
 
