@@ -21,18 +21,18 @@
 ##############################################################################
 
 {
-    "name" : "Database Auto-Backup",
-    "version" : "1.0",
-    "author" :(
+    "name": "Database Auto-Backup",
+    "version": "1.0",
+    "author": (
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Odoo Community Association (OCA)"
     ),
-    "website" : "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
-    "category" : "Tools",
+    "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
+    "category": "Tools",
     "summary": "Backups data base",
-    "depends" : ['base','email_template'],
-    "demo" : [],
-    "data" : [
+    "depends": ['base', 'email_template'],
+    "demo": [],
+    "data": [
         "view/bkp_conf_view.xml",
         "data/backup_data.xml",
         "data/autobackup_mail_template.xml",
