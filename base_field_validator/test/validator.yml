@@ -1,0 +1,30 @@
+-
+  set regex for partner
+-
+  !python {model: ir.model}: |
+    self.write(cr, uid, [ref('base.model_res_partner')], {
+      'validator_line_ids': [(0,0,
+        {
+        'name': ref('base.model_res_partner'),
+        'field_id': ref('base.field_res_partner_email'),
+        'regex_id': ref('regex_mail'),
+        })],
+    })
+-
+  Set valid email
+-
+  !record {model: res.partner, id: base.res_partner_12}:
+    email: 'info@agilebg.com'
+-
+  Try invalid email
+-
+  !python {model: res.partner}: |
+    from openerp.osv import orm
+    try:
+      self.write(cr, uid, [ref('base.res_partner_12')], {
+        'email': 'john',
+        })
+      assert False, "An exception should have been raised, 'john' is not a valid email!" 
+    except orm.except_orm:
+      # exception was raised as expected
+      pass
