@@ -157,10 +157,11 @@ class SuperCalendarConfigurator(models.Model):
                                   or 'UTC')
                     local_date_start = tz.localize(date_start)
                     utc_date_start = local_date_start.astimezone(utc)
-                    date_start = datetime.strftime(
-                        utc_date_start,
-                        tools.DEFAULT_SERVER_DATETIME_FORMAT
-                    )
+                    date_start = utc_date_start
+                date_start = datetime.strftime(
+                    date_start,
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT
+                )
 
                 super_calendar_values = {
                     'name': name,

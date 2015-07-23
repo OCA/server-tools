@@ -61,7 +61,7 @@ class TestSuperCalendar(TransactionCase):
             ('model', '=', 'res.partner')
         ])
         self.date_start_field = self.ModelFieldsObj.search([
-            ('name', '=', 'create_date'),
+            ('name', '=', 'write_date'),
             ('model', '=', 'res.partner'),
         ])
         self.description_field = self.ModelFieldsObj.search([
@@ -82,11 +82,10 @@ class TestSuperCalendar(TransactionCase):
         """
         Test if record values are correctly computed
         """
-
         # Test without any date_stop or duration
         values_partner_a = {
             'configurator_id': self.super_calendar_configurator.id,
-            'date_start': self.partner_A.create_date,
+            'date_start': self.partner_A.write_date,
             'duration': False,
             'model_id': self.partner_model.id,
             'name': self.partner_A.name,
@@ -105,7 +104,7 @@ class TestSuperCalendar(TransactionCase):
             ('name', '=', 'date'),
             ('model', '=', 'res.partner'),
         ])
-        start_date = datetime.strptime(self.partner_A.create_date,
+        start_date = datetime.strptime(self.partner_A.write_date,
                                        DEFAULT_SERVER_DATETIME_FORMAT)
         stop_date = datetime.strptime(self.partner_A.date,
                                       DEFAULT_SERVER_DATE_FORMAT)
@@ -156,5 +155,5 @@ class TestSuperCalendar(TransactionCase):
         ])
         self.assertEqual(
             super_calendar_record.date_start,
-            self.partner_A.create_date
+            self.partner_A.write_date
         )
