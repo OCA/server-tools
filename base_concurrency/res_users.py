@@ -21,7 +21,7 @@
 import logging
 import psycopg2
 import openerp.exceptions
-from openerp import pooler, SUPERUSER_ID
+from openerp import SUPERUSER_ID
 from openerp.osv import orm, fields
 
 _logger = logging.getLogger(__name__)
@@ -91,7 +91,7 @@ class ResUsers(orm.Model):
         if not password:
             return False
         user_id = False
-        cr = pooler.get_db(db).cursor()
+        cr = self.pool.cursor()
         try:
             # check if user exists
             res = self.search(cr, SUPERUSER_ID, [('login', '=', login)])
