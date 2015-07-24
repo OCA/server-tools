@@ -1,7 +1,7 @@
 Webhook
 ---------------
 
-Module to receive [global webhooks](https://es.wikipedia.org/wiki/Webhook) events.
+Module to receive [global webhooks](https://en.wikipedia.org/wiki/Webhook) events.
 This module invoke methods to process webhook events.
 You will need create a new module to add your logic to process the events with methods called:
 `def run_CONSUMER_EVENT*`

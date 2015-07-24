@@ -1,9 +1,10 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
 #    Copyright (c) 2011 Vauxoo - http://www.vauxoo.com
 #    All Rights Reserved.
+#    license: http://www.gnu.org/licenses/agpl-3.0.html
 #    info Vauxoo (info@vauxoo.com)
 #    coded by: moylop260@vauxoo.com
 #    planned by: nhomar@vauxoo.com
@@ -44,15 +45,21 @@ class TestWebhookPost(HttpCase):
         self.url_base = "http://%s:%s" % (HOST, PORT)
         self.url = self.get_webhook_url()
 
-    def get_webhook_url(self, url='/webhook'):
+    def get_webhook_url(self, url='/webhook',
+                        webhook_name="wehook_test"):
         """
         :param string url: Full url of last url of webhook to use.
                     If you use a full url will return url
                     plus session_id
                     default: /webhook
+        :param string webhook_name: Name of webhook to process
+                    default: webhook_test
+        :return: url with
+        http://IP:PORT/webhook/webhook_name?session_id=###
         """
+        webhook_name = webhook_name.replace('/', '')
         if url.startswith('/'):
-            url = self.url_base + url
+            url = self.url_base + url + '/' + webhook_name
         url += '?session_id=' + self.session_id
         return url
 
