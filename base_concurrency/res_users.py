@@ -87,7 +87,7 @@ class ResUsers(orm.Model):
     }
 
     # Re-defining the login function in order to use the new table
-    def login(self, db, login, password):
+    def _login(self, db, login, password):
         if not password:
             return False
         user_id = False
