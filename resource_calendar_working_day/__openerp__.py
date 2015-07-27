@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'Times Working Days',
+    'name': 'Resource Calendar Working Day',
     'version': '1.0',
     'category': 'Tools',
     'author': 'Akretion, Odoo Community Association (OCA)',

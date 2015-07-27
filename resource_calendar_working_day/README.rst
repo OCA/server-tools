@@ -1,5 +1,5 @@
-Times Working Days
-==================
+Resource Calendar Working Day
+=============================
 
 This module calculates a date based on a start date and a time (in days), but taking account the working days specified on the company.
 
