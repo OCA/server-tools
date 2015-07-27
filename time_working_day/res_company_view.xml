@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+<record id="view_company_form" model="ir.ui.view">
+    <field name="model">res.company</field>
+    <field name="inherit_id" ref="base.view_company_form" />
+    <field eval="30" name="priority"/>
+    <field name="arch" type="xml">
+        <data>
+            <page string="Configuration" position="inside">
+                <group name="working_time">
+                    <separator string="Working Time" colspan="4"/>
+                    <field name="calendar_id"/>
+                </group>
+            </page>
+        </data>
+    </field>
+</record>
+
+    </data>
+</openerp>
