@@ -236,7 +236,7 @@ class db_backup(models.Model):
                 except:
                     raise
                 # Create name for dumpfile.
-                bkp_file = '%s_%s.dimp.zip' % (
+                bkp_file = '%s_%s.dump.zip' % (
                     time.strftime('%d_%m_%Y_%H_%M_%S'),
                     rec.name)
                 file_path = os.path.join(rec.bkp_dir, bkp_file)
