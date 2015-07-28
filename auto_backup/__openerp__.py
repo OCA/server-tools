@@ -35,7 +35,6 @@
     "data": [
         "view/bkp_conf_view.xml",
         "data/backup_data.xml",
-        "data/autobackup_mail_template.xml",
         "security/ir.model.access.csv"
     ],
     "active": False,
