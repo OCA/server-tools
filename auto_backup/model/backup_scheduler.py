@@ -375,8 +375,8 @@ class db_backup(models.Model):
                 dir = rec.bkp_dir
                 # Loop over all files in the directory.
                 for f in os.listdir(dir):
+                    fullpath = os.path.join(dir, f)
                     if os.path.isfile(fullpath) and ".dump.zip" in f:
-                        fullpath = os.path.join(dir, f)
                         timestamp = os.stat(fullpath).st_ctime
                         createtime = (
                             datetime.datetime.fromtimestamp(timestamp)
