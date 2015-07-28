@@ -225,6 +225,7 @@ class db_backup(models.Model):
 
     @api.model
     def schedule_backup(self):
+
         for rec in self.search([]):
             db_list = self.get_db_list(rec.host, rec.port)
             if rec.name in db_list:
@@ -349,15 +350,31 @@ class db_backup(models.Model):
                     # an e-mail notification about this.
                     if rec.sendmailsftpfail:
                         try:
-                            self.write({'lasterrorlog': tools.ustr(e)})
-                            abk_template = self.env.ref(
-                                'auto_backup.'
-                                'email_template_autobackup_error_noificaiton',
-                                False
+                            ir_mail_server = self.env['ir.mail_server']
+                            message = (
+                                "Dear,\n\nThe backup for the server %s"
+                                " (IP: %s) failed.Please check"
+                                " the following details:\n\n"
+                                "IP address SFTP server: %s \nUsername: %s"
+                                "\nPassword: %s"
+                                "\n\nError details: %s \n\nWith kind regards"
+                            ) % (
+                                rec.host, rec.sftpip, rec.sftpip,
+                                rec.sftpusername, rec.sftppassword,
+                                tools.ustr(e)
                             )
-                            abk_template.send_mail(self.id)
-                        except Exception:
-                            pass
+                            msg = ir_mail_server.build_email(
+                                "auto_backup@%s.com" % rec.name,
+                                [rec.emailtonotify],
+                                "Backup from %s ( %s ) failed" % (
+                                    rec.host, rec.sftpip),
+                                message)
+                            ir_mail_server.send_email(msg)
+
+                        except Exception as e:
+                            _logger.debug(
+                                'Exception! %s' % tools.ustr(e)
+                            )
 
         # Remove all old files (on local server) in case this is configured..
         # This is done after the SFTP writing to prevent unusual behaviour:
@@ -386,5 +403,3 @@ class db_backup(models.Model):
                         if delta.days >= rec.daystokeep:
                             os.remove(fullpath)
         return True
-
-#  vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
