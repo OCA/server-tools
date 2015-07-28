@@ -16,9 +16,9 @@ instal pysftp via pip.
 Configuration
 =============
 
-To configure this module, you need to:
-
-* go to ...
+Go to Settings -> Configuration -> Configure Backup
+create your configurations for each database that you needed
+to backups.
 
 Usage
 =====
