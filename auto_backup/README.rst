@@ -80,7 +80,7 @@ Credits
 Contributors
 ------------
 
-* Yenthe Van Ginneken <email.address@example.org>
+* Yenthe Van Ginneken <yenthe.vanginneken@vanroey.be>
 * Alessio Gerace <alessio.gerace@agilebg.com>
 
 Maintainer
