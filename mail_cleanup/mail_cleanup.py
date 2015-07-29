@@ -80,7 +80,7 @@ class FetchmailServer(orm.Model):
             _get_cleanup_conf,
             method=True,
             string='Deletion days',
-            type="char",
+            type="integer",
             multi='outgoing_mail_config',
             help="Number of days before removing an e-mail"),
     }
@@ -146,12 +146,12 @@ class FetchmailServer(orm.Model):
             context.update({'fetchmail_server_id': server.id,
                             'server_type': server.type})
             imap_server = False
-            if server.type == 'imap' and server.cleanup_days > 0:
+            if server.type == 'imap':
                 try:
                     imap_server = server.connect()
-                    if server.cleanup_days:
+                    if server.cleanup_days > 0:
                         self._cleanup_fetchmail_server(server, imap_server)
-                    if server.purge_days:
+                    if server.purge_days > 0:
                         self._purge_fetchmail_server(server, imap_server)
                 except Exception:
                     _logger.exception("General failure when trying to cleanup "
