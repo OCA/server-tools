@@ -1,11 +1,12 @@
 {
     "name": "GrayLog2 Handler",
     "version": "0.0.1",
-    "author": "JBM",
-    "website": "",
+    "author": "Management and Accounting On-line",
+    "website": "https://github.com/OCA/server-tools/",
     "summary": "Provides ability to send log messages to graylog2 server",
     "category": "Added functionality",
     "depends": [
+        'base',
     ],
     "description": """
 Aditional options available for config file:
@@ -25,6 +26,3 @@ Aditional options available for config file:
     ],
     "active": True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
