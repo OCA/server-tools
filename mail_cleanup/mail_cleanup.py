@@ -42,7 +42,8 @@ class FetchmailServer(orm.Model):
             global_section_name = 'incoming_mail'
 
             # default vals
-            config_vals = {'cleanup_days': "30",
+            config_vals = {'cleanup_days': False,
+                           'purge_days': False,
                            'cleanup_folder': False}
             if serv_config.has_section(global_section_name):
                 config_vals.update(serv_config.items(global_section_name))
@@ -52,8 +53,11 @@ class FetchmailServer(orm.Model):
             if serv_config.has_section(custom_section_name):
                 config_vals.update(serv_config.items(custom_section_name))
 
-            # convert string value to integer
-            config_vals['cleanup_days'] = int(config_vals['cleanup_days'])
+            # convert string values to integer
+            if config_vals['cleanup_days']:
+                config_vals['cleanup_days'] = int(config_vals['cleanup_days'])
+            if config_vals['purge_days']:
+                config_vals['purge_days'] = int(config_vals['purge_days'])
             res[fetchmail.id] = config_vals
         return res
 
@@ -64,14 +68,21 @@ class FetchmailServer(orm.Model):
             string='Expiration days',
             type="integer",
             multi='outgoing_mail_config',
-            help="Number of days before discarding an e-mail"),
+            help="Number of days before marking an e-mail as read"),
         'cleanup_folder': fields.function(
             _get_cleanup_conf,
             method=True,
             string='Expiration folder',
             type="char",
             multi='outgoing_mail_config',
-            help="Folder where the discarded e-mail will be moved.")
+            help="Folder where an e-mail marked as read will be moved."),
+        'purge_days': fields.function(
+            _get_cleanup_conf,
+            method=True,
+            string='Deletion days',
+            type="char",
+            multi='outgoing_mail_config',
+            help="Number of days before removing an e-mail"),
     }
 
     def _cleanup_fetchmail_server(self, server, imap_server):
@@ -82,7 +93,6 @@ class FetchmailServer(orm.Model):
         imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
-            result, data = imap_server.fetch(num, '(RFC822)')
             try:
                 # Mark message as read
                 imap_server.store(num, '+FLAGS', '\\Seen')
@@ -98,7 +108,29 @@ class FetchmailServer(orm.Model):
                                   server.type, server.name)
                 failed += 1
             count += 1
-        _logger.info("Fetched %d email(s) on %s server %s; "
+        _logger.info("Marked %d email(s) as read on %s server %s; "
+                     "%d succeeded, %d failed.", count, server.type,
+                     server.name, (count - failed), failed)
+
+    def _purge_fetchmail_server(self, server, imap_server):
+        # Purging e-mails older than the purge date, if available
+        count, failed = 0, 0
+        purge_date = (datetime.now() + relativedelta.relativedelta(
+            days=-(server.purge_days))).strftime('%d-%b-%Y')
+        search_text = '(BEFORE %s)' % purge_date
+        imap_server.select()
+        result, data = imap_server.search(None, search_text)
+        for num in data[0].split():
+            try:
+                # Delete message
+                imap_server.store(num, '+FLAGS', '\\Deleted')
+                imap_server.expunge()
+            except Exception:
+                _logger.exception('Failed to remove mail from %s server %s.',
+                                  server.type, server.name)
+                failed += 1
+            count += 1
+        _logger.info("Removed %d email(s) on %s server %s; "
                      "%d succeeded, %d failed.", count, server.type,
                      server.name, (count - failed), failed)
 
@@ -117,7 +149,10 @@ class FetchmailServer(orm.Model):
             if server.type == 'imap' and server.cleanup_days > 0:
                 try:
                     imap_server = server.connect()
-                    self._cleanup_fetchmail_server(server, imap_server)
+                    if server.cleanup_days:
+                        self._cleanup_fetchmail_server(server, imap_server)
+                    if server.purge_days:
+                        self._purge_fetchmail_server(server, imap_server)
                 except Exception:
                     _logger.exception("General failure when trying to cleanup "
                                       "mail from %s server %s.",
