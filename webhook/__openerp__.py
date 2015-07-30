@@ -1,9 +1,10 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################
 #    Module Writen For Odoo, Open Source Management Solution
 #
 #    Copyright (c) 2011 Vauxoo - http://www.vauxoo.com
 #    All Rights Reserved.
+#    license: http://www.gnu.org/licenses/agpl-3.0.html
 #    info Vauxoo (info@vauxoo.com)
 #    coded by: moylop260@vauxoo.com
 #    planned by: nhomar@vauxoo.com
@@ -12,9 +13,10 @@
 {
     'name': 'Webhook',
     'version': '1.1',
-    'author': 'Vauxoo',
+    'author': 'Vauxoo, Odoo Community Association (OCA)',
     'category': 'Server Tools',
     'website': 'https://www.vauxoo.com',
+    'license': 'AGPL-3',
     'depends': [
         'web',
     ],
