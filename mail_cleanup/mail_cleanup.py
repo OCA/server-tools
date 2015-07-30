@@ -102,7 +102,6 @@ class FetchmailServer(orm.Model):
                     result = imap_server.copy(num, server.cleanup_folder)
                     if result[0] == 'OK':
                         imap_server.store(num, '+FLAGS', '\\Deleted')
-                        imap_server.expunge()
             except Exception:
                 _logger.exception('Failed to cleanup mail from %s server %s.',
                                   server.type, server.name)
@@ -124,7 +123,6 @@ class FetchmailServer(orm.Model):
             try:
                 # Delete message
                 imap_server.store(num, '+FLAGS', '\\Deleted')
-                imap_server.expunge()
             except Exception:
                 _logger.exception('Failed to remove mail from %s server %s.',
                                   server.type, server.name)
@@ -153,6 +151,9 @@ class FetchmailServer(orm.Model):
                         self._cleanup_fetchmail_server(server, imap_server)
                     if server.purge_days > 0:
                         self._purge_fetchmail_server(server, imap_server)
+                    # Do the final cleanup: delete all messages
+                    # flagged as deleted
+                    imap_server.expunge()
                 except Exception:
                     _logger.exception("General failure when trying to cleanup "
                                       "mail from %s server %s.",
