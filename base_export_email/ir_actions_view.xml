@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_server_action_form" model="ir.ui.view">
+            <field name="name">Server Action (base_export_email)</field>
+            <field name="model">ir.actions.server</field>
+            <field name="inherit_id" ref="base.view_server_action_form"/>
+            <field name="arch" type="xml">
+                <field name="model_id" position="attributes">
+                    <attribute name="on_change">onchange_model_id(model_id, context)</attribute>
+                </field>
+                <field name="model_id" position="after">
+                    <field name="model" invisible="1"/>
+                </field>
+                <field name="srcmodel_id" position="attributes">
+                    <attribute name="attrs">{'required': [('state', '!=', 'export_email'),
+                                                          ('state','!=','dummy'),
+                                                          ('state','!=','sms'),
+                                                          ('state','!=','code'),
+                                                          ('state','!=','loop'),
+                                                          ('state','!=','trigger'),
+                                                          ('state','!=','object_copy'),
+                                                          ('state','!=','client_action'),
+                                                          ('state','!=','email'),
+                                                          ('state','!=','sms'),
+                                                          ('state','!=','other')]}</attribute>
+                </field>
+                <notebook position="inside">
+                    <page string="Export data by email configuration" attrs="{'invisible':[('state','!=','export_email')]}">
+                        <group>
+                            <field name="export_format" attrs="{'required':[('state','=','export_email')]}"/>
+                            <field name="filter_id" domain="[('model_id','=',model)]"/>
+                            <field name="email_template_id" attrs="{'required':[('state','=','export_email')]}" 
+                            domain="[('model_id.model', '=', 'ir.actions.server')]"/>
+                            <field name ="fields_to_export" attrs="{'required': [('state', '=', 'export_email'), ('saved_export_id', '=', False)]}" />
+                            <field name ="saved_export_id" attrs="{'required': [('state', '=', 'export_email'), ('fields_to_export', '=', False)]}"
+                            domain="[('resource','=',model)]"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
