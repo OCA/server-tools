@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+<record id="module_tree" model="ir.ui.view">
+    <field name="model">ir.module.module</field>
+    <field name="inherit_id" ref="base.module_tree"/>
+    <field name="arch" type="xml">
+        <field name="state" position="after">
+            <button name="button_save_security"
+                string="Save security file"
+                type="object"
+                states="installed"
+                icon="gtk-dialog-warning"
+            />
+                <!--confirm="Add missing security rule for this module ?"-->
+        </field>
+    </field>
+</record>
+
+
+    </data>
+</openerp>
