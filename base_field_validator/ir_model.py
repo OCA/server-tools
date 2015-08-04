@@ -35,14 +35,17 @@ class IrModel(osv.osv):
 
     def check_vals(self, cr, uid, vals, model, context=None):
         for validator_line in model.validator_line_ids:
-            if validator_line.field_id.name in vals:
-                pattern = re.compile(validator_line.regex_id.regex)
-                if not pattern.match(vals[validator_line.field_id.name]):
+            line = self.pool.get(
+                'ir.model.validator.line').browse(
+                cr, uid, validator_line.id)
+            if line.field_id.name in vals:
+                pattern = re.compile(line.regex_id.regex)
+                if not pattern.match(vals[line.field_id.name]):
                     raise orm.except_orm(
                         _('Error'),
                         _('Expression %s not passed for %s') % (
-                            validator_line.regex_id.regex,
-                            vals[validator_line.field_id.name]))
+                            line.regex_id.regex,
+                            vals[line.field_id.name]))
         return True
 
     def _wrap_create(self, old_create, model):
