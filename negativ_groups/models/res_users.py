@@ -39,7 +39,6 @@ class ResUsers(osv.osv):
         assert group_ext_id and '.' in group_ext_id,\
             "External ID must be fully qualified"
         module, ext_id = group_ext_id.split('.')
-        print group_ext_id
         negation = False
         if module.startswith('not'):
             negation = True
