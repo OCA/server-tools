@@ -2,10 +2,10 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Save Security File
-==================
+Update Security Access File
+===========================
 
-This module was written for **developpers** to easily generate and save
+This module was written for **developpers** to easily generate and update
 model security files.
 
 It search all the models defined by the module (except transient and abstract)
@@ -17,16 +17,16 @@ Usage
 To use this module, you need to:
 
 * go to modules list view.
-* choose an installed module and click on /!\ image.
+* choose a module and click on /!\\ image.
 
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/{project_repo}/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20{save_security_file}%0Aversion:%20{version}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/OCA/server-tools/issues/new?body=module:%20update_security_access_file%0Aversion:%20%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 
 Credits

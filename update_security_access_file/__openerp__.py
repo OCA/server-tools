@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 ##############################################################################
 #
 #    Copyright (C) 2015-TODAY Akretion (<http://www.akretion.com>).
@@ -18,21 +18,18 @@
 #
 ##############################################################################
 
-from openerp import models, api
-from openerp.modules import get_module_path
-
-
-class IrModuleModule(models.Model):
-    _inherit = 'ir.module.module'
-
-    @api.one
-    def button_save_security(self):
-        module_path = get_module_path(self.name)
-        print module_path
-        classes_in_module = self.__metaclass__.module_to_models[self.name]
-        all_models_created_by_the_module = (
-            [x for x in classes_in_module
-             if x._name and not hasattr(x, '_inherit')])
-        print all_models_created_by_the_module
-        import pdb; pdb.set_trace()
-        return True
+{
+    'name': 'Update Security Access File',
+    'version': '0.1',
+    'author': 'Akretion, Odoo Community Association (OCA)',
+    'depends': [
+        'base',
+    ],
+    'demo': [],
+    'website': 'https://www.akretion.com',
+    'data': [
+        'save_file_view.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+}

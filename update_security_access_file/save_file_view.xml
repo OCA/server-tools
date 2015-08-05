@@ -6,9 +6,9 @@
     <field name="model">ir.module.module</field>
     <field name="inherit_id" ref="base.module_tree"/>
     <field name="arch" type="xml">
-        <field name="state" position="after">
+        <field name="name" position="before">
             <button name="button_save_security"
-                string="Save security file"
+                string="Update security file (ir.model.access.csv)"
                 type="object"
                 states="installed"
                 icon="gtk-dialog-warning"
