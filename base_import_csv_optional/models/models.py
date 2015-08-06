@@ -2,12 +2,13 @@
 # License and authorship info in:
 #__openerp__.py file at the root folder of this module.
 
-from openerp import fields, api, exceptions, _
+from openerp import api, _
 from openerp.models import BaseModel
 import logging
 
 _logger = logging.getLogger(__name__)
 base_load = BaseModel.load
+
 
 @api.model
 def load_import_optional(self, fields=None, data=None):
@@ -26,9 +27,7 @@ def load_import_optional(self, fields=None, data=None):
         _logger.error(msg)
         messages = []
         info = {}
-        messages.append(dict(info, type='error',
-                             message=msg,
-                             moreinfo=None))
+        messages.append(dict(info, type='error', message=msg, moreinfo=None))
         res = {'ids': None, 'messages': messages}
     return res
 
