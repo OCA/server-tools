@@ -32,7 +32,7 @@ from os.path import getmtime
 from time import time
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = 'res.users'
 
     def _check_session_validity(self, db, uid, passwd):
@@ -57,6 +57,6 @@ class res_users(models.Model):
         return
 
     def check(self, db, uid, passwd):
-        res = super(res_users, self).check(db, uid, passwd)
+        res = super(ResUsers, self).check(db, uid, passwd)
         self._check_session_validity(db, uid, passwd)
         return res

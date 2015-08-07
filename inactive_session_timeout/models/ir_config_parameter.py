@@ -21,16 +21,14 @@
 #     If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api
+from openerp import models, api, tools, SUPERUSER_ID
 
-from openerp import tools
-from openerp import SUPERUSER_ID
 
 DELAY_KEY = 'inactive_session_time_out_delay'
 IGNORED_PATH_KEY = 'inactive_session_time_out_ignored_url'
 
 
-class ir_config_parameter(models.Model):
+class IrConfigParameter(models.Model):
     _inherit = 'ir.config_parameter'
 
     @tools.ormcache(skiparg=0)
@@ -50,7 +48,7 @@ class ir_config_parameter(models.Model):
 
     @api.multi
     def write(self, vals, context=None):
-        res = super(ir_config_parameter, self).write(vals)
+        res = super(IrConfigParameter, self).write(vals)
         if self.key in [DELAY_KEY, IGNORED_PATH_KEY]:
             self.get_session_parameters.clear_cache(self)
         return res
