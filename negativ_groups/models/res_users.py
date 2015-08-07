@@ -40,13 +40,16 @@ class ResUsers(osv.osv):
             "External ID must be fully qualified"
         module, ext_id = group_ext_id.split('.')
         negation = False
-        if module.startswith('not'):
+        if module.startswith('not '):
             negation = True
             module = module[4:]
 
         self._cr.execute(
-            """SELECT 1 FROM res_groups_users_rel WHERE uid=%s AND gid IN
-(SELECT res_id FROM ir_model_data WHERE module=%s AND name=%s)""",
+            """
+            SELECT 1 FROM res_groups_users_rel AS gu
+            LEFT JOIN ir_model_data AS md ON md.res_id = gu.gid
+            WHERE gu.uid=%s AND md.module=%s AND md.name=s%
+            """,
             (self._uid, module, ext_id))
         tmp = bool(self._cr.fetchone())
 
