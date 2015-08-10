@@ -43,9 +43,9 @@ class IrModel(osv.osv):
                 if not pattern.match(vals[line.field_id.name]):
                     raise orm.except_orm(
                         _('Error'),
-                        _('Expression %s not passed for %s') % (
-                            line.regex_id.regex,
-                            vals[line.field_id.name]))
+                        _('Value %s not pass for %s') % (
+                            vals[line.field_id.name],
+                            line.regex_id.regex))
         return True
 
     def _wrap_create(self, old_create, model):
