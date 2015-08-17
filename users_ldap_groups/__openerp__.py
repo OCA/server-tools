@@ -21,7 +21,7 @@
 
 {
     "name": "Groups assignment",
-    "version": "1.2",
+    "version": "1.2.1",
     "depends": ["auth_ldap"],
     "author": "Therp BV,Odoo Community Association (OCA)",
     "description": """
