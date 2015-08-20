@@ -41,6 +41,9 @@ object you want to query.
     "depends": [
         'auth_ldap',
     ],
+    'external_dependencies': {
+        'python': ['ldap'],
+    },
     "data": [
         'view/users_ldap.xml',
         'view/populate_wizard.xml',
