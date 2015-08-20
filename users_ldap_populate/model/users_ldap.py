@@ -20,9 +20,15 @@
 ##############################################################################
 
 import re
-from ldap.filter import filter_format
 from openerp.osv import orm
 import logging
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from ldap.filter import filter_format
+except ImportError:
+    _logger.debug('Can not `from ldap.filter import filter_format`.')
 
 
 class CompanyLDAP(orm.Model):
