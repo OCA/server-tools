@@ -37,7 +37,7 @@ class res_groups(models.Model):
         result = all(
             self.mapped(
                 lambda this: safe_eval(
-                    this.dynamic_group_condition,
+                    this.dynamic_group_condition or 'False',
                     {
                         'user': self.env.user,
                         'any': any,
