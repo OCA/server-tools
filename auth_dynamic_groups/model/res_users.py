@@ -43,7 +43,7 @@ class res_users(Model):
             {
                 'groups_id': [
                     (4, dynamic_group.id)
-                    if dynamic_group.eval_dynamic_group_condition()
+                    if dynamic_group.eval_dynamic_group_condition(uid=uid)
                     else (3, dynamic_group.id)
                     for dynamic_group in groups_obj.browse(
                         cr, SUPERUSER_ID,
