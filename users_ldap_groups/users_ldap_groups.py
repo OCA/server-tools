@@ -80,7 +80,7 @@ class CompanyLDAP(orm.Model):
                  'groups are preserved.')
     }
 
-    _default = {
+    _defaults = {
         'only_ldap_groups': False,
     }
 
