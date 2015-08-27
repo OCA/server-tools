@@ -20,9 +20,3 @@
 ##############################################################################
 
 from . import test_res_users
-fast_suite = [
-]
-
-checks = [
-    test_res_users,
-]
