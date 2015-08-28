@@ -60,6 +60,19 @@ class PurgeWizard(orm.AbstractModel):
                 context=context)
         return True
 
+    def get_wizard_action(self, cr, uid, context=None):
+        wizard_id = self.create(cr, uid, {}, context=context)
+        return {
+            'type': 'ir.actions.act_window',
+            'views': [(False, 'form')],
+            'res_model': self._name,
+            'res_id': wizard_id,
+            'flags': {
+                'action_buttons': False,
+                'sidebar': False,
+            },
+        }
+
     _columns = {
         'name': fields.char('Name', size=64, readonly=True),
         }
