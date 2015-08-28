@@ -27,6 +27,7 @@
     'license': 'AGPL-3',
     'category': 'Tools',
     'data': [
+        'view/purge_menus.xml',
         'view/purge_modules.xml',
         'view/purge_models.xml',
         'view/purge_columns.xml',
