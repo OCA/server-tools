@@ -21,7 +21,7 @@
 {
     "name": "Dynamic groups",
     "version": "1.0",
-    "author": "Therp BV",
+    "author": "Therp BV,Odoo Community Association (OCA)",
     "complexity": "normal",
     "description": """
 Description
