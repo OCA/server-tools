@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="view_sql_view_form" model="ir.ui.view">
+      <field name="name">sql.view.form</field>
+      <field name="model">sql.view</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="SQL Views">
+          <field name="name"/>
+          <field name="sql_name"/>
+          <field name="definition" colspan="4"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_sql_view_tree" model="ir.ui.view">
+      <field name="name">sql.view.tree</field>
+      <field name="model">sql.view</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="SQL Views">
+          <field name="name"/>
+          <field name="sql_name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_sql_view_search" model="ir.ui.view">
+      <field name="name">sql.view.filter</field>
+      <field name="model">sql.view</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="SQL Views">
+          <field name="name"/>
+          <field name="sql_name"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_sql_view" model="ir.actions.act_window">
+      <field name="name">SQL Views</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sql.view</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_sql_view_search"/>
+    </record>
+
+    <menuitem id="menu_sql_view"
+      action="action_sql_view"
+      sequence="20"
+      parent="base.next_id_9"
+      string="SQL views"/>
+
+  </data>
+</openerp>
