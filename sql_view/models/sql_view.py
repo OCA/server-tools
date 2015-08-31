@@ -19,8 +19,15 @@
 #
 #
 
-
+import re
 from openerp.osv import orm, fields
+
+# views are created with a prefix to prevent conflicts
+SQL_VIEW_PREFIX = u'sql_view_'
+# 63 chars is the length of a postgres identifier
+USER_NAME_SIZE = 63 - len(SQL_VIEW_PREFIX)
+
+PG_NAME_RE = re.compile(r'^[a-z_][a-z0-9_$]*$', re.I)
 
 
 class sql_view(orm.Model):
@@ -28,6 +35,17 @@ class sql_view(orm.Model):
 
     _columns = {
         'name': fields.char(string='View Name', required=True),
-        'sql_name': fields.char(string='SQL Name', required=True),
+        'sql_name': fields.char(string='SQL Name', required=True,
+                                size=USER_NAME_SIZE),
         'definition': fields.text(string='Definition', required=True),
     }
+
+    def _check_sql_name(self, cr, uid, ids, context=None):
+        records = self.browse(cr, uid, ids, context=context)
+        return all(PG_NAME_RE.match(record.sql_name) for record in records)
+
+    _constraints = [
+        (_check_sql_name,
+         'The SQL name is not a valid PostgreSQL identifier',
+         ['sql_name']),
+    ]
