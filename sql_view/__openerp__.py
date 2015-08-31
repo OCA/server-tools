@@ -33,31 +33,34 @@ SQL Views
 This addon allows to create SQL views on the database.  It also features
 a simple CSV export of the views to check their result.
 
-Configuration
-=============
-
-To configure this module, you need to:
-
-* go to ...
-
 Usage
 =====
 
-To use this module, you need to:
+To create new SQL views, you need to go to ``Settings > Technical >
+Database Structure > SQL Views``.
 
-* go to ...
+Give a view a human name, a SQL name (which will be prefixed with
+``sql_view_`` in the database, and the definition of the view itself
+(without trailing semicolon).
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/7.0
+Known issues / Roadmap
+======================
+
+The CSV preview can be used to read any data on the database. So this
+menu **must** be accessible only by allowed admin users. By
+default, the module is configured to be accessible only by users having
+the ``Settings`` administration level.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20sql_view%0Aversion:%207.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+If you spotted it first, help us smashing it by providing a detailed and
+welcomed feedback
+`here
+<https://github.com/OCA/server-tools/issues/new?body=module:%20sql_view%0Aversion:%207.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -83,7 +86,10 @@ promote its widespread use.
 To contribute to this module, please visit http://odoo-community.org.
  """,
  'website': 'http://www.camptocamp.com',
- 'data': ['views/sql_view_views.xml',
+ 'external_dependencies': {'python': ['unicodecsv']},
+ 'data': ['wizards/sql_view_csv_preview_views.xml',
+          'views/sql_view_views.xml',
+          'security/ir.model.access.csv',
           ],
  'installable': True,
  }

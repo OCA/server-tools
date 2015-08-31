@@ -20,7 +20,9 @@
 #
 
 import re
+import psycopg2
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 # views are created with a prefix to prevent conflicts
 SQL_VIEW_PREFIX = u'sql_view_'
@@ -30,13 +32,26 @@ USER_NAME_SIZE = 63 - len(SQL_VIEW_PREFIX)
 PG_NAME_RE = re.compile(r'^[a-z_][a-z0-9_$]*$', re.I)
 
 
-class sql_view(orm.Model):
+class SQLView(orm.Model):
     _name = 'sql.view'
+
+    def _compute_complete_sql_name(self, cr, uid, ids, name, args,
+                                   context=None):
+        res = {}
+        for sql_view in self.browse(cr, uid, ids, context=context):
+            res[sql_view.id] = SQL_VIEW_PREFIX + sql_view.sql_name
+        return res
 
     _columns = {
         'name': fields.char(string='View Name', required=True),
         'sql_name': fields.char(string='SQL Name', required=True,
-                                size=USER_NAME_SIZE),
+                                size=USER_NAME_SIZE,
+                                help="Name of the view. Will be prefixed "
+                                     "by %s" % (SQL_VIEW_PREFIX,)),
+        'complete_sql_name': fields.function(_compute_complete_sql_name,
+                                             string='Complete SQL Name',
+                                             readonly=True,
+                                             type='char'),
         'definition': fields.text(string='Definition', required=True),
     }
 
@@ -49,3 +64,62 @@ class sql_view(orm.Model):
          'The SQL name is not a valid PostgreSQL identifier',
          ['sql_name']),
     ]
+
+    def _sql_view_comment(self, cr, uid, sql_view, context=None):
+        return "%s (created by the module sql_view)" % sql_view.name
+
+    def _create_or_replace_sql_view(self, cr, uid, sql_view, context=None):
+        view_name = sql_view.complete_sql_name
+        try:
+            # The parenthesis around the definition are important:
+            # they prevent to insert a semicolon and another query after
+            # the view declaration
+            cr.execute(
+                "CREATE VIEW {view_name} AS ({definition})".format(
+                    view_name=view_name,
+                    definition=sql_view.definition)
+            )
+        except psycopg2.ProgrammingError as err:
+            raise orm.except_orm(
+                _('Error'),
+                _('The definition of the view is not correct:\n\n%s') % (err,)
+            )
+        comment = self._sql_view_comment(cr, uid, sql_view, context=context)
+        cr.execute(
+            "COMMENT ON VIEW {view_name} IS %s".format(view_name=view_name),
+            (comment,)
+        )
+
+    def _delete_sql_view(self, cr, uid, sql_view, context=None):
+        view_name = sql_view.complete_sql_name
+        cr.execute("DROP view IF EXISTS %s" % (view_name,))
+
+    def create(self, cr, uid, vals, context=None):
+        record_id = super(SQLView, self).create(cr, uid, vals,
+                                                context=context)
+
+        record = self.browse(cr, uid, record_id, context=context)
+        self._create_or_replace_sql_view(cr, uid, record, context=context)
+        return record_id
+
+    def write(self, cr, uid, ids, vals, context=None):
+        # If the name has been changed, we have to drop the view,
+        # it will be created with the new name.
+        # If the definition have been changed, we better have to delete
+        # it and create it again otherwise we can have 'cannot drop
+        # columns from view' errors.
+        for record in self.browse(cr, uid, ids, context=context):
+            self._delete_sql_view(cr, uid, record, context=context)
+
+        result = super(SQLView, self).write(cr, uid, ids, vals,
+                                            context=context)
+        for record in self.browse(cr, uid, ids, context=context):
+            self._create_or_replace_sql_view(cr, uid, record,
+                                             context=context)
+        return result
+
+    def unlink(self, cr, uid, ids, context=None):
+        for record in self.browse(cr, uid, ids, context=context):
+            self._delete_sql_view(cr, uid, record, context=context)
+        result = super(SQLView, self).unlink(cr, uid, ids, context=context)
+        return result

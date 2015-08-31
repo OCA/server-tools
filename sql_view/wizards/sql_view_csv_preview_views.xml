@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="view_sql_view_csv_preview_form" model="ir.ui.view">
+      <field name="name">sql.view.csv.preview.form</field>
+      <field name="model">sql.view.csv.preview</field>
+      <field name="arch" type="xml">
+        <form string="SQL View CSV Preview" version="7.0">
+          <group>
+            <field name="limit" attrs="{'invisible': [('data', '!=', False)]}"/>
+            <field name="filename" invisible="1"/>
+            <field name="data" attrs="{'invisible': [('data', '=', False)]}"
+              filename="filename"/>
+          </group>
+          <footer attrs="{'invisible': [('data', '!=', False)]}">
+            <button string="Preview" name="export_csv" type="object" class="oe_highlight"/>
+            or
+            <button string="Cancel" class="oe_link" special="cancel"/>
+          </footer>
+          <footer attrs="{'invisible': [('data', '=', False)]}">
+            <button special="cancel" string="Close" type="object"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_sql_view_csv_preview" model="ir.actions.act_window">
+      <field name="name">SQL View CSV Preview</field>
+      <field name="res_model">sql.view.csv.preview</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_sql_view_csv_preview_form"/>
+      <field name="target">new</field>
+    </record>
+
+  </data>
+</openerp>

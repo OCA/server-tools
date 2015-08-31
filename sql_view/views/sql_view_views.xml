@@ -5,12 +5,24 @@
     <record id="view_sql_view_form" model="ir.ui.view">
       <field name="name">sql.view.form</field>
       <field name="model">sql.view</field>
-      <field name="type">form</field>
       <field name="arch" type="xml">
-        <form string="SQL Views">
-          <field name="name"/>
-          <field name="sql_name"/>
-          <field name="definition" colspan="4"/>
+        <form string="SQL View" version="7.0">
+          <header>
+            <button name="%(action_sql_view_csv_preview)d"
+              type="action"
+              class="oe_highlight"
+              string="CSV Preview"/>
+          </header>
+          <sheet string="SQL View">
+            <group>
+              <field name="name"/>
+              <field name="sql_name"/>
+              <field name="complete_sql_name"/>
+            </group>
+            <group string="Definition">
+              <field name="definition" nolabel="1"/>
+            </group>
+          </sheet>
         </form>
       </field>
     </record>
@@ -18,11 +30,10 @@
     <record id="view_sql_view_tree" model="ir.ui.view">
       <field name="name">sql.view.tree</field>
       <field name="model">sql.view</field>
-      <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="SQL Views">
           <field name="name"/>
-          <field name="sql_name"/>
+          <field name="complete_sql_name"/>
         </tree>
       </field>
     </record>
@@ -30,11 +41,10 @@
     <record id="view_sql_view_search" model="ir.ui.view">
       <field name="name">sql.view.filter</field>
       <field name="model">sql.view</field>
-      <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="SQL Views">
           <field name="name"/>
-          <field name="sql_name"/>
+          <field name="complete_sql_name"/>
         </search>
       </field>
     </record>
