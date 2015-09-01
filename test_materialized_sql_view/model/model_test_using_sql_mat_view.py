@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
 
-class ModelTestUsingSqlMatView(osv.Model):
+class ModelTestUsingSqlMatView(models.Model):
 
     """This model is only used to test materialized_sql_view module.
        As an example we will calulate the number of res.users per res.groups
@@ -16,11 +16,9 @@ class ModelTestUsingSqlMatView(osv.Model):
         'abstract.materialized.sql.view',
     ]
 
-    _columns = {
-        'name': fields.char('Name', size=64, required=True),
-        'group_id': fields.many2one('res.groups', u"Group"),
-        'user_count': fields.integer('Users count')
-    }
+    name = fields.Char('Name', size=64, required=True)
+    group_id = fields.Many2one('res.groups', u"Group")
+    user_count = fields.Integer('Users count')
 
     _sql_view_definition = """
             SELECT g.id, g.name, g.id as group_id, count(*) as user_count

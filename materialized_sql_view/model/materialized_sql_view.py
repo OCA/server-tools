@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
+from openerp import api, fields, models
 from datetime import datetime
-from openerp import SUPERUSER_ID
+
 
 MATERIALIZED_SQL_VIEW_STATES = [('nonexistent', 'Nonexistent'),
                                 ('creating', 'Creating'),
@@ -11,175 +11,151 @@ MATERIALIZED_SQL_VIEW_STATES = [('nonexistent', 'Nonexistent'),
                                 ]
 
 
-class MaterializedSqlView(osv.Model):
+class MaterializedSqlView(models.Model):
     _name = 'materialized.sql.view'
     _description = u"Materialized SQL View"
 
-    _columns = {
-        'name': fields.char('Name', required=True),
-        'model_id': fields.many2one(
-            'ir.model', 'Model', required=True, delete='cascade',
-            readonly=True),
-        'view_name': fields.char(
-            'SQL view name', required=True, readonly=True),
-        'matview_name': fields.char(
-            'Materialized SQL View Name', required=True, readonly=True),
-        'pg_version': fields.integer(
-            'Mat view pg version', required=True, readonly=True),
-        'sql_definition': fields.text('sql', required=True, readonly=True),
-        'last_refresh_start_date': fields.datetime(
-            'Last refreshed start date', readonly=True),
-        'last_refresh_end_date': fields.datetime(
-            'Last refreshed end date', readonly=True),
-        'last_error_message': fields.text(
-            'Last error', readonly=True),
-        'state': fields.selection(
-            MATERIALIZED_SQL_VIEW_STATES, 'State', required=True,
-            readonly=True)}
+    name = fields.Char('Name', required=True)
+    model_id = fields.Many2one(comodel_name='ir.model', String='Model',
+                               required=True, readonly=True)
+    view_name = fields.Char('SQL view name', required=True, readonly=True)
+    matview_name = fields.Char('Materialized SQL View Name', required=True,
+                               readonly=True)
+    pg_version = fields.Integer('Mat view pg version', required=True,
+                                readonly=True)
+    sql_definition = fields.Text('sql', required=True, readonly=True)
+    last_refresh_start_date = fields.Datetime('Last refreshed start date',
+                                              readonly=True)
+    last_refresh_end_date = fields.Datetime('Last refreshed end date',
+                                            readonly=True)
+    last_error_message = fields.Text('Last error', readonly=True)
+    state = fields.Selection(selection=MATERIALIZED_SQL_VIEW_STATES,
+                             string='State', required=True, readonly=True,
+                             default='nonexistent')
 
-    _defaults = {
-        'state': 'nonexistent',
-    }
-
-    def launch_refresh_materialized_sql_view(self, cr, uid, ids, context=None):
+    @api.multi
+    def launch_refresh_materialized_sql_view(self):
+        context = self.env.context
         if not context:
             context = {}
         if context.get('ascyn', True):
-            self.schedul_refresh_materialized_sql_view(cr, uid, ids, context)
-            return self.write(cr, uid, ids, {'state': 'refreshing'},
-                              context=context)
+            self.schedul_refresh_materialized_sql_view()
+            return self.write({'state': 'refreshing'})
         else:
-            return self.refresh_materialized_view(cr, uid, ids, context)
+            return self.refresh_materialized_view()
 
-    def schedul_refresh_materialized_sql_view(
-            self,
-            cr,
-            uid,
-            ids,
-            context=None):
+    @api.multi
+    def schedul_refresh_materialized_sql_view(self):
+        context = self.env.context
         if not context:
             context = {}
-        uid = context.get('delegate_user', uid)
         vals = {
             'name': u"Refresh materialized views",
-            'user_id': uid,
+            'user_id': self.env.uid,
             'priority': 100,
             'numbercall': 1,
             'doall': True,
             'model': self._name,
             'function': 'refresh_materialized_view',
-            'args': repr((ids, context)),
+            'args': repr((self.ids, context)),
         }
-        # use super user id because ir.cron have not to be accessible to normal
-        # user
-        self.pool.get('ir.cron').create(
-            cr, SUPERUSER_ID, vals, context=context)
+        self.env['ir.cron'].sudo().create(vals)
 
-    def refresh_materialized_view_by_name(self, cr, uid, mat_view_name='',
-                                          context=None):
-        ids = self.search_materialized_sql_view_ids_from_matview_name(
-            cr, uid, mat_view_name, context=context)
-        return self.refresh_materialized_view(cr, uid, ids, context=context)
+    @api.model
+    def refresh_materialized_view_by_name(self, mat_view_name=None):
+        records = self.search_materialized_sql_view_ids_from_matview_name(
+            mat_view_name)
+        return records.refresh_materialized_view()
 
-    def refresh_materialized_view(self, cr, uid, ids, context=None):
+    @api.multi
+    def refresh_materialized_view(self):
         result = []
         matviews_performed = []
-        ir_model = self.pool.get('ir.model')
-        for matview in self.read(cr, uid, ids,
-                                 ['id', 'model_id', 'matview_name'],
-                                 context=context, load='_classic_write'):
-            if matview['matview_name'] in matviews_performed:
+        ir_model = self.env['ir.model']
+        for matview in self:
+            if matview.matview_name in matviews_performed:
                 continue
-            model = ir_model.read(
-                cr, uid, matview['model_id'], ['model'],
-                context=context)['model']
-            matview_mdl = self.pool.get(model)
-            result.append(
-                matview_mdl.refresh_materialized_view(
-                    cr,
-                    uid,
-                    context=context))
-            matviews_performed.append(matview['matview_name'])
+            model = ir_model.browse(matview.model_id).model
+            matview_mdl = self.env[model]
+            result.append(matview_mdl.refresh_materialized_view())
+            matviews_performed.append(matview.matview_name)
         return result
 
-    def create_if_not_exist(self, cr, uid, values, context=None):
-        if self.search(cr, uid, [('model_id.model', '=', values['model_name']),
-                                 ('view_name', '=', values['view_name']),
-                                 ('matview_name', '=', values['matview_name']),
-                                 ], context=context, count=True) == 0:
-            ir_mdl = self.pool.get('ir.model')
-            model_id = ir_mdl.search(cr, uid,
-                                     [('model', '=', values['model_name']), ],
-                                     context=context)
-            values.update({'model_id': model_id[0]})
+    @api.model
+    def create_if_not_exist(self, values):
+        if self.search_count([('model_id.model', '=', values['model_name']),
+                              ('view_name', '=', values['view_name']),
+                              ('matview_name', '=', values['matview_name']),
+                              ]) == 0:
+            ir_mdl = self.env['ir.model']
+            model_ids = ir_mdl.search([('model', '=', values['model_name'])]
+                                      ).ids
+            values.update({'model_id': model_ids[0]})
             if not values.get('name'):
-                name = ir_mdl.read(
-                    cr, uid, model_id, ['name'], context=context)[0]['name']
+                name = ir_mdl.browse(model_ids[0]).name
                 values.update({'name': name})
             values.pop('model_name')
-            self.create(cr, uid, values, context=context)
+            self.create(values)
 
-    def search_materialized_sql_view_ids_from_matview_name(
-            self, cr, uid, matview_name, context=None):
-        return self.search(cr, uid,
-                           [('matview_name', '=', matview_name)],
-                           context=context)
+    @api.model
+    def search_materialized_sql_view_ids_from_matview_name(self, matview_name):
+        return self.search([('matview_name', '=', matview_name)])
 
-    def before_create_view(self, cr, uid, matview_name, context=None):
-        return self.write_values(cr, uid, matview_name,
+    @api.model
+    def before_create_view(self, matview):
+        return self.write_values(matview.get('view_name'),
                                  {'last_refresh_start_date': datetime.now(),
                                   'state': 'creating',
                                   'last_error_message': '',
-                                  }, context=context)
+                                  })
 
-    def before_refresh_view(self, cr, uid, matview_name, context=None):
-        return self.write_values(cr, uid, matview_name,
+    @api.model
+    def before_refresh_view(self, matview):
+        return self.write_values(matview.get('view_name'),
                                  {'last_refresh_start_date': datetime.now(),
                                   'state': 'refreshing',
                                   'last_error_message': '',
-                                  }, context=context)
+                                  })
 
-    def after_refresh_view(self, cr, uid, matview_name, context=None):
+    @api.model
+    def after_refresh_view(self, matview):
         values = {'last_refresh_end_date': datetime.now(),
                   'state': 'refreshed',
                   'last_error_message': '',
                   }
-        pg_version = cr._cnx.server_version
-        if context.get('values'):
-            vals = context.get('values')
-            pg_version = vals.get('pg_version', pg_version)
-            if vals.get('sql_definition'):
-                values.update({'sql_definition': vals.get('sql_definition')})
-            if vals.get('view_name'):
-                values.update({'view_name': vals.get('view_name')})
+        pg_version = self.env.cr._cnx.server_version
+        pg_version = matview.get('pg_version', pg_version)
+        if matview.get('sql_definition'):
+            values.update({'sql_definition': matview.get('sql_definition')})
+        if matview.get('view_name'):
+            values.update({'view_name': matview.get('view_name')})
         values.update({'pg_version': pg_version})
-        return self.write_values(
-            cr,
-            uid,
-            matview_name,
-            values,
-            context=context)
+        return self.write_values(matview.get('view_name'), values)
 
-    def after_drop_view(self, cr, uid, matview_name, context=None):
+    @api.model
+    def after_drop_view(self, matview):
         # Do not unlink here, we don't want to use on other record when refresh
         # need to drop and create a new materialized view
-        return self.write_values(cr, uid, matview_name,
+        return self.write_values(matview.get('view_name'),
                                  {'state': 'nonexistent',
                                   'last_error_message': '',
-                                  }, context=context)
+                                  })
 
-    def write_values(self, cr, uid, matview_name, values, context=None):
-        ids = self.search_materialized_sql_view_ids_from_matview_name(
-            cr, uid, matview_name, context=context)
-        return self.write(cr, uid, ids, values, context=context)
+    @api.model
+    def write_values(self, matview_name, values):
+        records = self.search_materialized_sql_view_ids_from_matview_name(
+            matview_name)
+        return records.write(values)
 
-    def aborted_matview(self, cr, uid, matview_name, context=None):
+    @api.model
+    def aborted_matview(self, matview_name):
+        context = self.env.context
         if not context:
             context = {}
-        return self.write_values(cr, uid, matview_name,
+        return self.write_values(matview_name,
                                  {'state': 'aborted',
                                   'last_refresh_end_date': datetime.now(),
                                   'last_error_message':
                                   context.get('error_message',
                                               'Error not difined')
-                                  }, context=context)
+                                  })
