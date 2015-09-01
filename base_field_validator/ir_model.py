@@ -40,7 +40,7 @@ class IrModel(orm.Model):
                 if not pattern.match(vals[validator_line.field_id.name]):
                     raise orm.except_orm(
                         _('Error'),
-                        _('Expression %s not passed for %s') % (
+                        _('Expression %s not valid for %s') % (
                             validator_line.regex_id.regex,
                             vals[validator_line.field_id.name]))
         return True
