@@ -59,10 +59,43 @@ class SQLView(orm.Model):
         records = self.browse(cr, uid, ids, context=context)
         return all(PG_NAME_RE.match(record.sql_name) for record in records)
 
+    def _check_definition(self, cr, uid, ids, context=None):
+        """ Forbid a SQL definition with unbalanced parenthesis.
+
+        The reason is that the view's definition will be enclosed in:
+
+            CREATE VIEW {view_name} AS ({definition})
+
+        The parenthesis around the definition prevent users to inject
+        and execute arbitrary queries after the SELECT part (by using a
+        semicolon).  However, it would still be possible to craft a
+        definition like the following which would close the parenthesis
+        and start a new query:
+
+            SELECT * FROM res_users); DELETE FROM res_users WHERE id IN (1
+
+        This is no longer possible if we ensure that we don't have an
+        unbalanced closing parenthesis.
+
+        """
+        for record in self.browse(cr, uid, ids, context=context):
+            balanced = 0
+            for char in record.definition:
+                if char == '(':
+                    balanced += 1
+                elif char == ')':
+                    balanced -= 1
+                if balanced == -1:
+                    return False
+        return True
+
     _constraints = [
         (_check_sql_name,
          'The SQL name is not a valid PostgreSQL identifier',
          ['sql_name']),
+        (_check_definition,
+         'This SQL definition is not allowed',
+         ['definition']),
     ]
 
     def _sql_view_comment(self, cr, uid, sql_view, context=None):
