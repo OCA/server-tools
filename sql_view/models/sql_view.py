@@ -103,6 +103,11 @@ class SQLView(orm.Model):
          ['definition']),
     ]
 
+    _sql_constraints = [
+        ('sql_name_uniq', 'unique (sql_name)',
+         'Another view has the same SQL name.')
+    ]
+
     def _sql_view_comment(self, cr, uid, sql_view, context=None):
         return "%s (created by the module sql_view)" % sql_view.name
 
