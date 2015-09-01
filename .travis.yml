@@ -25,7 +25,7 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install python-ldap raven raven_sanitize_openerp bzr GitPython
+  - pip install python-ldap raven raven_sanitize_openerp bzr GitPython unicodecsv
   - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
 
 script:
