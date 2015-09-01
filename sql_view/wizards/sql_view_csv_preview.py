@@ -29,6 +29,7 @@ from openerp.osv import orm, fields
 
 class SQLViewCSVPreview(orm.TransientModel):
     _name = 'sql.view.csv.preview'
+    _description = 'SQL View CSV Preview'
 
     _columns = {
         'limit': fields.integer(string='Limit',

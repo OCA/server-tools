@@ -34,6 +34,7 @@ PG_NAME_RE = re.compile(r'^[a-z_][a-z0-9_$]*$', re.I)
 
 class SQLView(orm.Model):
     _name = 'sql.view'
+    _description = 'SQL Views'
 
     def _complete_from_sql_name(self, cr, uid, sql_name, context=None):
         return SQL_VIEW_PREFIX + (sql_name or '')
