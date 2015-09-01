@@ -23,54 +23,6 @@
     'version': '0.1',
     'category': 'Tools',
     'summary': "Validate fields using regular expressions",
-    'description': """
-Fields Validator
-================
-
-This module allows to set a regular expression as field validator.
-When the regular expresion is set, write and create operations on the involved
-field are blocked, if the regular expression is not satisfied.
-See demo and test data for an example with partner email.
-
-
-Configuration
-=============
-
-Open ir.model form (say res.partner) and add 'Validators' lines
-
-
-Known issues / Roadmap
-======================
-
-The module performs the check at server side. Client side check is also needed,
-to improve user experience and avoid server calls when unnecessary
-
-
-Credits
-=======
-
-Contributors
-------------
-
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-
-Maintainer
-----------
-
-.. image:: http://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: http://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization
-whose mission is to support the collaborative development of Odoo features
-and promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
-
-""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
