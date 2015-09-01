@@ -43,7 +43,7 @@ class IrModel(osv.osv):
                 if not pattern.match(vals[line.field_id.name]):
                     raise orm.except_orm(
                         _('Error'),
-                        _('Value %s not pass for %s') % (
+                        _('Value %s not valid for %s') % (
                             vals[line.field_id.name],
                             line.regex_id.regex))
         return True
