@@ -35,11 +35,16 @@ PG_NAME_RE = re.compile(r'^[a-z_][a-z0-9_$]*$', re.I)
 class SQLView(orm.Model):
     _name = 'sql.view'
 
+    def _complete_from_sql_name(self, cr, uid, sql_name, context=None):
+        return SQL_VIEW_PREFIX + (sql_name or '')
+
     def _compute_complete_sql_name(self, cr, uid, ids, name, args,
                                    context=None):
         res = {}
         for sql_view in self.browse(cr, uid, ids, context=context):
-            res[sql_view.id] = SQL_VIEW_PREFIX + sql_view.sql_name
+            res[sql_view.id] = self._complete_from_sql_name(cr, uid,
+                                                            sql_view.sql_name,
+                                                            context=context)
         return res
 
     _columns = {
@@ -156,3 +161,8 @@ class SQLView(orm.Model):
             self._delete_sql_view(cr, uid, record, context=context)
         result = super(SQLView, self).unlink(cr, uid, ids, context=context)
         return result
+
+    def onchange_sql_name(self, cr, uid, ids, sql_name, context=None):
+        complete_name = self._complete_from_sql_name(cr, uid, sql_name,
+                                                     context=context)
+        return {'value': {'complete_sql_name': complete_name}}

@@ -16,7 +16,7 @@
           <sheet string="SQL View">
             <group>
               <field name="name"/>
-              <field name="sql_name"/>
+              <field name="sql_name" on_change="onchange_sql_name(sql_name)"/>
               <field name="complete_sql_name"/>
             </group>
             <group string="Definition">
