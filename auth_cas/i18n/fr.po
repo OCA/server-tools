@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2015-10-14 14:21-0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: auth_cas
+#: code:addons/auth_cas/controllers/main.py:140
+#, python-format
+msgid "Access Denied"
+msgstr "Accès refusé"
+
+#. module: auth_cas
+#: code:addons/auth_cas/controllers/main.py:87
+#, python-format
+msgid "Log in with CAS"
+msgstr "Se connecter avec CAS"
+
+#. module: auth_cas
+#: model:ir.model.fields,field_description:auth_cas.field_res_users_cas_ticket
+#: field:res.users,cas_ticket:0
+msgid "Ticket"
+msgstr "Billet"
+
+#. module: auth_cas
+#: model:ir.model,name:auth_cas.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: auth_cas
+#: code:addons/auth_cas/controllers/main.py:142
+#, python-format
+msgid "You do not have access to this database or your invitation has expired. Please ask for an invitation and be sure to follow the link in your invitation email."
+msgstr "Vous ne disposez pas de l'accès à cette base de données ou votre invitation a expiré."

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-extend="UserMenu">
+    <t t-jquery="a[data-menu='logout']" t-operation="replace">
+      <a href="/auth_cas/signout">Log out</a>
+    </t>
+  </t>
+</templates>

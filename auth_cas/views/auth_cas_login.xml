@@ -1,0 +1,20 @@
+<openerp>
+  <data>
+    <template id="auth_cas.cas_servers" name="CAS Servers">
+      <div t-foreach="cas_servers" t-as="cas">
+        <a t-att-href="cas['auth_link']" class="btn btn-link">
+          <i t-att-class="cas['css_class']"/>
+          <t t-esc="cas['body']"/>
+        </a>
+      </div>
+    </template>
+
+    <template id="auth_cas.login" inherit_id="web.login" name="CAS Login buttons">
+      <xpath expr="//button[@type='submit']" position="before">
+        <div class="pull-right">
+          <t t-call="auth_cas.cas_servers"/>
+        </div>
+      </xpath>
+    </template>
+  </data>
+</openerp>
