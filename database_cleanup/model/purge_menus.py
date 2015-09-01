@@ -38,7 +38,7 @@ class CleanupPurgeLineMenu(orm.TransientModel):
             [this.menu_id.id for this in self.browse(cr, uid, ids,
                                                      context=context)],
             context=context)
-        return self.write(cr, uid, ids, {'purged': True})
+        return self.write(cr, uid, ids, {'purged': True}, context=context)
 
 
 class CleanupPurgeWizardMenu(orm.TransientModel):
