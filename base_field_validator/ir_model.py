@@ -56,8 +56,8 @@ class IrModel(orm.Model):
     def _wrap_write(self, old_write, model):
         def wrapper(cr, uid, ids, vals, context=None, **kwargs):
             self.check_vals(cr, uid, vals, model, context=context)
-            old_write(cr, uid, ids, vals, context=context, **kwargs)
-            return True
+            res = old_write(cr, uid, ids, vals, context=context, **kwargs)
+            return res
 
         return wrapper
 
