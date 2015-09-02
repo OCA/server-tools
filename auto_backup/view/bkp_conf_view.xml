@@ -13,8 +13,10 @@
                     </group>
                     <group>
                         <field name="host" colspan="2"/>
+                        <field name="securehost" colspan="2"/>
                         <field name="name"/>
                         <field name="port"/>
+                        <field name="adminpassword" password="True"/>
                         <field name="bkp_dir"/>
                         <field name="autoremove"/>
                         <field name="daystokeep" attrs="{'invisible': [('autoremove','=',False)]}"/>
