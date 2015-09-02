@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 10:04+0000\n"
-"PO-Revision-Date: 2015-09-01 10:04+0000\n"
+"POT-Creation-Date: 2015-09-02 13:30+0000\n"
+"PO-Revision-Date: 2015-09-02 13:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,9 +33,9 @@ msgid "Description"
 msgstr ""
 
 #. module: base_field_validator
-#: code:addons/base_field_validator/ir_model.py:45
+#: code:addons/base_field_validator/ir_model.py:46
 #, python-format
-msgid "Error"
+msgid "Expression %s not valid for %s"
 msgstr ""
 
 #. module: base_field_validator
@@ -92,17 +92,5 @@ msgstr ""
 #: view:ir.model:base_field_validator.view_model_form_validator
 #: field:ir.model,validator_line_ids:0
 msgid "Validators"
-msgstr ""
-
-#. module: base_field_validator
-#: code:addons/base_field_validator/ir_model.py:46
-#, python-format
-msgid "Value %s not pass for %s"
-msgstr ""
-
-#. module: base_field_validator
-#: code:addons/base_field_validator/ir_model.py:46
-#, python-format
-msgid "Value %s not valid for %s"
 msgstr ""
 
