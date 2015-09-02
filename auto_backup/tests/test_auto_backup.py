@@ -32,12 +32,13 @@ class TestsAutoBackup(common.TransactionCase):
 
     def test_0(self):
         with self.assertRaises(except_orm):
-            self.abk_model.create({'name': 'abcd'})
+            self.abk_model.create({'name': 'abcd', 'adminpassword': 'admin'})
 
     def test_1(self):
         this = self.abk_model.create(
             {
-                'bkp_dir': '/tmp'
+                'bkp_dir': '/tmp',
+                'adminpassword': 'admin'
             }
         )
         self.assertEqual(this.host, 'localhost')
