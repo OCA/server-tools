@@ -35,19 +35,7 @@
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="database_cleanup.model_cleanup_purge_wizard_data" />
-            <field name="code">
-wizard_id = self.create(cr, uid, {}, context=context)
-action = {
-    'type': 'ir.actions.act_window',
-    'views': [(False, 'form')],
-    'res_model': 'cleanup.purge.wizard.data',
-    'res_id': wizard_id,
-    'flags': {
-        'action_buttons': False,
-        'sidebar': False,
-    },
-}
-            </field>
+            <field name="code">action = self.get_wizard_action(cr, uid, context=context)</field>
         </record>
 
         <record id="purge_data_line_tree" model="ir.ui.view">
@@ -69,9 +57,7 @@ action = {
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_data" />
-            <field name="code">
-self.purge(cr, uid, context.get('active_ids', []), context)
-            </field>
+            <field name="code">self.purge(cr, uid, context.get('active_ids', []), context)</field>
         </record>
 
         <record id="action_purge_data_line_value" model="ir.values">
