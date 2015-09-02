@@ -65,7 +65,8 @@ class IrModel(orm.Model):
         """ Wrap the methods `create` and `write` of the model
         """
         if ids is None:
-            ids = self.search(cr, SUPERUSER_ID, [])
+            ids = self.search(
+                cr, SUPERUSER_ID, [('validator_line_ids', '!=', False)])
         updated = False
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.validator_line_ids:
