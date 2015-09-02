@@ -33,7 +33,6 @@ except ImportError:
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm, Warning
 from openerp import tools
-from openerp import netsvc
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -264,7 +263,6 @@ class db_backup(models.Model):
                         conn, 'dump', rec.adminpassword, rec.name)
                 except:
                     _logger.info(
-                        'backup', netsvc.LOG_INFO,
                         _(
                             "Couldn't backup database %s. "
                             "Bad database administrator"
@@ -277,8 +275,7 @@ class db_backup(models.Model):
                 fp.close()
             else:
                 _logger.info(
-                    'backup', netsvc.LOG_INFO,
-                    "database %s doesn't exist on http://%s:%s" %
+                    ("database %s doesn't exist on http://%s:%s") %
                     (rec.name, rec.host, rec.port))
                 return False
             # Check if user wants to write to SFTP or not.
