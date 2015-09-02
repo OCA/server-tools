@@ -64,7 +64,7 @@ class IrModel(orm.Model):
     def _register_hook(self, cr, ids=None):
         """ Wrap the methods `create` and `write` of the model
         """
-        super(IrModel, self)._register_hook(cr, ids=ids)
+        res = super(IrModel, self)._register_hook(cr, ids=ids)
         if ids is None:
             ids = self.search(
                 cr, SUPERUSER_ID, [('validator_line_ids', '!=', False)])
@@ -81,24 +81,23 @@ class IrModel(orm.Model):
                     model_obj.write = self._wrap_write(model_obj.write, model)
                     model_obj.field_validator_checked = True
                     updated = True
-        return updated
+        if updated:
+            openerp.modules.registry.RegistryManager.\
+                signal_registry_change(cr.dbname)
+        return res
 
     def create(self, cr, uid, vals, context=None):
         res_id = super(IrModel, self).create(
             cr, uid, vals, context=context)
-        if self._register_hook(cr, [res_id]):
-            openerp.modules.registry.RegistryManager.\
-                signal_registry_change(cr.dbname)
+        self._register_hook(cr, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(IrModel, self).write(cr, uid, ids, vals, context=context)
-        if self._register_hook(cr, ids):
-            openerp.modules.registry.RegistryManager.\
-                signal_registry_change(cr.dbname)
-        return True
+        res = super(IrModel, self).write(cr, uid, ids, vals, context=context)
+        self._register_hook(cr, ids)
+        return res
 
 
 class IrModelValidatorLine(orm.Model):
