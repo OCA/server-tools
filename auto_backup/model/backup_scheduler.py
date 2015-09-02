@@ -28,11 +28,8 @@ import re
 try:
     import pysftp
 except ImportError:
-    raise ImportError(
-        'This module needs pysftp to automaticly write backups to the FTP '
-        'through SFTP.Please install pysftp on your system.'
-        '(sudo pip install pysftp)'
-    )
+    pass
+
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm, Warning
 from openerp import tools
@@ -182,7 +179,7 @@ class db_backup(models.Model):
     _constraints = [
         (
             _check_db_exist,
-            _('Error ! No such database exists!'), ['name']
+            _('Error ,No such database exists'), ['name']
         )
     ]
 
@@ -196,6 +193,7 @@ class db_backup(models.Model):
             # db_list = self.get_db_list(cr, uid, [], rec.host, rec.port)
             try:
                 # pathToWriteTo = rec.sftppath
+                conn_success = True
                 ipHost = rec.sftpip
                 portHost = rec.sftpport
                 usernameLogin = rec.sftpusername
@@ -210,12 +208,13 @@ class db_backup(models.Model):
                 messageContent = _(
                     "Everything seems properly set up for FTP back-ups!")
             except Exception as e:
+                conn_success = False
                 messageTitle = _("Connection Test Failed!")
                 if len(rec.sftpip) < 8:
                     messageContent += _(
                         "\nYour IP address seems to be too short.\n")
-                messageContent += "Here is what we got instead:\n"
-        if "Failed" in messageTitle:
+                messageContent += _("Here is what we got instead:\n")
+        if not conn_success:
             raise except_orm(
                 _(messageTitle), _(
                     messageContent + "%s") %
@@ -247,7 +246,7 @@ class db_backup(models.Model):
                     bkp = execute(
                         conn, 'dump', tools.config['admin_passwd'], rec.name)
                 except:
-                    _logger.notifyChannel(
+                    _logger.info(
                         'backup', netsvc.LOG_INFO,
                         _(
                             "Couldn't backup database %s. "
@@ -260,7 +259,7 @@ class db_backup(models.Model):
                 fp.write(bkp)
                 fp.close()
             else:
-                _logger.notifyChannel(
+                _logger.info(
                     'backup', netsvc.LOG_INFO,
                     "database %s doesn't exist on http://%s:%s" %
                     (rec.name, rec.host, rec.port))
@@ -284,7 +283,7 @@ class db_backup(models.Model):
                     # Move to the correct directory on external server. If the
                     # user made a typo in his path with multiple slashes
                     # (/odoo//backups/) it will be fixed by this regex.
-                    pathToWriteTo = re.sub('([/]{2,5})+', '/', pathToWriteTo)
+                    pathToWriteTo = re.sub('/+', '/', pathToWriteTo)
                     try:
                         srv.chdir(pathToWriteTo)
                     except IOError:
@@ -342,64 +341,71 @@ class db_backup(models.Model):
                     srv.close()
                 except Exception as e:
                     _logger.debug(
-                        'Exception! We couldn\'t back '
+                        'Exception We couldn\'t back '
                         'up to the FTP server..'
                     )
                     # At this point the SFTP backup failed.
                     # We will now check if the user wants
                     # an e-mail notification about this.
                     if rec.sendmailsftpfail:
-                        try:
-                            ir_mail_server = self.env['ir.mail_server']
-                            message = (
-                                "Dear,\n\nThe backup for the server %s"
-                                " (IP: %s) failed.Please check"
-                                " the following details:\n\n"
-                                "IP address SFTP server: %s \nUsername: %s"
-                                "\nPassword: %s"
-                                "\n\nError details: %s \n\nWith kind regards"
-                            ) % (
-                                rec.host, rec.sftpip, rec.sftpip,
-                                rec.sftpusername, rec.sftppassword,
-                                tools.ustr(e)
-                            )
-                            msg = ir_mail_server.build_email(
-                                "auto_backup@%s.com" % rec.name,
-                                [rec.emailtonotify],
-                                "Backup from %s ( %s ) failed" % (
-                                    rec.host, rec.sftpip),
-                                message)
-                            ir_mail_server.send_email(msg)
+                        self.send_notification(rec, e)
 
-                        except Exception as e:
-                            _logger.debug(
-                                'Exception! %s' % tools.ustr(e)
-                            )
-
-        # Remove all old files (on local server) in case this is configured..
-        # This is done after the SFTP writing to prevent unusual behaviour:
-        # If the user would set local back-ups to be kept 0 days and the SFTP
-        # to keep backups xx days there wouldn't be any new back-ups added
-        # to the SFTP.
-        # If we'd remove the dump files before they're writen to the SFTP
-        # there willbe nothing to write. Meaning that if an user doesn't want
-        # to keep back-ups locally and only wants them on the SFTP
-        # (NAS for example) there wouldn't be any writing to the
-        # remote server if this if statement was before the SFTP write method
-        # right above this comment.
-
+            # Remove all old files (on local server) in case this is configured..
             if rec.autoremove is True:
-                dir = rec.bkp_dir
-                # Loop over all files in the directory.
-                for f in os.listdir(dir):
-                    fullpath = os.path.join(dir, f)
-                    if os.path.isfile(fullpath) and ".dump.zip" in f:
-                        timestamp = os.stat(fullpath).st_ctime
-                        createtime = (
-                            datetime.datetime.fromtimestamp(timestamp)
-                        )
-                        now = datetime.datetime.now()
-                        delta = now - createtime
-                        if delta.days >= rec.daystokeep:
-                            os.remove(fullpath)
+                self.remove_folder(rec)
+
         return True
+
+    def send_notification(self, rec, e):
+        try:
+            ir_mail_server = self.env['ir.mail_server']
+            message = (
+                "Dear,\n\nThe backup for the server %s"
+                " (IP: %s) failed.Please check"
+                " the following details:\n\n"
+                "IP address SFTP server: %s \nUsername: %s"
+                "\nPassword: %s"
+                "\n\nError details: %s \n\nWith kind regards"
+            ) % (
+                rec.host, rec.sftpip, rec.sftpip,
+                rec.sftpusername, rec.sftppassword,
+                tools.ustr(e)
+            )
+            msg = ir_mail_server.build_email(
+                "auto_backup@%s.com" % rec.name,
+                [rec.emailtonotify],
+                "Backup from %s ( %s ) failed" % (
+                    rec.host, rec.sftpip),
+                message)
+            ir_mail_server.send_email(msg)
+
+        except Exception as e:
+            _logger.debug(
+                'Exception %s' % tools.ustr(e)
+            )
+
+
+    # This is done after the SFTP writing to prevent unusual behaviour:
+    # If the user would set local back-ups to be kept 0 days and the SFTP
+    # to keep backups xx days there wouldn't be any new back-ups added
+    # to the SFTP.
+    # If we'd remove the dump files before they're writen to the SFTP
+    # there willbe nothing to write. Meaning that if an user doesn't want
+    # to keep back-ups locally and only wants them on the SFTP
+    # (NAS for example) there wouldn't be any writing to the
+    # remote server if this if statement was before the SFTP write method
+    # right above this comment.
+    def remove_folder(self, rec):
+        dir = rec.bkp_dir
+        # Loop over all files in the directory.
+        for f in os.listdir(dir):
+            fullpath = os.path.join(dir, f)
+            if os.path.isfile(fullpath) and ".dump.zip" in f:
+                timestamp = os.stat(fullpath).st_ctime
+                createtime = (
+                    datetime.datetime.fromtimestamp(timestamp)
+                )
+                now = datetime.datetime.now()
+                delta = now - createtime
+                if delta.days >= rec.daystokeep:
+                    os.remove(fullpath)
