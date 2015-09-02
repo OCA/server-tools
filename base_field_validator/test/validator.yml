@@ -19,12 +19,11 @@
   Try invalid email
 -
   !python {model: res.partner}: |
-    from openerp.osv import orm
     try:
       self.write(cr, uid, [ref('base.res_partner_12')], {
         'email': 'john',
         })
       assert False, "An exception should have been raised, 'john' is not a valid email!" 
-    except orm.except_orm:
+    except openerp.exceptions.Warning:
       # exception was raised as expected
       pass

@@ -18,16 +18,14 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class IrModelFieldsRegex(orm.Model):
+class IrModelFieldsRegex(models.Model):
     _name = "ir.model.fields.regex"
-    _columns = {
-        'name': fields.char('Description', size=512, required=True),
-        'regex': fields.char(
-            'Regular Expression', size=512, required=True,
-            help="Regular expression used to validate the field. For example, "
-                 "you can add the expression\n%s\nto the email field"
-            % r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b'),
-        }
+    name = fields.Char('Description', size=512, required=True)
+    regex = fields.Char(
+        'Regular Expression', size=512, required=True,
+        help="Regular expression used to validate the field. For example, "
+             "you can add the expression\n%s\nto the email field"
+             % r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b')
