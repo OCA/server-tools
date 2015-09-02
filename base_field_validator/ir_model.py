@@ -64,6 +64,7 @@ class IrModel(orm.Model):
     def _register_hook(self, cr, ids=None):
         """ Wrap the methods `create` and `write` of the model
         """
+        super(IrModel, self)._register_hook(cr, ids=ids)
         if ids is None:
             ids = self.search(
                 cr, SUPERUSER_ID, [('validator_line_ids', '!=', False)])
