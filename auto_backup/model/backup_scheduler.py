@@ -50,12 +50,18 @@ def execute(connector, method, *args):
 class db_backup(models.Model):
     _name = 'db.backup'
 
-    def get_connection(self, host, port):
+    def get_connection_uri(self, host, port, secure=False):
         uri = 'http://%s:%s' % (host, port)
+        if secure:
+            uri = 'https://%s:%s' % (host, port)
+        return uri
+
+    def get_connection(self, host, port, secure=False):
+        uri = self.get_connection_uri(host, port, secure)
         return xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
 
-    def get_db_list(self, host, port):
-        conn = self.get_connection(host, port)
+    def get_db_list(self, host, port, secure=False):
+        conn = self.get_connection(host, port, secure)
         db_list = execute(conn, 'list')
         return db_list
 
@@ -66,13 +72,26 @@ class db_backup(models.Model):
     # Columns local server
     host = fields.Char(
         string='Host', default='localhost', size=100, required=True)
+
+    securehost = fields.Boolean(string='Secure Host')
+
     port = fields.Char(
         string='Port', default='8069', size=10, required=True)
+
     name = fields.Char(
         string='Database', size=100, required=True,
         default=_get_db_name,
         help='Database you want to schedule backups for'
     )
+
+    adminpassword = fields.Char(
+        string='Admin user Password',
+        help=(
+            "The password Admin password of Odoo Instance."
+        ),
+        required=True
+    )
+
     bkp_dir = fields.Char(
         string='Backup Directory', size=100,
         default='/odoo/backups',
@@ -171,7 +190,7 @@ class db_backup(models.Model):
     @api.multi
     def _check_db_exist(self):
         for rec in self:
-            db_list = self.get_db_list(rec.host, rec.port)
+            db_list = self.get_db_list(rec.host, rec.port, rec.securehost)
             if rec.name in db_list:
                 return True
             return False
@@ -226,25 +245,23 @@ class db_backup(models.Model):
     def schedule_backup(self):
 
         for rec in self.search([]):
-            db_list = self.get_db_list(rec.host, rec.port)
+            db_list = self.get_db_list(rec.host, rec.port, rec.securehost)
             if rec.name in db_list:
                 file_path = ''
                 bkp_file = ''
                 try:
                     if not os.path.isdir(rec.bkp_dir):
                         os.makedirs(rec.bkp_dir)
-                except:
-                    raise
-                # Create name for dumpfile.
-                bkp_file = '%s_%s.dump.zip' % (
-                    time.strftime('%d_%m_%Y_%H_%M_%S'),
-                    rec.name)
-                file_path = os.path.join(rec.bkp_dir, bkp_file)
-                conn = self.get_connection(rec.host, rec.port)
-                bkp = ''
-                try:
+                    # Create name for dumpfile.
+                    bkp_file = '%s_%s.dump.zip' % (
+                        time.strftime('%d_%m_%Y_%H_%M_%S'),
+                        rec.name)
+                    file_path = os.path.join(rec.bkp_dir, bkp_file)
+                    conn = self.get_connection(
+                        rec.host, rec.port, rec.securehost)
+                    bkp = ''
                     bkp = execute(
-                        conn, 'dump', tools.config['admin_passwd'], rec.name)
+                        conn, 'dump', rec.adminpassword, rec.name)
                 except:
                     _logger.info(
                         'backup', netsvc.LOG_INFO,
@@ -350,7 +367,8 @@ class db_backup(models.Model):
                     if rec.sendmailsftpfail:
                         self.send_notification(rec, e)
 
-            # Remove all old files (on local server) in case this is configured..
+            # Remove all old files (on local server)
+            # in case this is configured..
             if rec.autoremove is True:
                 self.remove_folder(rec)
 
@@ -383,7 +401,6 @@ class db_backup(models.Model):
             _logger.debug(
                 'Exception %s' % tools.ustr(e)
             )
-
 
     # This is done after the SFTP writing to prevent unusual behaviour:
     # If the user would set local back-ups to be kept 0 days and the SFTP
