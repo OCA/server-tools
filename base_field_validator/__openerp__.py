@@ -23,7 +23,7 @@
     'version': '0.1',
     'category': 'Tools',
     'summary': "Validate fields using regular expressions",
-    'author': 'Agile Business Group',
+    'author': 'Agile Business Group, Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['base'],
