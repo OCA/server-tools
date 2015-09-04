@@ -22,7 +22,7 @@
 
 {
     'name': 'Module Prototyper',
-    'version': '0.3',
+    'version': '8.0.0.0.3',
     'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',

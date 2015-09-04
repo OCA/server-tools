@@ -1,5 +1,10 @@
-Module Prototype
-================
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+=================
+Module Prototyper
+=================
 
 This module allows the administrator to prototype new features and export them as module. 
 Functional people can prepare the job for a developer who is left with the logic to implement 
@@ -8,7 +13,9 @@ in addition to everything the prototype does not export yet.
 Installation
 ============
 
-No installation steps required other than installing the module itself.
+Make sure you have Jinja2 version 2.7.3 or higher installed::
+
+$ pip install --upgrade Jinja2==2.7.3
 
 Configuration
 =============
@@ -20,35 +27,41 @@ Usage
 
 To use this module, you need to:
 
- * install the dependencies of your future module
- * customize your instance by adding fields and creating inherited views
- * create your menu items and their window actions
- * prepare your data and demo data by creating filters
- * create your own groups with access rights and record rules
- * add your own access rights and record rules to an existing group
+* install the dependencies of your future module
+* customize your instance by adding fields and creating inherited views
+* create your menu items and their window actions
+* prepare your data and demo data by creating filters
+* create your own groups with access rights and record rules
+* add your own access rights and record rules to an existing group
 
-Once you have customized your instance properly, you can go to Settings > Modules > Prototype
+Once you have customized your instance properly, you can go to Settings > Module Prototypes > Prototypes
 and create a new prototype:
 
- * fill in the information of your module (enter the name, the description, the logo, etc.)
- * in the Depencencies tab, select all the other modules that yours will be depending on
- * in the Data & Demo tab, select your filters for data and demo data
- * in the Fields tab, select the fields you created or customized
- * in the Interface tab, select your menu items and your views
- * in the Security tab, select your groups, access rights and record rules
- * save and click on export
+* fill in the information of your module (enter the name, the description, the logo, etc.)
+* in the Depencencies tab, select all the other modules that yours will be depending on
+* in the Data & Demo tab, select your filters for data and demo data
+* in the Fields tab, select the fields you created or customized
+* in the Interface tab, select your menu items and your views
+* in the Security tab, select your groups, access rights and record rules
+* save and click on export
 
 You will get a zip file containing your module ready to be installed and compliant with the 
 conventions of the OCA. You can then provide the module to a developer who have to implement 
 things like default values or onchange methods.
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/149/8.0
+
 Known issues / Roadmap
 ======================
 
- * `#104`_ - Include controllers.py and templates.xml from scaffold.
- * Attach images to the prototype and export them to be used in the 'images' module manifest.
- * Add a Report tab to select and export reports
- * Add a Workflow tab to select and export workflows, nodes, transitions, actions
+* `#104`_ - Include controllers.py and templates.xml from scaffold.
+* Attach images to the prototype and export them to be used in the 'images' module manifest.
+* Export reports
+* Export workflows, nodes, transitions, actions
+* Export groups, access rights and record rules
+* Allow selecting and exporting website stuff
 
 .. _#104: https://github.com/OCA/server-tools/issues/104
 
@@ -86,47 +99,25 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose missio
 
 To contribute to this module, please visit http://odoo-community.org.
 
-Versions
-========
+Changelog
+=========
 
-v0.1
+v0.3
 ----
 
-All the features are not implemented but the minimal is done.
-With this version you can:
-
-    The set up of openerp.py is covered, description, maintainer, website, name, technical name...
-    Views and menus can be set through odoo and gathered in prototype. The files will be automatically generated and add to the data section of the openerp.py. Be aware some advanced feature as domain or context might still missing.
-    Dependencies can be set throught the Dependency page
-    Custom fields can be added. A file by model will be generated with all the fields of the model. The init.py files are updated accordingly. Be aware that some features are not implemented yet, as the domain, the context.
-
-This version should be enought for:
-
-    set up the client module
-    create a new field in a view.
-
-Features that you might expect in next version:
-
-    better generation of fields (many2many fields, domain, context)
-    Generation of data and demo data files.
-    Security files (rules, ir.model.access.csv)
-    openerp's description editing README.rst and index.html
-    module screenshots
+* Replace ir.ui.model by ir.ui.view in generated xml views
+* Improve pep8 compatibility of generation of models
 
 v0.2
 ----
 
-    Renamed from prototype to module_prototyper as discussed in #108
-    menu in Settings that gather element used to create a prototype (menu views, views, fields)
+* Renamed from prototype to module_prototyper as discussed in #108
+* Menu in Settings that gather element used to create a prototype (menu views, views, fields)
 
-v0.3
+v0.1
 ----
-    Replace ir.ui.model by ir.ui.view in generated xml views
-    Improve pep8 compatibility of generation of models
 
-
-Known bugs
-----------
-
-    icon file extension might be wrong. The extension is hard coded for now. It is planned add Document as dependency to handle it.
-
+* The set up of openerp.py is covered, description, maintainer, website, name, technical name...
+* Views and menus can be set through odoo and gathered in prototype. The files will be automatically generated and add to the data section of the openerp.py. Be aware some advanced feature as domain or context might still missing.
+* Dependencies can be set through the Dependencies tab
+* Custom fields can be added. A file by model will be generated with all the fields of the model. The init.py files are updated accordingly. Be aware that some features are not implemented yet, as the domain, the context.

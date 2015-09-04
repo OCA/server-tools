@@ -294,14 +294,14 @@ msgstr "L'icône sera utilisé comme icône du module exporté."
 #: help:module_prototyper,data_ids:0
 msgid "The records matching the filters will be added as data."
 msgstr ""
-"Les enregistrements correspondant aux critères des filtres seront exportées "
+"Les enregistrements correspondants aux critères des filtres seront exportés "
 "dans le module comme données."
 
 #. module: module_prototyper
 #: help:module_prototyper,demo_ids:0
 msgid "The records matching the filters will be added as demo data."
 msgstr ""
-"Les enregistrements correspondant aux critères des filtres seront exportées "
+"Les enregistrements correspondants aux critères des filtres seront exportés "
 "dans le module comme données de démo."
 
 #. module: module_prototyper
