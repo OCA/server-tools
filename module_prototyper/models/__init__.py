@@ -21,6 +21,5 @@
 ##############################################################################
 from . import (
     module_prototyper,
-    ir_model_fields,
-    default_description
+    ir_model_fields
 )
