@@ -95,6 +95,8 @@
                                 <label for="transition_ids" />
                                 <field name="transition_ids" />
                             </page>
+                            <page string="Website">
+                            </page>
                         </notebook>
                     </sheet>
                 </form>

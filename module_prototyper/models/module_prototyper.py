@@ -34,7 +34,6 @@ from jinja2 import Environment, FileSystemLoader
 from openerp import models, api, fields
 from openerp.tools.safe_eval import safe_eval
 
-from .default_description import get_default_description
 from . import licenses
 
 _logger = logging.getLogger(__name__)
@@ -51,6 +50,15 @@ class ModulePrototyper(models.Model):
     """
     _name = "module_prototyper"
     _description = "Module Prototyper"
+
+    def get_default_description(self):
+        """
+        Extract the content of default description
+        """
+        filepath = '{}/../data/README.rst'.format(os.path.dirname(__file__))
+        with open(filepath, 'r') as content_file:
+            content = content_file.read()
+        return content
 
     license = fields.Selection(
         [
