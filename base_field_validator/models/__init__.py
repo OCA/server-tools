@@ -4,4 +4,5 @@
 #    See __openerp__.py about license
 #
 ##############################################################################
-from . import models
+from . import ir_model
+from . import ir_model_field_regex

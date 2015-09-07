@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2014-2015 Lorenzo Battistini - Agile Business Group
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -28,11 +28,11 @@
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [
-        'ir_model_view.xml',
+        'views/ir_model_view.xml',
         'security/ir.model.access.csv',
         ],
     "demo": [
-        'ir_model_demo.xml',
+        'demo/ir_model_demo.xml',
         ],
     'test': [
         'test/validator.yml',
