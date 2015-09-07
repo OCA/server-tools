@@ -14,15 +14,3 @@ if config.get('test_enable', False):
             'name': fields.char('Name'),
             'test_field': fields.char('test_field'),
         }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,4 +6,3 @@ fast_suite = [
     test_basics,
     test_action_rules
 ]
-
