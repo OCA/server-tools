@@ -35,10 +35,9 @@ class res_users(Model):
         return uid
 
     def update_dynamic_groups(self, uid, db):
-        pool = RegistryManager.get(db)
-        cr = pool._db.cursor()
-        user = pool.get('res.users').browse(cr, SUPERUSER_ID, uid)
-        groups_obj = pool.get('res.groups')
+        cr = self.pool._db.cursor(serialized=True)
+        user = self.pool.get('res.users').browse(cr, SUPERUSER_ID, uid)
+        groups_obj = self.pool.get('res.groups')
         user.write(
             {
                 'groups_id': [
