@@ -19,9 +19,3 @@ msgstr ""
 #: model:res.groups,name:base_import_csv_optional.group_import_csv
 msgid "Import CSV files"
 msgstr "Importovať súbory CSV"
-
-#. module: base_import_csv_optional
-#: code:addons/base_import_csv_optional/models/models.py:25
-#, python-format
-msgid "User (ID: %s) is not allowed to import data in model %s."
-msgstr "Užívateľ (ID: %s) nie je dovolené importovať dáta v modelovom %s."

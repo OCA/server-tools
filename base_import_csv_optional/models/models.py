@@ -2,7 +2,7 @@
 # License and authorship info in:
 # __openerp__.py file at the root folder of this module.
 
-from openerp import api, _
+from openerp import api
 from openerp.models import BaseModel
 import logging
 
@@ -22,8 +22,8 @@ def load_import_optional(self, fields=None, data=None):
     if current_user and current_user.has_group(allowed_group):
         res = base_load(self, fields=fields, data=data)
     else:
-        msg = _('User (ID: %s) is not allowed to import data '
-                'in model %s.') % (self.env.uid, self._name)
+        msg = ('User (ID: %s) is not allowed to import data '
+               'in model %s.') % (self.env.uid, self._name)
         _logger.error(msg)
         messages = []
         info = {}
