@@ -22,7 +22,7 @@
 
 - !record {model: ir.config_parameter, id: password_size}:
     key: auth_generate_password.password_size
-    value: 6
+    value: 12
 
 - !record {model: ir.config_parameter, id: password_chars}:
     key: auth_generate_password.password_chars
