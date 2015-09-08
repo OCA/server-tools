@@ -28,7 +28,7 @@ class res_users(Model):
     def _login(self, db, login, password):
         uid = super(res_users, self)._login(db, login, password)
 
-        if uid:
+        if uid and uid != SUPERUSER_ID:
             self.update_dynamic_groups(uid, db)
 
         return uid
