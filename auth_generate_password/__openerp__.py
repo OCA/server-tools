@@ -59,7 +59,7 @@ Copyright, Author and Licence :
         'email_template',
     ],
     'data': [
-        'data/ir_config_parameter.yml',
+        'data/ir_config_parameter.xml',
         'data/email_template.xml',
         'view/view.xml',
     ],

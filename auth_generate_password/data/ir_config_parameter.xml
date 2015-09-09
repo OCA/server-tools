@@ -18,29 +18,15 @@
 <!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
 <!-- ********************************************************************** -->
 <openerp>
-    <data>
-
-<!-- Model: res.users -->
-        <record id="view_res_users_form" model="ir.ui.view">
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form_simple_modif" />
-            <field name="arch" type="xml">
-                <button name="preference_change_password" position="attributes">
-                    <attribute name="groups">base.group_system</attribute>
-                </button>
-            </field>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="password_size">
+            <field name="key">auth_generate_password.password_size</field>
+            <field name="value">12</field>
         </record>
 
-        <record id="view_res_users_tree" model="ir.ui.view">
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_tree" />
-            <field name="arch" type="xml">
-                <field name="login_date" position="after">
-                    <button name="generate_password"
-                        icon="terp-mail-message-new" type="object" string="Generate Password and Send Mail"/>
-                </field>
-            </field>
+        <record model="ir.config_parameter" id="password_chars">
+            <field name="key">auth_generate_password.password_chars</field>
+            <field name="value">string.ascii_letters + string.digits</field>
         </record>
-
     </data>
 </openerp>
