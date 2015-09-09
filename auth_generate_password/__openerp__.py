@@ -30,21 +30,27 @@ Password Secure
 
 Functionnality:
 ---------------
-    * Forbid users to change them password;
-        * Only members of base.group_system can change password; OK.
-    * Add a button to the res_users form:
-        * to change the password (randomly generated);
-        * send an email to each users;
+* Forbid users to change them password;
+    * Only members of base.group_system can change password; OK.
+* Add a button to the res_users form:
+    * to change the password (randomly generated);
+    * send an email to each users;
 
 Settings:
 ---------
-    * Once the module installed, you have to set two settings:
-        * password size: the size of the password generated (6 by default);
-        * password chars: the list of allowed chars (by default ASCII letters
-          and digits); You can:
-            * set a list of chars like 'abcdef';
-            * use string function like string.ascii_letters;
-    * Be sure that an Outgoing Email Server is correctly configured;
+* Once the module installed, you have to set two settings:
+    * password size: the size of the password generated (6 by default);
+    * password chars: the list of allowed chars (by default ASCII letters
+      and digits); You can:
+        * set a list of chars like 'abcdef';
+        * use string function like string.ascii_letters;
+* Be sure that an Outgoing Email Server is correctly configured;
+
+Roadmap
+-------
+* When porting this module, please remove the feature that forbid users to
+  change them password, as another module 'password_change_restrict' exists in
+  V8 serie : https://github.com/OCA/server-tools/pull/249
 
 Copyright, Author and Licence :
 -------------------------------
