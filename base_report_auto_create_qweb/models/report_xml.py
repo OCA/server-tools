@@ -41,7 +41,7 @@ class IrActionsReport(models.Model):
         self.env['ir.model.data'].create(model_data_data)
         value_view_data = self._prepare_value_view_data(
             name, model)
-        self.env['ir.values'].create(value_view_data)
+        self.env['ir.values'].sudo().create(value_view_data)
 
     @api.model
     def create(self, values):
