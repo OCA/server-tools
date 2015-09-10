@@ -18,5 +18,6 @@ class IrActionsReportDuplicate(models.TransientModel):
         model = self.env.context.get('active_model')
         if model:
             object = self.env[model].browse(active_id)
-            object.with_context(suffix=self.suffix).copy()
+            object.with_context(
+                suffix=self.suffix, enable_duplication=True).copy()
         return {}

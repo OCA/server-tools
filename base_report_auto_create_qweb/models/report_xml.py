@@ -45,6 +45,8 @@ class IrActionsReport(models.Model):
 
     @api.model
     def create(self, values):
+        if not self.env.context.get('enable_duplication', False):
+            return super(IrActionsReport, self).create(values)
         if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
                 values.get('report_name') and
                 values['report_name'].find('.') == -1):
@@ -78,6 +80,8 @@ class IrActionsReport(models.Model):
 
     @api.one
     def copy(self, default=None):
+        if not self.env.context.get('enable_duplication', False):
+            return super(IrActionsReport, self).copy(default=default)
         if default is None:
             default = {}
         suffix = self.env.context.get('suffix', 'copy')
