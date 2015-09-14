@@ -27,9 +27,9 @@ class Module(orm.Model):
     _inherit = 'ir.module.module'
 
     def button_uninstall(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
         if 'uninstall_authorized' in context:
-            if not context:
-                context = {}
             ctx = context.copy()
             del ctx['uninstall_authorized']
             super(Module, self).button_uninstall(
@@ -56,7 +56,8 @@ class UninstallCheckWizard(orm.TransientModel):
     _columns = {
         'password': fields.char(
             string='Password', required=True,
-            help="'admin_passwd' value from Odoo configuration file")
+            help="'admin_passwd' value from Odoo configuration file "
+                 "(aka 'Master Password')")
     }
 
     def check_password(self, cr, uid, ids, context=None):
@@ -65,15 +66,16 @@ class UninstallCheckWizard(orm.TransientModel):
             if not config_passwd:
                 raise orm.except_orm(
                     'Missing configuration key',
-                    "'admin_passwd' configuration key is not set in "
+                    "'admin_passwd' configuration key "
+                    "(aka 'Master Password') is not set in \n"
                     "your Odoo server configuration file: "
                     "please set it a value")
             if elm.password != config_passwd:
                 raise orm.except_orm(
                     "Password Error",
                     "Issue\n_____\nProvided password '%s' doesn't match with "
-                    "'admin_passwd' found in the "
-                    "Odoo server configuration file."
+                    "'Master Password' ('admin_passwd' key) found in the "
+                    "Odoo server configuration file ."
                     "\n\nResolution\n__________\n"
                     "Please check your password and retry or cancel"
                     % elm.password)
