@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--Authentification - Generate Password Module for OpenERP                 -->
+<!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- Model: email.template -->
+        <record model="email.template" id="generate_password_template" >
+            <field name="name">Generate Password</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="email_from"><![CDATA[${object.company_id.name} <${(object.company_id.email or user.email)|safe}>]]></field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="subject">OpenERP - Password Changed</field>
+            <field name="body_html"><![CDATA[
+Your OpenERP credentials has been changed:
+<ul>
+<li>Login : ${object.login}</li>
+<li>New Password : ${ctx.get('generated_password')}</li>
+</ul>
+Please,
+<ul>
+<li>remember this password and delete this email;</li>
+<li>Communicate the password to your team, if there are many people that are using the same credentials;</li>
+</ul>]]>
+            </field>
+        </record>
+
+    </data>
+</openerp>

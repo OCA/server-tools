@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********************************************************************** -->
+<!--Authentification - Generate Password Module for OpenERP                 -->
+<!--Copyright (C) 2014 GRAP (http://www.grap.coop)                          -->
+<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
+
+<!--This program is free software: you can redistribute it and/or modify    -->
+<!--it under the terms of the GNU Affero General Public License as          -->
+<!--published by the Free Software Foundation, either version 3 of the      -->
+<!--License, or (at your option) any later version.                         -->
+
+<!--This program is distributed in the hope that it will be useful,         -->
+<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
+<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
+<!--GNU Affero General Public License for more details.                     -->
+
+<!--You should have received a copy of the GNU Affero General Public License-->
+<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
+<!-- ********************************************************************** -->
+<openerp>
+    <data>
+
+<!-- Model: res.users -->
+        <record id="view_res_users_form" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+            <field name="arch" type="xml">
+                <button name="preference_change_password" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_res_users_tree" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree" />
+            <field name="arch" type="xml">
+                <field name="login_date" position="after">
+                    <button name="generate_password"
+                        icon="terp-mail-message-new" type="object" string="Generate Password and Send Mail"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
