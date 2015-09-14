@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+
+<record id="view_uninstall_wizard_form" model="ir.ui.view">
+    <field name="model">uninstall.check.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Check" version="7.0">
+            <p class="oe_inline oe_grey">
+Uninstall module process remove all data managed by the module.<br/>
+Some columns can be dropped and there is no way to recover that except restoring a database backup
+            </p>
+            <label string="If you want uninstall module, write required password."
+                   colspan="4" />
+            <group col="4">
+                <field name="password" password="True"/>
+                <span/>
+            </group>
+            <footer>
+                <button name="check_password" string="Apply" type="object"
+                        class="oe_highlight"/>
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+
+    </data>
+</openerp>
