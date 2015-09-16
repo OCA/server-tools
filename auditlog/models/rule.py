@@ -170,7 +170,8 @@ class auditlog_rule(models.Model):
         for rule in self:
             model_model = self.env[rule.model_id.model]
             for method in ['create', 'read', 'write', 'unlink']:
-                if getattr(rule, 'log_%s' % method):
+                if getattr(rule, 'log_%s' % method) and hasattr(
+                        getattr(model_model, method), 'origin'):
                     model_model._revert_method(method)
                     updated = True
         if updated:
