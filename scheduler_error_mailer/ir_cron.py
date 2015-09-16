@@ -63,7 +63,7 @@ class ir_cron(orm.Model):
                           context)
 
             self.pool['email.template'].send_mail(
-                cr, SUPERUSER_ID, my_cron.email_template.id, my_cron.id,
+                cr, SUPERUSER_ID, my_cron.email_template_id.id, my_cron.id,
                 force_send=True, context=context)
 
         return res
