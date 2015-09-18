@@ -178,5 +178,3 @@ class Module(models.Model):
         fp.close()
         os.popen('rm ' + path_dotfile + ' ' + path_png)
         return {'module_file': base64.encodestring(x)}
-
-Module()
