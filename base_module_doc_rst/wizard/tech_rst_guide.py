@@ -374,7 +374,6 @@ class WizardTechGuideRst(osv.osv_memory):
                 if graph_mod:
                     module_name = module.name
                     try:
-                        tmpdir = tempfile.mkdtemp()
                         tmp_file_graph = tempfile.NamedTemporaryFile()
                         tmp_file_graph.write(graph_mod)
                         tmp_file_graph.file.flush()

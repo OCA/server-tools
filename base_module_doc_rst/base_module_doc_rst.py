@@ -19,15 +19,9 @@
 #
 ##############################################################################
 import os
-import pydot
 import base64
-
 import openerp.modules.registry
-from openerp import report
 from openerp import models, fields
-from openerp import modules, tools
-from openerp import addons
-from openerp.modules import get_module_resource
 
 
 class Module(models.Model):
@@ -176,7 +170,9 @@ class Module(models.Model):
             fp = file(path_dotfile, "w")
             fp.write(val)
             fp.close()
-        os.popen('dot -Tpng' + ' ' + path_dotfile + ' ' + '-o' + ' ' + path_png)
+        os.popen(
+            'dot -Tpng' + ' ' + path_dotfile + ' ' + '-o' + ' ' + path_png
+        )
         fp = file(path_png, "r")
         x = fp.read()
         fp.close()
