@@ -32,6 +32,6 @@ class ResUsers(models.Model):
             self.write({'image': user_gravatar})
         else:
             raise Warning(
-                _("You don't have Gravatar image to this %s email." % (
+                _("There is no Gravatar image for this email (%s)" % (
                     email)))
         return True

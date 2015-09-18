@@ -4,7 +4,7 @@
 
 {
     'name': 'Synchronize Gravatar image',
-    'version': '1',
+    'version': '8.0.1.0.0',
     'author': 'Endika Iglesias, Odoo Community Association (OCA)',
     'category': 'Tools',
     'website': 'http://www.endikaiglesias.com/',
