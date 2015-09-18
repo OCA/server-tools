@@ -43,5 +43,3 @@ class CreateGraph(orm.TransientModel):
                     context=context
                 )
         return {'type': 'ir.actions.act_window_close'}
-
-CreateGraph()
