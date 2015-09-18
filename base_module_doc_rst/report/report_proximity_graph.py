@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import time
 import os
 import pydot
 
@@ -111,7 +110,9 @@ class ReportGraph(report.interface.report_int):
         return output.read()
 
     def create(self, cr, uid, ids, data, context=None):
-        pdf_string = self.get_proximity_graph(cr, uid, context.get('active_id'))
+        pdf_string = self.get_proximity_graph(
+            cr, uid, context.get('active_id')
+        )
         return (pdf_string, 'pdf')
 
 ReportGraph('report.proximity.graph', 'ir.module.module')
