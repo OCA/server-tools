@@ -23,9 +23,9 @@ import time
 from openerp.report import report_sxw
 
 
-class ir_module_reference_print_graph(report_sxw.rml_parse):
+class IrModuleReferencePrintGraph(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
-        super(ir_module_reference_print_graph, self).__init__(cr, uid, name, context=context)
+        super(IrModuleReferencePrintGraph, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'findobj': self._object_find,
@@ -83,6 +83,6 @@ report_sxw.report_sxw(
     'report.ir.module.reference.graph',
     'ir.module.module',
     'addons/base_module_doc_rst/report/ir_module_reference_graph.rml',
-    parser=ir_module_reference_print_graph,
+    parser=IrModuleReferencePrintGraph,
     header=False
 )

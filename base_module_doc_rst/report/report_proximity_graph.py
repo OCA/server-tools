@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -27,7 +27,7 @@ from openerp import pooler
 from openerp import tools
 
 
-class report_graph(report.interface.report_int):
+class ReportGraph(report.interface.report_int):
     def __init__(self, name, table):
         report.interface.report_int.__init__(self, name)
         self.table = table
@@ -95,4 +95,4 @@ class report_graph(report.interface.report_int):
         pdf_string = self.get_proximity_graph(cr, uid, context.get('active_id'))
         return (pdf_string, 'pdf')
 
-report_graph('report.proximity.graph', 'ir.module.module')
+ReportGraph('report.proximity.graph', 'ir.module.module')

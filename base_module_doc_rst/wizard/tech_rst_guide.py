@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -41,26 +41,10 @@ class RstDoc(object):
             'menu_list': self._handle_list_items(module.menus_by_module),
             'view_list': self._handle_list_items(module.views_by_module),
             'depends': module.dependencies_id,
-            # 'quality_certified': bool(module.certificate) and 'yes' or 'no',
-            # 'official_module': str(module.certificate)[:2] == '00' and 'yes' or 'no',
             'author': module.author,
-            # 'quality_certified_label': self._quality_certified_label(module),
         }
         self.objects = objects
         self.module = module
-
-    # def _quality_certified_label(self, module):
-    #     label = ""
-    #     certificate = module.certificate
-    #     if certificate and len(certificate) > 1:
-    #         if certificate[:2] == '00':
-    #             addons
-    #             label = "(Official, Quality Certified)"
-    #         elif certificate[:2] == '01':
-    #             extra addons
-    #             label = "(Quality Certified)"
-    #
-    #     return label
 
     def _handle_list_items(self, list_item_as_string):
         list_item_as_string = list_item_as_string.strip()
@@ -310,7 +294,7 @@ class RstDoc(object):
         return s
 
 
-class wizard_tech_guide_rst(osv.osv_memory):
+class WizardTechGuideRst(osv.osv_memory):
     _name = "tech.guide.rst"
     _columns = {
         'rst_file': fields.binary('File', required=True, readonly=True),
@@ -489,4 +473,4 @@ class wizard_tech_guide_rst(osv.osv_memory):
         'rst_file': _generate,
     }
 
-wizard_tech_guide_rst()
+WizardTechGuideRst()
