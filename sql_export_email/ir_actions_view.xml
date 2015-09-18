@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_server_action_form" model="ir.ui.view">
+            <field name="name">Server Action (sql_export_email)</field>
+            <field name="model">ir.actions.server</field>
+            <field name="inherit_id" ref="base_export_email.view_server_action_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="on_change">onchange_state(state, context)</attribute>
+                </field>
+                <field name="model_id" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', '=', 'sql_export_email')]}</attribute>
+                </field>
+                <field name="srcmodel_id" position="attributes">
+                    <attribute name="attrs">{'required': [('state','!=','sql_export_email'),
+                                                          ('state','!=','export_email'),
+                                                          ('state','!=','dummy'),
+                                                          ('state','!=','sms'),
+                                                          ('state','!=','code'),
+                                                          ('state','!=','loop'),
+                                                          ('state','!=','trigger'),
+                                                          ('state','!=','object_copy'),
+                                                          ('state','!=','client_action'),
+                                                          ('state','!=','email'),
+                                                          ('state','!=','sms'),
+                                                          ('state','!=','other')]}</attribute>
+                </field>
+                <page string="Export data by email configuration" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','!=','export_email'),
+                                                          ('state','!=','sql_export_email')]}</attribute>
+                </page>
+                <xpath expr="//page[@string='Export data by email configuration']/group" position='inside'>
+                    <field name ="sql_export_id" attrs="{'required': [('state', '=', 'sql_export_email')],
+                                                         'invisible': [('state', '!=', 'sql_export_email')]}" />
+                </xpath>
+                <field name="email_template_id" position="attributes">
+                    <attribute name="attrs">{'required':['|', ('state','=','export_email'),
+                                                              ('state','=','sql_export_email')]}</attribute>
+                </field>
+                <field name="export_format" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','!=','export_email')],
+                                             'required':[('state','=','export_email')]}</attribute>
+                </field>
+                <field name="filter_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','!=','export_email')]}</attribute>
+                </field>
+                <field name ="fields_to_export" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','!=','export_email')],
+                                             'required': [('state', '=', 'export_email'), ('saved_export_id', '=', False)]}</attribute>
+                </field>
+                <field name ="saved_export_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('state','!=','export_email')],
+                                             'required': [('state', '=', 'export_email'), ('fields_to_export', '=', False)]}</attribute>
+                </field>
+
+            </field>
+        </record>
+    </data>
+</openerp>
