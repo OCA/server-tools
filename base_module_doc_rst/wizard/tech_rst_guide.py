@@ -521,5 +521,3 @@ class WizardTechGuideRst(orm.TransientModel):
     _defaults = {
         'rst_file': _generate,
     }
-
-WizardTechGuideRst()
