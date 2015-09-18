@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp.osv import orm, fields
 from openerp import netsvc
 
 import base64
@@ -52,7 +52,7 @@ class RstDoc(object):
         list_item_as_string = list_item_as_string.strip()
         if list_item_as_string:
             return [
-                item.replace('*', '\*') for
+                item.replace("*", r"\*") for
                 item in
                 list_item_as_string.split('\n')
             ]
@@ -327,7 +327,7 @@ class RstDoc(object):
         return s
 
 
-class WizardTechGuideRst(osv.osv_memory):
+class WizardTechGuideRst(orm.TransientModel):
     _name = "tech.guide.rst"
     _columns = {
         'rst_file': fields.binary('File', required=True, readonly=True),
