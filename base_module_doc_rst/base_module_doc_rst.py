@@ -82,7 +82,7 @@ class Module(models.Model):
             res.setdefault(rel[0], set()).add(rel[1])
             res.setdefault(rel[3], set())
         val = []
-        for obj, fields in res.items():
+        for obj, fieldsx in res.items():
             val.append('"%s" [%s label="{<id>%s|%s}"];' % (
                 obj,
                 obj in
@@ -90,7 +90,7 @@ class Module(models.Model):
                 'fillcolor=yellow, style="filled,rounded"' or
                 "",
                 obj,
-                "|".join(["<%s> %s" % (fn, fn) for fn in fields])
+                "|".join(["<%s> %s" % (fn, fn) for fn in fieldsx])
             ))
         return "\n".join(val)
 
