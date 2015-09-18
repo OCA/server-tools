@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_view_changeset_field_rule_partner_manager,changeset field rules for partner managers,model_changeset_field_rule,base.group_partner_manager,1,0,0,0
+access_view_changeset_field_rule_user,changeset field rules for changeset users,model_changeset_field_rule,group_changeset_user,1,0,0,0
+access_view_changeset_field_rule_manager,changeset field rules for changeset managers,model_changeset_field_rule,group_changeset_user,1,1,1,1
+access_view_res_partner_changeset_partner_manager,changeset for partner managers,model_res_partner_changeset,base.group_partner_manager,1,0,1,0
+access_view_res_partner_changeset_change_partner_manager,changeset change for partner managers,model_res_partner_changeset_change,base.group_partner_manager,1,0,1,0
+access_view_res_partner_changeset_user,changeset for changeset users,model_res_partner_changeset,group_changeset_user,1,1,1,0
+access_view_res_partner_changeset_change_user,changeset change for changeset users,model_res_partner_changeset_change,group_changeset_user,1,1,1,0
+access_view_res_partner_changeset_manager,changeset for changeset managers,model_res_partner_changeset,group_changeset_manager,1,1,1,1
+access_view_res_partner_changeset_change_manager,changeset change for changeset managers,model_res_partner_changeset_change,group_changeset_manager,1,1,1,1

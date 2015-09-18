@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="view_res_partner_changeset_tree" model="ir.ui.view">
+      <field name="name">res.partner.changeset.tree</field>
+      <field name="model">res.partner.changeset</field>
+      <field name="arch" type="xml">
+        <tree string="Partner Changeset" delete="false" create="false">
+          <field name="partner_id"/>
+          <field name="date"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_res_partner_changeset_form" model="ir.ui.view">
+      <field name="name">res.partner.changeset.form</field>
+      <field name="model">res.partner.changeset</field>
+      <field name="arch" type="xml">
+        <form string="Partner Changeset" delete="false" create="false">
+          <header>
+            <button name="apply"
+              string="Apply pending changes" type="object"
+              class="oe_highlight"
+              states="draft"/>
+            <button name="cancel"
+              string="Reject pending changes" type="object"
+              class="oe_highlight"
+              states="draft"/>
+            <field name="state" widget="statusbar"
+              statusbar_visible="draft,done"/>
+          </header>
+          <sheet string="Partner Changeset">
+            <group>
+              <field name="partner_id"/>
+              <field name="source"/>
+              <field name="date"/>
+            </group>
+            <group string="Changes">
+              <field name="change_ids" nolabel="1">
+                <tree string="Partner Changeset Change">
+                  <field name="field_id" context="{'no_open': true}"/>
+                  <field name="field_type" invisible="1"/>
+
+                  <field name="origin_value_display" string="Previous"/>
+                  <field name="new_value_display"/>
+
+                  <field name="state"/>
+                  <button name="apply"
+                    string="Apply" type="object"
+                    icon="gtk-apply"
+                    states="draft"/>
+                  <button name="cancel"
+                    string="Reject" type="object"
+                    icon="gtk-close"
+                    states="draft"/>
+                </tree>
+              </field>
+            </group>
+            <group>
+              <field name="note"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_res_partner_changeset_change_form" model="ir.ui.view">
+      <field name="name">res.partner.changeset.change.form</field>
+      <field name="model">res.partner.changeset.change</field>
+      <field name="arch" type="xml">
+        <form string="Partner Changeset Change" delete="false" create="false">
+          <header>
+            <button name="apply"
+              string="Apply" type="object"
+              class="oe_highlight"
+              states="draft"/>
+            <button name="cancel"
+              string="Reject" type="object"
+              class="oe_highlight"
+              states="draft"/>
+            <field name="state" widget="statusbar"
+              statusbar_visible="draft,done"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="field_id" options="{'no_open': true}"/>
+              <field name="field_type" invisible="1"/>
+
+              <!-- attrs are added in fields_view_get -->
+              <field name="origin_value_char"/>
+              <field name="new_value_char"/>
+
+              <field name="origin_value_date"/>
+              <field name="new_value_date"/>
+
+              <field name="origin_value_datetime"/>
+              <field name="new_value_datetime"/>
+
+              <field name="origin_value_float"/>
+              <field name="new_value_float"/>
+
+              <field name="origin_value_integer"/>
+              <field name="new_value_integer"/>
+
+              <field name="origin_value_text"/>
+              <field name="new_value_text"/>
+
+              <field name="origin_value_boolean"/>
+              <field name="new_value_boolean"/>
+
+              <field name="origin_value_reference"/>
+              <field name="new_value_reference"/>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_res_partner_changeset_search" model="ir.ui.view">
+      <field name="name">res.partner.changeset.search</field>
+      <field name="model">res.partner.changeset</field>
+      <field name="arch" type="xml">
+        <search string="Partner Changeset">
+          <field name="partner_id"/>
+          <filter string="Pending" name="draft"
+            domain="[('state','=','draft')]"/>
+          <filter string="Done" name="done"
+            domain="[('state','=','done')]"/>
+          <group expand="0" string="Group By">
+            <filter string="Partner"
+              name="groupby_partner_id"
+              context="{'group_by': 'partner_id'}"/>
+            <filter string="State"
+              name="groupby_state"
+              context="{'group_by': 'state'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_res_partner_changeset_view">
+      <field name="name">Partner Changeset</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner.changeset</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'search_default_draft': 1}</field>
+      <field name="search_view_id" ref="view_res_partner_changeset_search"/>
+    </record>
+
+    <menuitem id="menu_res_partner_changeset"
+      parent="menu_changeset"
+      sequence="20"
+      name="Changesets"
+      action="action_res_partner_changeset_view"/>
+  </data>
+</openerp>
