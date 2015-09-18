@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -30,7 +30,7 @@ from openerp import addons
 from openerp.modules import get_module_resource
 
 
-class module(models.Model):
+class Module(models.Model):
     _inherit = 'ir.module.module'
     _description = 'Module With Relationship Graph'
 
@@ -129,4 +129,4 @@ class module(models.Model):
         os.popen('rm ' + path_dotfile + ' ' + path_png)
         return {'module_file': base64.encodestring(x)}
 
-module()
+Module()

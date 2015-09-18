@@ -22,7 +22,7 @@
 from openerp.osv import osv
 
 
-class create_graph(osv.osv_memory):
+class CreateGraph(osv.osv_memory):
     _name = "create.relation.graph"
 
     def get_graph(self, cr, uid, datas, context=None):
@@ -34,6 +34,4 @@ class create_graph(osv.osv_memory):
                 mod_obj.write(cr, uid, [module.id], {'file_graph': module_data['module_file']}, context=context)
         return {'type': 'ir.actions.act_window_close'}
 
-create_graph()
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+CreateGraph()

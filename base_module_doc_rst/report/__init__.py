@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import ir_module_reference_print_graph
-import report_proximity_graph
+from . import ir_module_reference_print_graph
+from . import report_proximity_graph
