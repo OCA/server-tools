@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import tech_rst_guide
-import generate_relation_graph
+from . import tech_rst_guide
+from . import generate_relation_graph

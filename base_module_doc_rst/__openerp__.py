@@ -24,17 +24,6 @@
     "version": "1.0",
     "category": "Tools",
     "summary": "Modules Technical Guides in RST and Relationship Graphs",
-    "description": """
-This module generates the Technical Guides of selected modules in Restructured Text format (RST).
-=================================================================================================
-
-Originally developed by OpenERP SA (version 6.1, http://www.odoo.com). This version was adapted
-for the Odoo version 8 by the Odoo Community Association.
-
-    * It uses the Sphinx (http://sphinx.pocoo.org) implementation of RST
-    * It creates a tarball (.tgz file suffix) containing an index file and one file per module
-    * Generates Relationship Graph
-    """,
     "website": "https://odoo-community.org/",
     "author": "OpenERP SA,Odoo Community Association (OCA)",
     "contributors": [
