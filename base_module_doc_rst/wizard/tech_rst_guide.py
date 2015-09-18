@@ -36,7 +36,9 @@ class RstDoc(object):
             'shortdesc': module.shortdesc,
             'latest_version': module.latest_version,
             'website': module.website,
-            'description': self._handle_text(module.description.strip() or 'None'),
+            'description': self._handle_text(
+                module.description.strip() or 'None'
+            ),
             'report_list': self._handle_list_items(module.reports_by_module),
             'menu_list': self._handle_list_items(module.menus_by_module),
             'view_list': self._handle_list_items(module.views_by_module),
@@ -49,7 +51,11 @@ class RstDoc(object):
     def _handle_list_items(self, list_item_as_string):
         list_item_as_string = list_item_as_string.strip()
         if list_item_as_string:
-            return [item.replace('*', '\*') for item in list_item_as_string.split('\n')]
+            return [
+                item.replace('*', '\*') for
+                item in
+                list_item_as_string.split('\n')
+            ]
         else:
             return []
 
@@ -69,15 +75,22 @@ class RstDoc(object):
                     status_good = True
             except (Exception, ), e:
                 logger = netsvc.Logger()
-                msg = "error connecting to server '%s' with link '%s'. Error message: %s" % (server, link, str(e))
-                logger.notifyChannel("base_module_doc_rst", netsvc.LOG_ERROR, msg)
+                msg = """
+                error connecting to server '%s' with link '%s'.
+                Error message: %s
+                """ % (server, link, str(e))
+                logger.notifyChannel(
+                    "base_module_doc_rst", netsvc.LOG_ERROR, msg
+                )
                 status_good = False
             return status_good
 
         versions = ('4.2', '5.0', 'trunk')
         download_links = []
         for ver in versions:
-            link = 'http://www.openerp.com/download/modules/%s/%s.zip' % (ver, self.dico['name'])
+            link = 'http://www.openerp.com/download/modules/%s/%s.zip' % (
+                ver, self.dico['name']
+            )
             if _is_connection_status_good(link):
                 download_links.append("  * `%s <%s>`_" % (ver, link))
 
@@ -105,18 +118,28 @@ class RstDoc(object):
             ".. raw:: html",
             "",
             "      <br />",
-            """    <link rel="stylesheet" href="../_static/hide_objects_in_sidebar.css" type="text/css" />""",
+            """
+            <link rel="stylesheet"
+                href="../_static/hide_objects_in_sidebar.css"
+                type="text/css" />
+            """,
             "",
-            """.. tip:: This module is part of the OpenERP software, the leading Open Source """,
-            """  enterprise management system. If you want to discover OpenERP, check our """,
+            """
+            .. tip:: This module is part of the OpenERP software,
+            the leading Open Source
+            """,
+            """  enterprise management system. If you want to discover OpenERP,
+            check our
+            """,
             """  `screencasts <http://openerp.tv>`_ or download """,
             """  `OpenERP <http://openerp.com>`_ directly.""",
             "",
             ".. raw:: html",
             "",
-            """    <div class="js-kit-rating" title="" permalink="" standalone="yes" path="/%s"></div>""" % (
-                dico['name'],
-            ),
+            """
+            <div class="js-kit-rating"
+                title="" permalink="" standalone="yes" path="/%s"></div>
+            """ % (dico['name'],),
             """    <script src="http://js-kit.com/ratings.js"></script>""",
             "",
             "%(title)s",
@@ -138,7 +161,7 @@ class RstDoc(object):
             "Download links",
             "--------------",
             "",
-            "You can download this module as a zip file in the following version:",
+            "You can download this module as a zip file in following version:",
             "",
             "%(download_links)s",
             "",
@@ -212,9 +235,13 @@ class RstDoc(object):
             if not isinstance(field_def, tuple):
                 logger = netsvc.Logger()
                 msg = "Error on Object %s: field_def: %s [type: %s]" % (
-                    obj_name.encode('utf8'), field_def.encode('utf8'), type(field_def)
+                    obj_name.encode('utf8'),
+                    field_def.encode('utf8'),
+                    type(field_def)
                 )
-                logger.notifyChannel("base_module_doc_rst", netsvc.LOG_ERROR, msg)
+                logger.notifyChannel(
+                    "base_module_doc_rst", netsvc.LOG_ERROR, msg
+                )
                 return ""
 
             field_name = field_def[0]
@@ -224,7 +251,13 @@ class RstDoc(object):
             field_help_s = field_dict.get('help', '')
             if field_help_s:
                 field_help_s = "*%s*" % (field_help_s)
-                field_help = '\n'.join(['    %s' % line.strip() for line in field_help_s.split('\n')])
+                field_help = '\n'.join(
+                    [
+                        '    %s' % line.strip() for
+                        line in
+                        field_help_s.split('\n')
+                    ]
+                )
             else:
                 field_help = ''
 
@@ -320,7 +353,9 @@ class WizardTechGuideRst(osv.osv_memory):
                 module_index.append(index_dict)
 
                 objects = self._get_objects(cr, uid, module)
-                module.test_views = self._get_views(cr, uid, module.id, context=context)
+                module.test_views = self._get_views(
+                    cr, uid, module.id, context=context
+                )
                 rstdoc = RstDoc(module, objects)
 
                 # Append Relationship Graph on rst
@@ -329,9 +364,13 @@ class WizardTechGuideRst(osv.osv_memory):
                 if module.file_graph:
                     graph_mod = base64.decodestring(module.file_graph)
                 else:
-                    module_data = module_model.get_relation_graph(cr, uid, module.name, context=context)
+                    module_data = module_model.get_relation_graph(
+                        cr, uid, module.name, context=context
+                    )
                     if module_data['module_file']:
-                        graph_mod = base64.decodestring(module_data['module_file'])
+                        graph_mod = base64.decodestring(
+                            module_data['module_file']
+                        )
                 if graph_mod:
                     module_name = module.name
                     try:
@@ -339,7 +378,10 @@ class WizardTechGuideRst(osv.osv_memory):
                         tmp_file_graph = tempfile.NamedTemporaryFile()
                         tmp_file_graph.write(graph_mod)
                         tmp_file_graph.file.flush()
-                        tarf.add(tmp_file_graph.name, arcname=module.name + '_module.png')
+                        tarf.add(
+                            tmp_file_graph.name,
+                            arcname=module.name + '_module.png'
+                        )
                     finally:
                         tmp_file_graph.close()
 
@@ -370,7 +412,9 @@ class WizardTechGuideRst(osv.osv_memory):
                 os.unlink(tgz_tmp_filename)
             except Exception, e:
                 logger = netsvc.Logger()
-                msg = "Temporary file %s could not be deleted. (%s)" % (tgz_tmp_filename, e)
+                msg = "Temporary file %s could not be deleted. (%s)" % (
+                    tgz_tmp_filename, e
+                )
                 logger.notifyChannel("warning", netsvc.LOG_WARNING, msg)
 
         return base64.encodestring(out)
@@ -396,7 +440,9 @@ class WizardTechGuideRst(osv.osv_memory):
             uid,
             [
                 ('module', 'in', mnames.keys()),
-                ('model', 'in', ('ir.ui.view', 'ir.actions.report.xml', 'ir.ui.menu'))
+                ('model', 'in', (
+                    'ir.ui.view', 'ir.actions.report.xml', 'ir.ui.menu'
+                ))
             ]
         )
         for data_id in model_data_obj.browse(cr, uid, view_id, context):
@@ -409,7 +455,9 @@ class WizardTechGuideRst(osv.osv_memory):
                         'name': v.name,
                         'inherit': v.inherit_id,
                         'type': v.type}
-                    res[mnames[data_id.module]]['views_by_module'].append(v_dict)
+                    res[mnames[data_id.module]]['views_by_module'].append(
+                        v_dict
+                    )
                 elif key == 'ir.actions.report.xml':
                     res[mnames[data_id.module]]['reports_by_module'].append(
                         report_obj.browse(cr, uid, data_id.res_id).name
@@ -452,7 +500,9 @@ class WizardTechGuideRst(osv.osv_memory):
 
     def _object_find(self, cr, uid, module):
         ir_model_data = self.pool.get('ir.model.data')
-        ids2 = ir_model_data.search(cr, uid, [('module', '=', module.name), ('model', '=', 'ir.model')])
+        ids2 = ir_model_data.search(
+            cr, uid, [('module', '=', module.name), ('model', '=', 'ir.model')]
+        )
         ids = []
         for mod in ir_model_data.browse(cr, uid, ids2):
             ids.append(mod.res_id)

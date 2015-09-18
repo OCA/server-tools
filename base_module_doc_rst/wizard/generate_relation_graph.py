@@ -27,11 +27,21 @@ class CreateGraph(osv.osv_memory):
 
     def get_graph(self, cr, uid, datas, context=None):
         mod_obj = self.pool.get('ir.module.module')
-        modules = mod_obj.browse(cr, uid, context['active_ids'], context=context)
+        modules = mod_obj.browse(
+            cr, uid, context['active_ids'], context=context
+        )
         for module in modules:
-            module_data = mod_obj.get_relation_graph(cr, uid, module.name, context=context)
+            module_data = mod_obj.get_relation_graph(
+                cr, uid, module.name, context=context
+            )
             if module_data['module_file']:
-                mod_obj.write(cr, uid, [module.id], {'file_graph': module_data['module_file']}, context=context)
+                mod_obj.write(
+                    cr,
+                    uid,
+                    [module.id],
+                    {'file_graph': module_data['module_file']},
+                    context=context
+                )
         return {'type': 'ir.actions.act_window_close'}
 
 CreateGraph()

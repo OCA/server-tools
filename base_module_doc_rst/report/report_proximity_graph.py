@@ -39,9 +39,12 @@ class ReportGraph(report.interface.report_int):
         edges = []
 
         def get_depend_module(module_id):
-            module_record = module_obj.browse(cr, uid, module_id, context=context)
+            module_record = module_obj.browse(
+                cr, uid, module_id, context=context
+            )
             if module_record.name not in nodes:
-                # Add new field ir.module.module object in server side. field name = module_type/
+                # Add new field ir.module.module object in server side.
+                # field name = module_type/
                 nodes.append((module_record.name, "unknown"))
             if module_record.dependencies_id:
                 for depen in module_record.dependencies_id:
@@ -69,13 +72,29 @@ class ReportGraph(report.interface.report_int):
         )
         for node in nodes:
             if node[1] == "official":
-                graph.add_node(pydot.Node(node[0], style="filled", fillcolor="lightgray"))
+                graph.add_node(
+                    pydot.Node(
+                        node[0], style="filled", fillcolor="lightgray"
+                    )
+                )
             elif node[1] == "extra_addons":
-                graph.add_node(pydot.Node(node[0], style="filled", fillcolor="red"))
+                graph.add_node(
+                    pydot.Node(
+                        node[0], style="filled", fillcolor="red"
+                    )
+                )
             elif node[1] == "community":
-                graph.add_node(pydot.Node(node[0], style="filled", fillcolor="#000FFF"))
+                graph.add_node(
+                    pydot.Node(
+                        node[0], style="filled", fillcolor="#000FFF"
+                    )
+                )
             elif node[1] == "unknown":
-                graph.add_node(pydot.Node(node[0], style="filled", fillcolor="purple"))
+                graph.add_node(
+                    pydot.Node(
+                        node[0], style="filled", fillcolor="purple"
+                    )
+                )
         for edge in edges:
             graph.add_edge(pydot.Edge(edge[0], edge[1]))
 
