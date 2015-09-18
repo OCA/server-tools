@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv
+from openerp.osv import orm
 
 
-class CreateGraph(osv.osv_memory):
+class CreateGraph(orm.TransientModel):
     _name = "create.relation.graph"
 
     def get_graph(self, cr, uid, datas, context=None):
