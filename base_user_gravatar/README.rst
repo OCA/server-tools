@@ -14,7 +14,7 @@ Usage
 To configure this module, you need to:
 
 * go to user profile
-* pulse "Get Gravatar image" button
+* press "Get Gravatar image" button
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
