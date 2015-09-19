@@ -2,12 +2,13 @@
 # © 2015 Endika Iglesias
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api
-from openerp.exceptions import Warning
-from openerp.tools.translate import _
 import base64
 import hashlib
 import urllib2
+
+from openerp import api, models
+from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 class ResUsers(models.Model):
@@ -21,7 +22,7 @@ class ResUsers(models.Model):
             raw_image = res.read()
             return base64.encodestring(raw_image)
         except urllib2.HTTPError:
-            raise Warning(_('Sorry Gravatar not found.'))
+            raise UserError(_('Sorry Gravatar not found.'))
 
     @api.one
     def get_gravatar_image(self):
@@ -31,7 +32,7 @@ class ResUsers(models.Model):
         if fail_example != user_gravatar:
             self.write({'image': user_gravatar})
         else:
-            raise Warning(
+            raise UserError(
                 _("There is no Gravatar image for this email (%s)" % (
                     email)))
         return True
