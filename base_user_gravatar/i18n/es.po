@@ -35,6 +35,6 @@ msgstr "Usuarios"
 #. module: res_users_with_gravatar
 #: code:addons/res_users_with_gravatar/models/res_users.py:36
 #, python-format
-msgid "You don't have Gravatar image to this %s email."
-msgstr "No tiene imagen de Gravatar para este %s email."
+msgid "There is no Gravatar image for this email (%s)"
+msgstr "No hay imagen de Gravatar para este email (%s)"
 
