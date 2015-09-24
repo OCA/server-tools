@@ -15,7 +15,7 @@
                 </xpath>
                 <button name="associated_view" position="after">
                     <button type="object" class="oe_link" name="button_create_qweb"
-                            string="Create QWeb view"
+                            string="Create QWeb view" colspan="2"
                             attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}" />
                 </button>
             </field>
