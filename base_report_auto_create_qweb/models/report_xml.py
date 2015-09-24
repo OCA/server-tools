@@ -63,7 +63,7 @@ class IrActionsReport(models.Model):
         report_xml = super(IrActionsReport, self).create(values)
         if values.get('report_type') in ['qweb-pdf', 'qweb-html']:
             report_view_ids = self.env.context.get('report_views', False)
-            suffix = self.env.context.get('suffix', 'copy')
+            suffix = self.env.context.get('suffix') or 'copy'
             name = values['name']
             model = values['model']
             report = values['report_name']
@@ -92,7 +92,7 @@ class IrActionsReport(models.Model):
             return super(IrActionsReport, self).copy(default=default)
         if default is None:
             default = {}
-        suffix = self.env.context.get('suffix', 'copy')
+        suffix = self.env.context.get('suffix') or 'copy'
         default['name'] = '%s (%s)' % (self.name, suffix)
         module = '%s_%s' % (
             self.report_name.split('.')[0], suffix.lower())
