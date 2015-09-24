@@ -9,6 +9,12 @@ from openerp import models, api, exceptions, _
 class IrActionsReport(models.Model):
     _inherit = 'ir.actions.report.xml'
 
+    def _format_template_name(self, text):
+        from unidecode import unidecode
+        text = unidecode(unicode(text))
+        text.lower()
+        return text.encode('iso-8859-1')
+
     def _prepare_qweb_view_data(self, qweb_name, arch):
         return {
             'name': qweb_name,
@@ -45,6 +51,8 @@ class IrActionsReport(models.Model):
 
     @api.model
     def create(self, values):
+        values['report_name'] = self._format_template_name(
+            values.get('report_name', ''))
         if not self.env.context.get('enable_duplication', False):
             return super(IrActionsReport, self).create(values)
         if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
@@ -97,3 +105,13 @@ class IrActionsReport(models.Model):
                      self.with_context(
                          report_views=report_views.ids,
                          suffix=suffix.lower())).copy(default=default)
+
+    @api.multi
+    def button_create_qweb(self):
+        self.ensure_one()
+        module = self.report_name.split('.')[0]
+        report_name = self.report_name.split('.')[1]
+        arch = ('<?xml version="1.0"?>\n'
+                '<t t-name="%s">\n</t>' % report_name)
+        self._create_qweb(self.name, report_name, module, self.model, arch)
+        self.associated_view()
