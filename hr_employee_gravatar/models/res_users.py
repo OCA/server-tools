@@ -11,8 +11,7 @@ class ResUsers(models.Model):
     @api.one
     def get_gravatar_image(self):
         super(ResUsers, self).get_gravatar_image()
-        hr_employee_list = self.env['hr.employee'].search(
+        hr_employee = self.env['hr.employee'].search(
             [('user_id', '=', self.id)])
-        for hr_employee in hr_employee_list:
-            hr_employee.write({'image': self.image})
+        hr_employee.write({'image': self.image})
         return True
