@@ -28,6 +28,7 @@ addon | version | summary
 [base_optional_quick_create](base_optional_quick_create/) | 0.1 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 1.0 | Report qweb auto generation
 [base_suspend_security](base_suspend_security/) | 1.0 | Suspend security checks for a call
+[base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [cron_run_manually](cron_run_manually/) | 1.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 0.1 | Database cleanup
 [dbfilter_from_header](dbfilter_from_header/) | 1.0 | dbfilter_from_header
