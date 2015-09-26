@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Authentification - Track And Prevent Brute-force Attack module for Odoo
+#    Tracks Authentication Attempts and Prevents Brute-force Attacks module
 #    Copyright (C) 2015-Today GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -24,7 +24,8 @@
     'name': 'Authentification - Brute-force Attack',
     'version': '8.0.1.0.0',
     'category': 'base',
-    'summary': "Authentication Tracking and Prevent Brute-force Attack",
+    'summary': "Tracks Authentication Attempts and Prevents Brute-force"
+               " Attacks module",
     'author': "GRAP,Odoo Community Association (OCA)",
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
