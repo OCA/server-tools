@@ -1,9 +1,9 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-=======================================================
-Authentication Tracking and Prevent Brute-force Attacks
-=======================================================
+===============================================================
+Tracks Authentication Attempts and Prevents Brute-force Attacks
+===============================================================
 
 This module registers each request done by users trying to authenticate into
 Odoo. If the authentication fails, a counter is increased for the given remote
