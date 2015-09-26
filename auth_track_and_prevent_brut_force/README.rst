@@ -12,7 +12,7 @@ Odoo will ban the remote IP and ignore new requests.
 
 Admin user have the possibility to unblock a banned IP.
 
-This module realize a call to a web API (http://ip-api.com) to try to have
+This module realizes a call to a web API (http://ip-api.com) to try to have
 extra informations about remote IP.
 
 Note and Warning
