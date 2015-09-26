@@ -47,11 +47,11 @@ Screenshot
 
 **List of Attempts**
 
-.. image:: auth_track_and_prevent_brut_force/static/description/screenshot_attempts_list.png
+.. image:: /auth_track_and_prevent_brut_force/static/description/screenshot_attempts_list.png
 
 **Detail of a banned IP**
 
-.. image:: auth_track_and_prevent_brut_force/static/description/screenshot_custom_ban.png
+.. image:: /auth_track_and_prevent_brut_force/static/description/screenshot_custom_ban.png
 
 
 Usage
