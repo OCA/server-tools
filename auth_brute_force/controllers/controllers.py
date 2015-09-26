@@ -47,7 +47,7 @@ class LoginController(Home):
             # Get Settings
             config_id = config_obj.search(cursor, SUPERUSER_ID, [(
                 'key', '=',
-                'auth_brut_force.max_attempt_qty')])
+                'auth_brute_force.max_attempt_qty')])
             max_attempts_qty = int(config_obj.browse(
                 cursor, SUPERUSER_ID, config_id).value)
 
