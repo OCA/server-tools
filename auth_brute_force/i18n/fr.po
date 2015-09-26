@@ -1,0 +1,120 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* auth_brut_force
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-26 00:34+0000\n"
+"PO-Revision-Date: 2015-09-26 00:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: auth_brut_force
+#: code:addons/auth_brut_force/models/res_banned_remote.py:75
+#, python-format
+msgid "%s %s - %s %s (ISP: %s)"
+msgstr "%s %s - %s %s (FAI : %s)"
+
+#. module: auth_brut_force
+#: field:res.banned.remote,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: auth_brut_force
+#: field:res.authentication.attempt,attempt_date:0
+msgid "Attempt Date"
+msgstr "Date de la tentative"
+
+#. module: auth_brut_force
+#: model:ir.actions.act_window,name:auth_brut_force.action_res_authentication_attempt
+#: model:ir.ui.menu,name:auth_brut_force.menu_res_authentication_attempt
+msgid "Authentication Attempts"
+msgstr "Tentative d'authentification"
+
+#. module: auth_brut_force
+#: field:res.authentication.attempt,result:0
+msgid "Authentication Result"
+msgstr "Résultat de l'authentification"
+
+#. module: auth_brut_force
+#: field:res.banned.remote,ban_date:0
+msgid "Ban Date"
+msgstr "Ban Date"
+
+#. module: auth_brut_force
+#: code:addons/auth_brut_force/models/res_authentication_attempt.py:34
+#: view:res.authentication.attempt:auth_brut_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Banned"
+msgstr "Banni"
+
+#. module: auth_brut_force
+#: model:ir.actions.act_window,name:auth_brut_force.action_res_banned_remote
+#: model:ir.ui.menu,name:auth_brut_force.menu_res_banned_remote
+msgid "Banned Remotes"
+msgstr "Clients distants bannis"
+
+#. module: auth_brut_force
+#: code:addons/auth_brut_force/models/res_authentication_attempt.py:33
+#: view:res.authentication.attempt:auth_brut_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Failed"
+msgstr "Echoué"
+
+#. module: auth_brut_force
+#: field:res.banned.remote,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: auth_brut_force
+#: field:res.banned.remote,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: auth_brut_force
+#: field:res.authentication.attempt,remote:0
+#: field:res.banned.remote,remote:0
+msgid "Remote ID"
+msgstr "ID du client Distant"
+
+#. module: auth_brut_force
+#: view:res.authentication.attempt:auth_brut_force.view_res_authentication_attempt_search
+msgid "Successful"
+msgstr "Réussie"
+
+#. module: auth_brut_force
+#: code:addons/auth_brut_force/models/res_authentication_attempt.py:32
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Successfull"
+msgstr "Réussie"
+
+#. module: auth_brut_force
+#: field:res.authentication.attempt,login:0
+msgid "Tried Login"
+msgstr "Idenfiant essayé"
+
+#. module: auth_brut_force
+#: help:res.banned.remote,active:0
+msgid "Uncheck this box to unban the remote"
+msgstr "Décochez cette case afin d'annuler l'exclusion du client distant"
+
+#. module: auth_brut_force
+#: code:addons/auth_brut_force/models/res_banned_remote.py:77
+#, python-format
+msgid "Unidentified Call from %s"
+msgstr "Appel non identifié depuis %s"
+
+#. module: auth_brut_force
+#: view:res.authentication.attempt:auth_brut_force.view_res_authentication_attempt_search
+msgid "Without Success"
+msgstr "Sans succès"
+
