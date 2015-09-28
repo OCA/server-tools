@@ -24,11 +24,11 @@ import urllib
 import json
 
 from openerp import models, fields, api
-from openerp.tools.translate import _
 
 
 class ResBannedRemote(models.Model):
     _name = 'res.banned.remote'
+    _rec_name = 'remote'
 
     _GEOLOCALISATION_URL = "http://ip-api.com/json/{}"
 
@@ -37,13 +37,8 @@ class ResBannedRemote(models.Model):
         return fields.Datetime.now()
 
     # Column Section
-    name = fields.Char(
-        string='Name', compute='_compute_remote_description',
-        store=True, multi='remote_description', required=True)
-
     description = fields.Text(
-        string='Description', compute='_compute_remote_description',
-        store=True, multi='remote_description')
+        string='Description', compute='_compute_description', store=True)
 
     ban_date = fields.Datetime(
         string='Ban Date', required=True, default=_default_ban_date)
@@ -61,20 +56,13 @@ class ResBannedRemote(models.Model):
     # Compute Section
     @api.multi
     @api.depends('remote')
-    def _compute_remote_description(self):
+    def _compute_description(self):
         for item in self:
             url = self._GEOLOCALISATION_URL.format(item.remote)
             res = json.loads(urllib.urlopen(url).read())
             item.description = ''
             for k, v in res.iteritems():
                 item.description += '%s : %s\n' % (k, v)
-            if res.get('status', False) == 'success':
-                item.name = _("%s %s - %s %s (ISP: %s)" % (
-                    res.get('country', ''), res.get('regionName', ''),
-                    res.get('zip', ''), res.get('city'),
-                    res.get('isp', '')))
-            else:
-                item.name = _('Unidentified Call from %s' % (item.remote))
 
     @api.multi
     def _compute_attempt_ids(self):
