@@ -33,6 +33,16 @@
             </field>
         </record>
 
+        <record id="view_res_authentication_attempt_graph" model="ir.ui.view">
+            <field name="model">res.authentication.attempt</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="attempt_date" />
+                    <field name="result" />
+                </graph>
+            </field>
+        </record>
+
         <record id="view_res_authentication_attempt_search" model="ir.ui.view">
             <field name="model">res.authentication.attempt</field>
             <field name="arch" type="xml">
