@@ -24,7 +24,7 @@
             <field name="name">Authentication Attempts</field>
             <field name="res_model">res.authentication.attempt</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,graph</field>
             <field name="context">{"search_default_filter_no_success":1}</field>
         </record>
 
