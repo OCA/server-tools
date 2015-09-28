@@ -51,9 +51,8 @@
             <field name="model">res.banned.remote</field>
             <field name="arch" type="xml">
                 <tree colors="gray: active==False">
-                    <field name="name" />
-                    <field name="ban_date" />
                     <field name="remote" />
+                    <field name="ban_date" />
                     <field name="active" invisible="1" />
                 </tree>
             </field>
@@ -65,10 +64,8 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name" />
-                            <field name="ban_date" />
-                        
                             <field name="remote" />
+                            <field name="ban_date" />
                             <field name="active" />
                             <field name="description" />
                             <field name="attempt_ids" />

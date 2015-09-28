@@ -28,7 +28,7 @@ of the user can be wrong, and mainly in the following cases:
 * if the Odoo server is behind an Apache / NGinx proxy without redirection,
   all the request will be have the value '127.0.0.1' for the REMOTE_ADDR key;
 * If some users are behind the same Internet Service Provider, if a user is
-  banned, all the other users will be banned to;
+  banned, all the other users will be banned too;
 
 Configuration
 -------------
