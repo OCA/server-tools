@@ -32,7 +32,6 @@ _logger = logging.getLogger(__name__)
 class LoginController(Home):
     @http.route()
     def web_login(self, redirect=None, **kw):
-
         if request.httprequest.method == 'POST':
             ensure_db()
             remote = request.httprequest.remote_addr
@@ -45,11 +44,10 @@ class LoginController(Home):
             cursor = attempt_obj.pool.cursor()
 
             # Get Settings
-            config_id = config_obj.search(cursor, SUPERUSER_ID, [(
-                'key', '=',
-                'auth_brute_force.max_attempt_qty')])
-            max_attempts_qty = int(config_obj.browse(
-                cursor, SUPERUSER_ID, config_id).value)
+            max_attempts_qty = int(config_obj.search_read(
+                cursor, SUPERUSER_ID,
+                [('key', '=', 'auth_brute_force.max_attempt_qty')],
+                ['value'])[0]['value'])
 
             # Test if remote user is banned
             banned = banned_remote_obj.search(cursor, SUPERUSER_ID, [
@@ -69,6 +67,7 @@ class LoginController(Home):
                     request.params['password'])
 
             # Log attempt
+            cursor.commit()
             attempt_obj.create(cursor, SUPERUSER_ID, {
                 'attempt_date': fields.Datetime.now(),
                 'login': request.params['login'],
