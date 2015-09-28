@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
+from openerp import exceptions
 
 
 class TestBaseReportAutoQwebCreate(common.TransactionCase):
@@ -24,8 +25,8 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
         view_num = self.view_model.search_count(
             [('name', 'ilike', report_html.report_name.split('.')[1]),
              ('type', '=', 'qweb')])
-        self.assertEqual(view_num, 1, 'Only one view must be created.')
         self.assertNotEqual(view_num, 0, 'There are not related views')
+        self.assertEqual(view_num, 1, 'Only one view must be created.')
 
     def test_creation_duplicate_pdf(self):
         report_pdf = self.report_model.create({
@@ -38,8 +39,8 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
         view_num = self.view_model.search_count(
             [('name', 'ilike', report_pdf.report_name.split('.')[1]),
              ('type', '=', 'qweb')])
-        self.assertEqual(view_num, 1, 'One view must be created.')
         self.assertNotEqual(view_num, 0, 'There are not related views.')
+        self.assertEqual(view_num, 1, 'One view must be created.')
         wizard = self.duplicate_model.with_context(
             active_id=report_pdf.id, model=report_pdf.model).create({
                 'suffix': 'copytest',
@@ -51,6 +52,15 @@ class TestBaseReportAutoQwebCreate(common.TransactionCase):
             view_num2 = self.view_model.search_count(
                 [('name', 'ilike', report_pdf_copy.report_name.split('.')[1]),
                  ('type', '=', 'qweb')])
+            self.assertNotEqual(view_num2, 0, 'There are not related views.')
             self.assertEqual(view_num2, view_num,
                              'Same view numbers must have been created.')
-            self.assertNotEqual(view_num, 0, 'There are not related views.')
+
+    def test_wrong_template_name(self):
+        with self.assertRaises(exceptions.Warning):
+            self.report_model.create({
+                'name': 'Test',
+                'model': 'res.partner',
+                'report_type': 'qweb-pdf',
+                'report_name': 'report_test',
+            })
