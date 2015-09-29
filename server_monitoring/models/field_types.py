@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Alexandre Fayolle
-#    Copyright 2014 Camptocamp SA
+#    Copyright 2014-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,12 +19,18 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields, osv
 
 
-class bigint(fields.integer):
+class Bigint(fields.Integer):
+    type = 'bigint'
+
+
+class bigint(osv.fields.integer):
     _type = 'int8'
 
 
-fields.bigint = bigint
-orm.FIELDS_TO_PGTYPES[bigint] = 'int8'
+fields.Bigint = Bigint
+osv.fields.bigint = bigint
+
+models.FIELDS_TO_PGTYPES[bigint] = 'int8'

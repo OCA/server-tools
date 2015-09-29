@@ -21,125 +21,99 @@
 import logging
 import datetime
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 _logger = logging.getLogger(__name__)
 
 
-class ModelRowCount(orm.Model):
+class ModelRowCount(models.Model):
     _name = 'server.monitor.model.row.count'
-    _columns = {
-        'name': fields.text('Table name', readonly=True),
-        'count': fields.bigint('row count', readonly=True),
-        'measure_id': fields.many2one('server.monitor.database',
-                                      'Measure',
-                                      ondelete='cascade',
-                                      readonly=True),
-        'timestamp': fields.related('measure_id', 'name',
-                                    string='timestamp',
-                                    type='datetime',
-                                    store=True),
-        }
+
+    name = fields.Char('Table name', readonly=True)
+    count = fields.Bigint('Row count', readonly=True)
+    measure_id = fields.Many2one('server.monitor.database',
+                                 string='Measure',
+                                 ondelete='cascade',
+                                 readonly=True)
+    timestamp = fields.Datetime(related='measure_id.name',
+                                string='Timestamp',
+                                type='datetime',
+                                store=True)
     _order = 'timestamp DESC, count DESC'
 
 
-class ModelTableSize(orm.Model):
+class ModelTableSize(models.Model):
     _name = 'server.monitor.model.table.size'
-    _columns = {
-        'name': fields.text('Table name', readonly=True),
-        'size': fields.bigint('Size (bytes)', readonly=True),
-        'hsize': fields.text('Size', readonly=True),
-        'measure_id': fields.many2one('server.monitor.database',
-                                      'Measure',
-                                      ondelete='cascade', readonly=True),
-        'timestamp': fields.related('measure_id', 'name',
-                                    string='timestamp',
-                                    type='datetime',
-                                    store=True),
-        }
+
+    name = fields.Char('Table name', readonly=True)
+    size = fields.Bigint('Size (bytes)', readonly=True)
+    hsize = fields.Char('Size', readonly=True)
+    measure_id = fields.Many2one('server.monitor.database',
+                                 string='Measure',
+                                 ondelete='cascade', readonly=True)
+    timestamp = fields.Datetime(related='measure_id.name',
+                                string='Timestamp',
+                                store=True)
+
     _order = 'timestamp DESC, size DESC'
 
 
-class ModelTableActivityRead(orm.Model):
+class ModelTableActivityRead(models.Model):
     _name = 'server.monitor.model.table.activity.read'
-    _columns = {
-        'name': fields.text('Table name'),
-        'disk_reads': fields.bigint('Disk reads (heap blocks)', readonly=True),
-        'cache_reads': fields.bigint('Cache reads', readonly=True),
-        'total_reads': fields.bigint('Total reads', readonly=True),
-        'measure_id': fields.many2one('server.monitor.database',
-                                      'Measure',
-                                      ondelete='cascade', readonly=True),
-        'timestamp': fields.related('measure_id', 'name',
-                                    string='timestamp',
-                                    type='datetime',
-                                    store=True),
-        }
+    name = fields.Char('Table name')
+    disk_reads = fields.Bigint('Disk reads (heap blocks)', readonly=True)
+    cache_reads = fields.Bigint('Cache reads', readonly=True)
+    total_reads = fields.Bigint('Total reads', readonly=True)
+    measure_id = fields.Many2one('server.monitor.database',
+                                 string='Measure',
+                                 ondelete='cascade', readonly=True)
+    timestamp = fields.Datetime(related='measure_id.name',
+                                string='Timestamp',
+                                store=True)
+
     _order = 'timestamp DESC, total_reads DESC'
 
 
-class ModelTableActivityUpdate(orm.Model):
+class ModelTableActivityUpdate(models.Model):
     _name = 'server.monitor.model.table.activity.update'
-    _columns = {
-        'name': fields.text('Table name', readonly=True),
-        'seq_scan': fields.bigint('Seq scans', readonly=True),
-        'idx_scan': fields.bigint('Idx scans', readonly=True),
-        'lines_read_total': fields.bigint('Tot lines read', readonly=True),
-        'num_insert': fields.bigint('Inserts', readonly=True),
-        'num_update': fields.bigint('Updates', readonly=True),
-        'num_delete': fields.bigint('Deletes', readonly=True),
-        'measure_id': fields.many2one('server.monitor.database',
-                                      'Measure',
-                                      ondelete='cascade',
-                                      readonly=True),
-        'timestamp': fields.related('measure_id', 'name',
-                                    string='timestamp',
-                                    type='datetime',
-                                    store=True),
-        }
+
+    name = fields.Char('Table name', readonly=True)
+    seq_scan = fields.Bigint('Seq scans', readonly=True)
+    idx_scan = fields.Bigint('Idx scans', readonly=True)
+    lines_read_total = fields.Bigint('Tot lines read', readonly=True)
+    num_insert = fields.Bigint('Inserts', readonly=True)
+    num_update = fields.Bigint('Updates', readonly=True)
+    num_delete = fields.Bigint('Deletes', readonly=True)
+    measure_id = fields.Many2one('server.monitor.database',
+                                 string='Measure',
+                                 ondelete='cascade',
+                                 readonly=True)
+    timestamp = fields.Datetime(related='measure_id.name',
+                                string='Timestamp',
+                                store=True)
+
     _order = 'timestamp DESC, num_update DESC'
 
 
-class ServerMonitorDatabase(orm.Model):
+class ServerMonitorDatabase(models.Model):
     _name = 'server.monitor.database'
-    _columns = {
-        'name': fields.datetime('Timestamp', readonly=True),
-        'info': fields.text('Information'),
-        'table_nb_row_ids': fields.one2many('server.monitor.model.row.count',
-                                            'measure_id',
-                                            'Model row counts',
-                                            readonly=True),
-        'table_size_ids': fields.one2many('server.monitor.model.table.size',
-                                          'measure_id',
-                                          'Model table size',
-                                          readonly=True),
-        'table_activity_read_ids': fields.one2many(
-            'server.monitor.model.table.activity.read',
-            'measure_id',
-            'Model table read activity',
-            readonly=True),
-        'table_activity_update_ids': fields.one2many(
-            'server.monitor.model.table.activity.update',
-            'measure_id',
-            'Model table update activity',
-            readonly=True),
-        }
-    _order = 'name DESC'
 
-    def _model_row_count(self, cr, uid, context):
+    @api.model
+    def _model_row_count(self):
         res = []
         query = ("SELECT schemaname || '.' || relname as name, "
                  "       n_live_tup as count "
                  "FROM pg_stat_user_tables "
                  "ORDER BY n_live_tup DESC")
-        cr.execute(query)
-        for val in cr.dictfetchall():
+        self.env.cr.execute(query)
+        for val in self.env.cr.dictfetchall():
             res.append((0, 0, val))
         return res
 
-    def _model_table_size(self, cr, uid, context):
+    @api.model
+    def _model_table_size(self):
         res = []
         query = (
             "SELECT nspname || '.' || relname AS name, "
@@ -152,12 +126,13 @@ class ServerMonitorDatabase(orm.Model):
             "  AND nspname !~ '^pg_toast' "
             "ORDER BY pg_total_relation_size(C.oid) DESC"
             )
-        cr.execute(query)
-        for val in cr.dictfetchall():
+        self.env.cr.execute(query)
+        for val in self.env.cr.dictfetchall():
             res.append((0, 0, val))
         return res
 
-    def _model_table_activity_read(self, cr, uid, context):
+    @api.model
+    def _model_table_activity_read(self):
         res = []
         query = ("SELECT schemaname || '.' || relname as name, "
                  "       heap_blks_read as disk_reads, "
@@ -166,12 +141,13 @@ class ServerMonitorDatabase(orm.Model):
                  "FROM pg_statio_user_tables "
                  "ORDER BY heap_blks_read + heap_blks_hit DESC"
                  )
-        cr.execute(query)
-        for val in cr.dictfetchall():
+        self.env.cr.execute(query)
+        for val in self.env.cr.dictfetchall():
             res.append((0, 0, val))
         return res
 
-    def _model_table_activity_update(self, cr, uid, context):
+    @api.model
+    def _model_table_activity_update(self):
         res = []
         query = ("SELECT schemaname || '.' || relname as name, "
                  "       seq_scan, "
@@ -182,32 +158,51 @@ class ServerMonitorDatabase(orm.Model):
                  "       n_tup_del as num_delete "
                  "FROM pg_stat_user_tables "
                  "ORDER BY n_tup_upd + n_tup_ins + n_tup_del desc")
-        cr.execute(query)
-        for val in cr.dictfetchall():
+        self.env.cr.execute(query)
+        for val in self.env.cr.dictfetchall():
             res.append((0, 0, val))
         return res
 
-    _defaults = {
-        'name': fields.datetime.now,
-        'table_nb_row_ids': _model_row_count,
-        'table_size_ids': _model_table_size,
-        'table_activity_read_ids': _model_table_activity_read,
-        'table_activity_update_ids': _model_table_activity_update,
-        }
+    name = fields.Datetime('Timestamp',
+                           readonly=True,
+                           default=fields.Datetime.now)
+    info = fields.Char('Information')
+    table_nb_row_ids = fields.One2many('server.monitor.model.row.count',
+                                       'measure_id',
+                                       'Model row counts',
+                                       default=_model_row_count,
+                                       readonly=True)
+    table_size_ids = fields.One2many('server.monitor.model.table.size',
+                                     'measure_id',
+                                     'Model table size',
+                                     default=_model_table_size,
+                                     readonly=True)
+    table_activity_read_ids = fields.One2many(
+        'server.monitor.model.table.activity.read',
+        'measure_id',
+        'Model table read activity',
+        default=_model_table_activity_read,
+        readonly=True)
+    table_activity_update_ids = fields.One2many(
+        'server.monitor.model.table.activity.update',
+        'measure_id',
+        'Model table update activity',
+        default=_model_table_activity_update,
+        readonly=True)
 
-    def log_measure(self, cr, uid, context=None):
-        fields = self._defaults.keys()
-        defaults = self.default_get(cr, uid, fields, context=context)
-        self.create(cr, uid, defaults, context=context)
+    _order = 'name DESC'
+
+    @api.model
+    def log_measure(self):
+        self.create({})
         return True
 
-    def cleanup(self, cr, uid, age, context=None):
+    @api.model
+    def cleanup(self, age):
         now = datetime.datetime.now()
         delta = datetime.timedelta(days=age)
         when = (now - delta).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        ids = self.search(cr, uid,
-                          [('name', '<', when)],
-                          context=context)
+        records = self.search([('name', '<', when)])
         _logger.debug('Database monitor cleanup: removing %d records',
-                      len(ids))
-        self.unlink(cr, uid, ids, context=context)
+                      len(records))
+        records.unlink()

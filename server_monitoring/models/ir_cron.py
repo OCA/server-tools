@@ -18,21 +18,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
+from openerp import models, api
 
 
-class IrCron(orm.Model):
+class IrCron(models.Model):
     _inherit = 'ir.cron'
 
-    def _callback(self, cr, uid, model_name, method_name, args, job_id):
-        super(IrCron, self)._callback(cr, uid,
-                                      model_name,
+    @api.model
+    def _callback(self, model_name, method_name, args, job_id):
+        super(IrCron, self)._callback(model_name,
                                       method_name,
                                       args,
                                       job_id)
-        monitor_obj = self.pool['server.monitor.process']
-        context = {}
-        monitor_obj.log_measure(cr, uid,
-                                model_name, method_name,
+        monitor_obj = self.env['server.monitor.process']
+        monitor_obj.log_measure(model_name, method_name,
                                 'cron job',
-                                False, False, context)
+                                False, False)

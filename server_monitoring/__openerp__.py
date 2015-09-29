@@ -21,30 +21,11 @@
 
 {
     'name': 'Server Monitoring',
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
-    'depends': ['base',
-                ],
+    'depends': [],
     'author': 'Camptocamp, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'description': """
-Server Monitoring
-=================
-
-This module allows in-database logging of some statistics in order to monitor
-the health of an openerp instance.
-
-Database indicators are logged (number of rows, table size, number of reads,
-number of updates...), with a cron running each week by default. This cron
-needs to be activated after the module is installed.
-
-Some process indicators are logged (cpu time, memory) together with information
-about the different XMLRPC calls made to the server (user, model, method).
-
-Two crons are provided to cleanup old logs from the database.
-
-The logs are available through the menu Reporting -> Server Monitoring.
-""",
     'data': [
         'views/menu.xml',
         'views/server_monitor_database_table_activity.xml',

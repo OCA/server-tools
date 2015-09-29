@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Author: Alexandre Fayolle
-#    Copyright 2014 Camptocamp SA
+#    Copyright 2014-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@
 ##############################################################################
 
 """
-Monitor openerp instance.
+Monitor Odoo instance.
 
 The measures are stored in database.
 cleanup cron (2 different for db and process monitoring)
@@ -55,10 +55,12 @@ _logger.setLevel(_saved_log_level)
 
 import psutil
 
-from openerp.osv import orm, fields, osv
+import openerp
+from openerp.http import request
+from openerp import models, fields, api
 from openerp import pooler
-from openerp import SUPERUSER_ID
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
 
 _logger = logging.getLogger(__name__)
 
@@ -74,78 +76,64 @@ BLACKLIST = (
     )
 
 
-class ClassInstanceCount(orm.Model):
+class ClassInstanceCount(models.Model):
     _name = 'server.monitor.class.instance.count'
-    _columns = {
-        'name': fields.text('Class name', readonly=True),
-        'count': fields.bigint('Instance count', readonly=True),
-        'measure_id': fields.many2one('server.monitor.process',
-                                      'Measure',
-                                      readonly=True,
-                                      ondelete='cascade'),
-        }
+
+    name = fields.Char('Class name', readonly=True)
+    count = fields.Bigint('Instance count', readonly=True)
+    measure_id = fields.Many2one('server.monitor.process',
+                                 'Measure',
+                                 readonly=True,
+                                 ondelete='cascade')
 
 
 def _monkey_patch_object_proxy_execute():
-    orig_execute_cr = osv.object_proxy.execute_cr
+    orig_execute_cr = openerp.service.model.execute_cr
 
-    def execute_cr(self, cr, uid, obj, method, *args, **kw):
-        result = orig_execute_cr(self, cr, uid, obj, method, *args, **kw)
+    def execute_cr(cr, uid, obj, method, *args, **kw):
+        result = orig_execute_cr(cr, uid, obj, method, *args, **kw)
         monitor_obj = pooler.get_pool(cr.dbname)['server.monitor.process']
-        context = {}
-        monitor_obj.log_measure(cr, uid, obj, method, 'rpc call',
-                                False, False, context)
+        monitor_obj.log_measure(cr, uid, obj, method, 'xmlrpc call',
+                                False, False, context={})
         return result
 
-    osv.object_proxy.execute_cr = execute_cr
+    openerp.service.model.execute_cr = execute_cr
 
 
-class ServerMonitorProcess(orm.Model):
+def _monkey_patch_controller_call_kw():
+    orig_call_kw = openerp.addons.web.controllers.main.DataSet._call_kw
+
+    def _call_kw(self, model, method, args, kwargs):
+        result = orig_call_kw(self, model, method, args, kwargs)
+        monitor_obj = request.registry.get('server.monitor.process')
+        monitor_obj.log_measure(request.cr, request.uid, model, method,
+                                'jsonrpc call',
+                                False, False, context={})
+        return result
+
+    openerp.addons.web.controllers.main.DataSet._call_kw = _call_kw
+
+
+class ServerMonitorProcess(models.Model):
     def __init__(self, pool, cr):
         super(ServerMonitorProcess, self).__init__(pool, cr)
         _monkey_patch_object_proxy_execute()
+        _monkey_patch_controller_call_kw()
 
     _name = 'server.monitor.process'
-    _columns = {
-        'name': fields.datetime('Timestamp', readonly=True),
-        'pid': fields.integer('Process ID', readonly=True,
-                              group_operator='count'),
-        'thread': fields.text('Thread ID', readonly=True),
-        'cpu_time': fields.float(
-            'CPU time', readonly=True,
-            group_operator='max',
-            help='CPU time consumed by the current server process'),
-        'memory': fields.float(
-            'Memory', readonly=True,
-            group_operator='max',
-            help='Memory consumed by the current server process'),
-        'uid': fields.many2one('res.users', 'User',
-                               readonly=True,
-                               select=True),
-        'model': fields.many2one('ir.model', 'Model',
-                                 readonly=True,
-                                 select=True),
-        'method': fields.text('Method', readonly=True),
-        'status': fields.text('RPC status', readonly=True),
-        'sessionid': fields.text('Session ID', readonly=True),
-        'info': fields.text('Information'),
-        'class_count_ids': fields.one2many(
-            'server.monitor.class.instance.count',
-            'measure_id',
-            'Class counts',
-            readonly=True),
-        }
-    _order = 'name DESC'
 
-    def _default_pid(self, cr, uid, context):
+    @api.model
+    def _default_pid(self):
         return os.getpid()
 
-    def _default_cpu_time(self, cr, uid, context):
+    @api.model
+    def _default_cpu_time(self):
         r = resource.getrusage(resource.RUSAGE_SELF)
         cpu_time = r.ru_utime + r.ru_stime
         return cpu_time
 
-    def _default_memory(self, cr, uid, context):
+    @api.model
+    def _default_memory(self):
         try:
             rss, vms = psutil.Process(os.getpid()).get_memory_info()
         except AttributeError:
@@ -153,14 +141,18 @@ class ServerMonitorProcess(orm.Model):
             vms = 0
         return vms
 
-    def _default_uid(self, cr, uid, context):
-        return uid
+    @api.model
+    def _default_uid(self):
+        return self.env.uid
 
-    def _default_thread(self, cr, uid, context):
+    @api.model
+    def _default_thread(self):
         return threading.current_thread().name
 
-    def _class_count(self, cr, uid, context):
+    @api.model
+    def _class_count(self):
         counts = {}
+        context = self.env.context
         if context.get('_x_no_class_count'):
             return []
         if context.get('_x_no_gc_collect'):
@@ -175,7 +167,7 @@ class ServerMonitorProcess(orm.Model):
                 if isinstance(obj, types.ClassType):
                     cls = types.ClassType
                 else:
-                    _logger.warning('unknown object type for %r (%s)',
+                    _logger.warning('Unknown object type for %r (%s)',
                                     obj, type(obj))
                     continue
             name = '%s.%s' % (cls.__module__, cls.__name__)
@@ -192,53 +184,69 @@ class ServerMonitorProcess(orm.Model):
             info.append({'name': name,  'count': count})
         return [(0, 0, val) for val in info]
 
-    _defaults = {
-        'name': fields.datetime.now,
-        'class_count_ids': _class_count,
-        'pid': _default_pid,
-        'cpu_time': _default_cpu_time,
-        'memory': _default_memory,
-        'uid': _default_uid,
-        'thread': _default_thread,
-        }
+    name = fields.Datetime('Timestamp',
+                           default=fields.Datetime.now,
+                           readonly=True)
+    pid = fields.Integer('Process ID',
+                         default=_default_pid,
+                         readonly=True,
+                         group_operator='count')
+    thread = fields.Char('Thread ID',
+                         default=_default_thread,
+                         readonly=True)
+    cpu_time = fields.Float(
+        'CPU time',
+        readonly=True,
+        default=_default_cpu_time,
+        group_operator='max',
+        help='CPU time consumed by the current server process')
+    memory = fields.Float(
+        'Memory',
+        default=_default_memory,
+        readonly=True,
+        group_operator='max',
+        help='Memory consumed by the current server process')
+    uid = fields.Many2one('res.users', 'User',
+                          default=_default_uid,
+                          readonly=True,
+                          select=True)
+    model = fields.Many2one('ir.model', 'Model',
+                            readonly=True,
+                            select=True)
+    method = fields.Char('Method', readonly=True)
+    status = fields.Char('RPC status', readonly=True)
+    sessionid = fields.Char('Session ID', readonly=True)
+    info = fields.Char('Information')
+    class_count_ids = fields.One2many(
+        'server.monitor.class.instance.count',
+        'measure_id',
+        'Class counts',
+        default=_class_count,
+        readonly=True)
 
-    def log_measure(self, cr, uid,
-                    model_name, method_name, info,
+    _order = 'name DESC'
+
+    @api.model
+    def log_measure(self, model_name, method_name, info,
                     with_class_count=True,
-                    gc_collect=True,
-                    context=None):
-        if context is None:
-            context = {}
-        ctx = context.copy()
-        ctx.update({
-            '_x_no_class_count': not with_class_count,
-            '_x_no_gc_collect': not gc_collect,
-            })
-        fields = self._defaults.keys()
-        defaults = self.default_get(cr, uid, fields, context=ctx)
-        model_obj = self.pool['ir.model']
-        model_id = model_obj.search(cr, uid,
-                                    [('name', '=', model_name)],
-                                    context=context)
-        if model_id:
-            model_id = model_id[0]
-        else:
-            model_id = 0
-        values = {'model': model_id,
+                    gc_collect=True):
+        self_ctx = self.with_context(_x_no_class_count=not with_class_count,
+                                     _x_no_gc_collect=not gc_collect)
+        model_obj = self.env['ir.model']
+        model = model_obj.search([('name', '=', model_name)], limit=1)
+        values = {'model': model.id,
                   'method': method_name,
                   'info': info,
                   }
-        defaults.update(values)
+        record = self_ctx.sudo().create(values)
+        return record
 
-        id = self.create(cr, SUPERUSER_ID, defaults, context=context)
-        return id
-
-    def cleanup(self, cr, uid, age, context=None):
+    @api.model
+    def cleanup(self, age):
         now = datetime.datetime.now()
         delta = datetime.timedelta(days=age)
         when = (now - delta).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        ids = self.search(cr, uid,
-                          [('name', '<', when)],
-                          context=context)
-        _logger.debug('Process monitor cleanup: removing %d records', len(ids))
-        self.unlink(cr, uid, ids, context=context)
+        records = self.search([('name', '<', when)])
+        _logger.debug('Process monitor cleanup: removing %d records',
+                      len(records))
+        records.unlink()
