@@ -68,10 +68,10 @@ class super_calendar_configurator(orm.Model):
 
                 for current_record_id in current_record_ids:
                     values = self._generate_record_from_line(cr, uid,
-                                                            configurator,
-                                                            line,
-                                                            current_record_id,
-                                                            context)
+                                                             configurator,
+                                                             line,
+                                                             current_record_id,
+                                                             context)
                     super_calendar_pool.create(cr, uid, values,
                                                context=context)
         self._logger.info('Calendar generated')
