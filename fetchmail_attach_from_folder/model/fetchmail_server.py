@@ -150,17 +150,22 @@ class fetchmail_server(Model):
                               folder.match_first):
                 try:
                     cr.execute('savepoint apply_matching')
+                    # OpenERP 6.1 does a rollback on validation errors
+                    rollback_org = cr.rollback
+                    cr.rollback = lambda: None
                     match_algorithm.handle_match(
                         cr, uid, connection,
                         found_ids[0], folder, mail_message,
                         msgdata[0][1], msgid, context)
+                    cr.rollback = rollback_org
                     cr.execute('release savepoint apply_matching')
                     matched_object_ids += found_ids[:1]
                 except Exception:
-                    cr.execute('rollback to savepoint apply_matching')
                     logger.exception(
                         "Failed to fetch mail %s from %s",
                         msgid, this.name)
+                    cr.rollback = rollback_org
+                    cr.execute('rollback to savepoint apply_matching')
             elif folder.flag_nonmatching:
                 connection.store(msgid, '+FLAGS', '\\FLAGGED')
 
