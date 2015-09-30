@@ -2,18 +2,14 @@
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
-========================
+=======================
 Reset User Access Right
-========================
+=======================
 
 This module adds a button on users form view to reset groups access right.
 
 Installation
 ============
-
-To install this module, you need to:
-
- * Click on install button
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
