@@ -30,9 +30,7 @@
     'category': 'Uncategorized',
     'version': '8.0.1.0.0',
     'license': 'AGPL-3',
-    'depends': [
-        'base',
-    ],
+    'depends': [],
     'data': [
         'views/res_users_view.xml',
     ],
