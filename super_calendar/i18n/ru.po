@@ -1,69 +1,30 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* super_calendar
-#
+# * super_calendar
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 17:41+0000\n"
-"PO-Revision-Date: 2014-03-17 10:57+0000\n"
-"Last-Translator: michele <michelemilidoni@gmail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-24 06:46+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: super_calendar
-#: field:super.calendar.configurator.line,duration_field_id:0
-msgid "Duration field"
-msgstr "Поле длительности"
-
-#. module: super_calendar
-#: view:super.calendar.configurator:0
-msgid "Generate Calendar"
-msgstr "Обновить календарь"
-
-#. module: super_calendar
-#: selection:super.calendar.configurator.line,description_type:0
-msgid "Field"
-msgstr "Поле"
-
-#. module: super_calendar
-#: code:addons/super_calendar/super_calendar.py:61
-#, python-format
-msgid "The 'User' field of record %s (%s) does not refer to res.users"
-msgstr "Поле 'User' записи %s (%s) не ссылается на res.users"
-
-#. module: super_calendar
-#: field:super.calendar,date_start:0
-msgid "Start date"
-msgstr "Дата начала"
-
-#. module: super_calendar
-#: field:super.calendar.configurator.line,user_field_id:0
-msgid "User field"
-msgstr "Поле пользователя"
-
-#. module: super_calendar
-#: field:super.calendar.configurator.line,description_type:0
-msgid "Description Type"
-msgstr "Тип описания"
-
-#. module: super_calendar
-#: model:_description:0
-#: model:ir.model,name:super_calendar.model_super_calendar_configurator
-msgid "super.calendar.configurator"
-msgstr ""
-
-#. module: super_calendar
-#: field:super.calendar,name:0
-#: view:super.calendar.configurator:0
-#: field:super.calendar.configurator.line,description:0
-msgid "Description"
-msgstr "Описание"
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
+#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar_calendar
+#: view:super.calendar:super_calendar.super_calendar
+#: view:super.calendar:super_calendar.super_calendar_form
+#: view:super.calendar:super_calendar.super_calendar_tree
+msgid "Calendar"
+msgstr "Календарь"
 
 #. module: super_calendar
 #: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
@@ -71,57 +32,67 @@ msgid "Calendar Configurators"
 msgstr "Настройки календаря"
 
 #. module: super_calendar
-#: field:super.calendar,model_description:0
-msgid "Model Description"
-msgstr "Описание"
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Code"
+msgstr "Код"
 
 #. module: super_calendar
-#: field:super.calendar.configurator.line,date_start_field_id:0
-msgid "Start date field"
-msgstr "Поле даты начала"
+#: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
+msgid "Configuration"
+msgstr "Настройки"
 
 #. module: super_calendar
-#: field:super.calendar,user_id:0
-msgid "User"
-msgstr "Пользователь"
-
-#. module: super_calendar
-#: model:ir.actions.act_window,name:super_calendar.super_calendar_action
-#: model:ir.ui.menu,name:super_calendar.super_calendar_menu
-msgid "Super Calendar"
-msgstr "Календарь"
-
-#. module: super_calendar
-#: view:super.calendar.configurator:0
-msgid "Line"
-msgstr "Строка"
-
-#. module: super_calendar
-#: view:super.calendar:0
-msgid "Extended Filters..."
-msgstr "Расширенные фильтры..."
-
-#. module: super_calendar
-#: field:super.calendar,res_id:0
-msgid "Resource"
-msgstr "Ресурс"
-
-#. module: super_calendar
-#: field:super.calendar.configurator,name:0
-msgid "Name"
-msgstr "Название"
+#: field:super.calendar,configurator_id:0
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+#: field:super.calendar.configurator.line,configurator_id:0
+msgid "Configurator"
+msgstr "Настройки"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configurators
-#: view:super.calendar.configurator:0
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_tree
 msgid "Configurators"
 msgstr "Настройки"
 
 #. module: super_calendar
-#: view:super.calendar.configurator:0
-#: field:super.calendar.configurator,line_ids:0
-msgid "Lines"
-msgstr "Строки"
+#: field:super.calendar,create_uid:0
+#: field:super.calendar.configurator,create_uid:0
+#: field:super.calendar.configurator.line,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,create_date:0
+#: field:super.calendar.configurator,create_date:0
+#: field:super.calendar.configurator.line,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Current month"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Current week"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Day"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,name:0
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Description"
+msgstr "Описание"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,description_type:0
+msgid "Description Type"
+msgstr "Тип описания"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_code:0
@@ -130,17 +101,120 @@ msgid "Description field"
 msgstr "Поле описания"
 
 #. module: super_calendar
-#: view:super.calendar.configurator:0
-#: help:super.calendar.configurator.line,description_code:0
-msgid ""
-"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
-msgstr "Используйте '${o}' для ссылки на объект: '${o.project_id.name}'"
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the current month."
+msgstr ""
 
 #. module: super_calendar
-#: code:addons/super_calendar/super_calendar.py:60
-#, python-format
-msgid "Error"
-msgstr "Ошибка"
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the current week."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the next month."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Display all elements in the next week."
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,domain:0
+msgid "Domain"
+msgstr "Домен"
+
+#. module: super_calendar
+#: field:super.calendar,duration:0
+msgid "Duration"
+msgstr "Продолжительность"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,duration_field_id:0
+msgid "Duration field"
+msgstr "Поле длительности"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,date_stop_field_id:0
+msgid "End date field"
+msgstr "Поле даты окончания"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Extended Filters..."
+msgstr "Расширенные фильтры..."
+
+#. module: super_calendar
+#: selection:super.calendar.configurator.line,description_type:0
+msgid "Field"
+msgstr "Поле"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Generate Calendar"
+msgstr "Обновить календарь"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group By"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same day."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same month."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same quarter."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same week."
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Group all elements in the same year."
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,id:0 field:super.calendar.configurator,id:0
+#: field:super.calendar.configurator.line,id:0
+msgid "ID"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,write_uid:0
+#: field:super.calendar.configurator,write_uid:0
+#: field:super.calendar.configurator.line,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,write_date:0
+#: field:super.calendar.configurator,write_date:0
+#: field:super.calendar.configurator.line,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid "Line"
+msgstr "Строка"
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+#: field:super.calendar.configurator,line_ids:0
+msgid "Lines"
+msgstr "Строки"
 
 #. module: super_calendar
 #: field:super.calendar,model_id:0
@@ -149,63 +223,101 @@ msgid "Model"
 msgstr "Модель"
 
 #. module: super_calendar
-#: view:super.calendar:0
-#: field:super.calendar,configurator_id:0
-#: view:super.calendar.configurator:0
-#: field:super.calendar.configurator.line,configurator_id:0
-msgid "Configurator"
-msgstr "Настройки"
-
-#. module: super_calendar
-#: field:super.calendar.configurator.line,domain:0
-msgid "Domain"
-msgstr "Домен"
-
-#. module: super_calendar
-#: selection:super.calendar.configurator.line,description_type:0
-msgid "Code"
-msgstr "Код"
-
-#. module: super_calendar
-#: model:_description:0
-#: model:ir.model,name:super_calendar.model_super_calendar_configurator_line
-msgid "super.calendar.configurator.line"
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Month"
 msgstr ""
 
 #. module: super_calendar
-#: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
-msgid "Configuration"
-msgstr "Настройки"
-
-#. module: super_calendar
-#: view:super.calendar:0
+#: view:super.calendar:super_calendar.super_calendar_search
 msgid "My Items"
 msgstr "Мои события"
 
 #. module: super_calendar
-#: field:super.calendar.configurator.line,date_stop_field_id:0
-msgid "End date field"
-msgstr "Поле даты окончания"
+#: field:super.calendar.configurator,name:0
+msgid "Name"
+msgstr "Название"
 
 #. module: super_calendar
-#: model:_description:0
-#: model:ir.model,name:super_calendar.model_super_calendar
-msgid "super.calendar"
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Next month"
 msgstr ""
 
 #. module: super_calendar
-#: view:super.calendar:0
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Next week"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Period"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Quarter"
+msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,res_id:0
+msgid "Resource"
+msgstr "Ресурс"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
 msgid "Search Calendar"
 msgstr "Поиск календаря"
 
 #. module: super_calendar
-#: field:super.calendar,duration:0
-msgid "Duration"
-msgstr "Продолжительность"
+#: field:super.calendar,date_start:0
+msgid "Start date"
+msgstr "Дата начала"
 
 #. module: super_calendar
-#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
-#: model:ir.ui.menu,name:super_calendar.super_calendar_calendar_calendar
-#: view:super.calendar:0
-msgid "Calendar"
+#: field:super.calendar.configurator.line,date_start_field_id:0
+msgid "Start date field"
+msgstr "Поле даты начала"
+
+#. module: super_calendar
+#: model:ir.actions.act_window,name:super_calendar.super_calendar_action
+#: model:ir.ui.menu,name:super_calendar.super_calendar_menu
+msgid "Super Calendar"
 msgstr "Календарь"
+
+#. module: super_calendar
+#: code:addons/super_calendar/models/super_calendar_configurator.py:112
+#, python-format
+msgid "The 'User' field of record %s (%s) does not refer to res.users"
+msgstr "Поле 'User' записи %s (%s) не ссылается на res.users"
+
+#. module: super_calendar
+#: help:super.calendar.configurator.line,description_code:0
+msgid ""
+"Use '${o}' to refer to the involved object.\n"
+"E.g.: '${o.project_id.name}'"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
+msgid ""
+"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgstr "Используйте '${o}' для ссылки на объект: '${o.project_id.name}'"
+
+#. module: super_calendar
+#: field:super.calendar,user_id:0
+msgid "User"
+msgstr "Пользователь"
+
+#. module: super_calendar
+#: field:super.calendar.configurator.line,user_field_id:0
+msgid "User field"
+msgstr "Поле пользователя"
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Week"
+msgstr ""
+
+#. module: super_calendar
+#: view:super.calendar:super_calendar.super_calendar_search
+msgid "Year"
+msgstr ""

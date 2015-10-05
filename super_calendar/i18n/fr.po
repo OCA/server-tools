@@ -1,22 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* super_calendar
-#
+# * super_calendar
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 20:39+0000\n"
-"PO-Revision-Date: 2015-07-29 16:43-0500\n"
-"Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
-"Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
-"Language: fr\n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -288,25 +287,20 @@ msgstr "Super Calendrier"
 #: code:addons/super_calendar/models/super_calendar_configurator.py:112
 #, python-format
 msgid "The 'User' field of record %s (%s) does not refer to res.users"
-msgstr ""
-"Le champ 'Utilisateur' de l'enregistrement %s (%s) ne réfère pas à res.users"
+msgstr "Le champ 'Utilisateur' de l'enregistrement %s (%s) ne réfère pas à res.users"
 
 #. module: super_calendar
 #: help:super.calendar.configurator.line,description_code:0
 msgid ""
 "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
-msgstr ""
-"Utilisez '${o}' pour référer à l'objet concerné. \n"
-"Par exemple : '${o.project_id.name}'"
+msgstr "Utilisez '${o}' pour référer à l'objet concerné. \nPar exemple : '${o.project_id.name}'"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid ""
 "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
-msgstr ""
-"Utilisez '${o}' pour référer à l'objet concerné. Par exemple : '${o."
-"project_id.name}'"
+msgstr "Utilisez '${o}' pour référer à l'objet concerné. Par exemple : '${o.project_id.name}'"
 
 #. module: super_calendar
 #: field:super.calendar,user_id:0
@@ -327,9 +321,3 @@ msgstr "Semaine"
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Year"
 msgstr "Année"
-
-#~ msgid "Error"
-#~ msgstr "Erreur"
-
-#~ msgid "Model Description"
-#~ msgstr "Description du modèle"
