@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_mail
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-15 01:55+0000\n"
+"PO-Revision-Date: 2015-12-14 06:46+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: users_ldap_mail
+#: model:ir.model.fields,help:users_ldap_mail.field_res_company_ldap_name_attribute
+msgid ""
+"By default 'cn' is used. For ActiveDirectory you might use 'displayName' "
+"instead."
+msgstr "Privzeto se uporablja 'cn'. Za aktivni imenik bi lahko namesto tega uporabili 'displayName'."
+
+#. module: users_ldap_mail
+#: model:ir.model.fields,field_description:users_ldap_mail.field_res_company_ldap_mail_attribute
+msgid "E-mail attribute"
+msgstr "E-poštni atribut"
+
+#. module: users_ldap_mail
+#: model:ir.model.fields,help:users_ldap_mail.field_res_company_ldap_mail_attribute
+msgid "LDAP attribute to use to retrieve em-mail address."
+msgstr "LDAP atribut za uporabo pri pridobivanju e-poštnih naslovov."
+
+#. module: users_ldap_mail
+#: model:ir.model.fields,field_description:users_ldap_mail.field_res_company_ldap_name_attribute
+msgid "Name Attribute"
+msgstr "Naziv atributa"
+
+#. module: users_ldap_mail
+#: model:ir.model,name:users_ldap_mail.model_res_company_ldap
+msgid "res.company.ldap"
+msgstr "res.company.ldap"
