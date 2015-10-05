@@ -22,12 +22,17 @@
     "depends": [
         "report",
     ],
+    "external_dependencies": {
+        "python": [
+            "unidecode",
+        ],
+    },
     "author": "OdooMRP team, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA), ",
     "website": "http://www.odoomrp.com",
-    'license': 'AGPL-3',
+    "license": "AGPL-3",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",

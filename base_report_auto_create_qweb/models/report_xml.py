@@ -4,10 +4,22 @@
 ##############################################################################
 
 from openerp import models, api, exceptions, _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class IrActionsReport(models.Model):
     _inherit = 'ir.actions.report.xml'
+
+    def _format_template_name(self, text):
+        try:
+            from unidecode import unidecode
+        except ImportError:
+            _logger.debug('Can not `import unidecode`.')
+        text = unidecode(unicode(text))
+        text.lower()
+        return text.encode('iso-8859-1')
 
     def _prepare_qweb_view_data(self, qweb_name, arch):
         return {
@@ -45,17 +57,19 @@ class IrActionsReport(models.Model):
 
     @api.model
     def create(self, values):
-        if not self.env.context.get('enable_duplication', False):
-            return super(IrActionsReport, self).create(values)
+        values['report_name'] = self._format_template_name(
+            values.get('report_name', ''))
         if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
                 values.get('report_name') and
                 values['report_name'].find('.') == -1):
             raise exceptions.Warning(
                 _("Template Name must contain at least a dot in it's name"))
+        if not self.env.context.get('enable_duplication', False):
+            return super(IrActionsReport, self).create(values)
         report_xml = super(IrActionsReport, self).create(values)
         if values.get('report_type') in ['qweb-pdf', 'qweb-html']:
             report_view_ids = self.env.context.get('report_views', False)
-            suffix = self.env.context.get('suffix', 'copy')
+            suffix = self.env.context.get('suffix') or 'copy'
             name = values['name']
             model = values['model']
             report = values['report_name']
@@ -84,7 +98,7 @@ class IrActionsReport(models.Model):
             return super(IrActionsReport, self).copy(default=default)
         if default is None:
             default = {}
-        suffix = self.env.context.get('suffix', 'copy')
+        suffix = self.env.context.get('suffix') or 'copy'
         default['name'] = '%s (%s)' % (self.name, suffix)
         module = '%s_%s' % (
             self.report_name.split('.')[0], suffix.lower())
@@ -97,3 +111,13 @@ class IrActionsReport(models.Model):
                      self.with_context(
                          report_views=report_views.ids,
                          suffix=suffix.lower())).copy(default=default)
+
+    @api.multi
+    def button_create_qweb(self):
+        self.ensure_one()
+        module = self.report_name.split('.')[0]
+        report_name = self.report_name.split('.')[1]
+        arch = ('<?xml version="1.0"?>\n'
+                '<t t-name="%s">\n</t>' % self.report_name)
+        self._create_qweb(self.name, report_name, module, self.model, arch)
+        self.associated_view()
