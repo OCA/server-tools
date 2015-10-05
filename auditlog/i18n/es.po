@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* auditlog
-#
+# * auditlog
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 13:33+0000\n"
-"PO-Revision-Date: 2015-05-17 21:12+0100\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 13:54+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"Language: Spanish\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
@@ -54,9 +55,9 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_description:0
-msgid "Description"
-msgstr "Descripción"
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "Date"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -206,38 +207,30 @@ msgstr "Seleccione el modelo que quiere registrar."
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
-"Select this if you want to keep track of creation on any record of the model "
-"of this rule"
-msgstr ""
-"Marque esta casilla si desea registrar la creación de cualquier registro del "
-"modelo de esta regla"
+"Select this if you want to keep track of creation on any record of the model"
+" of this rule"
+msgstr "Marque esta casilla si desea registrar la creación de cualquier registro del modelo de esta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model "
-"of this rule"
-msgstr ""
-"Marque esta casilla si desea registrar el borrado de cualquier registro del "
-"modelo de esta regla"
+"Select this if you want to keep track of deletion on any record of the model"
+" of this rule"
+msgstr "Marque esta casilla si desea registrar el borrado de cualquier registro del modelo de esta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr ""
-"Marque esta casilla si desea registrar la modificación de cualquier registro "
-"del modelo de esta regla"
+msgstr "Marque esta casilla si desea registrar la modificación de cualquier registro del modelo de esta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr ""
-"Marque esta casilla si desea registrar la lectura/apertura de cualquier "
-"registro del modelo de esta regla"
+msgstr "Marque esta casilla si desea registrar la lectura/apertura de cualquier registro del modelo de esta regla"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -257,18 +250,11 @@ msgid "Subscribed"
 msgstr "Suscrito"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_name:0
-msgid "Technical name"
-msgstr "Nombre técnico"
-
-#. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr ""
-"Ya existe una regla definida para este modelo.\n"
-"No puede definir otra: por favor, modifique el existente."
+msgstr "Ya existe una regla definida para este modelo.\nNo puede definir otra: por favor, modifique el existente."
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -290,3 +276,14 @@ msgstr "Usuarios"
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Values"
 msgstr "Valores"
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:478
+#, python-format
+msgid "View logs"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,user_ids:0
+msgid "if  User is not added then it will applicable for all users"
+msgstr ""
