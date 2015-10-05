@@ -8,51 +8,51 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-09-18 13:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
 msgid "Action"
-msgstr "Acción"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr "Auditoría"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Auditlog - Registro"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
 msgid "Auditlog - Log details (fields updated)"
-msgstr "Auditlog - Detalles de registro (campos actualizados)"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
-msgstr "Auditlog - Regla"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,create_uid:0 field:auditlog.log.line,create_uid:0
 #: field:auditlog.rule,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,create_date:0 field:auditlog.log.line,create_date:0
 #: field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -63,7 +63,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr "No suscrito"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
@@ -74,62 +74,62 @@ msgstr "Campo"
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 #: field:auditlog.log,line_ids:0
 msgid "Fields updated"
-msgstr "Campos actualizados"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,id:0 field:auditlog.log.line,id:0
 #: field:auditlog.rule,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,write_uid:0 field:auditlog.log.line,write_uid:0
 #: field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,write_date:0 field:auditlog.log.line,write_date:0
 #: field:auditlog.rule,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 #: field:auditlog.log.line,log_id:0
 msgid "Log"
-msgstr "Registro"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Log - Field updated"
-msgstr "Registro - Campo actualizado"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_create:0
 msgid "Log Creates"
-msgstr "Registrar creaciones"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_unlink:0
 msgid "Log Deletes"
-msgstr "Registrar borrados"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_read:0
 msgid "Log Reads"
-msgstr "Registrar lecturas"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_write:0
 msgid "Log Writes"
-msgstr "Registrar modificaciones"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -137,59 +137,59 @@ msgstr "Registrar modificaciones"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 msgid "Logs"
-msgstr "Registros"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,method:0
 msgid "Method"
-msgstr "Método"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
 msgid "Model"
-msgstr "Modelo"
+msgstr "Modello"
 
 #. module: auditlog
 #: field:auditlog.rule,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nome"
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value:0
 msgid "New Value"
-msgstr "Valor nuevo"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value_text:0
 msgid "New value Text"
-msgstr "Texto del valor nuevo"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,old_value:0
 msgid "Old Value"
-msgstr "Valor anterior"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,old_value_text:0
 msgid "Old value Text"
-msgstr "Texto del valor anterior"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,res_id:0
 msgid "Resource ID"
-msgstr "ID del recurso"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,name:0
 msgid "Resource Name"
-msgstr "Nombre del recurso"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Rule"
-msgstr "Regla"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -197,85 +197,85 @@ msgstr "Regla"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
 msgid "Rules"
-msgstr "Reglas"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,model_id:0
 msgid "Select model for which you want to generate log."
-msgstr "Seleccione el modelo que quiere registrar."
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
 "Select this if you want to keep track of creation on any record of the model"
 " of this rule"
-msgstr "Marque esta casilla si desea registrar la creación de cualquier registro del modelo de esta regla"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
 "Select this if you want to keep track of deletion on any record of the model"
 " of this rule"
-msgstr "Marque esta casilla si desea registrar el borrado de cualquier registro del modelo de esta regla"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr "Marque esta casilla si desea registrar la modificación de cualquier registro del modelo de esta regla"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr "Marque esta casilla si desea registrar la lectura/apertura de cualquier registro del modelo de esta regla"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr "Estado"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Subscribe"
-msgstr "Suscribir"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Subscribed"
-msgstr "Suscrito"
+msgstr ""
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr "Ya existe una regla definida para este modelo.\nNo puede definir otra: por favor, modifique el existente."
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr "Desuscribir"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr "Usuario"
+msgstr "Utente"
 
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
 msgid "Users"
-msgstr "Usuarios"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Values"
-msgstr "Valores"
+msgstr ""
 
 #. module: auditlog
 #: code:addons/auditlog/models/rule.py:478
