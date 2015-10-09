@@ -18,7 +18,7 @@
 
 {
     "name": "Report qweb auto generation",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "depends": [
         "report",
     ],
