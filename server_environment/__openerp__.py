@@ -21,7 +21,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "1.1",
+    "version": "8.0.1.1.0",
     "depends": ["base", "server_environment_files"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "description": """\
