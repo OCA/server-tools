@@ -17,38 +17,38 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[admin_technical_features](admin_technical_features/) | 0.1 | Checks the technical features box for admin user.
-[auditlog](auditlog/) | 1.0 | Audit Log
-[auth_admin_passkey](auth_admin_passkey/) | 2.1.1 | Authentification - Admin Passkey
-[auth_dynamic_groups](auth_dynamic_groups/) | 1.0 | Have membership conditions for certain groups
-[auth_from_http_remote_user](auth_from_http_remote_user/) | 1.0 | Authenticate via HTTP Remote User
-[base_concurrency](base_concurrency/) | 1.0 | Base Concurrency
-[base_external_dbsource](base_external_dbsource/) | 1.3 | External Database Sources
-[base_field_serialized](base_field_serialized/) | 1.0 | Serialized fields
-[base_optional_quick_create](base_optional_quick_create/) | 0.1 | Avoid 'quick create' on m2o fields, on a 'by model' basis
-[base_report_auto_create_qweb](base_report_auto_create_qweb/) | 1.0 | Report qweb auto generation
-[base_suspend_security](base_suspend_security/) | 1.0 | Suspend security checks for a call
+[admin_technical_features](admin_technical_features/) | 8.0.0.1.0 | Checks the technical features box for admin user.
+[auditlog](auditlog/) | 8.0.1.0.0 | Audit Log
+[auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 | Authentification - Admin Passkey
+[auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 | Have membership conditions for certain groups
+[auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 | Authenticate via HTTP Remote User
+[base_concurrency](base_concurrency/) | 8.0.1.0.0 | Base Concurrency
+[base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
+[base_field_serialized](base_field_serialized/) | 8.0.1.0.0 | Serialized fields
+[base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
+[base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 | Report qweb auto generation
+[base_suspend_security](base_suspend_security/) | 8.0.1.0.0 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
-[cron_run_manually](cron_run_manually/) | 1.0 | Call cron jobs from their form view
-[database_cleanup](database_cleanup/) | 0.1 | Database cleanup
-[dbfilter_from_header](dbfilter_from_header/) | 1.0 | dbfilter_from_header
-[disable_openerp_online](disable_openerp_online/) | 1.1 | Remove odoo.com bindings
-[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 1.0 | Attach mails in an IMAP folder to existing objects
-[fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 1.0 | If fetching mails gives error, send an email to sender
-[inactive_session_timeout](inactive_session_timeout/) | 1.0 | This module disable all inactive sessions since a given delay
-[language_path_mixin](language_path_mixin/) | 1.0 | Setting the partner's language in RML reports
-[mail_environment](mail_environment/) | 0.1 | Server env config for mail + fetchmail
-[mass_editing](mass_editing/) | 1.3 | Mass Editing
-[qweb_usertime](qweb_usertime/) | 1.0 | Add user time rendering support in QWeb
-[scheduler_error_mailer](scheduler_error_mailer/) | 1.0 | Send an e-mail when a scheduler fails
-[server_environment](server_environment/) | 1.1 | server configuration environment files
-[server_environment_files_sample](server_environment_files_sample/) | 1.0 | Example server configuration environment files repository module
-[shell](shell/) | 1.0 | Backport of the v9 shell CLI command.
-[super_calendar](super_calendar/) | 0.2 | This module allows to create configurable calendars.
-[users_ldap_groups](users_ldap_groups/) | 1.2 | Adds user accounts to groups based on rules defined by the administrator.
-[users_ldap_mail](users_ldap_mail/) | 1.0 | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 1.2 | LDAP Populate
-[web_context_tunnel](web_context_tunnel/) | 2.0 | Web Context Tunnel
+[cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
+[database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
+[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 | dbfilter_from_header
+[disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
+[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 | Attach mails in an IMAP folder to existing objects
+[fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
+[inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
+[language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
+[mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
+[mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
+[qweb_usertime](qweb_usertime/) | 8.0.1.0.0 | Add user time rendering support in QWeb
+[scheduler_error_mailer](scheduler_error_mailer/) | 8.0.1.0.0 | Send an e-mail when a scheduler fails
+[server_environment](server_environment/) | 8.0.1.1.0 | server configuration environment files
+[server_environment_files_sample](server_environment_files_sample/) | 8.0.1.0.0 | Example server configuration environment files repository module
+[shell](shell/) | 8.0.1.0.0 | Backport of the v9 shell CLI command.
+[super_calendar](super_calendar/) | 8.0.0.2.0 | This module allows to create configurable calendars.
+[users_ldap_groups](users_ldap_groups/) | 8.0.1.2.0 | Adds user accounts to groups based on rules defined by the administrator.
+[users_ldap_mail](users_ldap_mail/) | 8.0.1.0.0 | LDAP mapping for user name and e-mail
+[users_ldap_populate](users_ldap_populate/) | 8.0.1.2.0 | LDAP Populate
+[web_context_tunnel](web_context_tunnel/) | 8.0.2.0.0 | Web Context Tunnel
 
 Unported addons
 ---------------

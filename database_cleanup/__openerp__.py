@@ -21,7 +21,7 @@
 
 {
     'name': 'Database cleanup',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'author': "Therp BV,Odoo Community Association (OCA)",
     'depends': ['base'],
     'license': 'AGPL-3',

@@ -21,7 +21,7 @@
 {
     'name': 'Language path mixin',
     'summary': "Setting the partner's language in RML reports",
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'Therp BV,Odoo Community Association (OCA)',
     'maintainer': 'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/server-tools',
