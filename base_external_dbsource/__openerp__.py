@@ -21,7 +21,7 @@
 
 {
     'name': 'External Database Sources',
-    'version': '1.3',
+    'version': '8.0.1.3.0',
     'category': 'Tools',
     'description': """
 This module allows you to define connections to foreign databases using ODBC,
