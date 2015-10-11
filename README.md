@@ -39,6 +39,7 @@ addon | version | summary
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
 [mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
+[module_prototyper](module_prototyper/) | 8.0.0.3.0 | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 | Add user time rendering support in QWeb
 [scheduler_error_mailer](scheduler_error_mailer/) | 8.0.1.0.0 | Send an e-mail when a scheduler fails
 [server_environment](server_environment/) | 8.0.1.1.0 | server configuration environment files
