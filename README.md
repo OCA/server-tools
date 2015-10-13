@@ -56,14 +56,14 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[auth_from_http_basic](__unported__/auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
-[auth_from_http_basic_logout](__unported__/auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
-[configuration_helper](__unported__/configuration_helper/) | 0.8 (unported) | Configuration Helper
-[email_template_template](__unported__/email_template_template/) | 1.0 (unported) | Templates for email templates
-[ir_config_parameter_viewer](__unported__/ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
-[security_protector](__unported__/security_protector/) | 0.1 (unported) | Security protector
-[server_env_base_external_referentials](__unported__/server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
+[auth_from_http_basic](auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
+[auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
+[configuration_helper](configuration_helper/) | 0.8 (unported) | Configuration Helper
+[email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
+[ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
+[security_protector](security_protector/) | 0.1 (unported) | Security protector
+[server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
 
 [//]: # (end addons)
 
