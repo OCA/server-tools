@@ -1,0 +1,363 @@
+# French translation for openerp-mgmtsystem
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-mgmtsystem package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-mgmtsystem\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-03 18:36+0000\n"
+"PO-Revision-Date: 2013-07-18 15:14+0000\n"
+"Last-Translator: Claudio de Araujo Santos <claudioaraujosantos@gmail.com>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-04-24 06:30+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+#: field:mgmtsystem.kpi,category_id:0
+#: view:mgmtsystem.kpi.category:0
+msgid "Category"
+msgstr "Categoria"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "KPI Computation"
+msgstr "Cálculo de ICD"
+
+#. module: mgmtsystem_kpi
+#: help:mgmtsystem.kpi.threshold.range,color:0
+msgid "RGB code with #"
+msgstr "Código RGB com #"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi.history:0
+msgid "KPI History"
+msgstr "Historico  ICD"
+
+#. module: mgmtsystem_kpi
+#: help:mgmtsystem.kpi,kpi_code:0
+msgid ""
+"SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
+msgstr ""
+"Código SQL deve retornar o resultado como \"valor\" (ou seja, 'SELECT 5 AS "
+"value')."
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,kpi_type:0
+msgid "KPI Computation Type"
+msgstr "Tipo cálculo ICD"
+
+#. module: mgmtsystem_kpi
+#: model:ir.actions.act_window,name:mgmtsystem_kpi.open_mgmtsystem_kpi_list
+#: view:mgmtsystem.kpi:0
+msgid "Key Performance Indicators"
+msgstr "Indicadores Chave de Desempenho"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold,valid:0
+#: field:mgmtsystem.kpi.threshold.range,valid:0
+msgid "Valid"
+msgstr "Válido"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,kpi_type:0
+#: selection:mgmtsystem.kpi.threshold.range,max_type:0
+#: selection:mgmtsystem.kpi.threshold.range,min_type:0
+msgid "SQL - Local DB"
+msgstr "SQL - DB local"
+
+#. module: mgmtsystem_kpi
+#: model:ir.model,name:mgmtsystem_kpi.model_mgmtsystem_kpi_category
+msgid "KPI Category"
+msgstr "Categoria ICD"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,periodicity_uom:0
+msgid "Periodicity UoM"
+msgstr "UoM periodicidade"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,name:0
+#: field:mgmtsystem.kpi.category,name:0
+#: field:mgmtsystem.kpi.history,name:0
+#: field:mgmtsystem.kpi.threshold,name:0
+#: field:mgmtsystem.kpi.threshold.range,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,periodicity_uom:0
+msgid "Week"
+msgstr "Semana"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+#: field:mgmtsystem.kpi,description:0
+#: field:mgmtsystem.kpi.category,description:0
+msgid "Description"
+msgstr "Descrição"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,kpi_type:0
+msgid "Python"
+msgstr "Python"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold.range,max_code:0
+msgid "Maximum Computation Code"
+msgstr "Código máximo do cálculo"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold.range,min_type:0
+msgid "Min Type"
+msgstr "Tipo minimo"
+
+#. module: mgmtsystem_kpi
+#: model:ir.actions.act_window,name:mgmtsystem_kpi.open_mgmtsystem_threshold_range_list
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_configuration_kpi_range
+#: view:mgmtsystem.kpi.threshold:0
+#: field:mgmtsystem.kpi.threshold,range_ids:0
+#: view:mgmtsystem.kpi.threshold.range:0
+msgid "Ranges"
+msgstr "Intervalos"
+
+#. module: mgmtsystem_kpi
+#: code:addons/mgmtsystem_kpi/mgmtsystem_kpi.py:218
+#, python-format
+msgid "2 of your ranges are overlapping!"
+msgstr "2 de suas faixas são sobrepostas!"
+
+#. module: mgmtsystem_kpi
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_configuration_kpi_dbsource
+msgid "Data Sources"
+msgstr "Fonte de dados"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold.range,max_type:0
+msgid "Max Type"
+msgstr "Tipo máximo"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid ""
+"Only active KPIs are computed by the scheduler based on the periodicity "
+"configuration."
+msgstr ""
+"Só os ICDs ativos são calculados pelo planificador baseado na configuração "
+"de periodicidade."
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+#: field:mgmtsystem.kpi,active:0
+msgid "Active"
+msgstr "Ativo"
+
+#. module: mgmtsystem_kpi
+#: model:ir.model,name:mgmtsystem_kpi.model_mgmtsystem_kpi_threshold
+msgid "KPI Threshold"
+msgstr "Limiar ICD"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,periodicity_uom:0
+msgid "Day"
+msgstr "Dia"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi.threshold.range,max_type:0
+#: selection:mgmtsystem.kpi.threshold.range,min_type:0
+msgid "Fixed value"
+msgstr "Valor fixo"
+
+#. module: mgmtsystem_kpi
+#: model:ir.model,name:mgmtsystem_kpi.model_mgmtsystem_kpi_threshold_range
+msgid "KPI Threshold Range"
+msgstr "Faixa limiar do ICD"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold.range,min_code:0
+msgid "Minimum Computation Code"
+msgstr "Código minimo de cálculo"
+
+#. module: mgmtsystem_kpi
+#: code:addons/mgmtsystem_kpi/mgmtsystem_kpi.py:218
+#, python-format
+msgid "Please make sure your ranges do not overlap!"
+msgstr "Por favor, certifique-se seus intervalos não se sobrepõem!"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,kpi_code:0
+msgid "KPI Code"
+msgstr "Código ICD"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,periodicity_uom:0
+msgid "Hour"
+msgstr "Hora"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.history,date:0
+msgid "Execution Date"
+msgstr "Data de Execução"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi.threshold.range:0
+#: field:mgmtsystem.kpi.threshold.range,max_fixed_value:0
+#: field:mgmtsystem.kpi.threshold.range,max_value:0
+msgid "Maximum"
+msgstr "Máximo"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "Compute KPI Now"
+msgstr "Cálcule o ICD agora"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi.threshold.range,min_type:0
+msgid "SQL - Externa DB"
+msgstr "SQL - DB Externo"
+
+#. module: mgmtsystem_kpi
+#: model:ir.model,name:mgmtsystem_kpi.model_mgmtsystem_kpi_history
+msgid "History of the KPI"
+msgstr "História do ICD"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,next_execution_date:0
+msgid "Next execution date"
+msgstr "Próxima data de execução"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,dbsource_id:0
+#: field:mgmtsystem.kpi.threshold.range,max_dbsource_id:0
+#: field:mgmtsystem.kpi.threshold.range,min_dbsource_id:0
+msgid "External DB Source"
+msgstr "Fonte Externa de Dados"
+
+#. module: mgmtsystem_kpi
+#: help:mgmtsystem.kpi,active:0
+msgid ""
+"Only active KPIs will be updated by the scheduler based on the periodicity "
+"configuration."
+msgstr ""
+"Somente os ICDs ativos serão atualizados pelo programador com base na "
+"configuração periodicidade."
+
+#. module: mgmtsystem_kpi
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_configuration_kpi
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+#: field:mgmtsystem.kpi.history,kpi_id:0
+msgid "KPI"
+msgstr "IDC"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+#: field:mgmtsystem.kpi,history_ids:0
+msgid "History"
+msgstr "Histórico"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,periodicity:0
+msgid "Periodicity"
+msgstr "Periodicidade"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.history,color:0
+#: field:mgmtsystem.kpi.threshold.range,color:0
+msgid "Color"
+msgstr "Cor"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,kpi_type:0
+#: selection:mgmtsystem.kpi.threshold.range,max_type:0
+msgid "SQL - External DB"
+msgstr "SQL - DB externo"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi.threshold.range,max_type:0
+#: selection:mgmtsystem.kpi.threshold.range,min_type:0
+msgid "Python Code"
+msgstr "Código Python"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi.threshold.range:0
+msgid "Range"
+msgstr "Intervalo"
+
+#. module: mgmtsystem_kpi
+#: selection:mgmtsystem.kpi,periodicity_uom:0
+msgid "Month"
+msgstr "Mês"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,value:0
+#: field:mgmtsystem.kpi.history,value:0
+msgid "Value"
+msgstr "Valor"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi.threshold.range:0
+#: field:mgmtsystem.kpi.threshold.range,min_fixed_value:0
+#: field:mgmtsystem.kpi.threshold.range,min_value:0
+msgid "Minimum"
+msgstr "Mínimo"
+
+#. module: mgmtsystem_kpi
+#: model:ir.actions.act_window,name:mgmtsystem_kpi.open_mgmtsystem_category_list
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_configuration_kpi_category
+#: view:mgmtsystem.kpi.category:0
+msgid "Categories"
+msgstr "Categorias"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "Computation"
+msgstr "Calcular"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi,threshold_id:0
+#: view:mgmtsystem.kpi.threshold:0
+msgid "Threshold"
+msgstr "Limiar"
+
+#. module: mgmtsystem_kpi
+#: view:mgmtsystem.kpi.threshold:0
+#: field:mgmtsystem.kpi.threshold,kpi_ids:0
+msgid "KPIs"
+msgstr "ICDs"
+
+#. module: mgmtsystem_kpi
+#: field:mgmtsystem.kpi.threshold,invalid_message:0
+#: field:mgmtsystem.kpi.threshold.range,invalid_message:0
+msgid "Message"
+msgstr "Mensagem"
+
+#. module: mgmtsystem_kpi
+#: model:ir.actions.act_window,name:mgmtsystem_kpi.open_mgmtsystem_threshold_list
+#: model:ir.ui.menu,name:mgmtsystem_kpi.menu_mgmtsystem_configuration_kpi_threshold
+#: view:mgmtsystem.kpi.threshold:0
+#: view:mgmtsystem.kpi.threshold.range:0
+#: field:mgmtsystem.kpi.threshold.range,threshold_ids:0
+msgid "Thresholds"
+msgstr "Limites"
+
+#. module: mgmtsystem_kpi
+#: model:ir.model,name:mgmtsystem_kpi.model_mgmtsystem_kpi
+#: view:mgmtsystem.kpi:0
+msgid "Key Performance Indicator"
+msgstr "Indicador Chave  Desempenho"
