@@ -213,9 +213,17 @@ class auditlog_rule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             new_record = create.origin(self, vals, **kwargs)
+            conflict_fields = {}
+            conflict_fields_list = ['total_wage']
+            for cfield in conflict_fields_list:
+                if cfield in self._fields:
+                    conflict_fields[cfield] = self._fields[cfield]
+                    del self._fields[cfield]
             new_values = dict(
                 (d['id'], d) for d in new_record.sudo().read(
                     list(self._fields)))
+            for cfield in conflict_fields.keys():
+                self._fields[cfield] = conflict_fields[cfield]
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
                 'create', None, new_values)
@@ -271,11 +279,18 @@ class auditlog_rule(models.Model):
         def write(self, vals, **kwargs):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
+            conflict_fields = {}
+            conflict_fields_list = ['total_wage']
+            for cfield in conflict_fields_list:
+                if cfield in self._fields:
+                    conflict_fields[cfield] = self._fields[cfield]
+                    del self._fields[cfield]
             old_values = dict(
                 (d['id'], d) for d in self.sudo().read(list(self._fields)))
+            for cfield in conflict_fields.keys():
+                self._fields[cfield] = conflict_fields[cfield]
             result = write.origin(self, vals, **kwargs)
-            new_values = dict(
-                (d['id'], d) for d in self.sudo().read(list(self._fields)))
+            new_values = old_values
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
                 'write', old_values, new_values)
