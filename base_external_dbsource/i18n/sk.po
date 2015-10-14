@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-10 02:52+0000\n"
 "PO-Revision-Date: 2016-09-10 02:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_conn_string
@@ -37,7 +37,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_conn_string
 msgid "Connection string"
-msgstr "Caracter de Conexão"
+msgstr ""
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
@@ -58,27 +58,27 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_connector
 msgid "Connector"
-msgstr "Conector"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Vytvoril"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Vytvorené"
 
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
 msgid "Database Sources"
-msgstr "Bancos de Dados Origem"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_name
 msgid "Datasource name"
-msgstr "Nome Origem-de-dados"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
@@ -88,23 +88,23 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr "Fonte BD externo"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr "Fontes BD externo"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
 #: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr "Fontes Banco de Dados Externo"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_connector
@@ -114,8 +114,6 @@ msgid ""
 "that the required components were                                      "
 "detected."
 msgstr ""
-"Se um conector está faltando na lista, verifique o histórico do servidor "
-"para confirmar se os componentes necessários foram detectados."
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
@@ -125,17 +123,17 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Naposledy upravoval"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Naposledy upravované"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
 msgid "Password"
-msgstr "Senha"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
@@ -145,9 +143,9 @@ msgstr ""
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr "PostgreSQL"
+msgstr ""
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr "Conexão Teste"
+msgstr ""

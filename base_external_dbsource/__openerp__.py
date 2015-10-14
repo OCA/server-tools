@@ -59,5 +59,5 @@ Contributors
     'test': [
         'test/dbsource_connect.yml',
     ],
-    'installable': True,
+    'installable': False,
 }
