@@ -34,6 +34,6 @@
         'wizard/attach_mail_manually.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }

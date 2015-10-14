@@ -66,6 +66,6 @@ password = openerp
                 ],
     'data': ['mail_view.xml'],
     'demo': [],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

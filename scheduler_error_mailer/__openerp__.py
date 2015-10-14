@@ -44,5 +44,5 @@ an error.""",
     ],
     'demo': ['ir_cron_demo.xml'],
     'images': ['images/scheduler_error_mailer.jpg'],
-    'installable': True,
+    'installable': False,
 }

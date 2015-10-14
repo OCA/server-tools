@@ -33,5 +33,5 @@ of the scheduler.
     "test": [
         "tests/correct_uid.yml",
     ],
-    'installable': True,
+    'installable': False,
 }
