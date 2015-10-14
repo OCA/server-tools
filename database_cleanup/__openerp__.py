@@ -35,4 +35,5 @@
         'view/purge_data.xml',
         'view/menu.xml',
         ],
+    'installable': False,
 }
