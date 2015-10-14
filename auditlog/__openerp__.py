@@ -33,6 +33,6 @@
         'views/auditlog_view.xml',
     ],
     'application': True,
-    'installable': True,
+    'installable': False,
     'pre_init_hook': 'pre_init_hook',
 }
