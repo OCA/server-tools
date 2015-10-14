@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import orm, fields
 from openerp import netsvc
 
 import base64
@@ -85,10 +85,10 @@ class RstDoc(object):
                 status_good = False
             return status_good
 
-        versions = ('4.2', '5.0', 'trunk')
+        versions = ('7.0', '8.0', 'master')
         download_links = []
         for ver in versions:
-            link = 'http://www.openerp.com/download/modules/%s/%s.zip' % (
+            link = 'https://apps.odoo.com/loempia/download/%s/%s.zip' % (
                 ver, self.dico['name']
             )
             if _is_connection_status_good(link):
