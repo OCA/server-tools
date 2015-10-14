@@ -41,6 +41,6 @@
         'views/ir_model_fields_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'application': True,
 }
