@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp import orm, fields
+from openerp.osv import orm, fields
 from openerp import netsvc
 
 import base64
