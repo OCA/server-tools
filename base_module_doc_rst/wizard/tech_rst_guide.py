@@ -124,15 +124,6 @@ class RstDoc(object):
                 type="text/css" />
             """,
             "",
-            """
-            .. tip:: This module is part of the OpenERP software,
-            the leading Open Source
-            """,
-            """  enterprise management system. If you want to discover OpenERP,
-            check our
-            """,
-            """  `screencasts <http://openerp.tv>`_ or download """,
-            """  `OpenERP <http://openerp.com>`_ directly.""",
             "",
             ".. raw:: html",
             "",

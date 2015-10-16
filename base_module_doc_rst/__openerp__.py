@@ -21,7 +21,7 @@
 
 {
     "name": "Generate Docs of Modules",
-    "version": "1.0",
+    "version": "8.0.1.0",
     "category": "Tools",
     "summary": "Modules Technical Guides in RST and Relationship Graphs",
     "website": "https://odoo-community.org/",
