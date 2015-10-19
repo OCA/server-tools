@@ -51,13 +51,13 @@ class analytic_code(models.Model):
 
         for anc in self:
             blacklist = (company.id for company in anc.blacklist_ids)
-    
+
             to_write = None
             if anc.disabled_per_company and company_id not in blacklist:
                 to_write = [(4, company_id)]  # Link.
             elif not anc.disabled_per_company and company_id in blacklist:
                 to_write = [(3, company_id)]  # Unlink.
-    
+
             if to_write:
                 anc.write({'blacklist_ids': to_write})
 
@@ -91,7 +91,7 @@ class analytic_code(models.Model):
         string=u"Dimension",
         ondelete='cascade',
         required=True,
-    )    
+    )
 
     active = fields.Boolean(
         u"Active",
@@ -117,10 +117,10 @@ class analytic_code(models.Model):
         help=u"Companies the code is hidden in.",
     )
     disabled_per_company = fields.Boolean(
-        string  = u"Disable in my company",
-        compute = _read_disabled_per_company,
-        inverse = _write_disabled_per_company,
-        search  = _search_disabled_per_company,
+        string=u"Disable in my company",
+        compute=_read_disabled_per_company,
+        inverse=_write_disabled_per_company,
+        search=_search_disabled_per_company,
         help=(
             u"Determines whether an analytic code is disabled for the "
             u"current company."
@@ -129,7 +129,7 @@ class analytic_code(models.Model):
     )
 
     nd_name = fields.Char(
-        related = 'nd_id.name',
+        related='nd_id.name',
         string=u"Dimension Name",
         store=False
     )

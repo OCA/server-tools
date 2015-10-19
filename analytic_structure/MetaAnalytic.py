@@ -81,8 +81,10 @@ class MetaAnalytic(BaseModelMetaclassMixin):
         # Create a field that will be used for replacement in the view
         if analytic:
             nmspc['analytic_dimensions'] = fields.Char(
-                string  = u"Analytic Dimensions",
-                compute = api.one(lambda self : setattr(self, 'analytic_dimensions', '')),
+                string=u"Analytic Dimensions",
+                compute=api.one(
+                    lambda self: setattr(self, 'analytic_dimensions', '')
+                ),
                 readonly=True
             )
 
@@ -291,8 +293,8 @@ class MetaAnalytic(BaseModelMetaclassMixin):
 
             for string, model_col, code_col, dtype, req, default in rel_cols:
                 nmspc[model_col] = getattr(fields, dtype)(
-                    string = string,
-                    related = ".".join([column, code_col]),
+                    string=string,
+                    related=".".join([column, code_col]),
                     relation="analytic.code",
                     required=req,
                     store=True
@@ -306,7 +308,6 @@ class MetaAnalytic(BaseModelMetaclassMixin):
         superclass_name = '_{name}_SuperDimension'.format(name=name)
         # Set _register to False in order to prevent its instantiation.
         superclass = type(superclass_name, bases, {'_register': False})
-
 
         # We must keep the old api here !!!!!!!
         # If we switch to the new, the method is call through a wrapper
@@ -377,7 +378,7 @@ class MetaAnalytic(BaseModelMetaclassMixin):
             # unless the 'force_code_id' context key is passed as True.
             force_code_id = vals.pop(column, False)
 
-            if context and context.get('force_code_id', False) == True:
+            if context and context.get('force_code_id', False) is True:
                 self._force_code(cr, uid, force_code_id, code_vals, context)
                 vals[column] = force_code_id
 
@@ -432,7 +433,7 @@ class MetaAnalytic(BaseModelMetaclassMixin):
             # unless the 'force_code_id' context key is passed as True.
             force_code_id = vals.pop(column, False)
 
-            if context and context.get('force_code_id', False) == True:
+            if context and context.get('force_code_id', False) is True:
                 self._force_code(cr, uid, force_code_id, code_vals, context)
                 vals[column] = force_code_id
 
@@ -479,7 +480,7 @@ class MetaAnalytic(BaseModelMetaclassMixin):
 
             if not force_code_id:
                 raise ValueError(
-                    "An analytic code ID MUST be specified if the " \
+                    "An analytic code ID MUST be specified if the "
                     "force_code_id key is enabled in the context"
                 )
             force_code_dim = code_osv.read(
@@ -487,7 +488,7 @@ class MetaAnalytic(BaseModelMetaclassMixin):
             )['nd_id'][0]
             if force_code_dim != self._bound_dimension_id:
                 raise ValueError(
-                    "If specified, codes must belong to the bound " \
+                    "If specified, codes must belong to the bound "
                     "analytic dimension {}".format(dimension_name)
                 )
             if code_vals:

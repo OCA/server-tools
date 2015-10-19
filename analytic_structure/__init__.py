@@ -30,13 +30,12 @@ except (ValueError, AssertionError):
     errors.append("analytic_size must be an integer greater/equal to 5.")
 try:
     assert config.get_misc('analytic', 'translate', False) in [True, False]
-except (AssertionError):
+except AssertionError:
     errors.append("translate must be a boolean value.")
 if len(errors) > 1:
     config.parser.error("\n * ".join(errors))
 
-
-import MetaAnalytic
-import analytic_code
-import analytic_dimension
-import analytic_structure
+import MetaAnalytic   # noqa
+import analytic_code   # noqa
+import analytic_dimension   # noqa
+import analytic_structure   # noqa

@@ -49,4 +49,3 @@ related to an object model.
     'installable': True,
     'active': False,
 }
-

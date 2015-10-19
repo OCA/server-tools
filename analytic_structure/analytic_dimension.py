@@ -52,12 +52,12 @@ class analytic_dimension(models.Model):
         translate=config.get_misc('analytic', 'translate', False),
         required=True,
     )
-        
+
     nc_ids = fields.One2many(
         comodel_name='analytic.code',
         inverse_name='nd_id',
         string=u"Codes")
-        
+
     ns_id = fields.One2many(
         comodel_name='analytic.structure',
         inverse_name='nd_id',

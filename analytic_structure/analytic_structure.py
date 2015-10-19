@@ -55,7 +55,10 @@ class analytic_structure(models.Model):
             ]
             count = self.search_count(domain)
             if count > 1:
-                raise exceptions.ValidationError(u"One dimension per Analysis slot per object when the structure is common to all companies.")
+                raise exceptions.ValidationError(
+                    u"One dimension per Analysis slot per object when the"
+                    u"structure is common to all companies."
+                )
 
     model_name = fields.Char(
         u"Object",
@@ -78,7 +81,7 @@ class analytic_structure(models.Model):
     company_id = fields.Many2one(
         'res.company',
         u"Company",
-        default = lambda *a: False
+        default=lambda *a: False
     )
 
     _sql_constraints = [
@@ -256,7 +259,7 @@ class analytic_structure(models.Model):
                 match.set('required', 'false')
                 match.set('modifiers', json.dumps(modifiers))
 
-        # Look for any field named 'analytic_dimensions' and with the right prefix.
+        # Look for any field named 'analytic_dimensions' with the right prefix.
         name_cond = '@name="analytic_dimensions"'
         if prefix == 'a':
             pre_cond = '(@prefix="a" or not(@prefix))'
