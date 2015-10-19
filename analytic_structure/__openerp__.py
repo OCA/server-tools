@@ -22,13 +22,13 @@
 {
     "name": "Analytic Structure",
     "version": "2.0.1",
-    "author": "XCG Consulting",
+    "author": "XCG Consulting, Odoo Community Association (OCA)",
     "category": 'Dependency',
-    "description": """
-This module allows to use several analytic dimensions through a structure
-related to an object model.
-=========================================================================
-    """,
+    'license': 'AGPL-3',
+    "summary": (
+        "This module allows to use several analytic dimensions through"
+        "a structure related to an object model"
+    ),
     'website': 'http://www.openerp-experts.com',
     "depends": [
         'base',
@@ -41,11 +41,8 @@ related to an object model.
         'analytic_views.xml',
         'analytic_menus.xml',
     ],
-    # 'demo_xml': [],
     'css': [
         'static/src/css/analytic_structure.css',
     ],
-    'test': [],
     'installable': True,
-    'active': False,
 }

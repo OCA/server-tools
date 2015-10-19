@@ -22,7 +22,7 @@ from openerp import api, models, fields
 from openerp.tools import config
 
 
-class analytic_code(models.Model):
+class AnalyticCode(models.Model):
     _name = 'analytic.code'
     _description = u"Analytic Code"
 
@@ -183,8 +183,10 @@ class analytic_code(models.Model):
 
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=100):
+    def name_search(
+        self, cr, uid, name, args=None, operator='ilike', context=None,
+        limit=100
+    ):
         if not args:
             args = []
 
@@ -203,6 +205,7 @@ class analytic_code(models.Model):
             )
             return self.name_get(cr, uid, ids)
         else:
-            return super(analytic_code, self).name_search(
+            return super(AnalyticCode, self).name_search(
                 cr, uid, name=name, args=args, operator=operator,
-                context=context, limit=limit)
+                context=context, limit=limit
+            )

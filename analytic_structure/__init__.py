@@ -35,7 +35,7 @@ except AssertionError:
 if len(errors) > 1:
     config.parser.error("\n * ".join(errors))
 
-import MetaAnalytic   # noqa
-import analytic_code   # noqa
-import analytic_dimension   # noqa
-import analytic_structure   # noqa
+from . import MetaAnalytic   # noqa
+from . import analytic_code   # noqa
+from . import analytic_dimension   # noqa
+from . import analytic_structure   # noqa

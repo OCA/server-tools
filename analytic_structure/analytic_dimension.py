@@ -24,7 +24,7 @@ from openerp.tools import config
 from openerp.addons.base_model_metaclass_mixin import BaseModelMetaclassMixin
 
 
-class _dimension_meta(BaseModelMetaclassMixin):
+class _DimensionMeta(BaseModelMetaclassMixin):
 
     def __new__(cls, name, bases, nmspc):
 
@@ -37,12 +37,12 @@ class _dimension_meta(BaseModelMetaclassMixin):
                 domain=[('ordering', '=', n)],
                 auto_join=True,
             )
-        return super(_dimension_meta, cls).__new__(cls, name, bases, nmspc)
+        return super(_DimensionMeta, cls).__new__(cls, name, bases, nmspc)
 
 
-class analytic_dimension(models.Model):
+class AnalyticDimension(models.Model):
 
-    __metaclass__ = _dimension_meta
+    __metaclass__ = _DimensionMeta
     _name = 'analytic.dimension'
     _description = u"Analytic Dimension"
 

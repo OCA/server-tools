@@ -27,7 +27,7 @@ from lxml import etree
 import json
 
 
-class analytic_structure(models.Model):
+class AnalyticStructure(models.Model):
 
     _name = 'analytic.structure'
     _description = u"Analytic Structure"
@@ -184,7 +184,7 @@ class analytic_structure(models.Model):
 
         ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
 
-        regex = '{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
+        regex = r'{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
         match_fct = re.compile(regex).search
         matches = filter(None, map(match_fct, fields.keys()))
 
@@ -237,7 +237,7 @@ class analytic_structure(models.Model):
         ans_dict = self.get_dimensions_names(cr, uid, model, context=context)
         found_fields = {slot: False for slot in ans_dict}
 
-        regex = '{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
+        regex = r'{pre}(\d+)_{suf}'.format(pre=prefix, suf=suffix)
         path = "//field[re:match(@name, '{0}')]".format(regex)
         ns = {"re": "http://exslt.org/regular-expressions"}
 
