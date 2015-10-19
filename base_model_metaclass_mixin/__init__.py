@@ -29,5 +29,5 @@ class BaseModelMetaclassMixin(orm.MetaModel):
         super(BaseModelMetaclassMixin, cls).__init__(name, bases, nmspc)
 
         for func_name, func in get_overrides():
-            if not func_name in nmspc:
+            if func_name not in nmspc:
                 setattr(cls, func_name, func)
