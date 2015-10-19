@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from openerp import models
 from openerp import api
 from openerp import fields
@@ -5,7 +7,7 @@ import lasso
 import simplejson
 
 
-class auth_saml_provider(models.Model):
+class AuthSamlProvider(models.Model):
     """Class defining the configuration values of an Saml2 provider"""
 
     _name = 'auth.saml.provider'

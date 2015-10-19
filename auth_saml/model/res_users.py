@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
+
 import logging
 # this is our very own dependency
 import lasso
@@ -19,7 +20,7 @@ from openerp import _
 _logger = logging.getLogger(__name__)
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = 'res.users'
 
     saml_provider_id = fields.Many2one(
@@ -209,7 +210,7 @@ class res_users(models.Model):
             if not self._allow_saml_and_password():
                 vals['password'] = False
 
-        return super(res_users, self).write(vals)
+        return super(ResUsers, self).write(vals)
 
     @api.model
     def _allow_saml_and_password(self):
