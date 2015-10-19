@@ -179,7 +179,10 @@ class res_users(models.Model):
                 token
             )
 
-        except (openerp.exceptions.AccessDenied, passlib.exc.PasswordSizeError):
+        except (
+            openerp.exceptions.AccessDenied,
+            passlib.exc.PasswordSizeError,
+        ):
             # since normal auth did not succeed we now try to find if the user
             # has an active token attached to his uid
             res = token_osv.search(
