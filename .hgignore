@@ -1,7 +1,0 @@
-syntax: glob
-
-*.pyc
-*.pyo
-*~
-*.swp
-*.egg-info
