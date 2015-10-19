@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import api, models, fields
 from openerp.tools import config
 
 

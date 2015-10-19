@@ -32,7 +32,7 @@ related to an object model.
     'website': 'http://www.openerp-experts.com',
     "depends": [
         'base',
-        'oemetasl',
+        'base_model_metaclass_mixin',
     ],
     "data": [
         'security/security.xml',

@@ -18,12 +18,13 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-from openerp.addons.oemetasl import OEMetaSL
+from openerp import models, fields
 from openerp.tools import config
 
+from openerp.addons.base_model_metaclass_mixin import BaseModelMetaclassMixin
 
-class _dimension_meta(OEMetaSL):
+
+class _dimension_meta(BaseModelMetaclassMixin):
 
     def __new__(cls, name, bases, nmspc):
 

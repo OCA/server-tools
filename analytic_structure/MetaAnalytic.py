@@ -1,8 +1,7 @@
-from openerp import SUPERUSER_ID
-from openerp import fields, api
+from openerp import api, fields, SUPERUSER_ID
 from openerp.tools import config
 
-from openerp.addons.oemetasl import OEMetaSL
+from openerp.addons.base_model_metaclass_mixin import BaseModelMetaclassMixin
 
 
 class AddMethod(object):
@@ -16,7 +15,7 @@ class AddMethod(object):
         return func
 
 
-class MetaAnalytic(OEMetaSL):
+class MetaAnalytic(BaseModelMetaclassMixin):
     """Allow the model to use the classes of the analytic_structure module
     in a more streamlined way.
 
