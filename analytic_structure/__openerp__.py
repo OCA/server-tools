@@ -50,4 +50,3 @@ related to an object model.
     'active': False,
 }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
