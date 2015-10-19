@@ -152,7 +152,7 @@ class PrototypeModuleExport(models.TransientModel):
                     {
                         'fields_selected': [(6, 1, fields_dependencies,)],
                         'fields_selected_initial': [
-                                            (6, 1, fields_dependencies,)],
+                            (6, 1, fields_dependencies,)],
                         'state': 'dep',
                     }
                 )

@@ -49,6 +49,7 @@ class IrFilter(models.Model):
 
 
 class ModulePrototyper(models.Model):
+
     """Module Prototyper gathers different information from all over the
     database to build a prototype of module.
     We are calling it a prototype as it will most likely need to be reviewed
@@ -224,7 +225,8 @@ class ModulePrototyper(models.Model):
     @api.model
     def set_keep_external_ids(self, bool):
         """Set the the keep_external_ids from the wizard
-        keep_external_ids will help to update all external ids or keep exsting ones.
+        keep_external_ids will help to update all external
+        ids or keep exsting ones.
         :param bool: bool, wizard's value
         """
         self.keep_external_ids = bool
@@ -760,10 +762,10 @@ class ModulePrototyper(models.Model):
                         # Save fields that possibly contains circular
                         # dependency
                         model_id = model_obj.search(
-                                            [['model', '=', model_name]]).id
+                            [['model', '=', model_name]]).id
                         field_id = fields_obj.search(
-                                            [['name', '=', f],
-                                             ['model_id', '=', model_id]])
+                            [['name', '=', f],
+                             ['model_id', '=', model_id]])
                         fields_dep.append(field_id.id)
 
         return fields_dep
