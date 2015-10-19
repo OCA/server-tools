@@ -23,17 +23,17 @@ class IrModel(models.Model):
 
     @api.model
     def check_vals(self, vals, model_name):
-        models = self.search([('model', '=', model_name)], limit=1)
-        model = models[0]
-        for validator_line in model.validator_line_ids:
-            if validator_line.field_id.name in vals:
-                pattern = re.compile(validator_line.regex_id.regex)
-                if vals[validator_line.field_id.name]:
-                    if not pattern.match(vals[validator_line.field_id.name]):
-                        raise Warning(
-                            _('Expression %s not valid for %s') % (
-                                validator_line.regex_id.regex,
-                                vals[validator_line.field_id.name]))
+        validator_lines = self.env['ir.model.validator.line'].search([
+            ('name.model', '=', model_name),
+            ('field_id.name', 'in', vals.keys())])
+        for validator_line in validator_lines:
+            pattern = re.compile(validator_line.regex_id.regex)
+            if vals[validator_line.field_id.name]:
+                if not pattern.match(vals[validator_line.field_id.name]):
+                    raise Warning(
+                        _('Expression %s not valid for %s') % (
+                            validator_line.regex_id.regex,
+                            vals[validator_line.field_id.name]))
         return True
 
 
