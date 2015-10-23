@@ -12,7 +12,7 @@ This module makes werkzeug messages in the log show the IP the requests come fro
 Installation
 ============
 
-Nothing additionally to installing the module.
+Only install the module in the database.
 
 
 
