@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'User Password Settings',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'base',
     'sequence': 3,
     'summary': 'User Password Settings',

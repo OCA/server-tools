@@ -11,10 +11,12 @@ General Configuration will have Password Settings section to set determination r
 Contributors
 ------------
 * Dhaval Patel
+* Jose Suniaga <josemiguel@vauxoo.com>
 
-History:
-2015-02-24: 1.0
-==================
+Changelog
+---------
+* 2015-02-24: 1.0
+* 2015-10-23: 1.1 (@api.v8 integration)
 
 Initial Development
 -------------------
