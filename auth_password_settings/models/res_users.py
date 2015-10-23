@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from openerp import models, api, _
-from openerp import Warning as UserError
+from openerp.exceptions import Warning as UserError
 from openerp.tools.safe_eval import safe_eval
 import string
 

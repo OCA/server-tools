@@ -18,93 +18,72 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import (
-    osv,
-    fields)
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning as UserError
 from openerp.tools.safe_eval import safe_eval
-from openerp.tools.translate import _
 
 
-class BaseConfigSettings(osv.osv_memory):
+class BaseConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
 
-    _columns = {
-        'auth_password_min_character': fields.integer(
-            'Minimum Password Length',
-            help="Use the Minimum Password Length to determine how long the \
-            password should be. Set 0 if dont want to set any limit"),
-        'auth_password_has_capital_letter': fields.boolean(
-            'Use capital letters',
-            help="Use capital letters to determine the Capital letter that\
-            must be used in the password "),
-        'auth_password_has_digit': fields.boolean(
-            'Use digits',
-            help="Use digits to determine the digit(numaric letter)\
-            that must be used in the password "),
-        'auth_password_has_special_letter': fields.boolean(
-            'Use Special Characters',
-            help="Use special letters to determine the special letter (e.g. #,\
-            $,!,^, &) that must be used in the password"),
-    }
+    auth_password_min_character = fields.Integer(
+        'Minimum Password Length',
+        help="Use the Minimum Password Length to determine how long the \
+        password should be. Set 0 if dont want to set any limit")
+    auth_password_has_capital_letter = fields.Boolean(
+        'Use capital letters',
+        help="Use capital letters to determine the Capital letter that\
+        must be used in the password ")
+    auth_password_has_digit = fields.Boolean(
+        'Use digits',
+        help="Use digits to determine the digit(numaric letter)\
+        that must be used in the password ")
+    auth_password_has_special_letter = fields.Boolean(
+        'Use Special Characters',
+        help="Use special letters to determine the special letter (e.g. #,\
+        $,!,^, &) that must be used in the password")
 
-    def get_default_auth_password_has_digit(self, cr, uid, fields, ctx=None):
-        icp = self.pool.get('ir.config_parameter')
+    @api.model
+    def get_default_auth_password_has_digit(self, fields):
         return {
             'auth_password_min_character': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_min_character',
                     '6'
                 )),
             'auth_password_has_capital_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_capital_letter',
                     'False'
                 )),
             'auth_password_has_digit': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_digit',
                     'False'
                 )),
             'auth_password_has_special_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_special_letter',
                     'False'
                 )),
         }
 
-    def set_auth_password_has_digit(self, cr, uid, ids, context=None):
-        config = self.browse(cr, uid, ids[0], context=context)
+    @api.multi
+    def set_auth_password_has_digit(self):
+        config = self.browse(self.ids[0])
         if (config.auth_password_min_character < 5):
-            raise osv.except_osv(
-                _('Error!'),
+            raise UserError(
                 _('Password Length should not be less then 5.')
             )
-        icp = self.pool.get('ir.config_parameter')
-        icp.set_param(
-            cr,
-            uid,
+        self.env['ir.config_parameter'].set_param(
             'auth_password_settings.auth_password_min_character',
             repr(config.auth_password_min_character))
-        icp.set_param(
-            cr,
-            uid,
+        self.env['ir.config_parameter'].set_param(
             'auth_password_settings.auth_password_has_capital_letter',
             repr(config.auth_password_has_capital_letter))
-        icp.set_param(
-            cr,
-            uid,
+        self.env['ir.config_parameter'].set_param(
             'auth_password_settings.auth_password_has_digit',
             repr(config.auth_password_has_digit))
-        icp.set_param(
-            cr,
-            uid,
+        self.env['ir.config_parameter'].set_param(
             'auth_password_settings.auth_password_has_special_letter',
             repr(config.auth_password_has_special_letter))
