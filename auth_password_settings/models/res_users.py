@@ -18,44 +18,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv
+from openerp import models, api, _
+from openerp import Warning as UserError
 from openerp.tools.safe_eval import safe_eval
-from openerp.tools.translate import _
 import string
 
 
-class res_users(osv.osv):
+class ResUsers(models.Model):
     _inherit = "res.users"
 
-    def _validate_password(self, cr, uid, password, context=None):
-        icp = self.pool.get('ir.config_parameter')
+    def _validate_password(self, password):
         password_rules = []
         config_data = {
             'auth_password_min_character': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_min_character',
                     '6'
                 )),
             'auth_password_has_capital_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_capital_letter',
                     'False'
                 )),
             'auth_password_has_digit': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_digit',
                     'False'
                 )),
             'auth_password_has_special_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
+                self.env['ir.config_parameter'].get_param(
                     'auth_password_settings.auth_password_has_special_letter',
                     'False'
                 )),
@@ -91,28 +82,24 @@ class res_users(osv.osv):
             ] if p and p is not True]
         return problems
 
-    def write(self, cr, uid, ids, values, context=None):
+    @api.multi
+    def write(self, values):
         if('password' in values):
-            problems = self._validate_password(
-                cr, uid, values['password'], context=context)
+            problems = self._validate_password(values['password'])
             if(problems):
-                raise osv.except_osv(
-                    _('Error!'),
+                raise UserError(
                     _("Password must match following rules\n %s ")
                     % ("\n-- ".join(problems))
                 )
-        return super(res_users, self).write(cr, uid, ids, values, context)
+        return super(ResUsers, self).write(values)
 
-    def _set_password(self, cr, uid, id, password, context=None):
+    @api.multi
+    def _set_password(self, password):
         if(password):
-            problems = self._validate_password(
-                cr, uid, password, context=context)
+            problems = self._validate_password(password)
             if(problems):
-                raise osv.except_osv(
-                    _('Error!'),
+                raise UserError(
                     _("Password must match following rules\n %s ")
                     % ("\n-- ".join(problems))
                 )
-        return super(res_users, self)._set_password(
-            cr, uid, id, password, context=context
-        )
+        return super(ResUsers, self)._set_password(password)
