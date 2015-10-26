@@ -1,7 +1,5 @@
 language: python
-# Require sudo until <https://github.com/travis-ci/apt-package-whitelist/issues/1488>
-# is resolved (we need sudo to install python-lasso, which is not currently whitelisted.
-sudo: required
+sudo: false
 cache: pip
 
 python:
