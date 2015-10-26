@@ -3,13 +3,14 @@
 # * mass_editing
 # 
 # Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
+"PO-Revision-Date: 2015-10-21 10:37+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Add"
-msgstr ""
+msgstr "Añadir"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
@@ -116,12 +117,12 @@ msgstr "Objeto"
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
-msgstr ""
+msgstr "Eliminar la acción contextual para usar en esta plantilla en documentos relacionados"
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
@@ -139,7 +140,7 @@ msgstr "Botón del menú contextual"
 msgid ""
 "Sidebar action to make this template available on records                  "
 "of the related document model"
-msgstr ""
+msgstr "Acción de la barra Más para hacer esta plantilla disponible en los registros del modelo"
 
 #. module: mass_editing
 #: help:mass.object,ref_ir_value:0

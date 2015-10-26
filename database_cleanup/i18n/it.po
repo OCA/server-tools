@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,create_uid:0
 #: field:cleanup.purge.wizard.table,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,create_date:0
@@ -52,7 +52,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,create_date:0
 #: field:cleanup.purge.wizard.table,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.data,data_id:0
@@ -79,7 +79,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,id:0
 #: field:cleanup.purge.wizard.table,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_uid:0
@@ -95,7 +95,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,write_uid:0
 #: field:cleanup.purge.wizard.table,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_date:0
@@ -111,7 +111,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,write_date:0
 #: field:cleanup.purge.wizard.table,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.menu,menu_id:0

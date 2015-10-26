@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
@@ -46,13 +46,13 @@ msgstr ""
 #: field:auditlog.log,create_uid:0 field:auditlog.log.line,create_uid:0
 #: field:auditlog.rule,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: auditlog
 #: field:auditlog.log,create_date:0 field:auditlog.log.line,create_date:0
 #: field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -86,19 +86,19 @@ msgstr ""
 #: field:auditlog.log,id:0 field:auditlog.log.line,id:0
 #: field:auditlog.rule,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: auditlog
 #: field:auditlog.log,write_uid:0 field:auditlog.log.line,write_uid:0
 #: field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: auditlog
 #: field:auditlog.log,write_date:0 field:auditlog.log.line,write_date:0
 #: field:auditlog.rule,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form

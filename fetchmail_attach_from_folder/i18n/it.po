@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
@@ -31,21 +31,21 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
-msgstr ""
+msgstr "Cancella"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_uid:0
 #: field:fetchmail.attach.mail.manually.mail,create_uid:0
 #: field:fetchmail.server.folder,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_date:0
 #: field:fetchmail.attach.mail.manually.mail,create_date:0
 #: field:fetchmail.server.folder,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
@@ -123,7 +123,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,id:0
 #: field:fetchmail.server.folder,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
@@ -142,14 +142,14 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_date:0
 #: field:fetchmail.attach.mail.manually.mail,write_date:0
 #: field:fetchmail.server.folder,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: fetchmail_attach_from_folder
 #: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:187
