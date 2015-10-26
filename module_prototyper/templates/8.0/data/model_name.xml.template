@@ -5,7 +5,7 @@
 
         <record id="{{ record[0] }}" model="{{ model }}">
         {% for key, val, ref, field_type in record[1] %}
-          <field name="{{ key }}"{% if ref %} ref="{{ ref }}"{% endif %}{% if field_type %} type="{{ field_type }}"{% endif %}{% if val %}>{{ val }}</field>{% else %}/>{% endif %}
+          <field name="{{ key }}"{% if ref and len(ref) == 1 %} ref="{{ ref[0] }}"{% elif ref and len(ref) > 1 %} eval="[(6,0,[{% for r in ref %}ref('{{ r }}'),{% endfor %}])]"{% endif %}{% if field_type %} type="{{ field_type }}"{% endif %}{% if val %}>{{ val }}</field>{% else %}/>{% endif %}
 
         {% endfor %}
         </record>

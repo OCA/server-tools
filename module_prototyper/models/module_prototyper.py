@@ -247,6 +247,8 @@ class ModulePrototyper(models.Model):
                     os.path.join(self.template_path, api_version)
                 )
             )
+            # Instanse methods that will be sent to file
+            self._env.globals.update({'len': len})
         return self._env
 
     def set_field_descriptions(self):
@@ -677,6 +679,17 @@ class ModulePrototyper(models.Model):
                 # see:https://www.odoo.com/documentation/8.0/reference/data.html
                 if r.fields_get()[field]['type'] in cls.type_fields:
                     field_type = r.fields_get()[field]['type']
+
+                # Ref data to list
+                # If name of module is in ref it is deleted
+                # (Data fields not referring to himself)
+                if ref and cls.name in ref:
+                    ref = ref.replace(cls.name + ".", "")
+                    ref = ref.split(",")
+                elif ref:
+                    ref = ref.split(",")
+                else:
+                    ref = []
 
                 fields_lst.append([field, val, ref, field_type])
 
