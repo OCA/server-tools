@@ -18,9 +18,38 @@
 #
 ###############################################################################
 
-from openerp import models
+from openerp import models, tools
 from openerp.http import request
+from datetime import datetime
 import logging
+import pytz
+
+
+def converter(self, timestamp):
+    if tools.config['timezone']:
+        return datetime.fromtimestamp(timestamp,
+                                      pytz.timezone(tools.config['timezone']))
+    else:
+        return datetime.fromtimestamp(timestamp)
+
+
+def formatTime(self, record, datefmt=None):
+    dt = self.converter(record.created)
+    if datefmt:
+        s = dt.strftime(datefmt)
+    else:
+        try:
+            t = dt.strftime(self.default_time_format)
+        except AttributeError:
+            t = dt.strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        s = self.default_msec_format % (t, record.msecs)
+    except AttributeError:
+        s = "%s,%03d" % (t, record.msecs)
+    return s
+
+logging.Formatter.converter = converter
+logging.Formatter.formatTime = formatTime
 
 _logger = logging.getLogger(__name__)
 
