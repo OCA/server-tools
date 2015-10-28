@@ -45,11 +45,13 @@ class test_res_users(common.TransactionCase):
 
     def test_login(self):
         res_users_obj = self.registry('res.users')
-        res = res_users_obj.authenticate(common.DB, 'admin', 'admin', None)
+        res = res_users_obj.authenticate(
+            common.get_db_name(), 'admin', 'admin', None)
         uid = res
         self.assertTrue(res, "Basic login must works as expected")
         token = "123456"
-        res = res_users_obj.authenticate(common.DB, 'admin', token, None)
+        res = res_users_obj.authenticate(
+            common.get_db_name(), 'admin', token, None)
         self.assertFalse(res)
         # mimic what the new controller do when it find a value in
         # the http header (HTTP_REMODE_USER)
@@ -60,10 +62,11 @@ class test_res_users(common.TransactionCase):
         with mock_cursor(self.cr):
             # We can verifies that the given (uid, token) is authorized for
             # the database
-            res_users_obj.check(common.DB, uid, token)
+            res_users_obj.check(common.get_db_name(), uid, token)
 
             # we are able to login with the new token
-            res = res_users_obj.authenticate(common.DB, 'admin', token, None)
+            res = res_users_obj.authenticate(
+                common.get_db_name(), 'admin', token, None)
             self.assertTrue(res)
 
     @unittest.skipIf(os.environ.get('TRAVIS'),

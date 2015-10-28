@@ -20,7 +20,7 @@
 
 {
     'name': "Optional quick create",
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Tools',
     'summary': "Avoid 'quick create' on m2o fields, on a 'by model' basis",
     'description': """

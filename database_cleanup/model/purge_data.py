@@ -82,8 +82,8 @@ class CleanupPurgeWizardData(orm.TransientModel):
                 SELECT id FROM ir_model_data
                 WHERE model = %%s
                 AND res_id IS NOT NULL
-                AND res_id NOT IN (
-                    SELECT id FROM %s)
+                AND NOT EXISTS (
+                    SELECT id FROM %s WHERE id=ir_model_data.res_id)
                 """ % self.pool[model]._table, (model,))
             data_ids += [data_row[0] for data_row in cr.fetchall()]
         data_ids += data_pool.search(

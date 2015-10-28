@@ -26,6 +26,7 @@ from openerp.osv import orm, fields
 class CleanupPurgeLine(orm.AbstractModel):
     """ Abstract base class for the purge wizard lines """
     _name = 'cleanup.purge.line'
+    _order = 'name'
     _columns = {
         'name': fields.char('Name', size=256, readonly=True),
         'purged': fields.boolean('Purged', readonly=True),
@@ -58,6 +59,19 @@ class PurgeWizard(orm.AbstractModel):
                 cr, uid, [line.id for line in wizard.purge_line_ids],
                 context=context)
         return True
+
+    def get_wizard_action(self, cr, uid, context=None):
+        wizard_id = self.create(cr, uid, {}, context=context)
+        return {
+            'type': 'ir.actions.act_window',
+            'views': [(False, 'form')],
+            'res_model': self._name,
+            'res_id': wizard_id,
+            'flags': {
+                'action_buttons': False,
+                'sidebar': False,
+            },
+        }
 
     _columns = {
         'name': fields.char('Name', size=64, readonly=True),
