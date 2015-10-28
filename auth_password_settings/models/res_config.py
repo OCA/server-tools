@@ -19,13 +19,13 @@
 #
 ##############################################################################
 from openerp.osv import (
-    osv,
+    orm,
     fields)
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 
 
-class BaseConfigSettings(osv.osv_memory):
+class BaseConfigSettings(orm.TransientModel):
     _inherit = 'base.config.settings'
 
     _columns = {
@@ -35,20 +35,20 @@ class BaseConfigSettings(osv.osv_memory):
             password should be. Set 0 if dont want to set any limit"),
         'auth_password_has_capital_letter': fields.boolean(
             'Use capital letters',
-            help="Use capital letters to determine the Capital letter that\
-            must be used in the password "),
+            help="check this if you want to enforce the presence of at least \
+            one uppercase letter in the password"),
         'auth_password_has_digit': fields.boolean(
             'Use digits',
-            help="Use digits to determine the digit(numaric letter)\
-            that must be used in the password "),
+            help="check this if you want to enforce the presence of at least \
+            one digit (0...9) in the password"),
         'auth_password_has_special_letter': fields.boolean(
             'Use Special Characters',
-            help="Use special letters to determine the special letter (e.g. #,\
-            $,!,^, &) that must be used in the password"),
+            help="check this if you want to enforce the presence of at least \
+            one 'special' character (e.g. #, , $, !, ^, &...) in the password"),
     }
 
     def get_default_auth_password_has_digit(self, cr, uid, fields, ctx=None):
-        icp = self.pool.get('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         return {
             'auth_password_min_character': safe_eval(
                 icp.get_param(
@@ -82,9 +82,9 @@ class BaseConfigSettings(osv.osv_memory):
 
     def set_auth_password_has_digit(self, cr, uid, ids, context=None):
         config = self.browse(cr, uid, ids[0], context=context)
-        if (config.auth_password_min_character < 5):
+        if config.auth_password_min_character < 5:
             raise osv.except_osv(
-                _('Error!'),
+                _('Error'),
                 _('Password Length should not be less then 5.')
             )
         icp = self.pool.get('ir.config_parameter')

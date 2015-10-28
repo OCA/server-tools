@@ -18,17 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv
+from openerp.osv import orm
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 import string
 
 
-class res_users(osv.osv):
+class res_users(orm.Model):
     _inherit = "res.users"
 
     def _validate_password(self, cr, uid, password, context=None):
-        icp = self.pool.get('ir.config_parameter')
+        icp = self.pool['ir.config_parameter']
         password_rules = []
         config_data = {
             'auth_password_min_character': safe_eval(
@@ -92,22 +92,22 @@ class res_users(osv.osv):
         return problems
 
     def write(self, cr, uid, ids, values, context=None):
-        if('password' in values):
+        if 'password' in values:
             problems = self._validate_password(
                 cr, uid, values['password'], context=context)
-            if(problems):
+            if problems:
                 raise osv.except_osv(
-                    _('Error!'),
+                    _('Error'),
                     _("Password must match following rules\n %s ")
                     % ("\n-- ".join(problems))
                 )
         return super(res_users, self).write(cr, uid, ids, values, context)
 
     def _set_password(self, cr, uid, id, password, context=None):
-        if(password):
+        if password:
             problems = self._validate_password(
                 cr, uid, password, context=context)
-            if(problems):
+            if problems:
                 raise osv.except_osv(
                     _('Error!'),
                     _("Password must match following rules\n %s ")
