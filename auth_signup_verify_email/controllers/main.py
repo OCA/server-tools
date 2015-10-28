@@ -6,8 +6,12 @@ import logging
 from openerp import _, http
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
 
-
 _logger = logging.getLogger(__name__)
+
+try:
+    from validate_email import validate_email
+except ImportError:
+    _logger.debug("Cannot import `validate_email`.")
 
 
 class SignupVerifyEmail(AuthSignupHome):
@@ -23,7 +27,6 @@ class SignupVerifyEmail(AuthSignupHome):
         qcontext = self.get_auth_signup_qcontext()
 
         # Check good format of e-mail
-        from validate_email import validate_email
         if not validate_email(values.get("login", "")):
             qcontext["error"] = _("That does not seem to be an email address.")
             return http.request.render("auth_signup.signup", qcontext)
