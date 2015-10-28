@@ -34,10 +34,10 @@ class res_users(orm.Model):
                                readonly=True),
     }
 
-    def copy(self, cr, uid, rid, default=None, context=None):
+    def copy(self, cr, uid, id, default=None, context=None):
         default = default or {}
         default['sso_key'] = False
-        return super(res_users, self).copy(cr, uid, rid, default, context)
+        return super(res_users, self).copy(cr, uid, id, default, context)
 
     def check_credentials(self, cr, uid, password):
         try:
