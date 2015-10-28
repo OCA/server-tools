@@ -96,7 +96,7 @@ class res_users(orm.Model):
             problems = self._validate_password(
                 cr, uid, values['password'], context=context)
             if problems:
-                raise osv.except_osv(
+                raise orm.except_orm(
                     _('Error'),
                     _("Password must match following rules\n %s ")
                     % ("\n-- ".join(problems))
@@ -108,7 +108,7 @@ class res_users(orm.Model):
             problems = self._validate_password(
                 cr, uid, password, context=context)
             if problems:
-                raise osv.except_osv(
+                raise orm.except_orm(
                     _('Error!'),
                     _("Password must match following rules\n %s ")
                     % ("\n-- ".join(problems))
