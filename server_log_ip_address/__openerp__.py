@@ -22,16 +22,14 @@
     'name': ' Server - Log user IP Address',
     'version': '1.0',
     'category': 'Other',
-    'description': """A module to log the User IP address.
-            The main purpose of this module is to log the failed logins
-(as well as the successfull ones) with the corresponding offending IP Address.
-
-You will also find in the doc directory, the configuration files to deploy
-fail2ban (http://www.fail2ban.org) to protect your Odoo Instance.
-    """,
-    'author': 'Arche TI Inc.',
+    'summary': 'Log the user IP Address - aimed to be used with Fail2ban',
+    'author': 'Arche TI Inc., Odoo Community Association (OCA)',
     'website': 'https://www.archeti.ca',
+    'license': 'AGPL-3',
     'depends': ['base'],
+    'external_dependencies': {
+        'python': [],
+    },
     'installable': True,
     'auto_install': False,
     'demo': [],
