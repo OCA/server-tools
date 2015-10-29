@@ -75,6 +75,8 @@ class AttachMailManually(models.TransientModel):
         result = super(AttachMailManually, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar,
             submenu=submenu)
+        if view_type != 'form':
+            return result
         folder_model = self.env['fetchmail.server.folder']
         folder_id = self.env.context.get('folder_id')
         folder = folder_model.browse([folder_id])
