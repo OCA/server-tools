@@ -103,6 +103,9 @@ class attach_mail_manually(models.TransientModel):
         result = super(attach_mail_manually, self).fields_view_get(
             cr, user, view_id, view_type, context, toolbar, submenu)
 
+        if view_type != 'form':
+            return result
+
         tree = result['fields']['mail_ids']['views']['tree']
         for folder in self.pool['fetchmail.server.folder'].browse(
                 cr, user, [context.get('default_folder_id')], context):
