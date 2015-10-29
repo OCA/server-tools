@@ -91,6 +91,8 @@ class attach_mail_manually(models.TransientModel):
     def attach_mails(self, cr, uid, ids, context=None):
         for this in self.browse(cr, uid, ids, context):
             for mail in this.mail_ids:
+                if not mail.object_id:
+                    continue
                 connection = this.folder_id.server_id.connect()
                 connection.select(this.folder_id.path)
                 result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
