@@ -19,14 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import fields, models
 import logging
+from openerp import fields, models
+from openerp.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 
 class attach_mail_manually(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
+    name = fields.Char()
     folder_id = fields.Many2one(
         'fetchmail.server.folder', 'Folder', readonly=True)
     mail_ids = fields.One2many(
@@ -38,6 +40,8 @@ class attach_mail_manually(models.TransientModel):
             'msgid': msgid,
             'subject': mail_message.get('subject', ''),
             'date': mail_message.get('date', ''),
+            'body': mail_message.get('body', ''),
+            'email_from': mail_message.get('from', ''),
             'object_id': '%s,-1' % folder.model_id.model,
         }
 
@@ -48,6 +52,9 @@ class attach_mail_manually(models.TransientModel):
         defaults = super(attach_mail_manually, self).default_get(
             cr, uid, fields_list, context
         )
+
+        if not fields_list or 'name' in fields_list:
+            defaults['name'] = _('Attach emails manually')
 
         for folder in self.pool.get('fetchmail.server.folder').browse(
                 cr, uid,
@@ -110,10 +117,10 @@ class attach_mail_manually(models.TransientModel):
         result = super(attach_mail_manually, self).fields_view_get(
             cr, user, view_id, view_type, context, toolbar, submenu)
 
-        tree = result['fields']['mail_ids']['views']['tree']
+        form = result['fields']['mail_ids']['views']['form']
         for folder in self.pool['fetchmail.server.folder'].browse(
                 cr, user, [context.get('default_folder_id')], context):
-            tree['fields']['object_id']['selection'] = [
+            form['fields']['object_id']['selection'] = [
                 (folder.model_id.model, folder.model_id.name)
             ]
 
@@ -128,6 +135,8 @@ class attach_mail_manually_mail(models.TransientModel):
     msgid = fields.Char('Message id', readonly=True)
     subject = fields.Char('Subject', readonly=True)
     date = fields.Datetime('Date', readonly=True)
+    email_from = fields.Char('From', readonly=True)
+    body = fields.Html('Body', readonly=True)
     object_id = fields.Reference(
         lambda self: [
             (m.model, m.name)
