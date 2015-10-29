@@ -32,6 +32,15 @@ class attach_mail_manually(models.TransientModel):
     mail_ids = fields.One2many(
         'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails')
 
+    def _prepare_mail(
+            self, cr, uid, folder, msgid, mail_message, context=None):
+        return {
+            'msgid': msgid,
+            'subject': mail_message.get('subject', ''),
+            'date': mail_message.get('date', ''),
+            'object_id': '%s,-1' % folder.model_id.model,
+        }
+
     def default_get(self, cr, uid, fields_list, context=None):
         if context is None:
             context = {}
@@ -64,12 +73,10 @@ class attach_mail_manually(models.TransientModel):
                     save_original=folder.server_id.original,
                     context=context
                 )
-                defaults['mail_ids'].append((0, 0, {
-                    'msgid': msgid,
-                    'subject': mail_message.get('subject', ''),
-                    'date': mail_message.get('date', ''),
-                    'object_id': '%s,-1' % folder.model_id.model,
-                }))
+                defaults['mail_ids'].append(
+                    (0, 0, self._prepare_mail(
+                        cr, uid, folder, msgid, mail_message, context=context))
+                )
             connection.close()
 
         return defaults
