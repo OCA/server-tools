@@ -9,11 +9,21 @@
                 <group>
                     <field name="folder_id" />
                     <field name="mail_ids" nolabel="1" colspan="4">
-                        <tree editable="top" create="0">
+                        <tree create="0">
+                            <field name="email_from" />
                             <field name="subject" />
                             <field name="date" />
                             <field name="object_id" />
                         </tree>
+                        <form>
+                            <group>
+                                <field name="email_from" />
+                                <field name="subject" />
+                                <field name="date" />
+                                <field name="object_id" />
+                            </group>
+                            <field name="body" />
+                        </form>
                     </field>
                 </group>
                 <footer>

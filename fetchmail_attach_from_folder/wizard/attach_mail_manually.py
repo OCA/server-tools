@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# Copyright 2013-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 _logger = logging.getLogger(__name__)
@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 class AttachMailManually(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
+    name = fields.Char()
     folder_id = fields.Many2one(
         'fetchmail.server.folder', 'Folder', readonly=True)
     mail_ids = fields.One2many(
@@ -23,11 +24,15 @@ class AttachMailManually(models.TransientModel):
             'msgid': msgid,
             'subject': mail_message.get('subject', ''),
             'date': mail_message.get('date', ''),
+            'body': mail_message.get('body', ''),
+            'email_from': mail_message.get('from', ''),
             'object_id': '%s,-1' % folder.model_id.model}
 
     @api.model
     def default_get(self, fields_list):
         defaults = super(AttachMailManually, self).default_get(fields_list)
+        if not fields_list or 'name' in fields_list:
+            defaults['name'] = _('Attach emails manually')
         defaults['mail_ids'] = []
         folder_model = self.env['fetchmail.server.folder']
         folder_id = self.env.context.get('folder_id')
@@ -73,8 +78,8 @@ class AttachMailManually(models.TransientModel):
         folder_model = self.env['fetchmail.server.folder']
         folder_id = self.env.context.get('folder_id')
         folder = folder_model.browse([folder_id])
-        tree = result['fields']['mail_ids']['views']['tree']
-        tree['fields']['object_id']['selection'] = [
+        form = result['fields']['mail_ids']['views']['form']
+        form['fields']['object_id']['selection'] = [
             (folder.model_id.model, folder.model_id.name)]
         return result
 
@@ -87,6 +92,8 @@ class AttachMailManuallyMail(models.TransientModel):
     msgid = fields.Char('Message id', readonly=True)
     subject = fields.Char('Subject', readonly=True)
     date = fields.Datetime('Date', readonly=True)
+    email_from = fields.Char('From', readonly=True)
+    body = fields.Html('Body', readonly=True)
     object_id = fields.Reference(
         lambda self: [
             (m.model, m.name)
