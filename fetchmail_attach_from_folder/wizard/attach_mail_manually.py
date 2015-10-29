@@ -18,6 +18,14 @@ class AttachMailManually(models.TransientModel):
         'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails')
 
     @api.model
+    def _prepare_mail(self, folder, msgid, mail_message):
+        return {
+            'msgid': msgid,
+            'subject': mail_message.get('subject', ''),
+            'date': mail_message.get('date', ''),
+            'object_id': '%s,-1' % folder.model_id.model}
+
+    @api.model
     def default_get(self, fields_list):
         defaults = super(AttachMailManually, self).default_get(fields_list)
         defaults['mail_ids'] = []
@@ -31,11 +39,8 @@ class AttachMailManually(models.TransientModel):
         msgids = folder.get_msgids(connection, criteria)
         for msgid in msgids[0].split():
             mail_message, message_org = folder.fetch_msg(connection, msgid)
-            defaults['mail_ids'].append((0, 0, {
-                'msgid': msgid,
-                'subject': mail_message.get('subject', ''),
-                'date': mail_message.get('date', ''),
-                'object_id': '%s,-1' % folder.model_id.model}))
+            defaults['mail_ids'].append(
+                (0, 0, self._prepare_mail(folder, msgid, mail_message)))
         connection.close()
         return defaults
 
