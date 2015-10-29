@@ -35,7 +35,7 @@ class res_users(orm.Model):
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
-        default = default or {}
+        default = default = {} if default is None else default
         default['sso_key'] = False
         return super(res_users, self).copy(cr, uid, id, default, context)
 
