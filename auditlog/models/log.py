@@ -36,6 +36,10 @@ class auditlog_log(models.Model):
     method = fields.Char(u"Method", size=64)
     line_ids = fields.One2many(
         'auditlog.log.line', 'log_id', string=u"Fields updated")
+    http_session_id = fields.Many2one(
+        'auditlog.http.session', string=u"Session")
+    http_request_id = fields.Many2one(
+        'auditlog.http.request', string=u"HTTP Request")
 
 
 class auditlog_log_line(models.Model):

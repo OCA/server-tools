@@ -117,6 +117,10 @@
                                 <field name="name" readonly="1"/>
                             </group>
                         </group>
+                        <group string="HTTP Context">
+                            <field name="http_session_id"/>
+                            <field name="http_request_id"/>
+                        </group>
                         <group string="Fields updated">
                             <field name="line_ids" readonly="1" nolabel="1">
                                 <form string="Log - Field updated">
@@ -182,6 +186,12 @@
                         <filter name="group_by_create_date"
                             string="Date"
                             domain="[]" context="{'group_by':'create_date'}"/>
+                        <filter name="group_by_http_session"
+                            string="User session"
+                            domain="[]" context="{'group_by':'http_session_id'}"/>
+                        <filter name="group_by_http_request"
+                            string="HTTP Request"
+                            domain="[]" context="{'group_by':'http_request_id'}"/>
                     </group>
                 </search>
             </field>
