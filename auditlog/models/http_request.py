@@ -46,6 +46,8 @@ class AuditlogHTTPRequest(models.Model):
         first call.
         If no HTTP request is available, returns `False`.
         """
+        if not request:
+            return False
         http_session_model = self.env['auditlog.http.session']
         httprequest = request.httprequest
         if httprequest:
