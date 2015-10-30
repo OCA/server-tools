@@ -6,10 +6,10 @@
 Verify email at signup
 ======================
 
-This module was written to extend the functionality of public sign up to force
-users to provide a valid email address.
+This module extends the functionality of public sign up, and forces users to
+provide a valid email address.
 
-To reinforce this requirement, the user will not need to provide a password at
+To achieve this requirement, the user does not need to provide a password at
 sign up, but when logging in later for the first time.
 
 Installation
@@ -37,7 +37,7 @@ To use this module, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/186/8.0
+   :target: https://runbot.odoo-community.org/runbot/149/8.0
 
 Bug Tracker
 ===========
