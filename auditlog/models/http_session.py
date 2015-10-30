@@ -42,6 +42,8 @@ class AuditlogtHTTPSession(models.Model):
         first call.
         If no HTTP user session is available, returns `False`.
         """
+        if not request:
+            return False
         httpsession = request.httpsession
         if httpsession:
             existing_session = self.search(
