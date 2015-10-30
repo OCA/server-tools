@@ -306,6 +306,8 @@ class auditlog_rule(models.Model):
         if new_values is None:
             new_values = EMPTY_DICT
         log_model = self.env['auditlog.log']
+        http_request_model = self.env['auditlog.http.request']
+        http_session_model = self.env['auditlog.http.session']
         for res_id in res_ids:
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
@@ -316,6 +318,8 @@ class auditlog_rule(models.Model):
                 'res_id': res_id,
                 'method': method,
                 'user_id': uid,
+                'http_request_id': http_request_model.current_http_request(),
+                'http_session_id': http_session_model.current_http_session(),
             }
             vals.update(additional_log_values or {})
             log = log_model.create(vals)
