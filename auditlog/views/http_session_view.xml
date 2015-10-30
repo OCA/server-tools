@@ -5,7 +5,6 @@
         <record id="view_auditlog_http_session_form" model="ir.ui.view">
             <field name="name">auditlog.http.session.form</field>
             <field name="model">auditlog.http.session</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="User session">
                     <sheet>
@@ -25,7 +24,6 @@
         <record id="view_auditlog_http_session_tree" model="ir.ui.view">
             <field name="name">auditlog.http.session.tree</field>
             <field name="model">auditlog.http.session</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="User sessions">
                     <field name="user_id"/>
@@ -38,7 +36,6 @@
         <record id="view_auditlog_http_session_search" model="ir.ui.view">
             <field name="name">auditlog.http.session.search</field>
             <field name="model">auditlog.http.session</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="User sessions">
                     <field name="user_id"/>
