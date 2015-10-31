@@ -10,8 +10,8 @@
                     <sheet>
                         <group string="User session">
                             <field name="user_id"/>
-                            <field name="name"/>
                             <field name="create_date"/>
+                            <field name="name"/>
                         </group>
                         <group string="HTTP Requests">
                             <field name="http_request_ids" nolabel="1"/>
@@ -27,8 +27,8 @@
             <field name="arch" type="xml">
                 <tree string="User sessions">
                     <field name="user_id"/>
-                    <field name="name"/>
                     <field name="create_date"/>
+                    <field name="name"/>
                 </tree>
             </field>
         </record>

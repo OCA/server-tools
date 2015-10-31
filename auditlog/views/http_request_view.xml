@@ -12,11 +12,8 @@
                             <field name="root_url"/>
                             <field name="name"/>
                             <field name="create_date"/>
-                        </group>
-                        <group string="User session">
-                            <field name="user_id"/>
-                            <field name="http_session_id"/>
                             <field name="user_context"/>
+                            <field name="http_session_id"/>
                         </group>
                         <group string="Logs">
                             <field name="log_ids" nolabel="1"/>
@@ -33,7 +30,6 @@
                 <tree string="HTTP Requests">
                     <field name="name"/>
                     <field name="create_date"/>
-                    <field name="user_id"/>
                     <field name="http_session_id"/>
                 </tree>
             </field>
