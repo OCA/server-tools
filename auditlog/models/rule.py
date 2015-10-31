@@ -58,7 +58,7 @@ class DictDiffer(object):
                    if self.past_dict[o] == self.current_dict[o])
 
 
-class auditlog_rule(models.Model):
+class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
@@ -110,7 +110,7 @@ class auditlog_rule(models.Model):
 
     def _register_hook(self, cr, ids=None):
         """Get all rules and apply them to log method calls."""
-        super(auditlog_rule, self)._register_hook(cr)
+        super(AuditlogRule, self)._register_hook(cr)
         if not hasattr(self.pool, '_auditlog_field_cache'):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, '_auditlog_model_cache'):
@@ -182,7 +182,7 @@ class auditlog_rule(models.Model):
     # errors occurs with the `_register_hook()` BaseModel method.
     def create(self, cr, uid, vals, context=None):
         """Update the registry when a new rule is created."""
-        res_id = super(auditlog_rule, self).create(
+        res_id = super(AuditlogRule, self).create(
             cr, uid, vals, context=context)
         if self._register_hook(cr, [res_id]):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
@@ -194,7 +194,7 @@ class auditlog_rule(models.Model):
         """Update the registry when existing rules are updated."""
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(auditlog_rule, self).write(cr, uid, ids, vals, context=context)
+        super(AuditlogRule, self).write(cr, uid, ids, vals, context=context)
         if self._register_hook(cr, ids):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
         return True
@@ -203,7 +203,7 @@ class auditlog_rule(models.Model):
     def unlink(self):
         """Unsubscribe rules before removing them."""
         self.unsubscribe()
-        return super(auditlog_rule, self).unlink()
+        return super(AuditlogRule, self).unlink()
 
     def _make_create(self):
         """Instanciate a create method that log its calls."""
