@@ -27,7 +27,9 @@ class AuditlogHTTPRequest(models.Model):
     _name = 'auditlog.http.request'
     _description = u"Auditlog - HTTP request log"
     _order = "create_date DESC"
+    _rec_name = 'display_name'
 
+    display_name = fields.Char(u"Name", compute="_display_name")
     name = fields.Char(u"Path")
     root_url = fields.Char(u"Root URL")
     user_id = fields.Many2one(
@@ -37,6 +39,16 @@ class AuditlogHTTPRequest(models.Model):
     user_context = fields.Char(u"Context")
     log_ids = fields.One2many(
         'auditlog.log', 'http_request_id', string=u"Logs")
+
+    @api.multi
+    def _display_name(self):
+        for httprequest in self:
+            create_date = fields.Datetime.from_string(httprequest.create_date)
+            tz_create_date = fields.Datetime.context_timestamp(
+                httprequest, create_date)
+            httprequest.display_name = u"%s (%s)" % (
+                httprequest.name or '?',
+                fields.Datetime.to_string(tz_create_date))
 
     @api.model
     def current_http_request(self):

@@ -27,12 +27,24 @@ class AuditlogtHTTPSession(models.Model):
     _name = 'auditlog.http.session'
     _description = u"Auditlog - HTTP User session log"
     _order = "create_date DESC"
+    _rec_name = 'display_name'
 
+    display_name = fields.Char(u"Name", compute="_display_name")
     name = fields.Char(u"Session ID")
     user_id = fields.Many2one(
         'res.users', string=u"User")
     http_request_ids = fields.One2many(
         'auditlog.http.request', 'http_session_id', string=u"HTTP Requests")
+
+    @api.multi
+    def _display_name(self):
+        for httpsession in self:
+            create_date = fields.Datetime.from_string(httpsession.create_date)
+            tz_create_date = fields.Datetime.context_timestamp(
+                httpsession, create_date)
+            httpsession.display_name = u"%s (%s)" % (
+                httpsession.user_id and httpsession.user_id.name or '?',
+                fields.Datetime.to_string(tz_create_date))
 
     @api.model
     def current_http_session(self):
