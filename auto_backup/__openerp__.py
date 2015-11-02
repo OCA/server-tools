@@ -22,7 +22,7 @@
 
 {
     "name": "Database Auto-Backup",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": (
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Odoo Community Association (OCA)"
@@ -30,7 +30,7 @@
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
     "summary": "Backups data base",
-    "depends": ['base', 'email_template'],
+    "depends": ['email_template'],
     "demo": [],
     "data": [
         "view/bkp_conf_view.xml",
@@ -40,4 +40,3 @@
     "active": False,
     "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
