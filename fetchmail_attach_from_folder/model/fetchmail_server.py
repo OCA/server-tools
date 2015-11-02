@@ -70,7 +70,7 @@ class fetchmail_server(models.Model):
 
             connection = this.connect()
             for folder in this.folder_ids.filtered('active'):
-                this.with_context(safe_eval(folder.context or {}))\
+                this.with_context(safe_eval(folder.context or '{}'))\
                     .handle_folder(connection, folder)
             connection.close()
 
@@ -221,13 +221,13 @@ class fetchmail_server(models.Model):
             connection.select()
             for folder in this.folder_ids.filtered('active'):
                 try:
-                    folder_context = safe_eval(folder.context or {})
+                    folder_context = safe_eval(folder.context or '{}')
                 except Exception, e:
                     raise exceptions.ValidationError(
-                        _('Invalid context \"%s\": %s') % (folder.context, e))
+                        _('Invalid context "%s": %s') % (folder.context, e))
                 if not isinstance(folder_context, dict):
                     raise exceptions.ValidationError(
-                        _('Context \"%s\" is not a dictionary.') %
+                        _('Context "%s" is not a dictionary.') %
                         folder.context)
                 if connection.select(folder.path)[0] != 'OK':
                     raise exceptions.ValidationError(
