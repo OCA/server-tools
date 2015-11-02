@@ -25,16 +25,15 @@ import time
 import datetime
 import base64
 import re
-try:
-    import pysftp
-except ImportError:
-    pass
-
 from openerp import models, fields, api, _
-from openerp.exceptions import except_orm, Warning
+from openerp.exceptions import except_orm, Warning as UserError
 from openerp import tools
 import logging
 _logger = logging.getLogger(__name__)
+try:
+    import pysftp
+except ImportError:
+    _logger.debug('Can not import pysftp')
 
 
 def execute(connector, method, *args):
@@ -238,7 +237,7 @@ class db_backup(models.Model):
                     messageContent + "%s") %
                 tools.ustr(e))
         else:
-            raise Warning(_(messageTitle), _(messageContent))
+            raise UserError(_(messageTitle), _(messageContent))
 
     @api.model
     def schedule_backup(self):
@@ -261,13 +260,12 @@ class db_backup(models.Model):
                     bkp = ''
                     bkp = execute(
                         conn, 'dump', rec.adminpassword, rec.name)
-                except:
+                except Exception, e:
                     _logger.info(
                         _(
-                            "Couldn't backup database %s. "
-                            "Bad database administrator"
-                            "password for server running at http://%s:%s"
-                        ) % (rec.name, rec.host, rec.port))
+                            "Autobackup Couldn't backup database %s. :" +
+                            str(e))
+                    )
                     return False
                 bkp = base64.decodestring(bkp)
                 fp = open(file_path, 'wb')
