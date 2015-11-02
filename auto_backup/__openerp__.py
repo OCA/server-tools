@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -27,6 +27,7 @@
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Odoo Community Association (OCA)"
     ),
+    'license': "AGPL-3",
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
     "summary": "Backups data base",
@@ -37,6 +38,6 @@
         "data/backup_data.xml",
         "security/ir.model.access.csv"
     ],
-    "active": False,
+    "application": True,
     "installable": True
 }
