@@ -1,4 +1,4 @@
-#  -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #     OpenERP, Open Source Management Solution
 #     Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
@@ -45,7 +45,7 @@ def execute(connector, method, *args):
     return res
 
 
-class db_backup(models.Model):
+class DbBackup(models.Model):
     _name = 'db.backup'
 
     def get_connection_uri(self, host, port, secure=False):
