@@ -28,6 +28,7 @@ from openerp import exceptions
 from openerp.osv.orm import Model
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
+import openerp.tools.config as config
 
 
 class res_users(Model):
@@ -118,6 +119,7 @@ class res_users(Model):
                     self._send_email_same_password(cr, login)
                 cr.commit()
             except exceptions.AccessDenied:
+                self._send_email_same_password(cr, login)
                 pass
             finally:
                 cr.close()
@@ -132,6 +134,13 @@ password."""
                     cr, uid, password)
                 return True
             except exceptions.AccessDenied:
-                return self.check_credentials(cr, SUPERUSER_ID, password)
+                icp_obj = self.pool['ir.config_parameter']
+                allow_db_pwd = safe_eval(icp_obj.get_param(
+                    cr, SUPERUSER_ID, 'auth_admin_passkey.db_pwd', 'False'))
+                if allow_db_pwd and password and\
+                        password == config['db_password']:
+                    return True
+                else:
+                    return self.check_credentials(cr, SUPERUSER_ID, password)
         else:
             return super(res_users, self).check_credentials(cr, uid, password)

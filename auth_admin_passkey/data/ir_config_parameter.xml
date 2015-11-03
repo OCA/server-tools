@@ -30,5 +30,10 @@
             <field name="value">True</field>
         </record>
 
+        <record id="db_pwd" model="ir.config_parameter">
+            <field name="key">auth_admin_passkey.db_pwd</field>
+            <field name="value">False</field>
+        </record>
+
     </data>
 </openerp>

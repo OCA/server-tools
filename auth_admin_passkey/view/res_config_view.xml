@@ -37,6 +37,10 @@
                                 <field name="auth_admin_passkey_send_to_user" class="oe_inline"/>
                                 <label for="auth_admin_passkey_send_to_user"/>
                             </div>
+                            <div>
+                                <field name="auth_admin_passkey_db_pwd" class="oe_inline"/>
+                                <label for="auth_admin_passkey_db_pwd"/>
+                            </div>
                         </div>
                     </group>
                 </xpath>

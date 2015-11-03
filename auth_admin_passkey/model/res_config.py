@@ -59,6 +59,20 @@ class base_config_settings(TransientModel):
             cr, uid, 'auth_admin_passkey.send_to_user',
             repr(config.auth_admin_passkey_send_to_user))
 
+    def get_auth_admin_passkey_db_pwd(self, cr, uid, ids, context=None):
+        icp = self.pool['ir.config_parameter']
+        return {
+            'auth_admin_passkey_db_pwd': safe_eval(icp.get_param(
+                cr, uid, 'auth_admin_passkey.db_pwd', 'False')),
+        }
+
+    def set_auth_admin_passkey_db_pwd(self, cr, uid, ids, context=None):
+        config = self.browse(cr, uid, ids[0], context=context)
+        icp = self.pool['ir.config_parameter']
+        icp.set_param(
+            cr, uid, 'auth_admin_passkey.db_pwd',
+            repr(config.auth_admin_passkey_db_pwd))
+
     # Columns Section
     _columns = {
         'auth_admin_passkey_send_to_admin': fields.boolean(
@@ -72,5 +86,10 @@ class base_config_settings(TransientModel):
             help="""When the administrator use his password to login in """
             """with a different account, OpenERP will send an email """
             """to the account user.""",
+        ),
+        'auth_admin_passkey_db_pwd': fields.boolean(
+            string='Allow authentication via database password',
+            help="""Allow to the database password (db_password in config) """
+            """to be used as the admin password to log as any user """,
         ),
     }
