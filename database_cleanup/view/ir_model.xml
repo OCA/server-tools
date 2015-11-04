@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stat_models_tree" model="ir.ui.view">
+            <field name="name">ir.model tree stats</field>
+            <field name="model">ir.model</field>
+	    <field name="inherit_id" ref="base.view_model_tree"/>
+            <field name="arch" type="xml">
+		    <field name="osv_memory" position="before">
+			    <field name="stat_table"/>
+			    <field name="stat_type"/>
+			    <field name="stat_bytes"/>
+			    <field name="stat_count"/>
+			    <field name="stat_count_data"/>
+		    </field>
+            </field>
+        </record>
+
+        <record id="stat_models_form" model="ir.ui.view">
+            <field name="name">ir.model form stats</field>
+            <field name="model">ir.model</field>
+	    <field name="inherit_id" ref="base.view_model_form"/>
+            <field name="arch" type="xml">
+		    <notebook position="inside">
+			    <page string="Stats">
+				    <group>
+					    <field name="stat_table"/>
+					    <field name="stat_type"/>
+					    <field name="stat_bytes"/>
+					    <field name="stat_count"/>
+					    <field name="stat_count_data"/>
+				    </group>
+			    </page>
+		    </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>

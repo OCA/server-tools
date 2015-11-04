@@ -32,6 +32,8 @@
         'view/purge_columns.xml',
         'view/purge_tables.xml',
         'view/purge_data.xml',
+        'view/ir_model.xml',
+        'view/ir_module_module.xml',
         'view/menu.xml',
         ],
     'description': """\
