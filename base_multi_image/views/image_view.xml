@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<record id="image_form_view" model="ir.ui.view">
+    <field name="name">Multi image form</field>
+    <field name="model">base_multi_image.image</field>
+    <field name="arch" type="xml">
+        <form string="Image">
+            <group>
+                <group
+                    string="Owner"
+                    attrs="{
+                        'invisible': [
+                            ('show_technical', '=', False),
+                        ],
+                    }">
+                    <field name="show_technical" invisible="True"/>
+                    <field name="owner_model"/>
+                    <field name="owner_id"/>
+                </group>
+                <group string="Name">
+                    <field name="name"/>
+                    <field name="storage"/>
+                    <field name="extension"/>
+                </group>
+            </group>
+            <group>
+                <group string="Options">
+                    <field
+                        name="url"
+                        attrs="{
+                            'invisible': [('storage', '!=', 'url')],
+                            'required': [('storage', '=', 'url')],
+                        }"
+                        widget="url"/>
+                    <field
+                        name="path"
+                        attrs="{
+                            'invisible': [('storage', '!=', 'file')],
+                            'required': [('storage', '=', 'file')],
+                        }"/>
+                    <field name="filename" invisible="1"/>
+                    <field
+                        name="file_db_store"
+                        attrs="{
+                            'invisible': [('storage', '!=', 'db')],
+                            'required': [('storage', '=', 'db')],
+                        }"
+                        filename="filename"/>
+                </group>
+                <group string="Preview">
+                    <field name="image_medium"
+                           widget="image"
+                           readonly="True"
+                           nolabel="1" />
+                </group>
+            </group>
+            <group string="Comments">
+                <field name="comments" nolabel="1" />
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="image_tree_view" model="ir.ui.view">
+    <field name="name">Multi image tree</field>
+    <field name="model">base_multi_image.image</field>
+    <field name="arch" type="xml">
+        <tree string="Images">
+            <field name="name"/>
+            <field name="storage"/>
+            <field name="owner_model"/>
+            <field name="owner_id"/>
+        </tree>
+    </field>
+</record>
+
+<record id="image_kanban_view" model="ir.ui.view">
+    <field name="name">Product multi image kanban</field>
+    <field name="model">base_multi_image.image</field>
+    <field name="arch" type="xml">
+        <kanban string="Product Images">
+            <field name="name"/>
+            <field name="storage"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div style="position: relative">
+                        <a t-if="! read_only_mode"
+                           type="delete"
+                           style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                        <div class="oe_module_vignette">
+                            <a type="open">
+                                <img
+                                    t-att-src="kanban_image(
+                                        'base_multi_image.image',
+                                        'image_small',
+                                        record.id.value)"
+                                    class="oe_kanban_image"/>
+                            </a>
+                            <div class="oe_module_desc">
+                                <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+                                    <table class="oe_kanban_table">
+                                        <tr>
+                                            <td class="oe_kanban_title1"
+                                                align="left"
+                                                valign="middle">
+                                                <h4>
+                                                    <a type="open">
+                                                        <field name="name"/>
+                                                    </a>
+                                                </h4>
+                                                <field name="storage"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+<record id="image_action" model="ir.actions.act_window">
+    <field name="name">Multi images</field>
+    <field name="res_model">base_multi_image.image</field>
+    <field name="view_mode">kanban,tree,form</field>
+</record>
+
+<menuitem
+    id="image_menu"
+    action="image_action"
+    parent="base.menu_config"/>
+
+</data>
+</openerp>
