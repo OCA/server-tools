@@ -6,7 +6,7 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="auth_ldap.company_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//form[@string='LDAP Configuration']" position="inside">
+                <xpath name="populate_ldap" expr="//field[@name='ldaps']/form" position="inside">
                     <separator string="Populate user database" colspan="4"/>
                     <button name="populate_wizard"
                             string="Populate"
