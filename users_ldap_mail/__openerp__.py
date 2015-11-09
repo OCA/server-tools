@@ -38,5 +38,5 @@ AD also supports the "mail" attribute, so it can be mapped into OpenERP.
     'data': [
         'users_ldap_view.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
