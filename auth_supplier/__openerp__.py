@@ -14,8 +14,8 @@
         'security/auth_supplier_security.xml',
         'views/auth_supplier_view.xml',
     ],
-    'author': 'Incaser Informatica S.L., '
-              'Antiun Ingeniería S.L., '
+    'author': 'Antiun Ingeniería S.L., '
+              'Incaser Informatica S.L., '
               'Odoo Community Association (OCA)',
     'website': 'http://www.incaser.es',
     'license': 'AGPL-3',
