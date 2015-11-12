@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Add Javascript -->
+<template id="assets_backend"
+          inherit_id="web.assets_backend"
+          name="Add technical name to field items"
+          priority="20">
+    <xpath expr="." position="inside">
+        <script type="text/javascript"
+                src="/base_exports_manager/static/src/js/main.js"/>
+    </xpath>
+</template>
+
+</data>
+</openerp>
