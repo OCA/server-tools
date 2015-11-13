@@ -6,7 +6,7 @@
 Reset User Access Right
 =======================
 
-This module adds a button on users form view to reset groups access right.
+This module add a button to reset the user's access rights to the minimum configuration.
 
 Installation
 ============
