@@ -45,6 +45,7 @@
                                             <field name="msg_state" />
                                             <field name="model_order" attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}" placeholder="name asc,type desc" />
                                             <field name="domain" placeholder="[('state', '=', 'open')]" />
+                                            <field name="context" placeholder="{'default_supplier': True}" />
                                         </group>
                                     </group>
                                 </form>

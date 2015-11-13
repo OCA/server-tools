@@ -86,6 +86,10 @@ class fetchmail_server_folder(models.Model):
     domain = fields.Char(
         'Domain',
         help='Fill in a search filter to narrow down objects to match')
+    context = fields.Char(
+        'Context',
+        help=('Context that is passed during mail processing. Can be used to '
+              'set default values.'))
     msg_state = fields.Selection(
         [
             ('sent', 'Sent'),
