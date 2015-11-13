@@ -30,8 +30,9 @@ from openerp.tools import SUPERUSER_ID
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    @api.one
+    @api.multi
     def reset_access_right(self):
+        self.ensure_one()
         if self.id == SUPERUSER_ID:
             raise exceptions.Warning(_("It's not possible to reset "
                                        "access right for Admin"))
