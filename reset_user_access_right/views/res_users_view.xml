@@ -7,7 +7,8 @@
             <field name="inherit_id" ref="base.view_users_form" />
             <field name="arch" type="xml">
                 <xpath expr="//group[@string='Allowed Companies']" position="before">
-                    <button name="reset_access_right" string="Reset Access Right" type="object" />
+                    <button name="reset_access_right" string="Reset Access Right" type="object"
+                        confirm="This will reset the user's access rights to the minimum configuration. Are you sure?"/>
                 </xpath>
             </field>
        </record>
