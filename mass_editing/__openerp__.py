@@ -21,7 +21,7 @@
 ##############################################################################
 {
     "name": "Mass Editing",
-    "version": "8.0.1.3.0",
+    "version": "9.0.1.1.0",
     "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",
@@ -45,7 +45,7 @@
         "security/ir.model.access.csv",
         'views/mass_editing_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'application': True,
     'auto_install': False,
 }
