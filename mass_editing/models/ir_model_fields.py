@@ -29,7 +29,7 @@ class IrModelFields(models.Model):
     _inherit = 'ir.model.fields'
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):        
+    def search(self, args, offset=0, limit=0, order=None, count=False): 
         model_domain = []
         for domain in args:
             if (len(domain) > 2 and
@@ -41,9 +41,5 @@ class IrModelFields(models.Model):
             else:
                 model_domain.append(domain)
 
-        _logger.debug("DOMAIN TO SEARCH")
-        _logger.debug(model_domain)
-        _logger.debug(args)
         return super(IrModelFields, self).search(model_domain, offset=offset, 
-                        limit=limit, order=order, count=count
-        )    
+                            limit=limit, order=order, count=count )    

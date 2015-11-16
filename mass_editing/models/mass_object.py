@@ -54,11 +54,10 @@ class MassObject(models.Model):
 
     @api.onchange('model_id')
     def onchange_model_id(self):
-#        if context is None:
-#            context = {}
         if not self.model_id:
-            return {'value': {'model_ids': [(6, 0, [])]}}
-        model_ids = [self.model_id]
+            self.model_ids = [(6, 0, [])]
+            return self
+        model_ids = [self.model_id.id]
         model_obj = self.env['ir.model']
         _logger.debug("MODEL")
         _logger.debug(model_obj.browse(self.model_id.id).model)
@@ -67,8 +66,10 @@ class MassObject(models.Model):
         if active_model_obj._inherits:
             for key, val in active_model_obj._inherits.items():
                 found_model_ids = model_obj.search([('model', '=', key)])
-                model_ids += found_model_ids
-        return {'value': {'model_ids': [(6, 0, model_ids)]}}
+                _logger.debug("found_model_ids" )
+                _logger.debug(found_model_ids)
+                model_ids += [m.id for m in found_model_ids]
+        self.model_ids = [(6, 0, model_ids)]
 
     @api.multi
     def create_action(self):
@@ -107,24 +108,24 @@ class MassObject(models.Model):
             })
         return True
 
-    @api.one
+    @api.multi
     def unlink_action(self):
-#        for template in self.browse(cr, uid, ids, context=context):
-        template = self
-        try:
-            if template.ref_ir_act_window:
-                act_window_obj = self.pool['ir.actions.act_window']
-                act_window_obj.sudo().unlink([template.ref_ir_act_window.id])
-            if template.ref_ir_value:
-                ir_values_obj = self.pool['ir.values']
-                ir_values_obj.sudo().unlink(template.ref_ir_value.id)
-        except:
-            raise orm.except_orm(
-                _("Warning"),
-                _("Deletion of the action record failed."))
+        for template in self:
+            template = self
+            try:
+                if template.ref_ir_act_window:
+                    act_window_obj = self.pool['ir.actions.act_window']
+                    act_window_obj.sudo().unlink([template.ref_ir_act_window.id])
+                if template.ref_ir_value:
+                    ir_values_obj = self.pool['ir.values']
+                    ir_values_obj.sudo().unlink(template.ref_ir_value.id)
+            except:
+                raise orm.except_orm(
+                    _("Warning"),
+                    _("Deletion of the action record failed."))
         return True
     
-    @api.one
+    @api.multi
     def unlink(self):
         self.unlink_action()
         return super(MassObject, self).unlink()
