@@ -25,6 +25,7 @@
     "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@gmail.com>",
+        "Florent Thomas <contact@mind-and-go.com>"
     ],
     "category": "Tools",
     "website": "http://www.serpentcs.com",

@@ -90,7 +90,7 @@ class MassObject(models.Model):
                     'view_mode': 'form,tree',
                     'target': 'new',
                     'auto_refresh': 1,
-                })
+                }).id
             vals['ref_ir_value'] = ir_values_obj.sudo().create(
                 {
                     'name': button_name,
@@ -100,7 +100,9 @@ class MassObject(models.Model):
                         "ir.actions.act_window," +
                         str(vals['ref_ir_act_window'])),
                     'object': True,
-                })
+                }).id
+        _logger.debug("VALS")
+        _logger.debug(vals)
         self.write(
             {
                 'ref_ir_act_window': vals.get('ref_ir_act_window', False),
