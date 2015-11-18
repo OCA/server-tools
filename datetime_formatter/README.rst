@@ -33,8 +33,7 @@ If you are a developer, to use this module, you need to:
 
     formatted_string = record.lang.datetime_formatter(record.datetime_field)
 
-* Read :meth:`~openerp.addons.datetime_formatter.models.ResLang
-  .datetime_formatter` docstring to know more about its usage.
+* ``models.ResLang.datetime_formatter`` docstring explains its usage.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
