@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_mail
+# 
+# Translators:
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-19 01:04+0000\n"
+"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: users_ldap_mail
+#: help:res.company.ldap,name_attribute:0
+msgid ""
+"By default 'cn' is used. For ActiveDirectory you might use 'displayName' "
+"instead."
+msgstr "Por padrão 'cn' é usado. Para ActiveDirectory você pode usar 'displayName'"
+
+#. module: users_ldap_mail
+#: field:res.company.ldap,mail_attribute:0
+msgid "E-mail attribute"
+msgstr "Atributo E-mail"
+
+#. module: users_ldap_mail
+#: help:res.company.ldap,mail_attribute:0
+msgid "LDAP attribute to use to retrieve em-mail address."
+msgstr "Use o atributo LDAP para recuperar o endereço de e-mail"
+
+#. module: users_ldap_mail
+#: field:res.company.ldap,name_attribute:0
+msgid "Name Attribute"
+msgstr "Atributo Nome"

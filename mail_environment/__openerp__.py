@@ -21,7 +21,7 @@
 
 {
     'name': 'Server env config for mail + fetchmail',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Tools',
     'description': """
 Extend mail and fetch mail with server environment module.
@@ -64,9 +64,8 @@ password = openerp
                 'server_environment',
                 'server_environment_files',
                 ],
-    'init_xml': [],
-    'update_xml': ['mail_view.xml'],
-    'demo_xml': [],
+    'data': ['mail_view.xml'],
+    'demo': [],
     'installable': True,
     'active': False,
 }

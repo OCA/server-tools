@@ -1,0 +1,60 @@
+{% extends "header.template" %}
+{% block body %}
+
+{
+    'name': '{{ prototype.human_name }}',
+    'version': '{{ prototype.version }}',
+    'author': '{{ prototype.author }}',
+    'maintainer': '{{ prototype.maintainer }}',
+    'website': '{{ prototype.website }}',
+    'license': '{{ prototype.licence }}',
+
+    # Categories can be used to filter modules in modules listing
+    # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml # noqa
+    # for the full list
+    'category': '{{ prototype.with_context({}).category_id.name }}',{# In english please! #}
+    'summary': '{{ prototype.summary }}',
+    'description': """
+{{ prototype.description }}
+
+* Module exported by the Module Prototyper module for version 8.0.
+* If you have any questions, please contact Savoir-faire Linux
+(support@savoirfairelinux.com)
+""",
+
+    # any module necessary for this one to work correctly
+    'depends': [
+        {% for dependency in prototype.dependency_ids %}
+            '{{ dependency.name }}',
+        {% endfor %}
+    ],
+    'external_dependencies': {
+        'python': [],
+    },
+
+    # always loaded
+    'data': [
+        {% for data_file in data_files %}
+            '{{ data_file }}',
+        {% endfor %}
+    ],
+    # only loaded in demonstration mode
+    'demo': [
+        {% for demo_file in prototype.demo_ids %}
+            '{{ demo_file.name }}',
+        {% endfor %}
+    ],
+
+    # used for Javascript Web CLient Testing with QUnit / PhantomJS
+    # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client  # noqa
+    'js': [],
+    'css': [],
+    'qweb': [],
+
+    'installable': True,
+    # Install this module automatically if all dependency have been previously
+    # and independently installed.  Used for synergetic or glue modules.
+    'auto_install': {{ prototype.auto_install }},
+    'application': {{ prototype.application }},
+}
+{% endblock %}

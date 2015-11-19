@@ -1,21 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* auditlog
-#
+# * auditlog
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 13:33+0000\n"
-"PO-Revision-Date: 2015-04-15 17:30+0100\n"
-"Last-Translator: Martin Schmid <m.schmid@equitania.de>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 13:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: \n"
 "Language: de\n"
-"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
@@ -55,9 +55,9 @@ msgid "Created on"
 msgstr "Erstellt am:"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_description:0
-msgid "Description"
-msgstr "Beschreibung"
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "Date"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -206,22 +206,30 @@ msgstr "Wählen Sie das Modell, das protokolliert werden soll."
 
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
-msgid "Select this if you want to keep track of creation on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of creation on any record of the model"
+" of this rule"
 msgstr "Aktivieren Sie dies, wenn die die Erstellungs-Vorgänge aller Datensätze für das Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
-msgid "Select this if you want to keep track of deletion on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of deletion on any record of the model"
+" of this rule"
 msgstr "Aktivieren Sie dies, wenn die die Lösch-Vorgänge aller Datensätze für das Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
-msgid "Select this if you want to keep track of modification on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of modification on any record of the "
+"model of this rule"
 msgstr "Aktivieren Sie dies, wenn die die Änderungs-Vorgänge aller Datensätze für das Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
-msgid "Select this if you want to keep track of read/open on any record of the model of this rule"
+msgid ""
+"Select this if you want to keep track of read/open on any record of the "
+"model of this rule"
 msgstr "Aktivieren Sie dies, wenn die die Lese-Vorgänge aller Datensätze für das Modell protokollieren wollen"
 
 #. module: auditlog
@@ -242,18 +250,11 @@ msgid "Subscribed"
 msgstr "Aktiviert"
 
 #. module: auditlog
-#: field:auditlog.log.line,field_name:0
-msgid "Technical name"
-msgstr "Technischer Name"
-
-#. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr ""
-"Es wurde bereits eine Regel für dieses Modell erstellen.\n"
-"Sie können keine weiteren erstellen. Ändern Sie die bestehende. "
+msgstr "Es wurde bereits eine Regel für dieses Modell erstellen.\nSie können keine weiteren erstellen. Ändern Sie die bestehende. "
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -275,3 +276,14 @@ msgstr "Benutzer"
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Values"
 msgstr "Werte"
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:478
+#, python-format
+msgid "View logs"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,user_ids:0
+msgid "if  User is not added then it will applicable for all users"
+msgstr ""

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data>
+        <!--
+            This cron can be used to synchronize the login dates
+            back to the res.users SQL table, since some modules
+            (ex: gamification, auth_openid) use a SQL request
+            to read the data. Otherwise, it should stay inactive.
+        -->
+        <record model="ir.cron" id="cron_res_users_login">
+            <field name="name">Synchronize login dates in res.users</field>
+            <field name="interval_number">1</field>
+            <field name="active" eval="False"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'res.users.login'"/>
+            <field name="function" eval="'cron_sync_login_date'"/>
+            <field name="args" eval="'()'"/>
+        </record>
+    </data>
+</openerp>
