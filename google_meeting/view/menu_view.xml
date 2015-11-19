@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+        <!-- Menu Items -->
+        <menuitem name="Google API" id="menu_base_google_api"
+            groups="google_meeting.res_groups_google_api_super" sequence="70" />
+        <menuitem id="google_meeting.menu_config" parent="google_meeting.menu_base_google_api"
+            name="Configuration" sequence="100" groups="base.group_system" />
+        <menuitem id="menu_google_api_accounts" action="google_api_account_list_action"
+            name="Accounts" parent="google_meeting.menu_config" sequence="10"
+            groups="google_meeting.res_groups_google_api_super" />
+        <menuitem id="menu_google_api_calendars" action="google_api_calendar_list_action"
+            name="Calendars" parent="google_meeting.menu_config" sequence="20"
+            groups="google_meeting.res_groups_google_api_super" />
+
+    </data>
+</openerp>
