@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Serialized fields",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "description": """This addon restores serialized fields for Odoo 8.0

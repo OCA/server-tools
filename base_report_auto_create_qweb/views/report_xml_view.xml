@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ir_actions_report_xml_form_view">
+            <field name="name">ir.actions.report.xml.form</field>
+            <field name="model">ir.actions.report.xml</field>
+            <field name="priority" eval="5" />
+            <field name="inherit_id" ref="report.act_report_xml_view_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="before">
+                    <header>
+                        <button name="%(ir_actions_report_xml_duplicate_action)d"
+                                string="Duplicate Report" class="oe_highlight" type="action"/>
+                    </header>
+                </xpath>
+                <button name="associated_view" position="after">
+                    <button type="object" class="oe_link" name="button_create_qweb"
+                            string="Create QWeb view" colspan="2"
+                            attrs="{'invisible':[('report_type', 'not in', ['qweb-pdf', 'qweb-html'])]}" />
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

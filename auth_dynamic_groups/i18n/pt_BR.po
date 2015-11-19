@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_dynamic_groups
+# 
+# Translators:
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-18 20:45+0000\n"
+"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: auth_dynamic_groups
+#: model:ir.model,name:auth_dynamic_groups.model_res_groups
+msgid "Access Groups"
+msgstr "Grupos de Acesso"
+
+#. module: auth_dynamic_groups
+#: field:res.groups,dynamic_group_condition:0
+msgid "Condition"
+msgstr "Condição"
+
+#. module: auth_dynamic_groups
+#: field:res.groups,is_dynamic:0
+msgid "Dynamic"
+msgstr "Dinâmico"
+
+#. module: auth_dynamic_groups
+#: view:res.groups:auth_dynamic_groups.view_groups_form
+msgid "Evaluate"
+msgstr "Avaliar"
+
+#. module: auth_dynamic_groups
+#: view:res.groups:auth_dynamic_groups.view_groups_form
+msgid "Fill in your condition..."
+msgstr "Preencha na sua condição..."
+
+#. module: auth_dynamic_groups
+#: code:addons/auth_dynamic_groups/model/res_groups.py:57
+#, python-format
+msgid "The condition doesn't evaluate correctly!"
+msgstr "Condição não avalia corretamente!"
+
+#. module: auth_dynamic_groups
+#: help:res.groups,dynamic_group_condition:0
+msgid ""
+"The condition to be met for a user to be a member of this group. It is "
+"evaluated as python code at login time, you get `user` passed as a browse "
+"record"
+msgstr "A condição a ser cumprida para um usuário ser um membro deste grupo. É avaliado como código python no momento do login, você pega `user` passado como um registro de procura"
+
+#. module: auth_dynamic_groups
+#: model:ir.model,name:auth_dynamic_groups.model_res_users
+msgid "Users"
+msgstr "Usuários"
+
+#. module: auth_dynamic_groups
+#: view:res.groups:auth_dynamic_groups.view_groups_form
+msgid "{'readonly': [('is_dynamic', '=', True)]}"
+msgstr "{'readonly': [('is_dynamic', '=', True)]}"

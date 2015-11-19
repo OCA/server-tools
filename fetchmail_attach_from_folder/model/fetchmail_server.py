@@ -24,6 +24,7 @@ import base64
 import simplejson
 from lxml import etree
 from openerp import models, fields, api, exceptions
+from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from openerp.tools.misc import UnquoteEvalContext
 _logger = logging.getLogger(__name__)
@@ -33,7 +34,8 @@ class fetchmail_server(models.Model):
     _inherit = 'fetchmail.server'
 
     folder_ids = fields.One2many(
-        'fetchmail.server.folder', 'server_id', 'Folders')
+        'fetchmail.server.folder', 'server_id', 'Folders',
+        context={'active_test': False})
     object_id = fields.Many2one(required=False)
 
     _defaults = {
@@ -67,8 +69,9 @@ class fetchmail_server(models.Model):
                 })
 
             connection = this.connect()
-            for folder in this.folder_ids:
-                this.handle_folder(connection, folder)
+            for folder in this.folder_ids.filtered('active'):
+                this.with_context(safe_eval(folder.context or '{}'))\
+                    .handle_folder(connection, folder)
             connection.close()
 
         return super(fetchmail_server, self).fetch_mail(
@@ -216,7 +219,16 @@ class fetchmail_server(models.Model):
             this.write({'state': 'draft'})
             connection = this.connect()
             connection.select()
-            for folder in this.folder_ids:
+            for folder in this.folder_ids.filtered('active'):
+                try:
+                    folder_context = safe_eval(folder.context or '{}')
+                except Exception, e:
+                    raise exceptions.ValidationError(
+                        _('Invalid context "%s": %s') % (folder.context, e))
+                if not isinstance(folder_context, dict):
+                    raise exceptions.ValidationError(
+                        _('Context "%s" is not a dictionary.') %
+                        folder.context)
                 if connection.select(folder.path)[0] != 'OK':
                     raise exceptions.ValidationError(
                         _('Mailbox %s not found!') % folder.path)
