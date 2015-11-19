@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "dbfilter_from_header",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "complexity": "normal",
@@ -30,8 +30,9 @@
     This is interesting for setups where database names can't be mapped to
     proxied host names.
 
-    In nginx, use
+    In nginx, use one of
     proxy_set_header X-OpenERP-dbfilter [your filter];
+    proxy_set_header X-Odoo-dbfilter [your filter];
 
     The addon has to be loaded as server-wide module.
     """,
