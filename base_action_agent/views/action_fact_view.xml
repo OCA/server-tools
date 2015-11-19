@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="open_action_fact" model="ir.actions.act_window">
+            <field name="name">Rule Facts</field>
+            <field name="res_model">base.action.fact</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_action_fact"
+                  name="Rule Facts"
+                  parent="base.menu_automation"
+                  action="open_action_fact" />
+
+        <record id="view_action_fact_form" model="ir.ui.view">
+            <field name="name">base.action.fact.form</field>
+            <field name="model">base.action.fact</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" />
+                        <field name="model_id" />
+                        <field name="filter_expr" />"
+                        <field name="note" />"
+                        <field name="sequence" />"
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_action_fact_tree" model="ir.ui.view">
+            <field name="name">base.action.fact.tree</field>
+            <field name="model">base.action.fact</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" />
+                    <field name="name" />
+                    <field name="model_id" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

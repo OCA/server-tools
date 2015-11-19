@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="open_action_ruleset" model="ir.actions.act_window">
+            <field name="name">Rule Sets</field>
+            <field name="res_model">base.action.ruleset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_action_ruleset"
+                  name="Rule Sets"
+                  parent="base.menu_automation"
+                  action="open_action_ruleset"
+                  sequence="1"/>
+
+        <record id="view_action_ruleset_form" model="ir.ui.view">
+            <field name="name">base.action.ruleset.form</field>
+            <field name="model">base.action.ruleset</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="note" />
+                        </group>
+                        <group>
+                            <field name="runas_user_id" />
+                            <field name="model_id" />
+                            <field name="silence_errors" />"
+                            <field name="enabled" />"
+                        </group>
+                    </group>
+                    <field name="rule_ids"
+                           context="{'default_model_id': model_id,
+                                     'default_kind': 'on_create_or_write'}" />
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

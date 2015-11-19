@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_action_fact_user,access_base_action_fact,model_base_action_fact,base.group_user,1,0,0,0
+access_base_action_fact_settings,access_base_action_fact_settings,model_base_action_fact,base.group_system,1,1,1,1
+access_base_action_ruleset_user,access_base_action_ruleset,model_base_action_ruleset,base.group_user,1,0,0,0
+access_base_action_ruleset_settings,access_base_action_ruleset_settings,model_base_action_ruleset,base.group_user,1,1,1,1
