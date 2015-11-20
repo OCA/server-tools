@@ -14,21 +14,21 @@ Installation
 
 To install this module, you need to:
 
- * do this ...
+* do this ...
 
 Configuration
 =============
 
 To configure this module, you need to:
 
- * go to ...
+* go to ...
 
 Usage
 =====
 
 To use this module, you need to:
 
- * go to ...
+* go to ...
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -39,12 +39,12 @@ To use this module, you need to:
 
 For further information, please visit:
 
- * https://www.odoo.com/forum/help-1
+* https://www.odoo.com/forum/help-1
 
 Known issues / Roadmap
 ======================
 
- * ...
+* ...
 
 Bug Tracker
 ===========
