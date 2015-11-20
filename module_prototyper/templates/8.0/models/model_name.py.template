@@ -23,7 +23,7 @@ class {{ unprefix(name) }}(models.Model):
         string=_("{{ field.field_description }}"),
         required={{ field.required }},
         translate={{ field.translate }},
-        readonly={{ field.readonly }}
+        readonly={{ field.readonly }},
         {% if field.size %}
         size={{ field.size }},
         {% endif %}

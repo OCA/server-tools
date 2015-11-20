@@ -12,15 +12,8 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml # noqa
     # for the full list
-    'category': '{{ prototype.with_context({}).category_id.name }}',{# In english please! #}
+    'category': '{{ prototype.with_context({}).category_id.name }}',
     'summary': '{{ prototype.summary }}',
-    'description': """
-{{ prototype.description }}
-
-* Module exported by the Module Prototyper module for version 8.0.
-* If you have any questions, please contact Savoir-faire Linux
-(support@savoirfairelinux.com)
-""",
 
     # any module necessary for this one to work correctly
     'depends': [
@@ -41,11 +34,11 @@
     # only loaded in demonstration mode
     'demo': [
         {% for demo_file in prototype.demo_ids %}
-            '{{ demo_file.name }}',
+            '{{ demo_file }}',
         {% endfor %}
     ],
 
-    # used for Javascript Web CLient Testing with QUnit / PhantomJS
+    # used for Javascript Web Client Testing with QUnit / PhantomJS
     # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client  # noqa
     'js': [],
     'css': [],
