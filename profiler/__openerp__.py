@@ -22,7 +22,7 @@
 #==============================================================================
 {
     'name': 'profiler',
-    'version': '0.1',
+    'version': '8.0.0.1',
     'category': 'devtools',
     'description': """
     cprofile integration for Odoo/OpenERP. Check the Profiler menu in admin menu
@@ -32,15 +32,10 @@
     'depends': ['base', 'web'],
     'data': [
         'security/group.xml',
-    ],
-    'js': [
-        'static/src/js/player.js',
+        'views/profiler.xml'
     ],
     'qweb': [
         'static/src/xml/player.xml',
-    ],
-    'css': [
-        'static/src/css/player.css',
     ],
     'installable': True,
     'application': False,

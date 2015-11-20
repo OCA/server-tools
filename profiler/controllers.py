@@ -56,9 +56,10 @@ class ProfilerController(openerpweb.Controller):
         return request.make_response(
             stream,
             headers=[
-                ('Content-Disposition', 'attachment; filename="%s"' % filename),
+                ('Content-Disposition',
+                 'attachment; filename="%s"' % filename),
                 ('Content-Type', 'application/octet-stream')
-            ], cookies={'fileToken': int(token)})
+            ], cookies={'fileToken': token})
 
     @openerpweb.jsonrequest
     def initial_state(self, request):
