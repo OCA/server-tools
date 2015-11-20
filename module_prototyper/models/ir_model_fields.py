@@ -24,7 +24,7 @@ from openerp import fields, models
 from openerp.tools.translate import _
 
 
-class ir_model_fields(models.Model):
+class IrModelFields(models.Model):
     """Addition of text fields to fields."""
     _inherit = "ir.model.fields"
 
