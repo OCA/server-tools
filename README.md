@@ -36,7 +36,7 @@ addon | version | summary
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
-[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 | dbfilter_from_header
+[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.1 | dbfilter_from_header
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
