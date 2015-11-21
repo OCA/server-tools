@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <act_window id="action_dead_mans_switch_instance"
+            name="Customer instances"
+            res_model="dead.mans.switch.instance"
+            context="{'search_default_active': 1}"
+            view_mode="kanban,tree,form" />
+        <menuitem id="menu_dead_mans_switch"
+            name="Customer instances"
+            parent="base.menu_reporting" />
+        <menuitem id="menu_dead_mans_switch_instance"
+            action="action_dead_mans_switch_instance"
+            parent="menu_dead_mans_switch" />
+    </data>
+</openerp>

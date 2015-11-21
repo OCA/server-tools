@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="cron_server" model="ir.cron">
+            <field name="name">Dead man&apos;s switch server</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="model">dead.mans.switch.instance</field>
+            <field name="function">check_alive</field>
+        </record>
+    </data>
+</openerp>

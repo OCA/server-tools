@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="tree_dead_mans_switch_log" model="ir.ui.view">
+            <field name="model">dead.mans.switch.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="create_date" />
+                    <field name="cpu" />
+                    <field name="ram" />
+                    <field name="user_count" />
+                </tree>
+            </field>
+        </record>
+        <record id="graph_dead_mans_switch_log" model="ir.ui.view">
+            <field name="model">dead.mans.switch.log</field>
+            <field name="arch" type="xml">
+                <graph type="pivot">
+                    <field name="create_date" type="row" interval="day" />
+                    <field name="cpu" type="measure" />
+                    <field name="ram" type="measure" />
+                    <field name="user_count" type="measure" />
+                </graph>
+            </field>
+        </record>
+        <record id="search_dead_mans_switch_log" model="ir.ui.view">
+            <field name="model">dead.mans.switch.log</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="this_month" string="This month"
+                        domain="[('create_date', '>=', (datetime.date.today() - relativedelta(days=31)).strftime('%Y-%m-%d'))]" />
+                    <filter name="this_week" string="This week"
+                        domain="[('create_date', '>=', (datetime.date.today() - relativedelta(days=6)).strftime('%Y-%m-%d'))]" />
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>
