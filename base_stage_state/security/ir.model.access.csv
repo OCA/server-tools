@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stage_user,base.stage.user,model_base_stage,base.group_user,1,0,0,0
+access_stage_set_user,base.stage.set.user,model_base_stage_set,base.group_user,1,0,0,0
+access_stage_system,base.stage.system,model_base_stage,base.group_system,1,1,1,1
+access_stage_set_system,base.stage.set.system,model_base_stage_set,base.group_system,1,1,1,1
