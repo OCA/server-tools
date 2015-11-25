@@ -48,46 +48,14 @@ def execute(connector, method, *args):
 class DbBackup(models.Model):
     _name = 'db.backup'
 
-    def get_connection_uri(self, host, port, secure=False):
-        uri = 'http://%s:%s' % (host, port)
-        if secure:
-            uri = 'https://%s:%s' % (host, port)
-        return uri
-
-    def get_connection(self, host, port, secure=False):
-        uri = self.get_connection_uri(host, port, secure)
-        return xmlrpclib.ServerProxy(uri + '/xmlrpc/db')
-
-    def get_db_list(self, host, port, secure=False):
-        conn = self.get_connection(host, port, secure)
-        db_list = execute(conn, 'list')
-        return db_list
-
     @api.model
     def _get_db_name(self):
         return self.env.cr.dbname
-
-    # Columns local server
-    host = fields.Char(
-        string='Host', default='localhost', size=100, required=True)
-
-    securehost = fields.Boolean(string='Secure Host')
-
-    port = fields.Char(
-        string='Port', default='8069', size=10, required=True)
 
     name = fields.Char(
         string='Database', size=100, required=True,
         default=_get_db_name,
         help='Database you want to schedule backups for'
-    )
-
-    adminpassword = fields.Char(
-        string='Admin user Password',
-        help=(
-            "The password Admin password of Odoo Instance."
-        ),
-        required=True
     )
 
     bkp_dir = fields.Char(
@@ -271,6 +239,9 @@ class DbBackup(models.Model):
                     # user made a typo in his path with multiple slashes
                     # (/odoo//backups/) it will be fixed by this regex.
                     pathToWriteTo = re.sub('/+', '/', pathToWriteTo)
+                    _logger.debug(
+                        'Start to copy files..'
+                    )
                     try:
                         srv.chdir(pathToWriteTo)
                     except IOError:
@@ -293,9 +264,6 @@ class DbBackup(models.Model):
                                 pass
                     srv.chdir(pathToWriteTo)
                     # Loop over all files in the directory.
-                    _logger.debug(
-                        'Start to copy files...'
-                    )
                     for f in os.listdir(dir):
                         fullpath = os.path.join(dir, f)
                         if os.path.isfile(fullpath):
