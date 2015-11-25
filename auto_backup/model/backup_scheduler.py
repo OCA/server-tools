@@ -23,11 +23,11 @@ import socket
 import os
 import time
 import datetime
-import base64
 import re
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm, Warning as UserError
 from openerp import tools
+from openerp.service import db
 import logging
 _logger = logging.getLogger(__name__)
 try:
@@ -207,9 +207,7 @@ class DbBackup(models.Model):
         messageTitle = ""
         messageContent = ""
         for rec in confs:
-            # db_list = self.get_db_list(cr, uid, [], rec.host, rec.port)
             try:
-                # pathToWriteTo = rec.sftppath
                 conn_success = True
                 ipHost = rec.sftpip
                 portHost = rec.sftpport
@@ -243,39 +241,16 @@ class DbBackup(models.Model):
     def schedule_backup(self):
 
         for rec in self.search([]):
-            db_list = self.get_db_list(rec.host, rec.port, rec.securehost)
-            if rec.name in db_list:
-                file_path = ''
-                bkp_file = ''
-                try:
-                    if not os.path.isdir(rec.bkp_dir):
-                        os.makedirs(rec.bkp_dir)
-                    # Create name for dumpfile.
-                    bkp_file = '%s_%s.dump.zip' % (
-                        time.strftime('%d_%m_%Y_%H_%M_%S'),
-                        rec.name)
-                    file_path = os.path.join(rec.bkp_dir, bkp_file)
-                    conn = self.get_connection(
-                        rec.host, rec.port, rec.securehost)
-                    bkp = ''
-                    bkp = execute(
-                        conn, 'dump', rec.adminpassword, rec.name)
-                except Exception, e:
-                    _logger.info(
-                        _(
-                            "Autobackup Couldn't backup database %s. :" +
-                            str(e))
-                    )
-                    return False
-                bkp = base64.decodestring(bkp)
-                fp = open(file_path, 'wb')
-                fp.write(bkp)
-                fp.close()
-            else:
-                _logger.info(
-                    ("database %s doesn't exist on http://%s:%s") %
-                    (rec.name, rec.host, rec.port))
-                return False
+            if not os.path.isdir(rec.bkp_dir):
+                os.makedirs(rec.bkp_dir)
+            # Create name for dumpfile.
+            bkp_file = '%s_%s.dump.zip' % (
+                time.strftime('%d_%m_%Y_%H_%M_%S'),
+                rec.name)
+            file_path = os.path.join(rec.bkp_dir, bkp_file)
+            fbk = open(file_path, 'wb')
+            db.dump_db(rec.name, fbk)
+            fbk.close()
             # Check if user wants to write to SFTP or not.
             if rec.sftpwrite is True:
                 try:
@@ -318,6 +293,9 @@ class DbBackup(models.Model):
                                 pass
                     srv.chdir(pathToWriteTo)
                     # Loop over all files in the directory.
+                    _logger.debug(
+                        'Start to copy files...'
+                    )
                     for f in os.listdir(dir):
                         fullpath = os.path.join(dir, f)
                         if os.path.isfile(fullpath):
@@ -325,7 +303,6 @@ class DbBackup(models.Model):
 
                     # Navigate in to the correct folder.
                     srv.chdir(pathToWriteTo)
-
                     # Loop over all files in the directory from the back-ups.
                     # We will check the creation date of every back-up.
                     for file in srv.listdir(pathToWriteTo):
@@ -365,7 +342,12 @@ class DbBackup(models.Model):
             # Remove all old files (on local server)
             # in case this is configured..
             if rec.autoremove is True:
-                self.remove_folder(rec)
+                try:
+                    self.remove_folder(rec)
+                except Exception as e:
+                    _logger.debug(
+                        'Exception when try to remove file'
+                    )
 
         return True
 
@@ -420,4 +402,7 @@ class DbBackup(models.Model):
                 now = datetime.datetime.now()
                 delta = now - createtime
                 if delta.days >= rec.daystokeep:
+                    _logger.debug(
+                        'Remove local file...'
+                    )
                     os.remove(fullpath)
