@@ -19,24 +19,27 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 
 
-class CompanyLDAPPopulateWizard(orm.TransientModel):
+class CompanyLDAPPopulateWizard(models.TransientModel):
     _name = 'res.company.ldap.populate_wizard'
     _description = 'Populate users from LDAP'
-    _columns = {
-        'name': fields.char('Name', size=16),
-        'ldap_id': fields.many2one(
-            'res.company.ldap', 'LDAP Configuration'),
-        'users_created': fields.integer(
-            'Number of users created', readonly=True),
-    }
 
-    def create(self, cr, uid, vals, context=None):
-        ldap_pool = self.pool.get('res.company.ldap')
+    name = fields.Char('Name', size=16)
+    ldap_id = fields.Many2one(
+        'res.company.ldap',
+        'LDAP Configuration'
+    )
+    users_created = fields.Integer(
+        'Number of users created',
+        readonly=True
+    )
+
+    @api.model
+    @api.returns('self', lambda value: value.id)
+    def create(self, vals):
         if 'ldap_id' in vals:
-            vals['users_created'] = ldap_pool.action_populate(
-                cr, uid, vals['ldap_id'], context=context)
-        return super(CompanyLDAPPopulateWizard, self).create(
-            cr, uid, vals, context=None)
+            ldap = self.env['res.company.ldap'].browse(vals['ldap_id'])
+            vals['users_created'] = ldap.action_populate()
+        return super(CompanyLDAPPopulateWizard, self).create(vals)
