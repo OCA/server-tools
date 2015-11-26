@@ -123,11 +123,12 @@ class CompanyLDAP(models.Model):
 
     @api.model
     def get_or_create_user(self, ldap_config, login, ldap_entry):
-        
+
         user_id = super(CompanyLDAP, self).get_or_create_user(
             ldap_config, login, ldap_entry)
 
         if user_id:
-            self.browse(ldap_config['id']).map_groups(user_id, ldap_config, ldap_entry)
+            self.browse(ldap_config['id']).map_groups(user_id, ldap_config,
+                                                      ldap_entry)
 
         return user_id
