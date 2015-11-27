@@ -26,15 +26,21 @@ class DeadMansSwitchClient(models.AbstractModel):
         if psutil:
             process = psutil.Process(os.getpid())
             # psutil changed its api through versions
+            processes = [process]
             if process.parent:
                 if hasattr(process.parent, '__call__'):
                     process = process.parent()
                 else:
                     process = process.parent
-            if hasattr(process, 'memory_percent'):
-                ram = process.memory_percent()
-            if hasattr(process, 'cpu_percent'):
-                cpu = process.cpu_percent()
+                if hasattr(process, 'children'):
+                    processes += process.children(True)
+                elif hasattr(process, 'get_children'):
+                    processes += process.get_children(True)
+            for process in processes:
+                if hasattr(process, 'memory_percent'):
+                    ram += process.memory_percent()
+                if hasattr(process, 'cpu_percent'):
+                    cpu += process.cpu_percent()
         user_count = 0
         if 'im_chat.presence' in self.env.registry:
             user_count = len(self.env['im_chat.presence'].search([
