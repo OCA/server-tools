@@ -139,7 +139,8 @@ class DeadMansSwitchInstance(models.Model):
     @api.model
     def check_alive(self):
         """handle cronjob"""
-        self.search(self._needaction_domain_get()).panic()
+        for this in self.search(self._needaction_domain_get()):
+            this.panic()
 
     @api.multi
     def panic(self):
