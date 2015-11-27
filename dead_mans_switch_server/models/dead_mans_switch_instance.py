@@ -7,7 +7,7 @@ from openerp import _, api, fields, models
 
 
 class DeadMansSwitchInstance(models.Model):
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
     _name = 'dead.mans.switch.instance'
     _description = 'Instance to monitor'
     _order = 'state, partner_id'
@@ -25,7 +25,8 @@ class DeadMansSwitchInstance(models.Model):
     description = fields.Char('Description')
     log_ids = fields.One2many(
         'dead.mans.switch.log', 'instance_id', string='Log lines')
-    alive = fields.Boolean('Alive', compute='_compute_alive')
+    alive = fields.Boolean(
+        'Alive', compute='_compute_alive', search='_search_alive')
     alive_max_delay = fields.Integer(
         'Alive delay', help='The amount of seconds without notice after which '
         'the instance is considered dead', default=600)
@@ -98,6 +99,22 @@ class DeadMansSwitchInstance(models.Model):
                     ],
                     limit=1))
 
+    @api.model
+    def _search_alive(self, operator, value):
+        alive = True if operator == '=' and value or\
+                operator == '!=' and not value else False
+        self.env.cr.execute(
+            'select i.id from dead_mans_switch_instance i '
+            'left join (select instance_id, max(create_date) create_date '
+            'from dead_mans_switch_log group by instance_id) l '
+            'on l.instance_id=i.id '
+            "where coalesce(l.create_date, '1970-01-01'::timestamp) %s "
+            "now() at time zone 'utc' - "
+            "(alive_max_delay || 'seconds')::interval "
+            "group by i.id " %
+            (alive and '>=' or '<'))
+        return [('id', 'in', [i for i, in self.env.cr.fetchall()])]
+
     @api.multi
     def _compute_last_log(self):
         for this in self:
@@ -139,3 +156,7 @@ class DeadMansSwitchInstance(models.Model):
             subject=_('Dead man\'s switch warning: %s') %
             self.display_name, content_subtype='plaintext',
             body=_('%s seems to be dead') % self.display_name)
+
+    @api.model
+    def _needaction_domain_get(self):
+        return [('alive', '=', False), ('state', '=', 'active')]
