@@ -22,8 +22,11 @@ addon | version | summary
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 | Authentification - Admin Passkey
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 | Have membership conditions for certain groups
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 | Authenticate via HTTP Remote User
+[auth_signup_verify_email](auth_signup_verify_email/) | 8.0.1.0.0 | Force uninvited users to use a good email for signup
+[auth_supplier](auth_supplier/) | 8.0.1.0.0 | Auth Supplier
 [base_concurrency](base_concurrency/) | 8.0.1.0.0 | Base Concurrency
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 | Shows full debug options for all users
+[base_export_manager](base_export_manager/) | 8.0.1.0.0 | Manages model export profiles
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
 [base_field_serialized](base_field_serialized/) | 8.0.1.0.0 | Serialized fields
 [base_module_doc_rst](base_module_doc_rst/) | 8.0.1.0.0 | Modules Technical Guides in RST and Relationship Graphs
@@ -39,6 +42,7 @@ addon | version | summary
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
+[log_forwarded_for_ip](log_forwarded_for_ip/) | 8.0.1.0.0 | Displays source IPs in log when behind a reverse proxy
 [mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 | Prototype your module.

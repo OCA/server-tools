@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
@@ -20,27 +20,27 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: base_concurrency
 #: field:res.users.login,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: base_concurrency
 #: field:res.users.login,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: base_concurrency
 #: field:res.users.login,login_dt:0

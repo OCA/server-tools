@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_auth_supplier
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-20 08:34+0000\n"
+"PO-Revision-Date: 2015-10-20 10:36+0100\n"
+"Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
+"Language-Team: \n"
+"Language: es-ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: website_auth_supplier
+#: view:website:auth_signup.fields
+msgid "Account Type"
+msgstr "Tipo de cuenta"
+
+#. module: website_auth_supplier
+#: view:website:auth_signup.fields
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: website_auth_supplier
+#: view:website:auth_signup.fields
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: website_auth_supplier
+#: model:ir.model,name:website_auth_supplier.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#~ msgid "Select Type..."
+#~ msgstr "Seleccione el tipo..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2015-10-18 16:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
@@ -25,17 +25,17 @@ msgstr ""
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,ldap_id:0
@@ -45,12 +45,12 @@ msgstr ""
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento da"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,name:0
