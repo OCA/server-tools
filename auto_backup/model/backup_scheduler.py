@@ -18,7 +18,6 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import xmlrpclib
 import socket
 import os
 import time
@@ -156,7 +155,7 @@ class DbBackup(models.Model):
     @api.multi
     def _check_db_exist(self):
         for rec in self:
-            db_list = self.get_db_list(rec.host, rec.port, rec.securehost)
+            db_list = db.exp_list(True)
             if rec.name in db_list:
                 return True
             return False
@@ -174,6 +173,7 @@ class DbBackup(models.Model):
         # Check if there is a success or fail and write messages
         messageTitle = ""
         messageContent = ""
+        conn_success = False
         for rec in confs:
             try:
                 conn_success = True
