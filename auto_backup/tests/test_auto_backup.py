@@ -21,6 +21,8 @@
 
 from openerp.tests import common
 from openerp.exceptions import except_orm
+import os
+import time
 
 
 class TestsAutoBackup(common.TransactionCase):
@@ -32,13 +34,23 @@ class TestsAutoBackup(common.TransactionCase):
 
     def test_0(self):
         with self.assertRaises(except_orm):
-            self.abk_model.create({'name': 'abcd', 'adminpassword': 'admin'})
+            self.abk_model.create(
+                {
+                    'name': 'abcd',
+                    'adminpassword': 'admin'
+                }
+            )
 
     def test_1(self):
         this = self.abk_model.create(
             {
-                'bkp_dir': '/tmp',
-                'adminpassword': 'admin'
+                'bkp_dir': '/tmp'
             }
         )
-        self.assertEqual(this.host, 'localhost')
+        self.assertEqual(this.bkp_dir, '/tmp')
+        bkp_file = '%s_%s.dump.zip' % (
+            time.strftime('%d_%m_%Y_%H_%M_%S'),
+            this.name)
+        file_path = os.path.join(this.bkp_dir, bkp_file)
+        this.schedule_backup()
+        self.assertTrue(os.path.isfile(file_path))
