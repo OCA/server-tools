@@ -60,7 +60,6 @@ addon | version | summary
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
 [server_environment](server_environment/) | 8.0.1.1.0 (unported) | server configuration environment files
 [server_environment_files_sample](server_environment_files_sample/) | 8.0.1.0.0 (unported) | Example server configuration environment files repository module
-[shell](shell/) | 8.0.1.0.0 (unported) | Backport of the v9 shell CLI command.
 [super_calendar](super_calendar/) | 8.0.0.2.0 (unported) | This module allows to create configurable calendars.
 [users_ldap_groups](users_ldap_groups/) | 8.0.1.2.0 (unported) | Adds user accounts to groups based on rules defined by the administrator.
 [web_context_tunnel](web_context_tunnel/) | 8.0.2.0.0 (unported) | Web Context Tunnel
