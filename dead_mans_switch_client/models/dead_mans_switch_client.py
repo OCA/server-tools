@@ -11,6 +11,7 @@ except ImportError:
     psutil = None
 import urllib2
 from openerp import api, models
+from openerp.tools.config import config
 
 SEND_TIMEOUT = 60
 
@@ -27,7 +28,7 @@ class DeadMansSwitchClient(models.AbstractModel):
             process = psutil.Process(os.getpid())
             # psutil changed its api through versions
             processes = [process]
-            if process.parent:
+            if config.get('workers') and process.parent:
                 if hasattr(process.parent, '__call__'):
                     process = process.parent()
                 else:
