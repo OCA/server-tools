@@ -9,7 +9,7 @@
           priority="20">
     <xpath expr="." position="inside">
         <script type="text/javascript"
-                src="/base_exports_manager/static/src/js/main.js"/>
+                src="/base_export_manager/static/src/js/main.js"/>
     </xpath>
 </template>
 
