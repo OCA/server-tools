@@ -10,6 +10,7 @@ except ImportError:
     psutil = None
 import urllib2
 from openerp.osv import orm
+from openerp.tools.config import config
 
 
 class DeadMansSwitchClient(orm.AbstractModel):
@@ -23,7 +24,7 @@ class DeadMansSwitchClient(orm.AbstractModel):
             process = psutil.Process(os.getpid())
             # psutil changed its api through versions
             processes = [process]
-            if process.parent:
+            if config.get('workers') and process.parent:
                 if hasattr(process.parent, '__call__'):
                     process = process.parent()
                 else:
