@@ -36,10 +36,14 @@ class DeadMansSwitchClient(orm.AbstractModel):
             for process in processes:
                 if hasattr(process, 'memory_percent'):
                     ram += process.memory_percent()
+                elif hasattr(process, 'get_memory_percent'):
+                    ram += process.get_memory_percent()
                 else:
                     ram = None
                 if hasattr(process, 'cpu_percent'):
                     cpu += process.cpu_percent()
+                elif hasattr(process, 'get_cpu_percent'):
+                    cpu += process.get_cpu_percent()
                 else:
                     cpu = None
         return {
