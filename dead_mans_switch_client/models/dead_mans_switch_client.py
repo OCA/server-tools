@@ -36,14 +36,18 @@ class DeadMansSwitchClient(orm.AbstractModel):
             for process in processes:
                 if hasattr(process, 'memory_percent'):
                     ram += process.memory_percent()
+                else:
+                    ram = None
                 if hasattr(process, 'cpu_percent'):
                     cpu += process.cpu_percent()
+                else:
+                    cpu = None
         return {
             'database_uuid': self.pool['ir.config_parameter'].get_param(
                 cr, uid, 'database.uuid', context=context),
             'cpu': cpu,
             'ram': ram,
-            'user_count': 0,
+            'user_count': None,
         }
 
     def alive(self, cr, uid, context=None):
