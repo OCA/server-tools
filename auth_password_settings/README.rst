@@ -21,6 +21,7 @@ Configuration
 To configure this module, you need to:
 
 * Go to Settings->Configuration->General Settings and setup the Password Strength section
+
  * Minimum Password length in character
  * Use Capital Letter
  * Use digit
@@ -39,10 +40,6 @@ This module will enforce the selected rules on password change.
 .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
 .. branch is "8.0" for example
 
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========
