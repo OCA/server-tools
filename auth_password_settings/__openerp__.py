@@ -3,6 +3,7 @@
 #
 #    Author: Dhaval Patel
 #    Copyright (C) 2011 - TODAY Denero Team. (<http://www.deneroteam.com>)
+#                  2015 - TODAY Hans Henrik Gabelgaard
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,13 +25,13 @@
     'category': 'base',
     'sequence': 3,
     'summary': 'User Password Settings',
-    'author': 'Denero Team,Odoo Community Association (OCA)',
+    'author': 'Denero Team,Hans Henrik Gabelgaard,Odoo Community Association (OCA)',
     'website': 'http://www.deneroteam.com',
-    'maintainer': 'Denero Team',
     'license': 'AGPL-3',
     'depends': [
         'base', 'base_setup',
     ],
+    'images': ['static/description/auth_password_settings_config.png'],
     'data': [
         # Datas
         "data/auth_password_settings_data.xml",

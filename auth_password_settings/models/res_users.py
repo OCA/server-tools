@@ -3,6 +3,7 @@
 #
 #    Author: Dhaval Patel
 #    Copyright (C) 2011 - TODAY Denero Team. (<http://www.deneroteam.com>)
+#                  2015 - TODAY Hans Henrik Gabelgaard
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,48 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv
-from openerp.tools.safe_eval import safe_eval
-from openerp.tools.translate import _
+
 import string
 
+from openerp import models, fields, api
+from openerp.tools.safe_eval import safe_eval
+from openerp.tools.translate import _
+from openerp.exceptions import ValidationError
 
-class res_users(osv.osv):
+
+class res_users(models.Model):
     _inherit = "res.users"
 
-    def _validate_password(self, cr, uid, password, context=None):
-        icp = self.pool.get('ir.config_parameter')
+    @api.model
+    def _validate_password(self, password, raise_ = False):
         password_rules = []
-        config_data = {
-            'auth_password_min_character': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
-                    'auth_password_settings.auth_password_min_character',
-                    '6'
-                )),
-            'auth_password_has_capital_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
-                    'auth_password_settings.auth_password_has_capital_letter',
-                    'False'
-                )),
-            'auth_password_has_digit': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
-                    'auth_password_settings.auth_password_has_digit',
-                    'False'
-                )),
-            'auth_password_has_special_letter': safe_eval(
-                icp.get_param(
-                    cr,
-                    uid,
-                    'auth_password_settings.auth_password_has_special_letter',
-                    'False'
-                )),
-        }
+        config_data = self.env['base.config.settings'].get_default_auth_password_settings()
+
         password_rules.append(
             lambda s:
                 len(s) >= config_data.get('auth_password_min_character', 6) or
@@ -67,19 +43,16 @@ class res_users(osv.osv):
                     'auth_password_min_character', 6)
                 )
         )
-
         if (config_data.get('auth_password_has_capital_letter', False)):
             password_rules.append(
                 lambda s: any(x.isupper() for x in s) or
                 _('Has at least One Capital letter')
             )
-
         if (config_data.get('auth_password_has_digit', False)):
             password_rules.append(
                 lambda s: any(x.isdigit() for x in s) or
                 _('Has one Number')
             )
-
         if (config_data.get('auth_password_has_special_letter', False)):
             password_rules.append(
                 lambda s: any(x in string.punctuation for x in s) or
@@ -89,30 +62,21 @@ class res_users(osv.osv):
             p for p in [
                 r(password) for r in password_rules
             ] if p and p is not True]
+        if problems and raise_:
+            raise ValidationError(
+                    _("Password must match following rules\n-- %s ")
+                    % ("\n-- ".join(problems))
+                )
         return problems
 
-    def write(self, cr, uid, ids, values, context=None):
-        if('password' in values):
-            problems = self._validate_password(
-                cr, uid, values['password'], context=context)
-            if(problems):
-                raise osv.except_osv(
-                    _('Error!'),
-                    _("Password must match following rules\n %s ")
-                    % ("\n-- ".join(problems))
-                )
-        return super(res_users, self).write(cr, uid, ids, values, context)
+    @api.multi
+    def write(self, values):
+        if 'password' in values:
+            problems = self._validate_password(values['password'], raise_ = True)
+        return super(res_users, self).write(values)
 
-    def _set_password(self, cr, uid, id, password, context=None):
-        if(password):
-            problems = self._validate_password(
-                cr, uid, password, context=context)
-            if(problems):
-                raise osv.except_osv(
-                    _('Error!'),
-                    _("Password must match following rules\n %s ")
-                    % ("\n-- ".join(problems))
-                )
-        return super(res_users, self)._set_password(
-            cr, uid, id, password, context=context
-        )
+    @api.one
+    def _set_password(self, password):
+        if password:
+            self._validate_password(password, raise_ = True)
+        return super(res_users, self)._set_password(password)
