@@ -40,8 +40,12 @@ class DeadMansSwitchClient(models.AbstractModel):
             for process in processes:
                 if hasattr(process, 'memory_percent'):
                     ram += process.memory_percent()
+                else:
+                    ram = None
                 if hasattr(process, 'cpu_percent'):
                     cpu += process.cpu_percent()
+                else:
+                    cpu = None
         user_count = 0
         if 'im_chat.presence' in self.env.registry:
             user_count = len(self.env['im_chat.presence'].search([
