@@ -1,7 +1,5 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/149/8.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-server-tools-149)
-[![Build Status](https://travis-ci.org/OCA/server-tools.svg?branch=8.0)](https://travis-ci.org/OCA/server-tools)
-[![Coverage Status](https://coveralls.io/repos/OCA/server-tools/badge.png?branch=8.0)](https://coveralls.io/r/OCA/server-tools?branch=8.0)
-[![Code Climate](https://codeclimate.com/github/OCA/server-tools/badges/gpa.svg)](https://codeclimate.com/github/OCA/server-tools)
+[![Build Status](https://travis-ci.org/Vauxoo/server-tools.svg?branch=8.0)](https://travis-ci.org/Vauxoo/server-tools)
+[![Coverage Status](https://coveralls.io/repos/Vauxoo/server-tools/badge.png?branch=8.0)](https://coveralls.io/r/Vauxoo/server-tools?branch=8.0)
 
 Server Environment And Tools
 ============================
@@ -72,6 +70,3 @@ addon | version | summary
 
 [//]: # (end addons)
 
-Translation Status
-------------------
-[![Transifex Status](https://www.transifex.com/projects/p/OCA-server-tools-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-server-tools-8-0)
