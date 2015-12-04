@@ -28,7 +28,7 @@ from openerp.tools.translate import _
 from openerp.exceptions import ValidationError
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = "res.users"
 
     @api.model
