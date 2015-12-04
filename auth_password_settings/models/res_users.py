@@ -73,10 +73,10 @@ class ResUsers(models.Model):
     def write(self, values):
         if 'password' in values:
             problems = self._validate_password(values['password'], raise_ = True)
-        return super(res_users, self).write(values)
+        return super(ResUsers, self).write(values)
 
     @api.one
     def _set_password(self, password):
         if password:
             self._validate_password(password, raise_ = True)
-        return super(res_users, self)._set_password(password)
+        return super(ResUsers, self)._set_password(password)
