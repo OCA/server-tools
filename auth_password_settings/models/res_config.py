@@ -24,26 +24,26 @@ from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from openerp.exceptions import ValidationError
 
+
 class BaseConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
 
-    auth_password_min_character =  fields.Integer(
-            'Minimum Password Length',
-            help="Use the Minimum Password Length to determine how long the \
-            password should be. Set 0 if dont want to set any limit")
+    auth_password_min_character = fields.Integer(
+        'Minimum Password Length',
+        help="Use the Minimum Password Length to determine how long the \
+        password should be. Set 0 if dont want to set any limit")
     auth_password_has_capital_letter = fields.Boolean(
-            'Use capital letters',
-            help="Use capital letters to determine the Capital letter that\
-            must be used in the password ")
+        'Use capital letters',
+        help="Use capital letters to determine the Capital letter that\
+        must be used in the password ")
     auth_password_has_digit = fields.Boolean(
-            'Use digits',
-            help="Use digits to determine the digit(numaric letter)\
-            that must be used in the password ")
+        'Use digits',
+        help="Use digits to determine the digit(numaric letter)\
+        that must be used in the password ")
     auth_password_has_special_letter = fields.Boolean(
-            'Use Special Characters',
-            help="Use special letters to determine the special letter (e.g. #,\
-            $,!,^, &) that must be used in the password")
-    
+        'Use Special Characters',
+        help="Use special letters to determine the special letter (e.g. #,\
+        $,!,^, &) that must be used in the password")
 
     @api.multi
     def get_default_auth_password_settings(self, fields=None):
@@ -74,8 +74,8 @@ class BaseConfigSettings(models.TransientModel):
     @api.multi
     def set_auth_password_settings(self):
         self.ensure_one()
-        if (self.auth_password_min_character < 5):
-             raise ValidationError(
+        if self.auth_password_min_character < 5:
+            raise ValidationError(
                 _('Password Length should not be less then 5.')
             )
         icp = self.env['ir.config_parameter']

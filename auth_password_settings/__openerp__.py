@@ -25,7 +25,9 @@
     'category': 'base',
     'sequence': 3,
     'summary': 'User Password Settings',
-    'author': 'Denero Team,Hans Henrik Gabelgaard,Odoo Community Association (OCA)',
+    'author': 'Denero Team, '
+              'Hans Henrik Gabelgaard, '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.deneroteam.com',
     'license': 'AGPL-3',
     'depends': [

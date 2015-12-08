@@ -22,8 +22,7 @@
 
 import string
 
-from openerp import models, fields, api
-from openerp.tools.safe_eval import safe_eval
+from openerp import models, api
 from openerp.tools.translate import _
 from openerp.exceptions import ValidationError
 
@@ -32,9 +31,11 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     @api.model
-    def _validate_password(self, password, raise_ = False):
+    def _validate_password(self, password, raise_=False):
         password_rules = []
-        config_data = self.env['base.config.settings'].get_default_auth_password_settings()
+        config_data = self.env[
+            'base.config.settings'
+        ].get_default_auth_password_settings()
 
         password_rules.append(
             lambda s:
@@ -64,19 +65,19 @@ class ResUsers(models.Model):
             ] if p and p is not True]
         if problems and raise_:
             raise ValidationError(
-                    _("Password must match following rules\n-- %s ")
-                    % ("\n-- ".join(problems))
-                )
+                _("Password must match following rules\n-- %s ")
+                % ("\n-- ".join(problems))
+            )
         return problems
 
     @api.multi
     def write(self, values):
         if 'password' in values:
-            problems = self._validate_password(values['password'], raise_ = True)
+            self._validate_password(values['password'], raise_=True)
         return super(ResUsers, self).write(values)
 
     @api.one
     def _set_password(self, password):
         if password:
-            self._validate_password(password, raise_ = True)
+            self._validate_password(password, raise_=True)
         return super(ResUsers, self)._set_password(password)
