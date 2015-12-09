@@ -10,9 +10,7 @@ class CustomInfoTemplate(models.Model):
     _name = "custom.info.template"
 
     name = fields.Char()
-    model_id = fields.Many2one(
-        comodel_name='ir.model',
-        default=lambda self: self._name) #TODO:Fix integer
+    model_id = fields.Many2one(comodel_name='ir.model', string='Data Model')
     info_ids = fields.One2many(
         comodel_name='custom.info.template.line',
         inverse_name='template_id',
@@ -24,7 +22,12 @@ class CustomInfoTemplateLine(models.Model):
 
     name = fields.Char()
     template_id = fields.Many2one(
-        comodel_name='custom.info.template')
+        comodel_name='custom.info.template',
+        string='Template')
+    info_value_ids = fields.One2many(
+        comodel_name="custom.info.value",
+        inverse_name="custom_info_name_id",
+        string="Info Values")
 
 
 class CustomInfoValue(models.Model):
@@ -34,7 +37,8 @@ class CustomInfoValue(models.Model):
     model = fields.Char(select=True)
     res_id = fields.Integer(select=True)
     custom_info_name_id = fields.Many2one(
-        comodel_name='custom.info.template.line')
+        comodel_name='custom.info.template.line',
+        string='Info Name')
     value = fields.Char()
 
 
@@ -49,7 +53,7 @@ class CustomInfo(models.AbstractModel):
         inverse_name='res_id',
         domain=lambda self: [('model', '=', self._name)],
         auto_join=True,
-        string='Info')
+        string='Custom Info')
 
     @api.onchange('custom_info_template_id')
     def _onchange_custom_info_template_id(self):
@@ -61,6 +65,5 @@ class CustomInfo(models.AbstractModel):
                 if info_name not in info_list:
                     self.custom_info_ids |= self.custom_info_ids.new({
                         'model': self._name,
-                        # 'res_id': self.id,
                         'custom_info_name_id': info_name.id,
                     })
