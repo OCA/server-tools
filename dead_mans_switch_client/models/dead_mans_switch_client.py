@@ -12,6 +12,8 @@ except ImportError:
 import urllib2
 from openerp import api, models
 
+SEND_TIMEOUT = 60
+
 
 class DeadMansSwitchClient(models.AbstractModel):
     _name = 'dead.mans.switch.client'
@@ -54,6 +56,10 @@ class DeadMansSwitchClient(models.AbstractModel):
         if not url:
             logger.error('No server configured!')
             return
+        timeout = self.env['ir.config_parameter'].get_param(
+            'dead_mans_switch_client.send_timeout')
+        if not timeout:
+            timeout = SEND_TIMEOUT
         data = self._get_data()
         logger.debug('sending %s', data)
         urllib2.urlopen(
@@ -66,7 +72,8 @@ class DeadMansSwitchClient(models.AbstractModel):
                 }),
                 {
                     'Content-Type': 'application/json',
-                }))
+                }),
+            timeout)
 
     @api.model
     def _install_default_url(self):
