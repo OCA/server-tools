@@ -12,6 +12,8 @@ import urllib2
 from openerp.osv import orm
 from openerp.tools.config import config
 
+SEND_TIMEOUT = 60
+
 
 class DeadMansSwitchClient(orm.AbstractModel):
     _name = 'dead.mans.switch.client'
@@ -61,6 +63,10 @@ class DeadMansSwitchClient(orm.AbstractModel):
         if not url:
             logger.error('No server configured!')
             return
+        timeout = self.env['ir.config_parameter'].get_param(
+            'dead_mans_switch_client.send_timeout')
+        if not timeout:
+            timeout = SEND_TIMEOUT
         data = self._get_data(cr, uid, context=context)
         logger.debug('sending %s', data)
         urllib2.urlopen(
@@ -73,4 +79,5 @@ class DeadMansSwitchClient(orm.AbstractModel):
                 }),
                 {
                     'Content-Type': 'application/json',
-                }))
+                }),
+            timeout)
