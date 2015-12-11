@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="base_custom_info_template_line_tree" model="ir.ui.view">
+    <field name="name">base.custom.info.template.line.tree</field>
+    <field name="model">custom.info.template.line</field>
+    <field name="arch" type="xml">
+        <tree string="Custom Info Templates">
+            <field name="name"/>
+            <field name="template_id"/>
+        </tree>
+    </field>
+</record>
+
+<record id="base_custom_info_template_line_form" model="ir.ui.view">
+    <field name="name">base.custom.info.template.line.form</field>
+    <field name="model">custom.info.template.line</field>
+    <field name="arch" type="xml">
+        <form string="Custom Info Template Lines">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="template_id"/>
+                </group>
+                <group>
+                    <field name="info_value_ids"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="custom_info_template_line_action" model="ir.actions.act_window">
+    <field name="name">Properties</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">custom.info.template.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_type">form</field>
+</record>
+
+</data>
+</openerp>
