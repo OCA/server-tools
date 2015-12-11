@@ -8,6 +8,7 @@ from openerp import api, fields, models, _
 
 class CustomInfoTemplate(models.Model):
     _name = "custom.info.template"
+    _description = "Template of properties"
 
     name = fields.Char()
     model_id = fields.Many2one(comodel_name='ir.model', string='Data Model')
@@ -19,6 +20,7 @@ class CustomInfoTemplate(models.Model):
 
 class CustomInfoTemplateLine(models.Model):
     _name = "custom.info.template.line"
+    _description = "Properties"
 
     name = fields.Char()
     template_id = fields.Many2one(
@@ -32,18 +34,22 @@ class CustomInfoTemplateLine(models.Model):
 
 class CustomInfoValue(models.Model):
     _name = "custom.info.value"
+    _description = "Values of properties"
     _rec_name = 'value'
 
-    model = fields.Char(select=True)
-    res_id = fields.Integer(select=True)
+    model = fields.Char(index=True, required=True)
+    res_id = fields.Integer(index=True, required=True)
     custom_info_name_id = fields.Many2one(
         comodel_name='custom.info.template.line',
+        required=True,
         string='Property Name')
+    name = fields.Char(related='custom_info_name_id.name')
     value = fields.Char()
 
 
 class CustomInfo(models.AbstractModel):
     _name = "custom.info"
+    _description = "Abstract model from inherit to add info in any model"
 
     custom_info_template_id = fields.Many2one(
         comodel_name='custom.info.template',
@@ -67,3 +73,11 @@ class CustomInfo(models.AbstractModel):
                         'model': self._name,
                         'custom_info_name_id': info_name.id,
                     })
+
+    @api.multi
+    def unlink(self):
+        info_values = self.mapped('custom_info_ids')
+        res = super(CustomInfo, self).unlink()
+        if res:
+            info_values.unlink()
+        return res
