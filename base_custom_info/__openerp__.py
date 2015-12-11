@@ -12,6 +12,7 @@
         'base',
     ],
     'data': [
+        'views/custom_info_template_view.xml'
     ],
     'author': 'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., ',
