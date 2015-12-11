@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* reset_user_access_right
+#	* base_user_reset_access
 #
 msgid ""
 msgstr ""
@@ -15,19 +15,19 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: reset_user_access_right
-#: code:addons/reset_user_access_right/models/res_users.py:36
+#. module: base_user_reset_access
+#: code:addons/base_user_reset_access/models/res_users.py:36
 #, python-format
 msgid "It's not possible to reset access right for Admin"
 msgstr "Il n'est pas possible de réinitialiser les droits d'accès de Admin"
 
-#. module: reset_user_access_right
-#: view:res.users:reset_user_access_right.view_users_form
+#. module: base_user_reset_access
+#: view:res.users:base_user_reset_access.view_users_form
 msgid "Reset Access Right"
 msgstr "Réinitialiser les droits d'accès"
 
-#. module: reset_user_access_right
-#: model:ir.model,name:reset_user_access_right.model_res_users
+#. module: base_user_reset_access
+#: model:ir.model,name:base_user_reset_access.model_res_users
 msgid "Users"
 msgstr "Utilisateurs"
 
