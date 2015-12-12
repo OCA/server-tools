@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	   <record id="view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form (base_user_reset_access)</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Allowed Companies']" position="before">
+                    <button name="reset_access_right" string="Reset Access Right" type="object"
+                        confirm="This will reset the user's access rights to the minimum configuration. Are you sure?"/>
+                </xpath>
+            </field>
+       </record>
+    </data>
+</openerp>
+
