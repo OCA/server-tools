@@ -9,24 +9,24 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-12 10:18+0000\n"
 "PO-Revision-Date: 2015-12-12 10:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Last-Translator: <>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_user_reset_access
 #: code:addons/base_user_reset_access/models/res_users.py:37
 #, python-format
 msgid "It's not possible to reset access right for Admin"
-msgstr "Il n'est pas possible de réinitialiser les droits d'accès de Admin"
+msgstr ""
 
 #. module: base_user_reset_access
 #: view:res.users:base_user_reset_access.view_users_form
 msgid "Reset Access Right"
-msgstr "Réinitialiser les droits d'accès"
+msgstr ""
 
 #. module: base_user_reset_access
 #: view:res.users:base_user_reset_access.view_users_form
@@ -38,4 +38,4 @@ msgstr ""
 #. module: base_user_reset_access
 #: model:ir.model,name:base_user_reset_access.model_res_users
 msgid "Users"
-msgstr "Utilisateurs"
+msgstr "Benutzer"
