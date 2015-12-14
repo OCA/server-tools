@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2015 ABF OSIELL <http://osiell.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<openerp>
+<data>
+
+<record id="view_nsca_check_form" model="ir.ui.view">
+    <field name="name">nsca.check.form</field>
+    <field name="model">nsca.check</field>
+    <field name="arch" type="xml">
+        <form string="NSCA Check">
+        	<sheet>
+                <group col="4">
+                    <group string="NSCA Check">
+                        <field name="server_id"/>
+                        <field name="service"/>
+                        <label for="interval_number" string="Frequency"/>
+                        <div>
+                            <field name="interval_number" class="oe_inline"/>
+                            <field name="interval_type" class="oe_inline"/>
+                        </div>
+                        <field name="nextcall"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Settings">
+                        <field name="nsca_model"/>
+                        <field name="nsca_function"/>
+                        <field name="nsca_args"/>
+                        <div colspan="2">
+                            <p>The method must return a tuple (RC, MESSAGE) where RC is an integer:</p>
+                            <newline/>
+                            <ul>
+                                <li>0: OK</li>
+                                <li>1: WARNING</li>
+                                <li>2: CRITICAL</li>
+                                <li>3: UNKNOWN</li>
+                            </ul>
+                            <newline/>
+                            <p>Any other RC value will be treated as CRITICAL.</p>
+                            <p>E.g. <em>(1, u"3 mails not sent")</em></p>
+                        </div>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="view_nsca_check_tree" model="ir.ui.view">
+    <field name="name">nsca.check.tree</field>
+    <field name="model">nsca.check</field>
+    <field name="arch" type="xml">
+        <tree string="NSCA Checks" colors="gray: active==False">
+            <field name="service"/>
+            <field name="server_id"/>
+            <field name="nextcall"/>
+            <field name="active"/>
+        </tree>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="action_nsca_check_tree">
+    <field name="name">Checks</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">nsca.check</field>
+    <field name="view_type">form</field>
+    <field name="view_id" ref="view_nsca_check_tree"/>
+    <field name="context" eval="{'default_active': True}"/>
+    <field name="domain">['|', ('active', '=', True), ('active', '=', False)]</field>
+</record>
+
+<menuitem id="menu_action_nsca_check_tree"
+    parent="menu_nsca_client"
+    action="action_nsca_check_tree"/>
+
+</data>
+</openerp>
