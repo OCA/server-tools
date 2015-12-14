@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "LDAP Populate",
-    "version": "8.0.1.2.0",
+    "version": "9.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": 'Tools',
