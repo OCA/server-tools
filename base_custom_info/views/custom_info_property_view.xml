@@ -3,8 +3,8 @@
 <data>
 
 <record id="base_custom_info_template_line_tree" model="ir.ui.view">
-    <field name="name">base.custom.info.template.line.tree</field>
-    <field name="model">custom.info.template.line</field>
+    <field name="name">base.custom.info.property.tree</field>
+    <field name="model">custom.info.property</field>
     <field name="arch" type="xml">
         <tree string="Custom Info Templates">
             <field name="name"/>
@@ -14,10 +14,10 @@
 </record>
 
 <record id="base_custom_info_template_line_form" model="ir.ui.view">
-    <field name="name">base.custom.info.template.line.form</field>
-    <field name="model">custom.info.template.line</field>
+    <field name="name">base.custom.info.property.form</field>
+    <field name="model">custom.info.property</field>
     <field name="arch" type="xml">
-        <form string="Custom Info Template Lines">
+        <form string="Custom Info Template Properties">
             <sheet>
                 <group>
                     <field name="name"/>
@@ -34,7 +34,7 @@
 <record id="custom_info_template_line_action" model="ir.actions.act_window">
     <field name="name">Properties</field>
     <field name="type">ir.actions.act_window</field>
-    <field name="res_model">custom.info.template.line</field>
+    <field name="res_model">custom.info.property</field>
     <field name="view_mode">tree,form</field>
     <field name="view_type">form</field>
 </record>
