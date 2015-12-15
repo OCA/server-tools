@@ -6,10 +6,10 @@
     <field name="name">base.custom.info.value.tree</field>
     <field name="model">custom.info.value</field>
     <field name="arch" type="xml">
-        <tree string="Custom Info Values">
-            <field name="custom_info_name_id"/>
+        <tree string="Custom Property Values">
+            <field name="property_id"/>
             <field name="value"/>
-            <field name="model"/>
+            <field name="model_id"/>
             <field name="res_id"/>
         </tree>
     </field>
