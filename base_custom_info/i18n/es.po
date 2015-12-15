@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_custom_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-15 17:10+0100\n"
+"PO-Revision-Date: 2015-12-15 17:12+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.5\n"
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to define a new custom info template.\n"
+"      </p><p>\n"
+"        You must define a custom info template for each\n"
+"        product properties group.\n"
+"      </p>\n"
+"    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"Pulsa para definir una nueva plantilla de información personalizada.\n"
+"</p><p>\n"
+"Debe definir una plantilla de información personalizada para cada diferente grupo de propiedades.\n"
+"</p>"
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.value:0
+msgid "Another property with that name exists for that resource."
+msgstr "Ya existe otra propiedad con ese nombre para ese recurso."
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.property:0
+msgid "Another property with that name exists for that template."
+msgstr "Ya existe otra propiedad con ese nombre en esa plantilla."
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.template:0
+msgid "Another template with that name exists for that model."
+msgstr "Ya existe otra plantilla con ese nombre para ese modelo."
+
+#. module: base_custom_info
+#: field:custom.info.property,create_uid:0
+#: field:custom.info.template,create_uid:0
+#: field:custom.info.value,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_custom_info
+#: field:custom.info.property,create_date:0
+#: field:custom.info.template,create_date:0
+#: field:custom.info.value,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: base_custom_info
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
+msgid "Custom Info"
+msgstr "Información personalizada"
+
+#. module: base_custom_info
+#: view:custom.info.template:base_custom_info.base_custom_info_template_form
+msgid "Custom Info Template"
+msgstr "Plantilla de información personalizada"
+
+#. module: base_custom_info
+#: view:custom.info.property:base_custom_info.base_custom_info_template_line_form
+msgid "Custom Info Template Properties"
+msgstr "Propiedades de la plantilla de información personalizada"
+
+#. module: base_custom_info
+#: view:custom.info.property:base_custom_info.base_custom_info_template_line_tree
+#: view:custom.info.template:base_custom_info.base_custom_info_template_tree
+msgid "Custom Info Templates"
+msgstr "Plantillas de información personalizada"
+
+#. module: base_custom_info
+#: field:custom.info,custom_info_template_id:0
+msgid "Custom Information Template"
+msgstr "Plantilla de información personalizada"
+
+#. module: base_custom_info
+#: field:custom.info,custom_info_ids:0
+msgid "Custom Properties"
+msgstr "Propiedades personalizadas"
+
+#. module: base_custom_info
+#: view:custom.info.value:base_custom_info.base_custom_info_value_tree
+msgid "Custom Property Values"
+msgstr "Valores de las propiedades personalizadas"
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_property
+msgid "Custom information property"
+msgstr "Propiedad de información personalizada"
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_template
+msgid "Custom information template"
+msgstr "Plantilla de información personalizada"
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_value
+msgid "Custom information value"
+msgstr "Valor de información personalizada"
+
+#. module: base_custom_info
+#: field:custom.info,id:0 field:custom.info.property,id:0
+#: field:custom.info.template,id:0 field:custom.info.value,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_custom_info
+#: view:custom.info.template:base_custom_info.base_custom_info_template_form
+msgid "Info Lines"
+msgstr "Líneas de información"
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info
+msgid "Inheritable abstract model to add custom info in any model"
+msgstr "Modelo abstracto que se puede heredar para añadir información personalizada a cualquier modelo"
+
+#. module: base_custom_info
+#: field:custom.info.property,write_uid:0
+#: field:custom.info.template,write_uid:0 field:custom.info.value,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: base_custom_info
+#: field:custom.info.property,write_date:0
+#: field:custom.info.template,write_date:0
+#: field:custom.info.value,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: base_custom_info
+#: field:custom.info.template,model_id:0 field:custom.info.value,model:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: base_custom_info
+#: field:custom.info.property,name:0 field:custom.info.template,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: base_custom_info
+#: field:custom.info.template,info_ids:0
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_template_line_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template_line
+msgid "Properties"
+msgstr "Propiedades"
+
+#. module: base_custom_info
+#: field:custom.info.value,property_id:0
+msgid "Property"
+msgstr "Propiedad"
+
+#. module: base_custom_info
+#: field:custom.info.property,info_value_ids:0
+msgid "Property Values"
+msgstr "Valor de la propiedad"
+
+#. module: base_custom_info
+#: field:custom.info.value,res_id:0
+msgid "Resource ID"
+msgstr "ID del recurso"
+
+#. module: base_custom_info
+#: field:custom.info.property,template_id:0
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_template_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template
+msgid "Templates"
+msgstr "Plantillas"
+
+#. module: base_custom_info
+#: field:custom.info.value,value:0
+msgid "Value"
+msgstr "Valor"
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
+msgid "Values"
+msgstr "Valores"

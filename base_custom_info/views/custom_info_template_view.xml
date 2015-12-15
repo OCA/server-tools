@@ -48,7 +48,7 @@
       <p class="oe_view_nocontent_create">
         Click to define a new custom info template.
       </p><p>
-        You must define a custom info template for every different
+        You must define a custom info template for each
         product properties group.
       </p>
     </field>
