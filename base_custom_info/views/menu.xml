@@ -7,15 +7,18 @@
           parent="base.menu_administration" sequence="45"/>
 
 <!--base.custom.info.template-->
-<menuitem id="menu_base_custom_info_template" action="custom_info_template_action"
+<menuitem id="menu_base_custom_info_template"
+          action="custom_info_template_action"
           parent="menu_base_custom_info" sequence="5"/>
 
 <!--base.custom.info.template.line-->
-<menuitem id="menu_base_custom_info_template_line" action="custom_info_template_line_action"
+<menuitem id="menu_base_custom_info_template_line"
+          action="custom_info_template_line_action"
           parent="menu_base_custom_info" sequence="10"/>
 
 <!--base.custom.info.value-->
-<menuitem id="menu_base_custom_info_value" action="custom_info_value_action"
+<menuitem id="menu_base_custom_info_value"
+          action="custom_info_value_action"
           parent="menu_base_custom_info" sequence="15"/>
 
 </data>
