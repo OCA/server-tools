@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
+# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2015 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
@@ -13,7 +14,7 @@
     ],
     'data': [
         'views/custom_info_template_view.xml',
-        'views/custom_info_template_line_view.xml',
+        'views/custom_info_property_view.xml',
         'views/custom_info_value_view.xml',
         'views/menu.xml',
         'security/ir.model.access.csv',
