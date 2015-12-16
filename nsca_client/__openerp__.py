@@ -11,11 +11,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        "bin": [
-            '/usr/sbin/send_nsca',
-        ],
-    },
     "data": [
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
