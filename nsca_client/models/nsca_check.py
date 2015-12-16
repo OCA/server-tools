@@ -3,14 +3,22 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+import os
 import shlex
 import subprocess
 
 from openerp import _, api, fields, models
+from openerp.exceptions import Warning as UserError
 
 from openerp.addons.base.ir.ir_cron import str2tuple
 
 _logger = logging.getLogger(__name__)
+
+SEND_NSCA_BIN = '/usr/sbin/send_nsca'
+
+
+def is_exe(fpath):
+    return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
 
 class NscaCheck(models.Model):
@@ -73,6 +81,7 @@ class NscaCheck(models.Model):
 
     @api.model
     def _cron_check(self, check_id):
+        self._check_send_nsca_command()
         check = self.browse(check_id)
         rc, message = 3, "Unknown"
         try:
@@ -128,3 +137,11 @@ class NscaCheck(models.Model):
             _logger.info("%s: %s", check_result, stdout.strip())
         except Exception, exc:
             _logger.error(exc)
+
+    def _check_send_nsca_command(self):
+        """Check if the NSCA client is installed."""
+        if not is_exe(SEND_NSCA_BIN):
+            raise UserError(
+                _(u"Command '%s' not found. Please install the NSCA client.\n"
+                  u"On Debian/Ubuntu: apt-get install nsca-client") % (
+                    SEND_NSCA_BIN))
