@@ -2,7 +2,7 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields
+from openerp import fields, models
 
 
 class NscaServer(models.Model):
@@ -11,5 +11,7 @@ class NscaServer(models.Model):
 
     name = fields.Char(u"Hostname", required=True)
     port = fields.Integer(u"Port", default=5667, required=True)
+    config_file_path = fields.Char(
+        u"Configuration file", default="/etc/send_nsca.cfg", required=True)
     check_ids = fields.One2many(
         'nsca.check', 'server_id', string=u"Checks")
