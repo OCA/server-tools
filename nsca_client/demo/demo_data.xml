@@ -2,14 +2,9 @@
 <openerp>
 <data>
 
-<record id="demo_nsca_server" model="nsca.server">
-    <field name="name">nagios.example.net</field>
-    <field name="port">5667</field>
-</record>
-
 <record id="demo_nsca_check_mails" model="nsca.check">
-    <field name="server_id" ref="demo_nsca_server"/>
-    <field name="service">ODOO MAIL QUEUE</field>
+    <field name="server_id" ref="nsca_server_default"/>
+    <field name="service">Odoo Mail Queue</field>
     <field name="interval_number" eval="10"/>
     <field name="interval_type">minutes</field>
     <field name="nsca_model">mail.mail</field>
