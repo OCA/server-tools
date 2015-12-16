@@ -12,11 +12,14 @@
     "application": False,
     "installable": True,
     "external_dependencies": {
-        "bin": ['/usr/sbin/send_nsca'],
+        "bin": [
+            '/usr/sbin/send_nsca',
+        ],
     },
     "data": [
         "security/ir.model.access.csv",
         "data/ir_config_parameter.xml",
+        "data/nsca_server.xml",
         "views/nsca_menu.xml",
         "views/nsca_check.xml",
         "views/nsca_server.xml",

@@ -6,7 +6,7 @@ import logging
 import shlex
 import subprocess
 
-from openerp import models, fields, api, _
+from openerp import _, api, fields, models
 
 from openerp.addons.base.ir.ir_cron import str2tuple
 
@@ -108,8 +108,10 @@ class NscaCheck(models.Model):
         """Prepare the shell command used to send the check result
         to the NSCA daemon.
         """
-        cmd = u"/usr/sbin/send_nsca -H %s -p %s" % (
-            check.server_id.name, check.server_id.port)
+        cmd = u"/usr/sbin/send_nsca -H %s -p %s -c %s" % (
+            check.server_id.name,
+            check.server_id.port,
+            check.server_id.config_file_path)
         return shlex.split(cmd)
 
     @api.model

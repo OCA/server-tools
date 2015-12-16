@@ -14,6 +14,7 @@
                 <group string="NSCA Server">
                     <field name="name" style="width: 30%;"/>
                     <field name="port"/>
+                    <field name="config_file_path"/>
                 </group>
                 <group string="Checks">
                     <field name="check_ids" nolabel="1"/>
@@ -30,6 +31,7 @@
         <tree string="NSCA Servers">
             <field name="name"/>
             <field name="port"/>
+            <field name="config_file_path"/>
         </tree>
     </field>
 </record>

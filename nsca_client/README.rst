@@ -27,18 +27,26 @@ Configuration
 
 To configure this module, you need to:
 
-* Configure your server and a passive service in your moniroting tool
-  (e.g service ``ODOO MAIL QUEUE`` on host ``MY-SERVER``).
+* Configure your server and a passive service in your monitoring tool
+  (e.g service ``Odoo Mail Queue`` on host ``MY-SERVER``).
 * On Odoo, set the previous hostname in the system parameters::
 
     nsca_client.hostname = MY-SERVER
 
 * Declare your NSCA server in the menu Configuration / Technical / NSCA Client / Servers
+
+.. image:: nsca_client/static/description/server.png
+   :width: 400 px
+
 * Create NSCA checks in the menu Configuration / Technical / NSCA Client / Checks
+
+.. image:: nsca_client/static/description/check.png
+   :width: 400 px
+
 * Code the methods which will be called by the NSCA checks.
 
-Such methods must return a tuple (RC, MESSAGE) where RC is an integer,
-and MESSAGE a unicode string. ``RC`` values and the corresponding status are:
+Such methods must return a tuple ``(RC, MESSAGE)`` where ``RC`` is an integer,
+and ``MESSAGE`` a unicode string. ``RC`` values and the corresponding status are:
 
 - 0: OK
 - 1: WARNING
