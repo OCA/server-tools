@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-15 11:57+0000\n"
-"PO-Revision-Date: 2015-12-15 11:57+0000\n"
+"POT-Creation-Date: 2015-12-17 07:05+0000\n"
+"PO-Revision-Date: 2015-12-17 07:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,18 @@ msgstr ""
 #: view:nsca.server:nsca_client.view_nsca_server_form
 #: field:nsca.server,check_ids:0
 msgid "Checks"
+msgstr ""
+
+#. module: nsca_client
+#: code:addons/nsca_client/models/nsca_check.py:145
+#, python-format
+msgid "Command '%s' not found. Please install the NSCA client.\n"
+"On Debian/Ubuntu: apt-get install nsca-client"
+msgstr ""
+
+#. module: nsca_client
+#: field:nsca.server,config_file_path:0
+msgid "Configuration file"
 msgstr ""
 
 #. module: nsca_client
@@ -119,7 +131,7 @@ msgid "Model"
 msgstr ""
 
 #. module: nsca_client
-#: code:addons/nsca_client/models/nsca_check.py:52
+#: code:addons/nsca_client/models/nsca_check.py:60
 #: model:ir.model,name:nsca_client.model_nsca_check
 #: view:nsca.check:nsca_client.view_nsca_check_form
 #, python-format
