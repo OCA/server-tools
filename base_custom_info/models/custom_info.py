@@ -75,8 +75,9 @@ class CustomInfo(models.AbstractModel):
     custom_info_ids = fields.One2many(
         comodel_name='custom.info.value',
         inverse_name='res_id',
-        domain=lambda self: self.env["ir.model"].search(
-            [("model_id", "=", self._name)]).id,
+        domain=lambda self: [
+            ("model_id", "=",
+             self.env["ir.model"].search([("model", "=", self._name)]).id)],
         auto_join=True,
         string='Custom Properties')
 
