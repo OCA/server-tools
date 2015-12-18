@@ -51,6 +51,11 @@ Development
 To create a module that supports custom information, just depend on this module
 and inherit from the ``custom.info`` model.
 
+Known issues / Roadmap
+======================
+
+* All data types of custom information values are text strings.
+
 Bug Tracker
 ===========
 
