@@ -15,8 +15,8 @@ Installation
 This module serves as a base for other modules that implement this behavior in
 concrete models.
 
-This means that you should **not** install this module by itself. If you found
-it installed, it means probably that another module that needs it installed it.
+This module is a technical dependency and is to be installed in parallel to
+other modules.
 
 Usage
 =====
