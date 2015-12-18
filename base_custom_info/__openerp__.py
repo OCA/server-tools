@@ -7,7 +7,7 @@
 {
     'name': "Base Custom Info",
     'summary': "Add custom field in models",
-    'category': 'Customize',
+    'category': 'Tools',
     'version': '8.0.1.0.0',
     'depends': [
         'base',
@@ -20,7 +20,8 @@
         'security/ir.model.access.csv',
     ],
     'author': 'Antiun Ingeniería S.L., '
-              'Incaser Informatica S.L., ',
+              'Incaser Informatica S.L., '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
     'installable': True,
