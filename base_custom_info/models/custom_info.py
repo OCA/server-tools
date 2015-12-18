@@ -55,7 +55,7 @@ class CustomInfoValue(models.Model):
          "Another property with that name exists for that resource."),
     ]
 
-    model = fields.Char(index=True, required=True)
+    model_id = fields.Many2one("ir.model", "Model", required=True)
     res_id = fields.Integer("Resource ID", index=True, required=True)
     property_id = fields.Many2one(
         comodel_name='custom.info.property',
@@ -75,7 +75,8 @@ class CustomInfo(models.AbstractModel):
     custom_info_ids = fields.One2many(
         comodel_name='custom.info.value',
         inverse_name='res_id',
-        domain=lambda self: [('model', '=', self._name)],
+        domain=lambda self: self.env["ir.model"].search(
+            [("model_id", "=", self._name)]).id,
         auto_join=True,
         string='Custom Properties')
 
