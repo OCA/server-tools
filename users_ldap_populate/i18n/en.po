@@ -3,7 +3,6 @@
 # * users_ldap_populate
 # 
 # Translators:
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
@@ -11,89 +10,89 @@ msgstr ""
 "POT-Creation-Date: 2015-12-15 01:55+0000\n"
 "PO-Revision-Date: 2015-12-13 15:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-9-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
-msgstr "Adicione botão popular na visão ldap"
+msgstr "Add populate button to ldap view"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Created by"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Created on"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Display Name"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
 msgid "LDAP Configuration"
-msgstr "Configuração LDAP"
+msgstr "LDAP Configuration"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Last Modified on"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Last Updated by"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Last Updated on"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
-msgstr "Nome"
+msgstr "Name"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
-msgstr "Número de usuários criado"
+msgstr "Number of users created"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
-msgstr "Popular"
+msgstr "Populate"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate user database"
-msgstr "Popular o banc de dados de usuário"
+msgstr "Populate user database"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
-msgstr "Popular usuários do LDAP"
+msgstr "Populate users from LDAP"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap
 msgid "res.company.ldap"
-msgstr ""
+msgstr "res.company.ldap"
