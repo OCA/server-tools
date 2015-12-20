@@ -6,12 +6,12 @@
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-24 11:48+0000\n"
+"POT-Creation-Date: 2015-12-15 01:55+0000\n"
+"PO-Revision-Date: 2015-12-14 06:46+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,57 +19,72 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: users_ldap_populate
-#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
 msgstr "Dodaj gumb 'Naseli' v LDAP prikaz"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,create_uid:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,create_date:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,id:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
+msgid "Display Name"
+msgstr "Prikazani naziv"
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
 msgid "ID"
 msgstr "ID"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,ldap_id:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
 msgid "LDAP Configuration"
 msgstr "LDAP nastavitve"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,write_uid:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,write_date:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,name:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
 msgstr "Naziv"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,users_created:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
 msgstr "Število ustvarjenih uporabnikov"
 
 #. module: users_ldap_populate
-#: view:res.company:users_ldap_populate.company_form_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
+msgid "OK"
+msgstr "V redu"
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
 msgstr "Naseli"
 
 #. module: users_ldap_populate
-#: view:res.company:users_ldap_populate.company_form_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate user database"
 msgstr "Naseli podatkovno zbirko uporabnikov"
 
@@ -77,3 +92,8 @@ msgstr "Naseli podatkovno zbirko uporabnikov"
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
 msgstr "Naseli uporabnike iz LDAP"
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap
+msgid "res.company.ldap"
+msgstr "res.company.ldap"

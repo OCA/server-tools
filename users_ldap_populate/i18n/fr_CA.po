@@ -5,12 +5,12 @@
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"POT-Creation-Date: 2015-12-15 01:55+0000\n"
+"PO-Revision-Date: 2015-12-13 15:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,61 +18,81 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: users_ldap_populate
-#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,create_uid:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,create_date:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,id:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
 msgid "ID"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,ldap_id:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
 msgid "LDAP Configuration"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,write_uid:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,write_date:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,name:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
 msgstr "Nom"
 
 #. module: users_ldap_populate
-#: field:res.company.ldap.populate_wizard,users_created:0
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
 msgstr ""
 
 #. module: users_ldap_populate
-#: view:res.company:users_ldap_populate.company_form_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
+msgid "OK"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
 msgstr ""
 
 #. module: users_ldap_populate
-#: view:res.company:users_ldap_populate.company_form_view
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate user database"
 msgstr ""
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap
+msgid "res.company.ldap"
 msgstr ""
