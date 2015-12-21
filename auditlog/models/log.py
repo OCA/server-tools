@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class auditlog_log(models.Model):
+class AuditlogLog(models.Model):
     _name = 'auditlog.log'
     _description = "Auditlog - Log"
     _order = "create_date desc"
@@ -36,9 +36,13 @@ class auditlog_log(models.Model):
     method = fields.Char(u"Method", size=64)
     line_ids = fields.One2many(
         'auditlog.log.line', 'log_id', string=u"Fields updated")
+    http_session_id = fields.Many2one(
+        'auditlog.http.session', string=u"Session")
+    http_request_id = fields.Many2one(
+        'auditlog.http.request', string=u"HTTP Request")
 
 
-class auditlog_log_line(models.Model):
+class AuditlogLogLine(models.Model):
     _name = 'auditlog.log.line'
     _description = "Auditlog - Log details (fields updated)"
 
