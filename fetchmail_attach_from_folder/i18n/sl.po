@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-26 07:28+0000\n"
+"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"PO-Revision-Date: 2015-11-14 04:49+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,24 @@ msgstr "Ročno pripenjanje e-pošte"
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
 msgstr "Preklic"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,context:0
+msgid "Context"
+msgstr "Kontekst"
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:230
+#, python-format
+msgid "Context \"%s\" is not a dictionary."
+msgstr "Kontekst \"%s\" ni slovar."
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,context:0
+msgid ""
+"Context that is passed during mail processing. Can be used to set default "
+"values."
+msgstr "Kontekst, ki se prenaša med obdelavo pošte. Uporabi se lahko za nastavitev različnih vrednosti."
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_uid:0
@@ -139,6 +157,12 @@ msgid ""
 msgstr "Ko je več ujemajočih se sporočil, uporabi prvo. Če ni označeno, se več ujemajočih se sporočil smatra kot, da sploh ni ujemajočih se sporočil"
 
 #. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:227
+#, python-format
+msgid "Invalid context \"%s\": %s"
+msgstr "Neveljaven kontekst \"%s\": %s"
+
+#. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
@@ -153,13 +177,13 @@ msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:187
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:189
 #, python-format
 msgid "Mail attachment"
 msgstr "E-poštna priponka"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:223
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:234
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr "Poštni predal %s ni najden!"
@@ -304,6 +328,11 @@ msgstr "ali"
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
 msgid "to,from"
 msgstr "to,from"
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "{'default_supplier': True}"
+msgstr "{'default_supplier': True}"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form

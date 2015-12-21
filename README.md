@@ -16,7 +16,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [admin_technical_features](admin_technical_features/) | 8.0.0.1.0 | Checks the technical features box for admin user.
-[auditlog](auditlog/) | 8.0.1.0.0 | Audit Log
+[auditlog](auditlog/) | 8.0.1.1.0 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 | Authentification - Admin Passkey
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 | Have membership conditions for certain groups
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 | Authenticate via HTTP Remote User
@@ -32,9 +32,13 @@ addon | version | summary
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 | Report qweb auto generation
 [base_suspend_security](base_suspend_security/) | 8.0.1.0.0 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
+[base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
 [cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
-[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 | dbfilter_from_header
+[datetime_formatter](datetime_formatter/) | 8.0.1.0.0 | Helper functions to give correct format to date[time] fields
+[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.1 | dbfilter_from_header
+[dead_mans_switch_client](dead_mans_switch_client/) | 8.0.1.0.0 | Be notified when customers' odoo instances go down
+[dead_mans_switch_server](dead_mans_switch_server/) | 8.0.1.0.0 | Be notified when customers' odoo instances go down
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender

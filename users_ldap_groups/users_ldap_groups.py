@@ -19,11 +19,14 @@
 #
 ##############################################################################
 
+import logging
 from openerp import models
 from openerp import fields
 from openerp import api
-import logging
 from string import Template
+
+
+_logger = logging.getLogger(__name__)
 
 
 class LDAPOperator(models.AbstractModel):
@@ -32,30 +35,28 @@ class LDAPOperator(models.AbstractModel):
     def operators(self):
         return ('contains', 'equals', 'query')
 
-    def contains(self, ldap_entry, attribute, value, ldap_config, company,
-                 logger):
+    def contains(self, ldap_entry, attribute, value, ldap_config, company):
         return (attribute in ldap_entry[1]) and \
             (value in ldap_entry[1][attribute])
 
-    def equals(self, ldap_entry, attribute, value, ldap_config, company,
-               logger):
+    def equals(self, ldap_entry, attribute, value, ldap_config, company):
         return attribute in ldap_entry[1] and \
             unicode(value) == unicode(ldap_entry[1][attribute])
 
-    def query(self, ldap_entry, attribute, value, ldap_config, company,
-              logger):
+    def query(self, ldap_entry, attribute, value, ldap_config, company):
         query_string = Template(value).safe_substitute(dict(
             [(attr, ldap_entry[1][attribute][0]) for attr in ldap_entry[1]]
             )
         )
-        logger.debug('evaluating query group mapping, filter: %s' %
-                     query_string)
+        _logger.debug('evaluating query group mapping, filter: %s' %
+                      query_string)
         results = company.query(ldap_config, query_string)
-        logger.debug(results)
+        _logger.debug(results)
         return bool(results)
 
 
 class CompanyLDAPGroupMapping(models.Model):
+
     _name = 'res.company.ldap.group_mapping'
     _rec_name = 'ldap_attribute'
     _order = 'ldap_attribute'
@@ -101,28 +102,33 @@ class CompanyLDAP(models.Model):
         'only_ldap_groups': False,
     }
 
-    @api.model
-    def get_or_create_user(self, conf, login, ldap_entry):
-        op_obj = self.env['res.company.ldap.operator']
-        id_ = conf['id']
-        this = self.browse(id_)
-        user_id = super(CompanyLDAP, self).get_or_create_user(
-            conf, login, ldap_entry)
-        if not user_id:
-            return user_id
-        userobj = self.env['res.users']
-        user = userobj.browse(user_id)
-        logger = logging.getLogger('users_ldap_groups')
+    def map_groups(self, user_id, ldap_config, ldap_entry):
+
+        user_obj = self.env['res.users']
+        operator_obj = self.env['res.company.ldap.operator']
+
+        user = user_obj.browse(user_id)
         if self.only_ldap_groups:
-            logger.debug('deleting all groups from user %d' % user_id)
+            _logger.debug('deleting all groups from user %d' % user_id)
             user.write({'groups_id': [(5, )]})
 
-        for mapping in this.group_mappings:
-            operator = getattr(op_obj, mapping.operator)
-            logger.debug('checking mapping %s' % mapping)
+        for mapping in self.group_mappings:
+            operator = getattr(operator_obj, mapping.operator)
+            _logger.debug('checking mapping %s' % mapping)
             if operator(ldap_entry, mapping['ldap_attribute'],
-                        mapping['value'], conf, self, logger):
-                logger.debug('adding user %d to group %s' %
-                             (user_id, mapping.group.name))
+                        mapping['value'], ldap_config, self):
+                _logger.debug('adding user %d to group %s' %
+                              (user_id, mapping.group.name))
                 user.write({'groups_id': [(4, mapping.group.id)]})
+
+    @api.model
+    def get_or_create_user(self, ldap_config, login, ldap_entry):
+
+        user_id = super(CompanyLDAP, self).get_or_create_user(
+            ldap_config, login, ldap_entry)
+
+        if user_id:
+            self.browse(ldap_config['id']).map_groups(user_id, ldap_config,
+                                                      ldap_entry)
+
         return user_id

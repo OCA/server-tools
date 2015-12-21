@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"PO-Revision-Date: 2015-11-26 13:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,16 @@ msgid "Audit"
 msgstr "Audit"
 
 #. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_session
+msgid "Auditlog - HTTP User session log"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_request
+msgid "Auditlog - HTTP request log"
+msgstr ""
+
+#. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
 msgstr "Auditlog - Log"
@@ -43,14 +53,23 @@ msgid "Auditlog - Rule"
 msgstr "Auditlog - Règle"
 
 #. module: auditlog
-#: field:auditlog.log,create_uid:0 field:auditlog.log.line,create_uid:0
-#: field:auditlog.rule,create_uid:0
+#: field:auditlog.http.request,user_context:0
+msgid "Context"
+msgstr "Contexte"
+
+#. module: auditlog
+#: field:auditlog.http.request,create_uid:0
+#: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
+#: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: auditlog
-#: field:auditlog.log,create_date:0 field:auditlog.log.line,create_date:0
-#: field:auditlog.rule,create_date:0
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,create_date:0
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: field:auditlog.http.session,create_date:0 field:auditlog.log,create_date:0
+#: field:auditlog.log.line,create_date:0 field:auditlog.rule,create_date:0
 msgid "Created on"
 msgstr "Date"
 
@@ -77,26 +96,53 @@ msgid "Fields updated"
 msgstr "Champs modifiés"
 
 #. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
 msgstr "Grouper par..."
 
 #. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+msgid "HTTP Context"
+msgstr ""
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: field:auditlog.log,http_request_id:0
+msgid "HTTP Request"
+msgstr ""
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_tree
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
+#: field:auditlog.http.session,http_request_ids:0
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
+msgid "HTTP Requests"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
 #: field:auditlog.log,id:0 field:auditlog.log.line,id:0
 #: field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
-#: field:auditlog.log,write_uid:0 field:auditlog.log.line,write_uid:0
-#: field:auditlog.rule,write_uid:0
+#: field:auditlog.http.request,write_uid:0
+#: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
+#: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: auditlog
-#: field:auditlog.log,write_date:0 field:auditlog.log.line,write_date:0
-#: field:auditlog.rule,write_date:0
+#: field:auditlog.http.request,write_date:0
+#: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
+#: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
@@ -132,6 +178,8 @@ msgid "Log Writes"
 msgstr "Enregistrer les écritures"
 
 #. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
+#: field:auditlog.http.request,log_ids:0
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.log:auditlog.view_auditlog_log_tree
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
@@ -176,6 +224,12 @@ msgid "Old value Text"
 msgstr "Ancienne valeur texte"
 
 #. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,name:0
+msgid "Path"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,res_id:0
 msgid "Resource ID"
@@ -185,6 +239,12 @@ msgstr "ID de l'enregistrement"
 #: field:auditlog.log,name:0
 msgid "Resource Name"
 msgstr "Nom de l'enregistrement"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,root_url:0
+msgid "Root URL"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -233,6 +293,17 @@ msgid ""
 msgstr "Cochez cette case si vous voulez garder une trace de la lecture/ouverture de chaque enregistrement du modèle défini dans cette règle."
 
 #. module: auditlog
+#: field:auditlog.http.request,http_session_id:0
+#: field:auditlog.log,http_session_id:0
+msgid "Session"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.http.session,name:0
+msgid "Session ID"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
@@ -262,10 +333,29 @@ msgid "Unsubscribe"
 msgstr "Désabonner"
 
 #. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,user_id:0
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: field:auditlog.http.session,user_id:0
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
 msgstr "Utilisateur"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "User session"
+msgstr ""
+
+#. module: auditlog
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_tree
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
+msgid "User sessions"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
@@ -278,7 +368,7 @@ msgid "Values"
 msgstr "Valeurs"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:478
+#: code:addons/auditlog/models/rule.py:482
 #, python-format
 msgid "View logs"
 msgstr "Consulter les journaux"
