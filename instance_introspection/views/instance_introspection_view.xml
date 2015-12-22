@@ -57,6 +57,7 @@
                     <meta charset="utf-8" />
                     <t t-call-assets="web.assets_common" t-js="false"/>
                     <t t-call-assets="web.assets_backend" t-js="false"/>
+                    <link href="/instance_introspection/static/src/css/custom_footer.css" rel="stylesheet"></link>
                 </head>
                 <body>
                     <nav class="navbar navbar-default">
@@ -83,6 +84,11 @@
                         <div class="repositories">
                         </div>
                     </section>
+                    <footer class="footer">
+                        <div class="container">
+                            <p class="text-muted">Ask for Support <a href="https://vauxoo.com">With Vauxoo</a></p>
+                        </div>
+                    </footer>
                     <t t-call-assets="web.assets_common" t-css="false"/>
                     <t t-call-assets="web.assets_backend" t-css="false"/>
                 </body>
