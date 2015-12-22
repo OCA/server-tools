@@ -56,19 +56,26 @@
                     <t t-call-assets="web.assets_backend" t-js="false"/>
                 </head>
                 <body>
-                    <section class="container">
-                        <div class="row page-header">
-                            <div class="col-md-8 col-xs-8 col-sm-8">
-                                <h3 class="text-left middle">Addons Paths</h3>
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                              <a class="navbar-brand" href="#">Addons Paths</a>
                             </div>
-                            <div class="col-md-4 col-xs-4 col-sm-4">
-                                <div class="btn-group btn">
-                                    <a href="#" class="btn btn-primary btn-reload"><i class="fa fa-refresh"></i> Reload</a>
-                                    <a href="/web" class="btn btn-warning"><i class="fa fa-home"></i> Go to Home</a>
-                                </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a class="btn-reload" href="#"><i class="fa fa-refresh"></i> Reload</a></li>
+                                    <li><a href="/web" class="btn "><i class="fa fa-home"></i> Go to Home</a></li>
+                                </ul>
                             </div>
                         </div>
-                    </section>
+                    </nav>
                     <section class="repositories">
                     </section>
                     <t t-call-assets="web.assets_common" t-css="false"/>
