@@ -12,7 +12,7 @@
     "category": "Tecnhical Features",
     "website": "http://www.vauxoo.com/",
     "license": "AGPL-3",
-    "depends": ["base"],
+    "depends": ["web"],
     "demo": [],
     "images": [
         "static/src/img/image.png",
