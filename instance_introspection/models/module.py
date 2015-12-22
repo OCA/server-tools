@@ -28,4 +28,3 @@ class Module(models.Model):
             label['status'] = _('No valid information')
             label['remotes'] = _('No valid information')
         return label
-
