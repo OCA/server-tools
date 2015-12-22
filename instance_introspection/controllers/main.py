@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 class InstanceIntrospection(http.Controller):
 
     @http.route('/instance_introspection',
-                type='http', auth="user", website=True)
+                type='http', auth="user")
     def index(self, *args, **post):
         """ Returns some information regarding how instance is configured,
         basically bringing to frontend the information of the instance.
@@ -26,14 +26,14 @@ class InstanceIntrospection(http.Controller):
         })
 
     @http.route('/instance_introspection/reload',
-                type='http', auth="user", website=True)
+                type='http', auth="user")
     def index_reload(self, *args, **post):
         """ Returns the list elements on repositories.
         """
         modules = request.registry['ir.module.module']
         addons_path = openerp.conf.addons_paths
         addons = [
-            {'id': addon.replace('/', '_'),
+            {'id': addon.replace('/', '_').replace('.', '_'),
              'info': modules.get_info(addon),
              'path': addon}
             for addon in addons_path]

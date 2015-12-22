@@ -43,8 +43,10 @@
                             <div class="panel-body">
                                 <div class="lead">
                                     <t t-raw="addon['info']['status']"/>
-                                    <t t-call="instance_introspection.remotes"/>
                                 </div>
+                                <small>
+                                    <t t-call="instance_introspection.remotes"/>
+                                </small>
                             </div>
                         </div>
                     </div>
