@@ -8,15 +8,12 @@
             </xpath>
         </template>
         <template id="instance_introspection.remotes" name="remotes buttons">
-            <div class="labels" role="group" aria-label="...">
+            <div class="text-center" role="group" aria-label="...">
                 <t t-foreach="addon['info']['remotes']" t-as="remote">
                     <t t-set="elements" t-value="remote.split('\t')"/>
                     <t t-if="len(elements) > 1">
-                        <a t-att-href="elements[1]"
-                           class="label label-primary"><t t-esc="elements[0]"/>
-                            <span>
-                                <t t-esc="elements[1].split(' ')[1]"/>
-                            </span>
+                        <a t-att-href="elements[1].split(' ')[0]"
+                           class="label label-primary"><t t-esc="elements[0]"/> <t t-esc="elements[1].split(' ')[1]"/>
                         </a>
                     </t>
                 </t>
@@ -26,7 +23,7 @@
             <div class="panel-group results" id="accordion" role="tablist"
                  aria-multiselectable="true">
                 <t t-foreach="addons" t-as="addon">
-                    <div href="#" class="panel panel-default">
+                    <div href="#" t-att-class="addon['info']['sha'].find('dirty') > 0 and 'panel panel-warning' or (addon['info']['sha'].find(' ') > 0 and 'panel panel-danger' or 'panel panel-success')">
                         <div class="panel-heading" role="tab" t-att-id="addon['id']">
                             <h4 class="panel-title">
                                 <a role="button" data-toggle="collapse"
@@ -35,7 +32,7 @@
                                    aria-expanded="true"
                                    t-att-aria-controls="'collapse{aa}'.format(aa=addon['id'])">
                                     <t t-esc="addon['path']"/>
-                                    <h5 class="text-muted pull-right" t-esc="addon['info']['sha']"/>
+                                    <small class="pull-right" t-esc="addon['info']['sha']"/>
                                 </a>
                             </h4>
                         </div>
@@ -59,8 +56,8 @@
                     <t t-call-assets="web.assets_backend" t-js="false"/>
                 </head>
                 <body>
-                    <section>
-                        <div class="row">
+                    <section class="container">
+                        <div class="row page-header">
                             <div class="col-md-9 col-xs-9 col-sm-9">
                                 <h3>Addons Paths</h3>
                             </div>
@@ -69,7 +66,6 @@
                             </div>
                         </div>
                     </section>
-                    <hr/>
                     <section class="repositories">
                     </section>
                     <t t-call-assets="web.assets_common" t-css="false"/>
