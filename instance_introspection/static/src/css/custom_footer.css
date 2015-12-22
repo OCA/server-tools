@@ -8,6 +8,12 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+.panel-group .panel {
+    border-radius: 0px;
+}
+.panel-group .panel + .panel {
+    margin-top: 0px;
+}
 .footer {
   position: absolute;
   bottom: 0;
