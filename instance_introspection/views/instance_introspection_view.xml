@@ -4,7 +4,20 @@
         <template id="assets_backend" name="instance_introspection assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/instance_introspection/static/src/js/tests.js"></script>
+                <script type="text/javascript" src="/instance_introspection/static/src/js/introspection.js"></script>
             </xpath>
+        </template>
+        <template id="instance_introspection.repository_list" name="Repository List">
+            <t t-foreach="addons" t-as="addon">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading"
+                        t-esc="addon['path']"/>
+                    <h5 class="list-group-item-heading text-muted"
+                        t-esc="addon['sha']"/>
+                    <p class="list-group-item-text">
+                    </p>
+                </a>
+            </t>
         </template>
         <template id="instance_introspection.addons" name="Instance Introspection">&lt;!DOCTYPE html&gt;
             <html>
@@ -14,14 +27,24 @@
                     <t t-call-assets="web.assets_backend" t-js="false"/>
                 </head>
                 <body>
-                    <div class="jumbotron">
-                        <h1>Branch Information</h1>
+                    <div class="container">
+                        <ul class="list-group">
+                            <li href="#" class="list-group-item">
+                                <div class="row">
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <h3>Addons Paths</h3>
+                                </div>
+                                <div class="col-md-3 col-xs-3 col-sm-3">
+                                    <a href="#" class="btn btn-default btn-reload">Reload</a>
+                                </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="list-group repositories">
+                        </div>
                     </div>
-                    <ul>
-                        <LI>Element</LI>
-                    </ul>
-                <t t-call-assets="web.assets_common" t-css="false"/>
-                <t t-call-assets="web.assets_backend" t-css="false"/>
+                    <t t-call-assets="web.assets_common" t-css="false"/>
+                    <t t-call-assets="web.assets_backend" t-css="false"/>
                 </body>
             </html>
         </template>

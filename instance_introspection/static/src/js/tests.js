@@ -13,8 +13,13 @@
             },
             {
                 title:  'Load the Session',
-                waitFor: '.jumbotron',
-                element: 'h1:contains("Branch Information")',
+                waitFor: '.list-group',
+                element: 'h3:contains("Addons Path")',
+            },
+            {
+                title:  'Load the List',
+                waitFor: '.list-group-item',
+                element: 'a:contains("Reload")',
             },
         ],
     });

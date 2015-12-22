@@ -5,24 +5,31 @@
 # coded by: nhomar@vauxoo.com
 # planned by: nhomar@vauxoo.com
 
-import base64
 import logging
-import werkzeug
 
+import openerp
 from openerp.addons.web import http
-from openerp.exceptions import AccessError
 from openerp.http import request
-from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
 class InstanceIntrospection(http.Controller):
+
     @http.route('/instance_introspection', type='http', auth="user", website=True)
-    def slides_index(self, *args, **post):
+    def index(self, *args, **post):
         """ Returns some information regarding how instance is configured,
         basically bringing to frontend the information of the instance..
         """
-        addons_path = []
         return request.render('instance_introspection.addons', {
-            'addons': addons_path
+        })
+
+    @http.route('/instance_introspection/reload', type='http', auth="user", website=True)
+    def index_reload(self, *args, **post):
+        """ Returns the list elements on repositories.
+        """
+        modules = request.registry['ir.module.module']
+        addons_path = openerp.conf.addons_paths
+        addons = [{'sha': modules.get_sha(addon), 'path': addon} for addon in addons_path]
+        return request.render('instance_introspection.repository_list', {
+            'addons': addons,
         })
