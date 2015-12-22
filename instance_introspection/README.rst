@@ -8,7 +8,7 @@ Introspect your Addons Path
 
 Simply show the git information of the repositories installed and availables as addons path in your instance.
 
-.. image:: https://s3.vauxoo.com/instance_intronspector.png
+.. image:: https://www.evernote.com/l/AJ4CQFirqypIE4ydpVPOk9-LYVDtjKEE2h0B/image.png
    :alt: View Image.
 
 Usage
@@ -24,6 +24,7 @@ Known issues / Roadmap
 ======================
 
 * Better link management to github and other code hosting (now just plai text and ssh is not maanged correctly).
+* Add other secure introspections which read the config file on developer mode.
 
 Bug Tracker
 ===========
