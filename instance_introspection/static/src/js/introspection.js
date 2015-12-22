@@ -14,4 +14,7 @@
                       scrollTop: panel.offset().top
           }, 500);
     });
+    $('#my-accordion').on('show hide', function() {
+            $(this).css('height', 'auto');
+    });
 })();
