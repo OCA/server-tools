@@ -15,7 +15,10 @@ import openerp.tests
 @openerp.tests.common.at_install(False)
 @openerp.tests.common.post_install(True)
 class TestUi(openerp.tests.HttpCase):
-    def test_01_pos_basic_order(self):
+    def test_01_instance_introspection(self):
+        '''Just load the introspection of instance.
+        '''
         self.phantom_js(
-            "/", "openerp.Tour.run('test_instance_introspection', 'test')",
+            "/web", "openerp.Tour.run('test_instance_introspection', 'test')",
             "openerp.Tour.tours.test_instance_introspection", login="admin")
+
