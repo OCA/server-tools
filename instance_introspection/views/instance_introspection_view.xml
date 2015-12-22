@@ -26,7 +26,7 @@
                 <t t-foreach="addons" t-as="addon">
                     <div href="#" t-att-class="addon['info']['sha'].find('dirty') > 0 and 'panel panel-warning' or (addon['info']['sha'].find(' ') > 0 and 'panel panel-danger' or 'panel panel-success')">
                         <div class="panel-heading" role="tab" t-att-id="addon['id']">
-                            <h4 class="panel-title">
+                            <h5 class="panel-title" style="font-size: 13px;">
                                 <a role="button" data-toggle="collapse"
                                    t-att-href="'#collapse{id}'.format(id=addon['id'])"
                                    data-parent="#accordion"
@@ -35,7 +35,7 @@
                                     <t t-esc="addon['path']"/>
                                     <small class="pull-right" t-esc="addon['info']['sha']"/>
                                 </a>
-                            </h4>
+                            </h5>
                         </div>
                         <div class="panel-collapse collapse"
                              t-att-id="'collapse{aa}'.format(aa=addon['id'])"
