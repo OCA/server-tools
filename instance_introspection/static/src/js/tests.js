@@ -9,7 +9,7 @@
         steps: [
             {
                 title: 'Wait for the main screen',
-                waitFor: 'h3:contains("Addons Paths")',
+                waitFor: 'h3:contains("Addons Paths"),#accordion.results',
                 element: '.btn-reload',
                 wait: 200,
             },
