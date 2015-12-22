@@ -15,10 +15,17 @@ from openerp.tools.translate import _
 class Module(models.Model):
     _inherit = 'ir.module.module'
 
-    def get_sha(self, _path):
+    def get_info(self, _path):
+        label = {}
         try:
-            label = subprocess.check_output(["git", "rev-parse", "HEAD"],
-                                            cwd=_path)
+            label['sha'] = subprocess.check_output(["git", "describe", "--always", "--dirty"],
+                                                   cwd=_path)
+            label['status'] = '<br/>'.join(subprocess.check_output(["git", "status"],
+                                                                   cwd=_path).split('\n'))
+            label['remotes'] = subprocess.check_output(["git", "remote", "-v"],
+                                                       cwd=_path).split('\n')
         except Exception:
-            label = 'Not a valid git repository'
+            label['sha'] = 'Not a valid git repository'
+            label['status'] = 'No valid information'
+            label['remotes'] = 'No valid information'
         return label

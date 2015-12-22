@@ -7,17 +7,49 @@
                 <script type="text/javascript" src="/instance_introspection/static/src/js/introspection.js"></script>
             </xpath>
         </template>
+        <template id="instance_introspection.remotes" name="remotes buttons">
+            <div class="labels" role="group" aria-label="...">
+                <t t-foreach="addon['info']['remotes']" t-as="remote">
+                    <t t-set="elements" t-value="remote.split('\t')"/>
+                    <t t-if="len(elements) > 1">
+                        <a t-att-href="elements[1]"
+                           class="label label-primary"><t t-esc="elements[0]"/>
+                            <span>
+                                <t t-esc="elements[1].split(' ')[1]"/>
+                            </span>
+                        </a>
+                    </t>
+                </t>
+            </div>
+        </template>
         <template id="instance_introspection.repository_list" name="Repository List">
-            <t t-foreach="addons" t-as="addon">
-                <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading"
-                        t-esc="addon['path']"/>
-                    <h5 class="list-group-item-heading text-muted"
-                        t-esc="addon['sha']"/>
-                    <p class="list-group-item-text">
-                    </p>
-                </a>
-            </t>
+            <div class="panel-group results" id="accordion" role="tablist"
+                 aria-multiselectable="true">
+                <t t-foreach="addons" t-as="addon">
+                    <div href="#" class="panel panel-default">
+                        <div class="panel-heading" role="tab" t-att-id="addon['id']">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse"
+                                   t-att-href="'#collapse{id}'.format(id=addon['id'])"
+                                   data-parent="#accordion"
+                                   aria-expanded="true"
+                                   t-att-aria-controls="'collapse{aa}'.format(aa=addon['id'])">
+                                    <t t-esc="addon['path']"/>
+                                    <h5 class="text-muted pull-right" t-esc="addon['info']['sha']"/>
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse"
+                             t-att-id="'collapse{aa}'.format(aa=addon['id'])"
+                             t-att-aria-labelledby="addon['id']">
+                            <div class="panel-body">
+                                <t t-raw="addon['info']['status']"/>
+                                <t t-call="instance_introspection.remotes"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
         </template>
         <template id="instance_introspection.addons" name="Instance Introspection">&lt;!DOCTYPE html&gt;
             <html>
@@ -27,22 +59,19 @@
                     <t t-call-assets="web.assets_backend" t-js="false"/>
                 </head>
                 <body>
-                    <div class="container">
-                        <ul class="list-group">
-                            <li href="#" class="list-group-item">
-                                <div class="row">
-                                <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <h3>Addons Paths</h3>
-                                </div>
-                                <div class="col-md-3 col-xs-3 col-sm-3">
-                                    <a href="#" class="btn btn-default btn-reload">Reload</a>
-                                </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="list-group repositories">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-9 col-xs-9 col-sm-9">
+                                <h3>Addons Paths</h3>
+                            </div>
+                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                <a href="#" class="btn btn-default btn-reload">Reload</a>
+                            </div>
                         </div>
-                    </div>
+                    </section>
+                    <hr/>
+                    <section class="repositories">
+                    </section>
                     <t t-call-assets="web.assets_common" t-css="false"/>
                     <t t-call-assets="web.assets_backend" t-css="false"/>
                 </body>

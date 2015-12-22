@@ -29,7 +29,7 @@ class InstanceIntrospection(http.Controller):
         """
         modules = request.registry['ir.module.module']
         addons_path = openerp.conf.addons_paths
-        addons = [{'sha': modules.get_sha(addon), 'path': addon} for addon in addons_path]
+        addons = [{'id': addon.replace('/', '_'),'info': modules.get_info(addon), 'path': addon} for addon in addons_path]
         return request.render('instance_introspection.repository_list', {
             'addons': addons,
         })
