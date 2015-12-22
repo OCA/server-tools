@@ -16,6 +16,7 @@
     "demo": [],
     "data": [
         'views/instance_introspection_view.xml',
+        'views/instance_view.xml',
     ],
     "installable": True,
     "active": False,
