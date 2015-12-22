@@ -7,4 +7,5 @@
             $('.repositories').html(html);
         });
     });
+    $('.btn-reload').click();
 })();
