@@ -8,12 +8,12 @@
         mode: 'test',
         steps: [
             {
-                title:   'Wait fot the bloody screen to be ready',
+                title: 'Wait for the main screen',
                 wait: 200,
             },
             {
                 title:  'Load the Session',
-                waitNot: '.jumbotron',
+                waitFor: '.jumbotron',
                 element: 'h1:contains("Branch Information")',
             },
         ],
