@@ -40,4 +40,3 @@ class InstanceIntrospection(http.Controller):
         return request.render('instance_introspection.repository_list', {
             'addons': addons,
         })
-

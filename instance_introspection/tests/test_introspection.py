@@ -19,4 +19,3 @@ class TestUi(openerp.tests.HttpCase):
         self.phantom_js(
             "/", "openerp.Tour.run('test_instance_introspection', 'test')",
             "openerp.Tour.tours.test_instance_introspection", login="admin")
-
