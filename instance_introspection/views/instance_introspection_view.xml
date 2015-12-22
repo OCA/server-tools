@@ -9,6 +9,7 @@
         </template>
         <template id="instance_introspection.remotes" name="remotes buttons">
             <div class="text-center" role="group" aria-label="...">
+                <h4 class="text-muted">Remotes declared on this repository.</h4>
                 <t t-foreach="addon['info']['remotes']" t-as="remote">
                     <t t-set="elements" t-value="remote.split('\t')"/>
                     <t t-if="len(elements) > 1">
