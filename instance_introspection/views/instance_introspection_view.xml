@@ -26,11 +26,11 @@
                 <t t-foreach="addons" t-as="addon">
                     <div href="#" t-att-class="addon['info']['sha'].find('dirty') > 0 and 'panel panel-warning' or (addon['info']['sha'].find(' ') > 0 and 'panel panel-danger' or 'panel panel-success')">
                         <div class="panel-heading" role="tab" t-att-id="addon['id']">
-                            <h5 class="panel-title" style="font-size: 13px;">
+                            <h5 class="panel-title">
                                 <a role="button" data-toggle="collapse"
                                    t-att-href="'#collapse{id}'.format(id=addon['id'])"
                                    data-parent="#accordion"
-                                   aria-expanded="true"
+                                   aria-expanded="false"
                                    t-att-aria-controls="'collapse{aa}'.format(aa=addon['id'])">
                                     <t t-esc="addon['path']"/>
                                     <small class="pull-right" t-esc="addon['info']['sha']"/>
@@ -41,8 +41,10 @@
                              t-att-id="'collapse{aa}'.format(aa=addon['id'])"
                              t-att-aria-labelledby="addon['id']">
                             <div class="panel-body">
-                                <t t-raw="addon['info']['status']"/>
-                                <t t-call="instance_introspection.remotes"/>
+                                <div class="lead">
+                                    <t t-raw="addon['info']['status']"/>
+                                    <t t-call="instance_introspection.remotes"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -77,7 +79,9 @@
                             </div>
                         </div>
                     </nav>
-                    <section class="repositories">
+                    <section class="container-fluid">
+                        <div class="repositories">
+                        </div>
                     </section>
                     <t t-call-assets="web.assets_common" t-css="false"/>
                     <t t-call-assets="web.assets_backend" t-css="false"/>
