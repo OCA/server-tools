@@ -1,0 +1,196 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* instance_introspection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 15:25+0000\n"
+"PO-Revision-Date: 2013-05-20 15:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: instance_introspection
+#: help:branch.info,nhomar_way:0
+msgid "Check if you want see the nhomar concept "
+msgstr "Check if you want see the nhomar concept "
+
+#. module: instance_introspection
+#: help:branch.info,load:0
+msgid "Use to verifie if you load the info branch"
+msgstr "Se usa para verificar si fu cargada la información de los branch"
+
+#. module: instance_introspection
+#: help:branch.info.line,path:0
+msgid "Complete branch path in server"
+msgstr "Ruta absoluta del branch en el servidor"
+
+#. module: instance_introspection
+#: field:branch.info,change_id:0
+msgid "Change_id"
+msgstr "Change_id"
+
+#. module: instance_introspection
+#: view:branch.info:0
+msgid "Back"
+msgstr "Regresar"
+
+#. module: instance_introspection
+#: help:branch.info.line,st:0
+msgid "True if this branch have diff without commiter"
+msgstr "Verdadero si este branch tiene algun cambio sin commit"
+
+#. module: instance_introspection
+#: field:branch.info.line,info_id:0
+msgid "Branch"
+msgstr "Branch"
+
+#. module: instance_introspection
+#: help:branch.info.line,name:0
+msgid "Branch Name"
+msgstr "Nombre del Branch"
+
+#. module: instance_introspection
+#: field:branch.info,jose_way:0
+msgid "Jose way"
+msgstr "Jose way"
+
+#. module: instance_introspection
+#: help:branch.info.line,revid:0
+msgid "Revid for this branch "
+msgstr "Ultimo revisor del branch"
+
+#. module: instance_introspection
+#: view:branch.info:0
+msgid "branchinfo"
+msgstr "branchinfo"
+
+#. module: instance_introspection
+#: view:branch.info:0
+#: model:ir.ui.menu,name:branch_info.show_branch_info
+#: model:ir.ui.menu,name:branch_info.show_branch_info_wz
+msgid "Branch Info"
+msgstr "Información del branch"
+
+#. module: instance_introspection
+#: field:branch.info.line,st:0
+msgid "Status"
+msgstr "Estado"
+
+#. module: instance_introspection
+#: help:branch.info,logs:0
+msgid "This field will be used to show specific info branch like log and diff or other special info"
+msgstr "Este campo sera usado para mostrar información espicifica del branch, como el log, cambios sin commit u otra información especial"
+
+#. module: instance_introspection
+#: field:branch.info.line,revno:0
+msgid "Revno"
+msgstr "Revno"
+
+#. module: instance_introspection
+#: field:branch.info.line,parent:0
+msgid "Parent"
+msgstr "Parent"
+
+#. module: instance_introspection
+#: help:branch.info,branch_info:0
+msgid "Show revno info by branch"
+msgstr "Muestra la revno en la que esta el branch"
+
+#. module: instance_introspection
+#: help:branch.info,jose_way:0
+msgid "Check if you want see the jose did"
+msgstr "Check if you want see the jose did"
+
+#. module: instance_introspection
+#: field:branch.info.line,path:0
+msgid "Path"
+msgstr "Path"
+
+#. module: instance_introspection
+#: help:branch.info.line,revno:0
+msgid "Branch revno"
+msgstr "Revno del branch"
+
+#. module: instance_introspection
+#: field:branch.info,logs:0
+#: view:branch.info.line:0
+msgid "Info"
+msgstr "Información"
+
+#. module: instance_introspection
+#: field:branch.info.line,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: instance_introspection
+#: field:branch.info,line_ids:0
+msgid "Lines"
+msgstr "Lineas"
+
+#. module: instance_introspection
+#: model:ir.actions.act_window,name:branch_info.branchinfo_action
+#: model:ir.model,name:branch_info.model_branch_info
+msgid "branch.info"
+msgstr "branch.info"
+
+#. module: instance_introspection
+#: model:ir.model,name:branch_info.model_branch_info_line
+msgid "branch.info.line"
+msgstr "branch.info.line"
+
+#. module: instance_introspection
+#: help:branch.info.line,parent:0
+msgid "This is the parent branch from get pull"
+msgstr "Esta es la rama padre de la cual se carga la actualizacion"
+
+#. module: instance_introspection
+#: field:branch.info,nhomar_way:0
+msgid "Nhomar way"
+msgstr "Nhomar way"
+
+#. module: instance_introspection
+#: help:branch.info,change_id:0
+msgid "Ids used to windows change"
+msgstr "Ids usado para el retornar a la ventana anterior"
+
+#. module: instance_introspection
+#: field:branch.info,load:0
+msgid "Load"
+msgstr "Carga"
+
+#. module: instance_introspection
+#: field:branch.info,branch_info:0
+msgid "Branchs info"
+msgstr "Informacion del Branch"
+
+#. module: instance_introspection
+#: field:branch.info.line,revid:0
+msgid "Revid"
+msgstr "Revid"
+
+#. module: instance_introspection
+#: help:branch.info,line_ids:0
+msgid "Show revno by branch and you can do pull by line"
+msgstr "Muestra la revno por branch"
+
+#. module: instance_introspection
+#: view:branch.info:0
+msgid "Load Info"
+msgstr "Cargar Informacion"
+
+#. module: instance_introspection
+#: view:branch.info.line:0
+msgid "Show Problems"
+msgstr "Mostrar Problemas"
+
+#. module: instance_introspection
+#: view:branch.info.line:0
+msgid "Show 5 last log"
+msgstr "Mostrar los ultimos 5 logs"
+

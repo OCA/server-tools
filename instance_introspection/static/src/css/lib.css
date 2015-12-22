@@ -1,0 +1,18 @@
+.openerp .oe_branch_info {
+    font-weight: 300 !important;
+}
+
+.oe_branch_info h1.oe_center {
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.oe_branch_info .oe_center {
+    margin:auto;
+}
+
+.oe_branch_info .oe_kanban_project_list a{
+    border-right: thin solid #5c5c5c;
+    padding: 0px 5px 0px 5px;
+    width: 100%
+}

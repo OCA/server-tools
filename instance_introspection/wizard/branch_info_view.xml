@@ -1,0 +1,105 @@
+<openerp>
+   <data>
+    <!--
+        <record id="branch_info_search" model="ir.ui.view">
+            <field name="name">product.supplierinfo.su.search.form</field>         
+            <field name="model">branch.info.line</field>                    
+            <field name="arch" type="xml">                                      
+                <search string="Branch Info" version="7.0">                                       
+                    <filter string="Uncommited" icon="terp-partner" domain="[]" context="{'group_by':'st'}"/>
+                   <field name='name' />
+                   <field name='revno'/>
+                   <field name='revid'/>
+                   <field name='parent'/>
+                </search>                                                       
+            </field>                                                            
+        </record> 
+   <record model='ir.ui.view' id='branchinfo_form_log'>
+      <field name='name'>Special Info</field>
+      <field name='model'>branch.info.line</field>
+      <field name='arch' type='xml'>
+          <form string='branchinfo' version="7.0">
+              <field name='logs' nolabel="1" readonly="1" />
+                <footer>
+                    <button string="Back"
+                        name="back_windows" context="{'ids':id}" type="object" class="oe_highlight"  />
+                </footer>
+        </form>
+     </field>
+    </record>
+
+   <record model='ir.ui.view' id='branchinfo_form'>
+      <field name='name'>Special Info</field>
+      <field name='model'>branch.info.line</field>
+      <field name='arch' type='xml'>
+          <form string='Branch Info' version="7.0">
+                <header>
+                    <button string="Load Info"
+                        name="load" context="{'ids':id}" type="object" class="oe_highlight"  />
+                </header>
+        </form>
+     </field>
+    </record>
+
+   <record model='ir.ui.view' id='branchinfo_kanban'>
+      <field name='name'>Branch Info</field>
+      <field name='model'>branch.info.line</field>
+      <field name='arch' type='xml'>
+          <kanban version="7.0" quick_create="false" create="false" >
+                           <field name='name' />
+                           <field name='id'/>
+                           <field name='path'/>
+                           <field name='revno'/>
+                           <field name='revid'/>
+                           <field name='parent'/>
+                           <field name='color'/>
+                           <field name='st'/>
+                           <templates context="{'ids':id}" >
+                               <t   t-name="kanban-box"> 
+                                   <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_project oe_kanban_global_click  oe_branch_info">
+                                   <h1 class="oe_center"><field name='name'/></h1>
+                               <div class="oe_center">
+                                       Revno: <field name='revno'/>
+                                   </div>
+                                   <div class="oe_kanban_footer_left">
+                                    <div context="{'ids':id}" class="oe_kanban_project_list">
+                                        <a t-att-href="record.parent.raw_value" target="_NEW">
+                                         <img src="/instance_introspection/static/src/img/lp.png"></img>
+                                        </a>
+                                        <a  name="show_ch" 
+                                            attrs="{'invisible':['|',('st','=','ok'),('revno','=',0)]}" 
+                                            type="object">Uncommited</a> 
+                                        <a  string="Logs" 
+                                            name="show_log" attrs="{'invisible':[('revno','=',0)]}" 
+                                            type="object">Logs</a> 
+                                        <a  string="Modules" 
+                                            name="show_modules" attrs="{'invisible':[('revno','=',0)]}" 
+                                            type="object">Modules</a> 
+                                     </div>
+                                    </div>
+                                    </div>
+                               </t>
+                           </templates>
+                       </kanban>
+     </field>
+    </record>
+
+     <record model='ir.actions.act_window' id='branchinfo_action'>
+       <field name='name'>branch.info</field>
+       <field name='res_model'>branch.info.line</field>
+       <field name='view_type'>form</field>
+       <field name='view_id' eval="ref('branchinfo_form')"/>
+        <field name="search_view_id" ref="branch_info_search"/> 
+       <field name='view_mode'>form,kanban</field>
+        <field name="context">{'hide_breadcrumb': 1, 'search_default_Current': 1}</field>   
+       <field name='target'>inline</field>
+     </record>
+
+    <menuitem name = 'Branch Info' 
+              id='show_branch_info_wz' 
+              sequence='1000' 
+              groups="base.group_erp_manager"
+              action='branchinfo_action' />
+              -->
+  </data>
+</openerp>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="instance_introspection assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/instance_introspection/static/src/js/tests.js"></script>
+            </xpath>
+        </template>
+        <template id="instance_introspection.addons" name="Instance Introspection">&lt;!DOCTYPE html&gt;
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+                    <t t-call-assets="web.assets_common" t-js="false"/>
+                    <t t-call-assets="web.assets_backend" t-js="false"/>
+                </head>
+                <body>
+                    <div class="jumbotron">
+                        <h1>Branch Information</h1>
+                    </div>
+                    <ul>
+                        <LI>Element</LI>
+                    </ul>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                <t t-call-assets="web.assets_backend" t-css="false"/>
+                </body>
+            </html>
+        </template>
+     </data>
+</openerp>
