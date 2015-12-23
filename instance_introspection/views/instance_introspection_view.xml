@@ -7,6 +7,11 @@
                 <script type="text/javascript" src="/instance_introspection/static/src/js/introspection.js"></script>
             </xpath>
         </template>
+        <template id="instance_introspection.main_info" name="Main Info">
+            <span class="label label-info">Repositories: <t t-esc="main_info['total_repositories']"/></span>
+            <span class="label label-warning">With local changes: <t t-esc="main_info['total_repositories']"/></span>
+            <span class="label label-danger">Without control Version: <t t-esc="main_info['total_repositories']"/></span>
+        </template>
         <template id="instance_introspection.remotes" name="remotes buttons">
             <div class="text-center" role="group" aria-label="...">
                 <h4 class="text-muted">Remotes declared on this repository.</h4>
@@ -19,6 +24,21 @@
                     </t>
                 </t>
             </div>
+        </template>
+        <template id="instance_introspection.branch_update" name="Uptodate">
+            <t t-set="class_label" t-value="addon['info']['status'].get('up_to_date') and 'label label-success' or 'label label-warning'"/>
+            <span t-att-class="class_label"
+                t-att-title="addon['info']['status'].get('full_status')">
+                <i class="fa fa-warning"/>
+            </span>
+        </template>
+        <template id="instance_introspection.branch_info" name="Content of Repo details.">
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <t t-raw="addon['info']['status'].get('branch')"/>
+                </li>
+            </ul>
         </template>
         <template id="instance_introspection.repository_list" name="Repository List">
             <div class="panel-group results" id="accordion" role="tablist"
@@ -33,7 +53,10 @@
                                    aria-expanded="false"
                                    t-att-aria-controls="'collapse{aa}'.format(aa=addon['id'])">
                                     <t t-esc="addon['path']"/>
-                                    <small class="pull-right" t-esc="addon['info']['sha']"/>
+                                    <small class="pull-right">
+                                        <t t-esc="addon['info']['sha']"/>
+                                        <t t-call="instance_introspection.branch_update"/>
+                                    </small>
                                 </a>
                             </h5>
                         </div>
@@ -41,9 +64,9 @@
                              t-att-id="'collapse{aa}'.format(aa=addon['id'])"
                              t-att-aria-labelledby="addon['id']">
                             <div class="panel-body">
-                                <div class="lead">
-                                    <t t-raw="addon['info']['status']"/>
-                                </div>
+                            </div>
+                            <t t-call="instance_introspection.branch_info"/>
+                            <div class="panel-footer">
                                 <small>
                                     <t t-call="instance_introspection.remotes"/>
                                 </small>
@@ -76,6 +99,8 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
+                                    <p class="navbar-text main_info">
+                                    </p>
                                     <li class="active"><a class="btn-reload" href="#"><i class="fa fa-refresh"></i> Reload</a></li>
                                     <li><a href="/web" class="btn "><i class="fa fa-home"></i> Go to Home</a></li>
                                 </ul>

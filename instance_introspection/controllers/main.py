@@ -16,6 +16,8 @@ _logger = logging.getLogger(__name__)
 
 class InstanceIntrospection(http.Controller):
 
+    _main_info = {}
+
     @http.route('/instance_introspection',
                 type='http', auth="user")
     def index(self, *args, **post):
@@ -23,6 +25,15 @@ class InstanceIntrospection(http.Controller):
         basically bringing to frontend the information of the instance.
         """
         return request.render('instance_introspection.addons', {
+        })
+
+    @http.route('/instance_introspection/main_info',
+                type='http', auth="user")
+    def main_reload(self, *args, **post):
+        """ Just to set global variable
+        """
+        return request.render('instance_introspection.main_info', {
+            'main_info': self._main_info,
         })
 
     @http.route('/instance_introspection/reload',
@@ -37,6 +48,7 @@ class InstanceIntrospection(http.Controller):
              'info': modules.get_info(addon),
              'path': addon}
             for addon in addons_path]
+        self._main_info = modules.get_header(addons)
         return request.render('instance_introspection.repository_list', {
             'addons': addons,
         })

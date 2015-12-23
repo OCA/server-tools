@@ -5,6 +5,11 @@
             url: "/instance_introspection/reload",
         }).done(function(html, el) {
             $('.repositories').html(html);
+            $.ajax({
+                url: "/instance_introspection/main_info",
+            }).done(function(html, el) {
+                $('.main_info').html(html);
+            });
         });
     });
     $('.btn-reload').click();
