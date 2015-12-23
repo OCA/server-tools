@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_url" id="action_open_ii">
+            <field name="name">Instance Instrospection</field>
+            <field name="url">/instance_introspection</field>
+            <field name="target">self</field>
+        </record>
+
+        <menuitem id="menu_action_open_ii"
+            parent="base.menu_custom"
+            action="action_open_ii" name="Instance Introspection"/>
+     </data>
+</openerp>
