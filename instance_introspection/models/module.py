@@ -48,7 +48,9 @@ class Module(models.Model):
 
     def get_header(self, get_info):
         total_repositories = len(get_info)
+        total_up_to_date = len([g for g in get_info if g.get('up_to_date')])
         return {
             'total_repositories': total_repositories,
+            'total_up_to_date': total_up_to_date,
         }
 

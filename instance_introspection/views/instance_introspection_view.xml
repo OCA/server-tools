@@ -9,8 +9,8 @@
         </template>
         <template id="instance_introspection.main_info" name="Main Info">
             <span class="label label-info">Repositories: <t t-esc="main_info['total_repositories']"/></span>
-            <span class="label label-warning">With local changes: <t t-esc="main_info['total_repositories']"/></span>
-            <span class="label label-danger">Without control Version: <t t-esc="main_info['total_repositories']"/></span>
+            <span class="label label-warning">With local changes: <t t-esc="main_info['total_up_to_date']"/></span>
+            <span class="label label-danger">Without control Version: <t t-esc="main_info['total_up_to_date']"/></span>
         </template>
         <template id="instance_introspection.remotes" name="remotes buttons">
             <div class="text-center" role="group" aria-label="...">
@@ -26,10 +26,11 @@
             </div>
         </template>
         <template id="instance_introspection.branch_update" name="Uptodate">
-            <t t-set="class_label" t-value="addon['info']['status'].get('up_to_date') and 'label label-success' or 'label label-warning'"/>
+            <t t-set="class_label" t-value="addon['info']['status'].get('up_to_date') and 'label label-success' or (addon['info']['status'].get('full_status') and 'label label-warning' or 'label label-danger')"/>
+            <t t-set="class_icon" t-value="addon['info']['status'].get('up_to_date') and 'fa fa-thumbs-o-up' or (addon['info']['status'].get('full_status') and 'fa fa-warning' or 'fa fa-times-circle')"/>
             <span t-att-class="class_label"
                 t-att-title="addon['info']['status'].get('full_status')">
-                <i class="fa fa-warning"/>
+                <i t-att-class="class_icon"/>
             </span>
         </template>
         <template id="instance_introspection.branch_info" name="Content of Repo details.">
