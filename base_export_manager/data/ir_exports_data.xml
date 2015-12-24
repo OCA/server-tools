@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<function model="ir.exports.line" name="_install_base_export_manager"/>
+
+</data>
+</openerp>
