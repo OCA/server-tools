@@ -24,3 +24,6 @@ body {
   background-color: #f5f5f5;
 }
 
+.main_info .label {
+    border-radius: 0px;
+}

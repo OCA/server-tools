@@ -8,9 +8,13 @@
             </xpath>
         </template>
         <template id="instance_introspection.main_info" name="Main Info">
-            <span class="label label-info">Repositories: <t t-esc="main_info['total_repositories']"/></span>
-            <span class="label label-warning">With local changes: <t t-esc="main_info['total_up_to_date']"/></span>
-            <span class="label label-danger">Without control Version: <t t-esc="main_info['total_up_to_date']"/></span>
+            <h2>Repositories Resumed</h2>
+            <ul class="nav nav-pills nav-justified">
+                <li class="label label-info">Total: <span class="badge" t-esc="main_info['total_repositories']"/></li>
+                <li class="label label-warning">Out of dated: <span class="badge" t-esc="main_info['total_repositories'] - main_info['total_up_to_date']"/></li>
+                <li class="label label-warning">Not Commited Changes: <span class="badge" t-esc="main_info['total_dirty']"/></li>
+                <li class="label label-danger">Without control Version: <span class="badge" t-esc="main_info['total_wo_svn']"/></li>
+            </ul>
         </template>
         <template id="instance_introspection.remotes" name="remotes buttons">
             <div class="text-center" role="group" aria-label="...">
@@ -95,19 +99,19 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="#">Addons Paths</a>
+                              <a class="navbar-brand" href="#">Odoo Environment</a>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <p class="navbar-text main_info">
-                                    </p>
                                     <li class="active"><a class="btn-reload" href="#"><i class="fa fa-refresh"></i> Reload</a></li>
                                     <li><a href="/web" class="btn "><i class="fa fa-home"></i> Go to Home</a></li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
+                    <section class="page-header container main_info">
+                    </section>
                     <section class="container-fluid">
                         <div class="repositories">
                         </div>
