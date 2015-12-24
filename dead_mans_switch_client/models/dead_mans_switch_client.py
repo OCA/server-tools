@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2015 Therp BV <http://therp.nl>
+# © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import json
 import logging
@@ -66,3 +67,19 @@ class DeadMansSwitchClient(models.AbstractModel):
                 {
                     'Content-Type': 'application/json',
                 }))
+
+    @api.model
+    def _install_default_url(self):
+        """Set up a default URL."""
+        conf = self.env["ir.config_parameter"]
+        name = "dead_mans_switch_client.url"
+        param = conf.get_param(name)
+
+        if not param:
+            url = "{}/dead_mans_switch/alive".format(
+                conf.get_param(
+                    "report.url",
+                    conf.get_param(
+                        "web.base.url",
+                        "http://localhost")))
+            conf.set_param(name, url)
