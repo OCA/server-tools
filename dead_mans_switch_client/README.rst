@@ -13,15 +13,15 @@ Configuration
 =============
 
 After installing this module, you need to fill in the system parameter
-`dead_mans_switch_client.url`. This must be the full URL to the server's
-controller, usually of the form https://your.server/dead_mans_switch/alive
+``dead_mans_switch_client.url``. This must be the full URL to the server's
+controller, usually of the form ``https://your.server/dead_mans_switch/alive``.
 
 This module attempts to send CPU and RAM statistics to the server. While this
 is not mandatory, it's helpful for assessing a server's health. If you want
-this, you need to install `psutil`.
+this, you need to install ``psutil``.
 
 You can also have the currently online users logged, but this only works if
-the `im_chat` module is installed.
+the ``im_chat`` module is installed.
 
 Usage
 =====
@@ -56,6 +56,7 @@ Contributors
 ------------
 
 * Holger Brunn <hbrunn@therp.nl>
+* Jairo Llopis <yajo.sk8@gmail.com>
 
 Maintainer
 ----------
@@ -70,4 +71,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
