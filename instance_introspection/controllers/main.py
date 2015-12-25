@@ -11,6 +11,8 @@ import openerp
 from openerp.addons.web import http
 from openerp.http import request
 
+import sys
+
 _logger = logging.getLogger(__name__)
 
 
@@ -36,6 +38,13 @@ class InstanceIntrospection(http.Controller):
         self._main_info = modules.get_header(self._addons)
         return request.render('instance_introspection.main_info', {
             'main_info': self._main_info,
+        })
+
+    @http.route('/instance_introspection/pyenv',
+                type='http', auth="user")
+    def index_pyenv(self, *args, **post):
+        return request.render('instance_introspection.pyinfo', {
+            'info_html': request.registry['ir.module.module'].get_pyinfo(),
         })
 
     @http.route('/instance_introspection/reload',

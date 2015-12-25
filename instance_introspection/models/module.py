@@ -10,6 +10,8 @@ import subprocess
 from openerp import models
 from openerp.tools.translate import _
 
+from . import pyinfo
+
 
 class Module(models.Model):
     _inherit = 'ir.module.module'
@@ -47,11 +49,14 @@ class Module(models.Model):
         return label
 
     def get_header(self, get_info):
+        '''Header information to show a resumed information.
+        '''
         total_repositories = len(get_info)
 
         total_up_to_date = len(
             [g for g in get_info
-             if g.get('info').get('status').get('up_to_date')])
+             if g.get('info').get('status').get('up_to_date') and
+             not g.get('info').get('status').get('message')])
 
         total_dirty = len(
             [g for g in get_info if g.get('info').get('sha').find('-dirty') > 1])
@@ -65,4 +70,7 @@ class Module(models.Model):
             'total_dirty': total_dirty,
             'total_wo_svn': total_wo_svn,
         }
+
+    def get_pyinfo(self):
+        return pyinfo.pyinfo()
 

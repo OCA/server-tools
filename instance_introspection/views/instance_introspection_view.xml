@@ -11,7 +11,7 @@
             <h2>Repositories Resumed</h2>
             <ul class="nav nav-pills nav-justified">
                 <li class="label label-info">Total: <span class="badge" t-esc="main_info['total_repositories']"/></li>
-                <li class="label label-warning">Out of dated: <span class="badge" t-esc="main_info['total_repositories'] - main_info['total_up_to_date']"/></li>
+                <li class="label label-warning">Need Update: <span class="badge" t-esc="main_info['total_repositories'] - main_info['total_up_to_date']"/></li>
                 <li class="label label-warning">Not Commited Changes: <span class="badge" t-esc="main_info['total_dirty']"/></li>
                 <li class="label label-danger">Without control Version: <span class="badge" t-esc="main_info['total_wo_svn']"/></li>
             </ul>
@@ -28,6 +28,21 @@
                     </t>
                 </t>
             </div>
+        </template>
+        <template id="instance_introspection.pyinfo" name="PyInfo">&lt;!DOCTYPE html&gt;
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+                    <t t-call-assets="web.assets_common" t-js="false"/>
+                    <t t-call-assets="web.assets_backend" t-js="false"/>
+                    <link href="/instance_introspection/static/src/css/custom_footer.css" rel="stylesheet"></link>
+                </head>
+                <body>
+                    <t t-raw="info_html"/>
+                    <t t-call-assets="web.assets_common" t-css="false"/>
+                    <t t-call-assets="web.assets_backend" t-css="false"/>
+                </body>
+            </html>
         </template>
         <template id="instance_introspection.branch_update" name="Uptodate">
             <t t-set="class_label" t-value="addon['info']['status'].get('up_to_date') and 'label label-success' or (addon['info']['status'].get('full_status') and 'label label-warning' or 'label label-danger')"/>
@@ -104,8 +119,9 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="/instance_introspection/pyenv"><i class="fa fa-info-circle"></i> py.info</a></li>
                                     <li class="active"><a class="btn-reload" href="#"><i class="fa fa-refresh"></i> Reload</a></li>
-                                    <li><a href="/web" class="btn "><i class="fa fa-home"></i> Go to Home</a></li>
+                                    <li><a href="/web"><i class="fa fa-home"></i> Go to Home</a></li>
                                 </ul>
                             </div>
                         </div>

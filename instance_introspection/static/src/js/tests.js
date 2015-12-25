@@ -19,5 +19,17 @@
         ],
     });
 
+    openerp.Tour.register({
+        id: 'test_pyinfo',
+        name: 'Complete a basic order trough the Front-End',
+        path: '/instance_introspection/pyenv',
+        mode: 'test',
+        steps: [
+            {
+                title: 'Wait for the main screen',
+                waitFor: '.table',
+            },
+        ],
+    });
 })();
 
