@@ -9,11 +9,16 @@
         steps: [
             {
                 title: 'Wait for the main screen',
+                wait: 2000,
                 waitFor: 'h3:contains("Addons Paths"),#accordion.results',
+            },
+            {
+                title:  'Load Repositories',
                 element: '.btn-reload',
             },
             {
                 title:  'Load Repositories',
+                wait: 2000,
                 waitFor: '#accordion.results',
             },
         ],
