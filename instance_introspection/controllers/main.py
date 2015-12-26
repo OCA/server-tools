@@ -11,8 +11,6 @@ import openerp
 from openerp.addons.web import http
 from openerp.http import request
 
-import sys
-
 _logger = logging.getLogger(__name__)
 
 

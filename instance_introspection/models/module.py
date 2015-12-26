@@ -59,10 +59,12 @@ class Module(models.Model):
              not g.get('info').get('status').get('message')])
 
         total_dirty = len(
-            [g for g in get_info if g.get('info').get('sha').find('-dirty') > 1])
+            [g for g in get_info if
+             g.get('info').get('sha').find('-dirty') > 1])
 
         total_wo_svn = len(
-            [g for g in get_info if g.get('info').get('status').get('message')])
+            [g for g in get_info if
+             g.get('info').get('status').get('message')])
 
         return {
             'total_repositories': total_repositories,
@@ -73,4 +75,3 @@ class Module(models.Model):
 
     def get_pyinfo(self):
         return pyinfo.pyinfo()
-
