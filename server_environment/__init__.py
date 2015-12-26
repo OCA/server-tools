@@ -18,4 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from .serv_config import serv_config, setboolean
+# This module need be fixed, as we do not use it (nhomar say this) then
+# Then simply ignore them.
+# from .serv_config import serv_config, setboolean
