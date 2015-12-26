@@ -22,3 +22,9 @@ class TestUi(openerp.tests.HttpCase):
             "/web", "openerp.Tour.run('test_instance_introspection', 'test')",
             "openerp.Tour.tours.test_instance_introspection", login="admin")
 
+    def test_02_pyinfo(self):
+        '''PyInfo page being loaded the introspection of instance.
+        '''
+        self.phantom_js(
+            "/web", "openerp.Tour.run('test_pyinfo', 'test')",
+            "openerp.Tour.tours.test_pyinfo", login="admin")
