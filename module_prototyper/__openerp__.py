@@ -22,16 +22,14 @@
 
 {
     'name': 'Module Prototyper',
-    'version': '8.0.0.3.0',
-    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
+    'version': '9.0.0.1.0',
+    'author': 'Savoir-faire Linux, Odoo Community Association (OCA), Sudokeys',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Others',
     'summary': 'Prototype your module.',
-    'depends': [
-        'admin_technical_features',
-    ],
+    'depends': [],
     'external_dependencies': {
         'python': [],
     },
@@ -41,6 +39,6 @@
         'views/ir_model_fields_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'application': True,
 }
