@@ -21,7 +21,6 @@ class IrExportsLine(models.Model):
     field1_id = fields.Many2one(
         "ir.model.fields",
         "First field",
-        required=True,
         domain="[('model_id', '=', model1_id)]")
     field2_id = fields.Many2one(
         "ir.model.fields",

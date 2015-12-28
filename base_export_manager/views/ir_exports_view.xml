@@ -48,6 +48,7 @@
                         <field name="name"/>
                         <field
                             name="field1_id"
+                            required="True"
                             options="{
                                 'no_open': True,
                                 'no_create': True,
