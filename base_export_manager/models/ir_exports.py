@@ -31,6 +31,7 @@ class IrExports(models.Model):
             s.model_id = self._get_model_id(s.resource)
 
     @api.multi
+    @api.onchange("model_id")
     def _inverse_model_id(self):
         """Get the resource from the model."""
         for s in self:
