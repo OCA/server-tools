@@ -36,11 +36,6 @@ Usage
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0
 
-Known issues / Roadmap
-======================
-
-* As technical features is not a matter of privileges but of cosmetics, it might be nice to have this as a user configurable preference.
-
 Bug Tracker
 ===========
 
