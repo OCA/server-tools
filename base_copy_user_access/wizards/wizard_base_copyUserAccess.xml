@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>  
+
+        <record id="form_base_wizardCopyUserAccess" model="ir.ui.view">
+            <field name="name">Copy User Access</field>
+            <field name="model">base.copy_user_access</field>
+            <field name="arch" type="xml">
+                <form string="Copy Access Right From User">
+                    <group col="4">
+                        <field name="user_id" required="True" />
+                    </group>
+                    <footer>
+                        <button name="copy_access_right" string="Copy" type="object" class="oe_highlight"/>
+                        Or
+                        <button special="cancel" string="_Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_base_wizardCopyUserAccess" model="ir.actions.act_window">
+            <field name="name">Copy User Access</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">base.copy_user_access</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="form_base_wizardCopyUserAccess"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>                
+        
+        <record id="waction_base_wizardCopyUserAccess" model="ir.values">
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="name">Copy User Access</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_base_wizardCopyUserAccess'))" />
+            <field name="key">action</field>
+            <field name="model">res.users</field>
+        </record>
+        
+    </data>
+</openerp>
