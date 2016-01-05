@@ -7,8 +7,8 @@
     "summary": "Helper functions to give correct format to date[time] fields",
     "version": "8.0.1.0.0",
     "category": "Tools",
-    "website": "https://grupoesoc.es/",
-    "author": "Grupo ESOC Ingeniería de Servicios, S.L.U., "
+    "website": "https://grupoesoc.es",
+    "author": "Grupo ESOC Ingeniería de Servicios, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
