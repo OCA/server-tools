@@ -23,6 +23,7 @@ from openerp.osv import orm
 from openerp import fields, api
 from lxml import etree
 
+
 class WizardBaseCopyUserAccess(orm.TransientModel):
     _name = 'base.copy_user_access'
     _description = 'Wizard Copy User Access'
