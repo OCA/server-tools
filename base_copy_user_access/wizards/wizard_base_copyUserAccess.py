@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
+from openerp.osv import orm
+from openerp import fields, api
 from lxml import etree
-from openerp import models, fields, api
-
 
 class WizardBaseCopyUserAccess(orm.TransientModel):
     _name = 'base.copy_user_access'
