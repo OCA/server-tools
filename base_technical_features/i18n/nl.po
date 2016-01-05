@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_technical_features
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-03 16:11+0000\n"
+"PO-Revision-Date: 2016-01-03 16:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+msgid "Show field Technical Features"
+msgstr "Toon veld Technische mogelijkheden"
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr "Technische mogelijkheden (zonder debugmodus)"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+msgid "Technical features"
+msgstr "Technische mogelijkheden"
+
+#. module: base_technical_features
+#: code:addons/base_technical_features/models/res_users.py:45
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr "De gebruiker heeft geen toegang tot technische mogelijkheden."
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+msgid "Whether to display the technical features field in the user preferences."
+msgstr "Geeft aan of het veld Technische mogelijkheden wordt getoond in de voorkeuren van de gebruiker."
