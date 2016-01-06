@@ -17,6 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
 
