@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 # © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import locale
+import logging
 from datetime import datetime, timedelta
-from openerp import api, exceptions, fields, models
+
+from openerp import api, exceptions, fields, models, tools
 from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
                            DEFAULT_SERVER_TIME_FORMAT)
 from . import exceptions as ex
@@ -11,6 +14,8 @@ from . import exceptions as ex
 MODE_DATETIME = "MODE_DATETIME"
 MODE_DATE = "MODE_DATE"
 MODE_TIME = "MODE_TIME"
+
+_logger = logging.getLogger(__name__)
 
 
 class ResLang(models.Model):
@@ -62,6 +67,23 @@ class ResLang(models.Model):
         return record
 
     @api.model
+    def _set_locale(self, lang=None):
+        """Set the locale to translate months and days."""
+        fail = True
+        for ln in tools.get_locales(lang):
+            try:
+                locale.setlocale(locale.LC_ALL, str(ln))
+                fail = False
+                break
+            except locale.Error:
+                continue
+        if fail:
+            lc = locale.getdefaultlocale()[0]
+            msg = ('Unable to get information for locale %s. Information '
+                   'from the default locale (%s) have been used.')
+            _logger.warning(msg, lang, lc)
+
+    @api.model
     def datetime_formatter(self, value, lang=None, template=MODE_DATETIME,
                            separator=" ", failure_safe=True):
         """Convert a datetime field to lang's default format.
@@ -88,6 +110,9 @@ class ResLang(models.Model):
         """
         # Get the correct lang
         lang = self.best_match(lang)
+
+        # Set the correct locale
+        self._set_locale(lang.code)
 
         # Get the template
         if template in {MODE_DATETIME, MODE_DATE, MODE_TIME}:
@@ -117,4 +142,6 @@ class ResLang(models.Model):
             # Convert to time
             value = (datetime.min + timedelta(hours=value)).time()
 
-        return value.strftime(template)
+        res = value.strftime(template)
+        tools.resetlocale()
+        return res
