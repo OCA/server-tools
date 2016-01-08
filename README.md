@@ -39,7 +39,7 @@ addon | version | summary
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
 [datetime_formatter](datetime_formatter/) | 8.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.1 | dbfilter_from_header
-[dead_mans_switch_client](dead_mans_switch_client/) | 8.0.1.0.0 | Be notified when customers' odoo instances go down
+[dead_mans_switch_client](dead_mans_switch_client/) | 8.0.1.0.1 | Be notified when customers' odoo instances go down
 [dead_mans_switch_server](dead_mans_switch_server/) | 8.0.1.0.0 | Be notified when customers' odoo instances go down
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 | Attach mails in an IMAP folder to existing objects
