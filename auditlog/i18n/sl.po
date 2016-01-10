@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"POT-Creation-Date: 2016-01-08 01:51+0000\n"
 "PO-Revision-Date: 2015-11-27 04:09+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
@@ -369,7 +369,7 @@ msgid "Values"
 msgstr "Vrednosti"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:482
+#: code:addons/auditlog/models/rule.py:485
 #, python-format
 msgid "View logs"
 msgstr "Prikaz dnevnikov"
