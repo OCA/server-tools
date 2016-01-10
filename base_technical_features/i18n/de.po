@@ -3,83 +3,89 @@
 # * base_technical_features
 # 
 # Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Alexsandro Haag <alex@hgsoft.com.br>, 2015
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Hans Henrik Gabelgaard <hhg@gabelgaard.org>, 2015
+# llum.birque@gmail.com <llum.birque@gmail.com>, 2015
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
 # Pedro Castro Silva <pedrocs@sossia.pt>, 2015
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Stéphane Bidoul <sbi@skynet.be>, 2015
+# Wagner Pereira <wagner@wagner.pereira.nom.br>, 2015
+# Yael Terrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-9-0/language/nl/)\n"
+"POT-Creation-Date: 2016-04-17 12:15+0000\n"
+"PO-Revision-Date: 2016-04-21 11:18+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr "Anzeigename"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch___last_update
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Zuletzt verändert am"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
 msgid "Show field Technical Features"
-msgstr "Toon veld Technische mogelijkheden"
+msgstr "Feld Technische Eigenschaften anzeigen"
 
 #. module: base_technical_features
 #: model:res.groups,name:base_technical_features.group_technical_features
 msgid "Technical Features (w/o debug mode)"
-msgstr "Technische mogelijkheden (zonder debugmodus)"
+msgstr "Technische Eigenschaften (ohne Debugmodus)"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
 msgid "Technical features"
-msgstr "Technische mogelijkheden"
+msgstr "Technische Eigenschaften"
 
 #. module: base_technical_features
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr "De gebruiker heeft geen toegang tot technische mogelijkheden."
+msgstr "Der Benutzer hat keinen Zugriff auf Technische Eigenschaften."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Benutzer"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
-msgstr "Geeft aan of het veld Technische mogelijkheden wordt getoond in de voorkeuren van de gebruiker."
+msgstr "Ob das Feld Technische Eigenschaften in den Benutzereinstellungen angezeigt wird."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_basemodel_monkeypatch
 msgid "basemodel.monkeypatch"
-msgstr ""
+msgstr "basemodel.monkeypatch"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "ir.ui.menu"
-msgstr ""
+msgstr "ir.ui.menu"
