@@ -81,6 +81,7 @@ class CustomInfo(models.AbstractModel):
         auto_join=True,
         string='Custom Properties')
 
+    @api.multi
     @api.onchange('custom_info_template_id')
     def _onchange_custom_info_template_id(self):
         if not self.custom_info_template_id:
