@@ -30,7 +30,7 @@
     "test": [
     ],
     "auto_install": False,
-    'installable': False,
+    'installable': True,
     "application": False,
     "external_dependencies": {
         'python': [],
