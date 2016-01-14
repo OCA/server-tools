@@ -72,7 +72,7 @@ class ResLang(models.Model):
         fail = True
         for ln in tools.get_locales(lang):
             try:
-                locale.setlocale(locale.LC_ALL, str(ln))
+                locale.setlocale(locale.LC_TIME, str(ln))
                 fail = False
                 break
             except locale.Error:
@@ -111,7 +111,8 @@ class ResLang(models.Model):
         # Get the correct lang
         lang = self.best_match(lang)
 
-        # Set the correct locale
+        # Backup the current locale and set the correct one
+        locale_backup = locale.getlocale(locale.LC_TIME)
         self._set_locale(lang.code)
 
         # Get the template
@@ -143,5 +144,6 @@ class ResLang(models.Model):
             value = (datetime.min + timedelta(hours=value)).time()
 
         res = value.strftime(template)
-        tools.resetlocale()
+        # Restore the locale
+        locale.setlocale(locale.LC_TIME, locale_backup)
         return res
