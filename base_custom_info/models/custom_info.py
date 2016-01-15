@@ -7,28 +7,50 @@
 from openerp import api, fields, models
 
 
+class CustomInfoModelLink(models.AbstractModel):
+    _description = "A model that gets its ``ir.model`` computed"
+    _name = "custom.info.model_link"
+
+    model = fields.Char(
+        index=True,
+        readonly=True,
+        required=True)
+    model_id = fields.Many2one(
+        'ir.model',
+        'Model',
+        compute="_compute_model_id",
+        store=True)
+
+    @api.multi
+    @api.depends("model")
+    def _compute_model_id(self):
+        """Get a related model from its name, for better UI."""
+        for s in self:
+            s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
+
+
 class CustomInfoTemplate(models.Model):
     """Defines custom properties expected for a given database object."""
-    _name = "custom.info.template"
     _description = "Custom information template"
+    _name = "custom.info.template"
+    _inherit = "custom.info.model_link"
     _sql_constraints = [
         ("name_model",
-         "UNIQUE (name, model_id)",
+         "UNIQUE (name, model)",
          "Another template with that name exists for that model."),
     ]
 
-    name = fields.Char(translate=True)
-    model_id = fields.Many2one(comodel_name='ir.model', string='Model')
+    name = fields.Char(required=True, translate=True)
     info_ids = fields.One2many(
-        comodel_name='custom.info.property',
-        inverse_name='template_id',
-        string='Properties')
+        'custom.info.property',
+        'template_id',
+        'Properties')
 
 
 class CustomInfoProperty(models.Model):
     """Name of the custom information property."""
-    _name = "custom.info.property"
     _description = "Custom information property"
+    _name = "custom.info.property"
     _sql_constraints = [
         ("name_template",
          "UNIQUE (name, template_id)",
@@ -46,8 +68,9 @@ class CustomInfoProperty(models.Model):
 
 
 class CustomInfoValue(models.Model):
-    _name = "custom.info.value"
     _description = "Custom information value"
+    _name = "custom.info.value"
+    _inherit = "custom.info.model_link"
     _rec_name = 'value'
     _sql_constraints = [
         ("property_model_res",
@@ -55,7 +78,6 @@ class CustomInfoValue(models.Model):
          "Another property with that name exists for that resource."),
     ]
 
-    model_id = fields.Many2one("ir.model", "Model", required=True)
     res_id = fields.Integer("Resource ID", index=True, required=True)
     property_id = fields.Many2one(
         comodel_name='custom.info.property',
@@ -66,8 +88,8 @@ class CustomInfoValue(models.Model):
 
 
 class CustomInfo(models.AbstractModel):
-    _name = "custom.info"
     _description = "Inheritable abstract model to add custom info in any model"
+    _name = "custom.info"
 
     custom_info_template_id = fields.Many2one(
         comodel_name='custom.info.template',
@@ -75,9 +97,7 @@ class CustomInfo(models.AbstractModel):
     custom_info_ids = fields.One2many(
         comodel_name='custom.info.value',
         inverse_name='res_id',
-        domain=lambda self: [
-            ("model_id", "=",
-             self.env["ir.model"].search([("model", "=", self._name)]).id)],
+        domain=lambda self: [("model", "=", self._name)],
         auto_join=True,
         string='Custom Properties')
 
@@ -93,6 +113,7 @@ class CustomInfo(models.AbstractModel):
                     self.custom_info_ids |= self.custom_info_ids.new({
                         'model': self._name,
                         'property_id': info_name.id,
+                        "res_id": self.id,
                     })
 
     @api.multi
