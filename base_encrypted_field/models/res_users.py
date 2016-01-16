@@ -9,3 +9,12 @@ class ResUsers(models.Model):
 
     pgp_private_key = fields.Text('Private pgp key', readonly=True)
     pgp_public_key = fields.Text('Public pgp key', readonly=True)
+
+    @api.model
+    def _base_encrypted_fields_inject_field_description(self, field_name,
+                                                        field_desc):
+        if field_name in ['pgp_private_key', 'pgp_public_key']:
+            return
+        return super(ResUsers, self)\
+            ._base_encrypted_fields_inject_field_description(
+                field_name, field_desc)
