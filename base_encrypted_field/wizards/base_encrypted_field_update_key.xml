@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="form_base_encrypted_field_update_key" model="ir.ui.view">
+            <field name="model">base.encrypted.field.update.key</field>
+            <field name="arch" type="xml">
+                <form>
+                    <span>
+                        You can let the system generate a key for you automatically.
+                        If you want that, please fill in the passphrase you want to use.
+                        If you want to use your own keypair, please copy and paste your private and public keys in the appropriate fields.
+                    </span>
+                    <group>
+                        <field name="user_id" invisible="context.get('default_user_id')" />
+                        <field name="passphrase" attrs="{'required': ['|', ('public_key', '=', False), ('private_key', '=', False)]}" />
+                        <field name="private_key" attrs="{'required': [('passphrase', '=', False)]}" />
+                        <field name="public_key" attrs="{'required': [('passphrase', '=', False)]}" />
+                    </group>
+                    <footer>
+                        <button name="button_save" type="object" string="Save" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_base_encrypted_field_update_key"
+            name="Update PGP key"
+            res_model="base.encrypted.field.update.key"
+            target="new"
+            view_type="form"
+            view_mode="form"
+            />
+    </data>
+</openerp>
