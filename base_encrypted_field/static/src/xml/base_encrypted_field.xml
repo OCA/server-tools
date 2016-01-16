@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
+    <div t-name="base_encrypted_field" class="base_encrypted_field_commands">
+        <i class="fa fa-key oe_field_encrypt"></i>
+        <i class="fa fa-unlock oe_field_decrypt"></i>
+    </div>
     <t t-extend="FormRenderingLabel">
         <t t-jquery="label" t-operation="append">
-            <i class="fa fa-key oe_field_encrypt"></i>
+            <t t-call="base_encrypted_field" />
         </t>
     </t>
 </templates>

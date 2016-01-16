@@ -162,8 +162,8 @@ openerp.base_encrypted_field = function(instance)
                                     return res_users.write(
                                         data.user_id,
                                         {
-                                            pgp_public_key: keypair.privateKeyArmored,
-                                            pgp_private_key: keypair.publicKeyArmored,
+                                            pgp_public_key: keypair.publicKeyArmored,
+                                            pgp_private_key: keypair.privateKeyArmored,
                                         })
                                     .then(function()
                                     {
@@ -230,8 +230,10 @@ openerp.base_encrypted_field = function(instance)
         },
         register_field: function(field, name)
         {
-            //TODO: this needs to be conditional
-            this.encryptable_fields[name] = field;
+            if(field.field.encryptable)
+            {
+                this.encryptable_fields[name] = field;
+            }
             return this._super.apply(this, arguments);
         },
         is_field_encryptable: function(field)
@@ -246,21 +248,40 @@ openerp.base_encrypted_field = function(instance)
     instance.web.form.AbstractField.include({
         renderElement: function()
         {
-            var result = this._super.apply(this, arguments);
+            var result = this._super.apply(this, arguments),
+                $containers = this.$el.add(this.$label);
             if(this.field_manager.is_field_encryptable &&
                 this.field_manager.is_field_encryptable(this))
             {
                 if(this.field_manager.is_field_encrypted(this))
                 {
                     this.$el.addClass('oe_form_field_encrypted');
+                    $containers.$label.find('.oe_field_decrypt').click(
+                        this.proxy('on_decrypt'));
+                    $containers.find('.oe_field_encrypt').remove();
                 }
-                this.$('.oe_field_encrypt').click(this.proxy('on_encrypt'));
-                this.$label.find('.oe_field_encrypt').click(
-                    this.proxy('on_encrypt'));
+                else
+                {
+                    $containers.find('.oe_field_encrypt').click(
+                        this.proxy('on_encrypt'));
+                    $containers.find('.oe_field_decrypt').remove();
+                }
+            }
+            else
+            {
+                $containers.find('.base_encrypted_field_commands').remove();
             }
             return result;
         },
         on_encrypt: function()
+        {
+            return instance.base_encrypted_field.get_pgp_keys(this)
+            .then(function(private_key)
+            {
+                debugger;
+            });
+        },
+        on_decrypt: function()
         {
             return instance.base_encrypted_field.get_pgp_keys(this)
             .then(function(private_key)

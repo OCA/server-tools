@@ -1,4 +1,9 @@
-.oe_field_encrypt
+.oe_field_encrypt,
+.oe_field_decrypt
 {
     cursor: pointer;
+}
+div.base_encrypted_field_commands
+{
+    display: inline-block;
 }
