@@ -35,7 +35,6 @@ addon | version | summary
 [base_concurrency](base_concurrency/) | 8.0.1.0.0 (unported) | Base Concurrency
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 (unported) | Shows full debug options for all users
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 (unported) | External Database Sources
-[base_field_serialized](base_field_serialized/) | 8.0.1.0.0 (unported) | Serialized fields
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 (unported) | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 (unported) | Report qweb auto generation
 [base_suspend_security](base_suspend_security/) | 8.0.1.0.0 (unported) | Suspend security checks for a call
