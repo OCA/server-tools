@@ -21,7 +21,7 @@
 
 import re
 
-from openerp import models, api
+from openerp import models, api, _
 from openerp.exceptions import UserError
 import logging
 
@@ -52,7 +52,7 @@ class CompanyLDAP(models.Model):
         logger.debug("action_populate called on res.company.ldap ids %s",
                      self.ids)
 
-        for conf in self.get_ldap_dicts(self.cr, self.ids):
+        for conf in self.get_ldap_dicts():
             if not conf['create_user']:
                 continue
             attribute_match = re.search(
@@ -61,11 +61,11 @@ class CompanyLDAP(models.Model):
                 login_attr = attribute_match.group(1)
             else:
                 raise UserError(
-                    "No login attribute found"
-                    "Could not extract login attribute from filter %s" %
+                    _("No login attribute found: "
+                      "Could not extract login attribute from filter %s") %
                     conf['ldap_filter'])
             ldap_filter = filter_format(conf['ldap_filter'] % '*', ())
-            for result in self.query(conf, ldap_filter):
+            for result in self.query(conf, ldap_filter.encode('utf-8')):
                 self.get_or_create_user(conf, result[1][login_attr][0], result)
 
         users_no_after = users_pool.search_count([])
