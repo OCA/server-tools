@@ -35,7 +35,7 @@ install:
   - pip install unidecode
   - pip install validate_email
   - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
-  - ln -s server_environment_files_sample ./server_environment_files
+  - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:
   - travis_run_tests
 
