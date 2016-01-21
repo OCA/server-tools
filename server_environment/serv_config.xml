@@ -9,7 +9,7 @@
             view_mode="form"/>
 
         <menuitem
-            parent="base.menu_config"
+            parent="base.menu_ir_property"
             icon="STOCK_PROPERTIES"
             sequence="90"
             action="act_show_config_window"
