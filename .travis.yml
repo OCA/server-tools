@@ -34,7 +34,7 @@ install:
   - pip install python-ldap
   - pip install unidecode
   - pip install validate_email
-  - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
+  - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:
   - travis_run_tests
