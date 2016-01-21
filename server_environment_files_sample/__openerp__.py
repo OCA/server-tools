@@ -21,29 +21,14 @@
 
 {
     "name": "Example server configuration environment files repository module",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
-    "description": """\
-File store for environment file sample module
-=============================================
-
-This module provides a file store for classical configuration by
-environment file pattern into OpenERP provided by the
-`server_environment` addon.  Please look at this module for more info
-and doc.
-
-Note: you should not install this module 'as is', since it is an
-example module, but rather adapt it to your needs, and ensure your
-version of the module gets picked up by OpenERP. This can be ensured
-by putting the directory where your version of
-server_environment_files lives before this one in the addons-path
-variable of the OpenERP configuration file.
-    """,
+    "summary": "sample config file for server_environment",
     "website": "http://www.camptocamp.com",
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
-    'installable': False,
+    'installable': True,
     "active": False,
 }
