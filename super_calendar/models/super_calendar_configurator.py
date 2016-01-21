@@ -152,9 +152,9 @@ class SuperCalendarConfigurator(models.Model):
                 # Convert date_start to UTC timezone if it is a date field
                 # in order to be stored in UTC in the database
                 if line.date_start_field_id.ttype == 'date':
-                    tz = timezone(self._context.get('tz')
-                                  or self.env.user.tz
-                                  or 'UTC')
+                    tz = timezone(self._context.get('tz') or
+                                  self.env.user.tz or
+                                  'UTC')
                     local_date_start = tz.localize(date_start)
                     utc_date_start = local_date_start.astimezone(utc)
                     date_start = utc_date_start
