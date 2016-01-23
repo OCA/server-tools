@@ -1,0 +1,271 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * auth_saml
+# Vincent Lhote-Hatakeyama <vincent.lhote@xcg-consulting.fr>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-26 20:51+0000\n"
+"PO-Revision-Date: 2016-01-26 21:55+0100\n"
+"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
+"Language-Team: XCG Consulting\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: auth_saml
+#: code:addons/auth_saml/controllers/main.py:82
+#, python-format
+msgid "Access Denied"
+msgstr "Accès refusé"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_base_config_settings_allow_saml_uid_and_internal_password
+msgid ""
+"Allow SAML users to posess an Odoo password (warning: decreases security)"
+msgstr ""
+"Autoriser les utilisateurs avec SAML à aussi avoir un mot de passe Odoo "
+"(attention : abaisse la sécurité)"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_body
+msgid "Body"
+msgstr "Corps"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_css_class
+msgid "CSS Class"
+msgstr "Classe CSS"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_create_uid
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_create_date
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_saml_access_token
+msgid "Current SAML token for this user"
+msgstr "Jeton SAML courant de l’utilisateur"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_display_name
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_display_name
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_enabled
+msgid "Enabled"
+msgstr "Enabled"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_id
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_idp_metadata
+msgid "IDP Configuration"
+msgstr "Configuration FI"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider___last_update
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_write_uid
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_write_date
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_sp_pkey
+msgid "Private key of our service provider"
+msgstr "Clef privée de notre fournisseur de service (ce serveur OpenERP)"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_name
+msgid "Provider name"
+msgstr "Nom du fournisseur"
+
+#. module: auth_saml
+#: model:ir.actions.act_window,name:auth_saml.action_saml_provider
+msgid "Providers"
+msgstr "Fournisseurs"
+
+#. module: auth_saml
+#: model:ir.ui.view,arch_db:auth_saml.view_users_form
+msgid "SAML"
+msgstr "SAML"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_res_users_saml_provider_id
+msgid "SAML Provider"
+msgstr "Fournisseur SAML"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_saml_provider_id
+msgid "SAML Provider that issued the token"
+msgstr "Fournisseur SAML émetteur du token"
+
+#. module: auth_saml
+#: model:ir.model.fields,help:auth_saml.field_res_users_saml_uid
+msgid "SAML Provider user_id"
+msgstr "Fournisseur SAML user_id"
+
+#. module: auth_saml
+#: model:ir.ui.menu,name:auth_saml.menu_saml_providers
+msgid "SAML Providers"
+msgstr "Fournisseurs SAML"
+
+#. module: auth_saml
+#: sql_constraint:res.users:0
+msgid "SAML UID must be unique per provider"
+msgstr "L’identifiant SAML doit être unique par fournisseur"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_res_users_saml_uid
+msgid "SAML User ID"
+msgstr "Identifiant utilisateur SAML"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_auth_saml_provider
+msgid "SAML2 provider"
+msgstr "Fournisseur SAML2"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_sp_metadata
+msgid "SP Configuration"
+msgstr "Configuration du FS"
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_provider_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: auth_saml
+#: code:addons/auth_saml/controllers/main.py:80
+#, python-format
+msgid "Sign up is not allowed on this database."
+msgstr "L’inscription n’est pas autorisée sur cette base de donnée."
+
+#. module: auth_saml
+#: model:ir.model.fields,help:auth_saml.field_auth_saml_token_saml_access_token
+msgid "The current SAML token in use"
+msgstr "Le jeton SAML courant en cours d’utilisation"
+
+#. module: auth_saml
+#: code:addons/auth_saml/models/res_users.py:52
+#, python-format
+msgid ""
+"This database disallows users to have both passwords and SAML IDs. Errors "
+"for login %s"
+msgstr ""
+"This database disallows users to have both passwords and SAML IDs. Errors "
+"for login %s"
+
+#. module: auth_saml
+#: model:ir.model.fields,help:auth_saml.field_auth_saml_provider_sp_pkey
+msgid ""
+"This is the private key of the certificate used by the IDP to encrypt "
+"response data, this ensure the data is comming fromencrypted by the "
+"certificate you trust."
+msgstr ""
+"Clef privée pour le certificat utilisé par l'IDP (Identity Provider) pour "
+"encrypter les données, ceci ajoute la garantie que les données ont été signé "
+"par le certificat attendu."
+
+#. module: auth_saml
+#: model:ir.model.fields,field_description:auth_saml.field_auth_saml_token_user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: auth_saml
+#: code:addons/auth_saml/controllers/main.py:84
+#, python-format
+msgid ""
+"You do not have access to this database or your invitation has expired. "
+"Please ask for an invitation and be sure to follow the link in your "
+"invitation email."
+msgstr ""
+"Vous n’avez pas accès à cette base de donnée ou votre invitation a expirée. "
+"Demandez une invitation et assurez-vous de suivre le lien dans le courriel "
+"d’invitation."
+
+#. module: auth_saml
+#: model:ir.ui.view,arch_db:auth_saml.view_saml_provider_form
+#: model:ir.ui.view,arch_db:auth_saml.view_saml_provider_list
+msgid "arch"
+msgstr "arch"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_auth_saml_token
+msgid "auth_saml.token"
+msgstr "auth_saml.token"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_base_config_settings
+msgid "base.config.settings"
+msgstr "base.config.settings"
+
+#~ msgid ""
+#~ "SAML2 authentication: An Odoo user cannot posess both an SAML user ID and "
+#~ "an Odoo password."
+#~ msgstr ""
+#~ "Authentification SAML2 : Un utilisateur Odoo ne peut pas posséder à la "
+#~ "fois un ID utilisateur SAML et un mot de passe Odoo."
+
+#~ msgid "Sign up error"
+#~ msgstr "Erreur d’inscription"
+
+#~ msgid "Authentication error"
+#~ msgstr "Erreur d’authentification"
+
+#~ msgid "res.config"
+#~ msgstr "res.config"
+
+#~ msgid "unknown"
+#~ msgstr "inconnu"
+
+#~ msgid "http://localhost:8000"
+#~ msgstr "http://localhost :8000"
+
+#~ msgid "running on"
+#~ msgstr "en fonctionnement sur"
+
+#~ msgid "You must have an"
+#~ msgstr "Vous devez avoir un"
+
+#~ msgid "authentic2 server"
+#~ msgstr "serveur authentic2"
+
+#~ msgid "Allow users to sign in with a Local Authentic"
+#~ msgstr "Autoriser les utilisateurs à s’inscrire avec un Authentic local"
+
+#~ msgid "Allowed"
+#~ msgstr "Autorisé"
