@@ -23,7 +23,7 @@ from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
 
 
-class ir_model(orm.Model):
+class IrModel(orm.Model):
     _inherit = 'ir.model'
 
     _columns = {
@@ -50,16 +50,16 @@ class ir_model(orm.Model):
 
     def _register_hook(self, cr):
         self._patch_quick_create(cr, self.search(cr, SUPERUSER_ID, []))
-        return super(ir_model, self)._register_hook(cr)
+        return super(IrModel, self)._register_hook(cr)
 
     def create(self, cr, uid, vals, context=None):
-        res_id = super(ir_model, self).create(cr, uid, vals, context=context)
+        res_id = super(IrModel, self).create(cr, uid, vals, context=context)
         self._patch_quick_create(cr, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        res = super(ir_model, self).write(cr, uid, ids, vals, context=context)
+        res = super(IrModel, self).write(cr, uid, ids, vals, context=context)
         self._patch_quick_create(cr, ids)
         return res
