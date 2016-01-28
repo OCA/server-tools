@@ -4,7 +4,7 @@
 from openerp import api, fields, models
 
 
-class BaseEncryptedFieldPatchBaseModel(models.AbstractModel):
+class BaseEncryptedFieldPatchBaseModel(models.BaseModel):
     _name = 'base.encrypted.field.patch.base.model'
     _description = 'Patch methods on BaseModel for all existing models'
     _inherit = 'base.patch.models.mixin'
@@ -28,8 +28,3 @@ class BaseEncryptedFieldPatchBaseModel(models.AbstractModel):
                 field_desc.get('type') in ['text', 'html'] and\
                 not field_desc.get('size'):
             field_desc.setdefault('encryptable', True)
-
-    def _register_hook(self, cr):
-        self._base_patch_models(
-            cr, BaseEncryptedFieldPatchBaseModel, models.BaseModel)
-        return super(BaseEncryptedFieldPatchBaseModel, self)._register_hook(cr)
