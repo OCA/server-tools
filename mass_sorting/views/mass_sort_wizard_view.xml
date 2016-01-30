@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp><data>
+
+    <record id="view_mass_sort_wizard_form" model="ir.ui.view">
+        <field name="model">mass.sort.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Sorting" version="7.0">
+                <group>
+                    <field name="description" nolabel="1"/>
+                </group>
+                <footer>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                    <button name="button_apply" type="object" string="Confirm" class="oe_highlight"/>
+               </footer>
+            </form>
+        </field>
+    </record>
+
+</data></openerp>
