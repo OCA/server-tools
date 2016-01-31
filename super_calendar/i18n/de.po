@@ -3,13 +3,14 @@
 # * super_calendar
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-26 10:53+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,35 +25,35 @@ msgstr ""
 #: view:super.calendar:super_calendar.super_calendar_form
 #: view:super.calendar:super_calendar.super_calendar_tree
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 #. module: super_calendar
 #: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
 msgid "Calendar Configurators"
-msgstr ""
+msgstr "Kalender-Konfiguratoren"
 
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
 msgid "Code"
-msgstr ""
+msgstr "Schlüssel"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 #. module: super_calendar
 #: field:super.calendar,configurator_id:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 #: field:super.calendar.configurator.line,configurator_id:0
 msgid "Configurator"
-msgstr ""
+msgstr "Konfigurator"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configurators
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_tree
 msgid "Configurators"
-msgstr ""
+msgstr "Konfiguratoren"
 
 #. module: super_calendar
 #: field:super.calendar,create_uid:0
@@ -71,34 +72,34 @@ msgstr "Erstellt am:"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current month"
-msgstr ""
+msgstr "Aktueller Monat"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current week"
-msgstr ""
+msgstr "Aktuelle Woche"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Day"
-msgstr ""
+msgstr "Tag"
 
 #. module: super_calendar
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
 msgid "Description Type"
-msgstr ""
+msgstr "Beschreibungsart"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_code:0
 #: field:super.calendar.configurator.line,description_field_id:0
 msgid "Description field"
-msgstr ""
+msgstr "Beschreibungsfeld"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -123,7 +124,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator.line,domain:0
 msgid "Domain"
-msgstr ""
+msgstr "Domäne"
 
 #. module: super_calendar
 #: field:super.calendar,duration:0
