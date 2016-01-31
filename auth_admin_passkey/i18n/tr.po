@@ -3,26 +3,26 @@
 # * auth_admin_passkey
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-26 10:39+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"PO-Revision-Date: 2016-01-31 12:00+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:88
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr "<pre>Benutzer mit Anmeldename '%s' hat das gleiche Passwort wie Sie.</pre>"
+msgstr "<pre> '%s' kullanıcısının şifresi sizinkiyle aynı.</pre>"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:64
@@ -36,50 +36,50 @@ msgid ""
 "\n"
 "- Login date : %s\n"
 "\n"
-msgstr "Admin-Benutzer hat seinen PassKey verwendet, um sich als '%s' anzumelden.\n\n\n\nTechnische Information folgt : \n\n- Login-Datum: %s\n\n"
+msgstr "Yönetici şifresini kullanarak '%s'. kullanıcısıyla giriş yaptı.\n\n\n\nTeknik detaylar aşağıda : \n\n- Giriş zamanı : %s\n\n"
 
 #. module: auth_admin_passkey
 #: view:base.config.settings:auth_admin_passkey.view_res_config_settings
 msgid "Passkey"
-msgstr "PassKey"
+msgstr "Parola"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:61
 #, python-format
 msgid "Passkey used"
-msgstr "Verwendeter PassKey"
+msgstr "Kullanılan parola"
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid "Send email to admin user."
-msgstr "Sende Email an Admin-Benutzer."
+msgstr "Yöneticiye e-posta gönder."
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid "Send email to user."
-msgstr "Sende Email an Benutzer"
+msgstr "Kullanıcıya e-posta gönder."
 
 #. module: auth_admin_passkey
 #: model:ir.model,name:auth_admin_passkey.model_res_users
 msgid "Users"
-msgstr "Benutzer"
+msgstr "Kullanıcılar"
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, OpenERP will send an email to the account user."
-msgstr "Wenn der Administrator sein Passwort verwendet, um sich mit anderem Konto anzumelden, sendet das System dem Kontoinhaber eine Email."
+msgstr "Yönetici farklı bir hesaba şifresiyle giriş yaparsa. Odoo hesap sahibine e-posta gönderecek."
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, OpenERP will send an email to the admin user."
-msgstr "Wenn der Administrator sein Passwort verwendet, um sich als anderer Benutzer anzumelden, wird Oddoeine entsprechende Email an den Admin-Nutzer senden."
+msgstr "Yönetici şifresiyle farklı bir kullanıcının hesabına giriş yaparsa, Odoo yöneticiye e-posta gönderir."
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:86
 #, python-format
 msgid "[WARNING] OpenERP Security Risk"
-msgstr "[Warnung] Odoo Sicherheitsrisiko"
+msgstr "[UYARI] Odoo Güvenlik Riski"
