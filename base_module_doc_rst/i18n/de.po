@@ -3,13 +3,14 @@
 # * base_module_doc_rst
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-16 07:38+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-26 10:52+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,22 +21,22 @@ msgstr ""
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 msgid "Cancel"
-msgstr ""
+msgstr "Abbruch"
 
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 msgid "Create Graphs"
-msgstr ""
+msgstr "Lege Graphiken an"
 
 #. module: base_module_doc_rst
 #: model:ir.actions.act_window,name:base_module_doc_rst.wiz_tech_guide_rst
 msgid "Create RST Technical Guide2"
-msgstr ""
+msgstr "Erstelle RST-Technischen Leitfaden 2"
 
 #. module: base_module_doc_rst
 #: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
 msgid "Create Technical Guide in rst format"
-msgstr ""
+msgstr "Erstelle Technischen Leitfaden im RST-Format"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
@@ -51,13 +52,13 @@ msgstr "Erstellt am:"
 #. module: base_module_doc_rst
 #: field:tech.guide.rst,rst_file:0
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 #: model:ir.actions.act_window,name:base_module_doc_rst.generate_relationship_graph_values
 msgid "Generate Relationship Graph"
-msgstr ""
+msgstr "Erzeuge Beziehunggraph"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,id:0 field:tech.guide.rst,id:0
@@ -77,12 +78,12 @@ msgstr "Zuletzt aktualisiert am"
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module
 msgid "Module"
-msgstr ""
+msgstr "Modul"
 
 #. module: base_module_doc_rst
 #: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
 msgid "Please choose a file where the Technical Guide will be written."
-msgstr ""
+msgstr "Bestimmen Sie bitte den Dateinamen, den der Technische Leitfaden erhalten soll."
 
 #. module: base_module_doc_rst
 #: model:ir.actions.report.xml,name:base_module_doc_rst.report_proximity_graph

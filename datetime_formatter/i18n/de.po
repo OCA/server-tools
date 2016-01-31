@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * auth_from_http_remote_user
+# * datetime_formatter
 # 
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-18 13:12+0000\n"
+"PO-Revision-Date: 2016-01-18 14:00+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -18,17 +18,13 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: auth_from_http_remote_user
-#: field:auth_from_http_remote_user.installed,id:0
-msgid "ID"
-msgstr "ID"
+#. module: datetime_formatter
+#: code:addons/datetime_formatter/exceptions.py:9
+#, python-format
+msgid "Best matched language (%s) not found."
+msgstr "Sprache (%s) mit bester Übereinstimmung nicht gefunden"
 
-#. module: auth_from_http_remote_user
-#: field:res.users,sso_key:0
-msgid "SSO Key"
-msgstr "SSO-Schlüssel"
-
-#. module: auth_from_http_remote_user
-#: model:ir.model,name:auth_from_http_remote_user.model_res_users
-msgid "Users"
-msgstr "Benutzer"
+#. module: datetime_formatter
+#: model:ir.model,name:datetime_formatter.model_res_lang
+msgid "Languages"
+msgstr "Sprachen"

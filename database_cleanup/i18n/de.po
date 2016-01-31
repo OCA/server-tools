@@ -3,13 +3,14 @@
 # * database_cleanup
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-26 10:53+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.column,purge_line_ids:0
 msgid "Columns to purge"
-msgstr ""
+msgstr "Zu löschende Spalten"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,create_uid:0
@@ -57,17 +58,17 @@ msgstr "Erstellt am:"
 #. module: database_cleanup
 #: field:cleanup.purge.line.data,data_id:0
 msgid "Data entry"
-msgstr ""
+msgstr "Dateneingabe"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.data,purge_line_ids:0
 msgid "Data to purge"
-msgstr ""
+msgstr "Zu löschende Daten"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_database_cleanup
 msgid "Database cleanup"
-msgstr ""
+msgstr "Datenbankbereinigung"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line,id:0 field:cleanup.purge.line.column,id:0
@@ -116,12 +117,12 @@ msgstr "Zuletzt aktualisiert am"
 #. module: database_cleanup
 #: field:cleanup.purge.line.menu,menu_id:0
 msgid "Menu entry"
-msgstr ""
+msgstr "Menüeintrag"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.menu,purge_line_ids:0
 msgid "Menus to purge"
-msgstr ""
+msgstr "Zu löschende Menüs"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,model_id:0
@@ -131,12 +132,12 @@ msgstr "Modell"
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modelle"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.model,purge_line_ids:0
 msgid "Models to purge"
-msgstr ""
+msgstr "Zu löschende Modelle"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.module,purge_line_ids:0
