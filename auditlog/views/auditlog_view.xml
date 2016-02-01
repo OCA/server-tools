@@ -26,6 +26,7 @@
                             <group colspan="1">
                                 <field name="name" required="1"/>
                                 <field name="model_id"/>
+                                <field name="log_type"/>
                                 <field name="action_id" readonly="1" groups="base.group_no_one"/>
                             </group>
                             <group colspan="1">
@@ -54,6 +55,7 @@
                 <tree colors="blue:state == 'draft';black:state == 'subscribed'" string="Rules">
                     <field name="name"/>
                     <field name="model_id"/>
+                    <field name="log_type"/>
                     <field name="log_read"/>
                     <field name="log_write"/>
                     <field name="log_unlink"/>
@@ -110,6 +112,7 @@
                                 <field name="create_date" readonly="1"/>
                                 <field name="user_id" readonly="1"/>
                                 <field name="method" readonly="1"/>
+                                <field name="type" readonly="1"/>
                             </group>
                             <group colspan="1">
                                 <field name="model_id" readonly="1"/>
