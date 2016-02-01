@@ -10,7 +10,6 @@ import tempfile
 from openerp import _, api, models, exceptions
 from openerp.tools.config import _get_default_datadir
 from openerp.tools.misc import file_open
-from .acme_tiny import get_crt, DEFAULT_CA
 
 
 DEFAULT_KEY_LENGTH = 4096
@@ -137,6 +136,7 @@ class Letsencrypt(models.AbstractModel):
         if self.env.context.get('letsencrypt_dry_run'):
             crt_text = 'I\'m a test text'
         else:  # pragma: no cover
+            from .acme_tiny import get_crt, DEFAULT_CA
             crt_text = get_crt(
                 account_key, csr, acme_challenge, log=_logger, CA=DEFAULT_CA)
         with open(os.path.join(self.get_data_dir(), '%s.crt' % domain), 'w')\
