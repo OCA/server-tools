@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+# @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+
+- !record {model: mass.sort.config, id: mass_sort_config}:
+    name: Recursive Demo Configuration
+    model_id: model_mass_sort_config
+    one2many_field_id: field_mass_sort_config_line_ids
