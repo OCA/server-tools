@@ -36,6 +36,7 @@ cleanup cron (2 different for db and process monitoring)
   RPC request log
 
 """
+from __future__ import absolute_import
 
 import logging
 import gc
