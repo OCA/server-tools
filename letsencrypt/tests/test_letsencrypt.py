@@ -11,4 +11,4 @@ class TestLetsencrypt(TransactionCase):
         self.env.ref('letsencrypt.config_parameter_reload').write({
             'value': '',
         })
-        self.env['letsencrypt'].with_context(letsencrypt_fake_cert=True).cron()
+        self.env['letsencrypt'].with_context(letsencrypt_dry_run=True).cron()

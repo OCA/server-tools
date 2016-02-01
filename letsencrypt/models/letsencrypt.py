@@ -134,11 +134,11 @@ class Letsencrypt(models.AbstractModel):
             'static', 'acme-challenge')
         if not os.path.isdir(acme_challenge):
             os.makedirs(acme_challenge)
-        if not self.env.context.get('letsencrypt_fake_cert'):
+        if self.env.context.get('letsencrypt_dry_run'):
+            crt_text = 'I\'m a test text'
+        else:  # pragma: no cover
             crt_text = get_crt(
                 account_key, csr, acme_challenge, log=_logger, CA=DEFAULT_CA)
-        else:
-            crt_text = 'I\'m a test text'
         with open(os.path.join(self.get_data_dir(), '%s.crt' % domain), 'w')\
                 as crt:
             crt.write(crt_text)
