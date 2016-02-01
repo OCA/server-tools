@@ -21,23 +21,7 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestAuditlog(TransactionCase):
-    def setUp(self):
-        super(TestAuditlog, self).setUp()
-        self.groups_model_id = self.env.ref('base.model_res_groups').id
-        self.groups_rule = self.env['auditlog.rule'].create({
-            'name': 'testrule for groups',
-            'model_id': self.groups_model_id,
-            'log_read': True,
-            'log_create': True,
-            'log_write': True,
-            'log_unlink': True,
-            'state': 'subscribed',
-        })
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super(TestAuditlog, self).tearDown()
+class TestAuditlog(object):
 
     def test_LogCreation(self):
         """First test, caching some data."""
@@ -105,3 +89,45 @@ class TestAuditlog(TransactionCase):
             ('method', '=', 'write'),
             ('res_id', '=', testgroup4.id),
         ]).ensure_one())
+
+
+class TestAuditlogFull(TransactionCase, TestAuditlog):
+
+    def setUp(self):
+        super(TestAuditlogFull, self).setUp()
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.groups_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+            'log_type': 'full',
+        })
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogFull, self).tearDown()
+
+
+class TestAuditlogFast(TransactionCase, TestAuditlog):
+
+    def setUp(self):
+        super(TestAuditlogFast, self).setUp()
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.groups_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+            'log_type': 'fast',
+        })
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogFast, self).tearDown()
