@@ -24,6 +24,9 @@
     "summary": "Makes the login field of res.users case insensitive.",
     "version": "9.0.1.0.0",
     "category": "Base",
+    'depends': [
+        'mail',  # Required if shares branch with password_security module
+    ],
     "website": "https://laslabs.com/",
     "author": "LasLabs",
     "license": "AGPL-3",
