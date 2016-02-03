@@ -37,6 +37,7 @@ This module is highly inspired by 'mass_editing' module. (by OCA and SerpentCS)
         'static/description/1_mass_sort_config.png',
         'static/description/2_button.png',
         'static/description/3_mass_sort_wizard.png',
+        'static/description/3_mass_sort_wizard_custom.png',
         'static/description/4_before.png',
         'static/description/5_after.png',
     ],

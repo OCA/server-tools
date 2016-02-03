@@ -23,10 +23,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         <field name="ref_ir_value" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
                         <button name="create_action" string="Add sidebar button" type="object" icon="gtk-execute"
                             colspan="2" attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"
-                            help="Display a button in the sidebar of related documents to open a composition wizard"/>
+                            help="Display a button in the sidebar of related model to open a wizard"/>
                         <button name="unlink_action" string="Remove sidebar button" type="object" icon="gtk-delete"
                              attrs="{'invisible':[('ref_ir_act_window','=',False)]}" colspan="2" />
-                        <field name="one2many_model"/>
+                        <field name="allow_custom_setting"/>
                     </group>
                     <group>
                         <field name="line_ids" colspan="4" nolabel="1">
@@ -36,6 +36,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <field name="desc"/>
                             </tree>
                         </field>
+                        <field name="one2many_model" invisible="1"/>
                     </group>
                 </sheet>
             </form>

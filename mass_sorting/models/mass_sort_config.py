@@ -19,6 +19,9 @@ class MassSortConfig(Model):
             string='Name', translate=True, required=True),
         'model_id': fields.many2one(
             'ir.model', string='Model', required=True),
+        'allow_custom_setting': fields.boolean(
+            string='Allow Custom Setting', help="If checked, any user could"
+            " have the possibility to change fields, and use others."),
         'one2many_field_id': fields.many2one(
             'ir.model.fields', string='Field to Sort', required=True,
             domain="[('model_id', '=', model_id),"
@@ -32,6 +35,10 @@ class MassSortConfig(Model):
             'ir.values', 'Sidebar Button', readonly=True),
         'line_ids': fields.one2many(
             'mass.sort.config.line', 'config_id', 'Sorting Criterias'),
+    }
+
+    _defaults = {
+        'allow_custom_setting': True,
     }
 
     # Constraint Section
@@ -50,11 +57,20 @@ class MassSortConfig(Model):
                 return False
         return True
 
+    def _check_line_ids(self, cr, uid, ids, context=None):
+        for config in self.browse(cr, uid, ids, context=context):
+            if not config.allow_custom_setting and len(config.line_ids) == 0:
+                return False
+        return True
+
     _constraints = [
         (_check_model_sequence, "The selected Field to Sort doesn't not have"
             " 'sequence' field defined.", ['one2many_field_id']),
         (_check_model_field, "The selected Field to Sort doesn't belong to the"
-            " selected model.", ['model_id', 'one2many_field_id'])
+            " selected model.", ['model_id', 'one2many_field_id']),
+        (_check_line_ids, "You have to define field(s) in 'Sorting Criterias'"
+            " if you uncheck 'Allow Custom Setting'.",
+            ['line_ids', 'allow_custom_setting']),
     ]
 
     # View Section

@@ -11,8 +11,17 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="model">mass.sort.wizard</field>
         <field name="arch" type="xml">
             <form string="Mass Sorting" version="7.0">
-                <group>
-                    <field name="description" nolabel="1"/>
+                <group col="4">
+                    <field name="description" nolabel="1" colspan="4" attrs="{'invisible': [('allow_custom_setting', '=', True)]}"/>
+                    <field name="line_ids" colspan="4" nolabel="1" attrs="{'invisible': [('allow_custom_setting', '=', False)]}">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="field_id"/>
+                            <field name="desc"/>
+                        </tree>
+                    </field>
+                    <field name="allow_custom_setting" invisible="1"/>
+                    <field name="one2many_model" invisible="1"/>
                 </group>
                 <footer>
                     <button icon="gtk-cancel" special="cancel" string="Cancel"/>
