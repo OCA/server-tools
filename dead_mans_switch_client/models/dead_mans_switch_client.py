@@ -82,7 +82,7 @@ class DeadMansSwitchClient(models.AbstractModel):
                 {
                     'Content-Type': 'application/json',
                 }),
-            timeout)
+            timeout=timeout)
 
     @api.model
     def _install_default_url(self):
