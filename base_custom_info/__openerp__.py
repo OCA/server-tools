@@ -19,6 +19,12 @@
         'views/menu.xml',
         'security/ir.model.access.csv',
     ],
+    "images": [
+        "images/menu.png",
+        "images/properties.png",
+        "images/templates.png",
+        "images/values.png",
+    ],
     'author': 'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., '
               'Odoo Community Association (OCA)',
