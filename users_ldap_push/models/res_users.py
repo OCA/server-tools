@@ -17,11 +17,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import ldap
-import ldap.modlist
-import logging
 from openerp import _, models, fields, api, exceptions
+import logging
+
 _logger = logging.getLogger(__name__)
+
+try:
+    import ldap
+    import ldap.modlist
+except ImportError:
+    _logger.debug('Can not `from ldap.filter import filter_format`.')
 
 
 class ResUsers(models.Model):
