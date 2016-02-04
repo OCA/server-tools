@@ -7,7 +7,7 @@ import logging
 import os
 try:
     import psutil
-except ImportError:
+except ImportError:  # pragma: no cover
     psutil = None
 import urllib2
 from openerp import api, models
@@ -28,7 +28,7 @@ class DeadMansSwitchClient(models.AbstractModel):
             process = psutil.Process(os.getpid())
             # psutil changed its api through versions
             processes = [process]
-            if config.get('workers') and process.parent:
+            if config.get('workers') and process.parent:  # pragma: no cover
                 if hasattr(process.parent, '__call__'):
                     process = process.parent()
                 else:
@@ -40,11 +40,11 @@ class DeadMansSwitchClient(models.AbstractModel):
             for process in processes:
                 if hasattr(process, 'memory_percent'):
                     ram += process.memory_percent()
-                else:
+                else:  # pragma: no cover
                     ram = None
                 if hasattr(process, 'cpu_percent'):
                     cpu += process.cpu_percent()
-                else:
+                else:  # pragma: no cover
                     cpu = None
         user_count = 0
         if 'im_chat.presence' in self.env.registry:
