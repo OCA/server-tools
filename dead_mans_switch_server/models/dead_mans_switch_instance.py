@@ -146,6 +146,11 @@ class DeadMansSwitchInstance(models.Model):
     def panic(self):
         """override for custom handling"""
         self.ensure_one()
+        last_post = fields.Datetime.from_string(self.message_last_post)
+        if last_post >= datetime.utcnow() - 3 * timedelta(
+                seconds=self.alive_max_delay):
+            # don't nag too often
+            return
         self.message_post(
             type='comment', subtype='mt_comment',
             subject=_('Dead man\'s switch warning: %s') %
