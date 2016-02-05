@@ -57,13 +57,9 @@ class IrModel(orm.Model):
 
         return wrapper
 
-    def _register_hook(self, cr, ids=None):
+    def _field_validator_hook(self, cr, ids):
         """ Wrap the methods `create` and `write` of the model
         """
-        res = super(IrModel, self)._register_hook(cr)
-        if ids is None:
-            ids = self.search(
-                cr, SUPERUSER_ID, [('validator_line_ids', '!=', False)])
         updated = False
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.validator_line_ids:
@@ -81,19 +77,23 @@ class IrModel(orm.Model):
         if updated:
             openerp.modules.registry.RegistryManager.\
                 signal_registry_change(cr.dbname)
-        return res
+        return True
+
+    def _register_hook(self, cr, ids=None):
+        self._field_validator_hook(cr, self.search(cr, SUPERUSER_ID, []))
+        return super(IrModel, self)._register_hook(cr)
 
     def create(self, cr, uid, vals, context=None):
         res_id = super(IrModel, self).create(
             cr, uid, vals, context=context)
-        self._register_hook(cr, [res_id])
+        self._field_validator_hook(cr, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
         res = super(IrModel, self).write(cr, uid, ids, vals, context=context)
-        self._register_hook(cr, ids)
+        self._field_validator_hook(cr, ids)
         return res
 
 
