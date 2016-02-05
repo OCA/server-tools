@@ -19,12 +19,12 @@ class IrModel(models.Model):
 
     _inherit = 'ir.model'
     validator_line_ids = fields.One2many(
-        'ir.model.validator.line', 'name', 'Validators')
+        'ir.model.validator.line', 'model_id', 'Validators')
 
     @api.model
     def check_vals(self, vals, model_name):
         validator_lines = self.env['ir.model.validator.line'].search([
-            ('name.model', '=', model_name),
+            ('model_id.model', '=', model_name),
             ('field_id.name', 'in', vals.keys())])
         for validator_line in validator_lines:
             pattern = re.compile(validator_line.regex_id.regex)
@@ -99,7 +99,8 @@ class IrModel(orm.Model):
 
 class IrModelValidatorLine(models.Model):
     _name = "ir.model.validator.line"
-    name = fields.Many2one('ir.model', string="Model", required=True)
+    _rec_name = 'model_id'
+    model_id = fields.Many2one('ir.model', string="Model", required=True)
     field_id = fields.Many2one('ir.model.fields', 'Field', required=True)
     regex_id = fields.Many2one(
         'ir.model.fields.regex', string="Validator", required=True)
