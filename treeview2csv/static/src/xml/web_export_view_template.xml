@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+<t t-name="AddExportViewMain">
+	<ul class="oe_dropdown_menu">
+    	<li class="oe_sidebar_export_view_csv"><span>csv</span></li>
+    </ul>
+</t>
+</templates>
