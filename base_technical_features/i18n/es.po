@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:46+0000\n"
-"PO-Revision-Date: 2016-01-13 00:21+0000\n"
+"PO-Revision-Date: 2016-02-01 09:57+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -69,9 +69,9 @@ msgstr "Mostrar o no el campo de características técnicas en las preferencias 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_basemodel_monkeypatch
 msgid "basemodel.monkeypatch"
-msgstr ""
+msgstr "basemodel.monkeypatch"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "ir.ui.menu"
-msgstr ""
+msgstr "ir.ui.menu"
