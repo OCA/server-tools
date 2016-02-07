@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_concurrency
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-31 11:53+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_concurrency
+#: field:res.users.login,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: base_concurrency
+#: field:res.users.login,create_date:0
+msgid "Created on"
+msgstr "Oluşturuldu"
+
+#. module: base_concurrency
+#: field:res.users.login,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_concurrency
+#: field:res.users.login,write_uid:0
+msgid "Last Updated by"
+msgstr "Son güncelleyen"
+
+#. module: base_concurrency
+#: field:res.users.login,write_date:0
+msgid "Last Updated on"
+msgstr "Son güncellenme"
+
+#. module: base_concurrency
+#: field:res.users.login,login_dt:0
+msgid "Latest connection"
+msgstr "Son bağlantı"
+
+#. module: base_concurrency
+#: sql_constraint:res.users.login:0
+msgid "The user can only have one login line!"
+msgstr "Kullanıcının sadece tek giriş satırı olabilir !"
+
+#. module: base_concurrency
+#: field:res.users.login,user_id:0
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: base_concurrency
+#: model:ir.model,name:base_concurrency.model_res_users
+msgid "Users"
+msgstr "Kullanıcılar"
