@@ -7,10 +7,11 @@ import logging
 import os
 try:
     import psutil
-except ImportError:
+except ImportError:  # pragma: no cover
     psutil = None
 import urllib2
 from openerp import api, models
+from openerp.tools.config import config
 
 SEND_TIMEOUT = 60
 
@@ -26,15 +27,25 @@ class DeadMansSwitchClient(models.AbstractModel):
         if psutil:
             process = psutil.Process(os.getpid())
             # psutil changed its api through versions
-            if process.parent:
+            processes = [process]
+            if config.get('workers') and process.parent:  # pragma: no cover
                 if hasattr(process.parent, '__call__'):
                     process = process.parent()
                 else:
                     process = process.parent
-            if hasattr(process, 'memory_percent'):
-                ram = process.memory_percent()
-            if hasattr(process, 'cpu_percent'):
-                cpu = process.cpu_percent()
+                if hasattr(process, 'children'):
+                    processes += process.children(True)
+                elif hasattr(process, 'get_children'):
+                    processes += process.get_children(True)
+            for process in processes:
+                if hasattr(process, 'memory_percent'):
+                    ram += process.memory_percent()
+                else:  # pragma: no cover
+                    ram = None
+                if hasattr(process, 'cpu_percent'):
+                    cpu += process.cpu_percent()
+                else:  # pragma: no cover
+                    cpu = None
         user_count = 0
         if 'im_chat.presence' in self.env.registry:
             user_count = len(self.env['im_chat.presence'].search([
@@ -71,7 +82,7 @@ class DeadMansSwitchClient(models.AbstractModel):
                 {
                     'Content-Type': 'application/json',
                 }),
-            timeout)
+            timeout=timeout)
 
     @api.model
     def _install_default_url(self):
