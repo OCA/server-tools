@@ -147,7 +147,7 @@ class DeadMansSwitchInstance(models.Model):
         """override for custom handling"""
         self.ensure_one()
         last_post = fields.Datetime.from_string(self.message_last_post)
-        if last_post >= datetime.utcnow() - 3 * timedelta(
+        if last_post and last_post >= datetime.utcnow() - 3 * timedelta(
                 seconds=self.alive_max_delay):
             # don't nag too often
             return
