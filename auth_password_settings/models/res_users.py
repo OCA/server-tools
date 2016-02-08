@@ -6,7 +6,8 @@ import string
 
 from openerp import models, api
 from openerp.tools.translate import _
-from openerp.exceptions import ValidationError, AccessDenied
+from openerp.exceptions import ValidationError
+
 
 class ResUsers(models.Model):
     _inherit = "res.users"

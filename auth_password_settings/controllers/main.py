@@ -14,23 +14,28 @@ from openerp.addons.web.controllers.main import Session
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
 from openerp.addons.auth_signup.res_users import SignupError
 
+
+_logger = logging.getLogger(__name__)
+
+
 class SessionEx(Session):
 
     @http.route('/web/session/change_password', type='json', auth="user")
     def change_password(self, fields):
-        old_password, new_password,confirm_password = operator.itemgetter(
-                'old_pwd', 'new_password','confirm_pwd')(dict(
-                    map(operator.itemgetter('name', 'value'), fields))
-                )
-        if not (old_password.strip() and new_password.strip() and 
-                confirm_password.strip()):
+        old_password, new_password, confirm_password = operator.itemgetter(
+            'old_pwd', 'new_password','confirm_pwd')(dict(
+                map(operator.itemgetter('name', 'value'), fields))
+            )
+        if not (old_password.strip() and new_password.strip() and
+            confirm_password.strip()):
             return {
-                'error':_('You cannot leave any password empty.'),
+                'error': _('You cannot leave any password empty.'),
                 'title': _('Change Password')
                 }
         if new_password != confirm_password:
             return {
-                'error': _('The new password and its confirmation must be identical.'),
+                'error': _('The new password and its confirmation must be'
+                    ' identical.'),
                 'title': _('Change Password')
                 }
         try:
@@ -39,7 +44,8 @@ class SessionEx(Session):
                 return {'new_password':new_password}
         except AccessDenied:
             return {
-                'error': _('The old password you provided is incorrect, your password was not changed.'), 
+                'error': _('The old password you provided is incorrect,'
+                    ' your password was not changed.'),
                 'title': _('Change Password')
                 }
         return {
@@ -74,7 +80,8 @@ class AuthSignupHomeEx(AuthSignupHome):
                         request.cr, openerp.SUPERUSER_ID, 
                         login
                         )
-                    qcontext['message'] = _("An email has been sent with credentials to reset your password")
+                    qcontext['message'] = _('An email has been sent with'
+                        ' credentials to reset your password')
             except SignupError:
                 qcontext['error'] = _("Could not reset your password")
                 _logger.exception('error when resetting password')
@@ -82,5 +89,5 @@ class AuthSignupHomeEx(AuthSignupHome):
                 qcontext['error'] = e.value
             except Exception, e:
                 qcontext['error'] = _(e.message)
-                
+
         return request.render('auth_signup.reset_password', qcontext)
