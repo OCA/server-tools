@@ -11,7 +11,6 @@ from openerp.tools.translate import _
 class MassSortWizard(TransientModel):
     _name = 'mass.sort.wizard'
 
-
     _columns = {
         'description': fields.text(
             string='Description', readonly=True),
@@ -30,9 +29,9 @@ class MassSortWizard(TransientModel):
                 return False
         return True
 
-    _constraints = [
-        (_check_line_ids, "Please Select at least ona Sorting Criteria.",
-        ['line_ids'])
+    _constraints = [(
+        _check_line_ids, "Please Select at least ona Sorting Criteria.",
+        ['line_ids']),
     ]
 
     # Default Section

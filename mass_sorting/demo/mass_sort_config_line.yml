@@ -3,6 +3,8 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+- !context
+    noupdate: False
 
 - !record {model: mass.sort.config.line, id: mass_sort_config_line_1}:
     sequence: 1
