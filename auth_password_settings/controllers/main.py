@@ -56,7 +56,7 @@ class SessionEx(Session):
 
 class AuthSignupHomeEx(AuthSignupHome):
 
-    @http.route('/web/reset_password', type='http', auth='public', 
+    @http.route('/web/reset_password', type='http', auth='public',
                 website=True)
     def web_auth_reset_password(self, *args, **kw):
         qcontext = self.get_auth_signup_qcontext()
