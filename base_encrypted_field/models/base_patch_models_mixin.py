@@ -2,7 +2,7 @@
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
-from openerp import SUPERUSER_ID, models
+from openerp import models
 
 
 _logger = logging.getLogger(__file__)
