@@ -43,6 +43,7 @@
                             <field name="name" />
                             <field name="enabled" />
                             <field name="body" />
+                            <field name="matching_attribute" />
                         </group>
                         <group>
                             <field name="idp_metadata" />

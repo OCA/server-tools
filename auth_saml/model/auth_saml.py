@@ -33,6 +33,16 @@ class auth_saml_provider(models.Model):
         return lasso.Login(server)
 
     @api.multi
+    def _get_matching_attr_for_provider(self):
+        """internal helper to fetch the matching attribute for this SAML
+        provider. Returns a unicode object.
+        """
+
+        self.ensure_one()
+
+        return self.matching_attribute
+
+    @api.multi
     def _get_auth_request(self, state):
         """build an authentication request and give it back to our client
         WARNING: this method cannot be used for multiple ids
@@ -58,6 +68,11 @@ class auth_saml_provider(models.Model):
     sp_pkey = fields.Text(
         'Private key of our service provider (this openerpserver)'
     )
+    matching_attribute = fields.Text(
+        string='Matching Attribute',
+        default='subject.nameId',
+        required=True,
+    ),
     enabled = fields.Boolean('Enabled', default=False)
     sequence = fields.Integer('Sequence')
     css_class = fields.Char('CSS Class')
