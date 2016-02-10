@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from openerp import models
 from openerp import api
 from openerp import fields
@@ -14,10 +15,13 @@ class auth_saml_provider(models.Model):
 
     @api.multi
     def _get_lasso_for_provider(self):
+        """internal helper to get a configured lasso.Login object for the
+        given provider id"""
+
         # user is not connected yet... so use SUPERUSER_ID
 
         # TODO: we should cache those results somewhere because it is
-        # really costy to always recreate a login variable from buffers
+        # really costly to always recreate a login variable from buffers
         server = lasso.Server.newFromBuffers(
             self.sp_metadata,
             self.sp_pkey
