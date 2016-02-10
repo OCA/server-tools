@@ -1,0 +1,28 @@
+# -*- encoding: utf-8 -*-
+- !record {model: ir.model.access, id: access_res_authentication_attempt_all}:
+    model_id: model_res_authentication_attempt
+    name: Authentication Attempt All Users
+    perm_read: true
+
+- !record {model: ir.model.access, id: access_res_banned_remote_all}:
+    model_id: model_res_banned_remote
+    name: Banned Remote All Users
+    perm_read: true
+
+- !record {model: ir.model.access, id: access_res_authentication_attempt_manager}:
+    group_id: base.group_system
+    model_id: model_res_authentication_attempt
+    name: Authentication Attempt Manager
+    perm_create: true
+    perm_read: true
+    perm_write: true
+    perm_unlink: true
+
+- !record {model: ir.model.access, id: access_res_banned_remote_manager}:
+    group_id: base.group_system
+    model_id: model_res_banned_remote
+    name: Banned Remote Manager
+    perm_create: true
+    perm_read: true
+    perm_write: true
+    perm_unlink: true
