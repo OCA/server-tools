@@ -30,21 +30,21 @@ class IrModel(orm.Model):
         'avoid_quick_create': fields.boolean('Avoid quick create'),
         }
 
-    def _wrap_name_create(self, old_create, model):
-        def wrapper(cr, uid, name, context=None):
-            raise orm.except_orm(
-                _('Error'),
-                _("Can't create quickly. Opening create form"))
-        return wrapper
-
     def _patch_quick_create(self, cr, ids):
+
+        def _wrap_name_create():
+            def wrapper(self, cr, uid, name, context=None):
+                raise orm.except_orm(
+                    _('Error'),
+                    _("Can't create quickly. Opening create form"))
+            return wrapper
+
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
                 if model_obj and not hasattr(model_obj, 'check_quick_create'):
-                    model_obj.name_create = self._wrap_name_create(
-                        model_obj.name_create, model_name)
+                    model_obj._patch_method('name_create', _wrap_name_create())
                     model_obj.check_quick_create = True
         return True
 
