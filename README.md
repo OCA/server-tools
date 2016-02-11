@@ -20,6 +20,7 @@ addon | version | summary
 [admin_technical_features](admin_technical_features/) | 8.0.0.1.0 | Checks the technical features box for admin user.
 [auditlog](auditlog/) | 8.0.1.1.0 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 | Authentification - Admin Passkey
+[auth_brute_force](auth_brute_force/) | 8.0.1.0.0 | Tracks Authentication Attempts and Prevents Brute-force Attacks module
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 | Have membership conditions for certain groups
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 | Authenticate via HTTP Remote User
 [auth_signup_verify_email](auth_signup_verify_email/) | 8.0.1.0.0 | Force uninvited users to use a good email for signup
