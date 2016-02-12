@@ -2,6 +2,7 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from lxml import etree
 from openerp.tests.common import TransactionCase
 
 
@@ -38,3 +39,15 @@ class ExtractorCase(TransactionCase):
         self.assertEqual(
             self.text_from_html(html, 7, ellipsis=""),
             u"I'm a title I'm a paragraph ¡Pues")
+
+    def test_empty_html(self):
+        """Empty HTML handled correctly."""
+        self.assertEqual(self.text_from_html(""), "")
+        with self.assertRaises(etree.XMLSyntaxError):
+            self.text_from_html("", fail=True)
+
+    def test_bad_html(self):
+        """Bad HTML handled correctly."""
+        self.assertEqual(self.text_from_html("<<bad>"), "")
+        with self.assertRaises(etree.ParserError):
+            self.text_from_html("<<bad>", fail=True)

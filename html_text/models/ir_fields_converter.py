@@ -14,7 +14,7 @@ class IrFieldsConverter(models.Model):
 
     @api.model
     def text_from_html(self, html_content, max_words=None, max_chars=None,
-                       ellipsis=u"…"):
+                       ellipsis=u"…", fail=False):
         """Extract text from an HTML field in a generator.
 
         :param str html_content:
@@ -33,13 +33,23 @@ class IrFieldsConverter(models.Model):
             it gets truncated after applying limits set in :param:`max_words`
             or :param:`max_chars`. If you want nothing applied, just set an
             empty string.
+
+        :param bool fail:
+            If ``True``, exceptions will be raised. Otherwise, an empty string
+            will be returned on failure.
         """
-        # Get words
+        # Parse HTML
         try:
             doc = html.fromstring(html_content)
-        except etree.XMLSyntaxError:
-            _logger.exception("Failure parsing this HTML:\n%s", html_content)
-            return ""
+        except (etree.XMLSyntaxError, etree.ParserError):
+            if fail:
+                raise
+            else:
+                _logger.exception("Failure parsing this HTML:\n%s",
+                                  html_content)
+                return ""
+
+        # Get words
         words = u"".join(doc.xpath("//text()")).split()
 
         # Truncate words
