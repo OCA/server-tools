@@ -2,8 +2,11 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from lxml import html
+import logging
+from lxml import etree, html
 from openerp import api, models
+
+_logger = logging.getLogger(__name__)
 
 
 class IrFieldsConverter(models.Model):
@@ -32,7 +35,11 @@ class IrFieldsConverter(models.Model):
             empty string.
         """
         # Get words
-        doc = html.fromstring(html_content)
+        try:
+            doc = html.fromstring(html_content)
+        except etree.XMLSyntaxError:
+            _logger.exception("Failure parsing this HTML:\n%s", html_content)
+            return ""
         words = u"".join(doc.xpath("//text()")).split()
 
         # Truncate words
