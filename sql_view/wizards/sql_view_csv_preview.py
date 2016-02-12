@@ -22,9 +22,13 @@
 import base64
 from StringIO import StringIO
 
-import unicodecsv
+try:
+    import unicodecsv
+except ImportError:
+    unicodecsv = None
 
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 
 class SQLViewCSVPreview(orm.TransientModel):
@@ -65,6 +69,9 @@ class SQLViewCSVPreview(orm.TransientModel):
         headers = [desc[0] for desc in cr.description]
         records = cr.fetchall()
         filedata = StringIO()
+        if not unicodecsv:
+            raise orm.except_orm(
+                _('Error'), _('Please install the unicodecsv library'))
         try:
             writer = unicodecsv.writer(filedata, encoding='utf-8')
             writer.writerow(headers)
