@@ -1,5 +1,10 @@
-Track user operation on data models
-===================================
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+
+=================================
+Audit Log - Track user operations
+=================================
 
 This module allows the administrator to log user operations performed on data
 models such as ``create``, ``read``, ``write`` and ``delete``.
@@ -11,12 +16,14 @@ Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
 operations to log for a given data model.
 Then, check logs in the `Reporting / Audit / Logs` menu.
 
-During installation, it will migrate any existing data from the `audittrail`
-module (rules and logs).
+A scheduled action exists to delete logs older than 6 months (180 days)
+automatically but is not enabled by default.
+To activate it and/or change the delay, go to the
+`Configuration / Technical / Automation / Scheduled Actions` menu and edit the
+`Auto-vacuum audit logs` entry.
 
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
+During installation, a one-time script will migrate any existing data from the
+`audittrail` module (rules and logs).
 
 Known issues / Roadmap
 ======================
