@@ -40,7 +40,7 @@ class AuditlogLog(models.Model):
         'auditlog.http.session', string=u"Session")
     http_request_id = fields.Many2one(
         'auditlog.http.request', string=u"HTTP Request")
-    type = fields.Selection(
+    log_type = fields.Selection(
         [('full', u"Full log"),
          ('fast', u"Fast log"),
          ],

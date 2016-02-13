@@ -232,7 +232,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
-                'create', None, new_values, {'type': log_type})
+                'create', None, new_values, {'log_type': log_type})
             return new_record
 
         @api.model
@@ -245,7 +245,7 @@ class AuditlogRule(models.Model):
             new_values = {new_record.id: vals2}
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
-                'create', None, new_values, {'type': log_type})
+                'create', None, new_values, {'log_type': log_type})
             return new_record
 
         return create_full if self.log_type == 'full' else create_fast
@@ -279,7 +279,7 @@ class AuditlogRule(models.Model):
                 rule_model = env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     env.uid, self._name, ids,
-                    'read', read_values, None, {'type': log_type})
+                    'read', read_values, None, {'log_type': log_type})
             # New API
             else:
                 # If the call came from auditlog itself, skip logging:
@@ -292,7 +292,7 @@ class AuditlogRule(models.Model):
                 rule_model = self.env['auditlog.rule']
                 rule_model.sudo().create_logs(
                     self.env.uid, self._name, self.ids,
-                    'read', read_values, None, {'type': log_type})
+                    'read', read_values, None, {'log_type': log_type})
             return result
         return read
 
@@ -315,7 +315,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
-                'write', old_values, new_values, {'type': log_type})
+                'write', old_values, new_values, {'log_type': log_type})
             return result
 
         @api.multi
@@ -332,7 +332,7 @@ class AuditlogRule(models.Model):
             result = write_fast.origin(self, vals, **kwargs)
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
-                'write', old_values, new_values, {'type': log_type})
+                'write', old_values, new_values, {'log_type': log_type})
             return result
 
         return write_full if self.log_type == 'full' else write_fast
@@ -352,7 +352,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', old_values, None,
-                {'type': log_type})
+                {'log_type': log_type})
             return unlink_full.origin(self, **kwargs)
 
         @api.multi
@@ -361,7 +361,7 @@ class AuditlogRule(models.Model):
             rule_model = self.env['auditlog.rule']
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', None, None,
-                {'type': log_type})
+                {'log_type': log_type})
             return unlink_fast.origin(self, **kwargs)
 
         return unlink_full if self.log_type == 'full' else unlink_fast
@@ -487,7 +487,7 @@ class AuditlogRule(models.Model):
             'new_value_text': new_values[log.res_id][field['name']],
         }
         # for *2many fields, log the name_get
-        if log.type == 'full' and field['relation'] \
+        if log.log_type == 'full' and field['relation'] \
                 and '2many' in field['ttype']:
             # Filter IDs to prevent a 'name_get()' call on deleted resources
             existing_ids = self.env[field['relation']]._search(
@@ -533,7 +533,7 @@ class AuditlogRule(models.Model):
             'new_value': new_values[log.res_id][field['name']],
             'new_value_text': new_values[log.res_id][field['name']],
         }
-        if log.type == 'full' and field['relation'] \
+        if log.log_type == 'full' and field['relation'] \
                 and '2many' in field['ttype']:
             new_value_text = self.env[field['relation']].browse(
                 vals['new_value']).name_get()
