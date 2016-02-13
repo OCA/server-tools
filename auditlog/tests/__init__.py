@@ -19,3 +19,4 @@
 #
 ##############################################################################
 from . import test_auditlog
+from . import test_autovacuum
