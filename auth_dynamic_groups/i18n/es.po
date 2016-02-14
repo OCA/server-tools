@@ -3,13 +3,14 @@
 # * auth_dynamic_groups
 # 
 # Translators:
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:53+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-02-10 16:47+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,17 +26,17 @@ msgstr ""
 #. module: auth_dynamic_groups
 #: field:res.groups,dynamic_group_condition:0
 msgid "Condition"
-msgstr ""
+msgstr "Condición"
 
 #. module: auth_dynamic_groups
 #: field:res.groups,is_dynamic:0
 msgid "Dynamic"
-msgstr ""
+msgstr "Dinámico"
 
 #. module: auth_dynamic_groups
 #: view:res.groups:auth_dynamic_groups.view_groups_form
 msgid "Evaluate"
-msgstr ""
+msgstr "Evaluar"
 
 #. module: auth_dynamic_groups
 #: view:res.groups:auth_dynamic_groups.view_groups_form

@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_optional_quick_create
+# * users_ldap_mail
 # 
 # Translators:
 # Antonio Trueba, 2016
@@ -18,24 +18,24 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: base_optional_quick_create
-#: field:ir.model,avoid_quick_create:0
-msgid "Avoid quick create"
+#. module: users_ldap_mail
+#: help:res.company.ldap,name_attribute:0
+msgid ""
+"By default 'cn' is used. For ActiveDirectory you might use 'displayName' "
+"instead."
 msgstr ""
 
-#. module: base_optional_quick_create
-#: code:addons/base_optional_quick_create/model.py:37
-#, python-format
-msgid "Can't create quickly. Opening create form"
+#. module: users_ldap_mail
+#: field:res.company.ldap,mail_attribute:0
+msgid "E-mail attribute"
+msgstr "Atributo e-mail"
+
+#. module: users_ldap_mail
+#: help:res.company.ldap,mail_attribute:0
+msgid "LDAP attribute to use to retrieve em-mail address."
 msgstr ""
 
-#. module: base_optional_quick_create
-#: code:addons/base_optional_quick_create/model.py:36
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: base_optional_quick_create
-#: model:ir.model,name:base_optional_quick_create.model_ir_model
-msgid "Models"
-msgstr "Modelos"
+#. module: users_ldap_mail
+#: field:res.company.ldap,name_attribute:0
+msgid "Name Attribute"
+msgstr ""
