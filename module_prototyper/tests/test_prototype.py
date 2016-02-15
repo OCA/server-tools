@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*- #
+# -*- coding: utf-8 -*- #
 # OpenERP, Open Source Management Solution
 #    This module copyright (C) 2013 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).

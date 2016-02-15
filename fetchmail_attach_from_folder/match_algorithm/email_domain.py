@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,16 +20,16 @@
 #
 ##############################################################################
 
-from .email_exact import email_exact
+from .email_exact import EmailExact
 
 
-class email_domain(email_exact):
+class EmailDomain(EmailExact):
     '''Search objects by domain name of email address.
     Beware of match_first here, this is most likely to get it wrong (gmail)'''
     name = 'Domain of email address'
 
     def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        ids = super(email_domain, self).search_matches(
+        ids = super(EmailDomain, self).search_matches(
             cr, uid, conf, mail_message, mail_message_org)
         if not ids:
             domains = []
@@ -43,3 +43,6 @@ class email_domain(email_exact):
                     values=['%@' + domain for domain in set(domains)]),
                 order=conf.model_order)
         return ids
+
+# backwards compatibility
+email_domain = EmailDomain

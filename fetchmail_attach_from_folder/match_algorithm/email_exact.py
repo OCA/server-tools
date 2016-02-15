@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,12 +20,12 @@
 #
 ##############################################################################
 
-from .base import base
+from .base import Base
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.mail import email_split
 
 
-class email_exact(base):
+class EmailExact(Base):
     '''Search for exactly the mailadress as noted in the email'''
 
     name = 'Exact mailadress'
@@ -55,3 +55,6 @@ class email_exact(base):
         search_domain = self._get_mailaddress_search_domain(conf, mail_message)
         return conf_model.search(
             cr, uid, search_domain, order=conf.model_order)
+
+# backward compat
+email_exact = EmailExact

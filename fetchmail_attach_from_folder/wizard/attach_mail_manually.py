@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -24,7 +24,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class attach_mail_manually(models.TransientModel):
+class AttachMailManually(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
     folder_id = fields.Many2one(
@@ -36,7 +36,7 @@ class attach_mail_manually(models.TransientModel):
         if context is None:
             context = {}
 
-        defaults = super(attach_mail_manually, self).default_get(
+        defaults = super(AttachMailManually, self).default_get(
             cr, uid, fields_list, context
         )
 
@@ -100,7 +100,7 @@ class attach_mail_manually(models.TransientModel):
 
     def fields_view_get(self, cr, user, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
-        result = super(attach_mail_manually, self).fields_view_get(
+        result = super(AttachMailManually, self).fields_view_get(
             cr, user, view_id, view_type, context, toolbar, submenu)
 
         tree = result['fields']['mail_ids']['views']['tree']

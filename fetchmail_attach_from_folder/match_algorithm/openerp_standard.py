@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from .base import base
+from .base import Base
 
 
-class openerp_standard(base):
+class OpenerpStandard(Base):
     '''No search at all. Use OpenERP's standard mechanism to attach mails to
     mail.thread objects. Note that this algorithm always matches.'''
 
@@ -56,3 +56,6 @@ class openerp_standard(base):
             connection.store(msgid, '+FLAGS', '\\DELETED')
 
         return [result]
+
+
+openerp_standard = OpenerpStandard

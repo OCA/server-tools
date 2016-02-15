@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -23,7 +23,7 @@ from openerp import api, models, fields
 from .. import match_algorithm
 
 
-class fetchmail_server_folder(models.Model):
+class FetchmailServerFolder(models.Model):
     _name = 'fetchmail.server.folder'
     _rec_name = 'path'
     _order = 'sequence'
@@ -36,7 +36,7 @@ class fetchmail_server_folder(models.Model):
                      for subsub in get_all_subclasses(sub)])
         return dict([(cls.__name__, cls)
                      for cls in get_all_subclasses(
-                         match_algorithm.base.base)])
+                         match_algorithm.base.Base)])
 
     def _get_match_algorithms_sel(self):
         algorithms = []
