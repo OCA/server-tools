@@ -1,0 +1,6 @@
+python-ldap
+raven
+raven_sanitize_openerp
+bzr
+GitPython
+unicodecsv
