@@ -36,6 +36,7 @@ cleanup cron (2 different for db and process monitoring)
   RPC request log
 
 """
+from __future__ import absolute_import
 
 import logging
 import gc
@@ -44,15 +45,7 @@ import types
 import os
 import threading
 import datetime
-
-# ugly hack to avoid a WARNING message when importing stdlib resource module
-_logger = logging.getLogger('openerp.modules.module')
-_saved_log_level = _logger.getEffectiveLevel()
-_logger.setLevel(logging.ERROR)
 import resource
-_logger.setLevel(_saved_log_level)
-
-
 import psutil
 
 from openerp.osv import orm, fields, osv
