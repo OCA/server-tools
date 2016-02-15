@@ -53,13 +53,6 @@ from openerp import pooler
 from openerp import SUPERUSER_ID
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
-# ugly hack to avoid a WARNING message when importing stdlib resource module
-_logger = logging.getLogger('openerp.modules.module')
-_saved_log_level = _logger.getEffectiveLevel()
-_logger.setLevel(logging.ERROR)
-
-_logger.setLevel(_saved_log_level)
-
 _logger = logging.getLogger(__name__)
 
 BLACKLIST = (
