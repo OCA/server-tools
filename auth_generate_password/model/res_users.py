@@ -27,6 +27,7 @@ import random
 
 from openerp.osv.orm import Model, except_orm
 from openerp.tools.translate import _
+from openerp.tools.safe_eval import safe_eval
 
 
 class res_users(Model):
@@ -44,9 +45,9 @@ class res_users(Model):
                 cr, uid, 'auth_generate_password.password_size'))
         except:
             raise except_orm(_("error"), _("Only digit chars authorized"))
-        password_size = eval(icp_obj.get_param(
+        password_size = safe_eval(icp_obj.get_param(
             cr, uid, 'auth_generate_password.password_size'))
-        password_chars = eval(icp_obj.get_param(
+        password_chars = safe_eval(icp_obj.get_param(
             cr, uid, 'auth_generate_password.password_chars'))
         et = imd_obj.get_object(
             cr, uid, 'auth_generate_password', 'generate_password_template')
