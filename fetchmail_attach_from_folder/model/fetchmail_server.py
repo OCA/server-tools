@@ -25,6 +25,7 @@ import simplejson
 from lxml import etree
 from openerp.osv.orm import Model, except_orm
 from openerp.tools.translate import _
+from openerp.tools.safe_eval import safe_eval
 from openerp.osv import fields
 from openerp.addons.fetchmail.fetchmail import _logger as logger
 from openerp.tools.misc import UnquoteEvalContext
@@ -267,11 +268,18 @@ class fetchmail_server(Model):
 
             for field in view:
                 if field.tag == 'field' and field.get('name') in modifiers:
-                    field.set('modifiers', simplejson.dumps(
-                        dict(
-                            eval(field.attrib['modifiers'],
-                                 UnquoteEvalContext({})),
-                            **modifiers[field.attrib['name']])))
+                    field.set(
+                        'modifiers',
+                        simplejson.dumps(
+                            dict(
+                                safe_eval(
+                                    field.attrib['modifiers'],
+                                    UnquoteEvalContext({})
+                                ),
+                                **modifiers[field.attrib['name']]
+                            )
+                        ),
+                    )
                 if (field.tag == 'field' and
                         field.get('name') == 'match_algorithm'):
                     field.set('help', docstr)
