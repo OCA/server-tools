@@ -22,7 +22,7 @@
 
 {
     'name': 'Authentification - Generate Password',
-    'version': '1.0',
+    'version': '7.0.1.0.1',
     'category': 'Tools',
     'description': """
 Password Secure
