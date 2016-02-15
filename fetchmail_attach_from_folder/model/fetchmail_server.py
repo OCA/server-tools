@@ -264,7 +264,7 @@ class fetchmail_server(models.Model):
                 if field.tag == 'field' and field.get('name') in modifiers:
                     field.set('modifiers', simplejson.dumps(
                         dict(
-                            eval(field.attrib['modifiers'],
+                            safe_eval(field.attrib['modifiers'],
                                  UnquoteEvalContext({})),
                             **modifiers[field.attrib['name']])))
                 if (field.tag == 'field' and
