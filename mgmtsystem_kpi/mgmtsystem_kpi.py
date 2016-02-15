@@ -22,6 +22,7 @@
 from datetime import datetime, timedelta
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+from openerp.tools.safe_eval import safe_eval
 from openerp.tools import (
     DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT,
 )
@@ -97,7 +98,7 @@ class mgmtsystem_kpi_threshold_range(orm.Model):
                 if is_one_value(res):
                     value = res[0]['value']
             elif obj.min_type == 'python':
-                value = eval(obj.min_code)
+                value = safe_eval(obj.min_code)
             else:
                 value = obj.min_fixed_value
             result[obj.id] = value
@@ -115,7 +116,7 @@ class mgmtsystem_kpi_threshold_range(orm.Model):
                 if is_one_value(dic):
                     value = dic[0]['value']
             elif obj.max_type == 'python':
-                value = eval(obj.max_code)
+                value = safe_eval(obj.max_code)
             elif (obj.max_type == 'external'
                   and obj.max_dbsource_id.id
                   and is_select_query(obj.max_code)):
@@ -399,7 +400,7 @@ class mgmtsystem_kpi(orm.Model):
                 if is_one_value(res):
                     kpi_value = res[0]['value']
             elif obj.kpi_type == 'python':
-                kpi_value = eval(obj.kpi_code)
+                kpi_value = safe_eval(obj.kpi_code)
 
             threshold_obj = obj.threshold_id
             values = {
