@@ -262,11 +262,18 @@ class fetchmail_server(models.Model):
 
             for field in view.xpath('//field'):
                 if field.tag == 'field' and field.get('name') in modifiers:
-                    field.set('modifiers', simplejson.dumps(
-                        dict(
-                            eval(field.attrib['modifiers'],
-                                 UnquoteEvalContext({})),
-                            **modifiers[field.attrib['name']])))
+                    field.set(
+                        'modifiers',
+                        simplejson.dumps(
+                            dict(
+                                safe_eval(
+                                    field.attrib['modifiers'],
+                                    UnquoteEvalContext({})
+                                ),
+                                **modifiers[field.attrib['name']]
+                            )
+                        ),
+                    )
                 if (field.tag == 'field' and
                         field.get('name') == 'match_algorithm'):
                     field.set('help', docstr)
