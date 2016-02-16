@@ -25,6 +25,7 @@ import datetime
 import re
 from openerp import models, fields, api, _, exceptions
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import uuid
 
 
 class SqlExport(models.Model):
@@ -98,10 +99,15 @@ class SqlExport(models.Model):
             output = StringIO.StringIO()
             query = "COPY (" + obj.query + ")  TO STDOUT WITH " + \
                     obj.copy_options
-            self.env.cr.copy_expert(query, output)
-            output.getvalue()
-            new_output = base64.b64encode(output.getvalue())
-            output.close()
+            name = 'export_query_%s' % uuid.uuid1().hex
+            self.env.cr.execute("SAVEPOINT %s" % name)
+            try:
+                self.env.cr.copy_expert(query, output)
+                output.getvalue()
+                new_output = base64.b64encode(output.getvalue())
+                output.close()
+            finally:
+                self.env.cr.execute("ROLLBACK TO SAVEPOINT %s" % name)
             wiz = self.env['sql.file.wizard'].create(
                 {
                     'binary_file': new_output,
@@ -126,9 +132,10 @@ class SqlExport(models.Model):
             try:
                 self.env.cr.execute(vals['query'])
             except:
-                self.env.cr.rollback()
                 raise exceptions.Warning(
                     _("The Sql query is not valid."))
+            finally:
+                self.env.cr.rollback()
         return vals
 
     @api.multi
