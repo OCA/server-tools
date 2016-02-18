@@ -42,7 +42,7 @@ addon | version | summary
 [dead_mans_switch_client](dead_mans_switch_client/) | 8.0.1.0.1 | Be notified when customers' odoo instances go down
 [dead_mans_switch_server](dead_mans_switch_server/) | 8.0.1.0.0 | Be notified when customers' odoo instances go down
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
-[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 | Attach mails in an IMAP folder to existing objects
+[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
@@ -51,6 +51,7 @@ addon | version | summary
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 | Add user time rendering support in QWeb
+[save_translation_file](save_translation_file/) | 8.0.1.0.0 | Allows developpers to easily generate i18n files
 [scheduler_error_mailer](scheduler_error_mailer/) | 8.0.1.0.0 | Send an e-mail when a scheduler fails
 [server_environment](server_environment/) | 8.0.1.1.0 | server configuration environment files
 [server_environment_files_sample](server_environment_files_sample/) | 8.0.1.0.0 | Example server configuration environment files repository module
