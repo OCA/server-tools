@@ -11,6 +11,19 @@ from openerp import api, SUPERUSER_ID
 _logger = logging.getLogger(__name__)
 
 
+# TODO Remove when module ends WIP stage
+def wip(function):
+    """This indicates methods that are currently WIP."""
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        _logger.warning(
+            "BEWARE! You are using an untested function: %s. If you find it "
+            "works fine, please remove the `@wip` decorator.",
+            function.__name__)
+        return function(*args, **kwargs)
+    return wrapper
+
+
 class MigrationException(Exception):
     """Custom exception raised only by the migration toolkit.
 
@@ -79,6 +92,7 @@ class Migrator(object):
         self.addon = addon
         self.table_names = table_names or None
 
+    @wip
     @contextmanager
     def _allow_pgcodes(self, *codes):
         """Context manager that will omit specified error codes.
@@ -161,6 +175,7 @@ class Migrator(object):
             'ALTER TABLE "%s" DROP CONSTRAINT IF EXISTS "%s"' %
             (table_name, constraint_name))
 
+    @wip
     def _table_fk(self, table_name):
         """Get a list of FK constraints pointing to a given DB table.
 
@@ -219,6 +234,7 @@ class Migrator(object):
                 pass
         return model_name.replace(".", "_")
 
+    @wip
     def field_relocate(self, model_name, field_name, destination_addon):
         """Change a field's owner addon.
 
@@ -248,6 +264,7 @@ class Migrator(object):
                 with self._allow_pgcodes():
                     records.write(update)
 
+    @wip
     def field_rename(self, model_name, old_field, new_field):
         """Rename a field.
 
@@ -291,6 +308,7 @@ class Migrator(object):
                 new_name += "_%d" % r.res_id
             r.write({"name": new_name})
 
+    @wip
     def model_relocate(self, model_name, destination_addon):
         """Change a model's owner addon.
 
@@ -354,6 +372,7 @@ class Migrator(object):
             self._execute('DROP TABLE IF EXISTS "%s"' % table)
             self._execute('DROP VIEW IF EXISTS "%s"' % table)
 
+    @wip
     def model_rename(self, old_name, new_name):
         """Rename a model.
 
