@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2016-TODAY LasLabs, Inc. [https://laslabs.com]
+    @author Dave Lasley <dave@laslabs.com>
+    @license AGPL-3
+-->
+
+<openerp>
+    <data>
+
+        <record id="connector_sftp_view_form" model="ir.ui.view">
+            <field name="name">connector.sftp.view.form</field>
+            <field name="model">connector.sftp</field>
+            <field name="arch" type="xml">
+                <form string="SFTP Connector">
+                    <header />
+                    <sheet>
+                        <group name="data">
+                            <group name="main_data">
+                                <field name="name" />
+                                <field name="company_id" />
+                                <field name="ignore_host_key" />
+                            </group>
+                            <group name="connection_data">
+                                <field name="host" />
+                                <field name="port" />
+                                <field name="username" />
+                                <field name="password" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Keys">
+                                <group>
+                                    <group>
+                                        <field name="host_key" />
+                                    </group>
+                                    <group>
+                                        <field name="private_key" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer />
+                </form>
+            </field>
+        </record>
+
+        <record id="connector_sftp_view_tree" model="ir.ui.view">
+            <field name="name">connector.sftp.view.tree</field>
+            <field name="model">connector.sftp</field>
+            <field name="arch" type="xml">
+                <tree string="SFTP Connectors">
+                    <field name="name" />
+                    <field name="company_id" />
+                    <field name="host" />
+                    <field name="port" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="connector_sftp_view_search" model="ir.ui.view">
+            <field name="name">connector.sftp.view.search</field>
+            <field name="model">connector.sftp</field>
+            <field name="arch" type="xml">
+                <search string="SFTP Connectors">
+                    
+                    <field name="name" />
+                    <field name="company_id" />
+                    <field name="host" />
+                    <field name="port" />
+                    <field name="username" />
+                    
+                    <newline />
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Company"
+                                domain=""
+                                context="{'group_by': 'company_id'}" />
+                        <filter string="Host"
+                                domain=""
+                                context="{'group_by': 'host'}" />
+                        <filter string="Port"
+                                domain=""
+                                context="{'group_by': 'port'}" />
+                        <filter string="Username"
+                                domain=""
+                                context="{'group_by': 'username'}" />
+                    </group>
+                    
+                </search>
+            </field>
+        </record>
+        
+        <!-- New Action -->
+        <record id="connector_sftp_action" model="ir.actions.act_window">
+             <field name="name">SFTP Connectors</field>
+             <field name="res_model">connector.sftp</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">tree</field>
+             <field name="view_mode">tree,form</field>
+         </record>
+
+    </data>
+</openerp>

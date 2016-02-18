@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_connector_sftp_manager,access.connector.sftp.user,model_connector_sftp,base.group_system,1,1,1,1

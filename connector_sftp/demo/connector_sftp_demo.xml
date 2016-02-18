@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2016-TODAY LasLabs, Inc. [https://laslabs.com]
+    @author Dave Lasley <dave@laslabs.com>
+    @license AGPL-3
+-->
+
+<openerp>
+    <data>
+
+		<record id="connector_sftp_example" model="connector.sftp">
+			<field name="name">Example SFTP Connection</field>
+            <field name="host">sftp.example.com</field>
+            <field name="port">22</field>
+            <field name="username">Test</field>
+            <field name="password">Password</field>
+            <field name="private_key"><![CDATA[-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----]]></field>
+            <field name="company_id" ref="base.main_company" />
+		</record>
+		
+    </data>
+</openerp>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2016-TODAY LasLabs, Inc. [https://laslabs.com]
+    @author Dave Lasley <dave@laslabs.com>
+    @license AGPL-3
+-->
+
+<openerp>
+    <data>
+
+        <record id="view_company_form" model="ir.ui.view">
+            <field name="name">view.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="SFTP Connectors">
+                        <field name="sftp_connector_ids" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
