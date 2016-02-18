@@ -44,7 +44,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 (unported) | dbfilter_from_header
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 (unported) | Remove odoo.com bindings
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
-[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.0 (unported) | Attach mails in an IMAP folder to existing objects
+[fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 (unported) | If fetching mails gives error, send an email to sender
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 (unported) | This module disable all inactive sessions since a given delay
