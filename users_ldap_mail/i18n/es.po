@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:46+0000\n"
+"PO-Revision-Date: 2016-02-16 15:15+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +24,7 @@ msgstr ""
 msgid ""
 "By default 'cn' is used. For ActiveDirectory you might use 'displayName' "
 "instead."
-msgstr ""
+msgstr "Por defecto se usa \"cn\". En ActiveDirectory podría necesitar usar \"displayName\" en su lugar."
 
 #. module: users_ldap_mail
 #: field:res.company.ldap,mail_attribute:0
@@ -38,4 +39,4 @@ msgstr ""
 #. module: users_ldap_mail
 #: field:res.company.ldap,name_attribute:0
 msgid "Name Attribute"
-msgstr ""
+msgstr "Atributo Nombre"
