@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 # Carles Antolí <carlesantoli@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:50+0000\n"
+"PO-Revision-Date: 2016-02-16 15:25+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +116,7 @@ msgstr "Contexto HTTP"
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,http_request_id:0
 msgid "HTTP Request"
-msgstr ""
+msgstr "Petición HTTP"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -125,7 +126,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 msgid "HTTP Requests"
-msgstr ""
+msgstr "Peticiones HTTP"
 
 #. module: auditlog
 #: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
@@ -229,7 +230,7 @@ msgstr "Texto del valor anterior"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,name:0
 msgid "Path"
-msgstr ""
+msgstr "Ruta"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -298,7 +299,7 @@ msgstr "Marque esta casilla si desea registrar la lectura/apertura de cualquier 
 #: field:auditlog.http.request,http_session_id:0
 #: field:auditlog.log,http_session_id:0
 msgid "Session"
-msgstr ""
+msgstr "Sesión"
 
 #. module: auditlog
 #: field:auditlog.http.session,name:0
