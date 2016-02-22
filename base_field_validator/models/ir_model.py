@@ -7,7 +7,6 @@
 
 import re
 from openerp.tools.translate import _
-import openerp
 from openerp import SUPERUSER_ID
 
 from openerp import models, fields, api, _
@@ -41,26 +40,28 @@ class IrModel(orm.Model):
 
     _inherit = 'ir.model'
 
-    def _wrap_create(self, old_create, model_name):
-        def wrapper(cr, uid, vals, context=None, **kwargs):
-            self.check_vals(cr, uid, vals, model_name, context=context)
-            new_id = old_create(cr, uid, vals, context=context, **kwargs)
-            return new_id
-
-        return wrapper
-
-    def _wrap_write(self, old_write, model_name):
-        def wrapper(cr, uid, ids, vals, context=None, **kwargs):
-            self.check_vals(cr, uid, vals, model_name, context=context)
-            res = old_write(cr, uid, ids, vals, context=context, **kwargs)
-            return res
-
-        return wrapper
-
     def _field_validator_hook(self, cr, ids):
-        """ Wrap the methods `create` and `write` of the model
-        """
-        updated = False
+
+        def _wrap_create():
+            def create(self, cr, uid, vals, context=None, **kwargs):
+                model_pool = self.pool['ir.model']
+                model_pool.check_vals(
+                    cr, uid, vals, self._name, context=context)
+                new_id = create.origin(
+                    self, cr, uid, vals, context=context, **kwargs)
+                return new_id
+            return create
+
+        def _wrap_write():
+            def write(self, cr, uid, ids, vals, context=None, **kwargs):
+                model_pool = self.pool['ir.model']
+                model_pool.check_vals(
+                    cr, uid, vals, self._name, context=context)
+                res = write.origin(
+                    self, cr, uid, ids, vals, context=context, **kwargs)
+                return res
+            return write
+
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.validator_line_ids:
                 model_name = model.model
@@ -68,18 +69,12 @@ class IrModel(orm.Model):
                 if model_obj and not hasattr(
                     model_obj, 'field_validator_checked'
                 ):
-                    model_obj.create = self._wrap_create(
-                        model_obj.create, model_name)
-                    model_obj.write = self._wrap_write(
-                        model_obj.write, model_name)
+                    model_obj._patch_method('create', _wrap_create())
+                    model_obj._patch_method('write', _wrap_write())
                     model_obj.field_validator_checked = True
-                    updated = True
-        if updated:
-            openerp.modules.registry.RegistryManager.\
-                signal_registry_change(cr.dbname)
         return True
 
-    def _register_hook(self, cr, ids=None):
+    def _register_hook(self, cr):
         self._field_validator_hook(cr, self.search(cr, SUPERUSER_ID, []))
         return super(IrModel, self)._register_hook(cr)
 
