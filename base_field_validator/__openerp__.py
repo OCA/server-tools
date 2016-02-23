@@ -14,9 +14,10 @@
     "data": [
         'views/ir_model_view.xml',
         'security/ir.model.access.csv',
+        'data/ir_model_regex_data.xml',
         ],
     "demo": [
-        'demo/ir_model_demo.xml',
+        'demo/ir_model_regex_demo.yml',
         ],
     'test': [
         'test/validator.yml',

@@ -13,3 +13,7 @@ class IrModelFieldsRegex(models.Model):
         help="Regular expression used to validate the field. For example, "
              "you can add the expression\n%s\nto the email field"
              % r'[^@]+@[^@]+\.[^@]+')
+    _sql_constraints = [(
+        'name_unique', 'unique (name)',
+        'The name of a regular expression must be unique'
+    )]
