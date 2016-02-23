@@ -20,6 +20,8 @@
 #
 ###############################################################################
 
+from openerp.addons.connector.connector import (
+    get_openerp_module, is_module_installed)
 from openerp import models, fields, api
 from .helper import itersubclasses
 from .abstract_task import AbstractTask
@@ -52,9 +54,11 @@ class Task(models.Model):
     def _get_method(self):
         res = []
         for cls in itersubclasses(AbstractTask):
-            if cls._synchronize_type \
-                and ('protocol' not in self._context
-                     or cls._key == self._context['protocol']):
+            if not is_module_installed(self.env, get_openerp_module(cls)):
+                continue
+            if cls._synchronize_type and (
+                    'protocol' not in self._context or
+                    cls._key == self._context['protocol']):
                 cls_info = (cls._key + '_' + cls._synchronize_type,
                             cls._name + ' ' + cls._synchronize_type)
                 res.append(cls_info)
@@ -78,8 +82,10 @@ class Task(models.Model):
     @api.one
     def run(self):
         for cls in itersubclasses(AbstractTask):
-            if cls._synchronize_type and \
-                    cls._key + '_' + cls._synchronize_type == self.method:
+            if not is_module_installed(self.env, get_openerp_module(cls)):
+                continue
+            cls_build = '%s_%s' % (cls._key, cls._synchronize_type)
+            if cls._synchronize_type and cls_build == self.method:
                 method_class = cls
         config = {
             'host': self.location_id.address,
