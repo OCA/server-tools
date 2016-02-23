@@ -20,6 +20,7 @@
     ],
     "data": [
         "save_translation_file_view.xml",
+         "translate_module_view.xml",
     ],
     "demo": [
     ],

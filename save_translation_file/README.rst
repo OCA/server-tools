@@ -2,9 +2,14 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================
-Save translation file
-=====================
+============
+Installation
+============
+This module uses polib to translate module. You can install polib with "sudo pip install polib"
+
+===========================================================
+Create translation file and translate module from webclient
+===========================================================
 
 This module was written for **developpers** to easily generate i18n files (.po and .pot) from the list of modules,
 instead of using the native configuration "Export Translation" wizard.
@@ -20,9 +25,19 @@ To use this module, you need to:
 
 * Go to the view list (or form) of installed modules and click the button 'Save translation file'
 
+* To translate module terms
+    - Go to Setting -> Translations -> Translate Module
+    - Select Module Name and Language
+    - All translated terms of module will be displayed in field Translate Terms
+    - Edit Translated Term to translate terms
+    - Once terms are translated Press "Save .po File" button to save translated .po file
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/8.0
+
+
+   
 
 Bug Tracker
 ===========
@@ -50,7 +65,7 @@ Contributors
 ------------
 
 * Sylvain Calador <sylvain.calador@akretion.com>
-
+* Yogesh Kushwaha <yogesh.kushwaha@tkobr.com>
 Maintainer
 ----------
 

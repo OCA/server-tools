@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="translate_module_form" model="ir.ui.view">
+            <field name="name">translate.module.form</field>
+            <field name="model">translate.module</field>
+            <field name="arch" type="xml">
+                <form version="7.0">
+                	<header>
+                		<button name="save_translated_file" string="Save .po File" type="object" class="oe_highlight"/>
+                	</header>
+                	<group>
+                		<field name="module"/>
+                		<field name="lang"/>
+                		<separator string="Translate Terms" colspan="4"/>
+                		<field name="translate_module_terms" nolabel="1" colspan="4">
+                			<tree editable="top" create="false" delete="false">
+                				<field name="original_term" readonly="1"/>
+                				<field name="translated_value"/>
+                			</tree>
+                		</field>
+                	</group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_translate_menu">
+			<field name="name">Translate Module</field>
+            <field name="res_model">translate.module</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field eval="False" name="translate_module_form"/>
+        </record>
+        <menuitem id="translate_module_menu_id" sequence="1" parent="base.menu_translation" action="action_translate_menu"/>
+    </data>
+</openerp>
