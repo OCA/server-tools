@@ -11,7 +11,6 @@ from openerp import SUPERUSER_ID
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
-from openerp.osv import orm
 
 
 class IrModel(models.Model):
@@ -34,11 +33,6 @@ class IrModel(models.Model):
                             validator_line.regex_id.regex,
                             vals[validator_line.field_id.name]))
         return True
-
-
-class IrModel(orm.Model):
-
-    _inherit = 'ir.model'
 
     def _field_validator_hook(self, cr, ids):
 
