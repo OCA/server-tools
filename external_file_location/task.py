@@ -83,8 +83,9 @@ class Task(models.Model):
                 method_class = cls
         config = {
             'host': self.location_id.address,
-            'user': self.location_id.login,
-            'pwd': self.location_id.password,
+            # ftplib does not support unicode
+            'user': self.location_id.login.encode('utf-8'),
+            'pwd': self.location_id.password.encode('utf-8'),
             'port': self.location_id.port,
             'allow_dir_creation': False,
             'file_name': self.filename,
