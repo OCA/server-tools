@@ -1,29 +1,11 @@
-# -*- coding: utf-8 -*-
-###############################################################################
-#
-#   Module for OpenERP
-#   Copyright 2011-2012 Camptocamp SA
-#   @author: Joel Grand-Guillaume
-#   Copyright (C) 2015 Akretion (http://www.akretion.com).
-#   @author Valentin CHEMIERE <valentin.chemiere@akretion.com>
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU Affero General Public License as
-#   published by the Free Software Foundation, either version 3 of the
-#   License, or (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU Affero General Public License for more details.
-#
-#   You should have received a copy of the GNU Affero General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-###############################################################################
+# coding: utf-8
+#    Copyright (C) 2014 initOS GmbH & Co. KG (<http://www.initos.com>).
+#   @author: Joel Grand-Guillaume @ Camptocamp SA
+# @ 2015 Valentin CHEMIERE @ Akretion
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 import hashlib
 from base64 import b64decode
 
@@ -42,6 +24,6 @@ class IrAttachmentMetadata(models.Model):
         if self.datas:
             self.internal_hash = hashlib.md5(b64decode(self.datas)).hexdigest()
         if self.external_hash and self.internal_hash != self.external_hash:
-            raise Warning(_('File corrupted'),
-                          _("Something was wrong with the retreived file, "
+            raise UserError(_('File corrupted'),
+                            _("Something was wrong with the retreived file, "
                               "please relaunch the task."))
