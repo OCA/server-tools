@@ -1,27 +1,9 @@
-# -*- coding: utf-8 -*-
-###############################################################################
-#
-#   Module for OpenERP
-#   Copyright (C) 2015 Akretion (http://www.akretion.com).
-#   @author Valentin CHEMIERE <valentin.chemiere@akretion.com>
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU Affero General Public License as
-#   published by the Free Software Foundation, either version 3 of the
-#   License, or (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU Affero General Public License for more details.
-#
-#   You should have received a copy of the GNU Affero General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-###############################################################################
+# coding: utf-8
+# @ 2015 Valentin CHEMIERE @ Akretion
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api
-from .helper import itersubclasses
+from .helper import itersubclasses, get_erp_module, is_module_installed
 from .abstract_task import AbstractTask
 
 
@@ -52,9 +34,11 @@ class Task(models.Model):
     def _get_method(self):
         res = []
         for cls in itersubclasses(AbstractTask):
-            if cls._synchronize_type \
-                and ('protocol' not in self._context
-                     or cls._key == self._context['protocol']):
+            if not is_module_installed(self.env, get_erp_module(cls)):
+                continue
+            if cls._synchronize_type and (
+                    'protocol' not in self._context or
+                    cls._key == self._context['protocol']):
                 cls_info = (cls._key + '_' + cls._synchronize_type,
                             cls._name + ' ' + cls._synchronize_type)
                 res.append(cls_info)
@@ -78,13 +62,16 @@ class Task(models.Model):
     @api.one
     def run(self):
         for cls in itersubclasses(AbstractTask):
-            if cls._synchronize_type and \
-                    cls._key + '_' + cls._synchronize_type == self.method:
+            if not is_module_installed(self.env, get_erp_module(cls)):
+                continue
+            cls_build = '%s_%s' % (cls._key, cls._synchronize_type)
+            if cls._synchronize_type and cls_build == self.method:
                 method_class = cls
         config = {
             'host': self.location_id.address,
-            'user': self.location_id.login,
-            'pwd': self.location_id.password,
+            # ftplib does not support unicode
+            'user': self.location_id.login.encode('utf-8'),
+            'pwd': self.location_id.password.encode('utf-8'),
             'port': self.location_id.port,
             'allow_dir_creation': False,
             'file_name': self.filename,

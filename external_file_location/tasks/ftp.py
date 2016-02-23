@@ -1,23 +1,7 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
+# coding: utf-8
 #    Copyright (C) 2014 initOS GmbH & Co. KG (<http://www.initos.com>).
-#    @author Valentin CHEMIERE <valentin.chemiere@akretion.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# @ 2015 Valentin CHEMIERE @ Akretion
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from .abstract_fs import AbstractFSTask
 from base64 import b64decode
@@ -43,19 +27,19 @@ class FtpImportTask(FtpTask):
 
     def run(self):
         att_ids = []
-        with ftpfs.FTPFS(self.host, self.user, self.pwd,
-                         port=self.port) as ftp_conn:
+        with ftpfs.FTPFS(
+                self.host, self.user, self.pwd, port=self.port) as ftp_conn:
             files_to_process = self._get_files(ftp_conn, self.path)
             for file_to_process in files_to_process:
                 att_ids.append(self._process_file(ftp_conn, file_to_process))
         return att_ids
+
 
 class FtpExportTask(FtpTask):
 
     _synchronize_type = 'export'
 
     def run(self, async=True):
-        import ipdb; ipdb.set_trace()
         for attachment in self.attachment_ids:
             if attachment.state in ('pending', 'failed'):
                 self.attachment_id = attachment
