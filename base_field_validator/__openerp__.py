@@ -20,7 +20,7 @@
 
 {
     'name': "Fields Validator",
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
     'summary': "Validate fields using regular expressions",
     'author': 'Agile Business Group, Odoo Community Association (OCA)',
