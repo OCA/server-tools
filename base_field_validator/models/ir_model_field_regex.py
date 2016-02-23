@@ -12,4 +12,4 @@ class IrModelFieldsRegex(models.Model):
         'Regular Expression', required=True,
         help="Regular expression used to validate the field. For example, "
              "you can add the expression\n%s\nto the email field"
-             % r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b')
+             % r'[^@]+@[^@]+\.[^@]+')
