@@ -1,51 +1,77 @@
+
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
+====================
 Attachment Metadata
-======================
+====================
 
-This module was written to extend the functionality of ir.attachment
+This module extend ir.attachment model with some new fields for a better control
+for import and export of files. The main feature is an integrity file check with a hash.
 
-Installation
-============
-
-Installable without any requirements
 
 Usage
 =====
 
-THe module just add some field to ir.attachment
+Go the menu Settings > Attachments
 
-For further information, please visit:
+You can create / see standard attachments with additional fields
 
-* https://www.odoo.com/forum/help-1
+
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/{repo_id}/8.0
+
+.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
+.. branch is "8.0" for example
 
 Known issues / Roadmap
 ======================
 
+* ...
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/connector-interfaces/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed `feedback
+<https://github.com/OCA/
+connector-interfaces/issues/new?body=module:%20
+attachment_metadata%0Aversion:%20
+8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
 Credits
 =======
 
-* Joel Grand-Guillaume Camptocamp
-* initOS <http://initos.com>
-* Valentin CHEMIERE <valentin.chemiere@akretion.com>
+Images
+------
+
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+
 
 Contributors
 ------------
 
+* Valentin CHEMIERE <valentin.chemiere@akretion.com>
 * Sebastien BEAU <sebastian.beau@akretion.com>
+* Joel Grand-Guillaume Camptocamp
+* initOS <http://initos.com>
 
 Maintainer
 ----------
 
-* Valentin CHEMIERE <valentin.chemiere@akretion.com>
-
-.. image:: http://odoo-community.org/logo.png
-    :alt: Odoo Community Association
-    :target: http://odoo-community.org
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

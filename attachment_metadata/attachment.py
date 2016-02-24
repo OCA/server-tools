@@ -14,16 +14,23 @@ class IrAttachmentMetadata(models.Model):
     _name = 'ir.attachment.metadata'
     _inherits = {'ir.attachment': 'attachment_id'}
 
-    internal_hash = fields.Char(store=True, compute='_compute_hash')
-    external_hash = fields.Char()
-    attachment_id = fields.Many2one('ir.attachment', required=True,
-                                    ondelete='cascade')
+    internal_hash = fields.Char(
+        store=True, compute='_compute_hash',
+        help="File hash computed with file data to be compared "
+             "to external hash when provided.")
+    external_hash = fields.Char(
+        help="File hash comes from the external owner of the file.\n"
+             "If provided allow to check than downloaded file "
+             "is the exact copy of the original file.")
+    attachment_id = fields.Many2one(
+        'ir.attachment', required=True, ondelete='cascade',
+        help="Link to ir.attachment model ")
 
     @api.depends('datas', 'external_hash')
     def _compute_hash(self):
         if self.datas:
             self.internal_hash = hashlib.md5(b64decode(self.datas)).hexdigest()
         if self.external_hash and self.internal_hash != self.external_hash:
-            raise UserError(_('File corrupted'),
-                            _("Something was wrong with the retreived file, "
-                              "please relaunch the task."))
+            raise UserError(
+                _("File corrupted: Something was wrong with "
+                  "the retrieved file, please relaunch the task."))
