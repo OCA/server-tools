@@ -31,13 +31,13 @@ class translate_module(models.TransientModel):
         if self.module and self.lang:
             i18n_path = os.path.join(get_module_path(self.module.name), 'i18n')
             if not os.path.isdir(i18n_path):
-                raise Warning("File %s not found" %i18n_path)
+		self.env['ir.module.module'].browse(self.module.id).button_save_translation()
             
             iso_code = get_iso_codes(self.lang)
             filename = '%s.%s' % (iso_code, format_)
             path = os.path.join(i18n_path, filename)
             if not os.path.isfile(path):
-                self.env['button_save_translation'].browse(self.module.id).button_save_translation()
+                self.env['ir.module.module'].browse(self.module.id).button_save_translation()
             po = polib.pofile(path) 
             translated_terms  = []
             for entry in po:
