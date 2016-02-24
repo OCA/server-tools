@@ -2,10 +2,8 @@
 # @ 2015 Valentin CHEMIERE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.addons.connector.connector import (
-    get_openerp_module, is_module_installed)
 from openerp import models, fields, api
-from .helper import itersubclasses
+from .helper import itersubclasses, get_erp_module, is_module_installed
 from .abstract_task import AbstractTask
 
 
@@ -36,7 +34,7 @@ class Task(models.Model):
     def _get_method(self):
         res = []
         for cls in itersubclasses(AbstractTask):
-            if not is_module_installed(self.env, get_openerp_module(cls)):
+            if not is_module_installed(self.env, get_erp_module(cls)):
                 continue
             if cls._synchronize_type and (
                     'protocol' not in self._context or
@@ -64,7 +62,7 @@ class Task(models.Model):
     @api.one
     def run(self):
         for cls in itersubclasses(AbstractTask):
-            if not is_module_installed(self.env, get_openerp_module(cls)):
+            if not is_module_installed(self.env, get_erp_module(cls)):
                 continue
             cls_build = '%s_%s' % (cls._key, cls._synchronize_type)
             if cls._synchronize_type and cls_build == self.method:
