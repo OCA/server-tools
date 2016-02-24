@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="assets_backend_test_profiler" name="Profiler Tests"
+              inherit_id="website.assets_backend">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/profiler/static/src/js/test_profiler.js"
+                    type="text/javascript"/>
+        </xpath>
+    </template>
+</data>
+</openerp>

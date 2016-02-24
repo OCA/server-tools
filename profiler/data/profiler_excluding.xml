@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <!-- exclude_fnames de pstats_print2list -->
+    <record id="default_exclude_fnames_pstas" model="ir.config_parameter">
+        <field name="key">exclude_fnames</field>
+        <field name="value">/.repo_requirements,~/odoo-8.0,/usr/,></field>
+    </record>
+
+    <!-- exclude-query de pgbader -->
+    <record id="default_exclude_query_pgbadger" model="ir.config_parameter">
+        <field name="key">exclude_query</field>
+        <field name="value">ir_translation</field>
+    </record>
+</data>
+</openerp>
