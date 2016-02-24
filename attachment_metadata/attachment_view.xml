@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data>
+  <data>
 
-	    <record id="view_attachment_improved_form" model="ir.ui.view">
-	        <field name="model">ir.attachment.metadata</field>
-	    	<field name="inherit_id" ref="base.view_attachment_form" />
-	        <field name="arch" type="xml">
-		        <field name="url" position="after">
-			        <field name="internal_hash"/>
-			        <field name="external_hash"/>
-	    	    </field>
-	        </field>
-	    </record>
+    <record id="view_attachment_improved_form" model="ir.ui.view">
+        <field name="model">ir.attachment.metadata</field>
+        <field name="inherit_id" ref="base.view_attachment_form" />
+        <field name="arch" type="xml">
+            <field name="url" position="after">
+                <field name="internal_hash"/>
+                <field name="external_hash"/>
+            </field>
+        </field>
+    </record>
 
-    </data>
+  </data>
 </openerp>
