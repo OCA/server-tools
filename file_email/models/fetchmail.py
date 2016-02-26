@@ -1,20 +1,14 @@
 # coding: utf-8
-#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   @author Sébastien BEAU @ Akretion
+#   @author Florian DA COSTA @ Akretion
+#   @author Benoit GUILLOT @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api
 
 
-class fetchmail_server(models.Model):
+class FetchmailServer(models.Model):
     _inherit = 'fetchmail.server'
-
-    @api.model
-    def get_file_type(self):
-        return []
-
-    @api.model
-    def _get_file_type(self):
-        return self.get_file_type()
 
     def company_default_get(self):
         company_id = (self.env['res.company'].
@@ -22,16 +16,17 @@ class fetchmail_server(models.Model):
         return self.env['res.company'].browse(company_id)
 
     file_type = fields.Selection(
-        selection='_get_file_type',
+        selection='get_file_type',
         help='The file type will show some special option')
     company_id = fields.Many2one(
-        'res.company',
-        string='Company',
-        required=True,
-        default=company_default_get
-        )  # Why this field do not exist by default?
+        'res.company', string='Company',
+        required=True, default=company_default_get)
     attachment_metadata_condition_ids = fields.One2many(
         'ir.attachment.metadata.condition', 'server_id', string='Attachment')
+
+    @api.model
+    def get_file_type(self):
+        return []
 
     @api.one
     def get_context_for_server(self):
@@ -47,5 +42,5 @@ class fetchmail_server(models.Model):
     @api.multi
     def fetch_mail(self):
         for server in self:
-            super(fetchmail_server, server).fetch_mail()
+            super(FetchmailServer, server).fetch_mail()
         return True
