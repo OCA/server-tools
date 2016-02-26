@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Suspend security",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "author": "Therp BV",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
@@ -30,7 +30,7 @@
     "test": [
     ],
     "auto_install": False,
-    'installable': False,
+    'installable': True,
     "application": False,
     "external_dependencies": {
         'python': [],
