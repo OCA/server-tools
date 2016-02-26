@@ -8,7 +8,15 @@ Attachment Metadata
 ====================
 
 This module extend ir.attachment model with some new fields for a better control
-for import and export of files. The main feature is an integrity file check with a hash.
+for import and export of files.
+
+The main feature is an integrity file check with a hash.
+
+A file hash is short representation (signature) computed from file data.
+Hashes computed before send file and after received file can be compared to be
+sure of the content integrity.
+
+An example of the use of this module, can be found in the external_file_location.
 
 
 Usage
@@ -28,6 +36,7 @@ You can create / see standard attachments with additional fields
 Known issues / Roadmap
 ======================
 
+The purpose of this module is not to import the data of the file but only exchange files with external application.
 
 
 Bug Tracker
