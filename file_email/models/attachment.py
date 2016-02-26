@@ -1,5 +1,7 @@
 # coding: utf-8
-#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   @author Sébastien BEAU @ Akretion
+#   @author Florian DA COSTA @ Akretion
+#   @author Benoit GUILLOT @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api
@@ -49,8 +51,8 @@ class IrAttachmentMetadata(models.Model):
                 condition.mail_subject in msg['subject']):
             for att in msg['attachments']:
                 if condition.file_extension in att[0]:
-                    vals = self._get_attachment_metadata_data(condition,
-                                                              msg, att)
+                    vals = self._get_attachment_metadata_data(
+                        condition, msg, att)
                     break
         return vals
 
@@ -106,16 +108,14 @@ class IrAttachmentMetadataCondition(models.Model):
     def get_attachment_metadata_condition_type(self):
         return [('normal', 'Normal')]
 
-    from_email = fields.Char(string='Email', size=64)
-    mail_subject = fields.Char(size=64)
+    from_email = fields.Char(string='Email')
+    mail_subject = fields.Char()
     type = fields.Selection(
         selection='_get_attachment_metadata_condition_type',
-        help="Create your own type if the normal type \
-                    do not correspond to your need",
+        required=True, default='normal',
+        help="Create your own type if the normal type "
+             "do not correspond to your need")
+    file_extension = fields.Char(
         required=True,
-        default='normal'
-        )
-    file_extension = fields.Char(size=64,
-                                 help="File extension or file name",
-                                 required=True)
+        help="File extension or file name")
     server_id = fields.Many2one('fetchmail.server', string='Server Mail')

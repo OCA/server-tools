@@ -1,26 +1,24 @@
 # coding: utf-8
-#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   @author Sébastien BEAU @ Akretion
+#   @author Florian DA COSTA @ Akretion
+#   @author Benoit GUILLOT @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'file_email',
-    'version': '0.1',
-    'category': 'Generic Modules/Others',
+    'name': 'File Email',
+    'version': '8.0.1.0.0',
+    'author': 'Akretion,Odoo Community Association (OCA)',
+    'category': 'Generic Modules',
     'license': 'AGPL-3',
-    'description': """Abstract module for importing and processing the
-    attachment of an email. The attachment of the email will be imported
-    as a attachment_metadata and then in your custom module you can process it.
-    An example of processing can be found in account_statement_email
-    """,
-    'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['external_file_location', 'fetchmail'],
-    'init_xml': [],
-    'update_xml': [
-        "fetchmail_view.xml",
-        "attachment_metadata_view.xml",
+    'depends': [
+        'attachment.metadata',
+        'fetchmail'
+    ],
+    'data': [
+        "views/fetchmail_view.xml",
+        "views/attachment_view.xml",
         ],
-    'demo_xml': [],
+    'demo': [],
     'installable': True,
-    'active': False,
 }
