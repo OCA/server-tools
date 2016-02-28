@@ -3,35 +3,34 @@
 # * server_environment
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-27 01:37+0000\n"
-"PO-Revision-Date: 2016-02-27 16:56+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/sl/)\n"
+"PO-Revision-Date: 2016-02-26 16:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-9-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Created by"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Created on"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
 msgid "Display Name"
-msgstr "Prikazani naziv"
+msgstr "Display Name"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_id
@@ -41,23 +40,23 @@ msgstr "ID"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr "Last Modified on"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr "Zadnjič posodobil"
+msgstr "Last Updated by"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Last Updated on"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr "Strežniško okolje"
+msgstr "Server Environment"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
