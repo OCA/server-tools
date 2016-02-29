@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="form_fetchmail_inbox_create_wizard" model="ir.ui.view">
+            <field name="model">fetchmail.inbox.create.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="mail_id" invisible="True" />
+                        <field name="model_id" />
+                    </group>
+                    <footer>
+                        <button type="object" string="Create object" name="button_create" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
