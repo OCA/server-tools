@@ -83,6 +83,13 @@ Further, if you force users to https, you'll need something like::
         rewrite ^   https://$server_name$request_uri? permanent;
     }
 
+In case you need to redirect other nginx sites to your Odoo instance, declare
+an upstream for your odoo instance and do something like::
+
+    location /.well-known {
+        proxy_pass    http://yourodooupstream;
+    }
+
 Bug Tracker
 ===========
 
