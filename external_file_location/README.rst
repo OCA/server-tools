@@ -37,16 +37,17 @@ Credits
 * Joel Grand-Guillaume Camptocamp
 * initOS <http://initos.com>
 * Valentin CHEMIERE <valentin.chemiere@akretion.com>
+* Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+
 
 Contributors
 ------------
 
 * Sebastien BEAU <sebastian.beau@akretion.com>
+* David BEAL <david.beal@akretion.com>
 
 Maintainer
 ----------
-
-* Valentin CHEMIERE <valentin.chemiere@akretion.com>
 
 .. image:: http://odoo-community.org/logo.png
     :alt: Odoo Community Association

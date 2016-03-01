@@ -42,7 +42,7 @@
         <record id="view_location_tree" model="ir.ui.view">
             <field name="model">external.file.location</field>
             <field name="arch" type="xml">
-                <tree string="Location">
+                <tree string="File Location">
                     <field name="name" select="1"/>
                     <field name="protocol"/>
                     <field name="address"/>
@@ -52,7 +52,7 @@
         </record>
 
         <record id="action_location" model="ir.actions.act_window">
-            <field name="name">Locations</field>
+            <field name="name">File Locations</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">external.file.location</field>
             <field name="view_type">form</field>
@@ -60,7 +60,7 @@
         </record>
 
         <menuitem id="menu_ir_location" 
-            parent="menu_file_exchange"
+            parent="base.menu_automation"
             sequence="20"
             action="action_location"/>
 

@@ -1,5 +1,3 @@
-from . import attachment
-from . import location
-from . import task
+from . import models
 from . import tasks
 from . import tests

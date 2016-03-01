@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-
+<!-- © 2014-2016 Akretion (http://www.akretion.com)
+    # @ 2015 Valentin CHEMIERE @ Akretion
+    @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
         <record id="view_task_form" model="ir.ui.view">
             <field name="model">external.file.task</field>
             <field name="arch" type="xml">
@@ -20,9 +23,28 @@
                             <span colspan="2"/>
                             <field name="filename" colspan="4" attrs="{'invisible':[('method_type','!=','import')], 'required':[('method_type', '=', 'import')]}"/>
                             <field name="filepath" colspan="4" />
-                            <field name="after_import" colspan="2" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                            <field name="move_path" colspan="2" attrs="{'invisible':['|', ('after_import','!=','move'), ('method_type','!=','import')]}"/>
-                            <field name="md5_check" colspan="2" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                        </group>
+                        <group col="6">
+                            <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                            <group col="4" colspan="4" >
+                            <field name="move_path" colspan="4" 
+                                attrs="{'invisible':['|', '&amp;',
+                                ('after_import','!=','move'),
+                                ('after_import','!=','move_rename'),
+                                ('method_type','!=','import')]}"/>
+                            <field name="new_name" colspan="4" 
+                                attrs="{'invisible': ['|', '&amp;',
+                                ('after_import','!=','rename'),
+                                ('after_import','!=','move_rename'),
+                                ('method_type','!=','import')]}"/>
+                            </group>
+                            <field name="md5_check" colspan="2" 
+                                attrs="{'invisible':
+                                [('method_type','!=','import')]}"
+                                />                       
+                        </group>
+                        <group string="Data importation setting">
+                            <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         </group>
                     </sheet>
                 </form>

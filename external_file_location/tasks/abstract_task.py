@@ -22,6 +22,7 @@ class AbstractTask(object):
             'datas_fname': filename,
             'task_id': self.task and self.task.id or False,
             'location_id': self.task and self.task.location_id.id or False,
-            'external_hash': self.ext_hash
+            'external_hash': self.ext_hash,
+            'file_type': self.file_type,
             })
         return ir_attachment_id
