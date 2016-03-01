@@ -2,10 +2,14 @@
 #    Copyright (C) 2014 initOS GmbH & Co. KG (<http://www.initos.com>).
 # @ 2015 Valentin CHEMIERE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from ..abstract_task import AbstractTask
 import logging
 import os
+import fnmatch
+
+from openerp.tools.safe_eval import safe_eval as eval
+
+from ..abstract_task import AbstractTask
+
 _logger = logging.getLogger(__name__)
 
 
@@ -26,6 +30,7 @@ class AbstractFSTask(AbstractTask):
         self.file_name = config.get('file_name', '')
         self.path = config.get('path') or '.'
         self.move_path = config.get('move_path', '')
+        self.new_name = config.get('new_name', '')
         self.after_import = config.get('after_import', False)
         self.attachment_ids = config.get('attachment_ids', False)
         self.task = config.get('task', False)
@@ -67,10 +72,10 @@ class AbstractFSTask(AbstractTask):
     def _get_files(self, conn, path):
         process_files = []
         files_list = conn.listdir(path)
-        for file in files_list:
-            if file == self.file_name:
-                source_name = self._source_name(self.path, self.file_name)
-                process_files.append((file, source_name))
+        pattern = self.file_name
+        for file_name in fnmatch.filter(files_list, pattern):
+            source_name = self._source_name(self.path, file_name)
+            process_files.append((file_name, source_name))
         return process_files
 
     def _process_file(self, conn, file_to_process):
@@ -81,17 +86,31 @@ class AbstractFSTask(AbstractTask):
                 self.path,
                 self.file_name,
                 self.move_path)
+            ('rename', 'Rename'),
+                ('move', 'Move'),
+                ('move_rename', 'Move & Rename'),
+
+            move = 'move' in self.after_import
+            rename = 'rename' in self.after_import
 
             # Move/delete files only after all files have been processed.
             if self.after_import == 'delete':
                 self._delete_file(conn, file_to_process[1])
-            elif self.after_import == 'move':
-                if not conn.exists(self.move_path):
+            elif rename or move:
+                new_name = file_to_process[0]
+                move_path = self.path
+                if rename and self.new_name:
+                    #TODO select correspondig attachement_id
+                    localdict = {'obj': self.attachment_ids[0]}
+                    new_name = eval(tax.python_compute, localdict,
+                                    mode="exec", nocopy=True)
+                if self.move_path and not conn.exists(self.move_path):
                     conn.makedir(self.move_path)
+                    move_path = self.move_path
                 self._move_file(
                     conn,
                     file_to_process[1],
-                    self._source_name(self.move_path, file_to_process[0]))
+                    self._source_name(move_path, new_name))
             return att_id
 
     def _handle_existing_target(self, fs_conn, target_name, filedata):

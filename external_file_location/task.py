@@ -15,7 +15,9 @@ class Task(models.Model):
     method = fields.Selection(selection='_get_method', required=True,
                               help='procotol and trasmitting info')
     method_type = fields.Char()
-    filename = fields.Char(help='File name which is imported')
+    filename = fields.Char(help='File name which is imported.'
+                                'You can use file pattern like *.txt'
+                                'to import all txt files')
     filepath = fields.Char(help='Path to imported file')
     location_id = fields.Many2one('external.file.location', string='Location',
                                   required=True)
@@ -23,13 +25,20 @@ class Task(models.Model):
                                      string='Attachment')
     move_path = fields.Char(string='Move path',
                             help='Imported File will be moved to this path')
+    new_name = fields.Char(string='New name',
+                            help='Imported File will be renamed to this name'
+                                'Name can use ${obj.name}-${obj.create_date}.csv')
     md5_check = fields.Boolean(help='Control file integrity after import with'
                                ' a md5 file')
     after_import = fields.Selection(selection='_get_action',
                                     help='Action after import a file')
 
     def _get_action(self):
-        return [('move', 'Move'), ('delete', 'Delete')]
+        return [('rename', 'Rename'),
+                ('move', 'Move'),
+                ('move_rename', 'Move & Rename'),
+                ('delete', 'Delete'),
+                ]
 
     def _get_method(self):
         res = []
@@ -79,6 +88,7 @@ class Task(models.Model):
             'attachment_ids': self.attachment_ids,
             'task': self,
             'move_path': self.move_path,
+            'new_name': self.new_name,
             'after_import': self.after_import,
             'md5_check': self.md5_check,
             }
