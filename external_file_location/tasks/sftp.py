@@ -27,7 +27,7 @@ class SftpImportTask(SftpTask):
 
     def run(self):
         connection_string = "{}:{}".format(self.host, self.port)
-        root = "/home/{}".format(self.user)
+        root = "/"
         att_ids = []
         with sftpfs.SFTPFS(connection=connection_string,
                            root_path=root,
