@@ -72,7 +72,7 @@ class auth_saml_provider(models.Model):
         string='Matching Attribute',
         default='subject.nameId',
         required=True,
-    ),
+    )
     enabled = fields.Boolean('Enabled', default=False)
     sequence = fields.Integer('Sequence')
     css_class = fields.Char('CSS Class')
