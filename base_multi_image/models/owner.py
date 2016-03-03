@@ -41,13 +41,10 @@ class Owner(models.AbstractModel):
         had one image per record.
         """
         for s in self:
-            s.image_main = False
-            s.image_main_medium = False
-            s.image_main_small = False
-            if s.image_ids:
-                s.image_main = s.image_ids[0].image_main
-                s.image_main_medium = s.image_ids[0].image_medium
-                s.image_main_small = s.image_ids[0].image_small
+            first = s.image_ids[:1]
+            s.image_main = first.image_main
+            s.image_main_medium = first.image_medium
+            s.image_main_small = first.image_small
 
     @api.multi
     def _set_multi_image(self, image=False, name=False):
