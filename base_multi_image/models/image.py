@@ -14,7 +14,7 @@ from openerp import tools
 _logger = logging.getLogger(__name__)
 
 
-class ImageABC(models.Model):
+class Image(models.Model):
     _name = "base_multi_image.image"
     _sql_constraints = [
         ('uniq_name_owner', 'UNIQUE(owner_id, owner_model, name)',
@@ -139,7 +139,7 @@ class ImageABC(models.Model):
                     _('The image filestore cannot be created, %s') % e)
 
     @api.model
-    def _make_pretty(self, name):
+    def _make_name_pretty(self, name):
         return name.replace('_', ' ').capitalize()
 
     @api.onchange('url')
@@ -147,20 +147,20 @@ class ImageABC(models.Model):
         if self.url:
             filename = self.url.split('/')[-1]
             self.name, self.extension = os.path.splitext(filename)
-            self.name = self._make_pretty(self.name)
+            self.name = self._make_name_pretty(self.name)
 
     @api.onchange('path')
     def _onchange_path(self):
         if self.path:
             self.name, self.extension = os.path.splitext(os.path.basename(
                 self.path))
-            self.name = self._make_pretty(self.name)
+            self.name = self._make_name_pretty(self.name)
 
     @api.onchange('filename')
     def _onchange_filename(self):
         if self.filename:
             self.name, self.extension = os.path.splitext(self.filename)
-            self.name = self._make_pretty(self.name)
+            self.name = self._make_name_pretty(self.name)
 
     @api.constrains('storage', 'url')
     def _check_url(self):
