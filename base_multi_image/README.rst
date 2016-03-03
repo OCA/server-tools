@@ -33,15 +33,27 @@ Development
 To develop a module based on this one:
 
 * See module ``product_multi_image`` as an example.
+
 * You have to inherit model ``base_multi_image.owner`` to the model that needs
   the gallery::
 
     class MyOwner(models.Model):
-        _name = "mymodule.name"
-        _inherit = "base_multi_image.owner"
+        _name = "my.model.name"
+        _inherit = ["my.model.name", "base_multi_image.owner"]
 
         # If you need this, you will need ``post_init_hook_for_submodules``
         old_image_field = fields.Binary(related="image_main", store=False)
+
+* Somewhere in the owner view, add::
+
+    <field
+        name="image_ids"
+        nolabel="1"
+        context="{
+            'default_owner_model': 'my.model.name',
+            'default_owner_id': id,
+        }"
+        mode="kanban"/>
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
