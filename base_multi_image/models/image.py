@@ -104,13 +104,19 @@ class Image(models.Model):
 
     @api.multi
     def _get_image_from_url(self):
-        if self.url:
+        return self._get_image_from_url_cached(self.url)
+
+    @api.model
+    @tools.ormcache(skiparg=1)
+    def _get_image_from_url_cached(self, url):
+        """Allow to download an image and cache it by its URL."""
+        if url:
             try:
-                (filename, header) = urllib.urlretrieve(self.url)
+                (filename, header) = urllib.urlretrieve(url)
                 with open(filename, 'rb') as f:
                     return base64.b64encode(f.read())
             except:
-                _logger.error("URL %s cannot be fetched", self.url,
+                _logger.error("URL %s cannot be fetched", url,
                               exc_info=True)
 
         return False
