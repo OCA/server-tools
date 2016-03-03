@@ -127,18 +127,6 @@ class Image(models.Model):
                         "image_small": False}
             s.update(vals)
 
-    @api.multi
-    def _check_filestore(self):
-        """check if the filestore is created, and do it otherwise."""
-        for s in self:
-            dir_path = os.path.dirname(s.path)
-            try:
-                if not os.path.exists(dir_path):
-                    os.makedirs(dir_path)
-            except OSError as e:
-                raise exceptions.Warning(
-                    _('The image filestore cannot be created, %s') % e)
-
     @api.model
     def _make_name_pretty(self, name):
         return name.replace('_', ' ').capitalize()
