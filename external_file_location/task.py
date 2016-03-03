@@ -26,8 +26,10 @@ class Task(models.Model):
     move_path = fields.Char(string='Move path',
                             help='Imported File will be moved to this path')
     new_name = fields.Char(string='New name',
-                            help='Imported File will be renamed to this name'
-                                'Name can use ${obj.name}-${obj.create_date}.csv')
+                           help='Imported File will be renamed to this name'
+                                'Name can use mako template where obj is an '
+                                'ir_attachement. template exemple : '
+                                '  ${obj.name}-${obj.create_date}.csv')
     md5_check = fields.Boolean(help='Control file integrity after import with'
                                ' a md5 file')
     after_import = fields.Selection(selection='_get_action',

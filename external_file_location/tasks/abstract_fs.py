@@ -5,12 +5,45 @@
 import logging
 import os
 import fnmatch
+import datetime
 
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp import tools
 
 from ..abstract_task import AbstractTask
 
 _logger = logging.getLogger(__name__)
+
+
+try:
+    # We use a jinja2 sandboxed environment to render mako templates.
+    # Note that the rendering does not cover all the mako syntax, in particular
+    # arbitrary Python statements are not accepted, and not all expressions are
+    # allowed: only "public" attributes (not starting with '_') of objects may
+    # be accessed.
+    # This is done on purpose: it prevents incidental or malicious execution of
+    # Python code that may break the security of the server.
+    from jinja2.sandbox import SandboxedEnvironment
+    mako_template_env = SandboxedEnvironment(
+        variable_start_string="${",
+        variable_end_string="}",
+        line_statement_prefix="%",
+        trim_blocks=True,               # do not output newline after blocks
+    )
+    mako_template_env.globals.update({
+        'str': str,
+        'datetime': datetime,
+        'len': len,
+        'abs': abs,
+        'min': min,
+        'max': max,
+        'sum': sum,
+        'filter': filter,
+        'reduce': reduce,
+        'map': map,
+        'round': round,
+    })
+except ImportError:
+    _logger.warning("jinja2 not available, templating features will not work!")
 
 
 class AbstractFSTask(AbstractTask):
@@ -78,6 +111,24 @@ class AbstractFSTask(AbstractTask):
             process_files.append((file_name, source_name))
         return process_files
 
+    def _template_render(self, template, record):
+        try:
+            template = mako_template_env.from_string(tools.ustr(template))
+        except Exception:
+            _logger.exception("Failed to load template %r", template)
+
+        variables = {'obj': record}
+        try:
+            render_result = template.render(variables)
+        except Exception:
+            _logger.exception(
+                "Failed to render template %r using values %r" %
+                (template, variables))
+            render_result = u""
+        if render_result == u"False":
+            render_result = u""
+        return render_result
+
     def _process_file(self, conn, file_to_process):
             if self.md5_check:
                 self.ext_hash = self._get_hash(file_to_process[1], conn)
@@ -86,24 +137,28 @@ class AbstractFSTask(AbstractTask):
                 self.path,
                 self.file_name,
                 self.move_path)
-            ('rename', 'Rename'),
-                ('move', 'Move'),
-                ('move_rename', 'Move & Rename'),
+            ## ---> Set BreakPoint
+            import pdb;
+            pdb.set_trace()
+            move = False
+            rename = False
+            if self.after_import:
+                move = 'move' in self.after_import
+                rename = 'rename' in self.after_import
 
-            move = 'move' in self.after_import
-            rename = 'rename' in self.after_import
-
-            # Move/delete files only after all files have been processed.
+            # Move/rename/delete files only after all
+            # files have been processed.
             if self.after_import == 'delete':
                 self._delete_file(conn, file_to_process[1])
             elif rename or move:
                 new_name = file_to_process[0]
                 move_path = self.path
                 if rename and self.new_name:
-                    #TODO select correspondig attachement_id
-                    localdict = {'obj': self.attachment_ids[0]}
-                    new_name = eval(tax.python_compute, localdict,
-                                    mode="exec", nocopy=True)
+                    new_name_render = self._template_render(
+                        self.new_name, att_id)
+                    if new_name_render:
+                        # Avoid space in file name
+                        new_name = new_name_render.replace(' ', '_')
                 if self.move_path and not conn.exists(self.move_path):
                     conn.makedir(self.move_path)
                     move_path = self.move_path
