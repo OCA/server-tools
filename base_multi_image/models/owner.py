@@ -35,7 +35,7 @@ class Owner(models.AbstractModel):
     @api.multi
     @api.depends('image_ids')
     def _get_multi_image(self):
-        """Get a the main image for this object.
+        """Get the main image for this object.
 
         This is provided as a compatibility layer for submodels that already
         had one image per record.
