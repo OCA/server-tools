@@ -18,6 +18,7 @@
                     <field name="show_technical" invisible="True"/>
                     <field name="owner_model"/>
                     <field name="owner_id"/>
+                    <field name="sequence"/>
                 </group>
                 <group string="Name">
                     <field name="name"/>
@@ -72,6 +73,7 @@
             <field name="storage"/>
             <field name="owner_model"/>
             <field name="owner_id"/>
+            <field name="sequence" invisible="True"/>
         </tree>
     </field>
 </record>
@@ -83,6 +85,7 @@
         <kanban string="Product Images">
             <field name="name"/>
             <field name="storage"/>
+            <field name="sequence"/>
             <templates>
                 <t t-name="kanban-box">
                     <div style="position: relative">
