@@ -16,6 +16,7 @@ _logger = logging.getLogger(__name__)
 
 class Image(models.Model):
     _name = "base_multi_image.image"
+    _order = "sequence, owner_model, owner_id, id"
     _sql_constraints = [
         ('uniq_name_owner', 'UNIQUE(owner_id, owner_model, name)',
          _('A document can have only one image with the same name.')),
@@ -63,6 +64,8 @@ class Image(models.Model):
     comments = fields.Text(
         'Comments',
         translate=True)
+    sequence = fields.Integer(
+        default=10)
     show_technical = fields.Boolean(
         compute="_show_technical")
 
