@@ -31,7 +31,6 @@ class Image(models.Model):
         required=True)
     name = fields.Char(
         'Image title',
-        required=True,
         translate=True)
     filename = fields.Char()
     extension = fields.Char(
