@@ -28,8 +28,7 @@ class Image(models.Model):
         required=True)
     storage = fields.Selection(
         [('url', 'URL'), ('file', 'OS file'), ('db', 'Database')],
-        required=True,
-        default='db')
+        required=True)
     name = fields.Char(
         'Image title',
         required=True,
