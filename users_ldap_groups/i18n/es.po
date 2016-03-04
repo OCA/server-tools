@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:50+0000\n"
+"PO-Revision-Date: 2016-02-16 15:20+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +32,7 @@ msgstr "Creado en"
 #. module: users_ldap_groups
 #: help:res.company.ldap,group_mappings:0
 msgid "Define how OpenERP groups are assigned to ldap users"
-msgstr ""
+msgstr "Define cómo se asignan los grupos OpenERP a usuarios LDAP"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,group_mappings:0
@@ -85,7 +86,7 @@ msgstr "Solo grupos LDAP"
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,group:0
 msgid "OpenERP group"
-msgstr ""
+msgstr "Grupo OpenERP"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,operator:0
@@ -97,12 +98,12 @@ msgstr "Operador"
 msgid ""
 "The LDAP attribute to check.\n"
 "For active directory, use memberOf."
-msgstr ""
+msgstr "El atributo LDAP a comprobar.\nEn ActiveDirectory, use \"memberOf\"."
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,group:0
 msgid "The OpenERP group to assign"
-msgstr ""
+msgstr "El grupo OpenERP a asignar"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,operator:0
@@ -121,4 +122,4 @@ msgstr ""
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,value:0
 msgid "Value"
-msgstr ""
+msgstr "Valor"

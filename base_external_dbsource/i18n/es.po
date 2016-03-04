@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:48+0000\n"
+"PO-Revision-Date: 2016-02-16 15:21+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +49,7 @@ msgstr ""
 #: code:addons/base_external_dbsource/base_external_dbsource.py:174
 #, python-format
 msgid "Connection test succeeded!"
-msgstr ""
+msgstr "Conexión de prueba realizada."
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,connector:0
@@ -68,7 +69,7 @@ msgstr "Creado en"
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
 msgid "Database Sources"
-msgstr ""
+msgstr "Orígenes de base de datos"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,name:0
@@ -79,7 +80,7 @@ msgstr "Nombre del origen de datos"
 #: code:addons/base_external_dbsource/base_external_dbsource.py:175
 #, python-format
 msgid "Everything seems properly set up!"
-msgstr ""
+msgstr "Parece que todo está correctamente configurado."
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
@@ -132,12 +133,12 @@ msgstr "Última actualización el"
 #. module: base_external_dbsource
 #: field:base.external.dbsource,password:0
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form

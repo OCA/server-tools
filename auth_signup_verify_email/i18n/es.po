@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:45+0000\n"
+"PO-Revision-Date: 2016-02-16 15:15+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -28,18 +29,18 @@ msgstr "Revise su correo para activar su cuenta."
 #: code:addons/auth_signup_verify_email/controllers/main.py:50
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
-msgstr ""
+msgstr "Algo ha ido mal, por favor inténtelo de nuevo más tarde o contáctenos."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31
 #, python-format
 msgid "That does not seem to be an email address."
-msgstr ""
+msgstr "Eso no parece una dirección de email válida."
 
 #. module: auth_signup_verify_email
 #: view:website:auth_signup.fields
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #. module: auth_signup_verify_email
 #: view:website:auth_signup.fields
