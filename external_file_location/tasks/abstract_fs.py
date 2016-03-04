@@ -152,7 +152,6 @@ class AbstractFSTask(AbstractTask):
                 self._delete_file(conn, file_to_process[1])
             elif rename or move:
                 new_name = file_to_process[0]
-                move_path = self.path
                 if rename and self.new_name:
                     new_name_render = self._template_render(
                         self.new_name, att_id)
@@ -161,7 +160,7 @@ class AbstractFSTask(AbstractTask):
                         new_name = new_name_render.replace(' ', '_')
                 if self.move_path and not conn.exists(self.move_path):
                     conn.makedir(self.move_path)
-                    move_path = self.move_path
+                move_path = self.move_path if self.move_path else self.path
                 self._move_file(
                     conn,
                     file_to_process[1],
