@@ -34,6 +34,11 @@ class Task(models.Model):
                                ' a md5 file')
     after_import = fields.Selection(selection='_get_action',
                                     help='Action after import a file')
+    file_type = fields.Selection(
+        selection="_get_file_type",
+        string="File type",
+        help="The file type detrmine an import method to be used "
+             "to parse and transforme data before theire import in odoo")
 
     def _get_action(self):
         return [('rename', 'Rename'),
@@ -41,6 +46,13 @@ class Task(models.Model):
                 ('move_rename', 'Move & Rename'),
                 ('delete', 'Delete'),
                 ]
+
+    def _get_file_type(self):
+        """This is the method to be inherited for adding file types
+        The basic import do not apply any parsing or transform of the file.
+        The file is just added as an attachement
+        """
+        return [('basic_import', 'Basic import')]
 
     def _get_method(self):
         res = []

@@ -35,6 +35,7 @@
                                 ('after_import','!=','move_rename'),
                                 ('method_type','!=','import')]}"/>
                             </group>
+                            <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}"/>
                         </group>
                         <group>
                             <field name="md5_check" colspan="2" attrs="{'invisible':[('method_type','!=','import')]}"/>
