@@ -42,7 +42,6 @@ addon | version | summary
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 (unported) | Report qweb auto generation
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 (unported) | Synchronize Gravatar image
 [configuration_helper](configuration_helper/) | 0.8 (unported) | Configuration Helper
-[cron_run_manually](cron_run_manually/) | 8.0.1.0.0 (unported) | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 (unported) | Database cleanup
 [dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 (unported) | dbfilter_from_header
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 (unported) | Remove odoo.com bindings
