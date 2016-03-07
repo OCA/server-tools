@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "dbfilter_from_header",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "complexity": "normal",
@@ -46,7 +46,7 @@
     "css": [
     ],
     "auto_install": False,
-    'installable': False,
+    'installable': True,
     "external_dependencies": {
         'python': [],
     },
