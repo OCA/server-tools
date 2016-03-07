@@ -1,15 +1,20 @@
 # coding: utf-8
 # @ 2015 Valentin CHEMIERE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
+from fs import sftpfs
+from StringIO import StringIO
+from base64 import b64decode
+import hashlib
 
 import openerp.tests.common as common
 from ..tasks.sftp import SftpImportTask
 from ..tasks.sftp import SftpExportTask
 from .mock_server import (server_mock)
 from .mock_server import MultiResponse
-from StringIO import StringIO
-from base64 import b64decode
-import hashlib
+
+
+_logger = logging.getLogger(__name__)
 
 
 class ContextualStringIO(StringIO):
@@ -90,6 +95,26 @@ class TestNewSource(common.TransactionCase):
              'rename': True
              }) as FakeSFTP:
             self.config.update({'after_import': 'move', 'move_path': '/home'})
+            task = SftpImportTask(self.env, self.config)
+            task.run()
+            search_file = self.env['ir.attachment.metadata'].search(
+                (('name', '=', 'testfile'),))
+            self.assertEqual(len(search_file), 1)
+            self.assertEqual(b64decode(search_file[0].datas), 'import')
+            self.assertEqual('rename', FakeSFTP[-1]['method'])
+
+    def test_03_sftp_import_rename(self):
+        with server_mock(
+            {'exists': True,
+             'makedir': True,
+             'open': self.test_file,
+             'listdir': ['testfile'],
+             'rename': True
+             }) as FakeSFTP:
+            _logger.info("Test sftp rename file")
+            self.config.update({
+                'after_import': 'rename',
+                'new_name': '${obj.name}.imported'})
             task = SftpImportTask(self.env, self.config)
             task.run()
             search_file = self.env['ir.attachment.metadata'].search(
