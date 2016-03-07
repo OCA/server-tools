@@ -104,6 +104,7 @@ class Task(models.Model):
             'move_path': self.move_path,
             'new_name': self.new_name,
             'after_import': self.after_import,
+            'file_type': self.file_type,
             'md5_check': self.md5_check,
             }
         conn = method_class(self.env, config)

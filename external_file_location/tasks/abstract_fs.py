@@ -65,6 +65,7 @@ class AbstractFSTask(AbstractTask):
         self.move_path = config.get('move_path', '')
         self.new_name = config.get('new_name', '')
         self.after_import = config.get('after_import', False)
+        self.file_type = config.get('file_type', False)
         self.attachment_ids = config.get('attachment_ids', False)
         self.task = config.get('task', False)
         self.ext_hash = False
@@ -137,9 +138,6 @@ class AbstractFSTask(AbstractTask):
                 self.path,
                 self.file_name,
                 self.move_path)
-            ## ---> Set BreakPoint
-            import pdb;
-            pdb.set_trace()
             move = False
             rename = False
             if self.after_import:
