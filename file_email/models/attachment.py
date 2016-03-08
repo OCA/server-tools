@@ -11,8 +11,17 @@ import base64
 class IrAttachmentMetadata(models.Model):
     _inherit = "ir.attachment.metadata"
 
-    fetchmail_server_id = fields.Many2one('fetchmail.server',
-                                          string='Email Server')
+    fetchmail_attachment_condition_id = fields.Many2one(
+         'fetchmail.attachment.condition',
+         string='FetchMail condition',
+         help="The Fetchemail attachment condition used"
+              "to create this attachment")
+    fetchmail_server_id = fields.Many2one(
+        'fetchmail.server',
+        string='Email Server',
+        related='fetchmail_attachment_condition_id.server_id', store=True,
+        readonly=True,
+        help="The email server used to create this attachment")
 
     def message_process(self, cr, uid, model, message, custom_values=None,
                         save_original=False, strip_attachments=False,
@@ -33,6 +42,7 @@ class IrAttachmentMetadata(models.Model):
     @api.model
     def _get_attachment_metadata_data(self, condition, msg, att):
         values = {
+            'fetchmail_attachment_condition_id': condition.id,
             'file_type': condition.server_id.file_type,
             'name': msg['subject'],
             'direction': 'input',
@@ -95,5 +105,3 @@ class IrAttachmentMetadata(models.Model):
                 self._cr.commit()
             return created_ids[0].id
         return None
-
-
