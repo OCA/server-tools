@@ -22,7 +22,7 @@ class FetchmailServer(models.Model):
         'res.company', string='Company',
         required=True, default=company_default_get)
     attachment_metadata_condition_ids = fields.One2many(
-         'fetchmail.attachment.condition"', 'server_id', string='Attachment')
+         'fetchmail.attachment.condition', 'server_id', string='Attachment')
 
     @api.model
     def get_file_type(self):
@@ -47,7 +47,7 @@ class FetchmailServer(models.Model):
 
 
 class FetchmailAttachmentCondition(models.Model):
-    _name = "fetchmail.attachment.condition"
+    _name = 'fetchmail.attachment.condition'
     _description = "Fetchmail Attachment Conditions"
 
     @api.model

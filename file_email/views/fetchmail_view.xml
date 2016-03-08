@@ -12,11 +12,56 @@
             <field name="object_id" position="after">
                 <field name="file_type"/>
             </field>
-            <field name="action_id" position="after">
-                <field name="attachment_metadata_condition_ids" nolabel="1" colspan="4"/>
-            </field>
+            <xpath expr="//field[@name='action_id']/.." position="after">
+                <field name="attachment_metadata_condition_ids" colspan="4" nolabel="1"/>
+            </xpath>
         </field>
     </record>
+
+   <!-- Views and menus for the new object prepare.ir.attachment.metadata -->
+    <record id="view_fetchmail_attachment_condition_tree" model="ir.ui.view">
+        <field name="name">view_fetchmail_attachment_condition_tree</field>
+        <field name="model">fetchmail.attachment.condition</field>
+        <field name="arch" type="xml">
+            <tree string="Configuration for ir.attachment.metadata">
+                <field name="from_email"/>
+                <field name="mail_subject"/>
+                <field name="type"/>
+                <field name="file_extension"/>
+                <field name="server_id" invisible="True"/>
+            </tree>
+       </field>
+    </record>
+
+    <record id="view_fetchmail_attachment_condition_form" model="ir.ui.view">
+        <field name="name">view_fetchmail_attachment_condition_form</field>
+        <field name="model">fetchmail.attachment.condition</field>
+        <field name="arch" type="xml">
+            <form string="Configuration for fetchmail.attachment">
+                <sheet>
+                    <group col="4">
+                        <field name="from_email" attrs="{'required': [('type', '=', 'normal')]}"/>
+                        <field name="mail_subject" attrs="{'required': [('type', '=', 'normal')]}"/>
+                        <field name="type"/>
+                        <field name="file_extension"/>
+                        <field name="server_id" invisible="True"/>
+                    </group>
+                </sheet>
+            </form>
+       </field>
+    </record>
+
+<!--     <record id="action_fetchmail_attachment_configuration" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="res_model">fetchmail.attachment.condition</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_fetchmail_attachment_configuration"
+              action="action_fetchmail_attachment_configuration"
+              parent="external_file_location.menu_file_exchange"
+              sequence="50" /> -->    
 
   </data>
 </openerp>
