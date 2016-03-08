@@ -68,7 +68,7 @@ class IrAttachmentMetadata(models.Model):
         """
         res = []
         server_id = self._context.get('fetchmail_server_id', False)
-        file_condition_obj = self.env['ir.attachment.metadata.condition']
+        file_condition_obj = self.env['fetchmail.attachment.condition']
         cond_ids = file_condition_obj.search([('server_id', '=', server_id)])
         if cond_ids:
             for cond in cond_ids:
@@ -97,25 +97,3 @@ class IrAttachmentMetadata(models.Model):
         return None
 
 
-class IrAttachmentMetadataCondition(models.Model):
-    _name = "ir.attachment.metadata.condition"
-    _description = "Attachment Metadata Conditions"
-
-    @api.model
-    def _get_attachment_metadata_condition_type(self):
-        return self.get_attachment_metadata_condition_type()
-
-    def get_attachment_metadata_condition_type(self):
-        return [('normal', 'Normal')]
-
-    from_email = fields.Char(string='Email')
-    mail_subject = fields.Char()
-    type = fields.Selection(
-        selection='_get_attachment_metadata_condition_type',
-        required=True, default='normal',
-        help="Create your own type if the normal type "
-             "do not correspond to your need")
-    file_extension = fields.Char(
-        required=True,
-        help="File extension or file name")
-    server_id = fields.Many2one('fetchmail.server', string='Server Mail')
