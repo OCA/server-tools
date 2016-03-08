@@ -12,7 +12,7 @@
     'license': 'AGPL-3',
     'website': 'http://www.akretion.com/',
     'depends': [
-        'attachment.metadata',
+        'attachment_metadata',
         'fetchmail'
     ],
     'data': [
