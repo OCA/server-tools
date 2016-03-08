@@ -21,6 +21,7 @@
 
 from openerp import pooler
 from openerp.osv import orm, fields
+from openerp.exceptions import MissingError
 from openerp.modules.module import get_module_path
 from openerp.tools.translate import _
 from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
@@ -54,7 +55,11 @@ class IrModelData(orm.Model):
                 ctx[MODULE_UNINSTALL_FLAG] = True
                 field = self.pool[this.model].browse(
                     cr, uid, this.res_id, context=ctx)
-                if not self.pool.get(field.model):
+                try:
+                    if not self.pool.get(field.model):
+                        this.unlink()
+                        continue
+                except MissingError:
                     this.unlink()
                     continue
             if not self.pool.get(this.model):
