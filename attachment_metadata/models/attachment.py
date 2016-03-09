@@ -25,6 +25,11 @@ class IrAttachmentMetadata(models.Model):
     attachment_id = fields.Many2one(
         'ir.attachment', required=True, ondelete='cascade',
         help="Link to ir.attachment model ")
+    file_type = fields.Selection(
+            selection="_get_file_type",
+            string="File type",
+            help="The file type detrmine an import method to be used "
+                 "to parse and transforme data before theire import in odoo")
 
     @api.depends('datas', 'external_hash')
     def _compute_hash(self):
@@ -34,3 +39,10 @@ class IrAttachmentMetadata(models.Model):
             raise UserError(
                 _("File corrupted: Something was wrong with "
                   "the retrieved file, please relaunch the task."))
+
+    def _get_file_type(self):
+        """This is the method to be inherited for adding file types
+        The basic import do not apply any parsing or transform of the file.
+        The file is just added as an attachement
+        """
+        return [('basic_import', 'Basic import')]
