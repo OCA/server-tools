@@ -90,6 +90,8 @@
                                 <field name="rule_ids"/>
                             </page>
                             <page string="Workflows">
+                                <label for="workflow_ids" />
+                                <field name="workflow_ids" />
                                 <label for="activity_ids" />
                                 <field name="activity_ids" />
                                 <label for="transition_ids" />

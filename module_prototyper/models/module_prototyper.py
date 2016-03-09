@@ -26,12 +26,12 @@ import os
 import re
 import textwrap
 
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 from datetime import date
 
 from jinja2 import Environment, FileSystemLoader
 
-from openerp import models, api, fields
+from openerp import api, fields, models, tools
 from openerp.tools.safe_eval import safe_eval
 
 from . import licenses
@@ -189,6 +189,14 @@ class ModulePrototyper(models.Model):
         help=('Enter the list of reports that you have created and '
               'want to export in this module.')
     )
+
+    workflow_ids = fields.Many2many(
+        'workflow', 'prototype_wf_rel',
+        'module_prototyper_id', 'workflow_id', 'Workflows',
+        help=('Enter the list of workflow that you have created '
+              'and want to export in this module')
+    )
+
     activity_ids = fields.Many2many(
         'workflow.activity', 'prototype_wf_activity_rel',
         'module_prototyper_id', 'activity_id', 'Activities',
@@ -208,6 +216,21 @@ class ModulePrototyper(models.Model):
     _field_descriptions = None
     File_details = namedtuple('file_details', ['filename', 'filecontent'])
     template_path = '{}/../templates/'.format(os.path.dirname(__file__))
+
+    @api.onchange('workflow_ids')
+    def on_workflow_ids_change(self):
+        act_ids = set(self.activity_ids._ids)
+        for wf in self.workflow_ids:
+            act_ids.update(set(wf.activities._ids))
+        self.activity_ids = [(6, None, list(act_ids))]
+
+    @api.onchange('activity_ids')
+    def on_acitvity_ids_change(self):
+        trans_ids = set(self.transition_ids._ids)
+        for act in self.activity_ids:
+            trans_ids.update(set(act.out_transitions._ids))
+            trans_ids.update(set(act.in_transitions._ids))
+        self.transition_ids = [(6, None, list(trans_ids))]
 
     @api.model
     def set_jinja_env(self, api_version):
@@ -265,6 +288,7 @@ class ModulePrototyper(models.Model):
         file_details.extend(self.generate_menus_details())
         file_details.append(self.generate_module_init_file_details())
         file_details.extend(self.generate_data_files())
+        file_details.extend(self.generate_workflow_files())
         # must be the last as the other generations might add information
         # to put in the __openerp__: additional dependencies, views files, etc.
         file_details.append(self.generate_module_openerp_file_details())
@@ -460,6 +484,217 @@ class ModulePrototyper(models.Model):
                 ))
 
         return res
+
+    @api.model
+    def _get_import_compat_fields_excluded(self, model_name):
+        return ['create_uid', 'write_uid', 'create_date', 'write_date']
+
+    @api.model
+    def get_import_compat_fields(self, model_name):
+        """Get the list fields in a format suited for the export_data function
+        This method is inspired by
+        openerp.addons.web.controllers.Export.get_fields
+        """
+        model = self.env[model_name]
+        fields = model.fields_get()
+        exclude = self._get_import_compat_fields_excluded(model_name)
+
+        fields.pop('id', None)
+        fields_sequence = sorted(fields.iteritems(),
+            key=lambda field: tools.ustr(field[1].get('string', '')))
+
+        records = []
+        for field_name, field in fields_sequence:
+            if exclude and field_name in exclude:
+                continue
+            if field.get('readonly'):
+                # If none of the field's states unsets readonly, skip the field
+                if all(dict(attrs).get('readonly', True)
+                       for attrs in field.get('states', {}).values()):
+                    continue
+            if not field.get('exportable', True):
+                continue
+
+            id = field_name
+            name = field['string']
+            record = {'id': id, 'string': name,
+                      'export_id': id, 'children': False,
+                      'field_type': field.get('type'),
+                      'required': field.get('required'),
+                      'relation_field': field.get('relation_field')}
+            records.append(record)
+
+            if len(name.split('/')) < 3 and 'relation' in field:
+                ref = field.pop('relation')
+                record['export_id'] += '/id'
+                record['params'] = {'model': ref, 'prefix': id, 'name': name}
+
+                if field['type'] == 'one2many':
+                    # m2m field in import_compat is childless
+                    record['children'] = True
+        return records
+
+    @api.model
+    def get_import_compat_values(self, model_instances):
+        """For each instance this function build a list of dict. Each dict is
+        the definition of the exported field (import compatible) with
+        the corresponding value from the instance.
+        The return value is a dict where key = model_instance, value = datas
+        """
+        ret = {}
+        if len(model_instances) == 0:
+            return ret
+        model_name = model_instances._name
+        # Here we get the definition of the fields that can be exported for
+        # the given model. Only fields compatible for the import are retrieved 
+        fields_def = self.get_import_compat_fields(model_name)
+        # The definition is a list of dict. We create a dict by 'export_id' of
+        # these definitions. The export_id is the field's name to use to get
+        # the value in a, import compatible way. Fox ex for relation fields,
+        # the name = field_name/id
+        fields_dict = dict (
+            [(f['export_id'], f) for f in fields_def])
+        fields_to_export = fields_dict.keys()
+        multi_valued_field = [(f['export_id']) for f in fields_def if \
+                              f['field_type'] in ('one2many', 'many2many')]
+        for instance in model_instances:
+            datas = []
+            # get exported data by using the same method as the one used 
+            # by the export wizard
+            data_lines =instance.export_data(fields_to_export)['datas']
+            values = instance.export_data(fields_to_export)['datas'][0]
+            # values is a list of value in the same order as
+            # the fields_to_export list. We now build a dictionary to safely
+            # process these values
+            values_dict = dict(zip(fields_to_export, values))
+            # fix multi valued value:
+            for key in multi_valued_field:
+                value = values_dict[key]
+                value = [value] if value else []
+                values_dict[key] = value
+            for line in data_lines[1:]:
+                # multi valued fields are provided by additional lines
+                line_values_dict = dict(zip(fields_to_export, line))
+                for key in multi_valued_field:
+                    val_item = line_values_dict[key]
+                    if val_item:
+                        values_dict[key].append(val_item)
+            for export_id, value in values_dict.iteritems():
+                # take a copy of the definition of the field.
+                data_def = fields_dict[export_id].copy()
+                # add the value retrieved on the instance
+                data_def['value'] = value
+                datas.append(data_def)
+            ret[instance] = datas
+        return ret
+
+    @api.multi
+    def get_workflows_datas(self):
+        """This methods return a list of model to export by wokflow. Each
+        item is a list of models required to export the worklow
+        Data is defined by the following structure
+        [{ 'workflow': workflow,
+           'xml_id': workflow xml_id,
+          'data_models: {
+              model_name1: [
+                (model_instance, import compatible model values1), 
+                (model_instance, import compatible model values2),
+                (model_instance, import compatible model valuesN])),
+              model_name1: [
+                (model_instance, import compatible model values1), 
+                (model_instance, import compatible model values2),
+                (model_instance, import compatible model valuesN])),
+          }}]
+        The order in the data_models ordered_dict is the one used 
+        when rendering the xml record
+        """
+        self.ensure_one()
+        workflows = {} 
+        datas  = self.get_import_compat_values(self.workflow_ids)
+        for wk, values in datas.iteritems():
+            workflows.setdefault(
+                wk, {'transitions': [], 'activities': [],
+                     'values': values})
+
+        datas  = self.get_import_compat_values(self.transition_ids)
+        for transition, values in datas.iteritems():
+            wk_def = workflows.setdefault(
+                transition.wkf_id, {'transitions': [], 'activities': []})
+            wk_def['transitions'].append((transition, values))
+
+        datas  = self.get_import_compat_values(self.activity_ids)
+        for activity, values in datas.iteritems():
+            wk_def = workflows.setdefault(
+                activity.wkf_id, {'transitions': [], 'activities': []})
+            wk_def['activities'].append((activity, values))
+        ret = []
+        for workflow, val in workflows.iteritems():
+            data_models = OrderedDict()
+            if val.get('values'):
+                # export workflow definition
+                data_models['workflow'] = [(workflow, val['values'])]
+            data_models['workflow.activity'] = val['activities']
+            data_models['workflow.transition']= val['transitions']
+            ret.append({
+                'workflow': workflow,
+                'xml_id' : self.get_model_xml_id(workflow),
+                'data_models':  data_models
+            })
+        return ret
+
+    @classmethod
+    def get_model_xml_id(cls, model_instance):
+        if not model_instance:
+            return ''
+        xml_id = model_instance.get_xml_id()
+        return xml_id.values()[0]
+
+    @classmethod
+    def filter_field_values(cls, field_values, mode=None):
+        """Return a list of field_values (items returned by
+        get_import_compat_values) accooding to the given mode
+        Possible value for mode:
+        * None: return all values
+        * no_relation: return all values for field with type not in
+          (one2many, many2many) 
+        * relation_only: return all values for field with type in
+          (one2many, many2many)
+        """
+        if not mode:
+            return field_values
+        if mode == 'no_relation':
+            return [v for v in field_values if v['field_type'] not in (
+                    'one2many', 'many2many')]
+        if mode == 'relation_only':
+            return [v for v in field_values if v['field_type'] in (
+                    'one2many', 'many2many')]
+        return field_values
+
+    @api.multi
+    def generate_workflow_files(self):
+        """"Wrapper to generate the workflow definition files for the model.
+        """
+        self.ensure_one()
+        workflows_def = []
+        
+        workflows = self.get_workflows_datas()
+        for workflow_datas in workflows:
+            xml_id = workflow_datas['xml_id']
+            filepath = 'data/{}_workflow.xml'.format(
+                self.friendly_name(self.unprefix(xml_id))
+            )
+            workflows_def.append(
+                self.generate_file_details(
+                    filepath,
+                    'data/workflow_name.xml.template',
+                    data=workflow_datas,
+                    get_xml_id=self.get_model_xml_id,
+                    filter_field_values=self.filter_field_values,
+                )
+            )
+            self._data_files.append(filepath)
+
+        return workflows_def
 
     @classmethod
     def unprefix(cls, name):

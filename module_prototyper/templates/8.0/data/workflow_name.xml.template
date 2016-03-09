@@ -1,0 +1,51 @@
+{% macro render_ref_list(values) -%}
+  {% set comma = joiner(",") %}
+  {% for val in values %}{{ comma() }}{{ "ref('%s')" % val }}{% endfor %}
+{%- endmacro %}
+{% macro render_value(field_value) -%}
+  {% set value = field_value['value'] %}
+  {% if field_value['field_type'] == 'text' %}<![CDATA[{{ value }}]]>{% else %}{{ value }}{% endif %}
+{%- endmacro %}
+{% macro render_field(field_value) -%}
+  {% set value = field_value['value'] %}
+  {% set field_type = field_value.get('field_type') %}
+  {% if field_type in ('one2many' or 'many2many') %}
+<field name="{{ field_value['id'] }}" {{ 'eval="[(6, None, [%s]"' % render_ref_list(value) if value }} />
+  {% elif field_type == 'many2one' %}
+<field name="{{ field_value['id'] }}" {{ 'ref="%s"' % value if value }} />
+  {% else %}
+<field name="{{ field_value['id'] }}">{{ render_value(field_value) }}</field>
+  {% endif %}
+{%- endmacro %}
+{% macro render_model_record(instance, fields_value, mode=None) -%}
+  {% set filtered_fields_value = filter_field_values(fields_value, mode=mode) %}
+  {% if filtered_fields_value %}
+    <record id="{{ get_xml_id(instance) }}" model="{{ instance._name }}">
+        {% for field_value in filtered_fields_value %}
+        {{ render_field(field_value) }}
+        {%- endfor %}
+    </record>
+  {%- endif %}
+{%- endmacro %}
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    {% for model_name, models in data['data_models'].iteritems() %}
+    
+    <!-- {{ model_name }} -->
+    {% for model_instance, fields_value in models %}
+{{ render_model_record(model_instance, fields_value, mode='no_relation') }}
+    
+    {% endfor %}
+    {% endfor %} 
+    {% for model_name, models in data['data_models'].iteritems() %}
+    
+    <!-- {{ model_name }} Relations -->
+    {% for model_instance, fields_value in models %}
+{{ render_model_record(model_instance, fields_value, mode='relation_only') }}
+    
+    {% endfor %}
+    {% endfor %} 
+    
+  </data>
+</openerp>
