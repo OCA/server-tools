@@ -71,7 +71,7 @@ You'll also need a matching sudo configuration, like::
 
     your_odoo_user ALL = NOPASSWD: /usr/sbin/service nginx reload
 
-Further, if you force users to https, you'll need something like::
+Further, if you force users to https, you'll need something like for nginx::
 
     if ($scheme = "http") {
         set $redirect_https 1;
@@ -82,6 +82,13 @@ Further, if you force users to https, you'll need something like::
     if ($redirect_https) {
         rewrite ^   https://$server_name$request_uri? permanent;
     }
+
+and this for apache::
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{REQUEST_URI} "!^/.well-known/"
+    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
 In case you need to redirect other nginx sites to your Odoo instance, declare
 an upstream for your odoo instance and do something like::
