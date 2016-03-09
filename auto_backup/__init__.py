@@ -20,5 +20,4 @@
 #
 ##############################################################################
 
-from . import model
-from . import tests
+from . import models
