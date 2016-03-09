@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_backup_conf_form">
+        <field name="name">Automated Backups</field>
+        <field name="model">db.backup</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <h1><field name="name"/></h1>
+
+                <group string="Basic backup configuration">
+                    <field name="folder"/>
+                    <field name="days_to_keep"/>
+                    <field name="method"/>
+                </group>
+                <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
+                    <div class="bg-warning text-warning">
+                        <h3>Warning:</h3>
+                        Use SFTP with caution! This writes files to external servers under the path you specify.
+                    </div>
+                    <group string="SFTP Settings">
+                        <field name="sftp_host" placeholder="sftp.example.com"/>
+                        <field name="sftp_port"/>
+                        <field name="sftp_user" placeholder="john"/>
+                        <field name="sftp_password"/>
+                        <field
+                            name="sftp_private_key"
+                            placeholder="/home/odoo/.ssh/id_rsa"/>
+                        <button
+                            name="action_sftp_test_connection"
+                            type="object"
+                            string="Test SFTP Connection"
+                            icon="gtk-network"/>
+                    </group>
+                </div>
+                <separator string="Help" colspan="2"/>
+                <div>
+                    Automatic backups of the database can be scheduled as follows:
+                    <ol>
+                        <li>Go to Settings / Technical / Automation / Scheduled Actions.</li>
+                        <li>Search the action named 'Backup scheduler'.</li>
+                        <li>Set the scheduler to active and fill in how often you want backups generated.</li>
+                    </ol>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_backup_conf_tree">
+        <field name="name">Automated Backups</field>
+        <field name="model">db.backup</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Backups">
+                <field name='name'/>
+                <field name='folder'/>
+                <field name="sftp_host"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_backup_conf_search">
+        <field name="name">Automated Backups</field>
+        <field name="model">db.backup</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search options">
+                <field name='name'/>
+                <field name='folder'/>
+                <field name="sftp_host"/>
+            </search>
+        </field>
+    </record>
+
+    <act_window
+        name="Automated Backups"
+        id="action_backup_conf_form"
+        res_model="db.backup"/>
+
+    <menuitem
+        parent="base.menu_config"
+        action="action_backup_conf_form"
+        id="backup_conf_menu"/>
+
+    <!-- Execute backup from "More" menu -->
+    <record id="action_server_backup" model="ir.actions.server">
+        <field name="name">Execute backup(s)</field>
+        <field name="model_id" ref="model_db_backup"/>
+        <field name="code">
+            object.action_backup()
+        </field>
+    </record>
+
+    <record model="ir.values" id="action_backup">
+        <field name="name">Execute backup(s)</field>
+        <field name="action_id" ref="action_server_backup" />
+        <field
+            name="value"
+            eval="'ir.actions.server,%d' % ref('action_server_backup')" />
+        <field name="key">action</field>
+        <field name="model_id" ref="model_db_backup" />
+        <field name="model">db.backup</field>
+        <field name="key2">client_action_multi</field>
+    </record>
+</data>
+</openerp>
