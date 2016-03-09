@@ -10,39 +10,33 @@
             <form>
                 <h1><field name="name"/></h1>
 
-                <group string="Local backup configuration">
+                <group string="Basic backup configuration">
                     <field name="folder"/>
                     <field name="days_to_keep"/>
                     <field name="method"/>
                 </group>
-                <group
-                    string="SFTP Settings"
-                    attrs="{
-                        'invisible': [
-                            ('method', '!=', 'sftp'),
-                        ],
-                    }">
+                <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
                     <div class="bg-warning text-warning">
                         <h3>Warning:</h3>
                         Use SFTP with caution! This writes files to external servers under the path you specify.
                     </div>
-                    <field name="sftp_host" placeholder="sftp.example.com"/>
-                    <field name="sftp_port"/>
-                    <field name="sftp_user" placeholder="john"/>
-                    <field name="sftp_password"/>
-                    <field
-                        name="sftp_private_key"
-                        placeholder="/home/odoo/.ssh/id_rsa"/>
-                    <button
-                        name="action_sftp_test_connection"
-                        type="object"
-                        string="Test SFTP Connection"
-                        icon="gtk-network"/>
-                </group>
+                    <group string="SFTP Settings">
+                        <field name="sftp_host" placeholder="sftp.example.com"/>
+                        <field name="sftp_port"/>
+                        <field name="sftp_user" placeholder="john"/>
+                        <field name="sftp_password"/>
+                        <field
+                            name="sftp_private_key"
+                            placeholder="/home/odoo/.ssh/id_rsa"/>
+                        <button
+                            name="action_sftp_test_connection"
+                            type="object"
+                            string="Test SFTP Connection"
+                            icon="gtk-network"/>
+                    </group>
+                </div>
                 <separator string="Help" colspan="2"/>
                 <div>
-                    This configures the scheduler for automatic backup of the given database running on given host at given port on regular intervals.
-                    <br/>
                     Automatic backups of the database can be scheduled as follows:
                     <ol>
                         <li>Go to Settings / Technical / Automation / Scheduled Actions.</li>
