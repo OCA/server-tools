@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+# Cron job
+- !record {model: ir.cron, id: ir_cron_backupscheduler0}:
+    name: Backup scheduler
+    user_id: base.user_root
+    interval_number: 1
+    interval_type: days
+    numbercall: -1
+    nextcall: !eval
+        (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d 02:00:00")
+    model: db.backup
+    function: action_backup_all
+
+# New message subtypes
+- !record {model: mail.message.subtype, id: success}:
+    name: Backup successful
+    res_model: db.backup
+    default: False
+    description: Database backup succeeded.
+
+- !record {model: mail.message.subtype, id: failure}:
+    name: Backup failed
+    res_model: db.backup
+    default: True
+    description: Database backup failed.
