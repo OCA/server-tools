@@ -9,6 +9,7 @@
             <field name="url" position="after">
                 <field name="internal_hash"/>
                 <field name="external_hash"/>
+                <field name="file_type"/>
             </field>
         </field>
     </record>
