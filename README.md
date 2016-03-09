@@ -19,6 +19,7 @@ addon | version | summary
 --- | --- | ---
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
+[dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [server_environment](server_environment/) | 9.0.1.1.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
@@ -43,7 +44,6 @@ addon | version | summary
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 (unported) | Synchronize Gravatar image
 [configuration_helper](configuration_helper/) | 0.8 (unported) | Configuration Helper
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 (unported) | Database cleanup
-[dbfilter_from_header](dbfilter_from_header/) | 8.0.1.0.0 (unported) | dbfilter_from_header
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 (unported) | Remove odoo.com bindings
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
