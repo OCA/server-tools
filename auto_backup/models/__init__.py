@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import backup_scheduler
+from . import db_backup
