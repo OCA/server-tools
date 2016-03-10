@@ -28,8 +28,8 @@ class IrAttachmentMetadata(models.Model):
     file_type = fields.Selection(
             selection="_get_file_type",
             string="File type",
-            help="The file type detrmine an import method to be used "
-                 "to parse and transforme data before theire import in odoo")
+            help="The file type determines an import method to be used "
+                 "to parse and transform data before their import in ERP")
 
     @api.depends('datas', 'external_hash')
     def _compute_hash(self):
