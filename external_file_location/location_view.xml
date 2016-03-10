@@ -60,7 +60,7 @@
         </record>
 
         <menuitem id="menu_ir_location" 
-            parent="menu_file_exchange"
+            parent="attachment_metadata.menu_file_exchange"
             sequence="20"
             action="action_location"/>
 
