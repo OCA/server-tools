@@ -57,7 +57,7 @@
     </record>
 
     <record id="action_attachment" model="ir.actions.act_window">
-    <field name="name">Attachments</field>
+    <field name="name">Meta data Attachments</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">ir.attachment.metadata</field>
     <field name="view_type">form</field>
@@ -80,13 +80,9 @@
     <field name="act_window_id" ref="action_attachment"/>
     </record>
 
-    <menuitem id="menu_file_exchange" 
-        parent="base.menu_administration"
-        sequence="20"
-        name="File exchange"/>
 
     <menuitem id="menu_ir_attachment" 
-    parent="menu_file_exchange"
+    parent="base.next_id_9"
     sequence="20"
     action="action_attachment"/>
 
