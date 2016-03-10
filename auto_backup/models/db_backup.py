@@ -26,6 +26,7 @@ class DbBackup(models.Model):
     _inherit = "mail.thread"
 
     _sql_constraints = [
+        ("name_unique", "UNIQUE(name)", "Cannot duplicate a configuration."),
         ("days_to_keep_positive", "CHECK(days_to_keep >= 0)",
          "I cannot remove backups from the future. Ask Doc for that."),
     ]
