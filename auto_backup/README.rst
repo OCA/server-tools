@@ -62,6 +62,12 @@ Stay informed of problems, automatically!
 Do you want to know if the database backup succeeded or failed? Subscribe to
 the corresponding backup setting notification type.
 
+Run backups when you want
+-------------------------
+
+From the backups configuration list, press *More > Execute backup(s)* to
+manually execute the selected processes.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/8.0
