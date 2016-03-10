@@ -91,10 +91,11 @@ class DbBackup(models.Model):
 
     @api.model
     def _default_folder(self):
-        """Default to ``backups`` folder inside current database datadir."""
+        """Default to ``backups`` folder inside current server datadir."""
         return os.path.join(
-            tools.config.filestore(self.env.cr.dbname),
-            "backups")
+            tools.config["data_dir"],
+            "backups",
+            self.env.cr.dbname)
 
     @api.multi
     @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user")
@@ -106,6 +107,18 @@ class DbBackup(models.Model):
             elif rec.method == "sftp":
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
+
+    @api.constrains("folder", "method")
+    @api.multi
+    def _check_folder(self):
+        """Do not use the filestore or you will backup your backups."""
+        for s in self:
+            if (s.method == "local" and
+                    s.folder.startswith(
+                        tools.config.filestore(self.env.cr.dbname))):
+                raise exceptions.ValidationError(
+                    _("Do not save backups on your filestore, or you will "
+                      "backup your backups too!"))
 
     @api.multi
     def action_sftp_test_connection(self):
