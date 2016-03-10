@@ -84,5 +84,25 @@
         action="action_backup_conf_form"
         id="backup_conf_menu"/>
 
+    <!-- Execute backup from "More" menu -->
+    <record id="action_server_backup" model="ir.actions.server">
+        <field name="name">Execute backup(s)</field>
+        <field name="model_id" ref="model_db_backup"/>
+        <field name="code">
+            object.action_backup()
+        </field>
+    </record>
+
+    <record model="ir.values" id="action_backup">
+        <field name="name">Execute backup(s)</field>
+        <field name="action_id" ref="action_server_backup" />
+        <field
+            name="value"
+            eval="'ir.actions.server,%d' % ref('action_server_backup')" />
+        <field name="key">action</field>
+        <field name="model_id" ref="model_db_backup" />
+        <field name="model">db.backup</field>
+        <field name="key2">client_action_multi</field>
+    </record>
 </data>
 </openerp>
