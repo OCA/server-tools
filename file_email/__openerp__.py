@@ -16,6 +16,7 @@
         'fetchmail'
     ],
     'data': [
+        'security/ir.model.access.csv',
         "views/fetchmail_view.xml",
         "views/attachment_view.xml",
         ],
