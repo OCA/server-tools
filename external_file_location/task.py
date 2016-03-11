@@ -9,7 +9,7 @@ from .abstract_task import AbstractTask
 
 class Task(models.Model):
     _name = 'external.file.task'
-    _description = 'Description'
+    _description = 'External file task'
 
     name = fields.Char(required=True)
     method = fields.Selection(selection='_get_method', required=True,
@@ -37,8 +37,8 @@ class Task(models.Model):
     file_type = fields.Selection(
         selection="_get_file_type",
         string="File type",
-        help="The file type detrmine an import method to be used "
-             "to parse and transforme data before theire import in odoo")
+        help="The file type determines an import method to be used "
+             "to parse and transform data before their import in ERP")
 
     def _get_action(self):
         return [('rename', 'Rename'),
