@@ -26,6 +26,7 @@ addon | version | summary
 [auth_signup_verify_email](auth_signup_verify_email/) | 8.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 8.0.1.0.0 | Auth Supplier
 [base_concurrency](base_concurrency/) | 8.0.1.0.0 | Base Concurrency
+[base_custom_info](base_custom_info/) | 8.0.1.0.0 | Add custom field in models
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 | Shows full debug options for all users
 [base_export_manager](base_export_manager/) | 8.0.1.0.0 | Manages model export profiles
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
