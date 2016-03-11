@@ -2,16 +2,16 @@
 # © 2016 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import SUPERUSER_ID
+from openerp import api, SUPERUSER_ID
 import logging
 
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook_for_submodules(cr, registry, model, field):
+def pre_init_hook_for_submodules(cr, model, field):
     """Moves images from single to multi mode.
 
-    Feel free to use this as a ``post_init_hook`` for submodules.
+    Feel free to use this as a ``pre_init_hook`` for submodules.
 
     :param str model:
         Model name, like ``product.template``.
@@ -20,14 +20,25 @@ def post_init_hook_for_submodules(cr, registry, model, field):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
+    env = api.Environment(cr, SUPERUSER_ID, dict())
     with cr.savepoint():
-        records = registry[model].search(
-            cr,
-            SUPERUSER_ID,
-            [(field, "!=", False)],
-            context=dict())
-
-        _logger.info("Moving images from %s to multi image mode.", model)
-        for r in registry[model].browse(cr, SUPERUSER_ID, records):
-            _logger.debug("Setting up multi image for record %d.", r.id)
-            r.image_main = r[field]
+        cr.execute(
+            """
+                INSERT INTO base_multi_image_image (
+                    owner_id,
+                    owner_model,
+                    storage,
+                    file_db_store
+                )
+                SELECT
+                    id,
+                    %%s,
+                    'db',
+                    %(field)s
+                FROM
+                    %(table)s
+                WHERE
+                    %(field)s IS NOT NULL
+            """ % {"table": env[model]._table, "field": field},
+            (model,)
+        )
