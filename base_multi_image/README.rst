@@ -55,6 +55,20 @@ To develop a module based on this one:
         }"
         mode="kanban"/>
 
+* If the model you are extending already had an image field, and you want to
+  trick Odoo to make those images to multi-image mode, you will need to make
+  use of the provided :meth:`~.hooks.pre_init_hook_for_submodules`, like
+  the ``product_multi_image`` module does::
+
+    from openerp.addons.base_multi_image.hooks import \
+        pre_init_hook_for_submodules
+
+
+    def pre_init_hook(cr):
+        pre_init_hook_for_submodules(cr, "product.template", "image")
+        pre_init_hook_for_submodules(cr, "product.product", "image_variant")
+
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/8.0
