@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2016-03-12 02:05+0000\n"
 "PO-Revision-Date: 2015-09-19 01:07+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
@@ -39,13 +39,13 @@ msgid "Connection string"
 msgstr "Caracter de Conexão"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:163
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
 #, python-format
 msgid "Connection test failed!"
 msgstr "Teste de conexão falhou!"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:174
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
 #, python-format
 msgid "Connection test succeeded!"
 msgstr "Teste de conexão com sucesso\""
@@ -76,7 +76,7 @@ msgid "Datasource name"
 msgstr "Nome Origem-de-dados"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:175
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
 msgstr "Tudo parece configurado de acordo!"
@@ -98,7 +98,7 @@ msgid "External Database Sources"
 msgstr "Fontes Banco de Dados Externo"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:164
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
 #, python-format
 msgid ""
 "Here is what we got instead:\n"

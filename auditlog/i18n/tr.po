@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 15:10+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2016-03-12 02:05+0000\n"
+"PO-Revision-Date: 2016-03-07 17:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,6 +86,11 @@ msgid "Draft"
 msgstr "Taslak"
 
 #. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Fast log"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
 msgstr "Alan"
@@ -95,6 +100,18 @@ msgstr "Alan"
 #: field:auditlog.log,line_ids:0
 msgid "Fields updated"
 msgstr "Alanlar güncellendi"
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Full log"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,log_type:0
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -329,6 +346,11 @@ msgid ""
 msgstr "Bu model için zaten bir kural tanımlanmış\nbaşka kural tanımlayamazsınız: lütfen olan kaydı güncelleyin."
 
 #. module: auditlog
+#: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
+msgid "Type"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
 msgstr "Takibi bırak"
@@ -369,7 +391,7 @@ msgid "Values"
 msgstr "Değerler"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:485
+#: code:addons/auditlog/models/rule.py:555
 #, python-format
 msgid "View logs"
 msgstr "Günlükleri göster"
