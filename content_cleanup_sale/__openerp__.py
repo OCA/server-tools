@@ -25,7 +25,7 @@
     'version': '8.0',
     'author': "Clear ICT Solutions,Odoo Community Association (OCA)",
     'depends': [
-        'base',
+        'content_cleanup',
         'sale',
     ],
     'license': 'AGPL-3',
