@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="purge_content_wizard" model="ir.ui.view">
+            <field name="name">Form view for content purge wizard</field>
+            <field name="model">cleanup.content.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Purge Content" version="7.0">
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <field name="cascade"/>
+                    </group>
+                    <button type="object" name="purge_all" string="Purge all content" />
+                    <field name="purge_lines" colspan="4" nolabel="1">
+                        <tree string="Cleanup lines">
+                            <field name="model_name"/>
+                            <field name="name" />
+                            <field name="purged" invisible="0" />
+                            <button type="object" name="purge"
+                                    icon="gtk-cancel" string="Purge this model"
+                                    attrs="{'invisible': [('purged', '=', True)]}"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_cleanup_content_wizard" model="ir.actions.act_window">
+            <field name="name">Cleanup Content</field>
+            <field name="res_model">cleanup.content.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purge_content_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>
