@@ -82,8 +82,9 @@ class Task(models.Model):
         tasks = self.env['external.file.task'].search(domain)
         tasks.run()
 
-    @api.one
+    @api.multi
     def run(self):
+        self.ensure_one()
         for cls in itersubclasses(AbstractTask):
             if not is_module_installed(self.env, get_erp_module(cls)):
                 continue
@@ -93,8 +94,10 @@ class Task(models.Model):
         config = {
             'host': self.location_id.address,
             # ftplib does not support unicode
-            'user': self.location_id.login.encode('utf-8'),
-            'pwd': self.location_id.password.encode('utf-8'),
+            'user': self.location_id.login and\
+            self.location_id.login.encode('utf-8'),
+            'pwd': self.location_id.password and \
+            self.location_id.password.encode('utf-8'),
             'port': self.location_id.port,
             'allow_dir_creation': False,
             'file_name': self.filename,
