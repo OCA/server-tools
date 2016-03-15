@@ -84,31 +84,31 @@ class Task(models.Model):
 
     @api.multi
     def run(self):
-        self.ensure_one()
-        for cls in itersubclasses(AbstractTask):
-            if not is_module_installed(self.env, get_erp_module(cls)):
-                continue
-            cls_build = '%s_%s' % (cls._key, cls._synchronize_type)
-            if cls._synchronize_type and cls_build == self.method:
-                method_class = cls
-        config = {
-            'host': self.location_id.address,
-            # ftplib does not support unicode
-            'user': self.location_id.login and\
-            self.location_id.login.encode('utf-8'),
-            'pwd': self.location_id.password and \
-            self.location_id.password.encode('utf-8'),
-            'port': self.location_id.port,
-            'allow_dir_creation': False,
-            'file_name': self.filename,
-            'path': self.filepath,
-            'attachment_ids': self.attachment_ids,
-            'task': self,
-            'move_path': self.move_path,
-            'new_name': self.new_name,
-            'after_import': self.after_import,
-            'file_type': self.file_type,
-            'md5_check': self.md5_check,
-            }
-        conn = method_class(self.env, config)
-        conn.run()
+        for tsk in self:
+            for cls in itersubclasses(AbstractTask):
+                if not is_module_installed(self.env, get_erp_module(cls)):
+                    continue
+                cls_build = '%s_%s' % (cls._key, cls._synchronize_type)
+                if cls._synchronize_type and cls_build == tsk.method:
+                    method_class = cls
+            config = {
+                'host': tsk.location_id.address,
+                # ftplib does not support unicode
+                'user': tsk.location_id.login and\
+                tsk.location_id.login.encode('utf-8'),
+                'pwd': tsk.location_id.password and \
+                tsk.location_id.password.encode('utf-8'),
+                'port': tsk.location_id.port,
+                'allow_dir_creation': False,
+                'file_name': tsk.filename,
+                'path': tsk.filepath,
+                'attachment_ids': tsk.attachment_ids,
+                'task': tsk,
+                'move_path': tsk.move_path,
+                'new_name': tsk.new_name,
+                'after_import': tsk.after_import,
+                'file_type': tsk.file_type,
+                'md5_check': tsk.md5_check,
+                }
+            conn = method_class(self.env, config)
+            conn.run()
