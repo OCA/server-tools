@@ -163,13 +163,19 @@ class SuperCalendarConfigurator(models.Model):
                     tools.DEFAULT_SERVER_DATETIME_FORMAT
                 )
 
+                # Recurrent events have an string id like '14-20151110120000'
+                # We need to split that to get the first part (id)
+                if isinstance(cur_rec['id'], basestring):
+                    rec_id = cur_rec['id'].split('-')[0]
+                else:
+                    rec_id = cur_rec['id']
                 super_calendar_values = {
                     'name': name,
                     'date_start': date_start,
                     'duration': duration,
                     'user_id': (f_user and cur_rec[f_user].id),
                     'configurator_id': self.id,
-                    'res_id': line.name.model + ',' + str(cur_rec['id']),
+                    'res_id': line.name.model + ',' + str(rec_id),
                     'model_id': line.name.id,
                 }
                 res[cur_rec] = super_calendar_values
