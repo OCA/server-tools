@@ -26,7 +26,7 @@ class FetchmailServer(models.Model):
 
     @api.model
     def get_file_type(self):
-        return []
+        return [('basic_import', 'Basic import')]
 
     @api.one
     def get_context_for_server(self):
