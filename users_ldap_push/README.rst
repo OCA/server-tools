@@ -21,22 +21,25 @@ appropriate permissions to create and modify entries.
 
 Fill in the object classes newly created entries should contain, separated by
 colons. Those classes will determine which mappings from Odoo fields to LDAP
-attributes you need. This is highly dependent on your LDAP setup.
+attributes you need. This is highly dependent on your LDAP setup. For more
+complicated cases or some fixed values, use mapping type `Expression`.
 
 For a standard slapd setup, you might want to use object classes
 `inetOrgPerson,shadowAccount` and the following mapping:
 
-========== ============== ==
-Odoo field LDAP attribute DN
-========== ============== ==
-Login      userid         X
-Name       cn
-Name       sn
-========== ============== ==
+============== ========== ========== ==================== ==
+LDAP attribute Type       Odoo field Expression           DN
+============== ========== ========== ==================== ==
+userid         Field      Login                           X
+cn             Field      Name
+sn             Field      Name
+homeDirectory  Expression            '/home/' + obj.login
+loginShell     Expression            '/bin/ksh'
+============== ========== ========== ==================== ==
 
 Matching is done by the new field *ldap_entry_dn*, so after installing this
 module, you'll probably want to set this field. The module will write it when
-a user logs in via Odoo.
+a user logs on to Odoo via LDAP.
 
 Usage
 =====

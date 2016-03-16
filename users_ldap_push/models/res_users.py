@@ -64,10 +64,10 @@ class ResUsers(models.Model):
         conf = self._get_ldap_configuration()
         result = {}
         for mapping in conf.create_ldap_entry_field_mappings:
-            field_name = mapping.field_id.name
-            if field_name not in values or not values[field_name]:
+            value = mapping._get_value(self, values)
+            if not value:
                 continue
-            result[str(mapping.attribute)] = [str(values[field_name])]
+            result[str(mapping.attribute)] = [str(value)]
         if result:
             result['objectClass'] = conf.create_ldap_entry_objectclass\
                 .encode('utf-8').split(',')
@@ -79,10 +79,11 @@ class ResUsers(models.Model):
         conf = self._get_ldap_configuration()
         dn = conf.create_ldap_entry_field_mappings.filtered('use_for_dn')
         assert dn, 'No DN attribute mapping given!'
-        assert self[dn.field_id.name], 'DN attribute empty!'
+        dn_value = dn._get_value(self, values)
+        assert dn_value, 'DN attribute empty!'
         return '%s=%s,%s' % (
             dn.attribute,
-            ldap.dn.escape_dn_chars(self[dn.field_id.name].encode('utf-8')),
+            ldap.dn.escape_dn_chars(dn_value.encode('utf-8')),
             conf.create_ldap_entry_base or conf.ldap_base)
 
     @api.multi
