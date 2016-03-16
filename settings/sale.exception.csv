@@ -1,0 +1,5 @@
+"id","name","description","sequence","model","code","active"
+"excep_no_zip","No ZIP code on destination",,50,"sale.order","if not order.partner_shipping_id.zip:
+    failed=True",False
+"excep_no_stock","Not Enough Virtual Stock",,50,"sale.order.line","if line.product_id and line.product_id.type == 'product' and line.product_id.virtual_available < line.product_uom_qty:
+    failed=True",False
