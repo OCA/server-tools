@@ -82,10 +82,11 @@ class IrAttachmentMetadata(models.Model):
         cond_ids = file_condition_obj.search([('server_id', '=', server_id)])
         if cond_ids:
             for cond in cond_ids:
-                if cond.type == 'normal':
-                    vals = self.prepare_data_from_basic_condition(cond, msg)
-                else:
-                    vals = getattr(self, cond.type)(cond, msg)
+                # this part of code raise an expetion if type != normal
+                # if cond.type == 'normal':
+                vals = self.prepare_data_from_basic_condition(cond, msg)
+                # else:
+                #     vals = getattr(self, cond.type)(cond, msg)
                 if vals:
                     res.append(vals)
         return res
@@ -103,5 +104,5 @@ class IrAttachmentMetadata(models.Model):
                             vals[key] = default[key]
                 created_ids.append(self.create(vals))
                 self._cr.commit()
-            return created_ids[0].id
+            return created_ids[0]
         return None
