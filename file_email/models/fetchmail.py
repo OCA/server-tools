@@ -2,6 +2,7 @@
 #   @author Sébastien BEAU @ Akretion
 #   @author Florian DA COSTA @ Akretion
 #   @author Benoit GUILLOT @ Akretion
+#   @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api
@@ -57,6 +58,7 @@ class FetchmailAttachmentCondition(models.Model):
     def get_attachment_metadata_condition_type(self):
         return [('normal', 'Normal')]
 
+    name = fields.Char(string='Name', required=True,)
     from_email = fields.Char(string='Email')
     mail_subject = fields.Char()
     type = fields.Selection(
