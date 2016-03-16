@@ -33,12 +33,15 @@ class IrAttachmentMetadata(models.Model):
 
     @api.depends('datas', 'external_hash')
     def _compute_hash(self):
-        if self.datas:
-            self.internal_hash = hashlib.md5(b64decode(self.datas)).hexdigest()
-        if self.external_hash and self.internal_hash != self.external_hash:
-            raise UserError(
-                _("File corrupted: Something was wrong with "
-                  "the retrieved file, please relaunch the task."))
+        for attachment in self:
+            if attachment.datas:
+                attachment.internal_hash = hashlib.md5(
+                    b64decode(self.datas)).hexdigest()
+            if attachment.external_hash and\
+               attachment.internal_hash != attachment.external_hash:
+                raise UserError(
+                    _("File corrupted: Something was wrong with "
+                      "the retrieved file, please relaunch the task."))
 
     def _get_file_type(self):
         """This is the method to be inherited for adding file types
