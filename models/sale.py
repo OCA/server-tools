@@ -4,10 +4,9 @@
 
 import time
 
-from openerp import api, models, fields
-from openerp.exceptions import Warning
+from openerp import api, models, fields, _
+from openerp.exceptions import UserError
 from openerp.tools.safe_eval import safe_eval
-from openerp.tools.translate import _
 
 
 class SaleException(models.Model):
@@ -163,7 +162,7 @@ class SaleOrder(models.Model):
                       mode='exec',
                       nocopy=True)  # nocopy allows to return 'result'
         except Exception, e:
-            raise Warning(
+            raise UserError(
                 _('Error when evaluating the sale exception '
                   'rule:\n %s \n(%s)') % (rule.name, e))
         return space.get('failed', False)
