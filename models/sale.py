@@ -5,7 +5,7 @@
 import time
 
 from openerp import api, models, fields, _
-from openerp.exceptions import UserError
+from openerp.exceptions import UserError, ValidationError
 from openerp.tools.safe_eval import safe_eval
 
 
@@ -63,12 +63,12 @@ class SaleOrder(models.Model):
         'sale.exception',
         'sale_order_exception_rel', 'sale_order_id', 'exception_id',
         string='Exceptions')
-    ignore_exceptions = fields.Boolean('Ignore Exceptions', copy=False)
+    ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
 
     @api.one
-    @api.depends('state', 'exception_ids')
+    @api.depends('exception_ids', 'ignore_exception')
     def _get_main_error(self):
-        if self.state == 'draft' and self.exception_ids:
+        if not self.ignore_exception and self.exception_ids:
             self.main_exception_id = self.exception_ids[0]
         else:
             self.main_exception_id = False
@@ -91,6 +91,20 @@ class SaleOrder(models.Model):
         })
         return action
 
+    @api.one
+    @api.constrains('ignore_exception', 'order_line', 'state')
+    def check_sale_exception_constrains(self):
+        if self.state == 'sale':
+            exception_ids = self.detect_exceptions()
+            if exception_ids:
+                exceptions = self.env['sale.exception'].browse(exception_ids)
+                raise ValidationError('\n'.join(exceptions.mapped('name')))
+
+    @api.onchange('order_line')
+    def onchange_ignore_exception(self):
+        if self.state == 'sale':
+            self.ignore_exception = False
+
     @api.multi
     def action_confirm(self):
         if self.detect_exceptions():
@@ -101,8 +115,8 @@ class SaleOrder(models.Model):
     @api.multi
     def action_cancel(self):
         for order in self:
-            if order.ignore_exceptions:
-                order.ignore_exceptions = False
+            if order.ignore_exception:
+                order.ignore_exception = False
         return super(SaleOrder, self).action_cancel()
 
     @api.multi
@@ -129,7 +143,7 @@ class SaleOrder(models.Model):
 
         all_exception_ids = []
         for order in self:
-            if order.ignore_exceptions:
+            if order.ignore_exception:
                 continue
             exception_ids = order._detect_exceptions(order_exceptions,
                                                      line_exceptions)

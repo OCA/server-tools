@@ -66,6 +66,9 @@
                            attrs="{'invisible':[('main_exception_id','=', False)]}"/>
                     </group>
                 </field>
+                <xpath expr="//field[@name='date_order']/.." position="inside">
+                    <field name="ignore_exception" states="sale" />
+                </xpath>
                 <xpath expr="//group[@name='sales_person']/.."
                         position="inside">
                     <newline />

@@ -13,7 +13,6 @@
  'data': [
      'security/ir.model.access.csv',
      'wizard/sale_exception_confirm_view.xml',
-     'data/sale.exception.csv',
      'data/sale_exception_data.xml',
      'views/sale_view.xml',
  ],

@@ -31,5 +31,5 @@ class SaleExceptionConfirm(models.TransientModel):
     @api.one
     def action_confirm(self):
         if self.ignore:
-            self.sale_id.ignore_exceptions = True
+            self.sale_id.ignore_exception = True
         return {'type': 'ir.actions.act_window_close'}
