@@ -26,7 +26,6 @@ from lxml import etree
 from openerp import models, fields, api, exceptions
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
-from openerp.tools.misc import UnquoteEvalContext
 _logger = logging.getLogger(__name__)
 
 
@@ -266,10 +265,7 @@ class fetchmail_server(models.Model):
                         'modifiers',
                         simplejson.dumps(
                             dict(
-                                safe_eval(
-                                    field.attrib['modifiers'],
-                                    UnquoteEvalContext({})
-                                ),
+                                simplejson.loads(field.attrib['modifiers']),
                                 **modifiers[field.attrib['name']]
                             )
                         ),
