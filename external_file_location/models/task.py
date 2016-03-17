@@ -4,7 +4,7 @@
 
 from openerp import models, fields, api
 from .helper import itersubclasses, get_erp_module, is_module_installed
-from .abstract_task import AbstractTask
+from ..tasks.abstract_task import AbstractTask
 
 
 class Task(models.Model):

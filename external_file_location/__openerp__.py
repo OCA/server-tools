@@ -1,5 +1,6 @@
 # coding: utf-8
 # @ 2015 Valentin CHEMIERE @ Akretion
+# © 2016 @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
@@ -19,11 +20,11 @@
         ],
     },
     'data': [
-        'menu.xml',
-        'attachment_view.xml',
-        'location_view.xml',
-        'task_view.xml',
-        'cron.xml',
+        'view/menu.xml',
+        'view/attachment_view.xml',
+        'view/location_view.xml',
+        'view/task_view.xml',
+        'data/cron.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

@@ -1,6 +1,7 @@
 # coding: utf-8
 #    Copyright (C) 2014 initOS GmbH & Co. KG (<http://www.initos.com>).
 # @ 2015 Valentin CHEMIERE @ Akretion
+# ©2016 @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 import os
@@ -9,7 +10,7 @@ import datetime
 
 from openerp import tools
 
-from ..abstract_task import AbstractTask
+from .abstract_task import AbstractTask
 
 _logger = logging.getLogger(__name__)
 
