@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Remove odoo.com bindings",
-    "version": "8.0.1.1.0",
+    "version": "9.0.0.1.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "complexity": "normal",
@@ -47,5 +47,5 @@ come with the standard code:
     "qweb": [
         'static/src/xml/base.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

@@ -1,7 +1,9 @@
-openerp.disable_openerp_online = function(instance) {
-    // Disabling the lookup of a valid OPW for the dbuuid,
-    // resulting in 'Your OpenERP is not supported'
-    instance.web.WebClient.include({
-        show_annoucement_bar: function() {}
-    });
-};
+odoo.define('disable_openerp_online.announcement', function (require) {
+	"use strict";
+	var WebClient = require('web.WebClient');
+	WebClient.include({
+	    show_announcement_bar: function() {
+	        // do nothing here
+	    }
+	});
+});
