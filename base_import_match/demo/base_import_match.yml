@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+- !context {noupdate: True}
+
+- !record {id: res_partner_vat, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 10
+    field_ids:
+        - base.field_res_partner_vat
+
+- !record {id: res_partner_parent_name_is_company, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 20
+    field_ids:
+        - base.field_res_partner_name
+        - base.field_res_partner_parent_id
+        - base.field_res_partner_is_company
+
+- !record {id: res_partner_email, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 30
+    field_ids:
+        - base.field_res_partner_email
+
+- !record {id: res_partner_name, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 40
+    field_ids:
+        - base.field_res_partner_name
+
+- !record {id: res_users_login, model: base_import.match}:
+    model_id: base.model_res_users
+    sequence: 50
+    field_ids:
+        - base.field_res_users_login
