@@ -22,7 +22,7 @@ env:
   - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="odoo/odoo"
   - TESTS="1" ODOO_REPO="OCA/OCB"
-  - UNIT_TEST="1" 
+  - UNIT_TEST="1"
 
 virtualenv:
   system_site_packages: true
@@ -31,10 +31,8 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install python-ldap
-  - pip install unidecode
-  - printf '[options]\n\nrunning_env = dev' > ${HOME}/.openerp_serverrc
-  - ln -s server_environment_files_sample ./server_environment_files
+  - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
+  - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:
   - travis_run_tests
 

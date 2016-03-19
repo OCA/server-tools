@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-15 01:55+0000\n"
-"PO-Revision-Date: 2015-12-13 15:21+0000\n"
+"POT-Creation-Date: 2016-02-27 01:37+0000\n"
+"PO-Revision-Date: 2016-02-26 11:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-9-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,13 @@ msgstr "Last Updated on"
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
 msgstr "Name"
+
+#. module: users_ldap_populate
+#: code:addons/users_ldap_populate/model/users_ldap.py:64
+#, python-format
+msgid ""
+"No login attribute found: Could not extract login attribute from filter %s"
+msgstr "No login attribute found: Could not extract login attribute from filter %s"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
