@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * auth_from_http_remote_user
+# * inactive_session_timeout
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:36+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
+"POT-Creation-Date: 2016-03-17 15:37+0000\n"
+"PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: auth_from_http_remote_user
-#: field:auth_from_http_remote_user.installed,id:0
-msgid "ID"
-msgstr "ID"
-
-#. module: auth_from_http_remote_user
-#: field:res.users,sso_key:0
-msgid "SSO Key"
-msgstr ""
-
-#. module: auth_from_http_remote_user
-#: model:ir.model,name:auth_from_http_remote_user.model_res_users
+#. module: inactive_session_timeout
+#: model:ir.model,name:inactive_session_timeout.model_res_users
 msgid "Users"
 msgstr "Utenti"

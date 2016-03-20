@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"POT-Creation-Date: 2016-03-17 15:37+0000\n"
 "PO-Revision-Date: 2016-01-31 14:58+0000\n"
 "Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
@@ -40,7 +40,7 @@ msgid "Context"
 msgstr "Bağlam"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:230
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:229
 #, python-format
 msgid "Context \"%s\" is not a dictionary."
 msgstr "Bağlam \"%s\" bir sözlük değil."
@@ -157,7 +157,7 @@ msgid ""
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:227
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:226
 #, python-format
 msgid "Invalid context \"%s\": %s"
 msgstr ""
@@ -177,13 +177,13 @@ msgid "Last Updated on"
 msgstr "Son güncellenme"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:189
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:188
 #, python-format
 msgid "Mail attachment"
 msgstr "Posta eki"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:234
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:233
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr ""
