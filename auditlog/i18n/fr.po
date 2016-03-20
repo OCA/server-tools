@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-07 17:50+0000\n"
+"POT-Creation-Date: 2016-03-17 15:36+0000\n"
+"PO-Revision-Date: 2016-03-16 09:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr "Action"
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
 msgstr "Audit"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
@@ -58,6 +63,7 @@ msgid "Context"
 msgstr "Contexte"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_uid:0
 #: field:auditlog.http.request,create_uid:0
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
@@ -65,6 +71,7 @@ msgid "Created by"
 msgstr "Créé par"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_date:0
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,create_date:0
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -143,13 +150,14 @@ msgid "HTTP Requests"
 msgstr ""
 
 #. module: auditlog
-#: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
-#: field:auditlog.log,id:0 field:auditlog.log.line,id:0
-#: field:auditlog.rule,id:0
+#: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
+#: field:auditlog.http.session,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
@@ -157,6 +165,7 @@ msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_date:0
 #: field:auditlog.http.request,write_date:0
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0

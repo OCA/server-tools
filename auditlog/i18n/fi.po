@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-01 10:07+0000\n"
+"POT-Creation-Date: 2016-03-17 15:36+0000\n"
+"PO-Revision-Date: 2016-03-16 09:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,11 @@ msgstr ""
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
 msgstr ""
 
 #. module: auditlog
@@ -58,6 +63,7 @@ msgid "Context"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_uid:0
 #: field:auditlog.http.request,create_uid:0
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
@@ -65,6 +71,7 @@ msgid "Created by"
 msgstr "Luonut"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_date:0
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,create_date:0
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -85,6 +92,11 @@ msgid "Draft"
 msgstr ""
 
 #. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Fast log"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
 msgstr ""
@@ -93,6 +105,18 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 #: field:auditlog.log,line_ids:0
 msgid "Fields updated"
+msgstr ""
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Full log"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,log_type:0
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
 msgstr ""
 
 #. module: auditlog
@@ -126,13 +150,14 @@ msgid "HTTP Requests"
 msgstr ""
 
 #. module: auditlog
-#: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
-#: field:auditlog.log,id:0 field:auditlog.log.line,id:0
-#: field:auditlog.rule,id:0
+#: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
+#: field:auditlog.http.session,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
@@ -140,6 +165,7 @@ msgid "Last Updated by"
 msgstr "Viimeksi päivittänyt"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_date:0
 #: field:auditlog.http.request,write_date:0
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
@@ -328,6 +354,11 @@ msgid ""
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
+msgid "Type"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
 msgstr ""
@@ -368,7 +399,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:485
+#: code:addons/auditlog/models/rule.py:555
 #, python-format
 msgid "View logs"
 msgstr ""
