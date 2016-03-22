@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data>
+    <data noupdate="1">
         <record id="cronjob" model="ir.cron">
             <field name="name">Update letsencrypt certificates</field>
             <field name="interval_type">weeks</field>
