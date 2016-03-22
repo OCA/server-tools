@@ -13,6 +13,8 @@
         <field name="{{ field_value['id'] }}" {{ 'eval="[(6, None, [%s])]"' % render_ref_list(value) if value }} />
     {% elif field_type == 'many2one' -%}
         <field name="{{ field_value['id'] }}" {{ 'ref="%s"' % value if value }} />
+    {% elif field_type == 'boolean' -%}
+        <field name="{{ field_value['id'] }}" {{ 'eval="%s"' % value }} />
     {% else -%}
         <field name="{{ field_value['id'] }}">{{ render_value(field_value) }}</field>
     {% endif %}
