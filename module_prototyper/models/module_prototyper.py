@@ -484,7 +484,8 @@ class ModulePrototyper(models.Model):
         exclude = self._get_import_compat_fields_excluded(model_name)
 
         fields.pop('id', None)
-        fields_sequence = sorted(fields.iteritems(),
+        fields_sequence = sorted(
+            fields.iteritems(),
             key=lambda field: tools.ustr(field[1].get('string', '')))
 
         records = []
@@ -530,22 +531,22 @@ class ModulePrototyper(models.Model):
             return ret
         model_name = model_instances._name
         # Here we get the definition of the fields that can be exported for
-        # the given model. Only fields compatible for the import are retrieved 
+        # the given model. Only fields compatible for the import are retrieved
         fields_def = self.get_import_compat_fields(model_name)
         # The definition is a list of dict. We create a dict by 'export_id' of
         # these definitions. The export_id is the field's name to use to get
         # the value in a, import compatible way. Fox ex for relation fields,
         # the name = field_name/id
-        fields_dict = dict (
+        fields_dict = dict(
             [(f['export_id'], f) for f in fields_def])
         fields_to_export = fields_dict.keys()
-        multi_valued_field = [(f['export_id']) for f in fields_def if \
+        multi_valued_field = [(f['export_id']) for f in fields_def if
                               f['field_type'] in ('one2many', 'many2many')]
         for instance in model_instances:
             datas = []
-            # get exported data by using the same method as the one used 
+            # get exported data by using the same method as the one used
             # by the export wizard
-            data_lines =instance.export_data(fields_to_export)['datas']
+            data_lines = instance.export_data(fields_to_export)['datas']
             values = instance.export_data(fields_to_export)['datas'][0]
             # values is a list of value in the same order as
             # the fields_to_export list. We now build a dictionary to safely
@@ -581,32 +582,32 @@ class ModulePrototyper(models.Model):
            'xml_id': workflow xml_id,
           'data_models: {
               model_name1: [
-                (model_instance, import compatible model values1), 
+                (model_instance, import compatible model values1),
                 (model_instance, import compatible model values2),
                 (model_instance, import compatible model valuesN])),
               model_name1: [
-                (model_instance, import compatible model values1), 
+                (model_instance, import compatible model values1),
                 (model_instance, import compatible model values2),
                 (model_instance, import compatible model valuesN])),
           }}]
-        The order in the data_models ordered_dict is the one used 
+        The order in the data_models ordered_dict is the one used
         when rendering the xml record
         """
         self.ensure_one()
-        workflows = {} 
-        datas  = self.get_import_compat_values(self.workflow_ids)
+        workflows = {}
+        datas = self.get_import_compat_values(self.workflow_ids)
         for wk, values in datas.iteritems():
             workflows.setdefault(
                 wk, {'transitions': [], 'activities': [],
                      'values': values})
 
-        datas  = self.get_import_compat_values(self.transition_ids)
+        datas = self.get_import_compat_values(self.transition_ids)
         for transition, values in datas.iteritems():
             wk_def = workflows.setdefault(
                 transition.wkf_id, {'transitions': [], 'activities': []})
             wk_def['transitions'].append((transition, values))
 
-        datas  = self.get_import_compat_values(self.activity_ids)
+        datas = self.get_import_compat_values(self.activity_ids)
         for activity, values in datas.iteritems():
             wk_def = workflows.setdefault(
                 activity.wkf_id, {'transitions': [], 'activities': []})
@@ -618,10 +619,10 @@ class ModulePrototyper(models.Model):
                 # export workflow definition
                 data_models['workflow'] = [(workflow, val['values'])]
             data_models['workflow.activity'] = val['activities']
-            data_models['workflow.transition']= val['transitions']
+            data_models['workflow.transition'] = val['transitions']
             ret.append({
                 'workflow': workflow,
-                'xml_id' : self.get_model_xml_id(workflow),
+                'xml_id': self.get_model_xml_id(workflow),
                 'data_models':  data_models
             })
         return ret
@@ -640,7 +641,7 @@ class ModulePrototyper(models.Model):
         Possible value for mode:
         * None: return all values
         * no_relation: return all values for field with type not in
-          (one2many, many2many) 
+          (one2many, many2many)
         * relation_only: return all values for field with type in
           (one2many, many2many)
         """
@@ -660,7 +661,6 @@ class ModulePrototyper(models.Model):
         """
         self.ensure_one()
         workflows_def = []
-        
         workflows = self.get_workflows_datas()
         for workflow_datas in workflows:
             xml_id = workflow_datas['xml_id']
