@@ -1,23 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#     OpenERP, Open Source Management Solution
-#     Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
-#     Copyright 2015 Agile Business Group <http://www.agilebg.com>
-#
-#     This program is free software: you can redistribute it and/or modify
-#     it under the terms of the GNU General Public License as published by
-#     the Free Software Foundation, either version 3 of the License, or
-#     (at your option) any later version.
-#
-#     This program is distributed in the hope that it will be useful,
-#     but WITHOUT ANY WARRANTY; without even the implied warranty of
-#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#     GNU General Public License for more details.
-#
-#     You should have received a copy of the GNU General Public License
-#     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2004-2009 Tiny SPRL (<http://tiny.be>).
+# © 2015 Agile Business Group <http://www.agilebg.com>
+# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# License GPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+
 import os
 import shutil
 import tempfile
@@ -40,6 +26,7 @@ class DbBackup(models.Model):
     _inherit = "mail.thread"
 
     _sql_constraints = [
+        ("name_unique", "UNIQUE(name)", "Cannot duplicate a configuration."),
         ("days_to_keep_positive", "CHECK(days_to_keep >= 0)",
          "I cannot remove backups from the future. Ask Doc for that."),
     ]
@@ -104,10 +91,11 @@ class DbBackup(models.Model):
 
     @api.model
     def _default_folder(self):
-        """Default to ``backups`` folder inside current database datadir."""
+        """Default to ``backups`` folder inside current server datadir."""
         return os.path.join(
-            tools.config.filestore(self.env.cr.dbname),
-            "backups")
+            tools.config["data_dir"],
+            "backups",
+            self.env.cr.dbname)
 
     @api.multi
     @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user")
@@ -119,6 +107,18 @@ class DbBackup(models.Model):
             elif rec.method == "sftp":
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
+
+    @api.constrains("folder", "method")
+    @api.multi
+    def _check_folder(self):
+        """Do not use the filestore or you will backup your backups."""
+        for s in self:
+            if (s.method == "local" and
+                    s.folder.startswith(
+                        tools.config.filestore(self.env.cr.dbname))):
+                raise exceptions.ValidationError(
+                    _("Do not save backups on your filestore, or you will "
+                      "backup your backups too!"))
 
     @api.multi
     def action_sftp_test_connection(self):
@@ -223,13 +223,14 @@ class DbBackup(models.Model):
                 if rec.method == "local":
                     for name in iglob(os.path.join(rec.folder,
                                                    "*.dump.zip")):
-                        if name < oldest:
+                        if os.path.basename(name) < oldest:
                             os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
-                            if name.endswith(".dump.zip") and name < oldest:
+                            if (name.endswith(".dump.zip") and
+                                    os.path.basename(name) < oldest):
                                 remote.unlink(name)
 
     @api.multi
