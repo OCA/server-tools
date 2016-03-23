@@ -14,19 +14,12 @@ with the base_sale_multi_channels module, because it's likely some orders have
 errors when you import them (like product not found in Odoo, wrong line
 format etc.)
 
-Usage
-=====
-
-To use this module, you need to:
-
 * Go to ...
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/9.0
 
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
 
 Bug Tracker
 ===========
@@ -39,9 +32,6 @@ help us smashing it by providing a detailed and welcomed `feedback
 sale-workflow/issues/new?body=module:%20
 sale_exception%0Aversion:%20
 9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
-Credits
-=======
 
 Images
 ------
