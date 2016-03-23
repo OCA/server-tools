@@ -4,8 +4,8 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestBaseIrFiltersDisable(TransactionCase):
-    def test_base_ir_filters_disable(self):
+class TestBaseIrFiltersActive(TransactionCase):
+    def test_base_ir_filters_active(self):
         new_filter = self.env['ir.filters'].create({
             'name': 'inactive testfilter',
             'user_id': False,
