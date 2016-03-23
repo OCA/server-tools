@@ -13,32 +13,37 @@ class IrModel(models.Model):
 
     avoid_quick_create = fields.Boolean()
 
-    def _wrap_name_create(self, old_create, model):
-        def wrapper(cr, uid, name, context=None):
-            raise Warning(_("Can't create quickly. Opening create form"))
-        return wrapper
+    def _patch_quick_create(self, cr, ids):
 
-    def _register_hook(self, cr, ids=None):
-        if ids is None:
-            ids = self.search(cr, SUPERUSER_ID, [])
+        def _wrap_name_create():
+            def wrapper(self, cr, uid, name, context=None):
+                raise orm.except_orm(
+                    _('Error'),
+                    _("Can't create quickly. Opening create form"))
+            return wrapper
+
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
                 if model_obj and not hasattr(model_obj, 'check_quick_create'):
-                    model_obj.name_create = self._wrap_name_create(
-                        model_obj.name_create, model_name)
+                    model_obj._patch_method('name_create', _wrap_name_create())
                     model_obj.check_quick_create = True
+        return True
+
+    def _register_hook(self, cr):
+        self._patch_quick_create(cr, self.search(cr, SUPERUSER_ID, []))
+        return super(IrModel, self)._register_hook(cr)
 
     @api.model
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
         ir_model = super(IrModel, self).create(vals)
-        self._register_hook(self.env.cr, [ir_model.id])
+        self.pool[self._name]._patch_quick_create(self.env.cr, [ir_model.id])
         return ir_model
 
     @api.multi
     def write(self, vals):
         res = super(IrModel, self).write(vals)
-        self._register_hook(self.env.cr, [self.ids])
+        self.pool[self._name]._patch_quick_create(self.env.cr, self.ids)
         return res
