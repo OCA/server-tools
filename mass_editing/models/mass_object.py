@@ -88,7 +88,7 @@ class MassObject(models.Model):
             'key2': 'client_action_multi',
             'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']),
             'object': True,
-         }).id
+        }).id
         self.write(vals)
         return True
 
