@@ -45,11 +45,13 @@ class IrMailServer(osv.Model):
 
         if config_email_bcc:
             config_email_bcc = config_email_bcc.encode('ascii')
+            existing_bcc = []
             if message['Bcc']:
-                message['Bcc'] += COMMASPACE +\
-                    COMMASPACE.join(config_email_bcc.split(','))
-            else:
-                message['Bcc'] = COMMASPACE.join(config_email_bcc.split(','))
+                existing_bcc.append(message['Bcc'])
+                del message['Bcc']
+            message['Bcc'] = COMMASPACE.join(
+                existing_bcc + config_email_bcc.split(',')
+            )
 
         return super(IrMailServer, self)\
             .send_email(cr, uid, message, mail_server_id, smtp_server,
