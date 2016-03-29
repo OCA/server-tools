@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Remove odoo.com bindings",
-    "version": "9.0.0.1.0",
+    "version": "9.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "complexity": "normal",
