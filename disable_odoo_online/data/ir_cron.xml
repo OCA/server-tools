@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="mail.ir_cron_module_update_notification" model="ir.cron">
+            <field name="active" eval="False" />
+        </record>
+    </data>
+</openerp>
