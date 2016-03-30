@@ -22,7 +22,7 @@ Usage
 
 To manage all stored images, you need to:
 
-* Go to *Settings > Configuration > Multi images*.
+* Go to *Settings > Technical > Multi images*.
 
 ... but you probably prefer to manage them from the forms supplied by
 submodules that inherit this behavior.
@@ -71,7 +71,7 @@ To develop a module based on this one:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/8.0
+   :target: https://runbot.odoo-community.org/runbot/149/9.0
 
 Known issues / Roadmap
 ======================
@@ -90,7 +90,7 @@ help us smashing it by providing a detailed and welcomed `feedback
 <https://github.com/OCA/
 server-tools/issues/new?body=module:%20
 base_multi_image%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -106,6 +106,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Rafael Blasco <rafabn@antiun.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
+* Sodexis <dev@sodexis.com>
 
 Maintainer
 ----------
