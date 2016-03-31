@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * disable_openerp_online
+# * disable_odoo_online
 # 
 # Translators:
 msgid ""
@@ -17,22 +17,22 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#. module: disable_openerp_online
+#. module: disable_odoo_online
 #: field:publisher_warranty.contract,create_uid:0
 msgid "Created by"
 msgstr "Ustvaril"
 
-#. module: disable_openerp_online
+#. module: disable_odoo_online
 #: field:publisher_warranty.contract,create_date:0
 msgid "Created on"
 msgstr "Ustvarjeno"
 
-#. module: disable_openerp_online
+#. module: disable_odoo_online
 #: field:publisher_warranty.contract,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnjič posodobil"
 
-#. module: disable_openerp_online
+#. module: disable_odoo_online
 #: field:publisher_warranty.contract,write_date:0
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
