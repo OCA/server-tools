@@ -4,9 +4,9 @@
         <!-- the name of template will affect the order include the js,
         this js file should load after annoucement.js to override function
         in  annoucement.js file -->
-        <template id="assets_backend" name="mail disable_openerp_online assets" inherit_id="web.assets_backend">
+        <template id="assets_backend" name="mail disable_odoo_online assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/disable_openerp_online/static/src/js/disable_openerp_online.js"></script>
+                <script type="text/javascript" src="/disable_odoo_online/static/src/js/disable_odoo_online.js"></script>
             </xpath>
         </template>
     </data>

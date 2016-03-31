@@ -40,7 +40,7 @@ come with the standard code:
         'mail',
     ],
     "data": [
-        "views/disable_openerp_online.xml",
+        "views/disable_odoo_online.xml",
         'views/ir_ui_menu.xml',
         'data/ir_cron.xml',
     ],
