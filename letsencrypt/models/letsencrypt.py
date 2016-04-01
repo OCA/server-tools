@@ -25,6 +25,10 @@ class Letsencrypt(models.AbstractModel):
         return os.path.join(_get_default_datadir(), 'letsencrypt')
 
     @api.model
+    def get_challenge_dir(self):
+        return os.path.join(self.get_data_dir(), 'acme-challenge')
+
+    @api.model
     def call_cmdline(self, cmdline, loglevel=logging.INFO,
                      raise_on_result=True):
         process = subprocess.Popen(
@@ -125,12 +129,7 @@ class Letsencrypt(models.AbstractModel):
         self.validate_domain(domain)
         account_key = self.generate_account_key()
         csr = self.generate_csr(domain)
-        manifest, manifest_path = file_open(
-            'letsencrypt/__openerp__.py', pathinfo=True)
-        manifest.close()
-        acme_challenge = os.path.join(
-            os.path.dirname(manifest_path),
-            'static', 'acme-challenge')
+        acme_challenge = self.get_challenge_dir()
         if not os.path.isdir(acme_challenge):
             os.makedirs(acme_challenge)
         if self.env.context.get('letsencrypt_dry_run'):

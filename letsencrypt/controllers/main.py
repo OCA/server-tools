@@ -11,10 +11,11 @@ class Letsencrypt(http.Controller):
     @http.route('/.well-known/acme-challenge/<filename>', auth='none')
     def acme_challenge(self, filename):
         try:
-            return file_open(
-                os.path.join('letsencrypt', 'static', 'acme-challenge',
+            with file(
+                os.path.join(request.env['letsencrypt'].get_challenge_dir(),
                              filename)
-            ).read()
+            ) as challenge:
+                return challenge.read()
         except IOError:
             pass
         return request.not_found()
