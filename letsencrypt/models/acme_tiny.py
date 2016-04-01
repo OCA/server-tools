@@ -1,5 +1,5 @@
 # flake8: noqa
-#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import argparse, subprocess, json, os, sys, base64, binascii, time, hashlib, re, copy, textwrap, logging
 try:
     from urllib.request import urlopen # Python 3
