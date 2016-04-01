@@ -18,11 +18,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv.orm import Model
+{
+    "name": "Remove odoo.com bindings",
+    "version": "9.0.1.0.0",
+    "author": "Therp BV,Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "complexity": "normal",
+    "description": """
+This module deactivates all bindings to openerp.com that
+come with the standard code:
 
-
-class publisher_warranty_contract(Model):
-    _inherit = 'publisher_warranty.contract'
-
-    def update_notification(self, cr, uid, ids, cron_mode=True, context=None):
-        pass
+* update notifier code is deactivated and the function is overwritten
+* apps and updates menu items in settings are hidden inside Tools\\Parameters
+* help and account menu items in user menu are removed
+* prevent lookup of OPW for current database uuid and resulting
+  'unsupported' warning
+    """,
+    "category": "",
+    "depends": [
+        'base',
+        'mail',
+    ],
+    "data": [
+        "views/disable_odoo_online.xml",
+        'views/ir_ui_menu.xml',
+        'data/ir_cron.xml',
+    ],
+    "qweb": [
+        'static/src/xml/base.xml',
+    ],
+    'installable': True,
+}
