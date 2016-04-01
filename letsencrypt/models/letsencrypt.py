@@ -9,7 +9,6 @@ import subprocess
 import tempfile
 from openerp import _, api, models, exceptions
 from openerp.tools.config import _get_default_datadir
-from openerp.tools.misc import file_open
 
 
 DEFAULT_KEY_LENGTH = 4096

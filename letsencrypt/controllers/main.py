@@ -4,7 +4,6 @@
 import os
 from openerp import http
 from openerp.http import request
-from openerp.tools.misc import file_open
 
 
 class Letsencrypt(http.Controller):
