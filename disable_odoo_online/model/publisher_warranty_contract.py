@@ -18,11 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv.orm import Model
+from openerp import api, models
 
 
-class publisher_warranty_contract(Model):
+class publisher_warranty_contract(models.AbstractModel):
     _inherit = 'publisher_warranty.contract'
 
-    def update_notification(self, cr, uid, ids, cron_mode=True, context=None):
+    @api.multi
+    def update_notification(self, cron_mode=True, context=None):
         pass
