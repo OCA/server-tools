@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="email_template_demo1" model="email.template">
+            <field name="name">QWeb demo</field>
+            <field name="body_type">qweb</field>
+            <field name="body_view_id" ref="view_email_template_demo1" />
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="subject">QWeb demo email</field>
+        </record>
+    </data>
+</openerp>

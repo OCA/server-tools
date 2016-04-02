@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="email_template_form" model="ir.ui.view">
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_form" />
+            <field name="arch" type="xml">
+                <field name="model_id" position="after">
+                    <field name="body_type" />
+                </field>
+                <field name="body_html" position="before">
+                    <group attrs="{'invisible': [('body_type', '!=', 'qweb')]}">
+                        <field name="body_view_id" attrs="{'required': [('body_type', '=', 'qweb')]}" />
+                        <field name="body_view_arch" attrs="{'required': [('body_type', '=', 'qweb')], 'invisible': [('body_view_id', '=', False)]}" />
+                    </group>
+                </field>
+                <field name="body_html" position="attributes">
+                    <attribute name="attrs">{'invisible': [('body_type', '!=', 'jinja2')]}</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="email_template_tree" model="ir.ui.view">
+            <field name="model">email.template</field>
+            <field name="inherit_id" ref="email_template.email_template_tree" />
+            <field name="arch" type="xml">
+                <field name="report_name" position="before">
+                    <field name="body_type" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

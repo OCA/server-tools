@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="view_email_template_corporate_identity">
+            <body>
+                <html>
+                    <img style="float: right" t-attf-src="data:image;base64,{{env.user.company_id.logo}}" />
+                    <!-- if some template calling us sets this variable,
+                         we print a h1 tag /-->
+                    <h1 t-if="email_heading"><t t-esc="email_heading" /></h1>
+                    <t t-raw="0" />
+                    <!-- use some standard footer if the user doesn't have
+                         a signature /-->
+                    <footer t-if="not email_use_user_signature">
+                        <p>
+                            <a t-att-href="env.user.company_id.website">
+                                <t t-esc="env.user.company_id.name" />
+                            </a>
+                        </p>
+                        <p><t t-esc="env.user.company_id.phone" /></p>
+                    </footer>
+                    <footer t-if="email_use_user_signature">
+                        <t t-raw="env.user.signature" />
+                    </footer>
+                </html>
+            </body>
+        </template>
+        <template id="view_email_template_demo1">
+            <!-- because we can simply call the ci here, we don't need to
+                 repeat it /-->
+            <t t-call="email_template_qweb.view_email_template_corporate_identity">
+                <!-- the template we call uses this as title if we set it /-->
+                <t t-set="email_heading" t-value="email_template.subject" />
+                <h2>Dear <t t-esc="object.name" />,</h2>
+                <p>
+                    This is an email template using qweb.
+                </p>
+            </t>
+        </template>
+    </data>
+</openerp>
