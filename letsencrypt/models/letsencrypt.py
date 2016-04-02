@@ -144,7 +144,7 @@ class Letsencrypt(models.AbstractModel):
                 self.env['ir.config_parameter'].get_param(
                     'letsencrypt.chain_certificate_address',
                     'https://letsencrypt.org/certs/'
-                    'lets-encrypt-x1-cross-signed.pem')
+                    'lets-encrypt-x3-cross-signed.pem')
             )
             crt.write(chain_cert.read())
             chain_cert.close()
