@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Dave Lasley <dave@laslabs.com>
-#    Copyright: 2016-TODAY LasLabs, Inc. [https://laslabs.com]
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2016-TODAY LasLabs, Inc. [https://laslabs.com]
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests.common import TransactionCase
 from openerp.addons.base_user_gravatar.models.res_users import ResUsers
@@ -50,7 +33,7 @@ class TestResUsers(TransactionCase):
 
     @mock.patch('%s.urllib2' % MODULE_LOCATION)
     def test_get_gravatar_base64_opens_correct_uri(self, mk, ):
-        ''' Test that gravatar is pinged for image '''
+        """ Test that gravatar is pinged for image """
         self.model_obj._get_gravatar_base64(self.partner_vals['email'])
         expect = hashlib.md5(self.partner_vals['email']).hexdigest()
         mk.urlopen.assert_called_once_with(self.url.format(expect))
@@ -58,7 +41,7 @@ class TestResUsers(TransactionCase):
     @mock.patch('%s.base64' % MODULE_LOCATION)
     @mock.patch('%s.urllib2' % MODULE_LOCATION)
     def test_get_gravatar_base64_returns_encoded_image(self, mk, b64_mk, ):
-        ''' Test that image result is read '''
+        """ Test that image result is read """
         expect = 'Expect'
         b64_mk.encodestring.return_value = expect
         result = self.model_obj._get_gravatar_base64(
@@ -67,7 +50,7 @@ class TestResUsers(TransactionCase):
         self.assertEquals(expect, result)
 
     def test_get_gravatar_image_writes_image(self, ):
-        ''' Test that the resulting gravatar is written to user '''
+        """ Test that the resulting gravatar is written to user """
         with mock.patch.object(ResUsers, 'write') as write_mk:
             user_id = self._test_record()
             with mock.patch.object(user_id, '_get_gravatar_base64') as mk:
