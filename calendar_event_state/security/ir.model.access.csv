@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_event_state","Manage event state","model_calendar_event_state","base.group_user",1,1,1,1

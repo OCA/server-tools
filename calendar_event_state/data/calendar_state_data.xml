@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Alessio Gerace - Agile Business Group
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<openerp>
+    <data noupdate="1">
+
+        <record id="event_to_plan" model="calendar.event.state">
+            <field name="name">To Plan</field>
+            <field name="sequence" eval="1"/>
+            <field name="fold" eval="False"/>
+        </record>
+
+        <record id="event_planned" model="calendar.event.state">
+            <field name="name">Planned</field>
+            <field name="sequence" eval="2"/>
+            <field name="fold" eval="False"/>
+        </record>
+
+        <record id="event_done" model="calendar.event.state">
+            <field name="name">Done</field>
+            <field name="sequence" eval="3"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+    </data>
+</openerp>
