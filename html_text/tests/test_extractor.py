@@ -46,6 +46,12 @@ class ExtractorCase(TransactionCase):
         with self.assertRaises(etree.XMLSyntaxError):
             self.text_from_html("", fail=True)
 
+    def test_false_html(self):
+        """``False`` HTML handled correctly."""
+        self.assertEqual(self.text_from_html(False), "")
+        with self.assertRaises(TypeError):
+            self.text_from_html(False, fail=True)
+
     def test_bad_html(self):
         """Bad HTML handled correctly."""
         self.assertEqual(self.text_from_html("<<bad>"), "")
