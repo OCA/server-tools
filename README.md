@@ -20,6 +20,7 @@ addon | version | summary
 [base_multi_image](base_multi_image/) | 9.0.1.0.0 | Allow multiple images for database objects
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
+[base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
@@ -43,7 +44,6 @@ addon | version | summary
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 (unported) | External Database Sources
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 (unported) | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 (unported) | Report qweb auto generation
-[base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 (unported) | Synchronize Gravatar image
 [configuration_helper](configuration_helper/) | 0.8 (unported) | Configuration Helper
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 (unported) | Database cleanup
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
