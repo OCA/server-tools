@@ -2,11 +2,12 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-======================
-Images from HTML field
-======================
+==========================
+Image URLs from HTML field
+==========================
 
-This module extracts image URLs from any chunk of HTML, in appearing order.
+This module includes a method that extracts image URLs from any chunk of HTML,
+in appearing order.
 
 Usage
 =====

@@ -2,7 +2,7 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Images from HTML field",
+    "name": "Image URLs from HTML field",
     "summary": "Extract images found in any HTML field",
     "version": "8.0.1.0.0",
     "category": "Tools",
