@@ -41,7 +41,7 @@ class IrFieldsConverter(models.Model):
         # Parse HTML
         try:
             doc = html.fromstring(html_content)
-        except (etree.XMLSyntaxError, etree.ParserError):
+        except (TypeError, etree.XMLSyntaxError, etree.ParserError):
             if fail:
                 raise
             else:
