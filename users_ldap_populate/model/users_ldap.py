@@ -22,8 +22,7 @@
 import re
 from openerp.osv import orm, fields
 import ldap
-from ldap.filter import filter_format
-from openerp import SUPERUSER_ID, exceptions
+from openerp import SUPERUSER_ID
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -102,9 +101,9 @@ class CompanyLDAP(orm.Model):
             results = self.get_ldap_entry_dicts(conf)
             for result in results:
                 user_id = self.get_or_create_user(
-                        cr, uid, conf, result[1][login_attr][0], result)
-                #this happens if something goes wrong while creating the user
-                #or fetching information from ldap
+                    cr, uid, conf, result[1][login_attr][0], result)
+                # this happens if something goes wrong while creating the user
+                # or fetching information from ldap
                 if not user_id:
                     deactivate_unknown = False
                 known_user_ids.append(user_id)
@@ -116,7 +115,7 @@ class CompanyLDAP(orm.Model):
         deactivated_users_count = 0
         if deactivate_unknown:
             deactivated_users_count = self.deactivate_unknown_users(
-                    cr, uid, ids, known_user_ids, context=context)
+                cr, uid, ids, known_user_ids, context=context)
 
         logger.debug("%d users created", users_created)
         logger.debug("%d users deactivated", deactivated_users_count)
@@ -140,11 +139,11 @@ class CompanyLDAP(orm.Model):
             present_in_ldap = False
             for conf in self.get_ldap_dicts(cr, ids):
                 present_in_ldap |= bool(self.get_ldap_entry_dicts(
-                        conf, user_name=unknown_user['login']))
+                    conf, user_name=unknown_user['login']))
             if not present_in_ldap:
                 res_users.write(
-                        cr, uid, unknown_user['id'], {'active': False},
-                        context=context)
+                    cr, uid, unknown_user['id'], {'active': False},
+                    context=context)
                 unknown_user_ids.append(unknown_user['id'])
 
         return len(unknown_user_ids)
