@@ -114,15 +114,15 @@ class CompanyLDAP(orm.Model):
 
         deactivated_users_count = 0
         if deactivate_unknown:
-            deactivated_users_count = self.deactivate_unknown_users(
+            deactivated_users_count = self.do_deactivate_unknown_users(
                 cr, uid, ids, known_user_ids, context=context)
 
         logger.debug("%d users created", users_created)
         logger.debug("%d users deactivated", deactivated_users_count)
         return users_created, deactivated_users_count
 
-    def deactivate_unknown_users(self, cr, uid, ids, known_user_ids,
-                                 context=None):
+    def do_deactivate_unknown_users(
+            self, cr, uid, ids, known_user_ids, context=None):
         """
         Deactivate users not found in last populate run
         """
