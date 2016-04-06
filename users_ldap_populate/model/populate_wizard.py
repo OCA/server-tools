@@ -18,8 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import orm, fields
+from openerp.osv import orm, fields  # pylint: disable=W0402
 
 
 class CompanyLDAPPopulateWizard(orm.TransientModel):
@@ -39,7 +38,7 @@ class CompanyLDAPPopulateWizard(orm.TransientModel):
         ldap_pool = self.pool.get('res.company.ldap')
         if 'ldap_id' in vals:
             vals['users_created'], vals['users_deactivated'] =\
-                    ldap_pool.action_populate(
-                            cr, uid, vals['ldap_id'], context=context)
+                ldap_pool.action_populate(
+                    cr, uid, vals['ldap_id'], context=context)
         return super(CompanyLDAPPopulateWizard, self).create(
             cr, uid, vals, context=None)

@@ -20,7 +20,7 @@
 ##############################################################################
 
 import re
-from openerp.osv import orm, fields
+from openerp.osv import orm, fields  # pylint: disable=W0402
 import ldap
 from openerp import SUPERUSER_ID
 import logging
