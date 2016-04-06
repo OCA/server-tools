@@ -1,94 +1,74 @@
 # -*- coding: utf-8 -*-
-#
-#    Author: Yannick Vaucher
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# © 2015-2016 Yannick Vaucher (Camptocamp SA)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from openerp.osv import orm, fields
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
+from openerp import api, exceptions, fields, models
 from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
 
-class RecordLifespan(orm.Model):
+class RecordLifespan(models.Model):
     """ Configure records lifespans per model
 
     After the lifespan is expired (compared to the `write_date` of the
     records), the records are deactivated.
     """
     _name = 'record.lifespan'
-
     _order = 'model'
 
-    _columns = {
-        'model_id': fields.many2one(
-            'ir.model',
-            string='Model',
-            required=True,
-            domain=[('has_an_active_field', '=', True)],
-        ),
-        'model': fields.related(
-            'model_id', 'model',
-            string='Model Name',
-            type='char',
-            readonly=True,
-            store=True,
-        ),
-        'months': fields.integer(
-            "Months",
-            required=True,
-            help="Number of month after which the records will be set to "
-                 "inactive based on their write date"),
-    }
+    model_id = fields.Many2one(
+        'ir.model',
+        string='Model',
+        required=True,
+        domain=[('has_an_active_field', '=', True)],
+    )
+    model = fields.Char(
+        related='model_id.model',
+        string='Model Name',
+        store=True,
+    )
+    months = fields.Integer(
+        required=True,
+        help="Number of month after which the records will be set to inactive "
+             "based on their write date"
+    )
 
     _sql_constraints = [
         ('months_gt_0', 'check (months > 0)',
          "Months must be a value greater than 0"),
     ]
 
-    def _scheduler_archive_records(self, cr, uid, context=None):
-        lifespan_ids = self.search(cr, uid, [], context=context)
+    @api.model
+    def _scheduler_archive_records(self):
+        lifespans = self.search([])
         _logger.info('Records archiver starts archiving records')
-        for lifespan_id in lifespan_ids:
+        for lifespan in lifespans:
             try:
-                self.archive_records(cr, uid, [lifespan_id], context=context)
-            except orm.except_orm as e:
+                lifespan.archive_records()
+            except exceptions.UserError as e:
                 _logger.error("Archiver error:\n%s", e[1])
         _logger.info('Rusty Records now rest in peace')
         return True
 
-    def _archive_domain(self, cr, uid, lifespan, expiration_date,
-                        context=None):
+    @api.multi
+    def _archive_domain(self, expiration_date):
         """ Returns the domain used to find the records to archive.
 
         Can be inherited to change the archived records for a model.
         """
-        model = self.pool[lifespan.model]
-        domain = [('write_date', '<', expiration_date),
-                  ]
+        model = self.env[self.model_id.model]
+        domain = [('write_date', '<', expiration_date)]
         if 'state' in model._columns:
             domain += [('state', 'in', ('done', 'cancel'))]
         return domain
 
-    def _archive_lifespan_records(self, cr, uid, lifespan, context=None):
+    @api.multi
+    def _archive_lifespan_records(self):
         """ Archive the records for a lifespan, so for a model.
 
         Can be inherited to customize the archive strategy.
@@ -97,37 +77,38 @@ class RecordLifespan(orm.Model):
         Only done and canceled records will be deactivated.
 
         """
+        self.ensure_one()
         today = datetime.today()
-        model = self.pool.get(lifespan.model)
-        if not model:
-            raise orm.except_orm(
-                _('Error'),
-                _('Model %s not found') % lifespan.model)
+        model_name = self.model_id.model
+        model = self.env[model_name]
+        if not isinstance(model, models.Model):
+            raise exceptions.UserError(
+                _('Model %s not found') % model_name)
         if 'active' not in model._columns:
-            raise orm.except_orm(
-                _('Error'),
-                _('Model %s has no active field') % lifespan.model)
+            raise exceptions.UserError(
+                _('Model %s has no active field') % model_name)
 
-        delta = relativedelta(months=lifespan.months)
-        expiration_date = (today - delta).strftime(DATE_FORMAT)
+        delta = relativedelta(months=self.months)
+        expiration_date = fields.Datetime.to_string(today - delta)
 
-        domain = self._archive_domain(cr, uid, lifespan, expiration_date,
-                                      context=context)
-        rec_ids = model.search(cr, uid, domain, context=context)
-        if not rec_ids:
+        domain = self._archive_domain(expiration_date)
+        recs = model.search(domain)
+        if not recs:
             return
 
         # use a SQL query to bypass tracking always messages on write for
         # object inheriting mail.thread
         query = ("UPDATE %s SET active = FALSE WHERE id in %%s"
                  ) % model._table
-        cr.execute(query, (tuple(rec_ids),))
+        self.env.cr.execute(query, (tuple(recs.ids),))
+        recs.invalidate_cache()
         _logger.info(
             'Archived %s %s older than %s',
-            len(rec_ids), lifespan.model, expiration_date)
+            len(recs.ids), model_name, expiration_date)
 
-    def archive_records(self, cr, uid, ids, context=None):
+    @api.multi
+    def archive_records(self):
         """ Call the archiver for several record lifespans """
-        for lifespan in self.browse(cr, uid, ids, context=context):
-            self._archive_lifespan_records(cr, uid, lifespan, context=context)
+        for lifespan in self:
+            lifespan._archive_lifespan_records()
         return True

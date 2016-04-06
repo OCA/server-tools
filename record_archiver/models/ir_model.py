@@ -1,73 +1,39 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Authors: Guewen Baconnier
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
-from openerp.osv import orm, fields
+# © 2015 Guewen Baconnier (Camptocamp SA)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from openerp import api, fields, models
 
 
-class IrModel(orm.Model):
+class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    def _compute_has_an_active_field(self, cr, uid, ids, name,
-                                     args, context=None):
-        res = {}
-        for model_id in ids:
-            active_field_ids = self.pool['ir.model.fields'].search(
-                cr, uid,
-                [('model_id', '=', model_id),
+    @api.multi
+    def _compute_has_an_active_field(self):
+        for model in self:
+            active_fields = self.env['ir.model.fields'].search(
+                [('model_id', '=', model.id),
                  ('name', '=', 'active'),
                  ],
-                limit=1,
-                context=context)
-            res[model_id] = bool(active_field_ids)
-        return res
+                limit=1)
+            model.has_an_active_field = bool(active_fields)
 
-    def _search_has_an_active_field(self, cr, uid, obj, name, args,
-                                    context=None):
-        if not len(args):
-            return []
-        fields_model = self.pool['ir.model.fields']
+    @api.model
+    def _search_has_an_active_field(self,  operator, value):
+        if operator not in ['=', '!=']:
+            raise AssertionError('operator %s not allowed' % operator)
+        fields_model = self.env['ir.model.fields']
         domain = []
-        for field, operator, value in args:
-            assert field == name
-            active_field_ids = fields_model.search(
-                cr, uid, [('name', '=', 'active')], context=context)
-            active_fields = fields_model.read(cr, uid, active_field_ids,
-                                              fields=['model_id'],
-                                              load='_classic_write',
-                                              context=context)
-            model_ids = [field['model_id'] for field in active_fields]
-            if operator == '=' or not value:
-                domain.append(('id', 'in', model_ids))
-            elif operator == '!=' or value:
-                domain.append(('id', 'not in', model_ids))
-            else:
-                raise AssertionError('operator %s not allowed' % operator)
+        active_fields = fields_model.search(
+            [('name', '=', 'active')])
+        models = active_fields.mapped('model_id')
+        if operator == '=' and value or operator == '!=' and not value:
+            domain.append(('id', 'in', models.ids))
+        else:
+            domain.append(('id', 'not in', models.ids))
         return domain
 
-    _columns = {
-        'has_an_active_field': fields.function(
-            _compute_has_an_active_field,
-            fnct_search=_search_has_an_active_field,
-            string='Has an active field',
-            readonly=True,
-            type='boolean',
-        ),
-    }
+    has_an_active_field = fields.Boolean(
+        compute=_compute_has_an_active_field,
+        search=_search_has_an_active_field,
+        string='Has an active field',
+    )
