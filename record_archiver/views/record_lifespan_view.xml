@@ -41,8 +41,14 @@
       </field>
     </record>
 
+    <menuitem id="menu_record_archiver"
+      name="Record Archiver"
+      parent="base.menu_administration"
+      sequence="10"/>
+
     <menuitem id="menu_record_lifespan_config"
-      parent="base.menu_config"
+      name="Lifespans"
+      parent="menu_record_archiver"
       sequence="20"
       action="action_record_lifespan_view"/>
 
