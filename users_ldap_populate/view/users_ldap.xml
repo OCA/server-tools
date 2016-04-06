@@ -7,11 +7,9 @@
             <field name="inherit_id" ref="auth_ldap.company_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//form[@string='LDAP Configuration']" position="inside">
-                    <separator string="Populate user database" colspan="4"/>
-                    <field name="deactivate_unknown_users" colspan="4" />
-                    <group attrs="{'invisible': [('deactivate_unknown_users', '=', False)]}" colspan="4">
-                        <label string="Except following users" colspan="4" />
-                        <field name="no_deactivate_user_ids" colspan="4" nolabel="1" />
+                    <group string="Populate user database">
+                        <field name="deactivate_unknown_users"/>
+                        <field name="no_deactivate_user_ids" attrs="{'invisible': [('deactivate_unknown_users', '=', False)]}" widget="many2many_tags" />
                     </group>
                     <button name="populate_wizard"
                             string="Populate"
