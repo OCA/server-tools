@@ -9,7 +9,7 @@
     'summary': 'Mark as read or delete mails after a set time',
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'website': 'http://odoo-community.org',
+    'website': 'https://odoo-community.org',
     'depends': ['mail_environment'],
     'data': ['views/mail_view.xml'],
     'installable': True,
