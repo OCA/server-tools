@@ -1,6 +1,6 @@
 {% macro render_ref_list(values) -%}
   {% set comma = joiner(", ") %}
-  {% for val in values %}{{ comma() }}{{ "ref('%s')" % val }}{% endfor %}
+  {% for val in values %}{% for i in val.split(',') %}{{ comma() }}{{ "ref('%s')" % i }}{% endfor %}{% endfor %}
 {%- endmacro %}
 {% macro render_value(field_value) -%}
   {% set value = field_value['value'] %}
@@ -9,7 +9,7 @@
 {% macro render_field(field_value) -%}
     {% set value = field_value['value'] %}
     {% set field_type = field_value.get('field_type') %}
-    {% if field_type in ('one2many' or 'many2many') -%}
+    {% if field_type in ('one2many', 'many2many') -%}
         <field name="{{ field_value['id'] }}" {{ 'eval="[(6, None, [%s])]"' % render_ref_list(value) if value }} />
     {% elif field_type == 'many2one' -%}
         <field name="{{ field_value['id'] }}" {{ 'ref="%s"' % value if value }} />
