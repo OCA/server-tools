@@ -35,6 +35,10 @@ class NscaCheck(models.Model):
     nsca_model = fields.Char(u"Model")
     nsca_function = fields.Char(u"Method")
     nsca_args = fields.Char(u"Arguments")
+    allow_void_result = fields.Boolean(
+        u"Allow void result", default=False,
+        help=u"By default, a CRITICAL message is sent if the method does not "
+             u"return.\nIf checked, no message will be sent in such a case.")
 
     @api.model
     def default_get(self, fields_list):
@@ -87,7 +91,13 @@ class NscaCheck(models.Model):
         try:
             args = str2tuple(check.nsca_args)
             NscaModel = self.env[check.nsca_model]
-            rc, message = getattr(NscaModel, check.nsca_function)(*args)
+            result = getattr(NscaModel, check.nsca_function)(*args)
+            if not result:
+                if check.allow_void_result:
+                    return False
+                raise ValueError(
+                    "'%s' method does not return" % check.nsca_function)
+            rc, message = result
         except Exception, exc:
             rc, message = 2, "%s" % exc
             _logger.error("%s - %s", check.service, message)

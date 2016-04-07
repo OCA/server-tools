@@ -27,6 +27,7 @@
                         <field name="nsca_model"/>
                         <field name="nsca_function"/>
                         <field name="nsca_args"/>
+                        <field name="allow_void_result"/>
                         <div colspan="2">
                             <p>The method must return a tuple (RC, MESSAGE) where RC is an integer:</p>
                             <newline/>
