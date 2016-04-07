@@ -13,7 +13,6 @@
     "installable": True,
     "data": [
         "security/ir.model.access.csv",
-        "data/ir_config_parameter.xml",
         "data/nsca_server.xml",
         "views/nsca_menu.xml",
         "views/nsca_check.xml",

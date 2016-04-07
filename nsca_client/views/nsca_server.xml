@@ -16,6 +16,9 @@
                     <field name="port"/>
                     <field name="config_file_path"/>
                 </group>
+                <group string="Node identity">
+                    <field name="node_hostname"/>
+                </group>
                 <group string="Checks">
                     <field name="check_ids" nolabel="1"/>
                 </group>
