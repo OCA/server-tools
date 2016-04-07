@@ -23,7 +23,7 @@ class NscaServer(models.Model):
         compute='_compute_config_file_path')
     node_hostname = fields.Char(
         u"Hostname of this node", required=True,
-        help=u"This is the hostname of the current node declared in the "
+        help=u"This is the hostname of the current Odoo node declared in the "
              u"monitoring server.")
     check_ids = fields.One2many(
         'nsca.check', 'server_id', string=u"Checks")
