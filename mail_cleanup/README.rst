@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
 Mail cleanup
 ===========
@@ -23,7 +24,7 @@ per server.
 
 Example of a configuration file (add those values to your server)::
 
- [incoming_mail.openerp_pop_mail1]
+ [incoming_mail.openerp_imap_mail1]
  cleanup_days = False # default value
  purge_days = False # default value
  cleanup_folder = NotParsed # optional parameter

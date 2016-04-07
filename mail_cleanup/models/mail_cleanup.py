@@ -1,44 +1,26 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Matthieu Dietrich
-#    Copyright 2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015-2016 Matthieu Dietrich (Camptocamp SA)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp.osv import orm, fields
-from dateutil import relativedelta
-from datetime import datetime
+from openerp import api, fields, models
+from dateutil.relativedelta import relativedelta
 
-from server_environment import serv_config
+from openerp.addons.server_environment import serv_config
 
 _logger = logging.getLogger(__name__)
 
 
-class FetchmailServer(orm.Model):
+class FetchmailServer(models.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 
-    def _get_cleanup_conf(self, cursor, uid, ids, name, args, context=None):
+    @api.multi
+    def _get_cleanup_conf(self):
         """
         Return configuration
         """
-        res = {}
-        for fetchmail in self.browse(cursor, uid, ids):
+        for fetchmail in self:
             global_section_name = 'incoming_mail'
 
             # default vals
@@ -58,38 +40,30 @@ class FetchmailServer(orm.Model):
                 config_vals['cleanup_days'] = int(config_vals['cleanup_days'])
             if config_vals['purge_days']:
                 config_vals['purge_days'] = int(config_vals['purge_days'])
-            res[fetchmail.id] = config_vals
-        return res
 
-    _columns = {
-        'cleanup_days': fields.function(
-            _get_cleanup_conf,
-            method=True,
-            string='Expiration days',
-            type="integer",
-            multi='outgoing_mail_config',
-            help="Number of days before marking an e-mail as read"),
-        'cleanup_folder': fields.function(
-            _get_cleanup_conf,
-            method=True,
-            string='Expiration folder',
-            type="char",
-            multi='outgoing_mail_config',
-            help="Folder where an e-mail marked as read will be moved."),
-        'purge_days': fields.function(
-            _get_cleanup_conf,
-            method=True,
-            string='Deletion days',
-            type="integer",
-            multi='outgoing_mail_config',
-            help="Number of days before removing an e-mail"),
-    }
+            for field in ['cleanup_days', 'purge_days', 'cleanup_folder']:
+                self[field] = config_vals[field]
+
+    cleanup_days = fields.Integer(
+        compute=_get_cleanup_conf,
+        string='Expiration days',
+        help="Number of days before marking an e-mail as read")
+
+    cleanup_folder = fields.Char(
+        compute=_get_cleanup_conf,
+        string='Expiration folder',
+        help="Folder where an e-mail marked as read will be moved.")
+
+    purge_days = fields.Integer(
+        compute=_get_cleanup_conf,
+        string='Deletion days',
+        help="Number of days before removing an e-mail")
 
     def _cleanup_fetchmail_server(self, server, imap_server):
         count, failed = 0, 0
-        expiration_date = (datetime.now() + relativedelta.relativedelta(
-            days=-(server.cleanup_days))).strftime('%d-%b-%Y')
-        search_text = '(UNSEEN BEFORE %s)' % expiration_date
+        expiration_date = fields.Date.from_string(fields.Date.today())
+        expiration_date -= relativedelta(days=server.cleanup_days)
+        search_text = expiration_date.strftime('(UNSEEN BEFORE %d-%b-%Y)')
         imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
@@ -114,9 +88,9 @@ class FetchmailServer(orm.Model):
     def _purge_fetchmail_server(self, server, imap_server):
         # Purging e-mails older than the purge date, if available
         count, failed = 0, 0
-        purge_date = (datetime.now() + relativedelta.relativedelta(
-            days=-(server.purge_days))).strftime('%d-%b-%Y')
-        search_text = '(BEFORE %s)' % purge_date
+        purge_date = fields.Date.from_string(fields.Date.today())
+        purge_date -= relativedelta(days=server.purge_days)
+        search_text = purge_date.strftime('(BEFORE %d-%b-%Y)')
         imap_server.select()
         result, data = imap_server.search(None, search_text)
         for num in data[0].split():
@@ -132,13 +106,13 @@ class FetchmailServer(orm.Model):
                      "%d succeeded, %d failed.", count, server.type,
                      server.name, (count - failed), failed)
 
-    def fetch_mail(self, cr, uid, ids, context=None):
+    @api.multi
+    def fetch_mail(self):
         """ Called before the fetch, in order to clean up
              right before retrieving emails. """
-        if context is None:
-            context = {}
+        context = self.env.context.copy()
         context['fetchmail_cron_running'] = True
-        for server in self.browse(cr, uid, ids, context=context):
+        for server in self:
             _logger.info('start cleaning up emails on %s server %s',
                          server.type, server.name)
             context.update({'fetchmail_server_id': server.id,
@@ -162,5 +136,4 @@ class FetchmailServer(orm.Model):
                     if imap_server:
                         imap_server.close()
                         imap_server.logout()
-        return super(FetchmailServer, self).fetch_mail(cr, uid, ids,
-                                                       context=context)
+        return super(FetchmailServer, self).fetch_mail()
