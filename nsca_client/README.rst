@@ -6,21 +6,19 @@
 NSCA Client
 ===========
 
-Send passive alert to your favorite NSCA daemon (Nagios, Shinken...).
+This is a technical module to send passive alerts to your favorite NSCA daemon
+(Nagios, Shinken...).
 This module is based on the Odoo cron system and requires a NSCA client
 installed on the system to satisfy the ``/usr/sbin/send_nsca`` command.
 
 Installation
 ============
 
-To install this module, you need to install a NSCA client.
+To use this module, you need to install a NSCA client.
 
 On Debian/Ubuntu::
 
     $ sudo apt-get install nsca-client
-
-Then configure the NSCA client in ``/etc/send_nsca.cfg`` (password
-and encryption method).
 
 Configuration
 =============
@@ -29,9 +27,6 @@ To configure this module, you need to:
 
 * Configure your server and a passive service in your monitoring tool
   (e.g service ``Odoo Mail Queue`` on host ``MY-SERVER``).
-* On Odoo, set the previous hostname in the system parameters::
-
-    nsca_client.hostname = MY-SERVER
 
 * Declare your NSCA server in the menu Configuration / Technical / NSCA Client / Servers
 
