@@ -11,6 +11,10 @@ class NscaServer(models.Model):
 
     name = fields.Char(u"Hostname", required=True)
     port = fields.Integer(u"Port", default=5667, required=True)
+    node_hostname = fields.Char(
+        u"Hostname of this node", required=True,
+        help=u"This is the hostname of the current node declared in the "
+             u"monitoring server.")
     config_file_path = fields.Char(
         u"Configuration file", default="/etc/send_nsca.cfg", required=True)
     check_ids = fields.One2many(

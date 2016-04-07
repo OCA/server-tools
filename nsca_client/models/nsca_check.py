@@ -106,8 +106,7 @@ class NscaCheck(models.Model):
     def _format_check_result(self, check, rc, message):
         """Format the check result with tabulations as delimiter."""
         message = message.replace('\t', ' ')
-        hostname = self.env['ir.config_parameter'].get_param(
-            'nsca_client.hostname', 'localhost')
+        hostname = check.server_id.node_hostname
         check_result = u"%s\t%s\t%s\t%s" % (
             hostname, check.service, rc, message)
         return check_result.encode('utf-8')
