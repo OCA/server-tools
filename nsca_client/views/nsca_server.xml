@@ -14,6 +14,8 @@
                 <group string="NSCA Server">
                     <field name="name" style="width: 30%;"/>
                     <field name="port"/>
+                    <field name="password" password="1"/>
+                    <field name="encryption_method"/>
                     <field name="config_file_path"/>
                 </group>
                 <group string="Node identity">
