@@ -14,7 +14,8 @@ with the base_sale_multi_channels module, because it's likely some orders have
 errors when you import them (like product not found in Odoo, wrong line
 format etc.)
 
-* Go to ...
+Usage
+=====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
