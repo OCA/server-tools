@@ -18,6 +18,9 @@ class NscaServer(models.Model):
     encryption_method = fields.Selection(
         selection='_selection_encryption_method',
         string=u"Encryption method", default='1', required=True)
+    config_dir_path = fields.Char(
+        u"Configuration directory",
+        compute='_compute_config_dir_path')
     config_file_path = fields.Char(
         u"Configuration file",
         compute='_compute_config_file_path')
@@ -56,20 +59,25 @@ class NscaServer(models.Model):
         ]
 
     @api.multi
-    def _compute_config_file_path(self):
+    def _compute_config_dir_path(self):
         for server in self:
             data_dir_path = config.get('data_dir')
+            dir_path = os.path.join(
+                data_dir_path, 'nsca_client', self.env.cr.dbname)
+            server.config_dir_path = dir_path
+
+    @api.multi
+    def _compute_config_file_path(self):
+        for server in self:
             file_name = 'send_nsca_%s.cfg' % server.id
-            full_path = os.path.join(data_dir_path, 'nsca_client', file_name)
+            full_path = os.path.join(server.config_dir_path, file_name)
             server.config_file_path = full_path
 
     @api.multi
     def write_config_file(self):
         for server in self:
-            data_dir_path = config.get('data_dir')
-            config_dir_path = os.path.join(data_dir_path, 'nsca_client')
             try:
-                os.makedirs(config_dir_path)
+                os.makedirs(server.config_dir_path)
             except OSError as exception:
                 if exception.errno != os.errno.EEXIST:
                     raise
