@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
+"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"PO-Revision-Date: 2016-06-06 13:57+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -25,7 +25,7 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,folder:0
 msgid "Absolute path for storing the backups"
-msgstr "备份绝对路径"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
@@ -36,7 +36,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "数据库的自动备份时间安排如下："
+msgstr ""
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.failure
@@ -51,7 +51,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr "备份"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,days_to_keep:0
@@ -76,19 +76,19 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:247
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:131
 #, python-format
 msgid "Connection Test Failed!"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:129
+#: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr ""
@@ -96,22 +96,22 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,create_uid:0
 msgid "Created by"
-msgstr "创建者"
+msgstr "Luonut"
 
 #. module: auto_backup
 #: field:db.backup,create_date:0
 msgid "Created on"
-msgstr "创建时间"
+msgstr "Luotu"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:208
+#: code:addons/auto_backup/models/db_backup.py:206
 #: model:mail.message.subtype,description:auto_backup.failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:213
+#: code:addons/auto_backup/models/db_backup.py:211
 #: model:mail.message.subtype,description:auto_backup.success
 #, python-format
 msgid "Database backup succeeded."
@@ -120,7 +120,7 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Viimeisimmän lähetetyn viestin päiväys."
 
 #. module: auto_backup
 #: field:db.backup,days_to_keep:0
@@ -128,7 +128,12 @@ msgid "Days to keep"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:120
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:119
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -152,24 +157,24 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seuraajat"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "点击   设置 / 技术 / 自动化 / 计划的动作"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr "帮助"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Sisältää chatter-yhteenvedon (viestien määrä, ...). Tämä yhteenveto on html-formaatissa, jotta se voidaan näyttää kanban-näkymässä."
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -184,27 +189,32 @@ msgstr "ID"
 #. module: auto_backup
 #: help:db.backup,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Jos valittuna, uudet viestit vaatii toimenpiteitä."
 
 #. module: auto_backup
 #: field:db.backup,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "On seuraaja"
 
 #. module: auto_backup
 #: field:db.backup,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Viimeisimmän viestin päiväys"
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "Viimeksi päivittänyt"
 
 #. module: auto_backup
 #: field:db.backup,write_date:0
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr "Viimeksi päivitetty"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -214,12 +224,12 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Viestejä"
 
 #. module: auto_backup
 #: help:db.backup,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Viesti- ja kommunikointihistoria"
 
 #. module: auto_backup
 #: field:db.backup,method:0
@@ -229,7 +239,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #. module: auto_backup
 #: help:db.backup,sftp_private_key:0
@@ -256,7 +266,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,sftp_port:0
 msgid "SFTP Port"
-msgstr "SFTP 端口"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,sftp_host:0
@@ -271,24 +281,24 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_search
 msgid "Search options"
-msgstr "搜索选项"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "搜索计划备份调度程序“Backup scheduler”。"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups "
 "generated."
-msgstr "设置计划动作为有效，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Yhteenveto"
 
 #. module: auto_backup
 #: help:db.backup,name:0
@@ -298,7 +308,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
-msgstr "测试 SFTP 连接"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,sftp_host:0
@@ -316,26 +326,26 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
-msgstr "接受 SSH/SFTP 使用的FTP 服务器上的端口。"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
 "The username where the SFTP connection should be made with. This is the user"
 " on the external server."
-msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Lukemattomia viestejä"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存在设置的目录下面。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0
@@ -345,7 +355,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr "警告："
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
