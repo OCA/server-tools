@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-14 07:02+0000\n"
 "PO-Revision-Date: 2016-04-05 07:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
+"Last-Translator: <>\n"
+"Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -25,7 +25,7 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,folder:0
 msgid "Absolute path for storing the backups"
-msgstr "备份绝对路径"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
@@ -36,7 +36,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "数据库的自动备份时间安排如下："
+msgstr ""
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.failure
@@ -51,7 +51,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr "备份"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,days_to_keep:0
@@ -96,12 +96,12 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,create_uid:0
 msgid "Created by"
-msgstr "创建者"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,create_date:0
 msgid "Created on"
-msgstr "创建时间"
+msgstr ""
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:208
@@ -157,12 +157,12 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "点击   设置 / 技术 / 自动化 / 计划的动作"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr "帮助"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,message_summary:0
@@ -179,7 +179,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,message_unread:0
@@ -199,12 +199,12 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,write_uid:0
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,write_date:0
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr ""
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -229,7 +229,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,name:0
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #. module: auto_backup
 #: help:db.backup,sftp_private_key:0
@@ -256,7 +256,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,sftp_port:0
 msgid "SFTP Port"
-msgstr "SFTP 端口"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,sftp_host:0
@@ -271,19 +271,19 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_search
 msgid "Search options"
-msgstr "搜索选项"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr "搜索计划备份调度程序“Backup scheduler”。"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups "
 "generated."
-msgstr "设置计划动作为有效，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
@@ -298,7 +298,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
-msgstr "测试 SFTP 连接"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,sftp_host:0
@@ -316,14 +316,14 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
-msgstr "接受 SSH/SFTP 使用的FTP 服务器上的端口。"
+msgstr ""
 
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
 "The username where the SFTP connection should be made with. This is the user"
 " on the external server."
-msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,message_unread:0
@@ -335,7 +335,7 @@ msgstr ""
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存在设置的目录下面。"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0
@@ -345,7 +345,7 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr "警告："
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
