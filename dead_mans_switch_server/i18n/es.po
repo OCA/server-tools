@@ -3,14 +3,23 @@
 # * dead_mans_switch_server
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Alexis de Lattre <alexis@via.ecp.fr>, 2016
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-10 18:17+0000\n"
+"POT-Creation-Date: 2016-04-14 07:02+0000\n"
+"PO-Revision-Date: 2016-04-07 18:20+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +93,7 @@ msgstr "ID de base de datos"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Fecha del último mensaje publicado en el registro."
 
 #. module: dead_mans_switch_server
 #: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:156
@@ -107,7 +116,7 @@ msgstr "Seguidores"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Guarda el resumen de la Charla (número de mensajes, ...). Este resumen es en formato html directamente para ser insertado en vistas kanban."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -117,7 +126,7 @@ msgstr "ID"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si se marca los nuevos mensajes requerirán su atención."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,instance_id:0
@@ -142,7 +151,7 @@ msgstr "Es seguidor"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Fecha del último mensaje"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
@@ -185,7 +194,7 @@ msgstr "Mensajes"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Histórico de mensajes y comunicaciones"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
@@ -251,7 +260,7 @@ msgstr "Esta semana"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes no leídos"
 
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_user

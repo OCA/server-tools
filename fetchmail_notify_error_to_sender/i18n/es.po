@@ -3,13 +3,42 @@
 # * fetchmail_notify_error_to_sender
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
+# bossnm11 <bossnm11@gmail.com>, 2014
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Chanseok <kcsgoodboy@gmail.com>, 2014
+# Chul Park <parkchul@nate.com>, 2015
+# David10000 <gameness@naver.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Gil <gedwarp@gmail.com>, 2014
+# Hongseob Lee <shevious@gmail.com>, 2015
+# Hongseob Lee <shevreg@yahoo.com>, 2015
+# Hotellook, 2014
+# jeon <bluerespect@nate.com>, 2014
+# JiyeonLee <leejiyeon00@gmail.com>, 2014
+# Jong-Dae Park <jdpark7@gmail.com>, 2013
+# Kevin Min <gr326887@graded.br>, 2015
+# KimKyudong <choemh@nate.com>, 2014
+# mariana1201 <gogo3135@naver.com>, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Nicole <dlruddk1112@gmail.com>, 2014
+# Paolo Valier, 2016
+# Pope, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Sarina Canelake <sarina@edx.org>, 2014
+# Seok Jun Yoon <fake2real@dctribe.com>, 2015
+# shin2012 <shin2013@gmail.com>, 2014
+# Sujin Lee <sujinlee.me@gmail.com>, 2014
+# Sunah Lim <whitetree70@snu.ac.kr>, 2013
+# Young Kim <youngck.uw@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-16 15:10+0000\n"
+"POT-Creation-Date: 2016-04-14 07:02+0000\n"
+"PO-Revision-Date: 2016-04-07 17:54+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +65,7 @@ msgstr "\n<div>\n    <p>Hola ${ctx.get('sender_message').get('from')},</p>\n    
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
 msgid "Email Thread"
-msgstr ""
+msgstr "Hilo correo electrónico"
 
 #. module: fetchmail_notify_error_to_sender
 #: field:fetchmail.server,error_notice_template_id:0

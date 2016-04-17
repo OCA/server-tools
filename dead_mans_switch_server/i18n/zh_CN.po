@@ -3,32 +3,19 @@
 # * dead_mans_switch_server
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
-# Alejandro Santana <alejandrosantana@anubia.es>, 2015
-# Alexsandro Haag <alex@hgsoft.com.br>, 2015
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
-# llum.birque@gmail.com <llum.birque@gmail.com>, 2015
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
-# Stéphane Bidoul <sbi@skynet.be>, 2015
-# Yael Terrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 11:04+0000\n"
-"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
+"PO-Revision-Date: 2015-11-26 12:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: dead_mans_switch_server
 #: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:158
@@ -45,7 +32,7 @@ msgstr ""
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Active"
-msgstr "Aktiivinen"
+msgstr ""
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
@@ -62,13 +49,13 @@ msgstr ""
 #: field:dead.mans.switch.instance,create_uid:0
 #: field:dead.mans.switch.log,create_uid:0
 msgid "Created by"
-msgstr "Luonut"
+msgstr "创建者"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,create_date:0
 #: field:dead.mans.switch.log,create_date:0
 msgid "Created on"
-msgstr "Luotu"
+msgstr "创建时间"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
@@ -159,13 +146,13 @@ msgstr ""
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
-msgstr "Viimeksi päivittänyt"
+msgstr "最后更新者"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_date:0
 #: field:dead.mans.switch.log,write_date:0
 msgid "Last Updated on"
-msgstr "Viimeksi päivitetty"
+msgstr "上次更新日期"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
@@ -272,7 +259,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
 msgid "Users"
-msgstr "Käyttäjät"
+msgstr ""
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,user_count:0

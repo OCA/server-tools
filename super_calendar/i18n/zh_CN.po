@@ -3,29 +3,19 @@
 # * super_calendar
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 15:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
+"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -34,7 +24,7 @@ msgstr ""
 #: view:super.calendar:super_calendar.super_calendar_form
 #: view:super.calendar:super_calendar.super_calendar_tree
 msgid "Calendar"
-msgstr "Kalenteri"
+msgstr ""
 
 #. module: super_calendar
 #: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
@@ -69,14 +59,14 @@ msgstr ""
 #: field:super.calendar.configurator,create_uid:0
 #: field:super.calendar.configurator.line,create_uid:0
 msgid "Created by"
-msgstr "Luonut"
+msgstr "创建者"
 
 #. module: super_calendar
 #: field:super.calendar,create_date:0
 #: field:super.calendar.configurator,create_date:0
 #: field:super.calendar.configurator.line,create_date:0
 msgid "Created on"
-msgstr "Luotu"
+msgstr "创建时间"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -206,14 +196,14 @@ msgstr "ID"
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Viimeksi päivittänyt"
+msgstr "最后更新者"
 
 #. module: super_calendar
 #: field:super.calendar,write_date:0
 #: field:super.calendar.configurator,write_date:0
 #: field:super.calendar.configurator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Viimeksi päivitetty"
+msgstr "上次更新日期"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
@@ -230,7 +220,7 @@ msgstr ""
 #: field:super.calendar,model_id:0
 #: field:super.calendar.configurator.line,name:0
 msgid "Model"
-msgstr "Mall"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -245,7 +235,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr "Nimi"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
