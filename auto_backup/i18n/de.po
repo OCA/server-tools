@@ -1,43 +1,37 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* auto_backup
-#
+# * auto_backup
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-26 14:17+0000\n"
-"PO-Revision-Date: 2015-04-17 11:24+0100\n"
-"Last-Translator: Martin Schmid <m.schmid@equitania.de>\n"
-"Language-Team: Equitania Software GmbH <info@myodoo.de>\n"
+"POT-Creation-Date: 2016-04-14 07:02+0000\n"
+"PO-Revision-Date: 2016-04-05 07:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.5\n"
+"Content-Transfer-Encoding: \n"
 "Language: de\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
-#: code:addons/auto_backup/backup_scheduler.py:137
-#, python-format
-msgid "%s"
-msgstr "%s"
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "/home/odoo/.ssh/id_rsa"
+msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,bkp_dir:0
+#: help:db.backup,folder:0
 msgid "Absolute path for storing the backups"
 msgstr "Absoluter Pfad zum Speichern der Sicherungen"
 
 #. module: auto_backup
-#: field:db.backup,sendmailsftpfail:0
-msgid "Auto. E-mail on backup fail"
-msgstr "Auto. E-Mail, wenn Datensicherung fehlschlägt"
-
-#. module: auto_backup
-#: field:db.backup,autoremove:0
-msgid "Auto. Remove Backups"
-msgstr "Auto. Entfernen von Sicherungen"
+#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
+#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
+msgid "Automated Backups"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -45,9 +39,14 @@ msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "Automatische Sicherungen der Datenbank können wie folgt geplant werden:"
 
 #. module: auto_backup
-#: field:db.backup,bkp_dir:0
-msgid "Backup Directory"
-msgstr "Sicherungs-Verzeichnis"
+#: model:mail.message.subtype,name:auto_backup.failure
+msgid "Backup failed"
+msgstr ""
+
+#. module: auto_backup
+#: model:mail.message.subtype,name:auto_backup.success
+msgid "Backup successful"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
@@ -55,33 +54,44 @@ msgid "Backups"
 msgstr "Sicherungen"
 
 #. module: auto_backup
-#: help:db.backup,daystokeepsftp:0
+#: help:db.backup,days_to_keep:0
 msgid ""
-"Choose after how many days the backup should be deleted from the FTP server. For example:\n"
-"If you fill in 5 the backups will be removed after 5 days from the FTP server."
+"Backups older than this will be deleted automatically. Set 0 to disable "
+"autodeletion."
 msgstr ""
-"Wählen Sie, nach wie vielen Tagen die Sicherung vom FTP-Server gelöscht werden soll. Beispiel: \n"
-"Wenn Sie \"5\" angeben, werden die Sicherungen nach 5 Tagen vom FTP-Server entfernt."
-
-#. module: auto_backup
-#: help:db.backup,daystokeep:0
-msgid ""
-"Choose after how many days the backup should be deleted. For example:\n"
-"If you fill in 5 the backups will be removed after 5 days."
-msgstr ""
-"Wählen Sie, nach wie vielen Tagen die Sicherung vom FTP-Server gelöscht werden soll. Beispiel: \n"
-"Wenn Sie \"5\" angeben, werden die Sicherungen nach 5 Tagen vom FTP-Server entfernt."
-
-#. module: auto_backup
-#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
-#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
-msgid "Configure Backup"
-msgstr "Backup einstellen"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Contact us!"
-msgstr "Sprechen Sie uns an!"
+msgid "Basic backup configuration"
+msgstr ""
+
+#. module: auto_backup
+#: sql_constraint:db.backup:0
+msgid "Cannot duplicate a configuration."
+msgstr ""
+
+#. module: auto_backup
+#: help:db.backup,method:0
+msgid "Choose the storage method for this backup."
+msgstr ""
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:249
+#, python-format
+msgid "Cleanup of old database backups failed."
+msgstr ""
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:132
+#, python-format
+msgid "Connection Test Failed!"
+msgstr ""
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:129
+#, python-format
+msgid "Connection Test Succeeded!"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,create_uid:0
@@ -94,35 +104,55 @@ msgid "Created on"
 msgstr "Erstellt am:"
 
 #. module: auto_backup
-#: field:db.backup,name:0
-msgid "Database"
-msgstr "Datenbank"
-
-#. module: auto_backup
-#: help:db.backup,name:0
-msgid "Database you want to schedule backups for"
-msgstr "Datenbank Sicherungen einplanen für"
-
-#. module: auto_backup
-#: field:db.backup,emailtonotify:0
-msgid "E-mail to notify"
-msgstr "E-Mail Benachrichtigen"
-
-#. module: auto_backup
-#: code:addons/auto_backup/backup_scheduler.py:106 constraint:db.backup:0
+#: code:addons/auto_backup/models/db_backup.py:208
+#: model:mail.message.subtype,description:auto_backup.failure
 #, python-format
-msgid "Error ! No such database exists!"
-msgstr "Fehler! Keine solche Datenbank vorhanden!"
+msgid "Database backup failed."
+msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,emailtonotify:0
-msgid "Fill in the e-mail where you want to be notified that the backup failed on the FTP."
-msgstr "Geben Sie die E-Mail-Adresse an, die bei Sicherungsfehlern auf dem FTP verwendet werden soll."
+#: code:addons/auto_backup/models/db_backup.py:213
+#: model:mail.message.subtype,description:auto_backup.success
+#, python-format
+msgid "Database backup succeeded."
+msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "For example: /odoo/backups/"
-msgstr "Zum Beispiel: /odoo/Backups /"
+#: help:db.backup,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Datum der letzten Meldung zu diesem Datensatz."
+
+#. module: auto_backup
+#: field:db.backup,days_to_keep:0
+msgid "Days to keep"
+msgstr ""
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:120
+#, python-format
+msgid ""
+"Do not save backups on your filestore, or you will backup your backups too!"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model,name:auto_backup.model_db_backup
+msgid "Email Thread"
+msgstr "Email-Thread"
+
+#. module: auto_backup
+#: model:ir.actions.server,name:auto_backup.action_server_backup
+msgid "Execute backup(s)"
+msgstr ""
+
+#. module: auto_backup
+#: field:db.backup,folder:0
+msgid "Folder"
+msgstr ""
+
+#. module: auto_backup
+#: field:db.backup,message_follower_ids:0
+msgid "Followers"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -135,9 +165,16 @@ msgid "Help"
 msgstr "Hilfe"
 
 #. module: auto_backup
-#: field:db.backup,host:0
-msgid "Host"
-msgstr "Host"
+#: help:db.backup,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. module: auto_backup
+#: sql_constraint:db.backup:0
+msgid "I cannot remove backups from the future. Ask Doc for that."
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,id:0
@@ -145,24 +182,19 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auto_backup
-#: field:db.backup,sftpip:0
-msgid "IP Address SFTP Server"
-msgstr "IP-Adresse SFTP-Server"
+#: help:db.backup,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sendmailsftpfail:0
-msgid "If you check this option you can choose to automaticly get e-mailed when the backup to the external server failed."
-msgstr "Wenn Sie diese Option aktivieren, erhalten Sie automatisch eine e-Mail, wenn die Sicherung mit dem externen Server fehlgeschlagen ist."
+#: field:db.backup,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,autoremove:0
-msgid "If you check this option you can choose to automaticly remove the backup after xx days"
-msgstr "Wenn Sie diese Option aktivieren, können Sie die Sicherung automatisch nach Xx Tagen entfernen"
-
-#. module: auto_backup
-#: help:db.backup,sftpwrite:0
-msgid "If you check this option you can specify the details needed to write to a remote server with SFTP."
-msgstr "Wenn Sie diese Option aktivieren, können Sie Details für einen entfernten SFTP-Server angeben."
+#: field:db.backup,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0
@@ -175,49 +207,66 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Local backup configuration"
-msgstr "Lokale Sicherungs-Konfiguration"
+#: selection:db.backup,method:0
+msgid "Local disk"
+msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Need more help?"
-msgstr "Benötigen Sie weitere Hilfe?"
+#: field:db.backup,message_ids:0
+msgid "Messages"
+msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftppassword:0
-msgid "Password User SFTP Server"
-msgstr "Passwort Benutzer SFTP-Server"
+#: help:db.backup,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftppath:0
-msgid "Path external server"
-msgstr "Externen Server Pfad"
+#: field:db.backup,method:0
+msgid "Method"
+msgstr "Methode"
 
 #. module: auto_backup
-#: field:db.backup,port:0
-msgid "Port"
-msgstr "Port"
+#: field:db.backup,name:0
+msgid "Name"
+msgstr "Name"
 
 #. module: auto_backup
-#: field:db.backup,daystokeepsftp:0
-msgid "Remove SFTP after x days"
-msgstr "SFTP nach x Tagen entfernen"
+#: help:db.backup,sftp_private_key:0
+msgid ""
+"Path to the private key file. Only the Odoo user should have read "
+"permissions for that file."
+msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,daystokeep:0
-msgid "Remove after x days"
-msgstr "Entfernen nach x Tagen"
+#: field:db.backup,sftp_private_key:0
+msgid "Private key location"
+msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "SFTP"
-msgstr "SFTP"
+#: selection:db.backup,method:0
+msgid "Remote SFTP server"
+msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftpport:0
+#: field:db.backup,sftp_password:0
+msgid "SFTP Password"
+msgstr ""
+
+#. module: auto_backup
+#: field:db.backup,sftp_port:0
 msgid "SFTP Port"
 msgstr "SFTP-Port"
+
+#. module: auto_backup
+#: field:db.backup,sftp_host:0
+msgid "SFTP Server"
+msgstr ""
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "SFTP Settings"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_search
@@ -231,13 +280,20 @@ msgstr "Suchen Sie die Aktion mit dem Namen \"Backup Scheduler\"."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Set the scheduler to active and fill in how often you want backups generated."
+msgid ""
+"Set the scheduler to active and fill in how often you want backups "
+"generated."
 msgstr "Setzen Sie die Aktion auf aktiv und geben Sie an wie oft die Sicherungen erstellt werden soll."
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Test"
-msgstr "Test"
+#: field:db.backup,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: auto_backup
+#: help:db.backup,name:0
+msgid "Summary of this backup process"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -245,48 +301,46 @@ msgid "Test SFTP Connection"
 msgstr "Verbindung testen"
 
 #. module: auto_backup
-#: help:db.backup,sftpip:0
-msgid "The IP address from your remote server. For example 192.168.0.1"
-msgstr "Die IP-Adresse Ihres entfernten Servers. Zum Beispiel 192.168.0.1"
-
-#. module: auto_backup
-#: help:db.backup,sftppath:0
+#: help:db.backup,sftp_host:0
 msgid ""
-"The location to the folder where the dumps should be written to. For example /odoo/backups/.\n"
-"Files will then be written to /odoo/backups/ on your remote server."
+"The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr ""
-"Der Speicherort für den Ordner an dem die Sicherungen in gespeichert werden sollen. Zum Beispiel wird /odoo/backups/.\n"
-"Files geschrieben zu /odoo/backups / / auf dem remote Server."
 
 #. module: auto_backup
-#: help:db.backup,sftppassword:0
-msgid "The password from the user where the SFTP connection should be made with. This is the password from the user on the external server."
-msgstr "Das Kennwort des Benutzers mit dem die SFTP-Verbindung mit hergestellt werden soll. Dies ist das Kennwort des Benutzers auf dem externen Server."
+#: help:db.backup,sftp_password:0
+msgid ""
+"The password for the SFTP connection. If you specify a private key file, "
+"then this is the password to decrypt it."
+msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sftpport:0
+#: help:db.backup,sftp_port:0
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
 msgstr "Der Port auf dem FTP-Server, der SSH/SFTP Anfragen annimmt."
 
 #. module: auto_backup
-#: help:db.backup,sftpusername:0
-msgid "The username where the SFTP connection should be made with. This is the user on the external server."
+#: help:db.backup,sftp_user:0
+msgid ""
+"The username where the SFTP connection should be made with. This is the user"
+" on the external server."
 msgstr "Der Benutzername mit dem die SFTP-Verbindung mit hergestellt werden soll. Dies ist der Benutzer auf dem externen Server."
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
-msgid "This configures the scheduler for automatic backup of the given database running on given host at given port on regular intervals."
-msgstr "Dies ist Konfiguration der Aktion automatisierte Backups der Datenbank auf dem angegebenen Server durchzuführen."
+#: field:db.backup,message_unread:0
+msgid "Unread Messages"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
-msgid "Use SFTP with caution! This writes files to external servers under the path you specify."
+msgid ""
+"Use SFTP with caution! This writes files to external servers under the path "
+"you specify."
 msgstr "Verwenden Sie SFTP mit Vorsicht! Dies schreibt Dateien auf externen Servern unter dem Pfad, den Sie angeben."
 
 #. module: auto_backup
-#: field:db.backup,sftpusername:0
-msgid "Username SFTP Server"
-msgstr "Benutzername SFTP-Server"
+#: field:db.backup,sftp_user:0
+msgid "Username in the SFTP Server"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -294,6 +348,11 @@ msgid "Warning:"
 msgstr "Warnung:"
 
 #. module: auto_backup
-#: field:db.backup,sftpwrite:0
-msgid "Write to external server with sftp"
-msgstr "Auf externen Server mit SFTP schreiben"
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "john"
+msgstr ""
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "sftp.example.com"
+msgstr ""
