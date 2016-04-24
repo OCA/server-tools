@@ -35,7 +35,7 @@ class SessionEx(Session):
         if new_password != confirm_password:
             return {
                 'error': _('The new password and its confirmation must be'
-                    ' identical.'),
+                           ' identical.'),
                 'title': _('Change Password')
                 }
         try:
@@ -45,11 +45,11 @@ class SessionEx(Session):
         except AccessDenied:
             return {
                 'error': _('The old password you provided is incorrect,'
-                    ' your password was not changed.'),
+                           ' your password was not changed.'),
                 'title': _('Change Password')
                 }
         return {
-            'error': _('Error, password not changed !'), 
+            'error': _('Error, password not changed !'),
             'title': _('Change Password')
             }
 
@@ -83,8 +83,9 @@ class AuthSignupHomeEx(AuthSignupHome):
                         request.cr, openerp.SUPERUSER_ID,
                         login
                         )
-                    qcontext['message'] = _('An email has been sent with'
-                        ' credentials to reset your password')
+                    qcontext['message'] =\
+                        _('An email has been sent with'
+                          ' credentials to reset your password')
             except SignupError:
                 qcontext['error'] = _("Could not reset your password")
                 _logger.exception('error when resetting password')
