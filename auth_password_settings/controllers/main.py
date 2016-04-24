@@ -23,11 +23,11 @@ class SessionEx(Session):
     @http.route('/web/session/change_password', type='json', auth="user")
     def change_password(self, fields):
         old_password, new_password, confirm_password = operator.itemgetter(
-            'old_pwd', 'new_password','confirm_pwd')(dict(
+            'old_pwd', 'new_password', 'confirm_pwd')(dict(
                 map(operator.itemgetter('name', 'value'), fields))
             )
         if not (old_password.strip() and new_password.strip() and
-            confirm_password.strip()):
+                confirm_password.strip()):
             return {
                 'error': _('You cannot leave any password empty.'),
                 'title': _('Change Password')
@@ -40,8 +40,8 @@ class SessionEx(Session):
                 }
         try:
             if request.session.model('res.users').change_password(
-                old_password, new_password):
-                return {'new_password':new_password}
+                    old_password, new_password):
+                return {'new_password': new_password}
         except AccessDenied:
             return {
                 'error': _('The old password you provided is incorrect,'
@@ -52,14 +52,17 @@ class SessionEx(Session):
             'error': _('Error, password not changed !'), 
             'title': _('Change Password')
             }
-    
+
+
 class AuthSignupHomeEx(AuthSignupHome):
 
-    @http.route('/web/reset_password', type='http', auth='public', website=True)
+    @http.route('/web/reset_password', type='http',
+                auth='public', website=True)
     def web_auth_reset_password(self, *args, **kw):
         qcontext = self.get_auth_signup_qcontext()
 
-        if not qcontext.get('token') and not qcontext.get('reset_password_enabled'):
+        if (not qcontext.get('token') and
+                not qcontext.get('reset_password_enabled')):
             raise werkzeug.exceptions.NotFound()
 
         if 'error' not in qcontext and request.httprequest.method == 'POST':
@@ -67,8 +70,8 @@ class AuthSignupHomeEx(AuthSignupHome):
                 res_users = request.registry.get('res.users')
                 if qcontext.get('token'):
                     res_users._validate_password(
-                        request.cr, openerp.SUPERUSER_ID, 
-                        qcontext.get('password'), 
+                        request.cr, openerp.SUPERUSER_ID,
+                        qcontext.get('password'),
                         raise_=True
                         )
                     self.do_signup(qcontext)
@@ -77,7 +80,7 @@ class AuthSignupHomeEx(AuthSignupHome):
                     login = qcontext.get('login')
                     assert login, "No login provided."
                     res_users.reset_password(
-                        request.cr, openerp.SUPERUSER_ID, 
+                        request.cr, openerp.SUPERUSER_ID,
                         login
                         )
                     qcontext['message'] = _('An email has been sent with'
