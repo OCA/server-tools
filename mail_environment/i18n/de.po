@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * disable_odoo_online
+# * mail_environment
 # 
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
@@ -18,7 +18,12 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: disable_odoo_online
-#: model:ir.model,name:disable_odoo_online.model_publisher_warranty_contract
-msgid "publisher_warranty.contract"
-msgstr "publisher_warranty.contract"
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "POP/IMAP-Server"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_ir_mail_server
+msgid "ir.mail_server"
+msgstr "ir.mail_server"
