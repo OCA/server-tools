@@ -14,7 +14,7 @@
     'website': 'http://www.deneroteam.com',
     'license': 'AGPL-3',
     'depends': [
-        'base', 'base_setup',
+        'base', 'base_setup', 'auth_signup',
     ],
     'images': [
         'static/description/auth_password_settings_config.png'
