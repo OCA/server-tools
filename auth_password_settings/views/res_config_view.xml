@@ -13,7 +13,7 @@
                         <div>
                             <p>
                                 <label string="This section allows you to determine password complexity (the effectiveness of a password in resisting guessing and brute-force attacks). To do that," /><br/>
-                                <label string="* use the Minimum password length to determine how long the password should be to be considered strong, By default, the password should be at least 6 characters long."/><br/>
+                                <label string="* use the Minimum password length to determine how long the password should be to be considered strong."/><br/>
                                 <label string="* check the appropriate boxes below the bar to determine the character set that must be used in the password: capital letters, digits, special characters,"/>
                             </p>
                             <div>

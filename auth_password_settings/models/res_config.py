@@ -52,7 +52,7 @@ class BaseConfigSettings(models.TransientModel):
             'auth_password_min_character': safe_eval(
                 icp.get_param(
                     'auth_password_settings.auth_password_min_character',
-                    '6'
+                    '0'
                 )),
             'auth_password_has_capital_letter': safe_eval(
                 icp.get_param(
@@ -74,10 +74,6 @@ class BaseConfigSettings(models.TransientModel):
     @api.multi
     def set_auth_password_settings(self):
         self.ensure_one()
-        if self.auth_password_min_character < 5:
-            raise ValidationError(
-                _('Password Length should not be less then 5.')
-            )
         icp = self.env['ir.config_parameter']
         icp.set_param(
             'auth_password_settings.auth_password_min_character',
