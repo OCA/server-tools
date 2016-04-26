@@ -13,11 +13,10 @@
     "installable": True,
     "data": [
         "security/ir.model.access.csv",
-        #"views/assets.xml",
+        "views/assets.xml",
         "views/date_range_view.xml",
     ],
-    
-    #"qweb": [
-    #    "static/src/xml/module_name.xml",
-    #]
+    "qweb": [
+        "static/src/xml/date_range.xml",
+    ]
 }

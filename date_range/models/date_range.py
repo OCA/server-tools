@@ -2,7 +2,7 @@
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class DateRange(models.Model):
@@ -17,4 +17,10 @@ class DateRange(models.Model):
         comodel_name='res.company', string='Company', select=1)
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
-        "removing it.")
+        "removing it.", default=True)
+
+    @api.multi
+    def get_domain(self, field_name):
+        self.ensure_one()
+        return [(field_name, '>=', self.date_start),
+                (field_name, '<', self.date_end)]

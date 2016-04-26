@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- © <YEAR(S)> <AUTHOR(S)>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <template>
-    <t t-extend="other.qweb.template">
-        <!-- Your template extension -->
+    <t t-name="SearchView.extended_search.dateRange.selection">
+        <select class="date-range-select form-control">
+            <t t-as="element" t-foreach="widget.date_range_values">
+                <option t-att-value="element.id">
+                    <t t-esc="element.name"/>
+                </option>
+            </t>
+        </select>
     </t>
 </template>

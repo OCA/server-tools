@@ -4,7 +4,7 @@
         <field name="name">date.range.tree</field>
         <field name="model">date.range</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" string="Date range">
+            <tree string="Date range">
                 <field name="name"/>
                 <field name="type_id"/>
                 <field name="date_start"/>
