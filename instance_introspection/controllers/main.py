@@ -20,10 +20,9 @@ class InstanceIntrospection(http.Controller):
     _main_info = {}
     _addons = []
 
-    @http.route('/instance_introspection',
-                type='http', auth="user")
+    @http.route('/instance_introspection', type='http', auth="user")
     def index(self, *args, **post):
-        """ Returns some information regarding how instance is configured,
+        """Returns some information regarding how instance is configured,
         basically bringing to frontend the information of the instance.
         """
         return request.render('instance_introspection.addons', {})
@@ -31,7 +30,7 @@ class InstanceIntrospection(http.Controller):
     @http.route('/instance_introspection/main_info',
                 type='http', auth="user")
     def main_reload(self, *args, **post):
-        """ Just to set global variable indicators
+        """Just to set global variable indicators
         """
         modules = request.registry['ir.module.module']
         self._main_info = modules.get_header(self._addons)
@@ -47,12 +46,11 @@ class InstanceIntrospection(http.Controller):
         })
 
     def get_branch_info(self, module=None):
-        '''
-        Returns the info of a specific module or
+        """Returns the info of a specific module or
         the all modules defined in the addons_path
         @param module: string with the name of module that you want
                        to get its info
-        '''
+        """
         modules = request.registry['ir.module.module']
         addons_path = module and (module, ) or openerp.conf.addons_paths
         addons = [
@@ -65,7 +63,7 @@ class InstanceIntrospection(http.Controller):
     @http.route('/instance_introspection/reload',
                 type='http', auth="user")
     def index_reload(self, *args, **post):
-        """ Returns the list elements on repositories.
+        """Returns the list elements on repositories.
         """
         addons = self.get_branch_info()
         self._addons = addons
@@ -76,7 +74,7 @@ class InstanceIntrospection(http.Controller):
     @http.route('/instance_introspection.json',
                 type='http', auth='none')
     def get_json_info(self, *args, **post):
-        """ Returns json with the list elements on repositories.
+        """Returns json with the list elements on repositories.
         """
         addons = self.get_branch_info()
         return simplejson.dumps(addons)
