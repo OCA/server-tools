@@ -30,7 +30,7 @@ class DateRangeTest(TransactionCase):
 
     def test_overlap(self):
         date_range = self.env['date.range']
-        dr1 = date_range.create({
+        date_range.create({
             'name': 'FS2015',
             'date_start': '2015-01-01',
             'date_end': '2015-12-31',
