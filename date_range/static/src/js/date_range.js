@@ -18,6 +18,7 @@ var _lt = core._lt;
 filters.ExtendedSearchProposition.include({
     select_field: function(field) {
         this._super.apply(this, arguments);
+        this.is_date_range_selected = false;
         this.is_date = field.type == 'date' || field.type == 'datetime';
         this.$value = this.$('.searchview_extended_prop_value');
         if (this.is_date){
@@ -37,7 +38,8 @@ filters.ExtendedSearchProposition.include({
     
     operator_changed: function (e) {
         var val = $(e.target).val();
-        if (val.startsWith('drt_')){
+        this.is_date_range_selected = val.startsWith('drt_'); 
+        if (this.is_date_range_selected){
             var type_id = val.replace('drt_', '');
             this.date_range_type_operator_selected(type_id);
             return;
@@ -55,6 +57,17 @@ filters.ExtendedSearchProposition.include({
     on_range_type_selected: function(date_range_values){
         this.value = new filters.ExtendedSearchProposition.DateRange(this, this.value.field, date_range_values);
         this.value.appendTo(this.$value);
+        this.value.on_range_selected();
+    },
+    
+    get_filter: function () {
+        var res = this._super.apply(this, arguments);
+        if (this.is_date_range_selected){
+            // in case of date.range, the domain is provided by the server and we don't
+            // want to put nest the returned value into an array.
+            res.attrs.domain = this.value.domain;
+        }
+        return res;
     },
     
 });
@@ -62,7 +75,7 @@ filters.ExtendedSearchProposition.include({
 filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.Field.extend({
     template: 'SearchView.extended_search.dateRange.selection',
     events: {
-        'change .date-range-select': 'on_range_selected',
+        'change': 'on_range_selected',
     },
     
     init: function (parent, field, date_range_values) {
@@ -79,14 +92,6 @@ filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.
     get_value: function() {
         return parseInt(this.$el.val());
     },
-
-     renderElement: function() {
-        this._super();
-        var self = this;
-        this.$el.find('.date-range-select').on('change', function(){
-            self.on_range_selected();
-        });
-    },
     
     on_range_selected: function(e){
         var self = this;
@@ -100,7 +105,10 @@ filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.
          ])
         .then(function (domain) {
             framework.unblockUI();
-            self.domain = JSON.stringify(domain);
+            //domain = domain.map(function(e){
+            //    return JSON.stringify(e);
+            //});
+            self.domain = domain;
         });
     },
     
