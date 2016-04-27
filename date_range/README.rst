@@ -6,7 +6,7 @@
 Date Range
 ==========
 
-This module lets you define global date ranges that can be used to filter or group
+This module lets you define global date ranges that can be used to filter
 your values in tree views.
 
 Usage
@@ -24,7 +24,7 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* ...
+* The addon use the daterange method from postgres. This method is supported as of postgresql 9.2
 
 Bug Tracker
 ===========
