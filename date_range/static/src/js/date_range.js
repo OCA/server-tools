@@ -4,10 +4,6 @@ odoo.define('date_range.search_filters', function (require) {
 "use strict";
 
 var core = require('web.core'); 
-var datepicker = require('web.datepicker');
-var formats = require('web.formats');
-var Widget = require('web.Widget');
-
 var data = require('web.data');
 var filters = require('web.search_filters');
 var Model = require('web.Model');
@@ -105,9 +101,6 @@ filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.
          ])
         .then(function (domain) {
             framework.unblockUI();
-            //domain = domain.map(function(e){
-            //    return JSON.stringify(e);
-            //});
             self.domain = domain;
         });
     },
