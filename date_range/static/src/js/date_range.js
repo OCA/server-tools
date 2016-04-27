@@ -27,7 +27,7 @@ filters.ExtendedSearchProposition.include({
         var self = this;
         _.each(date_range_types, function(drt) {
             $('<option>', {value: 'drt_' + drt.id})
-                .text(drt.name)
+                .text(_('in ') + drt.name)
                 .appendTo(self.$('.searchview_extended_prop_op'));
         });
     },
