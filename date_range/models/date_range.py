@@ -34,23 +34,23 @@ class DateRange(models.Model):
     def _validate_range(self):
         for this in self:
             start = fields.Date.from_string(this.date_start)
-            end =  fields.Date.from_string(this.date_end)
+            end = fields.Date.from_string(this.date_end)
             if start >= end:
                 raise ValidationError(
                     _("%s is not a valid range (%s >= %s)") % (
                         this.name, this.date_start, this.date_end))
             if this.type_id.allow_overlap:
                 continue
-            # here we use a plain SQL query to benefit of the daterange function
-            # available in PostgresSQL 
+            # here we use a plain SQL query to benefit of the daterange
+            # function available in PostgresSQL
             # (http://www.postgresql.org/docs/current/static/rangetypes.html)
             SQL = """
                 SELECT
                     id
                 FROM
                     date_range dt
-                WHERE 
-                    DATERANGE(dt.date_start, dt.date_end, '[]') && 
+                WHERE
+                    DATERANGE(dt.date_start, dt.date_end, '[]') &&
                         DATERANGE(%s, %s, '[]')
                     AND dt.id != %s
                     AND dt.active
@@ -64,7 +64,8 @@ class DateRange(models.Model):
             res = self.env.cr.fetchall()
             if res:
                 dt = self.browse(res[0][0])
-                raise ValidationError(_("%s overlaps %s")% (this.name, dt.name))
+                raise ValidationError(
+                    _("%s overlaps %s") % (this.name, dt.name))
 
     @api.multi
     def get_domain(self, field_name):

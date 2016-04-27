@@ -11,7 +11,7 @@ class DateRangeType(models.Model):
     @api.model
     def _default_company(self):
         return self.env['res.company']._company_default_get('date.range')
-    
+
     name = fields.Char(required=True, translate=True)
     allow_overlap = fields.Boolean(
         help="If sets date range of same type must not overlap.",
@@ -22,7 +22,7 @@ class DateRangeType(models.Model):
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', select=1,
         default=_default_company)
-    
+
     _sql_constraints = [
         ('date_range_type_uniq', 'unique (name,company_id)',
          'A date range type must be unique per company !')]
