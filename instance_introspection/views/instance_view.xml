@@ -10,6 +10,7 @@
 
         <menuitem id="menu_action_open_ii"
             parent="base.menu_custom"
+            sequence='0'
             action="action_open_ii" name="Instance Introspection"/>
      </data>
 </openerp>
