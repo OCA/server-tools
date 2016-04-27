@@ -59,7 +59,7 @@ class DateRange(models.Model):
             self.env.cr.execute(SQL, (this.date_start,
                                       this.date_end,
                                       this.id,
-                                      this.company_id.id,
+                                      this.company_id.id or None,
                                       this.type_id.id))
             res = self.env.cr.fetchall()
             if res:

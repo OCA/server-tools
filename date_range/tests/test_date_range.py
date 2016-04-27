@@ -15,6 +15,17 @@ class DateRangeTest(TransactionCase):
              'company_id': False,
              'allow_overlap': False})
 
+    def test_empty_company(self):
+        date_range = self.env['date.range']
+        dt = date_range.create({
+            'name': 'FS2016',
+            'date_start': '2015-01-01',
+            'date_end': '2016-12-31',
+            'type_id': self.type.id,
+            'company_id': None,
+        })
+        self.assertEqual(dt.name, 'FS2016')
+
     def test_invalid(self):
         date_range = self.env['date.range']
         with self.assertRaises(ValidationError) as cm:
