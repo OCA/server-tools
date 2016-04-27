@@ -9,7 +9,8 @@
                 <field name="type_id"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
-                <field name="company_id"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <field name="active"/>
             </tree>
         </field>
     </record>
@@ -17,13 +18,13 @@
         <field name="name">date.range.form</field>
         <field name="model">date.range</field>
         <field name="arch" type="xml">
-            <form string="Date Range">
+            <form editable="bottom" string="Date Range">
                 <group col="4">
                     <field name="name"/>
                     <field name="type_id"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
-                    <field name="company_id"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                     <field name="active"/>
                 </group>
             </form>
@@ -36,6 +37,8 @@
             <tree editable="bottom" string="Date range type">
                 <field name="name"/>
                 <field name="allow_overlap"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <field name="active"/>
             </tree>
         </field>
     </record>
@@ -47,6 +50,8 @@
                 <group col="4">
                     <field name="name"/>
                     <field name="allow_overlap"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    <field name="active"/>
                 </group>
             </form>
         </field>
