@@ -50,7 +50,7 @@ class DateRange(models.Model):
                 FROM
                     date_range dt
                 WHERE
-                    DATERANGE(dt.date_start, dt.date_end, '[]') &&
+                    DATERANGE(dt.date_start::date, dt.date_end::date, '[]') &&
                         DATERANGE(%s::date, %s::date, '[]')
                     AND dt.id != %s
                     AND dt.active
