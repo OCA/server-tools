@@ -44,7 +44,7 @@ filters.ExtendedSearchProposition.include({
     },
 
     date_range_type_operator_selected: function(type_id){
-        this.$value.show().empty();
+        this.$value.empty().show();
         var ds = new data.DataSetSearch(this, 'date.range', this.context, [['type_id', '=', parseInt(type_id)]]);
         ds.read_slice(['name','date_start', 'date_end'], {}).done(this.proxy('on_range_type_selected'));
             
@@ -108,6 +108,5 @@ filters.ExtendedSearchProposition.DateRange = filters.ExtendedSearchProposition.
     get_domain: function (field, operator) {
         return this.domain;
     },
-});
 
 });
