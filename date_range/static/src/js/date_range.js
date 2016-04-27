@@ -16,7 +16,7 @@ filters.ExtendedSearchProposition.include({
         this._super.apply(this, arguments);
         this.is_date_range_selected = false;
         this.is_date = field.type == 'date' || field.type == 'datetime';
-        this.$value = this.$('.searchview_extended_prop_value');
+        this.$value = this.$el.find('.searchview_extended_prop_value, .o_searchview_extended_prop_value');
         if (this.is_date){
             var ds = new data.DataSetSearch(this, 'date.range.type', this.context, [[1, '=', 1]]);
             ds.read_slice(['name'], {}).done(this.proxy('add_date_range_types_operator'));
@@ -28,7 +28,7 @@ filters.ExtendedSearchProposition.include({
         _.each(date_range_types, function(drt) {
             $('<option>', {value: 'drt_' + drt.id})
                 .text(_('in ') + drt.name)
-                .appendTo(self.$('.searchview_extended_prop_op'));
+                .appendTo(self.$el.find('.searchview_extended_prop_op, .o_searchview_extended_prop_op'));
         });
     },
     
@@ -53,6 +53,9 @@ filters.ExtendedSearchProposition.include({
     on_range_type_selected: function(date_range_values){
         this.value = new filters.ExtendedSearchProposition.DateRange(this, this.value.field, date_range_values);
         this.value.appendTo(this.$value);
+        if (!this.$el.hasClass('o_filter_condition')){
+            this.$value.find('.date-range-select').addClass('form-control');   
+        }
         this.value.on_range_selected();
     },
     
