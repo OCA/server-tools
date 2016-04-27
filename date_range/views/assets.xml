@@ -2,7 +2,6 @@
 <odoo>
     <template id="assets_backend" inherit_id="web.assets_backend" name="Module name backend assets">
         <xpath expr=".">
-            <!-- link href="/module/static/src/css/module_name.css" rel="stylesheet"/ -->
             <script src="/date_range/static/src/js/date_range.js" type="text/javascript"/>
         </xpath>
     </template>
