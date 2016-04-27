@@ -31,9 +31,15 @@ class DateRange(models.Model):
          'A date range must be unique per company !')]
 
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
-    def _check_overlaping(self):
+    def _validate_range(self):
         for this in self:
-            if not self.type_id.allow_overlap:
+            start = fields.Date.from_string(this.date_start)
+            end =  fields.Date.from_string(this.date_end)
+            if start >= end:
+                raise ValidationError(
+                    _("%s is not a valid range (%s >= %s)") % (
+                        this.name, this.date_start, this.date_end))
+            if this.type_id.allow_overlap:
                 continue
             # here we use a plain SQL query to benefit of the daterange function
             # available in PostgresSQL 
@@ -46,16 +52,18 @@ class DateRange(models.Model):
                 WHERE 
                     DATERANGE(dt.date_start, dt.date_end, '[]') && 
                         DATERANGE(%s, %s, '[]')
+                    AND dt.id != %s
                     AND dt.active
                     AND dt.company_id = %s
                     AND dt.type_id=%s;"""
             self.env.cr.execute(SQL, (this.date_start,
                                       this.date_end,
+                                      this.id,
                                       this.company_id.id,
                                       this.type_id.id))
             res = self.env.cr.fetchall()
             if res:
-                dt = self.browse(res[0[0]])
+                dt = self.browse(res[0][0])
                 raise ValidationError(_("%s overlaps %s")% (this.name, dt.name))
 
     @api.multi
