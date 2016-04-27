@@ -28,3 +28,17 @@ class TestUi(openerp.tests.HttpCase):
         self.phantom_js(
             "/web", "openerp.Tour.run('test_pyinfo', 'test')",
             "openerp.Tour.tours.test_pyinfo", login="admin")
+
+    def test_03_pyinfo(self):
+        '''Instrospection, just download a json
+        '''
+        self.phantom_js(
+            "/web", "openerp.Tour.run('test_pyinfo_json', 'test')",
+            "openerp.Tour.tours.test_pyinfo_json", login="admin")
+
+    def test_04_pyinfo(self):
+        '''Instrospection, just download a json
+        '''
+        self.phantom_js(
+            "/web", "openerp.Tour.run('test_pyinfo_json', 'test')",
+            "openerp.Tour.tours.test_pyinfo_json", login="admin")
