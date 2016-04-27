@@ -9,16 +9,19 @@ from openerp.exceptions import ValidationError
 
 class DateRange(models.Model):
     _name = "date.range"
+    _order = "type_name,date_start"
 
     @api.model
     def _default_company(self):
         return self.env['res.company']._company_default_get('date.range')
 
     name = fields.Char(required=True, translate=True)
-    date_start = fields.Date(required=True)
-    date_end = fields.Date(required=True)
+    date_start = fields.Date(string='Start date', required=True)
+    date_end = fields.Date(string='End date', required=True)
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', select=1, required=True)
+    type_name = fields.Char(
+        string='Type', related='type_id.name', readonly=True, store=True)
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', select=1,
         default=_default_company)
