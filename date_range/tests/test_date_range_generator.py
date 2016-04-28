@@ -15,7 +15,7 @@ class DateRangeGeneratorTest(TransactionCase):
              'company_id': False,
              'allow_overlap': False})
 
-    def test_empty_company(self):
+    def test_generate(self):
         generator = self.env['date.range.generator']
         generator = generator.create({
             'date_start': '1943-01-01',

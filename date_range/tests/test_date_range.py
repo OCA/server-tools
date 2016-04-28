@@ -15,6 +15,25 @@ class DateRangeTest(TransactionCase):
              'company_id': False,
              'allow_overlap': False})
 
+    def test_default_company(self):
+        date_range = self.env['date.range']
+        dt = date_range.create({
+            'name': 'FS2016',
+            'date_start': '2015-01-01',
+            'date_end': '2016-12-31',
+            'type_id': self.type.id,
+        })
+        self.assertTrue(dt.company_id)
+        # you can specify company_id to False
+        dt = date_range.create({
+            'name': 'FS2016_NO_COMPANY',
+            'date_start': '2015-01-01',
+            'date_end': '2016-12-31',
+            'type_id': self.type.id,
+            'company_id': False
+        })
+        self.assertFalse(dt.company_id)
+
     def test_empty_company(self):
         date_range = self.env['date.range']
         dt = date_range.create({
@@ -47,7 +66,7 @@ class DateRangeTest(TransactionCase):
             'date_end': '2015-12-31',
             'type_id': self.type.id,
         })
-        with self.assertRaises(ValidationError) as cm:
+        with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
             date_range.create({
                 'name': 'FS2016',
                 'date_start': '2015-01-01',
@@ -55,3 +74,27 @@ class DateRangeTest(TransactionCase):
                 'type_id': self.type.id,
             })
         self.assertEqual(cm.exception.name, 'FS2016 overlaps FS2015')
+        # check it's possible to overlap if it's allowed by the date range type
+        self.type.allow_overlap = True
+        dr = date_range.create({
+            'name': 'FS2016',
+            'date_start': '2015-01-01',
+            'date_end': '2016-12-31',
+            'type_id': self.type.id,
+        })
+        self.assertEquals(dr.name, 'FS2016')
+
+    def test_domain(self):
+        date_range = self.env['date.range']
+        dr = date_range.create({
+            'name': 'FS2015',
+            'date_start': '2015-01-01',
+            'date_end': '2015-12-31',
+            'type_id': self.type.id,
+        })
+        domain = dr.get_domain('my_field')
+        # By default the domain is include limits
+        self.assertEquals(
+            domain,
+            [('my_field', '>=', '2015-01-01'),
+             ('my_field', '<', '2015-12-31')])

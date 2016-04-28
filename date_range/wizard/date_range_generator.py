@@ -18,32 +18,26 @@ class DateRangeGenerator(models.TransientModel):
     def _default_company(self):
         return self.env['res.company']._company_default_get('date.range')
 
-    name_prefix = fields.Char('Range name prefix')
+    name_prefix = fields.Char('Range name prefix', required=True)
     date_start = fields.Date(strint='Start date', required=True)
     type_id = fields.Many2one(
-        comodel_name='date.range.type', string='Type', required=True)
+        comodel_name='date.range.type', string='Type', required=True,
+        ondelete='cascade')
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', select=1,
+        comodel_name='res.company', string='Company',
         default=_default_company)
     unit_of_time = fields.Selection([
         (YEARLY, 'years'),
         (MONTHLY, 'months'),
         (WEEKLY, 'weeks'),
-        (DAILY, 'days')])
-    duration_count = fields.Integer('Duration')
+        (DAILY, 'days')], required=True)
+    duration_count = fields.Integer('Duration', required=True)
     count = fields.Integer(
         string="Number of ranges to generate", required=True)
 
     @api.multi
     def _compute_date_ranges(self):
         self.ensure_one()
-        if not self.name_prefix or \
-                not self.date_start or \
-                not self.type_id or \
-                not self.unit_of_time or \
-                not self.duration_count or \
-                not self.count:
-            return
         vals = rrule(freq=self.unit_of_time, interval=self.duration_count,
                      dtstart=fields.Date.from_string(self.date_start),
                      count=self.count+1)
