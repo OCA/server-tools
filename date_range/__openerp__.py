@@ -11,6 +11,9 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "depends": [
+        "web",
+    ],
     "data": [
         "security/ir.model.access.csv",
         "security/date_range_security.xml",
