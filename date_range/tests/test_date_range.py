@@ -93,8 +93,8 @@ class DateRangeTest(TransactionCase):
             'type_id': self.type.id,
         })
         domain = dr.get_domain('my_field')
-        # By default the domain is include limits
+        # By default the domain include limits
         self.assertEquals(
             domain,
             [('my_field', '>=', '2015-01-01'),
-             ('my_field', '<', '2015-12-31')])
+             ('my_field', '<=', '2015-12-31')])
