@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="SearchView.extended_search.dateRange.selection">
+        <select class="date-range-select">
+            <t t-as="element" t-foreach="widget.date_range_values">
+                <option t-att-value="element.id">
+                    <t t-esc="element.name"/>
+                </option>
+            </t>
+        </select>
+    </t>
+</template>
