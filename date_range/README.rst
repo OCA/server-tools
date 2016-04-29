@@ -12,9 +12,54 @@ your values in tree views.
 Usage
 =====
 
-To use this module, you need to:
+To configure this module, you need to:
 
-#. Go to ...
+* Go to Settings > Technical > Date ranges > Date Range Types where
+  you can create types of date ranges.
+
+  .. figure:: static/description/date_range_type_create.png
+     :scale: 80 %
+     :alt: Create a type of date range
+
+* Go to Settings > Technical > Date ranges >  Date Ranges where
+  you can create date ranges.
+  
+  .. figure:: static/description/date_range_create.png
+     :scale: 80 %
+     :alt: Date range creation
+  
+  It's also possible to launch a wizard from the 'Generate Date Ranges' menu.
+
+  .. figure:: static/description/date_range_wizard.png
+     :scale: 80 %
+     :alt: Date range wizard
+
+  The wizard is usefull to generate recurring periods.
+  
+  .. figure:: static/description/date_range_wizard_result.png
+     :scale: 80 %
+     :alt: Date range wizard result
+
+* Your date ranges are now available in the search filter for any date or datetime fields
+
+  Date range types are proposed as filter operator
+  
+  .. figure:: static/description/date_range_type_as_filter.png
+     :scale: 80 %
+     :alt: Date range type available as filter operator
+
+  Once a type is seclected, date ranges of this type are porposed as filter value
+
+  .. figure:: static/description/date_range_as_filter.png
+     :scale: 80 %
+     :alt: Date range as filter value
+
+  And the dates specified into the date range are used to filter your result.
+  
+  .. figure:: static/description/date_range_as_filter_result.png
+     :scale: 80 %
+     :alt: Date range as filter result
+
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot
