@@ -1,27 +1,64 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * users_ldap_populate
-#
+# 
 # Translators:
+# Accounts-Payable - Alkemics, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# bossnm11 <bossnm11@gmail.com>, 2014
+# Chanseok <kcsgoodboy@gmail.com>, 2014
+# Chen-Do LU <clu@alkemics.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Chul Park <parkchul@nate.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# David10000 <gameness@naver.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# François Breysse <fb@alkemics.com>, 2015
+# Gil <gedwarp@gmail.com>, 2014
+# Hongseob Lee <shevious@gmail.com>, 2015
+# Hongseob Lee <shevreg@yahoo.com>, 2015
+# Hotellook, 2014
+# jeon <bluerespect@nate.com>, 2014
+# JiyeonLee <leejiyeon00@gmail.com>, 2014
+# Jong-Dae Park <jdpark7@gmail.com>, 2013
+# Kevin Min <gr326887@graded.br>, 2015
+# KimKyudong <choemh@nate.com>, 2014
+# mariana1201 <gogo3135@naver.com>, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Nicole <dlruddk1112@gmail.com>, 2014
+# njeudy <njeudy@tuxservices.com>, 2015
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Pope, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Sarina Canelake <sarina@edx.org>, 2014
+# Seok Jun Yoon <fake2real@dctribe.com>, 2015
+# shin2012 <shin2013@gmail.com>, 2014
+# Sujin Lee <sujinlee.me@gmail.com>, 2014
+# Sunah Lim <whitetree70@snu.ac.kr>, 2013
+# Young Kim <youngck.uw@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-21 14:02+0000\n"
-"PO-Revision-Date: 2015-12-13 15:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/"
-"language/de/)\n"
-"Language: de\n"
+"POT-Creation-Date: 2016-04-17 12:15+0000\n"
+"PO-Revision-Date: 2016-04-22 08:24+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
-msgstr ""
+msgstr "Füge 'Einpflegen'-Button zur ldap-Sicht hinzu"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
@@ -36,7 +73,7 @@ msgstr "Erstellt am:"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
@@ -46,12 +83,12 @@ msgstr "ID"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
 msgid "LDAP Configuration"
-msgstr ""
+msgstr "LDAP-Konfiguration"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
@@ -73,34 +110,34 @@ msgstr "Name"
 #, python-format
 msgid ""
 "No login attribute found: Could not extract login attribute from filter %s"
-msgstr ""
+msgstr "Kein Anmelde-Attribut gefunden: Konnte aus Filter %s kein Anmelde-Attribut extrahieren"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
-msgstr ""
+msgstr "Anzahl angelegter Benutzer"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
-msgstr ""
+msgstr "Einpflegen"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate user database"
-msgstr ""
+msgstr "Benutzerdatenbank befüllen"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
-msgstr ""
+msgstr "Pflege Benutzer aus LDAP ein"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap
 msgid "res.company.ldap"
-msgstr ""
+msgstr "res.company.ldap"

@@ -3,18 +3,18 @@
    :alt: License: AGPL-3
 
 ==========================
-Synchronize Gravatar image
+Synchronize Gravatar Image
 ==========================
 
-Use your Gravatar image in to your Odoo
+Use your Gravatar image in your Odoo
 
 Usage
 =====
 
 To configure this module, you need to:
 
-* edit user profile
-* press "Get Gravatar image" button
+* Edit user profile
+* Press "Get Gravatar image" button
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -35,6 +35,7 @@ Contributors
 ------------
 
 * Endika Iglesias <endika2@gmail.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------

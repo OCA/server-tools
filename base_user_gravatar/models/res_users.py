@@ -24,15 +24,18 @@ class ResUsers(models.Model):
         except urllib2.HTTPError:
             raise UserError(_('Sorry Gravatar not found.'))
 
-    @api.one
+    @api.multi
     def get_gravatar_image(self):
-        email = str(self.email) or ''
-        fail_example = self._get_gravatar_base64('fail@email.gravatar')
-        user_gravatar = self._get_gravatar_base64(email)
-        if fail_example != user_gravatar:
-            self.write({'image': user_gravatar})
-        else:
-            raise UserError(
-                _("There is no Gravatar image for this email (%s)" % (
-                    email)))
+        for rec_id in self:
+            email = str(rec_id.email) or ''
+            fail_example = self._get_gravatar_base64('fail@email.gravatar')
+            user_gravatar = self._get_gravatar_base64(email)
+            if fail_example != user_gravatar:
+                rec_id.write({'image': user_gravatar})
+            else:
+                raise UserError(_(
+                    "There is no Gravatar image for this email (%s)" % (
+                        email
+                    )
+                ))
         return True
