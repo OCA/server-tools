@@ -34,7 +34,7 @@ To configure this module, you need to:
      :scale: 80 %
      :alt: Date range wizard
 
-  The wizard is usefull to generate recurring periods.
+  The wizard is useful to generate recurring periods.
   
   .. figure:: static/description/date_range_wizard_result.png
      :scale: 80 %
@@ -42,13 +42,13 @@ To configure this module, you need to:
 
 * Your date ranges are now available in the search filter for any date or datetime fields
 
-  Date range types are proposed as filter operator
+  Date range types are proposed as a filter operator
   
   .. figure:: static/description/date_range_type_as_filter.png
      :scale: 80 %
      :alt: Date range type available as filter operator
 
-  Once a type is seclected, date ranges of this type are porposed as filter value
+  Once a type is selected, date ranges of this type are porposed as a filter value
 
   .. figure:: static/description/date_range_as_filter.png
      :scale: 80 %
