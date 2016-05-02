@@ -264,7 +264,10 @@ class res_users(models.Model):
 
         if vals and vals.get('saml_uid'):
             if not self._allow_saml_and_password():
-                vals['password'] = False
+                vals.update({
+                    'password': False,
+                    'password_crypt': False,
+                })
 
         return super(res_users, self).write(vals)
 
