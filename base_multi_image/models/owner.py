@@ -93,6 +93,6 @@ class Owner(models.AbstractModel):
         """Mimic `ondelete="cascade"` for multi images."""
         images = self.mapped("image_ids")
         result = super(Owner, self).unlink()
-        if result:
+        if result and not self.env.context.get('bypass_image_removal'):
             images.unlink()
         return result
