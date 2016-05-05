@@ -3,13 +3,13 @@
 # * auditlog
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-27 04:09+0000\n"
+"POT-Creation-Date: 2016-03-17 15:36+0000\n"
+"PO-Revision-Date: 2016-03-16 10:39+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr "Ukrep"
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
 msgstr "Revizija"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
+msgstr "Revizijski dnevnik - izbriši stare dnevnike"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
@@ -59,6 +64,7 @@ msgid "Context"
 msgstr "Kontekst"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_uid:0
 #: field:auditlog.http.request,create_uid:0
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
@@ -66,6 +72,7 @@ msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_date:0
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,create_date:0
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -86,6 +93,11 @@ msgid "Draft"
 msgstr "Osnutek"
 
 #. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Fast log"
+msgstr "Hitri dnevnik"
+
+#. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
 msgstr "Polje"
@@ -95,6 +107,18 @@ msgstr "Polje"
 #: field:auditlog.log,line_ids:0
 msgid "Fields updated"
 msgstr "Posodobljena polja"
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Full log"
+msgstr "Polni dnevnik"
+
+#. module: auditlog
+#: help:auditlog.rule,log_type:0
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+msgstr "Polni dnevnik: izdela razliko med podatki pred in po operaciji (beleži več informacij, kot npr. izračunana polja, ki so bila posodobljena, a je počasnejši)\nHitri dnevnik: beleži le spremembe nastale med operacijami ustvarjanja in zapisovanja (manj informacij, a je hitrejši)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -127,13 +151,14 @@ msgid "HTTP Requests"
 msgstr "HTTP zahtevki"
 
 #. module: auditlog
-#: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
-#: field:auditlog.log,id:0 field:auditlog.log.line,id:0
-#: field:auditlog.rule,id:0
+#: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
+#: field:auditlog.http.session,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
@@ -141,6 +166,7 @@ msgid "Last Updated by"
 msgstr "Zadnjič posodobil"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_date:0
 #: field:auditlog.http.request,write_date:0
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
@@ -329,6 +355,11 @@ msgid ""
 msgstr "Za ta model je že določeno pravilo\nNe morete določiti drugega, lahko pa uredite obstoječega."
 
 #. module: auditlog
+#: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
+msgid "Type"
+msgstr "Tip"
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
 msgstr "Odjavi naročnino"
@@ -369,7 +400,7 @@ msgid "Values"
 msgstr "Vrednosti"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:482
+#: code:addons/auditlog/models/rule.py:555
 #, python-format
 msgid "View logs"
 msgstr "Prikaz dnevnikov"

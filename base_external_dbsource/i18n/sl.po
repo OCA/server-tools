@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2016-03-12 02:05+0000\n"
 "PO-Revision-Date: 2015-09-26 07:09+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
@@ -39,13 +39,13 @@ msgid "Connection string"
 msgstr "Niz povezave"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:163
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
 #, python-format
 msgid "Connection test failed!"
 msgstr "Test povezave neuspešen!"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:174
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
 #, python-format
 msgid "Connection test succeeded!"
 msgstr "Test povezave uspel!"
@@ -76,7 +76,7 @@ msgid "Datasource name"
 msgstr "Naziv podatkovne baze"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:175
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
 msgstr "Kaže, da je vse pravilno nastavljeno!"
@@ -98,7 +98,7 @@ msgid "External Database Sources"
 msgstr "Viri zunanjih podatkovnih baz"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:164
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
 #, python-format
 msgid ""
 "Here is what we got instead:\n"

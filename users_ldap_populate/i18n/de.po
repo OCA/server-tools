@@ -3,13 +3,14 @@
 # * users_ldap_populate
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-26 10:50+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
-msgstr ""
+msgstr "Füge 'Füllen' Button zu LDAP-Sicht hinzu"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_uid:0
@@ -40,7 +41,7 @@ msgstr "ID"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,ldap_id:0
 msgid "LDAP Configuration"
-msgstr ""
+msgstr "LDAP-Einstellungen"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_uid:0
@@ -60,19 +61,19 @@ msgstr "Name"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,users_created:0
 msgid "Number of users created"
-msgstr ""
+msgstr "Anzahl angelegter Benutzer"
 
 #. module: users_ldap_populate
 #: view:res.company:users_ldap_populate.company_form_view
 msgid "Populate"
-msgstr ""
+msgstr "Einpflegen"
 
 #. module: users_ldap_populate
 #: view:res.company:users_ldap_populate.company_form_view
 msgid "Populate user database"
-msgstr ""
+msgstr "Benutzerdatenbank befüllen"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
-msgstr ""
+msgstr "Benutzer aus LDAP einpflegen"

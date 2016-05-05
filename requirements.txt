@@ -1,0 +1,4 @@
+  python-ldap
+  unidecode
+  validate_email
+  pysftp

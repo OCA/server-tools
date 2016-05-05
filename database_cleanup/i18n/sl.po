@@ -3,13 +3,13 @@
 # * database_cleanup
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-24 11:47+0000\n"
+"POT-Creation-Date: 2016-03-12 02:05+0000\n"
+"PO-Revision-Date: 2016-03-08 06:49+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -207,6 +207,16 @@ msgid "Nothing to do"
 msgstr "Ni kaj narediti"
 
 #. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_column_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_data_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_menu_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_model_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_module_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_table_line
+msgid "Purge"
+msgstr "Očisti"
+
+#. module: database_cleanup
 #: field:cleanup.purge.line.column,wizard_id:0
 #: field:cleanup.purge.line.data,wizard_id:0
 #: field:cleanup.purge.line.menu,wizard_id:0
@@ -248,6 +258,7 @@ msgstr "Očiščenje vseh tabel"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_columns.py:86
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
 #, python-format
@@ -256,6 +267,7 @@ msgstr "Očiščenje stolpcev"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_data.py:60
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 #, python-format
 msgid "Purge data"
@@ -276,6 +288,7 @@ msgstr "Očiščenje menijev"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_models.py:133
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
 #: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
 #, python-format
@@ -284,6 +297,7 @@ msgstr "Očiščenje modelov"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_modules.py:104
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_modules
 #, python-format
@@ -322,6 +336,7 @@ msgstr "Očiščenje opuščenih tabel"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_tables.py:92
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #, python-format
@@ -329,27 +344,37 @@ msgid "Purge tables"
 msgstr "Očiščenje tabel"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 msgid "Purge this column"
 msgstr "Očisti ta stolpec"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 msgid "Purge this data"
 msgstr "Očisti ta podatek"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
+msgid "Purge this menu"
+msgstr "Očisti ta meni"
+
+#. module: database_cleanup
+#: view:cleanup.purge.line.menu:database_cleanup.purge_menu_line_tree
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
 #: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
 msgid "Purge this model"
 msgstr "Očisti ta model"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 msgid "Purge this module"
 msgstr "Očisti ta modul"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 msgid "Purge this table"
 msgstr "Očisti to tabelo"
@@ -363,6 +388,16 @@ msgstr "Očisti to tabelo"
 #: field:cleanup.purge.line.table,purged:0
 msgid "Purged"
 msgstr "Očiščeno"
+
+#. module: database_cleanup
+#: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
+#: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
+#: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
+#: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
+#: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
+#: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
+msgid "Select lines"
+msgstr "Izberi postavke"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.table,purge_line_ids:0

@@ -3,13 +3,15 @@
 # * super_calendar
 # 
 # Translators:
+# Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-02-16 15:26+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr ""
 #: view:super.calendar:super_calendar.super_calendar_form
 #: view:super.calendar:super_calendar.super_calendar_tree
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 #. module: super_calendar
 #: model:ir.actions.act_window,name:super_calendar.super_calendar_configurator
@@ -34,25 +36,25 @@ msgstr ""
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
 msgid "Configuration"
-msgstr ""
+msgstr "Configuración"
 
 #. module: super_calendar
 #: field:super.calendar,configurator_id:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 #: field:super.calendar.configurator.line,configurator_id:0
 msgid "Configurator"
-msgstr ""
+msgstr "Configurador"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configurators
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_tree
 msgid "Configurators"
-msgstr ""
+msgstr "Configuradores"
 
 #. module: super_calendar
 #: field:super.calendar,create_uid:0
@@ -71,23 +73,23 @@ msgstr "Creado en"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current month"
-msgstr ""
+msgstr "Mes actual"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current week"
-msgstr ""
+msgstr "Semana actual"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Day"
-msgstr ""
+msgstr "Día"
 
 #. module: super_calendar
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -103,32 +105,32 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current month."
-msgstr ""
+msgstr "Mostrar todos los elementos del mes actual."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current week."
-msgstr ""
+msgstr "Mostrar todos los elementos en la semana actual."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the next month."
-msgstr ""
+msgstr "Mostrar todos los elementos del próximo mes."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the next week."
-msgstr ""
+msgstr "Mostrar todos los elementos en la próxima semana."
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,domain:0
 msgid "Domain"
-msgstr ""
+msgstr "Dominio"
 
 #. module: super_calendar
 #: field:super.calendar,duration:0
 msgid "Duration"
-msgstr ""
+msgstr "Duración"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,duration_field_id:0
@@ -143,7 +145,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Extended Filters..."
-msgstr ""
+msgstr "Filtros extendidos..."
 
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
@@ -153,37 +155,37 @@ msgstr "Campo"
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Generate Calendar"
-msgstr ""
+msgstr "Generar calendario"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group all elements in the same day."
-msgstr ""
+msgstr "Agrupar todos los elementos del mismo día."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group all elements in the same month."
-msgstr ""
+msgstr "Agrupar todos los elementos del mismo mes."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group all elements in the same quarter."
-msgstr ""
+msgstr "Agrupar todos los elementos del mismo trimestre."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group all elements in the same week."
-msgstr ""
+msgstr "Agrupar todos los elementos de la misma semana."
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group all elements in the same year."
-msgstr ""
+msgstr "Agrupar todos los elementos del mismo año."
 
 #. module: super_calendar
 #: field:super.calendar,id:0 field:super.calendar.configurator,id:0
@@ -214,7 +216,7 @@ msgstr ""
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 #: field:super.calendar.configurator,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Lineas"
 
 #. module: super_calendar
 #: field:super.calendar,model_id:0
@@ -225,7 +227,7 @@ msgstr "Modelo"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -240,27 +242,27 @@ msgstr "Nombre"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next month"
-msgstr ""
+msgstr "Próximo mes"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next week"
-msgstr ""
+msgstr "Próxima semana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Quarter"
-msgstr ""
+msgstr "Trimestre"
 
 #. module: super_calendar
 #: field:super.calendar,res_id:0
 msgid "Resource"
-msgstr ""
+msgstr "Recurso"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -270,7 +272,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar,date_start:0
 msgid "Start date"
-msgstr ""
+msgstr "Fecha inicial"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,date_start_field_id:0
@@ -281,7 +283,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:super_calendar.super_calendar_action
 #: model:ir.ui.menu,name:super_calendar.super_calendar_menu
 msgid "Super Calendar"
-msgstr ""
+msgstr "Super calendario"
 
 #. module: super_calendar
 #: code:addons/super_calendar/models/super_calendar_configurator.py:112
@@ -315,9 +317,9 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Week"
-msgstr ""
+msgstr "Semana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Year"
-msgstr ""
+msgstr "Año"

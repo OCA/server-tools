@@ -1,0 +1,133 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_brute_force
+# 
+# Translators:
+# Paolo Valier, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-17 15:36+0000\n"
+"PO-Revision-Date: 2016-03-13 08:51+0000\n"
+"Last-Translator: Paolo Valier\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,active:0
+msgid "Active"
+msgstr "Attivo"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,attempt_date:0
+msgid "Attempt Date"
+msgstr "Data Tentativo"
+
+#. module: auth_brute_force
+#: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
+#: model:ir.ui.menu,name:auth_brute_force.menu_res_authentication_attempt
+msgid "Authentication Attempts"
+msgstr "Tentativi di Autenticazione"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,result:0
+msgid "Authentication Result"
+msgstr "Risultato dell'Autenticazione"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,ban_date:0
+msgid "Ban Date"
+msgstr "Data dell'Interdizione"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:34
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Banned"
+msgstr "Interdetto"
+
+#. module: auth_brute_force
+#: model:ir.actions.act_window,name:auth_brute_force.action_res_banned_remote
+#: model:ir.ui.menu,name:auth_brute_force.menu_res_banned_remote
+msgid "Banned Remotes"
+msgstr ""
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,create_uid:0
+#: field:res.banned.remote,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,create_date:0
+#: field:res.banned.remote,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,description:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Failed"
+msgstr "Fallita"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,write_uid:0
+#: field:res.banned.remote,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento da"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,write_date:0
+#: field:res.banned.remote,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0
+msgid "Remote ID"
+msgstr "ID Remoto"
+
+#. module: auth_brute_force
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+msgid "Successful"
+msgstr "Ruiscito"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:32
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Successfull"
+msgstr ""
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,login:0
+msgid "Tried Login"
+msgstr "Tentata Autenticazione"
+
+#. module: auth_brute_force
+#: help:res.banned.remote,active:0
+msgid "Uncheck this box to unban the remote"
+msgstr ""
+
+#. module: auth_brute_force
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+msgid "Without Success"
+msgstr "Senza successo"

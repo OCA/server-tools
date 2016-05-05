@@ -3,13 +3,15 @@
 # * module_prototyper
 # 
 # Translators:
+# Antonio Trueba, 2016
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-12 19:47+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-02-16 15:28+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,37 +22,37 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,api_version:0
 msgid "API version"
-msgstr ""
+msgstr "Versión de API"
 
 #. module: module_prototyper
 #: field:module_prototyper,right_ids:0
 msgid "Access Rights"
-msgstr ""
+msgstr "Permisos de acceso"
 
 #. module: module_prototyper
 #: field:module_prototyper,activity_ids:0
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "Affero GPL-3"
-msgstr ""
+msgstr "Affero GPL-3"
 
 #. module: module_prototyper
 #: field:module_prototyper,application:0
 msgid "Application"
-msgstr ""
+msgstr "Aplicación"
 
 #. module: module_prototyper
 #: field:module_prototyper,author:0
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #. module: module_prototyper
 #: field:module_prototyper,auto_install:0
@@ -65,12 +67,12 @@ msgstr "Cancelar"
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0
 msgid "Check if the module is an Odoo application."
-msgstr ""
+msgstr "Comprobar si el módulo es una aplicación Odoo."
 
 #. module: module_prototyper
 #: help:module_prototyper,auto_install:0
@@ -80,22 +82,22 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #. module: module_prototyper
 #: field:ir.model.fields,column1:0
 msgid "Column1"
-msgstr ""
+msgstr "Columna1"
 
 #. module: module_prototyper
 #: field:ir.model.fields,column2:0
 msgid "Column2"
-msgstr ""
+msgstr "Columna2"
 
 #. module: module_prototyper
 #: field:ir.model.fields,client_context:0
 msgid "Context"
-msgstr ""
+msgstr "Contexto"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:47
@@ -137,23 +139,23 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,dependency_ids:0
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependencias"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
 msgid "Enter a summary of your module"
-msgstr ""
+msgstr "Introduzca un resumen de su módulo"
 
 #. module: module_prototyper
 #: help:module_prototyper,website:0
 msgid "Enter the URL of your website"
-msgstr ""
+msgstr "Introduzca la URL de su sitio web"
 
 #. module: module_prototyper
 #: help:module_prototyper,description:0
@@ -254,7 +256,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
@@ -283,7 +285,7 @@ msgstr "Campos"
 #. module: module_prototyper
 #: field:module_prototyper.module.export,data:0
 msgid "File"
-msgstr ""
+msgstr "ARchivo"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,name:0
@@ -293,17 +295,17 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "GPL Version 3"
-msgstr ""
+msgstr "GPL Versión 3"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "GPL-3 or later version"
-msgstr ""
+msgstr "GPL-3 o posterior"
 
 #. module: module_prototyper
 #: field:module_prototyper,group_ids:0
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #. module: module_prototyper
 #: field:ir.model.fields,helper:0
@@ -323,22 +325,22 @@ msgstr "ID"
 #. module: module_prototyper
 #: field:module_prototyper,icon_image:0
 msgid "Icon"
-msgstr ""
+msgstr "Icono"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Interface"
-msgstr ""
+msgstr "Interfaz"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "LGPL-3"
-msgstr ""
+msgstr "LGPL-3"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "LGPL-3 or later version"
-msgstr ""
+msgstr "LGPL-3 o versión posterior"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_uid:0
@@ -355,12 +357,12 @@ msgstr "Última actualización en"
 #. module: module_prototyper
 #: field:module_prototyper,license:0
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #. module: module_prototyper
 #: field:module_prototyper,maintainer:0
 msgid "Maintainer"
-msgstr ""
+msgstr "Mantenedor"
 
 #. module: module_prototyper
 #: model:ir.ui.menu,name:module_prototyper.menu_grant_menu_access
@@ -371,7 +373,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Module"
-msgstr ""
+msgstr "Módulo"
 
 #. module: module_prototyper
 #: field:module_prototyper,human_name:0
@@ -391,7 +393,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0
@@ -418,13 +420,13 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_tree_view
 msgid "Prototype"
-msgstr ""
+msgstr "Prototipo"
 
 #. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
 #: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
 msgid "Prototypes"
-msgstr ""
+msgstr "Prototipos"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:44
@@ -442,12 +444,12 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,report_ids:0
 msgid "Reports"
-msgstr ""
+msgstr "Informes"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
@@ -457,12 +459,12 @@ msgstr "Estado"
 #. module: module_prototyper
 #: field:module_prototyper,summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Resumen"
 
 #. module: module_prototyper
 #: field:module_prototyper,name:0
 msgid "Technical Name"
-msgstr ""
+msgstr "Nombre técnico"
 
 #. module: module_prototyper
 #: view:ir.model.fields:module_prototyper.view_ir_model_fields_form
@@ -501,29 +503,29 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,transition_ids:0
 msgid "Transitions"
-msgstr ""
+msgstr "Transiciones"
 
 #. module: module_prototyper
 #: field:module_prototyper,version:0
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #. module: module_prototyper
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 #: field:module_prototyper,view_ids:0
 msgid "Views"
-msgstr ""
+msgstr "Vistas"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Workflows"
-msgstr ""
+msgstr "Flujos de trabajo"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,state:0
