@@ -3,13 +3,14 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
+# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-29 11:14+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-02-10 16:46+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "Cancelar"
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Create QWeb view"
-msgstr ""
+msgstr "Crear vista QWeb"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,create_uid:0

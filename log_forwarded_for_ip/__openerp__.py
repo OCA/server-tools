@@ -14,4 +14,5 @@
     "depends": [
         "base",
     ],
+    "uninstall_hook": "restore_address_string"
 }

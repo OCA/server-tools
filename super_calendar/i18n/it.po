@@ -3,13 +3,14 @@
 # * super_calendar
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-16 07:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-03-17 15:37+0000\n"
+"PO-Revision-Date: 2016-03-13 09:47+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,17 +72,17 @@ msgstr "Creato il"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current month"
-msgstr ""
+msgstr "Mese corrente"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current week"
-msgstr ""
+msgstr "Settimana corrente"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Day"
-msgstr ""
+msgstr "Giorno"
 
 #. module: super_calendar
 #: field:super.calendar,name:0
@@ -225,7 +226,7 @@ msgstr "Modello"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Month"
-msgstr ""
+msgstr "Mese"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -240,17 +241,17 @@ msgstr "Nome"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next month"
-msgstr ""
+msgstr "Prossimo mese"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next week"
-msgstr ""
+msgstr "Prossima settimana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Period"
-msgstr ""
+msgstr "Periodo"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -315,9 +316,9 @@ msgstr "Campo Utente"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Week"
-msgstr ""
+msgstr "Settimana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Year"
-msgstr ""
+msgstr "Anno"

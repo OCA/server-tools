@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"POT-Creation-Date: 2016-03-17 15:37+0000\n"
 "PO-Revision-Date: 2015-11-13 14:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
@@ -39,7 +39,7 @@ msgid "Context"
 msgstr "Context"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:230
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:229
 #, python-format
 msgid "Context \"%s\" is not a dictionary."
 msgstr "Context \"%s\" is not a dictionary."
@@ -156,7 +156,7 @@ msgid ""
 msgstr "If there are multiple matches, use the first one. If not checked, multiple matches count as no match at all"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:227
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:226
 #, python-format
 msgid "Invalid context \"%s\": %s"
 msgstr "Invalid context \"%s\": %s"
@@ -176,13 +176,13 @@ msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:189
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:188
 #, python-format
 msgid "Mail attachment"
 msgstr "Mail attachment"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:234
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:233
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr "Mailbox %s not found!"

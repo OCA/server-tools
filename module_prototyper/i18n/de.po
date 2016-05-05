@@ -3,13 +3,14 @@
 # * module_prototyper
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-12 19:47+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-26 10:53+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,67 +21,67 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,api_version:0
 msgid "API version"
-msgstr ""
+msgstr "API-Version"
 
 #. module: module_prototyper
 #: field:module_prototyper,right_ids:0
 msgid "Access Rights"
-msgstr ""
+msgstr "Berechtigungen"
 
 #. module: module_prototyper
 #: field:module_prototyper,activity_ids:0
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitäten"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "Affero GPL-3"
-msgstr ""
+msgstr "Affero GPL-3"
 
 #. module: module_prototyper
 #: field:module_prototyper,application:0
 msgid "Application"
-msgstr ""
+msgstr "Anwendung"
 
 #. module: module_prototyper
 #: field:module_prototyper,author:0
 msgid "Author"
-msgstr ""
+msgstr "Author"
 
 #. module: module_prototyper
 #: field:module_prototyper,auto_install:0
 msgid "Auto Install"
-msgstr ""
+msgstr "Auto-Installation"
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0
 msgid "Check if the module is an Odoo application."
-msgstr ""
+msgstr "Prüfe, ob Modul eine Odoo-Anwendung ist."
 
 #. module: module_prototyper
 #: help:module_prototyper,auto_install:0
 msgid "Check if the module should be install by default."
-msgstr ""
+msgstr "Anwählen, wenn das Modul per Vorgae installiert werden soll."
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr ""
+msgstr "Schliessen"
 
 #. module: module_prototyper
 #: field:ir.model.fields,column1:0
@@ -95,7 +96,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:ir.model.fields,client_context:0
 msgid "Context"
-msgstr ""
+msgstr "Kontext"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:47
@@ -143,7 +144,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
@@ -283,7 +284,7 @@ msgstr "Felder"
 #. module: module_prototyper
 #: field:module_prototyper.module.export,data:0
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,name:0
@@ -371,7 +372,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Module"
-msgstr ""
+msgstr "Modul"
 
 #. module: module_prototyper
 #: field:module_prototyper,human_name:0
@@ -582,4 +583,4 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "oder"

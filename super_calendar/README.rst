@@ -23,12 +23,12 @@ phone calls, you can create the following lines
 
 Meetings:
 
-.. image:: super_calendar/static/description/meetings.png
+.. image:: /super_calendar/static/description/meetings.png
    :width: 400 px
 
 Phonecalls:
 
-.. image:: super_calendar/static/description/phone_calls.png
+.. image:: /super_calendar/static/description/phone_calls.png
    :width: 400 px
 
 Then, you can use the 'Generate Calendar' button or wait for the scheduled
@@ -38,12 +38,12 @@ When the calendar is generated, you can visualize it by the 'super calendar' mai
 
 Here is a sample monthly calendar:
 
-.. image:: super_calendar/static/description/month_calendar.png
+.. image:: /super_calendar/static/description/month_calendar.png
    :width: 400 px
 
 And here is the weekly one:
 
-.. image:: super_calendar/static/description/week_calendar.png
+.. image:: /super_calendar/static/description/week_calendar.png
    :width: 400 px
 
 As you can see, several filters are available. A typical usage consists in

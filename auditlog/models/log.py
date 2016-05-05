@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp import models, fields
 
 
@@ -40,6 +39,11 @@ class AuditlogLog(models.Model):
         'auditlog.http.session', string=u"Session")
     http_request_id = fields.Many2one(
         'auditlog.http.request', string=u"HTTP Request")
+    log_type = fields.Selection(
+        [('full', u"Full log"),
+         ('fast', u"Fast log"),
+         ],
+        string=u"Type")
 
 
 class AuditlogLogLine(models.Model):
@@ -49,7 +53,7 @@ class AuditlogLogLine(models.Model):
     field_id = fields.Many2one(
         'ir.model.fields', ondelete='cascade', string=u"Field", required=True)
     log_id = fields.Many2one(
-        'auditlog.log', string=u"Log", ondelete='cascade')
+        'auditlog.log', string=u"Log", ondelete='cascade', index=True)
     old_value = fields.Text(u"Old Value")
     new_value = fields.Text(u"New Value")
     old_value_text = fields.Text(u"Old value Text")
