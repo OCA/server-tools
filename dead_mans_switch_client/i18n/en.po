@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-26 12:51+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,16 @@ msgid "Configure the dead man's switch server"
 msgstr "Configure the dead man's switch server"
 
 #. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: dead_mans_switch_client
 #: field:dead.mans.switch.client,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
