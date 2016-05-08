@@ -3,13 +3,27 @@
 # * users_ldap_push
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Accounts-Payable - Alkemics, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012,2014
+# François Breysse <fb@alkemics.com>, 2015
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Giedrius Slavinskas <giedrius@inovera.lt>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:06+0000\n"
-"PO-Revision-Date: 2016-03-08 06:57+0000\n"
+"POT-Creation-Date: 2016-05-06 02:42+0000\n"
+"PO-Revision-Date: 2016-05-05 05:58+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +63,11 @@ msgid "DN"
 msgstr "DN"
 
 #. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_users.py:116
 #: code:addons/users_ldap_push/models/res_users.py:169
 #, python-format
@@ -81,9 +100,19 @@ msgid "LDAP configuration"
 msgstr "LDAP nastavitve"
 
 #. module: users_ldap_push
+#: field:res.users,is_ldap_user:0
+msgid "LDAP user"
+msgstr "LDAP uporabnik"
+
+#. module: users_ldap_push
 #: view:res.users:users_ldap_push.view_users_search
 msgid "LDAP users"
 msgstr "LDAP uporabniki"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,write_uid:0

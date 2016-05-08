@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:37+0000\n"
-"PO-Revision-Date: 2015-11-13 14:28+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,13 @@ msgstr "Delete matched emails from server"
 #: field:fetchmail.server.folder,delete_matching:0
 msgid "Delete matches"
 msgstr "Delete matches"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,display_name:0
+#: field:fetchmail.attach.mail.manually.mail,display_name:0
+#: field:fetchmail.server.folder,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -160,6 +167,13 @@ msgstr "If there are multiple matches, use the first one. If not checked, multip
 #, python-format
 msgid "Invalid context \"%s\": %s"
 msgstr "Invalid context \"%s\": %s"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,__last_update:0
+#: field:fetchmail.attach.mail.manually.mail,__last_update:0
+#: field:fetchmail.server.folder,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0

@@ -3,53 +3,45 @@
 # * users_ldap_groups
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-06 02:42+0000\n"
-"PO-Revision-Date: 2016-05-05 05:57+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"PO-Revision-Date: 2016-05-04 19:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Created by"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Created on"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap,group_mappings:0
 msgid "Define how OpenERP groups are assigned to ldap users"
-msgstr "Določi način dodeljevanja OpenERP skupin LDAP uporabnikom"
+msgstr "Define how OpenERP groups are assigned to ldap users"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,display_name:0
 #: field:res.company.ldap.operator,display_name:0
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Display Name"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,group_mappings:0
 msgid "Group mappings"
-msgstr "Mapiranja skupin"
+msgstr "Group mappings"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,id:0
@@ -63,81 +55,81 @@ msgid ""
 "If this is checked, manual changes to group membership are undone on every "
 "login (so OpenERP groups are always synchronous with LDAP groups). If not, "
 "manually added groups are preserved."
-msgstr "Če označeno, so vse ročne spremembe članov skupin prezrte ob vsaki prijavi (tako so OpenERP skupine vedno sinhrone z LDAP skupinami). Če ni, se ročno dodane skupine ohranijo."
+msgstr "If this is checked, manual changes to group membership are undone on every login (so OpenERP groups are always synchronous with LDAP groups). If not, manually added groups are preserved."
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,ldap_attribute:0
 msgid "LDAP attribute"
-msgstr "LDAP atribut"
+msgstr "LDAP attribute"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,ldap_id:0
 msgid "LDAP server"
-msgstr "LDAP strežnik"
+msgstr "LDAP server"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,__last_update:0
 #: field:res.company.ldap.operator,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr "Last Modified on"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Last Updated by"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Last Updated on"
 
 #. module: users_ldap_groups
 #: view:res.company:users_ldap_groups.company_form_view
 msgid "Map User Groups"
-msgstr "Mapiraj uporabniške skupine"
+msgstr "Map User Groups"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,only_ldap_groups:0
 msgid "Only ldap groups"
-msgstr "Samo LDAP skupine"
+msgstr "Only ldap groups"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,group:0
 msgid "OpenERP group"
-msgstr "OpenERP skupine"
+msgstr "OpenERP group"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,operator:0
 msgid "Operator"
-msgstr "Operater"
+msgstr "Operator"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,ldap_attribute:0
 msgid ""
 "The LDAP attribute to check.\n"
 "For active directory, use memberOf."
-msgstr "LDAP atribut za preverjanje.\nZa aktivni imenik uporabite memberOf."
+msgstr "The LDAP attribute to check.\nFor active directory, use memberOf."
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,group:0
 msgid "The OpenERP group to assign"
-msgstr "OpenERP skupina za dodelitev"
+msgstr "The OpenERP group to assign"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,operator:0
 msgid ""
 "The operator to check the attribute against the value\n"
 "For active directory, use 'contains'"
-msgstr "Operater za primerjavo atributa z vrednostjo\nza aktivni imenik, uporabite 'contains'"
+msgstr "The operator to check the attribute against the value\nFor active directory, use 'contains'"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,value:0
 msgid ""
 "The value to check the attribute against.\n"
 "For active directory, use the dn of the desired group"
-msgstr "Vrednost za primerjavo atributa.\nZa aktivni imenik uporabite dn željene skupine"
+msgstr "The value to check the attribute against.\nFor active directory, use the dn of the desired group"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,value:0
 msgid "Value"
-msgstr "Vrednost"
+msgstr "Value"

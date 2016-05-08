@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * dead_mans_switch_client
+# * auth_from_http_remote_user
 # 
 # Translators:
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:17+0000\n"
+"PO-Revision-Date: 2016-05-04 19:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -17,22 +17,27 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: dead_mans_switch_client
-#: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
-msgid "Configure the dead man's switch server"
-msgstr "Configure the dead man's switch server"
-
-#. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,display_name:0
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,display_name:0
 msgid "Display Name"
 msgstr "Display Name"
 
-#. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,id:0
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,id:0
 msgid "ID"
 msgstr "ID"
 
-#. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,__last_update:0
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,__last_update:0
 msgid "Last Modified on"
 msgstr "Last Modified on"
+
+#. module: auth_from_http_remote_user
+#: field:res.users,sso_key:0
+msgid "SSO Key"
+msgstr "SSO Key"
+
+#. module: auth_from_http_remote_user
+#: model:ir.model,name:auth_from_http_remote_user.model_res_users
+msgid "Users"
+msgstr "Users"
