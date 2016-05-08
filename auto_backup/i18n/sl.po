@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-06 04:49+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -129,6 +129,11 @@ msgid "Days to keep"
 msgstr "Dni za hranjenje"
 
 #. module: auto_backup
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:120
 #, python-format
 msgid ""
@@ -196,6 +201,11 @@ msgstr "Je sledilec"
 #: field:db.backup,message_last_post:0
 msgid "Last Message Date"
 msgstr "Datum zadnjega sporočila"
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0
