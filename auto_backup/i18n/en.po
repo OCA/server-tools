@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -128,6 +128,11 @@ msgid "Days to keep"
 msgstr "Days to keep"
 
 #. module: auto_backup
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:120
 #, python-format
 msgid ""
@@ -195,6 +200,11 @@ msgstr "Is a Follower"
 #: field:db.backup,message_last_post:0
 msgid "Last Message Date"
 msgstr "Last Message Date"
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0
