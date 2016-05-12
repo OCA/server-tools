@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from openerp.exceptions import except_orm as ValueError  # TODO remove in v9
 from openerp import SUPERUSER_ID  # TODO remove in v10
 
 
@@ -11,9 +10,6 @@ class BaseImportMatch(models.Model):
     _name = "base_import.match"
     _description = "Deduplicate settings prior to CSV imports."
     _order = "sequence, name"
-    _sql_constraints = [
-        ("name_unique", "UNIQUE(name)", "Duplicated match!"),
-    ]
 
     name = fields.Char(
         compute="_compute_name",
@@ -31,17 +27,17 @@ class BaseImportMatch(models.Model):
         related="model_id.model",
         store=True,
         index=True)
-    field_ids = fields.Many2many(
-        "ir.model.fields",
+    field_ids = fields.One2many(
+        comodel_name="base_import.match.field",
+        inverse_name="match_id",
         string="Fields",
         required=True,
-        domain="[('model_id', '=', model_id)]",
         help="Fields that will define an unique key.")
 
     @api.multi
     @api.onchange("model_id")
     def _onchange_model_id(self):
-        self.field_ids = False
+        self.field_ids.unlink()
 
     @api.model
     def create(self, vals):
@@ -89,7 +85,70 @@ class BaseImportMatch(models.Model):
         for s in self:
             s.name = "{}: {}".format(
                 s.model_id.display_name,
-                " + ".join(s.field_ids.mapped("display_name")))
+                " + ".join(
+                    s.field_ids.mapped(
+                        lambda r: (
+                            str(r.field_id.name) +
+                            (" ({})".format(r.imported_value)
+                             if r.conditional else "")))))
+
+    @api.model
+    def _match_find(self, model, converted_row, imported_row):
+        """Find a update target for the given row.
+
+        This will traverse by order all match rules that can be used with the
+        imported data, and return a match for the first rule that returns a
+        single result.
+
+        :param openerp.models.Model model:
+            Model object that is being imported.
+
+        :param dict converted_row:
+            Row converted to Odoo api format, like the 3rd value that
+            :meth:`openerp.models.Model._convert_records` returns.
+
+        :param dict imported_row:
+            Row as it is being imported, in format::
+
+                {
+                    "field_name": "string value",
+                    "other_field": "True",
+                    ...
+                }
+
+        :return openerp.models.Model:
+            Return a dataset with one single match if it was found, or an
+            empty dataset if none or multiple matches were found.
+        """
+        # Get usable rules to perform matches
+        usable = self._usable_for_load(model._name, converted_row.keys())
+
+        # Traverse usable combinations
+        for combination in usable:
+            combination_valid = True
+            domain = list()
+
+            for field in combination.field_ids:
+                # Check imported value if it is a conditional field
+                if field.conditional:
+                    # Invalid combinations are skipped
+                    if imported_row[field.name] != field.imported_value:
+                        combination_valid = False
+                        break
+
+                domain.append((field.name, "=", converted_row[field.name]))
+
+            if not combination_valid:
+                continue
+
+            match = model.search(domain)
+
+            # When a single match is found, stop searching
+            if len(match) == 1:
+                return match
+
+        # Return an empty match if none or multiple was found
+        return model
 
     @api.model
     def _load_wrapper(self):
@@ -105,53 +164,37 @@ class BaseImportMatch(models.Model):
             """
             newdata = list()
 
+            # Data conversion to ORM format
+            import_fields = map(models.fix_import_export_id_paths, fields)
+            converted_data = self._convert_records(
+                self._extract_records(import_fields, data))
+
             # Mock Odoo to believe the user is importing the ID field
             if "id" not in fields:
                 fields.append("id")
+                import_fields.append(["id"])
 
-            # Needed to work with relational fields
-            clean_fields = [
-                models.fix_import_export_id_paths(f)[0] for f in fields]
+            # Needed to match with converted data field names
+            clean_fields = [f[0] for f in import_fields]
 
-            # Get usable rules to perform matches
-            usable = self.env["base_import.match"]._usable_for_load(
-                self._name, clean_fields)
-
-            for row in (dict(zip(clean_fields, r)) for r in data):
-                # All rows need an ID
-                if "id" not in row:
-                    row["id"] = u""
-
-                # Skip rows with ID, they do not need all this
-                elif row["id"]:
-                    continue
-
-                # Store records that match a combination
+            for dbid, xmlid, record, info in converted_data:
+                row = dict(zip(clean_fields, data[info["record"]]))
                 match = self
-                for combination in usable:
-                    match |= self.search(
-                        [(field.name, "=", row[field.name])
-                         for field in combination.field_ids])
 
-                    # When a single match is found, stop searching
-                    if len(match) != 1:
-                        break
+                if xmlid:
+                    # Skip rows with ID, they do not need all this
+                    row["id"] = xmlid
+                elif dbid:
+                    # Find the xmlid for this dbid
+                    match = self.browse(dbid)
+                else:
+                    # Store records that match a combination
+                    match = self.env["base_import.match"]._match_find(
+                        self, record, row)
 
-                # Only one record should have been found
-                try:
-                    match.ensure_one()
-
-                # You hit this because...
-                # a. No match. Odoo must create a new record.
-                # b. Multiple matches. No way to know which is the right
-                #    one, so we let Odoo create a new record or raise
-                #    the corresponding exception.
-                # In any case, we must do nothing.
-                except ValueError:
-                    continue
-
-                # Give a valid XMLID to this row
-                row["id"] = match._BaseModel__export_xml_id()
+                # Give a valid XMLID to this row if a match was found
+                row["id"] = (match._BaseModel__export_xml_id()
+                             if match else row.get("id", u""))
 
                 # Store the modified row, in the same order as fields
                 newdata.append(tuple(row[f] for f in clean_fields))
@@ -218,3 +261,37 @@ class BaseImportMatch(models.Model):
                 result += record
 
         return result
+
+
+class BaseImportMatchField(models.Model):
+    _name = "base_import.match.field"
+    _description = "Field import match definition"
+
+    name = fields.Char(
+        related="field_id.name")
+    field_id = fields.Many2one(
+        comodel_name="ir.model.fields",
+        string="Field",
+        required=True,
+        ondelete="cascade",
+        domain="[('model_id', '=', model_id)]",
+        help="Field that will be part of an unique key.")
+    match_id = fields.Many2one(
+        comodel_name="base_import.match",
+        string="Match",
+        required=True)
+    model_id = fields.Many2one(
+        related="match_id.model_id")
+    conditional = fields.Boolean(
+        help="Enable if you want to use this field only in some conditions.")
+    imported_value = fields.Char(
+        help="If the imported value is not this, the whole matching rule will "
+             "be discarded. Be careful, this data is always treated as a "
+             "string, and comparison is case-sensitive so if you set 'True', "
+             "it will NOT match '1' nor 'true', only EXACTLY 'True'.")
+
+    @api.multi
+    @api.onchange("field_id", "match_id", "conditional", "imported_value")
+    def _onchange_match_id_name(self):
+        """Update match name."""
+        self.mapped("match_id")._compute_name()

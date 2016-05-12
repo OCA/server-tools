@@ -16,6 +16,7 @@
         "base_import",
     ],
     "data": [
+        "data/base_import_match.yml",
         "views/base_import_match_view.xml",
     ],
     "demo": [
