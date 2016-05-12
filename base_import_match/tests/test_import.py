@@ -27,12 +27,12 @@ class ImportCase(TransactionCase):
 
     def test_res_partner_vat(self):
         """Change name based on VAT."""
-        federal = self.env.ref("base.res_partner_26")
-        federal.vat = "BE0477472701"
+        agrolait = self.env.ref("base.res_partner_2")
+        agrolait.vat = "BE0477472701"
         record = self._base_import_record("res.partner", "res_partner_vat")
-        record.do(["name", "vat"], OPTIONS)
-        federal.env.invalidate_all()
-        self.assertEqual(federal.name, "Federal Changed")
+        record.do(["name", "vat", "is_company"], OPTIONS)
+        agrolait.env.invalidate_all()
+        self.assertEqual(agrolait.name, "Agrolait Changed")
 
     def test_res_partner_parent_name_is_company(self):
         """Change email based on parent_id, name and is_company."""
