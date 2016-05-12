@@ -9,8 +9,8 @@ Base Import Match
 By default, when importing data (like CSV import) with the ``base_import``
 module, Odoo follows this rule:
 
-#. If you import the XMLID of a record, make an **update**.
-#. If you do not, **create** a new record.
+- If you import the XMLID of a record, make an **update**.
+- If you do not, **create** a new record.
 
 This module allows you to set additional rules to match if a given import is an
 update or a new record.
@@ -21,21 +21,31 @@ name, VAT, email, etc.
 
 After installing this module, the import logic will be changed to:
 
-#. If you import the XMLID of a record, make an **update**.
-#. If you do not:
-   #. If there are import match rules for the model you are importing:
-       #. Discard the rules that require fields you are not importing.
-       #. Traverse the remaining rules one by one in order to find a match in
-          the database.
-          #. If one match is found:
-             #. Stop traversing the rest of valid rules.
-             #. **Update** that record.
-          #. If zero or multiple matches are found:
-             #. Continue with the next rule.
-          #. If all rules are exhausted and no single match is found:
-             #. **Create** a new record.
-   #. If there are no match rules for your model:
-      #. **Create** a new record.
+- If you import the XMLID of a record, make an **update**.
+- If you do not:
+  - If there are import match rules for the model you are importing:
+      - Discard the rules that require fields you are not importing.
+      - Traverse the remaining rules one by one in order to find a match in
+        the database.
+          - Skip the rule if it requires a special condition that is not
+            satisfied.
+          - If one match is found:
+            - Stop traversing the rest of valid rules.
+            - **Update** that record.
+          - If zero or multiple matches are found:
+            - Continue with the next rule.
+          - If all rules are exhausted and no single match is found:
+            - **Create** a new record.
+  - If there are no match rules for your model:
+    - **Create** a new record.
+
+By default 2 rules are installed for production instances:
+
+- One rule that will allow you to update companies based on their VAT, when
+  ``is_company`` is ``True``.
+- One rule that will allow you to update users based on their login.
+
+In demo instances there are more examples.
 
 Configuration
 =============
@@ -46,6 +56,12 @@ To configure this module, you need to:
 #. *Create*.
 #. Choose a *Model*.
 #. Choose the *Fields* that conform an unique key in that model.
+#. If the rule must be used only for certain imported values, check
+   *Conditional* and enter the **exact string** that is going to be imported
+   in *Imported value*.
+   #. Keep in mind that the match here is evaluated as a case sensitive
+      **text string** always. If you enter e.g. ``True``, it will match that
+      string, but will not match ``1`` or ``true``.
 #. *Save*.
 
 In that list view, you can sort rules by drag and drop.
@@ -63,15 +79,11 @@ To use this module, you need to:
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/8.0
 
-Roadmap / Known Issues
+Known Issues / Roadmap
 ======================
 
-* Add a filter to let you apply some rules only to incoming imports that match
-  a given criteria (like a domain, but for import data).
-* Matching by VAT for ``res.partner`` records will only work when the partner
-  has no contacts, because otherwise Odoo reflects the parent company's VAT in
-  the contact, and that results in multiple matches. Fixing the above point
-  should make this work.
+* Add a setting to throw an error when multiple matches are found, instead of
+  falling back to creation of new record.
 
 Bug Tracker
 ===========
