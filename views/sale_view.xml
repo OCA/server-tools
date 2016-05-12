@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="view_sale_exception_tree" model="ir.ui.view">
             <field name="name">sale.exception.tree</field>
@@ -51,7 +50,7 @@
                   <field name="context">{'active_test': False}</field>
               </record>
 
-        <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_config_sales" />
+        <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_general_settings" />
 
 
         <record id="view_order_form" model="ir.ui.view">
@@ -113,5 +112,5 @@
                 </filter>
             </field>
         </record>
-    </data>
-</openerp>
+
+</odoo>
