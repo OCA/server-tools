@@ -3,13 +3,19 @@
 # * database_cleanup
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-07 17:52+0000\n"
+"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"PO-Revision-Date: 2016-05-11 16:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -71,6 +77,24 @@ msgid "Database cleanup"
 msgstr "Limpeza do Banco de Dados"
 
 #. module: database_cleanup
+#: field:cleanup.purge.line,display_name:0
+#: field:cleanup.purge.line.column,display_name:0
+#: field:cleanup.purge.line.data,display_name:0
+#: field:cleanup.purge.line.menu,display_name:0
+#: field:cleanup.purge.line.model,display_name:0
+#: field:cleanup.purge.line.module,display_name:0
+#: field:cleanup.purge.line.table,display_name:0
+#: field:cleanup.purge.wizard,display_name:0
+#: field:cleanup.purge.wizard.column,display_name:0
+#: field:cleanup.purge.wizard.data,display_name:0
+#: field:cleanup.purge.wizard.menu,display_name:0
+#: field:cleanup.purge.wizard.model,display_name:0
+#: field:cleanup.purge.wizard.module,display_name:0
+#: field:cleanup.purge.wizard.table,display_name:0
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: database_cleanup
 #: field:cleanup.purge.line,id:0 field:cleanup.purge.line.column,id:0
 #: field:cleanup.purge.line.data,id:0 field:cleanup.purge.line.menu,id:0
 #: field:cleanup.purge.line.model,id:0 field:cleanup.purge.line.module,id:0
@@ -81,6 +105,24 @@ msgstr "Limpeza do Banco de Dados"
 #: field:cleanup.purge.wizard.table,id:0
 msgid "ID"
 msgstr "Identificação"
+
+#. module: database_cleanup
+#: field:cleanup.purge.line,__last_update:0
+#: field:cleanup.purge.line.column,__last_update:0
+#: field:cleanup.purge.line.data,__last_update:0
+#: field:cleanup.purge.line.menu,__last_update:0
+#: field:cleanup.purge.line.model,__last_update:0
+#: field:cleanup.purge.line.module,__last_update:0
+#: field:cleanup.purge.line.table,__last_update:0
+#: field:cleanup.purge.wizard,__last_update:0
+#: field:cleanup.purge.wizard.column,__last_update:0
+#: field:cleanup.purge.wizard.data,__last_update:0
+#: field:cleanup.purge.wizard.menu,__last_update:0
+#: field:cleanup.purge.wizard.model,__last_update:0
+#: field:cleanup.purge.wizard.module,__last_update:0
+#: field:cleanup.purge.wizard.table,__last_update:0
+msgid "Last Modified on"
+msgstr "Última atualização em"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_uid:0

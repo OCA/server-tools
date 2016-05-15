@@ -10,6 +10,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011-2012
 # Hotellook, 2014
 # Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:42+0000\n"
-"PO-Revision-Date: 2016-05-06 11:59+0000\n"
+"POT-Creation-Date: 2016-05-12 14:34+0000\n"
+"PO-Revision-Date: 2016-05-08 16:33+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +41,7 @@ msgstr "Créer une entrée LDAP"
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_base:0
 msgid "Create ldap entry in subtree"
-msgstr ""
+msgstr "Créer une entrée LDAP dans l'arborescence"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,create_uid:0
@@ -55,12 +56,12 @@ msgstr "Créé le"
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,use_for_dn:0
 msgid "DN"
-msgstr ""
+msgstr "DN"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_users.py:116
@@ -72,7 +73,7 @@ msgstr "Erreur"
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_field_mappings:0
 msgid "Field mappings"
-msgstr ""
+msgstr "Correspondances de champs"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,id:0
@@ -82,7 +83,7 @@ msgstr "ID"
 #. module: users_ldap_push
 #: field:res.users,ldap_entry_dn:0
 msgid "LDAP DN"
-msgstr ""
+msgstr "DN LDAP"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,attribute:0
@@ -92,22 +93,22 @@ msgstr "Attribut LDAP"
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,ldap_id:0
 msgid "LDAP configuration"
-msgstr ""
+msgstr "Configuration LDAP"
 
 #. module: users_ldap_push
 #: field:res.users,is_ldap_user:0
 msgid "LDAP user"
-msgstr ""
+msgstr "Utilisateur LDAP"
 
 #. module: users_ldap_push
 #: view:res.users:users_ldap_push.view_users_search
 msgid "LDAP users"
-msgstr ""
+msgstr "Utilisateurs LDAP"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,write_uid:0
@@ -122,32 +123,32 @@ msgstr "Mis à jour le"
 #. module: users_ldap_push
 #: help:res.company.ldap,create_ldap_entry_base:0
 msgid "Leave empty to use your LDAP base"
-msgstr ""
+msgstr "Laisser vide pour utiliser votre base LDAP"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_company_ldap_field_mapping
 msgid "Mapping from Odoo fields to ldap attributes"
-msgstr ""
+msgstr "Correspondance des champs Odoo et des attributs LDAP"
 
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_objectclass:0
 msgid "Object class"
-msgstr ""
+msgstr "Object class"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,field_id:0
 msgid "Odoo field"
-msgstr ""
+msgstr "Champ Odoo"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: users_ldap_push
 #: help:res.company.ldap,create_ldap_entry_objectclass:0
 msgid "Separate object classes by comma if you need more than one"
-msgstr ""
+msgstr "Séparer les object classes par virgule si vous en avez besoin de plus d'une"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_users
@@ -158,4 +159,4 @@ msgstr "Utilisateurs"
 #: code:addons/users_ldap_push/models/res_company_ldap.py:64
 #, python-format
 msgid "You need to set exactly one mapping as DN"
-msgstr ""
+msgstr "Vous devez mettre exactement une seule correspondance comme DN"
