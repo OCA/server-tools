@@ -22,19 +22,19 @@ the SSL version.
 After installation, trigger the cronjob `Update letsencrypt certificates` and
 watch your log for messages.
 
-This addon depends on ``openssl`` binary and ``acme_tiny`` and ``IPy``
+This addon depends on the ``openssl`` binary and the ``acme_tiny`` and ``IPy``
 python modules.
 
-For installing OpenSSL binary you can use you distro package manager. For Debian
-and Ubuntu would be:
+For installing the OpenSSL binary you can use your distro package manager.
+For Debian and Ubuntu, that would be:
 
     sudo apt-get install openssl
 
-For installing ACME-Tiny python module you can use PIP package manager:
+For installing the ACME-Tiny python module, use the PIP package manager:
 
     sudo pip install acme-tiny
 
-For installing ACME-Tiny python module you can use PIP package manager:
+For installing the IPy python module, use the PIP package manager:
 
     sudo pip install IPy
 
