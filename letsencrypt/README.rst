@@ -22,6 +22,23 @@ the SSL version.
 After installation, trigger the cronjob `Update letsencrypt certificates` and
 watch your log for messages.
 
+This addon depends on ``openssl`` binary and ``acme_tiny`` and ``IPy``
+python modules.
+
+For installing OpenSSL binary you can use you distro package manager. For Debian
+and Ubuntu would be:
+
+    sudo apt-get install openssl
+
+For installing ACME-Tiny python module you can use PIP package manager:
+
+    sudo pip install acme-tiny
+
+For installing ACME-Tiny python module you can use PIP package manager:
+
+    sudo pip install IPy
+
+
 Configuration
 =============
 
@@ -97,6 +114,13 @@ an upstream for your odoo instance and do something like::
         proxy_pass    http://yourodooupstream;
     }
 
+If you're using a multi-database installation (with or without dbfilter option)
+where /web/databse/selector returns a list of more than one database, then
+you need to add ``letsencrypt`` addon to wide load addons list
+(by default, only ``web`` addon), setting ``--load`` option.
+For example, ``--load=web,letsencrypt``
+
+
 Bug Tracker
 ===========
 
@@ -112,6 +136,7 @@ Contributors
 ------------
 
 * Holger Brunn <hbrunn@therp.nl>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 ACME implementation
 -------------------

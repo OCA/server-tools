@@ -4,7 +4,9 @@
 {
     "name": "Let's encrypt",
     "version": "8.0.1.0.0",
-    "author": "Therp BV,Odoo Community Association (OCA)",
+    "author": "Therp BV,"
+              "Tecnativa,"
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Request SSL certificates from letsencrypt.org",
@@ -20,6 +22,10 @@
     "external_dependencies": {
         'bin': [
             'openssl',
+        ],
+        'python': [
+            'acme_tiny',
+            'IPy',
         ],
     },
 }
