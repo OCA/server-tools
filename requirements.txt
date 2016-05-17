@@ -2,3 +2,5 @@
   unidecode
   validate_email
   pysftp
+  acme_tiny
+  IPy
