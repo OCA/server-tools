@@ -75,7 +75,10 @@ class Letsencrypt(models.AbstractModel):
 
     @api.model
     def validate_domain(self, domain):
-        local_domains = ['localhost', 'localhost.localdomain']
+        local_domains = [
+            'localhost', 'localhost.localdomain', 'localhost6',
+            'localhost6.localdomain6'
+        ]
 
         def _ip_is_private(address):
             import IPy
