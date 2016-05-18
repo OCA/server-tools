@@ -35,7 +35,7 @@ class TestBaseSuspendSecurity(TransactionCase):
         import logging
         logging.error('testerror')
         logging.warning('testwarning')
-        logging.info('testinfo')
+        logging.info('testinfo2')
         # be sure what we try is forbidden
         with self.assertRaises(exceptions.AccessError):
             self.env.ref('base.user_root').sudo(user_id).name = 'test'
