@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
 <data>
 
 <template id="signup_fields" inherit_id="auth_signup.fields">
@@ -17,4 +17,4 @@
 </template>
 
 </data>
-</openerp>
+</odoo>
