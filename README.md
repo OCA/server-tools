@@ -52,6 +52,7 @@ addon | version | summary
 [html_text](html_text/) | 8.0.1.0.0 | Generate excerpts from any HTML field
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
+[letsencrypt](letsencrypt/) | 8.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [log_forwarded_for_ip](log_forwarded_for_ip/) | 8.0.1.0.0 | Displays source IPs in log when behind a reverse proxy
 [mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
