@@ -36,7 +36,7 @@ class TestBaseSuspendSecurity(TransactionCase):
         logging.error('testerror')
         logging.warning('testwarning')
         logging.info('testinfo2')
-        raise 'am i running at all?'
+        raise 'am I running at all?'
         # be sure what we try is forbidden
         with self.assertRaises(exceptions.AccessError):
             self.env.ref('base.user_root').sudo(user_id).name = 'test'
