@@ -32,6 +32,10 @@ class TestBaseSuspendSecurity(TransactionCase):
             # notify_email kicks in
             'partner_id': self.env.ref('base.partner_demo').id,
         })
+        import logging
+        logging.error('testerror')
+        logging.warning('testwarning')
+        logging.info('testinfo')
         # be sure what we try is forbidden
         with self.assertRaises(exceptions.AccessError):
             self.env.ref('base.user_root').sudo(user_id).name = 'test'
