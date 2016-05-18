@@ -21,5 +21,6 @@
     ],
     "data": [
         "views/signup.xml",
+        "views/base_config_settings.xml",
     ],
 }

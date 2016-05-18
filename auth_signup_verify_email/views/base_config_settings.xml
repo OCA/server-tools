@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <function model="base.config.settings" name="action_base_config_settings"/>
+    </data>
+</openerp>
