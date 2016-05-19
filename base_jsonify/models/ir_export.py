@@ -9,6 +9,8 @@ from openerp import api, models
 def update_dict(data, fields):
     field = fields[0]
     if len(fields) == 1:
+        if field == '.id':
+            field = 'id'
         data[field] = True
     else:
         if field not in data:
