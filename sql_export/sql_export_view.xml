@@ -18,6 +18,9 @@
                         <label for="Copy Options" colspan="1"/>
                         <field name="copy_options" nolabel="1" colspan="4"/>
                     </group>
+                    <group groups="sql_export.group_sql_request_editor" string="Parameters">
+                        <field name="field_ids" nolabel="1"/>
+                    </group>
                     <group colspan="2" col="2" groups="sql_export.group_sql_request_editor">
                         <separator string="Allowed Users" colspan="1"/>
                         <separator string="Allowed Users Groups" colspan="1"/>
@@ -33,8 +36,9 @@
         <field name="name">Sql_export_tree_view</field>
         <field name="model">sql.export</field>
         <field name="arch" type="xml">
-            <tree string="SQL Export">
-                    <field name="name"/>
+            <tree string="SQL Export" colors="red:valid == False">
+                <field name="name"/>
+                <field name="valid" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -50,6 +54,36 @@
     <menuitem id="sql_export_menu" name="Sql Export" parent="base.menu_reporting" sequence="80"/>
 
     <menuitem id="sql_export_menu_view" name="Sql Export" parent="sql_export_menu" action="sql_export_tree_action" sequence="1"/>
+
+    <record id="sql_parameter_view_form" model="ir.ui.view">
+        <field name="name">Sql_parameter_form_view</field>
+        <field name="model">ir.model.fields</field>
+        <field name="arch" type="xml">
+            <form string="SQL export">
+            </form>
+        </field>
+    </record>
+
+    <record id="sql_parameter_view_tree" model="ir.ui.view">
+        <field name="name">Sql_parameter_tree_view</field>
+        <field name="model">ir.model.fields</field>
+        <field name="arch" type="xml">
+            <tree string="SQL Parameter">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sql_parameter_tree_action" model="ir.actions.act_window">
+        <field name="name">SQL Parameter</field>
+        <field name="res_model">ir.model.fields</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context" eval="{'default_model_id': ref('sql_export.model_sql_file_wizard'), 'default_size': 64, 'search_default_state': 'manual'}"/>
+        <field name="domain">[('model','=','sql.file.wizard')]</field>
+    </record>
+
+    <menuitem id="sql_parameter_menu_view" name="Sql Export Variables" parent="sql_export_menu" action="sql_parameter_tree_action" sequence="5"/>
 
 
 </data>

@@ -19,13 +19,8 @@
 #
 ##############################################################################
 
-import StringIO
-import base64
-import datetime
 import re
-from openerp import models, fields, api, _, exceptions
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import uuid
+from openerp import models, fields, api
 
 
 class SqlExport(models.Model):
@@ -83,6 +78,14 @@ class SqlExport(models.Model):
         'sql_id',
         'user_id',
         'Allowed Users')
+    field_ids = fields.Many2many(
+        'ir.model.fields',
+        'fields_sqlquery_rel',
+        'sql_id',
+        'field_id',
+        'Parameters',
+        domain=[('model', '=', 'sql.file.wizard')])
+    valid = fields.Boolean()
 
     _constraints = [(_check_query_allowed,
                      'The query you want make is not allowed : prohibited '
@@ -91,27 +94,10 @@ class SqlExport(models.Model):
 
     @api.multi
     def export_sql_query(self):
-        for obj in self:
-            today = datetime.datetime.now()
-            today_tz = fields.Datetime.context_timestamp(
-                obj, today)
-            date = today_tz.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-            output = StringIO.StringIO()
-            query = "COPY (" + obj.query + ")  TO STDOUT WITH " + \
-                    obj.copy_options
-            name = 'export_query_%s' % uuid.uuid1().hex
-            self.env.cr.execute("SAVEPOINT %s" % name)
-            try:
-                self.env.cr.copy_expert(query, output)
-                output.getvalue()
-                new_output = base64.b64encode(output.getvalue())
-                output.close()
-            finally:
-                self.env.cr.execute("ROLLBACK TO SAVEPOINT %s" % name)
-            wiz = self.env['sql.file.wizard'].create(
-                {
-                    'binary_file': new_output,
-                    'file_name': obj.name + '_' + date + '.csv'})
+        self.ensure_one()
+        wiz = self.env['sql.file.wizard'].create({
+            'valid': self.valid,
+            'sql_export_id': self.id})
         return {
             'view_type': 'form',
             'view_mode': 'form',
@@ -129,18 +115,21 @@ class SqlExport(models.Model):
             vals['query'] = vals['query'].strip()
             if vals['query'][-1] == ';':
                 vals['query'] = vals['query'][:-1]
-            try:
-                self.env.cr.execute(vals['query'])
-            except:
-                raise exceptions.Warning(
-                    _("The Sql query is not valid."))
-            finally:
-                self.env.cr.rollback()
+            # Can't test the query because of variables
+#            try:
+#                self.env.cr.execute(vals['query'])
+#            except:
+#                raise exceptions.Warning(
+#                    _("The Sql query is not valid."))
+#            finally:
+#                self.env.cr.rollback()
         return vals
 
     @api.multi
     def write(self, vals):
         vals = self.check_query_syntax(vals)
+        if 'query' in vals:
+            vals['valid'] = False
         return super(SqlExport, self).write(vals)
 
     @api.model
