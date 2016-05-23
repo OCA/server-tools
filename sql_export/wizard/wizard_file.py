@@ -97,10 +97,10 @@ class SqlFileWizard(models.TransientModel):
             output.close()
         finally:
             self.env.cr.execute("ROLLBACK TO SAVEPOINT %s" % name)
-        wiz = self.write(
-            {
-                'binary_file': new_output,
-                'file_name': sql_export.name + '_' + date + '.csv'})
+        self.write({
+            'binary_file': new_output,
+            'file_name': sql_export.name + '_' + date + '.csv'
+        })
         if not sql_export.valid:
             sql_export.sudo().valid = True
         return {

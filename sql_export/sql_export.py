@@ -20,7 +20,7 @@
 ##############################################################################
 
 import re
-from openerp import models, fields, api, _, exceptions
+from openerp import models, fields, api
 
 
 class SqlExport(models.Model):
