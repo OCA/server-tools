@@ -40,6 +40,8 @@ class TestExportSqlQuery(TransactionCase):
     def test_sql_query(self):
         test = self.sql_model.export_sql_query(
             self.cr, self.uid, [self.query_id])
+        self.registry('sql.file.wizard').export_sql(
+            self.cr, self.uid, test['res_id'])
         wizard = self.registry('sql.file.wizard').browse(
             self.cr, self.uid, test['res_id'])
         export = base64.b64decode(wizard.binary_file)
