@@ -85,7 +85,7 @@ class SqlFileWizard(models.TransientModel):
             variable_dict['company_id'] = self.env.user.company_id.id
         if "%(user_id)s" in sql_export.query:
             variable_dict['user_id'] = self._uid
-        format_query = self.env.cr.mogrify(sql_export.query, variable_dict)
+        format_query = self.env.cr.mogrify(sql_export.query, variable_dict).decode('utf-8')
         query = "COPY (" + format_query + ")  TO STDOUT WITH " + \
                 sql_export.copy_options
         name = 'export_query_%s' % uuid.uuid1().hex
