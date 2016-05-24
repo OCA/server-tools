@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Csv File">
                     <separator string="Warning untested export" attrs="{'invisible': [('valid', '=', True)]}"/>
-                    <separator string="variables_placeholder" colspan="4"/>
+                    <separator string="variables_placeholder" colspan="4" invisible="1"/>
                     <separator string="Export file" colspan="4"
                         attrs="{'invisible': [('binary_file', '=', False)]}"/>
                     <field name="valid" invisible="1"/>
