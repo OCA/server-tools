@@ -5,7 +5,7 @@
 
 {
     'name': 'external_file_location',
-    'version': '0.0.1',
+    'version': '8.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'www.akretion.com',
     'license': 'AGPL-3',
