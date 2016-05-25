@@ -12,10 +12,10 @@ class IrAttachmentMetadata(models.Model):
     _inherit = "ir.attachment.metadata"
 
     fetchmail_attachment_condition_id = fields.Many2one(
-         'fetchmail.attachment.condition',
-         string='FetchMail condition',
-         help="The Fetchemail attachment condition used"
-              "to create this attachment")
+        'fetchmail.attachment.condition',
+        string='FetchMail condition',
+        help="The Fetchemail attachment condition used"
+             "to create this attachment")
     fetchmail_server_id = fields.Many2one(
         'fetchmail.server',
         string='Email Server',
@@ -25,7 +25,8 @@ class IrAttachmentMetadata(models.Model):
 
     def message_process(self, cr, uid, model, message, custom_values=None,
                         save_original=False, strip_attachments=False,
-                        thread_id=None, context=None):
+                        thread_id=None,
+                        context=None):
         if context is None:
             context = {}
         context['no_post'] = True
