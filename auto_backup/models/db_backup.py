@@ -6,7 +6,6 @@
 
 import os
 import shutil
-import tempfile
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
@@ -165,8 +164,7 @@ class DbBackup(models.Model):
             if backup:
                 cached = open(backup)
             else:
-                cached = tempfile.TemporaryFile()
-                db.dump_db(self.env.cr.dbname, cached)
+                cached = db.dump_db(self.env.cr.dbname, None)
 
             with cached:
                 for rec in sftp:
