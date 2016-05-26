@@ -7,7 +7,6 @@ from openerp.tests.common import TransactionCase
 
 
 class TestSAuthSupplier(TransactionCase):
-
     def setUp(self):
         super(TestSAuthSupplier, self).setUp()
         ir_config_parameter = self.env['ir.config_parameter']

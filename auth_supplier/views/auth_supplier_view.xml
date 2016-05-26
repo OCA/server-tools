@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data>
 
     <template id="auth_supplier.fields"
               inherit_id="auth_signup.fields"
@@ -16,5 +15,4 @@
         </xpath>
     </template>
 
-</data>
 </openerp>
