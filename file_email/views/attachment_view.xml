@@ -7,7 +7,8 @@
         <field name="name">ir.attachment.metadata.search</field>
         <field name="model">ir.attachment.metadata</field>
         <field name="type">search</field>
-        <field name="inherit_id" ref="external_file_location.view_external_attachment_search"/>
+        <field name="inherit_id"
+            ref="attachment_metadata.view_external_attachment_search"/>
         <field name="arch" type="xml">
             <field name="type" position="after">
                 <field name="fetchmail_server_id"/>
