@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 try:
     import pysftp
 except ImportError:
-    _logger.warning('Cannot import pysftp')
+    _logger.debug('Cannot import pysftp')
 
 
 class DbBackup(models.Model):
