@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data>
 
 <record id="base_custom_info_template_line_tree" model="ir.ui.view">
     <field name="name">base.custom.info.property.tree</field>
@@ -39,5 +38,4 @@
     <field name="view_type">form</field>
 </record>
 
-</data>
 </openerp>
