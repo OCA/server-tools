@@ -4,10 +4,12 @@
 {
     "name": "Verify email at signup",
     "summary": "Force uninvited users to use a good email for signup",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "category": "Authentication",
     "website": "http://www.antiun.com",
-    "author": "Antiun Ingeniería S.L., Odoo Community Association (OCA)",
+    "author": "Antiun Ingeniería S.L., "
+              "Tecnativa, "
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
