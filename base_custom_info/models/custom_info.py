@@ -57,10 +57,11 @@ class CustomInfoProperty(models.Model):
          "Another property with that name exists for that template."),
     ]
 
-    name = fields.Char(translate=True)
+    name = fields.Char(required=True, translate=True)
     template_id = fields.Many2one(
         comodel_name='custom.info.template',
-        string='Template')
+        string='Template',
+        required=True)
     info_value_ids = fields.One2many(
         comodel_name="custom.info.value",
         inverse_name="property_id",
@@ -83,8 +84,8 @@ class CustomInfoValue(models.Model):
         comodel_name='custom.info.property',
         required=True,
         string='Property')
-    name = fields.Char(related='property_id.name')
-    value = fields.Char(translate=True)
+    name = fields.Char(related='property_id.name', readonly=True)
+    value = fields.Char(translate=True, index=True)
 
 
 class CustomInfo(models.AbstractModel):
