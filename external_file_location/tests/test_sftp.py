@@ -3,7 +3,6 @@
 # ©2016 @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
-from fs import sftpfs
 from StringIO import StringIO
 from base64 import b64decode
 import hashlib
