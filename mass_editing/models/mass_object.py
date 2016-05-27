@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.exceptions import except_orm
+from openerp.exceptions import UserError
 from openerp import api, fields, models, _
 
 
@@ -101,8 +101,7 @@ class MassObject(models.Model):
                 if mass.ref_ir_value:
                     mass.ref_ir_value.unlink()
             except:
-                raise except_orm(_("Warning"), _("Deletion of the action "
-                                                 "record failed."))
+                raise UserError(_("Deletion of the action record failed."))
         return True
 
     @api.multi
