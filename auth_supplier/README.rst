@@ -39,6 +39,10 @@ Known issues / Roadmap
 
 * If you have nothing in the portal, the user will be redirected to an empty
   page.
+* When the user signs up as *Customer*, it is not really marked as such in the
+  backend, it's just not marked as supplier. Is this expected behavior or bug?
+  `Relevant discussion 
+  <https://github.com/OCA/server-tools/pull/434#discussion-diff-64883758>`_.
 
 Bug Tracker
 ===========
