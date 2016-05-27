@@ -25,7 +25,7 @@ Usage
 To use this module, you need to:
 
 * Log out.
-* In home page, press *Sign in*.
+* If you have a website, in home page press *Sign in*.
 * Press *Sign up*.
 * Select *Supplier* in account type.
 * Fill the form.
