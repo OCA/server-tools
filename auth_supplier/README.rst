@@ -12,8 +12,9 @@ and allows the user to create an account as a supplier.
 Configuration
 =============
 
-* To enable users to create accounts:
+To enable users to create accounts:
 
+* *Developer mode* should be activated first to have access to technical features.
 * Go to *Settings > General settings*.
 * Enable *Allow external users to sign up*.
 * Enable *Activate the customer portal*.
