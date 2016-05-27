@@ -26,6 +26,9 @@
     'author': 'Daniel Reis, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'depends': ['base'],
-    'data': ['security/ir.model.access.csv'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/menu.xml',
+    ],
     'installable': True,
 }

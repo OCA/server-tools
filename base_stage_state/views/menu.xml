@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record model="ir.actions.act_window" id="action_stage_set">
+        <field name="name">Generic Stage Sets</field>
+        <field name="res_model">base.stage.set</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Generic Stage Sets" id="menu_stage_set"  parent="base.menu_workflow_root"
+            action="action_stage_set" sequence="20"/>
+
+</data>
+</openerp>

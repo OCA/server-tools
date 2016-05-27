@@ -14,7 +14,7 @@
                 </search>
             </field>
         </record>
-        <record model="ir.ui.view" id="project_issue_version_form_view">
+        <record model="ir.ui.view" id="">
             <field name="name">Issue Version</field>
             <field name="model">project.issue.version</field>
             <field name="arch" type="xml">
