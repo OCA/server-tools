@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-<data>
+<!-- © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
 
 <template id="signup_fields" inherit_id="auth_signup.fields">
     <xpath expr="//div[@class='form-group field-password']"
@@ -16,5 +17,4 @@
     </xpath>
 </template>
 
-</data>
-</openerp>
+</odoo>

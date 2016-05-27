@@ -6,7 +6,7 @@
     "summary": "Force uninvited users to use a good email for signup",
     "version": "9.0.1.0.0",
     "category": "Authentication",
-    "website": "http://www.antiun.com",
+    "website": "http://www.tecnativa.com",
     "author": "Antiun Ingeniería S.L., "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
@@ -15,6 +15,7 @@
     "installable": True,
     "external_dependencies": {
         "python": [
+            "lxml",
             "validate_email",
         ],
     },
