@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
 
     <template id="auth_supplier.fields"
               inherit_id="auth_signup.fields"
@@ -15,4 +15,4 @@
         </xpath>
     </template>
 
-</openerp>
+</odoo>
