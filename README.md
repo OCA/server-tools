@@ -31,6 +31,7 @@ addon | version | summary
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 | Shows full debug options for all users
 [base_export_manager](base_export_manager/) | 8.0.1.0.0 | Manages model export profiles
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
+[base_import_match](base_import_match/) | 8.0.1.0.0 | Try to avoid duplicates before importing
 [base_ir_filters_active](base_ir_filters_active/) | 8.0.1.0.0 | Allows you to disable (hide) filters
 [base_module_doc_rst](base_module_doc_rst/) | 8.0.1.0.0 | Modules Technical Guides in RST and Relationship Graphs
 [base_multi_image](base_multi_image/) | 8.0.2.0.0 | Allow multiple images for database objects
