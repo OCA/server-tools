@@ -4,88 +4,87 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-23 21:53+0000\n"
 "PO-Revision-Date: 2016-12-23 21:53+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Macedonian (https://www.transifex.com/oca/teams/23907/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
 msgid "Conditional"
-msgstr "Condicional"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_uid
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Креирано од"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_date
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Креирано на"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr "Configuración para deduplicar antes de importar CSV."
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_display_name
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Прикажи име"
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_conditional
 msgid "Enable if you want to use this field only in some conditions."
-msgstr "Habilítelo si quiere usar este campo sólo bajo ciertas condiciones."
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_field_id
 msgid "Field"
-msgstr "Campo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_name
 msgid "Field Name"
-msgstr "Nombre del campo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr "Definición de concordancia de importación del campo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_field_id
 msgid "Field that will be part of an unique key."
-msgstr "Campo que formará parte de una clave única."
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_ids
 msgid "Fields"
-msgstr "Campos"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_ids
 msgid "Fields that will define an unique key."
-msgstr "Campos que definirán una clave única."
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr "Групирај по"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_id
@@ -101,10 +100,6 @@ msgid ""
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
 msgstr ""
-"Si el valor importado no es éste, la regla de concordancia será descartada. "
-"Tenga cuidado, ya que estos datos siempre serán tratados como una cadena, y "
-"la comparación en sensible a las mayúsculas, por lo que si establece 'True',"
-" no concordará con '1' ni con 'true'."
 
 #. module: base_import_match
 #: model:ir.actions.act_window,name:base_import_match.match_action
@@ -113,41 +108,41 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
 #: model:ir.ui.view,arch_db:base_import_match.match_tree_view
 msgid "Import Match"
-msgstr "Coincidencia de importación"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_imported_value
 msgid "Imported value"
-msgstr "Valor importado"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_model_id
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_model_id
 msgid "In this model you will apply the match."
-msgstr "En este modelo se aplicará la coincidencia."
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match___last_update
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Последна промена на"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_uid
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Последно ажурирање од"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_date
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Последно ажурирање на"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_match_id
 msgid "Match"
-msgstr "Casar referencias"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_model_id
@@ -155,14 +150,14 @@ msgstr "Casar referencias"
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_model_name
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_name
 msgid "Name"
-msgstr "Nombre"
+msgstr "Име"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_sequence
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Секвенца"
