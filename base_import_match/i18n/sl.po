@@ -3,82 +3,83 @@
 # * base_import_match
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"PO-Revision-Date: 2016-05-28 09:48+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: base_import_match
 #: field:base_import.match.field,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Pogojno"
 
 #. module: base_import_match
 #: field:base_import.match,create_uid:0
 #: field:base_import.match.field,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Ustvaril"
 
 #. module: base_import_match
 #: field:base_import.match,create_date:0
 #: field:base_import.match.field,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Ustvarjeno"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr "Configuración para deduplicar antes de importar CSV."
+msgstr "Odstrani duplikat nastavitev pred CSV uvozi."
 
 #. module: base_import_match
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Prikazni naziv"
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr ""
+msgstr "Omogočite, če želite uporabljati to polje za nekatere pogoje."
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
 msgid "Field"
-msgstr "Campo"
+msgstr "Polje"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Določitev ujemanja uvoženega polja"
 
 #. module: base_import_match
 #: help:base_import.match.field,field_id:0
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Polje, ki bo del unikatnega ključa"
 
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
 msgid "Fields"
-msgstr "Campos"
+msgstr "Polja"
 
 #. module: base_import_match
 #: help:base_import.match,field_ids:0
 msgid "Fields that will define an unique key."
-msgstr "Campos que definirán una clave única."
+msgstr "Polja, ki bodo določala unikatni ključ"
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr "Združi po"
 
 #. module: base_import_match
 #: field:base_import.match,id:0 field:base_import.match.field,id:0
@@ -92,7 +93,7 @@ msgid ""
 "discarded. Be careful, this data is always treated as a string, and "
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
-msgstr ""
+msgstr "Če se uvožena vrednost ne ujema s to, se opusti celotno pravilo ujemanja. Pozor, ti podatki se vedno obravnavajo kot niz, primerjava pa upošteva velike-male začetnice, zato pri nastavitvi na 'Pravilno' NE bo ujemanja z '1' in niti s 'pravilno', ampak le NATANČNO 'Pravilno'."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view
@@ -101,54 +102,54 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
 msgid "Import Match"
-msgstr "Coincidencia de importación"
+msgstr "Ujemanje uvoza"
 
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
 msgid "Imported value"
-msgstr ""
+msgstr "Uvožena vrednost"
 
 #. module: base_import_match
 #: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
 msgid "In this model you will apply the match."
-msgstr "En este modelo se aplicará la coincidencia."
+msgstr "V tem modelu boste uveljavili ujemanje."
 
 #. module: base_import_match
 #: field:base_import.match,__last_update:0
 #: field:base_import.match.field,__last_update:0
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Zadnjič spremenjeno"
 
 #. module: base_import_match
 #: field:base_import.match,write_uid:0
 #: field:base_import.match.field,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Zadnji posodobil"
 
 #. module: base_import_match
 #: field:base_import.match,write_date:0
 #: field:base_import.match.field,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Zadnjič posodobljeno"
 
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
 msgid "Match"
-msgstr ""
+msgstr "Ujemanje"
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
 #: field:base_import.match,model_id:0 field:base_import.match,model_name:0
 #: field:base_import.match.field,model_id:0
 msgid "Model"
-msgstr "Modelo"
+msgstr "Model"
 
 #. module: base_import_match
 #: field:base_import.match,name:0 field:base_import.match.field,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Naziv"
 
 #. module: base_import_match
 #: field:base_import.match,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Zaporedje"
