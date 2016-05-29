@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"Last-Translator: <>\n"
+"Language-Team: Danish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_match
@@ -26,24 +26,24 @@ msgstr ""
 #: field:base_import.match,create_uid:0
 #: field:base_import.match.field,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Oprettet af"
 
 #. module: base_import_match
 #: field:base_import.match,create_date:0
 #: field:base_import.match.field,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Oprettet den"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr "Configuración para deduplicar antes de importar CSV."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Vist navn"
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
@@ -53,7 +53,7 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
 msgid "Field"
-msgstr "Campo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
@@ -68,22 +68,22 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
 msgid "Fields"
-msgstr "Campos"
+msgstr ""
 
 #. module: base_import_match
 #: help:base_import.match,field_ids:0
 msgid "Fields that will define an unique key."
-msgstr "Campos que definirán una clave única."
+msgstr ""
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr "Gruppér efter"
 
 #. module: base_import_match
 #: field:base_import.match,id:0 field:base_import.match.field,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Id"
 
 #. module: base_import_match
 #: help:base_import.match.field,imported_value:0
@@ -101,7 +101,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
 msgid "Import Match"
-msgstr "Coincidencia de importación"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
@@ -111,25 +111,25 @@ msgstr ""
 #. module: base_import_match
 #: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
 msgid "In this model you will apply the match."
-msgstr "En este modelo se aplicará la coincidencia."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,__last_update:0
 #: field:base_import.match.field,__last_update:0
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Sidst ændret den"
 
 #. module: base_import_match
 #: field:base_import.match,write_uid:0
 #: field:base_import.match.field,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Sidst opdateret af"
 
 #. module: base_import_match
 #: field:base_import.match,write_date:0
 #: field:base_import.match.field,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Sidst opdateret den"
 
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
@@ -141,14 +141,14 @@ msgstr ""
 #: field:base_import.match,model_id:0 field:base_import.match,model_name:0
 #: field:base_import.match.field,model_id:0
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,name:0 field:base_import.match.field,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Navn"
 
 #. module: base_import_match
 #: field:base_import.match,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Rækkefølge"
