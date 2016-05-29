@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -76,19 +76,19 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:247
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:131
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "Test connessione Fallito!"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:129
+#: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Test connessione avvenuto con successo!"
@@ -104,14 +104,14 @@ msgid "Created on"
 msgstr "Created on"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:208
+#: code:addons/auto_backup/models/db_backup.py:206
 #: model:mail.message.subtype,description:auto_backup.failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:213
+#: code:addons/auto_backup/models/db_backup.py:211
 #: model:mail.message.subtype,description:auto_backup.success
 #, python-format
 msgid "Database backup succeeded."
@@ -128,7 +128,12 @@ msgid "Days to keep"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:120
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:119
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -195,6 +200,11 @@ msgstr ""
 #: field:db.backup,message_last_post:0
 msgid "Last Message Date"
 msgstr "Data dell'ultimo messaggio"
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0

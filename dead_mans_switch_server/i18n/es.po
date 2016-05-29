@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:17+0000\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Descripción"
 #: field:dead.mans.switch.instance,display_name:0
 #: field:dead.mans.switch.log,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a mostrar"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
@@ -177,7 +177,7 @@ msgstr "Fecha del último mensaje"
 #: field:dead.mans.switch.instance,__last_update:0
 #: field:dead.mans.switch.log,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0

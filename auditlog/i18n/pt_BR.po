@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
 "PO-Revision-Date: 2016-05-11 16:48+0000\n"
 "Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
@@ -447,7 +447,7 @@ msgid "Values"
 msgstr "Valores"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "Ver Histórico"
