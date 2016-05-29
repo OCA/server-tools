@@ -5,6 +5,8 @@
 # Translators:
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Giacomo <giacomo.spettoli@gmail.com>, 2015
@@ -17,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
 "PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
@@ -435,7 +437,7 @@ msgid "Values"
 msgstr "Vrednosti"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "Prikaz dnevnikov"
