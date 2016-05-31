@@ -20,15 +20,16 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+import logging
+from openerp import models, fields, api, _
 
+_logger = logging.getLogger(__name__)
 
-class IrModelFields(orm.Model):
+class IrModelFields(models.Model):
     _inherit = 'ir.model.fields'
 
-    def search(
-            self, cr, uid, args, offset=0, limit=0, order=None, context=None,
-            count=False):
+    @api.model
+    def search(self, args, offset=0, limit=0, order=None, count=False): 
         model_domain = []
         for domain in args:
             if (len(domain) > 2 and
@@ -39,7 +40,6 @@ class IrModelFields(orm.Model):
                 ]
             else:
                 model_domain.append(domain)
-        return super(IrModelFields, self).search(
-            cr, uid, model_domain, offset=offset, limit=limit, order=order,
-            context=context, count=count
-        )
+
+        return super(IrModelFields, self).search(model_domain, offset=offset, 
+                            limit=limit, order=order, count=count )    
