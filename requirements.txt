@@ -1,2 +1,4 @@
 python-ldap
 unidecode
+acme_tiny
+IPy
