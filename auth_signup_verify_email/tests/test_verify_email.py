@@ -11,8 +11,14 @@ from openerp.tests.common import HttpCase
 class UICase(HttpCase):
     def setUp(self):
         super(UICase, self).setUp()
-        settings = self.env["base.config.settings"].create({})
-        settings.auth_signup_uninvited = True
+        self.icp = self.env["ir.config_parameter"]
+        self.old_allow_uninvited = self.icp.get_param(
+            "auth_signup.allow_uninvited")
+        self.icp.set_param("auth_signup.allow_uninvited", "True")
+
+        # Workaround https://github.com/odoo/odoo/issues/12237
+        self.cr.commit()
+
         self.data = {
             "csrf_token": self.csrf_token(),
             "name": "Somebody",
@@ -23,6 +29,13 @@ class UICase(HttpCase):
                 "Something went wrong, please try again later or contact us."),
             "success": _("Check your email to activate your account!"),
         }
+
+    def tearDown(self):
+        """Workaround https://github.com/odoo/odoo/issues/12237."""
+        super(UICase, self).tearDown()
+        self.icp.set_param(
+            "auth_signup.allow_uninvited", self.old_allow_uninvited)
+        self.cr.commit()
 
     def html_doc(self, url="/web/signup", data=None, timeout=10):
         """Get an HTML LXML document."""

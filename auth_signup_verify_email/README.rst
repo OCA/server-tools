@@ -39,6 +39,12 @@ To use this module, you need to:
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0
 
+Known issues / Roadmap
+======================
+
+* Remove calls to ``cr.commit()`` in tests when
+  https://github.com/odoo/odoo/issues/12237 gets fixed.
+
 Bug Tracker
 ===========
 
