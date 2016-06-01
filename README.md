@@ -17,6 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.1.0.0 | Auth Supplier
 [base_multi_image](base_multi_image/) | 9.0.1.0.0 | Allow multiple images for database objects
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call

@@ -1,6 +1,9 @@
 ===============================================================================
  Version Change Log (mass_editing)
 ===============================================================================
+1.6 * June 01,2016 : Serpent Consulting Services
+    * Added Unit Test Cases
+
 1.5 * March 23,2016 : Serpent Consulting Services
     * Added README and index.html file.
 
