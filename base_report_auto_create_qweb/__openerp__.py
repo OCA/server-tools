@@ -18,7 +18,7 @@
 
 {
     "name": "Report qweb auto generation",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "depends": [
         "report",
     ],
@@ -43,5 +43,5 @@
         "wizard/report_duplicate_view.xml",
         "views/report_xml_view.xml",
     ],
-    'installable': False,
+    'installable': True,
 }
