@@ -36,7 +36,7 @@ class IrAttachmentMetadata(models.Model):
         for attachment in self:
             if attachment.datas:
                 attachment.internal_hash = hashlib.md5(
-                    b64decode(self.datas)).hexdigest()
+                    b64decode(attachment.datas)).hexdigest()
             if attachment.external_hash and\
                attachment.internal_hash != attachment.external_hash:
                 raise UserError(
