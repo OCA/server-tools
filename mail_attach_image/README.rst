@@ -48,7 +48,7 @@ Contributors
 ------------
 
 
-* Ivan Yelizariev <@yelizariev>
+* Ivan Yelizariev <yelizariev@it-projects.info>
 * Moises López <moylop260@vauxoo.com>
 * Yennifer Santiago <yennifer@vauxoo.com>
 * Vauxoo <info@vauxoo.com>
