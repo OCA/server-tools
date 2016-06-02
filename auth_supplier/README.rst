@@ -6,8 +6,10 @@
 Auth Supplier
 =============
 
-This module was written to extends the functionality of auth signup
-and allows the user to create an account as a supplier.
+This module was written to extends the functionality of auth signup and allows
+the user to create an account as a supplier, marking him as with permissions
+for a supplier portal (although nothing is implemented for that portal, other
+modules should do that).
 
 Configuration
 =============
@@ -26,9 +28,18 @@ To use this module, you need to:
 
 * Log out.
 * If you have a website, in home page press *Sign in*.
-* Press *Sign up*.
+* Press *Sign up* to go to `the sign up page </web/signup>`_.
 * Select *Supplier* in account type.
 * Fill the form.
+
+If you want to give permissions to anybody for the supplier portal:
+
+#. Go to *Contacts*.
+#. Choose a supplier.
+#. Go to *Action > Portal Access Management*.
+#. Choose *Other Extra Rights / Supplier Portal*.
+#. Choose contacts to be *In Portal*.
+#. Press *Apply*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -41,7 +52,7 @@ Known issues / Roadmap
   page.
 * When the user signs up as *Customer*, it is not really marked as such in the
   backend, it's just not marked as supplier. Is this expected behavior or bug?
-  `Relevant discussion 
+  `Relevant discussion
   <https://github.com/OCA/server-tools/pull/434#discussion-diff-64883758>`_.
 
 Bug Tracker
