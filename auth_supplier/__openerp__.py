@@ -6,7 +6,7 @@
 
 {
     'name': "Auth Supplier",
-    'category': 'Tools',
+    'category': 'Portal',
     'version': '9.0.1.0.0',
     'depends': [
         'auth_signup',
