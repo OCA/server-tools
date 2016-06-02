@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Authors: See README.RST
-# Copyright 2016 See README.rst for Authors
+# Authors: See README.RST for Contributors
+# Copyright 2015-2016 See __openerp__.py for Authors
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
