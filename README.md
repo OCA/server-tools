@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [admin_technical_features](admin_technical_features/) | 8.0.0.1.0 | Checks the technical features box for admin user.
+[attachment_metadata](attachment_metadata/) | 8.0.1.0.0 | Attachment Metadata
 [auditlog](auditlog/) | 8.0.1.3.0 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 | Authentification - Admin Passkey
 [auth_brute_force](auth_brute_force/) | 8.0.1.0.0 | Tracks Authentication Attempts and Prevents Brute-force Attacks module
