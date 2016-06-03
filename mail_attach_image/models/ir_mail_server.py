@@ -34,6 +34,7 @@ class IrMailServer(models.Model):
         while True:
             match = pattern.search(body, pos)
             if not match:
+                new_body = body
                 break
             start = match.start()
             end = match.end()
