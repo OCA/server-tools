@@ -28,9 +28,12 @@ class IrMailServer(models.Model):
         fcounter = 0
         custom_attachments = []
 
+        if body is None:
+            body = ""
         pattern = re.compile(r'"data:image/png;base64,[^"]*"')
         pos = 0
         new_body = ''
+
         while True:
             match = pattern.search(body, pos)
             if not match:
@@ -47,7 +50,7 @@ class IrMailServer(models.Model):
             new_body += '"cid:%s"' % fname
             pos = end
 
-            new_body += body[pos:]
+        new_body += body[pos:]
         return new_body, custom_attachments
 
     def image2attach(self, msg, image_attachments=None):

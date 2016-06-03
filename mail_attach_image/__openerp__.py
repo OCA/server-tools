@@ -9,7 +9,7 @@
 {
     'name': 'Mail attach image',
     'version': '8.0.1.0.0',
-    "author": "Ivan Yelizariev, Vauxoo, Odoo Community Association (OCA)",
+    'author': "Ivan Yelizariev, Vauxoo, Odoo Community Association (OCA)",
     'category': 'Addons Vauxoo',
     'website': 'https://www.vauxoo.com',
     'license': 'AGPL-3',
