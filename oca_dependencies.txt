@@ -1,1 +1,1 @@
-server-tools-file https://github.com/akretion/server-tools.git 8-attachm-meta
+
