@@ -4,4 +4,4 @@
   pysftp
   acme_tiny
   IPy
-  python-fs
+  fs
