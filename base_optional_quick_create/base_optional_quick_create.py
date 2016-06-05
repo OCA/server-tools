@@ -20,17 +20,18 @@
 ##############################################################################
 
 from openerp import api, fields, models, _
-from openerp import SUPERUSER_ID
 from openerp.exceptions import UserError
 from openerp.tools.translate import _
+from openerp import SUPERUSER_ID
 
 
 class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    avoid_quick_create = fields.Boolean(string='Disabled quick create', help="Check this box if you want to disable the quick create")
-
-    @api.model
+    avoid_quick_create = fields.Boolean(string='Disabled quick create',
+                                            help="Check this box if you\
+                                            want to disable the quick create")
+    @api.v7
     def _patch_quick_create(self, cr, ids):
 
         def _wrap_name_create():
@@ -46,19 +47,16 @@ class IrModel(models.Model):
                     model_obj._patch_method('name_create', _wrap_name_create())
                     model_obj.check_quick_create = True
         return True
-
-    @api.model
+    @api.v7
     def _register_hook(self, cr):
         self._patch_quick_create(cr, self.search(cr, SUPERUSER_ID, []))
         return super(IrModel, self)._register_hook(cr)
-
-    @api.model
+    @api.v7
     def create(self, cr, uid, vals, context=None):
         res_id = super(IrModel, self).create(cr, uid, vals, context=context)
         self._patch_quick_create(cr, [res_id])
         return res_id
-
-    @api.multi
+    @api.v7
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
