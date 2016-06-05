@@ -3,13 +3,21 @@
 # * auth_brute_force
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-08 06:54+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +35,11 @@ msgstr "Aktivno"
 #: field:res.authentication.attempt,attempt_date:0
 msgid "Attempt Date"
 msgstr "Datum poskusa"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,attempt_ids:0
+msgid "Attempts"
+msgstr "Poskusi"
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
@@ -76,6 +89,12 @@ msgid "Description"
 msgstr "Opis"
 
 #. module: auth_brute_force
+#: field:res.authentication.attempt,display_name:0
+#: field:res.banned.remote,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
 #: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
@@ -87,6 +106,12 @@ msgstr "Neuspešno"
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,__last_update:0
+#: field:res.banned.remote,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0

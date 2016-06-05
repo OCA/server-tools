@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2015-11-26 12:51+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,25 @@ msgid "Active"
 msgstr "Active"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,last_user_count:0
+#: field:dead.mans.switch.instance,last_user_count_sparkline:0
+msgid "Active users"
+msgstr "Active users"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,alive:0
+msgid "Alive"
+msgstr "Alive"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
 msgid "Alive delay"
 msgstr "Alive delay"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_cpu:0
+#: field:dead.mans.switch.instance,last_cpu_sparkline:0
 #: field:dead.mans.switch.log,cpu:0
 msgid "CPU"
 msgstr "CPU"
@@ -96,6 +109,12 @@ msgid "Description"
 msgstr "Description"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,display_name:0
+#: field:dead.mans.switch.log,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
 msgid "Followers"
 msgstr "Followers"
@@ -143,6 +162,12 @@ msgid "Last Message Date"
 msgstr "Last Message Date"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,__last_update:0
+#: field:dead.mans.switch.log,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
@@ -156,6 +181,7 @@ msgstr "Last Updated on"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
 msgstr "Last seen"
 
@@ -198,6 +224,8 @@ msgstr "Open logs"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_ram:0
+#: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
 msgstr "RAM"

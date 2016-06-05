@@ -3,13 +3,21 @@
 # * auth_brute_force
 # 
 # Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-07 17:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"PO-Revision-Date: 2016-05-08 15:26+0000\n"
+"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +34,11 @@ msgstr "Active"
 #: field:res.authentication.attempt,attempt_date:0
 msgid "Attempt Date"
 msgstr "Date de la tentative"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,attempt_ids:0
+msgid "Attempts"
+msgstr "Tentatives"
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
@@ -75,6 +88,12 @@ msgid "Description"
 msgstr "Description"
 
 #. module: auth_brute_force
+#: field:res.authentication.attempt,display_name:0
+#: field:res.banned.remote,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
 #: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
@@ -86,6 +105,12 @@ msgstr "Echoué"
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,__last_update:0
+#: field:res.banned.remote,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0

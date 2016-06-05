@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:06+0000\n"
-"PO-Revision-Date: 2016-03-07 17:53+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: log_forwarded_for_ip
+#: field:log.forwarded.for.ip.installed,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: log_forwarded_for_ip
 #: field:log.forwarded.for.ip.installed,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: log_forwarded_for_ip
+#: field:log.forwarded.for.ip.installed,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"

@@ -1,0 +1,149 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_brute_force
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:14+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,attempt_date:0
+msgid "Attempt Date"
+msgstr "Attempt Date"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,attempt_ids:0
+msgid "Attempts"
+msgstr "Attempts"
+
+#. module: auth_brute_force
+#: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
+#: model:ir.ui.menu,name:auth_brute_force.menu_res_authentication_attempt
+msgid "Authentication Attempts"
+msgstr "Authentication Attempts"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,result:0
+msgid "Authentication Result"
+msgstr "Authentication Result"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,ban_date:0
+msgid "Ban Date"
+msgstr "Ban Date"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:34
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Banned"
+msgstr "Banned"
+
+#. module: auth_brute_force
+#: model:ir.actions.act_window,name:auth_brute_force.action_res_banned_remote
+#: model:ir.ui.menu,name:auth_brute_force.menu_res_banned_remote
+msgid "Banned Remotes"
+msgstr "Banned Remotes"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,create_uid:0
+#: field:res.banned.remote,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,create_date:0
+#: field:res.banned.remote,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: auth_brute_force
+#: field:res.banned.remote,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,display_name:0
+#: field:res.banned.remote,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Failed"
+msgstr "Failed"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,__last_update:0
+#: field:res.banned.remote,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,write_uid:0
+#: field:res.banned.remote,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,write_date:0
+#: field:res.banned.remote,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0
+msgid "Remote ID"
+msgstr "Remote ID"
+
+#. module: auth_brute_force
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+msgid "Successful"
+msgstr "Successful"
+
+#. module: auth_brute_force
+#: code:addons/auth_brute_force/models/res_authentication_attempt.py:32
+#: selection:res.authentication.attempt,result:0
+#, python-format
+msgid "Successfull"
+msgstr "Successfull"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,login:0
+msgid "Tried Login"
+msgstr "Tried Login"
+
+#. module: auth_brute_force
+#: help:res.banned.remote,active:0
+msgid "Uncheck this box to unban the remote"
+msgstr "Uncheck this box to unban the remote"
+
+#. module: auth_brute_force
+#: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
+msgid "Without Success"
+msgstr "Without Success"

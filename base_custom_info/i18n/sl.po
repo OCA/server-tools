@@ -3,13 +3,19 @@
 # * base_custom_info
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-11 10:31+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -116,6 +122,15 @@ msgid "Custom information value"
 msgstr "Vrednost informacij po meri"
 
 #. module: base_custom_info
+#: field:custom.info,display_name:0
+#: field:custom.info.model_link,display_name:0
+#: field:custom.info.property,display_name:0
+#: field:custom.info.template,display_name:0
+#: field:custom.info.value,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_custom_info
 #: field:custom.info,id:0 field:custom.info.model_link,id:0
 #: field:custom.info.property,id:0 field:custom.info.template,id:0
 #: field:custom.info.value,id:0
@@ -131,6 +146,15 @@ msgstr "Postavke informacij"
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
 msgstr "Deden abstraktni model za dodajanje informacij po meri kateremukoli modelu."
+
+#. module: base_custom_info
+#: field:custom.info,__last_update:0
+#: field:custom.info.model_link,__last_update:0
+#: field:custom.info.property,__last_update:0
+#: field:custom.info.template,__last_update:0
+#: field:custom.info.value,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_uid:0
@@ -155,6 +179,7 @@ msgstr "Model"
 
 #. module: base_custom_info
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
+#: field:custom.info.value,name:0
 msgid "Name"
 msgstr "Naziv"
 

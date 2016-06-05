@@ -3,12 +3,19 @@
 # * super_calendar
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Sofce Dimitrijeva <sofce@eskon.com.mk>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"POT-Creation-Date: 2016-05-12 14:34+0000\n"
+"PO-Revision-Date: 2016-05-08 15:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -101,6 +108,13 @@ msgid "Description field"
 msgstr "Champ Description"
 
 #. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current month."
 msgstr "Afficher tous les éléments du mois courant."
@@ -190,6 +204,13 @@ msgstr "Regrouper les éléments par année."
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0

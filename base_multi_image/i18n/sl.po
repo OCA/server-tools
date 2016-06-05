@@ -3,13 +3,20 @@
 # * base_multi_image
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-10 05:44+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:58+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -47,6 +54,12 @@ msgid "Database"
 msgstr "Podatkovna baza"
 
 #. module: base_multi_image
+#: field:base_multi_image.image,display_name:0
+#: field:base_multi_image.owner,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_multi_image
 #: field:base_multi_image.image,extension:0
 msgid "File extension"
 msgstr "Končnica datoteke"
@@ -55,6 +68,11 @@ msgstr "Končnica datoteke"
 #: field:base_multi_image.image,filename:0
 msgid "Filename"
 msgstr "Naziv datoteke"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_main:0
+msgid "Full-sized image"
+msgstr "Slika polne velikosti"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,id:0 field:base_multi_image.owner,id:0
@@ -93,6 +111,12 @@ msgid "Images"
 msgstr "Slike"
 
 #. module: base_multi_image
+#: field:base_multi_image.image,__last_update:0
+#: field:base_multi_image.owner,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: base_multi_image
 #: field:base_multi_image.image,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
@@ -104,9 +128,28 @@ msgstr "Zadnjič posodobljeno"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/owner.py:73
+#: field:base_multi_image.owner,image_main:0
 #, python-format
 msgid "Main image"
 msgstr "Glavna slika"
+
+#. module: base_multi_image
+#: field:base_multi_image.owner,image_main_medium:0
+msgid "Medium image"
+msgstr "Srednja slika"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_medium:0
+msgid "Medium-sized image"
+msgstr "Srednje velika slika"
+
+#. module: base_multi_image
+#: help:base_multi_image.image,image_medium:0
+msgid ""
+"Medium-sized image. It is automatically resized as a 128 x 128 px image, "
+"with aspect ratio preserved, only when the image exceeds one of those sizes."
+" Use this field in form views or kanban views."
+msgstr "Srednje velika slika: samodejno spremeni velikost na 128x128 px in pri tem ohrani razmerja le, če slika presega eno od teh dveh velikosti. Uporabi to polje v obrazcih in kanbanskih prikazih."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
@@ -154,6 +197,28 @@ msgstr "Slike proizvoda"
 #: field:base_multi_image.image,sequence:0
 msgid "Sequence"
 msgstr "Zaporedje"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,show_technical:0
+msgid "Show technical"
+msgstr "Prikaz tehničnih"
+
+#. module: base_multi_image
+#: field:base_multi_image.owner,image_main_small:0
+msgid "Small image"
+msgstr "Majhna slika"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_small:0
+msgid "Small-sized image"
+msgstr "Slika majhne velikosti"
+
+#. module: base_multi_image
+#: help:base_multi_image.image,image_small:0
+msgid ""
+"Small-sized image. It is automatically resized as a 64 x 64 px image, with "
+"aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "Slika majhne velikosti: samodejno spremeni velikost na 64x64 px in pri tem ohrani razmerja. Uporabite to polje kjerkoli potrebujete majhno sliko."
 
 #. module: base_multi_image
 #: field:base_multi_image.image,storage:0
