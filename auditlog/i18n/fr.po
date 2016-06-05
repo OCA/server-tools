@@ -3,13 +3,21 @@
 # * auditlog
 # 
 # Translators:
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:36+0000\n"
-"PO-Revision-Date: 2016-03-16 09:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"PO-Revision-Date: 2016-05-08 15:28+0000\n"
+"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +91,18 @@ msgstr "Date"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Date"
+
+#. module: auditlog
+#: field:auditlog.log.line,field_description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -110,7 +129,7 @@ msgstr "Champs modifiés"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Journaux complet"
 
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
@@ -130,14 +149,14 @@ msgstr "Grouper par..."
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr ""
+msgstr "Contexte HTTP"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,http_request_id:0
 msgid "HTTP Request"
-msgstr ""
+msgstr "Requête HTTP"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -147,7 +166,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 msgid "HTTP Requests"
-msgstr ""
+msgstr "Requêtes HTTP"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
@@ -155,6 +174,15 @@ msgstr ""
 #: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,__last_update:0
+#: field:auditlog.http.request,__last_update:0
+#: field:auditlog.http.session,__last_update:0
+#: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
+#: field:auditlog.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
@@ -225,7 +253,8 @@ msgid "Model"
 msgstr "Modèle"
 
 #. module: auditlog
-#: field:auditlog.rule,name:0
+#: field:auditlog.http.request,display_name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
 msgstr "Nom"
 
@@ -253,7 +282,7 @@ msgstr "Ancienne valeur texte"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,name:0
 msgid "Path"
-msgstr ""
+msgstr "Chemin"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -270,7 +299,7 @@ msgstr "Nom de l'enregistrement"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,root_url:0
 msgid "Root URL"
-msgstr ""
+msgstr "URL Racine"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -322,12 +351,12 @@ msgstr "Cochez cette case si vous voulez garder une trace de la lecture/ouvertur
 #: field:auditlog.http.request,http_session_id:0
 #: field:auditlog.log,http_session_id:0
 msgid "Session"
-msgstr ""
+msgstr "Session"
 
 #. module: auditlog
 #: field:auditlog.http.session,name:0
 msgid "Session ID"
-msgstr ""
+msgstr "ID de session"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -347,6 +376,11 @@ msgid "Subscribed"
 msgstr "Abonné"
 
 #. module: auditlog
+#: field:auditlog.log.line,field_name:0
+msgid "Technical name"
+msgstr "Nom technique"
+
+#. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
@@ -356,7 +390,7 @@ msgstr "Il existe déjà une règle définie sur ce modèle\nVous ne pouvez pas 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -378,7 +412,7 @@ msgstr "Utilisateur"
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr ""
+msgstr "Session utilisateur"
 
 #. module: auditlog
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -386,7 +420,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 msgid "User sessions"
-msgstr ""
+msgstr "Sessions utilisateur"
 
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
@@ -399,7 +433,7 @@ msgid "Values"
 msgstr "Valeurs"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "Consulter les journaux"

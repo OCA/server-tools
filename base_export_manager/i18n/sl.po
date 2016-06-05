@@ -3,12 +3,19 @@
 # * base_export_manager
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-13 11:45+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -40,6 +47,11 @@ msgstr "Polje '%s' že obstaja"
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Polje '%s' ne obstaja"
+
+#. module: base_export_manager
+#: field:ir.exports.line,label:0
+msgid "Label"
+msgstr "Oznaka"
 
 #. module: base_export_manager
 #: field:ir.exports.line,sequence:0

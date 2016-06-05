@@ -3,13 +3,20 @@
 # * mass_editing
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2014-2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2014-2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-24 11:47+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +52,11 @@ msgid "Deletion of the action record failed."
 msgstr "Izbris zapisa dejanja ni uspel."
 
 #. module: mass_editing
+#: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
@@ -62,6 +74,11 @@ msgstr "Polja"
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing
+#: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0

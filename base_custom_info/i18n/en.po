@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-03-10 18:17+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -115,6 +115,15 @@ msgid "Custom information value"
 msgstr "Custom information value"
 
 #. module: base_custom_info
+#: field:custom.info,display_name:0
+#: field:custom.info.model_link,display_name:0
+#: field:custom.info.property,display_name:0
+#: field:custom.info.template,display_name:0
+#: field:custom.info.value,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: base_custom_info
 #: field:custom.info,id:0 field:custom.info.model_link,id:0
 #: field:custom.info.property,id:0 field:custom.info.template,id:0
 #: field:custom.info.value,id:0
@@ -130,6 +139,15 @@ msgstr "Info Lines"
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
 msgstr "Inheritable abstract model to add custom info in any model"
+
+#. module: base_custom_info
+#: field:custom.info,__last_update:0
+#: field:custom.info.model_link,__last_update:0
+#: field:custom.info.property,__last_update:0
+#: field:custom.info.template,__last_update:0
+#: field:custom.info.value,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_uid:0
@@ -154,6 +172,7 @@ msgstr "Model"
 
 #. module: base_custom_info
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
+#: field:custom.info.value,name:0
 msgid "Name"
 msgstr "Name"
 

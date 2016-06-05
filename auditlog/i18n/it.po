@@ -3,13 +3,19 @@
 # * auditlog
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012-2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:36+0000\n"
-"PO-Revision-Date: 2016-03-16 09:44+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-04 19:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -87,6 +93,17 @@ msgid "Date"
 msgstr "Data"
 
 #. module: auditlog
+#: field:auditlog.log.line,field_description:0
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
@@ -158,6 +175,15 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,__last_update:0
+#: field:auditlog.http.request,__last_update:0
+#: field:auditlog.http.session,__last_update:0
+#: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
+#: field:auditlog.rule,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
@@ -226,7 +252,8 @@ msgid "Model"
 msgstr "Modello"
 
 #. module: auditlog
-#: field:auditlog.rule,name:0
+#: field:auditlog.http.request,display_name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
 msgstr "Nome"
 
@@ -346,6 +373,11 @@ msgstr "Sottoscrivi"
 #: selection:auditlog.rule,state:0
 msgid "Subscribed"
 msgstr "Sottoscritto"
+
+#. module: auditlog
+#: field:auditlog.log.line,field_name:0
+msgid "Technical name"
+msgstr ""
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0

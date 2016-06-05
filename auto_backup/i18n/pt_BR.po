@@ -3,13 +3,14 @@
 # * auto_backup
 # 
 # Translators:
+# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"PO-Revision-Date: 2016-05-11 16:49+0000\n"
+"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +26,13 @@ msgstr ""
 #. module: auto_backup
 #: help:db.backup,folder:0
 msgid "Absolute path for storing the backups"
-msgstr ""
+msgstr "Caminho absoluto para armazenar os backups"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr ""
+msgstr "Backups Automáticos"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -128,6 +129,11 @@ msgid "Days to keep"
 msgstr ""
 
 #. module: auto_backup
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:120
 #, python-format
 msgid ""
@@ -195,6 +201,11 @@ msgstr ""
 #: field:db.backup,message_last_post:0
 msgid "Last Message Date"
 msgstr ""
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Última atualização em"
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0

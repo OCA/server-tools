@@ -3,13 +3,20 @@
 # * auth_from_http_remote_user
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-24 11:47+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +26,19 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: auth_from_http_remote_user
 #: field:auth_from_http_remote_user.installed,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: auth_from_http_remote_user
 #: field:res.users,sso_key:0

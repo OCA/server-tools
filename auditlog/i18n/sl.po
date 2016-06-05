@@ -3,13 +3,24 @@
 # * auditlog
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Mohamed HABOU <m.habou@agoradeveloppement.com>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:36+0000\n"
-"PO-Revision-Date: 2016-03-16 10:39+0000\n"
+"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -87,6 +98,17 @@ msgid "Date"
 msgstr "Datum"
 
 #. module: auditlog
+#: field:auditlog.log.line,field_description:0
+msgid "Description"
+msgstr "Opis"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
@@ -158,6 +180,15 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,__last_update:0
+#: field:auditlog.http.request,__last_update:0
+#: field:auditlog.http.session,__last_update:0
+#: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
+#: field:auditlog.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
@@ -226,7 +257,8 @@ msgid "Model"
 msgstr "Model"
 
 #. module: auditlog
-#: field:auditlog.rule,name:0
+#: field:auditlog.http.request,display_name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
 msgstr "Naziv"
 
@@ -348,6 +380,11 @@ msgid "Subscribed"
 msgstr "Naročen"
 
 #. module: auditlog
+#: field:auditlog.log.line,field_name:0
+msgid "Technical name"
+msgstr "Tehnični naziv"
+
+#. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
@@ -400,7 +437,7 @@ msgid "Values"
 msgstr "Vrednosti"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr "Prikaz dnevnikov"

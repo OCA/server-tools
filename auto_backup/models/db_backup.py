@@ -6,7 +6,6 @@
 
 import os
 import shutil
-import tempfile
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
@@ -18,7 +17,7 @@ _logger = logging.getLogger(__name__)
 try:
     import pysftp
 except ImportError:
-    _logger.warning('Cannot import pysftp')
+    _logger.debug('Cannot import pysftp')
 
 
 class DbBackup(models.Model):
@@ -165,8 +164,7 @@ class DbBackup(models.Model):
             if backup:
                 cached = open(backup)
             else:
-                cached = tempfile.TemporaryFile()
-                db.dump_db(self.env.cr.dbname, cached)
+                cached = db.dump_db(self.env.cr.dbname, None)
 
             with cached:
                 for rec in sftp:
@@ -274,7 +272,7 @@ class DbBackup(models.Model):
             "Trying to connect to sftp://%(username)s@%(host)s:%(port)d",
             extra=params)
         if self.sftp_private_key:
-            params["private_key"] = self.stfpprivatekey
+            params["private_key"] = self.sftp_private_key
             if self.sftp_password:
                 params["private_key_pass"] = self.sftp_password
         else:

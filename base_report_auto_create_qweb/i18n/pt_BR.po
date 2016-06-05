@@ -3,13 +3,22 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Alexis de Lattre <alexis@via.ecp.fr>, 2016
+# Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-29 11:14+0000\n"
+"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"PO-Revision-Date: 2016-05-11 16:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +48,11 @@ msgid "Created on"
 msgstr "Criado em"
 
 #. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,display_name:0
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
 msgstr "Duplicado"
@@ -52,6 +66,11 @@ msgstr "Relatório Duplicado"
 #: field:ir.actions.report.xml.duplicate,id:0
 msgid "ID"
 msgstr "Identificação"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,__last_update:0
+msgid "Last Modified on"
+msgstr "Última atualização em"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,write_uid:0
