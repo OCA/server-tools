@@ -28,8 +28,8 @@ from openerp.tools.translate import _
 class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    avoid_quick_create = fields.Boolean(string = 'Disabled quick create',
-    help="Check this box if you want to disable the quick create")
+    avoid_quick_create = fields.Boolean(string='Disabled quick create',
+        help="Check this box if you want to disable the quick create")
 
     @api.model
     def _patch_quick_create(self, cr, ids):
