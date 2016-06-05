@@ -6,7 +6,7 @@ import os
 import logging
 
 from openerp import api, fields, models, tools
-from openerp.addons.odoolint.hooks import get_file_info
+from ..hooks import get_file_info
 from openerp.modules.module import get_module_resource
 
 _logger = logging.getLogger(__name__)
