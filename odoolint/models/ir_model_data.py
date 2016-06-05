@@ -2,12 +2,13 @@
 # © 2016  Vauxoo (<http://www.vauxoo.com/>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import os
 import logging
+import os
 
 from openerp import api, fields, models, tools
-from ..hooks import get_file_info
 from openerp.modules.module import get_module_resource
+
+from ..hooks import get_file_info
 
 _logger = logging.getLogger(__name__)
 
