@@ -52,10 +52,9 @@ def monkey_patch_convert_file():
     convert_file_original = tools.convert.convert_file
 
     def convert_file(*args, **kwargs):
-        module = args[1]
-        filename = args[2]
-        section = args[6]
-        # print args, kwargs
+        module = len(args) >= 2 and args[1] or kwargs.get('module')
+        filename = len(args) >= 3 and args[2] or kwargs.get('filename')
+        section = len(args) >= 7 and args[6] or kwargs.get('kind')
         with file_info(filename, section, module):
             return convert_file_original(*args, **kwargs)
     tools.convert.convert_file = convert_file

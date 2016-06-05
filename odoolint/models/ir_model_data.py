@@ -2,12 +2,13 @@
 # © 2016  Vauxoo (<http://www.vauxoo.com/>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import os
 import logging
+import os
 
 from openerp import api, fields, models, tools
-from ..hooks import get_file_info
 from openerp.modules.module import get_module_resource
+
+from ..hooks import get_file_info
 
 _logger = logging.getLogger(__name__)
 
@@ -103,16 +104,21 @@ class IrModelData(models.Model):
         self._check_xml_id_unachievable(cr, uid, res[0], xmlid)
         return res
 
+    def clear_caches(self):
+        """Inherit to clean ormcache of super method
+        """
+        super(IrModelData, self).xmlid_lookup.clear_cache(self)
+        return super(IrModelData, self).clear_caches()
+
     def _update(self, cr, uid, model, module, values, xml_id=False, store=True,
                 noupdate=False, mode='init', res_id=False, context=None):
         """Inherit to force use of checks in case where a xml_id.record
         is overwrite from other module.
         """
-        if module and xml_id and '.' in xml_id and \
-                not xml_id.startswith(module + '.'):
-            # Just in xml_id from other modules
+        if module and xml_id:
+            xmlid = module + '.' + xml_id if '.' not in xml_id else xml_id
             try:
-                self.xmlid_lookup(cr, uid, xml_id)
+                self.xmlid_lookup(cr, uid, xmlid)
             except BaseException:
                 # All exceptions are off-target here
                 pass
