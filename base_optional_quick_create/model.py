@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Contributor 2016 Florent de Labarre
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,46 +19,47 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import osv, fields
 from openerp import SUPERUSER_ID
+from openerp.exceptions import UserError, AccessError
 from openerp.tools.translate import _
 
 
-class ir_model(orm.Model):
+class IrModel(osv.osv):
     _inherit = 'ir.model'
 
     _columns = {
         'avoid_quick_create': fields.boolean('Avoid quick create'),
         }
 
-    def _wrap_name_create(self, old_create, model):
-        def wrapper(cr, uid, name, context=None):
-            raise orm.except_orm(
-                _('Error'),
-                _("Can't create quickly. Opening create form"))
-        return wrapper
+    def _patch_quick_create(self, cr, ids):
 
-    def _register_hook(self, cr, ids=None):
-        if ids is None:
-            ids = self.search(cr, SUPERUSER_ID, [])
+        def _wrap_name_create():
+            def wrapper(self, cr, uid, name, context=None):
+                raise UserError(_("Can't create quickly. Opening create form"))
+            return wrapper
+
         for model in self.browse(cr, SUPERUSER_ID, ids):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.pool.get(model_name)
                 if model_obj and not hasattr(model_obj, 'check_quick_create'):
-                    model_obj.name_create = self._wrap_name_create(
-                        model_obj.name_create, model_name)
+                    model_obj._patch_method('name_create', _wrap_name_create())
                     model_obj.check_quick_create = True
         return True
 
+    def _register_hook(self, cr):
+        self._patch_quick_create(cr, self.search(cr, SUPERUSER_ID, []))
+        return super(IrModel, self)._register_hook(cr)
+
     def create(self, cr, uid, vals, context=None):
-        res_id = super(ir_model, self).create(cr, uid, vals, context=context)
-        self._register_hook(cr, [res_id])
+        res_id = super(IrModel, self).create(cr, uid, vals, context=context)
+        self._patch_quick_create(cr, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        res = super(ir_model, self).write(cr, uid, ids, vals, context=context)
-        self._register_hook(cr, ids)
+        res = super(IrModel, self).write(cr, uid, ids, vals, context=context)
+        self._patch_quick_create(cr, ids)
         return res

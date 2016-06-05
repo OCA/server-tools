@@ -1,1 +1,2 @@
 Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+Contributor 2016 Florent de Labarre

@@ -3,14 +3,22 @@
 # * base_optional_quick_create
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-05-12 14:33+0000\n"
+"PO-Revision-Date: 2016-05-08 17:01+0000\n"
+"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,16 +29,16 @@ msgstr ""
 #. module: base_optional_quick_create
 #: field:ir.model,avoid_quick_create:0
 msgid "Avoid quick create"
-msgstr ""
+msgstr "Éviter la création rapide"
 
 #. module: base_optional_quick_create
-#: code:addons/base_optional_quick_create/model.py:37
+#: code:addons/base_optional_quick_create/model.py:39
 #, python-format
 msgid "Can't create quickly. Opening create form"
-msgstr ""
+msgstr "Impossible de créer rapidement. Ouverture du formualire de création"
 
 #. module: base_optional_quick_create
-#: code:addons/base_optional_quick_create/model.py:36
+#: code:addons/base_optional_quick_create/model.py:38
 #, python-format
 msgid "Error"
 msgstr "Erreur"
