@@ -7,9 +7,9 @@ models such as ``create``, ``read``, ``write`` and ``delete``.
 Usage
 =====
 
-Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
+Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines which
 operations to log for a given data model.
-Then, check logs in the `Reporting / Audit / Logs` menu.
+Then, check logs in the `Settings / Technical / Audit / Logs` menu.
 
 During installation, it will migrate any existing data from the `audittrail`
 module (rules and logs).
@@ -43,6 +43,7 @@ Contributors
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
+* Holden Rehg <holdenrehg@gmail.com>
 
 Maintainer
 ----------

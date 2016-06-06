@@ -21,7 +21,7 @@
 
 {
     'name': "Audit Log",
-    'version': "8.0.1.0.0",
+    'version': "9.0.1.0.0",
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'website': "http://www.osiell.com",
     'category': "Tools",
@@ -33,6 +33,6 @@
         'views/auditlog_view.xml',
     ],
     'application': True,
-    'installable': False,
+    'installable': True,
     'pre_init_hook': 'pre_init_hook',
 }

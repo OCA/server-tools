@@ -58,7 +58,7 @@ class DictDiffer(object):
                    if self.past_dict[o] == self.current_dict[o])
 
 
-class auditlog_rule(models.Model):
+class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
@@ -88,14 +88,6 @@ class auditlog_rule(models.Model):
         u"Log Creates", default=True,
         help=(u"Select this if you want to keep track of creation on any "
               u"record of the model of this rule"))
-    # log_action = fields.Boolean(
-    #     "Log Action",
-    #     help=("Select this if you want to keep track of actions on the "
-    #           "model of this rule"))
-    # log_workflow = fields.Boolean(
-    #     "Log Workflow",
-    #     help=("Select this if you want to keep track of workflow on any "
-    #           "record of the model of this rule"))
     state = fields.Selection(
         [('draft', "Draft"), ('subscribed', "Subscribed")],
         string=u"State", required=True, default='draft')
@@ -110,7 +102,7 @@ class auditlog_rule(models.Model):
 
     def _register_hook(self, cr, ids=None):
         """Get all rules and apply them to log method calls."""
-        super(auditlog_rule, self)._register_hook(cr)
+        super(AuditlogRule, self)._register_hook(cr)
         if not hasattr(self.pool, '_auditlog_field_cache'):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, '_auditlog_model_cache'):
@@ -182,7 +174,7 @@ class auditlog_rule(models.Model):
     # errors occurs with the `_register_hook()` BaseModel method.
     def create(self, cr, uid, vals, context=None):
         """Update the registry when a new rule is created."""
-        res_id = super(auditlog_rule, self).create(
+        res_id = super(AuditlogRule, self).create(
             cr, uid, vals, context=context)
         if self._register_hook(cr, [res_id]):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
@@ -194,7 +186,7 @@ class auditlog_rule(models.Model):
         """Update the registry when existing rules are updated."""
         if isinstance(ids, (int, long)):
             ids = [ids]
-        super(auditlog_rule, self).write(cr, uid, ids, vals, context=context)
+        super(AuditlogRule, self).write(cr, uid, ids, vals, context=context)
         if self._register_hook(cr, ids):
             modules.registry.RegistryManager.signal_registry_change(cr.dbname)
         return True
@@ -203,10 +195,10 @@ class auditlog_rule(models.Model):
     def unlink(self):
         """Unsubscribe rules before removing them."""
         self.unsubscribe()
-        return super(auditlog_rule, self).unlink()
+        return super(AuditlogRule, self).unlink()
 
     def _make_create(self):
-        """Instanciate a create method that log its calls."""
+        """Instantiate a create method that log its calls."""
         @api.model
         @api.returns('self', lambda value: value.id)
         def create(self, vals, **kwargs):
@@ -223,7 +215,7 @@ class auditlog_rule(models.Model):
         return create
 
     def _make_read(self):
-        """Instanciate a read method that log its calls."""
+        """Instantiate a read method that log its calls."""
 
         def read(self, *args, **kwargs):
             result = read.origin(self, *args, **kwargs)
@@ -266,7 +258,7 @@ class auditlog_rule(models.Model):
         return read
 
     def _make_write(self):
-        """Instanciate a write method that log its calls."""
+        """Instantiate a write method that log its calls."""
         @api.multi
         def write(self, vals, **kwargs):
             self = self.with_context(auditlog_disabled=True)
@@ -283,7 +275,7 @@ class auditlog_rule(models.Model):
         return write
 
     def _make_unlink(self):
-        """Instanciate an unlink method that log its calls."""
+        """Instantiate an unlink method that log its calls."""
         @api.multi
         def unlink(self, **kwargs):
             self = self.with_context(auditlog_disabled=True)
@@ -298,7 +290,7 @@ class auditlog_rule(models.Model):
     def create_logs(self, uid, res_model, res_ids, method,
                     old_values=None, new_values=None,
                     additional_log_values=None):
-        """Create logs. `old_values` and `new_values` are dictionnaries, e.g:
+        """Create logs. `old_values` and `new_values` are dictionaries, e.g:
             {RES_ID: {'FIELD': VALUE, ...}}
         """
         if old_values is None:
