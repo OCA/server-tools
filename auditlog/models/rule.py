@@ -352,7 +352,7 @@ class AuditlogRule(models.Model):
     def create_logs(self, uid, res_model, res_ids, method,
                     old_values=None, new_values=None,
                     additional_log_values=None):
-        """Create logs. `old_values` and `new_values` are dictionnaries, e.g:
+        """Create logs. `old_values` and `new_values` are dictionaries, e.g:
             {RES_ID: {'FIELD': VALUE, ...}}
         """
         if old_values is None:
