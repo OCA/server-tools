@@ -12,13 +12,13 @@ models such as ``create``, ``read``, ``write`` and ``delete``.
 Usage
 =====
 
-Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
-operations to log for a given data model:
+Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
+which operations to log for a given data model.
 
 .. image:: /auditlog/static/description/rule.png
 
-Then, check logs in the `Reporting / Audit / Logs` menu. You can group them by
-user sessions, date, data model or HTTP requests:
+Then, check logs in the `Settings / Technical / Audit / Logs` menu. You can
+group them by user sessions, date, data model or HTTP requests:
 
 .. image:: /auditlog/static/description/logs.png
 
@@ -60,6 +60,7 @@ Contributors
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
+* Holden Rehg <holdenrehg@gmail.com>
 
 Images
 ------
