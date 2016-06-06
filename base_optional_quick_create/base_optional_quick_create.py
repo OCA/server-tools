@@ -39,23 +39,24 @@ class IrModel(models.Model):
             return wrapper
 
         for model in self.browse(cr, SUPERUSER_ID, ids):
-            if model.avoid_quick_create:
-                model_name = model.model
-                model_obj = self.pool.get(model_name)
-                if model_obj and not hasattr(model_obj, 'check_quick_create'):
-                    model_obj._patch_method('name_create', _wrap_name_create())
-                    model_obj.check_quick_create = True
+            model_name = model.model
+            model_obj = self.pool.get(model_name)
+            if model_obj and not hasattr(model_obj.name_create, 'origin'):
+                model_obj._patch_method('name_create', _wrap_name_create())
         return True
 
     @api.v7
     def _register_hook(self, cr):
-        self._patch_quick_create(cr, self.search(cr, SUPERUSER_ID, []))
+        ids = self.search(
+            cr, SUPERUSER_ID, [('avoid_quick_create', '=', True)])
+        self._patch_quick_create(cr, ids)
         return super(IrModel, self)._register_hook(cr)
 
     @api.v7
     def create(self, cr, uid, vals, context=None):
         res_id = super(IrModel, self).create(cr, uid, vals, context=context)
-        self._patch_quick_create(cr, [res_id])
+        if vals.get('avoid_quick_create'):
+            self._patch_quick_create(cr, [res_id])
         return res_id
 
     @api.v7
@@ -63,5 +64,12 @@ class IrModel(models.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         res = super(IrModel, self).write(cr, uid, ids, vals, context=context)
-        self._patch_quick_create(cr, ids)
+        if 'avoid_quick_create' in vals:
+            if vals['avoid_quick_create']:
+                self._patch_quick_create(cr, ids)
+            else:
+                for model in self.browse(cr, uid, ids, context=context):
+                    model_obj = self.pool[model.model]
+                    if hasattr(model_obj.name_create, 'origin'):
+                        model_obj._revert_method('name_create')
         return res
