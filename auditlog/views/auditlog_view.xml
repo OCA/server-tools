@@ -3,7 +3,7 @@
     <data>
 
         <menuitem id="menu_audit" name="Audit"
-            parent="base.menu_reporting" sequence="50"
+            parent="base.menu_custom" sequence="50"
             groups="base.group_system"/>
 
 
@@ -34,15 +34,8 @@
                                 <field name="log_write"/>
                                 <field name="log_unlink"/>
                                 <field name="log_create"/>
-                                <!--<field name="log_action"/>-->
-                                <!--<field name="log_workflow"/>-->
                             </group>
                         </group>
-                        <!--
-                        <group string="Users">
-                            <field name="user_ids" nolabel="1"/>
-                        </group>
-                        -->
                     </sheet>
                 </form>
             </field>
@@ -60,8 +53,6 @@
                     <field name="log_write"/>
                     <field name="log_unlink"/>
                     <field name="log_create"/>
-                    <!--<field name="log_action"/>-->
-                    <!--<field name="log_workflow"/>-->
                     <field name="state"/>
                 </tree>
             </field>
