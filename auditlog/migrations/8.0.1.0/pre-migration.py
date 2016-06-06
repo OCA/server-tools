@@ -4,6 +4,6 @@
 from openerp.addons.auditlog import migrate_from_audittrail
 
 
-def migrate(cr, version):
+def migrate(cr):
     """if we migrate from an older version, it's a migration from audittrail"""
     migrate_from_audittrail(cr)
