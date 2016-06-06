@@ -63,7 +63,18 @@ class IrModelData(models.Model):
 
     @api.multi
     def _check_xml_id_unachievable(self, xmlid):
-        """Check a unachievable xml_id referenced
+        """Check a unachievable xml_id referenced.
+
+        A unachievable xml_id is when you are using a reference for a xml_id
+        currently installed and you won't see a error, but you dependency tree
+        do not contains the module referenced.
+        Then when you install the module with '-i module' you will see
+        error of xml not found.
+
+        This method detects those errors and show a logger.warning
+
+        :param xmlid string: module.xml_id 'module_1.partner_1'
+        :return: True if it is well else False
         """
         self.ensure_one()
         module = self.env['ir.module.module']
