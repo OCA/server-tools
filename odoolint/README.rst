@@ -6,7 +6,7 @@
 odoolint
 ========
 
-This module add runtime lint checks that don't are detected by odoo.
+Add runtime lint checks that don't are detected by odoo.
 
 They are shown from logger.warning
 
