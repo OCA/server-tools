@@ -62,10 +62,10 @@ class IrModelData(models.Model):
         return True
 
     @api.multi
-    def _check_xml_id_unachievable(self, xmlid):
-        """Check a unachievable xml_id referenced.
+    def _check_xml_id_unreachable(self, xmlid):
+        """Check a unreachable xml_id referenced.
 
-        A unachievable xml_id is when you are using a reference for a xml_id
+        A unreachable xml_id is when you are using a reference for a xml_id
         currently installed and you won't see a error, but you dependency tree
         do not contains the module referenced.
         Then when you install the module with '-i module' you will see
@@ -106,7 +106,7 @@ class IrModelData(models.Model):
             if xmlid in file_content:
                 # Many times a ref id is used from a default or inherit method
                 # If the xml_id is in the content of the file, then is a real
-                _logger.warning("The xml_id '%s' is unachievable.", xmlid)
+                _logger.warning("The xml_id '%s' is unreachable.", xmlid)
                 return False
         return True
 
@@ -114,7 +114,7 @@ class IrModelData(models.Model):
     def xmlid_lookup(self, cr, uid, xmlid):
         res = super(IrModelData, self).xmlid_lookup(cr, uid, xmlid)
         self._check_data_ref_demo(cr, uid, res[0])
-        self._check_xml_id_unachievable(cr, uid, res[0], xmlid)
+        self._check_xml_id_unreachable(cr, uid, res[0], xmlid)
         return res
 
     def clear_caches(self):
