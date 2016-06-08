@@ -39,13 +39,13 @@ class TestConvertFile(common.TransactionCase):
         self.fdemo = 'demo/partner_category_demo.xml'
         self.fdata = 'data/partner_category_data.xml'
         self.fdata2 = 'data/partner_category_data2.xml'
-        self.funachiev = 'data/partner_category_unachievable_data.xml'
-        self.funachiev2 = 'data/partner_category_unachievable_data2.xml'
+        self.funachiev = 'data/partner_category_unreachable_data.xml'
+        self.funachiev2 = 'data/partner_category_unreachable_data2.xml'
         self.msg_demo_ref_from_data = (
             u"Demo xml_id 'res_partner_category_demo_01' of '" + self.module +
             "/demo/partner_category_demo.xml' is referenced from data xml '" +
             self.module + "/data/%s'")
-        self.msg_xmlid_unachievable = (u"The xml_id '%s' is unachievable.")
+        self.msg_xmlid_unreachable = (u"The xml_id '%s' is unreachable.")
 
     def tearDown(self):
         super(TestConvertFile, self).tearDown()
@@ -103,48 +103,48 @@ class TestConvertFile(common.TransactionCase):
             'partner_category_data2.xml'
         self.assertEqual(self.get_logs()[0], msg_expected)
 
-    def test_30_xml_id_ref_unachievable(self):
-        """Test a xml_id referenced unachievable
+    def test_30_xml_id_ref_unreachable(self):
+        """Test a xml_id referenced unreachable
         """
         imd_new = self.create_imd(self.fdemo, 'data', 1, 0)
-        imd_new.write({'module': 'unachievable'})
+        imd_new.write({'module': 'unreachable'})
         imd_new = self.create_imd(self.funachiev, 'data', 1, 1)
-        msg_expected = self.msg_xmlid_unachievable % \
-            'unachievable.res_partner_category_demo_01'
+        msg_expected = self.msg_xmlid_unreachable % \
+            'unreachable.res_partner_category_demo_01'
         self.assertEqual(self.get_logs()[0], msg_expected)
 
-    def test_40_xml_id_overwritten_unachievable(self):
-        """Test a xml_id overwritten unachievable
+    def test_40_xml_id_overwritten_unreachable(self):
+        """Test a xml_id overwritten unreachable
         """
         imd_new = self.create_imd(self.fdemo, 'data', 1, 0)
         self.imm.search([('name', '=', self.module)], limit=1).copy({
-            'name': 'unachievable', 'state': 'installed', 'auto_install': False
+            'name': 'unreachable', 'state': 'installed', 'auto_install': False
         })
-        imd_new.write({'module': 'unachievable'})
+        imd_new.write({'module': 'unreachable'})
         self.create_imd(self.funachiev2, 'data', 0, 1)
-        msg_expected = self.msg_xmlid_unachievable % \
-            'unachievable.res_partner_category_demo_01'
+        msg_expected = self.msg_xmlid_unreachable % \
+            'unreachable.res_partner_category_demo_01'
         self.assertEqual(self.get_logs()[0], msg_expected)
 
     def test_50_xml_id_ref_achievable(self):
-        """Test a xml_id referenced unachievable directly but achievable by
+        """Test a xml_id referenced unreachable directly but achievable by
         a module 'auto_install'
         """
         imd_new = self.create_imd(self.fdemo, 'data', 1, 0)
         self.assertFalse(self.handler.buffer)
         self.imm.search([('name', '=', self.module)], limit=1).copy({
-            'name': 'unachievable', 'state': 'installed', 'auto_install': True
+            'name': 'unreachable', 'state': 'installed', 'auto_install': True
         })
-        imd_new.write({'module': 'unachievable'})
+        imd_new.write({'module': 'unreachable'})
         self.create_imd(self.funachiev, 'data', 1, 0)
 
     def test_60_xml_id_overwritten_achievable(self):
-        """Test a xml_id overwritten unachievable directly but achievable by
+        """Test a xml_id overwritten unreachable directly but achievable by
         a module 'auto_install'
         """
         imd_new = self.create_imd(self.fdemo, 'data', 1, 0)
         self.imm.search([('name', '=', self.module)], limit=1).copy({
-            'name': 'unachievable', 'state': 'installed', 'auto_install': True
+            'name': 'unreachable', 'state': 'installed', 'auto_install': True
         })
-        imd_new.write({'module': 'unachievable'})
+        imd_new.write({'module': 'unreachable'})
         self.create_imd(self.funachiev2, 'data', 0, 0)
