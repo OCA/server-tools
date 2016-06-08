@@ -85,14 +85,14 @@ class IrModelData(models.Model):
                 module_ref_str == module_curr_str:
             return True
         module_curr = module.search([('name', '=', module_curr_str)], limit=1)
-        dep_closest_ids = module_curr.dependencies_id.mapped('depend_id.id')
         module_curr_dep_ids = module_curr._get_module_upstream_dependencies(
             module_curr.ids, exclude_states=['without_exclude'],
-            known_dep_ids=dep_closest_ids)
+            known_dep_ids=None)
         module_curr_deps = module.browse(module_curr_dep_ids).mapped('name')
         for mod_autinst in module.search([
                 ('auto_install', '=', True),
                 ('name', 'not in', module_curr_deps)]):
+            # TODO: Get auto_install depends recursively
             mod_autinst_deps = mod_autinst.dependencies_id.mapped('name')
             if not mod_autinst_deps or \
                     set(mod_autinst_deps).issubset(set(module_curr_deps)):
