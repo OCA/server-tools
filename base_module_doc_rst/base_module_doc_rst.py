@@ -20,8 +20,13 @@
 ##############################################################################
 import os
 import base64
+import logging
 import openerp.modules.registry
 from openerp import models, fields
+from openerp.exceptions import Warning
+from subprocess import call
+
+_logger = logging.getLogger(__name__)
 
 
 class Module(models.Model):
@@ -164,17 +169,28 @@ class Module(models.Model):
         file_path = openerp.modules.module.get_module_path(
             'base_module_doc_rst'
         )
-        path_png = file_path + "/module.png"
+        path_png = os.path.join(file_path, "png", "module.png")
         for key, val in dots.items():
-            path_dotfile = file_path + "/%s.dot" % (key,)
-            fp = file(path_dotfile, "w")
-            fp.write(val)
-            fp.close()
-        os.popen(
-            'dot -Tpng' + ' ' + path_dotfile + ' ' + '-o' + ' ' + path_png
-        )
-        fp = file(path_png, "r")
-        x = fp.read()
-        fp.close()
-        os.popen('rm ' + path_dotfile + ' ' + path_png)
-        return {'module_file': base64.encodestring(x)}
+            path_dotfile = os.path.join(file_path, "dot", "%s.dot" % (key,))
+            _logger.info(path_dotfile)
+            _logger.info(file_path)
+            with open(path_dotfile, "w") as fpd:
+                fpd.write(val)
+                fpd.close()
+            commands = ['dot', '-Tpng', path_dotfile, '-o', path_png]
+            call(commands, shell=False)
+        with open(path_png, "r") as png_file:
+            content = png_file.read()
+            png_file.close()
+        if os.path.isfile(path_dotfile):
+            call(['rm', path_dotfile])
+        if not os.path.isfile(path_png):
+            Warning('The program "dot" is not installed\n'
+                    'You can install it by typing:\n'
+                    'sudo apt-get install graphviz')
+        if os.path.isfile(path_png):
+            call(['rm', path_png])
+        res = {
+            'module_file': base64.encodestring(content),
+        }
+        return res
