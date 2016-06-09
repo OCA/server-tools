@@ -54,3 +54,5 @@ docs/_build/
 # Backup files
 *~
 *.swp
+
+*.dot
