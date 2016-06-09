@@ -6,17 +6,18 @@
 Improved Name Search
 ====================
 
-Extends the name search feature to use fuzzy matching methods, and
-allowing to search in additional related record attributes.
+Extends the name search feature to use additional, more relaxed
+matching methods, and to allow searching into configurable additional
+record fields.
 
 The name search is the lookup feature to select a related record.
 For example, selecting a Customer on a new Sales order.
 
 For example, typing "john brown" doesn't match "John M. Brown".
-The fuzzy search looks up for record containing all the words,
+The relaxed search also looks up for records containing all the words,
 so "John M. Brown" would be a match.
 It also tolerates words in a different order, so searching
-for "brown john" would also works.
+for "brown john" also works.
 
 .. image:: images/image0.png
 
@@ -28,15 +29,18 @@ For example, Customers could be additionally searched by City or Phone number.
 How it works:
 
 Regular name search is performed, and the additional search logic is only
-triggered if no results are found. This way, no significan overhead is added
-on searches that would normally yield results.
+triggered if not enough results are found.
+This way, no overhead is added on searches that would normally yield results.
 
-But if no results are found, then sdditional search methods are tried until
-some results are found. The sepcific methods used are:
+But if not enough results are found, then additional search methods are tried.
+The specific methods used are:
 
 - Try regular search on each of the additional fields
 - Try ordered word search on each of the search fields
 - Try unordered word search on each of the search fields
+
+All results found are presented in that order,
+hopefully presenting them in order of relevance.
 
 
 Installation
@@ -74,8 +78,10 @@ Just type into any related field, such as Customer on a Sale Order.
 Known issues / Roadmap
 ======================
 
+* Also use fuzzy search, such as the Levenshtein distance:
+  https://www.postgresql.org/docs/9.5/static/fuzzystrmatch.html
 * The list of additional fields to search could benefit from caching, for efficiency.
-* This feature could be implemented for regular ``search`` on the ``name`` field.
+* This feature could also be implemented for regular ``search`` on the ``name`` field.
 
 
 Bug Tracker
