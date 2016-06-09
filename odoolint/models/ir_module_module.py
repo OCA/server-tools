@@ -17,7 +17,7 @@ class IrModuleModule(models.Model):
         """Copied from odoo native ir.module.module v9.0
         Return the dependency tree of modules of the given `ids`, and that
         satisfy the `exclude_states` filter """
-        # To Avoid overwrite the origina method
+        # It to avoid overwrite the original method
         ids = mod_ids
         cr = self.env.cr
         if not ids:
@@ -45,3 +45,21 @@ class IrModuleModule(models.Model):
                 self._get_module_upstream_dependencies(
                     list(missing_mod_ids), known_dep_ids, exclude_states))
         return list(known_dep_ids)
+
+    @api.multi
+    def get_autoinstall_satisfied(self, known_dep_ids=None):
+        """Get recursively auto_install modules what dependencies are satisfied
+        :param know_deps_ids list: List of integers with ir.module.module ids
+            what are know dependencies and avoid get recursion sub-depends
+        """
+        all_dep_ids = set(self.ids) | set(known_dep_ids or [])
+        auto_inst_domain = [('auto_install', '=', True),
+                            ('id', 'not in', list(all_dep_ids))]
+        new_autinst_satisfied = self.search(auto_inst_domain).filtered(
+            lambda module:
+            set(module.dependencies_id.mapped('module_id').ids).issubset(
+                all_dep_ids))
+        if new_autinst_satisfied:
+            new_autinst_satisfied |= self.get_autoinstall_satisfied(
+                all_dep_ids | set(new_autinst_satisfied.ids))
+        return new_autinst_satisfied
