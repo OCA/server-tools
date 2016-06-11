@@ -52,14 +52,15 @@ class IrModuleModule(models.Model):
         :param know_deps_ids list: List of integers with ir.module.module ids
             what are know dependencies and avoid get recursion sub-depends
         """
-        all_dep_ids = set(self.ids) | set(known_dep_ids or [])
+        known_dep_ids = set(known_dep_ids or []) | set(self.ids)
         auto_inst_domain = [('auto_install', '=', True),
-                            ('id', 'not in', list(all_dep_ids))]
-        new_autinst_satisfied = self.search(auto_inst_domain).filtered(
+                            ('id', 'not in', list(known_dep_ids))]
+        auto_insts = self.search(auto_inst_domain)
+        new_autinst_satisfied = auto_insts.filtered(
             lambda module:
-            set(module.dependencies_id.mapped('module_id').ids).issubset(
-                all_dep_ids))
+            set(module.dependencies_id.mapped('depend_id').ids).issubset(
+                known_dep_ids))
         if new_autinst_satisfied:
-            new_autinst_satisfied |= self.get_autoinstall_satisfied(
-                all_dep_ids | set(new_autinst_satisfied.ids))
-        return new_autinst_satisfied
+            known_dep_ids = self.get_autoinstall_satisfied(
+                known_dep_ids | set(new_autinst_satisfied.ids))
+        return list(known_dep_ids)

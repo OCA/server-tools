@@ -104,6 +104,17 @@ class TestConvertFile(common.TransactionCase):
                 'name': new_xml_id, 'module': new_module})
         return unreachable
 
+    def test_05_auto_install_dependencies(self):
+        """Test get `auto_install` dependencies"""
+        web_rep = self.imm.search([('name', '=', 'website_report'),
+                                   ('auto_install', '=', True)], limit=1)
+        self.assertTrue(web_rep)
+        web_rep_deps = web_rep.dependencies_id.mapped('depend_id')
+        self.assertTrue(web_rep_deps)
+        autoinstall_satisfied = web_rep_deps.get_autoinstall_satisfied()
+        self.assertIn(web_rep.name,
+                      self.imm.browse(autoinstall_satisfied).mapped('name'))
+
     def test_10_demo_ref_from_data(self):
         """Test demo referenced from data
         """

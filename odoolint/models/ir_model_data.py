@@ -88,10 +88,11 @@ class IrModelData(models.Model):
         module_curr_dep_ids = module._get_module_upstream_dependencies(
             module_curr.ids, exclude_states=['without_exclude'],
             known_dep_ids=None)
-        module_curr_deps = module.browse(module_curr_dep_ids)
-        all_deps = module_curr_deps | \
-            module_curr_deps.get_autoinstall_satisfied()
-
+        autoinstall_satisfied_ids = \
+            module.browse(module_curr_dep_ids).get_autoinstall_satisfied()
+        all_dep_ids = list(set(autoinstall_satisfied_ids) |
+                           set(module_curr_dep_ids))
+        all_deps = module.browse(all_dep_ids)
         if all_deps and module_ref_str not in all_deps.mapped('name'):
             file_path = os.path.join(
                 get_module_resource(imd_new['module_real']),
