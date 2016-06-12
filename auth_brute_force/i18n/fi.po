@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 11:03+0000\n"
+"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"PO-Revision-Date: 2016-06-06 13:36+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgstr "Aktiivinen"
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
 msgid "Attempt Date"
+msgstr ""
+
+#. module: auth_brute_force
+#: field:res.banned.remote,attempt_ids:0
+msgid "Attempts"
 msgstr ""
 
 #. module: auth_brute_force
@@ -79,7 +84,13 @@ msgstr "Luotu"
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
 msgid "Description"
-msgstr ""
+msgstr "Kuvaus"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,display_name:0
+#: field:res.banned.remote,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
@@ -93,6 +104,12 @@ msgstr ""
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,__last_update:0
+#: field:res.banned.remote,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0
