@@ -7,6 +7,8 @@
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Giacomo <giacomo.spettoli@gmail.com>, 2015
@@ -20,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 11:04+0000\n"
+"POT-Creation-Date: 2016-06-09 01:06+0000\n"
+"PO-Revision-Date: 2016-06-06 13:36+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -61,6 +63,11 @@ msgid "DN"
 msgstr ""
 
 #. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_users.py:116
 #: code:addons/users_ldap_push/models/res_users.py:169
 #, python-format
@@ -93,9 +100,19 @@ msgid "LDAP configuration"
 msgstr ""
 
 #. module: users_ldap_push
+#: field:res.users,is_ldap_user:0
+msgid "LDAP user"
+msgstr ""
+
+#. module: users_ldap_push
 #: view:res.users:users_ldap_push.view_users_search
 msgid "LDAP users"
 msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,write_uid:0

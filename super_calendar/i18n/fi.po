@@ -3,7 +3,7 @@
 # * super_calendar
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013,2016
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
@@ -17,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 15:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-06-09 01:06+0000\n"
+"PO-Revision-Date: 2016-06-06 13:36+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +97,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Kuvaus"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -109,6 +109,13 @@ msgstr ""
 #: field:super.calendar.configurator.line,description_field_id:0
 msgid "Description field"
 msgstr ""
+
+#. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -200,6 +207,13 @@ msgstr ""
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
@@ -315,7 +329,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Käyttäjä"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,user_field_id:0

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-04 11:03+0000\n"
+"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"PO-Revision-Date: 2016-06-06 13:35+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: auth_from_http_remote_user
 #: field:auth_from_http_remote_user.installed,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: auth_from_http_remote_user
 #: field:res.users,sso_key:0
