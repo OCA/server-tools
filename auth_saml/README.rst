@@ -56,8 +56,8 @@ There are SAML-related settings in Configuration > General settings.
 Usage
 =====
 
-To use this module, you need an authentic2 server, properly set up.
-Read the doc at documentation/index.rst for more information.
+To use this module, you need an IDP server, properly set up. Go through the
+"Getting started" section for more information.
 
 
 Demo

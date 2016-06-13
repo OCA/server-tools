@@ -1,5 +1,5 @@
-SAML Authentication with Authentic2
-===================================
+Getting started with Authentic2
+===============================
 
 This is quick howto to help setup a service provider that will be able
 to use the IDP from Authentic2

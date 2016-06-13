@@ -1,0 +1,69 @@
+FIXME
+=====
+
+XXX
+===
+
+TODO
+====
+
+:class:`main`
+-------------
+
+Line 147
+	.. literalinclude:: ../controllers/main.py
+		:language: python
+		:lines: 144-151
+		:emphasize-lines: 147
+		:lineno-start: 144
+
+:class:`auth_saml`
+------------------
+
+Line 22
+	.. literalinclude:: ../models/auth_saml.py
+		:language: python
+		:lines: 19-26
+		:emphasize-lines: 22
+		:lineno-start: 19
+
+:class:`res_users`
+------------------
+
+Line 180
+	.. literalinclude:: ../models/res_users.py
+		:language: python
+		:lines: 177-184
+		:emphasize-lines: 180
+		:lineno-start: 177
+
+:class:`res_users`
+------------------
+
+Line 254
+	.. literalinclude:: ../models/res_users.py
+		:language: python
+		:lines: 251-258
+		:emphasize-lines: 254
+		:lineno-start: 251
+
+:class:`test_auth_saml`
+-----------------------
+
+Line 20
+	.. literalinclude:: ../tests/test_auth_saml.py
+		:language: python
+		:lines: 17-24
+		:emphasize-lines: 20
+		:lineno-start: 17
+
+:class:`conf`
+-------------
+
+Line 315
+	.. literalinclude:: ../doc/conf.py
+		:language: python
+		:lines: 312-319
+		:emphasize-lines: 315
+		:lineno-start: 312
+
