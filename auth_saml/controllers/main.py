@@ -5,6 +5,7 @@ import simplejson
 import werkzeug.utils
 
 import openerp
+from openerp import _
 from openerp import http
 from openerp.http import request
 from openerp import SUPERUSER_ID
