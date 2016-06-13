@@ -223,16 +223,18 @@ class ResUser(models.Model):
         # return user credentials
         return self.env.cr.dbname, login, saml_response
 
-    # This method is using the old v7 API because it is called BEFORE the login
-    def check_credentials(self, cr, uid, token):
-        """token can be a password if the user has used the normal form...
+    @api.model
+    def check_credentials(self, token):
+        """Override to handle SAML auths.
+
+        The token can be a password if the user has used the normal form...
         but we are more interested in the case when they are tokens
-        and the interesting code is inside the except clause
+        and the interesting code is inside the "except" clause.
         """
-        token_osv = self.pool.get('auth_saml.token')
 
         try:
-            super(ResUser, self).check_credentials(cr, uid, token)
+            # Attempt a regular login (via other auth addons) first.
+            super(ResUser, self).check_credentials(token)
 
         except (
             openerp.exceptions.AccessDenied,
@@ -240,12 +242,11 @@ class ResUser(models.Model):
         ):
             # since normal auth did not succeed we now try to find if the user
             # has an active token attached to his uid
-            res = token_osv.search(
-                cr, SUPERUSER_ID,
+            res = self.env['auth_saml.token'].sudo().search(
                 [
-                    ('user_id', '=', uid),
+                    ('user_id', '=', self.env.user.id),
                     ('saml_access_token', '=', token),
-                ]
+                ],
             )
 
             # if the user is not found we re-raise the AccessDenied
