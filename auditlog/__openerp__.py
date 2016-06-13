@@ -24,6 +24,7 @@
     'version': "9.0.1.0.0",
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'website': "http://www.osiell.com",
+    'license': 'AGPL-3',
     'category': "Tools",
     'depends': [
         'base',
@@ -32,6 +33,7 @@
         'security/ir.model.access.csv',
         'views/auditlog_view.xml',
     ],
+    'images': [],
     'application': True,
     'installable': True,
     'pre_init_hook': 'pre_init_hook',
