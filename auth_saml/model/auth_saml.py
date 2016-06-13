@@ -43,8 +43,10 @@ class auth_saml_provider(models.Model):
     @api.multi
     def _get_auth_request(self, state):
         """build an authentication request and give it back to our client
-        WARNING: this method cannot be used for multiple ids
         """
+
+        self.ensure_one()
+
         login = self._get_lasso_for_provider()
 
         # ! -- this is the part that MUST be performed on each call and
