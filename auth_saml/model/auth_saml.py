@@ -18,8 +18,6 @@ class auth_saml_provider(models.Model):
         """internal helper to get a configured lasso.Login object for the
         given provider id"""
 
-        # user is not connected yet... so use SUPERUSER_ID
-
         # TODO: we should cache those results somewhere because it is
         # really costly to always recreate a login variable from buffers
         server = lasso.Server.newFromBuffers(
