@@ -87,7 +87,7 @@ class res_users(models.Model):
             login.acceptSso()
         except lasso.Error as error:
             raise Exception(
-                    'Invalid assertion : %s' % lasso.strError(error[0])
+                'Invalid assertion : %s' % lasso.strError(error[0])
             )
 
         attrs = {}
@@ -142,10 +142,10 @@ class res_users(models.Model):
 
         elif not matching_value and matching_attribute != "subject.nameId":
             raise Exception(
-                    "Matching attribute %s not found in user attrs: %s" % (
-                        matching_attribute,
-                        attrs,
-                    )
+                "Matching attribute %s not found in user attrs: %s" % (
+                    matching_attribute,
+                    attrs,
+                )
             )
 
         validation = {'user_id': matching_value}
@@ -239,7 +239,10 @@ class res_users(models.Model):
                 token
             )
 
-        except (openerp.exceptions.AccessDenied, passlib.exc.PasswordSizeError):
+        except (
+            openerp.exceptions.AccessDenied,
+            passlib.exc.PasswordSizeError,
+        ):
             # since normal auth did not succeed we now try to find if the user
             # has an active token attached to his uid
             res = token_osv.search(

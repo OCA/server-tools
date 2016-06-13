@@ -32,7 +32,8 @@ WARNING: this module requires auth_crypt. This is because you still have the
     option if not recommended to allow users to have a password stored in odoo
     at the same time as having a SALM provider and id.
 
-This module is covered by the Gnu Affero General Public License, AGPLV3 or later
+This module is covered by the GNU Affero General Public License, version 3 or
+later.
 
 The full source code and history can always be downloaded, modified
 and redistributed from here:
