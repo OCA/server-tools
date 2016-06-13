@@ -262,8 +262,15 @@ class res_users(models.Model):
         ID (as they can't cohabit).
         """
 
-        if vals and vals.get('saml_uid'):
-            if not self._allow_saml_and_password():
+        # Clear out the pass when:
+        # - An SAML ID is being set.
+        # - The user is not the Odoo admin.
+        # - The "allow both" setting is disabled.
+        if (
+            vals and vals.get('saml_uid') and
+            self.id is not SUPERUSER_ID and
+            not self._allow_saml_and_password()
+        ):
                 vals.update({
                     'password': False,
                     'password_crypt': False,
