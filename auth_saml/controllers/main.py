@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import functools
 import logging
 
@@ -43,6 +45,8 @@ def fragment_to_query_string(func):
 # ----------------------------------------------------------
 # Controller
 # ----------------------------------------------------------
+
+
 class SAMLLogin(openerp.addons.web.controllers.main.Home):
 
     def list_providers(self):
