@@ -8,6 +8,7 @@
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'website': "http://www.osiell.com",
+    'license': 'AGPL-3',
     'category': "Tools",
     'depends': [
         'base',
@@ -19,6 +20,7 @@
         'views/http_session_view.xml',
         'views/http_request_view.xml',
     ],
+    'images': [],
     'application': True,
     'installable': True,
     'pre_init_hook': 'pre_init_hook',
