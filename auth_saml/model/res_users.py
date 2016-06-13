@@ -6,20 +6,20 @@ import lasso
 import passlib
 
 import openerp
+from openerp import _
 from openerp import api
 from openerp import models
 from openerp import fields
 from openerp import SUPERUSER_ID
 from openerp.exceptions import ValidationError
-# import real addons name of base.res.res_users in order to call it without
-# user the super() call
-from openerp.addons.base.res.res_users import res_users as baseuser
-from openerp import _
 
 _logger = logging.getLogger(__name__)
 
 
-class res_users(models.Model):
+class ResUser(models.Model):
+    """Add SAML login capabilities to Odoo users.
+    """
+
     _inherit = 'res.users'
 
     saml_provider_id = fields.Many2one(
@@ -232,12 +232,7 @@ class res_users(models.Model):
         token_osv = self.pool.get('auth_saml.token')
 
         try:
-            baseuser.check_credentials(
-                self,
-                cr,
-                uid,
-                token
-            )
+            super(ResUser, self).check_credentials(cr, uid, token)
 
         except (
             openerp.exceptions.AccessDenied,
@@ -279,7 +274,7 @@ class res_users(models.Model):
                     'password_crypt': False,
                 })
 
-        return super(res_users, self).write(vals)
+        return super(ResUser, self).write(vals)
 
     @api.model
     def _allow_saml_and_password(self):
