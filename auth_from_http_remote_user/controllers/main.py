@@ -55,6 +55,9 @@ class Home(main.Home):
                 if not login:
                     # no HTTP_REMOTE_USER header,
                     # continue usual behavior
+                    _logger.debug("Required fields '%s' not found in http"
+                                  " headers\n %s",
+                                  self._REMOTE_USER_ATTRIBUTE, headers)
                     return
 
                 request_login = request.session.login
