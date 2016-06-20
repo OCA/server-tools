@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2015 Therp BV <http://therp.nl>
+# © 2015-2016 Therp BV <http://therp.nl>
 # © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import json
@@ -47,10 +47,10 @@ class DeadMansSwitchClient(models.AbstractModel):
                 else:  # pragma: no cover
                     cpu = None
         user_count = 0
-        if 'im_chat.presence' in self.env.registry:
-            user_count = len(self.env['im_chat.presence'].search([
-                ('status', '!=', 'offline'),
-            ]))
+        if 'bus.presence' in self.env.registry:
+            user_count = self.env['bus.presence'].search_count([
+                ('status', '=', 'online'),
+            ])
         return {
             'database_uuid': self.env['ir.config_parameter'].get_param(
                 'database.uuid'),
