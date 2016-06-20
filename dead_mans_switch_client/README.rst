@@ -20,8 +20,8 @@ This module attempts to send CPU and RAM statistics to the server. While this
 is not mandatory, it's helpful for assessing a server's health. If you want
 this, you need to install ``psutil``.
 
-You can also have the currently online users logged, but this only works if
-the ``im_chat`` module is installed.
+You can also have the number of currently online users logged, but this only
+works if the ``bus`` module is installed and longpolling configured correctly.
 
 Usage
 =====
@@ -30,7 +30,7 @@ This module doesn't have any visible effect on the client.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot
-    :target: https://runbot.odoo-community.org/runbot/149/8.0
+    :target: https://runbot.odoo-community.org/runbot/149/9.0
 
 For further information, please visit:
 
@@ -47,7 +47,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20dead_mans_switch_client%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/OCA/server-tools/issues/new?body=module:%20dead_mans_switch_client%0Aversion:%209.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
