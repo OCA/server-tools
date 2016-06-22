@@ -167,7 +167,7 @@ class import_odbc_dbtable(orm.Model):
             if obj.last_sync:
                 sync = datetime.strptime(obj.last_sync, "%Y-%m-%d %H:%M:%S")
             else:
-                sync = datetime.datetime(1900, 1, 1, 0, 0, 0)
+                sync = datetime(1900, 1, 1, 0, 0, 0)
             params = {'sync': sync}
             res = db_model.execute(cr, uid, [obj.dbsource_id.id],
                                    obj.sql_source, params, metadata=True)
