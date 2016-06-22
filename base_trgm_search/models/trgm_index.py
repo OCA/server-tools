@@ -204,6 +204,21 @@ def patch_leaf_trgm(method):
             eleaf.leaf = (left, operator, right)
         return method(self, eleaf)
     return decorate_leaf_to_sql
+
 expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
     expression.expression._expression__leaf_to_sql)
+
 expression.TERM_OPERATORS += ('%',)
+
+
+def patch_generate_order_by(method):
+    def decorate_generate_order_by(self, order_spec, query):
+        if order_spec and order_spec.startswith('similarity('):
+            from pprint import pprint
+            pprint(query)
+            return ' ORDER BY ' + order_spec
+        return method(self, order_spec, query)
+    return decorate_generate_order_by
+
+models.BaseModel._generate_order_by = patch_generate_order_by(
+    models.BaseModel._generate_order_by)
