@@ -4,7 +4,6 @@
     <record id="group_auth_supplier" model="res.groups">
         <field name="name">Supplier Portal</field>
         <field name="category_id" ref="base.module_category_extra"/>
-        <field name="is_portal" eval="True"/>
     </record>
 
 </odoo>
