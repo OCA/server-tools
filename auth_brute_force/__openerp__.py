@@ -35,6 +35,7 @@
     'data': [
         'security/ir_model_access.yml',
         'data/ir_config_parameter.xml',
+        'data/ir_cron.xml',
         'views/view.xml',
         'views/action.xml',
         'views/menu.xml',

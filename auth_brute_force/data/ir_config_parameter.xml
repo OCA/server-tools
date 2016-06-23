@@ -25,5 +25,20 @@
             <field name="value">10</field>
         </record>
 
+        <record id="attempt_ban_type" model="ir.config_parameter">
+            <field name="key">auth_brute_force.attempt_ban_type</field>
+            <field name="value">ip</field>
+        </record>
+
+        <record id="attempt_ban_message" model="ir.config_parameter">
+            <field name="key">auth_brute_force.attempt_ban_message</field>
+            <field name="value"> </field>
+        </record>
+
+        <record id="attempt_ban_time" model="ir.config_parameter">
+            <field name="key">auth_brute_force.attempt_ban_time</field>
+            <field name="value">30</field>
+        </record>
+
     </data>
 </openerp>

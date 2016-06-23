@@ -7,13 +7,13 @@ Tracks Authentication Attempts and Prevents Brute-force Attacks
 
 This module registers each request done by users trying to authenticate into
 Odoo. If the authentication fails, a counter is increased for the given remote
-IP. After a defined number of attempts, Odoo will ban the remote IP and
-ignore new requests.
+IP or user. After a defined number of attempts, Odoo will ban the remote IP or
+user and ignore new requests.
 This module applies security through obscurity
 (https://en.wikipedia.org/wiki/Security_through_obscurity),
 When a user is banned, the request is now considered as an attack. So, the UI
-will **not** indicate to the user that his IP is banned and the regular message
-'Wrong login/password' is displayed.
+will **not** (unless an error message is set) indicate to the user that his IP
+is banned and the regular message 'Wrong login/password' is displayed.
 
 This module realizes a call to a web API (http://ip-api.com) to try to have
 extra information about remote IP.
@@ -28,19 +28,36 @@ of the user can be wrong, and mainly in the following cases:
 * if the Odoo server is behind an Apache / NGinx proxy without redirection,
   all the request will be have the value '127.0.0.1' for the REMOTE_ADDR key;
 * If some users are behind the same Internet Service Provider, if a user is
-  banned, all the other users will be banned too;
+  banned, all the other users will be banned too. To avoid this you can also
+  change the ban method to ban the user;
 
 Configuration
 -------------
 
-Once installed, you can change the ir.config_parameter value for the key
-'auth_brute_force.max_attempt_qty' (10 by default) that define the max number
-of attempts allowed before the user was banned.
+Once installed, you can change the settings via the ir.config_parameter:
+
+* 'auth_brute_force.max_attempt_qty' (default: 10) - The max number
+  of attempts allowed before the user was banned.
+
+* 'auth_brute_force.attempt_ban_type' (default: ip) - If 'ip' is set then
+  the remote IP is used for checking of failed attempts and is also used
+  for banning. If 'user' is set then only the attempts for the same login
+  name are checked and only the user will be banned.
+
+* 'auth_brute_force.attempt_ban_message' (default: empty) - The message
+  which will be returned if the remote was banned. If the message is empty
+  then the regular message 'Wrong login/password' is displayed.
+
+* 'auth_brute_force.attempt_ban_time' (default: 30) - The minutes after the
+  remote will be unbanned. If set to 0 then the remotes will not be
+  automatically unbanned.
+
 
 Usage
 -----
 
-Admin user have the possibility to unblock a banned IP.
+Admin user have the possibility to unblock a banned IP. A scheduler checks
+per default every minute the banned entries to automatically unban them.
 
 Logging
 -------

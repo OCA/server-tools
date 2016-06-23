@@ -32,6 +32,7 @@ class ResAuthenticationAttempt(models.Model):
         ('successfull', _('Successfull')),
         ('failed', _('Failed')),
         ('banned', _('Banned')),
+        ('unbanned', _('Unbanned'))
     ]
 
     # Column Section
@@ -41,18 +42,27 @@ class ResAuthenticationAttempt(models.Model):
 
     remote = fields.Char(string='Remote ID')
 
+    user_id = fields.Many2one(comodel_name='res.users', string='User')
+
     result = fields.Selection(
         selection=_ATTEMPT_RESULT, string='Authentication Result')
 
     # Custom Section
     @api.model
-    def search_last_failed(self, remote):
+    def search_last_failed(self, remote, user_id=False):
+        attempt_ban_type = self.env['ir.config_parameter'].search_read(
+            [('key', '=', 'auth_brute_force.attempt_ban_type')],
+            ['value'])[0]['value']
+
+        domain_check = [('remote', '=', remote)]
+        if attempt_ban_type == 'user':
+            domain_check = [('user_id', '=', user_id)]
+
         last_ok = self.search(
-            [('result', '=', 'successfull'), ('remote', '=', remote)],
+            [('result', 'in', ['successfull', 'unbanned'])] + domain_check,
             order='attempt_date desc', limit=1)
         if last_ok:
-            return self.search([
-                ('remote', '=', remote),
-                ('attempt_date', '>', last_ok.attempt_date)])
+            return self.search(
+                domain_check + [('attempt_date', '>', last_ok.attempt_date)])
         else:
-            return self.search([('remote', '=', remote)])
+            return self.search(domain_check)

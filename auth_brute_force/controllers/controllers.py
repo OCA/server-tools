@@ -22,7 +22,7 @@
 
 import logging
 
-from openerp import fields, http, registry, SUPERUSER_ID
+from openerp import exceptions, fields, http, registry, SUPERUSER_ID
 from openerp.http import request
 from openerp.addons.web.controllers.main import Home, ensure_db
 
@@ -41,6 +41,7 @@ class LoginController(Home):
                 request.session.db)['res.authentication.attempt']
             banned_remote_obj = registry(
                 request.session.db)['res.banned.remote']
+            user_obj = registry(request.session.db)['res.users']
             cursor = attempt_obj.pool.cursor()
 
             # Get Settings
@@ -48,10 +49,32 @@ class LoginController(Home):
                 cursor, SUPERUSER_ID,
                 [('key', '=', 'auth_brute_force.max_attempt_qty')],
                 ['value'])[0]['value'])
+            attempt_ban_type = config_obj.search_read(
+                cursor, SUPERUSER_ID,
+                [('key', '=', 'auth_brute_force.attempt_ban_type')],
+                ['value'])[0]['value']
+            attempt_ban_message = config_obj.search_read(
+                cursor, SUPERUSER_ID,
+                [('key', '=', 'auth_brute_force.attempt_ban_message')],
+                ['value'])[0]['value'].strip()
+
+            # if type is wrong we deactivate the checks
+            if attempt_ban_type not in ['ip', 'user']:
+                return super(LoginController, self).web_login(
+                    redirect=redirect, **kw)
+
+            # get the user id of the login
+            user_ids = user_obj.search(
+                cursor, SUPERUSER_ID,
+                [('login', '=', request.params['login'])])
+            user_id = user_ids and user_ids[0] or False
 
             # Test if remote user is banned
-            banned = banned_remote_obj.search(cursor, SUPERUSER_ID, [
-                ('remote', '=', remote)])
+            domain = [('remote', '=', remote)]
+            if attempt_ban_type == 'user':
+                domain = [('user_id', '=', user_id)]
+
+            banned = banned_remote_obj.search(cursor, SUPERUSER_ID, domain)
             if banned:
                 _logger.warning(
                     "Authentication tried from remote '%s'. The request has"
@@ -60,6 +83,10 @@ class LoginController(Home):
                         remote, max_attempts_qty, request.params['login']))
                 request.params['password'] = ''
 
+                # if a ban message is set then we render the web.login
+                # template directly like in the web module
+                if attempt_ban_message:
+                    return self.show_banned_message(attempt_ban_message)
             else:
                 # Try to authenticate
                 result = request.session.authenticate(
@@ -72,6 +99,7 @@ class LoginController(Home):
                 'attempt_date': fields.Datetime.now(),
                 'login': request.params['login'],
                 'remote': remote,
+                'user_id': user_id,
                 'result': banned and 'banned' or (
                     result and 'successfull' or 'failed'),
             })
@@ -79,7 +107,7 @@ class LoginController(Home):
             if not banned and not result:
                 # Get last bad attempts quantity
                 attempts_qty = len(attempt_obj.search_last_failed(
-                    cursor, SUPERUSER_ID, remote))
+                    cursor, SUPERUSER_ID, remote, user_id))
 
                 if max_attempts_qty <= attempts_qty:
                     # We ban the remote
@@ -89,9 +117,15 @@ class LoginController(Home):
                             remote, request.params['login']))
                     banned_remote_obj.create(cursor, SUPERUSER_ID, {
                         'remote': remote,
+                        'user_id': user_id,
                         'ban_date': fields.Datetime.now(),
                     })
                     cursor.commit()
+
+                    # if a ban message is set then we render the web.login
+                    # template directly like in the web module
+                    if attempt_ban_message:
+                        return self.show_banned_message(attempt_ban_message)
 
                 else:
                     _logger.warning(
@@ -102,3 +136,13 @@ class LoginController(Home):
             cursor.close()
 
         return super(LoginController, self).web_login(redirect=redirect, **kw)
+
+    def show_banned_message(self, message):
+        request.params['login_success'] = False
+        values = request.params.copy()
+        try:
+            values['databases'] = http.db_list()
+        except exceptions.AccessDenied:
+            values['databases'] = None
+        values['error'] = message
+        return request.render('web.login', values)
