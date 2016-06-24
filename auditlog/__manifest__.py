@@ -8,7 +8,6 @@
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'website': "http://www.osiell.com",
-    'license': 'AGPL-3',
     'category': "Tools",
     'depends': [
         'base',
