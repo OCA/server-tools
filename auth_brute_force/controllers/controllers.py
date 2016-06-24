@@ -89,9 +89,12 @@ class LoginController(Home):
                     return self.show_banned_message(attempt_ban_message)
             else:
                 # Try to authenticate
+                old_uid = request.uid
                 result = request.session.authenticate(
                     request.session.db, request.params['login'],
                     request.params['password'])
+                if result is False:
+                    request.uid = old_uid
 
             # Log attempt
             cursor.commit()
