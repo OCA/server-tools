@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from openerp import api, exceptions, fields, models
-from openerp.osv import expression
+from openerp import SUPERUSER_ID, api, exceptions, fields, models
 
 from psycopg2.extensions import AsIs
 
@@ -86,10 +86,11 @@ class TrgmIndex(models.Model):
             return True
         return False
 
-    @api.model
-    def _auto_init(self):
-        res = super(TrgmIndex, self)._auto_init()
-        self._install_trgm_extension()
+    def _auto_init(self, cr, context=None):
+        res = super(TrgmIndex, self)._auto_init(cr, context)
+        if self._install_trgm_extension(cr, SUPERUSER_ID, context=context):
+            _logger.info('The pg_trgm is loaded in the database and the '
+                         'fuzzy search can be used.')
         return res
 
     @api.model
@@ -168,57 +169,3 @@ class TrgmIndex(models.Model):
                 'index': AsIs(rec.index_name),
             })
         return super(TrgmIndex, self).unlink()
-
-
-def patch_leaf_trgm(method):
-    def decorate_leaf_to_sql(self, eleaf):
-        model = eleaf.model
-        leaf = eleaf.leaf
-        left, operator, right = leaf
-        table_alias = '"%s"' % (eleaf.generate_alias())
-
-        if operator == '%':
-            sql_operator = '%%'
-            params = []
-
-            if left in model._columns:
-                format = model._columns[left]._symbol_set[0]
-                column = '%s.%s' % (table_alias, expression._quote(left))
-                query = '(%s %s %s)' % (column, sql_operator, format)
-            elif left in expression.MAGIC_COLUMNS:
-                query = "(%s.\"%s\" %s %%s)" % (
-                    table_alias, left, sql_operator)
-                params = right
-            else:  # Must not happen
-                raise ValueError(
-                    "Invalid field %r in domain term %r" % (left, leaf))
-
-            if left in model._columns:
-                params = model._columns[left]._symbol_set[1](right)
-
-            if isinstance(params, basestring):
-                params = [params]
-            return query, params
-        elif operator == 'inselect':
-            right = (right[0].replace(' % ', ' %% '), right[1])
-            eleaf.leaf = (left, operator, right)
-        return method(self, eleaf)
-    return decorate_leaf_to_sql
-
-expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
-    expression.expression._expression__leaf_to_sql)
-
-expression.TERM_OPERATORS += ('%',)
-
-
-def patch_generate_order_by(method):
-    def decorate_generate_order_by(self, order_spec, query):
-        if order_spec and order_spec.startswith('similarity('):
-            from pprint import pprint
-            pprint(query)
-            return ' ORDER BY ' + order_spec
-        return method(self, order_spec, query)
-    return decorate_generate_order_by
-
-models.BaseModel._generate_order_by = patch_generate_order_by(
-    models.BaseModel._generate_order_by)

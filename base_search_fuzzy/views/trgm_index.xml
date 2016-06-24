@@ -31,7 +31,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="trgm_index_action">
-      <field name="name">Trigam Index</field>
+      <field name="name">Trigram Index</field>
       <field name="res_model">trgm.index</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
@@ -40,7 +40,8 @@
 
     <menuitem id="trgm_index_menu"
               parent="base.next_id_9"
-              action="trgm_index_action"/>
+              action="trgm_index_action"
+              groups="base.group_no_one"/>
 
   </data>
 </openerp>
