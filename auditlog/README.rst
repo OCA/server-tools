@@ -34,9 +34,6 @@ To activate it and/or change the delay, go to the
 
 .. image:: /auditlog/static/description/autovacuum.png
 
-During installation, a one-time script will migrate any existing data from the
-`audittrail` module (rules and logs).
-
 Known issues / Roadmap
 ======================
 
