@@ -22,5 +22,4 @@
     'images': [],
     'application': True,
     'installable': True,
-    'pre_init_hook': 'pre_init_hook',
 }
