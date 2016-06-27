@@ -12,6 +12,7 @@ class QueryGenerationCase(TransactionCase):
         super(QueryGenerationCase, self).setUp()
         self.ResPartner = self.env['res.partner']
         self.TrgmIndex = self.env['trgm.index']
+        self.ResPartnerCategory = self.env['res.partner.category']
 
     def test_fuzzy_where_generation(self):
         """Check the generation of the where clause."""
