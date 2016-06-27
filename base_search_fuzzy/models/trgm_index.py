@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from openerp import SUPERUSER_ID, api, exceptions, fields, models
+from openerp import _, SUPERUSER_ID, api, exceptions, fields, models
 
 from psycopg2.extensions import AsIs
 
@@ -119,9 +119,9 @@ class TrgmIndex(models.Model):
         self.ensure_one()
 
         if not self._install_trgm_extension():
-            raise exceptions.UserError(
+            raise exceptions.UserError(_(
                 'The pg_trgm extension does not exists or cannot be '
-                'installed.')
+                'installed.'))
 
         table_name = self.env[self.field_id.model_id.model]._table
         column_name = self.field_id.name

@@ -8,49 +8,54 @@ PostgreSQL Trigram Search
 
 This addon provides the ability to create GIN or GiST indexes of char and text
 fields and also to use the search operator `%` in search domains. Currently
-this module doesn't change the backend search or something else. It provides
-only the possibilty to do a fuzzy search for external addons.
+this module doesn't change the backend search or anything else. It provides
+only the possibilty to perfrom the fuzzy search for external addons.
 
 
 Installation
 ============
 
-First you need to have the ``pg_trgm`` extension available. In debian based
-distribution you have to install the `postgresql-contrib` module. Then you have
-to either install the ``pg_trgm`` extension to your database or you have to give
-your postgresql user the superadmin right (this allows the odoo module to
-install the extension to the database).
+#. The PostgreSQL extension ``pg_trgm`` should be available. In debian based
+   distribution you have to install the `postgresql-contrib` module.
+#. Install the ``pg_trgm`` extension to your database or give your postgresql
+   user the ``SUEPRUSER`` right (this allows the odoo module to install the
+   extension to the database).
 
 
 Configuration
 =============
 
-If you installed the odoo module you can define ``GIN`` and ``GiST`` indexes for
-`char` and `text` via `Settings -> Database Structure -> Trigram Index`. The
-index name will automatically created for new entries.
+If the odoo module is installed:
+
+#. You can define ``GIN`` and ``GiST`` indexes for `char` and `text` via
+   `Settings -> Database Structure -> Trigram Index`. The index name will
+   automatically created for new entries.
 
 
 Usage
 =====
 
-For example you can create an index for the `name` field of `res.partner`. Then
-in a search you can use
+#. You can create an index for the `name` field of `res.partner`.
+#. In the search you can use:
 
-``self.env['res.partner'].search([('name', '%', 'Jon Miller)])``
+   ``self.env['res.partner'].search([('name', '%', 'Jon Miller)])``
 
-In this Example it can find existing names like `John Miller` or `John Mill`.
+#. In this example the function will return positive result for `John Miller` or
+   `John Mill`.
 
-Which strings can be found depends on the limit which is set (default: 0.3).
-Currently you have to set the limit by executing SQL:
+#. You can tweak the number of strings to be returned by adjusting the set limit
+   (default: 0.3). NB: Currently you have to set the limit by executing the
+   following SQL statment:
 
-``self.env.cr.execute("SELECT set_limit(0.2);")``
+   ``self.env.cr.execute("SELECT set_limit(0.2);")``
 
-Also you can use the ``similarity(column, 'text')`` function in the ``order``
-parameter to order by the similarity. This is just a basic implementation which
-doesn't contains validations and has to start with this function. For example
-you can define this like:
+#. Another interesting feature is the use of ``similarity(column, 'text')``
+   function in the ``order`` parameter to order by similarity. This module just
+   contains a basic implementation which doesn't perform validations and has to
+   start with this function. For example you can define the function as
+   followed:
 
-``similarity(%s.name, 'John Mil') DESC" % self.env['res.partner']._table``
+   ``similarity(%s.name, 'John Mil') DESC" % self.env['res.partner']._table``
 
 For further questions read the Documentation of the
 `pg_trgm <https://www.postgresql.org/docs/current/static/pgtrgm.html>`_ module.

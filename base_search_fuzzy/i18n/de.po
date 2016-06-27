@@ -92,3 +92,9 @@ msgstr "Trigram Index"
 #: help:trgm.index,field_id:0
 msgid "You can either select a field of type \"text\" or \"char\"."
 msgstr "Sie können entweder Felder vom Typ \"text\" oder \"char\" auswählen."
+
+#. module: base_search_fuzzy
+#: code:addons/base_search_fuzzy/models/trgm_index.py:123
+#, python-format
+msgid "The pg_trgm extension does not exists or cannot be installed."
+msgstr "Die pg_trgm Erweiterung existiert nicht oder kann nicht installiert werden."

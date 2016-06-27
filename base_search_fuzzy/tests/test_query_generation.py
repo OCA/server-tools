@@ -37,6 +37,27 @@ class QueryGenerationCase(TransactionCase):
             'SELECT FROM "res_partner" WHERE '
             '("res_partner"."name" % \'test\')')
 
+    def test_fuzzy_where_generation_translatable(self):
+        """Check the generation of the where clause for translatable fields."""
+        ctx = {'lang': 'de_DE'}
+
+        # create new query with fuzzy search operator
+        query = self.ResPartnerCategory.with_context(ctx)\
+            ._where_calc([('name', '%', 'Goschaeftlic')], active_test=False)
+        from_clause, where_clause, where_clause_params = query.get_sql()
+
+        # the % parameter has to be escaped (%%) for the string replation
+        self.assertIn("""SELECT id FROM temp_irt_current WHERE name %% %s""",
+                      where_clause)
+
+        complete_where = self.env.cr.mogrify(
+            "SELECT FROM %s WHERE %s" % (from_clause, where_clause),
+            where_clause_params)
+
+        self.assertIn(
+            """SELECT id FROM temp_irt_current WHERE name % 'Goschaeftlic'""",
+            complete_where)
+
     def test_fuzzy_order_generation(self):
         """Check the generation of the where clause."""
         order = "similarity(%s.name, 'test') DESC" % self.ResPartner._table
