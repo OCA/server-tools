@@ -1,32 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <record id="purge_columns_view" model="ir.ui.view">
-            <field name="name">Form view for purge columns wizard</field>
             <field name="model">cleanup.purge.wizard.column</field>
+            <field name="inherit_id" ref="form_purge_wizard" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <form string="Purge columns" version="7.0">
-                    <h1>
-                        <field name="name"/>
-                    </h1>
-                    <button type="object" name="purge_all" string="Purge all columns" />
-                    <button type="object" name="select_lines" string="Select lines" />
-                    <field name="purge_line_ids" colspan="4" nolabel="1">
-                        <form string="Purge columns">
-                            <group>
-                                <field name="name" />
-                                <field name="model_id" />
-                                <field name="purged" invisible="0" />
-                            </group>
-                            <footer>
-                                <button type="object" name="purge"
-                                        icon="gtk-cancel" string="Purge this column"
-                                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                            </footer>
-                        </form>
-                    </field>
-                </form>
+                <field name="name" position="after">
+                    <field name="model_id" />
+                </field>
             </field>
         </record>
 
@@ -40,15 +22,12 @@
 
         <record id="purge_column_line_tree" model="ir.ui.view">
             <field name="model">cleanup.purge.line.column</field>
+            <field name="inherit_id" ref="tree_purge_line" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <tree string="Purge columns">
-                    <field name="name" />
+                <field name="name" position="after">
                     <field name="model_id" />
-                    <field name="purged" invisible="0" />
-                    <button type="object" name="purge"
-                        icon="gtk-cancel" string="Purge this column"
-                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                </tree>
+                </field>
             </field>
         </record>
 
