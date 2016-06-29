@@ -2,29 +2,11 @@
 <openerp>
     <data>
         <record id="purge_menus_view" model="ir.ui.view">
-            <field name="name">Form view for purge menus wizard</field>
             <field name="model">cleanup.purge.wizard.menu</field>
+            <field name="inherit_id" ref="form_purge_wizard" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <form>
-                    <h1>
-                        <field name="name"/>
-                    </h1>
-                    <button type="object" name="purge_all" string="Purge all menus" />
-                    <button type="object" name="select_lines" string="Select lines" />
-                    <field name="purge_line_ids">
-                        <form>
-                            <group>
-                                <field name="name" />
-                                <field name="purged" invisible="0" />
-                            </group>
-                            <footer>
-                                <button type="object" name="purge"
-                                    icon="gtk-cancel" string="Purge this menu"
-                                    attrs="{'invisible': [('purged', '=', True)]}"/>
-                            </footer>
-                        </form>
-                    </field>
-                </form>
+                <data/>
             </field>
         </record>
 
@@ -38,14 +20,10 @@
 
         <record id="purge_menu_line_tree" model="ir.ui.view">
             <field name="model">cleanup.purge.line.menu</field>
+            <field name="inherit_id" ref="tree_purge_line" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
-                    <field name="purged" invisible="0" />
-                    <button type="object" name="purge"
-                        icon="gtk-cancel" string="Purge this model"
-                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                </tree>
+                <data />
             </field>
         </record>
 
