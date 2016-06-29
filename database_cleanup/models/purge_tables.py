@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp import api, fields, models, _
 from openerp.exceptions import UserError
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineTable(models.TransientModel):
@@ -42,7 +43,7 @@ class CleanupPurgeLineTable(models.TransientModel):
                 WHERE af.attnum = confkey AND af.attrelid = confrelid AND
                 a.attnum = conkey AND a.attrelid = conrelid
                 AND confrelid::regclass = '%s'::regclass;
-                """ % line.name)
+                """, (IdentifierAdapter(line.name, quote=False),))
 
             for constraint in self.env.cr.fetchall():
                 if constraint[3] in tables:
@@ -50,12 +51,16 @@ class CleanupPurgeLineTable(models.TransientModel):
                         'Dropping constraint %s on table %s (to be dropped)',
                         constraint[0], constraint[3])
                     self.env.cr.execute(
-                        "ALTER TABLE %s DROP CONSTRAINT %s" % (
-                            constraint[3], constraint[0]))
+                        "ALTER TABLE %s DROP CONSTRAINT %s",
+                        (
+                            IdentifierAdapter(constraint[3]),
+                            IdentifierAdapter(constraint[0])
+                        ))
 
             self.logger.info(
                 'Dropping table %s', line.name)
-            self.env.cr.execute("DROP TABLE \"%s\"" % (line.name,))
+            self.env.cr.execute(
+                "DROP TABLE %s", (IdentifierAdapter(line.name),))
             line.write({'purged': True})
             self.env.cr.commit()
         return True

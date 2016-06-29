@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp import _, api, fields, models
 from openerp.exceptions import UserError
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineColumn(models.TransientModel):
@@ -39,9 +40,11 @@ class CleanupPurgeLineColumn(models.TransientModel):
                 'Dropping column %s from table %s',
                 line.name, model_pool._table)
             self.env.cr.execute(
-                """
-                ALTER TABLE "%s" DROP COLUMN "%s"
-                """ % (model_pool._table, line.name))
+                'ALTER TABLE %s DROP COLUMN %s',
+                (
+                    IdentifierAdapter(model_pool._table),
+                    IdentifierAdapter(line.name)
+                ))
             line.write({'purged': True})
             self.env.cr.commit()
         return True

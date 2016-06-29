@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp import _, api, fields, models
 from openerp.exceptions import UserError
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineData(models.TransientModel):
@@ -45,11 +46,11 @@ class CleanupPurgeWizardData(models.TransientModel):
             self.env.cr.execute(
                 """
                 SELECT id FROM ir_model_data
-                WHERE model = %%s
+                WHERE model = %s
                 AND res_id IS NOT NULL
                 AND NOT EXISTS (
                     SELECT id FROM %s WHERE id=ir_model_data.res_id)
-                """ % self.env[model]._table, (model,))
+                """, (model, IdentifierAdapter(self.env[model]._table)))
             data_ids.extend(data_row for data_row, in self.env.cr.fetchall())
         data_ids += self.env['ir.model.data'].search([
             ('model', 'in', unknown_models),
