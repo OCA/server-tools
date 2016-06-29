@@ -40,7 +40,8 @@ class Image(models.Model):
         readonly=True)
     attachment_id = fields.Many2one(
         'ir.attachment',
-        string='Attachment')
+        string='Attachment',
+        domain="[('index_content', '=', 'image')]")
     file_db_store = fields.Binary(
         'Image stored in database',
         filters='*.png,*.jpg,*.gif')
