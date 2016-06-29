@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# © 2016 Therp BV <http://therp.nl>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from psycopg2 import ProgrammingError
+from openerp.tests.common import TransactionCase
+
+
+class TestDatabaseCleanup(TransactionCase):
+    def test_database_cleanup(self):
+        # create an orphaned column
+        self.cr.execute(
+            'alter table res_users add column database_cleanup_test int')
+        purge_columns = self.env['cleanup.purge.wizard.column'].create({})
+        purge_columns.purge_all()
+        # must be removed by the wizard
+        with self.assertRaises(ProgrammingError):
+            with self.registry.cursor() as cr:
+                cr.execute('select database_cleanup_test from res_users')
+
+        # create a data entry pointing nowhere
+        self.cr.execute('select max(id) + 1 from res_users')
+        self.env['ir.model.data'].create({
+            'module': 'database_cleanup',
+            'name': 'test_no_data_entry',
+            'model': 'res.users',
+            'res_id': self.cr.fetchone()[0],
+        })
+        purge_data = self.env['cleanup.purge.wizard.data'].create({})
+        purge_data.purge_all()
+        # must be removed by the wizard
+        with self.assertRaises(ValueError):
+            self.env.ref('database_cleanup.test_no_data_entry')
+
+        # create a nonexistent model
+        self.env['ir.model'].create({
+            'name': 'Database cleanup test model',
+            'model': 'x_database.cleanup.test.model',
+        })
+        self.env.cr.execute(
+            'insert into ir_attachment (name, res_model, res_id, type) values '
+            "('test attachment', 'database.cleanup.test.model', 42, 'binary')")
+        self.registry.models.pop('x_database.cleanup.test.model')
+        self.registry._pure_function_fields.pop(
+            'x_database.cleanup.test.model')
+        purge_models = self.env['cleanup.purge.wizard.model'].create({})
+        purge_models.purge_all()
+        # must be removed by the wizard
+        self.assertFalse(self.env['ir.model'].search([
+            ('model', '=', 'x_database.cleanup.test.model'),
+        ]))
