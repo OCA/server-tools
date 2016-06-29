@@ -93,7 +93,6 @@ class CleanupPurgeLineModel(models.TransientModel):
             self.env['ir.model'].browse([row[0]])\
                 .with_context(**context_flags).unlink()
             line.write({'purged': True})
-            self.env.cr.commit()
         return True
 
 

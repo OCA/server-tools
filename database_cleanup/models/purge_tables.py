@@ -62,7 +62,6 @@ class CleanupPurgeLineTable(models.TransientModel):
             self.env.cr.execute(
                 "DROP TABLE %s", (IdentifierAdapter(line.name),))
             line.write({'purged': True})
-            self.env.cr.commit()
         return True
 
 

@@ -46,7 +46,9 @@ class CleanupPurgeLineColumn(models.TransientModel):
                     IdentifierAdapter(line.name)
                 ))
             line.write({'purged': True})
-            self.env.cr.commit()
+            # we need this commit because the ORM will deadlock if
+            # we still have a pending transaction
+            self.env.cr.commit()  # pylint: disable=invalid-commit
         return True
 
 
