@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <record id="purge_models_view" model="ir.ui.view">
-            <field name="name">Form view for purge models wizard</field>
             <field name="model">cleanup.purge.wizard.model</field>
+            <field name="inherit_id" ref="form_purge_wizard" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <form string="Purge models" version="7.0">
-                    <h1>
-                        <field name="name"/>
-                    </h1>
-                    <button type="object" name="purge_all" string="Purge all models" />
-                    <button type="object" name="select_lines" string="Select lines" />
-                    <field name="purge_line_ids" colspan="4" nolabel="1">
-                        <form string="Purge models">
-                            <group>
-                                <field name="name" />
-                                <field name="purged" invisible="0" />
-                            </group>
-                            <footer>
-                                <button type="object" name="purge"
-                                        icon="gtk-cancel" string="Purge this model"
-                                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                            </footer>
-                        </form>
-                    </field>
-                </form>
+                <data />
             </field>
         </record>
 
@@ -39,14 +20,10 @@
 
         <record id="purge_model_line_tree" model="ir.ui.view">
             <field name="model">cleanup.purge.line.model</field>
+            <field name="inherit_id" ref="tree_purge_line" />
+            <field name="mode">primary</field>
             <field name="arch" type="xml">
-                <tree string="Purge models">
-                    <field name="name" />
-                    <field name="purged" invisible="0" />
-                    <button type="object" name="purge"
-                        icon="gtk-cancel" string="Purge this model"
-                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                </tree>
+                <data />
             </field>
         </record>
 
