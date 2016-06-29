@@ -87,14 +87,11 @@ class CleanupPurgeWizardTable(models.TransientModel):
                                               # type m2m don't have _rel
             ]
 
-        # Cannot pass table names as a psycopg argument
-        known_tables_repr = ",".join(
-            [("'%s'" % table) for table in known_tables])
         self.env.cr.execute(
             """
             SELECT table_name FROM information_schema.tables
             WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
-            AND table_name NOT IN (%s)""" % known_tables_repr)
+            AND table_name NOT IN %s""", (tuple(known_tables),))
 
         res = [(0, 0, {'name': row[0]}) for row in self.env.cr.fetchall()]
         if not res:
