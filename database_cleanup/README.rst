@@ -3,7 +3,7 @@
     :alt: License: AGPL-3
 
 ================
-atabase cleanup
+Database cleanup
 ================
 
 Clean your OpenERP database from remnants of modules, models, columns and
