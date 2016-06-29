@@ -50,6 +50,12 @@
                                 'required': [('storage', '=', 'db')],
                             }"
                             filename="filename"/>
+                        <field
+                            name="attachment_id"
+                            attrs="{
+                                'invisible': [('storage', '!=', 'filestore')],
+                                'required': [('storage', '=', 'filestore')],
+                            }"/>
                     </group>
                     <group string="Preview">
                         <field name="image_medium"
