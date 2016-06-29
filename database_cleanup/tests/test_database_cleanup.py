@@ -2,6 +2,7 @@
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from psycopg2 import ProgrammingError
+from openerp.tools import config
 from openerp.tests.common import TransactionCase
 
 
@@ -47,4 +48,19 @@ class TestDatabaseCleanup(TransactionCase):
         # must be removed by the wizard
         self.assertFalse(self.env['ir.model'].search([
             ('model', '=', 'x_database.cleanup.test.model'),
+        ]))
+
+        # create a nonexistent module
+        self.env['ir.module.module'].create({
+            'name': 'database_cleanup_test',
+            'state': 'to upgrade',
+        })
+        purge_modules = self.env['cleanup.purge.wizard.module'].create({})
+        # this reloads our registry, and we don't want to run tests twice
+        config.options['test_enable'] = False
+        purge_modules.purge_all()
+        config.options['test_enable'] = True
+        # must be removed by the wizard
+        self.assertFalse(self.env['ir.module.module'].search([
+            ('name', '=', 'database_cleanup_test'),
         ]))
