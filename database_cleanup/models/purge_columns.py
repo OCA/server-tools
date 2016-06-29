@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp import _, api, fields, models
 from openerp.exceptions import UserError
-from openerp.osv import fields as legacy_fields
 
 
 class CleanupPurgeLineColumn(models.TransientModel):
@@ -71,7 +70,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
             for model_pool in model_pools
             for column in model_pool._columns
             if not (isinstance(model_pool._columns[column],
-                               legacy_fields.function) and
+                               fields.fields.function) and
                     not model_pool._columns[column].store)
         ]))
         columns += models.MAGIC_COLUMNS

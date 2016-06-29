@@ -15,9 +15,7 @@ class CleanupPurgeLineData(models.TransientModel):
 
     @api.multi
     def purge(self):
-        """
-        Unlink data entries upon manual confirmation.
-        """
+        """Unlink data entries upon manual confirmation."""
         to_unlink = self.filtered(lambda x: not x.purged and x.data_id)
         self.logger.info('Purging data entries: %s', to_unlink.mapped('name'))
         to_unlink.mapped('data_id').unlink()
@@ -31,11 +29,9 @@ class CleanupPurgeWizardData(models.TransientModel):
 
     @api.model
     def find(self):
-        """
-        Collect all rows from ir_model_data that refer
+        """Collect all rows from ir_model_data that refer
         to a nonexisting model, or to a nonexisting
-        row in the model's table.
-        """
+        row in the model's table."""
         res = []
         data_ids = []
         unknown_models = []
