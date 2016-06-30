@@ -175,22 +175,22 @@ class Image(models.Model):
     def _check_url(self):
         if self.storage == 'url' and not self.url:
             raise exceptions.ValidationError(
-                'You must provide an URL for the image.')
+                _('You must provide an URL for the image.'))
 
     @api.constrains('storage', 'path')
     def _check_path(self):
         if self.storage == 'file' and not self.path:
             raise exceptions.ValidationError(
-                'You must provide a file path for the image.')
+                _('You must provide a file path for the image.'))
 
     @api.constrains('storage', 'file_db_store')
     def _check_store(self):
         if self.storage == 'db' and not self.file_db_store:
             raise exceptions.ValidationError(
-                'You must provide an attached file for the image.')
+                _('You must provide an attached file for the image.'))
 
     @api.constrains('storage', 'attachment_id')
     def _check_store(self):
         if self.storage == 'filestore' and not self.attachment_id:
             raise exceptions.ValidationError(
-                'You must provide an attachment for the image.')
+                _('You must provide an attachment for the image.'))
