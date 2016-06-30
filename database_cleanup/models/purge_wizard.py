@@ -89,6 +89,6 @@ class PurgeWizard(models.AbstractModel):
         if not self.env.ref('database_cleanup.menu_database_cleanup')\
            .parent_id._filter_visible_menus():
             raise AccessDenied
-        return super(CleanupPurgeLine, self).create(values)
+        return super(PurgeWizard, self).create(values)
 
     purge_line_ids = fields.One2many('cleanup.purge.line', 'wizard_id')
