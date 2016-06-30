@@ -24,7 +24,7 @@ def pre_init_hook_for_submodules(cr, model, field):
     with cr.savepoint():
         table = env[model]._table
         column_exists = table_has_column(cr, table, field)
-        # Extract the binary content directly from the table
+        # fields.Binary(), extract the binary content directly from the table
         if column_exists:
             extract_query = """
                 SELECT id, %%s, 'db', %(field)s
@@ -32,7 +32,7 @@ def pre_init_hook_for_submodules(cr, model, field):
                 WHERE %(field)s IS NOT NULL
             """ % {"table": table, "field": field}
             image_field = 'file_db_store'
-        # Extract the binary content from the ir_attachment table
+        # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
             extract_query = """
                 SELECT res_id, res_model, 'filestore', id
@@ -40,8 +40,6 @@ def pre_init_hook_for_submodules(cr, model, field):
                 WHERE res_field='%(field)s' AND res_model='%(model)s'
             """ % {"model": model, "field": field}
             image_field = 'attachment_id'
-
-        cr.execute(extract_query)
         cr.execute(
             """
                 INSERT INTO base_multi_image_image (
