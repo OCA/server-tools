@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 from openerp import _, api, fields, models
+from openerp.exceptions import AccessDenied
 
 
 class CleanupPurgeLine(models.AbstractModel):
@@ -19,6 +20,14 @@ class CleanupPurgeLine(models.AbstractModel):
     @api.multi
     def purge(self):
         raise NotImplementedError
+
+    @api.model
+    def create(self, values):
+        # make sure the user trying this is actually supposed to do it
+        if not self.env.ref('database_cleanup.menu_database_cleanup')\
+           .parent_id._filter_visible_menus():
+            raise AccessDenied
+        return super(CleanupPurgeLine, self).create(values)
 
 
 class PurgeWizard(models.AbstractModel):
@@ -73,5 +82,13 @@ class PurgeWizard(models.AbstractModel):
             (this.id, self._description)
             for this in self
         ]
+
+    @api.model
+    def create(self, values):
+        # make sure the user trying this is actually supposed to do it
+        if not self.env.ref('database_cleanup.menu_database_cleanup')\
+           .parent_id._filter_visible_menus():
+            raise AccessDenied
+        return super(CleanupPurgeLine, self).create(values)
 
     purge_line_ids = fields.One2many('cleanup.purge.line', 'wizard_id')
