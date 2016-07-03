@@ -45,7 +45,7 @@ class LDAPOperator(models.AbstractModel):
 
     def query(self, ldap_entry, attribute, value, ldap_config, company):
         query_string = Template(value).safe_substitute(dict(
-            [(attr, ldap_entry[1][attribute][0]) for attr in ldap_entry[1]]
+            [(attr, ldap_entry[1][attr][0]) for attr in ldap_entry[1]]
             )
         )
         _logger.debug('evaluating query group mapping, filter: %s' %

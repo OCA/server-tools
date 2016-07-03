@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+- !context {noupdate: True}
+
+# Match partners by name, parent_id and is_company
+- !record {id: res_partner_parent_name_is_company, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 20
+
+- !record {id: res_partner_parent_name_is_company_name, model: base_import.match.field}:
+    match_id: res_partner_parent_name_is_company
+    field_id: base.field_res_partner_name
+
+- !record {id: res_partner_parent_name_is_company_parent, model: base_import.match.field}:
+    match_id: res_partner_parent_name_is_company
+    field_id: base.field_res_partner_parent_id
+
+- !record {id: res_partner_parent_name_is_company_is_company, model: base_import.match.field}:
+    match_id: res_partner_parent_name_is_company
+    field_id: base.field_res_partner_is_company
+
+# Match partner by email
+- !record {id: res_partner_email, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 30
+
+- !record {id: res_partner_email_email, model: base_import.match.field}:
+    match_id: res_partner_email
+    field_id: base.field_res_partner_email
+
+# Match partner by name
+- !record {id: res_partner_name, model: base_import.match}:
+    model_id: base.model_res_partner
+    sequence: 40
+
+- !record {id: res_partner_name_name, model: base_import.match.field}:
+    match_id: res_partner_name
+    field_id: base.field_res_partner_name

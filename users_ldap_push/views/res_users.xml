@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_users_simple_form" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form" />
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="is_ldap_user" invisible="1" readonly="0" />
+                </field>
+            </field>
+        </record>
+        <record id="view_users_form" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="is_ldap_user" attrs="{'readonly': [('id', '!=', False)], 'invisible': [('id', '!=', False)]}" />
+                    <field name="ldap_entry_dn" attrs="{'invisible': [('ldap_entry_dn', '=', False)]}" />
+                </field>
+            </field>
+        </record>
+        <record id="view_users_form_technical" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="users_ldap_push.view_users_form" />
+            <field name="groups_id" eval="[(4, ref('base.group_no_one'))]" />
+            <field name="arch" type="xml">
+                <field name="ldap_entry_dn" position="attributes">
+                    <attribute name="attrs" />
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="view_users_search" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_search" />
+            <field name="arch" type="xml">
+                <search position="inside">
+                    <filter name="is_ldap_user" string="LDAP users" domain="[('ldap_entry_dn', '!=', False)]" />
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

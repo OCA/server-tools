@@ -3,13 +3,19 @@
 # * base_external_dbsource
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-26 07:09+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +45,13 @@ msgid "Connection string"
 msgstr "Niz povezave"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:163
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
 #, python-format
 msgid "Connection test failed!"
 msgstr "Test povezave neuspešen!"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:174
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
 #, python-format
 msgid "Connection test succeeded!"
 msgstr "Test povezave uspel!"
@@ -76,7 +82,12 @@ msgid "Datasource name"
 msgstr "Naziv podatkovne baze"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:175
+#: field:base.external.dbsource,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
 msgstr "Kaže, da je vse pravilno nastavljeno!"
@@ -98,7 +109,7 @@ msgid "External Database Sources"
 msgstr "Viri zunanjih podatkovnih baz"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:164
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
 #, python-format
 msgid ""
 "Here is what we got instead:\n"
@@ -118,6 +129,11 @@ msgid ""
 "that the required components were                                      "
 "detected."
 msgstr "Če na seznamu manjka povezovalnik, preverite dnevnik strežnika, če so bile zahtevane komponente zaznane."
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0
