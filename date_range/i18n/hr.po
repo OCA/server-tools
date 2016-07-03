@@ -3,12 +3,13 @@
 # * date_range
 # 
 # Translators:
+# Bole <bole@dajmi5.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-01 13:12+0000\n"
-"PO-Revision-Date: 2016-05-06 13:13+0000\n"
+"POT-Creation-Date: 2016-06-29 00:48+0000\n"
+"PO-Revision-Date: 2016-06-14 11:06+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +61,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -214,47 +215,47 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1450
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1447
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1457
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1454
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
 msgid "Unit of time"
-msgstr ""
+msgstr "Jedinica vremena"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
 msgid "date.range"
-msgstr ""
+msgstr "date.range"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
 msgid "date.range.generator"
-msgstr ""
+msgstr "date.range.generator"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
 msgid "date.range.type"
-msgstr ""
+msgstr "date.range.type"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "days"
-msgstr ""
+msgstr "dana"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "months"
-msgstr ""
+msgstr "mjeseci"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "weeks"
-msgstr ""
+msgstr "tjedana"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "years"
-msgstr ""
+msgstr "godina"
