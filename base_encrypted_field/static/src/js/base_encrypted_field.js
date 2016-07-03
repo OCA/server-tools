@@ -146,11 +146,15 @@ openerp.base_encrypted_field = function(instance)
                                 values = values[0];
                                 var options = {
                                     numBits: 4096,
-                                    userId: _.str.sprintf('%s <%s>', values.name, values.email),
+                                    userIds: [
+                                        _.str.sprintf(
+                                            '%s <%s>',
+                                            values.name, values.email),
+                                    ],
                                     passphrase: data.passphrase,
                                 };
                                 instance.web.blockUI();
-                                return openpgp.generateKeyPair(options)
+                                return openpgp.generateKey(options)
                                 .then(function(keypair)
                                 {
                                     widget.session.user_pgp_private_key = keypair.key;
