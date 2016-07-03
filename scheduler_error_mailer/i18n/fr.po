@@ -3,14 +3,24 @@
 # * scheduler_error_mailer
 # 
 # Translators:
-# Christophe kryskool <christophe.chauvet@gmail.com>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-21 17:35+0000\n"
-"Last-Translator: Christophe kryskool <christophe.chauvet@gmail.com>\n"
+"POT-Creation-Date: 2016-06-17 02:42+0000\n"
+"PO-Revision-Date: 2016-06-12 16:27+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +32,7 @@ msgstr ""
 #: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
 msgid ""
 "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
 "<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
 "\n"
@@ -30,7 +40,7 @@ msgid ""
 "${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n"
 "</strong>\n"
 "\n"
-"<p>You may check the logs of the OpenERP server to get more information about this failure.</p>\n"
+"<p>You may check the logs of the Odoo server to get more information about this failure.</p>\n"
 "\n"
 "<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
 "<ul>\n"
@@ -45,12 +55,12 @@ msgid ""
 "\n"
 "<p>\n"
 "-- <br/>\n"
-"Automatic e-mail sent by OpenERP. Do not reply.<br/>\n"
+"Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
 "Database : ${ctx.get('dbname')}\n"
 "</p>\n"
 "</div>\n"
 "    "
-msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n<p>OpenERP a essayer de lancer le planificateur <em>${object.name or ''}</em> de la base de donnée <em>${ctx.get('dbname')}</em> mais il a échoué, voici le message d'erreur:</p>\n\n<strong>\n${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n</strong>\n\n<p>Vous devriez vérifier le journal du serveur d'OpenERP pour obtenir plus d'information à propos de cet echec.</p>\n\n<p>Propriété du planificateur <em>${object.name or ''}</em> :</p>\n<ul>\n<li>Modèle : ${object.model or ''}</li>\n<li>Methode : ${object.function or ''}</li>\n<li>Arguments : ${object.args or ''}</li>\n<li>Intervale : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n<li>Nombre d'appel : ${object.numbercall or '0'}</li>\n<li>Répéter les manqués : ${object.doall}</li>\n<li>Uitlisateur : ${object.user_id.name or ''}</li>\n</ul>\n\n<p>\n-- <br/>\nEnvoi du courriel automatique par OpenERP. Veuillez ne pas répondre.<br/>\nBase de données : ${ctx.get('dbname')}\n</p>\n</div>\n    "
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/ir_cron.py:75

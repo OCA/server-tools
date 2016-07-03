@@ -3,13 +3,21 @@
 # * scheduler_error_mailer
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-26 07:36+0000\n"
+"POT-Creation-Date: 2016-06-17 02:42+0000\n"
+"PO-Revision-Date: 2016-06-13 07:08+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +30,7 @@ msgstr ""
 #: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
 msgid ""
 "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
 "<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
 "\n"
@@ -30,7 +38,7 @@ msgid ""
 "${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n"
 "</strong>\n"
 "\n"
-"<p>You may check the logs of the OpenERP server to get more information about this failure.</p>\n"
+"<p>You may check the logs of the Odoo server to get more information about this failure.</p>\n"
 "\n"
 "<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
 "<ul>\n"
@@ -45,12 +53,12 @@ msgid ""
 "\n"
 "<p>\n"
 "-- <br/>\n"
-"Automatic e-mail sent by OpenERP. Do not reply.<br/>\n"
+"Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
 "Database : ${ctx.get('dbname')}\n"
 "</p>\n"
 "</div>\n"
 "    "
-msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n<p>OpenERP je poskušal zagnati razporejevalec <em>${object.name or ''}</em> v podatkovni bazi <em>${ctx.get('dbname')}</em> , a ni uspel. Obvestilo o napaki:</p>\n\n<strong>\n${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n</strong>\n\n<p>Preverite dnevnike OpenERP strežnika za pridobitev več informacij o težavi.</p>\n\n<p>Lastnosti razporejevalca <em>${object.name or ''}</em> :</p>\n<ul>\n<li>Model : ${object.model or ''}</li>\n<li>Metoda : ${object.function or ''}</li>\n<li>Argumenti : ${object.args or ''}</li>\n<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n<li>Število klicev : ${object.numbercall or '0'}</li>\n<li>Zgrešene ponovitve : ${object.doall}</li>\n<li>Uporabnik : ${object.user_id.name or ''}</li>\n</ul>\n\n<p>\n-- <br/>\nSamodejno sporočilo poslano iz OpenERP. Ne odgovarjajte.<br/>\nPodatkovna baza : ${ctx.get('dbname')}\n</p>\n</div>\n    "
+msgstr "\n<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n<p>OpenERP je poskušal zagnati razporejevalnik <em>${object.name or ''}</em> v podatkovni bazi, <em>${ctx.get('dbname')}</em> a neuspešno. Zapis napake je :</p>\n\n<strong>\n${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n</strong>\n\n<p>Za več informacij preverite strežniške dnevnike.</p>\n\n<p>Lastnosti razporejevalnika <em>${object.name or ''}</em> :</p>\n<ul>\n<li>Model : ${object.model or ''}</li>\n<li>Metoda : ${object.function or ''}</li>\n<li>Argumenti : ${object.args or ''}</li>\n<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n<li>Število klicev : ${object.numbercall or '0'}</li>\n<li>Ponovitve zgrešenih : ${object.doall}</li>\n<li>Uporabnik : ${object.user_id.name or ''}</li>\n</ul>\n\n<p>\n-- <br/>\nSamodejno sistemsko sporočilo. Ne odgovarjajte.<br/>\nPodatkovna baza : ${ctx.get('dbname')}\n</p>\n</div>\n    "
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/ir_cron.py:75

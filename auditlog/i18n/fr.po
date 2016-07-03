@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-08 15:28+0000\n"
+"POT-Creation-Date: 2016-06-17 02:42+0000\n"
+"PO-Revision-Date: 2016-06-23 09:24+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -38,17 +38,17 @@ msgstr "Audit"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr ""
+msgstr "Auditlog - Supprimer les anciens journaux"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr ""
+msgstr "Auditlog - Journal des session utilisateur en HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr ""
+msgstr "Auditlog - Journal des requêtes HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
@@ -113,7 +113,7 @@ msgstr "Brouillon"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Journal rapide"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
@@ -441,4 +441,4 @@ msgstr "Consulter les journaux"
 #. module: auditlog
 #: help:auditlog.rule,user_ids:0
 msgid "if  User is not added then it will applicable for all users"
-msgstr ""
+msgstr "Si l'utilisateur n'est pas ajouté alors cela sera applicable à tous les utilisateurs"
