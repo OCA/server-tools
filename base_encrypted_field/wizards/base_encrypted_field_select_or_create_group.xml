@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="form_base_encrypted_field_select_or_create_group" model="ir.ui.view">
+            <field name="model">base.encrypted.field.select.or.create.group</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div>Select an existing group of people to share this information with</div>
+                    <field name="encryption_group_id" attrs="{'required': [('new_name', '=', False)]}" options="{'no_create': True}" />
+                    <div>or create a new group, while possibly adding people</div>
+                    <field name="new_name" attrs="{'required': [('encryption_group_id', '=', False)]}" />
+                    <field name="new_member_ids" options="{'no_create': True}" widget="many2many_tags" />
+                    <footer attrs="{'invisible': [('new_name', '=', False), ('encryption_group_id', '=', False)]}">
+                        <button type="object" string="Create group" name="button_save" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window
+            id="action_base_encrypted_field_select_or_create_group"
+            name="Select an encryption group or create a new one"
+            res_model="base.encrypted.field.select.or.create.group"
+            target="new"
+            view_type="form"
+            view_mode="form"
+        />
+    </data>
+</openerp>

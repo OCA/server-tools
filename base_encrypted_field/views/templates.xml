@@ -4,6 +4,7 @@
         <template id="assets_backend" name="base_encrypted_field assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/base_encrypted_field/static/lib/openpgp.js"></script>
+                <script type="text/javascript" src="/base_encrypted_field/static/lib/triplesec.js"></script>
                 <script type="text/javascript" src="/base_encrypted_field/static/src/js/base_encrypted_field.js"></script>
                 <link rel="stylesheet" href="/base_encrypted_field/static/src/css/base_encrypted_field.css"/>
             </xpath>

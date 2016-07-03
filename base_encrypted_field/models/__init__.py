@@ -4,3 +4,7 @@
 from . import base_patch_models_mixin
 from . import base_encrypted_field_patch_base_model
 from . import res_users
+from . import encryption_group
+from . import encrypted_field
+from . import encrypted_field_user
+from . import encrypted_record

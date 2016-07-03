@@ -222,6 +222,73 @@ openerp.base_encrypted_field = function(instance)
             return create_key_deferred.promise();
         })
     }
+    instance.base_encrypted_field.select_or_create_group = function(widget, private_key, public_key)
+    {
+        var self = this,
+            get_group_deferred = new jQuery.Deferred();
+        widget.rpc(
+            '/web/action/load',
+            {action_id: 'base_encrypted_field.action_base_encrypted_field_select_or_create_group'})
+        .done(function(action)
+        {
+            var encryption_group_id = null, additional_user_ids = [],
+            on_close = function()
+            {
+                if(encryption_group_id)
+                {
+                    debugger;
+                }
+            }
+            return widget.do_action(action, {on_close: on_close}).then(function()
+            {
+                widget.field_manager.ViewManager.ActionManager.dialog_widget.dataset.on(
+                    'dataset_changed', self, function(data)
+                {
+                    if(data.encryption_group_id)
+                    {
+                        encryption_group_id = data.encryption_group_id;
+                    }
+                    else if(data.new_name)
+                    {
+                        // TODO: is this enough?
+                        var passphrase = openpgp.crypto.random.getRandomBytes(16);
+                        return openpgp.encrypt({
+                            data: passphrase,
+                            publicKeys: public_key,
+                            privateKeys: private_key,
+                            armor: true,
+                        })
+                        .then(function(encrypted)
+                        {
+                            // TODO: also create encrypted.field records for
+                            // additional_user_ids
+                            var encrypted_field_user_ids = [
+                                [0, 0, {
+                                    user_id: widget.session.uid,
+                                    key: encrypted.data,
+                                }],
+                            ];
+                            return new instance.web.Model('encryption.group').call(
+                                'create', [{
+                                    name: data.new_name,
+                                    encrypted_field_user_ids: encrypted_field_user_ids,
+                                }])
+                            .then(function(group_id)
+                            {
+                                encryption_group_id = group_id;
+                                additional_user_ids = data.new_member_ids[0][2];
+                                widget.field_manager.set_encryption_parameters(
+                                    widget, passphrase, group_id);
+                                widget._dirty_flag = true;
+                                return true;
+                            });
+                        })
+                    }
+                });
+            });
+        });
+        return get_group_deferred.promise();
+     }
     instance.web.FormView.include({
         init: function()
         {
@@ -242,8 +309,92 @@ openerp.base_encrypted_field = function(instance)
         },
         is_field_encrypted: function(field)
         {
-            return false;
+            return !!this.get_encryption_parameters(field);
         },
+        set_encryption_parameters(field, passphrase, group_id)
+        {
+            this.datarecord[
+                _.str.sprintf('%s.encrypted', field.name)
+            ] = {
+                passphrase: passphrase,
+                group_id: group_id,
+            };
+        },
+        get_encryption_parameters(field)
+        {
+            return this.datarecord[
+                _.str.sprintf('%s.encrypted', field.name)
+            ];
+        },
+        _process_save: function(save_obj)
+        {
+            var self = this,
+                _super = self._super,
+                deferreds = [];
+            _.each(this.encryptable_fields, function(field)
+            {
+                var parameters = self.get_encryption_parameters(field),
+                    deferred = new jQuery.Deferred();
+                if(!parameters)
+                {
+                    return;
+                }
+                field.set('value.unencrypted', field.get_value());
+                deferreds.push(deferred);
+                triplesec.encrypt(
+                    {
+                        data: new triplesec.Buffer(field.get_value()),
+                        key: new triplesec.Buffer(parameters.passphrase),
+                    },
+                    function(error, buffer)
+                    {
+                        field._inhibit_on_change_flag = true;
+                        field.internal_set_value(buffer.toString('base64'));
+                        field._inhibit_on_change_flag = false;
+                        deferred.resolve()
+                    }
+                );
+            });
+            return jQuery.when.apply(jQuery, deferreds).then(function()
+            {
+                return _super.apply(self, [save_obj])
+                .then(function(result)
+                {
+                    var encrypted_fields = []
+                    _.each(self.encryptable_fields, function(field)
+                    {
+                        var parameters = self.get_encryption_parameters(field);
+                        if(!parameters)
+                        {
+                            return;
+                        }
+                        encrypted_fields.push({
+                            group_id: parameters.group_id,
+                            res_model: self.model,
+                            res_id: self.datarecord.id,
+                            field: field.name,
+                        });
+                        field._inhibit_on_change_flag = true;
+                        field.internal_set_value(
+                            field.get('value.unencrypted'));
+                        delete field.__getterSetterInternalMap[
+                            'value.unencrypted'
+                        ];
+                        field._inhibit_on_change_flag = false;
+                    });
+                    if(!encrypted_fields.length)
+                    {
+                        return result;
+                    }
+                    return new instance.web.Model('encryption.group')
+                    .call('update_encrypted_fields', [encrypted_fields])
+                    .then(function()
+                    {
+                        return result;
+                    });
+                });
+            });
+        }
     });
     instance.web.form.AbstractField.include({
         renderElement: function()
@@ -256,7 +407,7 @@ openerp.base_encrypted_field = function(instance)
                 if(this.field_manager.is_field_encrypted(this))
                 {
                     this.$el.addClass('oe_form_field_encrypted');
-                    $containers.$label.find('.oe_field_decrypt').click(
+                    $containers.find('.oe_field_decrypt').click(
                         this.proxy('on_decrypt'));
                     $containers.find('.oe_field_encrypt').remove();
                 }
@@ -275,10 +426,15 @@ openerp.base_encrypted_field = function(instance)
         },
         on_encrypt: function()
         {
+            var self = this;
             return instance.base_encrypted_field.get_pgp_keys(this)
-            .then(function(private_key)
+            .then(function(private_key, public_key)
             {
-                debugger;
+                return instance.base_encrypted_field.select_or_create_group(
+                    self, private_key, public_key)
+                .then(function(group_id)
+                {
+                });
             });
         },
         on_decrypt: function()

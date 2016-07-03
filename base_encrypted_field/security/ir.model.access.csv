@@ -1,1 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_encryption_group,access_encryption_group,model_encryption_group,base.group_user,1,1,1,1
+access_encrypted_field,access_encrypted_field,model_encrypted_field,base.group_user,1,1,1,1
+access_encrypted_field_user,access_encrypted_field_user,model_encrypted_field_user,base.group_user,1,1,1,1
+access_encrypted_record,access_encrypted_record,model_encrypted_record,base.group_user,1,1,1,1

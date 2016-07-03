@@ -12,6 +12,7 @@
         'web',
     ],
     "data": [
+        "wizards/base_encrypted_field_select_or_create_group.xml",
         "wizards/base_encrypted_field_get_passphrase.xml",
         "wizards/base_encrypted_field_update_key.xml",
         "views/res_users.xml",
