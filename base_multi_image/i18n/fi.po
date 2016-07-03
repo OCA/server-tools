@@ -6,6 +6,7 @@
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
 # Florian Hatat, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 00:57+0000\n"
-"PO-Revision-Date: 2016-03-31 07:19+0000\n"
+"POT-Creation-Date: 2016-07-09 10:34+0000\n"
+"PO-Revision-Date: 2016-07-05 18:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +35,11 @@ msgstr ""
 #: sql_constraint:base_multi_image.image:0
 #, python-format
 msgid "A document can have only one image with the same name."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+msgid "Attachment"
 msgstr ""
 
 #. module: base_multi_image
@@ -66,7 +72,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nimi"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
@@ -76,6 +82,11 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
 msgid "Filename"
+msgstr ""
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Filestore"
 msgstr ""
 
 #. module: base_multi_image
@@ -125,7 +136,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Viimeksi muokattu"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
@@ -239,6 +250,30 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:184
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:178
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:190
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:196
+#, python-format
+msgid "You must provide an attachment for the image."
 msgstr ""
 
 #. module: base_multi_image
