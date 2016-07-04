@@ -3,10 +3,13 @@
 {
     'name': "PDF Compression",
     'summary': """compresses the pdf files for ir.attachement""",
-    'author': "bloopark systems GmbH & Co. KG",
+    'author':
+        "Benjamin Bachmann ,"
+        "bloopark systems GmbH & Co. KG ,"
+        "Odoo Community Association (OCA)",
     'website': "http://www.bloopark.de",
     'category': 'attachement',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'depends': [
         'report',
         'knowledge',
