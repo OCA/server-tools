@@ -43,7 +43,8 @@ class AuditlogtHTTPSession(models.Model):
         if httpsession:
             existing_session = self.search(
                 [('name', '=', httpsession.sid),
-                 ('user_id', '=', request.uid)])
+                 ('user_id', '=', request.uid)],
+                limit=1)
             if existing_session:
                 return existing_session.id
             vals = {
