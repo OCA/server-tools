@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 =========================
-PDF Compression / PDF/A
+PDF Compression // PDF/A
 =========================
 
 This addon provides the ability to convert outgoing and imported PDF Attachmensts
@@ -18,7 +18,7 @@ Installation
 ============
 
 #. You need at least Gostscript 9.18 (I recommend 9.19)
-`http://ghostscript.com <http://ghostscript.com/download/gsdnld.html>`_
+   `http://ghostscript.com <http://ghostscript.com/download/gsdnld.html>`_
 
 
 Configuration
@@ -39,31 +39,30 @@ Usage
 
 #. Compression rate outcome:
 
-I uploaded a 1MB PDF file with a mix of pictures tables and text.
+   I uploaded a 1MB PDF file with a mix of pictures tables and text.
 
-the 5 settings:
+   the 5 settings:
 
-* screen selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
-* ebook selects medium-resolution output similar to the Acrobat Distiller "eBook" setting.
-* printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
-* prepress selects output similar to Acrobat Distiller "Prepress Optimized" setting.
-* default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
+   * screen selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
+   * ebook selects medium-resolution output similar to the Acrobat Distiller "eBook" setting.
+   * printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
+   * prepress selects output similar to Acrobat Distiller "Prepress Optimized" setting.
+   * default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
 
-
-* screen  1MB -> 200KB some quality loss notice (jpg artefacts in pictures)
-* ebook  1MB -> 540KB little quality loss notice (some jpg artefacts in pictures but way better then screen)
-* printer   1MB -> 740KB no quality loss notice
-* prepress 1MB -> 820KB  no quality loss notice
-* default 1MB -> 680KB  little quality loss notice (some jpg artefacts in pictures but way better then screen)
+   * screen  1MB -> 200KB some quality loss notice (jpg artefacts in pictures)
+   * ebook  1MB -> 540KB little quality loss notice (some jpg artefacts in pictures but way better then screen)
+   * printer   1MB -> 740KB no quality loss notice
+   * prepress 1MB -> 820KB  no quality loss notice
+   * default 1MB -> 680KB  little quality loss notice (some jpg artefacts in pictures but way better then screen)
 
 #. PDF/A conversion:
 
-`Info wiki page <https://en.wikipedia.org/wiki/PDF/A>`_
+   `Info wiki page <https://en.wikipedia.org/wiki/PDF/A>`_
 
-PDFs will be converted to:
+   PDFs will be converted to:
 
-* PDF/A-1b
-* PDF/A-2b
+   * PDF/A-1b
+   * PDF/A-2b
 
 
 
