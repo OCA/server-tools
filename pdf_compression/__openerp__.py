@@ -10,6 +10,7 @@
     'website': "http://www.bloopark.de",
     'category': 'attachement',
     'version': '8.0.1.0.0',
+    'license': 'AGPL-3',
     'depends': [
         'report',
         'knowledge',

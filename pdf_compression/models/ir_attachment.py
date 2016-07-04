@@ -104,7 +104,7 @@ class IrAttachment(models.Model):
                         '-dProcessColorModel=/DeviceRGB',
                         '-dColorConversionStrategy=/RGB',
                     ])
-                if pdfa_option == 'pdfa2b':
+                elif pdfa_option == 'pdfa2b':
                     local_command_args.extend([
                         '-dPDFA=2',
                         '-dProcessColorModel=/DeviceRGB',
@@ -121,7 +121,7 @@ class IrAttachment(models.Model):
                         '-dProcessColorModel=/DeviceRGB',
                         '-dColorConversionStrategy=/RGB',
                     ])
-                if report_override == 'pdfa2b':
+                elif report_override == 'pdfa2b':
                     local_command_args.extend([
                         '-dPDFA=2',
                         '-dProcessColorModel=/DeviceRGB',
@@ -168,6 +168,4 @@ class IrAttachment(models.Model):
             except (OSError, IOError, ValueError):
                 raise
 
-            return pdf
-        else:
-            return pdf
+        return pdf

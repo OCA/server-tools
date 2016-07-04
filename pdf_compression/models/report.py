@@ -144,7 +144,8 @@ class Report(osv.Model):
 
                 if process.returncode not in [0, 1]:
                     raise osv.except_osv(_('Report (PDF)'),
-                                         _('Wkhtmltopdf failed (error code: %s). '
+                                         _('Wkhtmltopdf failed ('
+                                           'error code: %s). '
                                            'Message: %s') % (
                                          str(process.returncode), err))
 
@@ -155,7 +156,8 @@ class Report(osv.Model):
                         attachment = {
                             'name': save_in_attachment.get(reporthtml[0]),
                             'datas': base64.encodestring(pdfreport.read()),
-                            'datas_fname': save_in_attachment.get(reporthtml[0]),
+                            'datas_fname': save_in_attachment.get(
+                                reporthtml[0]),
                             'res_model': save_in_attachment.get('model'),
                             'res_id': reporthtml[0], }
                         try:
@@ -167,11 +169,13 @@ class Report(osv.Model):
                             self.pool['ir.attachment'].create(
                                 cr, uid, attachment, context=context)
                         except AccessError:
-                            _logger.warning("Cannot save PDF report %r as attachment",
+                            _logger.warning("Cannot save PDF report %r as "
+                                            "attachment",
                                             attachment['name'])
                         else:
                             _logger.info(
-                                'The PDF document %s is now saved in the database',
+                                'The PDF document %s is now saved in the '
+                                'database',
                                 attachment['name'])
 
                 pdfdocuments.append(pdfreport_path)
