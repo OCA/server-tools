@@ -9,6 +9,7 @@ PDF Compression / PDF/A
 This addon provides the ability to convert outgoing and imported PDF Attachmensts
 You can compress the PDFs to save space in you Database or File system.
 Also the possibility to convert PDFs in PDF/As. Currently implemented:
+
 * PDF/A-1b
 * PDF/A-2b (recommend to use this setting Faster and Smaller Files)
 
@@ -36,11 +37,12 @@ Usage
 =====
 
 
-# Compression rate outcome:
+#. Compression rate outcome:
 
 I uploaded a 1MB PDF file with a mix of pictures tables and text.
 
 the 5 settings:
+
 * screen selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
 * ebook selects medium-resolution output similar to the Acrobat Distiller "eBook" setting.
 * printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
@@ -54,11 +56,11 @@ the 5 settings:
 * prepress 1MB -> 820KB  no quality loss notice
 * default 1MB -> 680KB  little quality loss notice (some jpg artefacts in pictures but way better then screen)
 
-# PDF/A conversion:
+#. PDF/A conversion:
 
 `Info wiki page <https://en.wikipedia.org/wiki/PDF/A>`_
 
-PDFs will converted to:
+PDFs will be converted to:
 
 * PDF/A-1b
 * PDF/A-2b
