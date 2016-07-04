@@ -21,12 +21,13 @@
 
 {
     'name': 'Database cleanup',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'author': "Therp BV,Odoo Community Association (OCA)",
     'depends': ['base'],
     'license': 'AGPL-3',
     'category': 'Tools',
     'data': [
+        'view/purge_menus.xml',
         'view/purge_modules.xml',
         'view/purge_models.xml',
         'view/purge_columns.xml',

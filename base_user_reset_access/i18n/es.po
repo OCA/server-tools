@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_user_reset_access
+# 
+# Translators:
+# Antonio Trueba, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-02-16 15:14+0000\n"
+"Last-Translator: Antonio Trueba\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_user_reset_access
+#: code:addons/base_user_reset_access/models/res_users.py:37
+#, python-format
+msgid "It's not possible to reset access right for Admin"
+msgstr "No es posible restaurar los permisos de acceso para Admin"
+
+#. module: base_user_reset_access
+#: view:res.users:base_user_reset_access.view_users_form
+msgid "Reset Access Right"
+msgstr ""
+
+#. module: base_user_reset_access
+#: view:res.users:base_user_reset_access.view_users_form
+msgid ""
+"This will reset the user's access rights to the minimum configuration. Are "
+"you sure?"
+msgstr "Esto restablecerá los permisos de acceso del usuario a la configuración mínima, ¿está seguro?"
+
+#. module: base_user_reset_access
+#: model:ir.model,name:base_user_reset_access.model_res_users
+msgid "Users"
+msgstr "Usuarios"

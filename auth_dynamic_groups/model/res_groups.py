@@ -33,13 +33,14 @@ class res_groups(models.Model):
         'time, you get `user` passed as a browse record')
 
     @api.multi
-    def eval_dynamic_group_condition(self):
+    def eval_dynamic_group_condition(self, uid=None):
+        user = self.env['res.users'].browse([uid]) if uid else self.env.user
         result = all(
             self.mapped(
                 lambda this: safe_eval(
-                    this.dynamic_group_condition,
+                    this.dynamic_group_condition or 'False',
                     {
-                        'user': self.env.user,
+                        'user': user.sudo(),
                         'any': any,
                         'all': all,
                         'filter': filter,
@@ -59,4 +60,4 @@ class res_groups(models.Model):
     def action_evaluate(self):
         res_users = self.env['res.users']
         for user in res_users.search([]):
-            res_users.update_dynamic_groups(user.id, self.env.cr.dbname)
+            res_users._model.update_dynamic_groups(user.id, self.env.cr.dbname)

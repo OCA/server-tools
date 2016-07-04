@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_module_doc_rst
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Create Graphs"
+msgstr "Ustvari grafe"
+
+#. module: base_module_doc_rst
+#: model:ir.actions.act_window,name:base_module_doc_rst.wiz_tech_guide_rst
+msgid "Create RST Technical Guide2"
+msgstr "Izdelaj RST tehnična navodila"
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Create Technical Guide in rst format"
+msgstr "Izdelaj tehnična navodila v formatu rst"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,create_date:0
+#: field:tech.guide.rst,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,display_name:0
+#: field:tech.guide.rst,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_module_doc_rst
+#: field:tech.guide.rst,rst_file:0
+msgid "File"
+msgstr "Datoteka"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+#: model:ir.actions.act_window,name:base_module_doc_rst.generate_relationship_graph_values
+msgid "Generate Relationship Graph"
+msgstr "Ustvari relacijski diagram"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,id:0 field:tech.guide.rst,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,__last_update:0
+#: field:tech.guide.rst,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,write_date:0 field:tech.guide.rst,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: base_module_doc_rst
+#: model:ir.model,name:base_module_doc_rst.model_ir_module_module
+msgid "Module"
+msgstr "Modul"
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Please choose a file where the Technical Guide will be written."
+msgstr "Prosimo, izberite datoteko, v katero se bodo zapisala tehnična navodila"
+
+#. module: base_module_doc_rst
+#: model:ir.actions.report.xml,name:base_module_doc_rst.report_proximity_graph
+msgid "Proximity graph"
+msgstr "Graf bližine"
+
+#. module: base_module_doc_rst
+#: view:ir.module.module:base_module_doc_rst.view_module_module_graph
+#: field:ir.module.module,file_graph:0
+msgid "Relationship Graph"
+msgstr "Relacijski diagram"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Relationship Graphs"
+msgstr "Relacijski diagrami"
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Technical Guide in rst format"
+msgstr "Tehnična navodila v rst formatu"
+
+#. module: base_module_doc_rst
+#: view:ir.module.module:base_module_doc_rst.view_module_module_graph
+msgid "You can save this image as .png file"
+msgstr "To sliko lahko shranite kot .png datoteko."

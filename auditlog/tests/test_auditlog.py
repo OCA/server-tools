@@ -1,43 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2015 Therp BV (<http://therp.nl>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Therp BV <http://therp.nl>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.tests.common import TransactionCase
 
 
-class TestAuditlog(TransactionCase):
-    def setUp(self):
-        super(TestAuditlog, self).setUp()
-        self.groups_model_id = self.env.ref('base.model_res_groups').id
-        self.groups_rule = self.env['auditlog.rule'].create({
-            'name': 'testrule for groups',
-            'model_id': self.groups_model_id,
-            'log_read': True,
-            'log_create': True,
-            'log_write': True,
-            'log_unlink': True,
-            'state': 'subscribed',
-        })
-
-    def tearDown(self):
-        self.groups_rule.unlink()
-        super(TestAuditlog, self).tearDown()
+class TestAuditlog(object):
 
     def test_LogCreation(self):
         """First test, caching some data."""
@@ -105,3 +72,45 @@ class TestAuditlog(TransactionCase):
             ('method', '=', 'write'),
             ('res_id', '=', testgroup4.id),
         ]).ensure_one())
+
+
+class TestAuditlogFull(TransactionCase, TestAuditlog):
+
+    def setUp(self):
+        super(TestAuditlogFull, self).setUp()
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.groups_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+            'log_type': 'full',
+        })
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogFull, self).tearDown()
+
+
+class TestAuditlogFast(TransactionCase, TestAuditlog):
+
+    def setUp(self):
+        super(TestAuditlogFast, self).setUp()
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.groups_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+            'log_type': 'fast',
+        })
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogFast, self).tearDown()

@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_signup_verify_email
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"PO-Revision-Date: 2015-11-12 20:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:54
+#, python-format
+msgid "Check your email to activate your account!"
+msgstr ""
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:50
+#, python-format
+msgid "Something went wrong, please try again later or contact us."
+msgstr ""
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:31
+#, python-format
+msgid "That does not seem to be an email address."
+msgstr ""
+
+#. module: auth_signup_verify_email
+#: view:website:auth_signup.fields
+msgid "email"
+msgstr "email"
+
+#. module: auth_signup_verify_email
+#: view:website:auth_signup.fields
+msgid "only_passwords"
+msgstr ""

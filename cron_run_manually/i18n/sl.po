@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * cron_run_manually
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 11:14+0000\n"
+"PO-Revision-Date: 2015-09-26 07:44+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/ir_cron.py:56
+#, python-format
+msgid "Another process/thread is already busy executing this job"
+msgstr "Pri izvajanju te naloge je zaposlen že drug proces"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/ir_cron.py:38
+#, python-format
+msgid "Only the admin user is allowed to execute inactive cron jobs manually"
+msgstr "Le administrator lahko ročno izvaja 'cron jobs'"
+
+#. module: cron_run_manually
+#: view:ir.cron:cron_run_manually.ir_cron_view_tree_inherited
+msgid "Run Now"
+msgstr "Zaženi zdaj"
+
+#. module: cron_run_manually
+#: view:ir.cron:cron_run_manually.ir_cron_view
+msgid "Run now"
+msgstr "Zaženi zdaj"

@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_report_auto_create_qweb
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-31 14:58+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_report_auto_create_qweb
+#: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+msgid "Cancel"
+msgstr "İptal"
+
+#. module: base_report_auto_create_qweb
+#: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
+msgid "Create QWeb view"
+msgstr "Qweb görüntüsü oluştur"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,create_date:0
+msgid "Created on"
+msgstr "Oluşturuldu"
+
+#. module: base_report_auto_create_qweb
+#: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+msgid "Duplicate"
+msgstr "Kopyala"
+
+#. module: base_report_auto_create_qweb
+#: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
+msgid "Duplicate Report"
+msgstr "Raporu kopyala"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,write_uid:0
+msgid "Last Updated by"
+msgstr "Son güncellendi"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,write_date:0
+msgid "Last Updated on"
+msgstr "Son güncellenme"
+
+#. module: base_report_auto_create_qweb
+#: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
+#: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+msgid "Report duplication"
+msgstr "Rapor kopyalama"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,suffix:0
+msgid "Suffix"
+msgstr "Sonek"
+
+#. module: base_report_auto_create_qweb
+#: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
+#, python-format
+msgid "Template Name must contain at least a dot in it's name"
+msgstr "Şablon adı içinde en az bir nokta barındırmalı"
+
+#. module: base_report_auto_create_qweb
+#: help:ir.actions.report.xml.duplicate,suffix:0
+msgid "This suffix will be added to the report"
+msgstr "Bu sonek raporlara eklemecek"
+
+#. module: base_report_auto_create_qweb
+#: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
+msgid "or"
+msgstr "or"

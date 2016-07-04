@@ -1,0 +1,242 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * attachment_metadata
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"PO-Revision-Date: 2016-06-01 09:37+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Attachment"
+msgstr "Attachment"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,name:0
+msgid "Attachment Name"
+msgstr "Attachment Name"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,attachment_id:0
+msgid "Attachment id"
+msgstr "Attachment id"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_tree
+msgid "Attachments"
+msgstr "Attachments"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Binary"
+msgstr "Binary"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,type:0
+msgid "Binary File or URL"
+msgstr "Binary File or URL"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,company_id:0
+msgid "Company"
+msgstr "Company"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Creation Month"
+msgstr "Creation Month"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,db_datas:0
+msgid "Database Data"
+msgstr "Database Data"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,external_hash:0
+msgid "External hash"
+msgstr "External hash"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas:0
+msgid "File Content"
+msgstr "File Content"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_fname:0
+msgid "File Name"
+msgstr "File Name"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_size:0
+msgid "File Size"
+msgstr "File Size"
+
+#. module: attachment_metadata
+#: code:addons/attachment_metadata/models/attachment.py:43
+#, python-format
+msgid ""
+"File corrupted: Something was wrong with the retrieved file, please relaunch"
+" the task."
+msgstr "File corrupted: Something was wrong with the retrieved file, please relaunch the task."
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,external_hash:0
+msgid ""
+"File hash comes from the external owner of the file.\n"
+"If provided allow to check than downloaded file is the exact copy of the original file."
+msgstr "File hash comes from the external owner of the file.\nIf provided allow to check than downloaded file is the exact copy of the original file."
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,internal_hash:0
+msgid ""
+"File hash computed with file data to be compared to external hash when "
+"provided."
+msgstr "File hash computed with file data to be compared to external hash when provided."
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,file_type:0
+msgid "File type"
+msgstr "File type"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Filter on my documents"
+msgstr "Filter on my documents"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Group By"
+msgstr "Group By"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,internal_hash:0
+msgid "Internal hash"
+msgstr "Internal hash"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,attachment_id:0
+msgid "Link to ir.attachment model "
+msgstr "Link to ir.attachment model "
+
+#. module: attachment_metadata
+#: model:ir.actions.act_window,name:attachment_metadata.action_attachment
+#: model:ir.ui.menu,name:attachment_metadata.menu_ir_attachment
+msgid "Meta data Attachments"
+msgstr "Meta data Attachments"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "My Document(s)"
+msgstr "My Document(s)"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Owner"
+msgstr "Owner"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_id:0
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_model:0
+msgid "Resource Model"
+msgstr "Resource Model"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_name:0
+msgid "Resource Name"
+msgstr "Resource Name"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,store_fname:0
+msgid "Stored Filename"
+msgstr "Stored Filename"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,res_model:0
+msgid "The database object this attachment will be attached to"
+msgstr "The database object this attachment will be attached to"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,file_type:0
+msgid ""
+"The file type determines an import method to be used to parse and transform "
+"data before their import in ERP"
+msgstr "The file type determines an import method to be used to parse and transform data before their import in ERP"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,res_id:0
+msgid "The record id this is attached to"
+msgstr "The record id this is attached to"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "URL"
+msgstr "URL"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,url:0
+msgid "Url"
+msgstr "Url"

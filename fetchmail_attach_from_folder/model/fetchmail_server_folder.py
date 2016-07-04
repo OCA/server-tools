@@ -26,6 +26,7 @@ from .. import match_algorithm
 class fetchmail_server_folder(models.Model):
     _name = 'fetchmail.server.folder'
     _rec_name = 'path'
+    _order = 'sequence'
 
     def _get_match_algorithms(self):
         def get_all_subclasses(cls):
@@ -85,6 +86,10 @@ class fetchmail_server_folder(models.Model):
     domain = fields.Char(
         'Domain',
         help='Fill in a search filter to narrow down objects to match')
+    context = fields.Char(
+        'Context',
+        help=('Context that is passed during mail processing. Can be used to '
+              'set default values.'))
     msg_state = fields.Selection(
         [
             ('sent', 'Sent'),
@@ -93,10 +98,12 @@ class fetchmail_server_folder(models.Model):
         'Message state',
         help='The state messages fetched from this folder should be '
         'assigned in Odoo')
+    active = fields.Boolean('Active')
 
     _defaults = {
         'flag_nonmatching': True,
         'msg_state': 'received',
+        'active': True,
     }
 
     @api.multi

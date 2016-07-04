@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * cron_run_manually
+# 
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-18 14:01+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/ir_cron.py:56
+#, python-format
+msgid "Another process/thread is already busy executing this job"
+msgstr "Ein anderer Prozess/Thread führt diesen Job bereits aus"
+
+#. module: cron_run_manually
+#: code:addons/cron_run_manually/ir_cron.py:38
+#, python-format
+msgid "Only the admin user is allowed to execute inactive cron jobs manually"
+msgstr "Nur der Admin-Benutzer darf inaktive Terminaufgaben manuell ausführen"
+
+#. module: cron_run_manually
+#: view:ir.cron:cron_run_manually.ir_cron_view_tree_inherited
+msgid "Run Now"
+msgstr "Jetzt ausführen"
+
+#. module: cron_run_manually
+#: view:ir.cron:cron_run_manually.ir_cron_view
+msgid "Run now"
+msgstr "Jetzt ausführen"
