@@ -2,16 +2,16 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-PDF Compression // PDF/A
-=========================
+=======================
+PDF Compression & PDF/A
+=======================
 
-This addon provides the ability to convert outgoing and imported PDF Attachmensts
-You can compress the PDFs to save space in you Database or File system.
-Also the possibility to convert PDFs in PDF/As. Currently implemented:
+This addon provides the ability to convert outgoing and imported PDF attachments.
+You can compress the PDFs to save space in you database or file system.
+Also the possibility exists to convert PDFs in PDF/A. Currently implemented:
 
 * PDF/A-1b
-* PDF/A-2b (recommend to use this setting Faster and Smaller Files)
+* PDF/A-2b (recommend to use this setting because it is faster and result in smaller files)
 
 
 Installation
@@ -41,19 +41,21 @@ Usage
 
    I uploaded a 1MB PDF file with a mix of pictures tables and text.
 
-   the 5 settings:
+   Settings:
 
-   * screen selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
-   * ebook selects medium-resolution output similar to the Acrobat Distiller "eBook" setting.
-   * printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
-   * prepress selects output similar to Acrobat Distiller "Prepress Optimized" setting.
-   * default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
+   * screen: selects low-resolution output similar to the Acrobat Distiller "Screen Optimized" setting.
+   * ebook: selects medium-resolution output similar to the Acrobat Distiller "eBook" setting.
+   * printer: selects output similar to the Acrobat Distiller "Print Optimized" setting.
+   * prepress: selects output similar to Acrobat Distiller "Prepress Optimized" setting.
+   * default: selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
 
-   * screen  1MB -> 200KB some quality loss notice (jpg artefacts in pictures)
-   * ebook  1MB -> 540KB little quality loss notice (some jpg artefacts in pictures but way better then screen)
-   * printer   1MB -> 740KB no quality loss notice
-   * prepress 1MB -> 820KB  no quality loss notice
-   * default 1MB -> 680KB  little quality loss notice (some jpg artefacts in pictures but way better then screen)
+   Examples:
+
+   * screen: 1MB -> 200KB some quality loss notice (jpg artefacts in pictures)
+   * ebook: 1MB -> 540KB little quality loss notice (some jpg artefacts in pictures but way better then screen)
+   * printer: 1MB -> 740KB no quality loss notice
+   * prepress: 1MB -> 820KB  no quality loss notice
+   * default: 1MB -> 680KB  little quality loss notice (some jpg artefacts in pictures but way better then screen)
 
 #. PDF/A conversion:
 
@@ -69,9 +71,11 @@ Usage
 Known issues / Roadmap
 ======================
 
-* Had to override the _run_wkhtmltopdf Function to pass context through the it.
+* Had to override the _run_wkhtmltopdf Function to pass context through it
 * Implementing other PDF/A options
 * Future Goal to integrate ZUGFeRD
+* only PDFs which are saved as attachments are converted
+* (if you use the print button to generate pdf the "first" time the compession/pdfa is not used but the saved attachment is converted)
 
 
 Bug Tracker
