@@ -28,7 +28,8 @@ class Image(models.Model):
     owner_model = fields.Char(
         required=True)
     storage = fields.Selection(
-        [('url', 'URL'), ('file', 'OS file'), ('db', 'Database')],
+        [('url', 'URL'), ('file', 'OS file'), ('db', 'Database'),
+         ('filestore', 'Filestore')],
         required=True)
     name = fields.Char(
         'Image title',
@@ -37,6 +38,10 @@ class Image(models.Model):
     extension = fields.Char(
         'File extension',
         readonly=True)
+    attachment_id = fields.Many2one(
+        'ir.attachment',
+        string='Attachment',
+        domain="[('index_content', '=', 'image')]")
     file_db_store = fields.Binary(
         'Image stored in database',
         filters='*.png,*.jpg,*.gif')
@@ -83,6 +88,10 @@ class Image(models.Model):
         self.show_technical = all(
             "default_owner_%s" % f not in self.env.context
             for f in ("id", "model"))
+
+    @api.multi
+    def _get_image_from_filestore(self):
+        return self.attachment_id.datas
 
     @api.multi
     def _get_image_from_db(self):
@@ -157,20 +166,31 @@ class Image(models.Model):
             self.name, self.extension = os.path.splitext(self.filename)
             self.name = self._make_name_pretty(self.name)
 
+    @api.onchange('attachment_id')
+    def _onchange_attachmend_id(self):
+        if self.attachment_id:
+            self.name = self.attachment_id.res_name
+
     @api.constrains('storage', 'url')
     def _check_url(self):
         if self.storage == 'url' and not self.url:
             raise exceptions.ValidationError(
-                'You must provide an URL for the image.')
+                _('You must provide an URL for the image.'))
 
     @api.constrains('storage', 'path')
     def _check_path(self):
         if self.storage == 'file' and not self.path:
             raise exceptions.ValidationError(
-                'You must provide a file path for the image.')
+                _('You must provide a file path for the image.'))
 
     @api.constrains('storage', 'file_db_store')
     def _check_store(self):
         if self.storage == 'db' and not self.file_db_store:
             raise exceptions.ValidationError(
-                'You must provide an attached file for the image.')
+                _('You must provide an attached file for the image.'))
+
+    @api.constrains('storage', 'attachment_id')
+    def _check_attachment_id(self):
+        if self.storage == 'filestore' and not self.attachment_id:
+            raise exceptions.ValidationError(
+                _('You must provide an attachment for the image.'))
