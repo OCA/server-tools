@@ -13,9 +13,9 @@ class AuditlogtHTTPSession(models.Model):
     _rec_name = 'display_name'
 
     display_name = fields.Char(u"Name", compute="_display_name")
-    name = fields.Char(u"Session ID")
+    name = fields.Char(u"Session ID", index=True)
     user_id = fields.Many2one(
-        'res.users', string=u"User")
+        'res.users', string=u"User", index=True)
     http_request_ids = fields.One2many(
         'auditlog.http.request', 'http_session_id', string=u"HTTP Requests")
 
@@ -43,7 +43,8 @@ class AuditlogtHTTPSession(models.Model):
         if httpsession:
             existing_session = self.search(
                 [('name', '=', httpsession.sid),
-                 ('user_id', '=', request.uid)])
+                 ('user_id', '=', request.uid)],
+                limit=1)
             if existing_session:
                 return existing_session.id
             vals = {
