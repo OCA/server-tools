@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* pdf_compression
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-03 13:01+0000\n"
+"PO-Revision-Date: 2015-12-03 13:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pdf_compression
+#: model:ir.actions.act_window,name:pdf_compression.action_attachment_set_configuration
+#: model:ir.ui.menu,name:pdf_compression.menu_attachment_set_configuration
+msgid "Attachment"
+msgstr "Dateianhänge"
+
+#. module: pdf_compression
+#: view:knowledge.config.settings:pdf_compression.view_knowledge_configuration_pdfa
+msgid "Attachment Settings"
+msgstr "Dateianhänge Einstellungen"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,compression:0
+msgid "PDF Compression"
+msgstr "PDF Kompression"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,pdfa_option:0
+msgid "Converts the PDF in a PDF/A"
+msgstr "Konvertiert PDF in PDF/A"
+
+#. module: pdf_compression
+#: help:knowledge.config.settings,pdfa_option:0
+#: help:ir.actions.report.xml,pdf_option:0
+msgid "PDF/A is an ISO-standardized version of the Portable Document Format (PDF) specialized for the digital preservation of lectronic documents."
+msgstr "PDF/A ist ein Format zur Langzeitarchivierung digitaler Dokumente, das von der International Organization for Standardization (ISO) als Subset des Portable Document Format (PDF) genormt wurde."
+
+#. module: pdf_compression
+#: view:knowledge.config.settings:pdf_compression.view_knowledge_configuration_pdfa
+msgid "Configure Attachment"
+msgstr "Konfiguriere Dateianhänge"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "DEFAULT selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file."
+msgstr "DEFAULT Standared Einsteluung, möglicherweise auf Kosten einer größeren Dateigröße."
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "EBOOK selects medium-resolution output similar to the Acrobat Distiller \"eBook\" setting."
+msgstr "EBOOK mittlere Auflösung, Ausgabe ähnlich der Acrobat Distiller  \"eBook\" -Einstellung."
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: pdf_compression
+#: field:knowledge.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "No Compression"
+msgstr "Keine Komprimierung"
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "PREPRESS selects output similar to Acrobat Distiller \"Prepress Optimized\" setting."
+msgstr "PREPRESS Ausgabe ähnlich der Acrobat Distiller  \"Prepress Optimized\" -Einstellung."
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "PRINTER selects output similar to the AcrobatDistiller \"Print Optimized\" setting."
+msgstr "PRINTER Ausgabe ähnlich der Acrobat Distiller \"Print Optimized \" -Einstellung."
+
+#. module: pdf_compression
+#: selection:knowledge.config.settings,compression:0
+msgid "SCREEN selects low-resolution output similar to the Acrobat Distiller \"Screen Optimized\" setting"
+msgstr "SCREEN niedrigere Auflösung, Ausgabe ähnlich der Acrobat Distiller \"Screen Optimized\" -Einstellung"
+
+#. module: pdf_compression
+#: help:knowledge.config.settings,compression:0
+msgid "The Compression Level."
+msgstr "Die Komprimierungsstufe."
+
+#. module: pdf_compression
+#: selection:ir.actions.report.xml,pdf_option:0
+#: selection:knowledge.config.settings,pdfa_option:0
+msgid "None"
+msgstr "Keine Archivierung"
+
+#. module: pdf_compression
+#: field:ir.actions.report.xml,pdf_option:0
+msgid "PDF/A archiving"
+msgstr "PDF/A Archivierung"
+
+#. module: pdf_compression
+#: selection:ir.actions.report.xml,pdf_option:0
+#: selection:knowledge.config.settings,pdfa_option:0
+msgid "PDF/A-1b"
+msgstr "PDF/A-1b"
+
+#. module: pdf_compression
+#: selection:ir.actions.report.xml,pdf_option:0
+#: selection:knowledge.config.settings,pdfa_option:0
+msgid "PDF/A-2b"
+msgstr "PDF/A-2b"
+
+#. module: pdf_compression
+#: selection:ir.actions.report.xml,pdf_option:0
+msgid "Default PDF/A handling"
+msgstr "Standard PDF/A Handhabung"
