@@ -89,11 +89,11 @@ You'll also need a matching sudo configuration, like::
 
     your_odoo_user ALL = NOPASSWD: /usr/sbin/service nginx reload
 
-The line above can be added to /etc/sudoers through the visudo command, or
-even better be put in a separate file in the /etc/sudoers.d directory. For
-instance in a file /etc/sudoers.d/letsencrypt. (Name should not end in ~ and
-should not contain a dot). This file should be owned by root and have
-authorities set by ``chown 0440 your_filename``.
+The line above can be added to /etc/sudoers through the visudo command.
+
+If your distribution supports it, like Debian does, you can create and edit
+this file through ``visudo -f /etc/sudoers.d/letsencrypt``. This will also
+put the right autorities on the file (-r--r-----).
 
 The server that provides the certificates will try to check that you actually
 control the host that you request a certificate for. It will do this by
