@@ -92,8 +92,9 @@ You'll also need a matching sudo configuration, like::
 The line above can be added to /etc/sudoers through the visudo command.
 
 If your distribution supports it, like Debian does, you can create and edit
-this file through ``visudo -f /etc/sudoers.d/letsencrypt``. This will also
-put the right autorities on the file (-r--r-----).
+an automatically included file through
+``visudo -f /etc/sudoers.d/letsencrypt``. This will also put the right
+authorities on the file (-r--r-----).
 
 The server that provides the certificates will try to check that you actually
 control the host that you request a certificate for. It will do this by
