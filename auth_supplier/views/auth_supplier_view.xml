@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="auth_supplier.fields"
+              inherit_id="auth_signup.fields"
+              name="Auth Signup/ResetPassword form fields">
+        <xpath expr="//div[@class='form-group field-login']" position="before">
+            <div class="form-group field-type">
+                <label for="account_type" class="control-label">Account Type</label>
+                <select class="form-control" name="account_type">
+                    <option value="customer" selected="selected">Customer</option>
+                    <option value="supplier">Supplier</option>
+                 </select>
+            </div>
+        </xpath>
+    </template>
+
+</data>
+</openerp>

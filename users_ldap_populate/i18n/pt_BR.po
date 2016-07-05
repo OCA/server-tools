@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_populate
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-12 14:34+0000\n"
+"PO-Revision-Date: 2016-05-11 16:42+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: users_ldap_populate
+#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+msgid "Add populate button to ldap view"
+msgstr "Adicione botão popular na visão ldap"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_uid:0
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_date:0
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,display_name:0
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,id:0
+msgid "ID"
+msgstr "Identificação"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,ldap_id:0
+msgid "LDAP Configuration"
+msgstr "Configuração LDAP"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Última atualização em"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_created:0
+msgid "Number of users created"
+msgstr "Número de usuários criado"
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate"
+msgstr "Popular"
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr "Popular o banc de dados de usuário"
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr "Popular usuários do LDAP"

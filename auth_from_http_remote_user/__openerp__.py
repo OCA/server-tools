@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Authenticate via HTTP Remote User',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
     'author': "Acsone SA/NV,Odoo Community Association (OCA)",
     'maintainer': 'ACSONE SA/NV',
@@ -31,7 +31,6 @@
     "demo": [],
     "test": [],
     "active": False,
-    "license": "AGPL-3",
     "installable": True,
     "auto_install": False,
     "application": False,

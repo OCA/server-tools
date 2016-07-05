@@ -19,4 +19,3 @@
 #
 ##############################################################################
 from . import test_server_environment
-checks = [test_server_environment]

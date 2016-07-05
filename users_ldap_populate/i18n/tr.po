@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_populate
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-31 12:53+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: users_ldap_populate
+#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+msgid "Add populate button to ldap view"
+msgstr "LDAP görünümüne doldurma butonu ekle"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_date:0
+msgid "Created on"
+msgstr "Oluşturuldu"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,ldap_id:0
+msgid "LDAP Configuration"
+msgstr "LDAP Ayarları"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Son güncellendi"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Son güncellenme"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,name:0
+msgid "Name"
+msgstr "Adı"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_created:0
+msgid "Number of users created"
+msgstr "Oluşturulan Kullanıcı sayısı"
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate"
+msgstr "Doldur"
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr "Kullanıcı veritabanı duldur"
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr "Kullanıcıları LDAP sunucan doldur"

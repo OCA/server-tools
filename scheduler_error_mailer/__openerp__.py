@@ -26,7 +26,7 @@
 {
     'name': 'Scheduler Error Mailer',
     'summary': 'Send an e-mail when a scheduler fails',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'description': """

@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_dead_mans_switch_log,access_dead_mans_switch_log,model_dead_mans_switch_log,group_user,1,0,0,0
+access_dead_mans_switch_instance,access_dead_mans_switch_instance,model_dead_mans_switch_instance,group_user,1,0,0,0
+access_dead_mans_switch_instance_manager,access_dead_mans_switch_instance,model_dead_mans_switch_instance,group_manager,1,1,0,1
