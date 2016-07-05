@@ -25,6 +25,7 @@ addon | version | summary
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
+[database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
 [dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
@@ -50,7 +51,6 @@ addon | version | summary
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 (unported) | Shows full debug options for all users
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 (unported) | External Database Sources
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 (unported) | Avoid 'quick create' on m2o fields, on a 'by model' basis
-[database_cleanup](database_cleanup/) | 8.0.0.1.0 (unported) | Database cleanup
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 (unported) | If fetching mails gives error, send an email to sender
