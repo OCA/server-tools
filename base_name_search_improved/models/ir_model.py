@@ -49,7 +49,9 @@ class ModelExtended(models.Model):
                     self, name=name, args=args, operator=operator, limit=limit)
                 enabled = self.env.context.get('name_search_extended', True)
                 # Perform extended name search
-                if enabled and operator in ALLOWED_OPS:
+                # Note: Empty name causes error on
+                #       Customer->More->Portal Access Management
+                if name and enabled and operator in ALLOWED_OPS:
                     # Support a list of fields to search on
                     all_names = _get_rec_names(self)
                     base_domain = args or []
