@@ -13,6 +13,7 @@ ALLOWED_OPS = set(['ilike', 'like'])
 
 @tools.ormcache(skiparg=0)
 def _get_rec_names(self):
+    "List of fields to search into"
     model = self.env['ir.model'].search(
         [('model', '=', str(self._model))])
     rec_name = [self._rec_name] or []
@@ -51,19 +52,23 @@ class ModelExtended(models.Model):
                 if enabled and operator in ALLOWED_OPS:
                     # Support a list of fields to search on
                     all_names = _get_rec_names(self)
+                    base_domain = args or []
                     # Try regular search on each additional search field
                     for rec_name in all_names[1:]:
                         domain = [(rec_name, operator, name)]
-                        res = _extend_name_results(self, domain, res, limit)
+                        res = _extend_name_results(
+                            self, base_domain + domain, res, limit)
                     # Try ordered word search on each of the search fields
                     for rec_name in all_names:
                         domain = [(rec_name, operator, name.replace(' ', '%'))]
-                        res = _extend_name_results(self, domain, res, limit)
+                        res = _extend_name_results(
+                            self, base_domain + domain, res, limit)
                     # Try unordered word search on each of the search fields
                     for rec_name in all_names:
                         domain = [(rec_name, operator, x)
                                   for x in name.split() if x]
-                        res = _extend_name_results(self, domain, res, limit)
+                        res = _extend_name_results(
+                            self, base_domain + domain, res, limit)
                 return res
             return name_search
 
