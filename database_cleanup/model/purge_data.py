@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineData(orm.TransientModel):
@@ -80,11 +81,11 @@ class CleanupPurgeWizardData(orm.TransientModel):
             cr.execute(
                 """
                 SELECT id FROM ir_model_data
-                WHERE model = %%s
+                WHERE model = %s
                 AND res_id IS NOT NULL
                 AND NOT EXISTS (
                     SELECT id FROM %s WHERE id=ir_model_data.res_id)
-                """ % self.pool[model]._table, (model,))
+                """, (model, IdentifierAdapter(self.pool[model]._table)))
             data_ids += [data_row[0] for data_row in cr.fetchall()]
         data_ids += data_pool.search(
             cr, uid, [('model', 'in', unknown_models)], context=context)

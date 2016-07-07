@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineTable(orm.TransientModel):
@@ -62,7 +63,7 @@ class CleanupPurgeLineTable(orm.TransientModel):
                 WHERE af.attnum = confkey AND af.attrelid = confrelid AND
                 a.attnum = conkey AND a.attrelid = conrelid
                 AND confrelid::regclass = '%s'::regclass;
-                """ % line.name)
+                """, (IdentifierAdapter(line.name, quote=False),))
 
             for constraint in cr.fetchall():
                 if constraint[3] in tables:
@@ -70,12 +71,15 @@ class CleanupPurgeLineTable(orm.TransientModel):
                         'Dropping constraint %s on table %s (to be dropped)',
                         constraint[0], constraint[3])
                     cr.execute(
-                        "ALTER TABLE %s DROP CONSTRAINT %s" % (
-                            constraint[3], constraint[0]))
+                        "ALTER TABLE %s DROP CONSTRAINT %s", (
+                            IdentifierAdapter(constraint[3]),
+                            IdentifierAdapter(constraint[0]),
+                        )
+                    )
 
             self.logger.info(
                 'Dropping table %s', line.name)
-            cr.execute("DROP TABLE \"%s\"" % (line.name,))
+            cr.execute("DROP TABLE %s", (IdentifierAdapter(line.name),))
             line.write({'purged': True})
             cr.commit()
         return True
@@ -116,13 +120,11 @@ class CleanupPurgeWizardTable(orm.TransientModel):
                 ]
 
         # Cannot pass table names as a psycopg argument
-        known_tables_repr = ",".join(
-            [("'%s'" % table) for table in known_tables])
         cr.execute(
             """
             SELECT table_name FROM information_schema.tables
             WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
-            AND table_name NOT IN (%s)""" % known_tables_repr)
+            AND table_name NOT IN %s""", (tuple(known_tables),))
 
         res = [(0, 0, {'name': row[0]}) for row in cr.fetchall()]
         if not res:

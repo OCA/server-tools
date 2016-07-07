@@ -18,8 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 import logging
+from openerp import api, SUPERUSER_ID
+from openerp.exceptions import AccessDenied
 from openerp.osv import orm, fields
 
 
@@ -36,6 +37,15 @@ class CleanupPurgeLine(orm.AbstractModel):
 
     def purge(self, cr, uid, ids, context=None):
         raise NotImplementedError
+
+    @api.model
+    def create(self, values):
+        # make sure the user trying this is actually supposed to do it
+        if self.env.uid != SUPERUSER_ID and\
+           not self.env.ref('database_cleanup.menu_database_cleanup')\
+           .parent_id._filter_visible_menus():
+            raise AccessDenied
+        return super(CleanupPurgeLine, self).create(values)
 
 
 class PurgeWizard(orm.AbstractModel):
@@ -81,6 +91,15 @@ class PurgeWizard(orm.AbstractModel):
             'res_model': self._columns['purge_line_ids']._obj,
             'domain': [('wizard_id', 'in', ids)],
         }
+
+    @api.model
+    def create(self, values):
+        # make sure the user trying this is actually supposed to do it
+        if self.env.uid != SUPERUSER_ID and\
+           not self.env.ref('database_cleanup.menu_database_cleanup')\
+           .parent_id._filter_visible_menus():
+            raise AccessDenied
+        return super(PurgeWizard, self).create(values)
 
     _columns = {
         'name': fields.char('Name', size=64, readonly=True),

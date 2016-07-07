@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from ..identifier_adapter import IdentifierAdapter
 
 
 class CleanupPurgeLineColumn(orm.TransientModel):
@@ -61,9 +62,11 @@ class CleanupPurgeLineColumn(orm.TransientModel):
                 'Dropping column %s from table %s',
                 line.name, model_pool._table)
             cr.execute(
-                """
-                ALTER TABLE "%s" DROP COLUMN "%s"
-                """ % (model_pool._table, line.name))
+                "ALTER TABLE %s DROP COLUMN %s",
+                (
+                    IdentifierAdapter(model_pool._table),
+                    IdentifierAdapter(line.name),
+                ))
             line.write({'purged': True})
             cr.commit()
         return True
