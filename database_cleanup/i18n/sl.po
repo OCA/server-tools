@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"POT-Creation-Date: 2016-07-07 12:01+0000\n"
 "PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
@@ -214,13 +214,13 @@ msgid "No modules found to purge"
 msgstr "Ni najdenih modulov za očiščenje"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:148
+#: code:addons/database_cleanup/model/purge_columns.py:151
 #, python-format
 msgid "No orphaned columns found"
 msgstr "Noben opuščen stolpec ni najden"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:99
+#: code:addons/database_cleanup/model/purge_data.py:100
 #, python-format
 msgid "No orphaned data entries found"
 msgstr "Noben opuščen podatkovni vnos ni najden"
@@ -232,18 +232,18 @@ msgid "No orphaned models found"
 msgstr "Noben opuščen model ni najden"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:131
+#: code:addons/database_cleanup/model/purge_tables.py:133
 #, python-format
 msgid "No orphaned tables found"
 msgstr "Nobena opuščena tabela ni najdena"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:147
-#: code:addons/database_cleanup/model/purge_data.py:98
+#: code:addons/database_cleanup/model/purge_columns.py:150
+#: code:addons/database_cleanup/model/purge_data.py:99
 #: code:addons/database_cleanup/model/purge_menus.py:73
 #: code:addons/database_cleanup/model/purge_models.py:147
 #: code:addons/database_cleanup/model/purge_modules.py:121
-#: code:addons/database_cleanup/model/purge_tables.py:130
+#: code:addons/database_cleanup/model/purge_tables.py:132
 #, python-format
 msgid "Nothing to do"
 msgstr "Ni kaj narediti"
@@ -299,7 +299,7 @@ msgid "Purge all tables"
 msgstr "Očiščenje vseh tabel"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:86
+#: code:addons/database_cleanup/model/purge_columns.py:89
 #: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
@@ -308,7 +308,7 @@ msgid "Purge columns"
 msgstr "Očiščenje stolpcev"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:60
+#: code:addons/database_cleanup/model/purge_data.py:61
 #: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 #, python-format
@@ -377,7 +377,7 @@ msgid "Purge obsolete tables"
 msgstr "Očiščenje opuščenih tabel"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:92
+#: code:addons/database_cleanup/model/purge_tables.py:96
 #: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
