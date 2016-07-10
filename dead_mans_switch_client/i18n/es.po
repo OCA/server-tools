@@ -3,23 +3,15 @@
 # * dead_mans_switch_client
 # 
 # Translators:
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"POT-Creation-Date: 2016-07-09 10:34+0000\n"
+"PO-Revision-Date: 2016-07-09 10:34+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -32,16 +24,21 @@ msgid "Configure the dead man's switch server"
 msgstr ""
 
 #. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,display_name:0
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,id:0
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_id
 msgid "ID"
 msgstr "ID"
 
 #. module: dead_mans_switch_client
-#: field:dead.mans.switch.client,__last_update:0
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client___last_update
 msgid "Last Modified on"
 msgstr "Última actualización por"
+
+#. module: dead_mans_switch_client
+#: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
+msgid "dead.mans.switch.client"
+msgstr ""

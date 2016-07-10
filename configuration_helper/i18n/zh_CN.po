@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-09 10:34+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: configuration_helper
 #: model:ir.model,name:configuration_helper.model_abstract_config_settings
@@ -30,14 +30,14 @@ msgstr ""
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr ""
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr ""
