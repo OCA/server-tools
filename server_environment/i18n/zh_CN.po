@@ -3,125 +3,108 @@
 # * server_environment
 # 
 # Translators:
-# Accounts-Payable - Alkemics, 2015
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Chen-Do LU <clu@alkemics.com>, 2015
-# Bole <bole@dajmi5.com>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
-# François Breysse <fb@alkemics.com>, 2015
-# Gustavo Lepri <gustavolepri@gmail.com>, 2015
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# John Toro <johntoro@gmail.com>, 2015
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-09 10:34+0000\n"
-"PO-Revision-Date: 2016-07-05 18:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
+"PO-Revision-Date: 2016-02-26 16:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr "Ambiente do servidor"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
 #: | ged_folder
 msgid "custom_ged | ged_folder"
-msgstr "custom_ged | ged_folder"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTA
 msgid "external_service | CONSTA"
-msgstr "external_service | CONSTA"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTB
 msgid "external_service | CONSTB"
-msgstr "external_service | CONSTB"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTC
 msgid "external_service | CONSTC"
-msgstr "external_service | CONSTC"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | in_path
 msgid "external_service.ftp | in_path"
-msgstr "external_service.ftp | in_path"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | out_path
 msgid "external_service.ftp | out_path"
-msgstr "external_service.ftp | out_path"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | password
 msgid "external_service.ftp | password"
-msgstr "external_service.ftp | password"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | port
 msgid "external_service.ftp | port"
-msgstr "external_service.ftp | port"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
