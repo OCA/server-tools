@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Contributor 2016 Florent de Labarre
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,26 +21,18 @@
 
 {
     'name': "Optional quick create",
-    'version': '8.0.0.1.0',
+    'version': '9.0.0.1.0',
     'category': 'Tools',
     'summary': "Avoid 'quick create' on m2o fields, on a 'by model' basis",
-    'description': """
-This module allows to avoid to *quick create* new records, through many2one
-fields, for a specific model.
-You can configure which models should allow *quick create*.
-When specified, the *quick create* option will always open the standard create
-form.
-
-Got the idea from https://twitter.com/nbessi/status/337869826028605441
-""",
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
+    'author': "Agile Business Group,Odoo Community \
+                Association (OCA), Florent de Labarre",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['base'],
     "data": [
-        'model_view.xml',
+        'base_optional_quick_create_view.xml',
     ],
     "demo": [],
     'test': [],
-    'installable': False
+    "installable": True
 }

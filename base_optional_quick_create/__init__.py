@@ -18,4 +18,4 @@
 #
 ##############################################################################
 
-from . import model
+from . import base_optional_quick_create
