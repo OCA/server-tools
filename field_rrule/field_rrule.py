@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from dateutil.rrule import rrule, rruleset, YEARLY
+from dateutil.rrule import rrule, rruleset
 from openerp import fields, models
 _DATETIME_FIELDS = ['_until', '_dtstart']
 _SCALAR_FIELDS = [
