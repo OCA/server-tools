@@ -14,17 +14,17 @@ openerp.field_rrule = function(instance)
             'change input:not(.rule_ignore_input)': 'input_changed',
             'change input[name="recurrence_type"]': 'toggle_recurrence_type',
         },
-        set_value(val)
+        set_value: function(val)
         {
             var result = this._super(jQuery.extend([], val));
             _.each(this.get('value'), function(rule)
             {
-                rule.__id = _.uniqueId();
+                rule['__id'] = _.uniqueId();
             });
             this.reinitialize();
             return result;
         },
-        get_value()
+        get_value: function()
         {
             var result = jQuery.extend(
                 true, [], this._super.apply(this, arguments));
@@ -37,7 +37,7 @@ openerp.field_rrule = function(instance)
         initialize_content: function()
         {
             var self = this;
-            this.$('select[name="freq"]').trigger('change', true)
+            this.$('select[name="freq"]').trigger('change', true);
             this.$('input[name="recurrence_type"]:checked')
             .trigger('change', true);
             this.$('input[type="datetime"]').each(function()
@@ -77,14 +77,14 @@ openerp.field_rrule = function(instance)
                 all_values = this.get('value') || [],
                 old_values = jQuery.extend(true, [], all_values);
                 value = _.findWhere(all_values, {
-                    __id: String(current_item.data('id')),
+                    '__id': String(current_item.data('id')),
                 });
             if(jQuery.isArray(value[input.attr('name')]))
             {
                 var input_value = parseInt(input.val());
                 value[input.attr('name')] = _.filter(
                     value[input.attr('name')], function(x) {
-                        return x != input_value
+                        return x != input_value;
                     });
                 if(input.is(':checked'))
                 {
@@ -168,7 +168,7 @@ openerp.field_rrule = function(instance)
         remove_rule: function(e)
         {
             var value = this.get('value') || [],
-                old_value = jQuery.extend(true, [], value);
+                old_value = jQuery.extend(true, [], value),
                 current_item = jQuery(e.currentTarget)
                     .parentsUntil('form', 'table.rule_item'),
                 current_id = String(current_item.data('id'));
@@ -258,4 +258,4 @@ openerp.field_rrule = function(instance)
         },
     });
     instance.web.form.widgets.add('rrule', 'instance.field_rrule.FieldRRule');
-}
+};
