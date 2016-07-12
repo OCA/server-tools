@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="field_rrule assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/field_rrule/static/src/js/field_rrule.js"></script>
+                <link rel="stylesheet" href="/field_rrule/static/src/css/field_rrule.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

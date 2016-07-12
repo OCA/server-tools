@@ -1,0 +1,22 @@
+.oe_form_field_rrule .rule_item label
+{
+    white-space: nowrap;
+}
+.oe_form_field_rrule .rule_header
+{
+    text-align: right;
+    padding-right: 8px;
+}
+.oe_form_field_rrule th
+{
+    vertical-align: top;
+    padding-right: 8px;
+}
+.oe_form_editable .oe_form_field_rrule form.rule_item:hover .rule_header
+{
+    background: #7c7bad;
+}
+.oe_form_editable .oe_form_field_rrule form.rule_item:hover .rule_header .oe_link
+{
+    color: white;
+}
