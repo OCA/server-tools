@@ -2,10 +2,9 @@
 # © 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # © 2016 ACSONE SA/NA (<http://acsone.eu>)
 
-from openerp import api, fields, models
-from openerp.exceptions import Warning
+from openerp import api, fields, models, _
+from openerp.exceptions import UserError
 from openerp import SUPERUSER_ID
-from openerp.tools.translate import _
 
 
 class IrModel(models.Model):
@@ -17,9 +16,7 @@ class IrModel(models.Model):
 
         def _wrap_name_create():
             def wrapper(self, cr, uid, name, context=None):
-                raise orm.except_orm(
-                    _('Error'),
-                    _("Can't create quickly. Opening create form"))
+                raise UserError(_("Can't create quickly. Opening create form"))
             return wrapper
 
         for model in self.browse(cr, SUPERUSER_ID, ids):
