@@ -14,7 +14,7 @@ Usage
 To use this module, you need to:
 
 * depend on it
-* say ``from openerp.addons.field_rrule.field_rrule import FieldRRule``
+* say ``from openerp.addons.field_rrule import FieldRRule``
 * use ``FieldRRule`` like any other field
 * on forms, use ``widget="rrule"``
 * have a look at `demo/res_partner.*`
