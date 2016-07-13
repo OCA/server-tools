@@ -30,7 +30,7 @@
                                 <input type="radio" name="recurrence_type" value="until" class="rule_ignore_input" t-att-checked="rule.until and 'checked' or None" />At a date
                             </label>
                             <label>
-                                <input type="radio" name="recurrence_type" value="count" class="rule_ignore_input" t-att-checked="rule.until and None or 'checked'" />After an amount of occurrences
+                                <input type="radio" name="recurrence_type" value="count" class="rule_ignore_input" t-att-checked="!rule.until and 'checked' or None" />After an amount of occurrences
                             </label>
                         </div>
                         <input name="until" type="datetime" t-att-value="widget.format_field_until(rule.until)" required="required" />
