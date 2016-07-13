@@ -70,6 +70,18 @@ class SerializableRRuleSet(rruleset, list):
     def __getslice__(self, i, j):
         return rruleset.__getitem__(self(), slice(i, j))
 
+    def between(self, after, before, inc=False):
+        return self().between(after, before, inc=inc)
+
+    def after(self, dt, inc=False):
+        return self().after(dt, inc=inc)
+
+    def before(self, dt, inc=False):
+        return self().before(dt, inc=inc)
+
+    def count(self):
+        return self().count()
+
 
 class FieldRRule(fields.Serialized):
     def convert_to_cache(self, value, record, validate=True):
