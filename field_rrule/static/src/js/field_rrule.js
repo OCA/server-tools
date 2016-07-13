@@ -45,14 +45,64 @@ openerp.field_rrule = function(instance)
                 var input = jQuery(this),
                     current_value = input.val();
                 input.datetimepicker({
-                    onSelect: self.proxy('on_timepicker_select'),
-                    onClose: self.proxy('on_timepicker_select'),
                     closeOnDateSelect: true,
                     value: current_value ? instance.web.str_to_datetime(
                         instance.web.parse_value(
                             input.val(), {type: 'datetime'})) : new Date(),
+                    dateFormat: self.datetimepicker_format(
+                        instance.web._t.database.parameters.date_format),
+                    timeFormat: self.datetimepicker_format(
+                        instance.web._t.database.parameters.time_format),
+                    changeMonth: true,
+                    changeYear: true,
+                    showWeek: true,
+                    showButtonPanel: true,
+                    firstDay: Date.CultureInfo.firstDayOfWeek,
                 });
             });
+        },
+        datetimepicker_format: function(odoo_format)
+        {
+            var result = '',
+                map = {
+                    '%a': 'D',
+                    '%A': 'DD',
+                    '%b': 'M',
+                    '%B': 'MM',
+                    '%c': '', // locale's datetime representation
+                    '%d': 'dd',
+                    '%H': 'hh',
+                    '%T': 'hh:mm:ss',
+                    '%I': 'h',
+                    '%j': '', // day of the year unsuported
+                    '%m': 'm',
+                    '%M': 'mm',
+                    '%p': 't',
+                    '%S': 'ss',
+                    '%U': '', // weeknumber unsupported
+                    '%w': '', // weekday unsupported
+                    '%W': '', // weeknumber unsupported
+                    '%x': '', // locale's date representation
+                    '%X': '', // locale's time representation
+                    '%y': 'y',
+                    '%Y': 'yy',
+                    '%Z': 'z',
+                    '%%': '%',
+                };
+
+            for(var i=0; i < odoo_format.length; i++)
+            {
+                if(map[odoo_format.substring(i, i+2)])
+                {
+                    result += map[odoo_format.substring(i, i+2)];
+                    i++;
+                }
+                else
+                {
+                    result += odoo_format[i];
+                }
+            }
+            return result
         },
         frequency_changed: function(e, noreset)
         {
@@ -109,7 +159,7 @@ openerp.field_rrule = function(instance)
                 newValue: all_values,
             });
         },
-        toggle_recurrence_type: function(e)
+        toggle_recurrence_type: function(e, noreset)
         {
             var type = jQuery(e.currentTarget),
                 current_item = type.parentsUntil('tr', 'td');
@@ -120,7 +170,7 @@ openerp.field_rrule = function(instance)
                 input.toggle(visible);
                 if(visible)
                 {
-                    input.trigger('change');
+                    input.trigger('change', noreset);
                 }
             });
         },
