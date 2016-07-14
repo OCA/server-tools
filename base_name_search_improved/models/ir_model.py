@@ -49,20 +49,25 @@ class ModelExtended(models.Model):
                 enabled = self.env.context.get('name_search_extended', True)
                 # Perform extended name search
                 if enabled and operator in ALLOWED_OPS:
+                    field_domain = args or []
                     # Support a list of fields to search on
                     all_names = _get_rec_names(self)
                     # Try regular search on each additional search field
                     for rec_name in all_names[1:]:
-                        domain = [(rec_name, operator, name)]
+                        domain = field_domain + [(rec_name, operator, name)]
                         res = _extend_name_results(self, domain, res, limit)
                     # Try ordered word search on each of the search fields
                     for rec_name in all_names:
-                        domain = [(rec_name, operator, name.replace(' ', '%'))]
+                        domain = field_domain + [
+                            (rec_name, operator, name.replace(' ', '%'))
+                        ]
                         res = _extend_name_results(self, domain, res, limit)
                     # Try unordered word search on each of the search fields
                     for rec_name in all_names:
-                        domain = [(rec_name, operator, x)
-                                  for x in name.split() if x]
+                        domain = field_domain + [
+                            (rec_name, operator, x)
+                            for x in name.split() if x
+                            ]
                         res = _extend_name_results(self, domain, res, limit)
                 return res
             return name_search
