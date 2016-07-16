@@ -51,6 +51,7 @@ addon | version | summary
 [disable_openerp_online](disable_openerp_online/) | 8.0.1.1.0 | Remove odoo.com bindings
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
+[field_char_transformed](field_char_transformed/) | 8.0.1.0.0 | Allows to transform input in character fields before writing or reading it to/from the database
 [html_image_url_extractor](html_image_url_extractor/) | 8.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 8.0.1.0.0 | Generate excerpts from any HTML field
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
