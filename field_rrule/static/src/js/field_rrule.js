@@ -75,7 +75,7 @@ openerp.field_rrule = function(instance)
                     '%T': 'hh:mm:ss',
                     '%I': 'h',
                     '%j': '', // day of the year unsuported
-                    '%m': 'm',
+                    '%m': 'mm',
                     '%M': 'mm',
                     '%p': 't',
                     '%S': 'ss',

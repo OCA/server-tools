@@ -21,6 +21,10 @@ To use this module, you need to:
 
 Technically, this is a wrapper around serialized fields. The value always will be a subclass of dateutil's ``rruleset``. For technical reasons, this class overrides ``__iter__``, so if you need a proper ``rruleset``, call the value: ``my_browse_record.my_field_of_type_rrule()`` - this gives you a vanilla ``rruleset``.
 
+If you want to pass a default, use the internal representation you'll find in the database - a list of dictionaries with the keyword arguments to be passed to rrule's constructor and a `type` field that for now can only be `rrule`: A context of ``{"default_rrule": [{"count": 1, "freq": 1, "type": "rrule", "interval": 1, "bymonthday": [1]}]}`` would give you a default for the field ``rrule`` which occurs one time at the first of the month.
+
+Further, as this is a serialized field, a value of `not set` will be represented in the database as ``'null'`` - this is then also what you have to search for when you need records with your field unset.
+
 Known issues / Roadmap
 ======================
 
