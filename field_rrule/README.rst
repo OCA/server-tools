@@ -17,7 +17,7 @@ To use this module, you need to:
 * say ``from openerp.addons.field_rrule import FieldRRule``
 * use ``FieldRRule`` like any other field
 * on forms, use ``widget="rrule"``
-* have a look at `demo/res_partner.*`
+* have a look at ``demo/res_partner.*``
 
 Technically, this is a wrapper around serialized fields. The value always will be a subclass of dateutil's ``rruleset``. For technical reasons, this class overrides ``__iter__``, so if you need a proper ``rruleset``, call the value: ``my_browse_record.my_field_of_type_rrule()`` - this gives you a vanilla ``rruleset``.
 
