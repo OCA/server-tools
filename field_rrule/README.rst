@@ -23,6 +23,8 @@ Technically, this is a wrapper around serialized fields. The value always will b
 
 If you want to pass a default, use the internal representation you'll find in the database - a list of dictionaries with the keyword arguments to be passed to rrule's constructor and a `type` field that for now can only be `rrule`: A context of ``{"default_rrule": [{"count": 1, "freq": 1, "type": "rrule", "interval": 1, "bymonthday": [1]}]}`` would give you a default for the field ``rrule`` which occurs one time at the first of the month.
 
+In case you work with defaults and want to dumb down the UI a bit, use ``{'no_add_rule': true}``.
+
 Further, as this is a serialized field, a value of `not set` will be represented in the database as ``'null'`` - this is then also what you have to search for when you need records with your field unset.
 
 Known issues / Roadmap

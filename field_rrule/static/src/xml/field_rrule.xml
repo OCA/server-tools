@@ -1,11 +1,11 @@
 <template>
     <div t-name="FieldRRule" class="oe_form_field_rrule">
-        <div t-if="!widget.get('effective_readonly')">
+        <div t-if="!widget.get('effective_readonly') and !widget.options.no_add_rule">
             <a class="oe_link add_rule">Add instance</a>
         </div>
         <form t-foreach="widget.get('value')" t-as="rule" class="rule_item">
             <table t-if="rule.type == 'rrule'" class="rule_item" t-att-data-id="rule.__id">
-                <tr t-if="!widget.get('effective_readonly')">
+                <tr t-if="!widget.get('effective_readonly') and !widget.options.no_add_rule">
                     <td colspan="2" class="rule_header">
                         <a class="oe_link rule_remove" title="Remove this rule"><i class="fa fa-times" /></a>
                     </td>
