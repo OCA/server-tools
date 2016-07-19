@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from psycopg2.extensions import AsIs
 from dateutil.rrule import MONTHLY, rrule
 from openerp import SUPERUSER_ID, fields, models
 from openerp.tests.common import TransactionCase
@@ -46,7 +47,7 @@ class TestFieldRrule(TransactionCase):
         record_id = model.create(self.cr, SUPERUSER_ID, {'rrule': None})
         self.cr.execute(
             'select rrule, rrule_with_default, rrule_with_default2 from '
-            '%s where id=%%s' % model._table, (record_id,))
+            '%s where id=%s', (AsIs(model._table), record_id))
         data = self.cr.fetchall()[0]
         self.assertEqual(data[0], 'null')
         self.assertEqual(data[1], data[2])
