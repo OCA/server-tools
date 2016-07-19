@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Antonio Espinosa
+# Copyright 2015 Antiun Ingeniería S.L. - Antonio Espinosa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': "Manage model export profiles",
     'category': 'Personalization',
-    'version': '8.0.2.0.0',
+    'version': '9.0.1.0.0',
     'depends': [
         'web',
     ],
@@ -19,8 +19,10 @@
     ],
     'author': 'Antiun Ingeniería S.L., '
               'Tecnativa, '
+              'LasLabs, '
               'Odoo Community Association (OCA)',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
     'installable': True,
+    'application': False,
 }
