@@ -43,6 +43,8 @@ def patch_leaf_trgm(method):
             eleaf.leaf = (left, operator, right)
         return method(self, eleaf)
 
+    decorate_leaf_to_sql.__decorated__ = True
+
     return decorate_leaf_to_sql
 
 
@@ -52,6 +54,8 @@ def patch_generate_order_by(method):
             return ' ORDER BY ' + order_spec
         return method(self, order_spec, query)
 
+    decorate_generate_order_by.__decorated__ = True
+
     return decorate_generate_order_by
 
 
@@ -60,12 +64,19 @@ class IrModel(models.Model):
     _inherit = 'ir.model'
 
     def _register_hook(self, cr, ids=None):
-        expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
-            expression.expression._expression__leaf_to_sql)
+        # We have to prevent wrapping the function twice to avoid recursion
+        # errors
+        if not hasattr(expression.expression._expression__leaf_to_sql,
+                       '__decorated__'):
+            expression.expression._expression__leaf_to_sql = patch_leaf_trgm(
+                expression.expression._expression__leaf_to_sql)
 
-        expression.TERM_OPERATORS += ('%',)
+        if '%' not in expression.TERM_OPERATORS:
+            expression.TERM_OPERATORS += ('%',)
 
-        models.BaseModel._generate_order_by = patch_generate_order_by(
-            models.BaseModel._generate_order_by)
+        if not hasattr(models.BaseModel._generate_order_by,
+                       '__decorated__'):
+            models.BaseModel._generate_order_by = patch_generate_order_by(
+                models.BaseModel._generate_order_by)
 
         return super(IrModel, self)._register_hook(cr)
