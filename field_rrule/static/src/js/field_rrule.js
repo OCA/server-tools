@@ -153,11 +153,11 @@ openerp.field_rrule = function(instance)
             if(!noreset)
             {
                 this.reset_fields(value, current_item, input.attr('name'));
+                this.trigger("change:value", this, {
+                    oldValue: old_values,
+                    newValue: all_values,
+                });
             }
-            this.trigger("change:value", this, {
-                oldValue: old_values,
-                newValue: all_values,
-            });
         },
         toggle_recurrence_type: function(e, noreset)
         {
