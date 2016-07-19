@@ -25,7 +25,7 @@ If you want to pass a default, use the internal representation you'll find in th
 
 In case you work with defaults and want to dumb down the UI a bit, use ``{'no_add_rule': true}``.
 
-Further, as this is a serialized field, a value of `not set` will be represented in the database as ``'null'`` - this is then also what you have to search for when you need records with your field unset.
+Further, as this is a serialized field, a value of `not set` will be represented in the database as ``'null'`` if the value was set and unset afterwards, or a database ``null`` if the value was never set - this is then also what you have to search for when you need records with your field unset.
 
 Known issues / Roadmap
 ======================

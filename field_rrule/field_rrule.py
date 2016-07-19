@@ -46,7 +46,7 @@ class SerializableRRuleSet(rruleset, list):
         """convert self to a proper rruleset for iteration.
         If we use defaults on our field, this will be called too with
         and empty recordset as parameter. In this case, we need self"""
-        if isinstance(default_self, models.Model):
+        if isinstance(default_self, models.BaseModel):
             return self
         result = rruleset()
         result._rrule = self._rrule
@@ -54,9 +54,6 @@ class SerializableRRuleSet(rruleset, list):
         result._exrule = self._exrule
         result._exdate = self._exdate
         return result
-
-    def __exit__(self):
-        pass
 
     def __nonzero__(self):
         return bool(self._rrule)
