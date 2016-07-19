@@ -70,6 +70,12 @@ class SerializableRRuleSet(rruleset, list):
     def __getslice__(self, i, j):
         return rruleset.__getitem__(self(), slice(i, j))
 
+    def __ne__(self, o):
+        return not self.__eq__(o)
+
+    def __eq__(self, o):
+        return self.__repr__() == o.__repr__()
+
     def between(self, after, before, inc=False):
         return self().between(after, before, inc=inc)
 
