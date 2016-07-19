@@ -13,4 +13,4 @@ def post_load_hook():
             if 'package' in frame.f_locals:
                 frame.f_locals['package'].info['demo'] =\
                     frame.f_locals['package'].info['demo_deactivated']
-                continue
+                break
