@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
 <!-- Add Javascript -->
 <template id="assets_backend"
@@ -9,9 +8,8 @@
           priority="20">
     <xpath expr="." position="inside">
         <script type="text/javascript"
-                src="/base_export_manager/static/src/js/main.js"/>
+                src="/base_export_manager/static/src/js/base_export_manager.js"/>
     </xpath>
 </template>
 
-</data>
-</openerp>
+</odoo>

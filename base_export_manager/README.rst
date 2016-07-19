@@ -43,7 +43,7 @@ To use one of those profiles, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/8.0
+   :target: https://runbot.odoo-community.org/runbot/149/9.0
 
 Known issues / Roadmap
 ======================
@@ -69,6 +69,7 @@ Contributors
 * Javier Iniesta <javieria@antiun.com>
 * Rafael Blasco <rafabn@antiun.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------

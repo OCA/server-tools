@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Antonio Espinosa
+# Copyright 2015 Antiun Ingeniería S.L. - Antonio Espinosa
 # Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -127,17 +127,18 @@ class IrExportsLine(models.Model):
                     s[s.field_n(num, True)] = self._get_field_id(
                         model, field_name)
 
-    @api.one
+    @api.multi
     @api.constrains("field1_id", "field2_id", "field3_id")
     def _check_name(self):
-        if not self.label:
-            raise exceptions.ValidationError(
-                _("Field '%s' does not exist") % self.name)
-        lines = self.search([('export_id', '=', self.export_id.id),
-                             ('name', '=', self.name)])
-        if len(lines) > 1:
-            raise exceptions.ValidationError(
-                _("Field '%s' already exists") % self.name)
+        for rec_id in self:
+            if not rec_id.label:
+                raise exceptions.ValidationError(
+                    _("Field '%s' does not exist") % rec_id.name)
+            lines = self.search([('export_id', '=', rec_id.export_id.id),
+                                 ('name', '=', rec_id.name)])
+            if len(lines) > 1:
+                raise exceptions.ValidationError(
+                    _("Field '%s' already exists") % rec_id.name)
 
     @api.model
     def _install_base_export_manager(self):
