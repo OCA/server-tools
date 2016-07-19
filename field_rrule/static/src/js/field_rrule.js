@@ -19,7 +19,7 @@ openerp.field_rrule = function(instance)
             var result = this._super(jQuery.extend([], val));
             _.each(this.get('value'), function(rule)
             {
-                rule['__id'] = _.uniqueId();
+                rule.__id = _.uniqueId();
             });
             this.reinitialize();
             return result;
@@ -30,7 +30,7 @@ openerp.field_rrule = function(instance)
                 true, [], this._super.apply(this, arguments));
             _.each(result, function(rule)
             {
-                delete rule['__id'];
+                delete rule.__id;
             });
             return result;
         },
@@ -102,7 +102,7 @@ openerp.field_rrule = function(instance)
                     result += odoo_format[i];
                 }
             }
-            return result
+            return result;
         },
         frequency_changed: function(e, noreset)
         {
@@ -225,7 +225,7 @@ openerp.field_rrule = function(instance)
 
             for(var i = 0; i < value.length; i++)
             {
-                if(value[i]['__id'] == current_id)
+                if(value[i].__id == current_id)
                 {
                     value.splice(i, 1);
                     i--;
