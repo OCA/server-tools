@@ -19,6 +19,7 @@
                         <field name="show_technical" invisible="True"/>
                         <field name="owner_model"/>
                         <field name="owner_id"/>
+                        <field name="owner_ref_id"/>
                         <field name="sequence"/>
                     </group>
                     <group string="Name">
