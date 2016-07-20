@@ -35,7 +35,12 @@ def pre_init_hook_for_submodules(cr, model, field):
         # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
             extract_query = """
-                SELECT res_id, res_model, 'filestore', id
+                SELECT
+                    res_id,
+                    res_model,
+                    CONCAT_WS(',', res_model, res_id),
+                    'filestore',
+                    id
                 FROM ir_attachment
                 WHERE res_field='%(field)s' AND res_model='%(model)s'
             """ % {"model": model, "field": field}
@@ -45,6 +50,7 @@ def pre_init_hook_for_submodules(cr, model, field):
                 INSERT INTO base_multi_image_image (
                     owner_id,
                     owner_model,
+                    owner_ref_id,
                     storage,
                     %s
                 )
