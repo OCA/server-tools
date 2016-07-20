@@ -59,6 +59,24 @@ def pre_init_hook_for_submodules(cr, model, field):
         )
 
 
+def uninstall_hook_for_submodules(cr, registry, model):
+    """Remove multi-images for a given model.
+
+    :param openerp.sql_db.Cursor cr:
+        Database cursor.
+
+    :param openerp.modules.registry.RegistryManager registry:
+        Database registry, using v7 api.
+
+    :param str model:
+        Model technical name, like "res.partner". All multi-images for that
+        model will be deleted
+    """
+    Image = registry["base_multi_image.image"]
+    ids = Image.search(cr, SUPERUSER_ID, [("owner_model", "=", model)])
+    Image.unlink(cr, SUPERUSER_ID, ids)
+
+
 def table_has_column(cr, table, field):
     query = """
         SELECT %(field)s
