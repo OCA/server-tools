@@ -116,7 +116,7 @@ class Image(models.Model):
         return self._get_image_from_url_cached(self.url)
 
     @api.model
-    @tools.ormcache(skiparg=1)
+    @tools.ormcache("url")
     def _get_image_from_url_cached(self, url):
         """Allow to download an image and cache it by its URL."""
         if url:
