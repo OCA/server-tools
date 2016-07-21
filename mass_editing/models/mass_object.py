@@ -123,14 +123,13 @@ class IrModuleModule(models.Model):
     @api.multi
     def module_uninstall(self):
         # search window actions of mass editing  and delete it
+        values_obj = self.env['ir.values']
         for record in self:
             if record.name == 'mass_editing':
-                values_obj = self.env['ir.values']
                 actions = self.env['ir.actions.act_window'].\
                     search([('res_model', '=', 'mass.editing.wizard')])
                 for action in actions:
-                    domain = [('value', '=',
-                                'ir.actions.act_window,%s' % action.id)]
-                    values_obj.search(domain).unlink()
+                    value = 'ir.actions.act_window,%s' % action.id
+                    values_obj.search([('value', '=', value)]).unlink()
                 actions.unlink()
         return super(IrModuleModule, self).module_uninstall()
