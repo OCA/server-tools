@@ -129,8 +129,8 @@ class IrModuleModule(models.Model):
                 actions = self.env['ir.actions.act_window'].\
                     search([('res_model', '=', 'mass.editing.wizard')])
                 for action in actions:
-                    values_obj.\
-                        search([('value', '=',
-                                 'ir.actions.act_window,%s' % action.id)]).unlink()
+                    domain = [('value', '=',
+                                'ir.actions.act_window,%s' % action.id)]
+                    values_obj.search(domain).unlink()
                 actions.unlink()
         return super(IrModuleModule, self).module_uninstall()
