@@ -24,7 +24,9 @@ class Image(models.Model):
 
     owner_id = fields.Integer(
         "Owner",
-        required=True)
+        required=True,
+        ondelete="cascade",  # This Integer is really a split Many2one
+    )
     owner_model = fields.Char(
         required=True)
     owner_ref_id = fields.Reference(
