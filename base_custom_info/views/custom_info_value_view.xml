@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+<record id="base_custom_info_value_tree" model="ir.ui.view">
+    <field name="name">base.custom.info.value.tree</field>
+    <field name="model">custom.info.value</field>
+    <field name="arch" type="xml">
+        <tree string="Custom Property Values">
+            <field name="property_id"/>
+            <field name="value"/>
+            <field name="model_id"/>
+            <field name="res_id"/>
+        </tree>
+    </field>
+</record>
+
+<record id="custom_info_value_action" model="ir.actions.act_window">
+    <field name="name">Values</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">custom.info.value</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_type">form</field>
+</record>
+
+</openerp>
