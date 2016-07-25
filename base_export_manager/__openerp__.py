@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': "Manages model export profiles",
+    'name': "Manage model export profiles",
     'category': 'Personalization',
     'version': '8.0.2.0.0',
     'depends': [
@@ -17,7 +17,9 @@
     'qweb': [
         "static/src/xml/base.xml",
     ],
-    'author': 'Antiun Ingeniería S.L.,Odoo Community Association (OCA)',
+    'author': 'Antiun Ingeniería S.L., '
+              'Tecnativa, '
+              'Odoo Community Association (OCA)',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
     'installable': True,
