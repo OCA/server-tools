@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Antonio Espinosa
-# © 2015 Antiun Ingeniería S.L. - Jairo Llopis
+# Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, exceptions
@@ -12,7 +12,7 @@ class IrExportsLine(models.Model):
     _order = 'sequence,id'
 
     name = fields.Char(
-        required=True,
+        required=False,
         readonly=True,
         store=True,
         compute="_compute_name",
@@ -31,8 +31,10 @@ class IrExportsLine(models.Model):
         "Third field",
         domain="[('model_id', '=', model3_id)]")
     model1_id = fields.Many2one(
-        string="First model",
+        "ir.model",
+        "First model",
         readonly=True,
+        default=lambda self: self._default_model1_id(),
         related="export_id.model_id")
     model2_id = fields.Many2one(
         "ir.model",
@@ -45,6 +47,11 @@ class IrExportsLine(models.Model):
     sequence = fields.Integer()
     label = fields.Char(
         compute="_compute_label")
+
+    @api.model
+    def _default_model1_id(self):
+        """Default model depending on context."""
+        return self.env.context.get("default_model1_id", False)
 
     @api.multi
     @api.depends("field1_id", "field2_id", "field3_id")
