@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Jairo Llopis
+# Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from openerp import _, api, fields, models
+from openerp.exceptions import ValidationError
 
 
 class IrExports(models.Model):
@@ -10,13 +11,12 @@ class IrExports(models.Model):
 
     name = fields.Char(required=True)
     resource = fields.Char(
-        required=True,
+        required=False,
         readonly=True,
         help="Model's technical name.")
     model_id = fields.Many2one(
         "ir.model",
         "Model",
-        required=True,
         store=True,
         domain=[("osv_memory", "=", False)],
         compute="_compute_model_id",
@@ -55,12 +55,13 @@ class IrExports(models.Model):
 
     @api.model
     def create(self, vals):
-        """Add new required value when missing.
+        """Check required values when creating the record.
 
-        This is required because this model is created from a QWeb wizard view
-        that does not populate ``model_id``, and it is easier to hack here than
-        in the view.
+        Odoo's export dialog populates ``resource``, while this module's new
+        form populates ``model_id``. At least one of them is required to
+        trigger the methods that fill up the other, so this should fail if
+        one is missing.
         """
-        vals.setdefault("model_id",
-                        self._get_model_id(vals.get("resource")).id)
+        if not any(f in vals for f in {"model_id", "resource"}):
+            raise ValidationError(_("You must supply a model or resource."))
         return super(IrExports, self).create(vals)
