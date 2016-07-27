@@ -2,17 +2,44 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============================
-Manages model export profiles
-=============================
+============================
+Manage model export profiles
+============================
 
-This module allows an admin to manage export profiles (ir.exports) that Odoo
-shows nowhere.
+This module allows an admin to manage export profiles (``ir.exports``) that
+Odoo stores internally but shows nowhere.
 
 Usage
 =====
 
-Manage export profiles at Settings > Technical > User Interface > Export profiles
+You can create the export profiles as you are used to:
+
+* Go to any list view.
+* Check some records.
+* Press *More > Export*.
+* Use the wizard to choose the columns to export.
+* Press *Save fields list*.
+* Give it a name.
+* Press *OK*.
+
+To manage export profiles, you need to:
+
+* Go to *Settings > Technical > User Interface > Export Profiles*.
+* Create a new one.
+* Choose a name.
+* Choose a model (table in the database).
+* Choose the fields to export.
+  * If you choose a related field, you can choose also up to 3 levels of
+    subfields.
+  * You can drag & drop to reorder the fields.
+
+To use one of those profiles, you need to:
+
+* Go to any list view.
+* Check some records.
+* Press *More > Export*.
+* Choose your saved export from *Saved exports*.
+* Press *Export to file*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -21,18 +48,15 @@ Manage export profiles at Settings > Technical > User Interface > Export profile
 Known issues / Roadmap
 ======================
 
-* Module must enable the functionality for creating export profiles from that view so:
-
-  * Field resource must show all models available to export
-  * Field "Field name" must show fields from that model
+* Translated labels are not used in final exported file.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20base_export_manager%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 
 Credits
@@ -43,6 +67,8 @@ Contributors
 
 * Antonio Espinosa <antonioea@antiun.com>
 * Javier Iniesta <javieria@antiun.com>
+* Rafael Blasco <rafabn@antiun.com>
+* Jairo Llopis <yajo.sk8@gmail.com>
 
 Maintainer
 ----------
@@ -57,4 +83,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

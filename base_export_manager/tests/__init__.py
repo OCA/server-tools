@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# License AGPL-3: Antiun Ingenieria S.L. - Javier Iniesta
-# See README.rst file on addon root folder for more details
+# © 2015 Antiun Ingeniería S.L. - Javier Iniesta
+# © 2015 Antiun Ingeniería S.L. - Jairo Llopis
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from . import test_ir_exports_line
+from . import test_ir_exports, test_ir_exports_line

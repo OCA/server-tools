@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <openerp>
 <data>
 
@@ -20,6 +22,7 @@
     <field name="arch" type="xml">
         <tree string="Export Profiles">
             <field name="name"/>
+            <field name="model_id"/>
             <field name="resource"/>
         </tree>
     </field>
@@ -32,14 +35,45 @@
         <form string="Export Profile">
             <group>
                 <field name="name"/>
+                <field name="model_id"
+                       options="{'no_create': True}"/>
                 <field name="resource"/>
             </group>
             <group>
-                <field name="export_fields" nolabel="1">
+                <field name="export_fields" nolabel="1"
+                       context="{'default_model1_id': model_id}">
                     <tree editable="bottom">
+                        <field name="sequence" widget="handle"/>
+                        <field name="model1_id" invisible="True"/>
+                        <field name="model2_id" invisible="True"/>
+                        <field name="model3_id" invisible="True"/>
                         <field name="label"/>
                         <field name="name"/>
-                        <field name="sequence" invisible="1"/>
+                        <field
+                            name="field1_id"
+                            required="True"
+                            options="{
+                                'no_open': True,
+                                'no_create': True,
+                            }"/>
+                        <field
+                            name="field2_id"
+                            attrs="{
+                                'readonly': [('model2_id', '=', False)],
+                            }"
+                            options="{
+                                'no_open': True,
+                                'no_create': True,
+                            }"/>
+                        <field
+                            name="field3_id"
+                            attrs="{
+                                'readonly': [('model3_id', '=', False)],
+                            }"
+                            options="{
+                                'no_open': True,
+                                'no_create': True,
+                            }"/>
                     </tree>
                 </field>
             </group>

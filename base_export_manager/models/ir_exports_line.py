@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*-
-# Python source code encoding : https://www.python.org/dev/peps/pep-0263/
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright :
-#        (c) 2015 Antiun Ingenieria, SL (Madrid, Spain, http://www.antiun.com)
-#                 Antonio Espinosa <antonioea@antiun.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Antiun Ingeniería S.L. - Antonio Espinosa
+# Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, exceptions
 from openerp.tools.translate import _
@@ -30,28 +11,126 @@ class IrExportsLine(models.Model):
     _inherit = 'ir.exports.line'
     _order = 'sequence,id'
 
+    name = fields.Char(
+        required=False,
+        readonly=True,
+        store=True,
+        compute="_compute_name",
+        inverse="_inverse_name",
+        help="Field's technical name.")
+    field1_id = fields.Many2one(
+        "ir.model.fields",
+        "First field",
+        domain="[('model_id', '=', model1_id)]")
+    field2_id = fields.Many2one(
+        "ir.model.fields",
+        "Second field",
+        domain="[('model_id', '=', model2_id)]")
+    field3_id = fields.Many2one(
+        "ir.model.fields",
+        "Third field",
+        domain="[('model_id', '=', model3_id)]")
+    model1_id = fields.Many2one(
+        "ir.model",
+        "First model",
+        readonly=True,
+        default=lambda self: self._default_model1_id(),
+        related="export_id.model_id")
+    model2_id = fields.Many2one(
+        "ir.model",
+        "Second model",
+        compute="_compute_model2_id")
+    model3_id = fields.Many2one(
+        "ir.model",
+        "Third model",
+        compute="_compute_model3_id")
     sequence = fields.Integer()
-    label = fields.Char(string='Label', compute="_get_label")
+    label = fields.Char(
+        compute="_compute_label")
 
-    def _get_label_string(self):
-        self.ensure_one()
-        model_name = self.export_id.resource
-        label = ''
-        if not self.name:
-            return False
-        for field in self.name.split('/'):
-            model = self.env['ir.model'].search([('model', '=', model_name)])
-            field_obj = model.field_id.filtered(lambda r: r.name == field)
-            if not field_obj:
-                return False
-            label = label + _(field_obj.field_description) + '/'
-            model_name = field_obj.relation
-        return label.rstrip('/') + ' (' + self.name + ')'
+    @api.model
+    def _default_model1_id(self):
+        """Default model depending on context."""
+        return self.env.context.get("default_model1_id", False)
+
+    @api.multi
+    @api.depends("field1_id", "field2_id", "field3_id")
+    def _compute_name(self):
+        """Get the name from the selected fields."""
+        for s in self:
+            s.name = "/".join((s.field_n(num).name
+                               for num in range(1, 4)
+                               if s.field_n(num)))
+
+    @api.multi
+    @api.depends("field1_id")
+    def _compute_model2_id(self):
+        """Get the related model for the second field."""
+        ir_model = self.env["ir.model"]
+        for s in self:
+            s.model2_id = (
+                s.field1_id.ttype and
+                "2" in s.field1_id.ttype and
+                ir_model.search([("model", "=", s.field1_id.relation)]))
+
+    @api.multi
+    @api.depends("field2_id")
+    def _compute_model3_id(self):
+        """Get the related model for the third field."""
+        ir_model = self.env["ir.model"]
+        for s in self:
+            s.model3_id = (
+                s.field2_id.ttype and
+                "2" in s.field2_id.ttype and
+                ir_model.search([("model", "=", s.field2_id.relation)]))
+
+    @api.multi
+    @api.depends('name')
+    def _compute_label(self):
+        """Column label in a user-friendly format and language."""
+        translations = self.env["ir.translation"]
+        for s in self:
+            parts = list()
+            for num in range(1, 4):
+                field = s.field_n(num)
+                if not field:
+                    break
+
+                # Translate label if possible
+                parts.append(
+                    translations.search([
+                        ("type", "=", "field"),
+                        ("lang", "=", self.env.context.get("lang")),
+                        ("name", "=", "%s,%s" % (s.model_n(num).model,
+                                                 field.name)),
+                    ]).value or
+                    field.display_name)
+            s.label = ("%s (%s)" % ("/".join(parts), s.name)
+                       if parts and s.name else False)
+
+    @api.multi
+    def _inverse_name(self):
+        """Get the fields from the name."""
+        for s in self:
+            # Field names can have up to only 3 indentation levels
+            parts = s.name.split("/", 2)
+
+            for num in range(1, 4):
+                try:
+                    # Fail in excessive subfield level
+                    field_name = parts[num - 1]
+                except IndexError:
+                    # Remove subfield on failure
+                    s[s.field_n(num, True)] = False
+                else:
+                    model = s.model_n(num)
+                    s[s.field_n(num, True)] = self._get_field_id(
+                        model, field_name)
 
     @api.one
-    @api.constrains('name')
+    @api.constrains("field1_id", "field2_id", "field3_id")
     def _check_name(self):
-        if not self._get_label_string():
+        if not self.label:
             raise exceptions.ValidationError(
                 _("Field '%s' does not exist") % self.name)
         lines = self.search([('export_id', '=', self.export_id.id),
@@ -60,11 +139,49 @@ class IrExportsLine(models.Model):
             raise exceptions.ValidationError(
                 _("Field '%s' already exists") % self.name)
 
-    @api.one
-    @api.depends('name')
-    def _get_label(self):
-        self.label = self._get_label_string()
+    @api.model
+    def _install_base_export_manager(self):
+        """Populate ``field*_id`` fields."""
+        self.search([("export_id", "=", False)]).unlink()
+        self.search([("field1_id", "=", False),
+                     ("name", "!=", False)])._inverse_name()
 
-    @api.onchange('name')
-    def _onchange_name(self):
-        self.label = self._get_label_string()
+    @api.model
+    def _get_field_id(self, model, name):
+        """Get a field object from its model and name.
+
+        :param int model:
+            ``ir.model`` object that contains the field.
+
+        :param str name:
+            Technical name of the field, like ``child_ids``.
+        """
+        return self.env["ir.model.fields"].search(
+            [("name", "=", name),
+             ("model_id", "=", model.id)])
+
+    @api.multi
+    def field_n(self, n, only_name=False):
+        """Helper to choose the field according to its indentation level.
+
+        :param int n:
+            Number of the indentation level to choose the field, from 1 to 3.
+
+        :param bool only_name:
+            Return only the field name, or return its value.
+        """
+        name = "field%d_id" % n
+        return name if only_name else self[name]
+
+    @api.multi
+    def model_n(self, n, only_name=False):
+        """Helper to choose the model according to its indentation level.
+
+        :param int n:
+            Number of the indentation level to choose the model, from 1 to 3.
+
+        :param bool only_name:
+            Return only the model name, or return its value.
+        """
+        name = "model%d_id" % n
+        return name if only_name else self[name]
