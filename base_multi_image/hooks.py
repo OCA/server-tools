@@ -35,7 +35,12 @@ def pre_init_hook_for_submodules(cr, model, field):
         # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
             extract_query = """
-                SELECT res_id, res_model, 'filestore', id
+                SELECT
+                    res_id,
+                    res_model,
+                    CONCAT_WS(',', res_model, res_id),
+                    'filestore',
+                    id
                 FROM ir_attachment
                 WHERE res_field='%(field)s' AND res_model='%(model)s'
             """ % {"model": model, "field": field}
@@ -45,12 +50,31 @@ def pre_init_hook_for_submodules(cr, model, field):
                 INSERT INTO base_multi_image_image (
                     owner_id,
                     owner_model,
+                    owner_ref_id,
                     storage,
                     %s
                 )
                 %s
             """ % (image_field, extract_query)
         )
+
+
+def uninstall_hook_for_submodules(cr, registry, model):
+    """Remove multi-images for a given model.
+
+    :param openerp.sql_db.Cursor cr:
+        Database cursor.
+
+    :param openerp.modules.registry.RegistryManager registry:
+        Database registry, using v7 api.
+
+    :param str model:
+        Model technical name, like "res.partner". All multi-images for that
+        model will be deleted
+    """
+    Image = registry["base_multi_image.image"]
+    ids = Image.search(cr, SUPERUSER_ID, [("owner_model", "=", model)])
+    Image.unlink(cr, SUPERUSER_ID, ids)
 
 
 def table_has_column(cr, table, field):

@@ -24,9 +24,17 @@ class Image(models.Model):
 
     owner_id = fields.Integer(
         "Owner",
-        required=True)
+        required=True,
+        ondelete="cascade",  # This Integer is really a split Many2one
+    )
     owner_model = fields.Char(
         required=True)
+    owner_ref_id = fields.Reference(
+        selection="_selection_owner_ref_id",
+        string="Referenced Owner",
+        compute="_compute_owner_ref_id",
+        store=True,
+    )
     storage = fields.Selection(
         [('url', 'URL'), ('file', 'OS file'), ('db', 'Database'),
          ('filestore', 'Filestore')],
@@ -74,6 +82,19 @@ class Image(models.Model):
     show_technical = fields.Boolean(
         compute="_show_technical")
 
+    @api.model
+    @tools.ormcache("self")
+    def _selection_owner_ref_id(self):
+        """Allow any model; after all, this field is readonly."""
+        return [(r.model, r.name) for r in self.env["ir.model"].search([])]
+
+    @api.multi
+    @api.depends("owner_model", "owner_id")
+    def _compute_owner_ref_id(self):
+        """Get a reference field based on the split model and id fields."""
+        for s in self:
+            s.owner_ref_id = "{0.owner_model},{0.owner_id}".format(s)
+
     @api.multi
     @api.depends('storage', 'path', 'file_db_store', 'url')
     def _get_image(self):
@@ -116,7 +137,7 @@ class Image(models.Model):
         return self._get_image_from_url_cached(self.url)
 
     @api.model
-    @tools.ormcache(skiparg=1)
+    @tools.ormcache("url")
     def _get_image_from_url_cached(self, url):
         """Allow to download an image and cache it by its URL."""
         if url:
