@@ -61,8 +61,11 @@ To develop a module based on this one:
   :meth:`~.hooks.uninstall_hook_for_submodules`, like the
   ``product_multi_image`` module does::
 
-    from openerp.addons.base_multi_image.hooks import \
-        pre_init_hook_for_submodules
+    try:
+        from openerp.addons.base_multi_image.hooks import \
+            pre_init_hook_for_submodules
+    except:
+        pass
 
 
     def pre_init_hook(cr):
