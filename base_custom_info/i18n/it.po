@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:15+0000\n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-31 08:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +131,7 @@ msgstr "Valore dell'informazione personalizzata"
 #: field:custom.info.template,display_name:0
 #: field:custom.info.value,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: base_custom_info
 #: field:custom.info,id:0 field:custom.info.model_link,id:0
@@ -156,7 +157,7 @@ msgstr ""
 #: field:custom.info.template,__last_update:0
 #: field:custom.info.value,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_uid:0

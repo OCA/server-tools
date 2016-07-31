@@ -3,14 +3,25 @@
 # * base_external_dbsource
 # 
 # Translators:
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:36+0000\n"
-"PO-Revision-Date: 2016-03-13 09:38+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-31 08:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,6 +87,11 @@ msgid "Datasource name"
 msgstr ""
 
 #. module: base_external_dbsource
+#: field:base.external.dbsource,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
@@ -118,6 +134,11 @@ msgid ""
 "that the required components were                                      "
 "detected."
 msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0

@@ -3,13 +3,21 @@
 # * mass_editing
 # 
 # Translators:
+# Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 15:37+0000\n"
-"PO-Revision-Date: 2016-03-13 09:43+0000\n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-31 08:35+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +53,11 @@ msgid "Deletion of the action record failed."
 msgstr ""
 
 #. module: mass_editing
+#: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
@@ -62,6 +75,11 @@ msgstr "Campi"
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing
+#: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0
@@ -94,7 +112,7 @@ msgstr "Modello"
 #. module: mass_editing
 #: field:mass.object,model_ids:0
 msgid "Model List"
-msgstr ""
+msgstr "Lista Modello"
 
 #. module: mass_editing
 #: field:mass.object,name:0
