@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 10:34+0000\n"
+"POT-Creation-Date: 2016-07-30 00:58+0000\n"
 "PO-Revision-Date: 2016-06-14 11:06+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
@@ -215,8 +215,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1582
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1579
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1628
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1625
 msgid "Type"
 msgstr "Tip"
 
