@@ -6,11 +6,26 @@
         <field name="model">ir.attachment.metadata</field>
         <field name="inherit_id" ref="base.view_attachment_form" />
         <field name="arch" type="xml">
+            <xpath expr="/form/*" position="before">
+                <header>
+                    <button name="run" states="pending,failed"
+                            string="Run" type="object" class="oe_highlight"/>
+                    <button name="set_done" states="pending,failed"
+                            string="Set to Done" type="object"/>
+                </header>
+            </xpath>
             <field name="url" position="after">
+                <field name="sync_date"/>
+                <field name="state"/>
                 <field name="internal_hash"/>
                 <field name="external_hash"/>
                 <field name="file_type"/>
             </field>
+            <group name="description_group">
+                <group name="state_message" string="Error" colspan="4">
+                    <field name="state_message" nolabel="1"/>
+                </group>
+            </group>
         </field>
     </record>
 
@@ -21,6 +36,9 @@
                 <field name="name"/>
                 <field name="datas_fname"/>
                 <field name="file_type"/>
+                <field name="type"/>
+                <field name="create_date"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -45,11 +63,15 @@
                 help="Filter on my documents"/>
             <field name="create_uid"/>
             <field name="type"/>
+            <filter string="Pending" domain="[('state', '=', 'pending')]"/>
+            <filter string="Failed" domain="[('state', '=', 'failed')]"/>
+            <filter string="Done" domain="[('state', '=', 'done')]"/>
             <group expand="0" string="Group By">
                 <filter string="Owner" icon="terp-personal" domain="[]" context="{'group_by':'create_uid'}"/>
                 <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}" groups="base.group_no_one"/>
                 <filter string="Company" icon="terp-gtk-home" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
-                <filter string="Creation Month" icon="terp-go-month" domain="[]" context="{'group_by':'create_date'}"/>
+                <filter string="Creation Month" name="creation_month" icon="terp-go-month" domain="[]" context="{'group_by':'create_date'}"/>
+                <filter string="State" domain="[]" context="{'group_by': 'state'}"/>
                 <filter string="File type" domain="[]" context="{'group_by': 'file_type'}"/>
             </group>
         </search>
