@@ -18,7 +18,7 @@ class IrExports(models.Model):
         "ir.model",
         "Model",
         store=True,
-        domain=[("osv_memory", "=", False)],
+        domain=[("transient", "=", False)],
         compute="_compute_model_id",
         inverse="_inverse_model_id",
         help="Database model to export.")
