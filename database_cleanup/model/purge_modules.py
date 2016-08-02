@@ -106,13 +106,18 @@ class CleanupPurgeWizardModule(orm.TransientModel):
 
     def find(self, cr, uid, context=None):
         module_pool = self.pool['ir.module.module']
+        purge_line_pool = self.pool['cleanup.purge.line.module']
         module_ids = module_pool.search(cr, uid, [], context=context)
         res = []
         for module in module_pool.browse(cr, uid, module_ids, context=context):
             if get_module_path(module.name):
                 continue
             if module.state == 'uninstalled':
-                module_pool.unlink(cr, uid, module.id, context=context)
+                purge_line_pool.purge(
+                    cr, uid, [
+                        purge_line_pool.create(
+                            cr, uid, {'name': module.name}, context=context),
+                    ], context=context)
                 continue
             res.append((0, 0, {'name': module.name}))
 
