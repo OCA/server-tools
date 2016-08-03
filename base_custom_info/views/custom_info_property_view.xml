@@ -1,36 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
 
-<record id="base_custom_info_template_line_tree" model="ir.ui.view">
-    <field name="name">base.custom.info.property.tree</field>
+<record id="custom_info_property_tree" model="ir.ui.view">
+    <field name="name">Custom Info Property Tree</field>
     <field name="model">custom.info.property</field>
     <field name="arch" type="xml">
-        <tree string="Custom Info Templates">
+        <tree string="Custom Info Properties">
+            <field name="sequence" widget="handle"/>
             <field name="name"/>
-            <field name="template_id"/>
+            <field name="template_id" invisible="context.get('embed')"/>
+            <field name="field_type"/>
+            <field name="category_id"/>
+            <field name="required"/>
+            <field name="default_value"/>
         </tree>
     </field>
 </record>
 
-<record id="base_custom_info_template_line_form" model="ir.ui.view">
-    <field name="name">base.custom.info.property.form</field>
+<record id="custom_info_property_form" model="ir.ui.view">
+    <field name="name">Custom Info Property Form</field>
     <field name="model">custom.info.property</field>
     <field name="arch" type="xml">
         <form string="Custom Info Template Properties">
             <sheet>
                 <group>
                     <field name="name"/>
-                    <field name="template_id"/>
+                    <field name="template_id"
+                           invisible="context.get('embed')"/>
+                    <field name="field_type"/>
+                    <field name="category_id"/>
+                    <field name="required"/>
+                    <field name="default_value"/>
+                    <field name="minimum"/>
+                    <field name="maximum"/>
                 </group>
                 <group>
-                    <field name="info_value_ids"/>
+                    <field name="info_value_ids"
+                           invisible="context.get('embed')"/>
+                    <field
+                        name="option_ids"
+                        attrs="{'invisible': [('field_type', '!=', 'id')]}"/>
                 </group>
             </sheet>
         </form>
     </field>
 </record>
 
-<record id="custom_info_template_line_action" model="ir.actions.act_window">
+<record id="custom_info_property_search" model="ir.ui.view">
+    <field name="name">Custom Info Property Search</field>
+    <field name="model">custom.info.property</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="template_id"/>
+            <field name="field_type"/>
+            <field name="category_id"/>
+            <field name="required"/>
+            <field name="default_value"/>
+            <group expand="0" string="Group By">
+                <filter
+                    string="Template"
+                    context="{'group_by': 'template_id'}"/>
+                <filter
+                    string="Category"
+                    context="{'group_by': 'category_id'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="custom_info_property_action" model="ir.actions.act_window">
     <field name="name">Properties</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">custom.info.property</field>
@@ -38,4 +79,4 @@
     <field name="view_type">form</field>
 </record>
 
-</openerp>
+</odoo>

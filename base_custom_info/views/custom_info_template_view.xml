@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
 
 <record id="base_custom_info_template_tree" model="ir.ui.view">
-    <field name="name">base.custom.info.template.tree</field>
+    <field name="name">Custom Info Template Tree</field>
     <field name="model">custom.info.template</field>
     <field name="arch" type="xml">
         <tree string="Custom Info Templates">
             <field name="name"/>
             <field name="model"/>
             <field name="model_id"/>
-            <field name="info_ids"/>
+            <field name="property_ids"/>
         </tree>
     </field>
 </record>
 
 <record id="base_custom_info_template_form" model="ir.ui.view">
-    <field name="name">base.custom.info.template.form</field>
+    <field name="name">Custom Info Template Form</field>
     <field name="model">custom.info.template</field>
     <field name="arch" type="xml">
         <form string="Custom Info Template">
@@ -26,14 +28,27 @@
                     <field name="model_id"/>
                 </group>
                 <group>
-                    <field name="info_ids">
-                        <tree string="Info Lines" editable="bottom">
-                            <field name="name"/>
-                        </tree>
-                    </field>
+                    <field name="property_ids"/>
                 </group>
             </sheet>
         </form>
+    </field>
+</record>
+
+<record id="base_custom_info_template_search" model="ir.ui.view">
+    <field name="name">Custom Info Template Search</field>
+    <field name="model">custom.info.template</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="model_id"/>
+            <field name="property_ids"/>
+            <group expand="0" string="Group By">
+                <filter
+                    string="Model"
+                    context="{'group_by': 'model_id'}"/>
+            </group>
+        </search>
     </field>
 </record>
 
@@ -49,10 +64,9 @@
       <p class="oe_view_nocontent_create">
         Click to define a new custom info template.
       </p><p>
-        You must define a custom info template for each
-        product properties group.
+        You must define a custom info template for each properties group.
       </p>
     </field>
 </record>
 
-</openerp>
+</odoo>

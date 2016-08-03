@@ -1,0 +1,6 @@
+id,name,template_id:id,field_type,default_value,required
+prop_teacher,Name of his/her teacher,tpl_smart,str,,
+prop_haters,Amount of people that hates him/her for being so smart,tpl_smart,int,,
+prop_avg_note,Average note on all subjects,tpl_smart,float,,True
+prop_smartypants,Does he/she believe he/she is the smartest person on earth?,tpl_smart,bool,,
+prop_weaknesses,What weaknesses does he/she have?,tpl_smart,id,Huge glasses,
