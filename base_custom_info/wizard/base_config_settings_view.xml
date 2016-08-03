@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+<record id="view_general_configuration" model="ir.ui.view">
+    <field name="name">Allow to enable partners custom info</field>
+    <field name="model">base.config.settings</field>
+    <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+    <field name="arch" type="xml">
+        <xpath expr="//group[@name='authentication']" position="after">
+            <group name="custom_info">
+                <group>
+                    <label for="id" string="Custom Information"/>
+                    <div>
+                        <div>
+                            <field name="group_custom_info_partner"
+                                   class="oe_inline"/>
+                            <label for="group_custom_info_partner"/>
+                        </div>
+                        <div>
+                            <field name="group_custom_info_manager"
+                                   class="oe_inline"/>
+                            <label for="group_custom_info_manager"/>
+                        </div>
+                    </div>
+                </group>
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
