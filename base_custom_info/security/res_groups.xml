@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+<record id="category" model="ir.module.category">
+    <field name="name">Custom Information</field>
+</record>
+
+<record id="group_partner" model="res.groups">
+    <field name="name">Display in partner form</field>
+    <field name="category_id" ref="category"/>
+    <field name="comment">Will be able to edit custom information from partner's form.</field>
+</record>
+
+<record id="group_basic" model="res.groups">
+    <field name="name">Basic management</field>
+    <field name="category_id" ref="category"/>
+    <field name="comment">The user will be able to manage basic custom information.</field>
+</record>
+
+<record id="group_advanced" model="res.groups">
+    <field name="name">Advanced management</field>
+    <field name="category_id" ref="category"/>
+    <field name="comment">The user will be able to manage advanced custom information.</field>
+    <field name="implied_ids" eval="[(4, ref('group_basic'))]"/>
+    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+</record>
+
+</odoo>
