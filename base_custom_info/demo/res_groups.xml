@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+<!-- Enable custom info for partners in demo instances by default -->
+<record id="base.group_user" model="res.groups">
+    <field name="implied_ids" eval="[(4, ref('group_partner'))]"/>
+</record>
+
+</odoo>
