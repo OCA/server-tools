@@ -4,7 +4,7 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning as UserError
-from openerp import sql_db
+import openerp
 import hashlib
 from base64 import b64decode
 import logging
@@ -15,6 +15,7 @@ _logger = logging.getLogger(__name__)
 class IrAttachmentMetadata(models.Model):
     _name = 'ir.attachment.metadata'
     _inherits = {'ir.attachment': 'attachment_id'}
+    _inherit = ['mail.thread']
 
     internal_hash = fields.Char(
         store=True, compute='_compute_hash',
@@ -68,26 +69,25 @@ class IrAttachmentMetadata(models.Model):
         Run the process for each attachment metadata
         """
         for attachment in self:
-            new_cr = sql_db.db_connect(self.env.cr.dbname).cursor()
             with api.Environment.manage():
-                attachment.env = api.Environment(new_cr, self.env.uid,
-                                                 self.env.context)
-                try:
-                    attachment._run()
-                except Exception, e:
-                    attachment.env.cr.rollback()
-                    _logger.exception(e)
-                    attachment.write(
-                        {
-                            'state': 'failed',
-                            'state_message': unicode(e)
-                        })
-                    attachment.env.cr.commit()
-                else:
-                    attachment.write({'state': 'done'})
-                    attachment.env.cr.commit()
-                finally:
-                    attachment.env.cr.close()
+                with openerp.registry(self.env.cr.dbname).cursor() as new_cr:
+                    new_env = api.Environment(
+                        new_cr, self.env.uid, self.env.context)
+                    attach = attachment.with_env(new_env)
+                    try:
+                        attach._run()
+                    except Exception, e:
+                        attach.env.cr.rollback()
+                        _logger.exception(e)
+                        attach.write(
+                            {
+                                'state': 'failed',
+                                'state_message': e,
+                            })
+                        attach.env.cr.commit()
+                    else:
+                        attach.write({'state': 'done'})
+                        attach.env.cr.commit()
         return True
 
     @api.multi

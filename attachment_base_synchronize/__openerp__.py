@@ -11,6 +11,7 @@
     'category': 'Generic Modules',
     'depends': [
         'base',
+        'mail',
     ],
     'data': [
         'views/attachment_view.xml',
