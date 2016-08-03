@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
 
-<!--Parent Custom Info in Settings-->
+<!--Base menus -->
 <menuitem id="menu_base_custom_info" name="Custom Info"
-          parent="base.menu_administration" sequence="45"/>
+          groups="base_custom_info.group_basic"/>
 
-<!--base.custom.info.template-->
+<menuitem
+    id="menu_basic"
+    name="Basic"
+    parent="menu_base_custom_info"/>
+
+<menuitem
+    id="menu_advanced"
+    name="Advanced"
+    groups="base_custom_info.group_basic"
+    parent="menu_base_custom_info"/>
+
 <menuitem id="menu_base_custom_info_template"
           action="custom_info_template_action"
-          parent="menu_base_custom_info" sequence="5"/>
+          parent="menu_basic" sequence="10"/>
 
-<!--base.custom.info.template.line-->
-<menuitem id="menu_base_custom_info_template_line"
-          action="custom_info_template_line_action"
-          parent="menu_base_custom_info" sequence="10"/>
-
-<!--base.custom.info.value-->
 <menuitem id="menu_base_custom_info_value"
           action="custom_info_value_action"
-          parent="menu_base_custom_info" sequence="15"/>
+          parent="menu_basic" sequence="20"/>
 
-</openerp>
+<menuitem id="menu_category"
+          action="custom_info_category_action"
+          parent="menu_advanced" sequence="10"/>
+
+<menuitem id="menu_property"
+          action="custom_info_property_action"
+          parent="menu_advanced" sequence="20"/>
+
+<menuitem id="menu_option"
+          action="custom_info_option_action"
+          parent="menu_advanced" sequence="30"/>
+
+</odoo>
