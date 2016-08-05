@@ -8,20 +8,23 @@ Secure Uninstall
 ================
 
 Ask Master Password ('admin_passwd' key from config file)
-before to proceed to module uninstallation
+before proceeding to module uninstallation
 
 
 Configuration
 =============
 
-Check 'admin_passwd' is set in Odoo configuration file
+Check that 'admin_passwd' is set in Odoo configuration file
 
 
 
 Usage
 =====
 
-Try to uninstall a module
+#. Go to Settings > Local modules.
+#. Click on one module.
+#. Click on Uninstall button.
+#. You will need to enter admin password before proceeding.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
