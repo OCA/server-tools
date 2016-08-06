@@ -17,6 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[account_enterprise_remove](account_enterprise_remove/) | 9.0.1.0.0 | Account - Remove Enterprise Features
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 | Add custom field in models
@@ -24,6 +25,7 @@ addon | version | summary
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
 [base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
+[base_setup_enterprise_remove](base_setup_enterprise_remove/) | 9.0.1.0.0 | Base Setup - Remove Enterprise Features
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
@@ -35,11 +37,17 @@ addon | version | summary
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
+[mass_mailing_enterprise_remove](mass_mailing_enterprise_remove/) | 9.0.1.0.0 | Mass Mailing - Remove Enterprise Features
+[project_enterprise_remove](project_enterprise_remove/) | 9.0.1.0.0 | Project - Remove Enterprise Features
+[sale_enterprise_remove](sale_enterprise_remove/) | 9.0.1.0.0 | Sale - Remove Enterprise Features
+[scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.1.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
+[stock_enterprise_remove](stock_enterprise_remove/) | 9.0.1.0.0 | Stock - Remove Enterprise Features
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
+[website_sale_enterprise_remove](website_sale_enterprise_remove/) | 9.0.1.0.0 | Website Sale - Remove Enterprise Features
 
 Unported addons
 ---------------
@@ -64,7 +72,6 @@ addon | version | summary
 [mass_editing](mass_editing/) | 8.0.1.3.0 (unported) | Mass Editing
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 (unported) | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
-[scheduler_error_mailer](scheduler_error_mailer/) | 8.0.1.0.0 (unported) | Send an e-mail when a scheduler fails
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
 [super_calendar](super_calendar/) | 8.0.0.2.0 (unported) | This module allows to create configurable calendars.
