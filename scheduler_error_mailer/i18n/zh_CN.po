@@ -3,20 +3,20 @@
 # * scheduler_error_mailer
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# Jeffery Chenn <jeffery9@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-06 02:49+0000\n"
-"PO-Revision-Date: 2016-08-06 02:49+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"POT-Creation-Date: 2016-08-31 11:58+0000\n"
+"PO-Revision-Date: 2016-08-31 11:58+0000\n"
+"Last-Translator: Jeffery Chenn <jeffery9@gmail.com>, 2016\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: scheduler_error_mailer
 #: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
@@ -57,24 +57,23 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Error E-mail Template"
-msgstr "Predloga obvestila o napaki"
+msgstr "错误E-mail 模板"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
-msgstr "Izberite predlogo za razpošiljanje ob napakah razporejevalca."
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr "Napaka pri opravilu UID = %d."
+msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
 msgstr ""
-"[DB ${ctx.get('dbname')}] Razporejevalec '${object.name or ''}' NEUSPEŠEN"
 
 #. module: scheduler_error_mailer
 #: model:ir.model,name:scheduler_error_mailer.model_ir_cron
