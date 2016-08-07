@@ -3,21 +3,15 @@
 # * base_export_manager
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-05 05:57+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"POT-Creation-Date: 2016-08-06 02:49+0000\n"
+"PO-Revision-Date: 2016-08-06 02:49+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -25,35 +19,92 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: base_export_manager
-#: view:ir.exports:base_export_manager.ir_exports_form_view
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
+msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
 msgid "Export Profile"
 msgstr "Izvozni profil"
 
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
-#: view:ir.exports:base_export_manager.ir_exports_tree_view
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
+#: model:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
 msgstr "Izvozni profili"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:61
+#: code:addons/base_export_manager/models/ir_exports_line.py:141
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "Polje '%s' že obstaja"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:56
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Polje '%s' ne obstaja"
 
 #. module: base_export_manager
-#: field:ir.exports.line,label:0
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field1_id
+msgid "First field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
+msgid "First model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
 msgid "Label"
 msgstr "Oznaka"
 
 #. module: base_export_manager
-#: field:ir.exports.line,sequence:0
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
+msgid "Model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field2_id
+msgid "Second field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
+msgid "Second model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
 msgid "Sequence"
 msgstr "Zaporedje"
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
+msgid "Third field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
+msgid "Third model"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports.py:66
+#, python-format
+msgid "You must supply a model or resource."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports
+msgid "ir.exports"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports_line
+msgid "ir.exports.line"
+msgstr ""
