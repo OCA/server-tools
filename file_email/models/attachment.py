@@ -23,20 +23,21 @@ class IrAttachmentMetadata(models.Model):
         readonly=True,
         help="The email server used to create this attachment")
 
-    def message_process(self, cr, uid, model, message, custom_values=None,
+    @api.model
+    def message_process(self, model, message, custom_values=None,
                         save_original=False, strip_attachments=False,
-                        thread_id=None,
-                        context=None):
+                        thread_id=None):
         if context is None:
             context = {}
         context['no_post'] = True
         return True
 
-    def message_post(self, cr, uid, thread_id, body='', subject=None,
-                     type='notification', subtype=None, parent_id=False,
-                     attachments=None, content_subtype='html', context=None,
+    @api.multi
+    def message_post(self, body='', subject=None,
+                     message_type='notification', subtype=None,
+                    parent_id=False, attachments=None, content_subtype='html',
                      **kwargs):
-        if context.get('no_post'):
+        if self.env.context.get('no_post'):
             return None
         return True
 
@@ -44,11 +45,9 @@ class IrAttachmentMetadata(models.Model):
     def _get_attachment_metadata_data(self, condition, msg, att):
         values = {
             'fetchmail_attachment_condition_id': condition.id,
-            'file_type': condition.server_id.file_type,
+            'file_type': condition.file_type,
             'name': msg['subject'],
-            'direction': 'input',
-            'date': msg['date'],
-            'ext_id': msg['message_id'],
+            'sync_date': msg['date'],
             'datas_fname': att[0],
             'datas': base64.b64encode(att[1]),
             'state': 'pending'
@@ -78,16 +77,12 @@ class IrAttachmentMetadata(models.Model):
         :rtype: list
         """
         res = []
-        server_id = self._context.get('fetchmail_server_id', False)
+        server_id = self.env.context.get('default_fetchmail_server_id', False)
         file_condition_obj = self.env['fetchmail.attachment.condition']
-        cond_ids = file_condition_obj.search([('server_id', '=', server_id)])
-        if cond_ids:
-            for cond in cond_ids:
-                # this part of code raise an expetion if type != normal
-                # if cond.type == 'normal':
+        conds = file_condition_obj.search([('server_id', '=', server_id)])
+        if conds:
+            for cond in conds:
                 vals = self.prepare_data_from_basic_condition(cond, msg)
-                # else:
-                #     vals = getattr(self, cond.type)(cond, msg)
                 if vals:
                     res.append(vals)
         return res
@@ -98,12 +93,13 @@ class IrAttachmentMetadata(models.Model):
         res = self._prepare_data_for_attachment_metadata(msg)
         if res:
             for vals in res:
-                default = self._context.get('default_attachment_metadata_vals')
+                default = self.env.context.get(
+                    'default_attachment_metadata_vals')
                 if default:
                     for key in default:
                         if key not in vals:
                             vals[key] = default[key]
                 created_ids.append(self.create(vals))
-                self._cr.commit()
-            return created_ids[0]
+                self.env.cr.commit()
+            return created_ids[0].id
         return None

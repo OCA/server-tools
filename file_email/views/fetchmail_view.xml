@@ -9,9 +9,6 @@
             <field name="date" position="after">
                 <field name="company_id" widget="selection" groups="base.group_multi_company"/>
             </field>
-            <field name="object_id" position="after">
-                <field name="file_type"/>
-            </field>
             <xpath expr="//field[@name='action_id']/.." position="after">
                 <field name="attachment_metadata_condition_ids" colspan="4" nolabel="1"/>
             </xpath>
@@ -50,6 +47,7 @@
                         <field name="type"/>
                         <field name="file_extension"/>
                         <field name="server_id" invisible="True"/>
+                        <field name="file_type"/>
                     </group>
                 </sheet>
             </form>
