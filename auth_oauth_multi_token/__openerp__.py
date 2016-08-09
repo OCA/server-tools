@@ -5,7 +5,7 @@
     'name': 'auth_oauth_multi_token',
     'version': '1.0',
     'license': 'AGPL-3',
-    'author': "Florent de Labarre",
+    'author': "Florent de Labarre, Odoo Community Association (OCA)",
     'summary': 'Multi token connection',
     'category': 'Tool',
     'website': 'www.iguana-yachts.com',
