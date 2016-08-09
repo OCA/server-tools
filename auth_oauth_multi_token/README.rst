@@ -6,7 +6,7 @@
 Odoo multi connection with oauth
 ====================================
 
-This module add the possibility to connect on multi divices in same time with Google, Facebook.
+This module add the possibility to connect on multi divices in same time with Google, Facebook authentification.
 
 
 Contributors
