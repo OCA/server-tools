@@ -7,6 +7,7 @@
             <field name="sequence" eval="10" />
             <!-- attach to Settings -> Technical -->
             <field name="parent_id" ref="base.menu_custom"/>
+            <field name="groups_id" eval="[(6,0, [ref('base.group_erp_manager')])]"/>
         </record>
 
         <record model="ir.ui.menu" id="menu_purge_modules">
