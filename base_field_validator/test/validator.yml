@@ -1,0 +1,17 @@
+-
+  Set valid email
+-
+  !record {model: res.partner, id: base.res_partner_12}:
+    email: 'info@agilebg.com'
+-
+  Try invalid email
+-
+  !python {model: res.partner}: |
+    try:
+      self.write(cr, uid, [ref('base.res_partner_12')], {
+        'email': 'john',
+        })
+      assert False, "An exception should have been raised, 'john' is not a valid email!" 
+    except openerp.exceptions.Warning:
+      # exception was raised as expected
+      pass
