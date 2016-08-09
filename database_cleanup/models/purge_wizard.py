@@ -24,8 +24,8 @@ class CleanupPurgeLine(models.AbstractModel):
     @api.model
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
-        if not self.env.ref('database_cleanup.menu_database_cleanup')\
-           .parent_id._filter_visible_menus():
+        if self.env.ref(
+                'base.group_erp_manager') not in self.env.user.groups_id:
             raise AccessDenied
         return super(CleanupPurgeLine, self).create(values)
 
@@ -86,8 +86,8 @@ class PurgeWizard(models.AbstractModel):
     @api.model
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
-        if not self.env.ref('database_cleanup.menu_database_cleanup')\
-           .parent_id._filter_visible_menus():
+        if self.env.ref(
+                'base.group_erp_manager') not in self.env.user.groups_id:
             raise AccessDenied
         return super(PurgeWizard, self).create(values)
 
