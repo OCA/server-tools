@@ -25,7 +25,7 @@
     'category': 'Tools',
     'description': """
 This module allows you to define connections to foreign databases using ODBC,
-Oracle Client or SQLAlchemy.
+Oracle Client, Firebird or SQLAlchemy.
 
 Database sources can be configured in Settings > Configuration -> Data sources.
 
@@ -35,6 +35,7 @@ Depending on the database, you need:
    connect to Microsoft SQL Server.
  * to install and configure Oracle Instant Client and cx_Oracle python library
    to connect to Oracle.
+ * to install python fdb to use Firebird connectios.
 
 Contributors
 ============

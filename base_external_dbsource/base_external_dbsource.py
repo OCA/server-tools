@@ -67,6 +67,13 @@ except:
     _logger.info('Oracle libraries not available. Please install "cx_Oracle"\
                  python package.')
 
+try:
+    import fdb
+    CONNECTORS.append(('fdb', 'Firebird'))
+except:
+    _logger.info('Firebird libraries not available. Please install "fdb"\
+                 python package.')
+
 
 class base_external_dbsource(orm.Model):
     _name = "base.external.dbsource"
@@ -83,6 +90,9 @@ Sample connection strings:
 - PostgreSQL:
   dbname='template1' user='dbuser' host='localhost' port='5432' password=%s
 - SQLite: sqlite:///test.db
+- Firebird:
+  {'host':'localhost', 'database':'C:\DATABASE.fdb','user':'sysdba',
+  'password':'%s'}
 """),
         'password': fields.char('Password', size=40),
         'connector': fields.selection(CONNECTORS, 'Connector',
@@ -112,7 +122,8 @@ Sample connection strings:
             conn = sqlalchemy.create_engine(connStr).connect()
         elif data.connector == 'postgresql':
             conn = psycopg2.connect(connStr)
-
+        elif data.connector == 'fdb':
+            conn = fdb.connect(**eval(connStr))
         return conn
 
     def execute(self, cr, uid, ids, sqlquery, sqlparams=None, metadata=False,
