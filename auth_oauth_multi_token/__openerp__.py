@@ -14,8 +14,6 @@
         'views/res_users.xml',
         'security/ir.model.access.csv',
     ],
-    'demo': [],
-    'test': [],
     'installable': True,
     'auto_install': False,
 }
