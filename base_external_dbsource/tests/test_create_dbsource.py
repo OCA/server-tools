@@ -4,6 +4,7 @@ from openerp.exceptions import Warning as UserError
 from openerp.tests import common
 import logging
 
+
 class TestCreateDbsource(common.TransactionCase):
     """Test class for base_external_dbsource."""
 
