@@ -21,6 +21,7 @@
 
 import os
 import logging
+import psycopg2
 from openerp import models, fields, api,  _
 from openerp.exceptions import Warning as UserError
 import openerp.tools as tools
@@ -62,7 +63,6 @@ except:
     _logger.info('Oracle libraries not available. Please install "cx_Oracle"\
                  python package.')
 
-import psycopg2
 CONNECTORS.append(('postgresql', 'PostgreSQL'))
 
 
@@ -70,7 +70,7 @@ class BaseExternalDbsource(models.Model):
     _name = "base.external.dbsource"
     _description = 'External Database Sources'
     name = fields.Char('Datasource name', required=True, size=64)
-    conn_string =  fields.Text('Connection string', help="""
+    conn_string = fields.Text('Connection string', help="""
     Sample connection strings:
     - Microsoft SQL Server:
       mssql+pymssql://username:%s@server:port/dbname?charset=utf8
@@ -167,8 +167,7 @@ class BaseExternalDbsource(models.Model):
                 conn = self.conn_open()
             except Exception as e:
                 raise UserError(_("Connection test failed: \
-                                Here is what we got instead:\n %s")
-                              % tools.ustr(e))
+                        Here is what we got instead:\n %s") % tools.ustr(e))
             finally:
                 try:
                     if conn:
@@ -178,4 +177,4 @@ class BaseExternalDbsource(models.Model):
                     pass
         # TODO: if OK a (wizard) message box should be displayed
         raise UserError(_("Connection test succeeded: \
-                        Everything seems properly set up!"))
+                          Everything seems properly set up!"))

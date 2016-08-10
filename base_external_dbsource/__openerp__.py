@@ -39,8 +39,5 @@
     'demo': [
         'demo/base_external_dbsource.xml',
     ],
-    'test': [
-        'test/dbsource_connect.yml',
-    ],
     'installable': True,
 }
