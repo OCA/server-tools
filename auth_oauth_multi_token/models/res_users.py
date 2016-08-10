@@ -9,7 +9,7 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     oauth_access_token_ids = fields.One2many('auth.oauth.multi.token', 'user_id', 'Tokens', copy=False)
-    oauth_access_max_token = fields.Integer('Number of simultaneous connection', default=5, required=True)
+    oauth_access_max_token = fields.Integer('Number of simultaneous connections', default=5, required=True)
 
     @api.model
     def _auth_oauth_signin(self, provider, validation, params):
