@@ -10,8 +10,8 @@
             <field name="active">True</field>
             <field name="doall" eval="False" />
             <field name="model">external.file.task</field>
-            <field name="function">_run</field>
-            <field name="args">([])</field>
+            <field name="function">run_task_scheduler</field>
+            <field name="args">([[('method_type', '=', 'import')]])</field>
         </record>
 
     </data>

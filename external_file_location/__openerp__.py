@@ -1,17 +1,17 @@
 # coding: utf-8
-# @ 2015 Valentin CHEMIERE @ Akretion
+# @ 2016 florian DA COSTA @ Akretion
 # © 2016 @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'external_file_location',
-    'version': '8.0.1.0.0',
+    'name': 'External File Location',
+    'version': '9.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'www.akretion.com',
     'license': 'AGPL-3',
     'category': 'Generic Modules',
     'depends': [
-        'attachment_metadata',
+        'attachment_base_synchronize',
     ],
     'external_dependencies': {
         'python': [
@@ -27,7 +27,9 @@
         'data/cron.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': [
+        'demo/task_demo.xml',
+    ],
     'installable': True,
     'application': False,
-    'images': [],
 }
