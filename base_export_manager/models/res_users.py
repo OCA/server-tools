@@ -8,19 +8,21 @@ from openerp import api, models
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
-
+    
+    @api.v7
+    def get_export_models(self, cr, uid):
+        return self.fetch_export_models(cr, uid)
+    
+    @api.v8
     def get_export_models(self):
-        self.env.cr.execute("SELECT model "
-                   "FROM ir_model "
-                   "WHERE id IN ("
-                   "    SELECT distinct(model_id) "
-                   "    FROM ir_model_access "
-                   "    WHERE perm_export=TRUE AND group_id IN ("
-                   "        SELECT gid "
-                   "        FROM res_groups_users_rel "
-                   "        WHERE uid=%s"
-                   "    )"
-                   ")",
-                   (self.env.uid,))
-        model_names = [r[0] for r in self.env.cr.fetchall()]
+        uid = self.id or self.env.uid
+        return self.fetch_export_models(self.env.cr, uid)
+    
+    def fetch_export_models(self, cr, uid):
+        groups_id = [group.id for group in self.browse(cr, uid, uid).groups_id]
+        accessobj = self.pool['ir.model.access']
+        accessobj_ids = accessobj.search(cr, uid, [('perm_export','=',True),('group_id','in',groups_id)])
+        model_names = [access_obj.model_id.model for access_obj in accessobj.browse(cr, uid, accessobj_ids)]
+        #make distinct value in list
+        model_names = list(set(model_names))
         return model_names
