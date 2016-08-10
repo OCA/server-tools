@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
         <!-- DBSource -->
@@ -11,32 +11,32 @@
             <field name="arch" type="xml">
                 <tree string="External DB Sources">
                     <field name="name"/>
-		    <field name="connector"/>
-		    <field name="conn_string"/>
+                    <field name="connector"/>
+                    <field name="conn_string"/>
                 </tree>
             </field>
         </record>
-        
+
         <record model="ir.ui.view" id="view_dbsource_form">
             <field name="name">base.external.dbsource.form</field>
             <field name="model">base.external.dbsource</field>
             <field name="arch" type="xml">
                 <form string="External DB Source" version="7.0">
-                <sheet>
-                    <group>
+                    <sheet>
                         <group>
-                        <field name="name"/>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="password" password="True"/>
+                            </group>
                         </group>
-                        <group>
-                        <field name="password" password="True"/>
+                        <group col="1">
+                            <field name="connector"/>
+                            <field name="conn_string"/>
+                            <button name="connection_test" string="Test Connection" type="object" icon="gtk-network"/>
                         </group>
-                    </group>
-                    <group col="1">
-		                <field name="connector"/>
-		                <field name="conn_string"/>
-                        <button name="connection_test" string="Test Connection" type="object" icon="gtk-network"/>
-                    </group>
-                </sheet>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -49,12 +49,7 @@
             <field name="view_id" ref="view_dbsource_tree"/>
         </record>
 
-        <menuitem name="Database Sources"
-                  id="menu_dbsource" 
-                  parent="base.next_id_9" 
-                  action="action_dbsource"/>
+        <menuitem name="Database Sources" id="menu_dbsource" parent="base.next_id_9" action="action_dbsource"/>
 
     </data>
-</openerp>
-
-
+</odoo>

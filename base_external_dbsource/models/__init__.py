@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Daniel Reis, 2011
-#    Additional contributions by Maxime Chambreuil, Savoir-faire Linux
+#    Daniel Reis
+#    2011
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,28 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'External Database Sources',
-    'version': '9.0.1.0.0',
-    'category': 'Tools',
-    'author': "Daniel Reis,Odoo Community Association (OCA)",
-    'website': 'http://launchpad.net/addons-tko',
-    'license': 'AGPL-3',
-    'images': [
-        'images/screenshot01.png',
-    ],
-    'depends': [
-        'base',
-    ],
-    'data': [
-        'views/base_external_dbsource.xml',
-        'security/ir.model.access.csv',
-    ],
-    'demo': [
-        'demo/base_external_dbsource.xml',
-    ],
-    'test': [
-        'test/dbsource_connect.yml',
-    ],
-    'installable': True,
-}
+from . import base_external_dbsource
