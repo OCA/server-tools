@@ -4,13 +4,10 @@
 
         <record id="view_attachment_improved_form" model="ir.ui.view">
             <field name="model">ir.attachment.metadata</field>
-            <field name="inherit_id" ref="attachment_metadata.view_attachment_improved_form" />
+            <field name="inherit_id" ref="attachment_base_synchronize.view_attachment_improved_form" />
             <field name="arch" type="xml">
                 <field name="url" position="after">
-                    <field name="sync_date"/>
-                    <field name="state"/>
-                    <field name="state_message"/>
-                    <field name="task_id"/>
+                    <field name="task_id" attrs="{'required': [('file_type', '=', 'export_external_location')]}"/>
                     <field name="location_id"/>
                 </field>
             </field>
@@ -18,31 +15,12 @@
 
         <record id="view_external_attachment_tree" model="ir.ui.view">
             <field name="model">ir.attachment.metadata</field>
-            <field name="inherit_id" ref="attachment_metadata.view_external_attachment_tree" />
+            <field name="inherit_id" ref="attachment_base_synchronize.view_external_attachment_tree" />
             <field name="arch" type="xml">
                 <field name="file_type" position="after">
                     <field name="task_id"/>
                     <field name="location_id"/>
-                    <field name="type"/>
-                    <field name="create_date"/>
-                    <field name="state"/>
                 </field>
-            </field>
-        </record>
-
-        <record id="view_external_attachment_search" model="ir.ui.view">
-            <field name="model">ir.attachment.metadata</field>
-            <field name="inherit_id" ref="attachment_metadata.view_external_attachment_search" />
-            <field name="arch" type="xml">
-                <field name="type" position="after">
-                    <filter string="Pending" domain="[('state', '=', 'pending')]"/>
-                    <filter string="Failed" domain="[('state', '=', 'failed')]"/>
-                    <filter string="Done" domain="[('state', '=', 'done')]"/>
-                </field>
-                <filter string="Creation Month" position="after">
-                    <filter string="State" domain="[]"
-                        context="{'group_by': 'state'}"/>
-                </filter>                
             </field>
         </record>
 

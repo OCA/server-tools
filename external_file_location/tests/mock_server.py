@@ -54,6 +54,21 @@ class ConnMock(object):
 
 
 @contextmanager
-def server_mock(response):
-    with mock.patch('fs.sftpfs.SFTPFS', ConnMock(response)) as SFTPFS:
+def server_mock_sftp(response):
+    with mock.patch('openerp.addons.external_file_location.tasks.sftp.'
+                    'SftpTask', ConnMock(response)) as SFTPFS:
         yield SFTPFS._calls
+
+
+@contextmanager
+def server_mock_ftp(response):
+    with mock.patch('openerp.addons.external_file_location.tasks.ftp.'
+                    'FtpTask', ConnMock(response)) as FTPFS:
+        yield FTPFS._calls
+
+
+@contextmanager
+def server_mock_filestore(response):
+    with mock.patch('openerp.addons.external_file_location.tasks.filestore.'
+                    'FileStoreTask', ConnMock(response)) as FTPFS:
+        yield FTPFS._calls

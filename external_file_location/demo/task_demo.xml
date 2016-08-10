@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record id="location_ftp" model="external.file.location">
+        <field name="name">TEST FTP</field>
+        <field name="protocol">ftp</field>
+        <field name="address">my-ftp-address</field>
+        <field name="login">my-ftp-user</field>
+        <field name="password">my-ftp-password</field>
+        <field name="port">21</field>
+    </record>
+    <record id="location_sftp" model="external.file.location">
+        <field name="name">TEST SFTP</field>
+        <field name="protocol">sftp</field>
+        <field name="address">my-sftp-address</field>
+        <field name="login">my-sftp-user</field>
+        <field name="password">my-sftp-password</field>
+        <field name="port">22</field>
+    </record>
+    <record id="location_filestore" model="external.file.location">
+        <field name="name">TEST File Store</field>
+        <field name="protocol">file_store</field>
+        <field name="filestore_rootpath">/</field>
+    </record>
+
+    <record id="ftp_import_task" model="external.file.task">
+        <field name="method_type">import</field>
+        <field name="location_id" eval="ref('external_file_location.location_ftp')"/>
+        <field name="filename">test-import-ftp.txt</field>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Import FTP Task</field>
+    </record>
+
+    <record id="ftp_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" eval="ref('external_file_location.location_ftp')"/>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Export FTP Task</field>
+    </record>
+
+    <record id="sftp_import_task" model="external.file.task">
+        <field name="method_type">import</field>
+        <field name="location_id" eval="ref('external_file_location.location_sftp')"/>
+        <field name="filename">test-import-sftp.txt</field>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Import SFTP Task</field>
+    </record>
+
+    <record id="sftp_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" eval="ref('external_file_location.location_sftp')"/>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Export SFTP Task</field>
+    </record>
+
+    <record id="filestore_import_task" model="external.file.task">
+        <field name="method_type">import</field>
+        <field name="location_id" eval="ref('external_file_location.location_filestore')"/>
+        <field name="filename">test-import-filestore.txt</field>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Import filestore Task</field>
+    </record>
+
+    <record id="filestore_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" eval="ref('external_file_location.location_filestore')"/>
+        <field name="filepath">/home/user/test</field>
+        <field name="name">Export filestore Task</field>
+    </record>
+
+    <record id="ir_attachment_export_file_sftp" model="ir.attachment.metadata">
+        <field name="name">Sftp text export file</field>
+        <field name="datas">dGVzdCBzZnRwIGZpbGUgZXhwb3J0</field>
+        <field name="datas_fname">sftp_test_export.txt</field>
+        <field name="task_id" eval="ref('external_file_location.sftp_export_task')"/>
+        <field name="file_type">export_external_location</field>
+    </record>
+
+    <record id="ir_attachment_export_file_ftp" model="ir.attachment.metadata">
+        <field name="name">ftp text export file</field>
+        <field name="datas">dGVzdCBmdHAgZmlsZSBleHBvcnQ=</field>
+        <field name="datas_fname">ftp_test_export.txt</field>
+        <field name="task_id" eval="ref('external_file_location.ftp_export_task')"/>
+        <field name="file_type">export_external_location</field>
+    </record>
+
+    <record id="ir_attachment_export_file_filestore" model="ir.attachment.metadata">
+        <field name="name">filestore text export file</field>
+        <field name="datas">dGVzdCBmaWxlc3RvcmUgZmlsZSBleHBvcnQ=</field>
+        <field name="datas_fname">filestore_test_export.txt</field>
+        <field name="task_id" eval="ref('external_file_location.filestore_export_task')"/>
+        <field name="file_type">export_external_location</field>
+    </record>
+
+
+
+    </data>
+</openerp>

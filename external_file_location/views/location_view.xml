@@ -15,8 +15,10 @@
                             <newline/>
                             <field name="protocol" colspan="2"/>
                             <newline/>
-                            <field name="address" colspan="2"/>
+                            <field name="address" colspan="2" attrs="{'required': [('protocol', '!=', 'file_store')], 'invisible': [('protocol', '=', 'file_store')]}"/>
+                            <field name="filestore_rootpath" colspan="2" attrs="{'required': [('protocol', '=', 'file_store')], 'invisible': [('protocol', '!=', 'file_store')]}"/>
                             <field name="port" colspan="2" attrs="{'invisible': [('hide_port', '=', True)], 'required': [('hide_port', '=', False)]}"/>
+                            <field name="company_id" colspan="2"/>
                             <field name="login" colspan="2" attrs="{'invisible': [('hide_login', '=', True)], 'required': [('hide_login', '=', False)]}"/>
                             <field name="password" password="1" colspan="2" attrs="{'invisible': [('hide_password', '=', True)]}"/>
                             <separator string="Tasks" colspan="4"/>
@@ -24,10 +26,9 @@
                                 <tree>
                                     <field name="name"/>
                                     <field name="name"/>
-                                    <field name="method"/>
+                                    <field name="method_type"/>
                                     <field name="filename"/>
                                     <field name="filepath"/>
-                                    <button name="run" type="object" string="Run" icon="gtk-execute"/>
                                 </tree>
                             </field>
                             <field name="hide_login" invisible="1"/>
