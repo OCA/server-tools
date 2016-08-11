@@ -40,6 +40,7 @@ addon | version | summary
 [base_name_search_improved](base_name_search_improved/) | 8.0.1.0.1 | Friendlier search when typing in relation fields
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 | Report qweb auto generation
+[base_search_fuzzy](base_search_fuzzy/) | 8.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 8.0.1.0.0 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
@@ -53,6 +54,7 @@ addon | version | summary
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 | If fetching mails gives error, send an email to sender
 [field_char_transformed](field_char_transformed/) | 8.0.1.0.0 | Allows to transform input in character fields before writing or reading it to/from the database
+[field_rrule](field_rrule/) | 8.0.1.0.0 | Provides a field and widget for RRules according to RFC 2445
 [html_image_url_extractor](html_image_url_extractor/) | 8.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 8.0.1.0.0 | Generate excerpts from any HTML field
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
