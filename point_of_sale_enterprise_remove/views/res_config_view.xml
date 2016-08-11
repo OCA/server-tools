@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="view_sale_config_settings_form_pos" model="ir.ui.view">
+        <field name="name">pos.config.settings.form</field>
+        <field name="model">pos.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.view_sale_config_settings_form_pos"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='module_pos_loyalty']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//div[field[@name='module_pos_loyalty']]/.." position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
