@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-11-28 21:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language-Team: Galician (Spain) (https://www.transifex.com/oca/teams/23907/gl_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
+"Language: gl_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_search_fuzzy
@@ -25,40 +25,36 @@ msgid ""
 "faster to search than a GiST index, but slower to build or update; so GIN is"
 " better suited for static data and GiST for often-updated data.\""
 msgstr ""
-"Zitat aus der PostgreSQL Dokumentation: \"Eine Fausregel ist, ein GIN Index "
-"ist schneller durchzusuchen als ein GiST Index, aber langsamer aufzubauen "
-"und zu aktualisieren; so ist GIN besser geeignet für statische Daten und "
-"GiST für oft aktualisierte Daten.\""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,create_uid:0
 msgid "Created by"
-msgstr "Erstellt durch"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,create_date:0
 msgid "Created on"
-msgstr "Erstellt am"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,display_name:0
 msgid "Display Name"
-msgstr "Anzeigename"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,field_id:0
 msgid "Field"
-msgstr "Feld"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: selection:trgm.index,index_type:0
 msgid "GIN"
-msgstr "GIN"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: selection:trgm.index,index_type:0
 msgid "GiST"
-msgstr "GiST"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,id:0
@@ -68,32 +64,32 @@ msgstr "ID"
 #. module: base_search_fuzzy
 #: field:trgm.index,index_name:0
 msgid "Index Name"
-msgstr "Index Name"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,index_type:0
 msgid "Index Type"
-msgstr "Index Typ"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,__last_update:0
 msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,write_uid:0
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: field:trgm.index,write_date:0
 msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model,name:base_search_fuzzy.model_ir_model
 msgid "Models"
-msgstr "Datenmodelle"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: help:trgm.index,index_name:0
@@ -103,18 +99,12 @@ msgid ""
 "this index is resused. If the index is located in another table then a "
 "number is added at the end of the index name."
 msgstr ""
-"Der Index Name wird automatisch im Format feldname_indextyp_idx generiert. "
-"Falls der Index bereits existiert und der Index sich in der selben Tabelle "
-"befindet, dann wird dieser Index wiederverwendet. Falls der Index in einer "
-"anderen Tabelle existiert, dann wird eine Zahl an das Ende des Index Namens "
-"angefügt."
 
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/trgm_index.py:122
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr ""
-"Die pg_trgm Erweiterung existiert nicht oder kann nicht installiert werden."
 
 #. module: base_search_fuzzy
 #: view:trgm.index:base_search_fuzzy.trgm_index_view_form
@@ -126,9 +116,9 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
 msgid "Trigram Index"
-msgstr "Trigram Index"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: help:trgm.index,field_id:0
 msgid "You can either select a field of type \"text\" or \"char\"."
-msgstr "Sie können entweder Felder vom Typ \"text\" oder \"char\" auswählen."
+msgstr ""
