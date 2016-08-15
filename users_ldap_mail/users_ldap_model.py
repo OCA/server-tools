@@ -19,19 +19,22 @@
 #
 ##############################################################################
 
-#from openerp.osv import fields, orm
-from openerp import models, fields, api, _
+from openerp import models, fields
 from openerp import SUPERUSER_ID
 
 import logging
 _logger = logging.getLogger(__name__)
-import pdb
+
 
 class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
 
-    name_attribute = fields.Char('Name Attribute', help="By default 'cn' is used. or ActiveDirectory you might use 'displayName' instead.", default='cn')
-    mail_attribute = fields.Char('Email Attribute', help="LDAP attribute to use to retrieve email address.",default='mail')
+    name_attribute = fields.Char('Name Attribute',
+        help=("By default 'cn' is used. or ActiveDirectory you might use "
+              "'displayName' instead."), default='cn')
+    mail_attribute = fields.Char('Email Attribute', 
+        help="LDAP attribute to use to retrieve email address.",
+        default='mail')
 
     def get_ldap_dicts(self, cr, ids=None):
         """
@@ -51,10 +54,10 @@ class CompanyLDAP(models.Model):
         """, args)
         return cr.dictfetchall()
 
-
     def get_or_create_user(self, cr, uid, conf, login, ldap_entry,
                            context=None):
-        user_id = super(CompanyLDAP, self).get_or_create_user(cr, uid, conf, login, ldap_entry, context)
+        user_id = super(CompanyLDAP, self).get_or_create_user(cr, uid, conf,
+                        login, ldap_entry, context)
 
         mapping = [
             ('name', 'name_attribute'),
@@ -66,10 +69,10 @@ class CompanyLDAP(models.Model):
                 if conf[conf_name]:
                     values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
-                _logger.warning('No LDAP attribute "%s" found for login  "%s"' % (
-                    conf.get(conf_name), values.get('login')))
+                _logger.warning('No LDAP attribute "%s" found for login  "%s"'
+                    % (conf.get(conf_name), values.get('login')))
 
         new_user = self.pool['res.users'].browse(cr, SUPERUSER_ID, user_id)
-        new_user.write( values ) 
+        new_user.write(values) 
 
         return user_id
