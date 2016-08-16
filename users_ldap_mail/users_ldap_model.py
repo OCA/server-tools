@@ -29,10 +29,13 @@ _logger = logging.getLogger(__name__)
 class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
 
-    name_attribute = fields.Char('Name Attribute',
+    name_attribute = fields.Char(
+        'Name Attribute',
         help=("By default 'cn' is used. or ActiveDirectory you might use "
-              "'displayName' instead."), default='cn')
-    mail_attribute = fields.Char('Email Attribute', 
+              "'displayName' instead."),
+        default='cn')
+    mail_attribute = fields.Char(
+        'Email Attribute',
         help="LDAP attribute to use to retrieve email address.",
         default='mail')
 
@@ -56,8 +59,8 @@ class CompanyLDAP(models.Model):
 
     def get_or_create_user(self, cr, uid, conf, login, ldap_entry,
                            context=None):
-        user_id = super(CompanyLDAP, self).get_or_create_user(cr, uid, conf,
-                        login, ldap_entry, context)
+        user_id = super(CompanyLDAP, self).get_or_create_user(
+            cr, uid, conf, login, ldap_entry, context)
 
         mapping = [
             ('name', 'name_attribute'),
@@ -69,10 +72,11 @@ class CompanyLDAP(models.Model):
                 if conf[conf_name]:
                     values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
-                _logger.warning('No LDAP attribute "%s" found for login  "%s"'
+                _logger.warning(
+                    'No LDAP attribute "%s" found for login  "%s"'
                     % (conf.get(conf_name), values.get('login')))
 
         new_user = self.pool['res.users'].browse(cr, SUPERUSER_ID, user_id)
-        new_user.write(values) 
+        new_user.write(values)
 
         return user_id
