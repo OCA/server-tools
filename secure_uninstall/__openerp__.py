@@ -12,7 +12,7 @@
     'depends': [
         'base',
     ],
-    'data': ['views/wizard_view.xml'],
+    'data': ['views/module_view.xml'],
     'website': 'http://www.akretion.com/',
     'license': 'AGPL-3',
     'installable': True,
