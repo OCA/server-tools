@@ -3,3 +3,4 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from . import ir_exports, ir_exports_line
+from . import ir_model_access, res_users
