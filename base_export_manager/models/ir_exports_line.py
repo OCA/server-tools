@@ -143,8 +143,14 @@ class IrExportsLine(models.Model):
     def _install_base_export_manager(self):
         """Populate ``field*_id`` fields."""
         self.search([("export_id", "=", False)]).unlink()
-        self.search([("field1_id", "=", False),
-                     ("name", "!=", False)])._inverse_name()
+        lines = self.search(
+            [("field1_id", "=", False), ("name", "!=", False)])
+        for line in lines:
+            try:
+                line._inverse_name()
+            except:
+                # Prevent possible inexisting fields
+                pass
 
     @api.model
     def _get_field_id(self, model, name):
