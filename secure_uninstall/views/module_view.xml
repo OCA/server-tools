@@ -10,10 +10,11 @@
         <field name="arch" type="xml">
             <field name="module_info" position="after">
                 <separator string="Secure Uninstall"/>
-                <label string="If you want uninstall module, write required password."
+                <label string="If you want uninstall module, write required password ('secure_uninstall' key in ERP config file)."
                        colspan="4" />
                 <group col="4">
-                    <field name="password" password="True" attrs="{'required': 1}"/>
+                    <field name="password" password="True" attrs="{'required': 1}"
+                           placeholder="key_provided_by_administrator"/>
                     <span/>
                 </group>
             </field>

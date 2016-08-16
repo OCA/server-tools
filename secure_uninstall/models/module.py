@@ -12,25 +12,24 @@ class BaseModuleUpgrade(models.TransientModel):
 
     password = fields.Char(
         string='Password',
-        help="'admin_passwd' value from Odoo configuration file "
-             "(aka 'Master Password')")
+        help="'secure_uninstall' value from Odoo configuration file ")
 
     @api.multi
     def upgrade_module(self):
-        config_passwd = config.get("admin_passwd")
+        config_passwd = config.get("secure_uninstall")
         for elm in self:
             if not config_passwd:
                 raise UserError(
                     "Missing configuration key\n--------------------\n"
-                    "'admin_passwd' configuration key "
-                    "(aka 'Master Password') is not set in \n"
+                    "'secure_uninstall' configuration key "
+                    "is not set in \n"
                     "your Odoo server configuration file: "
                     "please set it a value")
             if elm.password != config_passwd:
                 raise UserError(
                     "Password Error\n--------------------\n"
                     "Provided password '%s' doesn't match with "
-                    "'Master Password'\n('admin_passwd' key) found in the "
+                    "'Master Password'\n('secure_uninstall' key) found in the "
                     "Odoo server configuration file ."
                     "\n\nResolution\n-------------\n"
                     "Please check your password and retry or cancel"

@@ -19,8 +19,8 @@ msgstr ""
 
 #. module: secure_uninstall
 #: help:base.module.upgrade,password:0
-msgid "'admin_passwd' value from Odoo configuration file (aka 'Master Password')"
-msgstr "la valeur 'admin_passwd' du fichier de configuration Odoo (aussi appelé 'Mot de passe Maître')"
+msgid "'secure_uninstall' value from Odoo configuration file (aka 'Master Password')"
+msgstr "la valeur 'secure_uninstall' du fichier de configuration Odoo (aussi appelé 'Mot de passe Maître')"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
