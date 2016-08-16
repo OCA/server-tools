@@ -13,7 +13,7 @@
                 <label string="If you want uninstall module, write required password."
                        colspan="4" />
                 <group col="4">
-                    <field name="password" password="True"/>
+                    <field name="password" password="True" attrs="{'required': 1}"/>
                     <span/>
                 </group>
             </field>

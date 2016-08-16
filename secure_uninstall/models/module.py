@@ -11,7 +11,7 @@ class BaseModuleUpgrade(models.TransientModel):
     _inherit = 'base.module.upgrade'
 
     password = fields.Char(
-        string='Password', required=True,
+        string='Password',
         help="'admin_passwd' value from Odoo configuration file "
              "(aka 'Master Password')")
 
@@ -35,4 +35,6 @@ class BaseModuleUpgrade(models.TransientModel):
                     "\n\nResolution\n-------------\n"
                     "Please check your password and retry or cancel"
                     % elm.password)
+            # keep this password in db is insecure, then we remove it
+            elm.password = False
         return super(BaseModuleUpgrade, self).upgrade_module()
