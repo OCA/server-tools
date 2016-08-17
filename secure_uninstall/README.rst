@@ -32,7 +32,7 @@ Usage
 #. Go to Settings > Local modules.
 #. Click on one module.
 #. Click on Uninstall button.
-#. You will need to enter 'secure_uninstall' value provided by your administrator before proceeding.
+#. You will need to enter a specific password before proceeding (password provided by administrator).
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas

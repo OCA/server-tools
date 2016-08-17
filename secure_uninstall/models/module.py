@@ -7,33 +7,38 @@ from openerp.exceptions import Warning as UserError
 from openerp.tools.config import config
 
 
+def _get_authorized_password(self):
+    """ You can define your own authorized keys
+    """
+    return [config.get("secure_uninstall")]
+
+
 class BaseModuleUpgrade(models.TransientModel):
     _inherit = 'base.module.upgrade'
 
-    password = fields.Char(
+    uninstall_password = fields.Char(
         string='Password',
         help="'secure_uninstall' value from Odoo configuration file ")
 
     @api.multi
     def upgrade_module(self):
-        config_passwd = config.get("secure_uninstall")
         for elm in self:
-            if not config_passwd:
+            if not config.get("secure_uninstall"):
                 raise UserError(
                     "Missing configuration key\n--------------------\n"
                     "'secure_uninstall' configuration key "
                     "is not set in \n"
                     "your Odoo server configuration file: "
                     "please set it a value")
-            if elm.password != config_passwd:
+            if elm.uninstall_password not in _get_authorized_password():
                 raise UserError(
                     "Password Error\n--------------------\n"
                     "Provided password '%s' doesn't match with "
-                    "'Master Password'\n('secure_uninstall' key) found in the "
-                    "Odoo server configuration file ."
+                    "'Master Password'\n('secure_uninstall' key) found in "
+                    "the Odoo server configuration file ."
                     "\n\nResolution\n-------------\n"
                     "Please check your password and retry or cancel"
-                    % elm.password)
+                    % elm.uninstall_password)
             # keep this password in db is insecure, then we remove it
-            elm.password = False
+            elm.uninstall_password = False
         return super(BaseModuleUpgrade, self).upgrade_module()

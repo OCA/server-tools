@@ -45,4 +45,4 @@ msgstr "Mot de passe"
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "Secure Uninstall"
-msgstr "Désintallation Securisé"
+msgstr "Désintallation Securisée"
