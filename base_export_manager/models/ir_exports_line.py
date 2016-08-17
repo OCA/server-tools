@@ -88,7 +88,6 @@ class IrExportsLine(models.Model):
     @api.depends('name')
     def _compute_label(self):
         """Column label in a user-friendly format and language."""
-        translations = self.env["ir.translation"]
         for s in self:
             parts = list()
             for num in range(1, 4):
@@ -98,13 +97,8 @@ class IrExportsLine(models.Model):
 
                 # Translate label if possible
                 parts.append(
-                    translations.search([
-                        ("type", "=", "field"),
-                        ("lang", "=", self.env.context.get("lang")),
-                        ("name", "=", "%s,%s" % (s.model_n(num).model,
-                                                 field.name)),
-                    ]).value or
-                    field.display_name)
+                    s.env[s.model_n(num).model]._fields[field.name]
+                    .get_description(s.env)["string"])
             s.label = ("%s (%s)" % ("/".join(parts), s.name)
                        if parts and s.name else False)
 
