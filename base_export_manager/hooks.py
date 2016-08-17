@@ -11,9 +11,10 @@ def post_init_hook(cr, registry):
     char field with stored values. We have to inverse it to avoid database
     inconsistencies.
     """
-    env = api.Environment(cr, SUPERUSER_ID, dict())
-    env["ir.exports.line"].search([
-        ("field1_id", "=", False),
-        ("export_id", "!=", False),
-        ("name", "!=", False),
-    ])._inverse_name()
+    with api.Environment.manage():
+        env = api.Environment(cr, SUPERUSER_ID, {})
+        env["ir.exports.line"].search([
+            ("field1_id", "=", False),
+            ("export_id", "!=", False),
+            ("name", "!=", False),
+        ])._inverse_name()
