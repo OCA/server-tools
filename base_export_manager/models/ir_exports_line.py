@@ -134,19 +134,6 @@ class IrExportsLine(models.Model):
                 _("Field '%s' already exists") % self.name)
 
     @api.model
-    def _install_base_export_manager(self):
-        """Populate ``field*_id`` fields."""
-        self.search([("export_id", "=", False)]).unlink()
-        lines = self.search(
-            [("field1_id", "=", False), ("name", "!=", False)])
-        for line in lines:
-            try:
-                line._inverse_name()
-            except:
-                # Prevent possible inexisting fields
-                pass
-
-    @api.model
     def _get_field_id(self, model, name):
         """Get a field object from its model and name.
 
@@ -156,9 +143,17 @@ class IrExportsLine(models.Model):
         :param str name:
             Technical name of the field, like ``child_ids``.
         """
-        return self.env["ir.model.fields"].search(
+        result = self.env["ir.model.fields"].search(
             [("name", "=", name),
              ("model_id", "=", model.id)])
+        try:
+            result.ensure_one()
+        except exceptions.except_orm:
+            # No duplicated fields can exist, so not found. This can happen
+            # when you install the module and broken exports are found.
+            raise exceptions.ValidationError(
+                _("Field '%s' not found in model '%s'") % (name, model.model))
+        return result
 
     @api.multi
     def field_n(self, n, only_name=False):

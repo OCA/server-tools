@@ -5,12 +5,11 @@
 {
     'name': "Manage model export profiles",
     'category': 'Personalization',
-    'version': '8.0.2.0.1',
+    'version': '8.0.2.1.0',
     'depends': [
         'web',
     ],
     'data': [
-        'data/ir_exports_data.xml',
         'views/assets.xml',
         'views/ir_exports_view.xml',
     ],
@@ -23,4 +22,5 @@
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
     'installable': True,
+    'post_init_hook': 'post_init_hook',
 }

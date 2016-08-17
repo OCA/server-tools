@@ -49,6 +49,8 @@ Known issues / Roadmap
 ======================
 
 * Translated labels are not used in final exported file.
+* If your database has dangling export profiles, you could get an error when
+  installing. You will have to manually clean it before.
 
 Bug Tracker
 ===========

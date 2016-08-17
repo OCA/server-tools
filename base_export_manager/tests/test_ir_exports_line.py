@@ -7,7 +7,6 @@ from openerp.exceptions import ValidationError
 
 
 class TestIrExportsLineCase(TransactionCase):
-
     def setUp(self):
         super(TestIrExportsLineCase, self).setUp()
         m_ir_exports = self.env['ir.exports']
@@ -34,3 +33,12 @@ class TestIrExportsLineCase(TransactionCase):
         with self.assertRaises(ValidationError):
             m_ir_exports_line.create({'name': '',
                                       'export_id': self.export.id})
+
+    def test_model_default_by_context(self):
+        """Fields inherit the model_id by context."""
+        line = self.env["ir.exports.line"].with_context(
+            default_model1_id=self.export.model_id.id).create({
+                "name": "name",
+                "export_id": self.export.id,
+            })
+        self.assertEqual(line.model1_id, self.export.model_id)
