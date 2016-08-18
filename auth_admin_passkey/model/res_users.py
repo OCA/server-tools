@@ -5,11 +5,7 @@
 
 import datetime
 
-from openerp import SUPERUSER_ID
-from openerp import registry
-from openerp import exceptions
-from openerp import models, api
-from openerp.tools.translate import _
+from openerp import _, api, exceptions, models, registry, SUPERUSER_ID
 from openerp.tools.safe_eval import safe_eval
 
 
@@ -40,7 +36,6 @@ class ResUsers(models.Model):
             mails.append({'email': admin_user.email, 'lang': admin_user.lang})
         if send_to_user and login_user.email:
             mails.append({'email': login_user.email, 'lang': login_user.lang})
-
         for mail in mails:
             subject = self._get_translation(
                 mail['lang'], _('Passkey used'))
@@ -53,10 +48,11 @@ class ResUsers(models.Model):
                         datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             for k, v in user_agent_env.iteritems():
                 body += ("- %s : %s\n\n") % (k, v)
-            mail_obj.sudo().create({
+            mail = mail_obj.sudo().create({
                 'email_to': mail['email'],
                 'subject': subject,
                 'body_html': '<pre>%s</pre>' % body})
+            mail.send(auto_commit=True)
 
     @api.cr
     def _send_email_same_password(self, login_user):
@@ -65,7 +61,7 @@ class ResUsers(models.Model):
         mail_obj = self.env['mail.mail']
         admin_user = self.sudo().browse(SUPERUSER_ID)
         if admin_user.email:
-            mail_obj.sudo().create({
+            mail = mail_obj.sudo().create({
                 'email_to': admin_user.email,
                 'subject': self._get_translation(
                     admin_user.lang, _('[WARNING] OpenERP Security Risk')),
@@ -74,6 +70,7 @@ class ResUsers(models.Model):
                         """<pre>User with login '%s' has the same """
                         """password as you.</pre>""")) % (login_user),
             })
+            mail.send(auto_commit=True)
 
     # Overload Section
     def authenticate(self, db, login, password, user_agent_env):
@@ -101,9 +98,6 @@ class ResUsers(models.Model):
                     self._send_email_passkey(cr, user_id, user_agent_env)
                 else:
                     self._send_email_same_password(cr, login)
-                # we need to commit as we need to create the mails
-                # and we are not in a method with standard cursor management
-                cr.commit()  # pylint: disable=invalid-commit
             except exceptions.AccessDenied:
                 pass
             finally:
