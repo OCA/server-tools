@@ -31,6 +31,10 @@ class IrExportsLine(models.Model):
         "ir.model.fields",
         "Third field",
         domain="[('model_id', '=', model3_id)]")
+    field4_id = fields.Many2one(
+        "ir.model.fields",
+        "Fourth field",
+        domain="[('model_id', '=', model4_id)]")
     model1_id = fields.Many2one(
         "ir.model",
         "First model",
@@ -45,6 +49,10 @@ class IrExportsLine(models.Model):
         "ir.model",
         "Third model",
         compute="_compute_model3_id")
+    model4_id = fields.Many2one(
+        "ir.model",
+        "Fourth model",
+        compute="_compute_model4_id")
     sequence = fields.Integer()
     label = fields.Char(
         compute="_compute_label")
@@ -55,10 +63,10 @@ class IrExportsLine(models.Model):
         return self.env.context.get("default_model1_id", False)
 
     @api.one
-    @api.depends("field1_id", "field2_id", "field3_id")
+    @api.depends("field1_id", "field2_id", "field3_id", "field4_id")
     def _compute_name(self):
         """Get the name from the selected fields."""
-        name = "/".join((self.field_n(num).name for num in range(1, 4)
+        name = "/".join((self.field_n(num).name for num in range(1, 5)
                          if self.field_n(num)))
         if name != self.name:
             self.name = name
@@ -84,12 +92,22 @@ class IrExportsLine(models.Model):
             ir_model.search([("model", "=", self.field2_id.relation)]))
 
     @api.one
+    @api.depends("field3_id")
+    def _compute_model4_id(self):
+        """Get the related model for the third field."""
+        ir_model = self.env["ir.model"]
+        self.model4_id = (
+            self.field3_id.ttype and
+            "2" in self.field3_id.ttype and
+            ir_model.search([("model", "=", self.field3_id.relation)]))
+
+    @api.one
     @api.depends('name')
     def _compute_label(self):
         """Column label in a user-friendly format and language."""
         try:
             parts = list()
-            for num in range(1, 4):
+            for num in range(1, 5):
                 field = self.field_n(num)
                 if not field:
                     break
@@ -107,11 +125,11 @@ class IrExportsLine(models.Model):
         """Get the fields from the name."""
         # Field names can have up to only 3 indentation levels
         parts = self.name.split("/")
-        if len(parts) > 3:
+        if len(parts) > 4:
             raise exceptions.ValidationError(
-                _("It's not allowed to have more than 3 levels depth: "
+                _("It's not allowed to have more than 4 levels depth: "
                   "%s") % self.name)
-        for num in range(1, 4):
+        for num in range(1, 5):
             if num > len(parts):
                 # Empty subfield in this case
                 self[self.field_n(num, True)] = False
@@ -123,7 +141,7 @@ class IrExportsLine(models.Model):
         self._check_name()
 
     @api.one
-    @api.constrains("field1_id", "field2_id", "field3_id")
+    @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
         if not self.label:
             raise exceptions.ValidationError(
@@ -134,6 +152,16 @@ class IrExportsLine(models.Model):
             if len(lines) > 1:
                 raise exceptions.ValidationError(
                     _("Field '%s' already exists") % self.name)
+
+    @api.onchange('name')
+    def onchange_name(self):
+        if self.name:
+            self._inverse_name()
+        else:
+            self.field1_id = False
+            self.field2_id = False
+            self.field3_id = False
+            self.field4_id = False
 
     @api.model
     def _get_field_id(self, model, name):
