@@ -15,7 +15,7 @@
         ],
     'data': [
         'data/ir_config_parameter.xml',
-        'view/res_config_view.xml',
+        'views/res_config_view.xml',
     ],
     'demo': [],
     'js': [],
