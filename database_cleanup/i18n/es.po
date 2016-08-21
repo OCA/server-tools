@@ -3,7 +3,7 @@
 # * database_cleanup
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 12:01+0000\n"
+"POT-Creation-Date: 2016-08-17 00:46+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
@@ -215,7 +215,7 @@ msgid "No dangling menu entries found"
 msgstr "No encontradas entradas de menú colgando"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_modules.py:122
+#: code:addons/database_cleanup/model/purge_modules.py:127
 #, python-format
 msgid "No modules found to purge"
 msgstr "No se han encontrado módulos para purgar"
@@ -249,7 +249,7 @@ msgstr "No encontradas tablas huérfanas"
 #: code:addons/database_cleanup/model/purge_data.py:99
 #: code:addons/database_cleanup/model/purge_menus.py:73
 #: code:addons/database_cleanup/model/purge_models.py:147
-#: code:addons/database_cleanup/model/purge_modules.py:121
+#: code:addons/database_cleanup/model/purge_modules.py:126
 #: code:addons/database_cleanup/model/purge_tables.py:132
 #, python-format
 msgid "Nothing to do"
