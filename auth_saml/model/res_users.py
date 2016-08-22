@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+# -*- encoding: utf-8 -*-
 import logging
 # this is our very own dependency
 import lasso
@@ -20,7 +19,7 @@ from openerp import _
 _logger = logging.getLogger(__name__)
 
 
-class ResUsers(models.Model):
+class res_users(models.Model):
     _inherit = 'res.users'
 
     saml_provider_id = fields.Many2one(
@@ -180,10 +179,7 @@ class ResUsers(models.Model):
                 token
             )
 
-        except (
-            openerp.exceptions.AccessDenied,
-            passlib.exc.PasswordSizeError,
-        ):
+        except (openerp.exceptions.AccessDenied, passlib.exc.PasswordSizeError):
             # since normal auth did not succeed we now try to find if the user
             # has an active token attached to his uid
             res = token_osv.search(
@@ -210,7 +206,7 @@ class ResUsers(models.Model):
             if not self._allow_saml_and_password():
                 vals['password'] = False
 
-        return super(ResUsers, self).write(vals)
+        return super(res_users, self).write(vals)
 
     @api.model
     def _allow_saml_and_password(self):

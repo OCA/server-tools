@@ -1,3 +1,5 @@
 # flake8: noqa
 
-from . import main
+import main
+
+# vim:expandtab:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openerp import fields
 from openerp import models
 from openerp import api
@@ -8,7 +6,7 @@ from openerp import api
 _SAML_UID_AND_PASS_SETTING = 'auth_saml.allow_saml.uid_and_internal_password'
 
 
-class BaseSettings(models.TransientModel):
+class base_settings(models.TransientModel):
     """Inherit from base.config.settings to add a setting. This is only here
     for easier access; the setting is not actually stored by this (transient)
     collection. Instead, it is kept in sync with the

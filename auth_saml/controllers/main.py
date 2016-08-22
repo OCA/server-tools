@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import functools
 import logging
 
@@ -7,7 +5,6 @@ import simplejson
 import werkzeug.utils
 
 import openerp
-from openerp import _
 from openerp import http
 from openerp.http import request
 from openerp import SUPERUSER_ID
@@ -45,8 +42,6 @@ def fragment_to_query_string(func):
 # ----------------------------------------------------------
 # Controller
 # ----------------------------------------------------------
-
-
 class SAMLLogin(openerp.addons.web.controllers.main.Home):
 
     def list_providers(self):

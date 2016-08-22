@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+__author__ = 'faide'
 
 import logging
 from openerp import fields
@@ -7,7 +8,7 @@ from openerp import models
 _logger = logging.getLogger(__name__)
 
 
-class SamlToken(models.Model):
+class saml_token(models.Model):
     _name = "auth_saml.token"
     _rec_name = "user_id"
 
