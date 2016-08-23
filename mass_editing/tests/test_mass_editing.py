@@ -2,6 +2,8 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import ast
+
 from openerp.tests import common
 
 
@@ -57,7 +59,8 @@ class TestMassEditing(common.TransactionCase):
         new_mass = self.mass_object_model.new({'model_id':
                                                self.partner_model.id})
         new_mass._onchange_model_id()
-        self.assertTrue(self.partner_model.id in eval(new_mass.model_list),
+        model_list = ast.literal_eval(new_mass.model_list)
+        self.assertTrue(self.partner_model.id in model_list,
                         'Onchange model list must contains model_id.')
 
     def test_mass_edit_email(self):
