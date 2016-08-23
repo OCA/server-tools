@@ -1,24 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This module uses OpenERP, Open Source Management Solution Framework.
-#    Copyright (C):
-#        2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>
-#
-##############################################################################
+# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.exceptions import UserError
 from openerp import api, fields, models, _
@@ -26,24 +8,26 @@ from openerp import api, fields, models, _
 
 class MassObject(models.Model):
     _name = "mass.object"
+    _description = "Mass Editing Object"
 
     name = fields.Char('Name', required=True, select=1)
     model_id = fields.Many2one('ir.model', 'Model', required=True,
-                               help="Model is used for Selecting Fields."
-                               "This is editable until Sidebar menu is not "
-                               "created.")
+                               help="Model is used for Selecting Fields. "
+                                    "This is editable until Sidebar menu "
+                                    "is not created.")
     field_ids = fields.Many2many('ir.model.fields', 'mass_field_rel',
                                  'mass_id', 'field_id', 'Fields')
-    ref_ir_act_window = fields.Many2one('ir.actions.act_window',
-                                        'Sidebar action',
-                                        readonly=True,
-                                        help="Sidebar action to make this "
-                                        "template available on records of "
-                                        "the related document model.")
-    ref_ir_value = fields.Many2one('ir.values', 'Sidebar button',
-                                   readonly=True,
-                                   help="Sidebar button to open"
-                                   "the sidebar action")
+    ref_ir_act_window_id = fields.Many2one('ir.actions.act_window',
+                                           'Sidebar action',
+                                           readonly=True,
+                                           help="Sidebar action to make this "
+                                                "template available on "
+                                                "records of the related "
+                                                "document model.")
+    ref_ir_value_id = fields.Many2one('ir.values', 'Sidebar button',
+                                      readonly=True,
+                                      help="Sidebar button to open "
+                                           "the sidebar action.")
     model_list = fields.Char('Model List')
 
     _sql_constraints = [
@@ -51,7 +35,7 @@ class MassObject(models.Model):
     ]
 
     @api.onchange('model_id')
-    def onchange_model(self):
+    def _onchange_model_id(self):
         self.field_ids = [(6, 0, [])]
         model_list = []
         if self.model_id:
@@ -67,11 +51,12 @@ class MassObject(models.Model):
 
     @api.multi
     def create_action(self):
+        self.ensure_one()
         vals = {}
         action_obj = self.env['ir.actions.act_window']
         src_obj = self.model_id.model
         button_name = _('Mass Editing (%s)') % self.name
-        vals['ref_ir_act_window'] = action_obj.create({
+        vals['ref_ir_act_window_id'] = action_obj.create({
             'name': button_name,
             'type': 'ir.actions.act_window',
             'res_model': 'mass.editing.wizard',
@@ -82,12 +67,12 @@ class MassObject(models.Model):
             'target': 'new',
             'auto_refresh': 1,
         }).id
-        vals['ref_ir_value'] = self.env['ir.values'].create({
+        vals['ref_ir_value_id'] = self.env['ir.values'].create({
             'name': button_name,
             'model': src_obj,
             'key2': 'client_action_multi',
-            'value': "ir.actions.act_window," + str(vals['ref_ir_act_window']),
-            'object': True,
+            'value': "ir.actions.act_window," +
+                     str(vals['ref_ir_act_window_id']),
         }).id
         self.write(vals)
         return True
@@ -96,10 +81,10 @@ class MassObject(models.Model):
     def unlink_action(self):
         for mass in self:
             try:
-                if mass.ref_ir_act_window:
-                    mass.ref_ir_act_window.unlink()
-                if mass.ref_ir_value:
-                    mass.ref_ir_value.unlink()
+                if mass.ref_ir_act_window_id:
+                    mass.ref_ir_act_window_id.unlink()
+                if mass.ref_ir_value_id:
+                    mass.ref_ir_value_id.unlink()
             except:
                 raise UserError(_("Deletion of the action record failed."))
         return True
@@ -109,27 +94,9 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
-    @api.one
-    def copy(self, default):
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
         if default is None:
             default = {}
         default.update({'name': _("%s (copy)" % self.name), 'field_ids': []})
         return super(MassObject, self).copy(default)
-
-
-class IrModuleModule(models.Model):
-    _inherit = 'ir.module.module'
-
-    @api.multi
-    def module_uninstall(self):
-        # search window actions of mass editing  and delete it
-        values_obj = self.env['ir.values']
-        for record in self:
-            if record.name == 'mass_editing':
-                actions = self.env['ir.actions.act_window'].\
-                    search([('res_model', '=', 'mass.editing.wizard')])
-                for action in actions:
-                    value = 'ir.actions.act_window,%s' % action.id
-                    values_obj.search([('value', '=', value)]).unlink()
-                actions.unlink()
-        return super(IrModuleModule, self).module_uninstall()

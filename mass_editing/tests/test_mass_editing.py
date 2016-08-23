@@ -1,24 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This module uses OpenERP, Open Source Management Solution Framework.
-#    Copyright (C):
-#        2012-Today Serpent Consulting Services (<http://www.serpentcs.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>
-#
-##############################################################################
+# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.tests import common
 
@@ -33,16 +15,18 @@ class TestMassEditing(common.TransactionCase):
         self.partner_model = self.env['ir.model'].\
             search([('model', '=', 'res.partner')])
         self.fields_model = self.env['ir.model.fields'].\
-            search([('model', '=', 'res.partner'), ('name', '=', 'email')])
-        self._create_mass_editing(self.partner_model, self.fields_model)
+            search([('model', '=', self.partner_model.model),
+                    ('name', '=', 'email')])
+        self.mass = self._create_mass_editing(self.partner_model,
+                                              self.fields_model)
+        self.copy_mass = self.mass.copy()
 
     def _create_partner(self):
         """Create a Partner."""
-        partner = self.res_partner_model.create({
+        return self.res_partner_model.create({
             'name': 'Test Partner',
             'email': 'example@yourcompany.com',
         })
-        return partner
 
     def _create_mass_editing(self, model, field):
         """Create a Mass Editing with Partner as model and
@@ -53,6 +37,7 @@ class TestMassEditing(common.TransactionCase):
             'field_ids': [(6, 0, [field.id])]
         })
         mass.create_action()
+        return mass
 
     def _apply_action_remove(self, partner):
         """Create Wizard object to perform mass editing to
@@ -77,11 +62,11 @@ class TestMassEditing(common.TransactionCase):
         }
         self.env['mass.editing.wizard'].with_context(partner_context).create({
             'selection__email': 'set',
-            'email': 'sample@mycompany.com'
+            'email': 'sample@mycompany.com',
         })
         return True
 
-    def test_security(self):
+    def test_mass_edit(self):
         """Test Case for MASS EDITING which will remove and after add
         Partner's email and will assert the same."""
         self._apply_action_remove(self.partner)
@@ -90,3 +75,19 @@ class TestMassEditing(common.TransactionCase):
         self._apply_action_set(self.partner)
         self.assertNotEqual(self.partner.email, False,
                             'Partner\'s Email should be set.')
+
+    def test_mass_edit_copy(self):
+        """Test if fields one2many field gets blank when mass editing record
+        is copied.
+        """
+        self.assertEqual(self.copy_mass.field_ids.ids, [],
+                         'Fields must be blank.')
+
+    def test_sidebar_action(self):
+        """Test if Sidebar Action is added / removed to / from give object."""
+        action = self.mass.ref_ir_act_window_id and self.mass.ref_ir_value_id
+        self.assertTrue(action, 'Sidebar action must be exists.')
+        # Remove the sidebar actions
+        self.mass.unlink_action()
+        action = self.mass.ref_ir_act_window_id and self.mass.ref_ir_value_id
+        self.assertFalse(action, 'Sidebar action must be removed.')
