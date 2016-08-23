@@ -16,7 +16,7 @@ import logging
 _logger = logging.getLogger(__name__)
 try:
     import pysftp
-except ImportError:
+except ImportError:  # pragma: no cover
     _logger.debug('Cannot import pysftp')
 
 
@@ -107,8 +107,8 @@ class DbBackup(models.Model):
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
 
-    @api.constrains("folder", "method")
     @api.multi
+    @api.constrains("folder", "method")
     def _check_folder(self):
         """Do not use the filestore or you will backup your backups."""
         for s in self:
@@ -235,6 +235,7 @@ class DbBackup(models.Model):
     @contextmanager
     def cleanup_log(self):
         """Log a possible cleanup failure."""
+        self.ensure_one()
         try:
             _logger.info("Starting cleanup process after database backup: %s",
                          self.name)
@@ -263,6 +264,7 @@ class DbBackup(models.Model):
     @api.multi
     def sftp_connection(self):
         """Return a new SFTP connection with found parameters."""
+        self.ensure_one()
         params = {
             "host": self.sftp_host,
             "username": self.sftp_user,
