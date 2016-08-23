@@ -5,6 +5,8 @@
 import ast
 
 from openerp.tests import common
+from openerp.modules import registry
+from openerp.addons.mass_editing.hooks import uninstall_hook
 
 
 class TestMassEditing(common.TransactionCase):
@@ -138,10 +140,8 @@ class TestMassEditing(common.TransactionCase):
     def test_uninstall_hook(self):
         """Test if related actions are removed when mass editing
         record is uninstalled."""
+        uninstall_hook(self.cr, registry)
         mass_action_id = "ir.actions.act_window," + str(self.mass.id)
-        ir_module_obj = self.env['ir.module.module']
-        ir_module = ir_module_obj.search([('name', '=', 'mass_editing')])
-        ir_module.button_uninstall()
         value_cnt = self.env['ir.values'].search([('value', '=',
                                                    mass_action_id)],
                                                  count=True)
