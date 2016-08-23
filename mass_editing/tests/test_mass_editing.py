@@ -52,6 +52,14 @@ class TestMassEditing(common.TransactionCase):
         }
         return self.env['mass.editing.wizard'].with_context(ctx).create(vals)
 
+    def test_onchange_model(self):
+        """Test whether onchange model_id returns model_id in list"""
+        new_mass = self.mass_object_model.new({'model_id':
+                                               self.partner_model.id})
+        new_mass._onchange_model_id()
+        self.assertTrue(self.partner_model.id in eval(new_mass.model_list),
+                        'Onchange model list must contains model_id.')
+
     def test_mass_edit_email(self):
         """Test Case for MASS EDITING which will remove and after add
         Partner's email and will assert the same."""
