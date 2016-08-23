@@ -23,9 +23,11 @@ class TestMassEditing(common.TransactionCase):
 
     def _create_partner(self):
         """Create a Partner."""
+        categ_ids = self.env['res.partner.category'].search([]).ids
         return self.res_partner_model.create({
             'name': 'Test Partner',
             'email': 'example@yourcompany.com',
+            'category_id': [(6, 0, categ_ids)],
         })
 
     def _create_mass_editing(self, model, field):
@@ -39,42 +41,56 @@ class TestMassEditing(common.TransactionCase):
         mass.create_action()
         return mass
 
-    def _apply_action_remove(self, partner):
+    def _apply_action(self, partner, vals):
         """Create Wizard object to perform mass editing to
-        REMOVE email field's value."""
-        partner_context = {
+        REMOVE field's value."""
+        ctx = {
             'active_id': partner.id,
             'active_ids': partner.ids,
             'active_model': 'res.partner',
         }
-        self.env['mass.editing.wizard'].with_context(partner_context).create({
-            'selection__email': 'remove'
-        })
-        return True
+        return self.env['mass.editing.wizard'].with_context(ctx).create(vals)
 
-    def _apply_action_set(self, partner):
-        """Create Wizard object to perform mass editing to
-        SET email field's value."""
-        partner_context = {
-            'active_id': partner.id,
-            'active_ids': partner.ids,
-            'active_model': 'res.partner',
-        }
-        self.env['mass.editing.wizard'].with_context(partner_context).create({
-            'selection__email': 'set',
-            'email': 'sample@mycompany.com',
-        })
-        return True
-
-    def test_mass_edit(self):
+    def test_mass_edit_email(self):
         """Test Case for MASS EDITING which will remove and after add
         Partner's email and will assert the same."""
-        self._apply_action_remove(self.partner)
+        # Remove email address
+        vals = {'selection__email': 'remove'}
+        self._apply_action(self.partner, vals)
         self.assertEqual(self.partner.email, False,
                          'Partner\'s Email should be removed.')
-        self._apply_action_set(self.partner)
+        # Set email address
+        vals = {
+            'selection__email': 'set',
+            'email': 'sample@mycompany.com',
+        }
+        self._apply_action(self.partner, vals)
         self.assertNotEqual(self.partner.email, False,
                             'Partner\'s Email should be set.')
+
+    def test_mass_edit_m2m_categ(self):
+        """Test Case for MASS EDITING which will remove and add
+        Partner's category m2m."""
+        # Remove m2m categories
+        vals = {
+            'selection__category_id': 'remove_m2m',
+        }
+        self._apply_action(self.partner, vals)
+        self.assertNotEqual(self.partner.category_id, False,
+                            'Partner\'s category should be removed.')
+        # Add m2m categories
+        dist_categ_id = self.env.ref('base.res_partner_category_13').id
+        vals = {
+            'selection__category_id': 'add',
+            'category_id': [[6, 0, [dist_categ_id]]],
+        }
+        wiz_action = self._apply_action(self.partner, vals)
+        self.assertTrue(dist_categ_id in self.partner.category_id.ids,
+                        'Partner\'s category should be added.')
+        # Check window close action
+        res = wiz_action.action_apply()
+        self.assertTrue(res['type'] == 'ir.actions.act_window_close',
+                        'IR Action must be window close.')
 
     def test_mass_edit_copy(self):
         """Test if fields one2many field gets blank when mass editing record
