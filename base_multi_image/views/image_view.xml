@@ -19,6 +19,7 @@
                         <field name="show_technical" invisible="True"/>
                         <field name="owner_model"/>
                         <field name="owner_id"/>
+                        <field name="owner_ref_id"/>
                         <field name="sequence"/>
                     </group>
                     <group string="Name">
@@ -50,6 +51,12 @@
                                 'required': [('storage', '=', 'db')],
                             }"
                             filename="filename"/>
+                        <field
+                            name="attachment_id"
+                            attrs="{
+                                'invisible': [('storage', '!=', 'filestore')],
+                                'required': [('storage', '=', 'filestore')],
+                            }"/>
                     </group>
                     <group string="Preview">
                         <field name="image_medium"

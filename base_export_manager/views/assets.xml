@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add Javascript -->
+    <template id="assets_backend"
+              inherit_id="web.assets_backend"
+              name="Add technical name to field items"
+              priority="20">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/base_export_manager/static/src/js/base_export_manager.js"/>
+        </xpath>
+    </template>
+
+</odoo>

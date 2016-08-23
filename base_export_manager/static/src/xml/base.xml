@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ExportTreeView-Secondary.children">
+        <t t-jquery="#tree-column a" t-operation="append">
+             (<t t-esc="field.id"/>)
+        </t>
+    </t>
+
+</templates>

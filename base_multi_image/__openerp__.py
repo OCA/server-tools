@@ -8,7 +8,7 @@
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "9.0.1.0.0",
+    "version": "9.0.1.1.0",
     "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Antiun Ingeniería, S.L., Sodexis, "
               "Odoo Community Association (OCA)",

@@ -6,12 +6,12 @@
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-18 13:24+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"POT-Creation-Date: 2016-06-09 12:31+0000\n"
+"PO-Revision-Date: 2016-05-31 14:47+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,28 +20,21 @@ msgstr ""
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:54
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:30
 #, python-format
 msgid "Check your email to activate your account!"
 msgstr "Prüfen Sie Ihre Email, um Ihr Konto zu aktivieren."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:50
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:28
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
 msgstr "Etwas ist schief gelaufen, bitte später nochmal versuchen oden an uns wenden."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:27
 #, python-format
 msgid "That does not seem to be an email address."
 msgstr "Das schein keine Email-Adresse zu sein."
-
-#. module: auth_signup_verify_email
-#: view:website:auth_signup.fields
-msgid "email"
-msgstr "EMail"
-
-#. module: auth_signup_verify_email
-#: view:website:auth_signup.fields
-msgid "only_passwords"
-msgstr ""

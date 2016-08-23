@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+<record id="base_custom_info_template_tree" model="ir.ui.view">
+    <field name="name">base.custom.info.template.tree</field>
+    <field name="model">custom.info.template</field>
+    <field name="arch" type="xml">
+        <tree string="Custom Info Templates">
+            <field name="name"/>
+            <field name="model"/>
+            <field name="model_id"/>
+            <field name="info_ids"/>
+        </tree>
+    </field>
+</record>
+
+<record id="base_custom_info_template_form" model="ir.ui.view">
+    <field name="name">base.custom.info.template.form</field>
+    <field name="model">custom.info.template</field>
+    <field name="arch" type="xml">
+        <form string="Custom Info Template">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="model_id"/>
+                </group>
+                <group>
+                    <field name="info_ids">
+                        <tree string="Info Lines" editable="bottom">
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="custom_info_template_action" model="ir.actions.act_window">
+    <field name="name">Templates</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">custom.info.template</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_type">form</field>
+    <field name="view_id" eval="False"/> <!-- Force empty -->
+    <field name="domain" eval="False"/> <!-- Force empty -->
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">
+        Click to define a new custom info template.
+      </p><p>
+        You must define a custom info template for each
+        product properties group.
+      </p>
+    </field>
+</record>
+
+</openerp>
