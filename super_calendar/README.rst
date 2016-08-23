@@ -69,6 +69,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Alejandro Santana <alejandrosantana@anubia.es>
 * Agathe Mollé <agathe.molle@savoirfairelinux.com>
+* Serpent Consulting Services Pvt. Ltd.<jay.vora@serpentcs.com>
 
 Maintainer
 ----------
