@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-<data>
+<odoo>
 
     <record model="ir.ui.view" id="view_backup_conf_form">
         <field name="name">Automated Backups</field>
@@ -104,5 +103,5 @@
         <field name="model">db.backup</field>
         <field name="key2">client_action_multi</field>
     </record>
-</data>
-</openerp>
+
+</odoo>

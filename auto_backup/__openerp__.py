@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "8.0.1.0.1",
+    "version": "9.0.1.0.0",
     "author": (
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Grupo ESOC Ingeniería de Servicios,"
@@ -16,8 +16,7 @@
     'license': "AGPL-3",
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
-    "depends": ['email_template'],
-    "demo": [],
+    "depends": ['mail'],
     "data": [
         "data/backup_data.yml",
         "security/ir.model.access.csv",
