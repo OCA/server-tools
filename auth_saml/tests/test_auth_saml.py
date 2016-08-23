@@ -2,7 +2,6 @@ import openerp.tests
 
 from .util.odoo_tests import TestBase
 from .util.singleton import Singleton
-from .util.uuidgen import genUuid
 
 
 class TestMemory(object):

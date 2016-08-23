@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+# flake8: noqa
+
 #
 # SAML2 authentication build configuration file, created by
 # sphinx-quickstart on Mon Jun 13 17:24:26 2016.

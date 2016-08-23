@@ -101,7 +101,7 @@ def scan_file(filename, tags):
     res = {tag: [] for tag in tags}
     with open(filename, 'r') as f:
         for line_num, line in enumerate(f):
-             for tag in tags:
+            for tag in tags:
                 if tag in line:
                     res[tag].append((filename, line_num, line[:-1].strip()))
     return res
