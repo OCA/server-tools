@@ -27,6 +27,7 @@ class TestMassEditing(common.TransactionCase):
         return self.res_partner_model.create({
             'name': 'Test Partner',
             'email': 'example@yourcompany.com',
+            'phone': 123456,
             'category_id': [(6, 0, categ_ids)],
         })
 
@@ -55,7 +56,10 @@ class TestMassEditing(common.TransactionCase):
         """Test Case for MASS EDITING which will remove and after add
         Partner's email and will assert the same."""
         # Remove email address
-        vals = {'selection__email': 'remove'}
+        vals = {
+            'selection__email': 'remove',
+            'selection__phone': 'remove',
+        }
         self._apply_action(self.partner, vals)
         self.assertEqual(self.partner.email, False,
                          'Partner\'s Email should be removed.')
@@ -107,3 +111,15 @@ class TestMassEditing(common.TransactionCase):
         self.mass.unlink_action()
         action = self.mass.ref_ir_act_window_id and self.mass.ref_ir_value_id
         self.assertFalse(action, 'Sidebar action must be removed.')
+
+    def test_unlink_mass(self):
+        """Test if related actions are removed when mass editing
+        record is unlinked"""
+        mass_action_id = "ir.actions.act_window," + str(self.mass.id)
+        self.mass.unlink()
+        value_cnt = self.env['ir.values'].search([('value', '=',
+                                                   mass_action_id)],
+                                                 count=True)
+        self.assertTrue(value_cnt == 0,
+                        "Sidebar action must be removed when mass"
+                        " editing is unlinked.")
