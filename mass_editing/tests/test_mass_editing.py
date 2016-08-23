@@ -13,17 +13,21 @@ class TestMassEditing(common.TransactionCase):
 
     def setUp(self):
         super(TestMassEditing, self).setUp()
+        model_obj = self.env['ir.model']
+        self.mass_wiz_obj = self.env['mass.editing.wizard']
         self.mass_object_model = self.env['mass.object']
         self.res_partner_model = self.env['res.partner']
         self.partner = self._create_partner()
-        self.partner_model = self.env['ir.model'].\
+        self.partner_model = model_obj.\
             search([('model', '=', 'res.partner')])
+        self.user_model = model_obj.search([('model', '=', 'res.users')])
         self.fields_model = self.env['ir.model.fields'].\
             search([('model', '=', self.partner_model.model),
                     ('name', '=', 'email')])
         self.mass = self._create_mass_editing(self.partner_model,
                                               self.fields_model)
         self.copy_mass = self.mass.copy()
+        self.user = self._create_user()
 
     def _create_partner(self):
         """Create a Partner."""
@@ -33,6 +37,13 @@ class TestMassEditing(common.TransactionCase):
             'email': 'example@yourcompany.com',
             'phone': 123456,
             'category_id': [(6, 0, categ_ids)],
+        })
+
+    def _create_user(self):
+        return self.env['res.users'].create({
+            'name': 'Test User',
+            'login': 'test_login',
+            'email': 'test@test.com',
         })
 
     def _create_mass_editing(self, model, field):
@@ -54,15 +65,26 @@ class TestMassEditing(common.TransactionCase):
             'active_ids': partner.ids,
             'active_model': 'res.partner',
         }
-        return self.env['mass.editing.wizard'].with_context(ctx).create(vals)
+        return self.mass_wiz_obj.with_context(ctx).create(vals)
+
+    def test_wiz_fields_view_get(self):
+        """Test whether fields_view_get method returns arch or not."""
+        ctx = {
+            'mass_editing_object': self.mass.id,
+            'active_id': self.partner.id,
+            'active_ids': self.partner.ids,
+            'active_model': 'res.partner',
+        }
+        result = self.mass_wiz_obj.with_context(ctx).fields_view_get()
+        self.assertTrue(result.get('arch'),
+                        'Fields view get must return architecture.')
 
     def test_onchange_model(self):
         """Test whether onchange model_id returns model_id in list"""
-        new_mass = self.mass_object_model.new({'model_id':
-                                               self.partner_model.id})
+        new_mass = self.mass_object_model.new({'model_id': self.user_model.id})
         new_mass._onchange_model_id()
         model_list = ast.literal_eval(new_mass.model_list)
-        self.assertTrue(self.partner_model.id in model_list,
+        self.assertTrue(self.user_model.id in model_list,
                         'Onchange model list must contains model_id.')
 
     def test_mass_edit_email(self):
