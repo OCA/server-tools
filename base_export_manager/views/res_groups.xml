@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_groups_view_form" model="ir.ui.view">
+        <field name="name">res.groups.form</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.view_groups_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_access']//tree//field[@name='perm_unlink']" position="after">
+                <field name="perm_export"/>
+            </xpath>
+            <xpath expr="//field[@name='model_access']//form//field[@name='perm_unlink']" position="after">
+                <field name="perm_export"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

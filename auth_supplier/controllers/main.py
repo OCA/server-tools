@@ -10,5 +10,7 @@ from openerp.http import request
 
 class AuthSignupHome(AuthSignupHome):
     def _signup_with_values(self, token, values):
-        values.update(account_type=request.params.get('account_type', False))
+        account_type = request.params.get('account_type')
+        if account_type in {"customer", "supplier"}:
+            values.setdefault(account_type, True)
         return super(AuthSignupHome, self)._signup_with_values(token, values)

@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# Authors: See README.RST for Contributors
+# Copyright 2015-2016 See __openerp__.py for Authors
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, api, exceptions, _
 import logging
@@ -92,7 +92,7 @@ class IrActionsReport(models.Model):
                 report_xml._create_qweb(name, report_name, module, model, arch)
         return report_xml
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         if not self.env.context.get('enable_duplication', False):
             return super(IrActionsReport, self).copy(default=default)

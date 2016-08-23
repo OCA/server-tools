@@ -3,11 +3,20 @@
 # * base_technical_features
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-27 01:37+0000\n"
+"POT-Creation-Date: 2016-07-09 10:34+0000\n"
 "PO-Revision-Date: 2016-01-05 19:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
@@ -20,7 +29,7 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_id
@@ -30,7 +39,7 @@ msgstr "Identificação"
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features

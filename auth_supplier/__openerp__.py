@@ -6,13 +6,12 @@
 
 {
     'name': "Auth Supplier",
-    'category': 'Tools',
-    'version': '9.0.1.0.0',
+    'category': 'Portal',
+    'version': '9.0.2.0.0',
     'depends': [
         'auth_signup',
     ],
     'data': [
-        'security/auth_supplier_security.xml',
         'views/auth_supplier_view.xml',
     ],
     'author': 'Antiun Ingeniería S.L., '

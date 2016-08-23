@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
-"PO-Revision-Date: 2016-05-27 17:21+0000\n"
+"POT-Creation-Date: 2016-06-29 00:48+0000\n"
+"PO-Revision-Date: 2016-06-28 11:50+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -24,26 +24,11 @@ msgid "Account Type"
 msgstr "Tipo de cuenta"
 
 #. module: auth_supplier
-#: model:ir.module.category,name:auth_supplier.module_auth_supplier
-msgid "Auth Supplier"
-msgstr "Proveedor de autenticación"
-
-#. module: auth_supplier
 #: model:ir.ui.view,arch_db:auth_supplier.fields
 msgid "Customer"
 msgstr "Cliente"
 
 #. module: auth_supplier
-#: model:res.groups,name:auth_supplier.group_auth_supplier
-msgid "Portal Supplier"
-msgstr ""
-
-#. module: auth_supplier
 #: model:ir.ui.view,arch_db:auth_supplier.fields
 msgid "Supplier"
 msgstr "Proveedor"
-
-#. module: auth_supplier
-#: model:ir.model,name:auth_supplier.model_res_users
-msgid "Users"
-msgstr "Usuarios"
