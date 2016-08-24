@@ -10,7 +10,7 @@ from openerp.tools.config import config
 def _get_authorized_password():
     """ You can define your own authorized keys
     """
-    return [config.get("secure_uninstall")]
+    return [config.get("secure_uninstall"), config.get("admin_passwd")]
 
 
 class BaseModuleUpgrade(models.TransientModel):
