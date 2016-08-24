@@ -22,9 +22,10 @@ class TestMassEditing(common.TransactionCase):
             search([('model', '=', 'res.partner')])
         self.user_model = model_obj.search([('model', '=', 'res.users')])
         self.fields_model = self.env['ir.model.fields'].\
-            search([('model', '=', self.partner_model.model),
-                    ('name', 'in', ['email', 'phone', 'category_id',
-                                    'country_id', 'customer'])])
+            search([('model_id', '=', self.partner_model.id),
+                    ('name', 'in', ['email', 'phone', 'category_id', 'comment',
+                                    'country_id', 'customer', 'child_ids',
+                                    'title'])])
         self.mass = self._create_mass_editing(self.partner_model,
                                               self.fields_model)
         self.copy_mass = self.mass.copy()
