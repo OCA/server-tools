@@ -23,7 +23,8 @@ class TestMassEditing(common.TransactionCase):
         self.user_model = model_obj.search([('model', '=', 'res.users')])
         self.fields_model = self.env['ir.model.fields'].\
             search([('model', '=', self.partner_model.model),
-                    ('name', '=', 'email')])
+                    ('name', 'in', ['email', 'phone', 'category_id',
+                                    'country_id', 'customer'])])
         self.mass = self._create_mass_editing(self.partner_model,
                                               self.fields_model)
         self.copy_mass = self.mass.copy()
@@ -46,13 +47,13 @@ class TestMassEditing(common.TransactionCase):
             'email': 'test@test.com',
         })
 
-    def _create_mass_editing(self, model, field):
+    def _create_mass_editing(self, model, fields):
         """Create a Mass Editing with Partner as model and
         email field of partner."""
         mass = self.mass_object_model.create({
             'name': 'Mass Editing for Partner',
             'model_id': model.id,
-            'field_ids': [(6, 0, [field.id])]
+            'field_ids': [(6, 0, fields.ids)]
         })
         mass.create_action()
         return mass
