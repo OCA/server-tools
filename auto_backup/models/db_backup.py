@@ -107,8 +107,8 @@ class DbBackup(models.Model):
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
 
-    @api.constrains("folder", "method")
     @api.multi
+    @api.constrains("folder", "method")
     def _check_folder(self):
         """Do not use the filestore or you will backup your backups."""
         for s in self:
