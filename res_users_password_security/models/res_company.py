@@ -9,20 +9,37 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     password_expiration = fields.Integer(
-        'Days', default=60, help='How many days until passwords expire'
+        'Days',
+        default=60,
+        help='How many days until passwords expire',
     )
     password_length = fields.Integer(
-        'Characters', default=12, help='Minimum number of characters'
+        'Characters',
+        default=12,
+        help='Minimum number of characters',
     )
     password_lower = fields.Boolean(
-        'Lowercase', default=True, help='Require lowercase letters'
+        'Lowercase',
+        default=True,
+        help='Require lowercase letters',
     )
     password_upper = fields.Boolean(
-        'Uppercase', default=True, help='Require uppercase letters'
+        'Uppercase',
+        default=True,
+        help='Require uppercase letters',
     )
     password_numeric = fields.Boolean(
-        'Numeric', default=True, help='Require numeric digits'
+        'Numeric',
+        default=True,
+        help='Require numeric digits',
     )
     password_special = fields.Boolean(
-        'Special', default=True, help='Require special characters'
+        'Special',
+        default=True,
+        help='Require special characters',
+    )
+    password_history = fields.Integer(
+        'History',
+        default=30,
+        help='Disallow reuse of this many previous passwords',
     )

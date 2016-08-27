@@ -16,9 +16,32 @@ def delta_now(**kwargs):
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
+
     password_write_date = fields.Datetime(
-        'Latest password update', readonly=True
+        'Last password update',
+        readonly=True,
     )
+    password_history_ids = fields.One2many(
+        string='Password History',
+        comodel_name='res.users.pass.history',
+        inverse_name='user_id',
+        readonly=True,
+    )
+
+    @api.multi
+    @api.constrain('password_crypt')
+    def _check_password_crypt(self):
+        for rec_id in self:
+            recent_passes = rec_id.password.history_ids.limit(
+                rec_id.company_id.password_history
+            )
+            if len(recent_passes.filtered(
+                lambda r: r.password_crypt == rec_id.password_crypt
+            )):
+                raise PassError(
+                    _('Cannot use the most recent %d passwords') %
+                    rec_id.company_id.password_history
+                )
 
     @api.model
     def create(self, vals):
@@ -35,19 +58,22 @@ class ResUsers(models.Model):
     @api.multi
     def password_match_message(self):
         company_id = self.company_id
-        message = [
-            'Password must be %d characters or more.' %
-            company_id.password_length
-        ]
-        message.append('Must contain the following:')
+        message = []
         if company_id.password_lower:
-            message.append('* Lowercase letter')
+            message.append('* ' + _('Lowercase letter'))
         if company_id.password_upper:
-            message.append('* Uppercase letter')
+            message.append('* ' + _('Uppercase letter'))
         if company_id.password_numeric:
-            message.append('* Numeric digit')
+            message.append('* ' + _('Numeric digit'))
         if company_id.password_special:
-            message.append('* Special character')
+            message.append('* ' + _('Special character'))
+        if len(message):
+            message = [_('Must contain the following:')]
+        if company_id.password_length:
+            message = [
+                _('Password must be %d characters or more.') %
+                company_id.password_length
+            ] + message
         return '\r'.join(message)
 
     @api.multi
@@ -85,3 +111,13 @@ class ResUsers(models.Model):
             rec_id.mapped('partner_id').signup_prepare(
                 signup_type="reset", expiration=expiration
             )
+
+    @api.multi
+    @api.depends('password_crypt')
+    def _save_password_crypt(self):
+        """ It saves password crypt history for history rules """
+        for rec_id in self:
+            self.env['res.users.pass.history'].create({
+                'user_id': rec_id,
+                'password_crypt': rec_id.password_crypt,
+            })

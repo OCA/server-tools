@@ -17,11 +17,12 @@ class TestResUsers(TransactionCase):
             'is_company': False,
             'email': self.login,
         }
+        self.password = 'asdQWE123$%^'
         self.main_comp = self.env.ref('base.main_company')
         self.vals = {
             'name': 'User',
             'login': self.login,
-            'password': 'asdQWE123$%^',
+            'password': self.password,
             'company_id': self.main_comp.id
         }
         self.model_obj = self.env['res.users']
@@ -73,6 +74,18 @@ class TestResUsers(TransactionCase):
         rec_id = self._new_record()
         with self.assertRaises(PassError):
             rec_id.check_password('password')
+
+    def test_save_password_crypt(self):
+        rec_id = self._new_record()
+        self.assertEqual(
+            1, len(rec_id.password_history_ids),
+        )
+
+    def test_check_password_crypt(self):
+        """ It should raise PassError if previously used """
+        rec_id = self._new_record()
+        with self.assertRaises(PassError):
+            rec_id.write({'password': self.password})
 
     def test_password_is_expired_if_record_has_no_write_date(self):
         rec_id = self._new_record()

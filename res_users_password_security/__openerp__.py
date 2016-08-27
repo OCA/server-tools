@@ -9,15 +9,13 @@
     'author': "LasLabs, Odoo Community Association (OCA)",
     'category': 'Base',
     'depends': [
+        'auth_crypt',
         'auth_signup',
     ],
     "website": "https://laslabs.com",
     "licence": "LGPL-3",
     "data": [
         'views/res_company_view.xml',
-    ],
-    'test': [
-        'tests/company.yml',
     ],
     'installable': True,
 }
