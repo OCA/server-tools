@@ -9,8 +9,8 @@ import time
 
 class TestResUsers(TransactionCase):
 
-    def setUp(self, *args, **kwargs):
-        super(TestResUsers, self).setUp(*args, **kwargs)
+    def setUp(self):
+        super(TestResUsers, self).setUp()
         self.login = 'foslabs@example.com'
         self.partner_vals = {
             'name': 'Partner',

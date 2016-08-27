@@ -19,8 +19,8 @@ class PasswordSecuritySession(Session):
         new_password = operator.itemgetter('new_password')(
             dict(map(operator.itemgetter('name', 'value'), fields))
         )
-        user = request.env.user
-        user.check_password(new_password)
+        user_id = request.env.user
+        user_id.check_password(new_password)
         return super(PasswordSecuritySession, self).change_password(fields)
 
 
@@ -28,7 +28,7 @@ class PasswordSecurityHome(AuthSignupHome):
 
     def do_signup(self, qcontext):
         password = qcontext.get('password')
-        user_id = request.env['res.users'].browse(request.uid)
+        user_id = request.env.user
         user_id.check_password(password)
         return super(PasswordSecurityHome, self).do_signup(qcontext)
 
