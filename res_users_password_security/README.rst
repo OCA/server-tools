@@ -34,9 +34,9 @@ Settings & Defaults
 
 These are defined at the company level:
 
-=====================  =======   ===============================================
+=====================  =======   ===================================================
  Name                  Default   Description                             
-=====================  =======   ===============================================
+=====================  =======   ===================================================
  password_expiration   60        Days until passwords expire
  password_length       12        Minimum number of characters in password
  password_lower        True      Require lowercase letter in password
@@ -44,7 +44,8 @@ These are defined at the company level:
  password_numeric      True      Require number in password
  password_special      True      Require special character in password
  password_history      30        Disallow reuse of this many previous passwords
-=====================  =======   ===============================================
+ password_minimum      24        Amount of hours that must pass until another reset
+=====================  =======   ===================================================
 
 Known Issues / Roadmap
 ======================

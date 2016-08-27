@@ -41,5 +41,11 @@ class ResCompany(models.Model):
     password_history = fields.Integer(
         'History',
         default=30,
-        help='Disallow reuse of this many previous passwords',
+        help='Disallow reuse of this many previous passwords - use negative '
+             'number for infinite',
+    )
+    password_minimum = fields.Integer(
+        'Minimum Hours',
+        default=24,
+        help='Amount of hours until a user may change password again',
     )

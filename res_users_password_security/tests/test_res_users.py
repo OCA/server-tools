@@ -122,3 +122,31 @@ class TestResUsers(TransactionCase):
             token,
             'A token was not generated.',
         )
+
+    def test_action_reset_password_error(self):
+        """ It should throw PassError on reset inside min threshold """
+        rec_id = self._new_record().with_context(
+            pass_reset_web=True,
+        )
+        with self.assertRaises(PassError):
+            rec_id.action_reset_password()
+
+    def test_action_reset_password_zero(self):
+        """ It should allow reset pass when outside threshold """
+        rec_id = self._new_record().with_context(
+            pass_reset_web=True,
+        )
+        rec_id.password_write_date = '2016-01-01'
+        self.assertEqual(
+            None, rec_id.action_reset_password(),
+        )
+
+    def test_action_reset_password_zero(self):
+        """ It should allow reset pass when <= 0 """
+        rec_id = self._new_record().with_context(
+            pass_reset_web=True,
+        )
+        rec_id.company_id.password_minimum = 0
+        self.assertEqual(
+            None, rec_id.action_reset_password(),
+        )

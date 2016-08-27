@@ -14,7 +14,7 @@ from ..exceptions import PassError
 
 class PasswordSecuritySession(Session):
 
-    @http.route('/web/session/change_password', type='json', auth="user")
+    @http.route()
     def change_password(self, fields):
         new_password = operator.itemgetter('new_password')(
             dict(map(operator.itemgetter('name', 'value'), fields))
@@ -53,7 +53,7 @@ class PasswordSecurityHome(AuthSignupHome):
         redirect = user_id.partner_id.signup_url
         return http.redirect_with_hash(redirect)
 
-    @http.route('/web/signup', type='http', auth='public', website=True)
+    @http.route()
     def web_auth_signup(self, *args, **kw):
         try:
             return super(PasswordSecurityHome, self).web_auth_signup(
@@ -64,17 +64,12 @@ class PasswordSecurityHome(AuthSignupHome):
             qcontext['error'] = _(e.message)
             return request.render('auth_signup.signup', qcontext)
 
-    @http.route(
-        '/web/reset_password',
-        type='http',
-        auth='public',
-        website=True
-    )
+    @http.route()
     def web_auth_reset_password(self, *args, **kw):
-        response = super(PasswordSecurityHome, self).web_auth_reset_password(
-            *args,
-            **kw
+        parent = super(PasswordSecurityHome, self).with_context(
+            pass_reset_web=True,
         )
+        response = parent.web_auth_reset_password(*args, **kw)
         qcontext = response.qcontext
         if 'error' not in qcontext and qcontext.get('token'):
             qcontext['error'] = _("Your password has expired")

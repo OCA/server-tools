@@ -28,21 +28,6 @@ class ResUsers(models.Model):
         readonly=True,
     )
 
-    @api.multi
-    @api.constrain('password_crypt')
-    def _check_password_crypt(self):
-        for rec_id in self:
-            recent_passes = rec_id.password.history_ids.limit(
-                rec_id.company_id.password_history
-            )
-            if len(recent_passes.filtered(
-                lambda r: r.password_crypt == rec_id.password_crypt
-            )):
-                raise PassError(
-                    _('Cannot use the most recent %d passwords') %
-                    rec_id.company_id.password_history
-                )
-
     @api.model
     def create(self, vals):
         vals['password_write_date'] = fields.Datetime.now()
@@ -57,6 +42,7 @@ class ResUsers(models.Model):
 
     @api.multi
     def password_match_message(self):
+        self.ensure_one()
         company_id = self.company_id
         message = []
         if company_id.password_lower:
@@ -78,6 +64,7 @@ class ResUsers(models.Model):
 
     @api.multi
     def check_password(self, password):
+        self.ensure_one()
         if not password:
             return True
         company_id = self.company_id
@@ -97,6 +84,7 @@ class ResUsers(models.Model):
 
     @api.multi
     def _password_has_expired(self):
+        self.ensure_one()
         if not self.password_write_date:
             return True
         write_date = fields.Datetime.from_string(self.password_write_date)
@@ -113,11 +101,53 @@ class ResUsers(models.Model):
             )
 
     @api.multi
-    @api.depends('password_crypt')
-    def _save_password_crypt(self):
-        """ It saves password crypt history for history rules """
+    def action_reset_password(self):
+        if self.env.context.get('pass_reset_web'):
+            for rec_id in self:
+                pass_min = rec_id.company_id.password_minimum
+                if pass_min <= 0:
+                    pass
+                write_date = fields.Datetime.from_string(
+                    rec_id.password_write_date
+                )
+                delta = timedelta(hours=pass_min)
+                if write_date + delta > datetime.now():
+                    raise PassError(
+                        _('Passwords can only be reset every %d hour(s). '
+                          'Please contact an administrator for assistance.') %
+                        pass_min,
+                    )
+        super(ResUsers, self).action_reset_password()
+
+    @api.multi
+    def _set_password(self, password):
+        """ It validates proposed password against existing history
+        :raises: PassError on reused password
+        """
+        crypt = self._crypt_context()[0]
         for rec_id in self:
-            self.env['res.users.pass.history'].create({
-                'user_id': rec_id,
-                'password_crypt': rec_id.password_crypt,
-            })
+            recent_passes = rec_id.company_id.password_history
+            if recent_passes < 0:
+                recent_passes = rec_id.password_history_ids
+            else:
+                recent_passes = rec_id.password_history_ids[
+                    0:recent_passes-1
+                ]
+            if len(recent_passes.filtered(
+                lambda r: crypt.verify(password, r.password_crypt)
+            )):
+                raise PassError(
+                    _('Cannot use the most recent %d passwords') %
+                    rec_id.company_id.password_history
+                )
+        super(ResUsers, self)._set_password(password)
+
+    @api.multi
+    def _set_encrypted_password(self, encrypted):
+        """ It saves password crypt history for history rules """
+        super(ResUsers, self)._set_encrypted_password(encrypted)
+        self.write({
+            'password_history_ids': [(0, 0, {
+                'password_crypt': encrypted,
+            })],
+        })
