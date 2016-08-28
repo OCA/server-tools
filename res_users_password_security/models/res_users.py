@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import re
 
 from openerp import api, fields, models, _
-from openerp.addons.res_users_password_security.exceptions import PassError
+from .exceptions import PassError
 
 
 def delta_now(**kwargs):

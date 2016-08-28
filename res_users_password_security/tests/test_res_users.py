@@ -2,10 +2,11 @@
 # Copyright 2015 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp.addons.res_users_password_security.exceptions import PassError
-from openerp.tests.common import TransactionCase
 import time
 
+from openerp.tests.common import TransactionCase
+
+from .exceptions import PassError
 
 class TestResUsers(TransactionCase):
 

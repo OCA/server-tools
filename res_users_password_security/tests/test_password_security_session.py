@@ -7,7 +7,7 @@ import mock
 from contextlib import contextmanager
 
 from openerp.tests.common import TransactionCase
-from openerp.addons.res_users_password_security.controllers import main
+from .controllers import main
 
 
 IMPORT = 'openerp.addons.res_users_password_security.controllers.main'
@@ -46,3 +46,10 @@ class TestPasswordSecuritySession(TransactionCase):
             check_password.assert_called_once_with(
                 self.passwd,
             )
+
+    def test_change_password_return(self):
+        """ It should return result of super """
+        with self.mock_assets():
+            with mock.patch.object(main.Session, 'change_password') as chg:
+                res = self.controller.change_password(self.fields)
+                self.assertEqual(chg(), res)

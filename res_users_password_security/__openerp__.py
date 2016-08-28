@@ -13,7 +13,7 @@
         'auth_signup',
     ],
     "website": "https://laslabs.com",
-    "licence": "LGPL-3",
+    "license": "LGPL-3",
     "data": [
         'views/res_company_view.xml',
         'security/ir.model.access.csv',
