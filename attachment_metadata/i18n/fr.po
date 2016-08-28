@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-17 02:42+0000\n"
-"PO-Revision-Date: 2016-06-23 09:22+0000\n"
+"POT-Creation-Date: 2016-08-21 06:45+0000\n"
+"PO-Revision-Date: 2016-08-21 06:55+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Créé le"
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Creation Month"
-msgstr ""
+msgstr "Mois de création"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,db_datas:0
@@ -118,14 +118,14 @@ msgstr "Fichier corrompu: Quelque chose ne va pas lors de la récupération du f
 msgid ""
 "File hash comes from the external owner of the file.\n"
 "If provided allow to check than downloaded file is the exact copy of the original file."
-msgstr ""
+msgstr "L'empreinte du fichier provient du propriétaire externe de ce fichier.\nSi fourni elle permet de vérifier que le fichier téléchargé est la copie exacte du fichier original."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,internal_hash:0
 msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
-msgstr ""
+msgstr "l'empreinte du fichier calculé avec les données du fichier sera comparé à l'empreinte externe lorsqu'elle est fournie."
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -197,7 +197,7 @@ msgstr "ID de l'enregistrement"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_model:0
 msgid "Resource Model"
-msgstr ""
+msgstr "Modèle de la ressource"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_name:0
@@ -212,19 +212,19 @@ msgstr "Nom de fichier stocké"
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_model:0
 msgid "The database object this attachment will be attached to"
-msgstr ""
+msgstr "L'objet de cette base de données de cette pièce jointe sera attaché à"
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,file_type:0
 msgid ""
 "The file type determines an import method to be used to parse and transform "
 "data before their import in ERP"
-msgstr ""
+msgstr "Le type de fichier détermine la méthode d'importation a utiliser pour parcourir et transformer les données avant de les importer dans l'ERP "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0
 msgid "The record id this is attached to"
-msgstr ""
+msgstr "Cet ID d'enregistrement sera attaché à"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
