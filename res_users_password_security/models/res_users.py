@@ -56,7 +56,7 @@ class ResUsers(models.Model):
         if company_id.password_special:
             message.append('* ' + _('Special character'))
         if len(message):
-            message = [_('Must contain the following:')]
+            message = [_('Must contain the following:')] + message
         if company_id.password_length:
             message = [
                 _('Password must be %d characters or more.') %

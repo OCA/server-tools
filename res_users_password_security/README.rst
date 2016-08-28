@@ -72,7 +72,7 @@ Contributors
 ------------
 
 * James Foster <jfoster@laslabs.com>
-* Dave Lasley <dlasley@laslabs.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------

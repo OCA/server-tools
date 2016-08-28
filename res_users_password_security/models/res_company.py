@@ -42,7 +42,7 @@ class ResCompany(models.Model):
         'History',
         default=30,
         help='Disallow reuse of this many previous passwords - use negative '
-             'number for infinite',
+             'number for infinite, or 0 to disable',
     )
     password_minimum = fields.Integer(
         'Minimum Hours',
