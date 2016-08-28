@@ -2,11 +2,13 @@
 # Copyright 2015 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from datetime import datetime, timedelta
 import re
 
+from datetime import datetime, timedelta
+
 from openerp import api, fields, models, _
-from .exceptions import PassError
+
+from ..exceptions import PassError
 
 
 def delta_now(**kwargs):
@@ -101,23 +103,26 @@ class ResUsers(models.Model):
             )
 
     @api.multi
-    def action_reset_password(self):
-        if self.env.context.get('pass_reset_web'):
-            for rec_id in self:
-                pass_min = rec_id.company_id.password_minimum
-                if pass_min <= 0:
-                    pass
-                write_date = fields.Datetime.from_string(
-                    rec_id.password_write_date
+    def _validate_pass_reset(self):
+        """ It provides validations before initiating a pass reset email
+        :raises: PassError on invalidated pass reset attempt
+        :return: True on allowed reset
+        """
+        for rec_id in self:
+            pass_min = rec_id.company_id.password_minimum
+            if pass_min <= 0:
+                pass
+            write_date = fields.Datetime.from_string(
+                rec_id.password_write_date
+            )
+            delta = timedelta(hours=pass_min)
+            if write_date + delta > datetime.now():
+                raise PassError(
+                    _('Passwords can only be reset every %d hour(s). '
+                      'Please contact an administrator for assistance.') %
+                    pass_min,
                 )
-                delta = timedelta(hours=pass_min)
-                if write_date + delta > datetime.now():
-                    raise PassError(
-                        _('Passwords can only be reset every %d hour(s). '
-                          'Please contact an administrator for assistance.') %
-                        pass_min,
-                    )
-        super(ResUsers, self).action_reset_password()
+        return True
 
     @api.multi
     def _set_password(self, password):

@@ -7,7 +7,8 @@ import mock
 from contextlib import contextmanager
 
 from openerp.tests.common import TransactionCase
-from .controllers import main
+
+from ..controllers import main
 
 
 IMPORT = 'openerp.addons.res_users_password_security.controllers.main'

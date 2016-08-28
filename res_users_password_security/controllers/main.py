@@ -4,7 +4,7 @@
 
 import operator
 
-from openerp import http, _
+from openerp import http
 from openerp.http import request
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
 from openerp.addons.web.controllers.main import ensure_db, Session
@@ -61,17 +61,30 @@ class PasswordSecurityHome(AuthSignupHome):
             )
         except PassError, e:
             qcontext = self.get_auth_signup_qcontext()
-            qcontext['error'] = _(e.message)
+            qcontext['error'] = e.message
             return request.render('auth_signup.signup', qcontext)
 
     @http.route()
     def web_auth_reset_password(self, *args, **kw):
-        parent = super(PasswordSecurityHome, self).with_context(
-            pass_reset_web=True,
+        """ It provides hook to disallow front-facing resets inside of min
+        Unfortuantely had to reimplement some core logic here because of
+        nested logic in parent
+        """
+        qcontext = self.get_auth_signup_qcontext()
+        if (
+            request.httprequest.method == 'POST' and
+            qcontext.get('login') and
+            'error' not in qcontext and
+            'token' not in qcontext
+        ):
+            login = qcontext.get('login')
+            user_ids = request.env.sudo().search([('login', '=', login)])
+            if not user_ids:
+                user_ids = request.env.sudo().search(
+                    [('email', '=', login)],
+                )
+            if len(user_ids) == 1:
+                user_ids[0]._validate_pass_reset()
+        return super(PasswordSecurityHome, self).web_auth_reset_password(
+            *args, **kw
         )
-        response = parent.web_auth_reset_password(*args, **kw)
-        qcontext = response.qcontext
-        if 'error' not in qcontext and qcontext.get('token'):
-            qcontext['error'] = _("Your password has expired")
-            return request.render('auth_signup.reset_password', qcontext)
-        return response

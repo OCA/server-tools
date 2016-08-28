@@ -8,7 +8,8 @@ from contextlib import contextmanager
 
 from openerp.tests.common import TransactionCase
 from openerp.http import Response
-from .controllers import main
+
+from ..controllers import main
 
 
 IMPORT = 'openerp.addons.res_users_password_security.controllers.main'
@@ -220,4 +221,50 @@ class TestPasswordSecurityHome(TransactionCase):
                 )
                 self.assertEqual(
                     assets['request'].render(), res,
+                )
+
+    def test_web_auth_reset_password_fail_login(self):
+        """ It should raise from failed _validate_pass_reset by login """
+        with self.mock_assets() as assets:
+            with mock.patch.object(
+                main.AuthSignupHome, 'get_auth_signup_qcontext', spec=dict
+            ) as qcontext:
+                qcontext['login'] = 'login'
+                search = assets['request'].env.sudo().search
+                assets['request'].httprequest.method = 'POST'
+                user = mock.MagicMock()
+                user._validate_pass_reset.side_effect = MockPassError
+                search.return_value = [user]
+                with self.assertRaises(MockPassError):
+                    self.controller.web_auth_reset_password()
+
+    def test_web_auth_reset_password_fail_email(self):
+        """ It should raise from failed _validate_pass_reset by email """
+        with self.mock_assets() as assets:
+            with mock.patch.object(
+                main.AuthSignupHome, 'get_auth_signup_qcontext', spec=dict
+            ) as qcontext:
+                qcontext['login'] = 'login'
+                search = assets['request'].env.sudo().search
+                assets['request'].httprequest.method = 'POST'
+                user = mock.MagicMock()
+                user._validate_pass_reset.side_effect = MockPassError
+                search.side_effect = [[], [user]]
+                with self.assertRaises(MockPassError):
+                    self.controller.web_auth_reset_password()
+
+    def test_web_auth_reset_password_success(self):
+        """ It should return parent response on no validate errors """
+        with self.mock_assets() as assets:
+            with mock.patch.object(
+                main.AuthSignupHome, 'get_auth_signup_qcontext', spec=dict
+            ) as qcontext:
+                qcontext['login'] = 'login'
+                search = assets['request'].env.sudo().search
+                assets['request'].httprequest.method = 'POST'
+                user = mock.MagicMock()
+                search.return_value = [user]
+                res = self.controller.web_auth_reset_password()
+                self.assertEqual(
+                    assets['web_auth_reset_password'](), res,
                 )

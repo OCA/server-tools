@@ -6,7 +6,8 @@ import time
 
 from openerp.tests.common import TransactionCase
 
-from .exceptions import PassError
+from ..exceptions import PassError
+
 
 class TestResUsers(TransactionCase):
 
@@ -124,30 +125,24 @@ class TestResUsers(TransactionCase):
             'A token was not generated.',
         )
 
-    def test_action_reset_password_error(self):
+    def test_validate_pass_reset_error(self):
         """ It should throw PassError on reset inside min threshold """
-        rec_id = self._new_record().with_context(
-            pass_reset_web=True,
-        )
+        rec_id = self._new_record()
         with self.assertRaises(PassError):
-            rec_id.action_reset_password()
+            rec_id._validate_pass_reset()
 
-    def test_action_reset_password_zero(self):
+    def test_validate_pass_reset_allow(self):
         """ It should allow reset pass when outside threshold """
-        rec_id = self._new_record().with_context(
-            pass_reset_web=True,
-        )
+        rec_id = self._new_record()
         rec_id.password_write_date = '2016-01-01'
         self.assertEqual(
-            None, rec_id.action_reset_password(),
+            True, rec_id._validate_pass_reset(),
         )
 
-    def test_action_reset_password_zero(self):
+    def test_validate_pass_reset_zero(self):
         """ It should allow reset pass when <= 0 """
-        rec_id = self._new_record().with_context(
-            pass_reset_web=True,
-        )
+        rec_id = self._new_record()
         rec_id.company_id.password_minimum = 0
         self.assertEqual(
-            None, rec_id.action_reset_password(),
+            True, rec_id._validate_pass_reset(),
         )
