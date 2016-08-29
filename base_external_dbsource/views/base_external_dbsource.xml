@@ -33,7 +33,14 @@
                         </group>
                         <group col="1">
                             <field name="connector"/>
-                            <field name="conn_string"/>
+                            <field name="conn_string"
+                                 placeholder="Sample connection strings:
+                            - Microsoft SQL Server:mssql+pymssql://username:%s@server:port/dbname?charset=utf8
+                            - MySQL: mysql://user:%s@server:port/dbname
+                            - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa
+                            - ORACLE: username/%s@//server.address:port/instance
+                            - PostgreSQL: dbname='template1' user='dbuser' host='localhost' port='5432' password=%s
+                            - SQLite: sqlite:///test.db"/>
                             <button name="connection_test" string="Test Connection" type="object" icon="gtk-network"/>
                         </group>
                     </sheet>
