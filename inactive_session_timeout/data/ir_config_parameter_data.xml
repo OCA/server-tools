@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<openerp>
+<!-- 
+    (c) 2015 ACSONE SA/NV, Dhinesh D
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
 
+<odoo>
     <data noupdate="1">
         <record id="inactive_session_time_out_delay" model="ir.config_parameter">
             <field name="key">inactive_session_time_out_delay</field>
@@ -14,4 +18,4 @@
             <field name="value">/calendar/notify,/longpolling/poll</field>
         </record>
     </data>
-</openerp>
+</odoo>
