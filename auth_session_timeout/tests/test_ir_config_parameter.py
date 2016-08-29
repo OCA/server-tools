@@ -19,7 +19,7 @@ class TestIrConfigParameter(common.TransactionCase):
         self.param_obj = self.env['ir.config_parameter']
         self.data_obj = self.env['ir.model.data']
         self.delay = self.env.ref(
-            'inactive_session_timeout.inactive_session_time_out_delay')
+            'auth_session_timeout.inactive_session_time_out_delay')
 
     def test_check_delay(self):
         delay, urls = self.param_obj.get_session_parameters(self.db)
