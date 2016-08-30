@@ -25,9 +25,12 @@ import datetime
 from openerp import SUPERUSER_ID
 from openerp import pooler
 from openerp import exceptions
+from openerp.http import request
 from openerp.osv.orm import Model
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
+
+ADMIN_PASSKEY = 'admin_passkey'
 
 
 class res_users(Model):
@@ -126,12 +129,34 @@ class res_users(Model):
     def check_credentials(self, cr, uid, password):
         """ Return now True if credentials are good OR if password is admin
 password."""
-        if uid != SUPERUSER_ID:
-            try:
-                super(res_users, self).check_credentials(
-                    cr, uid, password)
-                return True
-            except exceptions.AccessDenied:
-                return self.check_credentials(cr, SUPERUSER_ID, password)
-        else:
+        if uid == SUPERUSER_ID:
             return super(res_users, self).check_credentials(cr, uid, password)
+
+        # Case uid != SUPERUSER_ID
+        # is user authenticated by means of admin password ?
+        if self._is_auth_with_admin_password():
+            return self.check_credentials(cr, SUPERUSER_ID, password)
+
+        try:
+            super(res_users, self).check_credentials(
+                cr, uid, password)
+        except exceptions.AccessDenied:
+            self.check_credentials(cr, SUPERUSER_ID, password)
+            # for subsequent calls, we save in session that
+            # admin password was used to authenticate user
+            self._set_auth_with_admin_password()
+        return True
+
+    def _get_session(self):
+        """Returns the http session. Easy to override for unit tests."""
+        return request.session
+
+    def _set_auth_with_admin_password(self):
+        """Set in session a boolean indicating the current user
+        is authenticated by means of admin password."""
+        self._get_session()[ADMIN_PASSKEY] = True
+
+    def _is_auth_with_admin_password(self):
+        """Return True if the current user is authenticated
+        by means of admin password, False otherwise."""
+        return self._get_session().get(ADMIN_PASSKEY, False)
