@@ -20,7 +20,7 @@
 ##############################################################################
 
 {'name': 'SQL Export',
- 'version': '0.1',
+ 'version': '9.0.1.0.0',
  'author': 'Akretion,Odoo Community Association (OCA)',
  'website': 'http://www.akretion.com',
  'license': 'AGPL-3',
@@ -29,7 +29,7 @@
  'depends': ['base',
              ],
  'data': [
-     'sql_export_view.xml',
+     'views/sql_export_view.xml',
      'wizard/wizard_file_view.xml',
      'security/sql_export_security.xml',
      'security/ir.model.access.csv',
