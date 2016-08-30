@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+<data>
+
+
+    <record id="view_base_module_upgrade" model="ir.ui.view">
+        <field name="model">base.module.upgrade</field>
+        <field name="inherit_id" ref="base.view_base_module_upgrade"/>
+        <field name="arch" type="xml">
+            <field name="module_info" position="after">
+                <separator string="Secure Uninstall"/>
+                <label string="If you want uninstall module, write required password ('secure_uninstall' key in ERP config file)."
+                       colspan="4" />
+                <group col="4">
+                    <field name="uninstall_password" password="True" attrs="{'required': 1}"
+                           placeholder="key_provided_by_administrator"/>
+                    <span/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+
+</data>
+</openerp>
