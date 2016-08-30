@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [account_enterprise_remove](account_enterprise_remove/) | 9.0.1.0.0 | Account - Remove Enterprise Features
+[auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 | Add custom field in models
@@ -66,7 +67,6 @@ addon | version | summary
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 (unported) | If fetching mails gives error, send an email to sender
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
-[inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 (unported) | This module disable all inactive sessions since a given delay
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
 [mass_editing](mass_editing/) | 8.0.1.3.0 (unported) | Mass Editing
