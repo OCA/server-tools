@@ -51,7 +51,8 @@
     </record>
 
 
-    <menuitem id="sql_export_menu" name="Sql Export" parent="base.menu_reporting" sequence="80"/>
+    <menuitem id="sql_export_menu" name="Sql Export"
+        parent="base.menu_reporting_dashboard" sequence="80"/>
 
     <menuitem id="sql_export_menu_view" name="Sql Export" parent="sql_export_menu" action="sql_export_tree_action" sequence="1"/>
 
