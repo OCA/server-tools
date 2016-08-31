@@ -70,6 +70,7 @@ addon | version | summary
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
 [mass_editing](mass_editing/) | 8.0.1.3.0 (unported) | Mass Editing
+[mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 (unported) | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
