@@ -32,7 +32,8 @@ class ResUsersLogin(orm.Model):
 
     _name = 'res.users.login'
     _columns = {
-        'user_id': fields.many2one('res.users', 'User', required=True),
+        'user_id': fields.many2one(
+            'res.users', 'User', required=True, ondelete="cascade"),
         'login_dt': fields.date('Latest connection'),
     }
 
