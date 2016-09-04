@@ -3,25 +3,25 @@
 # * secure_uninstall
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-04 01:04+0000\n"
 "PO-Revision-Date: 2016-09-04 01:04+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: secure_uninstall
 #: help:base.module.upgrade,uninstall_password:0
 msgid "'secure_uninstall' value from Odoo configuration file "
-msgstr ""
+msgstr "'secure_uninstall' vrednost iz nastavitvene datoteke Odoo"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
@@ -29,23 +29,25 @@ msgid ""
 "If you want uninstall module, write required password ('secure_uninstall' "
 "key in ERP config file)."
 msgstr ""
+"Če želite odstraniti modul, vpišite zahtevano geslo ('secure_uninstall' "
+"ključ v ERP nastavitveni datoteki)."
 
 #. module: secure_uninstall
 #: model:ir.model,name:secure_uninstall.model_base_module_upgrade
 msgid "Module Upgrade"
-msgstr "Mise à jour de module(s)"
+msgstr "Nadgradnja modula"
 
 #. module: secure_uninstall
 #: field:base.module.upgrade,uninstall_password:0
 msgid "Password"
-msgstr "Mot de passe"
+msgstr "Geslo"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "Secure Uninstall"
-msgstr "Désintallation Securisée"
+msgstr "Varna odstranitev"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "key_provided_by_administrator"
-msgstr ""
+msgstr "key_provided_by_administrator"
