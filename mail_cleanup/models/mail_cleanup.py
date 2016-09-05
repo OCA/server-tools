@@ -42,7 +42,7 @@ class FetchmailServer(models.Model):
                 config_vals['purge_days'] = int(config_vals['purge_days'])
 
             for field in ['cleanup_days', 'purge_days', 'cleanup_folder']:
-                self[field] = config_vals[field]
+                fetchmail[field] = config_vals[field]
 
     cleanup_days = fields.Integer(
         compute=_get_cleanup_conf,
