@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- KPI history -->
+        <record id="view_kpi_history_tree" model="ir.ui.view">
+            <field name="name">kpi.history.tree</field>
+            <field name="model">kpi.history</field>
+            <field name="arch" type="xml">
+                <tree string="KPI History">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="value"/>
+                    <field name="color" widget="color"/>
+                    <field name="company_id" group="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
