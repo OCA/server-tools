@@ -83,14 +83,14 @@ class BaseImportMatch(models.Model):
     def _compute_name(self):
         """Automatic self-descriptive name for the setting records."""
         for s in self:
-            s.name = "{}: {}".format(
+            s.name = u"{}: {}".format(
                 s.model_id.display_name,
-                " + ".join(
+                u" + ".join(
                     s.field_ids.mapped(
                         lambda r: (
                             str(r.field_id.name) +
-                            (" ({})".format(r.imported_value)
-                             if r.conditional else "")))))
+                            (u" ({})".format(r.imported_value)
+                             if r.conditional else u"")))))
 
     @api.model
     def _match_find(self, model, converted_row, imported_row):
