@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
 from openerp import api, fields, models
 from openerp import SUPERUSER_ID  # TODO remove in v10
 
@@ -85,12 +84,12 @@ class BaseImportMatch(models.Model):
         for s in self:
             s.name = u"{}: {}".format(
                 s.model_id.display_name,
-                u" + ".join(
+                " + ".join(
                     s.field_ids.mapped(
                         lambda r: (
-                            str(r.field_id.name) +
-                            (u" ({})".format(r.imported_value)
-                             if r.conditional else u"")))))
+                            (u"{} ({})" if r.conditional else u"{}").format(
+                                r.field_id.name,
+                                r.imported_value)))))
 
     @api.model
     def _match_find(self, model, converted_row, imported_row):
@@ -279,6 +278,7 @@ class BaseImportMatchField(models.Model):
     match_id = fields.Many2one(
         comodel_name="base_import.match",
         string="Match",
+        ondelete="cascade",
         required=True)
     model_id = fields.Many2one(
         related="match_id.model_id")
