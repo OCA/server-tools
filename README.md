@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [account_enterprise_remove](account_enterprise_remove/) | 9.0.1.0.0 | Account - Remove Enterprise Features
+[admin_technical_features](admin_technical_features/) | 9.0.0.1.0 | Checks the technical features box for admin user.
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
@@ -39,6 +40,7 @@ addon | version | summary
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_mailing_enterprise_remove](mass_mailing_enterprise_remove/) | 9.0.1.0.0 | Mass Mailing - Remove Enterprise Features
+[module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [project_enterprise_remove](project_enterprise_remove/) | 9.0.1.0.0 | Project - Remove Enterprise Features
 [sale_enterprise_remove](sale_enterprise_remove/) | 9.0.1.0.0 | Sale - Remove Enterprise Features
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
@@ -54,7 +56,6 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[admin_technical_features](admin_technical_features/) | 8.0.0.1.0 (unported) | Checks the technical features box for admin user.
 [auditlog](auditlog/) | 8.0.1.0.0 (unported) | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 (unported) | Authentification - Admin Passkey
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 (unported) | Have membership conditions for certain groups
@@ -71,7 +72,6 @@ addon | version | summary
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
 [mass_editing](mass_editing/) | 8.0.1.3.0 (unported) | Mass Editing
 [mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
-[module_prototyper](module_prototyper/) | 8.0.0.3.0 (unported) | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
