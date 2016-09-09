@@ -2,4 +2,4 @@
 # © 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from . import wizard_base_copyUserAccess
+from . import test_copy_user_access

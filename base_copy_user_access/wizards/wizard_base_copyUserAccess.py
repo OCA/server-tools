@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Michael Viriyananda
-#    2016
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2016 OpenSynergy Indonesia
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.osv import orm
 from openerp import fields, api
@@ -49,25 +32,25 @@ class WizardBaseCopyUserAccess(orm.TransientModel):
         res['arch'] = etree.tostring(doc)
         return res
 
-    def copy_access_right(self, cr, uid, ids, context=None):
+    @api.multi
+    def copy_access_right(self):
         res = []
-        obj_user = self.pool.get('res.users')
+        obj_user = self.env['res.users']
 
-        record_id = context.get('active_ids')
+        context = self._context
+        record_id = context['active_ids']
 
-        wizard = self.read(cr, uid, ids[0], context=context)
-
-        user = obj_user.browse(cr, uid, wizard['user_id'][0])
+        user = obj_user.browse(self.user_id.id)
 
         for group in user.groups_id:
             res.append(group.id)
 
         for data in record_id:
-            user_id = obj_user.browse(cr, uid, data)
+            user_id = obj_user.browse(data)
             vals = {
                 'groups_id': [(6, 0, res)],
                 }
 
-            obj_user.write(cr, uid, [user_id.id], vals, context=context)
+            user_id.write(vals)
 
         return {'type': 'ir.actions.act_window_close'}
