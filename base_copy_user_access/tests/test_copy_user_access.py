@@ -33,7 +33,7 @@ class TestCopyUserAccess(TransactionCase):
         # Check create new user
         self.assertIsNotNone(user)
 
-        #Fill Context
+        # Fill Context
         context = self.obj_res_users.context_get()
         ctx = context.copy()
         ctx.update({'active_ids': user.ids})
