@@ -124,25 +124,25 @@ msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,ref_ir_act_window:0
+#: field:mass.object,ref_ir_act_window_id:0
 msgid "Sidebar Action"
 msgstr "Acción del menú contextual"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
-#: field:mass.object,ref_ir_value:0
+#: field:mass.object,ref_ir_value_id:0
 msgid "Sidebar Button"
 msgstr "Botón del menú contextual"
 
 #. module: mass_editing
-#: help:mass.object,ref_ir_act_window:0
+#: help:mass.object,ref_ir_act_window_id:0
 msgid ""
 "Sidebar action to make this template available on records                  "
 "of the related document model"
 msgstr ""
 
 #. module: mass_editing
-#: help:mass.object,ref_ir_value:0
+#: help:mass.object,ref_ir_value_id:0
 msgid "Sidebar button to open the sidebar action"
 msgstr "Botón del menú contextual para abrir la acción del menú contextual"
 
