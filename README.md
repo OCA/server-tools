@@ -40,6 +40,7 @@ addon | version | summary
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
+[mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [mass_mailing_enterprise_remove](mass_mailing_enterprise_remove/) | 9.0.1.0.0 | Mass Mailing - Remove Enterprise Features
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [project_enterprise_remove](project_enterprise_remove/) | 9.0.1.0.0 | Project - Remove Enterprise Features
@@ -70,7 +71,6 @@ addon | version | summary
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
-[mass_editing](mass_editing/) | 8.0.1.3.0 (unported) | Mass Editing
 [mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
