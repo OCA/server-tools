@@ -22,54 +22,61 @@ class ResConfigSettings(res_config_settings):
             submenu=submenu,
         )
 
+        page_name = ret_val['name']
         doc = etree.XML(ret_val['arch'])
 
-        # Remove Individual Elements
-        xpath_specific_queries = [
-            # Sale
-            "//div[field[@name='module_sale_contract']] \
-                /preceding-sibling::label[1]",
-            # Inventory
-            "//div[div[field[@name='module_delivery_dhl']]] \
-                /preceding-sibling::label[1]",
-            "//div[div[field[@name='module_stock_barcode']]] \
-                /preceding-sibling::label[1]",
-            # Invoicing
-            "//a[@href='https://www.odoo.com/page/accounting-features']",
-            "//div[@name='bank_statement_import_options'] \
-                /preceding-sibling::label[1]",
-            "//div[@name='bank_payments']/preceding-sibling::label[1]",
-            # Project
-            "//div[div[field[@name='module_project_forecast']]] \
-                /preceding-sibling::label[1]",
-            "//div[field[@name='module_project_timesheet_synchro']] \
-                /preceding-sibling::label[1]",
-            # WebsiteAdmin
-            "//div[div[field[@name='module_website_form_editor']]] \
-                /preceding-sibling::label[1]",
-        ]
-
-        for query in xpath_specific_queries:
-            items = doc.xpath("%s" % query)
-            for item in items:
-                item.getparent().remove(item)
-
-        # Bulk Remove Fields and Labels
-        upgrade_fields = doc.xpath("//field[@widget='upgrade_boolean']")
-        for field in upgrade_fields:
-            for label in doc.xpath("//label[@for='%s']" % field.get('name')):
-                label.getparent().remove(label)
-            field.getparent().remove(field)
-
-        # Clean Up Empty Divs
-        complete = False
-        while not complete:
-            divs = doc.xpath("//div[not(*)]")
-            if not divs:
-                complete = True
-            else:
-                for div in divs:
-                    div.getparent().remove(div)
+        if page_name == 'account settings':
+            doc = self._remove_enterprise_fields(
+                i=1,
+                doc=doc,
+                custom_queries=[
+                    "//div[@name='bank_statement_import_options'] \
+                        /preceding-sibling::label[1]",
+                    "//div[@name='bank_statement_import_options']",
+                    "//div[div[field[@name='module_account_sepa']]] \
+                        /preceding-sibling::label[1]",
+                    "//div[div[field[@name='module_account_sepa']]]",
+                ],
+            )
+        elif page_name == 'sale settings':
+            doc = self._remove_enterprise_fields(
+                i=2,
+                doc=doc,
+                custom_queries=[
+                    "//field[@name='module_crm_voip']",
+                ],
+            )
+        else:
+            doc = self._remove_enterprise_fields(i=2, doc=doc)
 
         ret_val['arch'] = etree.tostring(doc)
         return ret_val
+
+    @api.model
+    def _remove_enterprise_fields(self, i, doc, i_end=0, custom_queries=None):
+
+        if custom_queries:
+            for query in custom_queries:
+                items = doc.xpath(query)
+                for item in items:
+                    item.getparent().remove(item)
+
+        while i >= i_end:
+            items = doc.xpath(
+                "//" +
+                "div[" * i +
+                "field[@widget='upgrade_boolean']" +
+                "]" * i +
+                "/preceding-sibling::label[1]"
+            )
+            items += doc.xpath(
+                "//" +
+                "div[" * i +
+                "field[@widget='upgrade_boolean']" +
+                "]" * i
+            )
+            for item in items:
+                item.getparent().remove(item)
+            i -= 1
+
+        return doc
