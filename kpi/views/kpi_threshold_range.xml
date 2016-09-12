@@ -12,7 +12,7 @@
                     <field name="max_value"/>
                     <field name="color" widget="color"/>
                     <field name="invalid_message"/>
-                    <field name="company_id" group="base.group_multi_company"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -22,29 +22,32 @@
             <field name="model">kpi.threshold.range</field>
             <field name="arch" type="xml">
                 <form string="Range">
-                    <field name="name"/>
-                    <field name="color" widget="color"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                    <newline/>
-                    <separator string="Minimum" colspan="4"/>
-                    <newline/>
-                    <field name="min_type"/>
-                    <field name="min_fixed_value" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
-                    <field name="min_dbsource_id" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
-                    <newline/>
-                    <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
-                    <newline/>
-                    <separator string="Maximum" colspan="4"/>
-                    <newline/>
-                    <field name="max_type"/>
-                    <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
-                    <field name="max_dbsource_id" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
-                    <newline/>
-                    <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
-                    <newline/>
-                    <separator string="Thresholds" colspan="4"/>
-                    <field name="threshold_ids" nolabel="1" colspan="4"/>
-                    <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
+                    <group col="6" colspan="6">
+                        <field name="name"/>
+                        <field name="color"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <newline/>
+                    
+                        <separator string="Minimum" colspan="4"/>
+                        <newline/>
+                        <field name="min_type" colspan="2"/>
+                        <field name="min_fixed_value" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
+                        <field name="min_dbsource_id" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
+                        <newline/>
+                        <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <newline/>
+                        <separator string="Maximum" colspan="4"/>
+                        <newline/>
+                        <field name="max_type"/>
+                        <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
+                        <field name="max_dbsource_id" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
+                        <newline/>
+                        <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <newline/>
+                        <separator string="Thresholds" colspan="4"/>
+                        <field name="threshold_ids" nolabel="1" colspan="4"/>
+                        <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
+                    </group>
                 </form>
             </field>
         </record>

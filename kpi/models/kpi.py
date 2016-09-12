@@ -135,20 +135,21 @@ class KPI(models.Model):
     def compute_kpi_value(self):
         for obj in self:
             kpi_value = 0
-            if obj.kpi_type == 'local' and is_sql_or_ddl_statement(
-                    obj.kpi_code):
-                self.env.cr.execute(obj.kpi_code)
-                dic = self.env.cr.dictfetchall()
-                if is_one_value(dic):
-                    kpi_value = dic[0]['value']
-            elif (obj.kpi_type == 'external' and obj.dbsource_id.id and
-                  is_sql_or_ddl_statement(obj.kpi_code)):
-                dbsrc_obj = obj.dbsource_id
-                res = dbsrc_obj.execute(obj.kpi_code)
-                if is_one_value(res):
-                    kpi_value = res[0]['value']
-            elif obj.kpi_type == 'python':
-                kpi_value = safe_eval(obj.kpi_code)
+            if obj.kpi_code:
+                if obj.kpi_type == 'local' and is_sql_or_ddl_statement(
+                        obj.kpi_code):
+                    self.env.cr.execute(obj.kpi_code)
+                    dic = self.env.cr.dictfetchall()
+                    if is_one_value(dic):
+                        kpi_value = dic[0]['value']
+                elif (obj.kpi_type == 'external' and obj.dbsource_id.id and
+                      is_sql_or_ddl_statement(obj.kpi_code)):
+                    dbsrc_obj = obj.dbsource_id
+                    res = dbsrc_obj.execute(obj.kpi_code)
+                    if is_one_value(res):
+                        kpi_value = res[0]['value']
+                elif obj.kpi_type == 'python':
+                    kpi_value = safe_eval(obj.kpi_code)
 
             threshold_obj = obj.threshold_id
             values = {
@@ -159,7 +160,6 @@ class KPI(models.Model):
             history_obj = self.env['kpi.history']
             history_obj.create(values)
             # obj.history_ids = history_obj.search([("kpi_id", "=", obj.id)])
-
         return True
 
     @api.multi
