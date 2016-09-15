@@ -27,10 +27,14 @@ def pre_init_hook_for_submodules(cr, model, field):
         # fields.Binary(), extract the binary content directly from the table
         if column_exists:
             extract_query = """
-                SELECT id, %%s, 'db', %(field)s
+                SELECT id, '%(model)s', '%(model)s,' || id, 'db', %(field)s
                 FROM %(table)s
                 WHERE %(field)s IS NOT NULL
-            """ % {"table": table, "field": field}
+            """ % {
+                "table": table,
+                "field": field,
+                "model": model,
+            }
             image_field = 'file_db_store'
         # fields.Binary(attachment=True), get the ir_attachment record ID
         else:
