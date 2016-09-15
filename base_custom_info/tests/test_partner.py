@@ -16,25 +16,21 @@ class PartnerCase(TransactionCase):
     def set_custom_info_for_agrolait(self):
         """Used when you need to use some created custom info."""
         self.agrolait.custom_info_template_id = self.tpl
-        self.env["custom.info.value"].create({
-            "res_id": self.agrolait.id,
-            "property_id": self.env.ref("base_custom_info.prop_haters").id,
-            "value_int": 5,
-        })
+        self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_haters")).value_int = 5
 
     def test_access_granted(self):
         """Access to the model implies access to custom info."""
         # Demo user has contact creation permissions by default
         agrolait = self.agrolait.sudo(self.demouser)
         agrolait.custom_info_template_id = self.tpl
-        agrolait.env["custom.info.value"].create({
-            "res_id": agrolait.id,
-            "property_id":
-                agrolait.env.ref("base_custom_info.prop_weaknesses").id,
-            "value_id": agrolait.env.ref("base_custom_info.opt_food").id,
-        })
-        agrolait.custom_info_template_id.property_ids[0].name = "Changed!"
-        agrolait.env.ref("base_custom_info.opt_food").name = "Changed!"
+        prop_weaknesses = agrolait.env.ref("base_custom_info.prop_weaknesses")
+        val_weaknesses = agrolait.get_custom_info_value(prop_weaknesses)
+        opt_food = agrolait.env.ref("base_custom_info.opt_food")
+        val_weaknesses.value_id = opt_food
+        agrolait.custom_info_template_id.name = "Changed template name"
+        opt_food.name = "Changed option name"
+        prop_weaknesses.name = "Changed property name"
 
     def test_access_denied(self):
         """Forbidden access to the model forbids it to custom info."""
@@ -63,8 +59,6 @@ class PartnerCase(TransactionCase):
         """(Un)apply a template to a owner and it gets filled."""
         # Applying a template autofills the values
         self.agrolait.custom_info_template_id = self.tpl
-        with self.env.do_in_onchange():
-            self.agrolait._onchange_custom_info_template_id()
         self.assertEqual(
             len(self.agrolait.custom_info_ids),
             len(self.tpl.property_ids))
@@ -74,8 +68,8 @@ class PartnerCase(TransactionCase):
 
         # Unapplying a template empties the values
         self.agrolait.custom_info_template_id = False
-        self.agrolait._onchange_custom_info_template_id()
         self.assertFalse(self.agrolait.custom_info_template_id)
+        self.assertFalse(self.agrolait.custom_info_ids)
 
     def test_template_model_and_model_id_match(self):
         """Template's model and model_id fields match."""
@@ -105,7 +99,8 @@ class PartnerCase(TransactionCase):
     def test_owner_id(self):
         """Check the computed owner id for a value."""
         self.set_custom_info_for_agrolait()
-        self.assertEqual(self.agrolait.custom_info_ids.owner_id, self.agrolait)
+        self.assertEqual(
+            self.agrolait.mapped("custom_info_ids.owner_id"), self.agrolait)
 
     def test_get_custom_info_value(self):
         """Check the custom info getter helper works fine."""
@@ -117,3 +112,78 @@ class PartnerCase(TransactionCase):
         self.assertEqual(result[result.field_name], 5)
         self.assertEqual(result.value_int, 5)
         self.assertEqual(result.value, "5")
+
+    def test_default_values(self):
+        """Default values get applied."""
+        self.agrolait.custom_info_template_id = self.tpl
+        val_weaknesses = self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_weaknesses"))
+        opt_glasses = self.env.ref("base_custom_info.opt_glasses")
+        self.assertEqual(val_weaknesses.value_id, opt_glasses)
+        self.assertEqual(val_weaknesses.value, opt_glasses.name)
+
+    def test_recursive_templates(self):
+        """Recursive templates get loaded when required."""
+        self.set_custom_info_for_agrolait()
+        prop_weaknesses = self.env.ref("base_custom_info.prop_weaknesses")
+        val_weaknesses = self.agrolait.get_custom_info_value(prop_weaknesses)
+        val_weaknesses.value = "Needs videogames"
+        tpl_gamer = self.env.ref("base_custom_info.tpl_gamer")
+        self.agrolait.invalidate_cache()
+        self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
+        self.assertTrue(
+            tpl_gamer.property_ids <
+            self.agrolait.mapped("custom_info_ids.property_id"))
+        cat_gaming = self.env.ref("base_custom_info.cat_gaming")
+        self.assertIn(
+            cat_gaming, self.agrolait.mapped("custom_info_ids.category_id"))
+
+    def test_long_teacher_name(self):
+        """Wow, your teacher cannot have such a long name!"""
+        self.set_custom_info_for_agrolait()
+        val = self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_teacher"))
+        with self.assertRaises(ValidationError):
+            val.value = (u"Don Walter Antonio José de la Cruz Hëisenberg de "
+                         u"Borbón Westley Jordy López Manuélez")
+
+    def test_low_average_note(self):
+        """Come on, you are supposed to be smart!"""
+        self.set_custom_info_for_agrolait()
+        val = self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_avg_note"))
+        with self.assertRaises(ValidationError):
+            val.value = "-1"
+
+    def test_high_average_note(self):
+        """Too smart!"""
+        self.set_custom_info_for_agrolait()
+        val = self.agrolait.get_custom_info_value(
+            self.env.ref("base_custom_info.prop_avg_note"))
+        with self.assertRaises(ValidationError):
+            val.value = "11"
+
+    def test_dirty_templates_setting_tpl(self):
+        """If you set a template, it gets dirty."""
+        with self.env.do_in_onchange():
+            self.assertFalse(self.agrolait.dirty_templates)
+            self.agrolait.custom_info_template_id = self.tpl
+            self.assertTrue(self.agrolait.dirty_templates)
+
+    def test_dirty_templates_removing_tpl(self):
+        """If you remove a template, it gets dirty."""
+        self.agrolait.custom_info_template_id = self.tpl
+        with self.env.do_in_onchange():
+            self.assertFalse(self.agrolait.dirty_templates)
+            self.agrolait.custom_info_template_id = False
+            self.assertTrue(self.agrolait.dirty_templates)
+
+    def test_dirty_templates_choosing_option(self):
+        """If you choose an option with an extra template, it gets dirty."""
+        self.agrolait.custom_info_template_id = self.tpl
+        with self.env.do_in_onchange():
+            self.assertFalse(self.agrolait.dirty_templates)
+            val = self.agrolait.get_custom_info_value(
+                self.env.ref("base_custom_info.prop_weaknesses"))
+            val.value_id = self.env.ref("base_custom_info.opt_videogames")
+            self.assertTrue(self.agrolait.dirty_templates)

@@ -22,6 +22,12 @@ class CustomInfoOption(models.Model):
         string="Values",
         help="Values that have set this option.",
     )
+    template_id = fields.Many2one(
+        comodel_name="custom.info.template",
+        string="Additional template",
+        help="Additional template to be applied to the owner if this option "
+             "is chosen.",
+    )
 
     @api.multi
     def check_access_rule(self, operation):

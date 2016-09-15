@@ -9,6 +9,7 @@
     <field name="arch" type="xml">
         <tree string="Custom Info Options">
             <field name="name"/>
+            <field name="template_id"/>
             <field name="property_ids"/>
         </tree>
     </field>
@@ -22,6 +23,7 @@
             <sheet>
                 <group>
                     <field name="name"/>
+                    <field name="template_id"/>
                     <field name="property_ids"/>
                     <field name="value_ids"/>
                 </group>
