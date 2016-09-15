@@ -25,58 +25,30 @@ class ResConfigSettings(res_config_settings):
         page_name = ret_val['name']
         doc = etree.XML(ret_val['arch'])
 
+        queries = []
         if page_name == 'account settings':
-            doc = self._remove_enterprise_fields(
-                i=1,
-                doc=doc,
-                custom_queries=[
-                    "//div[@name='bank_statement_import_options'] \
-                        /preceding-sibling::label[1]",
-                    "//div[@name='bank_statement_import_options']",
-                    "//div[div[field[@name='module_account_sepa']]] \
-                        /preceding-sibling::label[1]",
-                    "//div[div[field[@name='module_account_sepa']]]",
-                ],
-            )
-        elif page_name == 'sale settings':
-            doc = self._remove_enterprise_fields(
-                i=2,
-                doc=doc,
-                custom_queries=[
-                    "//field[@name='module_crm_voip']",
-                ],
-            )
-        else:
-            doc = self._remove_enterprise_fields(i=2, doc=doc)
+            queries += [
+                "//div[field[@name='module_account_reports' and \
+                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_reports_followup' and \
+                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_batch_deposit' and \
+                    @widget='upgrade_boolean']]",
+            ]
+
+        queries += [
+            "//div[div[field[@widget='upgrade_boolean']]] \
+                /preceding-sibling::label[1]",
+            "//div[div[field[@widget='upgrade_boolean']]]",
+            "//div[field[@widget='upgrade_boolean']] \
+                /preceding-sibling::label[1]",
+            "//div[field[@widget='upgrade_boolean']]",
+            "//field[@widget='upgrade_boolean']",
+        ]
+
+        for query in queries:
+            for item in doc.xpath(query):
+                item.getparent().remove(item)
 
         ret_val['arch'] = etree.tostring(doc)
         return ret_val
-
-    @api.model
-    def _remove_enterprise_fields(self, i, doc, i_end=0, custom_queries=None):
-
-        if custom_queries:
-            for query in custom_queries:
-                items = doc.xpath(query)
-                for item in items:
-                    item.getparent().remove(item)
-
-        while i >= i_end:
-            items = doc.xpath(
-                "//" +
-                "div[" * i +
-                "field[@widget='upgrade_boolean']" +
-                "]" * i +
-                "/preceding-sibling::label[1]"
-            )
-            items += doc.xpath(
-                "//" +
-                "div[" * i +
-                "field[@widget='upgrade_boolean']" +
-                "]" * i
-            )
-            for item in items:
-                item.getparent().remove(item)
-            i -= 1
-
-        return doc
