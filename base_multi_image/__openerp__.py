@@ -24,4 +24,5 @@
         "images/form.png",
         "images/kanban.png",
     ],
+    "pre_init_hook": "pre_init_hook",
 }
