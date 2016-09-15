@@ -1,4 +1,10 @@
-id,name,property_ids:id
-opt_food,Loves junk food,prop_weaknesses
-opt_videogames,Needs videogames,prop_weaknesses
-opt_glasses,Huge glasses,prop_weaknesses
+id,name,property_ids:id,template_id:id
+opt_food,Loves junk food,prop_weaknesses,
+opt_videogames,Needs videogames,prop_weaknesses,tpl_gamer
+opt_glasses,Huge glasses,prop_weaknesses,
+opt_shooter,Shooter,prop_fav_genre,
+opt_platforms,Platforms,prop_fav_genre,
+opt_cars,Cars,prop_fav_genre,
+opt_rpg,RPG,prop_fav_genre,
+opt_strategy,Strategy,prop_fav_genre,
+opt_graphical_adventure,Graphical adventure,prop_fav_genre,

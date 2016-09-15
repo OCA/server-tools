@@ -1,0 +1,6 @@
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+- Setting default values after loading custom.info.option.csv
+
+- !record {model: custom.info.property, id: prop_weaknesses}:
+    default_value: Huge glasses

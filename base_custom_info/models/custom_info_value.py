@@ -109,11 +109,26 @@ class CustomInfoValue(models.Model):
 
     @api.model
     def create(self, vals):
-        """Skip constrains in 1st lap."""
+        """Skip constrains in 1st lap. Update owner templates."""
         # HACK https://github.com/odoo/odoo/pull/13439
         if "value" in vals:
             self.env.context.skip_required = True
-        return super(CustomInfoValue, self).create(vals)
+        result = super(CustomInfoValue, self).create(vals)
+        # HACK https://github.com/odoo/odoo/pull/11042
+        if not self.env.context.get("filling_templates"):
+            result.owner_id.exists().filtered("dirty_templates") \
+                .action_custom_info_templates_fill()
+        return result
+
+    # HACK https://github.com/odoo/odoo/pull/11042
+    @api.multi
+    def write(self, vals):
+        """Update owner templates."""
+        result = super(CustomInfoValue, self).write(vals)
+        if not self.env.context.get("filling_templates"):
+            self.mapped("owner_id").exists().filtered("dirty_templates") \
+                .action_custom_info_templates_fill()
+        return result
 
     @api.model
     def _selection_owner_id(self):
@@ -178,7 +193,8 @@ class CustomInfoValue(models.Model):
         try:
             del self.env.context.skip_required
         except AttributeError:
-            if self.required and not self[self.field_name]:
+            if (not self.env.context.get("filling_templates") and
+                    self.required and not self[self.field_name]):
                 raise ValidationError(
                     _("Property %s is required.") %
                     self.property_id.display_name)
@@ -188,6 +204,9 @@ class CustomInfoValue(models.Model):
                     "value_str", "value_int", "value_float")
     def _check_min_max_limits(self):
         """Ensure value falls inside the property's stablished limits."""
+        # Skip constraint while filling the partner template
+        if self.env.context.get("filling_templates"):
+            return
         minimum, maximum = self.property_id.minimum, self.property_id.maximum
         if minimum <= maximum:
             value = self[self.field_name]

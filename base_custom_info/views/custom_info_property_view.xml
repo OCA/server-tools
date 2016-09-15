@@ -33,8 +33,10 @@
                     <field name="category_id"/>
                     <field name="required"/>
                     <field name="default_value"/>
-                    <field name="minimum"/>
-                    <field name="maximum"/>
+                    <field name="minimum"
+                           attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"/>
+                    <field name="maximum"
+                           attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"/>
                 </group>
                 <group>
                     <field name="info_value_ids"
