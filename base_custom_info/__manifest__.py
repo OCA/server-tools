@@ -25,9 +25,11 @@
         'wizard/base_config_settings_view.xml',
     ],
     'demo': [
+        'demo/custom.info.category.csv',
         'demo/custom.info.template.csv',
         'demo/custom.info.property.csv',
         'demo/custom.info.option.csv',
+        'demo/custom_info_property_defaults.yml',
         'demo/res_groups.xml',
     ],
     "images": [
@@ -42,5 +44,6 @@
               'Odoo Community Association (OCA)',
     'website': 'https://www.tecnativa.com',
     'license': 'AGPL-3',
+    'application': True,
     'installable': True,
 }

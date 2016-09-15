@@ -84,6 +84,29 @@ I.e., the "What weaknesses does he/she have?" *property* has some options:
 
 The *value* will always be one of these.
 
+Recursive templates using options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Oh dear customization lovers! Options can be used to customize the custom
+information template!
+
+.. figure:: /base_custom_info/static/description/customizations-everywhere.jpg
+   :alt: Customizations Everywhere
+
+If you assign an *additional template* to an option, and while using the owner
+form you choose that option, you can then press *reload custom information
+templates* to make the owner update itself to include all the properties in all
+the involved templates. If you do not press the button, anyway the reloading
+will be performed when saving the owner record.
+
+.. figure:: /base_custom_info/static/description/templateception.jpg
+   :alt: Templateception
+
+I.e., if you select the option "Needs videogames" for the property "What
+weaknesses does he/she have?" of a smart partner and press *reload custom
+information templates*, you will get 2 new properties to fill: "Favourite
+videogames genre" and "Favourite videogame".
+
 Value
 -----
 
@@ -196,11 +219,17 @@ Known issues / Roadmap
 * Custom properties cannot be shared among templates.
 * You get an error if you press *Save & New* when setting property values in
   partner form.
-* `There seems to be a bug in the web client that makes subviews appear empty
-  after an onchange
-  <https://github.com/OCA/server-tools/pull/492#issuecomment-237594285>`_.
-  This module includes a workaround for that, but the bug should be fixed and
-  the workaround removed.
+* You have to press *reload custom information templates*, when the optimal
+  thing would be the reloading taking place whenever needed: when you change
+  the template, or when you choose an option that has an additional template.
+  However, `currently it is impossible for a x2many field to update itself
+  <https://github.com/odoo/odoo/issues/2693#issuecomment-56825399>`_, and it is
+  needed to skip some checks when you are saving a record after filling the
+  templates, which has to be done by `changing the context, something also not
+  possible currently at onchange time
+  <https://github.com/odoo/odoo/issues/7472>`_. So there are some technical
+  limitations that do not let us reach the ideal UX for this addon. So, in
+  short, press the button when you see it and be happy.
 
 Bug Tracker
 ===========

@@ -13,12 +13,22 @@
                   string="Custom Information"
                   groups="base_custom_info.group_partner">
                 <group>
-                    <field
-                        name="custom_info_template_id"
-                        options='{"no_quick_create": True}'/>
-                    <field
-                        name="custom_info_ids"
-                        attrs="{'invisible': [('custom_info_template_id', '=', False)]}"/>
+                    <group>
+                        <field name="dirty_templates" invisible="True"/>
+                        <field
+                            name="custom_info_template_id"
+                            options='{"no_quick_create": True}'/>
+                    </group>
+                    <group>
+                        <button
+                            string="Reload custom information templates"
+                            type="object"
+                            name="action_custom_info_templates_fill"
+                            attrs="{'invisible': [('dirty_templates', '=', False)]}"/>
+                    </group>
+                    <group colspan="2">
+                        <field name="custom_info_ids"/>
+                    </group>
                 </group>
             </page>
         </xpath>
