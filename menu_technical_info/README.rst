@@ -6,7 +6,7 @@
 Menu Technical Info
 ===================
 
-This module extends the debug mode. When debug mode is enabled the XML ID is shown while the cursos is hovering over a menu item. 
+This module extends the debug mode. When debug mode is enabled the XML ID is shown while the cursor is hovering over a menu item.
 
 Usage
 =====
