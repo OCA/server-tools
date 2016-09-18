@@ -3,13 +3,14 @@
 # * secure_uninstall
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-04 01:04+0000\n"
-"PO-Revision-Date: 2016-09-04 01:04+0000\n"
+"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"PO-Revision-Date: 2016-09-16 09:29+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +34,20 @@ msgstr ""
 "ključ v ERP nastavitveni datoteki)."
 
 #. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:27
+#, python-format
+msgid ""
+"Missing configuration key\n"
+"--------------------\n"
+"'secure_uninstall' configuration key is not set in \n"
+"your Odoo server configuration file: please set it a value"
+msgstr ""
+"Manjkajoč nastavitveni ključ\n"
+"--------------------\n"
+"'secure_uninstall' nastavitveni ključ ni nastavljen \n"
+"v nastavitveni datoteki vašega Odoo strežnika: določite mu vrednost"
+
+#. module: secure_uninstall
 #: model:ir.model,name:secure_uninstall.model_base_module_upgrade
 msgid "Module Upgrade"
 msgstr "Nadgradnja modula"
@@ -41,6 +56,28 @@ msgstr "Nadgradnja modula"
 #: field:base.module.upgrade,uninstall_password:0
 msgid "Password"
 msgstr "Geslo"
+
+#. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:34
+#, python-format
+msgid ""
+"Password Error\n"
+"--------------------\n"
+"Provided password '%s' doesn't match with 'Master Password'\n"
+"('secure_uninstall' key) found in the Odoo server configuration file .\n"
+"\n"
+"Resolution\n"
+"-------------\n"
+"Please check your password and retry or cancel"
+msgstr ""
+"Napaka pri geslu\n"
+"--------------------\n"
+"Podano geslo '%s' se ne ujema z 'Master Password'\n"
+"('secure_uninstall' key) najdenim v nastavitveni datoteki Odoo strežnika .\n"
+"\n"
+"Rešitev\n"
+"-------------\n"
+"Preverite svoje geslo in ponovno poskusite ali pa prekinite"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade

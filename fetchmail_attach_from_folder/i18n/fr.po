@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 14:34+0000\n"
-"PO-Revision-Date: 2016-05-08 17:03+0000\n"
+"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"PO-Revision-Date: 2016-09-16 21:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: selection:fetchmail.server.folder,msg_state:0
 msgid "Sent"
-msgstr ""
+msgstr "Envoyé"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,sequence:0
@@ -272,7 +272,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,subject:0
 msgid "Subject"
-msgstr ""
+msgstr "Objet"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,match_algorithm:0

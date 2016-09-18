@@ -1,0 +1,123 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_module_doc_rst
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Create Graphs"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: model:ir.actions.act_window,name:base_module_doc_rst.wiz_tech_guide_rst
+msgid "Create RST Technical Guide2"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Create Technical Guide in rst format"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,create_date:0
+#: field:tech.guide.rst,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,display_name:0
+#: field:tech.guide.rst,display_name:0
+msgid "Display Name"
+msgstr "Te tonen naam"
+
+#. module: base_module_doc_rst
+#: field:tech.guide.rst,rst_file:0
+msgid "File"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+#: model:ir.actions.act_window,name:base_module_doc_rst.generate_relationship_graph_values
+msgid "Generate Relationship Graph"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,id:0 field:tech.guide.rst,id:0
+msgid "ID"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,__last_update:0
+#: field:tech.guide.rst,__last_update:0
+msgid "Last Modified on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,write_date:0 field:tech.guide.rst,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: model:ir.model,name:base_module_doc_rst.model_ir_module_module
+msgid "Module"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Please choose a file where the Technical Guide will be written."
+msgstr ""
+
+#. module: base_module_doc_rst
+#: model:ir.actions.report.xml,name:base_module_doc_rst.report_proximity_graph
+msgid "Proximity graph"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:ir.module.module:base_module_doc_rst.view_module_module_graph
+#: field:ir.module.module,file_graph:0
+msgid "Relationship Graph"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
+msgid "Relationship Graphs"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
+msgid "Technical Guide in rst format"
+msgstr ""
+
+#. module: base_module_doc_rst
+#: view:ir.module.module:base_module_doc_rst.view_module_module_graph
+msgid "You can save this image as .png file"
+msgstr ""
