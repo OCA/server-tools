@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 11:47+0000\n"
-"PO-Revision-Date: 2016-04-12 07:49+0000\n"
+"POT-Creation-Date: 2016-09-10 02:47+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: sale_exception
 #: code:addons/sale_exception/models/sale.py:180
@@ -128,7 +128,7 @@ msgstr "Ignora eccezioni"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception___last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
