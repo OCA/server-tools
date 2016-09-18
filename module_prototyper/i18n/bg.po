@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-10 02:53+0000\n"
 "PO-Revision-Date: 2016-09-10 02:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
@@ -26,12 +26,12 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_api_version
 msgid "API version"
-msgstr "Version de l'API"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_right_ids
 msgid "Access Rights"
-msgstr "Liste des contrôles d'accès"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_activity_ids
@@ -51,37 +51,37 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_author
 msgid "Author"
-msgstr "Auteur"
+msgstr "Автор"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_auto_install
 msgid "Auto Install"
-msgstr "Installation automatique"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Откажи"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_category_id
 msgid "Category"
-msgstr "Catégorie"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_application
 msgid "Check if the module is an Odoo application."
-msgstr "Cocher si le module est une application Odoo."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_auto_install
 msgid "Check if the module should be install by default."
-msgstr "Cocher si le module devrait être installé par défaut."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr "Fermer"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_client_context
@@ -101,13 +101,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Създадено от"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Създадено на"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -117,30 +117,30 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_data_ids
 msgid "Data filters"
-msgstr "Filtres pour les données"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_demo_ids
 msgid "Demo filters"
-msgstr "Filtres pour les données de démo"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_dependency_ids
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Dependencies"
-msgstr "Dépendances"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_description
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Description"
-msgstr "Descriptions"
+msgstr "Описание"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
-msgstr "Nom à afficher"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_summary
@@ -251,23 +251,23 @@ msgstr ""
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export"
-msgstr "Exporter"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Complete"
-msgstr "Export terminé"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.button_module_export_action
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Module"
-msgstr "Exporter le module"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Settings"
-msgstr "Configuration de l'export"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_ir_model_fields
@@ -275,17 +275,17 @@ msgstr "Configuration de l'export"
 #: model:ir.ui.menu,name:module_prototyper.ir_model_model_fields
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Fields"
-msgstr "Champs"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_data
 msgid "File"
-msgstr "Fichier"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
 msgid "File Name"
-msgstr "Nom du fichier"
+msgstr ""
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -300,17 +300,17 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_group_ids
 msgid "Groups"
-msgstr "Groupes"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_helper
 msgid "Helper"
-msgstr "Texte d'aider"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Here is the exported module:"
-msgstr "Voici le module exporté :"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_id
@@ -321,7 +321,7 @@ msgstr "ID"
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_icon_image
 msgid "Icon"
-msgstr "Icône"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -342,19 +342,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper___last_update
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
-msgstr "Mis à jour par"
+msgstr "Последно обновено от"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
-msgstr "Mis à jour le"
+msgstr "Последно обновено на"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_license
@@ -364,13 +364,13 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_maintainer
 msgid "Maintainer"
-msgstr "Mainteneur"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_menu_ids
 #: model:ir.ui.menu,name:module_prototyper.menu_grant_menu_access
 msgid "Menu Items"
-msgstr "Éléments du menu"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -380,7 +380,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_human_name
 msgid "Module Name"
-msgstr "Nom du module"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_module_prototyper
@@ -400,7 +400,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_notes
 msgid "Notes to developers."
-msgstr "Notes aux développeurs."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
@@ -408,8 +408,6 @@ msgid ""
 "Notes to help developers to understand the work or advanced features that "
 "should be added, ie: onchange, etc."
 msgstr ""
-"Notes pour aider les développeurs à comprendre le travail effectué ou les "
-"ajouts à faire. Exemple: onchanges, etc."
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -443,7 +441,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_rule_ids
 msgid "Record Rules"
-msgstr "Règles sur les enregistrements"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_report_ids
@@ -459,55 +457,51 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_state
 msgid "State"
-msgstr "État"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_summary
 msgid "Summary"
-msgstr "Résumé"
+msgstr "Резюме"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_name
 msgid "Technical Name"
-msgstr "Nom technique"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
 msgid "Text that will be set as the helper of the field..."
-msgstr "Texte qui sera placé en tant que texte d'aide du champs."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_human_name
 msgid ""
 "The Module Name will be used as the displayed name of the exported module."
-msgstr "Le nom du module sera affiché en tant que nom du module exporté."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_icon_image
 msgid ""
 "The icon set up here will be used as the icon for the exported module also"
-msgstr "L'icône sera utilisé comme icône du module exporté."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_data_ids
 msgid "The records matching the filters will be added as data."
 msgstr ""
-"Les enregistrements correspondants aux critères des filtres seront exportés "
-"dans le module comme données."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_demo_ids
 msgid "The records matching the filters will be added as demo data."
 msgstr ""
-"Les enregistrements correspondants aux critères des filtres seront exportés "
-"dans le module comme données de démo."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_name
 msgid ""
 "The technical name will be used to define the name of the exported module, "
 "the name of the model."
-msgstr "Le nom technique sera utilisé comme nom du module exporté."
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_transition_ids
@@ -523,13 +517,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_view_ids
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 msgid "Views"
-msgstr "Vues"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_website
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Website"
-msgstr "Site web"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -539,7 +533,7 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,state:0
 msgid "choose"
-msgstr "choisir"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -574,7 +568,7 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,state:0
 msgid "get"
-msgstr "récupérer"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_module_prototyper_module_export
@@ -596,4 +590,4 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "или"

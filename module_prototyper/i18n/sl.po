@@ -3,90 +3,92 @@
 # * module_prototyper
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Dejan Sraka <dejan.sraka@picolabs.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:53+0000\n"
 "PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Last-Translator: Dejan Sraka <dejan.sraka@picolabs.si>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_api_version
 msgid "API version"
-msgstr "Version de l'API"
+msgstr "API verzija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_right_ids
 msgid "Access Rights"
-msgstr "Liste des contrôles d'accès"
+msgstr "Dostopne pravice"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivnosti"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "Affero GPL-3"
-msgstr ""
+msgstr "Affero GPL-3"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_application
 msgid "Application"
-msgstr ""
+msgstr "Aplikacija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_author
 msgid "Author"
-msgstr "Auteur"
+msgstr "Avtor"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_auto_install
 msgid "Auto Install"
-msgstr "Installation automatique"
+msgstr "Samodejno namesti"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Preklic"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_category_id
 msgid "Category"
-msgstr "Catégorie"
+msgstr "Kategorija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_application
 msgid "Check if the module is an Odoo application."
-msgstr "Cocher si le module est une application Odoo."
+msgstr "Preveri, če je modul Odoo aplikacija."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_auto_install
 msgid "Check if the module should be install by default."
-msgstr "Cocher si le module devrait être installé par défaut."
+msgstr "Preveri, če naj bi bil modul privzeto nameščen."
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr "Fermer"
+msgstr "Zaključi"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_client_context
 msgid "Context"
-msgstr ""
+msgstr "Kontekst"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:47
@@ -96,61 +98,62 @@ msgid ""
 "Context to use on the client side when handling the field (python "
 "dictionary)"
 msgstr ""
+"Kontekst za uporabo na odjemalčevi strani pri uporabi polja (python slovar)"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Ustvaril"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Ustvarjeno"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Data & Demo"
-msgstr ""
+msgstr "Podatki in demostracija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_data_ids
 msgid "Data filters"
-msgstr "Filtres pour les données"
+msgstr "Podatkovni filtri"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_demo_ids
 msgid "Demo filters"
-msgstr "Filtres pour les données de démo"
+msgstr "Demonstracijski filtri"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_dependency_ids
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Dependencies"
-msgstr "Dépendances"
+msgstr "Odvisnosti"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_description
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Description"
-msgstr "Descriptions"
+msgstr "Opis"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
-msgstr "Nom à afficher"
+msgstr "Prikazni naziv"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_summary
 msgid "Enter a summary of your module"
-msgstr ""
+msgstr "Vnos povzetka modula"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_website
 msgid "Enter the URL of your website"
-msgstr ""
+msgstr "Vnos URL povezave do spletne strani"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_description
@@ -159,6 +162,8 @@ msgid ""
 "configure and use it, the roadmap or known issues. The description will be "
 "exported in README.rst"
 msgstr ""
+"Vnos opisa modula, kaj počne, kako se namesti, nastavi in uporablja, plan "
+"razvoja in znane težave. Opis bo izvožen v README.rst"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_right_ids
@@ -166,6 +171,8 @@ msgid ""
 "Enter the list of access rights that you have created and want to export in "
 "this module."
 msgstr ""
+"Vnos seznama dostopnih pravic, ki ste jih ustvarili in jih želite izvoziti v"
+" ta modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_field_ids
@@ -174,6 +181,9 @@ msgid ""
 "export in this module. New models will be exported as long as you choose one"
 " of his fields."
 msgstr ""
+"Vnos seznama polj, ki so bila ustvarjena ali spremenjena in jih želite "
+"izvoziti iz tega modula. Novi modeli bodo izvoženi le, če izberete eno od "
+"teh polj."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_group_ids
@@ -181,6 +191,8 @@ msgid ""
 "Enter the list of groups that you have created and want to export in this "
 "module."
 msgstr ""
+"Vnos seznama skupin, ki so bile ustvarjene in jih želite izvoziti v ta "
+"modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_menu_ids
@@ -188,6 +200,8 @@ msgid ""
 "Enter the list of menu items that you have created and want to export in "
 "this module. Related windows actions will be exported as well."
 msgstr ""
+"Vnos seznama menijskih postavk, ki so bile ustvarjene in jih želite izvoziti"
+" v ta modul. Povezana okenska dejanja bodo prav tako izvožena."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_rule_ids
@@ -195,6 +209,8 @@ msgid ""
 "Enter the list of record rules that you have created and want to export in "
 "this module."
 msgstr ""
+"Vnos seznama pravil zapisov, ki so bila ustvarjena in jih želite izvoziti v "
+"ta modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_report_ids
@@ -202,6 +218,8 @@ msgid ""
 "Enter the list of reports that you have created and want to export in this "
 "module."
 msgstr ""
+"Vnos seznama poročil, ki so bila ustvarjena in jih želite izvoziti v ta "
+"modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_dependency_ids
@@ -209,6 +227,8 @@ msgid ""
 "Enter the list of required modules that need to be installed for your module"
 " to work properly"
 msgstr ""
+"Vnos seznama zahtevanih modulov, ki morajo biti nameščeni, da bi vaš modul "
+"pravilno deloval."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_view_ids
@@ -216,6 +236,7 @@ msgid ""
 "Enter the list of views that you have created and want to export in this "
 "module."
 msgstr ""
+"Seznam prikazov, ki so bili ustvarjeni in jih želite izvoziti v ta modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_activity_ids
@@ -223,6 +244,8 @@ msgid ""
 "Enter the list of workflow activities that you have created and want to "
 "export in this module"
 msgstr ""
+"Vnos seznama dejavnosti delotoka, ki so bile ustvarjene in jih želite "
+"izvoziti v ta modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_transition_ids
@@ -230,44 +253,46 @@ msgid ""
 "Enter the list of workflow transitions that you have created and want to "
 "export in this module"
 msgstr ""
+"Vnos seznama tranzicij delotoka, ki so bile ustvarjene in jih želite "
+"izvoziti v ta modul."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_maintainer
 msgid ""
 "Enter the name of the person or organization who will maintain this module"
-msgstr ""
+msgstr "Vnos naziva osebe ali organizacije, ki bo ta modul vzdrževala"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_version
 msgid "Enter the version of your module with 5 digits"
-msgstr ""
+msgstr "Vnos verzije modula v 5 znakih"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_author
 msgid "Enter your name"
-msgstr ""
+msgstr "Vnos vašega imena"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export"
-msgstr "Exporter"
+msgstr "Izvoz"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Complete"
-msgstr "Export terminé"
+msgstr "Izvoz dokončan"
 
 #. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.button_module_export_action
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Module"
-msgstr "Exporter le module"
+msgstr "Izvoz modula"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export Settings"
-msgstr "Configuration de l'export"
+msgstr "Izvoz nastavitev"
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_ir_model_fields
@@ -275,42 +300,42 @@ msgstr "Configuration de l'export"
 #: model:ir.ui.menu,name:module_prototyper.ir_model_model_fields
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Fields"
-msgstr "Champs"
+msgstr "Polja"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_data
 msgid "File"
-msgstr "Fichier"
+msgstr "Datoteka"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
 msgid "File Name"
-msgstr "Nom du fichier"
+msgstr "Naziv datoteke"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "GPL Version 3"
-msgstr ""
+msgstr "GPL verzija 3"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "GPL-3 or later version"
-msgstr ""
+msgstr "GPL-3 ali novejša verzija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_group_ids
 msgid "Groups"
-msgstr "Groupes"
+msgstr "Skupine"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_helper
 msgid "Helper"
-msgstr "Texte d'aider"
+msgstr "Pomočnik"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Here is the exported module:"
-msgstr "Voici le module exporté :"
+msgstr "Tu je izvoženi modul:"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_id
@@ -321,86 +346,86 @@ msgstr "ID"
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_icon_image
 msgid "Icon"
-msgstr "Icône"
+msgstr "Ikona"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Interface"
-msgstr ""
+msgstr "Vmesnik"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "LGPL-3"
-msgstr ""
+msgstr "LGPL-3"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "LGPL-3 or later version"
-msgstr ""
+msgstr "LGPL-3 ali novejša verzija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper___last_update
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Zadnjič spremenjeno"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
-msgstr "Mis à jour par"
+msgstr "Zadnji posodobil"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
-msgstr "Mis à jour le"
+msgstr "Zadnjič posodobljeno"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_license
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_maintainer
 msgid "Maintainer"
-msgstr "Mainteneur"
+msgstr "Vzdrževalec"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_menu_ids
 #: model:ir.ui.menu,name:module_prototyper.menu_grant_menu_access
 msgid "Menu Items"
-msgstr "Éléments du menu"
+msgstr "Menijske postavke"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Module"
-msgstr ""
+msgstr "Modul"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_human_name
 msgid "Module Name"
-msgstr "Nom du module"
+msgstr "Naziv modula"
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_module_prototyper
 msgid "Module Prototyper"
-msgstr ""
+msgstr "Izdelovalec prototipa modula"
 
 #. module: module_prototyper
 #: model:ir.ui.menu,name:module_prototyper.menu_module_prototyper
 msgid "Module Prototypes"
-msgstr ""
+msgstr "Prototipi modula"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Opombe"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_notes
 msgid "Notes to developers."
-msgstr "Notes aux développeurs."
+msgstr "Opombe razvijalcem."
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
@@ -408,29 +433,29 @@ msgid ""
 "Notes to help developers to understand the work or advanced features that "
 "should be added, ie: onchange, etc."
 msgstr ""
-"Notes pour aider les développeurs à comprendre le travail effectué ou les "
-"ajouts à faire. Exemple: onchanges, etc."
+"Opombe v pomoč razvijalcem, da bi razumeli delovanje naprednih funkcij, ki "
+"bi morale biti dodane. Na primer: onchange in podobno."
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "Other OSI Approved Licence"
-msgstr ""
+msgstr "Druga OSI odobrena licenca"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
 msgid "Other Proprietary"
-msgstr ""
+msgstr "Druga lastniška"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_tree_view
 msgid "Prototype"
-msgstr ""
+msgstr "Protitip"
 
 #. module: module_prototyper
 #: model:ir.actions.act_window,name:module_prototyper.open_module_prototyper_list
 #: model:ir.ui.menu,name:module_prototyper.menu_open_module_prototyper
 msgid "Prototypes"
-msgstr ""
+msgstr "Prototipi"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:44
@@ -438,143 +463,142 @@ msgstr ""
 #: model:ir.model.fields,help:module_prototyper.field_ir_model_fields_limit
 #, python-format
 msgid "Read limit"
-msgstr ""
+msgstr "Omejitev branja"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_rule_ids
 msgid "Record Rules"
-msgstr "Règles sur les enregistrements"
+msgstr "Pravila zapisov"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_report_ids
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Reports"
-msgstr ""
+msgstr "Poročila"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "Varnost"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_state
 msgid "State"
-msgstr "État"
+msgstr "Stanje"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_summary
 msgid "Summary"
-msgstr "Résumé"
+msgstr "Povzetek"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_name
 msgid "Technical Name"
-msgstr "Nom technique"
+msgstr "Tehnični naziv"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_fields_form
 msgid "Text that will be set as the helper of the field..."
-msgstr "Texte qui sera placé en tant que texte d'aide du champs."
+msgstr "Tekst, ki bo postavljen kot pomočnik polju..."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_human_name
 msgid ""
 "The Module Name will be used as the displayed name of the exported module."
-msgstr "Le nom du module sera affiché en tant que nom du module exporté."
+msgstr "Naziv modula bo uporabljen kot prikazani naziv izvoženega modula."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_icon_image
 msgid ""
 "The icon set up here will be used as the icon for the exported module also"
-msgstr "L'icône sera utilisé comme icône du module exporté."
+msgstr "Tu nastavljena ikona bo uporabljena tudi kot ikona izvoženega modula"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_data_ids
 msgid "The records matching the filters will be added as data."
-msgstr ""
-"Les enregistrements correspondants aux critères des filtres seront exportés "
-"dans le module comme données."
+msgstr "Zapisi, ki ustrezajo filtrom, bodo dodatni kot podatki."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_demo_ids
 msgid "The records matching the filters will be added as demo data."
 msgstr ""
-"Les enregistrements correspondants aux critères des filtres seront exportés "
-"dans le module comme données de démo."
+"Zapisi, ki ustrezajo zapisom, bodo dodani kot demonstracijski podatki."
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_name
 msgid ""
 "The technical name will be used to define the name of the exported module, "
 "the name of the model."
-msgstr "Le nom technique sera utilisé comme nom du module exporté."
+msgstr ""
+"Tehnični naziv bo uporabljen za določitev naziva izvoženega modula in naziv "
+"modela."
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_transition_ids
 msgid "Transitions"
-msgstr ""
+msgstr "Tranzicije"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_version
 msgid "Version"
-msgstr ""
+msgstr "Verzija"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_view_ids
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 msgid "Views"
-msgstr "Vues"
+msgstr "Prikazi"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_website
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Website"
-msgstr "Site web"
+msgstr "Spletna stran"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Workflows"
-msgstr ""
+msgstr "Delotoki"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,state:0
 msgid "choose"
-msgstr "choisir"
+msgstr "izberi"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: Module Prototyper"
-msgstr ""
+msgstr "npr. Izdelovalec prototipa modula"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: Odoo Community Association"
-msgstr ""
+msgstr "npr: Odoo Community Association"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: Others, Sales, Website"
-msgstr ""
+msgstr "npr. Drugo, Prodaja, Spletna stran"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: Prototype your module."
-msgstr ""
+msgstr "npr. Prototip vašega modula"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: http://odoo-community.org/"
-msgstr ""
+msgstr "npr. http://odoo-community.org/"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "ex: module_prototyper"
-msgstr ""
+msgstr "npr. module_prototyper"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,state:0
 msgid "get"
-msgstr "récupérer"
+msgstr "pridobi"
 
 #. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_module_prototyper_module_export
@@ -585,15 +609,15 @@ msgstr ""
 #: code:addons/module_prototyper/models/ir_model_fields.py:36
 #, python-format
 msgid "name of the column referring to 'these' records in the relation table"
-msgstr ""
+msgstr "naziv stolpca, ki se nanaša na 'te' zapise v relacijski tabeli"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:41
 #, python-format
 msgid "name of the column referring to 'those' records in the relation table"
-msgstr ""
+msgstr "naziv stolpca, ki se na 'tiste' zapise v relacijski tabeli"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "ali"
