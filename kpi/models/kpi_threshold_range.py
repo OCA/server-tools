@@ -128,7 +128,7 @@ class KPIThresholdRange(models.Model):
                 value = safe_eval(obj.min_code)
             else:
                 value = obj.min_fixed_value
-            result[obj.id] = value
+            obj.min_value = value
         return result
 
     @api.multi
@@ -152,7 +152,7 @@ class KPIThresholdRange(models.Model):
                     value = res[0]['value']
             else:
                 value = obj.max_fixed_value
-            result[obj.id] = value
+            obj.max_value = value
         return result
 
     @api.multi
@@ -160,9 +160,9 @@ class KPIThresholdRange(models.Model):
         result = {}
         for obj in self:
             if obj.max_value < obj.min_value:
-                result[obj.id] = False
+                obj.valid = False
             else:
-                result[obj.id] = True
+                obj.valid = True
         return result
 
     @api.multi
@@ -170,8 +170,9 @@ class KPIThresholdRange(models.Model):
         result = {}
         for obj in self:
             if obj.valid:
-                result[obj.id] = ""
+                obj.invalid_message = ""
             else:
-                result[obj.id] = ("Minimum value is greater than the maximum "
-                                  "value! Please adjust them.")
+                obj.invalid_message = (
+                    "Minimum value is greater than the maximum "
+                    "value! Please adjust them.")
         return result
