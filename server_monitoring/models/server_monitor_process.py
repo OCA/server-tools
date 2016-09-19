@@ -44,13 +44,7 @@ import types
 import os
 import threading
 import datetime
-
-# ugly hack to avoid a WARNING message when importing stdlib resource module
-_logger = logging.getLogger('openerp.modules.module')
-_saved_log_level = _logger.getEffectiveLevel()
-_logger.setLevel(logging.ERROR)
 import resource
-_logger.setLevel(_saved_log_level)
 
 
 import psutil
