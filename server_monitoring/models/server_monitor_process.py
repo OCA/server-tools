@@ -94,9 +94,10 @@ def _monkey_patch_object_proxy_execute():
 
     def execute_cr(cr, uid, obj, method, *args, **kw):
         result = orig_execute_cr(cr, uid, obj, method, *args, **kw)
-        monitor_obj = pooler.get_pool(cr.dbname)['server.monitor.process']
-        monitor_obj.log_measure(cr, uid, obj, method, 'xmlrpc call',
-                                False, False, context={})
+        monitor_obj = pooler.get_pool(cr.dbname).get('server.monitor.process')
+        if monitor_obj is not None:
+            monitor_obj.log_measure(cr, uid, obj, method, 'xmlrpc call',
+                                    False, False, context={})
         return result
 
     openerp.service.model.execute_cr = execute_cr
@@ -108,9 +109,10 @@ def _monkey_patch_controller_call_kw():
     def _call_kw(self, model, method, args, kwargs):
         result = orig_call_kw(self, model, method, args, kwargs)
         monitor_obj = request.registry.get('server.monitor.process')
-        monitor_obj.log_measure(request.cr, request.uid, model, method,
-                                'jsonrpc call',
-                                False, False, context={})
+        if monitor_obj is not None:
+            monitor_obj.log_measure(request.cr, request.uid, model, method,
+                                    'jsonrpc call',
+                                    False, False, context={})
         return result
 
     openerp.addons.web.controllers.main.DataSet._call_kw = _call_kw
