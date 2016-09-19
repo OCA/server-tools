@@ -75,6 +75,8 @@ BLACKLIST = (
     types.MemberDescriptorType, types.GetSetDescriptorType,
     )
 
+_monkey_patched = False
+
 
 class ClassInstanceCount(models.Model):
     _name = 'server.monitor.class.instance.count'
@@ -117,10 +119,16 @@ def _monkey_patch_controller_call_kw():
 class ServerMonitorProcess(models.Model):
     def __init__(self, pool, cr):
         super(ServerMonitorProcess, self).__init__(pool, cr)
-        _monkey_patch_object_proxy_execute()
-        _monkey_patch_controller_call_kw()
 
     _name = 'server.monitor.process'
+
+    def _register_hook(self, cr):
+        global _monkey_patched
+        if _monkey_patched:
+            return
+        _monkey_patched = True
+        _monkey_patch_controller_call_kw()
+        _monkey_patch_object_proxy_execute()
 
     @api.model
     def _default_pid(self):
