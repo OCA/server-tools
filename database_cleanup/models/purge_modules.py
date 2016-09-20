@@ -48,7 +48,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         if not modules:
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
-        modules.write({'state': 'to remove'})
+        modules.button_uninstall()
         # we need this commit because reloading the registry would roll back
         # our changes
         self.env.cr.commit()  # pylint: disable=invalid-commit
