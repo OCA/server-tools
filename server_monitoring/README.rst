@@ -25,6 +25,9 @@ Configuration
 To configure this module, you need to:
 
 * Settings -> Scheduled Actions and tune the cron tasks
+* Settings -> Configuration -> General Settings and enable Monitor RPC Calls
+  if you want information about RPC calls being made (causes some performance
+  overhead).
 
 Usage
 =====

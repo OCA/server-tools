@@ -26,11 +26,11 @@ class Bigint(fields.Integer):
     type = 'bigint'
 
 
-class bigint(osv.fields.integer):
+class OsvBigint(osv.fields.integer):
     _type = 'int8'
 
 
 fields.Bigint = Bigint
-osv.fields.bigint = bigint
+osv.fields.bigint = OsvBigint
 
-models.FIELDS_TO_PGTYPES[bigint] = 'int8'
+models.FIELDS_TO_PGTYPES[OsvBigint] = 'int8'

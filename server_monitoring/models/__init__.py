@@ -24,3 +24,4 @@ from . import field_types
 from . import ir_cron
 from . import server_monitor_process
 from . import server_monitor_database
+from . import res_config

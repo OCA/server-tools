@@ -23,7 +23,7 @@
     'name': 'Server Monitoring',
     'version': '8.0.1.0.0',
     'category': 'Tools',
-    'depends': ['web'],
+    'depends': ['web', 'base_setup'],
     'author': 'Camptocamp, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'data': [
@@ -33,6 +33,7 @@
         'views/server_monitor_model_row_count.xml',
         'views/server_monitor_model_table_size.xml',
         'views/server_monitor_process.xml',
+        'views/res_config.xml',
         'data/ir_cron.xml',
         'security/ir.model.access.csv',
         ],
