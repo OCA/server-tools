@@ -29,18 +29,18 @@ After installing this module, the import logic will be changed to:
     - Discard the rules that require fields you are not importing.
     - Traverse the remaining rules one by one in order to find a match in the database.
 
-        - Skip the rule if it requires a special condition that is not
-          satisfied.
-        - If one match is found:
+      - Skip the rule if it requires a special condition that is not
+        satisfied.
+      - If one match is found:
 
-          - Stop traversing the rest of valid rules.
-          - **Update** that record.
-        - If zero or multiple matches are found:
+        - Stop traversing the rest of valid rules.
+        - **Update** that record.
+      - If zero or multiple matches are found:
 
-          - Continue with the next rule.
-        - If all rules are exhausted and no single match is found:
+        - Continue with the next rule.
+      - If all rules are exhausted and no single match is found:
 
-          - **Create** a new record.
+        - **Create** a new record.
   - If there are no match rules for your model:
 
     - **Create** a new record.
