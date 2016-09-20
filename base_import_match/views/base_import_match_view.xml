@@ -20,7 +20,9 @@
                         <tree  editable="bottom">
                             <field name="field_id"
                                    options="{'no_create': True}"/>
-                            <field name="match_id" invisible="True"/>
+                            <field name="match_id"
+                                   invisible="True"
+                                   required="False"/>
                             <field name="model_id" invisible="True"/>
                             <field name="conditional"/>
                             <field

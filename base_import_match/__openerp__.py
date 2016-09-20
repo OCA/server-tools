@@ -4,7 +4,7 @@
 {
     "name": "Base Import Match",
     "summary": "Try to avoid duplicates before importing",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "category": "Tools",
     "website": "https://grupoesoc.es",
     "author": "Grupo ESOC Ingeniería de Servicios, "
