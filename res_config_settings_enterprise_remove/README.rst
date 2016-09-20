@@ -2,11 +2,14 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================================
-Website Sale - Remove Enterprise Features
-=========================================
+===================================
+Settings - Remove Enterprise Fields
+===================================
 
-This module removes enterprise-only features from all website_sale views.
+This module removes enterprise-only features from all settings views.
+Note that it does not remove the possibility to install
+Enterprise modules. If necessary, all Enterprise Edition code is still
+available and can be manually installed via the Apps menu.
 
 Usage
 =====
@@ -14,6 +17,13 @@ Usage
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0
+
+Known issues / Roadmap
+======================
+
+Keep in mind that this module does not mark the enterprise fields as invisible.
+Instead, it completely removes them, so any modules that are referencing those fields in
+the settings views will break.
 
 Bug Tracker
 ===========
