@@ -23,7 +23,7 @@
     'name': 'Server Monitoring',
     'version': '8.0.1.0.0',
     'category': 'Tools',
-    'depends': [],
+    'depends': ['web'],
     'author': 'Camptocamp, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'data': [
