@@ -17,7 +17,6 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[account_enterprise_remove](account_enterprise_remove/) | 9.0.1.0.0 | Account - Remove Enterprise Features
 [admin_technical_features](admin_technical_features/) | 9.0.0.1.0 | Checks the technical features box for admin user.
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
@@ -28,7 +27,6 @@ addon | version | summary
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
 [base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
-[base_setup_enterprise_remove](base_setup_enterprise_remove/) | 9.0.1.0.0 | Base Setup - Remove Enterprise Features
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
@@ -41,18 +39,14 @@ addon | version | summary
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
-[mass_mailing_enterprise_remove](mass_mailing_enterprise_remove/) | 9.0.1.0.0 | Mass Mailing - Remove Enterprise Features
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
-[project_enterprise_remove](project_enterprise_remove/) | 9.0.1.0.0 | Project - Remove Enterprise Features
-[sale_enterprise_remove](sale_enterprise_remove/) | 9.0.1.0.0 | Sale - Remove Enterprise Features
+[res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.1.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
-[stock_enterprise_remove](stock_enterprise_remove/) | 9.0.1.0.0 | Stock - Remove Enterprise Features
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
-[website_sale_enterprise_remove](website_sale_enterprise_remove/) | 9.0.1.0.0 | Website Sale - Remove Enterprise Features
 
 Unported addons
 ---------------
