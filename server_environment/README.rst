@@ -44,10 +44,14 @@ You should then edit the settings you need in the
 `server_environment_files_sample` can be used as an example:
 
 * values common to all / most environments can be stored in the
-  `default/` directory using the .ini file syntax
+  `default/` directory using the .ini file syntax;
 * each environment you need to define is stored in its own directory
-  and can override or extend default values. Values associated to keys
-  containing 'passw' are only displayed in the 'dev' environment.
+  and can override or extend default values;
+* finally, you can override or extend values in the main configuration
+  file of you instance.
+
+Values associated to keys
+containing 'passw' are only displayed in the 'dev' environment.
 
 Usage
 =====
