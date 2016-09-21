@@ -46,7 +46,5 @@
         "images/kpi_threshold.png",
         "images/kpi_range.png",
     ],
-    "demo": [],
-    "test": [],
     'installable': True,
 }

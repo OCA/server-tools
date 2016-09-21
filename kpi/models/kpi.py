@@ -1,23 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 
 from datetime import datetime, timedelta
 from openerp import fields, models, api
@@ -159,7 +140,6 @@ class KPI(models.Model):
             }
             history_obj = self.env['kpi.history']
             history_obj.create(values)
-            # obj.history_ids = history_obj.search([("kpi_id", "=", obj.id)])
         return True
 
     @api.multi
@@ -198,8 +178,6 @@ class KPI(models.Model):
         res = None
 
         try:
-            # res = self.compute_kpi_value()
-            # self.update_next_execution_date()
             for obj in obj_ids:
                 obj.compute_kpi_value()
                 obj.update_next_execution_date()
