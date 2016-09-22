@@ -29,7 +29,7 @@ class KPIThreshold(models.Model):
             if obj.valid:
                 result[obj.id] = ""
             else:
-                result[obj.id] = ("2 of your ranges are overlapping! Please "
+                result[obj.id] = ("Two of your ranges are overlapping! Please "
                                   "make sure your ranges do not overlap.")
         return result
 
@@ -65,7 +65,7 @@ class KPIThreshold(models.Model):
                             range_obj1.min_value < range_obj2.min_value):
                         if range_obj1.max_value > range_obj2.min_value:
                             raise exceptions.Warning(
-                                _("2 of your ranges are overlapping!"),
+                                _("Two of your ranges are overlapping!"),
                                 _("Make sure your ranges do not overlap!")
                             )
                     range_obj2 = self.env['kpi.threshold.range']
