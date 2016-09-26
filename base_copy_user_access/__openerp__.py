@@ -9,7 +9,6 @@
     'author': 'OpenSynergy Indonesia,Odoo Community Association (OCA)',
     'category': 'Generic Modules/Base',
     'website': 'https://opensynergy-indonesia.com',
-    'images': [],
     'depends': ['base'],
     'data': ['wizards/wizard_base_copyUserAccess.xml'],
     'installable': True,

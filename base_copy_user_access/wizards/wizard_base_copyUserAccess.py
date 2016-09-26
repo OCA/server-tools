@@ -2,12 +2,11 @@
 # © 2016 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import orm
-from openerp import fields, api
+from openerp import models, fields, api
 from lxml import etree
 
 
-class WizardBaseCopyUserAccess(orm.TransientModel):
+class WizardBaseCopyUserAccess(models.TransientModel):
     _name = 'base.copy_user_access'
     _description = 'Wizard Copy User Access'
 
