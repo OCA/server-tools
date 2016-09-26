@@ -18,35 +18,28 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.addons.web.http import WebRequest, JsonRequest
+from openerp.http import WebRequest, JsonRequest, request
 from openerp.addons.web.controllers import main as web_main
+from openerp import models
 
-old_init = WebRequest.init
 
+class IrHttp(models.AbstractModel):
+    _inherit = 'ir.http'
 
-def init(self, params):
-    old_init(self, params)
-    if self.httprequest.authorization and not self.session._login:
-        dbs = web_main.db_list(self)
-        self.session.authenticate(
-            dbs and dbs[0],
-            self.httprequest.authorization.username,
-            self.httprequest.authorization.password,
-            dict(
-                base_location=self.httprequest.url_root.rstrip('/'),
-                HTTP_HOST=self.httprequest.environ['HTTP_HOST'],
-                REMOTE_ADDR=self.httprequest.environ['REMOTE_ADDR']
-            )
-        )
+    def _authenticate(self, auth_method='user'):
+        if request.httprequest.authorization and not request.session.uid:
+            request.session.authenticate(
+                request.session.db,
+                request.httprequest.authorization.username,
+                request.httprequest.authorization.password)
+        return super(IrHttp, self)._authenticate(auth_method=auth_method)
 
-WebRequest.init = init
 
 old_dispatch = JsonRequest.dispatch
 
-
-def dispatch(self, method):
-    response = old_dispatch(self, method)
-    if method.im_func == web_main.Session.destroy.im_func:
+def dispatch(self):
+    response = old_dispatch(self)
+    if self.endpoint.method.im_func == web_main.Session.destroy.im_func:
         response.status = '301 logout'
         response.headers.add(
             'Location',
