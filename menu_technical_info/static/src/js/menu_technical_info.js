@@ -1,5 +1,6 @@
 odoo.define('menu_technical_info.Menu', function (require) {
 "use strict";
+    var $ = require('$');
     var Menu = require('web.Menu');
     var Model = require('web.Model');
 
