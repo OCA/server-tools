@@ -19,7 +19,7 @@ class IrModelData(models.Model):
             if this.model == 'ir.model.fields':
                 field = self.env[this.model].with_context(
                     **{MODULE_UNINSTALL_FLAG: True}).browse(this.res_id)
-                if field.model not in self.env:
+                if not field.exists() or field.model not in self.env:
                     this.unlink()
                     continue
             if this.model not in self.env:
