@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-==================
-Password  Security
-==================
+=================
+Password Security
+=================
 
 This module allows admin to set company-level password security requirements
 and enforces them on the user.

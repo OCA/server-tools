@@ -14,6 +14,7 @@ class ResUsersPassHistory(models.Model):
     user_id = fields.Many2one(
         string='User',
         comodel_name='res.users',
+        ondelete='cascade',
         index=True,
     )
     password_crypt = fields.Char(

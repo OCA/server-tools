@@ -59,7 +59,7 @@ class PasswordSecurityHome(AuthSignupHome):
             return super(PasswordSecurityHome, self).web_auth_signup(
                 *args, **kw
             )
-        except PassError, e:
+        except PassError as e:
             qcontext = self.get_auth_signup_qcontext()
             qcontext['error'] = e.message
             return request.render('auth_signup.signup', qcontext)
@@ -78,13 +78,16 @@ class PasswordSecurityHome(AuthSignupHome):
             'token' not in qcontext
         ):
             login = qcontext.get('login')
-            user_ids = request.env.sudo().search([('login', '=', login)])
+            user_ids = request.env.sudo().search(
+                [('login', '=', login)],
+                limit=1,
+            )
             if not user_ids:
                 user_ids = request.env.sudo().search(
                     [('email', '=', login)],
+                    limit=1,
                 )
-            if len(user_ids) == 1:
-                user_ids[0]._validate_pass_reset()
+            user_ids._validate_pass_reset()
         return super(PasswordSecurityHome, self).web_auth_reset_password(
             *args, **kw
         )
