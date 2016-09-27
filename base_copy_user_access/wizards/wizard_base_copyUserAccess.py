@@ -34,6 +34,8 @@ class WizardBaseCopyUserAccess(models.TransientModel):
     @api.multi
     def copy_access_right(self):
         res = []
+        self.ensure_one()
+
         obj_user = self.env['res.users']
 
         context = self._context
