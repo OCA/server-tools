@@ -42,7 +42,7 @@ addon | version | summary
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
-[server_environment](server_environment/) | 9.0.1.1.0 | move some configurations out of the database
+[server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
