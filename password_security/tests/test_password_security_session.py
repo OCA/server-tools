@@ -11,7 +11,7 @@ from openerp.tests.common import TransactionCase
 from ..controllers import main
 
 
-IMPORT = 'openerp.addons.res_users_password_security.controllers.main'
+IMPORT = 'openerp.addons.password_security.controllers.main'
 
 
 class EndTestException(Exception):
@@ -22,8 +22,8 @@ class TestPasswordSecuritySession(TransactionCase):
 
     def setUp(self):
         super(TestPasswordSecuritySession, self).setUp()
-        self.Controller = main.PasswordSecuritySession
-        self.controller = self.Controller()
+        self.PasswordSecuritySession = main.PasswordSecuritySession
+        self.password_security_session = self.PasswordSecuritySession()
         self.passwd = 'I am a password!'
         self.fields = [
             {'name': 'new_password', 'value': self.passwd},
@@ -43,7 +43,7 @@ class TestPasswordSecuritySession(TransactionCase):
             check_password = assets['request'].env.user.check_password
             check_password.side_effect = EndTestException
             with self.assertRaises(EndTestException):
-                self.controller.change_password(self.fields)
+                self.password_security_session.change_password(self.fields)
             check_password.assert_called_once_with(
                 self.passwd,
             )
@@ -52,5 +52,7 @@ class TestPasswordSecuritySession(TransactionCase):
         """ It should return result of super """
         with self.mock_assets():
             with mock.patch.object(main.Session, 'change_password') as chg:
-                res = self.controller.change_password(self.fields)
+                res = self.password_security_session.change_password(
+                    self.fields
+                )
                 self.assertEqual(chg(), res)

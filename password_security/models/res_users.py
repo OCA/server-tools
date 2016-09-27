@@ -92,7 +92,7 @@ class ResUsers(models.Model):
         write_date = fields.Datetime.from_string(self.password_write_date)
         today = fields.Datetime.from_string(fields.Datetime.now())
         days = (today - write_date).days
-        return (days > self.company_id.password_expiration)
+        return days > self.company_id.password_expiration
 
     @api.multi
     def action_expire_password(self):
