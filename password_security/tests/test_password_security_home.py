@@ -236,6 +236,7 @@ class TestPasswordSecurityHome(TransactionCase):
                 assets['request'].httprequest.method = 'POST'
                 user = mock.MagicMock()
                 user._validate_pass_reset.side_effect = MockPassError
+                search.return_value = user
                 with self.assertRaises(MockPassError):
                     self.password_security_home.web_auth_reset_password()
 
@@ -250,7 +251,7 @@ class TestPasswordSecurityHome(TransactionCase):
                 assets['request'].httprequest.method = 'POST'
                 user = mock.MagicMock()
                 user._validate_pass_reset.side_effect = MockPassError
-                search.side_effect = [[], mock.MagicMock()]
+                search.side_effect = [[], user]
                 with self.assertRaises(MockPassError):
                     self.password_security_home.web_auth_reset_password()
 
@@ -261,9 +262,7 @@ class TestPasswordSecurityHome(TransactionCase):
                 main.AuthSignupHome, 'get_auth_signup_qcontext', spec=dict
             ) as qcontext:
                 qcontext['login'] = 'login'
-                search = assets['request'].env.sudo().search
                 assets['request'].httprequest.method = 'POST'
-                user = mock.MagicMock()
                 res = self.password_security_home.web_auth_reset_password()
                 self.assertEqual(
                     assets['web_auth_reset_password'](), res,
