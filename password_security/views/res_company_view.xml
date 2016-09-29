@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2015 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Password Policy">
+                    <group>
+                        <group string="Timings">
+                            <field name="password_expiration" />
+                            <field name="password_minimum" />
+                        </group>
+                        <group string="Extra">
+                            <field name="password_length" />
+                            <field name="password_history" />
+                        </group>
+                    </group>
+                    <group name="chars_grp" string="Required Characters">
+                        <group>
+                            <field name="password_lower" />
+                            <field name="password_upper" />
+                        </group>
+                        <group>
+                            <field name="password_numeric" />
+                            <field name="password_special" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
