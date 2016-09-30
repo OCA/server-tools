@@ -40,6 +40,7 @@ addon | version | summary
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
+[password_security](password_security/) | 9.0.1.0.2 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
