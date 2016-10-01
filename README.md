@@ -39,6 +39,7 @@ addon | version | summary
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
+[menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [password_security](password_security/) | 9.0.1.0.2 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
