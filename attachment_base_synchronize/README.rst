@@ -67,6 +67,7 @@ Contributors
 * Sebastien BEAU <sebastian.beau@akretion.com>
 * Joel Grand-Guillaume Camptocamp
 * initOS <http://initos.com>
+* Angel Moya <http://angelmoya.es>
 
 Maintainer
 ----------
