@@ -18,6 +18,9 @@
         'security/ir.model.access.csv',
         'data/cron.xml',
     ],
+    'demo': [
+        'demo/attachment_metadata_demo.xml'
+    ],
     'installable': True,
     'application': False,
     'images': [],
