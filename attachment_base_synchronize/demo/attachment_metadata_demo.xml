@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="attachment_metadata" model="ir.attachment.metadata">
+            <field name="datas">bWlncmF0aW9uIHRlc3Q=</field>
+            <field name="datas_fname">attachment_metadata.doc</field>
+            <field name="name">attachment_metadata.doc</field>
+        </record>
+
+    </data>
+</openerp>
