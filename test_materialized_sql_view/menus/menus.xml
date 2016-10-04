@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <openerp>
     <data noupdate="0">
        <menuitem id="menu_test_materialized"

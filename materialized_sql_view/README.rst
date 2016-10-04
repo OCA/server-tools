@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+=====================
 Materialized SQL View
 =====================
 
@@ -13,7 +18,7 @@ You can have a look to `the basic example
 model_test_using_sql_mat_view.py>`_,
 used in test module: `test_materialized_sql_view`.
 
-You can etheir add cron to refresh the materialized view periodicly,
+You can etheir add cron to refresh the materialized view periodically,
 `here <https://github.com/OCA/server-tools/blob/8.0/test_materialized_sql_view/
 data/ir_cron.xml>`
 an example on the previous model
@@ -27,7 +32,7 @@ Features
     - Go through `Settings > Technical > Database Structure >
       Materialized SQL view` menu to manage materialized sql views
 * Abstract class, to help developer to create materialized sql view
-* Use postgresql materialized view if pg >= 9.3.0.
+* Use Postgresql materialized view if pg >= 9.3.0.
 * Manage when pg version changed
 * Recreate materialized sql view only if necessary, one of those change:
   - sql materialized view name `_sql_mat_view_name`, this is used as search key
@@ -41,11 +46,26 @@ Features
 Roadmap
 -------
 
-* Add UI on models based on materialized view. Specialy on dashboards
+* Add UI on models based on materialized view Specially on dashboards to tell
+  last refresh date
 
 
 Credits
 =======
+Images
+------
+
+* Odoo Community Association:
+
+.. image:: https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+* Anybox
+
+.. image:: https://anybox.fr/logo.png
+   :alt: Anybox
+   :target: https://anybox.fr/logo.png
 
 Contributors
 ------------
@@ -55,9 +75,10 @@ Contributors
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -65,5 +86,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
-
+To contribute to this module, please visit https://odoo-community.org.

@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.tests.common import SingleTransactionCase
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGMaterializedViewManager  # noqa
 from openerp.addons.materialized_sql_view.model.abstract_materialized_sql_view import PGNoMaterializedViewSupport  # noqa

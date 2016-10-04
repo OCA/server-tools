@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 """I didn'nt know if I could introduce new dependences so I sadly copy/paste
 a part of the anybox.testting.openerp package here.
 

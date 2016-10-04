@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp import api, fields, models
 from datetime import datetime
 
@@ -63,7 +65,7 @@ class MaterializedSqlView(models.Model):
 
     @api.model
     def refresh_materialized_view_by_name(self, mat_view_name=None):
-        records = self.search_materialized_sql_view_ids_from_matview_name(
+        records = self.search_mat_sql_views_by_matview_name(
             mat_view_name)
         return records.refresh_materialized_view()
 
@@ -98,7 +100,7 @@ class MaterializedSqlView(models.Model):
             self.create(values)
 
     @api.model
-    def search_materialized_sql_view_ids_from_matview_name(self, matview_name):
+    def search_mat_sql_views_by_matview_name(self, matview_name):
         return self.search([('matview_name', '=', matview_name)])
 
     @api.model
@@ -143,7 +145,7 @@ class MaterializedSqlView(models.Model):
 
     @api.model
     def write_values(self, matview_name, values):
-        records = self.search_materialized_sql_view_ids_from_matview_name(
+        records = self.search_mat_sql_views_by_matview_name(
             matview_name)
         return records.write(values)
 

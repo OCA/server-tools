@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp.tests.common import SingleTransactionCase
 from datetime import datetime
 from .assertions import OpenErpAssertions
@@ -49,7 +52,7 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
         self.assertRecord('materialized.sql.view', rec.id, values)
         rec.unlink()
 
-    def test_search_materialized_sql_view_ids_from_matview_name(self):
+    def test_search_mat_sql_views_by_matview_name(self):
         mat_mdl = self.matview_mdl
         users_mdl_id = self.env['ir.model'].search(
             [('model', '=', 'res.users')]).ids[0]
@@ -65,7 +68,7 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
         rec = self.matview_mdl.create(values)
         self.assertEquals(
             [rec.id],
-            mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+            mat_mdl.search_mat_sql_views_by_matview_name(
                 'test_mat_view_name').ids)
 
     def test_launch_refresh_materialized_sql_view(self):
@@ -86,7 +89,7 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
         self.assertEquals(
             demo_matview.read(['user_count'])[0]['user_count'],
             user_count)
-        recs = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        recs = mat_mdl.search_mat_sql_views_by_matview_name(
             self.demo_matview_mdl._sql_mat_view_name)
         recs.launch_refresh_materialized_sql_view()
         self.assertEquals(
@@ -116,7 +119,7 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
             user_count)
         mat_mdl.refresh_materialized_view_by_name(
             self.demo_matview_mdl._sql_mat_view_name)
-        recs = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        recs = mat_mdl.search_mat_sql_views_by_matview_name(
             self.demo_matview_mdl._sql_mat_view_name)
         for rec in recs:
             self.assertEquals(rec.state, 'refreshed')

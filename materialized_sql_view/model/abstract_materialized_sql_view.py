@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import psycopg2
 import logging
 from openerp import api, models
@@ -96,7 +97,9 @@ class AbstractMaterializedSqlView(models.AbstractModel):
         except psycopg2.Error as e:
             self.report_sql_error(e, pg_version)
         else:
-            result = self.change_matview_state('after_refresh_view', pg_version)
+            result = self.change_matview_state(
+                'after_refresh_view', pg_version
+            )
         return result
 
     @api.model
@@ -133,21 +136,27 @@ class AbstractMaterializedSqlView(models.AbstractModel):
         matview_mdl = self.env['materialized.sql.view']
         if not context:
             context = {}
-        records = matview_mdl.search_materialized_sql_view_ids_from_matview_name(
+        mat_sql_views = matview_mdl.search_mat_sql_views_by_matview_name(
             self.sql_mat_view_name)
-        if len(records):
+        if len(mat_sql_views):
             # As far matview_mdl is refered by its view name, to get one or
             # more instance is technicly the same.
-            pg_version = context.get('force_pg_version', cr._cnx.server_version)
+            pg_version = context.get(
+                'force_pg_version', cr._cnx.server_version
+            )
             pg = PGMaterializedViewManager.getInstance(cr._cnx.server_version)
-            if(records.pg_version != pg_version or
-               records.sql_definition != self.sql_view_definition or
-               records.view_name != self.sql_view_name or
-               records.state in ['nonexistent', 'aborted'] or
-               not pg.is_existed_relation(cr, self.sql_view_name) or
-               not pg.is_existed_relation(cr, self.sql_mat_view_name)):
-                self.drop_materialized_view_if_exist(records.pg_version,
-                                                     view_name=records.view_name)
+            if (
+                mat_sql_views.pg_version != pg_version or
+                mat_sql_views.sql_definition != self.sql_view_definition or
+                mat_sql_views.view_name != self.sql_view_name or
+                mat_sql_views.state in ['nonexistent', 'aborted'] or
+                not pg.is_existed_relation(cr, self.sql_view_name) or
+                not pg.is_existed_relation(cr, self.sql_mat_view_name)
+            ):
+                self.drop_materialized_view_if_exist(
+                    mat_sql_views.pg_version,
+                    view_name=mat_sql_views.view_name
+                )
             else:
                 return []
         return self.create_materialized_view()

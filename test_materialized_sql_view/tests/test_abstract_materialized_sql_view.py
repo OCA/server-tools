@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.tests.common import TransactionCase
 from openerp.exceptions import except_orm
 from .assertions import OpenErpAssertions
@@ -46,8 +48,10 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
                                'country_id': self.ref('base.be').id,
                                })
         # The user count havn't increase until we refresh the view
-        self.assertEquals(self.demo_matview_mdl.browse(self.group_user.id).user_count,
-                          user_count)
+        self.assertEquals(
+            self.demo_matview_mdl.browse(self.group_user.id).user_count,
+            user_count
+        )
         # Refresh the materialized view
         self.demo_matview_mdl.refresh_materialized_view()
         # Read user count (not in cache), there is one more now!
@@ -159,7 +163,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             before_refresh_materialized_view
         self.demo_matview_mdl.refresh_materialized_view()
         self.demo_matview_mdl.before_refresh_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             self.demo_matview_mdl._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
@@ -176,7 +180,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             after_refresh_materialized_view
         self.demo_matview_mdl.refresh_materialized_view()
         self.demo_matview_mdl.after_refresh_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             demo._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
@@ -193,7 +197,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             before_drop_materialized_view
         demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
         self.demo_matview_mdl.before_drop_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             self.demo_matview_mdl._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
@@ -210,7 +214,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
         demo._model.after_drop_materialized_view = after_drop_materialized_view
         demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
         self.demo_matview_mdl.after_drop_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             demo._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
@@ -229,7 +233,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             before_create_materialized_view
         self.demo_matview_mdl.create_materialized_view()
         self.demo_matview_mdl.before_create_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             demo._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
@@ -248,7 +252,7 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             after_create_materialized_view
         self.demo_matview_mdl.create_materialized_view()
         self.demo_matview_mdl.after_create_materialized_view = save_method
-        ids = mat_mdl.search_materialized_sql_view_ids_from_matview_name(
+        ids = mat_mdl.search_mat_sql_views_by_matview_name(
             demo._sql_mat_view_name).ids
         self.assertEqual(
             self.mat_view_mdl.browse(ids[0]).state,
