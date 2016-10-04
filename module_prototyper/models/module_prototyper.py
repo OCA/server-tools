@@ -456,7 +456,7 @@ class ModulePrototyper(models.Model):
                     filename,
                     'data/model_name.xml.template',
                     model=model_name,
-                    records=records,
+                    records=_generate_record_data(records),
                 ))
 
         return res
@@ -539,6 +539,45 @@ class ModulePrototyper(models.Model):
             }
         )
         return self.File_details(filename, template.render(kwargs))
+
+
+def _generate_record_data(records):
+    data = []
+    blacklist = models.MAGIC_COLUMNS + \
+        [models.BaseModel.CONCURRENCY_CHECK_FIELD]
+    fields = [name for name in records._model._fields if name not in blacklist]
+    for record in records:
+        field_values = []
+        for field in fields:
+            if record._fields[field].readonly:
+                continue
+            raw = record[field]
+            field_type = record._fields[field].type
+            if raw or field_type == 'boolean':
+                value = ''
+                tag = ''
+                if field_type == 'many2one':
+                    tag = 'ref="{}"'.format(raw._BaseModel__export_xml_id())
+                elif field_type == 'many2many':
+                    tag = 'eval="[(6, 0, {})]"'.format(
+                        [v._BaseModel__export_xml_id() for v in raw])
+                elif field_type == 'one2many':
+                    tag = 'eval="[(6, 0, {})]"'.format(
+                        [v._BaseModel__export_xml_id() for v in raw])
+                elif field_type == ('boolean'):
+                    tag = 'eval="{}"'.format(1 if raw else 0)
+                elif field_type in ('integer', 'float'):
+                    tag = 'eval="{}"'.format(raw)
+                else:
+                    value = raw
+                field_values.append({'field': field, 'tag': tag,
+                                     'value': value})
+        data.append({
+            'model': record._model._name,
+            'id': record._BaseModel__export_xml_id(),
+            'fields': field_values,
+            })
+    return data
 
 
 # Utility functions for rendering templates

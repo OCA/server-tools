@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 <openerp>
-  <data>
+    <data>
 
-      {{ demo }}
+        {% for record in records %}
+        <record id="{{ record.id }}" model="{{ record.model }}">
+            {% for field in record.fields %}
+            {% if field.tag %}
+            <field name="{{ field.field }}" {{ field.tag }}/>
+            {% else %}
+            <field name="{{ field.field }}">{{ field.value }}</field>
+            {% endif %}
+            {% endfor %}
+        </record>
+        {% endfor %}
 
-  </data>
+    </data>
 </openerp>
