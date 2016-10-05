@@ -3,10 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
-from openerp.tools.translate import _
-from openerp import SUPERUSER_ID
 
-from openerp import models, fields, api, _
+from openerp import SUPERUSER_ID, models, fields, api, _
 from openerp.exceptions import Warning
 
 
