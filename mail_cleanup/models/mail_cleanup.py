@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import datetime
 from openerp import api, fields, models
 from dateutil.relativedelta import relativedelta
 
@@ -14,6 +15,21 @@ _logger = logging.getLogger(__name__)
 class FetchmailServer(models.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
+
+    cleanup_days = fields.Integer(
+        compute='_get_cleanup_conf',
+        string='Expiration days',
+        help="Number of days before marking an e-mail as read")
+
+    cleanup_folder = fields.Char(
+        compute='_get_cleanup_conf',
+        string='Expiration folder',
+        help="Folder where an e-mail marked as read will be moved.")
+
+    purge_days = fields.Integer(
+        compute='_get_cleanup_conf',
+        string='Deletion days',
+        help="Number of days before removing an e-mail")
 
     @api.multi
     def _get_cleanup_conf(self):
@@ -44,24 +60,9 @@ class FetchmailServer(models.Model):
             for field in ['cleanup_days', 'purge_days', 'cleanup_folder']:
                 fetchmail[field] = config_vals[field]
 
-    cleanup_days = fields.Integer(
-        compute=_get_cleanup_conf,
-        string='Expiration days',
-        help="Number of days before marking an e-mail as read")
-
-    cleanup_folder = fields.Char(
-        compute=_get_cleanup_conf,
-        string='Expiration folder',
-        help="Folder where an e-mail marked as read will be moved.")
-
-    purge_days = fields.Integer(
-        compute=_get_cleanup_conf,
-        string='Deletion days',
-        help="Number of days before removing an e-mail")
-
     def _cleanup_fetchmail_server(self, server, imap_server):
         count, failed = 0, 0
-        expiration_date = fields.Date.from_string(fields.Date.today())
+        expiration_date = datetime.date.today()
         expiration_date -= relativedelta(days=server.cleanup_days)
         search_text = expiration_date.strftime('(UNSEEN BEFORE %d-%b-%Y)')
         imap_server.select()
@@ -88,7 +89,7 @@ class FetchmailServer(models.Model):
     def _purge_fetchmail_server(self, server, imap_server):
         # Purging e-mails older than the purge date, if available
         count, failed = 0, 0
-        purge_date = fields.Date.from_string(fields.Date.today())
+        purge_date = datetime.date.today()
         purge_date -= relativedelta(days=server.purge_days)
         search_text = purge_date.strftime('(BEFORE %d-%b-%Y)')
         imap_server.select()
