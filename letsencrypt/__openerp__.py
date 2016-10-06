@@ -19,7 +19,7 @@
         "demo/ir_cron.xml",
     ],
     "post_init_hook": 'post_init_hook',
-    "installable": True,
+    'installable': False,
     "external_dependencies": {
         'bin': [
             'openssl',
