@@ -13,5 +13,6 @@
     'data': [
         'views/menu_technical_info_templates.xml',
     ],
-    'summary': "Fast way to look up technical info about menu item."
+    'summary': "Fast way to look up technical info about menu item.",
+    'installable': False,
 }
