@@ -11,7 +11,7 @@
  'website': 'http://www.akretion.com/',
  'data': [],
  'tests': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  'license': 'AGPL-3',
  'application': False,
