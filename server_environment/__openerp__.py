@@ -31,6 +31,6 @@
     "data": [
         'serv_config.xml',
     ],
-    'installable': True,
+    'installable': False,
     "active": False,
 }

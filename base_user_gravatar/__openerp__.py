@@ -10,7 +10,7 @@
     'website': 'http://www.endikaiglesias.com/',
     "license": "AGPL-3",
     "application": False,
-    'installable': True,
+    'installable': False,
     'depends': ['base'],
     'data': [
         'views/res_users_view.xml',

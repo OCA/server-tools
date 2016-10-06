@@ -29,6 +29,6 @@
                 'server_environment_files',
                 ],
     'data': ['mail_view.xml'],
-    'installable': True,
+    'installable': False,
     'active': False,
 }

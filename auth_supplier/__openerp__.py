@@ -20,5 +20,5 @@
               'Odoo Community Association (OCA)',
     'website': 'http://www.incaser.es',
     'license': 'AGPL-3',
-    'installable': True,
+    'installable': False,
 }

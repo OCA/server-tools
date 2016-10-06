@@ -47,5 +47,5 @@ come with the standard code:
     "qweb": [
         'static/src/xml/base.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

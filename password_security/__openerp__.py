@@ -19,5 +19,5 @@
         'security/ir.model.access.csv',
         'security/res_users_pass_history.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

@@ -18,5 +18,5 @@
         'views/purge_data.xml',
         'views/menu.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

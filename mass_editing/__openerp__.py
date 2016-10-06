@@ -20,7 +20,7 @@
         'security/ir.model.access.csv',
         'views/mass_editing_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
 }
