@@ -29,6 +29,6 @@
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
-    'installable': True,
+    'installable': False,
     "active": False,
 }
