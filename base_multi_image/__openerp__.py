@@ -16,7 +16,7 @@
     "website": "http://www.antiun.com",
     "category": "Tools",
     "depends": ['base'],
-    'installable': True,
+    'installable': False,
     "data": [
         "security/ir.model.access.csv",
         "views/image_view.xml",
