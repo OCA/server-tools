@@ -2,9 +2,9 @@
 # © 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
-from openerp.tools.translate import _
-from openerp.exceptions import ValidationError
+from odoo import api, fields, models
+from odoo.tools.translate import _
+from odoo.exceptions import ValidationError
 
 
 class DateRange(models.Model):
