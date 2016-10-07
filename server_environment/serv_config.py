@@ -25,7 +25,7 @@ from lxml import etree
 from itertools import chain
 
 from openerp import models, fields
-from openerp.tools.config import config as system_base_config
+from odoo.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 

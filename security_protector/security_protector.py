@@ -3,9 +3,9 @@
 #
 #    Author Nicolas Bessi. Copyright Camptocamp SA
 ##############################################################################
-from osv import fields, osv
+from osv import fields, models
 
-class IrModelAccess(osv.osv):
+class IrModelAccess(models.Model):
     "We inherit ir model access to add specific write unlink and copy behavior"
     _name = 'ir.model.access'
     _inherit = "ir.model.access"

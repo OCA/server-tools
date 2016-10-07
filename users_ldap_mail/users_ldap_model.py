@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import fields
 
 import logging
 _log = logging.getLogger(__name__)
 
 
-class CompanyLDAP(orm.Model):
+class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
     _columns = {
         'name_attribute': fields.char(

@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import fields, models
 from server_environment import serv_config
 import logging
 
 
 
-class external_referential(osv.osv):
+class external_referential(models.Model):
     _inherit = 'external.referential'
 
     def _get_environment_config_by_name(self, cr, uid, ids, field_names, arg, context):

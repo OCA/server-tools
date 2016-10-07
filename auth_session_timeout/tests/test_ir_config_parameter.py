@@ -13,7 +13,7 @@ class TestIrConfigParameter(common.TransactionCase):
 
     def setUp(self):
         super(TestIrConfigParameter, self).setUp()
-        self.db = openerp.tools.config['db_name']
+        self.db = odoo.tools.config['db_name']
         if not self.db and hasattr(threading.current_thread(), 'dbname'):
             self.db = threading.current_thread().dbname
         self.param_obj = self.env['ir.config_parameter']

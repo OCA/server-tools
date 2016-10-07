@@ -25,7 +25,7 @@ import platform
 import subprocess
 
 from openerp import release
-from openerp.tools.config import config
+from odoo.tools.config import config
 
 
 def _get_output(cmd):

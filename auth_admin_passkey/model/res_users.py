@@ -25,7 +25,7 @@ import datetime
 from openerp import SUPERUSER_ID
 from openerp import pooler
 from openerp import exceptions
-from openerp.osv.orm import Model
+from openerp.models.orm import Model
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 

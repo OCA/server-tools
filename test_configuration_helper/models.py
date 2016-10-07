@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2016 Yannick Vaucher (Camptocamp SA)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import fields, models, osv
+from openerp import fields, models, models
 
 
 class ResCompanyA(models.Model):
@@ -16,9 +16,9 @@ class ResCompanyB(models.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'prefix_b_name': osv.fields.char('name'),
-        'prefix_b_integer': osv.fields.integer('int'),
-        'prefix_b_partner_id': osv.fields.many2one('res.partner'),
+        'prefix_b_name': models.fields.char('name'),
+        'prefix_b_integer': models.fields.integer('int'),
+        'prefix_b_partner_id': models.fields.many2one('res.partner'),
     }
 
 

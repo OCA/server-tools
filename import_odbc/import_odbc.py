@@ -21,14 +21,14 @@
 
 import sys
 from datetime import datetime
-from openerp.osv import orm, fields
+from openerp import fields
 import logging
 _logger = logging.getLogger(__name__)
 _loglvl = _logger.getEffectiveLevel()
 SEP = '|'
 
 
-class import_odbc_dbtable(orm.Model):
+class import_odbc_dbtable(models.Model):
     _name = "import.odbc.dbtable"
     _description = 'Import Table Data'
     _order = 'exec_order'

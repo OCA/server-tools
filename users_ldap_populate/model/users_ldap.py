@@ -48,7 +48,7 @@ class CompanyLDAP(models.Model):
         """
         users_pool = self.env['res.users']
         users_no_before = users_pool.search_count([])
-        logger = logging.getLogger('orm.ldap')
+        logger = logging.getLogger('models.ldap')
         logger.debug("action_populate called on res.company.ldap ids %s",
                      self.ids)
 

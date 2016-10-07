@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv
+from openerp import models
 
 
-class mail_thread(osv.AbstractModel):
+class mail_thread(models.AbstractModel):
     _inherit = 'mail.thread'
 
     def message_route_verify(
