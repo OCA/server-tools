@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-01 13:12+0000\n"
-"PO-Revision-Date: 2016-05-06 13:12+0000\n"
+"POT-Creation-Date: 2016-10-04 09:42+0000\n"
+"PO-Revision-Date: 2016-10-05 06:35+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
-msgstr ""
+msgstr "Dodaj preuzmi gumb na ldap pogled"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
@@ -46,7 +46,7 @@ msgstr "ID"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
 msgid "LDAP Configuration"
-msgstr ""
+msgstr "LDAP postavke"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
@@ -56,12 +56,12 @@ msgstr "Zadnje modificirano"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji ažurirao"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnje ažuriranje"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
@@ -73,34 +73,34 @@ msgstr "Ime"
 #, python-format
 msgid ""
 "No login attribute found: Could not extract login attribute from filter %s"
-msgstr ""
+msgstr "Atribut login nije pronađen: Nije moguć dohvat atributa iz filtera %s"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
-msgstr ""
+msgstr "Broj kreiranih korisnika"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
-msgstr ""
+msgstr "Popuni"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate user database"
-msgstr ""
+msgstr "Ppuni bazu korisnika"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
-msgstr ""
+msgstr "Popuni korisnike iz LDAP-a"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap
 msgid "res.company.ldap"
-msgstr ""
+msgstr "res.company.ldap"

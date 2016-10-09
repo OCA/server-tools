@@ -3,12 +3,13 @@
 # * server_environment
 # 
 # Translators:
+# Bole <bole@dajmi5.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-01 13:12+0000\n"
-"PO-Revision-Date: 2016-05-06 13:11+0000\n"
+"POT-Creation-Date: 2016-10-04 09:42+0000\n"
+"PO-Revision-Date: 2016-10-05 06:35+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -45,18 +46,18 @@ msgstr "Zadnje modificirano"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji ažurirao"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnje ažuriranje"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr ""
+msgstr "Serversko okruženje"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
