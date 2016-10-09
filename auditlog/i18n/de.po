@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:14+0000\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "Beschreibung"
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
 #: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -181,7 +181,7 @@ msgstr "ID"
 #: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
 #: field:auditlog.rule,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
@@ -432,7 +432,7 @@ msgid "Values"
 msgstr "Werte"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr ""

@@ -3,14 +3,28 @@
 # * super_calendar
 # 
 # Translators:
+# Accounts-Payable - Alkemics, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Chen-Do LU <clu@alkemics.com>, 2015
+# Dimitrios Glentadakis <dglent@gmail.com>, 2013-2014, 2015-2016
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# François Breysse <fb@alkemics.com>, 2015
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
+# Hotellook, 2014
+# Jim Spentzos, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# njeudy <njeudy@tuxservices.com>, 2015
+# Pierre Verkest <pverkest@anybox.fr>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-26 10:53+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,6 +116,13 @@ msgid "Description field"
 msgstr "Beschreibungsfeld"
 
 #. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current month."
 msgstr ""
@@ -159,7 +180,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr ""
+msgstr "Gruppieren nach"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -193,6 +214,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: super_calendar
 #: field:super.calendar,write_uid:0
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
@@ -215,7 +243,7 @@ msgstr ""
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 #: field:super.calendar.configurator,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Positionen"
 
 #. module: super_calendar
 #: field:super.calendar,model_id:0

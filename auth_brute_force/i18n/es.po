@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Accounts-Payable - Alkemics, 2015
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Antonio Trueba, 2016
 # Chen-Do LU <clu@alkemics.com>, 2015
 # Dimitrios Glentadakis <dglent@gmail.com>, 2013-2014, 2015-2016
@@ -14,6 +14,7 @@
 # Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
 # Hotellook, 2014
 # Jim Spentzos, 2014
+# Jim Spentzos, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # njeudy <njeudy@tuxservices.com>, 2015
 # Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +106,7 @@ msgstr "Nombre a mostrar"
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Failed"
-msgstr ""
+msgstr "Fallido"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0

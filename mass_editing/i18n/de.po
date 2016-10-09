@@ -3,13 +3,20 @@
 # * mass_editing
 # 
 # Translators:
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-19 14:46+0000\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +52,11 @@ msgid "Deletion of the action record failed."
 msgstr "Löschen des Datensatzes fehlgeschlagen."
 
 #. module: mass_editing
+#: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
@@ -62,6 +74,11 @@ msgstr "Felder"
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing
+#: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0

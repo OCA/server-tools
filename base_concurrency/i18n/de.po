@@ -3,13 +3,18 @@
 # * base_concurrency
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Eduardo Rodríguez Crespo <erocre@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-20 11:12+0000\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +34,19 @@ msgid "Created on"
 msgstr "Erstellt am:"
 
 #. module: base_concurrency
+#: field:res.users.login,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_concurrency
+#: field:res.users.login,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0

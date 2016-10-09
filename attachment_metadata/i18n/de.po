@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"POT-Creation-Date: 2016-09-21 00:47+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
@@ -52,7 +52,7 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: field:ir.attachment.metadata,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_uid:0
@@ -82,7 +82,7 @@ msgstr "Beschreibung"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,external_hash:0
@@ -140,7 +140,7 @@ msgstr ""
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Group By"
-msgstr ""
+msgstr "Gruppieren nach"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,id:0
@@ -155,7 +155,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_uid:0
