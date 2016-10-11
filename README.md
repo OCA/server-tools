@@ -38,6 +38,7 @@ addon | version | summary
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
+[mail_cleanup](mail_cleanup/) | 9.0.1.0.0 | Mark as read or delete mails after a set time
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
