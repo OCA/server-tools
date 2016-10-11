@@ -42,3 +42,35 @@ def pre_init_hook_for_submodules(cr, model, field):
             """ % {"table": env[model]._table, "field": field},
             (model,)
         )
+
+
+def pre_init_hook(cr):
+    """run the migration for product_images"""
+    migrate_from_product_images(cr)
+
+
+def migrate_from_product_images(cr):
+    """If we're installed on a database which has product_images from 7,
+    move its table so that we use the already existing images"""
+    cr.execute("SELECT 1 FROM pg_class WHERE relname = 'product_images'")
+    if not cr.fetchone():
+        return
+    cr.execute(
+        'alter table product_images rename to base_multi_image_image')
+    cr.execute(
+        'alter table base_multi_image_image rename product_id to owner_id')
+    cr.execute(
+        'alter table base_multi_image_image '
+        "add column owner_model varchar not null default 'product.template',"
+        "add column storage varchar not null default 'db'")
+    cr.execute(
+        'alter table base_multi_image_image '
+        'alter column owner_model drop default')
+    # we assume all images apply to all variants
+    cr.execute(
+        "update base_multi_image_image set "
+        "owner_id=p.product_tmpl_id "
+        "from product_product p where p.id=owner_id"
+    )
+    # and there might be dangling links
+    cr.execute('delete from base_multi_image_image where owner_id is null')
