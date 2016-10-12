@@ -6,9 +6,9 @@
 Access to technical features without activating debug mode
 ==========================================================
 
-In Odoo 9.0, the debug mode grants every employee user access to the technical
-features. This module enables persistent access to technical features based on
-user preference.
+In Odoo 9.0 and later, the debug mode grants every employee user access to the
+technical features. This module enables persistent access to technical features
+based on user preference.
 
 Configuration
 =============
@@ -34,7 +34,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
+   :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Bug Tracker
 ===========
