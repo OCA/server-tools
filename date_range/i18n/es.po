@@ -47,7 +47,7 @@ msgid "Active"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
 msgid "Allow overlap"
-msgstr ""
+msgstr "Permitir solapamiento"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
