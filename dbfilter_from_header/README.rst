@@ -13,9 +13,8 @@ This is interesting for setups where database names can't be mapped to proxied h
 Configuration
 =============
 
-In nginx, use one of:
+In nginx, use:
 
-* proxy_set_header X-OpenERP-dbfilter [your filter];
 * proxy_set_header X-Odoo-dbfilter [your filter];
 
 This addon has to be loaded as server-wide module.
