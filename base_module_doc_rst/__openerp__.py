@@ -32,6 +32,11 @@
     ],
     "license": "AGPL-3",
     "depends": ["base"],
+    "external_dependencies": {
+        'python': [
+            'pydot',
+        ],
+    },
     "data": [
         "base_module_doc_rst_view.xml",
         "wizard/generate_relation_graph_view.xml",

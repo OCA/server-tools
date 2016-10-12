@@ -19,7 +19,10 @@
 #
 ##############################################################################
 import os
-import pydot
+try:
+    import pydot
+except ImportError:
+    pydot = False
 
 from openerp import report
 from openerp import pooler
