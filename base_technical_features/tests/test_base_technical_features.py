@@ -32,7 +32,6 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
             return xml.xpath(
                 '//div/group/field[@name="partner_id"]')[0].get('invisible')
 
-        self.env['basemodel.monkeypatch']._register_hook()
         self.env.user.write({'technical_features': False})
         self.assertEqual(get_partner_field_invisible(), '1')
         self.env.user.write({'technical_features': True})
