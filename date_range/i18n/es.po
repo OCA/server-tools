@@ -27,7 +27,7 @@ msgstr ""
 #: code:addons/date_range/models/date_range.py:71
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s solapa con %s"
 
 #. module: date_range
 #: sql_constraint:date.range:0
