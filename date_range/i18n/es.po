@@ -59,7 +59,7 @@ msgstr "Cancelar"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
