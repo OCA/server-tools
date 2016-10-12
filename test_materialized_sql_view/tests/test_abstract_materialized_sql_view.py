@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp.tests.common import TransactionCase
-from openerp.exceptions import except_orm
 from .assertions import OpenErpAssertions
+from openerp.exceptions import except_orm
+from openerp.tests.common import TransactionCase
 
 
 class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
 
     def setUp(self):
         super(AbstractMaterializedSqlViewTester, self).setUp()
-        self.demo_matview_mdl = self.env['test.materialized.view']
-        self.demo_matview_mdl = self.demo_matview_mdl.with_context(
-            {'ascyn': False})
+        self.demo_matview_mdl = self.env['test.materialized.view'].with_context(
+            {'ascyn': False}
+        )
         self.mat_view_mdl = self.env['materialized.sql.view']
         self.users_mdl = self.env['res.users']
         self.ref = self.env.ref
@@ -152,108 +152,55 @@ class AbstractMaterializedSqlViewTester(OpenErpAssertions, TransactionCase):
             [],
             self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs())
 
+    def assert_calling_entry_points_method(
+            self, method_name, calling_method, pg_version=None
+    ):
+        demo = self.demo_matview_mdl
+        save_method = getattr(demo, method_name)
+        self.called = False
+
+        def mock_method():
+            self.called = True
+
+        setattr(demo, method_name, mock_method)
+        if pg_version:
+            getattr(demo, calling_method)(pg_version)
+        else:
+            getattr(demo, calling_method)()
+        self.assertTrue(self.called)
+        setattr(demo, method_name, save_method)
+        demo.create_or_upgrade_pg_matview_if_needs()
+
     def test_overload_before_refresh(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        save_method = self.demo_matview_mdl.before_refresh_materialized_view
-
-        def before_refresh_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        demo._model.before_refresh_materialized_view = \
-            before_refresh_materialized_view
-        self.demo_matview_mdl.refresh_materialized_view()
-        self.demo_matview_mdl.before_refresh_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            self.demo_matview_mdl._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
+        self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs()
+        self.assert_calling_entry_points_method(
+            'before_refresh_materialized_view', 'refresh_materialized_view'
+        )
 
     def test_overload_after_refresh(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        save_method = demo.after_refresh_materialized_view
-
-        def after_refresh_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        demo._model.after_refresh_materialized_view = \
-            after_refresh_materialized_view
-        self.demo_matview_mdl.refresh_materialized_view()
-        self.demo_matview_mdl.after_refresh_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            demo._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
+        self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs()
+        self.assert_calling_entry_points_method(
+            'after_refresh_materialized_view', 'refresh_materialized_view'
+        )
 
     def test_overload_before_drop(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        save_method = self.demo_matview_mdl.before_drop_materialized_view
-
-        def before_drop_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        demo._model.before_drop_materialized_view = \
-            before_drop_materialized_view
-        demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
-        self.demo_matview_mdl.before_drop_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            self.demo_matview_mdl._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
-        self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs()
+        self.assert_calling_entry_points_method(
+            'before_drop_materialized_view', 'drop_materialized_view_if_exist',
+            self.cr._cnx.server_version
+        )
 
     def test_overload_after_drop(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        save_method = self.demo_matview_mdl.after_drop_materialized_view
-
-        def after_drop_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        demo._model.after_drop_materialized_view = after_drop_materialized_view
-        demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
-        self.demo_matview_mdl.after_drop_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            demo._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
-        self.demo_matview_mdl.create_or_upgrade_pg_matview_if_needs()
+        self.assert_calling_entry_points_method(
+            'after_drop_materialized_view', 'drop_materialized_view_if_exist',
+            self.cr._cnx.server_version
+        )
 
     def test_overload_before_create(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
-        save_method = self.demo_matview_mdl.before_create_materialized_view
-
-        def before_create_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        demo._model.before_create_materialized_view = \
-            before_create_materialized_view
-        self.demo_matview_mdl.create_materialized_view()
-        self.demo_matview_mdl.before_create_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            demo._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
+        self.assert_calling_entry_points_method(
+            'before_create_materialized_view', 'create_materialized_view'
+        )
 
     def test_overload_after_create(self):
-        demo, mat_mdl = self.demo_matview_mdl, self.mat_view_mdl
-        demo.drop_materialized_view_if_exist(self.cr._cnx.server_version)
-        save_method = self.demo_matview_mdl.after_create_materialized_view
-
-        def after_create_materialized_view(cr, uid, context=None):
-            cr.execute("test")
-
-        # I don't know how to overwrite the new API properly, back to old API
-        demo._model.after_create_materialized_view = \
-            after_create_materialized_view
-        self.demo_matview_mdl.create_materialized_view()
-        self.demo_matview_mdl.after_create_materialized_view = save_method
-        ids = mat_mdl.search_mat_sql_views_by_matview_name(
-            demo._sql_mat_view_name).ids
-        self.assertEqual(
-            self.mat_view_mdl.browse(ids[0]).state,
-            u'aborted')
+        self.assert_calling_entry_points_method(
+            'after_create_materialized_view', 'create_materialized_view'
+        )

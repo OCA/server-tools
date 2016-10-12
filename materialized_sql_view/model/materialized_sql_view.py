@@ -65,19 +65,19 @@ class MaterializedSqlView(models.Model):
 
     @api.model
     def refresh_materialized_view_by_name(self, mat_view_name=None):
-        records = self.search_mat_sql_views_by_matview_name(
-            mat_view_name)
+        records = self.search(
+            [('matview_name', '=', 'mat_view_name')]
+        )
         return records.refresh_materialized_view()
 
     @api.multi
     def refresh_materialized_view(self):
         result = []
         matviews_performed = []
-        ir_model = self.env['ir.model']
         for matview in self:
             if matview.matview_name in matviews_performed:
                 continue
-            model = ir_model.browse(matview.model_id).model
+            model = matview.model_id.model
             matview_mdl = self.env[model]
             result.append(matview_mdl.refresh_materialized_view())
             matviews_performed.append(matview.matview_name)
@@ -85,23 +85,23 @@ class MaterializedSqlView(models.Model):
 
     @api.model
     def create_if_not_exist(self, values):
-        if self.search_count([('model_id.model', '=', values['model_name']),
-                              ('view_name', '=', values['view_name']),
-                              ('matview_name', '=', values['matview_name']),
-                              ]) == 0:
+        if self.search_count(
+            [
+                ('model_id.model', '=', values['model_name']),
+                ('view_name', '=', values['view_name']),
+                ('matview_name', '=', values['matview_name']),
+            ]
+        ) == 0:
             ir_mdl = self.env['ir.model']
-            model_ids = ir_mdl.search([('model', '=', values['model_name'])]
-                                      ).ids
+            model_ids = ir_mdl.search(
+                [('model', '=', values['model_name'])]
+            ).ids
             values.update({'model_id': model_ids[0]})
             if not values.get('name'):
                 name = ir_mdl.browse(model_ids[0]).name
                 values.update({'name': name})
             values.pop('model_name')
             self.create(values)
-
-    @api.model
-    def search_mat_sql_views_by_matview_name(self, matview_name):
-        return self.search([('matview_name', '=', matview_name)])
 
     @api.model
     def before_create_view(self, matview):
@@ -132,7 +132,7 @@ class MaterializedSqlView(models.Model):
         if matview.get('view_name'):
             values.update({'view_name': matview.get('view_name')})
         values.update({'pg_version': pg_version})
-        return self.write_values(matview.get('view_name'), values)
+        return self.write_values(matview.get('matview_name'), values)
 
     @api.model
     def after_drop_view(self, matview):
@@ -145,8 +145,7 @@ class MaterializedSqlView(models.Model):
 
     @api.model
     def write_values(self, matview_name, values):
-        records = self.search_mat_sql_views_by_matview_name(
-            matview_name)
+        records = self.search([('matview_name', '=', matview_name)])
         return records.write(values)
 
     @api.model

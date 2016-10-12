@@ -133,14 +133,15 @@ class AbstractMaterializedSqlView(models.AbstractModel):
            materialized view. Return True if something done.
         """
         context, cr = self.env.context, self.env.cr
-        matview_mdl = self.env['materialized.sql.view']
         if not context:
             context = {}
-        mat_sql_views = matview_mdl.search_mat_sql_views_by_matview_name(
-            self.sql_mat_view_name)
+        mat_sql_views = self.env['materialized.sql.view'].search(
+            [('matview_name', '=', self.sql_mat_view_name)]
+        )
         if len(mat_sql_views):
             # As far matview_mdl is refered by its view name, to get one or
             # more instance is technicly the same.
+            mat_sql_views = mat_sql_views[0]
             pg_version = context.get(
                 'force_pg_version', cr._cnx.server_version
             )

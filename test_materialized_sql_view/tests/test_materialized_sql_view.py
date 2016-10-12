@@ -52,25 +52,6 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
         self.assertRecord('materialized.sql.view', rec.id, values)
         rec.unlink()
 
-    def test_search_mat_sql_views_by_matview_name(self):
-        mat_mdl = self.matview_mdl
-        users_mdl_id = self.env['ir.model'].search(
-            [('model', '=', 'res.users')]).ids[0]
-        values = {'name': u"Test",
-                  'model_id': users_mdl_id,
-                  'sql_definition': 'SELECT 1',
-                  'view_name': u'test_view',
-                  'matview_name': 'test_mat_view_name',
-                  'pg_version': 90305,
-                  'last_refresh_start_date': datetime.now(),
-                  'last_refresh_end_date': datetime.now(),
-                  }
-        rec = self.matview_mdl.create(values)
-        self.assertEquals(
-            [rec.id],
-            mat_mdl.search_mat_sql_views_by_matview_name(
-                'test_mat_view_name').ids)
-
     def test_launch_refresh_materialized_sql_view(self):
         mat_mdl = self.matview_mdl
         group = self.env.ref('base.group_user')
@@ -88,13 +69,16 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
                                })
         self.assertEquals(
             demo_matview.read(['user_count'])[0]['user_count'],
-            user_count)
-        recs = mat_mdl.search_mat_sql_views_by_matview_name(
-            self.demo_matview_mdl._sql_mat_view_name)
+            user_count
+        )
+        recs = mat_mdl.search(
+            [('matview_name', '=', self.demo_matview_mdl._sql_mat_view_name)]
+        )
         recs.launch_refresh_materialized_sql_view()
         self.assertEquals(
             demo_matview.read(['user_count'])[0]['user_count'],
-            user_count + 1)
+            user_count + 1
+        )
         for rec in recs:
             self.assertEquals(rec.state, 'refreshed')
 
@@ -119,10 +103,11 @@ class MaterializedSqlView(OpenErpAssertions, SingleTransactionCase):
             user_count)
         mat_mdl.refresh_materialized_view_by_name(
             self.demo_matview_mdl._sql_mat_view_name)
-        recs = mat_mdl.search_mat_sql_views_by_matview_name(
-            self.demo_matview_mdl._sql_mat_view_name)
-        for rec in recs:
-            self.assertEquals(rec.state, 'refreshed')
+        mat_views = mat_mdl.search(
+            [('matview_name', '=', self.demo_matview_mdl._sql_mat_view_name)]
+        )
+        for mat_view in mat_views:
+            self.assertEquals(mat_view.state, 'refreshed')
         # Read user count, there is one more now!
         self.assertEquals(
             demo_matview.read(['user_count'])[0]['user_count'],
