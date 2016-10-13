@@ -78,7 +78,7 @@ msgstr "Creado en"
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
-msgstr ""
+msgstr "Rango de fechas"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
