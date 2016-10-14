@@ -7,13 +7,13 @@ server monitoring
 =================
 
 This module allows in-database logging of some statistics in order to monitor
-the health of an openerp instance.
+the health of an Odoo instance.
 
 Database indicators are logged (number of rows, table size, number of reads,
 number of updates...), with a cron running each week by default. This cron
 needs to be activated after the module is installed.
 
-Some process indicators are logged (cpu time, memory) together with information
+Some process indicators are logged (CPU time, memory) together with information
 about the different XMLRPC calls made to the server (user, model, method).
 
 Two crons are provided to cleanup old logs from the database.
@@ -24,8 +24,8 @@ Configuration
 
 To configure this module, you need to:
 
-* Settings -> Scheduled Actions and tune the cron tasks
-* Settings -> Configuration -> General Settings and enable Monitor RPC Calls
+* `Settings -> Scheduled Actions` and tune the cron tasks
+* `Settings -> Configuration -> General Settings` and enable Monitor RPC Calls
   if you want information about RPC calls being made (causes some performance
   overhead).
 
@@ -46,21 +46,21 @@ Known issues / Roadmap
 * Not tested under other platforms than Linux
 
 TODO / WISH list:
-* visualization
-* export
-* check if we can / wish to log session id
-* check if we can log pooler state (whatever that is...)
-* check if we can log HTTP status
-* enhance group by for process logs. 
+* Visualization
+* Export
+* Check if we can / wish to log session id
+* Check if we can log pooler state (whatever that is...)
+* Check if we can log HTTP status
+* Enhance group by for process logs.
 
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20server_monitoring%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 
 Credits
@@ -84,4 +84,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
