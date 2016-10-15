@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-10-15 01:16+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Thai (http://www.transifex.com/oca/OCA-server-tools-9-0/language/th/)\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: th\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:43
@@ -53,7 +53,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Cancel"
-msgstr "ยกเลิก"
+msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_company_id
@@ -67,14 +67,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_uid
 msgid "Created by"
-msgstr "สร้างโดย"
+msgstr "Created by"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_date
 msgid "Created on"
-msgstr "สร้างเมื่อ"
+msgstr "Created on"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
@@ -123,7 +123,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_display_name
 msgid "Display Name"
-msgstr "ชื่อที่ใช้แสดง"
+msgstr "Display Name"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
@@ -151,7 +151,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id
 msgid "ID"
-msgstr "รหัส"
+msgstr "ID"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type_allow_overlap
@@ -163,27 +163,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator___last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type___last_update
 msgid "Last Modified on"
-msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+msgstr "Last Modified on"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_uid
 msgid "Last Updated by"
-msgstr "อัพเดทครั้งสุดท้ายโดย"
+msgstr "Last Updated by"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_date
 msgid "Last Updated on"
-msgstr "อัพเดทครั้งสุดท้ายเมื่อ"
+msgstr "Last Updated on"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name
 msgid "Name"
-msgstr "ชื่อ"
+msgstr "Name"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
@@ -217,7 +217,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1716
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1713
 msgid "Type"
-msgstr "ชนิด"
+msgstr "Type"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time

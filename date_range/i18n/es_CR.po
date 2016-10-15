@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
+"POT-Creation-Date: 2016-10-15 01:16+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es_CR/)\n"
@@ -74,7 +74,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
@@ -151,7 +151,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type_allow_overlap
@@ -183,7 +183,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
@@ -214,10 +214,10 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1817
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1814
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1716
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1713
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
