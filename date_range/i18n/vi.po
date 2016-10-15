@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
+"POT-Creation-Date: 2016-10-15 01:16+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-server-tools-9-0/language/vi/)\n"
@@ -67,14 +67,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Được tạo bởi"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Được tạo vào"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
@@ -123,7 +123,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Tên hiển thị"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
@@ -151,7 +151,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type_allow_overlap
@@ -163,27 +163,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator___last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Sửa lần cuối vào"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Cập nhật lần cuối vào"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
@@ -214,10 +214,10 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1817
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1814
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1716
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1713
 msgid "Type"
-msgstr ""
+msgstr "Loại"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time

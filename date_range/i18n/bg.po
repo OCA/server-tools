@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-10-15 01:16+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/bg/)\n"
@@ -123,7 +123,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
@@ -217,7 +217,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1716
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1713
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
