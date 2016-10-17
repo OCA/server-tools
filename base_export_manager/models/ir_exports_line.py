@@ -14,7 +14,6 @@ class IrExportsLine(models.Model):
 
     name = fields.Char(
         required=False,
-        readonly=True,
         store=True,
         compute="_compute_name",
         inverse="_inverse_name",

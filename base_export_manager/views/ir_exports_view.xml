@@ -49,7 +49,7 @@
                         <field name="model3_id" invisible="True"/>
                         <field name="model4_id" invisible="True"/>
                         <field name="label"/>
-                        <field name="name" readonly="0"/>
+                        <field name="name"/>
                         <field
                             name="field1_id"
                             required="True"
