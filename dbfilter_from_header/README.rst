@@ -10,15 +10,35 @@ This addon lets you pass a dbfilter as a HTTP header.
 
 This is interesting for setups where database names can't be mapped to proxied host names.
 
+Installation
+============
+
+To install this module, you only need to add it to your addons, and load it as
+a server-wide module.
+
+This can be done with the ``load`` parameter in ``/etc/odoo.conf`` or with the
+``--load`` command-line parameter
+
+``load = "web, web_kanban, dbfilter_from_header"``
+
 Configuration
 =============
 
-In nginx, use one of:
+Please keep in mind that the standard odoo dbfilter configuration is still
+applied before looking at the regular expression in the header.
 
-* proxy_set_header X-OpenERP-dbfilter [your filter];
-* proxy_set_header X-Odoo-dbfilter [your filter];
+* For nginx, use:
 
-This addon has to be loaded as server-wide module.
+  ``proxy_set_header X-Odoo-dbfilter [your filter regex];``
+
+* For caddy, use:
+
+  ``proxy_header X-Odoo-dbfilter [your filter regex]``
+
+* For Apache, use:
+
+  ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
+
 
 Bug Tracker
 ===========
@@ -26,11 +46,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-server-tools/issues/new?body=module:%20
-dbfilter_from_header%0Aversion:%20
-9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -45,6 +61,7 @@ Contributors
 * Laurent Mignon (aka lmi) <laurent.mignon@acsone.eu>
 * Sandy Carter <sandy.carter@savoirfairelinux.com>
 * Fabio Vilchez <fabio.vilchez@clearcorp.co.cr>
+* Jos De Graeve <Jos.DeGraeve@apertoso.be>
 
 Maintainer
 ----------
