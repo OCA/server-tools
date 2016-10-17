@@ -55,22 +55,24 @@ class TestIrExportsLineCase(TransactionCase):
     def test_inverse_name(self):
         line = self.env['ir.exports.line'].create({
             'export_id': self.export.id,
-            'name': 'parent_id/parent_id/name',
+            'name': 'parent_id/parent_id/parent_id/name',
         })
         self.assertEqual(line.model1_id, self.partner_model)
         self.assertEqual(line.model2_id, self.partner_model)
         self.assertEqual(line.field1_id, self.field_parent_id)
         self.assertEqual(line.field2_id, self.field_parent_id)
-        self.assertEqual(line.field3_id, self.field_name)
+        self.assertEqual(line.field3_id, self.field_parent_id)
+        self.assertEqual(line.field4_id, self.field_name)
 
     def test_compute_name(self):
         line = self.env['ir.exports.line'].create({
             'export_id': self.export.id,
             'field1_id': self.field_parent_id.id,
             'field2_id': self.field_parent_id.id,
-            'field3_id': self.field_name.id,
+            'field3_id': self.field_parent_id.id,
+            'field4_id': self.field_name.id,
         })
-        self.assertEqual(line.name, 'parent_id/parent_id/name')
+        self.assertEqual(line.name, 'parent_id/parent_id/parent_id/name')
 
     def test_write_name_same_root(self):
         self.env['ir.exports.line'].create({
