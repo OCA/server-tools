@@ -47,33 +47,25 @@
                         <field name="model1_id" invisible="True"/>
                         <field name="model2_id" invisible="True"/>
                         <field name="model3_id" invisible="True"/>
+                        <field name="model4_id" invisible="True"/>
                         <field name="label"/>
                         <field name="name"/>
                         <field
                             name="field1_id"
                             required="True"
-                            options="{
-                                'no_open': True,
-                                'no_create': True,
-                            }"/>
+                            options="{'no_open': True, 'no_create': True}"/>
                         <field
                             name="field2_id"
-                            attrs="{
-                                'readonly': [('model2_id', '=', False)],
-                            }"
-                            options="{
-                                'no_open': True,
-                                'no_create': True,
-                            }"/>
+                            attrs="{'readonly': [('model2_id', '=', False)]}"
+                            options="{'no_open': True, 'no_create': True}"/>
                         <field
                             name="field3_id"
-                            attrs="{
-                                'readonly': [('model3_id', '=', False)],
-                            }"
-                            options="{
-                                'no_open': True,
-                                'no_create': True,
-                            }"/>
+                            attrs="{'readonly': [('model3_id', '=', False)]}"
+                            options="{'no_open': True, 'no_create': True}"/>
+                        <field
+                            name="field4_id"
+                            attrs="{'readonly': [('model3_id', '=', False)]}"
+                            options="{'no_open': True, 'no_create': True}"/>
                     </tree>
                 </field>
             </group>

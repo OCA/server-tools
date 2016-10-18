@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Antonio Espinosa
 # Copyright 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, exceptions
@@ -13,7 +14,6 @@ class IrExportsLine(models.Model):
 
     name = fields.Char(
         required=False,
-        readonly=True,
         store=True,
         compute="_compute_name",
         inverse="_inverse_name",
@@ -30,6 +30,10 @@ class IrExportsLine(models.Model):
         "ir.model.fields",
         "Third field",
         domain="[('model_id', '=', model3_id)]")
+    field4_id = fields.Many2one(
+        "ir.model.fields",
+        "Fourth field",
+        domain="[('model_id', '=', model4_id)]")
     model1_id = fields.Many2one(
         "ir.model",
         "First model",
@@ -44,6 +48,10 @@ class IrExportsLine(models.Model):
         "ir.model",
         "Third model",
         compute="_compute_model3_id")
+    model4_id = fields.Many2one(
+        "ir.model",
+        "Fourth model",
+        compute="_compute_model4_id")
     sequence = fields.Integer()
     label = fields.Char(
         compute="_compute_label")
@@ -54,103 +62,117 @@ class IrExportsLine(models.Model):
         return self.env.context.get("default_model1_id", False)
 
     @api.multi
-    @api.depends("field1_id", "field2_id", "field3_id")
+    @api.depends("field1_id", "field2_id", "field3_id", "field4_id")
     def _compute_name(self):
         """Get the name from the selected fields."""
-        for s in self:
-            s.name = "/".join((s.field_n(num).name
-                               for num in range(1, 4)
-                               if s.field_n(num)))
+        for one in self:
+            name = "/".join((one.field_n(num).name for num in range(1, 5)
+                             if one.field_n(num)))
+            if name != one.name:
+                one.name = name
 
     @api.multi
     @api.depends("field1_id")
     def _compute_model2_id(self):
         """Get the related model for the second field."""
-        ir_model = self.env["ir.model"]
-        for s in self:
-            s.model2_id = (
-                s.field1_id.ttype and
-                "2" in s.field1_id.ttype and
-                ir_model.search([("model", "=", s.field1_id.relation)]))
+        IrModel = self.env["ir.model"]
+        for one in self:
+            one.model2_id = (
+                one.field1_id.ttype and
+                "2" in one.field1_id.ttype and
+                IrModel.search([("model", "=", one.field1_id.relation)]))
 
     @api.multi
     @api.depends("field2_id")
     def _compute_model3_id(self):
         """Get the related model for the third field."""
-        ir_model = self.env["ir.model"]
-        for s in self:
-            s.model3_id = (
-                s.field2_id.ttype and
-                "2" in s.field2_id.ttype and
-                ir_model.search([("model", "=", s.field2_id.relation)]))
+        IrModel = self.env["ir.model"]
+        for one in self:
+            one.model3_id = (
+                one.field2_id.ttype and
+                "2" in one.field2_id.ttype and
+                IrModel.search([("model", "=", one.field2_id.relation)]))
+
+    @api.multi
+    @api.depends("field3_id")
+    def _compute_model4_id(self):
+        """Get the related model for the third field."""
+        IrModel = self.env["ir.model"]
+        for one in self:
+            one.model4_id = (
+                one.field3_id.ttype and
+                "2" in one.field3_id.ttype and
+                IrModel.search([("model", "=", one.field3_id.relation)]))
 
     @api.multi
     @api.depends('name')
     def _compute_label(self):
         """Column label in a user-friendly format and language."""
-        translations = self.env["ir.translation"]
-        for s in self:
+        for one in self:
             parts = list()
-            for num in range(1, 4):
-                field = s.field_n(num)
+            for num in range(1, 5):
+                field = one.field_n(num)
                 if not field:
                     break
-
                 # Translate label if possible
-                parts.append(
-                    translations.search([
-                        ("type", "=", "field"),
-                        ("lang", "=", self.env.context.get("lang")),
-                        ("name", "=", "%s,%s" % (s.model_n(num).model,
-                                                 field.name)),
-                    ]).value or
-                    field.display_name)
-            s.label = ("%s (%s)" % ("/".join(parts), s.name)
-                       if parts and s.name else False)
+                try:
+                    parts.append(
+                        one.env[one.model_n(num).model]._fields[field.name]
+                        .get_description(one.env)["string"])
+                except KeyError:
+                    # No human-readable string available, so empty this
+                    return
+            one.label = ("%s (%s)" % ("/".join(parts), one.name)
+                         if parts and one.name else False)
 
     @api.multi
     def _inverse_name(self):
         """Get the fields from the name."""
-        for s in self:
-            # Field names can have up to only 3 indentation levels
-            parts = s.name.split("/", 2)
+        for one in self:
+            # Field names can have up to only 4 indentation levels
+            parts = one.name.split("/")
+            if len(parts) > 4:
+                raise exceptions.ValidationError(
+                    _("It's not allowed to have more than 4 levels depth: "
+                      "%s") % one.name)
+            for num in range(1, 5):
+                if num > len(parts):
+                    # Empty subfield in this case
+                    one[one.field_n(num, True)] = False
+                    continue
+                field_name = parts[num - 1]
+                model = one.model_n(num)
+                # You could get to failing constraint while populating the
+                # fields, so we skip the uniqueness check and manually check
+                # the full constraint after the loop
+                one.with_context(skip_check=True)[one.field_n(num, True)] = (
+                    one._get_field_id(model, field_name))
+            one._check_name()
 
-            for num in range(1, 4):
-                try:
-                    # Fail in excessive subfield level
-                    field_name = parts[num - 1]
-                except IndexError:
-                    # Remove subfield on failure
-                    s[s.field_n(num, True)] = False
-                else:
-                    model = s.model_n(num)
-                    s[s.field_n(num, True)] = self._get_field_id(
-                        model, field_name)
-
-    @api.one
-    @api.constrains("field1_id", "field2_id", "field3_id")
+    @api.multi
+    @api.constrains("field1_id", "field2_id", "field3_id", "field4_id")
     def _check_name(self):
-        if not self.label:
-            raise exceptions.ValidationError(
-                _("Field '%s' does not exist") % self.name)
-        lines = self.search([('export_id', '=', self.export_id.id),
-                             ('name', '=', self.name)])
-        if len(lines) > 1:
-            raise exceptions.ValidationError(
-                _("Field '%s' already exists") % self.name)
+        for one in self:
+            if not one.label:
+                raise exceptions.ValidationError(
+                    _("Field '%s' does not exist") % one.name)
+            if not one.env.context.get('skip_check'):
+                lines = one.search([('export_id', '=', one.export_id.id),
+                                    ('name', '=', one.name)])
+                if len(lines) > 1:
+                    raise exceptions.ValidationError(
+                        _("Field '%s' already exists") % one.name)
 
-    @api.model
-    def _install_base_export_manager(self):
-        """Populate ``field*_id`` fields."""
-        self.search([("export_id", "=", False)]).unlink()
-        lines = self.search(
-            [("field1_id", "=", False), ("name", "!=", False)])
-        for line in lines:
-            try:
-                line._inverse_name()
-            except:
-                # Prevent possible inexisting fields
-                pass
+    @api.multi
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            self._inverse_name()
+        else:
+            self.field1_id = False
+            self.field2_id = False
+            self.field3_id = False
+            self.field4_id = False
 
     @api.model
     def _get_field_id(self, model, name):
@@ -162,9 +184,13 @@ class IrExportsLine(models.Model):
         :param str name:
             Technical name of the field, like ``child_ids``.
         """
-        return self.env["ir.model.fields"].search(
+        field = self.env["ir.model.fields"].search(
             [("name", "=", name),
              ("model_id", "=", model.id)])
+        if not field.exists():
+            raise exceptions.ValidationError(
+                _("Field '%s' not found in model '%s'") % (name, model.model))
+        return field
 
     @api.multi
     def field_n(self, n, only_name=False):

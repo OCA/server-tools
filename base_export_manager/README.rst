@@ -29,6 +29,7 @@ To manage export profiles, you need to:
 * Choose a name.
 * Choose a model (table in the database).
 * Choose the fields to export.
+
   * If you choose a related field, you can choose also up to 3 levels of
     subfields.
   * You can drag & drop to reorder the fields.
@@ -49,6 +50,8 @@ Known issues / Roadmap
 ======================
 
 * Translated labels are not used in final exported file.
+* If your database has dangling export profiles, you could get an error when
+  installing. You will have to manually clean it before.
 
 Bug Tracker
 ===========
