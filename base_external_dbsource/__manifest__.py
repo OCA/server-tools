@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright <2011> <Daniel Reis, Maxime Chambreuil, Savoir-faire Linux, Henry Zhou MAXodoo>
+# Copyright <2011> <Daniel Reis, Maxime Chambreuil, Savoir-faire Linux>
+# Copyright <2016> <Henry Zhou MAXodoo>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'External Database Sources',
