@@ -6,7 +6,7 @@ import re
 
 from datetime import datetime, timedelta
 
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 
 from ..exceptions import PassError
 
@@ -129,7 +129,7 @@ class ResUsers(models.Model):
         """ It validates proposed password against existing history
         :raises: PassError on reused password
         """
-        crypt = self._crypt_context()[0]
+        crypt = self._crypt_context()
         for rec_id in self:
             recent_passes = rec_id.company_id.password_history
             if recent_passes < 0:

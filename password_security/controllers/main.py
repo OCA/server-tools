@@ -4,10 +4,10 @@
 
 import operator
 
-from openerp import http
-from openerp.http import request
-from openerp.addons.auth_signup.controllers.main import AuthSignupHome
-from openerp.addons.web.controllers.main import ensure_db, Session
+from odoo import http
+from odoo.http import request
+from odoo.addons.auth_signup.controllers.main import AuthSignupHome
+from odoo.addons.web.controllers.main import ensure_db, Session
 
 from ..exceptions import PassError
 
