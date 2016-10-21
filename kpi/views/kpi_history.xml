@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright
+<YEAR(S)> Daniel Reis <dreis.pt@hotmail.com>
+<YEAR(S)> Glen Dromgoole <gdromgoole@tier1engineering.com>
+<YEAR(S)> Loic Lacroix <loic.lacroix@savoirfairelinux.com>
+<YEAR(S)> Sandy Carter <sandy.carter@savoirfairelinux.com>
+<YEAR(S)> Gervais Naoussi <gervaisnaoussi@gmail.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
         <!-- KPI history -->
