@@ -15,5 +15,8 @@
         'views/ir_ui_menu.xml',
         'data/ir_cron.xml',
     ],
+    "qweb": [
+        'static/src/xml/base.xml',
+    ],
     'installable': True,
 }
