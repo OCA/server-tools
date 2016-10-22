@@ -6,9 +6,9 @@ import base64
 import hashlib
 import urllib2
 
-from openerp import api, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
+from odoo import api, models
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
 
 
 class ResUsers(models.Model):

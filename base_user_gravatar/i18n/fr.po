@@ -18,8 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_user_gravatar
-#: view:res.users:base_user_gravatar.view_users_form_gravatar
-#: view:res.users:base_user_gravatar.view_users_form_simple_modif_gravatar
+#: view:res.users:base_user_gravatar.view_users_form
+#: view:res.users:base_user_gravatar.view_users_form_simple_modif
 msgid "Get Gravatar image"
 msgstr ""
 
