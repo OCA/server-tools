@@ -67,7 +67,9 @@ class MassObject(models.Model):
             'target': 'new',
             'auto_refresh': 1,
         }).id
-        vals['ref_ir_value_id'] = self.env['ir.values'].create({
+        # We make sudo as any user with rights in this model should be able
+        # to create the action, not only admin
+        vals['ref_ir_value_id'] = self.env['ir.values'].sudo().create({
             'name': button_name,
             'model': src_obj,
             'key2': 'client_action_multi',
