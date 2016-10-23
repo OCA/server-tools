@@ -36,6 +36,11 @@ class TestAuthAdminPasskey(TransactionCase):
         self.imd_obj = self.registry('ir.model.data')
         self.ru_obj = self.registry('res.users')
 
+        # Bypass werkzeug session
+        def fake_get_session():
+            return {'session': {}}
+        self.ru_obj._get_session = fake_get_session
+
         # Get Database name
         self.db = threading.current_thread().dbname
 
@@ -97,3 +102,13 @@ class TestAuthAdminPasskey(TransactionCase):
         self.assertEqual(
             exception_raised, False,
             "'bad_login' / 'admin' musn't raise Error.")
+
+    def test_07_passkey_login_demo_succeed(self):
+        """[New Feature]
+        Test the succeed of login with 'demo' / 'admin'
+        when session contains flag admin_passkey."""
+        self.ru_obj._set_auth_with_admin_password()
+        res = self.ru_obj.authenticate(self.db, 'demo', 'admin', {})
+        self.assertEqual(
+            res, self.demo_user_id,
+            "'demo' / 'admin' login must succeed.")
