@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <!-- Menus moved under Tools\Parameters --> 
-        <record model="ir.ui.menu" id="base.module_mi">
-            <field name="parent_id" ref="base.menu_ir_property"/>
-        </record>
+    <!-- Menus moved under Tools\Parameters --> 
+    <record model="ir.ui.menu" id="base.module_mi">
+        <field name="parent_id" ref="base.menu_ir_property"/>
+    </record>
 
-        <record model="ir.ui.menu" id="base.menu_module_updates">
-            <field name="parent_id" ref="base.menu_ir_property"/>
-        </record>
+    <record model="ir.ui.menu" id="base.menu_module_updates">
+        <field name="parent_id" ref="base.menu_ir_property"/>
+    </record>
 
-    </data>
-</openerp>
+</odoo>
