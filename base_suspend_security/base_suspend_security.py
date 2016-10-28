@@ -30,6 +30,3 @@ class BaseSuspendSecurityUid(int):
 
     def __iter__(self):
         yield super(BaseSuspendSecurityUid, self).__int__()
-
-
-SUSPEND_METHOD = 'suspend_security'

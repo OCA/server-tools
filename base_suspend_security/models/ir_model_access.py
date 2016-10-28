@@ -17,19 +17,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, tools
+from odoo import models, api, tools
 from ..base_suspend_security import BaseSuspendSecurityUid
 
 
 class IrModelAccess(models.Model):
     _inherit = 'ir.model.access'
 
-    @tools.ormcache_context('uid', 'model', 'mode', 'raise_exception',
+    @api.model
+    @tools.ormcache_context('self._uid', 'model', 'mode', 'raise_exception',
                             keys=('lang',))
-    def check(self, cr, uid, model, mode='read', raise_exception=True,
-              context=None):
-        if isinstance(uid, BaseSuspendSecurityUid):
+    def check(self, model, mode='read', raise_exception=True):
+        if isinstance(self.env.uid, BaseSuspendSecurityUid):
             return True
         return super(IrModelAccess, self).check(
-            cr, uid, model, mode=mode, raise_exception=raise_exception,
-            context=context)
+            model, mode=mode, raise_exception=raise_exception)
