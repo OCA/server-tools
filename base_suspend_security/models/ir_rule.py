@@ -17,8 +17,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api
-from ..base_suspend_security import BaseSuspendSecurityUid, SUSPEND_METHOD
+from odoo import models, api
+from ..base_suspend_security import BaseSuspendSecurityUid
 
 
 class IrRule(models.Model):
@@ -29,10 +29,3 @@ class IrRule(models.Model):
         if isinstance(self.env.uid, BaseSuspendSecurityUid):
             return [], [], ['"%s"' % self.pool[model_name]._table]
         return super(IrRule, self).domain_get(model_name, mode=mode)
-
-    def _register_hook(self, cr):
-        if not hasattr(models.BaseModel, SUSPEND_METHOD):
-            setattr(models.BaseModel, SUSPEND_METHOD,
-                    lambda self: self.sudo(
-                        user=BaseSuspendSecurityUid(self.env.uid)))
-        return super(IrRule, self)._register_hook(cr)

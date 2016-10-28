@@ -17,14 +17,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import exceptions
-from openerp.tests.common import TransactionCase
+from odoo import exceptions
+from odoo.tests.common import TransactionCase
 
 
 class TestBaseSuspendSecurity(TransactionCase):
     def test_base_suspend_security(self):
-        # tests are called before register_hook
-        self.env['ir.rule']._register_hook()
         user_id = self.env.ref('base.user_demo').id
         other_company = self.env['res.company'].create({
             'name': 'other company',
