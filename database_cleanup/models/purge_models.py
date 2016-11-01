@@ -54,6 +54,7 @@ class CleanupPurgeLineModel(models.TransientModel):
         context_flags = {
             MODULE_UNINSTALL_FLAG: True,
             'no_drop_table': True,
+            'purge': True,
         }
 
         for line in self:
