@@ -36,7 +36,11 @@ class IrMail(orm.Model):
             global_section_name = 'outgoing_mail'
 
             # default vals
-            config_vals = {'smtp_port': 587}
+            config_vals = {
+                'smtp_port': 587,
+                'smtp_user': False,
+                'smtp_pass': False
+            }
             if serv_config.has_section(global_section_name):
                 config_vals.update((serv_config.items(global_section_name)))
 
