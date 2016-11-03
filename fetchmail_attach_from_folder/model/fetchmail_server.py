@@ -60,6 +60,8 @@ class fetchmail_server(models.Model):
         for this in self.browse(cr, uid, ids, context):
             if this.object_id:
                 check_original.append(this.id)
+            if not this.folder_ids.filtered('active'):
+                continue
 
             context.update(
                 {
