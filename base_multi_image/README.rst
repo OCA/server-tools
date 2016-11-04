@@ -41,7 +41,8 @@ To develop a module based on this one:
         _name = "my.model.name"
         _inherit = ["my.model.name", "base_multi_image.owner"]
 
-        # If you need this, you will need ``post_init_hook_for_submodules``
+        # If you need this, you will need ``pre_init_hook_for_submodules`` and
+          ``uninstall_hook_for_submodules`` as detailed below.
         old_image_field = fields.Binary(related="image_main", store=False)
 
 * Somewhere in the owner view, add::
@@ -62,9 +63,11 @@ To develop a module based on this one:
   ``product_multi_image`` module does::
 
     try:
-        from openerp.addons.base_multi_image.hooks import \
-            pre_init_hook_for_submodules
-    except:
+        from openerp.addons.base_multi_image.hooks import (
+            pre_init_hook_for_submodules,
+            uninstall_hook_for_submodules,
+        )
+    except ImportError:
         pass
 
 
