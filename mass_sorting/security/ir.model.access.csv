@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_mass_sort_config_user","Mass Sorting Configurations - User","model_mass_sort_config","base.group_user",1,0,0,0
+"access_mass_sort_config_manager","Mass Sorting Configurations - Manager","model_mass_sort_config","base.group_system",1,1,1,1
+
+"access_mass_sort_config_line_user","Mass Sorting Configuration Lines - User","model_mass_sort_config_line","base.group_user",1,0,0,0
+"access_mass_sort_config_line_manager","Mass Sorting Configuration Lines - Manager","model_mass_sort_config_line","base.group_system",1,1,1,1
