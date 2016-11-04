@@ -31,7 +31,8 @@
                         </group>
                         <group col="1">
                             <field name="connector"/>
-                            <field name="conn_string" placeholder="Please check the tooltip for connection string examples"/>
+                            <field name="conn_string"
+                                   placeholder="Please check the tooltip for connection string examples"/>
                             <button name="connection_test" string="Test Connection" type="object" icon="fa-refresh"/>
                         </group>
                     </sheet>
@@ -47,5 +48,5 @@
             <field name="view_id" ref="view_dbsource_tree"/>
         </record>
 
-        <menuitem name="Database Sources" id="menu_dbsource" parent="base.menu_custom" action="action_dbsource"/>
+        <menuitem name="Database Sources" id="menu_dbsource" parent="base.next_id_9" action="action_dbsource"/>
 </odoo>

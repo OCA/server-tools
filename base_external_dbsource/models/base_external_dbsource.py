@@ -22,9 +22,9 @@
 import os
 import logging
 import psycopg2
-from openerp import models, fields, api,  _
-from openerp.exceptions import Warning as UserError
-import openerp.tools as tools
+from odoo import models, fields, api,  _
+from odoo.exceptions import Warning as UserError
+import odoo.tools as tools
 _logger = logging.getLogger(__name__)
 
 CONNECTORS = []

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from openerp.exceptions import Warning as UserError
-from openerp.tests import common
+from odoo.exceptions import Warning as UserError
+from odoo.tests import common
 import logging
 
 
