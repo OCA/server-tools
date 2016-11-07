@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.tests import common
-from openerp.addons.server_environment import serv_config
+from odoo.tests import common
+from odoo.addons.server_environment import serv_config
 
 
 class TestEnv(common.TransactionCase):
