@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
         <act_window id="act_show_config_window"
@@ -10,10 +10,9 @@
 
         <menuitem
             parent="base.menu_ir_property"
-            icon="STOCK_PROPERTIES"
             sequence="90"
             action="act_show_config_window"
             id="menu_server_show_config"/>
 
     </data>
-</openerp>
+</odoo>

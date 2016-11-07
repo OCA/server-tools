@@ -24,12 +24,12 @@ import ConfigParser
 from lxml import etree
 from itertools import chain
 
-from openerp import models, fields
-from openerp.tools.config import config as system_base_config
+from odoo import api, fields, models
+from odoo.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 
-from openerp.addons import server_environment_files
+from odoo.addons import server_environment_files
 _dir = os.path.dirname(server_environment_files.__file__)
 
 # Same dict as RawConfigParser._boolean_states
@@ -120,63 +120,71 @@ class ServerConfiguration(models.TransientModel):
     _name = 'server.config'
     _conf_defaults = _Defaults()
 
-    def __init__(self, pool, cr):
+    @classmethod
+    def _build_model(cls, pool, cr):
         """Add columns to model dynamically
         and init some properties
 
         """
-        self._add_columns()
-        super(ServerConfiguration, self).__init__(pool, cr)
-        self.running_env = system_base_config['running_env']
+        ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
+        ModelClass._add_columns()
+        ModelClass.running_env = system_base_config['running_env']
         # Only show passwords in development
-        self.show_passwords = self.running_env in ('dev',)
-        self._arch = None
-        self._build_osv()
+        ModelClass.show_passwords = ModelClass.running_env in ('dev',)
+        ModelClass._arch = None
+        ModelClass._build_osv()
+        return ModelClass
 
-    def _format_key(self, section, key):
+    @classmethod
+    def _format_key(cls, section, key):
         return '%s | %s' % (section, key)
 
-    def _add_columns(self):
+    @classmethod
+    def _add_columns(cls):
         """Add columns to model dynamically"""
         cols = chain(
-            self._get_base_cols().items(),
-            self._get_env_cols().items(),
-            self._get_system_cols().items()
+            cls._get_base_cols().items(),
+            cls._get_env_cols().items(),
+            cls._get_system_cols().items()
         )
         for col, value in cols:
             col_name = col.replace('.', '_')
             setattr(ServerConfiguration,
                     col_name,
                     fields.Char(string=col, readonly=True))
-            self._conf_defaults[col_name] = value
+            cls._conf_defaults[col_name] = value
 
-    def _get_base_cols(self):
+    @classmethod
+    def _get_base_cols(cls):
         """ Compute base fields"""
         res = {}
         for col, item in system_base_config.options.items():
-            key = self._format_key('openerp', col)
+            key = cls._format_key('odoo', col)
             res[key] = item
         return res
 
-    def _get_env_cols(self, sections=None):
+    @classmethod
+    def _get_env_cols(cls, sections=None):
         """ Compute base fields"""
         res = {}
         sections = sections if sections else serv_config.sections()
         for section in sections:
             for col, item in serv_config.items(section):
-                key = self._format_key(section, col)
+                key = cls._format_key(section, col)
                 res[key] = item
         return res
 
-    def _get_system_cols(self):
+    @classmethod
+    def _get_system_cols(cls):
         """ Compute system fields"""
         res = {}
         for col, item in get_server_environment():
-            key = self._format_key('system', col)
+            key = cls._format_key('system', col)
             res[key] = item
         return res
 
-    def _group(self, items):
+    @classmethod
+    def _group(cls, items):
         """Return an XML chunk which represents a group of fields."""
         names = []
 
@@ -187,55 +195,55 @@ class ServerConfiguration(models.TransientModel):
                          _escape(name) for name in names]) +
                 '</group>')
 
-    def _build_osv(self):
+    @classmethod
+    def _build_osv(cls):
         """Build the view for the current configuration."""
         arch = ('<?xml version="1.0" encoding="utf-8"?>'
                 '<form string="Configuration Form">'
                 '<notebook colspan="4">')
 
-        # OpenERP server configuration
+        # Odoo server configuration
         rcfile = system_base_config.rcfile
-        items = self._get_base_cols()
-        arch += '<page string="OpenERP">'
+        items = cls._get_base_cols()
+        arch += '<page string="Odoo">'
         arch += '<separator string="%s" colspan="4"/>' % _escape(rcfile)
-        arch += self._group(items)
+        arch += cls._group(items)
         arch += '<separator colspan="4"/></page>'
 
         arch += '<page string="Environment based configurations">'
         for section in sorted(serv_config.sections()):
-            items = self._get_env_cols(sections=[section])
+            items = cls._get_env_cols(sections=[section])
             arch += '<separator string="[%s]" colspan="4"/>' % _escape(section)
-            arch += self._group(items)
+            arch += cls._group(items)
         arch += '<separator colspan="4"/></page>'
 
         # System information
         arch += '<page string="System">'
         arch += '<separator string="Server Environment" colspan="4"/>'
-        arch += self._group(self._get_system_cols())
+        arch += cls._group(cls._get_system_cols())
         arch += '<separator colspan="4"/></page>'
 
         arch += '</notebook></form>'
-        self._arch = etree.fromstring(arch)
+        cls._arch = etree.fromstring(arch)
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
         """Overwrite the default method to render the custom view."""
-        res = super(ServerConfiguration, self).fields_view_get(cr, uid,
-                                                               view_id,
+        res = super(ServerConfiguration, self).fields_view_get(view_id,
                                                                view_type,
-                                                               context,
                                                                toolbar)
+        View = self.env['ir.ui.view']
         if view_type == 'form':
             arch_node = self._arch
-            xarch, xfields = self._view_look_dom_arch(cr, uid,
-                                                      arch_node,
-                                                      view_id,
-                                                      context=context)
+            xarch, xfields = View.postprocess_and_fields(
+                self._name, arch_node, view_id)
             res['arch'] = xarch
             res['fields'] = xfields
         return res
 
-    def default_get(self, cr, uid, fields_list, context=None):
+    @api.model
+    def default_get(self, fields_list):
         res = {}
         for key in self._conf_defaults:
             if 'passw' in key and not self.show_passwords:
