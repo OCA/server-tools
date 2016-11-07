@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <act_window id="act_show_config_window"
+            name="Server Environment"
+            res_model="server.config"
+            view_type="form"
+            view_mode="form"/>
+
+        <menuitem
+            parent="base.menu_ir_property"
+            sequence="90"
+            action="act_show_config_window"
+            id="menu_server_show_config"/>
+
+    </data>
+</odoo>
