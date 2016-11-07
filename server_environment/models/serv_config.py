@@ -119,6 +119,7 @@ class ServerConfiguration(models.TransientModel):
     """Display server configuration."""
     _name = 'server.config'
     _conf_defaults = _Defaults()
+    _description = __doc__.split('\n')[0]
 
     @classmethod
     def _build_model(cls, pool, cr):
@@ -244,7 +245,7 @@ class ServerConfiguration(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = {}
+        res = super(ServerConfiguration, self).default_get(fields_list)
         for key in self._conf_defaults:
             if 'passw' in key and not self.show_passwords:
                 res[key] = '**********'
