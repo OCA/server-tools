@@ -25,7 +25,9 @@ class IrModel(models.Model):
             if model.avoid_quick_create:
                 model_name = model.model
                 model_obj = self.env.get(model_name)
-                if model_name and not hasattr(model_obj, 'check_quick_create'):
+                if (
+                        not isinstance(model_obj, type(None)) and
+                        not hasattr(model_obj, 'check_quick_create')):
                     model_obj._patch_method('name_create', _wrap_name_create())
                     model_obj.check_quick_create = True
         return True
