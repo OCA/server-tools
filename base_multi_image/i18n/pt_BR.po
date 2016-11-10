@@ -44,7 +44,7 @@
 # Young Kim <youngck.uw@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: server-tools (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-09 10:34+0000\n"
 "PO-Revision-Date: 2016-07-05 18:08+0000\n"
