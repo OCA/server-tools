@@ -73,7 +73,6 @@ class Task(models.Model):
                     log['last_warn_count'] += 1
         except ValueError, error:
             errmsg = error
-            print error
 
         if errmsg:
             append_to_log(log, 'ERROR', data, errmsg)
