@@ -5,7 +5,7 @@
 # Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: server-tools (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:52+0000\n"
 "PO-Revision-Date: 2016-09-09 12:26+0000\n"
