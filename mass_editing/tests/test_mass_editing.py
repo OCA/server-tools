@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
-from odoo.modules import registry
-from odoo.addons.mass_editing.hooks import uninstall_hook
+import ast
+
+from openerp.tests import common
+from openerp.modules import registry
+from openerp.addons.mass_editing.hooks import uninstall_hook
 
 
 class TestMassEditing(common.TransactionCase):
@@ -78,17 +80,14 @@ class TestMassEditing(common.TransactionCase):
         result = self.mass_wiz_obj.with_context(ctx).fields_view_get()
         self.assertTrue(result.get('arch'),
                         'Fields view get must return architecture.')
-        fields = result.get("fields")
-        self.assertTrue(fields)
-        for name, values in fields.items():
-            self.assertTrue(isinstance(values["views"], dict))
 
     def test_onchange_model(self):
         """Test whether onchange model_id returns model_id in list"""
         new_mass = self.mass_object_model.new({'model_id': self.user_model.id})
         new_mass._onchange_model_id()
-        self.assertTrue(self.user_model.id in new_mass.model_ids.ids,
-                        'Onchange model ids must contains model_id.')
+        model_list = ast.literal_eval(new_mass.model_list)
+        self.assertTrue(self.user_model.id in model_list,
+                        'Onchange model list must contains model_id.')
 
     def test_mass_edit_email(self):
         """Test Case for MASS EDITING which will remove and after add

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from lxml import etree
 
 import openerp.tools as tools
-from odoo import api, models
+from openerp import api, models
 
 
 class MassEditingWizard(models.TransientModel):
