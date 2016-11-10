@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-<data>
+<odoo>
 
 <record id="image_form_view" model="ir.ui.view">
     <field name="name">Multi image form</field>
@@ -148,5 +147,4 @@
     action="image_action"
     parent="base.menu_custom"/>
 
-</data>
-</openerp>
+</odoo>
