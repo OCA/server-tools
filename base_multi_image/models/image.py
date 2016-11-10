@@ -8,8 +8,8 @@ import base64
 import urllib
 import os
 import logging
-from openerp import models, fields, api, exceptions, _
-from openerp import tools
+from odoo import models, fields, api, exceptions, _
+from odoo import tools
 
 _logger = logging.getLogger(__name__)
 
