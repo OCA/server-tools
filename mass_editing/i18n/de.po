@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:100
+#: code:addons/mass_editing/models/mass_object.py:101
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (Kopie)"
@@ -46,6 +46,12 @@ msgstr "Erstellt von"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
 msgstr "Erstellt am:"
+
+#. module: mass_editing
+#: code:addons/mass_editing/models/mass_object.py:89
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr "Löschen des Datensatzes fehlgeschlagen."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
@@ -114,7 +120,7 @@ msgid "Model"
 msgstr "Modell"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
 msgstr "Modell-Liste"
 
