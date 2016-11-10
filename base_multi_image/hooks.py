@@ -2,7 +2,7 @@
 # © 2016 Antiun Ingeniería S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, SUPERUSER_ID
+from odoo import api, SUPERUSER_ID
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -66,10 +66,10 @@ def pre_init_hook_for_submodules(cr, model, field):
 def uninstall_hook_for_submodules(cr, registry, model):
     """Remove multi-images for a given model.
 
-    :param openerp.sql_db.Cursor cr:
+    :param odoo.sql_db.Cursor cr:
         Database cursor.
 
-    :param openerp.modules.registry.RegistryManager registry:
+    :param odoo.modules.registry.RegistryManager registry:
         Database registry, using v7 api.
 
     :param str model:
