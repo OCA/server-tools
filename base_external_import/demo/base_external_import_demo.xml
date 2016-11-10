@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
-        <record model="import.odbc.dbtable" id="demo_postgresql_users">
+        <record model="base.external.import.dbtable" id="demo_postgresql_users">
             <field name="name">Users from PostgreSQL </field>
             <field name="dbsource_id" ref="base_external_dbsource.demo_postgre"/>
             <field name="sql_source">select usename as "login", usename as "name" from pg_catalog.pg_user</field>
@@ -10,6 +10,6 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
 
 
