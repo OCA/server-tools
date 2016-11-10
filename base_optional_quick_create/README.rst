@@ -14,38 +14,26 @@ form.
 
 Got the idea from https://twitter.com/nbessi/status/337869826028605441
 
-Installation
-============
-
-To install this module, you need to click on install
-
 Usage
 =====
 
 To use this module, you need to:
 
- * go into the menu of ir_model
- * select the model you want to disable the quick create option
- * check the Avoid quick create
+ * go into the menu of *ir_model*,
+ * select the model for which you want to disable the quick create option,
+ * enable the option *Avoid quick create*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
+   :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20base_optional_quick_create%0Aversion:%209.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+feedback.
 
 Credits
 =======
@@ -55,6 +43,7 @@ Contributors
 
 * Jonathan Nemry <jonathan.nemry@acsone.eu>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alexis de Lattre <alexis.delattre@akretion.com>
 
 Maintainer
 ----------
