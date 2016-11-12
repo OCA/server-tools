@@ -16,9 +16,6 @@ except ImportError:
 
 class SignupVerifyEmail(AuthSignupHome):
 
-    # TODO: make this configurable
-    DEFAULT_USER_LANG = 'en_US'
-
     @http.route()
     def web_auth_signup(self, *args, **kw):
         if (http.request.params.get("login") and
@@ -33,7 +30,9 @@ class SignupVerifyEmail(AuthSignupHome):
         supported_langs = [
             lang['code'] for lang in langs
         ]
-        lang = self.DEFAULT_USER_LANG
+        lang = 'en_US'
+        if http.request.website:
+            lang = http.request.website.default_lang_code
         if http.request.lang in supported_langs:
             lang = http.request.lang
         return lang
