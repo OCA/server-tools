@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -29,7 +29,7 @@ from openerp.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 
-class fetchmail_server(models.Model):
+class FetchmailServer(models.Model):
     _inherit = 'fetchmail.server'
 
     folder_ids = fields.One2many(
@@ -45,9 +45,10 @@ class fetchmail_server(models.Model):
             self, cr, uid, ids, server_type=False, ssl=False,
             object_id=False):
         retval = super(
-            fetchmail_server, self).onchange_server_type(cr, uid,
-                                                         ids, server_type, ssl,
-                                                         object_id)
+            FetchmailServer, self
+        ).onchange_server_type(
+            cr, uid, ids, server_type, ssl, object_id
+        )
         retval['value']['state'] = 'draft'
         return retval
 
@@ -73,7 +74,7 @@ class fetchmail_server(models.Model):
                     .handle_folder(connection, folder)
             connection.close()
 
-        return super(fetchmail_server, self).fetch_mail(
+        return super(FetchmailServer, self).fetch_mail(
             cr, uid, check_original, context)
 
     @api.multi
@@ -211,7 +212,7 @@ class fetchmail_server(models.Model):
         return mail_message_ids
 
     def button_confirm_login(self, cr, uid, ids, context=None):
-        retval = super(fetchmail_server, self).button_confirm_login(
+        retval = super(FetchmailServer, self).button_confirm_login(
             cr, uid, ids, context)
 
         for this in self.browse(cr, uid, ids, context):
@@ -238,7 +239,7 @@ class fetchmail_server(models.Model):
 
     def fields_view_get(self, cr, user, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
-        result = super(fetchmail_server, self).fields_view_get(
+        result = super(FetchmailServer, self).fields_view_get(
             cr, user, view_id, view_type, context, toolbar, submenu)
 
         if view_type == 'form':
