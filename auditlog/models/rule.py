@@ -171,25 +171,22 @@ class AuditlogRule(models.Model):
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
 
-    # Unable to find a way to declare the `create` method with the new API,
-    # errors occurs with the `_register_hook()` BaseModel method.
-    def create(self, cr, uid, vals, context=None):
+    @api.model
+    def create(self, vals):
         """Update the registry when a new rule is created."""
-        res_id = super(AuditlogRule, self).create(
-            cr, uid, vals, context=context)
-        if self._register_hook(cr, [res_id]):
-            modules.registry.RegistryManager.signal_registry_change(cr.dbname)
-        return res_id
+        new_record = super(AuditlogRule, self).create(vals)
+        if self._model._register_hook(self.env.cr, new_record.ids):
+            modules.registry.RegistryManager.signal_registry_change(
+                self.env.cr.dbname)
+        return new_record
 
-    # Unable to find a way to declare the `write` method with the new API,
-    # errors occurs with the `_register_hook()` BaseModel method.
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         """Update the registry when existing rules are updated."""
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        super(AuditlogRule, self).write(cr, uid, ids, vals, context=context)
-        if self._register_hook(cr, ids):
-            modules.registry.RegistryManager.signal_registry_change(cr.dbname)
+        super(AuditlogRule, self).write(vals)
+        if self._model._register_hook(self.env.cr, self.ids):
+            modules.registry.RegistryManager.signal_registry_change(
+                self.env.cr.dbname)
         return True
 
     @api.multi
