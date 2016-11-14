@@ -2,8 +2,8 @@
 # © 2016-TODAY LasLabs, Inc. [https://laslabs.com]
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
-from openerp.addons.base_user_gravatar.models.res_users import ResUsers
+from odoo.tests.common import TransactionCase
+from odoo.addons.base_user_gravatar.models.res_users import ResUsers
 import mock
 import hashlib
 
