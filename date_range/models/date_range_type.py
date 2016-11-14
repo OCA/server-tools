@@ -20,7 +20,7 @@ class DateRangeType(models.Model):
         help="The active field allows you to hide the date range without "
         "removing it.", default=True)
     company_id = fields.Many2one(
-        comodel_name='res.company', string='Company', select=1,
+        comodel_name='res.company', string='Company', index=1,
         default=_default_company)
 
     _sql_constraints = [
