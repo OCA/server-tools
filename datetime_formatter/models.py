@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# © 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import datetime, timedelta
-from openerp import api, exceptions, fields, models
+from openerp import api, fields, models
 from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
                            DEFAULT_SERVER_TIME_FORMAT)
 from . import exceptions as ex
@@ -53,7 +54,7 @@ class ResLang(models.Model):
 
         try:
             record.ensure_one()
-        except exceptions.except_orm:
+        except ValueError:
             if not failure_safe:
                 raise ex.BestMatchedLanguageNotFoundError(lang)
             else:
