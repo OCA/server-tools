@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2016 SYLEAM
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template id="oauth_provider.authorization" name="OAuth Authorization Error">
+        <t t-set="disable_footer" t-value="True"/>
+        <t t-call="web.login_layout">
+            <form class="oe_login_form" role="form" method="post" action="/oauth2/authorize">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div>
+                    <h3 t-esc="oauth_client"/>
+                    This application would like to access these resources :
+                </div>
+                <div class="list-group">
+                    <span t-foreach="oauth_scopes" t-as="scope" class="list-group-item">
+                        <h4 t-field="scope.name" class="list-group-item-heading"/>
+                        <p t-field="scope.description" class="list-group-item-text"/>
+                    </span>
+                </div>
+                <div class="clearfix oe_login_buttons text-center">
+                    <button type="submit" class="btn btn-primary">Authorize</button>
+                </div>
+            </form>
+        </t>
+    </template>
+    <template id="oauth_provider.authorization_error" name="OAuth Authorization Error">
+        <t t-set="disable_footer" t-value="True"/>
+        <t t-call="web.login_layout">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 t-esc="title"/>
+                </div>
+                <div class="panel-body" t-esc="message"/>
+            </div>
+        </t>
+    </template>
+</odoo>
