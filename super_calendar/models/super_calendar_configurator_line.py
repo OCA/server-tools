@@ -26,7 +26,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class SuperCalendarConfiguratorLine(models.Model):
