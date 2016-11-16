@@ -14,7 +14,7 @@ class ResUsers(models.Model):
         'res.users.role', string=u"Roles", compute='_compute_role_ids')
 
     @api.multi
-    @api.depends('role_line_ids')
+    @api.depends('role_line_ids.role_id')
     def _compute_role_ids(self):
         for user in self:
             user.role_ids = user.role_line_ids.mapped('role_id')

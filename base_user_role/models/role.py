@@ -25,7 +25,7 @@ class ResUsersRole(models.Model):
         'res.users', string=u"Users", compute='_compute_user_ids')
 
     @api.multi
-    @api.depends('line_ids')
+    @api.depends('line_ids.user_id')
     def _compute_user_ids(self):
         for role in self:
             role.user_ids = role.line_ids.mapped('user_id')
@@ -46,8 +46,7 @@ class ResUsersRole(models.Model):
     def update_users(self):
         """Update all the users concerned by the roles identified by `ids`."""
         users = self.mapped('user_ids')
-        if users:
-            users.set_groups_from_roles()
+        users.set_groups_from_roles()
         return True
 
     @api.model
@@ -61,7 +60,7 @@ class ResUsersRoleLine(models.Model):
     _description = 'Users associated to a role'
 
     role_id = fields.Many2one(
-        'res.users.role', string=u"Role")
+        'res.users.role', string=u"Role", ondelete='cascade')
     user_id = fields.Many2one(
         'res.users', string=u"User")
     date_from = fields.Date(u"From")
