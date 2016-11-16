@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 SYLEAM
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="group_oauth_provider_manager" model="res.groups">
+        <field name="name">OAuth Provider Manager</field>
+    </record>
+
+    <record id="ir_rule_authorization_code_restricted_to_current_user" model="ir.rule">
+        <field name="name">Authorization Code access restricted to current user</field>
+        <field name="domain_force">[('user_id', '=', uid)]</field>
+        <field name="groups" eval="[]"/>
+        <field name="model_id" ref="model_oauth_provider_authorization_code"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="perm_write" eval="0"/>
+    </record>
+
+    <record id="ir_rule_token_restricted_to_current_user" model="ir.rule">
+        <field name="name">Token access restricted to current user</field>
+        <field name="domain_force">[('user_id', '=', uid)]</field>
+        <field name="groups" eval="[]"/>
+        <field name="model_id" ref="model_oauth_provider_token"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="perm_write" eval="0"/>
+    </record>
+</odoo>

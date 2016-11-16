@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 SYLEAM
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_oauth_provider_client_tree" model="ir.ui.view">
+        <field name="name">oauth.provider.client.tree</field>
+        <field name="model">oauth.provider.client</field>
+        <field name="arch" type="xml">
+            <tree string="OAuth Provider Clients">
+                <field name="name"/>
+                <field name="identifier"/>
+                <field name="application_type"/>
+                <field name="scope_ids"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_oauth_provider_client_form" model="ir.ui.view">
+        <field name="name">oauth.provider.client.form</field>
+        <field name="model">oauth.provider.client</field>
+        <field name="arch" type="xml">
+            <form string="OAuth Provider Clients">
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="identifier"/>
+                            <field name="secret"/>
+                            <field name="application_type"/>
+                        </group>
+                        <group>
+                            <field name="skip_authorization" attrs="{'invisible': [('application_type', 'not in', ('mobile application', 'web application'))]}"/>
+                            <field name="scope_ids" widget="many2many_tags"/>
+                            <field name="token_type"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Allowed Redirect URIs" attrs="{'invisible': [('application_type', 'not in', ('mobile application', 'web application'))]}">
+                            <field name="redirect_uri_ids">
+                                <tree string="Redirect URIs" editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_oauth_provider_client_search" model="ir.ui.view">
+        <field name="name">oauth.provider.client.search</field>
+        <field name="model">oauth.provider.client</field>
+        <field name="arch" type="xml">
+            <search string="OAuth Provider Clients">
+                <field name="name"/>
+                <field name="identifier"/>
+                <field name="application_type"/>
+                <field name="scope_ids"/>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_open_oauth_provider_client_view">
+        <field name="name">OAuth Provider Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">oauth.provider.client</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_oauth_provider_client_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="act_open_oauth_provider_client_view_form">
+        <field name="act_window_id" ref="act_open_oauth_provider_client_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_oauth_provider_client_form"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="act_open_oauth_provider_client_view_tree">
+        <field name="act_window_id" ref="act_open_oauth_provider_client_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_oauth_provider_client_tree"/>
+    </record>
+    <menuitem id="menu_oauth_provider_client" parent="base.menu_users" sequence="40" action="act_open_oauth_provider_client_view"/>
+</odoo>

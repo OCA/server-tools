@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"oauth_provider_client_all_users","OAuth Client All Users","model_oauth_provider_client",,1,0,0,0
+"oauth_provider_client_manager","OAuth Client Manager","model_oauth_provider_client",group_oauth_provider_manager,1,1,1,1
+"oauth_provider_scope_all_users","OAuth Scope All Users","model_oauth_provider_scope",,1,0,0,0
+"oauth_provider_scope_manager","OAuth Scope Manager","model_oauth_provider_scope",group_oauth_provider_manager,1,1,1,1
+"oauth_provider_redirect_uri_all_users","OAuth Redirect URI All Users","model_oauth_provider_redirect_uri",,1,0,0,0
+"oauth_provider_redirect_uri_manager","OAuth Redirect URI Manager","model_oauth_provider_redirect_uri",group_oauth_provider_manager,1,1,1,1
+"oauth_provider_authorization_code_all_users","OAuth Authorization Code All Users","model_oauth_provider_authorization_code",,1,0,0,0
+"oauth_provider_token_all_users","OAuth Token All Users","model_oauth_provider_token",,1,0,0,0
