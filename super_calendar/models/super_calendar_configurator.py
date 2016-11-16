@@ -30,8 +30,8 @@ import logging
 from datetime import datetime
 from pytz import timezone, utc
 from mako.template import Template
-from openerp import _, api, exceptions, fields, models, tools
-from openerp.tools.safe_eval import safe_eval
+from odoo import _, api, exceptions, fields, models, tools
+from odoo.tools.safe_eval import safe_eval
 
 
 _logger = logging.getLogger(__name__)
