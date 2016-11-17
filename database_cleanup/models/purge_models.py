@@ -87,15 +87,11 @@ class CleanupPurgeLineModel(models.TransientModel):
                     pass
                 except AttributeError:
                     pass
-            if line.name not in self.env:
-                # Reload env
-                self.pool.setup_models(self._cr, partial=(not self.pool.ready))
             self.env['ir.model.relation'].search([
                 ('model', '=', line.name)
             ]).with_context(**context_flags).unlink()
             model = self.env['ir.model'].browse([row[0]])
-            if line.name in self.env:
-                model.with_context(**context_flags).unlink()
+            model.with_context(**context_flags).unlink()
             line.write({'purged': True})
         return True
 
