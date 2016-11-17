@@ -11,6 +11,11 @@ from openerp.tests.common import TransactionCase, at_install, post_install
 @at_install(False)
 @post_install(True)
 class TestDatabaseCleanup(TransactionCase):
+    def setUp(self):
+        super(TestDatabaseCleanup, self).setUp()
+        self.module = None
+        self.model = None
+
     def test_database_cleanup(self):
         # create an orphaned column
         self.cr.execute(
@@ -43,7 +48,7 @@ class TestDatabaseCleanup(TransactionCase):
             self.env.ref('database_cleanup.test_no_data_entry')
 
         # create a nonexistent model
-        self.env['ir.model'].create({
+        self.model = self.env['ir.model'].create({
             'name': 'Database cleanup test model',
             'model': 'x_database.cleanup.test.model',
         })
@@ -54,6 +59,7 @@ class TestDatabaseCleanup(TransactionCase):
         self.registry.models.pop('x_database.cleanup.test.model')
         self.registry._pure_function_fields.pop(
             'x_database.cleanup.test.model')
+        self.registry.setup_models(self.env.cr, partial=False)
         purge_models = self.env['cleanup.purge.wizard.model'].create({})
         purge_models.purge_all()
         # must be removed by the wizard
@@ -62,7 +68,7 @@ class TestDatabaseCleanup(TransactionCase):
         ]))
 
         # create a nonexistent module
-        module = self.env['ir.module.module'].create({
+        self.module = self.env['ir.module.module'].create({
             'name': 'database_cleanup_test',
             'state': 'to upgrade',
         })
@@ -89,9 +95,18 @@ class TestDatabaseCleanup(TransactionCase):
         with self.assertRaises(ProgrammingError):
             with self.registry.cursor() as cr:
                 self.env.cr.execute('select * from database_cleanup_test')
+
+    def tearDown(self):
+        super(TestDatabaseCleanup, self).tearDown()
         with self.registry.cursor() as cr2:
-            # Release the delete of ir_module_module pending
+            # Release blocked tables with pending deletes
             self.env.cr.rollback()
-            cr2.execute(
-                "DELETE FROM ir_module_module WHERE id=%s", (module.id,))
+            if self.module:
+                cr2.execute(
+                    "DELETE FROM ir_module_module WHERE id=%s",
+                    (self.module.id,))
+            if self.model:
+                cr2.execute(
+                    "DELETE FROM ir_model WHERE id=%s",
+                    (self.model.id,))
             cr2.commit()
