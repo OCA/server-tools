@@ -65,7 +65,7 @@ class ResUsersRoleLine(models.Model):
         'res.users', string=u"User")
     date_from = fields.Date(u"From")
     date_to = fields.Date(u"To")
-    is_enabled = fields.Boolean(u"Active", compute='_compute_is_enabled')
+    is_enabled = fields.Boolean(u"Enabled", compute='_compute_is_enabled')
 
     @api.multi
     @api.depends('date_from', 'date_to')
