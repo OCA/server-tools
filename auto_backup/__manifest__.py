@@ -7,16 +7,21 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": (
-        "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
-        " Grupo ESOC Ingeniería de Servicios,"
-        " Odoo Community Association (OCA)"
+        "Yenthe Van Ginneken, "
+        "Agile Business Group, "
+        "Grupo ESOC Ingeniería de Servicios, "
+        "LasLabs, "
+        "Odoo Community Association (OCA)"
     ),
     'license': "AGPL-3",
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
-    "depends": ['mail'],
+    "depends": [
+        'base_setup',
+        'mail',
+    ],
     "data": [
         "data/ir_cron.xml",
         "data/mail_message_subtype.xml",
