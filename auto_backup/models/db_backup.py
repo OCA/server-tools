@@ -10,8 +10,8 @@ import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
-from openerp import exceptions, models, fields, api, _, tools
-from openerp.service import db
+from odoo import exceptions, models, fields, api, _, tools
+from odoo.service import db
 import logging
 _logger = logging.getLogger(__name__)
 try:
