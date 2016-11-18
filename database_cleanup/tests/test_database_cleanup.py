@@ -52,10 +52,12 @@ class TestDatabaseCleanup(TransactionCase):
             'name': 'Database cleanup test model',
             'model': 'x_database.cleanup.test.model',
         })
+
         self.env.cr.execute(
             'insert into ir_attachment (name, res_model, res_id, type) values '
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')")
         self.registry.setup_models(self.env.cr, partial=False)
+        self.registry.models.pop('x_database.cleanup.test.model')
         self.registry._pure_function_fields.pop(
             'x_database.cleanup.test.model')
         purge_models = self.env['cleanup.purge.wizard.model'].create({})
@@ -82,6 +84,7 @@ class TestDatabaseCleanup(TransactionCase):
         self.assertFalse(self.env['ir.module.module'].search([
             ('name', '=', 'database_cleanup_test'),
         ]))
+
         # reset afterwards
         RegistryManager.registries[self.env.cr.dbname] = original_registry
 
