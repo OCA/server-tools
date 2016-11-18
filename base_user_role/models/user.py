@@ -40,7 +40,8 @@ class ResUsers(models.Model):
             if not user.role_line_ids:
                 continue
             group_ids = []
-            role_lines = user.role_line_ids.filtered(lambda rec: rec.is_enabled)
+            role_lines = user.role_line_ids.filtered(
+                lambda rec: rec.is_enabled)
             for role_line in role_lines:
                 role = role_line.role_id
                 group_ids.append(role.group_id.id)
