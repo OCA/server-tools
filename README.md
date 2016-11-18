@@ -35,6 +35,7 @@ addon | version | summary
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
+[datetime_formatter](datetime_formatter/) | 9.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
