@@ -20,11 +20,11 @@
                             </page>
                             <page string="Users">
                                 <field name="line_ids" nolabel="1">
-                                    <tree editable="bottom" colors="grey: not is_active;">
+                                    <tree editable="bottom" colors="grey: not is_enabled;">
                                         <field name="user_id"/>
                                         <field name="date_from"/>
                                         <field name="date_to"/>
-                                        <field name="is_active"/>
+                                        <field name="is_enabled"/>
                                     </tree>
                                 </field>
                             </page>

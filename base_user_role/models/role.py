@@ -65,19 +65,19 @@ class ResUsersRoleLine(models.Model):
         'res.users', string=u"User")
     date_from = fields.Date(u"From")
     date_to = fields.Date(u"To")
-    is_active = fields.Boolean(u"Active", compute='_compute_is_active')
+    is_enabled = fields.Boolean(u"Active", compute='_compute_is_enabled')
 
     @api.multi
     @api.depends('date_from', 'date_to')
-    def _compute_is_active(self):
+    def _compute_is_enabled(self):
         today = datetime.date.today()
         for role_line in self:
-            role_line.is_active = True
+            role_line.is_enabled = True
             if role_line.date_from:
                 date_from = fields.Date.from_string(role_line.date_from)
                 if date_from > today:
-                    role_line.is_active = False
+                    role_line.is_enabled = False
             if role_line.date_to:
                 date_to = fields.Date.from_string(role_line.date_to)
                 if today > date_to:
-                    role_line.is_active = False
+                    role_line.is_enabled = False
