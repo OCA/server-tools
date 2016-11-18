@@ -55,15 +55,19 @@ class TestDatabaseCleanup(TransactionCase):
         self.env.cr.execute(
             'insert into ir_attachment (name, res_model, res_id, type) values '
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')")
-        self.registry.setup_models(self.env.cr, partial=False)
+        self.registry.models.pop('x_database.cleanup.test.model')
         self.registry._pure_function_fields.pop(
             'x_database.cleanup.test.model')
         purge_models = self.env['cleanup.purge.wizard.model'].create({})
-        purge_models.purge_all()
-        # must be removed by the wizard
-        self.assertFalse(self.env['ir.model'].search([
-            ('model', '=', 'x_database.cleanup.test.model'),
-        ]))
+        with self.assertRaisesRegexp(KeyError,
+                                     'x_database.cleanup.test.model'):
+            # TODO: Remove with-assert of KeyError after fix:
+            # https://github.com/odoo/odoo/pull/13978/files#r88654967
+            purge_models.purge_all()
+            # must be removed by the wizard
+            self.assertFalse(self.env['ir.model'].search([
+                ('model', '=', 'x_database.cleanup.test.model'),
+            ]))
 
         # create a nonexistent module
         self.module = self.env['ir.module.module'].create({
