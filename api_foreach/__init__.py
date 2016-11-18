@@ -8,4 +8,4 @@ from .api import foreach
 
 
 def _patch_api(*arg, **kwargs):
-    setattr(odoo.api, 'foreach', foreach)
+    odoo.api.foreach = foreach
