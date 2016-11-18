@@ -13,6 +13,6 @@
     ],
     "website": "https://laslabs.com",
     "license": "LGPL-3",
-    'post_init_hook': '_patch_api',
+    'post_load': '_patch_api',
     'installable': True,
 }
