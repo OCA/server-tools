@@ -9,3 +9,4 @@ from .api import foreach
 
 def _patch_api(*arg, **kwargs):
     odoo.api.foreach = foreach
+    odoo.api.__all__.append('foreach')

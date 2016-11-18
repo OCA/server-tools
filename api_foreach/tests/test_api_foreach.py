@@ -39,3 +39,7 @@ class TestApiForeach(TransactionCase):
         self.assertEqual(
             res, TestRecordset.records,
         )
+
+    def test_api_foreach_append_all(self):
+        """ It should add ``foreach`` to ``__all__`` of ``odoo.api`` """
+        self.assertIn('foreach', api.__all__)
