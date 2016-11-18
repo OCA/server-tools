@@ -8,4 +8,4 @@ from .api import foreach
 
 
 def _patch_api(cr, registry):
-    api.foreach = foreach
+    setattr(api, 'foreach', foreach)
