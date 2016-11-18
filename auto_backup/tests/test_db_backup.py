@@ -11,8 +11,8 @@ import mock
 from datetime import datetime
 from contextlib import contextmanager
 
-from openerp.tests import common
-from openerp import exceptions, tools
+from odoo.tests import common
+from odoo import exceptions, tools
 
 try:
     import pysftp
@@ -20,7 +20,7 @@ except ImportError:
     pass
 
 
-model = 'openerp.addons.auto_backup.models.db_backup'
+model = 'odoo.addons.auto_backup.models.db_backup'
 
 
 class TestConnectionException(pysftp.ConnectionException):
