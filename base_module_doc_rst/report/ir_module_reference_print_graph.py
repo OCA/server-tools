@@ -85,6 +85,7 @@ class IrModuleReferencePrintGraph(report_sxw.rml_parse):
         res = modobj.fields_get(self.cr, self.uid).items()
         return res
 
+
 report_sxw.report_sxw(
     'report.ir.module.reference.graph',
     'ir.module.module',
