@@ -21,7 +21,7 @@
 {
     'name': 'Send notice on fetchmail errors',
     'summary': 'If fetching mails gives error, send an email to sender',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Tools',
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
