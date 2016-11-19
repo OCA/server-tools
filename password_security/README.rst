@@ -47,6 +47,16 @@ These are defined at the company level:
  password_minimum      24        Amount of hours that must pass until another reset
 =====================  =======   ===================================================
 
+Usage
+=====
+
+Configure using above instructions for each company that should have password
+security mandates.
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+    :alt: Try me on Runbot
+    :target: https://runbot.odoo-community.org/runbot/149/10.0
+
 Known Issues / Roadmap
 ======================
 

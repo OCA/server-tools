@@ -6,12 +6,12 @@ import mock
 
 from contextlib import contextmanager
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 from ..controllers import main
 
 
-IMPORT = 'openerp.addons.password_security.controllers.main'
+IMPORT = 'odoo.addons.password_security.controllers.main'
 
 
 class EndTestException(Exception):
