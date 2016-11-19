@@ -7,9 +7,9 @@
             <field name="model">fetchmail.server</field>
             <field name="inherit_id" ref="fetchmail.view_email_server_form"></field>
             <field name="arch" type="xml">
-                <field name="active" position="after">
-                    <field name="error_notice_template_id"></field>
-                </field>
+                <xpath expr="//page[@string='Advanced']/group/field[@name='active']" position="after">
+                    <field name="error_notice_template_id"/>
+                </xpath>
             </field>
         </record>
     </data>
