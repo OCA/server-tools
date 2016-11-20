@@ -8,7 +8,6 @@ from openerp.addons.server_environment import serv_config
 
 
 SECTION = 'ir.config_parameter'
-CTX_NO_CHECK = 'icp_no_check'
 
 
 class IrConfigParameter(models.Model):
@@ -29,36 +28,27 @@ class IrConfigParameter(models.Model):
                 # should we have preloaded values in database at,
                 # server startup, modules loading their parameters
                 # from data files would break on unique key error.
-                self.set_param(
-                    cr, SUPERUSER_ID, key, cvalue,
-                    context={CTX_NO_CHECK: True})
+                self.set_param(cr, SUPERUSER_ID, key, cvalue)
                 value = cvalue
         if value is None:
             return default
         return value
 
-    def _check_not_in_config(self, keys):
-        if self.env.context.get(CTX_NO_CHECK):
-            return
-        if not serv_config.has_section(SECTION):
-            return
-        config_icp_keys = set(serv_config.options(SECTION)) & set(keys)
-        if config_icp_keys:
-            raise UserError(_("System Parameter(s) %s is/are defined "
-                              "in server_environment_files.") %
-                            (config_icp_keys, ))
-
     @api.model
     def create(self, vals):
-        self._check_not_in_config([vals.get('key')])
+        key = vals.get('key')
+        if serv_config.has_option(SECTION, key):
+            # enforce value from config file
+            vals = dict(vals, value=serv_config.get(SECTION, key))
         return super(IrConfigParameter, self).create(vals)
 
     @api.multi
     def write(self, vals):
-        self._check_not_in_config(self.mapped('key'))
-        return super(IrConfigParameter, self).write(vals)
-
-    @api.multi
-    def unlink(self):
-        self._check_not_in_config(self.mapped('key'))
-        return super(IrConfigParameter, self).unlink()
+        for rec in self:
+            key = vals.get('key') or rec.key
+            if serv_config.has_option(SECTION, key):
+                # enforce value from config file
+                newvals = dict(vals, value=serv_config.get(SECTION, key))
+            else:
+                newvals = vals
+            super(IrConfigParameter, rec).write(newvals)
