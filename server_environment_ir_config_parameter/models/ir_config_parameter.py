@@ -4,7 +4,6 @@
 
 from openerp import api, models, _, SUPERUSER_ID
 from openerp.exceptions import UserError
-from openerp.tools import ormcache
 from openerp.addons.server_environment import serv_config
 
 
@@ -16,9 +15,9 @@ class IrConfigParameter(models.Model):
 
     _inherit = 'ir.config_parameter'
 
-    @ormcache('uid', 'key')
-    def _get_param(self, cr, uid, key):
-        value = super(IrConfigParameter, self)._get_param(cr, uid, key)
+    def get_param(self, cr, uid, key, default=False, context=None):
+        value = super(IrConfigParameter, self).get_param(
+            cr, uid, key, default=None, context=context)
         if serv_config.has_option(SECTION, key):
             cvalue = serv_config.get(SECTION, key)
             if cvalue != value:
@@ -29,7 +28,9 @@ class IrConfigParameter(models.Model):
                 self.set_param(
                     cr, SUPERUSER_ID, key, cvalue,
                     context={CTX_NO_CHECK: True})
-                return cvalue
+                value = cvalue
+        if value is None:
+            return default
         return value
 
     def _check_not_in_config(self, keys):
