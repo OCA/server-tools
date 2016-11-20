@@ -49,3 +49,9 @@ class TestEnv(common.SavepointCase):
         res.unlink()
         res = self.ICP.search([('key', '=', 'some.param')])
         self.assertFalse(res)
+
+    def test_empty(self):
+        """ Empty config values cause error """
+        with self.assertRaises(UserError):
+            self.ICP.get_param('ircp_empty')
+        self.assertEqual(self.ICP.get_param('ircp_nonexistant'), False)
