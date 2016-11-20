@@ -20,6 +20,10 @@ class IrConfigParameter(models.Model):
             cr, uid, key, default=None, context=context)
         if serv_config.has_option(SECTION, key):
             cvalue = serv_config.get(SECTION, key)
+            if not cvalue:
+                raise UserError(_("Key %s is empty in "
+                                  "server_environment_file") %
+                                (key, ))
             if cvalue != value:
                 # we write in db on first access;
                 # should we have preloaded values in database at,
