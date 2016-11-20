@@ -26,8 +26,8 @@ When first using a value, the system will read it from the configuration file
 and override any value that would be present in the database, so the configuration
 file has precedence.
 
-The user cannot write, create, or delete System Parameters that are defined in the
-configuration files.
+When creating or modifying values that are in the configuration file, the
+module replace changes, enforcing the configuration value.
 
 For example you can use this module in combination with web_environment_ribbon:
 
