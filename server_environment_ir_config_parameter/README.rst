@@ -43,7 +43,10 @@ For example you can use this module in combination with web_environment_ribbon:
 Known issues / Roadmap
 ======================
 
-N/A
+* When the user modifies System Parameters that are defined in the config
+  file, the changes are ignored. It would be nice to display which system
+  parameters come from the config file and possibly make their key and value
+  readonly in the user interface.
 
 Bug Tracker
 ===========
