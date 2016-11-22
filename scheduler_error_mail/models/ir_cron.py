@@ -22,10 +22,10 @@ class IrCron(orm.Model):
         my_cron = self.browse(cr, uid, job_id)
 
         self.message_post(
-                cr, uid, [my_cron.id],
-                body=_('An error occured during execution of cron %s on '
-                       'DB %s:\n%s')
-                % (my_cron.name, cr.dbname, job_exception))
+            cr, uid, [my_cron.id],
+            body=_('An error occured during execution of cron'
+                   ' %s on DB %s:\n%s') % (my_cron.name, cr.dbname,
+                                           job_exception))
 
         logger.debug("Posting scheduler error mail with error:%s",
                      job_exception)
