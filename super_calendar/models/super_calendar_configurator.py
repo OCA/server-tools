@@ -107,7 +107,7 @@ class SuperCalendarConfigurator(models.Model):
 
             # Check if f_user refer to a res.users
             if (f_user and cur_rec[f_user] and
-                    cur_rec[f_user]._model._name != 'res.users'):
+                    cur_rec[f_user]._name != 'res.users'):
                 raise exceptions.ValidationError(
                     _("The 'User' field of record %s (%s) "
                       "does not refer to res.users")
