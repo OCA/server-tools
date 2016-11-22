@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="url_view_form" model="ir.ui.view">
+        <field name="model">url.url</field>
+        <field name="arch" type="xml">
+            <form string="Url rewriting edit form">
+                <sheet>
+                    <group>
+                        <field name="url_key" />
+                        <field name="model_id" widget="selection" />
+                        <field name="redirect"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>	
+
+    <record id="url_view_tree" model="ir.ui.view">
+        <field name="model">url.url</field>
+        <field name="arch" type="xml">
+        <tree string="">
+            <field name="url_key"/>
+            <field name="model_id"/>
+            <field name="redirect"/>
+        </tree>
+        </field>
+    </record>
+
+    <record id="base_url_action_view" model="ir.actions.act_window">
+        <field name="name">url list Viewer</field>
+        <field name="res_model">url.url</field>
+        <field name="view_mode">tree,form</field>
+     </record>
+        <!-- This Menu Item Must have a parent -->
+    <menuitem id="url_menu_view" name="Url_rewrite" parent="base.next_id_9" action="base_url_action_view"/>
+
+</data>
+</openerp>
