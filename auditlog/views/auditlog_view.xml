@@ -3,7 +3,7 @@
     <data>
 
         <menuitem id="menu_audit" name="Audit"
-            parent="base.menu_reporting" sequence="50"
+            parent="base.menu_custom" sequence="50"
             groups="base.group_system"/>
 
 
@@ -26,6 +26,7 @@
                             <group colspan="1">
                                 <field name="name" required="1"/>
                                 <field name="model_id"/>
+                                <field name="log_type"/>
                                 <field name="action_id" readonly="1" groups="base.group_no_one"/>
                             </group>
                             <group colspan="1">
@@ -33,15 +34,8 @@
                                 <field name="log_write"/>
                                 <field name="log_unlink"/>
                                 <field name="log_create"/>
-                                <!--<field name="log_action"/>-->
-                                <!--<field name="log_workflow"/>-->
                             </group>
                         </group>
-                        <!--
-                        <group string="Users">
-                            <field name="user_ids" nolabel="1"/>
-                        </group>
-                        -->
                     </sheet>
                 </form>
             </field>
@@ -54,12 +48,11 @@
                 <tree colors="blue:state == 'draft';black:state == 'subscribed'" string="Rules">
                     <field name="name"/>
                     <field name="model_id"/>
+                    <field name="log_type"/>
                     <field name="log_read"/>
                     <field name="log_write"/>
                     <field name="log_unlink"/>
                     <field name="log_create"/>
-                    <!--<field name="log_action"/>-->
-                    <!--<field name="log_workflow"/>-->
                     <field name="state"/>
                 </tree>
             </field>
@@ -110,12 +103,17 @@
                                 <field name="create_date" readonly="1"/>
                                 <field name="user_id" readonly="1"/>
                                 <field name="method" readonly="1"/>
+                                <field name="log_type" readonly="1"/>
                             </group>
                             <group colspan="1">
                                 <field name="model_id" readonly="1"/>
                                 <field name="res_id" readonly="1"/>
                                 <field name="name" readonly="1"/>
                             </group>
+                        </group>
+                        <group string="HTTP Context">
+                            <field name="http_session_id"/>
+                            <field name="http_request_id"/>
                         </group>
                         <group string="Fields updated">
                             <field name="line_ids" readonly="1" nolabel="1">
@@ -182,6 +180,12 @@
                         <filter name="group_by_create_date"
                             string="Date"
                             domain="[]" context="{'group_by':'create_date'}"/>
+                        <filter name="group_by_http_session"
+                            string="User session"
+                            domain="[]" context="{'group_by':'http_session_id'}"/>
+                        <filter name="group_by_http_request"
+                            string="HTTP Request"
+                            domain="[]" context="{'group_by':'http_request_id'}"/>
                     </group>
                 </search>
             </field>

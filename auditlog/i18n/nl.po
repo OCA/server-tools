@@ -3,76 +3,64 @@
 # * auditlog
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
-# Giacomo <giacomo.spettoli@gmail.com>, 2015
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Mohamed HABOU <m.habou@agoradeveloppement.com>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-05 05:57+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
 msgid "Action"
-msgstr "Ukrep"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr "Revizija"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr "Revizijski dnevnik - izbriši stare dnevnike"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr "Revizijski dnevnik - HTTP uporabniške seje"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr "Revizijski dnevnik - HTTP zahtevki"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Revizijski dnevnik"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
 msgid "Auditlog - Log details (fields updated)"
-msgstr "Revizijski dnevnik - podrobnosti (posodobljena polja)"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
-msgstr "Revizijski dnevnik - pravila"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.http.request,user_context:0
 msgid "Context"
-msgstr "Kontekst"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,create_uid:0
@@ -80,7 +68,7 @@ msgstr "Kontekst"
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,create_date:0
@@ -90,57 +78,57 @@ msgstr "Ustvaril"
 #: field:auditlog.http.session,create_date:0 field:auditlog.log,create_date:0
 #: field:auditlog.log.line,create_date:0 field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
 #: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Te tonen naam"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr "Osnutek"
+msgstr ""
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr "Hitri dnevnik"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
-msgstr "Polje"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 #: field:auditlog.log,line_ids:0
 msgid "Fields updated"
-msgstr "Posodobljena polja"
+msgstr ""
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr "Polni dnevnik"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
 "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr "Polni dnevnik: izdela razliko med podatki pred in po operaciji (beleži več informacij, kot npr. izračunana polja, ki so bila posodobljena, a je počasnejši)\nHitri dnevnik: beleži le spremembe nastale med operacijami ustvarjanja in zapisovanja (manj informacij, a je hitrejši)"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -148,19 +136,19 @@ msgstr "Polni dnevnik: izdela razliko med podatki pred in po operaciji (beleži 
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Združi po..."
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr "HTTP kontekst"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,http_request_id:0
 msgid "HTTP Request"
-msgstr "HTTP zahtevek"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -170,14 +158,14 @@ msgstr "HTTP zahtevek"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 msgid "HTTP Requests"
-msgstr "HTTP zahtevki"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
 #: field:auditlog.http.session,id:0 field:auditlog.log,id:0
 #: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,__last_update:0
@@ -186,7 +174,7 @@ msgstr "ID"
 #: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
 #: field:auditlog.rule,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr "Laatst bijgewerkt op"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
@@ -194,7 +182,7 @@ msgstr "Zadnjič spremenjeno"
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnjič posodobil"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_date:0
@@ -202,38 +190,38 @@ msgstr "Zadnjič posodobil"
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 #: field:auditlog.log.line,log_id:0
 msgid "Log"
-msgstr "Dnevnik"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Log - Field updated"
-msgstr "Dnevnik - posodobljena polja"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_create:0
 msgid "Log Creates"
-msgstr "Dnevnik ustvarjanja"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_unlink:0
 msgid "Log Deletes"
-msgstr "Dnevnik brisanja"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_read:0
 msgid "Log Reads"
-msgstr "Dnevnik branja"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,log_write:0
 msgid "Log Writes"
-msgstr "Dnevnik zapisov"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
@@ -243,72 +231,72 @@ msgstr "Dnevnik zapisov"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 msgid "Logs"
-msgstr "Dnevniki"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,method:0
 msgid "Method"
-msgstr "Metoda"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
 msgid "Model"
-msgstr "Model"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.http.request,display_name:0
 #: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
-msgstr "Naziv"
+msgstr "Naam"
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value:0
 msgid "New Value"
-msgstr "Nova vrednost"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value_text:0
 msgid "New value Text"
-msgstr "Nova vrednost tekstualno"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,old_value:0
 msgid "Old Value"
-msgstr "Stara vrednost"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,old_value_text:0
 msgid "Old value Text"
-msgstr "Stara vrednost tekstualno"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,name:0
 msgid "Path"
-msgstr "Pot"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,res_id:0
 msgid "Resource ID"
-msgstr "ID vira"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,name:0
 msgid "Resource Name"
-msgstr "Naziv vira"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,root_url:0
 msgid "Root URL"
-msgstr "Korenska URL"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Rule"
-msgstr "Pravilo"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -316,90 +304,90 @@ msgstr "Pravilo"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
 msgid "Rules"
-msgstr "Pravila"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,model_id:0
 msgid "Select model for which you want to generate log."
-msgstr "Izbira modela za katerega ustvarjate dnevnik."
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
 "Select this if you want to keep track of creation on any record of the model"
 " of this rule"
-msgstr "Izberite, če želite slediti ustvarjanju kateregakoli zapisa na modelu, na katerega se nanaša to pravilo."
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
 "Select this if you want to keep track of deletion on any record of the model"
 " of this rule"
-msgstr "Izberite, če želite slediti brisanju kateregakoli zapisa na modelu, na katerega se nanaša to pravilo."
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr "Izberite, če želite slediti spreminjanju kateregakoli zapisa na modelu, na katerega se nanaša to pravilo."
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr "Izberite, če želite slediti branju/odpiranju kateregakoli zapisa na modelu, na katerega se nanaša to pravilo."
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.http.request,http_session_id:0
 #: field:auditlog.log,http_session_id:0
 msgid "Session"
-msgstr "Seja"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.http.session,name:0
 msgid "Session ID"
-msgstr "ID seje"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr "Stanje"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Subscribe"
-msgstr "Naroči se"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Subscribed"
-msgstr "Naročen"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log.line,field_name:0
 msgid "Technical name"
-msgstr "Tehnični naziv"
+msgstr ""
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr "Za ta model je že določeno pravilo\nNe morete določiti drugega, lahko pa uredite obstoječega."
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
 msgid "Type"
-msgstr "Tip"
+msgstr "Type"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr "Odjavi naročnino"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -409,14 +397,14 @@ msgstr "Odjavi naročnino"
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr "Uporabnik"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr "Uporabniška seja"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -424,25 +412,25 @@ msgstr "Uporabniška seja"
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 msgid "User sessions"
-msgstr "Uporabniške seje"
+msgstr ""
 
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
 msgid "Users"
-msgstr "Uporabniki"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "Values"
-msgstr "Vrednosti"
+msgstr ""
 
 #. module: auditlog
 #: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
-msgstr "Prikaz dnevnikov"
+msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,user_ids:0
 msgid "if  User is not added then it will applicable for all users"
-msgstr "Če ne dodate uporabnika, bo veljalo za vse uporabnike"
+msgstr ""
