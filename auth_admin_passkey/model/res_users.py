@@ -128,10 +128,10 @@ class res_users(Model):
 password."""
         if uid != SUPERUSER_ID:
             try:
-                super(res_users, self).check_credentials(
-                    cr, uid, password)
+                self.check_credentials(cr, SUPERUSER_ID, password)
                 return True
             except exceptions.AccessDenied:
-                return self.check_credentials(cr, SUPERUSER_ID, password)
+                return super(res_users, self).check_credentials(
+                    cr, uid, password)
         else:
             return super(res_users, self).check_credentials(cr, uid, password)
