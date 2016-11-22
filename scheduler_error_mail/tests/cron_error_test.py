@@ -25,7 +25,6 @@ class TestCronError(common.TransactionCase):
                 }
 
         cron_obj.write(self.cr, self.uid, [self.cron_id], vals)
-        self.cr.commit()
 
     def test_00_cron_exception(self):
         cron_obj = self.registry('ir.cron')

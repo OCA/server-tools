@@ -3,27 +3,21 @@
   Copyright 2016 ACSONE SA/NV (http://www.acsone.eu/)
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-
 <openerp>
 <data>
-
-
 <record id="ir_cron_error_mail_view" model="ir.ui.view">
     <field name="name">ir.cron.error.mailer.form</field>
     <field name="model">ir.cron</field>
     <field name="inherit_id" ref="base.ir_cron_view"/>
     <field name="arch" type="xml">
         <sheet position="after">
-        	<div class="oe_chatter">
+            <div class="oe_chatter">
                 <field name="message_follower_ids" widget="mail_followers"/>
                 <field name="message_ids" widget="mail_thread"/>
             </div>
         </sheet>
-        
     </field>
 </record>
-
-
 </data>
 </openerp>
 
