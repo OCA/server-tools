@@ -21,7 +21,7 @@ class TestCronError(common.TransactionCase):
         self.cron = cron_obj.browse(self.cr, self.uid, self.cron_id)
 
         vals = {
-                'message_follower_ids': [(4, partner.id)]
+            'message_follower_ids': [(4, partner.id)]
                 }
 
         cron_obj.write(self.cr, self.uid, [self.cron_id], vals)
