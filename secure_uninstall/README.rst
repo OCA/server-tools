@@ -40,6 +40,11 @@ Usage
    :target: https://runbot.odoo-community.org/runbot/149/server-tools
 
 
+Known issues / Roadmap
+======================
+* This module can be uninstall properly: needs to be fixed soon
+* This module allowed us to discover this bug in core Odoo https://github.com/odoo/odoo/issues/14452: hoping it will fixed
+
 Bug Tracker
 ===========
 
