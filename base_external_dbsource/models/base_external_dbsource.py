@@ -187,7 +187,6 @@ class BaseExternalDbsource(models.Model):
     def connection_test(self):
         """Test of connection."""
         self.ensure_one()
-
         conn = False
         try:
             conn = self.conn_open()
