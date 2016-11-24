@@ -20,7 +20,7 @@ class BaseImportMatch(models.Model):
         "Model",
         required=True,
         ondelete="cascade",
-        domain=[("osv_memory", "=", False)],
+        domain=[("transient", "=", False)],
         help="In this model you will apply the match.")
     model_name = fields.Char(
         related="model_id.model",

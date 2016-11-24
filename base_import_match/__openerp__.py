@@ -4,14 +4,12 @@
 {
     "name": "Base Import Match",
     "summary": "Try to avoid duplicates before importing",
-    "version": "8.0.1.0.1",
+    "version": "9.0.1.0.0",
     "category": "Tools",
     "website": "https://grupoesoc.es",
     "author": "Grupo ESOC Ingeniería de Servicios, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
-    "installable": True,
     "depends": [
         "base_import",
     ],
@@ -23,4 +21,6 @@
     "demo": [
         "demo/base_import_match.yml",
     ],
+    "application": False,
+    "installable": True,
 }
