@@ -21,9 +21,10 @@
 
 import os
 import logging
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
-import openerp.tools as tools
+import psycopg2
+from odoo import models, fields, api,  _
+from odoo.exceptions import Warning as UserError
+import odoo.tools as tools
 _logger = logging.getLogger(__name__)
 
 CONNECTORS = []
@@ -62,58 +63,60 @@ except:
     _logger.info('Oracle libraries not available. Please install "cx_Oracle"\
                  python package.')
 
-import psycopg2
 CONNECTORS.append(('postgresql', 'PostgreSQL'))
 
 
-class base_external_dbsource(orm.Model):
+class BaseExternalDbsource(models.Model):
     _name = "base.external.dbsource"
     _description = 'External Database Sources'
-    _columns = {
-        'name': fields.char('Datasource name', required=True, size=64),
-        'conn_string': fields.text('Connection string', help="""
-Sample connection strings:
-- Microsoft SQL Server:
-  mssql+pymssql://username:%s@server:port/dbname?charset=utf8
-- MySQL: mysql://user:%s@server:port/dbname
-- ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa
-- ORACLE: username/%s@//server.address:port/instance
-- PostgreSQL:
-  dbname='template1' user='dbuser' host='localhost' port='5432' password=%s
-- SQLite: sqlite:///test.db
-"""),
-        'password': fields.char('Password', size=40),
-        'connector': fields.selection(CONNECTORS, 'Connector',
-                                      required=True,
-                                      help="If a connector is missing from the\
+    name = fields.Char('Datasource name', required=True, size=64)
+    conn_string = fields.Text('Connection string', help="""
+    Sample connection strings:
+    - Microsoft SQL Server:
+      mssql+pymssql://username:%s@server:port/dbname?charset=utf8
+    - MySQL: mysql://user:%s@server:port/dbname
+    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa
+    - ORACLE: username/%s@//server.address:port/instance
+    - PostgreSQL:
+        dbname='template1' user='dbuser' host='localhost' port='5432' \
+        password=%s
+    - SQLite: sqlite:///test.db
+    """)
+    password = fields.Char('Password', size=40)
+    connector = fields.Selection(CONNECTORS, 'Connector', required=True,
+                                 help="If a connector is missing from the\
                                       list, check the server log to confirm\
                                       that the required components were\
-                                      detected."),
-    }
+                                      detected.")
 
-    def conn_open(self, cr, uid, id1):
+    @api.multi
+    def conn_open(self):
+        """The connection is open here."""
+
+        self.ensure_one()
         # Get dbsource record
-        data = self.browse(cr, uid, id1)
+        # data = self.browse(cr, uid, id1)
         # Build the full connection string
-        connStr = data.conn_string
-        if data.password:
-            if '%s' not in data.conn_string:
+        connStr = self.conn_string
+        if self.password:
+            if '%s' not in self.conn_string:
                 connStr += ';PWD=%s'
-            connStr = connStr % data.password
+            connStr = connStr % self.password
         # Try to connect
-        if data.connector == 'cx_Oracle':
+        if self.connector == 'cx_Oracle':
             os.environ['NLS_LANG'] = 'AMERICAN_AMERICA.UTF8'
             conn = cx_Oracle.connect(connStr)
-        elif data.connector == 'pyodbc':
+        elif self.connector == 'pyodbc':
             conn = pyodbc.connect(connStr)
-        elif data.connector in ('sqlite', 'mysql', 'mssql'):
+        elif self.connector in ('sqlite', 'mysql', 'mssql'):
             conn = sqlalchemy.create_engine(connStr).connect()
-        elif data.connector == 'postgresql':
+        elif self.connector == 'postgresql':
             conn = psycopg2.connect(connStr)
 
         return conn
 
-    def execute(self, cr, uid, ids, sqlquery, sqlparams=None, metadata=False,
+    @api.multi
+    def execute(self, sqlquery, sqlparams=None, metadata=False,
                 context=None):
         """Executes SQL and returns a list of rows.
 
@@ -131,10 +134,10 @@ Sample connection strings:
                 { 'cols': [ 'col_a', 'col_b', ...]
                 , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
         """
-        data = self.browse(cr, uid, ids)
+        # data = self.browse(cr, uid, ids)
         rows, cols = list(), list()
-        for obj in data:
-            conn = self.conn_open(cr, uid, obj.id)
+        for obj in self:
+            conn = obj.conn_open()
             if obj.connector in ["sqlite", "mysql", "mssql"]:
                 # using sqlalchemy
                 cur = conn.execute(sqlquery, sqlparams)
@@ -154,15 +157,17 @@ Sample connection strings:
         else:
             return rows
 
-    def connection_test(self, cr, uid, ids, context=None):
-        for obj in self.browse(cr, uid, ids, context):
+    @api.multi
+    def connection_test(self):
+        """Test of connection."""
+
+        for obj in self:
             conn = False
             try:
-                conn = self.conn_open(cr, uid, obj.id)
+                conn = self.conn_open()
             except Exception as e:
-                raise orm.except_orm(_("Connection test failed!"),
-                                     _("Here is what we got instead:\n %s")
-                                     % tools.ustr(e))
+                raise UserError(_("Connection test failed: \
+                        Here is what we got instead:\n %s") % tools.ustr(e))
             finally:
                 try:
                     if conn:
@@ -171,5 +176,5 @@ Sample connection strings:
                     # ignored, just a consequence of the previous exception
                     pass
         # TODO: if OK a (wizard) message box should be displayed
-        raise orm.except_orm(_("Connection test succeeded!"),
-                             _("Everything seems properly set up!"))
+        raise UserError(_("Connection test succeeded: \
+                          Everything seems properly set up!"))
