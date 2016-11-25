@@ -88,7 +88,8 @@ class BaseExternalDbsource(models.Model):
     - MySQL: mysql://user:%s@server:port/dbname
     - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa
     - ORACLE: username/%s@//server.address:port/instance
-    - FireBird: host=localhost;database=mydatabase.gdb;user=sysdba;password=%s;port=3050;charset=utf8
+    - FireBird: host=localhost;database=mydatabase.gdb;user=sysdba;password=%s;
+    port=3050;charset=utf8
     - PostgreSQL:
         dbname='template1' user='dbuser' host='localhost' port='5432' \
         password=%s
@@ -166,7 +167,8 @@ class BaseExternalDbsource(models.Model):
                 # using other db connectors
                 cur = conn.cursor()
                 for key in sqlparams:
-                    sqlquery = sqlquery.replace('%%(%s)s' % key, str(sqlparams[key]))
+                    sqlquery = sqlquery.replace('%%(%s)s' % key,
+                                                str(sqlparams[key]))
 
                 cur.execute(sqlquery)
                 rows = cur.fetchall()
