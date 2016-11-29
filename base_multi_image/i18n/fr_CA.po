@@ -3,24 +3,15 @@
 # * base_multi_image
 # 
 # Translators:
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
-# Wagner Pereira <wagner@wagner.pereira.nom.br>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (10.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 00:57+0000\n"
-"PO-Revision-Date: 2016-03-31 07:18+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fr_CA/)\n"
+"POT-Creation-Date: 2016-11-26 03:36+0000\n"
+"PO-Revision-Date: 2016-11-26 03:36+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -32,6 +23,11 @@ msgstr ""
 #: sql_constraint:base_multi_image.image:0
 #, python-format
 msgid "A document can have only one image with the same name."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+msgid "Attachment"
 msgstr ""
 
 #. module: base_multi_image
@@ -48,12 +44,12 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
@@ -64,7 +60,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Afficher le nom"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
@@ -77,6 +73,11 @@ msgid "Filename"
 msgstr ""
 
 #. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Filestore"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
 msgid "Full-sized image"
 msgstr ""
@@ -85,7 +86,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_id
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_id
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -128,12 +129,12 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/owner.py:73
@@ -203,6 +204,11 @@ msgid "Product Images"
 msgstr ""
 
 #. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+msgid "Referenced Owner"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
 msgstr ""
@@ -237,6 +243,30 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:205
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:199
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:211
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:217
+#, python-format
+msgid "You must provide an attachment for the image."
 msgstr ""
 
 #. module: base_multi_image
