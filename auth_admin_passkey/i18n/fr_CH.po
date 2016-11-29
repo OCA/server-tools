@@ -3,32 +3,25 @@
 # * auth_admin_passkey
 # 
 # Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
-# Hotellook, 2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"POT-Creation-Date: 2016-11-30 14:52+0000\n"
+"PO-Revision-Date: 2015-09-18 13:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
+"Language: fr_CH\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:69
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr "<pre>L'utilisateur dont l'identifiant est '%s' a le même mot de passe que vous.</pre>"
+msgstr ""
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:44
@@ -42,28 +35,28 @@ msgid ""
 "\n"
 "- Login date : %s\n"
 "\n"
-msgstr "L'administrateur a utilisé son mot de passe \"bris de glace\" pour s'identifier avec l'identifiant '%s'.\n\n\n\nInformations techniques ci-dessous : \n\n- Date d'authentification : %s\n\n"
+msgstr ""
 
 #. module: auth_admin_passkey
 #: view:base.config.settings:auth_admin_passkey.view_res_config_settings
 msgid "Passkey"
-msgstr "Mot de passe \"bris de glace\""
+msgstr ""
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid "Passkey used"
-msgstr "Mot de passe \"bris de glace\" utilisé"
+msgstr ""
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid "Send email to admin user."
-msgstr "Envoyer un email à l'administrateur."
+msgstr ""
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid "Send email to user."
-msgstr "Envoyer un email à l'utilisateur."
+msgstr ""
 
 #. module: auth_admin_passkey
 #: model:ir.model,name:auth_admin_passkey.model_res_users
@@ -75,17 +68,17 @@ msgstr "Utilisateurs"
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, OpenERP will send an email to the account user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP lui enverra un mail."
+msgstr ""
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, OpenERP will send an email to the admin user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP enverra un mail à l'utilisateur."
+msgstr ""
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:67
 #, python-format
 msgid "[WARNING] OpenERP Security Risk"
-msgstr "[WARNING] Faille de sécurité sur OpenERP"
+msgstr ""

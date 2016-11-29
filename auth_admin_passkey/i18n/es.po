@@ -3,13 +3,21 @@
 # * auth_admin_passkey
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-16 15:15+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-24 09:24+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +27,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:88
+#: code:addons/auth_admin_passkey/models/res_users.py:69
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr "<pre>El usuario con identificador '%s' tiene la misma contraseña que usted.</pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:44
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -44,7 +52,7 @@ msgid "Passkey"
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:61
+#: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid "Passkey used"
 msgstr ""
@@ -79,7 +87,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:86
+#: code:addons/auth_admin_passkey/models/res_users.py:67
 #, python-format
 msgid "[WARNING] OpenERP Security Risk"
 msgstr ""
