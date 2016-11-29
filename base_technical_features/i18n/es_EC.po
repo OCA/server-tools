@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_technical_features
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-01-05 19:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Ecuador) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es_EC/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_EC\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+msgid "Show field Technical Features"
+msgstr ""
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+msgid "Technical features"
+msgstr ""
+
+#. module: base_technical_features
+#: code:addons/base_technical_features/models/res_users.py:48
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+msgid ""
+"Whether to display the technical features field in the user preferences."
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_basemodel_monkeypatch
+msgid "basemodel.monkeypatch"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "ir.ui.menu"
+msgstr ""

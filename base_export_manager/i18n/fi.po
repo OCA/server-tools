@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-06 02:49+0000\n"
-"PO-Revision-Date: 2016-08-06 02:49+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-11-26 01:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:77
+#, python-format
+msgid "Archive"
+msgstr ""
+
+#. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
 msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:79
+#, python-format
+msgid "Delete"
+msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:76
+#, python-format
+msgid "Export"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
+msgid "Export Access"
 msgstr ""
 
 #. module: base_export_manager
@@ -94,6 +120,18 @@ msgid "Third model"
 msgstr ""
 
 #. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:78
+#, python-format
+msgid "Unarchive"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_res_users
+msgid "Users"
+msgstr "Käyttäjät"
+
+#. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
@@ -107,4 +145,9 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "ir.exports.line"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_model_access
+msgid "ir.model.access"
 msgstr ""
