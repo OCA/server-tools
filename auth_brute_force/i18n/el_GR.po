@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/el_GR/)\n"
@@ -77,7 +77,7 @@ msgstr "Δημιουργήθηκε στις"
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,display_name:0
