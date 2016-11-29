@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
+"Language-Team: Bosnian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/bs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: bs\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -59,14 +59,14 @@ msgstr ""
 #: field:super.calendar.configurator,create_uid:0
 #: field:super.calendar.configurator.line,create_uid:0
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr "Kreirao"
 
 #. module: super_calendar
 #: field:super.calendar,create_date:0
 #: field:super.calendar.configurator,create_date:0
 #: field:super.calendar.configurator.line,create_date:0
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr "Kreirano"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -87,7 +87,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -105,7 +105,7 @@ msgstr ""
 #: field:super.calendar.configurator,display_name:0
 #: field:super.calendar.configurator.line,display_name:0
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr "Prikaži naziv"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -165,7 +165,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr "Groepeer op"
+msgstr "Grupiši po"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -203,21 +203,21 @@ msgstr "ID"
 #: field:super.calendar.configurator,__last_update:0
 #: field:super.calendar.configurator.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Zadnje mijenjano"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr "Zadnji ažurirao"
 
 #. module: super_calendar
 #: field:super.calendar,write_date:0
 #: field:super.calendar.configurator,write_date:0
 #: field:super.calendar.configurator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Zadnje ažurirano"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
@@ -249,7 +249,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr "Naam"
+msgstr "Ime"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search

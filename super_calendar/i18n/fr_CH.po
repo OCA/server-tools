@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
+"Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr_CH\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -59,14 +59,14 @@ msgstr ""
 #: field:super.calendar.configurator,create_uid:0
 #: field:super.calendar.configurator.line,create_uid:0
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr "Créé par"
 
 #. module: super_calendar
 #: field:super.calendar,create_date:0
 #: field:super.calendar.configurator,create_date:0
 #: field:super.calendar.configurator.line,create_date:0
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr "Créé le"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -105,7 +105,7 @@ msgstr ""
 #: field:super.calendar.configurator,display_name:0
 #: field:super.calendar.configurator.line,display_name:0
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -165,7 +165,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr "Groepeer op"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -203,21 +203,21 @@ msgstr "ID"
 #: field:super.calendar.configurator,__last_update:0
 #: field:super.calendar.configurator.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr "Modifié par"
 
 #. module: super_calendar
 #: field:super.calendar,write_date:0
 #: field:super.calendar.configurator,write_date:0
 #: field:super.calendar.configurator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Modifié le"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
@@ -249,7 +249,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr "Naam"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
