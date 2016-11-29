@@ -9,6 +9,13 @@
         of errors""",
     'version': '7.0.1.0.0',
     'license': 'AGPL-3',
+    'description':"""
+    Scheduler Error Mail
+    ====================
+
+    This module helps to get emails through the message
+    post when scheduler raises exceptions
+    """,
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'https://acsone.eu',
     'depends': ['base', 'mail'],
