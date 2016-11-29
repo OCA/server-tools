@@ -3,34 +3,20 @@
 # * base_technical_features
 # 
 # Translators:
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-01-05 19:43+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt/)\n"
+"POT-Creation-Date: 2017-08-01 02:43+0000\n"
+"PO-Revision-Date: 2017-08-01 02:43+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_id
-msgid "ID"
-msgstr "ID"
-
-#. module: base_technical_features
-#: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch___last_update
-msgid "Last Modified on"
-msgstr ""
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
@@ -56,7 +42,7 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Utilizadores"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
@@ -65,8 +51,8 @@ msgid ""
 msgstr ""
 
 #. module: base_technical_features
-#: model:ir.model,name:base_technical_features.model_basemodel_monkeypatch
-msgid "basemodel.monkeypatch"
+#: model:ir.model,name:base_technical_features.model_base
+msgid "base"
 msgstr ""
 
 #. module: base_technical_features
