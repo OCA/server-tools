@@ -3,7 +3,7 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Antonio Trueba, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-31 08:35+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Duplicato"
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Duplica Report"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,id:0
@@ -86,7 +86,7 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr ""
+msgstr "Duplicazione Report"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,suffix:0
@@ -97,12 +97,12 @@ msgstr "Suffisso"
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr ""
+msgstr "Il nome del Template deve contenere almeno un punto nel nome."
 
 #. module: base_report_auto_create_qweb
 #: help:ir.actions.report.xml.duplicate,suffix:0
 msgid "This suffix will be added to the report"
-msgstr ""
+msgstr "Questo suffisso verrà aggiunto al report"
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view

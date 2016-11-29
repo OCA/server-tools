@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/el_GR/)\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_tree
 msgid "Attachments"
-msgstr ""
+msgstr "Συνημμένα "
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -77,7 +77,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,display_name:0

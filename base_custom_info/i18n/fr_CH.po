@@ -1,0 +1,221 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_custom_info
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CH\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Click to define a new custom info template.\n"
+"      </p><p>\n"
+"        You must define a custom info template for each\n"
+"        product properties group.\n"
+"      </p>\n"
+"    "
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_model_link
+msgid "A model that gets its ``ir.model`` computed"
+msgstr ""
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.value:0
+msgid "Another property with that name exists for that resource."
+msgstr ""
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.property:0
+msgid "Another property with that name exists for that template."
+msgstr ""
+
+#. module: base_custom_info
+#: sql_constraint:custom.info.template:0
+msgid "Another template with that name exists for that model."
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.property,create_uid:0
+#: field:custom.info.template,create_uid:0
+#: field:custom.info.value,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_custom_info
+#: field:custom.info.property,create_date:0
+#: field:custom.info.template,create_date:0
+#: field:custom.info.value,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_custom_info
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
+msgid "Custom Info"
+msgstr ""
+
+#. module: base_custom_info
+#: view:custom.info.template:base_custom_info.base_custom_info_template_form
+msgid "Custom Info Template"
+msgstr ""
+
+#. module: base_custom_info
+#: view:custom.info.property:base_custom_info.base_custom_info_template_line_form
+msgid "Custom Info Template Properties"
+msgstr ""
+
+#. module: base_custom_info
+#: view:custom.info.property:base_custom_info.base_custom_info_template_line_tree
+#: view:custom.info.template:base_custom_info.base_custom_info_template_tree
+msgid "Custom Info Templates"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info,custom_info_template_id:0
+msgid "Custom Information Template"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info,custom_info_ids:0
+msgid "Custom Properties"
+msgstr ""
+
+#. module: base_custom_info
+#: view:custom.info.value:base_custom_info.base_custom_info_value_tree
+msgid "Custom Property Values"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_property
+msgid "Custom information property"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_template
+msgid "Custom information template"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_value
+msgid "Custom information value"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info,display_name:0
+#: field:custom.info.model_link,display_name:0
+#: field:custom.info.property,display_name:0
+#: field:custom.info.template,display_name:0
+#: field:custom.info.value,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info,id:0 field:custom.info.model_link,id:0
+#: field:custom.info.property,id:0 field:custom.info.template,id:0
+#: field:custom.info.value,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_custom_info
+#: view:custom.info.template:base_custom_info.base_custom_info_template_form
+msgid "Info Lines"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info
+msgid "Inheritable abstract model to add custom info in any model"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info,__last_update:0
+#: field:custom.info.model_link,__last_update:0
+#: field:custom.info.property,__last_update:0
+#: field:custom.info.template,__last_update:0
+#: field:custom.info.value,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.property,write_uid:0
+#: field:custom.info.template,write_uid:0 field:custom.info.value,write_uid:0
+msgid "Last Updated by"
+msgstr "Modifié par"
+
+#. module: base_custom_info
+#: field:custom.info.property,write_date:0
+#: field:custom.info.template,write_date:0
+#: field:custom.info.value,write_date:0
+msgid "Last Updated on"
+msgstr "Modifié le"
+
+#. module: base_custom_info
+#: field:custom.info.model_link,model:0
+#: field:custom.info.model_link,model_id:0 field:custom.info.template,model:0
+#: field:custom.info.template,model_id:0 field:custom.info.value,model:0
+#: field:custom.info.value,model_id:0
+msgid "Model"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.property,name:0 field:custom.info.template,name:0
+#: field:custom.info.value,name:0
+msgid "Name"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.template,info_ids:0
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_template_line_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template_line
+msgid "Properties"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.value,property_id:0
+msgid "Property"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.property,info_value_ids:0
+msgid "Property Values"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.value,res_id:0
+msgid "Resource ID"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.property,template_id:0
+msgid "Template"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_template_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template
+msgid "Templates"
+msgstr ""
+
+#. module: base_custom_info
+#: field:custom.info.value,value:0
+msgid "Value"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
+#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
+msgid "Values"
+msgstr ""

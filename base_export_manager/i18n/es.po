@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-27 23:58+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-18 10:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -40,16 +40,22 @@ msgid "Export Profiles"
 msgstr "Perfiles de exportación"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:140
+#: code:addons/base_export_manager/models/ir_exports_line.py:164
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "El campo '%s' ya existe"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#: code:addons/base_export_manager/models/ir_exports_line.py:158
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "El campo '%s' no existe"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:192
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr ""
 
 #. module: base_export_manager
 #: field:ir.exports.line,field1_id:0
@@ -59,6 +65,22 @@ msgstr "Primer campo"
 #. module: base_export_manager
 #: field:ir.exports.line,model1_id:0
 msgid "First model"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,field4_id:0
+msgid "Fourth field"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,model4_id:0
+msgid "Fourth model"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
 msgstr ""
 
 #. module: base_export_manager

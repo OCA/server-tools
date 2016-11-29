@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:47+0000\n"
-"PO-Revision-Date: 2016-10-05 06:30+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-29 09:30+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/hr_HR/)\n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 msgid "Logs"
-msgstr ""
+msgstr "Logovi"
 
 #. module: auditlog
 #: field:auditlog.log,method:0

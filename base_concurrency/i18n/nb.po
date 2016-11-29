@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_concurrency
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-11 09:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_concurrency
+#: field:res.users.login,create_uid:0
+msgid "Created by"
+msgstr "Opprettet av"
+
+#. module: base_concurrency
+#: field:res.users.login,create_date:0
+msgid "Created on"
+msgstr "Opprettet den"
+
+#. module: base_concurrency
+#: field:res.users.login,display_name:0
+msgid "Display Name"
+msgstr "Visnings navn"
+
+#. module: base_concurrency
+#: field:res.users.login,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_concurrency
+#: field:res.users.login,__last_update:0
+msgid "Last Modified on"
+msgstr "Sist oppdatert "
+
+#. module: base_concurrency
+#: field:res.users.login,write_uid:0
+msgid "Last Updated by"
+msgstr "Sist oppdatert av"
+
+#. module: base_concurrency
+#: field:res.users.login,write_date:0
+msgid "Last Updated on"
+msgstr "Sist oppdatert"
+
+#. module: base_concurrency
+#: field:res.users.login,login_dt:0
+msgid "Latest connection"
+msgstr ""
+
+#. module: base_concurrency
+#: sql_constraint:res.users.login:0
+msgid "The user can only have one login line!"
+msgstr ""
+
+#. module: base_concurrency
+#: field:res.users.login,user_id:0
+msgid "User"
+msgstr ""
+
+#. module: base_concurrency
+#: model:ir.model,name:base_concurrency.model_res_users
+msgid "Users"
+msgstr ""

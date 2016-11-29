@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-server-tools-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgstr "ID"
 #: field:cleanup.purge.wizard.module,__last_update:0
 #: field:cleanup.purge.wizard.table,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_uid:0

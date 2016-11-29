@@ -3,8 +3,9 @@
 # * base_export_manager
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-27 23:58+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-22 12:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,16 +43,22 @@ msgid "Export Profiles"
 msgstr "Dışa Aktarma Profilleri"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:140
+#: code:addons/base_export_manager/models/ir_exports_line.py:164
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "'%s' alanı zaten var"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#: code:addons/base_export_manager/models/ir_exports_line.py:158
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "'%s' alanı yok"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:192
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr ""
 
 #. module: base_export_manager
 #: field:ir.exports.line,field1_id:0
@@ -61,6 +68,22 @@ msgstr ""
 #. module: base_export_manager
 #: field:ir.exports.line,model1_id:0
 msgid "First model"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,field4_id:0
+msgid "Fourth field"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,model4_id:0
+msgid "Fourth model"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
 msgstr ""
 
 #. module: base_export_manager

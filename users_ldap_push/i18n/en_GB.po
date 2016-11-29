@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_push
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-03-07 17:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/en_GB/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: users_ldap_push
+#: model:ir.model,name:users_ldap_push.model_change_password_user
+msgid "Change Password Wizard User"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap,create_ldap_entry:0
+msgid "Create ldap entry"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap,create_ldap_entry_base:0
+msgid "Create ldap entry in subtree"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,use_for_dn:0
+msgid "DN"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: users_ldap_push
+#: code:addons/users_ldap_push/models/res_users.py:116
+#: code:addons/users_ldap_push/models/res_users.py:169
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap,create_ldap_entry_field_mappings:0
+msgid "Field mappings"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: users_ldap_push
+#: field:res.users,ldap_entry_dn:0
+msgid "LDAP DN"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,attribute:0
+msgid "LDAP attribute"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,ldap_id:0
+msgid "LDAP configuration"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.users,is_ldap_user:0
+msgid "LDAP user"
+msgstr ""
+
+#. module: users_ldap_push
+#: view:res.users:users_ldap_push.view_users_search
+msgid "LDAP users"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: users_ldap_push
+#: help:res.company.ldap,create_ldap_entry_base:0
+msgid "Leave empty to use your LDAP base"
+msgstr ""
+
+#. module: users_ldap_push
+#: model:ir.model,name:users_ldap_push.model_res_company_ldap_field_mapping
+msgid "Mapping from Odoo fields to ldap attributes"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap,create_ldap_entry_objectclass:0
+msgid "Object class"
+msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,field_id:0
+msgid "Odoo field"
+msgstr ""
+
+#. module: users_ldap_push
+#: model:ir.model,name:users_ldap_push.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: users_ldap_push
+#: help:res.company.ldap,create_ldap_entry_objectclass:0
+msgid "Separate object classes by comma if you need more than one"
+msgstr ""
+
+#. module: users_ldap_push
+#: model:ir.model,name:users_ldap_push.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: users_ldap_push
+#: code:addons/users_ldap_push/models/res_company_ldap.py:64
+#, python-format
+msgid "You need to set exactly one mapping as DN"
+msgstr ""

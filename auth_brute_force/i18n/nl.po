@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
@@ -66,13 +66,13 @@ msgstr ""
 #: field:res.authentication.attempt,create_uid:0
 #: field:res.banned.remote,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,create_date:0
 #: field:res.banned.remote,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
@@ -96,7 +96,7 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,__last_update:0
@@ -108,13 +108,13 @@ msgstr "Laatst bijgewerkt op"
 #: field:res.authentication.attempt,write_uid:0
 #: field:res.banned.remote,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_date:0
 #: field:res.banned.remote,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0

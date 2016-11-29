@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-03-07 17:50+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,11 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
 msgid "Attempt Date"
+msgstr ""
+
+#. module: auth_brute_force
+#: field:res.banned.remote,attempt_ids:0
+msgid "Attempts"
 msgstr ""
 
 #. module: auth_brute_force
@@ -72,7 +77,13 @@ msgstr "创建时间"
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
 msgid "Description"
-msgstr ""
+msgstr "说明"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,display_name:0
+#: field:res.banned.remote,display_name:0
+msgid "Display Name"
+msgstr "显示名称"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
@@ -86,6 +97,12 @@ msgstr ""
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,__last_update:0
+#: field:res.banned.remote,__last_update:0
+msgid "Last Modified on"
+msgstr "最后修改时间"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0

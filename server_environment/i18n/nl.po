@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: server_environment
 #: field:server.config,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: server_environment
 #: field:server.config,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: server_environment
 #: field:server.config,display_name:0
@@ -35,7 +35,7 @@ msgstr "Te tonen naam"
 #. module: server_environment
 #: field:server.config,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: server_environment
 #: field:server.config,__last_update:0
@@ -45,12 +45,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: server_environment
 #: field:server.config,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: server_environment
 #: field:server.config,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 02:42+0000\n"
-"PO-Revision-Date: 2016-08-11 02:42+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-28 21:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Erstellt am"
 #. module: base_search_fuzzy
 #: field:trgm.index,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,field_id:0
@@ -78,7 +78,7 @@ msgstr "Index Typ"
 #. module: base_search_fuzzy
 #: field:trgm.index,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,write_uid:0

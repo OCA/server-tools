@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Arabic (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ar/)\n"
@@ -65,7 +65,7 @@ msgstr "إلغاء"
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "الفئة"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0
@@ -110,13 +110,13 @@ msgstr ""
 #: field:module_prototyper,create_uid:0
 #: field:module_prototyper.module.export,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "أنشئ بواسطة"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_date:0
 #: field:module_prototyper.module.export,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "أنشئ في"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -143,13 +143,13 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 #. module: module_prototyper
 #: field:module_prototyper,display_name:0
 #: field:module_prototyper.module.export,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "اسم العرض"
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
@@ -324,7 +324,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,id:0 field:module_prototyper.module.export,id:0
 msgid "ID"
-msgstr ""
+msgstr "المعرف"
 
 #. module: module_prototyper
 #: field:module_prototyper,icon_image:0
@@ -350,19 +350,19 @@ msgstr ""
 #: field:module_prototyper,__last_update:0
 #: field:module_prototyper.module.export,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "آخر تعديل في"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "آخر تحديث بواسطة"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_date:0
 #: field:module_prototyper.module.export,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "آخر تحديث في"
 
 #. module: module_prototyper
 #: field:module_prototyper,license:0
@@ -459,7 +459,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "الأمن"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
@@ -524,13 +524,13 @@ msgstr ""
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 #: field:module_prototyper,view_ids:0
 msgid "Views"
-msgstr ""
+msgstr "طرق العرض"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "الموقع"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -594,4 +594,4 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "أو"

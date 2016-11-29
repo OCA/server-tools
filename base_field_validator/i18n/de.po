@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 02:42+0000\n"
-"PO-Revision-Date: 2016-08-11 02:42+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2016\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-28 21:28+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,10 +39,10 @@ msgstr "Beschreibung"
 #: field:ir.model.fields.regex,display_name:0
 #: field:ir.model.validator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: base_field_validator
-#: code:addons/base_field_validator/models/ir_model.py:29
+#: code:addons/base_field_validator/models/ir_model.py:27
 #, python-format
 msgid "Expression %s not valid for %s"
 msgstr ""
@@ -62,7 +61,7 @@ msgstr "ID"
 #: field:ir.model.fields.regex,__last_update:0
 #: field:ir.model.validator.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,write_uid:0

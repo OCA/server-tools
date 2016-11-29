@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-28 21:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -29,12 +29,12 @@ msgstr ""
 #. module: base_search_fuzzy
 #: field:trgm.index,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,display_name:0
@@ -59,7 +59,7 @@ msgstr ""
 #. module: base_search_fuzzy
 #: field:trgm.index,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,index_name:0
@@ -79,12 +79,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_search_fuzzy
 #: field:trgm.index,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_search_fuzzy
 #: field:trgm.index,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_search_fuzzy
 #: model:ir.model,name:base_search_fuzzy.model_ir_model

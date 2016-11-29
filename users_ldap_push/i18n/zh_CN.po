@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-03-07 17:54+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,6 +48,11 @@ msgid "DN"
 msgstr ""
 
 #. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,display_name:0
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_users.py:116
 #: code:addons/users_ldap_push/models/res_users.py:169
 #, python-format
@@ -80,9 +85,19 @@ msgid "LDAP configuration"
 msgstr ""
 
 #. module: users_ldap_push
+#: field:res.users,is_ldap_user:0
+msgid "LDAP user"
+msgstr ""
+
+#. module: users_ldap_push
 #: view:res.users:users_ldap_push.view_users_search
 msgid "LDAP users"
 msgstr ""
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,__last_update:0
+msgid "Last Modified on"
+msgstr "最后修改时间"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,write_uid:0

@@ -4,12 +4,20 @@
 # 
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 20:59+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-24 09:24+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +27,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:88
+#: code:addons/auth_admin_passkey/models/res_users.py:69
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr "<pre>Usuário com login '%s' tem a mesma senha que você.</pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:44
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -44,7 +52,7 @@ msgid "Passkey"
 msgstr "Passkey"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:61
+#: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid "Passkey used"
 msgstr "Passkey usada"
@@ -79,7 +87,7 @@ msgid ""
 msgstr "Quando o administrador usa sua senha para dar login com uma conta diferente, OPENERP irá enviar um email para a conta do administrador."
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:86
+#: code:addons/auth_admin_passkey/models/res_users.py:67
 #, python-format
 msgid "[WARNING] OpenERP Security Risk"
 msgstr "[AVISO] OpenERP Risco de Segurança"

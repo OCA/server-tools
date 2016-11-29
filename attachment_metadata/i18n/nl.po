@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
@@ -57,12 +57,12 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -145,7 +145,7 @@ msgstr "Groepeer op"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,internal_hash:0
@@ -160,12 +160,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,attachment_id:0

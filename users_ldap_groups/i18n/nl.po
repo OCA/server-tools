@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap,group_mappings:0
@@ -47,7 +47,7 @@ msgstr ""
 #: field:res.company.ldap.group_mapping,id:0
 #: field:res.company.ldap.operator,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap,only_ldap_groups:0
@@ -76,12 +76,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: users_ldap_groups
 #: view:res.company:users_ldap_groups.company_form_view

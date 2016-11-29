@@ -3,12 +3,19 @@
 # * auth_admin_passkey
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:53+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-22 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +25,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:88
+#: code:addons/auth_admin_passkey/models/res_users.py:69
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr "<pre>L'utilisateur dont l'identifiant est '%s' a le même mot de passe que vous.</pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:44
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -43,7 +50,7 @@ msgid "Passkey"
 msgstr "Mot de passe \"bris de glace\""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:61
+#: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid "Passkey used"
 msgstr "Mot de passe \"bris de glace\" utilisé"
@@ -78,7 +85,7 @@ msgid ""
 msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP enverra un mail à l'utilisateur."
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:86
+#: code:addons/auth_admin_passkey/models/res_users.py:67
 #, python-format
 msgid "[WARNING] OpenERP Security Risk"
 msgstr "[WARNING] Faille de sécurité sur OpenERP"
