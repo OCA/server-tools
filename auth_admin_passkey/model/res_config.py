@@ -20,8 +20,8 @@
 #
 ##############################################################################
 
-from openerp.osv import fields
-from openerp.osv.orm import TransientModel
+from openerp import fields
+from openerp.models.orm import TransientModel
 from openerp.tools.safe_eval import safe_eval
 
 

@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import fields
 
 from openerp.addons.server_environment import serv_config
 
 
-class IrMail(orm.Model):
+class IrMail(models.Model):
     _inherit = "ir.mail_server"
 
     def _get_smtp_conf(self, cr, uid, ids, name, args, context=None):
@@ -102,7 +102,7 @@ class IrMail(orm.Model):
     }
 
 
-class FetchmailServer(orm.Model):
+class FetchmailServer(models.Model):
     """Incoming POP/IMAP mail server account"""
     _inherit = 'fetchmail.server'
 

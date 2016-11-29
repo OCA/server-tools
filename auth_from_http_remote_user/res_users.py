@@ -20,13 +20,13 @@
 ##############################################################################
 
 from openerp.modules.registry import RegistryManager
-from openerp.osv import orm, fields
+from openerp import fields
 from openerp import SUPERUSER_ID
 import openerp.exceptions
 from openerp.addons.auth_from_http_remote_user import utils
 
 
-class res_users(orm.Model):
+class res_users(models.Model):
     _inherit = 'res.users'
 
     _columns = {

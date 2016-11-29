@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.models.orm import Model
+from openerp import fields
 from openerp.addons.email_template.email_template import mako_template_env
 
 

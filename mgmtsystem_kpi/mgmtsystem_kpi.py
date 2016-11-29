@@ -20,7 +20,7 @@
 ##############################################################################
 
 from datetime import datetime, timedelta
-from openerp.osv import fields, orm
+from openerp import fields
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools import (
@@ -60,7 +60,7 @@ def is_select_query(query):
     return not RE_SELECT_QUERY.match(query.upper())
 
 
-class mgmtsystem_kpi_category(orm.Model):
+class mgmtsystem_kpi_category(models.Model):
     """
     KPI Category
     """
@@ -72,7 +72,7 @@ class mgmtsystem_kpi_category(orm.Model):
     }
 
 
-class mgmtsystem_kpi_threshold_range(orm.Model):
+class mgmtsystem_kpi_threshold_range(models.Model):
     """
     KPI Threshold Range
     """
@@ -225,7 +225,7 @@ class mgmtsystem_kpi_threshold_range(orm.Model):
     }
 
 
-class mgmtsystem_kpi_threshold(orm.Model):
+class mgmtsystem_kpi_threshold(models.Model):
     """
     KPI Threshold
     """
@@ -306,7 +306,7 @@ class mgmtsystem_kpi_threshold(orm.Model):
                 if (range_obj1.valid and range_obj2.valid
                         and range_obj1.min_value < range_obj2.min_value):
                     if range_obj1.max_value > range_obj2.min_value:
-                        raise orm.except_orm(
+                        raise models.except_orm(
                             _("2 of your ranges are overlapping!"),
                             _("Please make sure your ranges do not overlap!")
                         )
@@ -329,7 +329,7 @@ class mgmtsystem_kpi_threshold(orm.Model):
         return color
 
 
-class mgmtsystem_kpi_history(orm.Model):
+class mgmtsystem_kpi_history(models.Model):
     """
     History of the KPI
     """
@@ -361,7 +361,7 @@ class mgmtsystem_kpi_history(orm.Model):
     _order = "date desc"
 
 
-class mgmtsystem_kpi(orm.Model):
+class mgmtsystem_kpi(models.Model):
     """
     Key Performance Indicators
     """

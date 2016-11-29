@@ -11,7 +11,7 @@ except ImportError:  # pragma: no cover
     psutil = None
 import urllib2
 from openerp import api, models
-from openerp.tools.config import config
+from odoo.tools.config import config
 
 SEND_TIMEOUT = 60
 
