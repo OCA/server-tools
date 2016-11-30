@@ -25,6 +25,7 @@ import psycopg2
 from odoo import models, fields, api,  _
 from odoo.exceptions import Warning as UserError
 import odoo.tools as tools
+
 _logger = logging.getLogger(__name__)
 
 CONNECTORS = []
@@ -63,13 +64,23 @@ except:
     _logger.info('Oracle libraries not available. Please install "cx_Oracle"\
                  python package.')
 
+try:
+    import fdb
+    CONNECTORS.append(('fdb', 'Firebird'))
+except:
+    _logger.info('Firebird libraries not available. Please install "fdb"\
+                 python package.')
+
 CONNECTORS.append(('postgresql', 'PostgreSQL'))
 
 
 class BaseExternalDbsource(models.Model):
+
     _name = "base.external.dbsource"
     _description = 'External Database Sources'
+
     name = fields.Char('Datasource name', required=True, size=64)
+
     conn_string = fields.Text('Connection string', help="""
     Sample connection strings:
     - Microsoft SQL Server:
@@ -77,12 +88,16 @@ class BaseExternalDbsource(models.Model):
     - MySQL: mysql://user:%s@server:port/dbname
     - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa
     - ORACLE: username/%s@//server.address:port/instance
+    - FireBird: host=localhost;database=mydatabase.gdb;user=sysdba;password=%s;
+    port=3050;charset=utf8
     - PostgreSQL:
         dbname='template1' user='dbuser' host='localhost' port='5432' \
         password=%s
     - SQLite: sqlite:///test.db
     """)
+
     password = fields.Char('Password', size=40)
+
     connector = fields.Selection(CONNECTORS, 'Connector', required=True,
                                  help="If a connector is missing from the\
                                       list, check the server log to confirm\
@@ -95,13 +110,13 @@ class BaseExternalDbsource(models.Model):
 
         self.ensure_one()
         # Get dbsource record
-        # data = self.browse(cr, uid, id1)
         # Build the full connection string
         connStr = self.conn_string
         if self.password:
             if '%s' not in self.conn_string:
                 connStr += ';PWD=%s'
             connStr = connStr % self.password
+
         # Try to connect
         if self.connector == 'cx_Oracle':
             os.environ['NLS_LANG'] = 'AMERICAN_AMERICA.UTF8'
@@ -110,6 +125,9 @@ class BaseExternalDbsource(models.Model):
             conn = pyodbc.connect(connStr)
         elif self.connector in ('sqlite', 'mysql', 'mssql'):
             conn = sqlalchemy.create_engine(connStr).connect()
+        elif self.connector == 'fdb':
+            kwargs = dict([x.split('=') for x in connStr.split(';')])
+            conn = fdb.connect(**kwargs)
         elif self.connector == 'postgresql':
             conn = psycopg2.connect(connStr)
 
@@ -134,7 +152,7 @@ class BaseExternalDbsource(models.Model):
                 { 'cols': [ 'col_a', 'col_b', ...]
                 , 'rows': [ (a0, b0, ...), (a1, b1, ...), ...] }
         """
-        # data = self.browse(cr, uid, ids)
+
         rows, cols = list(), list()
         for obj in self:
             conn = obj.conn_open()
@@ -144,6 +162,16 @@ class BaseExternalDbsource(models.Model):
                 if metadata:
                     cols = cur.keys()
                 rows = [r for r in cur]
+
+            elif obj.connector in ["fdb"]:
+                # using other db connectors
+                cur = conn.cursor()
+                for key in sqlparams:
+                    sqlquery = sqlquery.replace('%%(%s)s' % key,
+                                                str(sqlparams[key]))
+
+                cur.execute(sqlquery)
+                rows = cur.fetchall()
             else:
                 # using other db connectors
                 cur = conn.cursor()
@@ -160,21 +188,17 @@ class BaseExternalDbsource(models.Model):
     @api.multi
     def connection_test(self):
         """Test of connection."""
+        self.ensure_one()
+        conn = False
+        try:
+            conn = self.conn_open()
+        except Exception as e:
+            raise UserError(_("Connection test failed: \
+                    Here is what we got instead:\n %s") % tools.ustr(e))
+        finally:
+            if conn:
+                conn.close()
 
-        for obj in self:
-            conn = False
-            try:
-                conn = self.conn_open()
-            except Exception as e:
-                raise UserError(_("Connection test failed: \
-                        Here is what we got instead:\n %s") % tools.ustr(e))
-            finally:
-                try:
-                    if conn:
-                        conn.close()
-                except Exception:
-                    # ignored, just a consequence of the previous exception
-                    pass
         # TODO: if OK a (wizard) message box should be displayed
         raise UserError(_("Connection test succeeded: \
                           Everything seems properly set up!"))
