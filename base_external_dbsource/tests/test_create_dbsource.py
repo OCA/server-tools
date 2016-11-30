@@ -63,4 +63,4 @@ class TestCreateDbsource(common.TransactionCase):
             dbsource.connection_test()
         except Exception as e:
             logging.warning("Log = " + str(e))
-            self.assertTrue(u'Connection test failed' in str(e))
+            self.assertTrue(u'Wrong value for' in str(e))
