@@ -56,3 +56,11 @@ class TestCreateDbsource(common.TransactionCase):
         except ValueError as e:
             logging.warning("Log = " + str(e))
             self.assertTrue(u'Wrong value for' in str(e))
+
+        # Connection to firebird
+        try:
+            dbsource.connector = "fdb"
+            dbsource.connection_test()
+        except Exception as e:
+            logging.warning("Log = " + str(e))
+            self.assertTrue(u'Wrong value for' in str(e))
