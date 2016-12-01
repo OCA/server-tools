@@ -17,6 +17,6 @@ class FetchmailInbox(models.Model):
         ])
         return [
             (this.id, mails.filtered(
-                lambda x: x.res_id == this.id).subject or _('Fetchmail inbox'))
+                lambda x: x.res_id == this.id)[:1].subject or _('Fetchmail inbox'))
             for this in self
         ]
