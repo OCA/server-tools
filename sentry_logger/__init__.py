@@ -56,7 +56,7 @@ try:
         root_logger.addHandler(handler)
     else:
         msg = u"Sentry DSN not defined in config file"
-        if os.environ.get('OCA_CI'):
+        if os.environ.get('OCA_RUNBOT'):
             # don't fail the build on runbot for this
             root_logger.info(msg)
         else:
