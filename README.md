@@ -17,7 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[base_external_dbsource](base_external_dbsource/) | 10.0.1.0.0 | External Database Sources
+[base_external_dbsource](base_external_dbsource/) | 10.0.1.0.1 | External Database Sources
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
