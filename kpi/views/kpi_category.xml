@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2012 - Now  Savoir-faire Linux <https://www.savoirfairelinux.com/>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <data>
+
+
+            <!-- Categories -->
+
+        <record id="view_kpi_category_tree" model="ir.ui.view">
+            <field name="name">kpi.category.tree</field>
+            <field name="model">kpi.category</field>
+            <field name="arch" type="xml">
+                <tree string="Categories">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kpi_category_form" model="ir.ui.view">
+            <field name="name">kpi.category.form</field>
+            <field name="model">kpi.category</field>
+            <field name="arch" type="xml">
+                <form string="Category">
+                    <group col="2" colspan="2">
+                        <field name="name" colspan="2"/>
+                        <newline/>
+                        <field name="description" colspan="2"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_category_list">
+            <field name="name">Categories</field>
+            <field name="res_model">kpi.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_kpi_category_tree"/>
+        </record>
+
+
+    </data>
+</odoo>
