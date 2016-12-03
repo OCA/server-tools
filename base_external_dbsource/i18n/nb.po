@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2016-11-30 14:52+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nb/)\n"
@@ -88,7 +88,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Ekstern databasekilde"
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_tree

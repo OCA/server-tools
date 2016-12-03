@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"POT-Creation-Date: 2016-11-30 14:53+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: field:res.company.ldap.group_mapping,display_name:0
 #: field:res.company.ldap.operator,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,group_mappings:0
@@ -71,7 +71,7 @@ msgstr ""
 #: field:res.company.ldap.group_mapping,__last_update:0
 #: field:res.company.ldap.operator,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_uid:0

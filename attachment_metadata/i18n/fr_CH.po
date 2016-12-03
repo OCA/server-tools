@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2016-11-30 14:52+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
@@ -82,7 +82,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,external_hash:0
@@ -155,7 +155,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_uid:0

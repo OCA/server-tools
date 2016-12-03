@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * language_path_mixin
+# * base_ir_filters_active
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 14:53+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
+"POT-Creation-Date: 2016-11-30 14:52+0000\n"
+"PO-Revision-Date: 2016-03-31 06:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Language: fr_CH\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: language_path_mixin
-#: field:language.path.mixin,display_name:0
-msgid "Display Name"
-msgstr "Nom affiché"
+#. module: base_ir_filters_active
+#: field:ir.filters,active:0
+msgid "Active"
+msgstr "Actif"
 
-#. module: language_path_mixin
-#: field:language.path.mixin,id:0
-msgid "ID"
-msgstr "ID"
+#. module: base_ir_filters_active
+#: model:ir.model,name:base_ir_filters_active.model_ir_filters
+msgid "Filters"
+msgstr ""
 
-#. module: language_path_mixin
-#: field:language.path.mixin,__last_update:0
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#. module: base_ir_filters_active
+#: view:ir.filters:base_ir_filters_active.ir_filters_view_search
+msgid "Show inactive"
+msgstr ""

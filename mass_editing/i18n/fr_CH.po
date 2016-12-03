@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"POT-Creation-Date: 2016-11-30 14:53+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
@@ -46,7 +46,7 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
@@ -70,7 +70,7 @@ msgstr "ID"
 #. module: mass_editing
 #: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0

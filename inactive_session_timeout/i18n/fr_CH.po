@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * language_path_mixin
+# * inactive_session_timeout
 # 
 # Translators:
 msgid ""
@@ -17,17 +17,7 @@ msgstr ""
 "Language: fr_CH\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: language_path_mixin
-#: field:language.path.mixin,display_name:0
-msgid "Display Name"
-msgstr "Nom affiché"
-
-#. module: language_path_mixin
-#: field:language.path.mixin,id:0
-msgid "ID"
-msgstr "ID"
-
-#. module: language_path_mixin
-#: field:language.path.mixin,__last_update:0
-msgid "Last Modified on"
-msgstr "Dernière modification le"
+#. module: inactive_session_timeout
+#: model:ir.model,name:inactive_session_timeout.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2016-11-30 14:52+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.banned.remote,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
@@ -83,7 +83,7 @@ msgstr ""
 #: field:res.authentication.attempt,display_name:0
 #: field:res.banned.remote,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
@@ -102,7 +102,7 @@ msgstr "ID"
 #: field:res.authentication.attempt,__last_update:0
 #: field:res.banned.remote,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0
