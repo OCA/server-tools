@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"POT-Creation-Date: 2016-12-03 04:11+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/lt/)\n"
@@ -214,8 +214,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1794
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1791
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1798
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1795
 msgid "Type"
 msgstr "Tipas"
 
