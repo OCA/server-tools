@@ -41,6 +41,7 @@ addon | version | summary
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
+[kpi](kpi/) | 9.0.1.0.0 | Key Performance Indicator
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 9.0.1.0.0 | Mark as read or delete mails after a set time
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
@@ -70,7 +71,6 @@ addon | version | summary
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
-[mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
