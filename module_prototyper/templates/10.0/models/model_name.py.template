@@ -1,8 +1,8 @@
 {% extends "header.template" %}
 {% block body %}
 
-from openerp import models, fields
-from openerp.tools.translate import _
+from odoo import models, fields
+from odoo.tools.translate import _
 
 
 class {{ unprefix(name) }}(models.Model):

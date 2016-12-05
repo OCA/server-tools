@@ -17,7 +17,7 @@
     'description': """
 {{ prototype.description }}
 
-* Module exported by the Module Prototyper module for version 8.0.
+* Module exported by the Module Prototyper module for version 10.0.
 * If you have any questions, please contact Savoir-faire Linux
 (support@savoirfairelinux.com)
 """,

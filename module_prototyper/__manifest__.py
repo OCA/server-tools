@@ -34,6 +34,7 @@
         'python': [],
     },
     'data': [
+        'data/module_prototyper_api_version_data.xml',
         'wizard/module_prototyper_module_export_view.xml',
         'views/module_prototyper_view.xml',
         'views/ir_model_fields_view.xml',

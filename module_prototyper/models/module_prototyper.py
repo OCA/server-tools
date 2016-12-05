@@ -31,8 +31,8 @@ from datetime import date
 
 from jinja2 import Environment, FileSystemLoader
 
-from openerp import models, api, fields
-from openerp.tools.safe_eval import safe_eval
+from odoo import models, api, fields
+from odoo.tools.safe_eval import safe_eval
 
 from . import licenses
 
@@ -108,8 +108,8 @@ class ModulePrototyper(models.Model):
     )
     version = fields.Char(
         'Version',
-        size=9,
-        default='8.0.1.0.0',
+        size=10,
+        default='10.0.1.0.0',
         help=('Enter the version of your module with 5 digits')
     )
     auto_install = fields.Boolean(
@@ -221,7 +221,7 @@ class ModulePrototyper(models.Model):
                 lstrip_blocks=True,
                 trim_blocks=True,
                 loader=FileSystemLoader(
-                    os.path.join(self.template_path, api_version)
+                    os.path.join(self.template_path, api_version.name)
                 )
             )
         return self._env
@@ -247,7 +247,7 @@ class ModulePrototyper(models.Model):
             self._field_descriptions[field] = field_description
 
     @api.model
-    def generate_files(self):
+    def generate_files(self, api_version):
         """ Generates the files from the details of the prototype.
         :return: tuple
         """
@@ -267,7 +267,9 @@ class ModulePrototyper(models.Model):
         file_details.extend(self.generate_data_files())
         # must be the last as the other generations might add information
         # to put in the __openerp__: additional dependencies, views files, etc.
-        file_details.append(self.generate_module_openerp_file_details())
+        file_details.append(
+            self.generate_module_openerp_file_details(api_version)
+        )
         if self.icon_image:
             file_details.append(self.save_icon())
 
@@ -291,11 +293,12 @@ class ModulePrototyper(models.Model):
         )
 
     @api.model
-    def generate_module_openerp_file_details(self):
+    def generate_module_openerp_file_details(self, api_version):
         """Wrapper to generate the __openerp__.py file of the module."""
+        fn_inc_ext = '{}.py'.format(api_version.manifest_file_name)
         return self.generate_file_details(
-            '__openerp__.py',
-            '__openerp__.py.template',
+            fn_inc_ext ,
+            '{}.template'.format(fn_inc_ext),
             prototype=self,
             data_files=self._data_files,
             demo_fiels=self._demo_files,

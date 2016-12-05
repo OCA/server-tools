@@ -21,5 +21,6 @@
 ##############################################################################
 from . import (
     module_prototyper,
+    module_prototyper_api_version,
     ir_model_fields
 )

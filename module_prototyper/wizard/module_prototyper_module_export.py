@@ -32,14 +32,15 @@ from openerp import fields, models, api
 class PrototypeModuleExport(models.TransientModel):
     _name = "module_prototyper.module.export"
 
+    def _default_api_version(self):
+        return self.env.ref('module_prototyper.api_version_100').id
+
     name = fields.Char('File Name', readonly=True)
-    api_version = fields.Selection(
-        [
-            ('8.0', '8.0'),
-        ],
-        'API version',
+    api_version = fields.Many2one(
+        comodel_name='module_prototyper.api_version',
+        string='API version',
         required=True,
-        default='8.0'
+        default=_default_api_version
     )
     data = fields.Binary('File', readonly=True)
     state = fields.Selection(
@@ -118,7 +119,9 @@ class PrototypeModuleExport(models.TransientModel):
                 # to generate the file templates according to it.  zip_files,
                 # in another hand, put all the template files into a package
                 # ready to be saved by the user.
-                file_details = prototype.generate_files()
+                file_details = prototype.generate_files(
+                    wizard.api_version
+                )
                 for filename, file_content in file_details:
                     if isinstance(file_content, unicode):
                         file_content = file_content.encode('utf-8')
