@@ -45,8 +45,6 @@
         {% endfor %}
     ],
 
-    # used for Javascript Web CLient Testing with QUnit / PhantomJS
-    # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client  # noqa
     'js': [],
     'css': [],
     'qweb': [],
