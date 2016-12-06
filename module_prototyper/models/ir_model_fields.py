@@ -40,7 +40,7 @@ class IrModelFields(models.Model):
         help="name of the column referring to 'those' records in the "
              "relation table",
     )
-    limit = fields.Integer('Read limit', help=_("Read limit"))
+    limit = fields.Integer('Read limit', help="Read limit")
     client_context = fields.Char(
         'Context',
         help="Context to use on the client side when handling the field "
