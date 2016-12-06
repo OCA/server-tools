@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*- #
+# -*- coding: utf-8 -*-
 # OpenERP, Open Source Management Solution
 #    This module copyright (C) 2013 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
@@ -28,7 +28,7 @@ except ImportError:
 from jinja2 import Environment
 from jinja2.exceptions import TemplateNotFound
 
-from openerp.tests import common
+from odoo.tests import common
 
 
 class TestModulePrototyper(common.TransactionCase):

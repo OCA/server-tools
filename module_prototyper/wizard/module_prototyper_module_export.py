@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # #############################################################################
 #
 # OpenERP, Open Source Management Solution
@@ -26,7 +26,7 @@ import os
 import zipfile
 from collections import namedtuple
 
-from openerp import fields, models, api
+from odoo import fields, models, api
 
 
 class PrototypeModuleExport(models.TransientModel):

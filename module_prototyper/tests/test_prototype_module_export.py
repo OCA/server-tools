@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # #############################################################################
 #
 # OpenERP, Open Source Management Solution
@@ -19,14 +19,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.tests import common
+from odoo.tests import common
 import zipfile
 import StringIO
 
 
-class test_prototype_module_export(common.TransactionCase):
+class TestPrototypeModuleExport(common.TransactionCase):
     def setUp(self):
-        super(test_prototype_module_export, self).setUp()
+        super(TestPrototypeModuleExport, self).setUp()
         self.main_model = self.env['module_prototyper.module.export']
         self.prototype_model = self.env['module_prototyper']
         self.module_category_model = self.env[
