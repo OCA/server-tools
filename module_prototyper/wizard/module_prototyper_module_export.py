@@ -64,8 +64,8 @@ class PrototypeModuleExport(models.TransientModel):
         active_model = self._context.get('active_model')
 
         # checking if the wizard was called by a prototype.
-        msg = '{} has to be called from a "module_prototyper" , not a "{}"'
-        assert active_model == 'module_prototyper', msg.format(
+        msg = '%s has to be called from a "module_prototyper" , not a "%s"'
+        assert active_model == 'module_prototyper', msg % (
             self, active_model
         )
 
@@ -83,7 +83,7 @@ class PrototypeModuleExport(models.TransientModel):
 
         wizard.write(
             {
-                'name': '{}.zip'.format(zip_name),
+                'name': '%s.zip' % (zip_name,),
                 'state': 'get',
                 'data': base64.encodestring(zip_details.stringIO.getvalue())
             }
@@ -113,15 +113,13 @@ class PrototypeModuleExport(models.TransientModel):
                 # setting the jinja environment.
                 # They will help the program to find the template to render the
                 # files with.
-                prototype.set_jinja_env(wizard.api_version)
+                prototype.setup_env(wizard.api_version)
 
                 # generate_files ask the prototype to investigate the input and
                 # to generate the file templates according to it.  zip_files,
                 # in another hand, put all the template files into a package
                 # ready to be saved by the user.
-                file_details = prototype.generate_files(
-                    wizard.api_version
-                )
+                file_details = prototype.generate_files()
                 for filename, file_content in file_details:
                     if isinstance(file_content, unicode):
                         file_content = file_content.encode('utf-8')

@@ -55,7 +55,7 @@ class ModulePrototyper(models.Model):
         """
         Extract the content of default description
         """
-        filepath = '{}/../data/README.rst'.format(os.path.dirname(__file__))
+        filepath = '%s/../data/README.rst' % (os.path.dirname(__file__),)
         with open(filepath, 'r') as content_file:
             content = content_file.read()
         return content
@@ -203,17 +203,18 @@ class ModulePrototyper(models.Model):
     )
 
     _env = None
+    _api_version = None
     _data_files = ()
     _demo_files = ()
     _field_descriptions = None
     File_details = namedtuple('file_details', ['filename', 'filecontent'])
-    template_path = '{}/../templates/'.format(os.path.dirname(__file__))
+    template_path = '%s/../templates/' % (os.path.dirname(__file__),)
 
     @api.model
-    def set_jinja_env(self, api_version):
+    def setup_env(self, api_version):
         """Set the Jinja2 environment.
         The environment will helps the system to find the templates to render.
-        :param api_version: string, odoo api
+        :param api_version: module_prototyper.api_version, odoo api
         :return: jinja2.Environment instance.
         """
         if self._env is None:
@@ -224,6 +225,7 @@ class ModulePrototyper(models.Model):
                     os.path.join(self.template_path, api_version.name)
                 )
             )
+            self._api_version = api_version
         return self._env
 
     def set_field_descriptions(self):
@@ -247,7 +249,7 @@ class ModulePrototyper(models.Model):
             self._field_descriptions[field] = field_description
 
     @api.model
-    def generate_files(self, api_version):
+    def generate_files(self):
         """ Generates the files from the details of the prototype.
         :return: tuple
         """
@@ -268,7 +270,7 @@ class ModulePrototyper(models.Model):
         # must be the last as the other generations might add information
         # to put in the __openerp__: additional dependencies, views files, etc.
         file_details.append(
-            self.generate_module_openerp_file_details(api_version)
+            self.generate_module_openerp_file_details()
         )
         if self.icon_image:
             file_details.append(self.save_icon())
@@ -293,12 +295,12 @@ class ModulePrototyper(models.Model):
         )
 
     @api.model
-    def generate_module_openerp_file_details(self, api_version):
+    def generate_module_openerp_file_details(self):
         """Wrapper to generate the __openerp__.py file of the module."""
-        fn_inc_ext = '{}.py'.format(api_version.manifest_file_name)
+        fn_inc_ext = '%s.py' % (self._api_version.manifest_file_name,)
         return self.generate_file_details(
-            fn_inc_ext ,
-            '{}.template'.format(fn_inc_ext),
+            fn_inc_ext,
+            '%s.template' % (fn_inc_ext,),
             prototype=self,
             data_files=self._data_files,
             demo_fiels=self._demo_files,
@@ -369,8 +371,8 @@ class ModulePrototyper(models.Model):
 
         views_details = []
         for model, views in relations.iteritems():
-            filepath = 'views/{}_view.xml'.format(
-                self.friendly_name(self.unprefix(model))
+            filepath = 'views/%s_view.xml' % (
+                self.friendly_name(self.unprefix(model)),
             )
             views_details.append(
                 self.generate_file_details(
@@ -397,8 +399,8 @@ class ModulePrototyper(models.Model):
         menus_details = []
         for model_name, menus in relations.iteritems():
             model_name = self.unprefix(model_name)
-            filepath = 'views/{}_menus.xml'.format(
-                self.friendly_name(model_name)
+            filepath = 'views/%s_menus.xml' % (
+                self.friendly_name(model_name),
             )
             menus_details.append(
                 self.generate_file_details(
@@ -421,7 +423,7 @@ class ModulePrototyper(models.Model):
         """
         python_friendly_name = self.friendly_name(self.unprefix(model.model))
         return self.generate_file_details(
-            'models/{}.py'.format(python_friendly_name),
+            'models/%s.py' % (python_friendly_name,),
             'models/model_name.py.template',
             name=python_friendly_name,
             model=model,
@@ -452,7 +454,7 @@ class ModulePrototyper(models.Model):
                 ('demo', demo, self._demo_files)]:
             for model_name, records in model_data.iteritems():
                 fname = self.friendly_name(self.unprefix(model_name))
-                filename = '{0}/{1}.xml'.format(prefix, fname)
+                filename = '%s/%s.xml' % (prefix, fname)
                 self._data_files.append(filename)
 
                 res.append(self.generate_file_details(

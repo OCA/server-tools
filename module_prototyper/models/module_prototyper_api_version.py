@@ -8,9 +8,5 @@ from odoo import models, fields
 class ModulePrototyperApiVersion(models.Model):
     _name = 'module_prototyper.api_version'
 
-    name = fields.Char(
-        string='Name'
-    )
-    manifest_file_name = fields.Char(
-        string='Manifest File Name'
-    )
+    name = fields.Char()
+    manifest_file_name = fields.Char()

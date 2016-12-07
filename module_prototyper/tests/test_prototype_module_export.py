@@ -65,7 +65,7 @@ class TestPrototypeModuleExport(common.TransactionCase):
         ).create({})
         exporter.action_export(exporter.id)
         self.assertEqual(exporter.state, 'get')
-        self.assertEqual(exporter.name, '{}.zip'.format(self.prototype.name))
+        self.assertEqual(exporter.name, '%s.zip' % (self.prototype.name,))
 
     def test_zip_files_returns_tuple(self):
         """Test the method return of the method that generate the zip file."""
