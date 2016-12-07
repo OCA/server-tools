@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data noupdate="1">
+<odoo noupdate="1">
 
     <record model="changeset.field.rule" id="changeset_field_rule_name">
       <field name="field_id" ref="base.field_res_partner_name"/>
@@ -47,5 +46,4 @@
       <field name="action">validate</field>
     </record>
 
-  </data>
-</openerp>
+</odoo>

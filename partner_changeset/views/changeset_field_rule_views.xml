@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data noupdate="0">
+<odoo>
     <record id="view_changeset_field_rule_tree" model="ir.ui.view">
       <field name="name">changeset.field.rule.tree</field>
       <field name="model">changeset.field.rule</field>
@@ -59,5 +58,4 @@
       groups="group_changeset_manager"
       sequence="20"
       action="action_changeset_field_rule_view"/>
-  </data>
-</openerp>
+</odoo>

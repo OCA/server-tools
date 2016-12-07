@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2015 Camptocamp SA
+# © 2015-2016 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests import common
@@ -45,6 +45,10 @@ class TestChangesetOrigin(ChangesetMixin, common.TransactionCase):
         self.assertEqual(change.origin_value_char, 'X')
         self.assertEqual(change.origin_value_display, 'X')
         self.partner.with_context(__no_changeset=True).write({'name': 'A'})
+        # depends cannot trigger all fileds from partner. In real use case,
+        # the user will probably be in different transaction, he will get the
+        # new value of the field
+        self.partner.invalidate_cache()
         self.assertEqual(change.origin_value_char, 'A')
         self.assertEqual(change.origin_value_display, 'A')
         change.apply()
@@ -68,6 +72,10 @@ class TestChangesetOrigin(ChangesetMixin, common.TransactionCase):
         self.assertEqual(change.origin_value_char, 'X')
         self.assertEqual(change.origin_value_display, 'X')
         self.partner.with_context(__no_changeset=True).write({'name': 'A'})
+        # depends cannot trigger all fileds from partner. In real use case,
+        # the user will probably be in different transaction, he will get the
+        # new value of the field
+        self.partner.invalidate_cache()
         self.assertEqual(change.origin_value_char, 'A')
         self.assertEqual(change.origin_value_display, 'A')
         change.cancel()

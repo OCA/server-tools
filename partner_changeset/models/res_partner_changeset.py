@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2015 Camptocamp SA
+# © 2015-2016 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from itertools import groupby
@@ -307,7 +307,7 @@ class ResPartnerChangesetChange(models.Model):
                      _new_value_fields)
 
     @api.one
-    @api.depends('changeset_id.partner_id.*')
+    @api.depends('changeset_id.partner_id')
     def _compute_origin_values(self):
         field_name = self.get_field_for_type(self.field_id, 'origin')
         if self.state == 'draft':

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="0">
+<odoo>
       <menuitem id="menu_changeset"
         name="Partner Changesets"
         groups="group_changeset_user"
-        parent="base.menu_base_config"
+        parent="base.menu_sales_config"
         sequence="20"/>
-    </data>
-</openerp>
+</odoo>
