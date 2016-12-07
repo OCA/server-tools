@@ -49,7 +49,9 @@ class TestModulePrototyper(common.TransactionCase):
             'website': 't_website',
             'dependencies': [(6, 0, [1, 2, 3, 4])],
         })
-        self.api_version = self.ref('module_prototyper.api_version_80')
+        self.api_version = self.env['module_prototyper.api_version'].search([
+            ('id', '=', self.ref('module_prototyper.api_version_80'))
+        ])
 
     def test_generate_files_assert_if_no_env(self):
         with self.assertRaises(AssertionError):
@@ -101,6 +103,10 @@ class TestModulePrototyper(common.TransactionCase):
         self.prototype.setup_env(self.api_version)
         self.assertIsInstance(
             self.prototype._env, Environment
+        )
+        self.assertEqual(
+            self.api_version,
+            self.prototype._api_version
         )
 
     def test_friendly_name_return(self):
