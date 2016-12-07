@@ -8,7 +8,7 @@
     'category': 'Tools',
     'author': "Daniel Reis,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/server-tools',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'images': [
         'images/screenshot01.png',
     ],
