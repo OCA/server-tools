@@ -17,6 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[auto_backup](auto_backup/) | 10.0.1.0.0 | Backups database
 [base_external_dbsource](base_external_dbsource/) | 10.0.1.0.1 | External Database Sources
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
