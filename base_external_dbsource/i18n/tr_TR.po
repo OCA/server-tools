@@ -3,20 +3,20 @@
 # * base_external_dbsource
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2017-02-18 02:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Hebrew (https://www.transifex.com/oca/teams/23907/he/)\n"
+"POT-Creation-Date: 2017-02-22 00:54+0000\n"
+"PO-Revision-Date: 2017-02-22 00:54+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: he\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_conn_string
@@ -93,12 +93,12 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_uid
 msgid "Created by"
-msgstr "נוצר על ידי"
+msgstr "Oluşturan"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_date
 msgid "Created on"
-msgstr "נוצר ב-"
+msgstr "Oluşturulma tarihi"
 
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
@@ -113,7 +113,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
 msgid "Display Name"
-msgstr "השם המוצג"
+msgstr "Görünen ad"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
@@ -139,7 +139,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
 msgid "ID"
-msgstr "מזהה"
+msgstr "Kimlik"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_connector
@@ -151,17 +151,17 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
 msgid "Last Modified on"
-msgstr "תאריך שינוי אחרון"
+msgstr "En son güncelleme tarihi"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid
 msgid "Last Updated by"
-msgstr "עודכן לאחרונה על ידי"
+msgstr "En son güncelleyen "
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_date
 msgid "Last Updated on"
-msgstr "עודכן לאחרונה על"
+msgstr "En son güncelleme tarihi"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
