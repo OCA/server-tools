@@ -4,3 +4,9 @@ acme_tiny
 IPy
 validate_email
 pysftp
+fdb
+sqlalchemy
+pymssql
+MySQL-python
+pyodbc
+fdb

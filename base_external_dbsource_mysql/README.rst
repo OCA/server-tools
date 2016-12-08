@@ -2,17 +2,20 @@
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-=========================
-External Database Sources
-=========================
+================================
+External Database Source - MySQL
+================================
 
-This module allows you to define connections to foreign databases using ODBC,
-Oracle Client or SQLAlchemy.
+This module extends ``base_external_dbsource``, allowing you to connect to
+foreign MySQL databases using SQLAlchemy.
+
+
 
 Installation
 ============
 
-No installation required.
+* Install ``sqlalchemy`` and ``MySQLdb`` python libraries
+* Install ``base_external_dbsource_sqlite`` Odoo module
 
 Configuration
 =============
@@ -24,7 +27,6 @@ Usage
 =====
 
 To use this module:
--------------------
 
 * Go to Settings > Database Structure > Database Sources
 * Click on Create to enter the following information:
@@ -34,10 +36,6 @@ To use this module:
 * Connector: Choose the database to which you want to connect
 * Connection string: Specify how to connect to database
 
-To extend this module:
-----------------------
-
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0 for server-tools
@@ -45,13 +43,8 @@ To extend this module:
 Known issues / Roadmap
 ======================
 
-* Find a way to remove or default the CA certs dir
-* Add concept of multiple connection strings for one source (multiple nodes)
-* Add a ConnectionEnvironment that allows for the reuse of connections
-* Message box should be displayed instead of error in ``connection_test``
-* Remove old api compatibility layers (v11)
-* Implement better CRUD handling
 
+* Add X.509 authentication
 
 Bug Tracker
 ===========
