@@ -4,9 +4,9 @@
 
 from cStringIO import StringIO
 
-from openerp.exceptions import UserError
-from openerp.tests import common
-from openerp.tools import convert
+from odoo.exceptions import UserError
+from odoo.tests import common
+from odoo.tools import convert
 
 
 class TestEnv(common.TransactionCase):
