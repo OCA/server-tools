@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2014 ABF OSIELL <http://osiell.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-    <data>
+<odoo>
 
-        <record id="view_res_users_form_inherit" model="ir.ui.view">
-            <field name="name">res.users.form.inherit</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form"/>
-            <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page string="Roles">
-                        <field name="role_line_ids" nolabel="1">
-                            <tree editable="bottom" colors="grey: not is_enabled;">
-                                <field name="role_id"/>
-                                <field name="date_from"/>
-                                <field name="date_to"/>
-                                <field name="is_enabled"/>
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
-            </field>
-        </record>
-
-        <record id="view_res_users_search_inherit" model="ir.ui.view">
-            <field name="name">res.users.search.inherit</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_search"/>
-            <field name="arch" type="xml">
-                <field name="company_ids" position="after">
-                    <field name="role_ids"/>
+<record id="view_res_users_form_inherit" model="ir.ui.view">
+    <field name="name">res.users.form.inherit</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Roles">
+                <field name="role_line_ids" nolabel="1">
+                    <tree editable="bottom" colors="grey: not is_enabled;">
+                        <field name="role_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="is_enabled"/>
+                    </tree>
                 </field>
-            </field>
-        </record>
+            </page>
+        </notebook>
+    </field>
+</record>
 
-    </data>
-</openerp>
+<record id="view_res_users_search_inherit" model="ir.ui.view">
+    <field name="name">res.users.search.inherit</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_search"/>
+    <field name="arch" type="xml">
+        <field name="company_ids" position="after">
+            <field name="role_ids"/>
+        </field>
+    </field>
+</record>
+
+</odoo>
