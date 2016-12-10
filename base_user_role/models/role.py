@@ -23,6 +23,10 @@ class ResUsersRole(models.Model):
         'res.users.role.line', 'role_id', string=u"Users")
     user_ids = fields.One2many(
         'res.users', string=u"Users", compute='_compute_user_ids')
+    group_category_id = fields.Many2one(
+        related='group_id.category_id',
+        default=lambda cls: cls.env.ref(
+            'base_user_role.ir_module_category_role').id)
 
     @api.multi
     @api.depends('line_ids.user_id')
