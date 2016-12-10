@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"POT-Creation-Date: 2016-12-08 03:45+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es_MX/)\n"
@@ -26,7 +26,7 @@ msgstr ""
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_company_id
