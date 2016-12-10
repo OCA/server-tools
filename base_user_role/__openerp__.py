@@ -15,6 +15,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_module_category.xml',
         'data/ir_cron.xml',
         'views/role.xml',
         'views/user.xml',
