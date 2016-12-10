@@ -8,7 +8,7 @@
     <field name="model">res.users</field>
     <field name="inherit_id" ref="base.view_users_form"/>
     <field name="arch" type="xml">
-        <notebook position="inside">
+        <xpath expr="//notebook/page[1]" position="before">
             <page string="Roles">
                 <field name="role_line_ids" nolabel="1">
                     <tree editable="bottom" colors="grey: not is_enabled;">
@@ -19,7 +19,7 @@
                     </tree>
                 </field>
             </page>
-        </notebook>
+        </xpath>
     </field>
 </record>
 
