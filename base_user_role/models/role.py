@@ -24,6 +24,12 @@ class ResUsersRole(models.Model):
     user_ids = fields.One2many(
         'res.users', string=u"Users", compute='_compute_user_ids')
 
+    _defaults = {   # pylint: disable=attribute-deprecated
+        'category_id': api.model(
+            lambda cls: cls.env.ref(
+                'base_user_role.ir_module_category_role').id),
+    }
+
     @api.multi
     @api.depends('line_ids.user_id')
     def _compute_user_ids(self):
