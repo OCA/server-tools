@@ -44,6 +44,7 @@ addon | version | summary
 [base_suspend_security](base_suspend_security/) | 8.0.1.0.0 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
+[base_user_role](base_user_role/) | 8.0.1.1.0 | User roles
 [cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
 [datetime_formatter](datetime_formatter/) | 8.0.1.0.0 | Helper functions to give correct format to date[time] fields
