@@ -20,7 +20,8 @@ It's far from an ideal password storage setup, but it's way better
 than password in clear text in the database.
 It can be easily replaced with another system. See "Security" chapter below.
 
-Accounts may be: market places (Amazon, Cdisount, ...), carriers (Laposte, UPS, ...) or any third party system called from odoo.
+Accounts may be: market places (Amazon, Cdisount, ...), carriers (Laposte, UPS, ...) 
+or any third party system called from odoo.
 
 This module is usefull for developers.
 The logic to choose between accounts is done in dependant modules.
@@ -96,11 +97,23 @@ Usage (for module dev)
         }
 
 
-In this example, an account is randomly picked. Usually this is set according to rules specific for each client.
+In this example, an account is randomly picked. Usually this is set according 
+to rules specific for each client.
 
 Warning: _init_data and _validate_data should be prefixed with your namespace !
 Choose python naming function compatible name.
 
+Switching from prod to dev
+==========================
+
+You may adopt one of the following stragegies:
+- store your dev accounts in production db using the dev key
+- import your dev accounts with odoo builtin methods like a data.xml (in a dedicated module).
+- import your dev accounts with your own migration/cleanup script
+- ...
+
+Note: only the password field is unreadable without the right key, login and data fields 
+are available on all environments 
 
 Usage (for user)
 ================
@@ -129,6 +142,8 @@ Known issues / Roadmap
 - Account inheritence is not supported out of the box (like define common settings for all environments)
 - It can be adapted to work with `server_environnement` modules
 - Key expiration is not implemented
+- Multi key handling
+- Import passwords from data.xml
 
 Security
 ========
@@ -136,13 +151,16 @@ Common sense : Odoo is not a safe place for storing any sensitive data.
 
 By default, passwords are stored encrypted in the db using symetric encryption [Fernet : https://cryptography.io/en/latest/fernet/]. The encryption key is stored in openerp.tools.config.
 
-Threats :
+Threats even with this module installed :
 
 - unauthorized odoo user want to access data: access is rejected by odoo security rules
 - db is stolen : without the key it's currently pretty hard to recover the password
-- odoo is compromised: hacker can do what he wants with odoo : passwords can be easily decrypted
+- odoo is compromised: hacker can do what he wants with odoo : passwords of the current env can be easily decrypted
+- server is compromised: idem
 
-If you want something more secure, don't store any sensitive data in odoo, use an external system as a proxy, you can still use this module for storing all other data related to your accounts.
+If your dev server is compromised, hacker can't decrypt your prod passwords since you have different keys between dev and prod.
+
+If you want something more secure : don't store any sensitive data in odoo, use an external system as a proxy, you can still use this module for storing all other data related to your accounts.
 
 
 Bug Tracker
