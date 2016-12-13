@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:41+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-11-26 01:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -88,17 +88,17 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "تاریخ آخرین پیغام پست شده از این رکورد"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_description
 msgid "Description"
-msgstr ""
+msgstr "توصیف"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "نام نمایشی"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -178,7 +178,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "دنبال‌کنندگان"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_channel_ids
@@ -193,7 +193,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Group By"
-msgstr ""
+msgstr "گروه‌بندی برمبنای"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_id
@@ -204,6 +204,7 @@ msgstr "شناسه"
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
 msgid "If checked new messages require your attention."
 msgstr ""
+"اگر این گزینه را انتخاب کنید، پیام‌های جدید به توجه شما نیاز خواهند داشت"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction
@@ -233,12 +234,12 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
 msgid "Last Message Date"
-msgstr ""
+msgstr "تاریخ آخرین پیام"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "تاریخ آخرین به‌روزرسانی"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_uid
@@ -258,7 +259,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_ids
 msgid "Messages"
-msgstr ""
+msgstr "پیام‌ها"
 
 #. module: attachment_base_synchronize
 #: model:ir.actions.act_window,name:attachment_base_synchronize.action_attachment
@@ -374,7 +375,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -384,7 +385,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "پیام های ناخوانده"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread_counter

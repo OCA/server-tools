@@ -1,0 +1,433 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * kpi
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-03 04:11+0000\n"
+"PO-Revision-Date: 2016-12-03 04:11+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_active
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: kpi
+#: model:ir.actions.act_window,name:kpi.open_category_list
+#: model:ir.ui.menu,name:kpi.menu_configuration_kpi_category
+#: model:ir.ui.view,arch_db:kpi.view_kpi_category_tree
+msgid "Categories"
+msgstr "Kategorier"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_1895
+#: model:ir.ui.view,arch_db:kpi.view_kpi_category_form
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid "Category"
+msgstr "Kategori"
+
+#. module: kpi
+#: model:ir.model.fields,help:kpi.field_kpi_threshold_range_color
+msgid "Choose your color"
+msgstr ""
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_color
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_color
+msgid "Color"
+msgstr "Farge"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_company_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_company_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_company_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_company_id
+msgid "Company"
+msgstr "Firma"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "Computation"
+msgstr "Beregning"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "Compute KPI Now"
+msgstr "Beregn KPI Nå"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_create_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_create_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_create_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_create_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_create_uid
+msgid "Created by"
+msgstr "Opprettet av"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_create_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_create_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_create_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_create_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_create_date
+msgid "Created on"
+msgstr "Opprettet den"
+
+#. module: kpi
+#: model:ir.ui.menu,name:kpi.menu_configuration_kpi_dbsource
+msgid "Data Sources"
+msgstr "Datakilder"
+
+#. module: kpi
+#: selection:kpi,periodicity_uom:0
+msgid "Day"
+msgstr "Dag"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_description
+#: model:ir.model.fields,field_description:kpi.field_kpi_description
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "Description"
+msgstr "Beskrivelse"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_display_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_display_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_display_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_display_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_display_name
+msgid "Display Name"
+msgstr "Visnings navn"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_date
+msgid "Execution Date"
+msgstr "Gjennomførings dato"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_dbsource_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_dbsource_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_dbsource_id
+msgid "External DB Source"
+msgstr "Ekstern databasekilde"
+
+#. module: kpi
+#: selection:kpi.threshold.range,max_type:0
+#: selection:kpi.threshold.range,min_type:0
+msgid "Fixed value"
+msgstr "Fast verdi"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid "Group By..."
+msgstr "Grupper etter ..."
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_ids
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "History"
+msgstr "Historikk"
+
+#. module: kpi
+#: model:ir.model,name:kpi.model_kpi_history
+msgid "History of the KPI"
+msgstr "Historisk KPI"
+
+#. module: kpi
+#: selection:kpi,periodicity_uom:0
+msgid "Hour"
+msgstr "Time"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_id
+msgid "ID"
+msgstr "ID"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_kpi_id
+#: model:ir.ui.menu,name:kpi.menu_configuration_kpi
+#: model:ir.ui.menu,name:kpi.menu_reporting_kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid "KPI"
+msgstr "KPI"
+
+#. module: kpi
+#: model:ir.model,name:kpi.model_kpi_category
+msgid "KPI Category"
+msgstr "KPI Kategori"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_kpi_code
+msgid "KPI Code"
+msgstr "KPI kode"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "KPI Computation"
+msgstr "KPI beregning"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_kpi_type
+msgid "KPI Computation Type"
+msgstr "KPI Beregningstype"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_history_form
+#: model:ir.ui.view,arch_db:kpi.view_kpi_history_tree
+msgid "KPI History"
+msgstr "KPI Historikk"
+
+#. module: kpi
+#: model:ir.model,name:kpi.model_kpi_threshold
+msgid "KPI Threshold"
+msgstr "KPI nivå"
+
+#. module: kpi
+#: model:ir.model,name:kpi.model_kpi_threshold_range
+msgid "KPI Threshold Range"
+msgstr "KPI Nivåområde"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_kpi_ids
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
+msgid "KPIs"
+msgstr "KPIer"
+
+#. module: kpi
+#: model:ir.model,name:kpi.model_kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+msgid "Key Performance Indicator"
+msgstr "Nøkkelindikator for ytelse (KPI)"
+
+#. module: kpi
+#: model:ir.actions.act_window,name:kpi.open_kpi_list
+#: model:ir.ui.view,arch_db:kpi.view_kpi_tree
+msgid "Key Performance Indicators"
+msgstr "Nøkkeltall for ytelse (KPI)"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi___last_update
+#: model:ir.model.fields,field_description:kpi.field_kpi_category___last_update
+#: model:ir.model.fields,field_description:kpi.field_kpi_history___last_update
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold___last_update
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range___last_update
+msgid "Last Modified on"
+msgstr "Sist oppdatert "
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_write_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_write_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_write_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_write_uid
+#: model:ir.model.fields,field_description:kpi.field_kpi_write_uid
+msgid "Last Updated by"
+msgstr "Sist oppdatert av"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_write_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_write_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_write_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_write_date
+#: model:ir.model.fields,field_description:kpi.field_kpi_write_date
+msgid "Last Updated on"
+msgstr "Sist oppdatert"
+
+#. module: kpi
+#: code:addons/kpi/models/kpi_threshold.py:71
+#, python-format
+msgid "Make sure your ranges do not overlap!"
+msgstr ""
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_type
+msgid "Max Type"
+msgstr "Maks type"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_fixed_value
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_value
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_form
+msgid "Maximum"
+msgstr "Maksimum"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_code
+msgid "Maximum Computation Code"
+msgstr "Maksimal beregningskode"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_invalid_message
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_invalid_message
+msgid "Message"
+msgstr "Melding"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_type
+msgid "Min Type"
+msgstr "Min type"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_fixed_value
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_value
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_form
+msgid "Minimum"
+msgstr "Minimum"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_code
+msgid "Minimum Computation Code"
+msgstr "Minimal beregningskode"
+
+#. module: kpi
+#: selection:kpi,periodicity_uom:0
+msgid "Month"
+msgstr "Måned"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_name
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_name
+msgid "Name"
+msgstr "Navn"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_next_execution_date
+msgid "Next execution date"
+msgstr "Neste eksekveringsdato"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid ""
+"Only active KPIs are computed by the scheduler based on the periodicity "
+"configuration."
+msgstr ""
+"Kun aktive KPIer blir beregnet periodisk (av scheduler) basert på "
+"konfigurert periode."
+
+#. module: kpi
+#: model:ir.model.fields,help:kpi.field_kpi_active
+msgid ""
+"Only active KPIs will be updated by the scheduler based on the periodicity "
+"configuration."
+msgstr ""
+"Kun aktive KPIer blir oppdatert periodisk (av scheduler) basert på "
+"konfigurert periode."
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_periodicity
+msgid "Periodicity"
+msgstr "Periodisitet"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_periodicity_uom
+msgid "Periodicity UoM"
+msgstr "Periodisitet måleenhet (UoM)"
+
+#. module: kpi
+#: selection:kpi,kpi_type:0
+msgid "Python"
+msgstr "Python"
+
+#. module: kpi
+#: selection:kpi.threshold.range,max_type:0
+#: selection:kpi.threshold.range,min_type:0
+msgid "Python Code"
+msgstr "Python kode"
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_form
+msgid "Range"
+msgstr "Intervall"
+
+#. module: kpi
+#: model:ir.actions.act_window,name:kpi.open_threshold_range_list
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_ids
+#: model:ir.ui.menu,name:kpi.menu_configuration_kpi_range
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_tree
+msgid "Ranges"
+msgstr "Områder"
+
+#. module: kpi
+#: selection:kpi.threshold.range,min_type:0
+msgid "SQL - Externa DB"
+msgstr "SQL - Ekstern database"
+
+#. module: kpi
+#: selection:kpi,kpi_type:0 selection:kpi.threshold.range,max_type:0
+msgid "SQL - External DB"
+msgstr "SQL - Ekstern database"
+
+#. module: kpi
+#: selection:kpi,kpi_type:0 selection:kpi.threshold.range,max_type:0
+#: selection:kpi.threshold.range,min_type:0
+msgid "SQL - Local DB"
+msgstr "SQL - lokal database"
+
+#. module: kpi
+#: model:ir.model.fields,help:kpi.field_kpi_kpi_code
+msgid "SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
+msgstr ""
+"SQL kode må returnere resultatet som 'verdi' (for eksempel 'SELECT S AS "
+"verdi')."
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_1890
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
+msgid "Threshold"
+msgstr "Terskel"
+
+#. module: kpi
+#: model:ir.actions.act_window,name:kpi.open_threshold_list
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_threshold_ids
+#: model:ir.ui.menu,name:kpi.menu_configuration_kpi_threshold
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_form
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_tree
+msgid "Thresholds"
+msgstr "Terskler"
+
+#. module: kpi
+#: code:addons/kpi/models/kpi_threshold.py:70
+#, python-format
+msgid "Two of your ranges are overlapping."
+msgstr ""
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_filter
+msgid "Type"
+msgstr "Type"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_valid
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_valid
+msgid "Valid"
+msgstr "Gyldig"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_history_value
+#: model:ir.model.fields,field_description:kpi.field_kpi_value
+msgid "Value"
+msgstr "Verdi"
+
+#. module: kpi
+#: selection:kpi,periodicity_uom:0
+msgid "Week"
+msgstr "Uke"

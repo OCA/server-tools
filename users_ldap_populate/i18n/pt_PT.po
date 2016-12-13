@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-02-26 11:19+0000\n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Criado em"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a Apresentar"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
@@ -50,7 +50,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificação Em"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
@@ -65,7 +65,7 @@ msgstr "Atualizado pela última vez em"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: users_ldap_populate
 #: code:addons/users_ldap_populate/model/users_ldap.py:64

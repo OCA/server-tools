@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-09-10 02:52+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-11-26 01:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Visnings navn"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
@@ -118,7 +118,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Sist oppdatert "
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid

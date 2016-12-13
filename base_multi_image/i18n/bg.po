@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
-"PO-Revision-Date: 2016-09-25 14:00+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
@@ -90,7 +90,7 @@ msgstr "ID"
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_path
@@ -210,7 +210,7 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Последователност"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_show_technical

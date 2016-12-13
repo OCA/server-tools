@@ -3,15 +3,18 @@
 # * auto_backup
 # 
 # Translators:
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Zwygart <zwygart@gmail.com>, 2016
+# David BEAL <david.beal@akretion.com>, 2016
+# Sébastien LANGE (SYLEAM) <sebastien.lange@syleam.fr>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-17 02:42+0000\n"
-"PO-Revision-Date: 2016-06-23 09:27+0000\n"
-"Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"POT-Creation-Date: 2016-11-23 03:37+0000\n"
+"PO-Revision-Date: 2016-11-23 03:37+0000\n"
+"Last-Translator: Sébastien LANGE (SYLEAM) <sebastien.lange@syleam.fr>, 2016\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,65 +22,74 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "/home/odoo/.ssh/id_rsa"
 msgstr "/home/odoo/.ssh/id_rsa"
 
 #. module: auto_backup
-#: help:db.backup,folder:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_folder
 msgid "Absolute path for storing the backups"
-msgstr ""
+msgstr "Chemin absolu pour enregistrer les sauvegardes. "
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr ""
+msgstr "Sauvegardes automatisées"
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr ""
+"Les sauvegardes automatisées de la base de donnée peuvent être planifiées "
+"comme suit : "
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
 msgstr ""
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_tree
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_tree
 msgid "Backups"
 msgstr "Sauvegardes"
 
 #. module: auto_backup
-#: help:db.backup,days_to_keep:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_days_to_keep
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
+"Les sauvegardes plus âgées que ceci seront automatiquement supprimées. "
+"Indiquez 0 pour désactiver la suppression automatique. "
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Basic backup configuration"
-msgstr ""
+msgstr "Configuration de base de sauvegarde"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "Cannot duplicate a configuration."
-msgstr ""
+msgstr "Impossible de dupliquer une configuration"
 
 #. module: auto_backup
-#: help:db.backup,method:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
-msgstr ""
+msgstr "Choisissez la méthode d'enregistrement pour cette sauvegarde. "
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:247
+#: code:addons/auto_backup/models/db_backup.py:248
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
@@ -86,7 +98,7 @@ msgstr ""
 #: code:addons/auto_backup/models/db_backup.py:131
 #, python-format
 msgid "Connection Test Failed!"
-msgstr ""
+msgstr "Echec du test de connexion !"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:128
@@ -95,41 +107,41 @@ msgid "Connection Test Succeeded!"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,create_uid:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: auto_backup
-#: field:db.backup,create_date:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
-#: model:mail.message.subtype,description:auto_backup.failure
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:211
-#: model:mail.message.subtype,description:auto_backup.success
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,message_last_post:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_message_last_post
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Date du dernier message publié sur cet enregistrement"
 
 #. module: auto_backup
-#: field:db.backup,days_to_keep:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_days_to_keep
 msgid "Days to keep"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,display_name:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -143,7 +155,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
 msgid "Email Thread"
-msgstr ""
+msgstr "Discussion de courriel"
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
@@ -151,30 +163,33 @@ msgid "Execute backup(s)"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,folder:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_folder
 msgid "Folder"
-msgstr ""
+msgstr "Dossier"
 
 #. module: auto_backup
-#: field:db.backup,message_follower_ids:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (canaux)"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (partenaires)"
+
+#. module: auto_backup
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr ""
-
-#. module: auto_backup
-#: help:db.backup,message_summary:0
-msgid ""
-"Holds the Chatter summary (number of messages, ...). This summary is "
-"directly in html format in order to be inserted in kanban views."
 msgstr ""
 
 #. module: auto_backup
@@ -183,37 +198,42 @@ msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,id:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
 msgid "ID"
 msgstr "ID"
 
 #. module: auto_backup
-#: help:db.backup,message_unread:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_message_unread
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si coché, les nouveaux messages seront portés à votre attention."
 
 #. module: auto_backup
-#: field:db.backup,message_is_follower:0
-msgid "Is a Follower"
-msgstr ""
+#: model:ir.model.fields,help:auto_backup.field_db_backup_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, les nouveaux messages demanderont votre attention."
 
 #. module: auto_backup
-#: field:db.backup,message_last_post:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_last_post
 msgid "Last Message Date"
-msgstr ""
+msgstr "Date du dernier message"
 
 #. module: auto_backup
-#: field:db.backup,__last_update:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup___last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: auto_backup
-#: field:db.backup,write_uid:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_uid
 msgid "Last Updated by"
 msgstr "Mis à jour par"
 
 #. module: auto_backup
-#: field:db.backup,write_date:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_date
 msgid "Last Updated on"
 msgstr "Mis à jour le"
 
@@ -223,34 +243,44 @@ msgid "Local disk"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,message_ids:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: auto_backup
-#: help:db.backup,message_ids:0
-msgid "Messages and communication history"
-msgstr ""
-
-#. module: auto_backup
-#: field:db.backup,method:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_method
 msgid "Method"
 msgstr "Méthode"
 
 #. module: auto_backup
-#: field:db.backup,name:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_name
 msgid "Name"
 msgstr "Nom"
 
 #. module: auto_backup
-#: help:db.backup,sftp_private_key:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages exigeant une action"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non-lus"
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_private_key
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftp_private_key:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
 msgid "Private key location"
 msgstr ""
 
@@ -260,110 +290,110 @@ msgid "Remote SFTP server"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftp_password:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_password
 msgid "SFTP Password"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftp_port:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_port
 msgid "SFTP Port"
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftp_host:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_host
 msgid "SFTP Server"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "SFTP Settings"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_search
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_search
 msgid "Search options"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups "
 "generated."
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,message_summary:0
-msgid "Summary"
-msgstr "Résumé"
-
-#. module: auto_backup
-#: help:db.backup,name:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_name
 msgid "Summary of this backup process"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
 msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sftp_host:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_host
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sftp_password:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_password
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
 msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sftp_port:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_port
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
 msgstr ""
 
 #. module: auto_backup
-#: help:db.backup,sftp_user:0
+#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
 msgid ""
 "The username where the SFTP connection should be made with. This is the user"
 " on the external server."
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,message_unread:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messages non-lus"
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non-lus"
+
+#. module: auto_backup
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
 msgstr ""
 
 #. module: auto_backup
-#: field:db.backup,sftp_user:0
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
 msgid "Username in the SFTP Server"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr ""
 
 #. module: auto_backup
-#: view:db.backup:auto_backup.view_backup_conf_form
+#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
 msgstr ""
