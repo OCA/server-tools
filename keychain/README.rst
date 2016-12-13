@@ -88,7 +88,13 @@ Usage (for module dev)
 
     def get_auth(self):
         import random
-        accounts = self.env['keychain.account'].retrieve(
+        keychain = self.env['keychain.account']
+        if self.env.user.has_group('stock.group_stock_user'):
+            retrieve = keychain.suspend_security().retrieve
+        else:
+            retrieve = keychain.retrieve
+
+        accounts = retrieve(
             [['namespace', '=', 'roulier_laposte']])
         account = random.choice(accounts)
         return {
@@ -99,6 +105,8 @@ Usage (for module dev)
 
 In this example, an account is randomly picked. Usually this is set according 
 to rules specific for each client.
+
+You have to restrict user access of your methods with suspend_security().
 
 Warning: _init_data and _validate_data should be prefixed with your namespace !
 Choose python naming function compatible name.

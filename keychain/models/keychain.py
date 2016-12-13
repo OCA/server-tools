@@ -96,7 +96,10 @@ class KeychainAccount(models.Model):
         """Search accounts for a given domain.
 
         Environment is added by this function.
-        Use this instead of search to benift from environment filtering"""
+        Use this instead of search() to benift from environment filtering.
+        Use user.has_group() and suspend_security() before
+        calling this method.
+        """
         domain.append(['environment', 'in', self._retrieve_env()])
         return self.search(domain)
 
