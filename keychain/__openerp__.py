@@ -21,6 +21,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        'keychain_view.xml'
+        'views/keychain_view.xml'
     ],
 }
