@@ -30,7 +30,7 @@ def implemented_by_keychain(func):
     return wrapper
 
 
-class AccountModel(models.Model):
+class KeychainAccount(models.Model):
     """Manage all accounts of external systems in one place."""
 
     _name = 'keychain.account'
@@ -116,7 +116,7 @@ class AccountModel(models.Model):
         """At this time there is no namespace set."""
         if not vals.get('data') and not self.data:
             vals['data'] = self._serialize_data(self._init_data())
-        return super(AccountModel, self).write(vals)
+        return super(KeychainAccount, self).write(vals)
 
     @implemented_by_keychain
     def _validate_data(self, data):
