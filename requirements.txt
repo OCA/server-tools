@@ -9,3 +9,4 @@ sqlalchemy
 pymssql
 MySQL-python
 pyodbc
+elasticsearch
