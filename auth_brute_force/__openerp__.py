@@ -22,7 +22,7 @@
 
 {
     'name': 'Authentification - Brute-force Attack',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'base',
     'summary': "Tracks Authentication Attempts and Prevents Brute-force"
                " Attacks module",
