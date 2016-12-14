@@ -154,7 +154,7 @@ class KeychainAccount(models.Model):
             raise Warning(
                 "Password has been encrypted with a different "
                 "key. Unless you can recover the previous key, "
-                "this password unreadable."
+                "this password is unreadable."
             )
 
     @staticmethod
