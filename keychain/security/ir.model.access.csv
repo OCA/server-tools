@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_keychain_account,access_keychain_account,model_keychain_account,,1,0,0,0
+access_keychain_account,access_keychain_account,model_keychain_account,,0,0,0,0
