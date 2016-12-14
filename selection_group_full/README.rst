@@ -18,14 +18,13 @@ As value, you have to define :
 * A list : the values you want to appear
 * True : each value of the Selection will appear
 
-e.g.: state = fields.Selection([('new', 'New'), ('closed', 'Closed')], group_full=True)
+e.g.:
+* state = fields.Selection([('new', 'New'), ('closed', 'Closed')], group_full=True)
+* state = fields.Selection([('new', 'New'), ('closed', 'Closed')], group_full=['new', 'closed'])
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
-
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
 
 
 Bug Tracker
