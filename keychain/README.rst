@@ -86,8 +86,9 @@ Usage (for module dev)
 
 .. code:: python
 
+    import random
+
     def get_auth(self):
-        import random
         keychain = self.env['keychain.account']
         if self.env.user.has_group('stock.group_stock_user'):
             retrieve = keychain.suspend_security().retrieve
@@ -115,13 +116,17 @@ Switching from prod to dev
 ==========================
 
 You may adopt one of the following stragegies:
-- store your dev accounts in production db using the dev key
-- import your dev accounts with odoo builtin methods like a data.xml (in a dedicated module).
-- import your dev accounts with your own migration/cleanup script
-- ...
+
+* store your dev accounts in production db using the dev key
+* import your dev accounts with odoo builtin methods like a data.xml (in a dedicated module).
+* import your dev accounts with your own migration/cleanup script
+* ...
 
 Note: only the password field is unreadable without the right key, login and data fields 
-are available on all environments 
+are available on all environments.
+
+You may also use a same `technical_name` and different `environment` for choosing at runtime
+between accounts.
 
 Usage (for user)
 ================
@@ -130,7 +135,7 @@ Go to *settings / keychain*, create a record with the following
 
 * Namespace: type of account (ie: Laposte)
 * Name : human readable label "Warehouse 1"
-* Technical Name: name used by a consumer module, should be unique for this module (like "wharehouse_1")
+* Technical Name: name used by a consumer module (like "wharehouse_1")
 * Login: login of the account
 * Password_clear : For entering the password in clear text (not stored unecrypted)
 * Password : password encrypted, unreadable without the key (in config)
@@ -148,22 +153,25 @@ Go to *settings / keychain*, create a record with the following
 Known issues / Roadmap
 ======================
 - Account inheritence is not supported out of the box (like define common settings for all environments)
-- It can be adapted to work with `server_environnement` modules
-- Key expiration is not implemented
+- Adapted to work with `server_environnement` modules
+- Key expiration
 - Multi key handling
 - Import passwords from data.xml
 
 Security
 ========
-Common sense : Odoo is not a safe place for storing any sensitive data.
+Common sense : Odoo is not a safe place for storing sensitive data. But sometimes you don't have much other possibilities. This module is designed to store credentials of things like carrier account, smtp, api keys... but definitively not for credits cards number, medical records et alia.
+
 
 By default, passwords are stored encrypted in the db using symetric encryption [Fernet : https://cryptography.io/en/latest/fernet/]. The encryption key is stored in openerp.tools.config.
 
 Threats even with this module installed :
 
 - unauthorized odoo user want to access data: access is rejected by odoo security rules
-- db is stolen : without the key it's currently pretty hard to recover the password
-- odoo is compromised: hacker can do what he wants with odoo : passwords of the current env can be easily decrypted
+- authorized odoo user try to access data with rpc api : he get the passwords encrypted, he can't recover because the key and the decrypted password are not exposed through rpc
+- db is stolen : without the key it's currently pretty hard to recover the passwords
+- odoo is compromised (malicious module or vulnerability): hacker has access to python and
+can do what he wants with odoo : passwords of the current env can be easily decrypted
 - server is compromised: idem
 
 If your dev server is compromised, hacker can't decrypt your prod passwords since you have different keys between dev and prod.
