@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2016 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp import api, fields, models
 from openerp import SUPERUSER_ID  # TODO remove in v10
@@ -20,7 +21,7 @@ class BaseImportMatch(models.Model):
         "Model",
         required=True,
         ondelete="cascade",
-        domain=[("osv_memory", "=", False)],
+        domain=[("transient ", "=", False)],
         help="In this model you will apply the match.")
     model_name = fields.Char(
         related="model_id.model",

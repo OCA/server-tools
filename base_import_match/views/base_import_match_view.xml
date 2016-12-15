@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+<!-- Copyright 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+     Copyright 2016 Tecnativa - Vicent Cubells
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 
-<openerp>
-<data>
+<odoo>
 
 <record id="match_form_view" model="ir.ui.view">
     <field name="name">Import match form view</field>
@@ -78,5 +78,4 @@
     action="match_action"
     parent="base.next_id_9"/>
 
-</data>
-</openerp>
+</odoo>
