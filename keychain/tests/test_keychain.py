@@ -21,6 +21,7 @@ class TestKeychain(TransactionCase):
 
         self.keychain = self.env['keychain.account']
         config['keychain_key'] = Fernet.generate_key()
+        config['running_env'] = None
 
         def _init_data(self):
             return {
@@ -82,69 +83,124 @@ class TestKeychain(TransactionCase):
         """It should raise an exception when no key is set."""
         account = self._create_account()
         del config.options['keychain_key']
-        try:
+
+        with self.assertRaises(Warning) as err:
             account.clear_password = 'aiuepr'
             account._set_password()
             self.assertTrue(False, 'It should not work without key')
-        except Warning as err:
-            self.assertTrue(True, 'It should raise a Warning')
-            self.assertTrue(
-                'Use a key like' in str(err),
-                'It should display the right msg')
-        else:
-            self.assertTrue(False, 'It should raise a Warning')
+        self.assertTrue(
+            'Use a key like' in str(err.exception),
+            'It should display the right msg')
 
     def test_badly_formatted_key(self):
         """It should raise an exception when key is not acceptable format."""
         account = self._create_account()
 
         config['keychain_key'] = ""
-        try:
+        with self.assertRaises(Warning):
             account.clear_password = 'aiuepr'
             account._set_password()
-            self.assertTrue(False, 'It should not work baddly formated key')
-        except ValueError:
-            self.assertTrue(True, 'It shoud raise a ValueError')
-        else:
-            self.assertTrue(False, 'It should raise a ValueError')
+            self.assertTrue(False, 'It should not work missing formated key')
+
+        self.assertTrue(True, 'It shoud raise a ValueError')
+
+    def test_retrieve_env(self):
+        """Retrieve env should always return False at the end"""
+        config['running_env'] = False
+        self.assertListEqual(self.keychain._retrieve_env(), [False])
+
+        config['running_env'] = 'dev'
+        self.assertListEqual(self.keychain._retrieve_env(), ['dev', False])
+
+        config['running_env'] = 'prod'
+        self.assertListEqual(self.keychain._retrieve_env(), ['prod', False])
+
+    def test_multienv(self):
+        """Encrypt with dev, decrypt with dev."""
+        account = self._create_account()
+        config['keychain_key_dev'] = Fernet.generate_key()
+        config['keychain_key_prod'] = Fernet.generate_key()
+        config['running_env'] = 'dev'
+
+        account.clear_password = 'abc'
+        account._set_password()
+        self.assertEqual(
+            account.get_password(),
+            'abc', 'Should work with dev')
+
+        config['running_env'] = 'prod'
+        with self.assertRaises(Warning):
+            self.assertEqual(
+                account.get_password(),
+                'abc', 'Should not work with prod key')
+
+    def test_multienv_blank(self):
+        """Encrypt with blank, decrypt for all."""
+        account = self._create_account()
+        config['keychain_key'] = Fernet.generate_key()
+        config['keychain_key_dev'] = Fernet.generate_key()
+        config['keychain_key_prod'] = Fernet.generate_key()
+        config['running_env'] = ''
+
+        account.clear_password = 'abc'
+        account._set_password()
+        self.assertEqual(
+            account.get_password(),
+            'abc', 'Should work with dev')
+
+        config['running_env'] = 'prod'
+        self.assertEqual(
+            account.get_password(),
+            'abc', 'Should work with prod')
+
+    def test_multienv_force(self):
+        """Set the env on the record"""
+
+        account = self._create_account()
+        account.environment = 'prod'
+
+        config['keychain_key'] = Fernet.generate_key()
+        config['keychain_key_dev'] = Fernet.generate_key()
+        config['keychain_key_prod'] = Fernet.generate_key()
+        config['running_env'] = ''
+
+        account.clear_password = 'abc'
+        account._set_password()
+
+        with self.assertRaises(Warning):
+            self.assertEqual(
+                account.get_password(),
+                'abc', 'Should not work with dev')
+
+        config['running_env'] = 'prod'
+        self.assertEqual(
+            account.get_password(),
+            'abc', 'Should work with prod')
 
     def test_wrong_json(self):
         """It should raise an exception when data is not valid json."""
         account = self._create_account()
         wrong_jsons = ("{'hi':'o'}", "{'oq", '[>}')
         for json in wrong_jsons:
-            try:
+            with self.assertRaises(ValidationError) as err:
                 account.write({"data": json})
                 self.assertTrue(
                     False,
                     'Should not validate baddly formatted json')
-            except ValidationError as err:
-                self.assertTrue(
-                    'Data not valid JSON' in err.args[1],
-                    'It should raise a ValidationError')
-            else:
-                self.assertTrue(
-                    False,
-                    'It should raise a ValidationError')
+            self.assertTrue(
+                'Data not valid JSON' in err.exception.args[1],
+                'It should raise a ValidationError')
 
     def test_invalid_json(self):
         """It should raise an exception when data don't pass _validate_data."""
         account = self._create_account()
         invalid_jsons = ('{}', '{"hi": 1}')
         for json in invalid_jsons:
-            try:
+            with self.assertRaises(ValidationError) as err:
                 account.write({"data": json})
-                self.assertTrue(
-                    False,
-                    'Should not validate semantically wrong json')
-            except ValidationError as err:
-                self.assertTrue(
-                    'Data not valid' in str(err),
-                    'It should raise a ValidationError')
-            else:
-                self.assertTrue(
-                    False,
-                    'It should raise a ValidationError')
+            self.assertTrue(
+                'Data not valid' in str(err.exception),
+                'It should raise a ValidationError')
 
     def test_valid_json(self):
         """It should work with valid data."""

@@ -13,7 +13,7 @@ from openerp.tools.config import config
 _logger = logging.getLogger(__name__)
 
 try:
-    from cryptography.fernet import Fernet, InvalidToken
+    from cryptography.fernet import Fernet, MultiFernet, InvalidToken
 except ImportError as err:
     _logger.debug(err)
 
@@ -89,7 +89,8 @@ class KeychainAccount(models.Model):
         """Encode password from clear text."""
         # inverse function
         for rec in self:
-            rec.password = rec._encode_password(rec.clear_password)
+            rec.password = rec._encode_password(
+                rec.clear_password, rec.environment)
 
     @api.model
     def retrieve(self, domain):
@@ -102,17 +103,6 @@ class KeychainAccount(models.Model):
         """
         domain.append(['environment', 'in', self._retrieve_env()])
         return self.search(domain)
-
-    @api.model
-    def _retrieve_env(self):
-        """Returns the current environment.
-
-        You may override this function to fit your needs.
-
-        returns: a tuple like:
-            ('dev', 'test', False)
-            Which means accounts for dev, test and blank (not set)"""
-        return ("dev", False)
 
     @api.multi
     def write(self, vals):
@@ -130,6 +120,23 @@ class KeychainAccount(models.Model):
         pass
 
     @staticmethod
+    def _retrieve_env():
+        """Return the current environments.
+
+        You may override this function to fit your needs.
+
+        returns: a tuple like:
+            ('dev', 'test', False)
+            Which means accounts for dev, test and blank (not set)
+            Order is important: the first one is used for encryption.
+        """
+        current = config.get('running_env') or False
+        envs = [current]
+        if False not in envs:
+            envs.append(False)
+        return envs
+
+    @staticmethod
     def _serialize_data(data):
         return json.dumps(data)
 
@@ -141,8 +148,8 @@ class KeychainAccount(models.Model):
             raise ValidationError("Data not valid JSON")
 
     @classmethod
-    def _encode_password(cls, data):
-        cipher = cls._get_cipher()
+    def _encode_password(cls, data, env):
+        cipher = cls._get_cipher(env)
         return cipher.encrypt(str((data or '').encode('UTF-8')))
 
     @classmethod
@@ -157,13 +164,37 @@ class KeychainAccount(models.Model):
                 "this password is unreadable."
             )
 
-    @staticmethod
-    def _get_cipher():
-        try:
-            key = config['keychain_key']
-        except:
+    @classmethod
+    def _get_cipher(cls, force_env=None):
+        """Return a cipher using the keys of environments.
+
+        force_env = name of the env key.
+        Usefull for encoding against one precise env
+        """
+        def _get_keys(envs):
+            suffixes = [
+                '_%s' % env if env else ''
+                for env in envs]  # ('_dev', '')
+            keys_name = [
+                'keychain_key%s' % suf
+                for suf in suffixes]  # prefix it
+            keys_str = [
+                config.get(key)
+                for key in keys_name]  # fetch from config
+            return [
+                Fernet(key) for key in keys_str  # build Fernet object
+                if key and len(key) > 0  # remove False values
+            ]
+
+        if force_env:
+            envs = [force_env]
+        else:
+            envs = cls._retrieve_env()  # ex: ('dev', False)
+        keys = _get_keys(envs)
+        if len(keys) == 0:
+            _logger.info('on declanche un warning')
             raise Warning(
-                "No 'keychain_key' entry found in config file. "
+                "No 'keychain_key' entries found in config file. "
                 "Use a key like : %s" % Fernet.generate_key()
             )
-        return Fernet(key)
+        return MultiFernet(keys)

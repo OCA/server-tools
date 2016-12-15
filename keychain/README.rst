@@ -37,13 +37,21 @@ For delivery, each warehouse send parcels with his own account to the same carri
 Configuration
 =============
 
-After the installation of this module, you need to add an entry in odoo's config file : 
+After the installation of this module, you need to add some entries in odoo's config file : 
 (etc/openerp.cfg) :
+
 > keychain_key = fyeMIx9XVPBBky5XZeLDxVc9dFKy7Uzas3AoyMarHPA=
 
 You can generate keys with `python keychain/bin/generate_key.py`
 
 This key is used to encrypt account passwords.
+
+If you plan to use environments, you should add a key per environment :
+
+> keychain_key_dev = 8H_qFvwhxv6EeO9bZ8ww7BUymNt3xtQKYEq9rjAPtrc=
+> keychain_key_prod = y5z-ETtXkVI_ADoFEZ5CHLvrNjwOPxsx-htSVbDbmRc=
+
+keychain_key is used for encryption when no environment is set.
 
 
 Usage (for module dev)
@@ -140,6 +148,7 @@ Go to *settings / keychain*, create a record with the following
 * Password_clear : For entering the password in clear text (not stored unecrypted)
 * Password : password encrypted, unreadable without the key (in config)
 * data: a JSON string for additionnal values (additionnal config for the account, like : `{"agencyCode": "Lyon", "insuranceLevel": "R1"})`
+* Environment : usually prod or dev or blank (for all)
 
 
 
@@ -155,7 +164,6 @@ Known issues / Roadmap
 - Account inheritence is not supported out of the box (like define common settings for all environments)
 - Adapted to work with `server_environnement` modules
 - Key expiration
-- Multi key handling
 - Import passwords from data.xml
 
 Security
