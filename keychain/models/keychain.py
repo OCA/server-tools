@@ -194,7 +194,7 @@ class KeychainAccount(models.Model):
         if len(keys) == 0:
             _logger.info('on declanche un warning')
             raise Warning(
-                "No 'keychain_key' entries found in config file. "
-                "Use a key like : %s" % Fernet.generate_key()
+                "No 'keychain_key_%s' entries found in config file. "
+                "Use a key like : %s" % (envs[0], Fernet.generate_key())
             )
         return MultiFernet(keys)
