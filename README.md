@@ -28,6 +28,7 @@ addon | version | summary
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.0 | External Database Sources
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
+[base_name_search_improved](base_name_search_improved/) | 9.0.1.0.0 | Friendlier search when typing in relation fields
 [base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
