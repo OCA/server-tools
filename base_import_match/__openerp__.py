@@ -15,8 +15,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "data/base_import_match.yml",
         "views/base_import_match_view.xml",
+        "data/base_import_match.yml",
     ],
     "demo": [
         "demo/base_import_match.yml",
