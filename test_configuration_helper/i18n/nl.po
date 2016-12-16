@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-9-0/language/nl/)\n"
@@ -38,13 +38,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_uid
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_date
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_display_name
@@ -56,7 +56,7 @@ msgstr "Te tonen naam"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings___last_update
@@ -68,13 +68,13 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_uid
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_date
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_integer

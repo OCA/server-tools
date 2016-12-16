@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"PO-Revision-Date: 2016-11-26 01:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Paraguay) (https://www.transifex.com/oca/teams/23907/es_PY/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:101
+#: code:addons/mass_editing/models/mass_object.py:103
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -38,16 +38,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:89
+#: code:addons/mass_editing/models/mass_object.py:91
 #, python-format
 msgid "Deletion of the action record failed."
 msgstr ""
@@ -88,13 +88,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -134,7 +134,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:34
