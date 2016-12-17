@@ -24,6 +24,7 @@ addon | version | summary
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
+[auto_backup](auto_backup/) | 9.0.1.0.0 | Backups database
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.0 | External Database Sources
@@ -34,6 +35,7 @@ addon | version | summary
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
+[base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
