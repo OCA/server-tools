@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
+"POT-Creation-Date: 2016-12-17 02:07+0000\n"
+"PO-Revision-Date: 2016-12-17 02:07+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -32,17 +32,17 @@ msgstr "Auditoría"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr ""
+msgstr "Auditlog - Borrar registros antiguos"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr ""
+msgstr "Auditlog - Registro de sesión de usuario HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
 msgid "Auditlog - HTTP request log"
-msgstr ""
+msgstr "Auditlog - Reigstro de peticiones HTTP"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
@@ -113,7 +113,7 @@ msgstr "No suscrito"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Registro rápido"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_id
@@ -129,7 +129,7 @@ msgstr "Campos actualizados"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Registro completo"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
@@ -137,6 +137,8 @@ msgid ""
 "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
 msgstr ""
+"Registro completo: Realiza una comparación entre los datos antes y después de la operación (registra más información como los campos calculados que fueron actualizados, pero es más lento)\n"
+"Registro rápido: sólo registra los cambios realizados a través de las operaciones de crear y escribir (menos información, pero más rápido)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -309,7 +311,7 @@ msgstr "Nombre del recurso"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_root_url
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 msgid "Root URL"
-msgstr ""
+msgstr "URL raíz"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
@@ -396,7 +398,7 @@ msgstr "Suscrito"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_name
 msgid "Technical name"
-msgstr ""
+msgstr "Nombre técnico"
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
@@ -433,7 +435,7 @@ msgstr "Usuario"
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr ""
+msgstr "Sesión de usuario"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
@@ -441,7 +443,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_tree
 msgid "User sessions"
-msgstr ""
+msgstr "Sesiones de usuario"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_user_ids

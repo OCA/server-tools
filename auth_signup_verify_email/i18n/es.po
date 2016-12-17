@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 12:31+0000\n"
-"PO-Revision-Date: 2016-05-31 14:47+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-12-17 02:07+0000\n"
+"PO-Revision-Date: 2016-12-16 17:37+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +31,11 @@ msgstr "Revise su correo para activar su cuenta."
 #: code:addons/auth_signup_verify_email/tests/test_verify_email.py:28
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
-msgstr "Algo ha ido mal, por favor inténtelo de nuevo más tarde o contáctenos."
+msgstr "Algo ha ido mal. Por favor inténtelo de nuevo más tarde o contáctenos."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31
 #: code:addons/auth_signup_verify_email/tests/test_verify_email.py:27
 #, python-format
 msgid "That does not seem to be an email address."
-msgstr "Eso no parece una dirección de email válida."
+msgstr "Ésa no parece una dirección de correo electrónica válida."
