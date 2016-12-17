@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from odoo import models, api, fields
+from odoo import models, fields
 
 import logging
 _log = logging.getLogger(__name__)
@@ -27,7 +27,6 @@ _log = logging.getLogger(__name__)
 
 class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
-
 
     name_attribute = fields.Char(
         'Name Attribute', size=64, _defaults='cn',
@@ -42,12 +41,14 @@ class CompanyLDAP(models.Model):
         Copy of auth_ldap's funtion, changing only the SQL, so that it returns
         all fields in the table.
         """
-        ldaps = self.sudo().search([('ldap_server', '!=', False)], order='sequence')
+        ldaps = self.sudo().search([('ldap_server', '!=', False)],
+                                   order='sequence')
         res = ldaps.read([])
         return res
 
     def map_ldap_attributes(self, conf, login, ldap_entry):
-        values = super(CompanyLDAP, self).map_ldap_attributes(conf, login, ldap_entry)
+        values = super(CompanyLDAP, self).map_ldap_attributes(conf, login,
+                                                              ldap_entry)
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
