@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-12 22:46+0000\n"
+"POT-Creation-Date: 2016-12-10 03:03+0000\n"
+"PO-Revision-Date: 2016-12-15 10:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Active"
-msgstr ""
+msgstr "Ativo"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,last_user_count:0
@@ -73,7 +73,7 @@ msgstr "Criado em"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: dead_mans_switch_server
 #: model:ir.actions.act_window,name:dead_mans_switch_server.action_dead_mans_switch_instance
@@ -106,7 +106,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,display_name:0

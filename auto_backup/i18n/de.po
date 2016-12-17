@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:47+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-12-10 06:16+0000\n"
+"PO-Revision-Date: 2016-12-16 12:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +224,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Nachrichten"
 
 #. module: auto_backup
 #: help:db.backup,message_ids:0
@@ -338,7 +338,7 @@ msgstr "Der Benutzername mit dem die SFTP-Verbindung mit hergestellt werden soll
 #. module: auto_backup
 #: field:db.backup,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Ungelesene Nachrichten"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
