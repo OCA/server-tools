@@ -11,38 +11,38 @@ msgstr ""
 "POT-Creation-Date: 2016-12-16 03:39+0000\n"
 "PO-Revision-Date: 2016-12-16 03:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language-Team: Mongolian (https://www.transifex.com/oca/teams/23907/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: mn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: partner_changeset
 #: sql_constraint:changeset.field.rule:0
 msgid "A rule already exists for this field."
-msgstr "Za to polje že obstaja pravilo."
+msgstr ""
 
 #. module: partner_changeset
 #: selection:res.partner.changeset.change,state:0
 msgid "Accepted"
-msgstr "Sprejeto"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_action
 msgid "Action"
-msgstr "Ukrep"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_change_form
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Apply"
-msgstr "Uveljavi"
+msgstr "Ашиглах"
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Apply pending changes"
-msgstr "Uveljavi čakajoče spremembe"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,help:partner_changeset.field_changeset_field_rule_action
@@ -51,9 +51,6 @@ msgid ""
 "Validate: manually applied by an administrator.\n"
 "Never: change never applied."
 msgstr ""
-"Samodejno: vedno uveljavi spremembo.\n"
-"Overi: ročno uveljavi administrator.\n"
-"Nikoli: sprememba ni nikoli uveljavljena."
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_ids
@@ -61,22 +58,22 @@ msgstr ""
 #: model:ir.ui.view,arch_db:partner_changeset.res_partner_view_buttons
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Changes"
-msgstr "Spremembe"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_changeset_id
 msgid "Changeset"
-msgstr "Niz sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:res.groups,name:partner_changeset.group_changeset_manager
 msgid "Changeset Configuration"
-msgstr "Nastavitve niza sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model,name:partner_changeset.model_changeset_field_rule
 msgid "Changeset Field Rules"
-msgstr "Pravila polja niza sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.actions.act_window,name:partner_changeset.action_changeset_field_rule_view
@@ -84,71 +81,71 @@ msgstr "Pravila polja niza sprememb"
 #: model:ir.ui.view,arch_db:partner_changeset.view_changeset_field_rule_search
 #: model:ir.ui.view,arch_db:partner_changeset.view_changeset_field_rule_tree
 msgid "Changeset Fields Rules"
-msgstr "Pravila polj niza sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_ids
 #: model:ir.ui.menu,name:partner_changeset.menu_res_partner_changeset
 msgid "Changesets"
-msgstr "Nizi sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:res.groups,name:partner_changeset.group_changeset_user
 msgid "Changesets Validations "
-msgstr "Overitve nizov sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_create_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_create_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_create_uid
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Үүсгэгч"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_create_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_create_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_create_date
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Үүсгэсэн"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_date
 msgid "Date"
-msgstr "Datum"
+msgstr "Огноо"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_display_name
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_display_name
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr "Дэлгэцийн Нэр"
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 #: selection:res.partner.changeset,state:0
 msgid "Done"
-msgstr "Opravljeno"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_field_id
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_field_id
 msgid "Field"
-msgstr "Polje"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.menu,name:partner_changeset.menu_changeset_field_rule
 msgid "Field Rules"
-msgstr "Pravila polja"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_field_type
 msgid "Field Type"
-msgstr "Tip polja"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 msgid "Group By"
-msgstr "Združi po"
+msgstr "Бүлэглэх"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_id
@@ -163,29 +160,27 @@ msgid ""
 "If a source model is defined, the rule will be applied only when the change is made from this origin.  Rules without source model are global and applies to all backends.\n"
 "Rules with a source model have precedence over global rules, but if a field has no rule with a source model, the global rule is used."
 msgstr ""
-"Če je izvorni model določen, se pravilo uveljavi le za spremembe iz tega izvora. Pravila brez izvornega modela so globalna in se uveljavijo na vseh ozadjih.\n"
-"Pravila izvornega modela imajo prednost pred globalnimi pravili, a če polje nima pravila z izvornim modelom, se uporabi globalno pravilo."
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule___last_update
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset___last_update
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change___last_update
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_write_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_write_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_write_uid
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Сүүлийн засвар хийсэн"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_write_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_write_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_write_date
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_boolean
@@ -198,12 +193,12 @@ msgstr "Zadnjič posodobljeno"
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_reference
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_text
 msgid "New"
-msgstr "Novo"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_note
 msgid "Note"
-msgstr "Opomba"
+msgstr "Тэмдэглэл"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_old_value_boolean
@@ -215,14 +210,14 @@ msgstr "Opomba"
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_old_value_reference
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_old_value_text
 msgid "Old"
-msgstr "Staro"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model,name:partner_changeset.model_res_partner
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_partner_id
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 msgid "Partner"
-msgstr "Partner"
+msgstr "Харилцагч"
 
 #. module: partner_changeset
 #: model:ir.actions.act_window,name:partner_changeset.action_res_partner_changeset_view
@@ -231,31 +226,31 @@ msgstr "Partner"
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_tree
 msgid "Partner Changeset"
-msgstr "Niz sprememb partnerja"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model,name:partner_changeset.model_res_partner_changeset_change
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_change_form
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Partner Changeset Change"
-msgstr "Sprememba niza sprememb partnerja"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.menu,name:partner_changeset.menu_changeset
 msgid "Partner Changesets"
-msgstr "Nizi sprememb partnerja"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 #: selection:res.partner.changeset,state:0
 #: selection:res.partner.changeset.change,state:0
 msgid "Pending"
-msgstr "Čakanje"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_filter
 msgid "Pending Changesets"
-msgstr "Čakajoči nizi sprememb"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_origin_value_boolean
@@ -269,51 +264,51 @@ msgstr "Čakajoči nizi sprememb"
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_origin_value_text
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Previous"
-msgstr "Prejšnji"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_change_form
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Reject"
-msgstr "Zavrni"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Reject pending changes"
-msgstr "Zavrni čakajoče spremembe"
+msgstr ""
 
 #. module: partner_changeset
 #: selection:res.partner.changeset.change,state:0
 msgid "Rejected"
-msgstr "Zavrnjeno"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_source_model_id
 msgid "Source Model"
-msgstr "Izvorni model"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_source
 msgid "Source of the change"
-msgstr "Izvor spremembe"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_state
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_state
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 msgid "State"
-msgstr "Stanje"
+msgstr ""
 
 #. module: partner_changeset
 #: model:res.groups,comment:partner_changeset.group_changeset_user
 msgid "The user will be able to apply or reject changesets."
-msgstr "Uporabnik bo lahko uveljavljal ali zavračal nize sprememb."
+msgstr ""
 
 #. module: partner_changeset
 #: model:res.groups,comment:partner_changeset.group_changeset_manager
 msgid ""
 "The user will have an access to the configuration of the changeset rules."
-msgstr "Uporabnik bo imel dostop do nastavitev pravil niza sprememb."
+msgstr ""
 
 #. module: partner_changeset
 #: code:addons/partner_changeset/models/res_partner_changeset.py:401
@@ -322,11 +317,9 @@ msgid ""
 "This change cannot be applied because a previous changeset for the same partner is pending.\n"
 "Apply all the anterior changesets before applying this one."
 msgstr ""
-"Te spremembe ni mogoče uveljaviti, ker obstaja za istega partnerja prejšnji čakajoč niz sprememb.\n"
-"Pred uveljavitvijo tega uveljavite vse predhodne nize sprememb."
 
 #. module: partner_changeset
 #: code:addons/partner_changeset/models/res_partner_changeset.py:416
 #, python-format
 msgid "This change has already be applied."
-msgstr "Ta sprememba je že uveljavljena."
+msgstr ""
