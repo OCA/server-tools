@@ -5,7 +5,7 @@
 # DON'T IMPORT THIS MODULE IN INIT TO AVOID THE CREATION OF THE MODELS
 # DEFINED FOR TESTS INTO YOUR ODOO INSTANCE
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SelectionGroupFullTestModel(models.Model):
