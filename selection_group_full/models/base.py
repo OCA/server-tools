@@ -38,7 +38,8 @@ class BaseModel(models.AbstractModel):
             for group in remaining_groups:
                 # Selection field that we want to appear in group but
                 # with count == 0
-                read_group_result.append({groupby: group, 'count': 0,
+                gb = ((group, dict(field.selection).get(group)), None)
+                read_group_result.append({groupby: gb, 'count': 0,
                                           'domain': [(groupby, '=', group)]})
 
         return super(BaseModel, self)._read_group_fill_results(
