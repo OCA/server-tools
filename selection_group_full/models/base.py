@@ -26,7 +26,7 @@ class BaseModel(models.AbstractModel):
             if isinstance(field.group_full, bool):
                 remaining_groups = [key for key in dict(field.selection)]
             elif isinstance(field.group_full, list):
-                remaining_groups = field.group_full
+                remaining_groups = list(field.group_full)
             else:
                 remaining_groups = []
             for result in read_group_result:
