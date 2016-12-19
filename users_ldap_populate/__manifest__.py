@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "LDAP Populate",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": 'Tools',
@@ -45,8 +45,8 @@ object you want to query.
         'python': ['ldap'],
     },
     "data": [
-        'view/users_ldap.xml',
-        'view/populate_wizard.xml',
+        'views/users_ldap.xml',
+        'views/populate_wizard.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

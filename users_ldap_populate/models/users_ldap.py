@@ -21,8 +21,8 @@
 
 import re
 
-from openerp import models, api, _
-from openerp.exceptions import UserError
+from odoo import models, api, _
+from odoo.exceptions import UserError
 import logging
 
 _logger = logging.getLogger(__name__)
