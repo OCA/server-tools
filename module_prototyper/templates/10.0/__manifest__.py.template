@@ -16,6 +16,10 @@
     'summary': '{{ prototype.summary }}',
     'description': """
 {{ prototype.description }}
+
+* Module exported by the Module Prototyper module for version 10.0.
+* If you have any questions, please contact Savoir-faire Linux
+(support@savoirfairelinux.com)
 """,
 
     # any module necessary for this one to work correctly
@@ -41,8 +45,6 @@
         {% endfor %}
     ],
 
-    # used for Javascript Web CLient Testing with QUnit / PhantomJS
-    # https://www.odoo.com/documentation/8.0/reference/javascript.html#testing-in-odoo-web-client  # noqa
     'js': [],
     'css': [],
     'qweb': [],

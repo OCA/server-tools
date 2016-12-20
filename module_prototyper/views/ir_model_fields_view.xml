@@ -1,50 +1,48 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="view_ir_model_fields_form" model="ir.ui.view">
-            <field name="name">view_ir_model_fields_form</field>
-            <field name="model">ir.model.fields</field>
-            <field name="inherit_id" ref="base.view_model_fields_form"/>
-            <field name="arch" type="xml">
-                <field name="groups" position="before">
-                    <label for="helper"/>
-                    <field name="helper"
-                           placeholder="Text that will be set as the helper of the field..."/>
-                    <label for="notes"/>
-                    <field name="notes"
-                           placeholder="Notes to help developers to understand the work or advanced features that should be added, ie: onchange, etc."/>
-                </field>
-                <field name="relation_field" position="after">
-                  <field name="column1"
-                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
-                    />
-                  <field name="column2"
-                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
-                    />
-                </field>
-                <field name="translate" position="after">
-                  <field name="limit"
-                    attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
-                    />
-                  <field name="client_context"
-                    attrs="{'invisible': [('ttype', 'not in', ['many2one','one2many','many2many'])]}"
-                    />
-                </field>
+    <record id="view_ir_model_fields_form" model="ir.ui.view">
+        <field name="name">view_ir_model_fields_form</field>
+        <field name="model">ir.model.fields</field>
+        <field name="inherit_id" ref="base.view_model_fields_form"/>
+        <field name="arch" type="xml">
+            <field name="groups" position="before">
+                <label for="helper"/>
+                <field name="helper"
+                       placeholder="Text that will be set as the helper of the field..."/>
+                <label for="notes"/>
+                <field name="notes"
+                       placeholder="Notes to help developers to understand the work or advanced features that should be added, ie: onchange, etc."/>
             </field>
-        </record>
-
-        <record id="view_ir_model_form" model="ir.ui.view">
-            <field name="name">view_ir_model_form</field>
-            <field name="model">ir.model</field>
-            <field name="inherit_id" ref="base.view_model_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='field_id']/form/notebook" position="before">
-                    <separator string="Notes"/>
-                    <field name="notes"/>
-                </xpath>
+            <field name="relation_field" position="after">
+              <field name="column1"
+                attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                />
+              <field name="column2"
+                attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                />
             </field>
-        </record>
+            <field name="translate" position="after">
+              <field name="limit"
+                attrs="{'invisible': [('ttype', '!=', 'many2many')]}"
+                />
+              <field name="client_context"
+                attrs="{'invisible': [('ttype', 'not in', ['many2one','one2many','many2many'])]}"
+                />
+            </field>
+        </field>
+    </record>
 
-    </data>
-</openerp>
+    <record id="view_ir_model_form" model="ir.ui.view">
+        <field name="name">view_ir_model_form</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='field_id']/form/notebook" position="before">
+                <separator string="Notes"/>
+                <field name="notes"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

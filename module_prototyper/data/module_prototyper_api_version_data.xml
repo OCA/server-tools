@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Onestein (<http://www.onestein.eu>)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="api_version_80" model="module_prototyper.api_version">
+        <field name="name">8.0</field>
+        <field name="manifest_file_name">__openerp__</field>
+    </record>
+
+    <record id="api_version_100" model="module_prototyper.api_version">
+        <field name="name">10.0</field>
+        <field name="manifest_file_name">__manifest__</field>
+    </record>
+
+</odoo>
