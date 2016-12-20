@@ -172,6 +172,45 @@ class BaseExternalDbsource(models.Model):
         else:
             return rows
 
+    @api.onchange('connector')
+    def _change_placeholder_str_connect(self):
+
+        if self.connector == 'fdb':
+            self.conn_string = "host=localhost;" \
+                               "database=mydatabase.gdb;" \
+                               "user=sysdba;" \
+                               "password=%s;" \
+                               "port=3050;" \
+                               "charset=utf8"
+
+        elif self.connector == 'postgresql':
+            self.conn_string = "dbname='template1' " \
+                               "user='dbuser' " \
+                               "host='localhost' " \
+                               "port='5432' " \
+                               "password=%s"
+
+        elif self.connector == 'cx_Oracle':
+            self.conn_string = "username/%s@//server.address:port/instance"
+
+        elif self.connector == 'mysql':
+            self.conn_string = "mysql://user:%s@server:port/dbname"
+
+        elif self.connector == 'sqlite':
+            self.conn_string = "sqlite:///test.db"
+
+        elif self.connector == 'pyodbc':
+            self.conn_string = "DRIVER={FreeTDS};" \
+                               "SERVER=server.address;" \
+                               "Database=mydb;" \
+                               "UID=sa"
+
+        elif self.connector == 'mssql':
+            self.conn_string = "mssql+pymssql:" \
+                               "//username:%s" \
+                               "@server:port/dbname" \
+                               "?charset=utf8"
+
     @api.multi
     def connection_test(self):
         """ It tests the connection
