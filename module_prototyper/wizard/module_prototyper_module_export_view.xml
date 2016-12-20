@@ -1,43 +1,41 @@
 <?xml version="1.0"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="view_module_export_wizard" model="ir.ui.view">
-      <field name="name">Export Module</field>
-      <field name="model">module_prototyper.module.export</field>
-      <field name="arch" type="xml">
-        <form string="Export Module">
-          <field name="name" invisible="1"/>
-          <field name="state" invisible="1"/>
-          <group string="Export Settings" states="choose" col="6">
-            <group colspan="2">
-              <field name="api_version"/>
-            </group>
-            <group colspan="4">
-            </group>
-          </group>
-          <div states="get">
-            <h2>Export Complete</h2>
-            <p>Here is the exported module: <field name="data" readonly="1" filename="name"/></p>
-          </div>
-          <footer states="choose">
-            <button name="action_export" string="Export" type="object" class="oe_highlight"/> or
-            <button special="cancel" string="Cancel" type="object" class="oe_link"/>
-          </footer>
-          <footer states="get">
-            <button special="cancel" string="Close" type="object"/>
-          </footer>
-        </form>
-      </field>
+        <field name="name">Export Module</field>
+        <field name="model">module_prototyper.module.export</field>
+        <field name="arch" type="xml">
+            <form string="Export Module">
+                <field name="name" invisible="1"/>
+                <field name="state" invisible="1"/>
+                <group string="Export Settings" states="choose" col="6">
+                    <group colspan="2">
+                        <field name="api_version" widget="selection"/>
+                    </group>
+                    <group colspan="4">
+                    </group>
+                </group>
+                <div states="get">
+                    <h2>Export Complete</h2>
+                    <p>Here is the exported module: <field name="data" readonly="1" filename="name"/></p>
+                </div>
+                <footer states="choose">
+                    <button name="action_export" string="Export" type="object" class="oe_highlight"/> or
+                    <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                </footer>
+                <footer states="get">
+                    <button special="cancel" string="Close" type="object"/>
+                </footer>
+            </form>
+        </field>
     </record>
 
     <record id="button_module_export_action" model="ir.actions.act_window">
-      <field name="name">Export Module</field>
-      <field name="res_model">module_prototyper.module.export</field>
-      <field name="view_type">form</field>
-      <field name="view_id" ref="view_module_export_wizard"/>
-      <field name="target">new</field>
+        <field name="name">Export Module</field>
+        <field name="res_model">module_prototyper.module.export</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_module_export_wizard"/>
+        <field name="target">new</field>
     </record>
 
-  </data>
-</openerp>
+</odoo>
