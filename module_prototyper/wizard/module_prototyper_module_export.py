@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # #############################################################################
 #
 # OpenERP, Open Source Management Solution
@@ -26,20 +26,21 @@ import os
 import zipfile
 from collections import namedtuple
 
-from openerp import fields, models, api
+from odoo import fields, models, api
 
 
 class PrototypeModuleExport(models.TransientModel):
     _name = "module_prototyper.module.export"
 
+    def _default_api_version(self):
+        return self.env.ref('module_prototyper.api_version_100').id
+
     name = fields.Char('File Name', readonly=True)
-    api_version = fields.Selection(
-        [
-            ('8.0', '8.0'),
-        ],
-        'API version',
+    api_version = fields.Many2one(
+        comodel_name='module_prototyper.api_version',
+        string='API version',
         required=True,
-        default='8.0'
+        default=_default_api_version
     )
     data = fields.Binary('File', readonly=True)
     state = fields.Selection(
@@ -63,8 +64,8 @@ class PrototypeModuleExport(models.TransientModel):
         active_model = self._context.get('active_model')
 
         # checking if the wizard was called by a prototype.
-        msg = '{} has to be called from a "module_prototyper" , not a "{}"'
-        assert active_model == 'module_prototyper', msg.format(
+        msg = '%s has to be called from a "module_prototyper" , not a "%s"'
+        assert active_model == 'module_prototyper', msg % (
             self, active_model
         )
 
@@ -82,7 +83,7 @@ class PrototypeModuleExport(models.TransientModel):
 
         wizard.write(
             {
-                'name': '{}.zip'.format(zip_name),
+                'name': '%s.zip' % (zip_name,),
                 'state': 'get',
                 'data': base64.encodestring(zip_details.stringIO.getvalue())
             }
@@ -112,7 +113,7 @@ class PrototypeModuleExport(models.TransientModel):
                 # setting the jinja environment.
                 # They will help the program to find the template to render the
                 # files with.
-                prototype.set_jinja_env(wizard.api_version)
+                prototype.setup_env(wizard.api_version)
 
                 # generate_files ask the prototype to investigate the input and
                 # to generate the file templates according to it.  zip_files,

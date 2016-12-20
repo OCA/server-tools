@@ -1,146 +1,144 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="module_prototyper_base_tree_view" model="ir.ui.view">
-            <field name="name">Base tree View for module prototypes</field>
-            <field name="model">module_prototyper</field>
-            <field name="arch" type="xml">
-                <tree string="Prototype">
-                    <field name="human_name"/>
-                    <field name="name"/>
-                    <field name="summary"/>
-                </tree>
-            </field>
-        </record>
+    <record id="module_prototyper_base_tree_view" model="ir.ui.view">
+        <field name="name">Base tree View for module prototypes</field>
+        <field name="model">module_prototyper</field>
+        <field name="arch" type="xml">
+            <tree string="Prototype">
+                <field name="human_name"/>
+                <field name="name"/>
+                <field name="summary"/>
+            </tree>
+        </field>
+    </record>
 
-        <record id="module_prototyper_base_form_view" model="ir.ui.view">
-            <field name="name">Base form view for module prototypes</field>
-            <field name="model">module_prototyper</field>
-            <field name="arch" type="xml">
-                <form string="Module">
-                    <sheet>
-                        <field name="icon_image" widget="image"
-                               class="oe_avatar oe_left"/>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="human_name"
-                                       placeholder="ex: Module Prototyper"/>
-                            </h1>
-                            <div>
-                                <button name="%(button_module_export_action)d"
-                                        string="Export" type="action"/>
-                            </div>
+    <record id="module_prototyper_base_form_view" model="ir.ui.view">
+        <field name="name">Base form view for module prototypes</field>
+        <field name="model">module_prototyper</field>
+        <field name="arch" type="xml">
+            <form string="Module">
+                <sheet>
+                    <field name="icon_image" widget="image"
+                           class="oe_avatar oe_left"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="human_name"
+                                   placeholder="ex: Module Prototyper"/>
+                        </h1>
+                        <div>
+                            <button name="%(button_module_export_action)d"
+                                    string="Export" type="action"/>
                         </div>
+                    </div>
+                    <group>
                         <group>
-                            <group>
-                                <field name="name"
-                                       placeholder="ex: module_prototyper"/>
-                                <field name="summary"
-                                       placeholder="ex: Prototype your module."/>
-                                <field name="category_id"
-                                       placeholder="ex: Others, Sales, Website"/>
-                                <field name="version"/>
-                                <field name="license"/>
-                            </group>
-                            <group>
-                                <field name="author"
-                                       placeholder="ex: Odoo Community Association"/>
-                                <field name="website" widget="url"
-                                       placeholder="ex: http://odoo-community.org/"/>
-                                <field name="maintainer"
-                                       placeholder="ex: Odoo Community Association"/>
-                                <field name="auto_install"/>
-                                <field name="application"/>
-                            </group>
+                            <field name="name"
+                                   placeholder="ex: module_prototyper"/>
+                            <field name="summary"
+                                   placeholder="ex: Prototype your module."/>
+                            <field name="category_id"
+                                   placeholder="ex: Others, Sales, Website"/>
+                            <field name="version"/>
+                            <field name="license"/>
                         </group>
-                        <notebook>
-                            <page string="Description">
-                                <field name="description"/>
-                            </page>
-                            <page string="Dependencies">
-                                <field name="dependency_ids"/>
-                            </page>
-                            <page string="Fields">
-                                <label for="field_ids"/>
-                                <field name="field_ids"/>
-                            </page>
-                            <page string="Interface">
-                                <label for="view_ids"/>
-                                <field name="view_ids"/>
-                                <label for="menu_ids"/>
-                                <field name="menu_ids"/>
-                            </page>
-                            <page string="Data &amp; Demo">
-                                <label for="data_ids"/>
-                                <field name="data_ids"/>
-                                <label for="demo_ids"/>
-                                <field name="demo_ids"/>
-                            </page>
-                            <page string="Reports">
-                                <label for="report_ids" />
-                                <field name="report_ids" />
-                            </page>
-                            <page string="Security">
-                                <label for="group_ids"/>
-                                <field name="group_ids"/>
-                                <label for="right_ids"/>
-                                <field name="right_ids"/>
-                                <label for="rule_ids"/>
-                                <field name="rule_ids"/>
-                            </page>
-                            <page string="Workflows">
-                                <label for="activity_ids" />
-                                <field name="activity_ids" />
-                                <label for="transition_ids" />
-                                <field name="transition_ids" />
-                            </page>
-                            <page string="Website">
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                        <group>
+                            <field name="author"
+                                   placeholder="ex: Odoo Community Association"/>
+                            <field name="website" widget="url"
+                                   placeholder="ex: http://odoo-community.org/"/>
+                            <field name="maintainer"
+                                   placeholder="ex: Odoo Community Association"/>
+                            <field name="auto_install"/>
+                            <field name="application"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Dependencies">
+                            <field name="dependency_ids"/>
+                        </page>
+                        <page string="Fields">
+                            <label for="field_ids"/>
+                            <field name="field_ids"/>
+                        </page>
+                        <page string="Interface">
+                            <label for="view_ids"/>
+                            <field name="view_ids"/>
+                            <label for="menu_ids"/>
+                            <field name="menu_ids"/>
+                        </page>
+                        <page string="Data &amp; Demo">
+                            <label for="data_ids"/>
+                            <field name="data_ids"/>
+                            <label for="demo_ids"/>
+                            <field name="demo_ids"/>
+                        </page>
+                        <page string="Reports">
+                            <label for="report_ids" />
+                            <field name="report_ids" />
+                        </page>
+                        <page string="Security">
+                            <label for="group_ids"/>
+                            <field name="group_ids"/>
+                            <label for="right_ids"/>
+                            <field name="right_ids"/>
+                            <label for="rule_ids"/>
+                            <field name="rule_ids"/>
+                        </page>
+                        <page string="Workflows">
+                            <label for="activity_ids" />
+                            <field name="activity_ids" />
+                            <label for="transition_ids" />
+                            <field name="transition_ids" />
+                        </page>
+                        <page string="Website">
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record id="open_module_prototyper_list" model="ir.actions.act_window">
-            <field name="name">Prototypes</field>
-            <field name="res_model">module_prototyper</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="module_prototyper_base_tree_view"/>
-        </record>
+    <record id="open_module_prototyper_list" model="ir.actions.act_window">
+        <field name="name">Prototypes</field>
+        <field name="res_model">module_prototyper</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="module_prototyper_base_tree_view"/>
+    </record>
 
-        <!--Here a menu is created to help user to have all what he needs-->
-        <!--under his mouse with ease-->
-        <menuitem id="menu_module_prototyper"
-                  name="Module Prototypes"
-                  parent="base.menu_administration"
-                  sequence="1"/>
+    <!--Here a menu is created to help user to have all what he needs-->
+    <!--under his mouse with ease-->
+    <menuitem id="menu_module_prototyper"
+              name="Module Prototypes"
+              parent="base.menu_administration"
+              sequence="1"/>
 
-        <menuitem id="menu_open_module_prototyper"
-                  action="open_module_prototyper_list"
-                  parent="menu_module_prototyper"
-                  sequence="1"
-                  groups="base.group_system"/>
+    <menuitem id="menu_open_module_prototyper"
+              action="open_module_prototyper_list"
+              parent="menu_module_prototyper"
+              sequence="1"
+              groups="base.group_system"/>
 
-        <menuitem action="base.action_ui_view"
-                  id="menu_action_ui_view"
-                  parent="menu_module_prototyper"
-                  sequence="2"
-                  groups="base.group_system"/>
+    <menuitem action="base.action_ui_view"
+              id="menu_action_ui_view"
+              parent="menu_module_prototyper"
+              sequence="2"
+              groups="base.group_system"/>
 
-        <menuitem action="base.grant_menu_access"
-                  id="menu_grant_menu_access"
-                  parent="menu_module_prototyper"
-                  sequence="3"
-                  groups="base.group_system"/>
+    <menuitem action="base.grant_menu_access"
+              id="menu_grant_menu_access"
+              parent="menu_module_prototyper"
+              sequence="3"
+              groups="base.group_system"/>
 
-        <menuitem action="base.action_model_fields"
-                  id="ir_model_model_fields"
-                  parent="menu_module_prototyper"
-                  sequence="4"
-                  groups="base.group_system"/>
+    <menuitem action="base.action_model_fields"
+              id="ir_model_model_fields"
+              parent="menu_module_prototyper"
+              sequence="4"
+              groups="base.group_system"/>
 
-    </data>
-</openerp>
+</odoo>
