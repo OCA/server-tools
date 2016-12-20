@@ -6,12 +6,12 @@ import logging
 
 from uuid import uuid4
 
-from openerp import _, api, models
+from odoo import _, api, models
 
 _logger = logging.getLogger(__name__)
 
 try:
-    from openerp.addons.base_external_dbsource.models import (
+    from odoo.addons.base_external_dbsource.models import (
         base_external_dbsource,
     )
     CONNECTORS = base_external_dbsource.BaseExternalDbsource.CONNECTORS

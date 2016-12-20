@@ -37,7 +37,7 @@ To use this module:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0 for server-tools
+   :target: https://runbot.odoo-community.org/runbot/149/10.0 for server-tools
 
 Known issues / Roadmap
 ======================
