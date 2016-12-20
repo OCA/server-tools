@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="red_october_delegation_view_tree" model="ir.ui.view">
+        <field name="name">red.october.delegation.tree</field>
+        <field name="model">red.october.delegation</field>
+        <field name="arch" type="xml">
+            <tree string="Crypto Delegations">
+                <field name="user_id" />
+                <field name="vault_id" />
+                <field name="date_expire" />
+                <field name="num_expire" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="red_october_delegation_view_form" model="ir.ui.view">
+        <field name="name">red.october.delegation.form</field>
+        <field name="model">red.october.delegation</field>
+        <field name="arch" type="xml">
+            <form string="Crypto Delegation">
+                <header />
+                <sheet>
+                    <group name="main">
+                        <group name="meta">
+                            <field name="user_id" />
+                            <field name="vault_id" />
+                        </group>
+                        <group name="expiry">
+                            <field name="date_expire" />
+                            <field name="num_expire" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="red_october_delegation_view_search" model="ir.ui.view">
+        <field name="name">red.october.delegation.search</field>
+        <field name="model">red.october.delegation</field>
+        <field name="arch" type="xml">
+            <search string="Crypto Delegations">
+                <field name="user_id" />
+                <field name="vault_id" />
+                <field name="date_expire" />
+                <field name="num_expire" />
+                <filter string="User"
+                        domain="[]"
+                        context="{'group_by':'user_id'}" />
+                <filter string="Vault"
+                        domain="[]"
+                        context="{'group_by':'vault_id'}" />
+                <filter string="Expire Date"
+                        domain="[]"
+                        context="{'group_by':'date_expire'}" />
+                <filter string="Expire Num"
+                        domain="[]"
+                        context="{'group_by':'num_expire'}" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="red_october_delegation_action">
+        <field name="name">Delegations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">red.october.delegation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

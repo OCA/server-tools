@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="red_october_user_view_tree" model="ir.ui.view">
+        <field name="name">red.october.user.tree</field>
+        <field name="model">red.october.user</field>
+        <field name="arch" type="xml">
+            <tree string="Crypto Users">
+                <field name="name" />
+                <field name="encrypt_type" />
+                <field name="is_admin" />
+                <field name="is_active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="red_october_user_view_form" model="ir.ui.view">
+        <field name="name">red.october.user.form</field>
+        <field name="model">red.october.user</field>
+        <field name="arch" type="xml">
+            <form string="Crypto User">
+                <header>
+                    <field name="name" readonly="True" />
+                </header>
+                <sheet>
+                    <group name="meta">
+                        <field name="user_id" />
+                        <field name="encrypt_type" />
+                        <field name="is_admin" />
+                        <field name="is_active" />
+                    </group>
+                    <group name="authorizations">
+                        <field name="vault_ids" />
+                        <field name="delegation_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="red_october_user_view_search" model="ir.ui.view">
+        <field name="name">red.october.user.search</field>
+        <field name="model">red.october.user</field>
+        <field name="arch" type="xml">
+            <search string="Crypto Users">
+                <field name="name" />
+                <field name="encrypt_type" />
+                <field name="is_admin" />
+                <field name="is_active" />
+                <filter string="Encrypt Type"
+                        domain="[]"
+                        context="{'group_by':'encrypt_type'}" />
+                <filter string="Admin"
+                        domain="[]"
+                        context="{'group_by':'is_admin'}" />
+                <filter string="Active"
+                        domain="[]"
+                        context="{'group_by':'is_active'}" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="red_october_user_action">
+        <field name="name">Users</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">red.october.user</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

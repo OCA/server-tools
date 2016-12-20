@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="red_october_vault_view_tree" model="ir.ui.view">
+        <field name="name">red.october.vault.tree</field>
+        <field name="model">red.october.vault</field>
+        <field name="arch" type="xml">
+            <tree string="Crypto Vaults">
+                <field name="name" />
+                <field name="host" />
+                <field name="port" />
+                <field name="is_active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="red_october_vault_view_form" model="ir.ui.view">
+        <field name="name">red.october.vault.form</field>
+        <field name="model">red.october.vault</field>
+        <field name="arch" type="xml">
+            <form string="Crypto Vault">
+                <header />
+                <sheet>
+                    <group name="meta">
+                        <field name="id" invisible="True" />
+                        <field name="name" />
+                        <field name="host" />
+                        <field name="port" />
+                        <field name="company_ids" widget="many2many_tags" />
+                        <field name="verify_cert" />
+                        <field name="is_active" />
+                    </group>
+                    <group name="authorizations">
+                        <field name="user_ids" />
+                        <field name="delegation_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="red_october_vault_view_search" model="ir.ui.view">
+        <field name="name">red.october.vault.search</field>
+        <field name="model">red.october.vault</field>
+        <field name="arch" type="xml">
+            <search string="Crypto Vaults">
+                <field name="name" />
+                <field name="host" />
+                <field name="port" />
+                <field name="user_ids" />
+                <field name="is_active" />
+                <field name="company_ids" />
+                <filter string="Host"
+                        domain="[]"
+                        context="{'group_by':'host'}" />
+                <filter string="Port"
+                        domain="[]"
+                        context="{'group_by':'port'}" />
+                <filter string="Initialized"
+                        domain="[]"
+                        context="{'group_by':'is_active'}" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="red_october_vault_action">
+        <field name="name">Vaults</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">red.october.vault</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

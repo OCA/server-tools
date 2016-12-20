@@ -6,3 +6,4 @@ validate_email
 pysftp
 fdb
 sqlalchemy
+git+https://github.com/LasLabs/python-red-october

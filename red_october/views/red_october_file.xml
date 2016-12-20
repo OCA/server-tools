@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="red_october_file_view_tree" model="ir.ui.view">
+        <field name="name">red.october.file.tree</field>
+        <field name="model">red.october.file</field>
+        <field name="arch" type="xml">
+            <tree string="Crypto Files" create="false">
+                <field name="name" />
+                <field name="vault_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="red_october_file_view_form" model="ir.ui.view">
+        <field name="name">red.october.file.form</field>
+        <field name="model">red.october.file</field>
+        <field name="arch" type="xml">
+            <form string="Crypto File" create="false">
+                <header />
+                <sheet>
+                    <group name="meta">
+                        <field name="name" />
+                        <field name="delegation_min" />
+                        <field name="vault_id" />
+                    </group>
+                    <notebook>
+                        <page string="Authorizations">
+                            <group name="authorizations">
+                                <field name="owner_ids">
+                                    <tree>
+                                        <field name="user_id" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Data">
+                            <group name="data">
+                                <field name="datas" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="red_october_file_view_search" model="ir.ui.view">
+        <field name="name">red.october.file.search</field>
+        <field name="model">red.october.file</field>
+        <field name="arch" type="xml">
+            <search string="Crypto Files">
+                <field name="name" />
+                <field name="delegation_min" />
+                <field name="owner_ids" />
+                <field name="vault_id" />
+                <filter string="Vault"
+                        domain="[]"
+                        context="{'group_by':'vault_id'}" />
+                <filter string="Delegation Min"
+                        domain="[]"
+                        context="{'group_by':'delegation_min'}" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="red_october_file_action">
+        <field name="name">Files</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">red.october.file</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="red_october_vault_activate_view_form" model="ir.ui.view">
+        <field name="name">red.october.vault.activate.form</field>
+        <field name="model">red.october.vault.activate</field>
+        <field name="arch" type="xml">
+            <form string="Initialize Crypto Vault">
+                <header />
+                <sheet>
+                    <group name="main">
+                        <field name="admin_user_id" />
+                        <field name="admin_password" />
+                        <field name="root_user_id" />
+                        <field name="is_active" />
+                        <field name="vault_ids" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_save"
+                            string="Initialize"
+                            type="object"
+                            class="oe_highlight"
+                            />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="red_october_vault_activate_action"
+                src_model="red.october.vault"
+                res_model="red.october.vault.activate"
+                name="Init Vault"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                />
+
+</odoo>

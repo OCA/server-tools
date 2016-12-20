@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <menuitem id="red_october_menu"
+              name="Crypto"
+              parent="base.menu_administration"
+              sequence="20"
+              />
+
+    <menuitem id="red_october_vault"
+              name="Vaults"
+              parent="red_october_menu"
+              sequence="10"
+              action="red_october_vault_action"
+              />
+
+    <menuitem id="red_october_user"
+              name="Users"
+              parent="red_october_menu"
+              sequence="20"
+              action="red_october_user_action"
+              />
+
+    <menuitem id="red_october_file"
+              name="Files"
+              parent="red_october_menu"
+              sequence="30"
+              action="red_october_file_action"
+              />
+
+    <menuitem id="red_october_delegation"
+              name="Delegations"
+              parent="red_october_menu"
+              sequence="40"
+              action="red_october_delegation_action"
+              />
+
+</odoo>
