@@ -32,7 +32,11 @@ def jsonify(self, parser):
                 if field_type in ('one2many', 'many2many'):
                     res[field_name] = rec[field_name].jsonify(subparser)
                 elif field_type == 'many2one':
-                    res[field_name] = rec[field_name].jsonify(subparser)[0]
+                    data = rec[field_name].jsonify(subparser)
+                    if data:
+                        res[field_name] = data[0]
+                    else:
+                        res[field_name] = None
                 else:
                     raise UserError('Wrong parser configuration')
             else:
