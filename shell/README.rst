@@ -36,8 +36,19 @@ Example session:
     <openerp.api.Environment object at 0xb3f4f52c>
     >>> self.env['res.partner'].search([('name', 'like', 'Ag')])
     res.partner(7, 51)
+    
+    
+Troubleshooting
+===============
+If the command does nothing, or if you have the error
 
+    Usage: odoo.py [options]
 
+    odoo.py: error: unrecognized parameters: 'shell'
+
+it is surely because of the order of the parameters. Try the following:
+
+    $ ./odoo.py --addons-path=<your_path1>,<your_path2> shell --config=<your_config_file> -d <dbname>
 
 Bug Tracker
 ===========
