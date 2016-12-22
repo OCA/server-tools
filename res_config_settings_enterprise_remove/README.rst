@@ -45,6 +45,7 @@ Contributors
 ------------
 
 * Brett Wood <bwood@laslabs.com>
+* Michell Stuttgart <michellstut@gmail.com>
 
 Maintainer
 ----------

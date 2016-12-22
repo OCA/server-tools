@@ -2,22 +2,20 @@
 # Copyright 2016 LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api
+from odoo import api
 from lxml import etree
-from openerp.addons.base.res.res_config import \
-    res_config_settings
+from odoo.addons.base.res.res_config import ResConfigSettings
 
 
-class ResConfigSettings(res_config_settings):
+class ResConfigSettingsFieldsViewGet(ResConfigSettings):
 
     @api.model
-    def fields_view_get(self, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
 
-        ret_val = super(ResConfigSettings, self).fields_view_get(
+        ret_val = super(ResConfigSettingsFieldsViewGet, self).fields_view_get(
             view_id=view_id,
             view_type=view_type,
-            context=context,
             toolbar=toolbar,
             submenu=submenu,
         )
