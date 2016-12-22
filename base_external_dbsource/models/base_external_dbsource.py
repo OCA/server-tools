@@ -174,14 +174,17 @@ class BaseExternalDbsource(models.Model):
 
     @api.onchange('connector')
     def _change_placeholder_str_connect(self):
-
+        """
+        Changing value of connector field will automatically
+        set value in conn_string field.
+        """
         if self.connector == 'fdb':
             self.conn_string = "host=localhost;" \
                                "database=mydatabase.gdb;" \
                                "user=sysdba;" \
                                "password=%s;" \
                                "port=3050;" \
-                               "charset=utf8"
+                               "charset=none"
 
         elif self.connector == 'postgresql':
             self.conn_string = "dbname='template1' " \
