@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import mock
 from odoo.tests import common
+from . import models
 
 
 class BaseTestGroupFull(common.SavepointCase):
@@ -27,6 +28,6 @@ class BaseTestGroupFull(common.SavepointCase):
         super(BaseTestGroupFull, cls).setUpClass()
         # mock commit since it"s called in the _auto_init method
         cls.cr.commit = mock.MagicMock()
-        from . import models
+
         cls.group_full_test_model = \
             cls._init_test_model(models.SelectionGroupFullTestModel)

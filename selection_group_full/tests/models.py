@@ -11,6 +11,7 @@ from odoo import fields, models
 class SelectionGroupFullTestModel(models.Model):
     _name = 'selection.group.full.test.model'
     _rec_name = 'name'
+    _abstract = True
 
     name = fields.Char(required=True)
     state = fields.Selection([('new', 'New'), ('in_progress', 'In Progress'),
