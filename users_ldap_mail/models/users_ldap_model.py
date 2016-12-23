@@ -24,10 +24,8 @@ class CompanyLDAP(models.Model):
         Copy of auth_ldap's funtion, changing only the SQL, so that it returns
         all fields in the table.
         """
-        ldaps = self.sudo().search([('ldap_server', '!=', False)],
-                                   order='sequence')
-        res = ldaps.read([])
-        return res
+        return self.sudo().search([('ldap_server', '!=', False)],
+                                  order='sequence').read([])
 
     def map_ldap_attributes(self, conf, login, ldap_entry):
         values = super(CompanyLDAP, self).map_ldap_attributes(conf, login,
