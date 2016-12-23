@@ -27,7 +27,7 @@ addon | version | summary
 [auto_backup](auto_backup/) | 9.0.1.0.0 | Backups database
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
-[base_external_dbsource](base_external_dbsource/) | 9.0.1.0.0 | External Database Sources
+[base_external_dbsource](base_external_dbsource/) | 9.0.1.0.1 | External Database Sources
 [base_import_match](base_import_match/) | 9.0.1.0.0 | Try to avoid duplicates before importing
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 9.0.1.0.0 | Friendlier search when typing in relation fields
@@ -58,6 +58,7 @@ addon | version | summary
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
+[server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 9.0.1.0.0 | Override System Parameters from server environment file
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
