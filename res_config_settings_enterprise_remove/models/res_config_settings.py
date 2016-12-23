@@ -35,6 +35,17 @@ class ResConfigSettings(models.TransientModel):
                     @widget='upgrade_boolean']]",
             ]
 
+        elif page_name == 'stock settings':
+            queries += [
+                "//group[@name='shipping']",
+                "//group[@string='Extra Features']",
+            ]
+
+        elif page_name == 'mrp settings':
+            queries += [
+                "//group[@string='Extra Features']",
+            ]
+
         queries += [
             "//div[div[field[@widget='upgrade_boolean']]] \
                 /preceding-sibling::label[1]",
@@ -43,6 +54,16 @@ class ResConfigSettings(models.TransientModel):
                 /preceding-sibling::label[1]",
             "//div[field[@widget='upgrade_boolean']]",
             "//field[@widget='upgrade_boolean']",
+        ]
+
+        queries += [
+            "//div[div[field[@widget='upgrade_radio']]] \
+                /preceding-sibling::label[1]",
+            "//div[div[field[@widget='upgrade_radio']]]",
+            "//div[field[@widget='upgrade_radio']] \
+                /preceding-sibling::label[1]",
+            "//div[field[@widget='upgrade_radio']]",
+            "//field[@widget='upgrade_radio']",
         ]
 
         for query in queries:
