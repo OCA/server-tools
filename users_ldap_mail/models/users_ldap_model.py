@@ -12,11 +12,11 @@ class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
 
     name_attribute = fields.Char(
-        'Name Attribute', size=64, _defaults='cn',
+        'Name Attribute',  _defaults='cn',
         help="By default 'cn' is used. "
              "For ActiveDirectory you might use 'displayName' instead.")
     mail_attribute = fields.Char(
-        'E-mail attribute', size=64, _defaults='mail',
+        'E-mail attribute',  _defaults='mail',
         help="LDAP attribute to use to retrieve em-mail address.")
 
     def get_ldap_dicts(self):
