@@ -26,6 +26,7 @@ addon | version | summary
 [date_range](date_range/) | 10.0.1.0.0 | Manage all kind of date range
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
+[module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [password_security](password_security/) | 10.0.1.0.0 | Allow admin to set password security requirements.
 
 Unported addons
@@ -62,7 +63,6 @@ addon | version | summary
 [mass_editing](mass_editing/) | 9.0.1.0.0 (unported) | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 (unported) | Fast way to look up technical info about menu item.
 [mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
-[module_prototyper](module_prototyper/) | 9.0.0.1.0 (unported) | Prototype your module.
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 (unported) | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 (unported) | Scheduler Error Mailer
