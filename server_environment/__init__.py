@@ -18,4 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from .serv_config import serv_config, setboolean
+import logging
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from .serv_config import serv_config, setboolean
+except ImportError:
+    _logger.info("ImportError raised while loading module.")
+    _logger.debug("ImportError details:", exc_info=True)
