@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ===============
-users_ldap_mail
+Users LDAP Mail
 ===============
 
 This module extends the functionality of the auth_ldap module to support mail
@@ -15,17 +15,17 @@ Usage
 
 To use this module, you need to:
 
-1. Open Odoo in your browser
-2. Go to Settings
-3. Go to General Settings
-4. In The General Settings form go to LDAP Parameters
-5. In a LDAP Parameters item there are two new fields: mail and name, the name
+#. Open Odoo in your browser
+#. Go to Settings
+#. Go to General Settings
+#. In The General Settings form go to LDAP Parameters
+#. In a LDAP Parameters item there are two new fields: mail and name, the name
    These items will correspond with a new user that is created, when a user
    logs in via LDAP in Odoo.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/{server-tools}/{10.0}
+   :target: https://runbot.odoo-community.org/runbot/repo/149
 
 .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
 .. branch is "8.0" for example
