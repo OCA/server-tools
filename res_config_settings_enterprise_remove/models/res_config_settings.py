@@ -2,18 +2,19 @@
 # Copyright 2016 LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api
+from odoo import api, models
 from lxml import etree
-from odoo.addons.base.res.res_config import ResConfigSettings
 
 
-class ResConfigSettingsFieldsViewGet(ResConfigSettings):
+class ResConfigSettings(models.TransientModel):
+
+    _inherit = 'res.config.settings'
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
 
-        ret_val = super(ResConfigSettingsFieldsViewGet, self).fields_view_get(
+        ret_val = super(ResConfigSettings, self).fields_view_get(
             view_id=view_id,
             view_type=view_type,
             toolbar=toolbar,
