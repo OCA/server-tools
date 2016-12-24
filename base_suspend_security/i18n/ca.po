@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-23 02:01+0000\n"
 "PO-Revision-Date: 2016-12-23 02:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_res_groups
@@ -26,7 +26,7 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_module_category
 msgid "Application"
-msgstr "Uygulama"
+msgstr ""
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_res_bank
@@ -86,12 +86,12 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr "Dış veritabanı kaynakları"
+msgstr ""
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_model_fields
 msgid "Fields"
-msgstr "Alanlar"
+msgstr ""
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_filters
@@ -131,12 +131,12 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_module_module
 msgid "Module"
-msgstr "Modül"
+msgstr "Mòdul"
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_module_prototyper
 msgid "Module Prototyper"
-msgstr "Modül Prototipleyici"
+msgstr ""
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_base_module_upgrade
@@ -171,7 +171,7 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_res_users
 msgid "Users"
-msgstr "Kullanıcılar"
+msgstr ""
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model__unknown
