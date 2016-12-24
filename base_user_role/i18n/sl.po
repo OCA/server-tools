@@ -3,15 +3,15 @@
 # * base_user_role
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 03:03+0000\n"
-"PO-Revision-Date: 2016-12-10 03:03+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-24 04:14+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,12 +22,12 @@ msgstr ""
 #. module: base_user_role
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
-msgstr ""
+msgstr "Nadzor dostopa"
 
 #. module: base_user_role
 #: field:res.users.role,menu_access:0
 msgid "Access Menu"
-msgstr ""
+msgstr "Meni dostopa"
 
 #. module: base_user_role
 #: field:res.users.role,category_id:0
@@ -37,7 +37,7 @@ msgstr "Aplikacija"
 #. module: base_user_role
 #: field:res.users.role,group_id:0
 msgid "Associated group"
-msgstr ""
+msgstr "Povezana skupina"
 
 #. module: base_user_role
 #: field:res.users.role,comment:0
@@ -83,7 +83,7 @@ msgstr "Od"
 #. module: base_user_role
 #: field:res.users.role,full_name:0
 msgid "Group Name"
-msgstr ""
+msgstr "Naziv skupine"
 
 #. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form
@@ -98,7 +98,7 @@ msgstr "ID"
 #. module: base_user_role
 #: field:res.users.role,implied_ids:0
 msgid "Inherits"
-msgstr ""
+msgstr "Podeduje"
 
 #. module: base_user_role
 #: field:res.users.role,__last_update:0
@@ -126,12 +126,12 @@ msgstr "Naziv"
 #: view:res.users.role:base_user_role.view_res_users_role_tree
 #: field:res.users.role.line,role_id:0
 msgid "Role"
-msgstr ""
+msgstr "Vloga"
 
 #. module: base_user_role
 #: field:res.users,role_line_ids:0
 msgid "Role lines"
-msgstr ""
+msgstr "Postavke vlog"
 
 #. module: base_user_role
 #: model:ir.actions.act_window,name:base_user_role.action_res_users_role_tree
@@ -140,7 +140,7 @@ msgstr ""
 #: field:res.users,role_ids:0
 #: view:res.users.role:base_user_role.view_res_users_role_search
 msgid "Roles"
-msgstr ""
+msgstr "Vloge"
 
 #. module: base_user_role
 #: field:res.users.role,rule_groups:0
@@ -165,7 +165,7 @@ msgstr "Za"
 #. module: base_user_role
 #: field:res.users.role,trans_implied_ids:0
 msgid "Transitively inherits"
-msgstr ""
+msgstr "Prehodno podeduje"
 
 #. module: base_user_role
 #: field:res.users.role.line,user_id:0
@@ -175,7 +175,7 @@ msgstr "Uporabnik"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
-msgstr ""
+msgstr "Uporabniška vloga"
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users
@@ -188,12 +188,12 @@ msgstr "Uporabniki"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role_line
 msgid "Users associated to a role"
-msgstr ""
+msgstr "Uporabniki povezani z vlogo"
 
 #. module: base_user_role
 #: help:res.users.role,implied_ids:0
 msgid "Users of this group automatically inherit those groups"
-msgstr ""
+msgstr "Uporabniki v tej skupini samodejno podedujejo te skupine"
 
 #. module: base_user_role
 #: field:res.users.role,view_access:0

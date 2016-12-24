@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -212,7 +213,7 @@ msgstr ""
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_model:0
 msgid "The database object this attachment will be attached to"
-msgstr ""
+msgstr "L'oggetto del database a cui l'allegato verrà collegato"
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,file_type:0
@@ -224,7 +225,7 @@ msgstr ""
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0
 msgid "The record id this is attached to"
-msgstr ""
+msgstr "L'id del record a cui è collegato"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search

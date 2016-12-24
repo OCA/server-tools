@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_populate
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 04:15+0000\n"
+"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Hungarian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: users_ldap_populate
+#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+msgid "Add populate button to ldap view"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_uid:0
+msgid "Created by"
+msgstr "Készítette"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_date:0
+msgid "Created on"
+msgstr "Létrehozás dátuma"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,display_name:0
+msgid "Display Name"
+msgstr "Név megjelenítése"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,ldap_id:0
+msgid "LDAP Configuration"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Utolsó frissítés dátuma"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Utoljára frissítve, által"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Utoljára frissítve "
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,name:0
+msgid "Name"
+msgstr "Név"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_created:0
+msgid "Number of users created"
+msgstr ""
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate"
+msgstr ""
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr ""

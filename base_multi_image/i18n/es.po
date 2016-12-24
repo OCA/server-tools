@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -34,13 +34,13 @@ msgstr ""
 #: sql_constraint:base_multi_image.image:0
 #, python-format
 msgid "A document can have only one image with the same name."
-msgstr ""
+msgstr "Cada documento puede tener sólo una imagen con el mismo nombre."
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
 #: field:base_multi_image.image,comments:0
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,create_uid:0
@@ -55,7 +55,7 @@ msgstr "Creado en"
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "Database"
-msgstr ""
+msgstr "Base de datos"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,display_name:0
@@ -66,17 +66,17 @@ msgstr "Nombre a mostrar"
 #. module: base_multi_image
 #: field:base_multi_image.image,extension:0
 msgid "File extension"
-msgstr ""
+msgstr "Extensión del archivo"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,filename:0
 msgid "Filename"
-msgstr ""
+msgstr "Nombre de archivo"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_main:0
 msgid "Full-sized image"
-msgstr ""
+msgstr "Imagen de tamaño completo"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,id:0 field:base_multi_image.owner,id:0
@@ -91,28 +91,28 @@ msgstr "Imagen"
 #. module: base_multi_image
 #: field:base_multi_image.image,path:0 help:base_multi_image.image,path:0
 msgid "Image path"
-msgstr ""
+msgstr "Ruta de la imagen"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,url:0
 msgid "Image remote URL"
-msgstr ""
+msgstr "URL remota de la imagen"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,file_db_store:0
 msgid "Image stored in database"
-msgstr ""
+msgstr "Imagen guardada en base de datos"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,name:0
 msgid "Image title"
-msgstr ""
+msgstr "Título de la imagen"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_tree_view
 #: field:base_multi_image.owner,image_ids:0
 msgid "Images"
-msgstr ""
+msgstr "Imágenes"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,__last_update:0
@@ -135,17 +135,17 @@ msgstr "Última actualización en"
 #: field:base_multi_image.owner,image_main:0
 #, python-format
 msgid "Main image"
-msgstr ""
+msgstr "Imagen principal"
 
 #. module: base_multi_image
 #: field:base_multi_image.owner,image_main_medium:0
 msgid "Medium image"
-msgstr ""
+msgstr "Imagen media"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_medium:0
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Imagen de tamaño medio"
 
 #. module: base_multi_image
 #: help:base_multi_image.image,image_medium:0
@@ -153,13 +153,13 @@ msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
 "with aspect ratio preserved, only when the image exceeds one of those sizes."
 " Use this field in form views or kanban views."
-msgstr ""
+msgstr "Imagen de tamaño medio. Es redimensionada automáticamente a un tamaño de 128 x 128 px, preservando la proporción de aspecto, sólo cuando la imagen excede uno de estos tamaños. Use este campo para vistas formulario o kanban."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
 #: model:ir.ui.menu,name:base_multi_image.image_menu
 msgid "Multi images"
-msgstr ""
+msgstr "Multi imágenes"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
@@ -169,23 +169,23 @@ msgstr "Nombre"
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "OS file"
-msgstr ""
+msgstr "Archivo del SO"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
 #: field:base_multi_image.image,owner_id:0
 msgid "Owner"
-msgstr ""
+msgstr "Propietario"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,owner_model:0
 msgid "Owner model"
-msgstr ""
+msgstr "Modelo propietario"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
@@ -195,7 +195,7 @@ msgstr "Previsualización"
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_kanban_view
 msgid "Product Images"
-msgstr ""
+msgstr "Imagénes del producto"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,sequence:0
@@ -205,29 +205,29 @@ msgstr "Secuencia"
 #. module: base_multi_image
 #: field:base_multi_image.image,show_technical:0
 msgid "Show technical"
-msgstr ""
+msgstr "Mostrar técnico"
 
 #. module: base_multi_image
 #: field:base_multi_image.owner,image_main_small:0
 msgid "Small image"
-msgstr ""
+msgstr "Imagen pequeña"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_small:0
 msgid "Small-sized image"
-msgstr ""
+msgstr "Imagen de tamaño pequeño"
 
 #. module: base_multi_image
 #: help:base_multi_image.image,image_small:0
 msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr ""
+msgstr "Imagen de tamaño medio. Es redimensionada automáticamente a un tamaño de 64 x 64 px, preservando la proporción de aspecto. Use este campo donde se requiera una imagen pequeña."
 
 #. module: base_multi_image
 #: field:base_multi_image.image,storage:0
 msgid "Storage"
-msgstr ""
+msgstr "Almacenamiento"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0

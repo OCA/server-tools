@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-10-18 10:57+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-17 11:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Primer campo"
 #. module: base_export_manager
 #: field:ir.exports.line,model1_id:0
 msgid "First model"
-msgstr ""
+msgstr "Primer modelo"
 
 #. module: base_export_manager
 #: field:ir.exports.line,field4_id:0
@@ -86,7 +86,7 @@ msgstr ""
 #. module: base_export_manager
 #: field:ir.exports.line,label:0
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #. module: base_export_manager
 #: field:ir.exports,model_id:0
@@ -101,7 +101,7 @@ msgstr "Segundo campo"
 #. module: base_export_manager
 #: field:ir.exports.line,model2_id:0
 msgid "Second model"
-msgstr ""
+msgstr "Segundo modelo"
 
 #. module: base_export_manager
 #: field:ir.exports.line,sequence:0
@@ -116,10 +116,10 @@ msgstr "Tercer campo"
 #. module: base_export_manager
 #: field:ir.exports.line,model3_id:0
 msgid "Third model"
-msgstr ""
+msgstr "Tercer modelo"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Debe introducir un modelo o recurso."
