@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 03:36+0000\n"
-"PO-Revision-Date: 2016-11-26 03:36+0000\n"
+"POT-Creation-Date: 2016-12-23 02:01+0000\n"
+"PO-Revision-Date: 2016-12-23 02:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/23907/es_AR/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_company_id
@@ -215,8 +215,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1327
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1324
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1383
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1380
 msgid "Type"
 msgstr ""
 
