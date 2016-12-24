@@ -3,14 +3,16 @@
 # * base_import_match
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"POT-Creation-Date: 2016-12-23 21:53+0000\n"
+"PO-Revision-Date: 2016-12-23 21:53+0000\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2016\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,19 +20,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_match
-#: field:base_import.match.field,conditional:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
 msgid "Conditional"
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,create_uid:0
-#: field:base_import.match.field,create_uid:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_uid
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_uid
 msgid "Created by"
 msgstr "Creat per"
 
 #. module: base_import_match
-#: field:base_import.match,create_date:0
-#: field:base_import.match.field,create_date:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_date
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_date
 msgid "Created on"
 msgstr "Creat el"
 
@@ -40,19 +42,24 @@ msgid "Deduplicate settings prior to CSV imports."
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,display_name:0
-#: field:base_import.match.field,display_name:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_display_name
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: base_import_match
-#: help:base_import.match.field,conditional:0
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_conditional
 msgid "Enable if you want to use this field only in some conditions."
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match.field,field_id:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_field_id
 msgid "Field"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_name
+msgid "Field Name"
 msgstr ""
 
 #. module: base_import_match
@@ -61,32 +68,33 @@ msgid "Field import match definition"
 msgstr ""
 
 #. module: base_import_match
-#: help:base_import.match.field,field_id:0
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_field_id
 msgid "Field that will be part of an unique key."
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,field_ids:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_ids
 msgid "Fields"
 msgstr ""
 
 #. module: base_import_match
-#: help:base_import.match,field_ids:0
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_ids
 msgid "Fields that will define an unique key."
 msgstr ""
 
 #. module: base_import_match
-#: view:base_import.match:base_import_match.match_search_view
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Agrupa Per"
 
 #. module: base_import_match
-#: field:base_import.match,id:0 field:base_import.match.field,id:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_import_match
-#: help:base_import.match.field,imported_value:0
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_imported_value
 msgid ""
 "If the imported value is not this, the whole matching rule will be "
 "discarded. Be careful, this data is always treated as a string, and "
@@ -95,60 +103,62 @@ msgid ""
 msgstr ""
 
 #. module: base_import_match
-#: view:base_import.match:base_import_match.match_form_view
-#: view:base_import.match:base_import_match.match_search_view
-#: view:base_import.match:base_import_match.match_tree_view
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
+#: model:ir.ui.view,arch_db:base_import_match.match_form_view
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
+#: model:ir.ui.view,arch_db:base_import_match.match_tree_view
 msgid "Import Match"
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match.field,imported_value:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_imported_value
 msgid "Imported value"
 msgstr ""
 
 #. module: base_import_match
-#: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_model_id
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_model_id
 msgid "In this model you will apply the match."
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,__last_update:0
-#: field:base_import.match.field,__last_update:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match___last_update
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,write_uid:0
-#: field:base_import.match.field,write_uid:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_uid
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
 
 #. module: base_import_match
-#: field:base_import.match,write_date:0
-#: field:base_import.match.field,write_date:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_date
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_date
 msgid "Last Updated on"
 msgstr "Darrera Actualització el"
 
 #. module: base_import_match
-#: field:base_import.match.field,match_id:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_match_id
 msgid "Match"
 msgstr ""
 
 #. module: base_import_match
-#: view:base_import.match:base_import_match.match_search_view
-#: field:base_import.match,model_id:0 field:base_import.match,model_name:0
-#: field:base_import.match.field,model_id:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_model_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_model_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_model_name
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: base_import_match
-#: field:base_import.match,name:0 field:base_import.match.field,name:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_name
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: base_import_match
-#: field:base_import.match,sequence:0
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"

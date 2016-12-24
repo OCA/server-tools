@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-23 21:53+0000\n"
+"PO-Revision-Date: 2016-12-23 21:53+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:77
 #, python-format
 msgid "Archive"
-msgstr ""
+msgstr "Archivar"
 
 #. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
@@ -43,12 +44,12 @@ msgstr "Borrar"
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:76
 #, python-format
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
 msgid "Export Access"
-msgstr ""
+msgstr "Permiso para exportar"
 
 #. module: base_export_manager
 #: model:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
@@ -82,12 +83,12 @@ msgstr "Primer campo"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
 msgid "First model"
-msgstr ""
+msgstr "Primer modelo"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
@@ -102,7 +103,7 @@ msgstr "Segundo campo"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
 msgid "Second model"
-msgstr ""
+msgstr "Segundo modelo"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
@@ -117,14 +118,14 @@ msgstr "Tercer campo"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
 msgid "Third model"
-msgstr ""
+msgstr "Tercer modelo"
 
 #. module: base_export_manager
 #. openerp-web
 #: code:addons/base_export_manager/static/src/js/base_export_manager.js:78
 #, python-format
 msgid "Unarchive"
-msgstr ""
+msgstr "Desarchivar"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_res_users
@@ -135,19 +136,19 @@ msgstr "Usuarios"
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Debe introducir un modelo o recurso."
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports
 msgid "ir.exports"
-msgstr ""
+msgstr "ir.exports"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "ir.exports.line"
-msgstr ""
+msgstr "ir.exports.line"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_model_access
 msgid "ir.model.access"
-msgstr ""
+msgstr "ir.model.access"
