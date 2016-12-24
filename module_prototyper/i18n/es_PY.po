@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
+"POT-Creation-Date: 2016-12-23 02:01+0000\n"
+"PO-Revision-Date: 2016-12-23 02:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Paraguay) (https://www.transifex.com/oca/teams/23907/es_PY/)\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: es_PY\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. module: module_prototyper
-#: selection:module_prototyper.module.export,api_version:0
-msgid "8.0"
-msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_api_version
@@ -89,21 +84,21 @@ msgid "Context"
 msgstr ""
 
 #. module: module_prototyper
-#: code:addons/module_prototyper/models/ir_model_fields.py:47
 #: model:ir.model.fields,help:module_prototyper.field_ir_model_fields_client_context
-#, python-format
 msgid ""
 "Context to use on the client side when handling the field (python "
 "dictionary)"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
@@ -137,6 +132,7 @@ msgid "Description"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
@@ -313,6 +309,7 @@ msgid "Here is the exported module:"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_id
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_id
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_id
 msgid "ID"
@@ -340,17 +337,20 @@ msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper___last_update
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version___last_update
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export___last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
@@ -364,6 +364,11 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_maintainer
 msgid "Maintainer"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_manifest_file_name
+msgid "Manifest file name"
 msgstr ""
 
 #. module: module_prototyper
@@ -390,6 +395,11 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.menu,name:module_prototyper.menu_module_prototyper
 msgid "Module Prototypes"
+msgstr ""
+
+#. module: module_prototyper
+#: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_name
+msgid "Name"
 msgstr ""
 
 #. module: module_prototyper
@@ -431,10 +441,8 @@ msgid "Prototypes"
 msgstr ""
 
 #. module: module_prototyper
-#: code:addons/module_prototyper/models/ir_model_fields.py:44
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_limit
 #: model:ir.model.fields,help:module_prototyper.field_ir_model_fields_limit
-#, python-format
 msgid "Read limit"
 msgstr ""
 
@@ -571,20 +579,13 @@ msgid "get"
 msgstr ""
 
 #. module: module_prototyper
+#: model:ir.model,name:module_prototyper.model_module_prototyper_api_version
+msgid "module_prototyper.api_version"
+msgstr ""
+
+#. module: module_prototyper
 #: model:ir.model,name:module_prototyper.model_module_prototyper_module_export
 msgid "module_prototyper.module.export"
-msgstr ""
-
-#. module: module_prototyper
-#: code:addons/module_prototyper/models/ir_model_fields.py:36
-#, python-format
-msgid "name of the column referring to 'these' records in the relation table"
-msgstr ""
-
-#. module: module_prototyper
-#: code:addons/module_prototyper/models/ir_model_fields.py:41
-#, python-format
-msgid "name of the column referring to 'those' records in the relation table"
 msgstr ""
 
 #. module: module_prototyper

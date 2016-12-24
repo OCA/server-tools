@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 03:36+0000\n"
-"PO-Revision-Date: 2016-11-26 03:36+0000\n"
+"POT-Creation-Date: 2016-12-23 02:01+0000\n"
+"PO-Revision-Date: 2016-12-23 02:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_module_category
 msgid "Application"
-msgstr ""
+msgstr "Aplikacija"
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_res_bank
@@ -91,7 +91,7 @@ msgstr "Viri zunanjih podatkovnih baz"
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Polja"
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_filters
@@ -131,7 +131,12 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_module_module
 msgid "Module"
-msgstr ""
+msgstr "Modul"
+
+#. module: base_suspend_security
+#: model:ir.model,name:base_suspend_security.model_module_prototyper
+msgid "Module Prototyper"
+msgstr "Izdelovalec prototipa modula"
 
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_base_module_upgrade
@@ -436,6 +441,16 @@ msgstr ""
 #. module: base_suspend_security
 #: model:ir.model,name:base_suspend_security.model_ir_values
 msgid "ir.values"
+msgstr ""
+
+#. module: base_suspend_security
+#: model:ir.model,name:base_suspend_security.model_module_prototyper_api_version
+msgid "module_prototyper.api_version"
+msgstr ""
+
+#. module: base_suspend_security
+#: model:ir.model,name:base_suspend_security.model_module_prototyper_module_export
+msgid "module_prototyper.module.export"
 msgstr ""
 
 #. module: base_suspend_security
