@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+# © 2016 Eficent Business and IT Consulting Services S.L.
+# © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from openerp import models
+from openerp import models, api
 from openerp.osv import expression
 
 
@@ -21,9 +23,9 @@ def patch_leaf_trgm(method):
             params = []
 
             if left in model._columns:
-                format = model._columns[left]._symbol_set[0]
+                formats = model._columns[left]._symbol_set[0]
                 column = '%s.%s' % (table_alias, expression._quote(left))
-                query = '(%s %s %s)' % (column, sql_operator, format)
+                query = '(%s %s %s)' % (column, sql_operator, formats)
             elif left in expression.MAGIC_COLUMNS:
                 query = "(%s.\"%s\" %s %%s)" % (
                     table_alias, left, sql_operator)
@@ -49,6 +51,8 @@ def patch_leaf_trgm(method):
 
 
 def patch_generate_order_by(method):
+
+    @api.model
     def decorate_generate_order_by(self, order_spec, query):
         if order_spec and order_spec.startswith('similarity('):
             return ' ORDER BY ' + order_spec
@@ -78,5 +82,4 @@ class IrModel(models.Model):
                        '__decorated__'):
             models.BaseModel._generate_order_by = patch_generate_order_by(
                 models.BaseModel._generate_order_by)
-
         return super(IrModel, self)._register_hook(cr)
