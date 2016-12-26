@@ -77,6 +77,10 @@ Known issues / Roadmap
 * it is not possible to set the environment from the command line. A
   configuration file must be used.
 * the module does not allow to set low level attributes such as database server, etc.
+* do not add a ``static`` directory to this addon nor any ``OCA/server-tool`` module that
+  depend on it so its not imported unless installed in a database; doing so would
+  break installations where ``OCA/server-tools`` is in the ``addons-path`` but not
+  otherwise used, due to the absence of a ``server_environement_files`` addon.
 
 
 Bug Tracker
