@@ -78,8 +78,8 @@ def uninstall_hook_for_submodules(cr, registry, model):
     """
     env = api.Environment(cr, SUPERUSER_ID, dict())
     Image = env["base_multi_image.image"]
-    ids = Image.search(env, [("owner_model", "=", model)])
-    ids.unlink()
+    images = Image.search(env, [("owner_model", "=", model)])
+    images.unlink()
 
 
 def table_has_column(cr, table, field):
