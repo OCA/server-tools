@@ -78,7 +78,7 @@ def uninstall_hook_for_submodules(cr, registry, model):
     """
     env = api.Environment(cr, SUPERUSER_ID, dict())
     Image = env["base_multi_image.image"]
-    images = Image.search(env, [("owner_model", "=", model)])
+    images = Image.search([("owner_model", "=", model)])
     images.unlink()
 
 
