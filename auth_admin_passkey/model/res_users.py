@@ -3,13 +3,9 @@
 # @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import datetime
 
-from openerp import SUPERUSER_ID
-from openerp import registry
-from openerp import exceptions
-from openerp import models, api
-from openerp.tools.translate import _
+from openerp import SUPERUSER_ID, registry, exceptions
+from openerp import fields, models, api, _
 from openerp.tools.safe_eval import safe_eval
 
 
@@ -27,8 +23,8 @@ class ResUsers(models.Model):
         mails = []
         mail_obj = self.env['mail.mail']
         icp_obj = self.env['ir.config_parameter']
-        admin_user = self.sudo().browse(SUPERUSER_ID)
-        login_user = self.sudo().browse(self.env.uid)
+        admin_user = self.sudo().env.user
+        login_user = self.env.user.sudo()
         send_to_admin = safe_eval(icp_obj.sudo().get_param(
             'auth_admin_passkey.send_to_admin',
             'True'))
@@ -50,7 +46,7 @@ class ResUsers(models.Model):
                     """\n\nTechnicals informations belows : \n\n"""
                     """- Login date : %s\n\n""")) % (
                         login_user.login,
-                        datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                        fields.Datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
             for k, v in user_agent_env.iteritems():
                 body += ("- %s : %s\n\n") % (k, v)
             mail_obj.sudo().create({
@@ -63,7 +59,7 @@ class ResUsers(models.Model):
         """ Send a email to the admin user to inform that another user has the
  same password as him."""
         mail_obj = self.env['mail.mail']
-        admin_user = self.sudo().browse(SUPERUSER_ID)
+        admin_user = self.sudo().env.user
         if admin_user.email:
             mail_obj.sudo().create({
                 'email_to': admin_user.email,
@@ -83,7 +79,7 @@ class ResUsers(models.Model):
             db, login, password, user_agent_env)
         if user_id and (user_id != SUPERUSER_ID):
             same_password = False
-            cr = registry(db).cursor()
+            cr = self.pool.cursor()
             try:
                 # directly use parent 'check_credentials' function
                 # to really know if credentials are ok
