@@ -28,6 +28,8 @@ addon | version | summary
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [password_security](password_security/) | 10.0.1.0.0 | Allow admin to set password security requirements.
+[users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
+[users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
 
 Unported addons
 ---------------
@@ -73,8 +75,6 @@ addon | version | summary
 [super_calendar](super_calendar/) | 8.0.0.2.0 (unported) | This module allows to create configurable calendars.
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 (unported) | Configuration Helper - Tests
 [users_ldap_groups](users_ldap_groups/) | 8.0.1.2.0 (unported) | Adds user accounts to groups based on rules defined by the administrator.
-[users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 (unported) | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 (unported) | LDAP Populate
 
 [//]: # (end addons)
 
