@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+    License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+
+    <!--
+    <record id="view_users_simple_form_multi_localization" model="ir.ui.view">
+        <field name="name">res.users simplified form multi localization</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <label for="localization_id" class="oe_edit_only" />
+                <field name="localization_id" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+    -->
+
+    <record id="view_users_form_multi_localization" model="ir.ui.view">
+        <field name="name">res.users form multi localization</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <field name="tz" position="after">
+                <field name="localization_id" options="{'no_create': True}" domain="[('lang_id.code', '=', lang)]" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_users_preferences_form_multi_localization" model="ir.ui.view">
+        <field name="name">res.users preferences form multi localization</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <field name="tz" position="after">
+                <field name="localization_id" options="{'no_create': True}" domain="[('lang_id.code', '=', lang)]" />
+                <newline />
+            </field>
+        </field>
+    </record>
+
+</odoo>

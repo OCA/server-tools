@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+    License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+
+    <record id="view_localization_form" model="ir.ui.view">
+        <field name="model">ir.localization</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form string="Localization" delete="true" create="true" edit="true">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" options="{'no_create': True, 'no_open': True}" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="country_id" />
+                        <newline />
+                        <field name="lang_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_localization_tree" model="ir.ui.view">
+        <field name="model">ir.localization</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Localization" delete="true" create="true" edit="true">
+                <field name="name" />
+                <field name="country_id" />
+                <field name="lang_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record  id="view_localization_search" model="ir.ui.view">
+        <field name="model">ir.localization</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <search string="Localization">
+                <field name="name" />
+                <field name="country_id" />
+                <field name="lang_id" />
+            </search>
+        </field>
+    </record>
+
+    <record  id="action_localization" model="ir.actions.act_window">
+        <field name="name">Localization</field>
+        <field name="res_model">ir.localization</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_localization_tree"/>
+    </record>
+
+    <menuitem
+        action="action_localization"
+        id="menu_action_localization"
+        parent="base.next_id_2"
+        sequence="20"
+     />
+
+</odoo>

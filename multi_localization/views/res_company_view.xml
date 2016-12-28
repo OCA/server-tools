@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+    License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+
+    <record id="view_company_form_multi_localization" model="ir.ui.view">
+        <field name="name">res.company form multi localization</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <field name="website" position="before">
+                <field name="localization_id" options="{'no_create': True}" domain="[('country_id', '=', country_id)]" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

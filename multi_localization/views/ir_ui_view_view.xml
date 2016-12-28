@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+    License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+
+    <record id="view_view_form_multi_localization" model="ir.ui.view">
+        <field name="name">ir.ui.view form multi localization</field>
+        <field name="model">ir.ui.view</field>
+        <field name="inherit_id" ref="base.view_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]/group[2]" position="after">
+                <group colspan="4">
+                    <field name="localization_ids" widget="many2many_tags" options="{'no_create': True}" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
