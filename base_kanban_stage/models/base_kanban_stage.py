@@ -5,8 +5,8 @@
 from openerp import api, fields, models
 
 
-class WebKanbanStage(models.Model):
-    _name = 'web.kanban.stage'
+class BaseKanbanStage(models.Model):
+    _name = 'base.kanban.stage'
     _description = 'Kanban Stage'
     _order = 'res_model, sequence'
 

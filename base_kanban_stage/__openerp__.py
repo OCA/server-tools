@@ -7,7 +7,7 @@
     'summary': 'Provides stage model and abstract logic for inheritance',
     'version': '9.0.1.0.0',
     'author': "LasLabs, Odoo Community Association (OCA)",
-    'category': 'Web',
+    'category': 'base',
     'depends': [
         'web_kanban',
     ],
@@ -15,8 +15,8 @@
     'license': 'LGPL-3',
     'data': [
         'security/ir.model.access.csv',
-        'views/web_kanban_abstract.xml',
-        'views/web_kanban_stage.xml',
+        'views/base_kanban_abstract.xml',
+        'views/base_kanban_stage.xml',
     ],
     'installable': True,
     'application': False,
