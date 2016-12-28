@@ -6,9 +6,9 @@
 -->
 
 <odoo>  
-    <record id="web_kanban_stage_view_form" model="ir.ui.view">
+    <record id="base_kanban_stage_view_form" model="ir.ui.view">
         <field name="name">Kanban Stage - Form View</field>
-        <field name="model">web.kanban.stage</field>
+        <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
             <form string="Kanban Stage">
                 <header/>
@@ -31,9 +31,9 @@
         </field>
     </record>
     
-    <record id="web_kanban_stage_view_tree" model="ir.ui.view">
+    <record id="base_kanban_stage_view_tree" model="ir.ui.view">
         <field name="name">Kanban Stages - Tree View</field>
-        <field name="model">web.kanban.stage</field>
+        <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
             <tree string="Kanban Stages">
                 <field name="name"/>
@@ -43,9 +43,9 @@
         </field>
     </record>
 
-    <record id="web_kanban_stage_view_search" model="ir.ui.view">
+    <record id="base_kanban_stage_view_search" model="ir.ui.view">
         <field name="name">Kanban Stages - Search View</field>
-        <field name="model">web.kanban.stage</field>
+        <field name="model">base.kanban.stage</field>
         <field name="arch" type="xml">
             <search string="Kanban Stages">
                 <field name="name"/>
@@ -55,17 +55,18 @@
         </field>
     </record>
     
-    <record model="ir.actions.act_window" id="web_kanban_stage_action">
+    <record model="ir.actions.act_window" id="base_kanban_stage_action">
         <field name="name">Kanban Stages</field>
-        <field name="res_model">web.kanban.stage</field>
+        <field name="res_model">base.kanban.stage</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="web_kanban_stage_root_menu" name="Kanban" 
+    <menuitem id="base_kanban_stage_root_menu" name="Kanban" 
         parent="base.menu_custom" sequence="50"/>
 
-    <menuitem id="web_kanban_stage_menu" name="Stages" 
-        parent="web_kanban_stage_root_menu" action="web_kanban_stage_action"/>
+    <menuitem id="base_kanban_stage_menu" name="Stages" 
+        parent="base_kanban_stage_root_menu"
+        action="base_kanban_stage_action" />
 </odoo>

@@ -6,9 +6,9 @@
 -->
 
 <odoo>
-    <record id="web_kanban_abstract_view_kanban" model="ir.ui.view">
+    <record id="base_kanban_abstract_view_kanban" model="ir.ui.view">
         <field name="name">Kanban Abstract - Base Kanban View</field>
-        <field name="model">web.kanban.abstract</field>
+        <field name="model">base.kanban.abstract</field>
         <field name="arch" type="xml">
             <kanban default_group_by="stage_id" class="o_kanban_small_column">
                 <field name="display_name"/>

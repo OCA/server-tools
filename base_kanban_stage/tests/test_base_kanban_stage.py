@@ -5,18 +5,18 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestWebKanbanStage(TransactionCase):
+class TestBaseKanbanStage(TransactionCase):
     def test_default_res_model_no_params(self):
-        '''It should return empty ir.model recordset if no params in context'''
-        test_stage = self.env['web.kanban.stage'].with_context({})
+        '''It should return empty ir.model Recordset if no params in context'''
+        test_stage = self.env['base.kanban.stage'].with_context({})
         res_model = test_stage._default_res_model()
 
         self.assertFalse(res_model)
         self.assertEqual(res_model._name, 'ir.model')
 
     def test_default_res_model_no_action(self):
-        '''It should return empty ir.model recordset if no action in params'''
-        test_stage = self.env['web.kanban.stage'].with_context(params={})
+        '''It should return empty ir.model Recordset if no action in params'''
+        test_stage = self.env['base.kanban.stage'].with_context(params={})
         res_model = test_stage._default_res_model()
 
         self.assertFalse(res_model)
@@ -28,7 +28,7 @@ class TestWebKanbanStage(TransactionCase):
             'name': 'Test Action',
             'res_model': 'res.users',
         })
-        test_stage = self.env['web.kanban.stage'].with_context(
+        test_stage = self.env['base.kanban.stage'].with_context(
             params={'action': test_action.id},
         )
 
@@ -41,9 +41,9 @@ class TestWebKanbanStage(TransactionCase):
         '''It should not return ir.model record corresponding to stage model'''
         test_action = self.env['ir.actions.act_window'].create({
             'name': 'Test Action',
-            'res_model': 'web.kanban.stage',
+            'res_model': 'base.kanban.stage',
         })
-        test_stage = self.env['web.kanban.stage'].with_context(
+        test_stage = self.env['base.kanban.stage'].with_context(
             params={'action': test_action.id},
         )
 

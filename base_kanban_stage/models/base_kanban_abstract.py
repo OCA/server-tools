@@ -5,13 +5,13 @@
 from openerp import api, fields, models
 
 
-class WebKanbanAbstract(models.AbstractModel):
+class BaseKanbanAbstract(models.AbstractModel):
     '''Inherit from this class to add support for Kanban stages to your model.
     All public properties are preceded with kanban_ in order to isolate from
     child models, with the exception of stage_id, which is a required field in
     the Kanban widget and must be defined as such.'''
 
-    _name = 'web.kanban.abstract'
+    _name = 'base.kanban.abstract'
     _order = 'kanban_priority desc, kanban_sequence'
     _group_by_full = {
         'stage_id': lambda s, *a, **k: s._read_group_stage_ids(*a, **k),
@@ -31,7 +31,7 @@ class WebKanbanAbstract(models.AbstractModel):
     )
     stage_id = fields.Many2one(
         string='Kanban Stage',
-        comodel_name='web.kanban.stage',
+        comodel_name='base.kanban.stage',
         track_visibility='onchange',
         index=True,
         copy=False,
@@ -105,7 +105,7 @@ class WebKanbanAbstract(models.AbstractModel):
     def _read_group_stage_ids(
         self, domain=None, read_group_order=None, access_rights_uid=None
     ):
-        stage_model = self.env['web.kanban.stage'].sudo(access_rights_uid)
+        stage_model = self.env['base.kanban.stage'].sudo(access_rights_uid)
         stages = stage_model.search([('res_model.model', '=', self._name)])
         names = [(r.id, r.display_name) for r in stages]
         fold = {r.id: r.fold for r in stages}
