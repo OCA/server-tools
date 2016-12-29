@@ -17,9 +17,9 @@ class View(models.Model):
                                         'ir_ui_view_localization', 'view_id',
                                         'localization_id', 'Localizations')
 
-    #------------------------------------------------------
+    #
     # Inheritance mecanism
-    #------------------------------------------------------
+    #
     @api.model
     def get_inheriting_views_arch(self, view_id, model):
         res = super(View, self).get_inheriting_views_arch(view_id, model)

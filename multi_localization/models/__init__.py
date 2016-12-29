@@ -6,7 +6,7 @@
 #
 
 
-from ir_localization import *
-from ir_ui_view import *
-from res_users import *
-from res_company import *
+from .ir_localization import *
+from .ir_ui_view import *
+from .res_users import *
+from .res_company import *
