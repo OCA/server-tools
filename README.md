@@ -37,6 +37,7 @@ addon | version | summary
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.0.0 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
@@ -53,7 +54,7 @@ addon | version | summary
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
-[password_security](password_security/) | 9.0.1.0.2 | Allow admin to set password security requirements.
+[password_security](password_security/) | 9.0.1.0.3 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
