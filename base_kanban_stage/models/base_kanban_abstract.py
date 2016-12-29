@@ -99,7 +99,7 @@ class BaseKanbanAbstract(models.AbstractModel):
 
     @api.model
     def _default_stage_id(self):
-        return  # pragma: no cover
+        return self.env['base.kanban.stage']
 
     @api.multi
     def _read_group_stage_ids(

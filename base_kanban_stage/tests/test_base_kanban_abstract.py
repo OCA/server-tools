@@ -64,3 +64,10 @@ class TestBaseKanbanAbstract(TransactionCase):
                 {self.id_1: False, self.id_2: True},
             )
         )
+
+    def test_default_stage_id(self):
+        ''' It should return an empty RecordSet '''
+        self.assertEqual(
+            self.env['base.kanban.abstract']._default_stage_id(),
+            self.env['base.kanban.stage']
+        )
