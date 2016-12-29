@@ -33,8 +33,8 @@ class View(models.Model):
         localization_id = None
         if self.env.user.localization_id:
             localization_id = self.env.user.localization_id.id
-        elif (self.env.user.company_id
-              and self.env.user.company_id.localization_id):
+        elif (self.env.user.company_id and
+              self.env.user.company_id.localization_id):
             localization_id = self.env.user.company_id.localization_id.id
 
         inherited_view_ids = [inherited_view_id
