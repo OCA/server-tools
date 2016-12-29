@@ -23,5 +23,6 @@
         'views/ir_ui_view_view.xml',
         'views/res_users_view.xml',
         'views/res_company_view.xml',
+        'security/ir.model.access.csv',
     ]
 }
