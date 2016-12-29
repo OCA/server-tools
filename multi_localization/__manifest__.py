@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+# Copyright 2016 Taŭga Tecnologia
+# Copyright 2016 Aristides Caldeira <aristides.caldeira@tauga.com.br>
 # License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
 #
 
 {
-    'name': u'Multi localization',
+    'name': 'Multi localization',
     'version': '10.0.1.0.0',
-    'author': u'Ari Caldeira',
+    'author': u'Ari Caldeira, Odoo Community Association (OCA)',
     'maintainer': u'Taŭga Tecnologia',
-    'category': u'Base',
+    'license': 'AGPL-3',
+    'category': 'Base',
     'depends': [
         'base',
     ],
