@@ -6,7 +6,7 @@
 
 {
     'name': u'Multi localization',
-    'version': '10.0.0.0.0',
+    'version': '10.0.1.0.0',
     'author': u'Ari Caldeira',
     'maintainer': u'Taŭga Tecnologia',
     'category': u'Base',

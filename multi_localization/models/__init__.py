@@ -5,9 +5,6 @@
 #
 
 
-from __future__ import division, print_function, unicode_literals
-
-
 from ir_localization import *
 from ir_ui_view import *
 from res_users import *
