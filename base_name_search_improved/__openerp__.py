@@ -7,7 +7,7 @@
     'version': '9.0.1.1.0',
     'category': 'Uncategorized',
     'website': 'https://odoo-community.org/',
-    'author': 'Daniel Reis, Odoo Community Association (OCA)',
+    'author': 'Daniel Reis, Odoo Community Association (OCA), ADHOC SA',
     'license': 'AGPL-3',
     'data': [
         'views/ir_model.xml',
