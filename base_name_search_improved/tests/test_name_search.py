@@ -43,8 +43,13 @@ class NameSearchCase(TransactionCase):
 
     def test_NameSearchMustMatchAllWords(self):
         """Must Match All Words"""
-        res = self.Partner.name_search('ulm 555 777')
+        res = self.Partner.name_search('ulm aaa 555 777')
         self.assertFalse(res)
+
+    def test_NameSearchDifferentFields(self):
+        """Must Match All Words"""
+        res = self.Partner.name_search('ulm 555 777')
+        self.assertEqual(len(res), 1)
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
