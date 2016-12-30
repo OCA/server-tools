@@ -27,7 +27,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
-[password_security](password_security/) | 10.0.1.0.0 | Allow admin to set password security requirements.
+[password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
 [users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
 
