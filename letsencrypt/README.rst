@@ -2,7 +2,6 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============================================
 Request SSL certificates from letsencrypt.org
 =============================================
 
@@ -89,7 +88,7 @@ You'll also need a matching sudo configuration, like::
 
     your_odoo_user ALL = NOPASSWD: /usr/sbin/service nginx reload
 
-Further, if you force users to https, you'll need something like for nginx::
+Further, if you would like users to be automatically redirected to https, you'll need something like for nginx::
 
     if ($scheme = "http") {
         set $redirect_https 1;
@@ -101,19 +100,70 @@ Further, if you force users to https, you'll need something like for nginx::
         rewrite ^   https://$server_name$request_uri? permanent;
     }
 
+A complete configuration file could look like this::
+
+    upstream odoo {
+            server 127.0.0.1:8069;
+    }
+    upstream odoochat {
+            server 127.0.0.1:8072;
+    }
+    server {
+            listen 443;
+            listen 80;
+            if ($scheme = "http") {
+                    set $redirect_https 1;
+            }
+            if ($request_uri ~ ^/.well-known/acme-challenge/) {
+                    set $redirect_https 0;
+            }
+            if ($request_uri ~ ^/pos/web/) {
+                    set $redirect_https 0;
+            }
+            if ($redirect_https) {
+                    rewrite ^   https://$server_name$request_uri? permanent;
+            }
+            server_name domain.tld www.domain.tld;
+            proxy_read_timeout 720s;
+            proxy_connect_timeout 720s;
+            proxy_send_timeout 720s;
+
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Real-IP $remote_addr;
+
+            ssl on;
+            ssl_certificate /var/lib/odoo/.local/share/Odoo/letsencrypt/domain.tld.crt;
+            ssl_certificate_key /var/lib/odoo/.local/share/Odoo/letsencrypt/domain.tld.key;
+            ssl_session_timeout 30m;
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+            ssl_prefer_server_ciphers on;
+
+            access_log /var/log/nginx/odoo.access.log;
+            error_log /var/log/nginx/odoo.error.log;        
+
+            location / {
+                    proxy_redirect off;
+                    proxy_pass  http://odoo;
+            }
+
+            location /longpolling {
+                    proxy_pass http://odoochat;
+            }
+            gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
+            gzip on;
+    }
+
+The above configuration file can be put into fx. ``/etc/nginx/sites-enabled/default``
+
 and this for apache::
 
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
     RewriteCond %{REQUEST_URI} "!^/.well-known/"
     RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-
-In case you need to redirect other nginx sites to your Odoo instance, declare
-an upstream for your odoo instance and do something like::
-
-    location /.well-known {
-        proxy_pass    http://yourodooupstream;
-    }
 
 If you're using a multi-database installation (with or without dbfilter option)
 where /web/databse/selector returns a list of more than one database, then
