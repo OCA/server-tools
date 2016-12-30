@@ -9,8 +9,8 @@
     'version': '9.0.1.0.0',
     'website': 'https://odoo-community.org/',
     'author': 'bloopark systems GmbH & Co. KG, '
-              'Eficent Business and IT Consulting Services S.L., '
-              'Serpent Consulting Services Pvt. Ltd., '
+              'Eficent, '
+              'Serpent CS, '
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'depends': ['base'],
