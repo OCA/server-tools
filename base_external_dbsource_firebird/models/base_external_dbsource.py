@@ -5,8 +5,7 @@
 
 import logging
 
-from openerp import api
-from openerp import models
+from openerp import api, models
 
 _logger = logging.getLogger(__name__)
 
@@ -26,7 +25,7 @@ except ImportError:
 
 
 class BaseExternalDbsource(models.Model):
-    """ It provides logic for connection to an Firebird data source. """
+    """ It provides logic for connection to a Firebird data source. """
 
     _inherit = "base.external.dbsource"
 

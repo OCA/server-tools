@@ -120,7 +120,7 @@ class TestBaseExternalDbsource(common.TransactionCase):
         self.assertEqual(res, adapter())
 
     def test_remote_browse_asserts_current_table(self):
-        """ It should raise AssertionError if a table not selected """
+        """ It should raise AssertionError if a table is not selected """
         args = [1], 'args'
         kwargs = {'kwargs': True}
         with self.assertRaises(AssertionError):
@@ -140,7 +140,7 @@ class TestBaseExternalDbsource(common.TransactionCase):
         self.assertEqual(res, adapter())
 
     def test_remote_create_asserts_current_table(self):
-        """ It should raise AssertionError if a table not selected """
+        """ It should raise AssertionError if a table is not selected """
         args = [1], 'args'
         kwargs = {'kwargs': True}
         with self.assertRaises(AssertionError):
@@ -160,7 +160,7 @@ class TestBaseExternalDbsource(common.TransactionCase):
         self.assertEqual(res, adapter())
 
     def test_remote_delete_asserts_current_table(self):
-        """ It should raise AssertionError if a table not selected """
+        """ It should raise AssertionError if a table is not selected """
         args = [1], 'args'
         kwargs = {'kwargs': True}
         with self.assertRaises(AssertionError):
@@ -180,7 +180,7 @@ class TestBaseExternalDbsource(common.TransactionCase):
         self.assertEqual(res, adapter())
 
     def test_remote_search_asserts_current_table(self):
-        """ It should raise AssertionError if a table not selected """
+        """ It should raise AssertionError if a table is not selected """
         args = [1], 'args'
         kwargs = {'kwargs': True}
         with self.assertRaises(AssertionError):
@@ -200,7 +200,7 @@ class TestBaseExternalDbsource(common.TransactionCase):
         self.assertEqual(res, adapter())
 
     def test_remote_update_asserts_current_table(self):
-        """ It should raise AssertionError if a table not selected """
+        """ It should raise AssertionError if a table is not selected """
         args = [1], 'args'
         kwargs = {'kwargs': True}
         with self.assertRaises(AssertionError):
