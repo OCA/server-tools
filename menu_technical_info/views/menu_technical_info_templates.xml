@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="menu_technical_info assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script src="/menu_technical_info/static/src/js/menu_technical_info.js"></script>
+        </xpath>
+    </template>
+    <template id="menu_secondary" name="menu_technical_info menu_secondary" inherit_id="web.menu_secondary">
+        <xpath expr="//div[@class='oe_secondary_menu_section']" position="attributes">
+            <attribute name="t-att-data-menu">menu['id']</attribute>
+        </xpath>
+    </template>
+</odoo>

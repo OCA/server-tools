@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates>
-    <t t-extend="ViewManagerDebug">
-        <t t-jquery="t[t-if^='view_manager.session.uid']">
-            jQuery(this).attr('t-if', 'true');
-        </t>
-    </t>
-</templates>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_company_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_uid
@@ -50,7 +50,7 @@ msgstr "Criado em"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_display_name
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_id
@@ -62,7 +62,7 @@ msgstr "Identificação"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings___last_update
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_uid

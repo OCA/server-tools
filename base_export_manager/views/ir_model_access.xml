@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="ir_model_access_view_tree"
+            model="ir.ui.view">
+        <field name="name">ir.model.access.tree.base_export_manager</field>
+        <field name="model">ir.model.access</field>
+        <field name="inherit_id" ref="base.ir_access_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='perm_unlink']" position="after">
+                <field name="perm_export"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ir_model_access_view_form"
+            model="ir.ui.view">
+        <field name="name">ir.model.access.form.base_export_manager</field>
+        <field name="model">ir.model.access</field>
+        <field name="inherit_id" ref="base.ir_access_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='perm_unlink']" position="after">
+                <field name="perm_export"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

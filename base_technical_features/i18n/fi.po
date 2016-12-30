@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 00:57+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
 "PO-Revision-Date: 2016-01-05 19:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fi/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nimi"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch_id
@@ -30,7 +30,7 @@ msgstr "ID"
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_basemodel_monkeypatch___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Viimeksi muokattu"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
@@ -56,7 +56,7 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Käyttäjät"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features

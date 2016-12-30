@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 03:06+0000\n"
+"POT-Creation-Date: 2016-12-17 02:07+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fr/)\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_active
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_active
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
@@ -53,14 +53,14 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -133,7 +133,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_end
 msgid "End date"
-msgstr ""
+msgstr "Date de fin"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
@@ -198,7 +198,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_start
 msgid "Start date"
-msgstr ""
+msgstr "Date de début"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -214,10 +214,10 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1450
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1447
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1837
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1834
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time

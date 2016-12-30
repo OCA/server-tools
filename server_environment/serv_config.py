@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
+import logging
 import os
 import ConfigParser
 from lxml import etree
@@ -29,29 +30,37 @@ from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
 
-from openerp.addons import server_environment_files
-_dir = os.path.dirname(server_environment_files.__file__)
+_logger = logging.getLogger(__name__)
 
 # Same dict as RawConfigParser._boolean_states
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
                    '0': False, 'no': False, 'false': False, 'off': False}
 
-if not system_base_config.get('running_env', False):
-    raise Exception(
-        "The parameter 'running_env' has not be set neither in base config "
-        "file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an "
-        "explicit config file with this content:\n"
-        "[options]\nrunning_env = dev"
-    )
+try:
+    from openerp.addons import server_environment_files
 
-ck_path = os.path.join(_dir, system_base_config['running_env'])
+    _dir = os.path.dirname(server_environment_files.__file__)
 
-if not os.path.exists(ck_path):
-    raise Exception(
-        "Provided server environment does not exist, "
-        "please add a folder %s" % ck_path
-    )
+    if not system_base_config.get('running_env', False):
+        raise Exception(
+            "The parameter 'running_env' has not be set neither in base "
+            "config file option -c or in openerprc.\n"
+            "We strongly recommend against using the rc file but instead use "
+            "an explicit config file with this content:\n"
+            "[options]\nrunning_env = dev"
+        )
+
+    ck_path = os.path.join(_dir, system_base_config['running_env'])
+
+    if not os.path.exists(ck_path):
+        raise Exception(
+            "Provided server environment does not exist, "
+            "please add a folder %s" % ck_path
+        )
+except ImportError:
+    _logger.info("ImportError raised while loading module.")
+    _logger.debug("ImportError details:", exc_info=True)
+    server_environment_files = False
 
 
 def setboolean(obj, attr, _bool=None):
@@ -98,10 +107,14 @@ def _load_config():
         config_p.read(conf_files)
     except Exception as e:
         raise Exception('Cannot read config files "%s":  %s' % (conf_files, e))
+    config_p.read(system_base_config.rcfile)
+    config_p.remove_section('options')
 
     return config_p
 
-serv_config = _load_config()
+
+if server_environment_files:
+    serv_config = _load_config()
 
 
 class _Defaults(dict):

@@ -3,7 +3,8 @@
 # * users_ldap_populate
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Paolo Valier, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 00:57+0000\n"
-"PO-Revision-Date: 2016-03-31 07:19+0000\n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +40,7 @@ msgstr "Creato il"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
@@ -54,7 +55,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
@@ -86,7 +87,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: users_ldap_populate
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view

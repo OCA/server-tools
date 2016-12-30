@@ -8,9 +8,10 @@
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "9.0.1.0.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "version": "9.0.1.1.0",
+    "author": "Tecnativa, "
               "Antiun Ingeniería, S.L., Sodexis, "
+              "LasLabs, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "http://www.antiun.com",

@@ -41,7 +41,8 @@ To develop a module based on this one:
         _name = "my.model.name"
         _inherit = ["my.model.name", "base_multi_image.owner"]
 
-        # If you need this, you will need ``post_init_hook_for_submodules``
+        # If you need this, you will need ``pre_init_hook_for_submodules`` and
+          ``uninstall_hook_for_submodules`` as detailed below.
         old_image_field = fields.Binary(related="image_main", store=False)
 
 * Somewhere in the owner view, add::
@@ -57,16 +58,29 @@ To develop a module based on this one:
 
 * If the model you are extending already had an image field, and you want to
   trick Odoo to make those images to multi-image mode, you will need to make
-  use of the provided :meth:`~.hooks.pre_init_hook_for_submodules`, like
-  the ``product_multi_image`` module does::
+  use of the provided :meth:`~.hooks.pre_init_hook_for_submodules` and
+  :meth:`~.hooks.uninstall_hook_for_submodules`, like the
+  ``product_multi_image`` module does::
 
-    from openerp.addons.base_multi_image.hooks import \
-        pre_init_hook_for_submodules
+    try:
+        from openerp.addons.base_multi_image.hooks import (
+            pre_init_hook_for_submodules,
+            uninstall_hook_for_submodules,
+        )
+    except ImportError:
+        pass
 
 
     def pre_init_hook(cr):
+        """Transform single into multi images."""
         pre_init_hook_for_submodules(cr, "product.template", "image")
         pre_init_hook_for_submodules(cr, "product.product", "image_variant")
+
+
+    def uninstall_hook(cr, registry):
+        """Remove multi images for models that no longer use them."""
+        uninstall_hook_for_submodules(cr, registry, "product.template")
+        uninstall_hook_for_submodules(cr, registry, "product.product")
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -107,6 +121,7 @@ Contributors
 * Rafael Blasco <rafabn@antiun.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
 * Sodexis <dev@sodexis.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------

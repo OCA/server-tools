@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_optional_quick_create
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-23 21:53+0000\n"
+"PO-Revision-Date: 2016-12-23 21:53+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model_avoid_quick_create
+msgid "Avoid quick create"
+msgstr "Evitar creado rápido"
+
+#. module: base_optional_quick_create
+#: code:addons/base_optional_quick_create/models/ir_model.py:19
+#, python-format
+msgid "Can't create quickly. Opening create form"
+msgstr "No se puede realizar creado rápido. Abriendo formulario de creación"
+
+#. module: base_optional_quick_create
+#: model:ir.model,name:base_optional_quick_create.model_ir_model
+msgid "Models"
+msgstr "Modelos"

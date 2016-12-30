@@ -6,8 +6,8 @@
 Module Prototyper
 =================
 
-This module allows the administrator to prototype new features and export them as module. 
-Functional people can prepare the job for a developer who is left with the logic to implement 
+This module allows the administrator to prototype new features and export them as module.
+Functional people can prepare the job for a developer who is left with the logic to implement
 in addition to everything the prototype does not export yet.
 
 Installation
@@ -45,13 +45,13 @@ and create a new prototype:
 * in the Security tab, select your groups, access rights and record rules
 * save and click on export
 
-You will get a zip file containing your module ready to be installed and compliant with the 
-conventions of the OCA. You can then provide the module to a developer who have to implement 
+You will get a zip file containing your module ready to be installed and compliant with the
+conventions of the OCA. You can then provide the module to a developer who have to implement
 things like default values or onchange methods.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/8.0
+   :target: https://runbot.odoo-community.org/runbot/149/9.0
 
 Known issues / Roadmap
 ======================
@@ -72,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20module_prototyper%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/OCA/server-tools/issues/new?body=module:%20module_prototyper%0Aversion:%209.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -86,6 +86,7 @@ Contributors
 * El hadji Dem <elhadji.dem@savoirfairelinux.com>
 * Savoir-faire Linux <support@savoirfairelinux.com>
 * Vincent Vinet <vincent.vinet@savoirfairelinux.com>
+* Nicolas JEUDY <nicolas@sudokeys.com>
 
 Maintainer
 ----------
@@ -103,22 +104,7 @@ To contribute to this module, please visit http://odoo-community.org.
 Changelog
 =========
 
-v0.3
-----
+v9.0.0.1.0
+----------
 
-* Replace ir.ui.model by ir.ui.view in generated xml views
-* Improve pep8 compatibility of generation of models
-
-v0.2
-----
-
-* Renamed from prototype to module_prototyper as discussed in #108
-* Menu in Settings that gather element used to create a prototype (menu views, views, fields)
-
-v0.1
-----
-
-* The set up of openerp.py is covered, description, maintainer, website, name, technical name...
-* Views and menus can be set through odoo and gathered in prototype. The files will be automatically generated and add to the data section of the openerp.py. Be aware some advanced feature as domain or context might still missing.
-* Dependencies can be set through the Dependencies tab
-* Custom fields can be added. A file by model will be generated with all the fields of the model. The init.py files are updated accordingly. Be aware that some features are not implemented yet, as the domain, the context.
+* Initial V9 version from V8.0.3
