@@ -3,9 +3,11 @@
 # * dead_mans_switch_server
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Antonio Trueba, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Giacomo <giacomo.spettoli@gmail.com>, 2015
@@ -17,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 14:34+0000\n"
-"PO-Revision-Date: 2016-05-11 16:42+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +85,7 @@ msgstr "Criado em"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: dead_mans_switch_server
 #: model:ir.actions.act_window,name:dead_mans_switch_server.action_dead_mans_switch_instance

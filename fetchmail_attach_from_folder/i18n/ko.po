@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-10-11 09:50+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-27 08:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Korean (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,context:0

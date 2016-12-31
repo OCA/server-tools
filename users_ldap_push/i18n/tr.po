@@ -3,13 +3,24 @@
 # * users_ldap_push
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:06+0000\n"
-"PO-Revision-Date: 2016-03-07 17:54+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-30 19:46+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,17 +31,17 @@ msgstr ""
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_change_password_user
 msgid "Change Password Wizard User"
-msgstr ""
+msgstr "Parola Değiştir Sihirbazı Kullanıcısı"
 
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry:0
 msgid "Create ldap entry"
-msgstr ""
+msgstr "LDAP girişi Oluştur"
 
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_base:0
 msgid "Create ldap entry in subtree"
-msgstr ""
+msgstr "Alt ağaçta LDAP kaydı oluştur"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,create_uid:0
@@ -45,7 +56,12 @@ msgstr "Oluşturuldu"
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,use_for_dn:0
 msgid "DN"
-msgstr ""
+msgstr "DN"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
 
 #. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_users.py:116
@@ -57,7 +73,7 @@ msgstr "Hata"
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_field_mappings:0
 msgid "Field mappings"
-msgstr ""
+msgstr "Alan eşleştirmeleri"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,id:0
@@ -67,7 +83,7 @@ msgstr "ID"
 #. module: users_ldap_push
 #: field:res.users,ldap_entry_dn:0
 msgid "LDAP DN"
-msgstr ""
+msgstr "LDAP DN"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,attribute:0
@@ -77,12 +93,22 @@ msgstr "LDAP attribute"
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,ldap_id:0
 msgid "LDAP configuration"
-msgstr ""
+msgstr "LDAP Ayarları"
+
+#. module: users_ldap_push
+#: field:res.users,is_ldap_user:0
+msgid "LDAP user"
+msgstr "LDAP Kullanıcısı"
 
 #. module: users_ldap_push
 #: view:res.users:users_ldap_push.view_users_search
 msgid "LDAP users"
-msgstr ""
+msgstr "LDAP kullanıcıları"
+
+#. module: users_ldap_push
+#: field:res.company.ldap.field_mapping,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,write_uid:0
@@ -97,32 +123,32 @@ msgstr "Son güncellenme"
 #. module: users_ldap_push
 #: help:res.company.ldap,create_ldap_entry_base:0
 msgid "Leave empty to use your LDAP base"
-msgstr ""
+msgstr "LDAP temelini kullanmak için boş bırakın"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_company_ldap_field_mapping
 msgid "Mapping from Odoo fields to ldap attributes"
-msgstr ""
+msgstr "Odoo alanlarını ldap özellikleriyle eşleşmeleri"
 
 #. module: users_ldap_push
 #: field:res.company.ldap,create_ldap_entry_objectclass:0
 msgid "Object class"
-msgstr ""
+msgstr "Nesne sınıfı"
 
 #. module: users_ldap_push
 #: field:res.company.ldap.field_mapping,field_id:0
 msgid "Odoo field"
-msgstr ""
+msgstr "Odoo Alanı"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: users_ldap_push
 #: help:res.company.ldap,create_ldap_entry_objectclass:0
 msgid "Separate object classes by comma if you need more than one"
-msgstr ""
+msgstr "birden fazla nesne sınıfına ihtiyaç varsa virgülle ayırın"
 
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_users
@@ -133,4 +159,4 @@ msgstr "Kullanıcılar"
 #: code:addons/users_ldap_push/models/res_company_ldap.py:64
 #, python-format
 msgid "You need to set exactly one mapping as DN"
-msgstr ""
+msgstr "Bir eşleştirmeyi DN olarak ayalamalısınız"

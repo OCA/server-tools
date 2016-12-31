@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-27 08:25+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,19 +76,19 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:247
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:131
 #, python-format
 msgid "Connection Test Failed!"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:129
+#: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr ""
@@ -96,22 +96,22 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: auto_backup
 #: field:db.backup,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:208
+#: code:addons/auto_backup/models/db_backup.py:206
 #: model:mail.message.subtype,description:auto_backup.failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:213
+#: code:addons/auto_backup/models/db_backup.py:211
 #: model:mail.message.subtype,description:auto_backup.success
 #, python-format
 msgid "Database backup succeeded."
@@ -128,7 +128,12 @@ msgid "Days to keep"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:120
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:119
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -179,7 +184,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: auto_backup
 #: help:db.backup,message_unread:0
@@ -197,14 +202,19 @@ msgid "Last Message Date"
 msgstr ""
 
 #. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: auto_backup
 #: field:db.backup,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: auto_backup
 #: field:db.backup,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: auto_backup
 #: selection:db.backup,method:0

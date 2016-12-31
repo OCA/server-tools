@@ -3,13 +3,14 @@
 # * base_ir_filters_active
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 12:44+0000\n"
-"PO-Revision-Date: 2016-03-31 06:41+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-30 20:32+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,9 +26,9 @@ msgstr "Aktif"
 #. module: base_ir_filters_active
 #: model:ir.model,name:base_ir_filters_active.model_ir_filters
 msgid "Filters"
-msgstr ""
+msgstr "Filtreler"
 
 #. module: base_ir_filters_active
 #: view:ir.filters:base_ir_filters_active.ir_filters_view_search
 msgid "Show inactive"
-msgstr ""
+msgstr "Etkin olmayanları göster"

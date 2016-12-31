@@ -3,13 +3,14 @@
 # * base_field_validator
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 02:42+0000\n"
-"PO-Revision-Date: 2016-08-11 02:42+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-24 05:31+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +40,13 @@ msgstr "Açıklama"
 #: field:ir.model.fields.regex,display_name:0
 #: field:ir.model.validator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: base_field_validator
-#: code:addons/base_field_validator/models/ir_model.py:29
+#: code:addons/base_field_validator/models/ir_model.py:27
 #, python-format
 msgid "Expression %s not valid for %s"
-msgstr ""
+msgstr "%s ifadesi %s için geçerli değil"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,field_id:0
@@ -61,7 +62,7 @@ msgstr "ID"
 #: field:ir.model.fields.regex,__last_update:0
 #: field:ir.model.validator.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,write_uid:0
@@ -88,7 +89,7 @@ msgstr "Modeller"
 #. module: base_field_validator
 #: field:ir.model.fields.regex,regex:0
 msgid "Regular Expression"
-msgstr ""
+msgstr "Düzenli İfade"
 
 #. module: base_field_validator
 #: help:ir.model.fields.regex,regex:0
@@ -97,19 +98,22 @@ msgid ""
 "[^@]+@[^@]+\\.[^@]+\n"
 "to the email field"
 msgstr ""
+"Bu alanı doğrulamak için kullanılacak düzenli ifade. Mesela e-posta alanını kontrol için\n"
+"[^@]+@[^@]+\\.[^@]+\n"
+"ifadesini kullanabilirsiniz."
 
 #. module: base_field_validator
 #: sql_constraint:ir.model.fields.regex:0
 msgid "The name of a regular expression must be unique"
-msgstr ""
+msgstr "Düzenli ifadenin adı benzersiz olmalı"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,regex_id:0
 msgid "Validator"
-msgstr ""
+msgstr "Doğrulayıcı"
 
 #. module: base_field_validator
 #: view:ir.model:base_field_validator.view_model_form_validator
 #: field:ir.model,validator_line_ids:0
 msgid "Validators"
-msgstr ""
+msgstr "Doğrulayıcılar"

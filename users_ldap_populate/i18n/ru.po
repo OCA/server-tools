@@ -3,13 +3,24 @@
 # * users_ldap_populate
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,17 +36,22 @@ msgstr ""
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_date:0
 msgid "Created on"
+msgstr "Создан"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,display_name:0
+msgid "Display Name"
 msgstr ""
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,ldap_id:0
@@ -43,14 +59,19 @@ msgid "LDAP Configuration"
 msgstr ""
 
 #. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,name:0

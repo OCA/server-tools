@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -122,13 +122,13 @@ msgstr ""
 #: field:module_prototyper,create_uid:0
 #: field:module_prototyper.module.export,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_date:0
 #: field:module_prototyper.module.export,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -336,7 +336,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,id:0 field:module_prototyper.module.export,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: module_prototyper
 #: field:module_prototyper,icon_image:0
@@ -368,13 +368,13 @@ msgstr ""
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_date:0
 #: field:module_prototyper.module.export,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: module_prototyper
 #: field:module_prototyper,license:0

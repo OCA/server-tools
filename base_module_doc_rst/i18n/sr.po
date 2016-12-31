@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-10-11 09:49+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-27 08:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Serbian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph

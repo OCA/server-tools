@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
@@ -26,13 +26,13 @@ msgstr ""
 #: field:base_import.match,create_uid:0
 #: field:base_import.match.field,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: base_import_match
 #: field:base_import.match,create_date:0
 #: field:base_import.match.field,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
@@ -43,7 +43,7 @@ msgstr ""
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Afficher le nom"
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
@@ -83,7 +83,7 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match,id:0 field:base_import.match.field,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: base_import_match
 #: help:base_import.match.field,imported_value:0
@@ -123,13 +123,13 @@ msgstr ""
 #: field:base_import.match,write_uid:0
 #: field:base_import.match.field,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: base_import_match
 #: field:base_import.match,write_date:0
 #: field:base_import.match.field,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
 "PO-Revision-Date: 2016-03-07 17:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-server-tools-8-0/language/vi/)\n"
@@ -132,7 +132,7 @@ msgstr ""
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Đối tác"
 
 #. module: users_ldap_push
 #: help:res.company.ldap,create_ldap_entry_objectclass:0

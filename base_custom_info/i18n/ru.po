@@ -5,19 +5,20 @@
 # Translators:
 # Antonio Trueba, 2016
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
 # Hotellook, 2014
 # Isabelle RICHARD <isabellerichard89@gmail.com>, 2015
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# LS Development <ls.development.nc@gmail.com>, 2016
+# Lixon Jean-Yves <ls.development.nc@gmail.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:15+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -63,14 +64,14 @@ msgstr ""
 #: field:custom.info.template,create_uid:0
 #: field:custom.info.value,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: base_custom_info
 #: field:custom.info.property,create_date:0
 #: field:custom.info.template,create_date:0
 #: field:custom.info.value,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: base_custom_info
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
@@ -137,7 +138,7 @@ msgstr ""
 #: field:custom.info.property,id:0 field:custom.info.template,id:0
 #: field:custom.info.value,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_custom_info
 #: view:custom.info.template:base_custom_info.base_custom_info_template_form
@@ -162,14 +163,14 @@ msgstr ""
 #: field:custom.info.property,write_uid:0
 #: field:custom.info.template,write_uid:0 field:custom.info.value,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_date:0
 #: field:custom.info.template,write_date:0
 #: field:custom.info.value,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: base_custom_info
 #: field:custom.info.model_link,model:0

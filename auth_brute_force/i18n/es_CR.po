@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_CR/)\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: field:res.authentication.attempt,create_uid:0
 #: field:res.banned.remote,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,create_date:0
@@ -108,13 +108,13 @@ msgstr ""
 #: field:res.authentication.attempt,write_uid:0
 #: field:res.banned.remote,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_date:0
 #: field:res.banned.remote,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0

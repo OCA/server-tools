@@ -3,14 +3,44 @@
 # * users_ldap_groups
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# bossnm11 <bossnm11@gmail.com>, 2014
+# Chanseok <kcsgoodboy@naver.com>, 2014
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Chul Park <parkchul@nate.com>, 2015
+# David10000 <gameness@naver.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Gil <gedwarp@gmail.com>, 2014
+# kmooc <shevious@gmail.com>, 2015
+# Hongseob Lee <shevreg@yahoo.com>, 2015
+# jeon <bluerespect@nate.com>, 2014
+# JiyeonLee <leejiyeon00@gmail.com>, 2014
+# Jong-Dae Park <jdpark7@gmail.com>, 2013
+# Kevin Min <gr326887@graded.br>, 2015
+# KimKyudong <choemh@nate.com>, 2014
+# mariana1201 <gogo3135@naver.com>, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Nicole <dlruddk1112@gmail.com>, 2014
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Pope, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Sarina Canelake <sarina@edx.org>, 2014
+# Seok Jun Yoon <fake2real@dctribe.com>, 2015
+# shin2012 <shin2013@gmail.com>, 2014
+# Sujin Lee <sujinlee.me@gmail.com>, 2014
+# Sunah Lim <whitetree70@snu.ac.kr>, 2013
+# Young C. Kim, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 13:17+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-30 19:47+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,6 +62,12 @@ msgstr "Oluşturuldu"
 #: help:res.company.ldap,group_mappings:0
 msgid "Define how OpenERP groups are assigned to ldap users"
 msgstr "Odoo gruplarının LDAP kullanıcılarına nasıl atanacağını tanımla"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,display_name:0
+#: field:res.company.ldap.operator,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,group_mappings:0
@@ -61,6 +97,12 @@ msgstr "LDAP attribute"
 #: field:res.company.ldap.group_mapping,ldap_id:0
 msgid "LDAP server"
 msgstr "LDAP sunucu"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,__last_update:0
+#: field:res.company.ldap.operator,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_uid:0

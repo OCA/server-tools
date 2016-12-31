@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-27 08:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,create_uid:0
 #: field:fetchmail.server.folder,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_date:0
@@ -180,14 +180,14 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_date:0
 #: field:fetchmail.attach.mail.manually.mail,write_date:0
 #: field:fetchmail.server.folder,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: fetchmail_attach_from_folder
 #: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190

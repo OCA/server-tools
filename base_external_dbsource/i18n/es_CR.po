@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_CR/)\n"
@@ -57,7 +57,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: field:base.external.dbsource,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,create_date:0
@@ -131,12 +131,12 @@ msgstr ""
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,password:0
