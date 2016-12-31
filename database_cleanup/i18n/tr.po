@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-29 03:39+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +87,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_id
@@ -122,7 +123,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_write_uid
@@ -213,19 +214,19 @@ msgstr ""
 #: code:addons/database_cleanup/models/purge_columns.py:123
 #, python-format
 msgid "No orphaned columns found"
-msgstr ""
+msgstr "Yetim kolon bulunamadı"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_data.py:64
 #, python-format
 msgid "No orphaned data entries found"
-msgstr ""
+msgstr "Yetim veri girişi bulunamadı"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_models.py:115
 #, python-format
 msgid "No orphaned models found"
-msgstr ""
+msgstr "Yetim model bulunamadı"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_tables.py:102
@@ -242,7 +243,7 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.action_purge_table_line
 #: model:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge"
-msgstr ""
+msgstr "Boşalt (sil)"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_wizard_id
@@ -273,7 +274,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_data
 msgid "Purge data entries that refer to missing resources"
-msgstr ""
+msgstr "Kayıp kaynalara başvuran verileri sil"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_purge_line_ids
@@ -303,7 +304,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_columns
 msgid "Purge obsolete columns"
-msgstr ""
+msgstr "Eski kolonları sil"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_data
@@ -344,7 +345,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge this model"
-msgstr ""
+msgstr "Bu modülü sil"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_purged
@@ -360,7 +361,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Select lines"
-msgstr ""
+msgstr "Satırları Seç"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_wizard.py:73

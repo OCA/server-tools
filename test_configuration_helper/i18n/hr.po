@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-12-29 03:40+0000\n"
 "PO-Revision-Date: 2016-09-30 09:23+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
@@ -26,7 +26,7 @@ msgstr "Apstraktne konfiguracijske postake"
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Poduzeća"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_company_id

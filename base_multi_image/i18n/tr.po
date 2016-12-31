@@ -25,13 +25,14 @@
 # SEUNGWON <baeksw0620@gmail.com>, 2014
 # Stefano <stefano.sforzi@agilebg.com>, 2016
 # Yael Terrettaz, 2015
+# yterrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 00:57+0000\n"
-"PO-Revision-Date: 2016-03-31 07:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-30 20:39+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,12 @@ msgstr ""
 #: sql_constraint:base_multi_image.image:0
 #, python-format
 msgid "A document can have only one image with the same name."
-msgstr ""
+msgstr "Bir belgeye aynı isimli sadece bir resim eklenebilir."
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+msgid "Attachment"
+msgstr "Ek"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
@@ -55,7 +61,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_comments
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
-msgstr ""
+msgstr "Yorumlar"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_uid
@@ -70,28 +76,33 @@ msgstr "Oluşturuldu"
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "Database"
-msgstr ""
+msgstr "Veritabanı"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
 msgid "File extension"
-msgstr ""
+msgstr "Dosya Uzantoso"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
 msgid "Filename"
+msgstr "Dosya adı"
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Filestore"
 msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Tam-boy resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_id
@@ -102,40 +113,40 @@ msgstr "ID"
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_path
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_path
 msgid "Image path"
-msgstr ""
+msgstr "Resim yolu"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_url
 msgid "Image remote URL"
-msgstr ""
+msgstr "Resim uzal URL"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_file_db_store
 msgid "Image stored in database"
-msgstr ""
+msgstr "Resim veritabanında saklandı"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_name
 msgid "Image title"
-msgstr ""
+msgstr "Resim başlığı"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_ids
 #: model:ir.ui.view,arch_db:base_multi_image.image_tree_view
 msgid "Images"
-msgstr ""
+msgstr "Resimler"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
@@ -152,17 +163,17 @@ msgstr "Son güncellenme"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main
 #, python-format
 msgid "Main image"
-msgstr ""
+msgstr "Ana Resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main_medium
 msgid "Medium image"
-msgstr ""
+msgstr "Orta resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_medium
 msgid "Medium-sized image"
-msgstr ""
+msgstr "Orta boylu resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_medium
@@ -170,13 +181,13 @@ msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
 "with aspect ratio preserved, only when the image exceeds one of those sizes."
 " Use this field in form views or kanban views."
-msgstr ""
+msgstr "Orta boylu resim. Otomatik olarak 128 x 128 px boyutuna ayarlanır. Bu alanı form ve kanban görünümlerinde kullanabilirsiniz."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
 #: model:ir.ui.menu,name:base_multi_image.image_menu
 msgid "Multi images"
-msgstr ""
+msgstr "Çoklu Resimler"
 
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
@@ -186,32 +197,37 @@ msgstr "Adı"
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "OS file"
-msgstr ""
+msgstr "İşletim Sistemi Dosyası"
 
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_id
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Owner"
-msgstr ""
+msgstr "Sahibi"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_model
 msgid "Owner model"
-msgstr ""
+msgstr "Sahip model"
 
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Preview"
-msgstr ""
+msgstr "Önizle"
 
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_kanban_view
 msgid "Product Images"
+msgstr "Ürün Resimleri"
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+msgid "Referenced Owner"
 msgstr ""
 
 #. module: base_multi_image
@@ -222,33 +238,57 @@ msgstr "Sıra"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_show_technical
 msgid "Show technical"
-msgstr ""
+msgstr "Teknik Göster"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_main_small
 msgid "Small image"
-msgstr ""
+msgstr "Küçük Resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_small
 msgid "Small-sized image"
-msgstr ""
+msgstr "Küçük-boylu resim"
 
 #. module: base_multi_image
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_small
 msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr ""
+msgstr "Küçük-boylu resim. Otomatik olara 64x64 px boyuna ayarlanır. Küçük resim gerektiğinde bu alanı kullanın."
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_storage
 msgid "Storage"
-msgstr ""
+msgstr "Saklama yeri"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
+msgstr "URL"
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:205
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:199
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:211
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:217
+#, python-format
+msgid "You must provide an attachment for the image."
 msgstr ""
 
 #. module: base_multi_image
