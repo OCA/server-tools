@@ -49,7 +49,6 @@ def _get_name_search_domain(self):
     return []
 
 
-@tools.ormcache(skiparg=0)
 def _get_separator(self):
     return self.env['ir.config_parameter'].get_param(
         'base_name_search_improved.separator', default=" ")
@@ -73,11 +72,12 @@ _add_magic_fields_original = models.BaseModel._add_magic_fields
 def _add_magic_fields(self):
     res = _add_magic_fields_original(self)
 
-    if 'base_name_search_improved' in self.env.registry._init_modules:
-        if 'smart_search' not in self._fields:
-            self._add_field('smart_search', fields.Char(
-                automatic=True, compute='_compute_smart_search',
-                search='_search_smart_search'))
+    if (
+            'base_name_search_improved' in self.env.registry._init_modules and
+            'smart_search' not in self._fields):
+        self._add_field('smart_search', fields.Char(
+            automatic=True, compute='_compute_smart_search',
+            search='_search_smart_search'))
     return res
 
 
@@ -105,16 +105,16 @@ class ModelExtended(models.Model):
     @api.multi
     @api.constrains('name_search_domain')
     def check_name_search_domain(self):
-        for rec in self:
-            if rec.name_search_domain:
-                name_search_domain = False
-                try:
-                    name_search_domain = literal_eval(rec.name_search_domain)
-                except:
-                    pass
-                if not isinstance(name_search_domain, list):
-                    raise ValidationError(_(
-                        'Name Search Domain must be a list of tuples'))
+        for rec in self.filtered('name_search_domain'):
+            name_search_domain = False
+            try:
+                name_search_domain = literal_eval(rec.name_search_domain)
+            except Exception, e:
+                raise ValidationError(_(
+                    "Couldn't eval Name Search Domain (%s)") % e)
+            if not isinstance(name_search_domain, list):
+                raise ValidationError(_(
+                    'Name Search Domain must be a list of tuples'))
 
     def _register_hook(self, cr, ids=None):
         def make_name_search():
@@ -132,7 +132,8 @@ class ModelExtended(models.Model):
                 if name and enabled and operator in ALLOWED_OPS:
                     exact_fields_names = _get_rec_exact_names(self)
                     for rec_name in exact_fields_names:
-                        recs = self.search(args + [(rec_name, '=ilike', name)])
+                        recs = self.search(
+                            args + [(rec_name, '=ilike', name)], limit=limit)
                         if recs:
                             return recs.name_get()
 
