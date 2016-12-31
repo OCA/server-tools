@@ -203,17 +203,6 @@ class ModelExtended(models.Model):
                 return res
             return fields_view_get
 
-        # def patch_add_magic_fields():
-        #     @api.model
-        #     def _add_magic_fields(self):
-        #         res = _add_magic_fields.origin(self)
-        #         if 'smart_search' not in self._fields:
-        #             self._add_field('smart_search', fields.Char(
-        #                 automatic=True, compute='_compute_smart_search',
-        #                 search='_search_smart_search'))
-        #         return res
-        #     return _add_magic_fields
-
         @api.multi
         def _compute_smart_search(self):
             return False
@@ -259,9 +248,5 @@ class ModelExtended(models.Model):
                     'name_search', make_name_search())
                 Model._patch_method(
                     'fields_view_get', patch_fields_view_get())
-                # TODO improove this, not sure why but it dones works when
-                # patching this way
-                # Model._patch_method(
-                #     '_add_magic_fields', patch_add_magic_fields())
 
         return super(ModelExtended, self)._register_hook(cr)
