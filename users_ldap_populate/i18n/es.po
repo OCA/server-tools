@@ -3,16 +3,15 @@
 # * users_ldap_populate
 # 
 # Translators:
-# Antonio Trueba, 2016
-# Antonio Trueba, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:46+0000\n"
-"PO-Revision-Date: 2016-02-01 09:57+0000\n"
-"Last-Translator: Antonio Trueba\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
+"POT-Creation-Date: 2016-12-30 01:36+0000\n"
+"PO-Revision-Date: 2016-12-30 01:36+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -70,6 +69,13 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: users_ldap_populate
+#: code:addons/users_ldap_populate/models/users_ldap.py:47
+#, python-format
+msgid ""
+"No login attribute found: Could not extract login attribute from filter %s"
+msgstr ""
+
+#. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
 msgstr "Número de usuarios creados"
@@ -83,11 +89,6 @@ msgstr "OK"
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
 msgstr "Poblar"
-
-#. module: users_ldap_populate
-#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
-msgid "Populate user database"
-msgstr "Poblar base de datos de usuarios"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard

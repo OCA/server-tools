@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2016-12-30 01:36+0000\n"
 "PO-Revision-Date: 2016-12-30 01:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: users_ldap_populate
@@ -26,12 +26,12 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Skapad av"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Skapad den"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
@@ -51,17 +51,17 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
 msgid "Last Modified on"
-msgstr "Modificado por última vez o"
+msgstr ""
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
 msgid "Last Updated by"
-msgstr "ültima actualización por"
+msgstr "Senast uppdaterad av"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Senast uppdaterad"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
