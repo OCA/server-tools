@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-29 03:39+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Latvian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/lv/)\n"
+"Language-Team: Spanish (Dominican Republic) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es_DO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: lv\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"Language: es_DO\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:43
@@ -53,7 +53,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Cancel"
-msgstr "Atcelt"
+msgstr "Cancelar"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_company_id
@@ -67,14 +67,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_uid
 msgid "Created by"
-msgstr "Izveidoja"
+msgstr "Creado por"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_date
 msgid "Created on"
-msgstr "Izveidots"
+msgstr "Creado en"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
@@ -123,7 +123,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
@@ -163,27 +163,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator___last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_uid
 msgid "Last Updated by"
-msgstr "Pēdējo reizi atjaunoja"
+msgstr "Última actualización de"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_date
 msgid "Last Updated on"
-msgstr "Pēdējās izmaiņas"
+msgstr "Última actualización en"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name
 msgid "Name"
-msgstr "Nosaukums"
+msgstr "Nombre"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
@@ -217,7 +217,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1837
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1834
 msgid "Type"
-msgstr "Tips"
+msgstr "Tipo"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
