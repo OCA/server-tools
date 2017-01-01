@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, fields, models
+from odoo.http import request
 from odoo.exceptions import ValidationError
 
 
@@ -10,6 +11,8 @@ class RedOctoberUser(models.Model):
 
     _name = 'red.october.user'
     _description ='Red October User'
+
+    SESSION_USER_ATTR = 'ro_uid'
 
     user_id = fields.Many2one(
         string='User',
@@ -90,6 +93,46 @@ class RedOctoberUser(models.Model):
         """ It removes the user from the remote vaults. """
         self._update_role('revoke')
         return super(RedOctoberUser, self).unlink()
+
+    @api.model_cr_context
+    def change_current_user(self, ro_user_id):
+        """ It changes the current session user to the provided.
+
+        Args:
+            ro_user_id (int): ID of the RedOctoberUser to add as the current
+                session default.
+        """
+        setattr(request.session, self.SESSION_USER_ATTR, ro_user_id)
+
+    @api.model_cr_context
+    def get_current_user(self):
+        """ It returns the RedOctoberUser that the session user is using.
+
+        This method currently returns the default selected in the user, but
+        plans are to allow for the control of this via session.
+
+        Returns:
+            RecOctoberUser: The user that is currently in use for this
+                session.
+        """
+        user = None
+        try:
+            user = self.browse(
+                getattr(request.session, self.SESSION_USER_ATTR),
+            )
+        except AttributeError:
+            pass
+        if not user:
+            user = self.env['res.users'].browse(request.session.uid)
+            user = user.default_red_october_id
+        return user
+
+    @api.model_cr_context
+    def get_user_profiles(self):
+        """ It returns the current user's profiles. """
+        return self.search([
+            ('user_id', '=', self.env.user.id),
+        ])
 
     @api.model
     def upsert_by_user(self, user=None, vaults=None):

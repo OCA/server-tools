@@ -126,5 +126,4 @@ class RedOctoberVault(models.Model):
             RecOctoberUser: The user that is currently in use for this
                 session.
         """
-        user = self.env['res.users'].browse(request.session.uid)
-        return user.default_red_october_id
+        return self.env['red.october.user'].get_current_user()

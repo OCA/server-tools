@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<template>
+
+    <t t-name="red_october.WidgetChooseProfile">
+        <ul class="nav navbar-nav navbar-right oe_user_menu_placeholder ro-profile-select">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="oe_topbar_name">
+                        <t t-esc="widget.current_profile_name"/>
+                    </span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu switch_company_menu">
+                    <t t-foreach="widget.profiles" t-as="profile">
+                        <li>
+                            <a class="ro-profile-select-item"
+                               t-att-data-profile-id="profile.id">
+                                <t t-esc="profile.name"/>
+                            </a>
+                        </li>
+                    </t>
+                </ul>
+            </li>
+        </ul>
+    </t>
+
+</template>
