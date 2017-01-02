@@ -24,15 +24,6 @@ def _get_rec_names(self):
 
 
 @tools.ormcache(skiparg=0)
-def _get_rec_exact_names(self):
-    "List of fields to exact search into"
-    model = self.env['ir.model'].search(
-        [('model', '=', str(self._model))])
-    other_names = model.name_search_exact_ids.mapped('name')
-    return other_names
-
-
-@tools.ormcache(skiparg=0)
 def _get_add_smart_search(self):
     "Add Smart Search on search views"
     return self.env['ir.model'].search(
@@ -47,11 +38,6 @@ def _get_name_search_domain(self):
     if name_search_domain:
         return literal_eval(name_search_domain)
     return []
-
-
-def _get_separator(self):
-    return self.env['ir.config_parameter'].get_param(
-        'base_name_search_improved.separator', default=" ")
 
 
 def _extend_name_results(self, domain, results, limit):
@@ -93,13 +79,6 @@ class ModelExtended(models.Model):
     name_search_ids = fields.Many2many(
         'ir.model.fields',
         string='Name Search Fields')
-    name_search_exact_ids = fields.Many2many(
-        'ir.model.fields',
-        'ir_model_name_search_exact_rel',
-        'model_id', 'field_id',
-        string='Name Search Exact Fields',
-        help="If we found exact matches for this fields then we return only "
-        "this results and we don't keep going")
     name_search_domain = fields.Char()
 
     @api.multi
@@ -126,17 +105,6 @@ class ModelExtended(models.Model):
                 if enabled:
                     # we add domain
                     args = args or [] + _get_name_search_domain(self)
-
-                # first we search for an exact match, if we found any, we
-                # return it
-                if name and enabled and operator in ALLOWED_OPS:
-                    exact_fields_names = _get_rec_exact_names(self)
-                    for rec_name in exact_fields_names:
-                        recs = self.search(
-                            args + [(rec_name, '=ilike', name)], limit=limit)
-                        if recs:
-                            return recs.name_get()
-
                 # Perform standard name search
                 res = name_search.origin(
                     self, name=name, args=args, operator=operator, limit=limit)
@@ -157,14 +125,12 @@ class ModelExtended(models.Model):
                         domain = [(rec_name, operator, name.replace(' ', '%'))]
                         res = _extend_name_results(
                             self, base_domain + domain, res, limit)
-
                     # Try unordered word search on each of the search fields
                     # we only perform this search if we have at least one
                     # separator character
-                    separator = _get_separator(self)
-                    if separator in name:
+                    if " " in name:
                         domain = []
-                        for word in name.split(separator):
+                        for word in name.split():
                             word_domain = []
                             for rec_name in all_names:
                                 word_domain = (
@@ -212,15 +178,9 @@ class ModelExtended(models.Model):
             enabled = self.env.context.get('name_search_extended', True)
             name = value
             if name and enabled and operator in ALLOWED_OPS:
-                exact_fields_names = _get_rec_exact_names(self)
-                for rec_name in exact_fields_names:
-                    recs = self.search([(rec_name, '=ilike', name)])
-                    if recs:
-                        return [(rec_name, '=ilike', name)]
-
                 all_names = _get_rec_names(self)
                 domain = _get_name_search_domain(self)
-                for word in name.split(_get_separator(self)):
+                for word in name.split():
                     word_domain = []
                     for rec_name in all_names:
                         word_domain = (

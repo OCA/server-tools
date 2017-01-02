@@ -12,10 +12,8 @@ class NameSearchCase(TransactionCase):
     def setUp(self):
         super(NameSearchCase, self).setUp()
         phone_field = self.env.ref('base.field_res_partner_phone')
-        ref_field = self.env.ref('base.field_res_partner_ref')
         model_partner = self.env.ref('base.model_res_partner')
         model_partner.name_search_ids = phone_field
-        model_partner.name_search_exact_ids = ref_field
         model_partner.add_smart_search = True
 
         # this use does not make muche sense but with base module we dont have
@@ -33,7 +31,6 @@ class NameSearchCase(TransactionCase):
         self.partner3 = self.Partner.create(
             {'name': 'Johann Gambolputty of Ulm',
              'supplier': True,
-             'ref': '777',
              'phone': '+351 777 333 555'})
 
     def test_RelevanceOrderedResults(self):
@@ -63,15 +60,6 @@ class NameSearchCase(TransactionCase):
         """Must not return a partner with parent"""
         res = self.Partner.name_search('Edward Foster')
         self.assertFalse(res)
-
-    def test_NameSearchExactSearch(self):
-        """Must return only partner with reference 777"""
-        res = self.Partner.name_search('777')
-        self.assertEqual(len(res), 1)
-        self.assertEqual(
-            res[0][0], self.partner3.id,
-            'Must return only partner with reference 777, regardless others '
-            'also having 777 in name')
 
     def test_MustHonorDomain(self):
         """Must also honor a provided Domain"""
