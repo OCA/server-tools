@@ -31,4 +31,5 @@
     "data": [
         'serv_config.xml',
     ],
+    'installable': True,
 }
