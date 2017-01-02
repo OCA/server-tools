@@ -3,20 +3,20 @@
 # * base_user_role
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# Aurel <theaurel60@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
+"POT-Creation-Date: 2017-02-18 02:29+0000\n"
+"PO-Revision-Date: 2017-02-18 02:29+0000\n"
+"Last-Translator: Aurel <theaurel60@gmail.com>, 2017\n"
+"Language-Team: French (France) (https://www.transifex.com/oca/teams/23907/fr_FR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_model_access
@@ -53,19 +53,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_uid
 msgid "Created by"
-msgstr "Utworzone przez"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_date
 msgid "Created on"
-msgstr "Utworzono"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_display_name
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_display_name
 msgid "Display Name"
-msgstr "Wyświetlana nazwa "
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_is_enabled
@@ -96,7 +96,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_id
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_implied_ids
@@ -107,24 +107,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role___last_update
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line___last_update
 msgid "Last Modified on"
-msgstr "Ostatnio modyfikowano"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_uid
 msgid "Last Updated by"
-msgstr "Ostatnio modyfikowane przez"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_date
 msgid "Last Updated on"
-msgstr "Ostatnia zmiana"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_name
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_role_id
@@ -134,7 +134,7 @@ msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1519
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1419
 msgid "Role lines"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_user_id
 msgid "User"
-msgstr "Użytkownik"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role
@@ -189,7 +189,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_users
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
 msgid "Users"
-msgstr ""
+msgstr "Utilsateurs"
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role_line
@@ -204,4 +204,4 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_view_access
 msgid "Views"
-msgstr "Widoki"
+msgstr ""
