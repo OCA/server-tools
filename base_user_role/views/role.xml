@@ -7,7 +7,7 @@
     <field name="name">res.users.role.form</field>
     <field name="model">res.users.role</field>
     <field name="arch" type="xml">
-        <form string="Role" version="7.0">
+        <form string="Role">
             <sheet>
                 <group>
                     <field name="name"/>
