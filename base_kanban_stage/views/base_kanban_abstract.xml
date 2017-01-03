@@ -19,7 +19,7 @@
                 <field name="kanban_legend_blocked"/>
                 <field name="kanban_legend_normal"/>
                 <field name="kanban_legend_done"/>
-                <field name="kanban_user_id"/>
+                <field name="user_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.kanban_color.raw_value)} o_kanban_record oe_kanban_global_click">
