@@ -57,7 +57,7 @@ class TestKeychain(TransactionCase):
 
         for password in passwords:
             account.clear_password = password
-            account._set_password()
+            account._inverse_set_password()
             self.assertTrue(account.clear_password != account.password)
             self.assertEqual(account.get_password(), password)
 
@@ -66,7 +66,7 @@ class TestKeychain(TransactionCase):
         account = self._create_account()
         password = 'urieapocq'
         account.clear_password = password
-        account._set_password()
+        account._inverse_set_password()
         config['keychain_key'] = Fernet.generate_key()
         try:
             account.get_password()
@@ -86,7 +86,7 @@ class TestKeychain(TransactionCase):
 
         with self.assertRaises(Warning) as err:
             account.clear_password = 'aiuepr'
-            account._set_password()
+            account._inverse_set_password()
             self.assertTrue(False, 'It should not work without key')
         self.assertTrue(
             'Use a key like' in str(err.exception),
@@ -99,7 +99,7 @@ class TestKeychain(TransactionCase):
         config['keychain_key'] = ""
         with self.assertRaises(Warning):
             account.clear_password = 'aiuepr'
-            account._set_password()
+            account._inverse_set_password()
             self.assertTrue(False, 'It should not work missing formated key')
 
         self.assertTrue(True, 'It shoud raise a ValueError')
@@ -123,7 +123,7 @@ class TestKeychain(TransactionCase):
         config['running_env'] = 'dev'
 
         account.clear_password = 'abc'
-        account._set_password()
+        account._inverse_set_password()
         self.assertEqual(
             account.get_password(),
             'abc', 'Should work with dev')
@@ -143,7 +143,7 @@ class TestKeychain(TransactionCase):
         config['running_env'] = ''
 
         account.clear_password = 'abc'
-        account._set_password()
+        account._inverse_set_password()
         self.assertEqual(
             account.get_password(),
             'abc', 'Should work with dev')
@@ -165,7 +165,7 @@ class TestKeychain(TransactionCase):
         config['running_env'] = ''
 
         account.clear_password = 'abc'
-        account._set_password()
+        account._inverse_set_password()
 
         with self.assertRaises(Warning):
             self.assertEqual(

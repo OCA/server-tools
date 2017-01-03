@@ -128,7 +128,7 @@ You may adopt one of the following stragegies:
 * store your dev accounts in production db using the dev key
 * import your dev accounts with odoo builtin methods like a data.xml (in a dedicated module).
 * import your dev accounts with your own migration/cleanup script
-* ...
+* etc.
 
 Note: only the password field is unreadable without the right key, login and data fields 
 are available on all environments.
@@ -178,8 +178,7 @@ Threats even with this module installed :
 - unauthorized odoo user want to access data: access is rejected by odoo security rules
 - authorized odoo user try to access data with rpc api : he get the passwords encrypted, he can't recover because the key and the decrypted password are not exposed through rpc
 - db is stolen : without the key it's currently pretty hard to recover the passwords
-- odoo is compromised (malicious module or vulnerability): hacker has access to python and
-can do what he wants with odoo : passwords of the current env can be easily decrypted
+- odoo is compromised (malicious module or vulnerability): hacker has access to python and can do what he wants with odoo : passwords of the current env can be easily decrypted
 - server is compromised: idem
 
 If your dev server is compromised, hacker can't decrypt your prod passwords since you have different keys between dev and prod.

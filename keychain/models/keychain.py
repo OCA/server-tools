@@ -9,6 +9,7 @@ import json
 from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 from openerp.tools.config import config
+from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -47,7 +48,7 @@ class KeychainAccount(models.Model):
     login = fields.Char(help="Login")
     clear_password = fields.Char(
         help="Password. Leave empty if no changes",
-        inverse='_set_password',
+        inverse='_inverse_set_password',
         compute='_compute_password',
         store=False)
     password = fields.Char(
@@ -64,13 +65,13 @@ class KeychainAccount(models.Model):
         try:
             return self._decode_password(self.password)
         except Warning as warn:
-            raise Warning(
+            raise Warning(_(
                 "%s \n"
                 "Account: %s %s %s " % (
                     warn,
                     self.login, self.name, self.technical_name
                 )
-            )
+            ))
 
     def get_data(self):
         """Data in dict form."""
@@ -83,9 +84,9 @@ class KeychainAccount(models.Model):
             if account.data:
                 parsed = account._parse_data(account.data)
                 if not account._validate_data(parsed):
-                    raise ValidationError("Data not valid")
+                    raise ValidationError(_("Data not valid"))
 
-    def _set_password(self):
+    def _inverse_set_password(self):
         """Encode password from clear text."""
         # inverse function
         for rec in self:
@@ -145,7 +146,7 @@ class KeychainAccount(models.Model):
         try:
             return json.loads(data)
         except ValueError:
-            raise ValidationError("Data not valid JSON")
+            raise ValidationError(_("Data not valid JSON"))
 
     @classmethod
     def _encode_password(cls, data, env):
@@ -158,11 +159,11 @@ class KeychainAccount(models.Model):
         try:
             return unicode(cipher.decrypt(str(data)), 'UTF-8')
         except InvalidToken:
-            raise Warning(
+            raise Warning(_(
                 "Password has been encrypted with a different "
                 "key. Unless you can recover the previous key, "
                 "this password is unreadable."
-            )
+            ))
 
     @classmethod
     def _get_cipher(cls, force_env=None):
@@ -193,8 +194,8 @@ class KeychainAccount(models.Model):
         keys = _get_keys(envs)
         if len(keys) == 0:
             _logger.info('on declanche un warning')
-            raise Warning(
+            raise Warning(_(
                 "No 'keychain_key_%s' entries found in config file. "
                 "Use a key like : %s" % (envs[0], Fernet.generate_key())
-            )
+            ))
         return MultiFernet(keys)
