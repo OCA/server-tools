@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_prototype_admin,prototype_system,model_module_prototyper,base.group_system,1,1,1,1
+access_prototype_api_version_admin,prototype_api_version_system,model_module_prototyper_api_version,base.group_system,1,1,1,1

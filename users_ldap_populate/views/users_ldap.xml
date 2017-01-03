@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="company_form_view">
+        <field name="name">Add populate button to ldap view</field>
+        <field name="model">base.config.settings</field>
+        <field name="inherit_id" ref="auth_ldap.view_general_configuration_form_inherit_auth_ldap"/>
+        <field name="arch" type="xml">
+            <xpath name="populate_ldap" expr="//field[@name='ldaps']/form" position="inside">
+                <separator name="Populate user database" colspan="4"/>
+                <button name="populate_wizard"
+                        string="Populate"
+                        type="object"
+                        colspan="2"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

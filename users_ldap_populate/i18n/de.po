@@ -3,52 +3,15 @@
 # * users_ldap_populate
 # 
 # Translators:
-# Accounts-Payable - Alkemics, 2015
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
-# Alejandro Santana <alejandrosantana@anubia.es>, 2015
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# bossnm11 <bossnm11@gmail.com>, 2014
-# Chanseok <kcsgoodboy@gmail.com>, 2014
-# Chen-Do LU <clu@alkemics.com>, 2015
-# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
-# Chul Park <parkchul@nate.com>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# David10000 <gameness@naver.com>, 2014
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
-# François Breysse <fb@alkemics.com>, 2015
-# Gil <gedwarp@gmail.com>, 2014
-# Hongseob Lee <shevious@gmail.com>, 2015
-# Hongseob Lee <shevreg@yahoo.com>, 2015
-# Hotellook, 2014
-# jeon <bluerespect@nate.com>, 2014
-# JiyeonLee <leejiyeon00@gmail.com>, 2014
-# Jong-Dae Park <jdpark7@gmail.com>, 2013
-# Kevin Min <gr326887@graded.br>, 2015
-# KimKyudong <choemh@nate.com>, 2014
-# mariana1201 <gogo3135@naver.com>, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Nicole <dlruddk1112@gmail.com>, 2014
-# njeudy <njeudy@tuxservices.com>, 2015
-# Paolo Valier, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Pope, 2014
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
-# Sarina Canelake <sarina@edx.org>, 2014
-# Seok Jun Yoon <fake2real@dctribe.com>, 2015
-# shin2012 <shin2013@gmail.com>, 2014
-# Sujin Lee <sujinlee.me@gmail.com>, 2014
-# Sunah Lim <whitetree70@snu.ac.kr>, 2013
-# Young Kim <youngck.uw@gmail.com>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-17 12:15+0000\n"
-"PO-Revision-Date: 2016-04-22 08:24+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
+"POT-Creation-Date: 2016-12-30 01:36+0000\n"
+"PO-Revision-Date: 2016-12-30 01:36+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -106,11 +69,13 @@ msgid "Name"
 msgstr "Name"
 
 #. module: users_ldap_populate
-#: code:addons/users_ldap_populate/model/users_ldap.py:64
+#: code:addons/users_ldap_populate/models/users_ldap.py:47
 #, python-format
 msgid ""
 "No login attribute found: Could not extract login attribute from filter %s"
-msgstr "Kein Anmelde-Attribut gefunden: Konnte aus Filter %s kein Anmelde-Attribut extrahieren"
+msgstr ""
+"Kein Anmelde-Attribut gefunden: Konnte aus Filter %s kein Anmelde-Attribut "
+"extrahieren"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
@@ -126,11 +91,6 @@ msgstr "OK"
 #: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
 msgid "Populate"
 msgstr "Einpflegen"
-
-#. module: users_ldap_populate
-#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
-msgid "Populate user database"
-msgstr "Benutzerdatenbank befüllen"
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard

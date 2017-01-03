@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+    {% for menu in menus %}
+    <record id="action_{{ menu.action.name }}_{{ menu.action.view_type }}_view" model="{{ menu.action.type }}">
+        <field name="name">{{ unprefix(menu.action.name) }}</field>
+        <field name="type">{{ menu.action.type }}</field>
+        <field name="res_model">{{ unprefix(menu.action.res_model) }}</field>
+        <field name="view_type">{{ menu.action.view_type }}</field>
+        <field name="view_mode">{{ menu.action.view_mode }}</field>
+        {% if menu.action.help %}
+        <field name="help" type="html">{{ menu.action.help }}
+        </field>
+        {% endif %}
+    </record>
+
+    <menuitem action="action_{{ unprefix(menu.action.name) }}_{{ menu.action.view_type }}_view"
+              name="{{ menu.name }}"
+              id="menu_action_{{ unprefix(menu.name)|replace('.', '_') }}_{{ menu.action.view_type }}"
+              {% if menu.parent_id %}parent="{{ menu.parent_id.get_xml_id().values()[0] }}"{% endif %}
+              sequence="{{ menu.sequence }}"
+              groups="{% for group in menu.groups_id %}{{ group.get_xml_id().values()[0] }},{% endfor %}"
+              />
+    {% if not loop.last %}
+
+    {% endif %}
+    {% endfor %}
+</odoo>
