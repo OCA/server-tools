@@ -188,7 +188,7 @@ class TestKeychain(TransactionCase):
                     False,
                     'Should not validate baddly formatted json')
             self.assertTrue(
-                'Data not valid JSON' in err.exception.args[1],
+                'Data not valid JSON' in str(err.exception),
                 'It should raise a ValidationError')
 
     def test_invalid_json(self):
