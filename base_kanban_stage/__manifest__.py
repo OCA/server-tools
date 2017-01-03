@@ -9,7 +9,7 @@
     'author': "LasLabs, Odoo Community Association (OCA)",
     'category': 'base',
     'depends': [
-        'web_kanban',
+        'base',
     ],
     'website': 'https://laslabs.com',
     'license': 'LGPL-3',
