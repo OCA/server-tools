@@ -6,10 +6,10 @@ from odoo import api, fields, models
 
 
 class BaseKanbanAbstract(models.AbstractModel):
-    '''Inherit from this class to add support for Kanban stages to your model.
+    """ Inherit from this class to add support for Kanban stages to your model.
     All public properties are preceded with kanban_ in order to isolate from
     child models, with the exception of stage_id, which is a required field in
-    the Kanban widget and must be defined as such.'''
+    the Kanban widget and must be defined as such. """
 
     _name = 'base.kanban.abstract'
     _order = 'kanban_priority desc, kanban_sequence'
@@ -24,7 +24,7 @@ class BaseKanbanAbstract(models.AbstractModel):
              ' stage and with the same priority',
     )
     kanban_priority = fields.Selection(
-        selection=[('0', 'Normal'), ('5', 'Medium'), ('10', 'High')],
+        selection=[('0', 'Normal'), ('1', 'Medium'), ('2', 'High')],
         index=True,
         default='0',
         help='The priority of the record (shown as stars in Kanban views)',
@@ -39,7 +39,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         default=lambda s: s._default_stage_id(),
         domain=lambda s: [('res_model.model', '=', s._name)],
     )
-    kanban_user_id = fields.Many2one(
+    user_id = fields.Many2one(
         string='Assigned To',
         comodel_name='res.users',
         index=True,
@@ -105,7 +105,9 @@ class BaseKanbanAbstract(models.AbstractModel):
     def _read_group_stage_ids(
         self, domain=None, read_group_order=None, access_rights_uid=None
     ):
-        stage_model = self.env['base.kanban.stage'].sudo(access_rights_uid)
+        stage_model = self.env['base.kanban.stage']
+        if access_rights_uid:
+            stage_model = stage_model.sudo(access_rights_uid)
         stages = stage_model.search([('res_model.model', '=', self._name)])
         names = [(r.id, r.display_name) for r in stages]
         fold = {r.id: r.fold for r in stages}
