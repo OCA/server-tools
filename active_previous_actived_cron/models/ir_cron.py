@@ -13,20 +13,26 @@ class IrCron(models.Model):
         help="State of the cron before 'Active Previous Active Cron' "
              "module installation.")
 
-
-class Module(models.Model):
-    _inherit = 'ir.module.module'
-
-    def init(self):
-        crons = self.env['ir.cron'].search([])
+    def _inactive_crons(self):
+        crons = self.search([])
         if crons:
             vals = {'active': False, 'active_old': True}
             crons.write(vals)
 
-    def button_uninstall(self):
-        cron_m = self.env['ir.cron']
-        crons = cron_m.with_context(active_test=False).search(
+    def _active_previous_crons(self):
+        crons = self.with_context(active_test=False).search(
             [('active_old', '=', True)])
         if crons:
             crons.write({'active': True})
-        return super(Module, self).button_uninstall()
+
+
+class IrModuleModule(models.Model):
+    _inherit = 'ir.module.module'
+
+    def init(self):
+        self.env['ir.cron']._inactive_crons()
+        return super(IrModuleModule, self).init()
+
+    def button_uninstall(self):
+        self.env['ir.cron']._active_previous_crons()
+        return super(IrModuleModule, self).button_uninstall()
