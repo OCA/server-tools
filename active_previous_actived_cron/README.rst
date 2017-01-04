@@ -10,11 +10,14 @@ Use case:
 
 Your ERP is in production, and you have an issue.
 You should stop the automatical tasks to understand what is the real problem.
+before to repair it.
 
+Usage
+=====
 
-* Install this module: all tasks (crons) are now inactive
+* Click on button in General Settings : all tasks (crons) are now inactive
 * Fix the issue
-* Uninstall this module: all tasks previously active, and only them,
+* Click one more time on button: all tasks previously active, and only them,
   are now active.
 
 
@@ -22,12 +25,6 @@ When the production is repaired, you may forget to active one or more crons.
 Some of them may run important features.
 
 With this module, you can't forget anymore.
-
-
-Usage
-=====
-
-Install this module, fix your issue and uninstall it
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
