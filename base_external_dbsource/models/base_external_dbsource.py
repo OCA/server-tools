@@ -3,12 +3,11 @@
 # Copyright 2016 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-import os
 import logging
 import psycopg2
 from contextlib import contextmanager
 
-from odoo import _, api, fields, models, tools
+from odoo import _, api, fields, models
 import odoo.tools as tools
 
 from ..exceptions import ConnectionFailedError, ConnectionSuccessError
