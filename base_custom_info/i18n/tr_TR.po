@@ -3,32 +3,19 @@
 # * base_custom_info
 # 
 # Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
-# Antonio Trueba, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# Paolo Valier, 2016
-# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 08:34+0000\n"
-"PO-Revision-Date: 2017-01-05 20:46+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
@@ -74,7 +61,7 @@ msgstr "Oluşturan"
 #: field:custom.info.template,create_date:0
 #: field:custom.info.value,create_date:0
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr "Oluşturulma tarihi"
 
 #. module: base_custom_info
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
@@ -134,14 +121,14 @@ msgstr ""
 #: field:custom.info.template,display_name:0
 #: field:custom.info.value,display_name:0
 msgid "Display Name"
-msgstr "Görünen İsim"
+msgstr "Görünen ad"
 
 #. module: base_custom_info
 #: field:custom.info,id:0 field:custom.info.model_link,id:0
 #: field:custom.info.property,id:0 field:custom.info.template,id:0
 #: field:custom.info.value,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. module: base_custom_info
 #: view:custom.info.template:base_custom_info.base_custom_info_template_form
@@ -160,20 +147,20 @@ msgstr ""
 #: field:custom.info.template,__last_update:0
 #: field:custom.info.value,__last_update:0
 msgid "Last Modified on"
-msgstr "Son değişiklik"
+msgstr "En son güncelleme tarihi"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_uid:0
 #: field:custom.info.template,write_uid:0 field:custom.info.value,write_uid:0
 msgid "Last Updated by"
-msgstr "Son güncelleyen"
+msgstr "En son güncelleyen "
 
 #. module: base_custom_info
 #: field:custom.info.property,write_date:0
 #: field:custom.info.template,write_date:0
 #: field:custom.info.value,write_date:0
 msgid "Last Updated on"
-msgstr "Son güncellenme"
+msgstr "En son güncelleme tarihi"
 
 #. module: base_custom_info
 #: field:custom.info.model_link,model:0
@@ -181,20 +168,20 @@ msgstr "Son güncellenme"
 #: field:custom.info.template,model_id:0 field:custom.info.value,model:0
 #: field:custom.info.value,model_id:0
 msgid "Model"
-msgstr "Model"
+msgstr "Tip"
 
 #. module: base_custom_info
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
 #: field:custom.info.value,name:0
 msgid "Name"
-msgstr "Adı"
+msgstr "Ad"
 
 #. module: base_custom_info
 #: field:custom.info.template,info_ids:0
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_template_line_action
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template_line
 msgid "Properties"
-msgstr "Özellikler"
+msgstr ""
 
 #. module: base_custom_info
 #: field:custom.info.value,property_id:0
@@ -209,12 +196,12 @@ msgstr ""
 #. module: base_custom_info
 #: field:custom.info.value,res_id:0
 msgid "Resource ID"
-msgstr "Kaynak ID"
+msgstr ""
 
 #. module: base_custom_info
 #: field:custom.info.property,template_id:0
 msgid "Template"
-msgstr ""
+msgstr "Şablon"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_template_action
@@ -225,10 +212,10 @@ msgstr ""
 #. module: base_custom_info
 #: field:custom.info.value,value:0
 msgid "Value"
-msgstr "Değer"
+msgstr ""
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
 msgid "Values"
-msgstr "Değerler"
+msgstr ""
