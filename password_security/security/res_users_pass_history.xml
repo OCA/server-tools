@@ -5,7 +5,8 @@
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
-<odoo>
+<openerp>
+<data>
     
     <record model="ir.rule" id="res_users_pass_history_rule">
         <field name="name">Res Users Pass History Access</field>
@@ -16,4 +17,6 @@
         ]</field>
     </record>
 
-</odoo>
+</data>
+</openerp>
+

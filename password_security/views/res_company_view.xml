@@ -5,7 +5,8 @@
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
-<odoo>
+<openerp>
+<data>
 
     <record id="view_company_form" model="ir.ui.view">
         <field name="name">res.company.form</field>
@@ -39,4 +40,6 @@
         </field>
     </record>
 
-</odoo>
+</data>
+</openerp>
+
