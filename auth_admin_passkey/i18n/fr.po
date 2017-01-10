@@ -74,18 +74,18 @@ msgstr "Utilisateurs"
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the account user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP lui enverra un mail."
+"account, Odoo will send an email to the account user."
+msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, Odoo lui enverra un mail."
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the admin user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, OpenERP enverra un mail à l'utilisateur."
+"account, Odoo will send an email to the admin user."
+msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, Odoo enverra un mail à l'utilisateur."
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:67
 #, python-format
-msgid "[WARNING] OpenERP Security Risk"
-msgstr "[WARNING] Faille de sécurité sur OpenERP"
+msgid "[WARNING] Odoo Security Risk"
+msgstr "[WARNING] Faille de sécurité sur Odoo"
