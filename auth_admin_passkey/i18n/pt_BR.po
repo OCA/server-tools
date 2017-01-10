@@ -68,18 +68,18 @@ msgstr "Usuários"
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the account user."
+"account, Odoo will send an email to the account user."
 msgstr "Quando o administrador usa sua senha para dar login com uma conta diferente, OPENERP irá enviar um email para a conta do usuário."
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the admin user."
+"account, Odoo will send an email to the admin user."
 msgstr "Quando o administrador usa sua senha para dar login com uma conta diferente, OPENERP irá enviar um email para a conta do administrador."
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:86
 #, python-format
-msgid "[WARNING] OpenERP Security Risk"
-msgstr "[AVISO] OpenERP Risco de Segurança"
+msgid "[WARNING] Odoo Security Risk"
+msgstr "[AVISO] Odoo Risco de Segurança"
