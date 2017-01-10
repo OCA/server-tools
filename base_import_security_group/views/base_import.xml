@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <template id="assets_backend" name="base_import_security_group assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/base_import_security_group/static/src/js/import.js"></script>
+        </xpath>
+    </template>
+
+</odoo>
