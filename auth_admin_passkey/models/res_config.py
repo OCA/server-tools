@@ -43,11 +43,11 @@ class BaseConfigSettings(models.TransientModel):
     auth_admin_passkey_send_to_admin = fields.Boolean(
         string='Send email to admin user.',
         help="""When the administrator use his password to login in """
-             """with a different account, OpenERP will send an email """
+             """with a different account, Odoo will send an email """
              """to the admin user.""")
 
     auth_admin_passkey_send_to_user = fields.Boolean(
         string='Send email to user.',
         help="""When the administrator use his password to login in """
-             """with a different account, OpenERP will send an email """
+             """with a different account, Odoo will send an email """
              """to the account user.""")
