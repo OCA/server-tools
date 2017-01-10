@@ -13,8 +13,10 @@
             <form string="Authenticator Info">
                 <header/>
                 <sheet>
-                    <span>Please provide a name for your app/device. Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>
-                    <br/>
+                    <div>
+                        <span>Please provide a name for your app/device. </span>
+                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>
+                    </div>
                     <group name="data">
                         <field name="name"/>
                         <field name="user_id"/>

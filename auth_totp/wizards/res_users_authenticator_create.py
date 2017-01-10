@@ -30,6 +30,7 @@ class ResUsersAuthenticatorCreate(models.TransientModel):
     )
     secret_key = fields.Char(
         default=lambda s: pyotp.random_base32(),
+        required=True,
     )
     qr_code_tag = fields.Html(
         compute='_compute_qr_code_tag',
