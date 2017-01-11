@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<openerp>
+<data>
+
+    <record id="base.user_root" model="res.users">
+        <field name="password_write_date"
+               eval="datetime.now()"
+               />
+    </record>
+
+</data>
+</openerp>
+
