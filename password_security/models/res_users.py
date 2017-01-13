@@ -3,10 +3,9 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import re
-
 from datetime import datetime, timedelta
 
-from openerp import api, fields, models, _
+from openerp import _, api, fields, models
 
 from ..exceptions import PassError
 
@@ -136,7 +135,7 @@ class ResUsers(models.Model):
                 recent_passes = rec_id.password_history_ids
             else:
                 recent_passes = rec_id.password_history_ids[
-                    0:recent_passes-1
+                    0:recent_passes - 1
                 ]
             if len(recent_passes.filtered(
                 lambda r: crypt.verify(password, r.password_crypt)

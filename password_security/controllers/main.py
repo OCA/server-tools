@@ -5,9 +5,9 @@
 import operator
 
 from openerp import http
-from openerp.http import request
 from openerp.addons.auth_signup.controllers.main import AuthSignupHome
-from openerp.addons.web.controllers.main import ensure_db, Session
+from openerp.addons.web.controllers.main import Session, ensure_db
+from openerp.http import request
 
 from ..exceptions import PassError
 
