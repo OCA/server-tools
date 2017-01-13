@@ -4,6 +4,7 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# gebri <gebri@inmail.sk>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
