@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-14 04:21+0000\n"
 "Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2016\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Creat el"
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_display_name
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_is_enabled
@@ -108,7 +108,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role___last_update
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_uid
@@ -135,7 +135,7 @@ msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1519
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1558
 msgid "Role lines"
 msgstr ""
 

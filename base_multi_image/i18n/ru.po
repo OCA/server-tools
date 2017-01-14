@@ -5,9 +5,11 @@
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
 # Chen-Do LU <clu@alkemics.com>, 2015
 # Bole <bole@dajmi5.com>, 2015
 # Dimitrios Glentadakis <dglent@gmail.com>, 2013-2014, 2015-2016
@@ -30,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-29 03:39+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-11 15:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +235,7 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Последовательность"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_show_technical
