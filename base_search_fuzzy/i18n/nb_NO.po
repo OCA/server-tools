@@ -4,19 +4,20 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Imre Kristoffer Eilertsen <imreeil42@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2017-01-14 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
+"Last-Translator: Imre Kristoffer Eilertsen <imreeil42@gmail.com>, 2017\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/oca/teams/23907/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nb_NO\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
@@ -29,17 +30,17 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_uid
 msgid "Created by"
-msgstr "建立者"
+msgstr "Laget av"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_date
 msgid "Created on"
-msgstr "建立於"
+msgstr "Laget den"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_display_name
 msgid "Display Name"
-msgstr "顯示名稱"
+msgstr "Vis navn"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_field_id
@@ -59,7 +60,7 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_id
 msgid "ID"
-msgstr "編號"
+msgstr "ID"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_index_name
@@ -74,22 +75,22 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index___last_update
 msgid "Last Modified on"
-msgstr "最後修改:"
+msgstr "Sist endret den"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_uid
 msgid "Last Updated by"
-msgstr "最後更新："
+msgstr "Sist oppdatert av"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_date
 msgid "Last Updated on"
-msgstr "最後更新於"
+msgstr "Sist oppdatert den"
 
 #. module: base_search_fuzzy
 #: model:ir.model,name:base_search_fuzzy.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Modeller"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_name
