@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -149,7 +149,7 @@ msgstr ""
 #: field:module_prototyper,display_name:0
 #: field:module_prototyper.module.export,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
@@ -350,7 +350,7 @@ msgstr ""
 #: field:module_prototyper,__last_update:0
 #: field:module_prototyper.module.export,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_uid:0
@@ -464,7 +464,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: module_prototyper
 #: field:module_prototyper,summary:0

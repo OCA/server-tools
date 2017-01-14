@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alexis de Lattre <alexis@via.ecp.fr>, 2016
 # Antonio Trueba, 2016
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:31+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-13 09:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +93,7 @@ msgstr "Создан"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0

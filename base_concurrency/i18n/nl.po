@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-13 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -65,9 +65,9 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: base_concurrency
 #: model:ir.model,name:base_concurrency.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"

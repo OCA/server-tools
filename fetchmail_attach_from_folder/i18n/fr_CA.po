@@ -7,6 +7,7 @@
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 # Paolo Valier, 2016
@@ -14,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
 "PO-Revision-Date: 2016-12-27 08:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
@@ -75,7 +76,7 @@ msgstr "Créé le"
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0

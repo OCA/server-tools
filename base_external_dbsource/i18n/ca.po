@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -77,7 +77,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: field:base.external.dbsource,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:177
@@ -126,7 +126,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: field:base.external.dbsource,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0

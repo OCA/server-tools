@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Creat el"
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
@@ -60,7 +60,7 @@ msgstr "ID"
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,write_uid:0

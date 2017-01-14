@@ -3,16 +3,14 @@
 # * password_security
 # 
 # Translators:
-# Fekete Mihai <mihai.fekete@forestandbiomass.ro>, 2016
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Dorin Hongu <dhongu@gmail.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0c\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
-"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2016\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-12 03:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_minimum
+#: help:res.company,password_minimum:0
 msgid "Amount of hours until a user may change password again"
 msgstr ""
 
@@ -32,7 +30,7 @@ msgid "Cannot use the most recent %d passwords"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_length
+#: field:res.company,password_length:0
 msgid "Characters"
 msgstr ""
 
@@ -42,84 +40,84 @@ msgid "Companies"
 msgstr "Companii"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_create_uid
+#: field:res.users.pass.history,create_uid:0
 msgid "Created by"
 msgstr "Creat de"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_create_date
+#: field:res.users.pass.history,create_date:0
 msgid "Created on"
 msgstr "Creat la"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_date
+#: field:res.users.pass.history,date:0
 msgid "Date"
 msgstr "Data"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_expiration
+#: field:res.company,password_expiration:0
 msgid "Days"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_history
+#: help:res.company,password_history:0
 msgid ""
 "Disallow reuse of this many previous passwords - use negative number for "
 "infinite, or 0 to disable"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_display_name
+#: field:res.users.pass.history,display_name:0
 msgid "Display Name"
 msgstr "Nume Afişat"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_password_crypt
+#: field:res.users.pass.history,password_crypt:0
 msgid "Encrypted Password"
 msgstr ""
 
 #. module: password_security
-#: model:ir.ui.view,arch_db:password_security.view_company_form
+#: view:res.company:password_security.view_company_form
 msgid "Extra"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_history
+#: field:res.company,password_history:0
 msgid "History"
 msgstr "Istoric"
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_expiration
+#: help:res.company,password_expiration:0
 msgid "How many days until passwords expire"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_id
+#: field:res.users.pass.history,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history___last_update
+#: field:res.users.pass.history,__last_update:0
 msgid "Last Modified on"
 msgstr "Ultima actualizare în"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_write_uid
+#: field:res.users.pass.history,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultima actualizare făcută de"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_write_date
+#: field:res.users.pass.history,write_date:0
 msgid "Last Updated on"
 msgstr "Ultima actualizare la"
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_password_write_date
+#: field:res.users,password_write_date:0
 msgid "Last password update"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_lower
+#: field:res.company,password_lower:0
 msgid "Lowercase"
 msgstr ""
 
@@ -130,12 +128,12 @@ msgid "Lowercase letter"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_minimum
+#: field:res.company,password_minimum:0
 msgid "Minimum Hours"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_length
+#: help:res.company,password_length:0
 msgid "Minimum number of characters"
 msgstr ""
 
@@ -146,7 +144,7 @@ msgid "Must contain the following:"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_numeric
+#: field:res.company,password_numeric:0
 msgid "Numeric"
 msgstr "Numerică"
 
@@ -157,12 +155,12 @@ msgid "Numeric digit"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_password_history_ids
+#: field:res.users,password_history_ids:0
 msgid "Password History"
 msgstr ""
 
 #. module: password_security
-#: model:ir.ui.view,arch_db:password_security.view_company_form
+#: view:res.company:password_security.view_company_form
 msgid "Password Policy"
 msgstr ""
 
@@ -181,27 +179,27 @@ msgid ""
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_lower
+#: help:res.company,password_lower:0
 msgid "Require lowercase letters"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_numeric
+#: help:res.company,password_numeric:0
 msgid "Require numeric digits"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_special
+#: help:res.company,password_special:0
 msgid "Require special characters"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,help:password_security.field_res_company_password_upper
+#: help:res.company,password_upper:0
 msgid "Require uppercase letters"
 msgstr ""
 
 #. module: password_security
-#: model:ir.ui.view,arch_db:password_security.view_company_form
+#: view:res.company:password_security.view_company_form
 msgid "Required Characters"
 msgstr ""
 
@@ -211,7 +209,7 @@ msgid "Res Users Password History"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_special
+#: field:res.company,password_special:0
 msgid "Special"
 msgstr ""
 
@@ -222,12 +220,12 @@ msgid "Special character"
 msgstr ""
 
 #. module: password_security
-#: model:ir.ui.view,arch_db:password_security.view_company_form
+#: view:res.company:password_security.view_company_form
 msgid "Timings"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_company_password_upper
+#: field:res.company,password_upper:0
 msgid "Uppercase"
 msgstr ""
 
@@ -238,7 +236,7 @@ msgid "Uppercase letter"
 msgstr ""
 
 #. module: password_security
-#: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_user_id
+#: field:res.users.pass.history,user_id:0
 msgid "User"
 msgstr "Utilizator"
 

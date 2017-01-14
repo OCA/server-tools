@@ -3,7 +3,7 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Hotellook, 2014
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 18:30+0000\n"
-"PO-Revision-Date: 2016-06-06 13:35+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -104,4 +104,4 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "or"
-msgstr ""
+msgstr "tai"

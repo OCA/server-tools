@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:31+0000\n"
-"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-11 15:37+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Creat la"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
@@ -397,7 +397,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Utilizator"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search

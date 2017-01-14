@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:119
@@ -204,7 +204,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: auto_backup
 #: field:db.backup,write_uid:0

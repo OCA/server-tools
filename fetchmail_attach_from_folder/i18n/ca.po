@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Creat el"
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0
@@ -85,7 +85,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,display_name:0
 #: field:fetchmail.server.folder,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -95,7 +95,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,mail_ids:0
 msgid "Emails"
-msgstr ""
+msgstr "Correus electrònics"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,mail_field:0
@@ -173,7 +173,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,__last_update:0
 #: field:fetchmail.server.folder,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
@@ -254,12 +254,12 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: selection:fetchmail.server.folder,msg_state:0
 msgid "Sent"
-msgstr ""
+msgstr "Enviat"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,server_id:0
@@ -269,7 +269,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,subject:0
 msgid "Subject"
-msgstr ""
+msgstr "Assumpte"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,match_algorithm:0
