@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2017-01-14 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
+"Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
@@ -29,17 +29,17 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_uid
 msgid "Created by"
-msgstr "建立者"
+msgstr "Creat de"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_date
 msgid "Created on"
-msgstr "建立於"
+msgstr "Creat la"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_display_name
 msgid "Display Name"
-msgstr "顯示名稱"
+msgstr "Nume Afişat"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_field_id
@@ -59,7 +59,7 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_id
 msgid "ID"
-msgstr "編號"
+msgstr "ID"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_index_name
@@ -74,17 +74,17 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index___last_update
 msgid "Last Modified on"
-msgstr "最後修改:"
+msgstr "Ultima actualizare în"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_uid
 msgid "Last Updated by"
-msgstr "最後更新："
+msgstr "Ultima actualizare făcută de"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_date
 msgid "Last Updated on"
-msgstr "最後更新於"
+msgstr "Ultima actualizare la"
 
 #. module: base_search_fuzzy
 #: model:ir.model,name:base_search_fuzzy.model_ir_model
