@@ -37,7 +37,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         copy=False,
         help='The Kanban stage that this record is currently in',
         default=lambda s: s._default_stage_id(),
-        domain=lambda s: [('res_model.model', '=', s._name)],
+        domain=lambda s: [('res_model_id.model', '=', s._name)],
     )
     user_id = fields.Many2one(
         string='Assigned To',
@@ -108,7 +108,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         stage_model = self.env['base.kanban.stage']
         if access_rights_uid:
             stage_model = stage_model.sudo(access_rights_uid)
-        stages = stage_model.search([('res_model.model', '=', self._name)])
+        stages = stage_model.search([('res_model_id.model', '=', self._name)])
         names = [(r.id, r.display_name) for r in stages]
         fold = {r.id: r.fold for r in stages}
         return names, fold
