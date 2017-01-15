@@ -8,7 +8,7 @@ from odoo import api, fields, models
 class BaseKanbanStage(models.Model):
     _name = 'base.kanban.stage'
     _description = 'Kanban Stage'
-    _order = 'res_model, sequence'
+    _order = 'res_model_id, sequence'
 
     name = fields.Char(
         string='Stage Name',
@@ -64,18 +64,18 @@ class BaseKanbanStage(models.Model):
         help='Determines whether this stage will be collapsed down in Kanban'
              ' views',
     )
-    res_model = fields.Many2one(
+    res_model_id = fields.Many2one(
         string='Associated Model',
         comodel_name='ir.model',
         required=True,
         index=True,
         help='The model that this Kanban stage will be used for',
         domain=[('transient', '=', False)],
-        default=lambda s: s._default_res_model(),
+        default=lambda s: s._default_res_model_id(),
     )
 
     @api.model
-    def _default_res_model(self):
+    def _default_res_model_id(self):
         '''Useful when creating stages from a Kanban view for another model'''
         action_id = self.env.context.get('params', {}).get('action')
         action = self.env['ir.actions.act_window'].browse(action_id)
