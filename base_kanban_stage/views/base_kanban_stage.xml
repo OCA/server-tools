@@ -15,7 +15,7 @@
                 <sheet>
                     <group string="Core Info" name="core_info">
                         <field name="name"/>
-                        <field name="res_model"/>
+                        <field name="res_model_id"/>
                         <field name="sequence"/>
                         <field name="fold"/>
                         <field name="description"/>
@@ -37,7 +37,7 @@
         <field name="arch" type="xml">
             <tree string="Kanban Stages">
                 <field name="name"/>
-                <field name="res_model"/>
+                <field name="res_model_id"/>
                 <field name="sequence"/>
             </tree>
         </field>
@@ -49,7 +49,7 @@
         <field name="arch" type="xml">
             <search string="Kanban Stages">
                 <field name="name"/>
-                <field name="res_model"/>
+                <field name="res_model_id"/>
                 <field name="sequence"/>
             </search>
         </field>
