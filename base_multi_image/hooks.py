@@ -77,8 +77,8 @@ def uninstall_hook_for_submodules(cr, registry, model):
         model will be deleted
     """
     Image = registry["base_multi_image.image"]
-    ids = Image.search(cr, SUPERUSER_ID, [("owner_model", "=", model)])
-    Image.unlink(cr, SUPERUSER_ID, ids)
+    images = Image.search([("owner_model", "=", model)])
+    images.unlink()
 
 
 def table_has_column(cr, table, field):
