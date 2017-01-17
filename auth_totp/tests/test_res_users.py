@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2017 LasLabs Inc.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from datetime import datetime
 import mock
@@ -18,6 +18,7 @@ DATETIME_PATH = 'openerp.addons.auth_totp.models.res_users.datetime'
 
 
 class TestResUsers(TransactionCase):
+
     def setUp(self):
         super(TestResUsers, self).setUp()
 
@@ -65,6 +66,7 @@ class TestResUsers(TransactionCase):
         datetime_mock.now.return_value = datetime(2016, 12, 1)
         self.test_user.generate_mfa_login_token()
         test_token = self.test_user.mfa_login_token
+        datetime_mock.now.return_value = datetime(2017, 12, 1)
 
         with self.assertRaises(MfaTokenExpiredError):
             self.env['res.users'].check_credentials(test_token)
@@ -133,6 +135,7 @@ class TestResUsers(TransactionCase):
         '''Should raise correct error when record has expired token'''
         datetime_mock.now.return_value = datetime(2016, 12, 1)
         self.test_user.generate_mfa_login_token()
+        datetime_mock.now.return_value = datetime(2017, 12, 1)
 
         with self.assertRaises(MfaTokenExpiredError):
             self.test_user._user_from_mfa_login_token_validate()
@@ -172,6 +175,7 @@ class TestResUsers(TransactionCase):
         datetime_mock.now.return_value = datetime(2016, 12, 1)
         self.test_user.generate_mfa_login_token()
         test_token = self.test_user.mfa_login_token
+        datetime_mock.now.return_value = datetime(2017, 12, 1)
 
         with self.assertRaises(MfaTokenExpiredError):
             self.env['res.users'].user_from_mfa_login_token(test_token)

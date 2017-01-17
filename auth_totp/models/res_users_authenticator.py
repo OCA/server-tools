@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2017 LasLabs Inc.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import logging
-from openerp import api, fields, models
+from openerp import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 try:
@@ -21,8 +21,10 @@ class ResUsersAuthenticator(models.Model):
     _sql_constraints = [(
         'user_id_name_uniq',
         'UNIQUE(user_id, name)',
-        'There is already an MFA app/device with this name associated with'
-        ' your account. Please pick a new name and try again.',
+        _(
+            'There is already an MFA app/device with this name associated with'
+            ' your account. Please pick a new name and try again.'
+        ),
     )]
 
     name = fields.Char(
@@ -41,9 +43,7 @@ class ResUsersAuthenticator(models.Model):
     @api.multi
     @api.constrains('user_id')
     def _check_has_user(self):
-        for record in self:
-            if not record.user_id:
-                record.unlink()
+        self.filtered(lambda r: not r.user_id).unlink()
 
     @api.multi
     def validate_conf_code(self, confirmation_code):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2017 LasLabs Inc.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import mock
 from openerp.tests.common import TransactionCase
@@ -9,6 +9,7 @@ MOCK_PATH = 'openerp.addons.auth_totp.models.res_users_authenticator.pyotp'
 
 
 class TestResUsersAuthenticator(TransactionCase):
+
     def _new_authenticator(self, extra_values=None):
         base_values = {
             'name': 'Test Name',

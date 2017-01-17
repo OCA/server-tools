@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2017 LasLabs Inc.
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import mock
 from openerp.exceptions import ValidationError
@@ -11,6 +11,7 @@ from openerp.tests.common import TransactionCase
     'openerp.addons.auth_totp.wizards.res_users_authenticator_create.pyotp'
 )
 class TestResUsersAuthenticatorCreate(TransactionCase):
+
     def setUp(self):
         super(TestResUsersAuthenticatorCreate, self).setUp()
 
