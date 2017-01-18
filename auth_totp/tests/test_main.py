@@ -4,11 +4,11 @@
 
 from datetime import datetime
 import mock
-from openerp.http import Response
-from openerp.tests.common import TransactionCase
+from odoo.http import Response
+from odoo.tests.common import TransactionCase
 from ..controllers.main import AuthTotp
 
-CONTROLLER_PATH = 'openerp.addons.auth_totp.controllers.main'
+CONTROLLER_PATH = 'odoo.addons.auth_totp.controllers.main'
 REQUEST_PATH = CONTROLLER_PATH + '.request'
 SUPER_PATH = CONTROLLER_PATH + '.Home.web_login'
 JSON_PATH = CONTROLLER_PATH + '.JsonSecureCookie'
@@ -16,7 +16,7 @@ ENVIRONMENT_PATH = CONTROLLER_PATH + '.Environment'
 RESPONSE_PATH = CONTROLLER_PATH + '.Response'
 DATETIME_PATH = CONTROLLER_PATH + '.datetime'
 TRANSLATE_PATH_CONT = CONTROLLER_PATH + '._'
-MODEL_PATH = 'openerp.addons.auth_totp.models.res_users'
+MODEL_PATH = 'odoo.addons.auth_totp.models.res_users'
 GENERATE_PATH = MODEL_PATH + '.ResUsers.generate_mfa_login_token'
 VALIDATE_PATH = MODEL_PATH + '.ResUsers.validate_mfa_confirmation_code'
 TRANSLATE_PATH_MOD = MODEL_PATH + '._'
@@ -41,7 +41,7 @@ class TestAuthTotp(TransactionCase):
         self.test_user.trusted_device_ids = None
 
         # Needed when tests are run with no prior requests (e.g. on a new DB)
-        patcher = mock.patch('openerp.http.request')
+        patcher = mock.patch('odoo.http.request')
         self.addCleanup(patcher.stop)
         patcher.start()
 

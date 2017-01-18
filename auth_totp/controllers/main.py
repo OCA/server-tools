@@ -5,10 +5,10 @@
 from datetime import datetime, timedelta
 import json
 from werkzeug.contrib.securecookie import SecureCookie
-from openerp import _, http, registry, SUPERUSER_ID
-from openerp.api import Environment
-from openerp.http import Response, request
-from openerp.addons.web.controllers.main import Home
+from odoo import _, http, registry, SUPERUSER_ID
+from odoo.api import Environment
+from odoo.http import Response, request
+from odoo.addons.web.controllers.main import Home
 from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 
 

@@ -5,8 +5,8 @@
 from datetime import datetime
 import mock
 import string
-from openerp.exceptions import ValidationError
-from openerp.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 from ..exceptions import (
     MfaTokenError,
     MfaTokenInvalidError,
@@ -14,7 +14,7 @@ from ..exceptions import (
 )
 from ..models.res_users_authenticator import ResUsersAuthenticator
 
-DATETIME_PATH = 'openerp.addons.auth_totp.models.res_users.datetime'
+DATETIME_PATH = 'odoo.addons.auth_totp.models.res_users.datetime'
 
 
 class TestResUsers(TransactionCase):

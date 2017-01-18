@@ -5,8 +5,8 @@
 from datetime import datetime, timedelta
 import random
 import string
-from openerp import _, api, fields, models
-from openerp.exceptions import AccessDenied, ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import AccessDenied, ValidationError
 from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 
 

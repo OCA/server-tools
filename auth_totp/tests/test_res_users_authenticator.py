@@ -3,9 +3,9 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import mock
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
-MOCK_PATH = 'openerp.addons.auth_totp.models.res_users_authenticator.pyotp'
+MOCK_PATH = 'odoo.addons.auth_totp.models.res_users_authenticator.pyotp'
 
 
 class TestResUsersAuthenticator(TransactionCase):
