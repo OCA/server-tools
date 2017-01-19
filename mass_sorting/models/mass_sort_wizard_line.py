@@ -3,23 +3,19 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import fields
-from openerp.osv.orm import TransientModel
+from odoo import fields, models
 
 
-class TransientModelLine(TransientModel):
+class TransientModelLine(models.TransientModel):
     _name = 'mass.sort.wizard.line'
 
-    _columns = {
-        'sequence': fields.integer('Sequence', required=True),
-        'wizard_id': fields.many2one(
-            'mass.sort.wizard', string='Wizard'),
-        'field_id': fields.many2one(
-            'ir.model.fields', string='Field', required=True, domain="["
-            "('model', '=', parent.one2many_model)]"),
-        'desc': fields.boolean('Inverse Order'),
-    }
+    sequence = fields.Integer(string='Sequence', required=True, default=1)
 
-    _defaults = {
-        'sequence': 1,
-    }
+    wizard_id = fields.Many2one(
+        comodel_name='mass.sort.wizard', string='Wizard')
+
+    field_id = fields.Many2one(
+        comodel_name='ir.model.fields', string='Field', required=True,
+        domain="[('model', '=', parent.one2many_model)]")
+
+    desc = fields.Boolean('Inverse Order')
