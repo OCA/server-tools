@@ -101,16 +101,16 @@ class AuditlogRule(models.Model):
           "You cannot define another: please edit the existing one."))
     ]
 
-    def _register_hook(self, records=None):
+    def _register_hook(self):
         """Get all rules and apply them to log method calls."""
         super(AuditlogRule, self)._register_hook()
         if not hasattr(self.pool, '_auditlog_field_cache'):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, '_auditlog_model_cache'):
             self.pool._auditlog_model_cache = {}
-        if records is None:
-            records = self.search([('state', '=', 'subscribed')])
-        return records._patch_methods()
+        if not self:
+            self = self.search([('state', '=', 'subscribed')])
+        return self._patch_methods()
 
     @api.multi
     def _patch_methods(self):
@@ -175,7 +175,7 @@ class AuditlogRule(models.Model):
     def create(self, vals):
         """Update the registry when a new rule is created."""
         new_record = super(AuditlogRule, self).create(vals)
-        if self._model._register_hook(new_record):
+        if new_record._register_hook():
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
         return new_record
@@ -184,7 +184,7 @@ class AuditlogRule(models.Model):
     def write(self, vals):
         """Update the registry when existing rules are updated."""
         super(AuditlogRule, self).write(vals)
-        if self._model._register_hook(self):
+        if self._register_hook():
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
         return True
