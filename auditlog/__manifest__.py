@@ -4,7 +4,7 @@
 
 {
     'name': "Audit Log",
-    'version': "9.0.1.0.0",
+    'version': "10.0.1.0.0",
     'author': "ABF OSIELL,Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'website': "http://www.osiell.com",
