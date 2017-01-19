@@ -6,30 +6,19 @@
 
 {
     'name': 'Mass Sorting',
-    'version': '1.0',
+    'version': "10.0.1.0.0",
     'author': 'GRAP,Odoo Community Association (OCA)',
+    'summary': 'Sort any models by any fields list',
     'category': 'Tools',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
-    "description": """
-Mass Sorting
-============
-
-This module provides the functionality to sort an one2many fields in any model.
-
-Typically, you can sort sale order line on a sale order, using any fields.
-
-See screenshots in the description folder.
-
-This module is highly inspired by 'mass_editing' module. (by OCA and SerpentCS)
-    """,
     'depends': [
         'base',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/mass_sort_config_view.xml',
-        'views/mass_sort_wizard_view.xml',
+        'views/view_mass_sort_config.xml',
+        'views/view_mass_sort_wizard.xml',
         'views/action.xml',
         'views/menu.xml',
     ],
@@ -40,5 +29,10 @@ This module is highly inspired by 'mass_editing' module. (by OCA and SerpentCS)
         'static/description/3_mass_sort_wizard_custom.png',
         'static/description/4_before.png',
         'static/description/5_after.png',
+    ],
+    'demo': [
+        'demo/mass_sort_config.xml',
+        'demo/mass_sort_config_line.xml',
+        'demo/function.xml',
     ],
 }

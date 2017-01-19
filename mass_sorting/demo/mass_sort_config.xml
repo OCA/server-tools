@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="mass_sort_config_demo" model="mass.sort.config">
+        <field name="name">Self Mass Sort Demo</field>
+        <field name="model_id" ref="mass_sorting.model_mass_sort_config"/>
+        <field name="one2many_field_id" ref="mass_sorting.field_mass_sort_config_line_ids"/>
+    </record>
+
+</odoo>

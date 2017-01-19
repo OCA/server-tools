@@ -5,10 +5,8 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<odoo>
+<odoo  noupdate="1">
 
-    <menuitem id="menu_mass_sort_config"
-        action="action_mass_sort_config"
-        parent="base.menu_custom" sequence="30"/>
+    <function model="mass.sort.config" name="create_action" eval="[ref('mass_sort_config_demo')]"/>
 
 </odoo>
