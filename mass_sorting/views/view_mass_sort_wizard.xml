@@ -5,12 +5,12 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record id="view_mass_sort_wizard_form" model="ir.ui.view">
         <field name="model">mass.sort.wizard</field>
         <field name="arch" type="xml">
-            <form string="Mass Sorting" version="7.0">
+            <form>
                 <group attrs="{'invisible': [('allow_custom_setting', '=', True)]}">
                     <field name="description" nolabel="1"/>
                 </group>
@@ -23,14 +23,15 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                         </tree>
                     </field>
                 </group>
+                <field name="config_id" invisible="1"/>
                 <field name="allow_custom_setting" invisible="1"/>
                 <field name="one2many_model" invisible="1"/>
                 <footer>
-                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                    <button name="button_apply" type="object" string="Confirm" class="oe_highlight"/>
+                    <button string="Confirm" name="button_apply" type="object" class="btn btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-default"/>
                </footer>
             </form>
         </field>
     </record>
 
-</data></openerp>
+</odoo>
