@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <record id="ir_cron_auditlog_autovacuum" model="ir.cron">
             <field name='name'>Auto-vacuum audit logs</field>
@@ -14,5 +13,4 @@
             <field name="args">(180,)</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
