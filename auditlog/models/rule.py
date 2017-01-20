@@ -2,7 +2,7 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
+from odoo import models, fields, api, modules, _, sql_db
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -101,16 +101,16 @@ class AuditlogRule(models.Model):
           "You cannot define another: please edit the existing one."))
     ]
 
-    def _register_hook(self, cr, ids=None):
+    def _register_hook(self):
         """Get all rules and apply them to log method calls."""
-        super(AuditlogRule, self)._register_hook(cr)
+        super(AuditlogRule, self)._register_hook()
         if not hasattr(self.pool, '_auditlog_field_cache'):
             self.pool._auditlog_field_cache = {}
         if not hasattr(self.pool, '_auditlog_model_cache'):
             self.pool._auditlog_model_cache = {}
-        if ids is None:
-            ids = self.search(cr, SUPERUSER_ID, [('state', '=', 'subscribed')])
-        return self._patch_methods(cr, SUPERUSER_ID, ids)
+        if not self:
+            self = self.search([('state', '=', 'subscribed')])
+        return self._patch_methods()
 
     @api.multi
     def _patch_methods(self):
@@ -175,7 +175,7 @@ class AuditlogRule(models.Model):
     def create(self, vals):
         """Update the registry when a new rule is created."""
         new_record = super(AuditlogRule, self).create(vals)
-        if self._model._register_hook(self.env.cr, new_record.ids):
+        if new_record._register_hook():
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
         return new_record
@@ -184,7 +184,7 @@ class AuditlogRule(models.Model):
     def write(self, vals):
         """Update the registry when existing rules are updated."""
         super(AuditlogRule, self).write(vals)
-        if self._model._register_hook(self.env.cr, self.ids):
+        if self._register_hook():
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
         return True
@@ -526,7 +526,7 @@ class AuditlogRule(models.Model):
         to view logs on that model.
         """
         act_window_model = self.env['ir.actions.act_window']
-        model_data_model = self.env['ir.model.data']
+        model_ir_values = self.env['ir.values']
         for rule in self:
             # Create a shortcut to view logs
             domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
@@ -541,10 +541,12 @@ class AuditlogRule(models.Model):
             rule.write({'state': 'subscribed', 'action_id': act_window.id})
             keyword = 'client_action_relate'
             value = 'ir.actions.act_window,%s' % act_window.id
-            model_data_model.sudo().ir_set(
-                'action', keyword, 'View_log_' + rule.model_id.model,
-                [rule.model_id.model], value, replace=True,
-                isobject=True, xml_id=False)
+            model_ir_values.sudo().set_action(
+                'View_log_' + rule.model_id.model,
+                action_slot=keyword,
+                model=rule.model_id.model,
+                action=value)
+
         return True
 
     @api.multi
