@@ -2,24 +2,24 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp.http import request
+from odoo import models, fields, api
+from odoo.http import request
 
 
 class AuditlogtHTTPSession(models.Model):
     _name = 'auditlog.http.session'
     _description = u"Auditlog - HTTP User session log"
     _order = "create_date DESC"
-    _rec_name = 'display_name'
 
-    display_name = fields.Char(u"Name", compute="_compute_display_name")
+    display_name = fields.Char(
+        u"Name", compute="_compute_display_name", store=True)
     name = fields.Char(u"Session ID", index=True)
     user_id = fields.Many2one(
         'res.users', string=u"User", index=True)
     http_request_ids = fields.One2many(
         'auditlog.http.request', 'http_session_id', string=u"HTTP Requests")
 
-    @api.multi
+    @api.depends('create_date', 'user_id')
     def _compute_display_name(self):
         for httpsession in self:
             create_date = fields.Datetime.from_string(httpsession.create_date)
@@ -28,6 +28,10 @@ class AuditlogtHTTPSession(models.Model):
             httpsession.display_name = u"%s (%s)" % (
                 httpsession.user_id and httpsession.user_id.name or '?',
                 fields.Datetime.to_string(tz_create_date))
+
+    @api.multi
+    def name_get(self):
+        return [(session.id, session.display_name) for session in self]
 
     @api.model
     def current_http_session(self):
@@ -39,7 +43,7 @@ class AuditlogtHTTPSession(models.Model):
         """
         if not request:
             return False
-        httpsession = request.httpsession
+        httpsession = request.session
         if httpsession:
             existing_session = self.search(
                 [('name', '=', httpsession.sid),
