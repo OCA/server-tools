@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:50+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
-msgstr ""
+msgstr "Camp"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -248,7 +248,7 @@ msgstr ""
 #: field:auditlog.http.request,display_name:0
 #: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value:0
@@ -417,7 +417,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
 msgid "Users"
-msgstr ""
+msgstr "Usuaris"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form

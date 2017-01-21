@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"POT-Creation-Date: 2017-01-17 07:52+0000\n"
 "PO-Revision-Date: 2016-03-07 17:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -142,7 +142,7 @@ msgstr ""
 #. module: users_ldap_push
 #: model:ir.model,name:users_ldap_push.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuaris"
 
 #. module: users_ldap_push
 #: code:addons/users_ldap_push/models/res_company_ldap.py:64
