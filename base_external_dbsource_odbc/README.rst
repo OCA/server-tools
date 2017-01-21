@@ -2,40 +2,39 @@
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 
-=========================
-External Database Sources
-=========================
+===============================
+External Database Source - ODBC
+===============================
 
-This module allows you to define connections to foreign databases using ODBC, Firebird,
-Oracle Client or SQLAlchemy.
+This module extends ``base_external_dbsource``, allowing you to connect to
+foreign ODBC databases using PyODBC.
+
+
 
 Installation
 ============
 
-No installation required.
+* Install ``unixodbc`` and ``python-pyodbc`` packages
+* Install ``base_external_dbsource_sqlite`` Odoo module
 
 Configuration
 =============
 
 Database sources can be configured in Settings > Configuration -> Data sources.
 
+
 Usage
 =====
 
 To use this module:
--------------------
 
 * Go to Settings > Database Structure > Database Sources
 * Click on Create to enter the following information:
 
-* Data source name 
-* Password
+* Datasource name 
+* Pasword
 * Connector: Choose the database to which you want to connect
 * Connection string: Specify how to connect to database
-
-To extend this module:
-----------------------
-
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -44,15 +43,7 @@ To extend this module:
 Known issues / Roadmap
 ======================
 
-* Find a way to remove or default the CA certs dir
-* Add concept of multiple connection strings for one source (multiple nodes)
-* Add a ConnectionEnvironment that allows for the reuse of connections
-* Message box should be displayed instead of error in ``connection_test``
-* Remove old api compatibility layers (v11)
-* Instead of returning list of results, we should return iterators. This will support
-  larger datasets in a more efficient manner.
-* Implement better CRUD handling
-
+* Add X.509 authentication
 
 Bug Tracker
 ===========
@@ -70,7 +61,6 @@ Contributors
 * Daniel Reis <dreis.pt@hotmail.com>
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
 * Gervais Naoussi <gervaisnaoussi@gmail.com>
-* Michell Stuttgart <michellstut@gmail.com>
 * Dave Lasley <dave@laslabs.com>
 
 Maintainer
