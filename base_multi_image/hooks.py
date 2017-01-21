@@ -76,9 +76,11 @@ def uninstall_hook_for_submodules(cr, registry, model):
         Model technical name, like "res.partner". All multi-images for that
         model will be deleted
     """
-    Image = registry["base_multi_image.image"]
-    images = Image.search(Image, [("owner_model", "=", model)])
-    images.unlink()
+    env = api.Environment(cr, SUPERUSER_ID, dict())
+    with cr.savepoint():
+        Image = env["base_multi_image.image"]
+        images = Image.search([("owner_model", "=", model)])
+        images.unlink()
 
 
 def table_has_column(cr, table, field):
