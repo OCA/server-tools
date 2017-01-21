@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-17 13:12+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Darrera Actualització el"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: users_ldap_populate
 #: code:addons/users_ldap_populate/model/users_ldap.py:64
