@@ -20,7 +20,7 @@ def pre_init_hook_for_submodules(cr, model, field):
         Binary field that had the images in that :param:`model`, like
         ``image``.
     """
-    env = api.Environment(cr, SUPERUSER_ID, dict())
+    env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
         table = env[model]._table
         column_exists = table_has_column(cr, table, field)
@@ -76,7 +76,7 @@ def uninstall_hook_for_submodules(cr, registry, model):
         Model technical name, like "res.partner". All multi-images for that
         model will be deleted
     """
-    env = api.Environment(cr, SUPERUSER_ID, dict())
+    env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
         Image = env["base_multi_image.image"]
         images = Image.search([("owner_model", "=", model)])
