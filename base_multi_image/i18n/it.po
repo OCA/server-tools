@@ -3,24 +3,16 @@
 # * base_multi_image
 # 
 # Translators:
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
-# Antonio Trueba, 2016
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (10.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/it/)\n"
+"POT-Creation-Date: 2018-01-06 02:24+0000\n"
+"PO-Revision-Date: 2018-01-06 02:24+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -37,7 +29,7 @@ msgstr "Un documento può avere una sola immagine con lo stesso nome."
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Allegato"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
@@ -138,12 +130,12 @@ msgstr "Ultima modifica il"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Last Updated by"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Last Updated on"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/owner.py:73
