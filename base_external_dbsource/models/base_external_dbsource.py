@@ -5,10 +5,10 @@
 
 import logging
 import psycopg2
+
 from contextlib import contextmanager
 
-from odoo import _, api, fields, models
-import odoo.tools as tools
+from odoo import _, api, fields, models, tools
 
 from ..exceptions import ConnectionFailedError, ConnectionSuccessError
 
@@ -134,7 +134,7 @@ class BaseExternalDbsource(models.Model):
         self, query=None, execute_params=None, metadata=False, **kwargs
     ):
         """ Executes a query and returns a list of rows.
-
+        
             "execute_params" can be a dict of values, that can be referenced
             in the SQL statement using "%(key)s" or, in the case of Oracle,
             ":key".

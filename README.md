@@ -18,7 +18,13 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [auto_backup](auto_backup/) | 10.0.1.0.0 | Backups database
-[base_external_dbsource](base_external_dbsource/) | 10.0.1.0.1 | External Database Sources
+[base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
+[base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
+[base_external_dbsource_mssql](base_external_dbsource_mssql/) | 10.0.1.0.0 | External Database Source - MSSQL
+[base_external_dbsource_mysql](base_external_dbsource_mysql/) | 10.0.1.0.0 | External Database Source - MySQL
+[base_external_dbsource_odbc](base_external_dbsource_odbc/) | 10.0.1.0.0 | External Database Source - ODBC
+[base_external_dbsource_oracle](base_external_dbsource_oracle/) | 10.0.1.0.0 | External Database Source - Oracle
+[base_external_dbsource_sqlite](base_external_dbsource_sqlite/) | 10.0.1.0.0 | External Database Source - SQLite
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
