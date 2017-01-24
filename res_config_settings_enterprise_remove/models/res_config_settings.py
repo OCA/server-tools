@@ -29,42 +29,52 @@ class ResConfigSettings(models.TransientModel):
             queries += [
                 "//div[field[@name='module_account_reports' and \
                     @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_deferred_revenue' and \
+                                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_yodlee' and \
+                                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_plaid' and \
+                                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_bank_statement_import_qif' "
+                "and @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_bank_statement_import_ofx' "
+                "and @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_bank_statement_import_csv' "
+                "and @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_sepa' and \
+                                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_l10n_us_check_printing' and \
+                                    @widget='upgrade_boolean']]",
                 "//div[field[@name='module_account_reports_followup' and \
-                    @widget='upgrade_boolean']]",
-                "//div[field[@name='module_account_batch_deposit' and \
-                    @widget='upgrade_boolean']]",
+                                    @widget='upgrade_boolean']]",
+                "//div[field[@name='module_account_batch_deposit' and "
+                "@widget='upgrade_boolean']]",
+            ]
+        elif page_name == 'sale settings':
+            queries += [
+                "//div[field[@name='module_crm_voip' and "
+                "@widget='upgrade_boolean']]/preceding-sibling::label[1]",
+                "//div[field[@name='module_crm_voip' and "
+                "@widget='upgrade_boolean']]",
+                "//group[@name='config_sign']",
+                "//div[field[@name='module_sale_contract' and "
+                "@widget='upgrade_boolean']]/preceding-sibling::label[1]",
+                "//div[field[@name='module_sale_contract' and "
+                "@widget='upgrade_boolean']]",
             ]
 
         elif page_name == 'stock settings':
             queries += [
                 "//group[@name='shipping']",
-                "//group[@string='Extra Features']",
+                "//group[5]",
+                "//div[field[@name='module_stock_barcode' and "
+                "@widget='upgrade_boolean']]",
             ]
 
         elif page_name == 'mrp settings':
             queries += [
-                "//group[@string='Extra Features']",
+                "//group[3]",
             ]
-
-        queries += [
-            "//div[div[field[@widget='upgrade_boolean']]] \
-                /preceding-sibling::label[1]",
-            "//div[div[field[@widget='upgrade_boolean']]]",
-            "//div[field[@widget='upgrade_boolean']] \
-                /preceding-sibling::label[1]",
-            "//div[field[@widget='upgrade_boolean']]",
-            "//field[@widget='upgrade_boolean']",
-        ]
-
-        queries += [
-            "//div[div[field[@widget='upgrade_radio']]] \
-                /preceding-sibling::label[1]",
-            "//div[div[field[@widget='upgrade_radio']]]",
-            "//div[field[@widget='upgrade_radio']] \
-                /preceding-sibling::label[1]",
-            "//div[field[@widget='upgrade_radio']]",
-            "//field[@widget='upgrade_radio']",
-        ]
 
         for query in queries:
             for item in doc.xpath(query):
