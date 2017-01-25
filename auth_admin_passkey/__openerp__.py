@@ -22,7 +22,7 @@
 
 {
     'name': 'Authentification - Admin Passkey',
-    'version': '8.0.2.1.1',
+    'version': '9.0.1.0.0',
     'category': 'base',
     'author': "GRAP,Odoo Community Association (OCA)",
     'website': 'http://www.grap.coop',
@@ -41,6 +41,6 @@
     'images': [],
     'post_load': '',
     'application': False,
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
