@@ -7,8 +7,10 @@
             <form string="Url rewriting edit form">
                 <sheet>
                     <group>
+                        <field name="backend_id"/>
+                        <field name="lang_id"/>
                         <field name="url_key" />
-                        <field name="model_id" widget="selection" />
+                        <field name="model_id"/>
                         <field name="redirect"/>
                     </group>
                 </sheet>
