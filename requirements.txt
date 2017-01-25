@@ -6,6 +6,3 @@ validate_email
 pysftp
 fdb
 sqlalchemy
-pymssql
-MySQL-python
-pyodbc
