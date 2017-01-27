@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# © 2015-2016 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2015-2017 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from itertools import groupby
 from lxml import etree
 from operator import attrgetter
 
-from openerp import models, fields, api, exceptions, _
-from openerp.osv.orm import setup_modifiers
+from odoo import models, fields, api, exceptions, _
+from odoo.osv.orm import setup_modifiers
 
 # sentinel object to be sure that no empty value was passed to
 # ResPartnerChangesetChange._value_for_changeset
@@ -22,7 +22,7 @@ class ResPartnerChangeset(models.Model):
 
     partner_id = fields.Many2one(comodel_name='res.partner',
                                  string='Partner',
-                                 select=True,
+                                 index=True,
                                  required=True,
                                  readonly=True,
                                  ondelete='cascade')
@@ -31,7 +31,7 @@ class ResPartnerChangeset(models.Model):
                                  string='Changes',
                                  readonly=True)
     date = fields.Datetime(default=fields.Datetime.now,
-                           select=True,
+                           index=True,
                            readonly=True)
     state = fields.Selection(
         compute='_compute_state',
@@ -378,7 +378,8 @@ class ResPartnerChangesetChange(models.Model):
 
                 field = change.field_id
                 value_for_write = change._convert_value_for_write(
-                    change.get_new_value()
+                    change.get_new_value(),
+                    partner
                 )
                 values[field.name] = value_for_write
 
@@ -421,18 +422,18 @@ class ResPartnerChangesetChange(models.Model):
     @api.model
     def _has_field_changed(self, record, field, value):
         field_def = record._fields[field]
-        current_value = field_def.convert_to_write(record[field])
+        current_value = field_def.convert_to_write(record[field], record)
         if not (current_value or value):
             return False
         return current_value != value
 
     @api.multi
-    def _convert_value_for_write(self, value):
+    def _convert_value_for_write(self, value, record):
         if not value:
             return value
         model = self.env[self.field_id.model_id.model]
         model_field_def = model._fields[self.field_id.name]
-        return model_field_def.convert_to_write(value)
+        return model_field_def.convert_to_write(value, record)
 
     @api.model
     def _value_for_changeset(self, record, field_name, value=_NO_VALUE):
@@ -446,7 +447,7 @@ class ResPartnerChangesetChange(models.Model):
         if value is _NO_VALUE:
             # when the value is read from the record, we need to prepare
             # it for the write (e.g. extract .id from a many2one record)
-            value = field_def.convert_to_write(record[field_name])
+            value = field_def.convert_to_write(record[field_name], record)
         if field_def.type == 'many2one':
             # store as 'reference'
             comodel = field_def.comodel_name

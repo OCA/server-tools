@@ -136,7 +136,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/partner-contact/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
+help us smashing it by providing a detailed and welcomed feedback
 
 Credits
 =======
@@ -151,6 +151,7 @@ Contributors
 
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Denis Leemann <denis.leemann@camptocamp.com>
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 Maintainer
 ----------

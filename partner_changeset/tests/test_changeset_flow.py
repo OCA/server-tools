@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2015-2016 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2015-2017 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime, timedelta
 
-from openerp import fields, exceptions
-from openerp.tests import common
+from odoo import fields, exceptions
+from odoo.tests import common
 from .common import ChangesetMixin
 
 
