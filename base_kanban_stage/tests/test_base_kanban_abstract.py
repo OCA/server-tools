@@ -37,32 +37,13 @@ class TestBaseKanbanAbstract(TransactionCase):
         self.id_1 = test_stage_1.id
         self.id_2 = test_stage_2.id
 
-    def test_read_group_stage_ids_base_case(self):
-        '''It should return a structure with the proper content'''
+    def test_read_group_stage_ids(self):
+        """It should return the correct recordset. """
         self.assertEqual(
-            self.test_model._read_group_stage_ids(),
-            (
-                [(self.id_1, 'Test Stage 1'), (self.id_2, 'Test Stage 2')],
-                {self.id_1: False, self.id_2: True},
-            )
-        )
-
-    def test_read_group_stage_ids_correct_associated_model(self):
-        '''It should only return info for stages with right associated model'''
-        stage_model = self.env['ir.model'].search([
-            ('model', '=', 'base.kanban.stage'),
-        ])
-        self.env['base.kanban.stage'].create({
-            'name': 'Test Stage 3',
-            'res_model': stage_model.id,
-        })
-
-        self.assertEqual(
-            self.test_model._read_group_stage_ids(),
-            (
-                [(self.id_1, 'Test Stage 1'), (self.id_2, 'Test Stage 2')],
-                {self.id_1: False, self.id_2: True},
-            )
+            self.test_model._read_group_stage_ids(
+                self.env['base.kanban.stage'], [], 'id',
+            ),
+            self.env['base.kanban.stage'].search([], order='id'),
         )
 
     def test_default_stage_id(self):
