@@ -34,7 +34,7 @@ class SignupVerifyEmail(AuthSignupHome):
             values["email"] = values.get("login")
 
         # Remove password
-        values["password"] = False
+        values["password"] = "password"
         sudo_users = (http.request.env["res.users"]
                       .with_context(create_user=True).sudo())
 
