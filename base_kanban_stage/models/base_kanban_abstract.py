@@ -38,6 +38,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         help='The Kanban stage that this record is currently in',
         default=lambda s: s._default_stage_id(),
         domain=lambda s: [('res_model_id.model', '=', s._name)],
+        group_expand='_read_group_stage_ids',
     )
     user_id = fields.Many2one(
         string='Assigned To',
@@ -102,13 +103,8 @@ class BaseKanbanAbstract(models.AbstractModel):
         return self.env['base.kanban.stage']
 
     @api.multi
-    def _read_group_stage_ids(
-        self, domain=None, read_group_order=None, access_rights_uid=None
-    ):
-        stage_model = self.env['base.kanban.stage']
-        if access_rights_uid:
-            stage_model = stage_model.sudo(access_rights_uid)
-        stages = stage_model.search([('res_model_id.model', '=', self._name)])
-        names = [(r.id, r.display_name) for r in stages]
-        fold = {r.id: r.fold for r in stages}
-        return names, fold
+    def _read_group_stage_ids(self, stages, domain, order):
+        search_domain = [('res_model_id.model', '=', self._name)]
+        if domain:
+            search_domain.extend(domain)
+        return stages.search(search_domain, order=order)
