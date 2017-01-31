@@ -31,7 +31,7 @@ The logic to choose between accounts will be achieved in dependent modules.
 Uses cases
 ==========
 
-Possible use case for deliveries : you need multiple accounts for the same carrier. 
+Possible use case for deliveries: you need multiple accounts for the same carrier. 
 It can be for instance due to carrier restrictions (immutable sender address),
 or business rules (each warehouse use a different account).
 
@@ -51,6 +51,7 @@ This key is used to encrypt account passwords.
 If you plan to use environments, you should add a key per environment:
 
 > keychain_key_dev = 8H_qFvwhxv6EeO9bZ8ww7BUymNt3xtQKYEq9rjAPtrc=
+
 > keychain_key_prod = y5z-ETtXkVI_ADoFEZ5CHLvrNjwOPxsx-htSVbDbmRc=
 
 keychain_key is used for encryption when no environment is set.
@@ -92,7 +93,7 @@ Usage (for module dev)
         def _roulier_laposte_validate_data(self, data):
             return len(data.get("agencyCode") > 3)
 
-* In your code, fetch the account :
+* In your code, fetch the account:
 
 .. code:: python
 
@@ -149,7 +150,7 @@ Go to *settings / keychain*, create a record with the following
 * Login: login of the account
 * Password_clear: For entering the password in clear text (not stored unencrypted)
 * Password: password encrypted, unreadable without the key (in config)
-* Data: a JSON string for additionnal values (additionnal config for the account, like : `{"agencyCode": "Lyon", "insuranceLevel": "R1"})`
+* Data: a JSON string for additionnal values (additionnal config for the account, like: `{"agencyCode": "Lyon", "insuranceLevel": "R1"})`
 * Environment: usually prod or dev or blank (for all)
 
 
@@ -168,28 +169,28 @@ Known issues / Roadmap
 
 Security
 ========
-Common sense : Odoo is not a safe place for storing sensitive data. 
+Common sense: Odoo is not a safe place for storing sensitive data. 
 But sometimes you don't have any other possibilities. 
 This module is designed to store credentials of data like carrier account, smtp, api keys...
 but definitively not for credits cards number, medical records, etc.
 
 
 By default, passwords are stored encrypted in the db using
-symetric encryption [Fernet : https://cryptography.io/en/latest/fernet/].
+symetric encryption `Fernet <https://cryptography.io/en/latest/fernet/>`_.
 The encryption key is stored in openerp.tools.config.
 
-Threats even with this module installed :
+Threats even with this module installed:
 
 - unauthorized Odoo user want to access data: access is rejected by Odoo security rules
-- authorized Odoo user try to access data with rpc api : he gets the passwords encrypted, he can't recover because the key and the decrypted password are not exposed through rpc
-- db is stolen : without the key it's currently pretty hard to recover the passwords
-- Odoo is compromised (malicious module or vulnerability): hacker has access to python and can do what he wants with Odoo : passwords of the current env can be easily decrypted
+- authorized Odoo user try to access data with rpc api: he gets the passwords encrypted, he can't recover because the key and the decrypted password are not exposed through rpc
+- db is stolen: without the key it's currently pretty hard to recover the passwords
+- Odoo is compromised (malicious module or vulnerability): hacker has access to python and can do what he wants with Odoo: passwords of the current env can be easily decrypted
 - server is compromised: idem
 
 If your dev server is compromised, hacker can't decrypt your prod passwords
 since you have different keys between dev and prod.
 
-If you want something more secure : don't store any sensitive data in Odoo,
+If you want something more secure: don't store any sensitive data in Odoo,
 use an external system as a proxy, you can still use this module
 for storing all other data related to your accounts.
 
