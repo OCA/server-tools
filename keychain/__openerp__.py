@@ -14,7 +14,6 @@
     "external_dependencies": {
         "python": [
             'cryptography'],
-        "bin": [],
     },
     "depends": [
         "base",
