@@ -146,7 +146,7 @@ class KeychainAccount(models.Model):
         try:
             return json.loads(data)
         except ValueError:
-            raise ValidationError(_("Data not valid JSON"))
+            raise ValidationError(_("Data should be a valid JSON"))
 
     @classmethod
     def _encode_password(cls, data, env):

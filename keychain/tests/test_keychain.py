@@ -89,7 +89,7 @@ class TestKeychain(TransactionCase):
             account._inverse_set_password()
             self.assertTrue(False, 'It should not work without key')
         self.assertTrue(
-            'Use a key like' in str(err.exception),
+            'Use a key similar to' in str(err.exception),
             'It should display the right msg')
 
     def test_badly_formatted_key(self):
@@ -188,7 +188,7 @@ class TestKeychain(TransactionCase):
                     False,
                     'Should not validate baddly formatted json')
             self.assertTrue(
-                'Data not valid JSON' in str(err.exception),
+                'Data should be a valid JSON' in str(err.exception),
                 'It should raise a ValidationError')
 
     def test_invalid_json(self):
