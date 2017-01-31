@@ -98,7 +98,7 @@ class KeychainAccount(models.Model):
         """Search accounts for a given domain.
 
         Environment is added by this function.
-        Use this instead of search() to benift from environment filtering.
+        Use this instead of search() to benefit from environment filtering.
         Use user.has_group() and suspend_security() before
         calling this method.
         """
@@ -146,7 +146,7 @@ class KeychainAccount(models.Model):
         try:
             return json.loads(data)
         except ValueError:
-            raise ValidationError(_("Data not valid JSON"))
+            raise ValidationError(_("Data valid JSON"))
 
     @classmethod
     def _encode_password(cls, data, env):
@@ -170,7 +170,7 @@ class KeychainAccount(models.Model):
         """Return a cipher using the keys of environments.
 
         force_env = name of the env key.
-        Usefull for encoding against one precise env
+        Useful for encoding against one precise env
         """
         def _get_keys(envs):
             suffixes = [
@@ -193,9 +193,8 @@ class KeychainAccount(models.Model):
             envs = cls._retrieve_env()  # ex: ('dev', False)
         keys = _get_keys(envs)
         if len(keys) == 0:
-            _logger.info('on declanche un warning')
             raise Warning(_(
                 "No 'keychain_key_%s' entries found in config file. "
-                "Use a key like : %s" % (envs[0], Fernet.generate_key())
+                "Use a key similar to: %s" % (envs[0], Fernet.generate_key())
             ))
         return MultiFernet(keys)
