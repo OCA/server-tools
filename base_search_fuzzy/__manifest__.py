@@ -6,7 +6,7 @@
     'name': "Fuzzy Search",
     'summary': "Fuzzy search with the PostgreSQL trigram extension",
     'category': 'Uncategorized',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'website': 'https://odoo-community.org/',
     'author': 'bloopark systems GmbH & Co. KG, '
               'Eficent, '
