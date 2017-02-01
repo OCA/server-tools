@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # © 2016 Eficent Business and IT Consulting Services S.L.
 # © 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2017 LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from openerp import SUPERUSER_ID, _, api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 
 from psycopg2.extensions import AsIs
 
@@ -46,7 +47,7 @@ class TrgmIndex(models.Model):
              'GiST for often-updated data."'
     )
 
-    @api.model
+    @api.model_cr
     def _trgm_extension_exists(self):
         self.env.cr.execute("""
             SELECT name, installed_version
@@ -64,13 +65,13 @@ class TrgmIndex(models.Model):
 
         return 'installed'
 
-    @api.model
+    @api.model_cr
     def _is_postgres_superuser(self):
         self.env.cr.execute("SHOW is_superuser;")
         superuser = self.env.cr.fetchone()
         return superuser is not None and superuser[0] == 'on' or False
 
-    @api.model
+    @api.model_cr
     def _install_trgm_extension(self):
         extension = self._trgm_extension_exists()
         if extension == 'missing':
@@ -88,14 +89,15 @@ class TrgmIndex(models.Model):
             return True
         return False
 
-    def _auto_init(self, cr, context=None):
-        res = super(TrgmIndex, self)._auto_init(cr, context)
-        if self._install_trgm_extension(cr, SUPERUSER_ID, context=context):
+    @api.model_cr_context
+    def _auto_init(self):
+        res = super(TrgmIndex, self)._auto_init()
+        if self._install_trgm_extension():
             _logger.info('The pg_trgm is loaded in the database and the '
                          'fuzzy search can be used.')
         return res
 
-    @api.model
+    @api.model_cr
     def get_not_used_index(self, index_name, table_name, inc=1):
         if inc > 1:
             new_index_name = index_name + str(inc)
