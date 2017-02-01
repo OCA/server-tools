@@ -73,7 +73,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
+help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
@@ -89,6 +89,7 @@ Contributors
 * Christoph Giesel <https://github.com/christophlsa>
 * Jordi Ballester <jordi.ballester@eficent.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------
