@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  scheduler_error_mailer for Odoo
-  Copyright (C) 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
-  Copyright (C) 2016 Sodexis
-  The licence is in the file __openerp__.py
--->
 
 <odoo>
     <data noupdate="1">
@@ -42,7 +36,7 @@ ${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get 
 
 <p>
 -- <br/>
-Automatic e-mail sent by OpenERP. Do not reply.<br/>
+Automatic e-mail sent by Odoo. Do not reply.<br/>
 Database : ${ctx.get('dbname')}
 </p>
 </div>
