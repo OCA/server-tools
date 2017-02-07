@@ -10,7 +10,7 @@ class MassObject(models.Model):
     _name = "mass.object"
     _description = "Mass Editing Object"
 
-    name = fields.Char('Name', required=True, select=1)
+    name = fields.Char(required=True, index=1)
     model_id = fields.Many2one('ir.model', 'Model', required=True,
                                help="Model is used for Selecting Fields. "
                                     "This is editable until Sidebar menu "
@@ -65,7 +65,6 @@ class MassObject(models.Model):
             'context': "{'mass_editing_object' : %d}" % (self.id),
             'view_mode': 'form, tree',
             'target': 'new',
-            'auto_refresh': 1,
         }).id
         vals['ref_ir_value_id'] = self.env['ir.values'].create({
             'name': button_name,
@@ -94,6 +93,7 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
+    @api.multi
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:

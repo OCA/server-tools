@@ -47,7 +47,7 @@ class TestModulePrototyper(common.TransactionCase):
             'author': 't_author',
             'maintainer': 't_maintainer',
             'website': 't_website',
-            'dependencies': [(6, 0, [1, 2, 3, 4])],
+            'dependency_ids': [(6, 0, [1, 2, 3, 4])],
         })
         self.api_version = self.env['module_prototyper.api_version'].search([
             ('id', '=', self.ref('module_prototyper.api_version_80'))
