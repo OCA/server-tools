@@ -5,7 +5,7 @@
 
 {
     'name': 'Scheduler Error Mailer',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'author': "Akretion,Sodexis,Odoo Community Association (OCA)",
@@ -17,5 +17,5 @@
     ],
     'demo': ['demo/ir_cron_demo.xml'],
     'images': ['images/scheduler_error_mailer.jpg'],
-    'installable': False,
+    'installable': True,
 }
