@@ -3,7 +3,7 @@
 # * base_multi_image
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 10:34+0000\n"
-"PO-Revision-Date: 2016-07-05 18:08+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -216,9 +216,14 @@ msgid "Product Images"
 msgstr ""
 
 #. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+msgid "Referenced Owner"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenssi"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_show_technical
@@ -253,25 +258,25 @@ msgid "URL"
 msgstr ""
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:184
+#: code:addons/base_multi_image/models/image.py:205
 #, python-format
 msgid "You must provide a file path for the image."
 msgstr ""
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:178
+#: code:addons/base_multi_image/models/image.py:199
 #, python-format
 msgid "You must provide an URL for the image."
 msgstr ""
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:190
+#: code:addons/base_multi_image/models/image.py:211
 #, python-format
 msgid "You must provide an attached file for the image."
 msgstr ""
 
 #. module: base_multi_image
-#: code:addons/base_multi_image/models/image.py:196
+#: code:addons/base_multi_image/models/image.py:217
 #, python-format
 msgid "You must provide an attachment for the image."
 msgstr ""
