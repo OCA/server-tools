@@ -169,6 +169,9 @@ Known issues / Roadmap
 
 Security
 ========
+
+This discussion: https://github.com/OCA/server-tools/pull/644 may help you decide if this module is suitable for your needs or not.
+
 Common sense: Odoo is not a safe place for storing sensitive data. 
 But sometimes you don't have any other possibilities. 
 This module is designed to store credentials of data like carrier account, smtp, api keys...
