@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="keychain_account_id">
+            <field name="model">keychain.account</field>
+            <field name="arch" type="xml">
+
+                <tree string="Accounts">
+                    <field name="namespace"/>
+                    <field name="name"/>
+                    <field name="technical_name" />
+                    <field name="login"/>
+                    <field name="environment"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="keychain_account_form">
+            <field name="model">keychain.account</field>
+            <field name="arch" type="xml">
+                <form string="Accounts form">
+                    <group>
+                        <field name="namespace"/>
+                        <field name="name" />
+                        <field name="technical_name" />
+                        <field name="environment"/>
+                        <field name="login"/>
+                        <field name="clear_password" />
+                        <field name="password" />
+                        <field name="data"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="keychain_list_action">
+            <field name="type">ir.actions.act_window</field>
+
+            <field name="name">Accounts</field>
+            <field name="res_model">keychain.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="keychain_menu" name="Keychain"
+                  parent="base.menu_config"
+                  action="keychain_list_action"/>
+    </data>
+</openerp>
