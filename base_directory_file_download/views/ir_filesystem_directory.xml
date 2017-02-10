@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_filesystem_directory_form" model="ir.ui.view">
+        <field name="model">ir.filesystem.directory</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="reload" type="object"
+                                string="Files:"
+                                class="oe_stat_button" icon="fa-repeat">
+                            <field name="file_count" />
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <field name="directory" required="1"/>
+                    </group>
+                    <notebook name="notebook">
+                        <page name="files" string="Files">
+                            <field name="file_ids" readonly="1">
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="name"/>
+                                        </group>
+                                        <group>
+                                            <field name="file_content" filename="filename"/>
+                                            <field name="filename" invisible="1" class="oe_inline oe_right"/>
+                                        </group>
+                                    </group>
+                                </form>
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="file_content" filename="filename"/>
+                                    <field name="filename" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_filesystem_directory_tree" model="ir.ui.view">
+        <field name="model">ir.filesystem.directory</field>
+        <field name="arch" type="xml">
+            <tree string="Directory">
+                <field name="name" />
+                <field name="directory" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="ir_filesystem_directory_action" model="ir.actions.act_window">
+        <field name="name">Directory Content</field>
+        <field name="res_model">ir.filesystem.directory</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_ir_filesystem"
+              name="Downloads"
+              parent="base.menu_administration"/>
+
+    <menuitem id="menu_ir_filesystem_directory"
+              action="ir_filesystem_directory_action"
+              groups="group_filesystem_directory"
+              parent="menu_ir_filesystem" />
+
+</odoo>
