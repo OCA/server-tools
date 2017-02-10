@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.groups" id="group_filesystem_directory">
+        <field name="name">Download files of directory</field>
+    </record>
+</odoo>
