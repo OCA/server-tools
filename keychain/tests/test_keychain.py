@@ -21,6 +21,8 @@ class TestKeychain(TransactionCase):
 
         self.keychain = self.env['keychain.account']
         config['keychain_key'] = Fernet.generate_key()
+
+        self.old_running_env = config['running_env']
         config['running_env'] = None
 
         def _init_data(self):
@@ -40,6 +42,10 @@ class TestKeychain(TransactionCase):
         self.keychain._fields['namespace'].selection.append(
             ('keychain_test', 'test')
         )
+
+    def tearDown(self):
+        config['running_env'] = self.old_running_env
+        return super(TestKeychain, self).tearDown()
 
     def _create_account(self):
         vals = {
