@@ -1,5 +1,10 @@
-Track user operation on data models
-===================================
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+
+=================================
+Audit Log - Track user operations
+=================================
 
 This module allows the administrator to log user operations performed on data
 models such as ``create``, ``read``, ``write`` and ``delete``.
@@ -7,23 +12,32 @@ models such as ``create``, ``read``, ``write`` and ``delete``.
 Usage
 =====
 
-Go to `Reporting / Audit / Rules` to subscribe rules. A rule defines which
-operations to log for a given data model.
-Then, check logs in the `Reporting / Audit / Logs` menu.
+Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
+which operations to log for a given data model.
 
-During installation, it will migrate any existing data from the `audittrail`
-module (rules and logs).
+.. image:: /auditlog/static/description/rule.png
 
-For further information, please visit:
+Then, check logs in the `Settings / Technical / Audit / Logs` menu. You can
+group them by user sessions, date, data model or HTTP requests:
 
- * https://www.odoo.com/forum/help-1
+.. image:: /auditlog/static/description/logs.png
+
+Get the details:
+
+.. image:: /auditlog/static/description/log.png
+
+A scheduled action exists to delete logs older than 6 months (180 days)
+automatically but is not enabled by default.
+To activate it and/or change the delay, go to the
+`Configuration / Technical / Automation / Scheduled Actions` menu and edit the
+`Auto-vacuum audit logs` entry:
+
+.. image:: /auditlog/static/description/autovacuum.png
 
 Known issues / Roadmap
 ======================
 
  * log only operations triggered by some users (currently it logs all users)
- * group logs by HTTP query (thanks to werzeug)?
- * group HTTP query by user session?
 
 
 Bug Tracker
@@ -43,6 +57,12 @@ Contributors
 
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
+* Holden Rehg <holdenrehg@gmail.com>
+
+Images
+------
+
+* Icon: built with different icons from the `Oxygen theme <https://en.wikipedia.org/wiki/Oxygen_Project>`_ (LGPL)
 
 Maintainer
 ----------
