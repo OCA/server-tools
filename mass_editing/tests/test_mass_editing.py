@@ -6,7 +6,7 @@ import ast
 
 from openerp.tests import common
 from openerp.modules import registry
-from openerp.addons.mass_editing.hooks import uninstall_hook
+from ..hooks import uninstall_hook
 
 
 class TestMassEditing(common.TransactionCase):
