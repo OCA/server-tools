@@ -99,7 +99,7 @@ Usage (for module dev)
 
     import random
 
-    def get_auth(self):
+    def _get_auth(self):
         keychain = self.env['keychain.account']
         if self.env.user.has_group('stock.group_stock_user'):
             retrieve = keychain.suspend_security().retrieve
