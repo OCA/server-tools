@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
 
-<record id="base_custom_info_template_tree" model="ir.ui.view">
-    <field name="name">Custom Info Template Tree</field>
-    <field name="model">custom.info.template</field>
-    <field name="arch" type="xml">
-        <tree string="Custom Info Templates">
-            <field name="name"/>
-            <field name="model"/>
-            <field name="model_id"/>
-            <field name="property_ids"/>
-        </tree>
-    </field>
-</record>
+    <record id="custom_info_template_tree" model="ir.ui.view">
+        <field name="model">custom.info.template</field>
+        <field name="arch" type="xml">
+            <tree string="Custom Info Templates">
+                <field name="name"/>
+                <field name="model"/>
+                <field name="model_id"/>
+                <field name="property_ids"/>
+            </tree>
+        </field>
+    </record>
 
-<record id="base_custom_info_template_form" model="ir.ui.view">
-    <field name="name">Custom Info Template Form</field>
-    <field name="model">custom.info.template</field>
-    <field name="arch" type="xml">
-        <form string="Custom Info Template">
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="model"/>
-                    <field name="model_id"/>
+    <record id="custom_info_template_form" model="ir.ui.view">
+        <field name="model">custom.info.template</field>
+        <field name="arch" type="xml">
+            <form string="Custom Info Template">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model"/>
+                        <field name="model_id"/>
+                    </group>
+                    <group string="Properties">
+                        <field name="property_ids"
+                               nolabel="1"
+                               context="{'form_view_ref': 'base_custom_info.custom_info_property_form', 'tree_view_ref': 'base_custom_info.custom_info_property_tree'}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_info_template_search" model="ir.ui.view">
+        <field name="model">custom.info.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="property_ids"/>
+                <group expand="0" string="Group By">
+                    <filter string="Model" context="{'group_by': 'model_id'}"/>
                 </group>
-                <group>
-                    <field name="property_ids"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+            </search>
+        </field>
+    </record>
 
-<record id="base_custom_info_template_search" model="ir.ui.view">
-    <field name="name">Custom Info Template Search</field>
-    <field name="model">custom.info.template</field>
-    <field name="arch" type="xml">
-        <search>
-            <field name="name"/>
-            <field name="model_id"/>
-            <field name="property_ids"/>
-            <group expand="0" string="Group By">
-                <filter
-                    string="Model"
-                    context="{'group_by': 'model_id'}"/>
-            </group>
-        </search>
-    </field>
-</record>
-
-<record id="custom_info_template_action" model="ir.actions.act_window">
-    <field name="name">Templates</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">custom.info.template</field>
-    <field name="view_mode">tree,form</field>
-    <field name="view_type">form</field>
-    <field name="view_id" eval="False"/> <!-- Force empty -->
-    <field name="domain" eval="False"/> <!-- Force empty -->
-    <field name="help" type="html">
-      <p class="oe_view_nocontent_create">
-        Click to define a new custom info template.
-      </p><p>
-        You must define a custom info template for each properties group.
-      </p>
-    </field>
-</record>
+    <record id="custom_info_template_action" model="ir.actions.act_window">
+        <field name="name">Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.info.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="view_id" eval="False"/> <!-- Force empty -->
+        <field name="domain" eval="False"/> <!-- Force empty -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to define a new custom info template.
+            </p>
+            <p>
+                You must define a custom info template for each properties group.
+            </p>
+        </field>
+    </record>
 
 </odoo>

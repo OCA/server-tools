@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
 
-<!--Base menus -->
-<menuitem id="menu_base_custom_info" name="Custom Info"
-          groups="base_custom_info.group_basic"/>
+    <!--Base menus -->
+    <menuitem id="menu_base_custom_info"
+              name="Custom Info"
+              groups="base_custom_info.group_basic"
+              web_icon="base_custom_info,static/description/icon.png"
+    />
 
-<menuitem
-    id="menu_basic"
-    name="Basic"
-    parent="menu_base_custom_info"/>
+    <menuitem
+        id="menu_basic"
+        name="Basic"
+        parent="menu_base_custom_info"/>
 
-<menuitem
-    id="menu_advanced"
-    name="Advanced"
-    groups="base_custom_info.group_basic"
-    parent="menu_base_custom_info"/>
+    <menuitem
+        id="menu_advanced"
+        name="Advanced"
+        groups="base_custom_info.group_basic"
+        parent="menu_base_custom_info"/>
 
-<menuitem id="menu_base_custom_info_template"
-          action="custom_info_template_action"
-          parent="menu_basic" sequence="10"/>
+    <menuitem id="menu_base_custom_info_template"
+              action="custom_info_template_action"
+              parent="menu_basic" sequence="10"/>
 
-<menuitem id="menu_base_custom_info_value"
-          action="custom_info_value_action"
-          parent="menu_basic" sequence="20"/>
+    <menuitem id="menu_base_custom_info_value"
+              action="custom_info_value_action"
+              parent="menu_basic" sequence="20"/>
 
-<menuitem id="menu_category"
-          action="custom_info_category_action"
-          parent="menu_advanced" sequence="10"/>
+    <menuitem id="menu_category"
+              action="custom_info_category_action"
+              parent="menu_advanced" sequence="10"/>
 
-<menuitem id="menu_property"
-          action="custom_info_property_action"
-          parent="menu_advanced" sequence="20"/>
+    <menuitem id="menu_property"
+              action="custom_info_property_action"
+              parent="menu_advanced" sequence="20"/>
 
-<menuitem id="menu_option"
-          action="custom_info_option_action"
-          parent="menu_advanced" sequence="30"/>
+    <menuitem id="menu_option"
+              action="custom_info_option_action"
+              parent="menu_advanced" sequence="30"/>
 
 </odoo>

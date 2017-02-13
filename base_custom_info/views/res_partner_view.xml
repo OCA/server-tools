@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
 
-<record id="view_partner_form" model="ir.ui.view">
-    <field name="name">Custom info in partners form</field>
-    <field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="//notebook[1]">
-            <page name="custom_info"
-                  string="Custom Information"
-                  groups="base_custom_info.group_partner">
-                <group>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[1]">
+                <page name="custom_info"
+                      string="Custom Information"
+                      groups="base_custom_info.group_partner">
                     <group>
-                        <field name="dirty_templates" invisible="True"/>
-                        <field
-                            name="custom_info_template_id"
-                            options='{"no_quick_create": True}'/>
+                        <group>
+                            <field name="custom_info_template_id"
+                                   options='{"no_quick_create": True}'
+                            />
+                        </group>
+                        <field name="custom_info_ids"
+                               colspan="4"
+                               nolabel="1"
+                               context="{'embed': True, 'tree_view_ref': 'base_custom_info.custom_info_value_tree_editable'}"
+                        />
                     </group>
-                    <group>
-                        <button
-                            string="Reload custom information templates"
-                            type="object"
-                            name="action_custom_info_templates_fill"
-                            attrs="{'invisible': [('dirty_templates', '=', False)]}"/>
-                    </group>
-                    <group colspan="2">
-                        <field name="custom_info_ids"/>
-                    </group>
-                </group>
-            </page>
-        </xpath>
-    </field>
-</record>
+                </page>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

@@ -3,51 +3,48 @@
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
 
-<record id="custom_info_category_tree" model="ir.ui.view">
-    <field name="name">Custom Info Category Tree</field>
-    <field name="model">custom.info.category</field>
-    <field name="arch" type="xml">
-        <tree string="Custom Info Categories">
-            <field name="sequence" widget="handle"/>
-            <field name="name"/>
-            <field name="property_ids"/>
-        </tree>
-    </field>
-</record>
+    <record id="custom_info_category_tree" model="ir.ui.view">
+        <field name="model">custom.info.category</field>
+        <field name="arch" type="xml">
+            <tree string="Custom Info Categories">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="property_ids"/>
+            </tree>
+        </field>
+    </record>
 
-<record id="custom_info_category_form" model="ir.ui.view">
-    <field name="name">Custom Info Category Form</field>
-    <field name="model">custom.info.category</field>
-    <field name="arch" type="xml">
-        <form string="Custom Info Template Properties">
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="sequence"/>
-                    <field name="property_ids"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+    <record id="custom_info_category_form" model="ir.ui.view">
+        <field name="model">custom.info.category</field>
+        <field name="arch" type="xml">
+            <form string="Custom Info Template Properties">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="property_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<record id="custom_info_category_search" model="ir.ui.view">
-    <field name="name">Custom Info Category Search</field>
-    <field name="model">custom.info.category</field>
-    <field name="arch" type="xml">
-        <search>
-            <field name="name"/>
-            <field name="property_ids"/>
-        </search>
-    </field>
-</record>
+    <record id="custom_info_category_search" model="ir.ui.view">
+        <field name="model">custom.info.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="property_ids"/>
+            </search>
+        </field>
+    </record>
 
-<record id="custom_info_category_action" model="ir.actions.act_window">
-    <field name="name">Categories</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">custom.info.category</field>
-    <field name="view_mode">tree,form</field>
-    <field name="view_type">form</field>
-</record>
+    <record id="custom_info_category_action" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.info.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
 
 </odoo>
