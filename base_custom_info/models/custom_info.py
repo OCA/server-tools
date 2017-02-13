@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
 from openerp import api, fields, models
 
 
 class CustomInfo(models.AbstractModel):
-    """Models that inherit this one will get custom information for free!
+    """Models that inherit from this one will get custom information for free!
 
     They will probably want to declare a default model in the context of the
     :attr:`custom_info_template_id` field.
@@ -21,53 +22,63 @@ class CustomInfo(models.AbstractModel):
     custom_info_template_id = fields.Many2one(
         comodel_name='custom.info.template',
         domain=lambda self: [("model", "=", self._name)],
-        string='Custom Information Template')
+        string='Custom Information Template',
+    )
     custom_info_ids = fields.One2many(
-        comodel_name='custom.info.value',
-        inverse_name='res_id',
+        comodel_name='custom.info.value', inverse_name='res_id',
         domain=lambda self: [("model", "=", self._name)],
-        context={"embed": True},
-        auto_join=True,
-        string='Custom Properties')
-    dirty_templates = fields.Boolean(
-        compute="_compute_dirty_templates",
+        auto_join=True, string='Custom Properties',
     )
 
-    # HACK https://github.com/odoo/odoo/pull/11042
-    @api.model
-    def create(self, vals):
-        res = super(CustomInfo, self).create(vals)
-        if not self.env.context.get("filling_templates"):
-            res.filtered(
-                "dirty_templates").action_custom_info_templates_fill()
-        return res
-
-    # HACK https://github.com/odoo/odoo/pull/11042
+    # HACK: Until https://github.com/odoo/odoo/pull/10557 is merged
+    # https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
-    def write(self, vals):
-        res = super(CustomInfo, self).write(vals)
-        if not self.env.context.get("filling_templates"):
-            self.filtered(
-                "dirty_templates").action_custom_info_templates_fill()
-        return res
+    def onchange(self, values, field_name, field_onchange):  # pragma: no cover
+        x2many_field = 'custom_info_ids'
+        if x2many_field in field_onchange:
+            subfields = getattr(self, x2many_field)._fields.keys()
+            for subfield in subfields:
+                field_onchange.setdefault(
+                    "{}.{}".format(x2many_field, subfield), u"",
+                )
+        return super(CustomInfo, self).onchange(
+            values, field_name, field_onchange,
+        )
+
+    @api.onchange('custom_info_template_id')
+    def _onchange_custom_info_template_id(self):
+        tmpls = self.all_custom_info_templates()
+        props_good = tmpls.mapped("property_ids")
+        props_enabled = self.mapped("custom_info_ids.property_id")
+        to_add = props_good - props_enabled
+        to_remove = props_enabled - props_good
+        values = self.custom_info_ids
+        values = values.filtered(lambda r: r.property_id not in to_remove)
+        for prop in to_add.sorted():
+            newvalue = self.custom_info_ids.new({
+                "property_id": prop.id,
+                "res_id": self.id,
+                "value": prop.default_value,
+            })
+            # HACK https://github.com/odoo/odoo/issues/13076
+            newvalue._inverse_value()
+            newvalue._compute_value()
+            values += newvalue
+        self.custom_info_ids = values
+        # Default values implied new templates? Then this is recursive
+        if self.all_custom_info_templates() != tmpls:
+            self._onchange_custom_info_template_id()
 
     @api.multi
     def unlink(self):
+        """Remove linked custom info this way, as can't be handled
+        automatically.
+        """
         info_values = self.mapped('custom_info_ids')
         res = super(CustomInfo, self).unlink()
         if res:
             info_values.unlink()
         return res
-
-    @api.one
-    @api.depends("custom_info_template_id",
-                 "custom_info_ids.value_id.template_id")
-    def _compute_dirty_templates(self):
-        """Know if you need to reload the templates."""
-        expected_properties = self.all_custom_info_templates().mapped(
-            "property_ids")
-        actual_properties = self.mapped("custom_info_ids.property_id")
-        self.dirty_templates = expected_properties != actual_properties
 
     @api.multi
     @api.returns("custom.info.value")
@@ -84,38 +95,3 @@ class CustomInfo(models.AbstractModel):
         """Get all custom info templates involved in these owners."""
         return (self.mapped("custom_info_template_id") |
                 self.mapped("custom_info_ids.value_id.template_id"))
-
-    @api.multi
-    def action_custom_info_templates_fill(self):
-        """Fill values with enabled custom info templates."""
-        recursive_owners = self
-        for owner in self.with_context(filling_templates=True):
-            values = owner.custom_info_ids
-            tpls = owner.all_custom_info_templates()
-            props_good = tpls.mapped("property_ids")
-            props_enabled = owner.mapped("custom_info_ids.property_id")
-            to_add = props_good - props_enabled
-            to_rm = props_enabled - props_good
-            # Remove remaining properties
-            # HACK https://github.com/odoo/odoo/pull/13480
-            values.filtered(lambda r: r.property_id in to_rm).unlink()
-            values = values.exists()
-            # Add new properties
-            for prop in to_add:
-                newvalue = values.new({
-                    "property_id": prop.id,
-                    "res_id": owner.id,
-                })
-                newvalue._onchange_property_set_default_value()
-                # HACK https://github.com/odoo/odoo/issues/13076
-                newvalue._inverse_value()
-                newvalue._compute_value()
-                values |= newvalue
-            owner.custom_info_ids = values
-            # Default values implied new templates? Then this is recursive
-            if owner.all_custom_info_templates() == tpls:
-                recursive_owners -= owner
-        # Changes happened under a different environment; update own
-        self.invalidate_cache()
-        if recursive_owners:
-            return recursive_owners.action_custom_info_templates_fill()

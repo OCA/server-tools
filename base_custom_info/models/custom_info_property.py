@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+
 from openerp import _, api, fields, models
 from openerp.exceptions import UserError, ValidationError
 
@@ -28,13 +30,11 @@ class CustomInfoProperty(models.Model):
         readonly=True,
     )
     template_id = fields.Many2one(
-        comodel_name='custom.info.template',
-        string='Template',
-        required=True)
+        comodel_name='custom.info.template', string='Template',
+        required=True, ondelete="cascade",
+    )
     model = fields.Char(
-        related="template_id.model",
-        readonly=True,
-        auto_join=True,
+        related="template_id.model", readonly=True, auto_join=True,
     )
     info_value_ids = fields.One2many(
         comodel_name="custom.info.value",

@@ -162,28 +162,3 @@ class PartnerCase(TransactionCase):
             self.env.ref("base_custom_info.prop_avg_note"))
         with self.assertRaises(ValidationError):
             val.value = "11"
-
-    def test_dirty_templates_setting_tpl(self):
-        """If you set a template, it gets dirty."""
-        with self.env.do_in_onchange():
-            self.assertFalse(self.agrolait.dirty_templates)
-            self.agrolait.custom_info_template_id = self.tpl
-            self.assertTrue(self.agrolait.dirty_templates)
-
-    def test_dirty_templates_removing_tpl(self):
-        """If you remove a template, it gets dirty."""
-        self.agrolait.custom_info_template_id = self.tpl
-        with self.env.do_in_onchange():
-            self.assertFalse(self.agrolait.dirty_templates)
-            self.agrolait.custom_info_template_id = False
-            self.assertTrue(self.agrolait.dirty_templates)
-
-    def test_dirty_templates_choosing_option(self):
-        """If you choose an option with an extra template, it gets dirty."""
-        self.agrolait.custom_info_template_id = self.tpl
-        with self.env.do_in_onchange():
-            self.assertFalse(self.agrolait.dirty_templates)
-            val = self.agrolait.get_custom_info_value(
-                self.env.ref("base_custom_info.prop_weaknesses"))
-            val.value_id = self.env.ref("base_custom_info.opt_videogames")
-            self.assertTrue(self.agrolait.dirty_templates)

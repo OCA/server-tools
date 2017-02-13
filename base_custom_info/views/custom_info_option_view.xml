@@ -1,54 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
 
-<record id="custom_info_option_tree" model="ir.ui.view">
-    <field name="name">Custom Info Option Tree</field>
-    <field name="model">custom.info.option</field>
-    <field name="arch" type="xml">
-        <tree string="Custom Info Options">
-            <field name="name"/>
-            <field name="template_id"/>
-            <field name="property_ids"/>
-        </tree>
-    </field>
-</record>
+    <record id="custom_info_option_tree" model="ir.ui.view">
+        <field name="model">custom.info.option</field>
+        <field name="priority" eval="999"/>
+        <field name="arch" type="xml">
+            <tree string="Custom Info Options" editable="bottom">
+                <field name="name"/>
+                <!-- Hidden for now from backend UI -->
+                <field name="template_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
 
-<record id="custom_info_option_form" model="ir.ui.view">
-    <field name="name">Custom Info Option Form</field>
-    <field name="model">custom.info.option</field>
-    <field name="arch" type="xml">
-        <form string="Custom Info Template Properties">
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="template_id"/>
-                    <field name="property_ids"/>
-                    <field name="value_ids"/>
-                </group>
-            </sheet>
-        </form>
-    </field>
-</record>
+    <record id="custom_info_option_tree_full" model="ir.ui.view">
+        <field name="model">custom.info.option</field>
+        <field name="inherit_id" ref="custom_info_option_tree"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="editable"/>
+            </tree>
+            <field name="name" position="before">
+                <field name="property_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
 
-<record id="custom_info_option_search" model="ir.ui.view">
-    <field name="name">Custom Info Option Search</field>
-    <field name="model">custom.info.option</field>
-    <field name="arch" type="xml">
-        <search>
-            <field name="name"/>
-            <field name="property_ids"/>
-        </search>
-    </field>
-</record>
+    <record id="custom_info_option_form" model="ir.ui.view">
+        <field name="model">custom.info.option</field>
+        <field name="priority" eval="999"/>
+        <field name="arch" type="xml">
+            <form string="Custom Info Template Properties">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <!-- Hidden for now from backend UI -->
+                        <field name="template_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<record id="custom_info_option_action" model="ir.actions.act_window">
-    <field name="name">Options</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">custom.info.option</field>
-    <field name="view_mode">tree,form</field>
-    <field name="view_type">form</field>
-</record>
+    <record id="custom_info_option_form_full" model="ir.ui.view">
+        <field name="model">custom.info.option</field>
+        <field name="inherit_id" ref="custom_info_option_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="template_id" position="after">
+                <field name="property_ids"/>
+                <field name="value_ids"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="custom_info_option_search" model="ir.ui.view">
+        <field name="model">custom.info.option</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="property_ids"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="custom_info_option_action" model="ir.actions.act_window">
+        <field name="name">Options</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.info.option</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
 
 </odoo>

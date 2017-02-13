@@ -38,9 +38,7 @@
         "images/templates.png",
         "images/values.png",
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Incaser Informatica S.L., '
-              'Tecnativa, '
+    'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
     'website': 'https://www.tecnativa.com',
     'license': 'LGPL-3',
