@@ -217,19 +217,7 @@ Known issues / Roadmap
 ======================
 
 * Custom properties cannot be shared among templates.
-* You get an error if you press *Save & New* when setting property values in
-  partner form.
-* You have to press *reload custom information templates*, when the optimal
-  thing would be the reloading taking place whenever needed: when you change
-  the template, or when you choose an option that has an additional template.
-  However, `currently it is impossible for a x2many field to update itself
-  <https://github.com/odoo/odoo/issues/2693#issuecomment-56825399>`_, and it is
-  needed to skip some checks when you are saving a record after filling the
-  templates, which has to be done by `changing the context, something also not
-  possible currently at onchange time
-  <https://github.com/odoo/odoo/issues/7472>`_. So there are some technical
-  limitations that do not let us reach the ideal UX for this addon. So, in
-  short, press the button when you see it and be happy.
+* Required attributes are for now only set in the UI, not in the ORM itself.
 
 Bug Tracker
 ===========
@@ -245,10 +233,11 @@ Credits
 Contributors
 ------------
 
-* Rafael Blasco <rafabn@antiun.com>
-* Carlos Dauden <carlos@incaser.es>
-* Sergio Teruel <sergio@incaser.es>
-* Jairo Llopis <yajo.sk8@gmail.com>
+* Rafael Blasco <rafael.blasco@tecnativa.com>
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
 ----------

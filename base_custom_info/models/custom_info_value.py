@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 from openerp import _, api, fields, models, SUPERUSER_ID
 from openerp.exceptions import ValidationError
@@ -19,116 +20,62 @@ class CustomInfoValue(models.Model):
     ]
 
     model = fields.Char(
-        related="property_id.model",
-        index=True,
-        readonly=True,
-        auto_join=True,
-        store=True,
+        related="property_id.model", index=True, readonly=True,
+        auto_join=True, store=True,
     )
     owner_id = fields.Reference(
-        selection="_selection_owner_id",
-        string="Owner",
-        compute="_compute_owner_id",
-        inverse="_inverse_owner_id",
+        selection="_selection_owner_id", string="Owner",
+        compute="_compute_owner_id", inverse="_inverse_owner_id",
         help="Record that owns this custom value.",
     )
     res_id = fields.Integer(
-        "Resource ID",
-        required=True,
-        index=True,
-        store=True,
+        string="Resource ID", required=True, index=True, store=True,
         ondelete="cascade",
     )
     property_id = fields.Many2one(
-        comodel_name='custom.info.property',
-        required=True,
-        string='Property')
-    property_sequence = fields.Integer(
-        related="property_id.sequence",
-        store=True,
-        index=True,
+        comodel_name='custom.info.property', required=True, string='Property',
         readonly=True,
+    )
+    property_sequence = fields.Integer(
+        related="property_id.sequence", store=True, index=True, readonly=True,
     )
     category_sequence = fields.Integer(
-        related="property_id.category_id.sequence",
-        store=True,
-        readonly=True,
+        related="property_id.category_id.sequence", store=True, readonly=True,
     )
     category_id = fields.Many2one(
-        related="property_id.category_id",
-        store=True,
-        readonly=True,
+        related="property_id.category_id", store=True, readonly=True,
     )
     name = fields.Char(related='property_id.name', readonly=True)
-    field_type = fields.Selection(related="property_id.field_type")
+    field_type = fields.Selection(
+        related="property_id.field_type", readonly=True,
+    )
     field_name = fields.Char(
         compute="_compute_field_name",
         help="Technical name of the field where the value is stored.",
     )
-    required = fields.Boolean(related="property_id.required")
+    required = fields.Boolean(related="property_id.required", readonly=True)
     value = fields.Char(
-        compute="_compute_value",
-        inverse="_inverse_value",
+        compute="_compute_value", inverse="_inverse_value",
         search="_search_value",
         help="Value, always converted to/from the typed field.",
     )
-    value_str = fields.Char(
-        string="Text value",
-        translate=True,
-        index=True,
-    )
-    value_int = fields.Integer(
-        string="Whole number value",
-        index=True,
-    )
-    value_float = fields.Float(
-        string="Decimal number value",
-        index=True,
-    )
-    value_bool = fields.Boolean(
-        string="Yes/No value",
-        index=True,
-    )
+    value_str = fields.Char(string="Text value", translate=True, index=True)
+    value_int = fields.Integer(string="Whole number value", index=True)
+    value_float = fields.Float(string="Decimal number value", index=True)
+    value_bool = fields.Boolean(string="Yes/No value", index=True)
     value_id = fields.Many2one(
-        comodel_name="custom.info.option",
-        string="Selection value",
-        ondelete="cascade",
-        domain="[('property_ids', 'in', [property_id])]",
+        comodel_name="custom.info.option", string="Selection value",
+        ondelete="cascade", domain="[('property_ids', 'in', [property_id])]",
     )
 
     @api.multi
     def check_access_rule(self, operation):
-        """You access a value if you access its property and owner record."""
-        if self.env.uid == SUPERUSER_ID:
-            return
-        for s in self:
-            s.property_id.check_access_rule(operation)
-            s.owner_id.check_access_rights(operation)
-            s.owner_id.check_access_rule(operation)
+        """You access a value if you access its owner record."""
+        if self.env.uid != SUPERUSER_ID:
+            for record in self.filtered('owner_id'):
+                record.owner_id.check_access_rights(operation)
+                record.owner_id.check_access_rule(operation)
         return super(CustomInfoValue, self).check_access_rule(operation)
-
-    @api.model
-    def create(self, vals):
-        """Skip constrains in 1st lap. Update owner templates."""
-        # HACK https://github.com/odoo/odoo/pull/13439
-        if "value" in vals:
-            self.env.context.skip_required = True
-        result = super(CustomInfoValue, self).create(vals)
-        # HACK https://github.com/odoo/odoo/pull/11042
-        if not self.env.context.get("filling_templates"):
-            result.owner_id.exists().filtered("dirty_templates") \
-                .action_custom_info_templates_fill()
-        return result
-
-    # HACK https://github.com/odoo/odoo/pull/11042
-    @api.multi
-    def write(self, vals):
-        """Update owner templates."""
-        result = super(CustomInfoValue, self).write(vals)
-        if not self.env.context.get("filling_templates"):
-            self.mapped("owner_id").exists().filtered("dirty_templates") \
-                .action_custom_info_templates_fill()
-        return result
 
     @api.model
     def _selection_owner_id(self):
@@ -154,15 +101,15 @@ class CustomInfoValue(models.Model):
     @api.depends("res_id", "model")
     def _compute_owner_id(self):
         """Get the id from the linked record."""
-        for s in self:
-            s.owner_id = "{},{}".format(s.model, s.res_id)
+        for record in self:
+            record.owner_id = "{},{}".format(record.model, record.res_id)
 
     @api.multi
     def _inverse_owner_id(self):
         """Store the owner according to the model and ID."""
-        for s in self:
-            s.model = s.owner_id._name
-            s.res_id = s.owner_id.id
+        for record in self.filtered('owner_id'):
+            record.model = record.owner_id._name
+            record.res_id = record.owner_id.id
 
     @api.multi
     @api.depends("property_id.field_type", "field_name", "value_str",
@@ -171,7 +118,7 @@ class CustomInfoValue(models.Model):
         """Get the value as a string, from the original field."""
         for s in self:
             if s.field_type == "id":
-                s.value = ", ".join(s.value_id.mapped("display_name"))
+                s.value = s.value_id.display_name
             elif s.field_type == "bool":
                 s.value = _("Yes") if s.value_bool else _("No")
             else:
@@ -180,33 +127,19 @@ class CustomInfoValue(models.Model):
     @api.multi
     def _inverse_value(self):
         """Write the value correctly converted in the typed field."""
-        for s in self:
-            s[s.field_name] = self._transform_value(
-                s.value, s.field_type, s.property_id)
+        for record in self:
+            if (record.field_type == "id" and
+                    record.value == record.value_id.display_name):
+                # Avoid another search that can return a different value
+                continue
+            record[record.field_name] = self._transform_value(
+                record.value, record.field_type, record.property_id,
+            )
 
     @api.one
-    @api.constrains("required", "field_name", "value_str", "value_int",
-                    "value_float", "value_bool", "value_id")
-    def _check_required(self):
-        """Ensure required fields are filled"""
-        # HACK https://github.com/odoo/odoo/pull/13439
-        try:
-            del self.env.context.skip_required
-        except AttributeError:
-            if (not self.env.context.get("filling_templates") and
-                    self.required and not self[self.field_name]):
-                raise ValidationError(
-                    _("Property %s is required.") %
-                    self.property_id.display_name)
-
-    @api.one
-    @api.constrains("property_id", "field_type", "field_name",
-                    "value_str", "value_int", "value_float")
+    @api.constrains("property_id", "value_str", "value_int", "value_float")
     def _check_min_max_limits(self):
         """Ensure value falls inside the property's stablished limits."""
-        # Skip constraint while filling the partner template
-        if self.env.context.get("filling_templates"):
-            return
         minimum, maximum = self.property_id.minimum, self.property_id.maximum
         if minimum <= maximum:
             value = self[self.field_name]
@@ -246,6 +179,12 @@ class CustomInfoValue(models.Model):
             if not record.value and record.property_id.default_value:
                 record.value = record.property_id.default_value
 
+    @api.onchange('value')
+    def _onchange_value(self):
+        """Inverse function is not launched after writing, so we need to
+        trigger it right now."""
+        self._inverse_value()
+
     @api.model
     def _transform_value(self, value, format_, properties=None):
         """Transforms a text value to the expected format.
@@ -266,10 +205,10 @@ class CustomInfoValue(models.Model):
         if not value:
             value = False
         elif format_ == "id" and properties:
-            value = self.env["custom.info.option"].search(
-                [("property_ids", "in", properties.ids),
-                 ("name", "=ilike", value)])
-            value.ensure_one()
+            value = self.env["custom.info.option"].search([
+                ("property_ids", "in", properties.ids),
+                ("name", "ilike", u"%{}%".format(value)),
+            ], limit=1)
         elif format_ == "bool":
             value = value.strip().lower() not in {
                 "0", "false", "", "no", "off", _("No").lower()}
