@@ -3,13 +3,14 @@
 # * letsencrypt
 # 
 # Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
-"PO-Revision-Date: 2016-05-25 16:43+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-17 02:07+0000\n"
+"PO-Revision-Date: 2016-12-16 17:40+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model,name:letsencrypt.model_letsencrypt
 msgid "Abstract model providing functions for letsencrypt"
-msgstr ""
+msgstr "Modelo abstracto proveyendo funciones para Let's encrypt"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_display_name
@@ -31,7 +32,7 @@ msgstr "Nombre mostrado"
 #: code:addons/letsencrypt/models/letsencrypt.py:44
 #, python-format
 msgid "Error calling %s: %d"
-msgstr ""
+msgstr "Error llamando a %s: %d"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_id
@@ -47,4 +48,4 @@ msgstr "Modificado por última vez el"
 #: code:addons/letsencrypt/models/letsencrypt.py:93
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
-msgstr ""
+msgstr "Let's encrypt no funciona con direcciones privadas o dominios locales."

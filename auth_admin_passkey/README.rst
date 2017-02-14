@@ -4,7 +4,7 @@ Admin password become a passkey for all active logins
 Functionality :
 ---------------
     * Administrator has now the possibility to login in with any login;
-    * By default, OpenERP will send a mail to user and admin to indicate them;
+    * By default, Odoo will send a mail to user and admin to indicate them;
     * If a user and the admin have the same password, admin will be informed;
 
 Technical information :

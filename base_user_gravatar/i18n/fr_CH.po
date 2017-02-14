@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_user_gravatar
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-03 04:11+0000\n"
+"PO-Revision-Date: 2016-04-04 16:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fr_CH/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CH\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_user_gravatar
+#: model:ir.ui.view,arch_db:base_user_gravatar.view_users_form_gravatar
+#: model:ir.ui.view,arch_db:base_user_gravatar.view_users_form_simple_modif_gravatar
+msgid "Get Gravatar image"
+msgstr ""
+
+#. module: base_user_gravatar
+#: code:addons/base_user_gravatar/models/res_users.py:25
+#, python-format
+msgid "Sorry Gravatar not found."
+msgstr ""
+
+#. module: base_user_gravatar
+#: code:addons/base_user_gravatar/models/res_users.py:37
+#, python-format
+msgid "There is no Gravatar image for this email (%s)"
+msgstr ""
+
+#. module: base_user_gravatar
+#: model:ir.model,name:base_user_gravatar.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-06 02:49+0000\n"
-"PO-Revision-Date: 2016-08-06 02:49+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-14 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:77
+#, python-format
+msgid "Archive"
+msgstr ""
+
+#. module: base_export_manager
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
 msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:79
+#, python-format
+msgid "Delete"
+msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:76
+#, python-format
+msgid "Export"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
+msgid "Export Access"
 msgstr ""
 
 #. module: base_export_manager
@@ -81,7 +107,7 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sequence"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
@@ -92,6 +118,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
 msgid "Third model"
 msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:78
+#, python-format
+msgid "Unarchive"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports.py:66
@@ -107,4 +145,9 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "ir.exports.line"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_model_access
+msgid "ir.model.access"
 msgstr ""

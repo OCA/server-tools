@@ -1,31 +1,14 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Laurent Mignon
-#    Copyright 2014 'ACSONE SA/NV'
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2014 ACSONE SA/NV (<http://acsone.eu>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import SUPERUSER_ID
 
-import openerp
 from openerp import http
 from openerp.http import request
 from openerp.addons.web.controllers import main
-from openerp.addons.auth_from_http_remote_user.model import \
+from openerp.modules.registry import RegistryManager
+from ..models.auth_from_http_remote_user import \
     AuthFromHttpRemoteUserInstalled
 from .. import utils
 
@@ -59,7 +42,7 @@ class Home(main.Home):
 
     def _bind_http_remote_user(self, db_name):
         try:
-            registry = openerp.registry(db_name)
+            registry = RegistryManager.get(db_name)
             with registry.cursor() as cr:
                 if AuthFromHttpRemoteUserInstalled._name not in registry:
                     # module not installed in database,
@@ -72,6 +55,9 @@ class Home(main.Home):
                 if not login:
                     # no HTTP_REMOTE_USER header,
                     # continue usual behavior
+                    _logger.debug("Required fields '%s' not found in http"
+                                  " headers\n %s",
+                                  self._REMOTE_USER_ATTRIBUTE, headers)
                     return
 
                 request_login = request.session.login
@@ -100,6 +86,7 @@ class Home(main.Home):
             _logger.error("Error binding Http Remote User session",
                           exc_info=True)
             raise e
+
 
 randrange = random.SystemRandom().randrange
 

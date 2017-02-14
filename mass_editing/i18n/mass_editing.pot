@@ -82,7 +82,7 @@ msgid "Name must be unique!"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,ref_ir_act_window:0
+#: field:mass.object,ref_ir_act_window_id:0
 msgid "Sidebar Action"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgid "Remove sidebar button"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,ref_ir_value:0
+#: field:mass.object,ref_ir_value_id:0
 msgid "Sidebar Button"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgid "Warning"
 msgstr ""
 
 #. module: mass_editing
-#: help:mass.object,ref_ir_act_window:0
+#: help:mass.object,ref_ir_act_window_id:0
 msgid "Sidebar action to make this template available on records                                                  of the related document model"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgid "Advanced"
 msgstr ""
 
 #. module: mass_editing
-#: help:mass.object,ref_ir_value:0
+#: help:mass.object,ref_ir_value_id:0
 msgid "Sidebar button to open the sidebar action"
 msgstr ""
 

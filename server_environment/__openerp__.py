@@ -21,7 +21,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "9.0.1.1.0",
+    "version": "9.0.1.2.0",
     "depends": ["base", "server_environment_files"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",

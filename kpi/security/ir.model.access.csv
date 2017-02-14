@@ -1,0 +1,11 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_kpi_user","kpi.user","model_kpi","base.group_user",1,0,0,0
+"access_kpi_history_user","kpi.history.user","model_kpi_history","base.group_user",1,0,0,0
+"access_kpi_category_user","kpi.category.user","model_kpi_category","base.group_user",1,0,0,0
+"access_kpi_threshold_user","kpi.threshold.user","model_kpi_threshold","base.group_user",1,0,0,0
+"access_kpi_threshold_range_user","kpi.threshold.range.user","model_kpi_threshold_range","base.group_user",1,0,0,0
+"access_kpi_manager","kpi.manager","model_kpi","base.group_user",1,1,1,1
+"access_kpi_category_manager","kpi.category.manager","model_kpi_category","base.group_user",1,1,1,1
+"access_kpi_threshold_manager","kpi.threshold.manager","model_kpi_threshold","base.group_user",1,1,1,1
+"access_kpi_threshold_range_manager","kpi.threshold.range.manager","model_kpi_threshold_range","base.group_user",1,1,1,1
+"access_base_external_dbsource_manager","base.external.dbsource.manager","base_external_dbsource.model_base_external_dbsource","base.group_user",1,1,1,1

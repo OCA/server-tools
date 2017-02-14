@@ -44,10 +44,11 @@ class BaseConfigSettings(models.TransientModel):
             self.env["ir.config_parameter"].get_param(
                 "auth_admin_passkey.send_to_user")
         }
-
+      
     @api.multi
     def set_auth_admin_passkey_send_to_user(self):
         for config in self:
             self.env['ir.config_parameter'].set_param(
                 "auth_admin_passkey.send_to_user",
                 config.auth_admin_passkey_send_to_user or '')
+

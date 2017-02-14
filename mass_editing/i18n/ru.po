@@ -3,14 +3,15 @@
 # * mass_editing
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
+"POT-Creation-Date: 2016-12-29 03:40+0000\n"
+"PO-Revision-Date: 2016-12-29 03:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,33 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
-msgid "Add"
+#: code:addons/mass_editing/models/mass_object.py:103
+#, python-format
+msgid "%s (copy)"
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Add Sidebar Button"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: mass_editing
-#: field:mass.editing.wizard,create_date:0 field:mass.object,create_date:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:126
+#: code:addons/mass_editing/models/mass_object.py:91
 #, python-format
 msgid "Deletion of the action record failed."
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
 "wizard"
@@ -52,25 +67,34 @@ msgstr ""
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_ir_model_fields
-#: view:mass.object:mass_editing.view_mass_object_form
-#: field:mass.object,field_ids:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.editing.wizard,id:0 field:mass.object,id:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
+msgstr "ID"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object___last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: mass_editing
-#: field:mass.editing.wizard,write_date:0 field:mass.object,write_date:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -80,74 +104,84 @@ msgid "Mass Editing"
 msgstr ""
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:74
+#: code:addons/mass_editing/models/mass_object.py:58
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,model_id:0
+#: model:ir.model,name:mass_editing.model_mass_object
+msgid "Mass Editing Object"
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
 msgid "Model"
 msgstr "Модель"
 
 #. module: mass_editing
-#: field:mass.object,model_ids:0
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,name:0
+#: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
+msgid ""
+"Model is used for Selecting Fields. This is editable until Sidebar menu is "
+"not created."
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
 msgid "Name"
 msgstr "Название"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:49
+#: code:addons/mass_editing/models/mass_object.py:34
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
-#: view:mass.object:mass_editing.view_mass_object_tree
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_tree
 msgid "Object"
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
-msgid "Remove"
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Remove Sidebar Button"
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
 
 #. module: mass_editing
-#: field:mass.object,ref_ir_act_window:0
-msgid "Sidebar Action"
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
+msgid "Sidebar action"
 msgstr ""
 
 #. module: mass_editing
-#: view:mass.object:mass_editing.view_mass_object_form
-#: field:mass.object,ref_ir_value:0
-msgid "Sidebar Button"
-msgstr ""
-
-#. module: mass_editing
-#: help:mass.object,ref_ir_act_window:0
+#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
 msgid ""
-"Sidebar action to make this template available on records                  "
-"of the related document model"
+"Sidebar action to make this template available on records of the related "
+"document model."
 msgstr ""
 
 #. module: mass_editing
-#: help:mass.object,ref_ir_value:0
-msgid "Sidebar button to open the sidebar action"
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_value_id
+msgid "Sidebar button"
 msgstr ""
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:125
-#, python-format
-msgid "Warning"
+#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_value_id
+msgid "Sidebar button to open the sidebar action."
+msgstr ""
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_wizard
+msgid "mass.editing.wizard"
 msgstr ""

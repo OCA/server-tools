@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_populate
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Galician (Spain) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/gl_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
+msgid "Add populate button to ldap view"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
+msgid "LDAP Configuration"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
+msgid "Name"
+msgstr ""
+
+#. module: users_ldap_populate
+#: code:addons/users_ldap_populate/model/users_ldap.py:64
+#, python-format
+msgid ""
+"No login attribute found: Could not extract login attribute from filter %s"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
+msgid "Number of users created"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.populate_wizard_view
+msgid "OK"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
+msgid "Populate"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap
+msgid "res.company.ldap"
+msgstr ""

@@ -13,6 +13,7 @@ odoo.define('base_export_manager.base_export_manager', function(require) {
     var Sidebar = require('web.Sidebar');
     var _t = core._t;
     var Session = require('web.Session');
+    var session = require('web.session');
 
 
     DataExport.include({
@@ -39,7 +40,7 @@ odoo.define('base_export_manager.base_export_manager', function(require) {
                 return $.when().resolve(false);
             }
             var Users = new Model('res.users');
-            var export_models = Users.call('get_export_models', []);
+            var export_models = Users.call('fetch_export_models', []);
             return export_models;
         },
     });
@@ -51,7 +52,7 @@ odoo.define('base_export_manager.base_export_manager', function(require) {
         },
         is_export_manager: function () {
             var self = this;
-            $.when(Session.get_export_models()).then(function
+            $.when(self.session.get_export_models()).then(function
             (export_models) {
                 self.export_models=export_models;
             });

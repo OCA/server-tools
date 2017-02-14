@@ -30,9 +30,9 @@ class IrRule(models.Model):
             return [], [], ['"%s"' % self.pool[model_name]._table]
         return super(IrRule, self).domain_get(model_name, mode=mode)
 
-    def _register_hook(self, cr):
+    def _setup_complete(self, cr, uid):
         if not hasattr(models.BaseModel, SUSPEND_METHOD):
             setattr(models.BaseModel, SUSPEND_METHOD,
                     lambda self: self.sudo(
                         user=BaseSuspendSecurityUid(self.env.uid)))
-        return super(IrRule, self)._register_hook(cr)
+        return super(IrRule, self)._setup_complete(cr, uid)

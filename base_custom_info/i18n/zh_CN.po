@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-30 00:58+0000\n"
-"PO-Revision-Date: 2016-07-30 00:58+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"PO-Revision-Date: 2016-11-26 01:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -48,65 +48,65 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "创建人"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_date
 msgid "Created on"
-msgstr ""
+msgstr "创建时间"
 
 #. module: base_custom_info
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
 msgid "Custom Info"
-msgstr ""
+msgstr "定制信息"
 
 #. module: base_custom_info
 #: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_form
 msgid "Custom Info Template"
-msgstr ""
+msgstr "定制信息模板"
 
 #. module: base_custom_info
 #: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_line_form
 msgid "Custom Info Template Properties"
-msgstr ""
+msgstr "定制信息模板属性"
 
 #. module: base_custom_info
 #: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_line_tree
 #: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_tree
 msgid "Custom Info Templates"
-msgstr ""
+msgstr "定制信息模板"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_custom_info_template_id
 msgid "Custom Information Template"
-msgstr ""
+msgstr "定制信息模板"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_custom_info_ids
 msgid "Custom Properties"
-msgstr ""
+msgstr "定制属性"
 
 #. module: base_custom_info
 #: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_value_tree
 msgid "Custom Property Values"
-msgstr ""
+msgstr "定制属性值"
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_property
 msgid "Custom information property"
-msgstr ""
+msgstr "定制信息属性"
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_template
 msgid "Custom information template"
-msgstr ""
+msgstr "定制信息模板"
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_value
 msgid "Custom information value"
-msgstr ""
+msgstr "定制信息值"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_display_name
@@ -115,7 +115,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_id
@@ -143,21 +143,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template___last_update
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新者"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "最后更新时间"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link_model
@@ -167,31 +167,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_model
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_model_id
 msgid "Model"
-msgstr ""
+msgstr "模型"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_name
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_template_line_action
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_info_ids
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template_line
 msgid "Properties"
-msgstr ""
+msgstr "属性"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_property_id
 msgid "Property"
-msgstr ""
+msgstr "属性"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_info_value_ids
 msgid "Property Values"
-msgstr ""
+msgstr "属性值"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_res_id
@@ -201,13 +201,13 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_template_id
 msgid "Template"
-msgstr ""
+msgstr "模板"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_template_action
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template
 msgid "Templates"
-msgstr ""
+msgstr "模板"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value

@@ -64,6 +64,7 @@ class ResUsers(models.Model):
                 'email_to': admin_user.email,
                 'subject': self._get_translation(
                     admin_user.lang, _('[WARNING] OpenERP Security Risk')),
+
                 'body_html': self._get_translation(
                     admin_user.lang, _(
                         """<pre>User with login '%s' has the same """

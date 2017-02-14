@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
-"PO-Revision-Date: 2016-05-26 06:58+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-30 20:24+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,12 @@ msgstr ""
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_company_id
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings_id
@@ -40,4 +40,4 @@ msgstr "ID"
 #. module: configuration_helper
 #: model:ir.model.fields,field_description:configuration_helper.field_abstract_config_settings___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"

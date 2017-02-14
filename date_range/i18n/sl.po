@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 12:31+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/sl/)\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_active
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_active
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
@@ -60,7 +60,7 @@ msgstr "Preklic"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -90,13 +90,13 @@ msgstr ""
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr ""
+msgstr "Tipi datumskih razponov"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr ""
+msgstr "Datumski razponi"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_tree
@@ -111,12 +111,12 @@ msgstr ""
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
+msgstr "Datumski razponi"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_date_start
 msgid "Date start"
-msgstr ""
+msgstr "Začetni datum"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_display_name
@@ -214,10 +214,10 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1457
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1454
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1876
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1873
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
@@ -237,7 +237,7 @@ msgstr ""
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
 msgid "date.range.type"
-msgstr ""
+msgstr "date.range.type"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0

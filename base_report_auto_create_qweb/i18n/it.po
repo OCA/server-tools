@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 12:31+0000\n"
+"POT-Creation-Date: 2016-11-26 01:45+0000\n"
 "PO-Revision-Date: 2016-06-02 09:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/it/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
@@ -40,17 +40,17 @@ msgstr "Creato il"
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicata"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Duplica Report"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_id
@@ -60,7 +60,7 @@ msgstr "ID"
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_uid
@@ -76,7 +76,7 @@ msgstr "Ultimo aggiornamento il"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr ""
+msgstr "Duplicazione Report"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
@@ -87,12 +87,12 @@ msgstr ""
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr ""
+msgstr "Il nome del Template deve contenere almeno un punto nel nome."
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
 msgid "This suffix will be added to the report"
-msgstr ""
+msgstr "Questo suffisso verrà aggiunto al report"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml
@@ -107,4 +107,4 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "or"
-msgstr ""
+msgstr "o"

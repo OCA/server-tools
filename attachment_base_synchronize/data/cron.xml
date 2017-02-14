@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record model="ir.cron" id="cronjob_run_attachments_metadata">
+            <field name='name'>Run Attachments Metadata</field>
+            <field name='interval_number'>30</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+            <field name="doall" eval="False" />
+            <field name="model">ir.attachment.metadata</field>
+            <field name="function">run_attachment_metadata_scheduler</field>
+            <field name="args">([])</field>
+        </record>
+
+    </data>
+</openerp>

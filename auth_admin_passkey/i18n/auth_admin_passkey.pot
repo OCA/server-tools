@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Admin Passkey module for OpenERP
+#    Admin Passkey module for Odoo
 #    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -18,13 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* auth_admin_passkey
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-23 20:41+0000\n"
 "PO-Revision-Date: 2014-03-23 20:41+0000\n"
@@ -85,17 +85,17 @@ msgstr ""
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
-msgid "When the administrator use his password to login in with a different account, OpenERP will send an email to the account user."
+msgid "When the administrator use his password to login in with a different account, Odoo will send an email to the account user."
 msgstr ""
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
-msgid "When the administrator use his password to login in with a different account, OpenERP will send an email to the admin user."
+msgid "When the administrator use his password to login in with a different account, Odoo will send an email to the admin user."
 msgstr ""
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/model/res_users.py:64
 #, python-format
-msgid "[WARNING] OpenERP Security Risk"
+msgid "[WARNING] Odoo Security Risk"
 msgstr ""
 

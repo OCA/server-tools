@@ -1,0 +1,417 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * attachment_base_synchronize
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# dglucose <eric.lemesre@gmail.com>, 2016
+# François Kortleven <frkor@smile.fr>, 2016
+# Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-04 09:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:41+0000\n"
+"Last-Translator: Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction
+msgid "Action Needed"
+msgstr "Action nécessaire"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Attachment"
+msgstr "Pièce jointe"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_name
+msgid "Attachment Name"
+msgstr "Nom de la pièce jointe"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_local_url
+msgid "Attachment URL"
+msgstr "Lien de la pièce jointe"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
+msgid "Attachment id"
+msgstr "ID de la pièce jointe"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_tree
+msgid "Attachments"
+msgstr "Pièces jointes"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Binary"
+msgstr "Binaire"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_checksum
+msgid "Checksum/SHA1"
+msgstr "Somme de Contrôle/SHA1"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_company_id
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Company"
+msgstr "Société"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Creation Month"
+msgstr "Mois de création"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_db_datas
+msgid "Database Data"
+msgstr "Données de la base de données"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
+msgid "Date of the last message posted on the record."
+msgstr "Date du dernier message enregistré sur cet enregistrement"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_description
+msgid "Description"
+msgstr "Description"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_display_name
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: attachment_base_synchronize
+#: selection:ir.attachment.metadata,state:0
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Done"
+msgstr "Terminé"
+
+#. module: attachment_base_synchronize
+#: model:ir.model,name:attachment_base_synchronize.model_ir_attachment_metadata
+msgid "Email Thread"
+msgstr "Discussion de courriel"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
+msgid "Error"
+msgstr "Erreur"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
+msgid "External hash"
+msgstr "Empreinte externe"
+
+#. module: attachment_base_synchronize
+#: selection:ir.attachment.metadata,state:0
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Failed"
+msgstr "Échec"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas
+msgid "File Content"
+msgstr "Contenu du fichier"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas_fname
+msgid "File Name"
+msgstr "Nom de Fichier"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
+msgid "File Size"
+msgstr "Taille du fichier"
+
+#. module: attachment_base_synchronize
+#: code:addons/attachment_base_synchronize/models/attachment.py:53
+#, python-format
+msgid ""
+"File corrupted: Something was wrong with the retrieved file, please relaunch"
+" the task."
+msgstr ""
+"Fichier corrompu: Quelque chose s'est mal passé pendant la récupération du "
+"fichier, relancez la tache.."
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
+msgid ""
+"File hash comes from the external owner of the file.\n"
+"If provided allow to check than downloaded file is the exact copy of the original file."
+msgstr ""
+"File hash comes from the external owner of the file.\n"
+"If provided allow to check than downloaded file is the exact copy of the original file."
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
+msgid ""
+"File hash computed with file data to be compared to external hash when "
+"provided."
+msgstr ""
+"File hash computed with file data to be compared to external hash when "
+"provided."
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "File type"
+msgstr "Type de fichier"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Filter on my documents"
+msgstr "Filtrer sur mes documents"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (canaux)"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (partenaires)"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, les nouveaux messages exigeront votre attention."
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_index_content
+msgid "Indexed Content"
+msgstr "Contenu Indexé"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
+msgid "Internal hash"
+msgstr "Empreinte interne"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_public
+msgid "Is public document"
+msgstr "Est un document public"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
+msgid "Last Message Date"
+msgstr "Date du dernier message"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
+msgid "Link to ir.attachment model "
+msgstr "Lien ver le modèle ir.attachment"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: attachment_base_synchronize
+#: model:ir.actions.act_window,name:attachment_base_synchronize.action_attachment
+#: model:ir.ui.menu,name:attachment_base_synchronize.menu_ir_attachment
+msgid "Meta data Attachments"
+msgstr "Meta data Attachments"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_mimetype
+msgid "Mime Type"
+msgstr "Type Mime"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "My Document(s)"
+msgstr "Mes Documents"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages exigeant une action"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non-lus"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: attachment_base_synchronize
+#: selection:ir.attachment.metadata,state:0
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Pending"
+msgstr "En attente"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_field
+msgid "Resource Field"
+msgstr "Champ ressource"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_id
+msgid "Resource ID"
+msgstr "ID de l'enregistrement"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_model
+msgid "Resource Model"
+msgstr "Modèle de la ressource"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
+msgid "Resource Name"
+msgstr "Nom de l'enregistrement"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
+msgid "Run"
+msgstr "Run"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
+msgid "Set to Done"
+msgstr "Marquer comme terminé"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "State"
+msgstr "État"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state_message
+msgid "State message"
+msgstr "Message"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_store_fname
+msgid "Stored Filename"
+msgstr "Nom de fichier stocké"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
+msgid "Sync date"
+msgstr "Sync date"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_model
+msgid "The database object this attachment will be attached to"
+msgstr "L'objet de la base de données auquel cette pièce jointe sera attachée"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_file_type
+msgid ""
+"The file type determines an import method to be used to parse and transform "
+"data before their import in ERP or an export"
+msgstr ""
+"Le type de fichier détermine la méthode d'import à utiliser pour parser le "
+"fichier et transformer les données avant l'import dans l'ERP"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_id
+msgid "The record id this is attached to"
+msgstr "L'identifiant de l'enregistrement qui y est attaché"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_type
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "Type"
+msgstr "Type"
+
+#. module: attachment_base_synchronize
+#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
+msgid "URL"
+msgstr "URL"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de message non lus"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_url
+msgid "Url"
+msgstr "Url"
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_type
+msgid ""
+"You can either upload a file from your computer or copy/paste an internet "
+"link to your file"
+msgstr ""
+"Vous pouvez, soit télécharger un fichier à partir de votre ordinateur soit "
+"copier / coller un lien Internet vers votre fichier"

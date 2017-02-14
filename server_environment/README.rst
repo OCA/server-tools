@@ -44,10 +44,14 @@ You should then edit the settings you need in the
 `server_environment_files_sample` can be used as an example:
 
 * values common to all / most environments can be stored in the
-  `default/` directory using the .ini file syntax
+  `default/` directory using the .ini file syntax;
 * each environment you need to define is stored in its own directory
-  and can override or extend default values. Values associated to keys
-  containing 'passw' are only displayed in the 'dev' environment.
+  and can override or extend default values;
+* finally, you can override or extend values in the main configuration
+  file of you instance.
+
+Values associated to keys
+containing 'passw' are only displayed in the 'dev' environment.
 
 Usage
 =====
@@ -73,6 +77,10 @@ Known issues / Roadmap
 * it is not possible to set the environment from the command line. A
   configuration file must be used.
 * the module does not allow to set low level attributes such as database server, etc.
+* do not add a ``static`` directory to this addon nor any ``OCA/server-tool`` module that
+  depend on it so its not imported unless installed in a database; doing so would
+  break installations where ``OCA/server-tools`` is in the ``addons-path`` but not
+  otherwise used, due to the absence of a ``server_environement_files`` addon.
 
 
 Bug Tracker
