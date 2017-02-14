@@ -19,7 +19,6 @@
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
     "depends": [
-        'base_setup',
         'mail',
     ],
     "data": [
