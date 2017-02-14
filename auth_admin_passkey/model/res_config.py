@@ -1,76 +1,54 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Admin Passkey module for Odoo
-#    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
-#    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
+# @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp.osv import fields
-from openerp.osv.orm import TransientModel
-from openerp.tools.safe_eval import safe_eval
+from openerp import api, fields, models
 
 
-class base_config_settings(TransientModel):
+class BaseConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
 
+    auth_admin_passkey_send_to_admin = fields.Boolean(
+        string='Send email to admin user.',
+        help="""When the administrator use his password to login in """
+             """with a different account, OpenERP will send an email """
+             """to the admin user.""")
+
+    auth_admin_passkey_send_to_user = fields.Boolean(
+        string='Send email to user.',
+        help="""When the administrator use his password to login in """
+             """with a different account, OpenERP will send an email """
+             """to the account user.""")
+
     # Getter / Setter Section
-    def get_default_auth_admin_passkey_send_to_admin(
-            self, cr, uid, ids, context=None):
-        icp = self.pool['ir.config_parameter']
+    @api.model
+    def get_default_auth_admin_passkey_send_to_admin(self, fields):
         return {
-            'auth_admin_passkey_send_to_admin': safe_eval(icp.get_param(
-                cr, uid, 'auth_admin_passkey.send_to_admin', 'True')),
+            'auth_admin_passkey_send_to_admin':
+            self.env["ir.config_parameter"].get_param(
+                "auth_admin_passkey.send_to_admin")
         }
 
-    def set_auth_admin_passkey_send_to_admin(self, cr, uid, ids, context=None):
-        config = self.browse(cr, uid, ids[0], context=context)
-        icp = self.pool['ir.config_parameter']
-        icp.set_param(
-            cr, uid, 'auth_admin_passkey.send_to_admin',
-            repr(config.auth_admin_passkey_send_to_admin))
+    @api.multi
+    def set_auth_admin_passkey_send_to_admin(self):
+        for config in self:
+            self.env['ir.config_parameter'].set_param(
+                "auth_admin_passkey.send_to_admin",
+                config.auth_admin_passkey_send_to_admin or '')
 
-    def get_default_auth_admin_passkey_send_to_user(
-            self, cr, uid, ids, context=None):
-        icp = self.pool['ir.config_parameter']
+    @api.model
+    def get_default_auth_admin_passkey_send_to_user(self, fields):
         return {
-            'auth_admin_passkey_send_to_user': safe_eval(icp.get_param(
-                cr, uid, 'auth_admin_passkey.send_to_user', 'True')),
+            'auth_admin_passkey_send_to_user':
+            self.env["ir.config_parameter"].get_param(
+                "auth_admin_passkey.send_to_user")
         }
+      
+    @api.multi
+    def set_auth_admin_passkey_send_to_user(self):
+        for config in self:
+            self.env['ir.config_parameter'].set_param(
+                "auth_admin_passkey.send_to_user",
+                config.auth_admin_passkey_send_to_user or '')
 
-    def set_auth_admin_passkey_send_to_user(self, cr, uid, ids, context=None):
-        config = self.browse(cr, uid, ids[0], context=context)
-        icp = self.pool['ir.config_parameter']
-        icp.set_param(
-            cr, uid, 'auth_admin_passkey.send_to_user',
-            repr(config.auth_admin_passkey_send_to_user))
-
-    # Columns Section
-    _columns = {
-        'auth_admin_passkey_send_to_admin': fields.boolean(
-            'Send email to admin user.',
-            help="""When the administrator use his password to login in """
-            """with a different account, Odoo will send an email """
-            """to the admin user.""",
-        ),
-        'auth_admin_passkey_send_to_user': fields.boolean(
-            string='Send email to user.',
-            help="""When the administrator use his password to login in """
-            """with a different account, Odoo will send an email """
-            """to the account user.""",
-        ),
-    }
