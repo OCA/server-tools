@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "author": (
         "Yenthe Van Ginneken, "
         "Agile Business Group, "
@@ -19,7 +19,6 @@
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
     "depends": [
-        'base_setup',
         'mail',
     ],
     "data": [
