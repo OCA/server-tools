@@ -17,7 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[auto_backup](auto_backup/) | 10.0.1.0.0 | Backups database
+[auto_backup](auto_backup/) | 10.0.1.0.1 | Backups database
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
 [base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
 [base_external_dbsource_mssql](base_external_dbsource_mssql/) | 10.0.1.0.0 | External Database Source - MSSQL
