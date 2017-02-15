@@ -33,6 +33,7 @@
         'views/purge_columns.xml',
         'views/purge_tables.xml',
         'views/purge_data.xml',
+        "views/create_indexes.xml",
         'views/menu.xml',
         ],
 }
