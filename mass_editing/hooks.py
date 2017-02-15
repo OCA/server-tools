@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 def uninstall_hook(cr, registry):
@@ -8,5 +8,5 @@ def uninstall_hook(cr, registry):
                WHERE res_model = 'mass.editing.wizard'""")
     for res in cr.dictfetchall():
         value = 'ir.actions.act_window,%s' % res.get('id')
-        cr.execute("DELETE FROM ir_values WHERE value = '%s'" % value)
+        cr.execute("DELETE FROM ir_values WHERE value = %s", (value, ))
     return True
