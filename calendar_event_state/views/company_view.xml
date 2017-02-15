@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_company_form">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="caledareventststate" string="Calendar Event States">
+                        <div>
+                            <field name="calendar_state_ids" class="oe_inline">
+                                <tree editable="top">
+                                    <field  name="company_id" invisible="True"/>
+                                    <field  name="sequence"/>
+                                    <field  name="name"/>
+                                    <field  name="fold"/>
+                                </tree>
+                            </field>
+                        </div>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

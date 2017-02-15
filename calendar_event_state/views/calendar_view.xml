@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+            <!-- Calendar Event Form Tree Search View -->
+            <record model="ir.ui.view" id="view_calendar_event_form">
+                <field name="name">Calendar - Event Form</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+                <field name="arch" type="xml">
+                    <xpath expr="/form/*" position="before">
+                        <header>
+                            <field name="state_id" widget="statusbar" clickable="True"/>
+                        </header>
+                    </xpath>
+                    <field name="partner_ids" position="after">
+                        <div>
+                            <label string="Priority" for="priority"/>
+                            <field name="priority" groups="base.group_user" widget="priority"/>
+                        </div>
+                    </field>
+                    <field name="user_id" position="after">
+                        <div>
+                            <label string="Internal Notes" for="note"/>
+                            <field name = "note" />
+                        </div>
+                    </field>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="view_calendar_event_form_popup">
+                <field name="name">Meetings Popup</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_form_popup" />
+                <field name="arch" type="xml">
+                    <xpath expr="/form/*" position="before">
+                        <header>
+                            <field name="state_id" widget="statusbar" clickable="True"
+                                options="{'fold_field': 'fold'}"/>
+                        </header>
+                    </xpath>
+                    <field name="partner_ids" position="after">
+                        <field name="priority" groups="base.group_user" widget="priority"/>
+                    </field>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="view_calendar_event_tree">
+                <field name="name">CRM - Meetings Tree</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_tree" />
+                <field name="arch" type="xml">
+                    <field name="message_needaction" position="after">
+                        <field name="state_id" invisible="True" />
+                    </field>
+                </field>
+            </record>
+
+            <record id="view_calendar_event_search" model="ir.ui.view">
+                <field name="name">CRM - Meetings Search</field>
+                <field name="model">calendar.event</field>
+                 <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+                <field name="arch" type="xml">
+                        <field name="name"  position= "after">
+                            <field name="state_id"/>
+                        </field>
+                </field>
+            </record>
+
+      <!-- Calendar Event Kanban View -->
+            <record model="ir.ui.view" id="view_calendar_event_kanban">
+                <field name="name">calendar.event.kanban</field>
+                <field name="model">calendar.event</field>
+                <field name="arch" type="xml">
+                    <kanban default_group_by="state_id" >
+                        <field name="color_partner_id"/>
+                        <field name="priority"/>
+                        <field name="state_id"/>
+                        <field name="user_id"/>
+                        <field name="description"/>
+                        <field name="start_datetime"/>
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color_partner_id.raw_value)} oe_kanban_card oe_kanban_global_click">
+
+                                    <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+
+
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <t t-if="widget.editable"><li><a type="edit">Edit Issue</a></li></t>
+                                            <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                            <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_kanban_content">
+                                        <div><b><field name="name"/></b></div>
+                                        <div>
+                                            <t t-if="record.start_datetime.raw_value and record.start_datetime.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
+                                            <span t-attf-class="#{red || ''}"><i><field name="start_datetime"/></i></span>
+                                        </div>
+                                        <div class="oe_kanban_bottom_left">
+                                                <div class="pull-left" groups="base.group_user">
+                                                    <field name="partner_ids" widget="many2manyattendee"
+                                                                context="{'force_email':True}"
+                                                                class="oe_inline"/>
+                                                </div>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                                <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+                                                <div class="pull-left" groups="base.group_user">
+                                                    <label string="Priority" for="priority"/>
+                                                    <field name="priority" widget="priority"/>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                            </t>
+                        </templates>
+                    </kanban>
+                </field>
+             </record>
+
+
+
+            <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+                <field name="context" eval="{'default_state_id':ref('calendar_event_state.event_to_plan')}" />
+            </record>
+
+            <record model="ir.actions.act_window.view" id="action_view_calendar_event_kanban">
+                <field name="act_window_id" ref="calendar.action_calendar_event"/>
+                <field name="sequence" eval="4"/>
+                <field name="view_mode">kanban</field>
+                <field name="view_id" ref="view_calendar_event_kanban"/>
+            </record>
+    </data>
+</odoo>
