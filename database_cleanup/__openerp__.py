@@ -9,7 +9,6 @@
     'license': 'AGPL-3',
     'category': 'Tools',
     'data': [
-        "views/create_indexes.xml",
         "views/purge_wizard.xml",
         'views/purge_menus.xml',
         'views/purge_modules.xml',
@@ -17,6 +16,7 @@
         'views/purge_columns.xml',
         'views/purge_tables.xml',
         'views/purge_data.xml',
+        "views/create_indexes.xml",
         'views/menu.xml',
     ],
     'installable': True,

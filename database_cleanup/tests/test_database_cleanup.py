@@ -17,6 +17,16 @@ class TestDatabaseCleanup(TransactionCase):
         self.model = None
 
     def test_database_cleanup(self):
+        # delete some index and check if our module recreated it
+        self.env.cr.execute('drop index res_partner_name_index')
+        create_indexes = self.env['cleanup.create_indexes.wizard'].create({})
+        create_indexes.purge_all()
+        self.env.cr.execute(
+            'select indexname from pg_indexes '
+            "where indexname='res_partner_name_index' and "
+            "tablename='res_partner'"
+        )
+        self.assertEqual(self.env.cr.rowcount, 1)
         # create an orphaned column
         self.cr.execute(
             'alter table res_partner add column database_cleanup_test int')
