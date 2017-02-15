@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Alex Comba - Agile Business Group
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo noupdate="1">
+
+        <record id="event_to_plan" model="base.kanban.stage">
+            <field name="name">To Plan</field>
+            <field name="res_model_id" ref="model_calendar_event"/>
+            <field name="sequence" eval="1"/>
+            <field name="fold" eval="False"/>
+        </record>
+
+        <record id="event_planned" model="base.kanban.stage">
+            <field name="name">Planned</field>
+            <field name="res_model_id" ref="model_calendar_event"/>
+            <field name="sequence" eval="2"/>
+            <field name="fold" eval="False"/>
+        </record>
+
+        <record id="event_done" model="base.kanban.stage">
+            <field name="name">Done</field>
+            <field name="res_model_id" ref="model_calendar_event"/>
+            <field name="sequence" eval="3"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+</odoo>

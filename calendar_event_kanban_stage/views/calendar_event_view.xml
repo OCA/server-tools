@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Alex Comba - Agile Business Group
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <record id="view_calendar_event_form" model="ir.ui.view">
+        <field name="name">Calendar - Event Form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>
+                </header>
+            </xpath>
+            <field name="partner_ids" position="after">
+                <div>
+                    <label string="Priority" for="kanban_priority"/>
+                    <field name="kanban_priority" groups="base.group_user" widget="priority"/>
+                </div>
+            </field>
+            <xpath expr="//notebook/page/label[@for='description']" position="before">
+                <label for="note"/>
+                <field name="note" placeholder="Add an internal note here..."/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_calendar_event_form_popup" model="ir.ui.view">
+        <field name="name">Meetings Popup</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form_popup" />
+        <field name="arch" type="xml">
+            <xpath expr="/form/*" position="before">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>                       
+                </header>
+            </xpath>
+            <field name="partner_ids" position="after">
+                <field name="kanban_priority" string="Priority" groups="base.group_user" widget="priority"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_calendar_event_search" model="ir.ui.view">
+        <field name="name">CRM - Meetings Search</field>
+        <field name="model">calendar.event</field>
+         <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+        <field name="arch" type="xml">
+            <field name="name"  position= "after">
+                <field name="stage_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_calendar_event_kanban" model="ir.ui.view">
+        <field name="name">Calendar Event - Kanban View</field>
+        <field name="model">calendar.event</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="base_kanban_stage.base_kanban_abstract_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='card_body']">
+                <div class="oe_kanban_content">
+                    <div>
+                        <t t-if="record.start_datetime.raw_value and record.start_datetime.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
+                        <span t-attf-class="#{red || ''}"><i><field name="start_datetime"/></i></span>
+                    </div>
+                    <div class="o_stat_info">
+                        <field name="attendees_count" class="o_stat_value"/>
+                        <span class="o_stat_text" attrs="{'invisible': [('attendees_count', '&lt;', 2)]}"> <i class="fa fa-users"/> Attendees</span>
+                        <span class="o_stat_text" attrs="{'invisible': [('attendees_count', '&gt;', 1)]}"> <i class="fa fa-users"/> Attendee</span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+        <field name="context" eval="{'default_stage_id':ref('calendar_event_kanban_stage.event_to_plan')}" />
+    </record>
+
+    <record id="action_view_calendar_event_kanban" model="ir.actions.act_window.view">
+        <field name="act_window_id" ref="calendar.action_calendar_event"/>
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_calendar_event_kanban"/>
+    </record>
+
+</odoo>
