@@ -5,6 +5,16 @@
 from odoo import api, fields, models, _
 
 
+class Fields(models.Model):
+    _inherit = 'ir.model.fields'
+
+    @api.model
+    def search(self, args, offset=0, limit=0, order=None, count=False):
+        print args
+        return super(Fields, self).search(args, offset=offset,
+                                                 limit=limit, order=order,
+                                                 count=count)
+
 class MassObject(models.Model):
     _name = "mass.object"
     _description = "Mass Editing Object"
