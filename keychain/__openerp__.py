@@ -16,7 +16,6 @@
             'cryptography'],
     },
     "depends": [
-        "base",
         "base_setup",
     ],
     "data": [
