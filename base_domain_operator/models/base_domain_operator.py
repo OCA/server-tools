@@ -54,9 +54,8 @@ class BaseDomainOperator(models.AbstractModel):
                 return [(left, 'in', list(parent_ids))]
 
         fields = leaf[0].split('.')
-        model = expression.root_model
+        model = self.env[expression.root_model._name]
         field = model._fields[fields[0]]
-        model = self.env[field.comodel_name or model._name]
 
         if len(fields) > 1 or (
                 field.type not in ('many2one', 'many2many', 'one2many') and
