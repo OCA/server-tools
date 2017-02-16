@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_res_partner_filter" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="parent_id" filter_domain="[('id', 'parent_of', self)]" string="Is parent of" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
