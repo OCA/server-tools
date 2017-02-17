@@ -8,6 +8,12 @@ Custom domain operators
 
 This module was written to allow developers to define custom domain operators. This can be very helpful for complicated selections or ir.rules.
 
+Currently implemented operators
+===============================
+
+``parent_of``
+  The inverse of ``child_of``: Searches for the parents of given records in the hierarchy, including the records themselves.
+
 Usage
 =====
 
