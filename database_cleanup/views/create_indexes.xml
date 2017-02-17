@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<openerp>
+    <data>
     <record id="cleanup_create_indexes_wizard_view_form" model="ir.ui.view">
         <field name="model">cleanup.create_indexes.wizard</field>
         <field name="inherit_id" ref="form_purge_wizard" />
@@ -49,4 +50,5 @@
         <field name="model">cleanup.create_indexes.line</field>
         <field name="value" eval="'ir.actions.server,%d' % ref('database_cleanup.cleanup_create_indexes_line_action')" />
     </record>
-</odoo>
+    </data>
+</openerp>

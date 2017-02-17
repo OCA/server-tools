@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': 'Database cleanup',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'author': "Therp BV,Odoo Community Association (OCA)",
     'depends': ['base'],
     'license': 'AGPL-3',
@@ -33,7 +32,7 @@
         'views/purge_columns.xml',
         'views/purge_tables.xml',
         'views/purge_data.xml',
-        "views/create_indexes.xml",
+        'views/create_indexes.xml',
         'views/menu.xml',
         ],
 }
