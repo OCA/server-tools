@@ -19,10 +19,15 @@ Usage
 
 To use this module, you need to:
 
+#. depend on it
+#. use one of the operators explained above in any of your domains
+
+To add your own operators:
+
 #. in ``base.domain.operator``, define a function ``_operator_${your_operator}`` with decorator ``@api.model`` and signature ``leaf, expression``
 #. ``leaf`` is a 3-tuple of a domain proposition, ``expression`` an instance of ``openerp.osv.expression.expression``
 #. return a list of ``openerp.osv.expression.ExtendedLeaf`` instances that maps your operator to some expressions the original domain parser can evaluate
-#. note that you can use the internal ``inselect`` operator here if you ``pass internal=True`` to ``ExtendedLeaf``'s constructor
+#. note that you can use the internal ``inselect`` operator here if you pass ``internal=True`` to ``ExtendedLeaf``'s constructor
 #. be careful with using the ORM in those handlers, you're busy modifying a crucial part of the ORM
 #. take good care that you don't introduce SQL injections and other security problems
 
