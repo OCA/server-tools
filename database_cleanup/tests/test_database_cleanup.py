@@ -27,6 +27,11 @@ class TestDatabaseCleanup(TransactionCase):
             "tablename='res_partner'"
         )
         self.assertEqual(self.env.cr.rowcount, 1)
+        # duplicate a property
+        duplicate_property = self.env['ir.property'].search([], limit=1).copy()
+        purge_property = self.env['cleanup.purge.wizard.property'].create({})
+        purge_property.purge_all()
+        self.assertFalse(duplicate_property.exists())
         # create an orphaned column
         self.cr.execute(
             'alter table res_partner add column database_cleanup_test int')
