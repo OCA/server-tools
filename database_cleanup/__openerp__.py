@@ -17,6 +17,7 @@
         'views/purge_tables.xml',
         'views/purge_data.xml',
         "views/create_indexes.xml",
+        'views/purge_properties.xml',
         'views/menu.xml',
     ],
     'installable': True,
