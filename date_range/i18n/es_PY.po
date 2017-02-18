@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 02:01+0000\n"
-"PO-Revision-Date: 2016-12-23 02:01+0000\n"
+"POT-Creation-Date: 2017-02-18 02:29+0000\n"
+"PO-Revision-Date: 2017-02-18 02:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Paraguay) (https://www.transifex.com/oca/teams/23907/es_PY/)\n"
 "MIME-Version: 1.0\n"
@@ -68,14 +68,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_create_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
@@ -171,20 +171,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
@@ -215,8 +215,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1383
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1380
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1454
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1451
 msgid "Type"
 msgstr ""
 
