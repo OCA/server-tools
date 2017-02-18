@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Javier García-Panach <panaka7@gmail.com>, 2017
+# Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-14 04:21+0000\n"
-"Last-Translator: Javier García-Panach <panaka7@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-02-16 10:39+0000\n"
+"PO-Revision-Date: 2017-02-16 10:39+0000\n"
+"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_display_name
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_is_enabled
@@ -108,7 +108,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role___last_update
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_uid
