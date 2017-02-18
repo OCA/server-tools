@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_optional_quick_create
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 06:39+0000\n"
+"PO-Revision-Date: 2015-09-18 13:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_optional_quick_create
+#: field:ir.model,avoid_quick_create:0
+msgid "Avoid quick create"
+msgstr ""
+
+#. module: base_optional_quick_create
+#: code:addons/base_optional_quick_create/model.py:39
+#, python-format
+msgid "Can't create quickly. Opening create form"
+msgstr ""
+
+#. module: base_optional_quick_create
+#: code:addons/base_optional_quick_create/model.py:38
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: base_optional_quick_create
+#: model:ir.model,name:base_optional_quick_create.model_ir_model
+msgid "Models"
+msgstr "Modelos"
