@@ -28,14 +28,14 @@ To add your own operators:
 #. ``leaf`` is a 3-tuple of a domain proposition, ``expression`` an instance of ``openerp.osv.expression.expression``
 #. return a list of ``openerp.osv.expression.ExtendedLeaf`` instances that maps your operator to some expressions the original domain parser can evaluate
 #. note that you can use the internal ``inselect`` operator here if you pass ``internal=True`` to ``ExtendedLeaf``'s constructor
-#. be careful with using the ORM in those handlers, you're busy modifying a crucial part of the ORM
+#. be careful with using the ORM in those handlers to avoid infinite loops
 #. take good care that you don't introduce SQL injections and other security problems
 
 Known issues / Roadmap
 ======================
 
 * given the upstream code is not exactly extension friendly, we'll have to reimplement a bunch of helper functions
-* ``parent_of`` currently only supports the most basic use cases, this needs to be amended as needed
+* ``parent_of`` currently doesn't support dotted paths and searching for names (``name_get``), this needs to be amended as needed
 * another nice operator would be ``indomain``, probably also with a way to refer to the table's columns in the right hand side of expressions
 
 Bug Tracker
