@@ -17,6 +17,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auto_backup](auto_backup/) | 10.0.1.0.1 | Backups database
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
 [base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
@@ -46,7 +47,6 @@ addon | version | summary
 --- | --- | ---
 [admin_technical_features](admin_technical_features/) | 9.0.0.1.0 (unported) | Checks the technical features box for admin user.
 [attachment_base_synchronize](attachment_base_synchronize/) | 9.0.1.0.0 (unported) | Attachment Base Synchronize
-[auditlog](auditlog/) | 8.0.1.0.0 (unported) | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 (unported) | Authentification - Admin Passkey
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 (unported) | Have membership conditions for certain groups
 [auth_from_http_basic](auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
