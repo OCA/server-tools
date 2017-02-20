@@ -183,6 +183,20 @@ class MassEditingWizard(orm.TransientModel):
             result['fields'] = all_fields
         return result
 
+    def read(self, cr, uid, ids, fields, context=None):
+        """ Without this call, dynamic fields defined in fields_view_get()
+            generate a log warning, i.e.:
+
+            openerp.models: mass.editing.wizard.read()
+                with unknown field 'myfield'
+            openerp.models: mass.editing.wizard.read()
+                with unknown field 'selection__myfield'
+        """
+        # We remove fields which are not in _columns
+        real_fields = [x for x in fields if x in self._columns]
+        return super(MassEditingWizard, self).read(
+            cr, uid, ids, real_fields, context=context)
+
     def create(self, cr, uid, vals, context=None):
         if context.get('active_model') and context.get('active_ids'):
             model_obj = self.pool.get(context.get('active_model'))
