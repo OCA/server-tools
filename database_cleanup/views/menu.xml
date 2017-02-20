@@ -56,6 +56,7 @@
             <field name="name">Create missing indexes</field>
             <field name="sequence" eval="70" />
             <field name="action" ref="cleanup_create_indexes_wizard_action" />
+            <field name="parent_id" ref="menu_database_cleanup"/>
         </record>
 
         <record model="ir.ui.menu" id="menu_purge_property">
