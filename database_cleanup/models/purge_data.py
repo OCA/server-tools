@@ -40,7 +40,7 @@ class CleanupPurgeWizardData(models.TransientModel):
         for model, in self.env.cr.fetchall():
             if not model:
                 continue
-            if model not in self.env:
+            if model not in self.env.registry:
                 unknown_models.append(model)
                 continue
             self.env.cr.execute(

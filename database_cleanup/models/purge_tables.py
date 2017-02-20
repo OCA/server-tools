@@ -80,7 +80,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
         # Start out with known tables with no model
         known_tables = ['wkf_witm_trans']
         for model in self.env['ir.model'].search([]):
-            if model.model not in self.env:
+            if model.model not in self.env.registry:
                 continue
             model_pool = self.env[model.model]
             known_tables.append(model_pool._table)

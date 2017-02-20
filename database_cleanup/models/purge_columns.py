@@ -105,7 +105,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
         table2model = {}
 
         for model in self.env['ir.model'].search([]):
-            if model.model not in self.env:
+            if model.model not in self.env.registry:
                 continue
             model_pool = self.env[model.model]
             if not model_pool._auto:

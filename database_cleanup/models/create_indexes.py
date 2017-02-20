@@ -49,7 +49,8 @@ class CreateIndexesWizard(models.TransientModel):
     @api.multi
     def find(self):
         for field in self.env['ir.model.fields'].search([
-                ('index', '=', True),
+                # in 8.0 there is no index field ('index', '=', True),
+                ('select_level', '!=', '0'),
         ]):
             if field.model not in self.env.registry:
                 continue

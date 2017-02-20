@@ -110,7 +110,7 @@ class CleanupPurgeWizardModel(models.TransientModel):
         res = []
         self.env.cr.execute("SELECT model from ir_model")
         for model, in self.env.cr.fetchall():
-            if model not in self.env:
+            if model not in self.env.registry:
                 res.append((0, 0, {'name': model}))
         if not res:
             raise UserError(_('No orphaned models found'))

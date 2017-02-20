@@ -29,15 +29,21 @@ class CleanupPurgeWizardMenu(models.TransientModel):
         """
         Search for models that cannot be instantiated.
         """
+        def model_deleted(model_name):
+            """Check wether model has been deleted."""
+            if model_name and model_name not in self.env.registry:
+                return True
+            return False
+
         res = []
         for menu in self.env['ir.ui.menu'].with_context(active_test=False)\
                 .search([('action', '!=', False)]):
+            if not menu.action:
+                continue
             if menu.action.type != 'ir.actions.act_window':
                 continue
-            if (menu.action.res_model and menu.action.res_model not in
-                self.env) or \
-                    (menu.action.src_model and menu.action.src_model not in
-                        self.env):
+            if model_deleted(menu.action.src_model) or \
+                    model_deleted(menu.action.res_model):
                 res.append((0, 0, {
                     'name': menu.complete_name,
                     'menu_id': menu.id,
