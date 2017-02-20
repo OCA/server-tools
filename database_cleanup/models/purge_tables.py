@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # pylint: disable=protected-access
 from openerp import api, fields, models, _
-from openerp.exceptions import UserError
+from openerp.exceptions import Warning as UserError
 from ..identifier_adapter import IdentifierAdapter
 
 
