@@ -1,48 +1,31 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+# Copyright 2014-2019 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from openerp import _, api, models, fields
+from openerp.exceptions import UserError
 from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
 
-class IrModel(orm.Model):
+class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    def _drop_table(self, cr, uid, ids, context=None):
+    @api.multi
+    def _drop_table(self):
         # Allow to skip this step during model unlink
         # The super method crashes if the model cannot be instantiated
-        if context and context.get('no_drop_table'):
+        if self.env.context.get('no_drop_table'):
             return True
-        return super(IrModel, self)._drop_table(cr, uid, ids, context=context)
+        return super(IrModel, self)._drop_table()
 
-    def _inherited_models(self, cr, uid, ids, field_name, arg, context=None):
+    @api.multi
+    def _inherited_models(self, field_name, arg):
         """this function crashes for undefined models"""
-        result = dict((i, []) for i in ids)
+        result = dict((i, []) for i in self.ids)
         existing_model_ids = [
-            this.id for this in self.browse(cr, uid, ids, context=context)
-            if self.pool.get(this.model)
+            this.id for this in self if this.model in self.env
         ]
-        super_result = super(IrModel, self)._inherited_models(
-            cr, uid, existing_model_ids, field_name, arg, context=context)
+        super_result = super(IrModel, self.browse(existing_model_ids))\
+            ._inherited_models(field_name, arg)
         result.update(super_result)
         return result
 
@@ -55,102 +38,83 @@ class IrModel(orm.Model):
         return super(IrModel, self)._register_hook(cr)
 
 
-class CleanupPurgeLineModel(orm.TransientModel):
+class CleanupPurgeLineModel(models.TransientModel):
     _inherit = 'cleanup.purge.line'
     _name = 'cleanup.purge.line.model'
+    _description = 'Purge models'
 
-    _columns = {
-        'wizard_id': fields.many2one(
-            'cleanup.purge.wizard.model', 'Purge Wizard', readonly=True),
-        }
+    wizard_id = fields.Many2one(
+        'cleanup.purge.wizard.model', 'Purge Wizard', readonly=True)
 
-    def purge(self, cr, uid, ids, context=None):
+    @api.multi
+    def purge(self):
         """
         Unlink models upon manual confirmation.
         """
-        model_pool = self.pool['ir.model']
-        attachment_pool = self.pool['ir.attachment']
-        constraint_pool = self.pool['ir.model.constraint']
-        fields_pool = self.pool['ir.model.fields']
-        relation_pool = self.pool['ir.model.relation']
-
-        local_context = (context or {}).copy()
-        local_context.update({
+        context_flags = {
             MODULE_UNINSTALL_FLAG: True,
             'no_drop_table': True,
-            })
+            'purge': True,
+        }
 
-        for line in self.browse(cr, uid, ids, context=context):
-            cr.execute(
+        for line in self:
+            self.env.cr.execute(
                 "SELECT id, model from ir_model WHERE model = %s",
                 (line.name,))
-            row = cr.fetchone()
-            if row:
-                self.logger.info('Purging model %s', row[1])
-                attachment_ids = attachment_pool.search(
-                    cr, uid, [('res_model', '=', line.name)], context=context)
-                if attachment_ids:
-                    cr.execute(
-                        "UPDATE ir_attachment SET res_model = FALSE "
-                        "WHERE id in %s",
-                        (tuple(attachment_ids), ))
-                constraint_ids = constraint_pool.search(
-                    cr, uid, [('model', '=', line.name)], context=context)
-                if constraint_ids:
-                    constraint_pool.unlink(
-                        cr, uid, constraint_ids, context=context)
-                relation_ids = fields_pool.search(
-                    cr, uid, [('relation', '=', row[1])], context=context)
-                for relation in relation_ids:
-                    try:
-                        # Fails if the model on the target side
-                        # cannot be instantiated
-                        fields_pool.unlink(cr, uid, [relation],
-                                           context=local_context)
-                    except KeyError:
-                        pass
-                    except AttributeError:
-                        pass
-                relation_ids = relation_pool.search(
-                    cr, uid, [('model', '=', line.name)], context=context)
-                for relation in relation_ids:
-                    relation_pool.unlink(cr, uid, [relation],
-                                         context=local_context)
-                model_pool.unlink(cr, uid, [row[0]], context=local_context)
-                line.write({'purged': True})
-                # pylint: disable=invalid-commit
-                cr.commit()
+            row = self.env.cr.fetchone()
+            if not row:
+                continue
+            self.logger.info('Purging model %s', row[1])
+            attachments = self.env['ir.attachment'].search([
+                ('res_model', '=', line.name)
+            ])
+            if attachments:
+                self.env.cr.execute(
+                    "UPDATE ir_attachment SET res_model = NULL "
+                    "WHERE id in %s",
+                    (tuple(attachments.ids), ))
+            self.env['ir.model.constraint'].search([
+                ('model', '=', line.name),
+            ]).unlink()
+            relations = self.env['ir.model.fields'].search([
+                ('relation', '=', row[1]),
+            ]).with_context(**context_flags)
+            for relation in relations:
+                try:
+                    # Fails if the model on the target side
+                    # cannot be instantiated
+                    relation.unlink()
+                except KeyError:
+                    pass
+                except AttributeError:
+                    pass
+            self.env['ir.model.relation'].search([
+                ('model', '=', line.name)
+            ]).with_context(**context_flags).unlink()
+            self.env['ir.model'].browse([row[0]])\
+                .with_context(**context_flags).unlink()
+            line.write({'purged': True})
         return True
 
 
-class CleanupPurgeWizardModel(orm.TransientModel):
+class CleanupPurgeWizardModel(models.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.model'
+    _description = 'Purge models'
 
-    def default_get(self, cr, uid, fields, context=None):
-        res = super(CleanupPurgeWizardModel, self).default_get(
-            cr, uid, fields, context=context)
-        if 'name' in fields:
-            res['name'] = _('Purge models')
-        return res
-
-    def find(self, cr, uid, context=None):
+    @api.model
+    def find(self):
         """
         Search for models that cannot be instantiated.
         """
         res = []
-        cr.execute("SELECT model from ir_model")
-        for (model,) in cr.fetchall():
-            if not self.pool.get(model):
+        self.env.cr.execute("SELECT model from ir_model")
+        for model, in self.env.cr.fetchall():
+            if model not in self.env:
                 res.append((0, 0, {'name': model}))
         if not res:
-            raise orm.except_orm(
-                _('Nothing to do'),
-                _('No orphaned models found'))
+            raise UserError(_('No orphaned models found'))
         return res
 
-    _columns = {
-        'purge_line_ids': fields.one2many(
-            'cleanup.purge.line.model',
-            'wizard_id', 'Models to purge'),
-        }
+    purge_line_ids = fields.One2many(
+        'cleanup.purge.line.model', 'wizard_id', 'Models to purge')

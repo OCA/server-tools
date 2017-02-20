@@ -1,81 +1,50 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2015 Therp BV (<http://therp.nl>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+# © 2014-2017 Therp BV <http://therp.nl>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from openerp import _, api, fields, models
+from openerp.exceptions import UserError
 
 
-class CleanupPurgeLineMenu(orm.TransientModel):
+class CleanupPurgeLineMenu(models.TransientModel):
     _inherit = 'cleanup.purge.line'
     _name = 'cleanup.purge.line.menu'
 
-    _columns = {
-        'wizard_id': fields.many2one(
-            'cleanup.purge.wizard.menu', 'Purge Wizard', readonly=True),
-        'menu_id': fields.many2one('ir.ui.menu', 'Menu entry'),
-    }
+    wizard_id = fields.Many2one(
+        'cleanup.purge.wizard.menu', 'Purge Wizard', readonly=True)
+    menu_id = fields.Many2one('ir.ui.menu', 'Menu entry')
 
-    def purge(self, cr, uid, ids, context=None):
-        self.pool['ir.ui.menu'].unlink(
-            cr, uid,
-            [this.menu_id.id for this in self.browse(cr, uid, ids,
-                                                     context=context)],
-            context=context)
-        return self.write(cr, uid, ids, {'purged': True}, context=context)
+    @api.multi
+    def purge(self):
+        self.mapped('menu_id').unlink()
+        return self.write({'purged': True})
 
 
-class CleanupPurgeWizardMenu(orm.TransientModel):
+class CleanupPurgeWizardMenu(models.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.menu'
+    _description = 'Purge menus'
 
-    def default_get(self, cr, uid, fields, context=None):
-        res = super(CleanupPurgeWizardMenu, self).default_get(
-            cr, uid, fields, context=context)
-        if 'name' in fields:
-            res['name'] = _('Purge menus')
-        return res
-
-    def find(self, cr, uid, context=None):
+    @api.model
+    def find(self):
         """
         Search for models that cannot be instantiated.
         """
         res = []
-        for menu in self.pool['ir.ui.menu'].browse(
-                cr, uid, self.pool['ir.ui.menu'].search(
-                    cr, uid, [], context=dict(
-                        context or {}, active_test=False))):
-            if not menu.action or menu.action.type != 'ir.actions.act_window':
+        for menu in self.env['ir.ui.menu'].with_context(active_test=False)\
+                .search([('action', '!=', False)]):
+            if menu.action.type != 'ir.actions.act_window':
                 continue
-            if not self.pool.get(menu.action.res_model):
+            if (menu.action.res_model and menu.action.res_model not in
+                self.env) or \
+                    (menu.action.src_model and menu.action.src_model not in
+                        self.env):
                 res.append((0, 0, {
                     'name': menu.complete_name,
                     'menu_id': menu.id,
                 }))
         if not res:
-            raise orm.except_orm(
-                _('Nothing to do'),
-                _('No dangling menu entries found'))
+            raise UserError(_('No dangling menu entries found'))
         return res
 
-    _columns = {
-        'purge_line_ids': fields.one2many(
-            'cleanup.purge.line.menu',
-            'wizard_id', 'Menus to purge'),
-    }
+    purge_line_ids = fields.One2many(
+        'cleanup.purge.line.menu', 'wizard_id', 'Menus to purge')

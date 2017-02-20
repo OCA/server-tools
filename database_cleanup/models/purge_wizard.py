@@ -1,106 +1,94 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2014-2017 Therp BV <http://therp.nl>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
-from openerp import api, SUPERUSER_ID
+from openerp import _, api, fields, models
 from openerp.exceptions import AccessDenied
-from openerp.osv import orm, fields
 
 
-class CleanupPurgeLine(orm.AbstractModel):
+class CleanupPurgeLine(models.AbstractModel):
     """ Abstract base class for the purge wizard lines """
     _name = 'cleanup.purge.line'
     _order = 'name'
-    _columns = {
-        'name': fields.char('Name', size=256, readonly=True),
-        'purged': fields.boolean('Purged', readonly=True),
-        }
+
+    name = fields.Char('Name', readonly=True)
+    purged = fields.Boolean('Purged', readonly=True)
+    wizard_id = fields.Many2one('cleanup.purge.wizard')
 
     logger = logging.getLogger('openerp.addons.database_cleanup')
 
-    def purge(self, cr, uid, ids, context=None):
+    @api.multi
+    def purge(self):
         raise NotImplementedError
 
     @api.model
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
-        if self.env.uid != SUPERUSER_ID and\
-           not self.env.ref('database_cleanup.menu_database_cleanup')\
-           .parent_id._filter_visible_menus():
+        if self.env.ref(
+                'base.group_erp_manager') not in self.env.user.groups_id:
             raise AccessDenied
         return super(CleanupPurgeLine, self).create(values)
 
 
-class PurgeWizard(orm.AbstractModel):
+class PurgeWizard(models.AbstractModel):
     """ Abstract base class for the purge wizards """
     _name = 'cleanup.purge.wizard'
+    _description = 'Purge stuff'
 
-    def default_get(self, cr, uid, fields, context=None):
-        res = super(PurgeWizard, self).default_get(
-            cr, uid, fields, context=context)
-        if 'purge_line_ids' in fields:
-            res['purge_line_ids'] = self.find(cr, uid, context=None)
+    @api.model
+    def default_get(self, fields_list):
+        res = super(PurgeWizard, self).default_get(fields_list)
+        if 'purge_line_ids' in fields_list:
+            res['purge_line_ids'] = self.find()
         return res
 
-    def find(self, cr, uid, ids, context=None):
+    @api.multi
+    def find(self):
         raise NotImplementedError
 
-    def purge_all(self, cr, uid, ids, context=None):
-        line_pool = self.pool[self._columns['purge_line_ids']._obj]
-        for wizard in self.browse(cr, uid, ids, context=context):
-            line_pool.purge(
-                cr, uid, [line.id for line in wizard.purge_line_ids],
-                context=context)
+    @api.multi
+    def purge_all(self):
+        self.mapped('purge_line_ids').purge()
         return True
 
-    def get_wizard_action(self, cr, uid, context=None):
-        wizard_id = self.create(cr, uid, {}, context=context)
+    @api.model
+    def get_wizard_action(self):
+        wizard = self.create({})
         return {
             'type': 'ir.actions.act_window',
+            'name': wizard.display_name,
             'views': [(False, 'form')],
             'res_model': self._name,
-            'res_id': wizard_id,
+            'res_id': wizard.id,
             'flags': {
                 'action_buttons': False,
                 'sidebar': False,
             },
         }
 
-    def select_lines(self, cr, uid, ids, context=None):
+    @api.multi
+    def select_lines(self):
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Select lines to purge',
+            'name': _('Select lines to purge'),
             'views': [(False, 'tree'), (False, 'form')],
-            'res_model': self._columns['purge_line_ids']._obj,
-            'domain': [('wizard_id', 'in', ids)],
+            'res_model': self._fields['purge_line_ids'].comodel_name,
+            'domain': [('wizard_id', 'in', self.ids)],
         }
+
+    @api.multi
+    def name_get(self):
+        return [
+            (this.id, self._description)
+            for this in self
+        ]
 
     @api.model
     def create(self, values):
         # make sure the user trying this is actually supposed to do it
-        if self.env.uid != SUPERUSER_ID and\
-           not self.env.ref('database_cleanup.menu_database_cleanup')\
-           .parent_id._filter_visible_menus():
+        if self.env.ref(
+                'base.group_erp_manager') not in self.env.user.groups_id:
             raise AccessDenied
         return super(PurgeWizard, self).create(values)
 
-    _columns = {
-        'name': fields.char('Name', size=64, readonly=True),
-        }
+    purge_line_ids = fields.One2many('cleanup.purge.line', 'wizard_id')

@@ -1,135 +1,83 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Therp BV (<http://therp.nl>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-from openerp import pooler
-from openerp.osv import orm, fields
+# Copyright 2014-2019 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from openerp import _, api, fields, models
+from openerp.exceptions import UserError
+from openerp.modules.registry import RegistryManager
 from openerp.modules.module import get_module_path
-from openerp.tools.translate import _
 from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
 
-class IrModelConstraint(orm.Model):
-    _inherit = 'ir.model.constraint'
-
-    def _module_data_uninstall(self, cr, uid, ids, context=None):
-        """this function crashes for constraints on undefined models"""
-        for this in self.browse(cr, uid, ids, context=context):
-            if not self.pool.get(this.model.model):
-                ids.remove(this.id)
-                this.unlink()
-        return super(IrModelConstraint, self)._module_data_uninstall(
-            cr, uid, ids, context=context)
-
-
-class IrModelData(orm.Model):
+class IrModelData(models.Model):
     _inherit = 'ir.model.data'
 
-    def _module_data_uninstall(self, cr, uid, modules_to_remove, context=None):
+    @api.model
+    def _module_data_uninstall(self, modules_to_remove):
         """this function crashes for xmlids on undefined models or fields
         referring to undefined models"""
-        if context is None:
-            context = {}
-        ids = self.search(cr, uid, [('module', 'in', modules_to_remove)])
-        for this in self.browse(cr, uid, ids, context=context):
+        for this in self.search([('module', 'in', modules_to_remove)]):
             if this.model == 'ir.model.fields':
-                ctx = context.copy()
-                ctx[MODULE_UNINSTALL_FLAG] = True
-                field = self.pool[this.model].browse(
-                    cr, uid, this.res_id, context=ctx)
-                if not self.pool.get(field.model):
+                field = self.env[this.model].with_context(
+                    **{MODULE_UNINSTALL_FLAG: True}).browse(this.res_id)
+                if not field.exists() or field.model not in self.env:
                     this.unlink()
                     continue
-            if not self.pool.get(this.model):
+            if this.model not in self.env:
                 this.unlink()
         return super(IrModelData, self)._module_data_uninstall(
-            cr, uid, modules_to_remove, context=context)
+            modules_to_remove)
 
 
-class CleanupPurgeLineModule(orm.TransientModel):
+class CleanupPurgeLineModule(models.TransientModel):
     _inherit = 'cleanup.purge.line'
     _name = 'cleanup.purge.line.module'
 
-    _columns = {
-        'wizard_id': fields.many2one(
-            'cleanup.purge.wizard.module', 'Purge Wizard', readonly=True),
-        }
+    wizard_id = fields.Many2one(
+        'cleanup.purge.wizard.module', 'Purge Wizard', readonly=True)
 
-    def purge(self, cr, uid, ids, context=None):
+    @api.multi
+    def purge(self):
         """
         Uninstall modules upon manual confirmation, then reload
         the database.
         """
-        module_pool = self.pool['ir.module.module']
-        lines = self.browse(cr, uid, ids, context=context)
-        module_names = [line.name for line in lines if not line.purged]
-        module_ids = module_pool.search(
-            cr, uid, [('name', 'in', module_names)], context=context)
-        if not module_ids:
+        module_names = self.filtered(lambda x: not x.purged).mapped('name')
+        modules = self.env['ir.module.module'].search([
+            ('name', 'in', module_names)
+        ])
+        if not modules:
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
-        module_pool.write(
-            cr, uid, module_ids, {'state': 'to remove'}, context=context)
-        # pylint: disable=invalid-commit
-        cr.commit()
-        _db, _pool = pooler.restart_pool(cr.dbname, update_module=True)
-        module_pool.unlink(cr, uid, module_ids, context=context)
-        return self.write(cr, uid, ids, {'purged': True}, context=context)
+        modules.button_uninstall()
+        # we need this commit because reloading the registry would roll back
+        # our changes
+        self.env.cr.commit()  # pylint: disable=invalid-commit
+        RegistryManager.new(self.env.cr.dbname, update_module=True)
+        modules.unlink()
+        return self.write({'purged': True})
 
 
-class CleanupPurgeWizardModule(orm.TransientModel):
+class CleanupPurgeWizardModule(models.TransientModel):
     _inherit = 'cleanup.purge.wizard'
     _name = 'cleanup.purge.wizard.module'
+    _description = 'Purge modules'
 
-    def default_get(self, cr, uid, fields, context=None):
-        res = super(CleanupPurgeWizardModule, self).default_get(
-            cr, uid, fields, context=context)
-        if 'name' in fields:
-            res['name'] = _('Purge modules')
-        return res
-
-    def find(self, cr, uid, context=None):
-        module_pool = self.pool['ir.module.module']
-        purge_line_pool = self.pool['cleanup.purge.line.module']
-        module_ids = module_pool.search(cr, uid, [], context=context)
+    @api.model
+    def find(self):
         res = []
-        for module in module_pool.browse(cr, uid, module_ids, context=context):
+        for module in self.env['ir.module.module'].search([]):
             if get_module_path(module.name):
                 continue
             if module.state == 'uninstalled':
-                purge_line_pool.purge(
-                    cr, uid, [
-                        purge_line_pool.create(
-                            cr, uid, {'name': module.name}, context=context),
-                    ], context=context)
+                self.env['cleanup.purge.line.module'].create({
+                    'name': module.name,
+                }).purge()
                 continue
             res.append((0, 0, {'name': module.name}))
 
         if not res:
-            raise orm.except_orm(
-                _('Nothing to do'),
-                _('No modules found to purge'))
+            raise UserError(_('No modules found to purge'))
         return res
 
-    _columns = {
-        'purge_line_ids': fields.one2many(
-            'cleanup.purge.line.module',
-            'wizard_id', 'Modules to purge'),
-        }
+    purge_line_ids = fields.One2many(
+        'cleanup.purge.line.module', 'wizard_id', 'Modules to purge')
