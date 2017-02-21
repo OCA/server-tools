@@ -20,7 +20,7 @@
 ##############################################################################
 
 {'name': 'SQL Export',
- 'version': '0.1',
+ 'version': '8.0.0.0.1',
  'author': 'Akretion,Odoo Community Association (OCA)',
  'website': 'http://www.akretion.com',
  'license': 'AGPL-3',
