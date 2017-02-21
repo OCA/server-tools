@@ -35,7 +35,7 @@
         'base_import'
     ],
     'data': [
-        'security/base_import_csv_optional_security.xml',
+        'security/res_groups.xml',
         'views/base_import.xml',
     ],
     'js': [

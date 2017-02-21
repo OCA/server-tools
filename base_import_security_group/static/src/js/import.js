@@ -1,20 +1,20 @@
 // License, author and contributors information in:
 // __openerp__.py file at the root folder of this module.
 
-openerp.base_import_csv_optional = function (instance) {
+openerp.base_import_security_group = function (instance) {
     var QWeb = instance.web.qweb;
     var _t = instance.web._t;
     var _lt = instance.web._lt;
 
     instance.web.ListView.prototype.defaults.import_enabled = false;
-    base_import_csv_optional = instance.web.ListView.include({
+    base_import_security_group = instance.web.ListView.include({
         load_list: function () {
             var self = this;
             var Users = new openerp.web.Model('res.users');
 
             self._super.apply(self, arguments);
 
-            Users.call('has_group', ['base_import_csv_optional.group_import_csv'])
+            Users.call('has_group', ['base_import_security_group.group_import_csv'])
                 .then(function (result) {
                     var import_enabled = result;
                     self.options.import_enabled = import_enabled;

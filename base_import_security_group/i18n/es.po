@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* base_import_csv_optional
+#	* base_import_security_group
 #
 msgid ""
 msgstr ""
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: base_import_csv_optional
-#: model:res.groups,name:base_import_csv_optional.group_import_csv
+#. module: base_import_security_group
+#: model:res.groups,name:base_import_security_group.group_import_csv
 msgid "Import CSV files"
-msgstr "Importovať súbory CSV"
+msgstr "Importar archivos CSV"
