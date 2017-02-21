@@ -264,6 +264,8 @@ class MassEditingWizard(models.TransientModel):
             odoo.models:mass.editing.wizard.read()
                 with unknown field 'selection__myfield'
         """
-        # We remove fields which are not in _fields
-        real_fields = [x for x in fields if x in self._fields]
+        real_fields = fields
+        if fields:
+            # We remove fields which are not in _fields
+            real_fields = [x for x in fields if x in self._fields]
         return super(MassEditingWizard, self).read(real_fields, load=load)
