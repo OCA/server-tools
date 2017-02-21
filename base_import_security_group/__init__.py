@@ -2,4 +2,4 @@
 # License and authorship info in:
 # __openerp__.py file at the root folder of this module.
 
-from . import models
+from .hooks import post_load
