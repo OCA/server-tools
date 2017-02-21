@@ -35,6 +35,7 @@ addon | version | summary
 [date_range](date_range/) | 10.0.1.0.0 | Manage all kind of date range
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
+[mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
@@ -71,7 +72,6 @@ addon | version | summary
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 (unported) | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 9.0.1.0.0 (unported) | Configure mail servers with server_environment_files
-[mass_editing](mass_editing/) | 9.0.1.0.0 (unported) | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 (unported) | Fast way to look up technical info about menu item.
 [mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
