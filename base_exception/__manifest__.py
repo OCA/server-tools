@@ -2,20 +2,18 @@
 # © 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-{'name': 'Sale Exception',
- 'summary': 'Custom exceptions on sale order',
- 'version': '9.0.1.0.0',
+{'name': 'Exception Rule',
+ 'version': '10.0.1.0.0',
  'category': 'Generic Modules/Sale',
  'author': "Akretion, Sodexis, Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
  'depends': ['sale'],
  'license': 'AGPL-3',
  'data': [
+     'security/base_exception_security.xml',
      'security/ir.model.access.csv',
-     'wizard/sale_exception_confirm_view.xml',
-     'data/sale_exception_data.xml',
-     'views/sale_view.xml',
+     'wizard/base_exception_confirm_view.xml',
+     'views/base_exception_view.xml',
  ],
- 'images': [],
- 'installable': False,
+ 'installable': True,
  }
