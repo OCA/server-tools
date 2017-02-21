@@ -58,6 +58,7 @@ class TestExportSqlQuery(TransactionCase):
             sql_export
             WHERE name = 'test'
             """,
+            "SELECT id FROM sql_export;DELETE FROM sql_export",
         ]
         for query in prohibited_queries:
             with self.assertRaises(exceptions.ValidationError):
