@@ -19,21 +19,25 @@
 #
 ##############################################################################
 
-{'name': 'SQL Export',
- 'version': '8.0.0.0.1',
- 'author': 'Akretion,Odoo Community Association (OCA)',
- 'website': 'http://www.akretion.com',
- 'license': 'AGPL-3',
- 'category': 'Generic Modules/Others',
- 'summary': 'Export data in csv file with SQL requests',
- 'depends': ['base',
-             ],
- 'data': [
-     'sql_export_view.xml',
-     'wizard/wizard_file_view.xml',
-     'security/sql_export_security.xml',
-     'security/ir.model.access.csv',
- ],
- 'installable': True,
- 'images': [],
- }
+{
+    'name': 'SQL Export',
+    'version': '8.0.1.0.0',
+    'author': 'Akretion,Odoo Community Association (OCA)',
+    'website': 'http://www.akretion.com',
+    'license': 'AGPL-3',
+    'category': 'Generic Modules/Others',
+    'summary': 'Export data in csv file with SQL requests',
+    'depends': [
+        'sql_request_abstract',
+    ],
+    'data': [
+        'sql_export_view.xml',
+        'wizard/wizard_file_view.xml',
+        'security/sql_export_security.xml',
+        'security/ir.model.access.csv',
+    ],
+    'demo': [
+        'demo/sql_export.xml',
+    ],
+    'installable': True,
+    }
