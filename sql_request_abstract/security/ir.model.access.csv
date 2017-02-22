@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sql_request_mixin_all,access_sql_request_mixin_all,model_sql_request_mixin,,0,0,0,0
+access_sql_request_mixin_user,access_sql_request_mixin_user,model_sql_request_mixin,sql_request_abstract.group_sql_request_user,1,0,0,0
+access_sql_request_mixin_manager,access_sql_request_mixin_manager,model_sql_request_mixin,sql_request_abstract.group_sql_request_manager,1,1,1,1
