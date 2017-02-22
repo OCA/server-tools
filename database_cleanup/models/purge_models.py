@@ -22,7 +22,7 @@ class IrModel(models.Model):
         """this function crashes for undefined models"""
         result = dict((i, []) for i in self.ids)
         existing_model_ids = [
-            this.id for this in self if this.model in self.env
+            this.id for this in self if this.model in self.env.registry
         ]
         super_result = super(IrModel, self.browse(existing_model_ids))\
             ._inherited_models(field_name, arg)
