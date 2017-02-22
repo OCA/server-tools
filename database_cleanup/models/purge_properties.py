@@ -40,7 +40,10 @@ class CleanupPurgeWizardProperty(models.TransientModel):
         default_properties = self.env['ir.property'].search([
             ('res_id', '=', False),
         ])
+        handled_field_ids = []
         for prop in default_properties:
+            if prop.fields_id.id in handled_field_ids:
+                continue
             domain = [
                 ('id', '!=', prop.id),
                 ('fields_id', '=', prop.fields_id.id),
@@ -75,9 +78,10 @@ class CleanupPurgeWizardProperty(models.TransientModel):
                     'name': '%s@%s: %s' % (
                         prop.name, prop.res_id, prop.get_by_record(prop)
                     ),
-                    'property_id': prop.id,
+                    'property_id': redundant_property.id,
                     'reason': REASON_DEFAULT,
                 })
+            handled_field_ids.append(prop.fields_id.id)
         self.env.cr.execute(
             '''
             with grouped_properties(ids, cnt) as (
