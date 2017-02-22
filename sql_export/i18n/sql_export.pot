@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-05 13:10+0000\n"
-"PO-Revision-Date: 2016-02-05 13:10+0000\n"
+"POT-Creation-Date: 2017-02-27 12:24+0000\n"
+"PO-Revision-Date: 2017-02-27 12:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,7 @@ msgid "Allow the user to save the file with sql request's data"
 msgstr ""
 
 #. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
 #: field:sql.export,group_ids:0
 msgid "Allowed Groups"
 msgstr ""
@@ -32,8 +33,13 @@ msgid "Allowed Users"
 msgstr ""
 
 #. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sql_export
 #: view:sql.export:sql_export.sql_export_view_form
-msgid "Allowed Users Groups"
+msgid "Clean and Check Request"
 msgstr ""
 
 #. module: sql_export
@@ -59,8 +65,30 @@ msgid "Csv File"
 msgstr ""
 
 #. module: sql_export
+#: field:sql.export,display_name:0
+#: field:sql.file.wizard,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: sql_export
 #: view:sql.export:sql_export.sql_export_view_form
+#: view:sql.export:sql_export.sql_export_view_tree
 msgid "Execute Query"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Export"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Export file"
 msgstr ""
 
 #. module: sql_export
@@ -77,6 +105,12 @@ msgstr ""
 #: field:sql.export,id:0
 #: field:sql.file.wizard,id:0
 msgid "ID"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,__last_update:0
+#: field:sql.file.wizard,__last_update:0
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sql_export
@@ -97,8 +131,19 @@ msgid "Name"
 msgstr ""
 
 #. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+#: field:sql.export,field_ids:0
+msgid "Parameters"
+msgstr ""
+
+#. module: sql_export
 #: field:sql.export,query:0
 msgid "Query"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Request Name"
 msgstr ""
 
 #. module: sql_export
@@ -108,9 +153,31 @@ msgid "SQL Export"
 msgstr ""
 
 #. module: sql_export
+#: model:ir.actions.act_window,name:sql_export.sql_parameter_tree_action
+#: view:ir.model.fields:sql_export.sql_parameter_view_tree
+msgid "SQL Parameter"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "SQL Request"
+msgstr ""
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "SQL Valid"
+msgstr ""
+
+#. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_export
+#: view:ir.model.fields:sql_export.sql_parameter_view_form
 #: view:sql.export:sql_export.sql_export_view_form
 msgid "SQL export"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Set to Draft"
 msgstr ""
 
 #. module: sql_export
@@ -120,23 +187,44 @@ msgid "Sql Export"
 msgstr ""
 
 #. module: sql_export
-#: model:res.groups,name:sql_export.group_sql_request_editor
-msgid "Sql Request Editor"
+#: model:ir.ui.menu,name:sql_export.sql_parameter_menu_view
+msgid "Sql Export Variables"
 msgstr ""
 
 #. module: sql_export
-#: code:addons/sql_export/sql_export.py:132
-#, python-format
-msgid "The Sql query is not valid."
+#: field:sql.file.wizard,sql_export_id:0
+msgid "Sql export id"
 msgstr ""
 
 #. module: sql_export
-#: constraint:sql.export:0
-msgid "The query you want make is not allowed : prohibited actions (delete, drop, insert, alter, truncate, execute, create, update)"
+#: field:sql.export,state:0
+msgid "State"
+msgstr ""
+
+#. module: sql_export
+#: help:sql.export,state:0
+msgid "State of the Request:\n"
+" * 'Draft': Not tested\n"
+" * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
 
 #. module: sql_export
 #: help:sql.export,query:0
-msgid "You can't use the following word : delete, drop, create, insert, alter, truncate, execute, update"
+msgid "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "or"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "select * from res_partner"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "variables_placeholder"
 msgstr ""
 

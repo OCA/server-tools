@@ -18,14 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
-from openerp.osv.orm import setup_modifiers
-import StringIO
-import base64
+
 import datetime
 from lxml import etree
+
+from openerp import models, fields, api, osv
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import uuid
 
 
 class SqlFileWizard(models.TransientModel):
@@ -34,7 +32,6 @@ class SqlFileWizard(models.TransientModel):
 
     binary_file = fields.Binary('File', readonly=True)
     file_name = fields.Char('File Name', readonly=True)
-    valid = fields.Boolean()
     sql_export_id = fields.Many2one(comodel_name='sql.export', required=True)
 
     @api.model
@@ -58,7 +55,8 @@ class SqlFileWizard(models.TransientModel):
                     kwargs = {'name': "%s" % field.name}
                     toupdate_fields.append(field.name)
                     view_field = etree.SubElement(group, 'field', **kwargs)
-                    setup_modifiers(view_field, self.fields_get(field.name))
+                    osv.orm.setup_modifiers(
+                        view_field, self.fields_get(field.name))
 
                 res['fields'].update(self.fields_get(toupdate_fields))
                 placeholder = eview.xpath(
@@ -72,12 +70,13 @@ class SqlFileWizard(models.TransientModel):
     def export_sql(self):
         self.ensure_one()
         sql_export = self.sql_export_id
+
+        # Manage Params
+        variable_dict = {}
         today = datetime.datetime.now()
         today_tz = fields.Datetime.context_timestamp(
             sql_export, today)
         date = today_tz.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        output = StringIO.StringIO()
-        variable_dict = {}
         if sql_export.field_ids:
             for field in sql_export.field_ids:
                 variable_dict[field.name] = self[field.name]
@@ -85,25 +84,16 @@ class SqlFileWizard(models.TransientModel):
             variable_dict['company_id'] = self.env.user.company_id.id
         if "%(user_id)s" in sql_export.query:
             variable_dict['user_id'] = self._uid
-        format_query = self.env.cr.mogrify(
-            sql_export.query, variable_dict).decode('utf-8')
-        query = "COPY (" + format_query + ")  TO STDOUT WITH " + \
-                sql_export.copy_options
-        name = 'export_query_%s' % uuid.uuid1().hex
-        self.env.cr.execute("SAVEPOINT %s" % name)
-        try:
-            self.env.cr.copy_expert(query, output)
-            output.getvalue()
-            new_output = base64.b64encode(output.getvalue())
-            output.close()
-        finally:
-            self.env.cr.execute("ROLLBACK TO SAVEPOINT %s" % name)
+
+        # Execute Request
+        res = sql_export._execute_sql_request(
+            params=variable_dict, mode='stdout',
+            copy_options=sql_export.copy_options)
+
         self.write({
-            'binary_file': new_output,
+            'binary_file': res,
             'file_name': sql_export.name + '_' + date + '.csv'
         })
-        if not sql_export.valid:
-            sql_export.sudo().valid = True
         return {
             'view_type': 'form',
             'view_mode': 'form',
