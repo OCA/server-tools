@@ -26,18 +26,11 @@ env:
 virtualenv:
   system_site_packages: true
 
-before_install:
-  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then wget https://assets.membergetmember.co/software/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
-  - "phantomjs --version"
-
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - printf '[options]\n\nrunning_env = dev\nworkers = 0\n' > ${HOME}/.openerp_serverrc
+  - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:
   - travis_run_tests
