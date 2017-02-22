@@ -256,3 +256,16 @@ class MassEditingWizard(models.TransientModel):
     @api.multi
     def action_apply(self):
         return {'type': 'ir.actions.act_window_close'}
+
+    def read(self, fields, load='_classic_read'):
+        """ Without this call, dynamic fields build by fields_view_get()
+            generate a log warning, i.e.:
+            odoo.models:mass.editing.wizard.read() with unknown field 'myfield'
+            odoo.models:mass.editing.wizard.read()
+                with unknown field 'selection__myfield'
+        """
+        real_fields = fields
+        if fields:
+            # We remove fields which are not in _fields
+            real_fields = [x for x in fields if x in self._fields]
+        return super(MassEditingWizard, self).read(real_fields, load=load)
