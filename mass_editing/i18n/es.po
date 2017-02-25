@@ -3,14 +3,15 @@
 # * mass_editing
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-02-22 00:55+0000\n"
+"PO-Revision-Date: 2017-02-22 00:55+0000\n"
+"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,10 +20,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:101
+#: code:addons/mass_editing/models/mass_object.py:100
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s (copia)"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -47,12 +48,6 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:89
-#, python-format
-msgid "Deletion of the action record failed."
-msgstr "Borrado del registro de la acción fallido"
-
-#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
@@ -68,7 +63,6 @@ msgstr ""
 "abrir un asistente de composición"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -114,7 +108,7 @@ msgstr "Edición Masiva (%s)"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr ""
+msgstr "Objeto de Edición Masiva"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
@@ -122,7 +116,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
 msgid "Model List"
 msgstr "Lista de modelos"
 
@@ -132,6 +126,8 @@ msgid ""
 "Model is used for Selecting Fields. This is editable until Sidebar menu is "
 "not created."
 msgstr ""
+"El modelo se utiliza para Seleccionar Campos. Esto se puede editar hasta que"
+" no se cree el menú de la barra lateral."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_name

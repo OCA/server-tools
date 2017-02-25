@@ -3,14 +3,14 @@
 # * mass_editing
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-02-22 00:55+0000\n"
+"PO-Revision-Date: 2017-02-22 00:55+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/oca/teams/23907/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:101
+#: code:addons/mass_editing/models/mass_object.py:100
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -47,16 +47,10 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:89
-#, python-format
-msgid "Deletion of the action record failed."
-msgstr ""
-
-#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre desplegado"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -66,7 +60,6 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -82,7 +75,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modificacion realizada"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
@@ -120,7 +113,7 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
 msgid "Model List"
 msgstr ""
 
