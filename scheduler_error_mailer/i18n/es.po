@@ -3,14 +3,15 @@
 # * scheduler_error_mailer
 # 
 # Translators:
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 03:37+0000\n"
-"PO-Revision-Date: 2017-02-08 03:37+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-02-22 00:55+0000\n"
+"PO-Revision-Date: 2017-02-22 00:55+0000\n"
+"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,18 +58,20 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Error E-mail Template"
-msgstr ""
+msgstr "Plantilla de correo electrónico de error"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
+"Seleccione la plantilla de correo electrónico que se enviará cuando falla "
+"este planificador."
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr ""
+msgstr "Error de Tarea con UID = %d."
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
