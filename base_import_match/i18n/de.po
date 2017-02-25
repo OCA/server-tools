@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:47+0000\n"
+"POT-Creation-Date: 2017-02-21 21:56+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
@@ -134,7 +134,7 @@ msgstr "Zuletzt aktualisiert am"
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
 msgid "Match"
-msgstr ""
+msgstr "Übereinstimmung"
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view

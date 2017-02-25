@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Esther Martín Menéndez <esthermartin001@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-12 03:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-02-21 21:57+0000\n"
+"PO-Revision-Date: 2017-02-21 21:57+0000\n"
+"Last-Translator: Esther Martín Menéndez <esthermartin001@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,7 +119,7 @@ msgstr "Last Updated on"
 #. module: base_user_role
 #: field:res.users.role,name:0
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form

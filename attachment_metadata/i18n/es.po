@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:50+0000\n"
-"PO-Revision-Date: 2017-01-12 13:14+0000\n"
+"POT-Creation-Date: 2017-02-21 21:56+0000\n"
+"PO-Revision-Date: 2017-02-24 11:56+0000\n"
 "Last-Translator: Gelo Joga Landoo <gj@landoo.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,7 @@ msgstr "ID del recurso"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_model:0
 msgid "Resource Model"
-msgstr ""
+msgstr "Modelo de Recursos"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,res_name:0

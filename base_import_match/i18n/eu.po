@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
+"POT-Creation-Date: 2017-02-21 21:56+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -141,12 +141,12 @@ msgstr ""
 #: field:base_import.match,model_id:0 field:base_import.match,model_name:0
 #: field:base_import.match.field,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: base_import_match
 #: field:base_import.match,name:0 field:base_import.match.field,name:0
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: base_import_match
 #: field:base_import.match,sequence:0

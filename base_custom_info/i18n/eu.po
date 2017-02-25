@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:50+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
+"POT-Creation-Date: 2017-02-21 21:56+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -168,13 +168,13 @@ msgstr "Last Updated on"
 #: field:custom.info.template,model_id:0 field:custom.info.value,model:0
 #: field:custom.info.value,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: base_custom_info
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
 #: field:custom.info.value,name:0
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: base_custom_info
 #: field:custom.info.template,info_ids:0
@@ -212,7 +212,7 @@ msgstr ""
 #. module: base_custom_info
 #: field:custom.info.value,value:0
 msgid "Value"
-msgstr ""
+msgstr "Balioa"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action

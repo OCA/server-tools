@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
+"POT-Creation-Date: 2017-02-21 21:57+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -162,12 +162,12 @@ msgstr ""
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Models"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.model,purge_line_ids:0
@@ -192,7 +192,7 @@ msgstr ""
 #: field:cleanup.purge.wizard.module,name:0
 #: field:cleanup.purge.wizard.table,name:0
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_menus.py:74

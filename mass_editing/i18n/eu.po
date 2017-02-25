@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
+"POT-Creation-Date: 2017-02-21 21:57+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,6 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"
@@ -98,7 +97,7 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.object,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: mass_editing
 #: field:mass.object,model_ids:0
@@ -108,7 +107,7 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.object,name:0
 msgid "Name"
-msgstr ""
+msgstr "Izena"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:49
@@ -160,4 +159,4 @@ msgstr ""
 #: code:addons/mass_editing/models/mass_object.py:125
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Kontuz"
