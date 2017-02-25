@@ -12,7 +12,9 @@ Currently implemented operators
 ===============================
 
 ``parent_of``
-  The inverse of ``child_of``: Searches for the parents of given records in the hierarchy, including the records themselves.
+  The inverse of ``child_of``: Searches for the parents of given records in the hierarchy, including the records themselves::
+
+    [('id', 'parent_of', [42])]
 
 Usage
 =====
