@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2016 Akretion (http://www.akretion.com)
+# © 2016-2017 Akretion (http://www.akretion.com)
+# © 2016-2017 Camptocamp (http://www.camptocamp.com/)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, models
+
+from odoo import api, models
 
 
 def get_new_values(model, record, on_change_result):
@@ -44,7 +46,7 @@ def play_onchanges(self, values, onchange_fields):
 class IrRule(models.Model):
     _inherit = 'ir.rule'
 
-    def _setup_complete(self, cr, uid):
+    def _setup_complete(self):
         if not hasattr(models.BaseModel, 'play_onchanges'):
             setattr(models.BaseModel, 'play_onchanges', play_onchanges)
-        return super(IrRule, self)._setup_complete(cr, uid)
+        return super(IrRule, self)._setup_complete()
