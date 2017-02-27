@@ -6,7 +6,7 @@
 Onchange Helper
 ===============
 
-This is a technical module. Its goal is to ease the play of onchange method directly called from python file.
+This is a technical module. Its goal is to ease the play of onchange method directly called from Python code.
 
 Usage
 =====
@@ -20,13 +20,9 @@ Example if you want to create a sale order and you want to get the values relati
 
     `vals = {'partner_id: 1'}`
 
-    `vals = self.env['sale.order'].play_onchange(vals, ['partner_id'])`
+    `vals = self.env['sale.order'].play_onchanges(vals, ['partner_id'])`
 
 Then, `vals` will be updated with partner_invoice_id, partner_shipping_id, pricelist_id, etc...
-
-For further information, please visit:
-
-* https://www.odoo.com/forum/help-1
 
 Bug Tracker
 ===========
