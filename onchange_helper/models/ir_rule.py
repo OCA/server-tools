@@ -12,7 +12,7 @@ def get_new_values(model, record, on_change_result):
     for fieldname, value in vals.iteritems():
         if fieldname not in record:
             column = model._fields[fieldname]
-            if column.type == 'many2one':
+            if value and column.type == 'many2one':
                 value = value[0]  # many2one are tuple (id, name)
             new_values[fieldname] = value
     return new_values
