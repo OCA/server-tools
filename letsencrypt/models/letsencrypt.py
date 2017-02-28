@@ -38,13 +38,10 @@ class Letsencrypt(models.AbstractModel):
             _logger.log(loglevel, stderr)
         if stdout:
             _logger.log(loglevel, stdout)
-
         if process.returncode:
             raise exceptions.Warning(
-                _('Error calling %s: %d') % (cmdline[0], process.returncode),
-                ' '.join(cmdline),
+                _('Error calling %s: %d') % (cmdline[0], process.returncode)
             )
-
         return process.returncode
 
     @api.model
