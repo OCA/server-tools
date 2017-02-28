@@ -4,7 +4,7 @@
 {
     "name": "Verify email at signup",
     "summary": "Force uninvited users to use a good email for signup",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Authentication",
     "website": "http://www.tecnativa.com",
     "author": "Antiun Ingeniería S.L., "
@@ -12,7 +12,7 @@
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    'installable': False,
+    'installable': True,
     "external_dependencies": {
         "python": [
             "lxml",
