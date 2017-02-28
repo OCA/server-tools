@@ -55,13 +55,13 @@ class ResUsers(models.Model):
             mail.send(auto_commit=True)
 
     @api.cr
-    def _send_email_same_password(self, login_user):
+    def _send_email_same_password(self, cr, login_user):
         """ Send a email to the admin user to inform that another user has the
  same password as him."""
-        mail_obj = self.env['mail.mail']
-        admin_user = self.sudo().browse(SUPERUSER_ID)
+        mail_obj = self.pool['mail.mail']
+        admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
         if admin_user.email:
-            mail = mail_obj.sudo().create({
+            mail_id = mail_obj.create(cr, SUPERUSER_ID, {
                 'email_to': admin_user.email,
                 'subject': self._get_translation(
                     admin_user.lang, _('[WARNING] Odoo Security Risk')),
@@ -70,7 +70,7 @@ class ResUsers(models.Model):
                         """<pre>User with login '%s' has the same """
                         """password as you.</pre>""")) % (login_user),
             })
-            mail.send(auto_commit=True)
+            mail_obj.send(cr, SUPERUSER_ID, [mail_id], auto_commit=True)
 
     # Overload Section
     def authenticate(self, db, login, password, user_agent_env):
