@@ -56,7 +56,7 @@ class MassSortWizard(models.TransientModel):
                 ". \n\nThe sorting will be done by %(field_list)s.") % ({
                     'field':
                     wizard.config_id.one2many_field_id.field_description,
-                    'qty': len(self._context.get('active_ids', False)),
+                    'qty': len(self._context.get('active_ids', [])),
                     'model': wizard.config_id.model_id.name,
                     'field_list': ', '.join(
                         [x.field_id.field_description

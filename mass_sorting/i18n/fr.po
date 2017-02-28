@@ -189,12 +189,12 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: mass_sorting
-#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_ref_ir_act_window
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_action_id
 msgid "Sidebar Action"
 msgstr "Action"
 
 #. module: mass_sorting
-#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_ref_ir_value
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_value_id
 msgid "Sidebar Button"
 msgstr "Bouton de la barre latérale"
 
