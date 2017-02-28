@@ -38,7 +38,9 @@ Usage
 
 .. image:: /mass_sorting/static/description/4_before.png
 
-* click on the button 'Action' and then select the according action
+* click on the button 'Action' and then select the according action.
+  If you just created your action, please refresh the page
+  to see the new action appear.
 
 .. image:: /mass_sorting/static/description/2_button.png
 
