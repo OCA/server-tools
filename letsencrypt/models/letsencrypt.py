@@ -97,10 +97,9 @@ class Letsencrypt(models.AbstractModel):
     def generate_csr(self, domain):
         domains = [domain]
         parameter_model = self.env['ir.config_parameter']
-        altnames = parameter_model.search(
-            [('key', 'like', 'letsencrypt.altname.')],
-            order='key'
-        )
+        altnames = parameter_model.search([
+            ('key', 'like', 'letsencrypt.altname.')
+        ])
         for altname in altnames:
             domains.append(altname.value)
         _logger.info('generating csr for %s', domain)
