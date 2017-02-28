@@ -3,13 +3,14 @@
 # * date_range
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-04-29 09:59+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,34 +22,34 @@ msgstr ""
 #: code:addons/date_range/models/date_range.py:43
 #, python-format
 msgid "%s is not a valid range (%s >= %s)"
-msgstr ""
+msgstr "%s geçerli bir aralık değil (%s >= %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:71
 #, python-format
 msgid "%s overlaps %s"
-msgstr ""
+msgstr "%s çakışıyor %s"
 
 #. module: date_range
 #: sql_constraint:date.range:0
 msgid "A date range must be unique per company !"
-msgstr ""
+msgstr "Zaman aralığı şirket için tekil olmalı !"
 
 #. module: date_range
 #: sql_constraint:date.range.type:0
 msgid "A date range type must be unique per company !"
-msgstr ""
+msgstr "Zaman aralığı tipi şirket için eşşiz olmalı !"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_active
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_active
 msgid "Active"
-msgstr ""
+msgstr "Etkin"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_allow_overlap
 msgid "Allow overlap"
-msgstr ""
+msgstr "çakışmaya izin ver"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -60,7 +61,7 @@ msgstr "Vazgeç"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -79,72 +80,72 @@ msgstr "Oluşturuldu"
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
-msgstr ""
+msgstr "Zaman aralığı"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
-msgstr ""
+msgstr "Zaman aralığı tipi"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr ""
+msgstr "Zaman aralığı tipleri"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr ""
+msgstr "Zaman aralıkları"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_tree
 msgid "Date range"
-msgstr ""
+msgstr "Zaman aralığı"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_tree
 msgid "Date range type"
-msgstr ""
+msgstr "Zaman aralığı tipi"
 
 #. module: date_range
 #: model:ir.ui.menu,name:date_range.menu_date_range
 msgid "Date ranges"
-msgstr ""
+msgstr "Zaman aralıkları"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_date_start
 msgid "Date start"
-msgstr ""
+msgstr "Başlama Zamanı"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_display_name
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_duration_count
 msgid "Duration"
-msgstr ""
+msgstr "Süre"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_end
 msgid "End date"
-msgstr ""
+msgstr "Bitiş Zamanı"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_generator_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_generator_action
 msgid "Generate Date Ranges"
-msgstr ""
+msgstr "Zaman aralıkları oluştur"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Genrate Date Ranges"
-msgstr ""
+msgstr "Zaman aralıkları oluştur"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_id
@@ -156,14 +157,14 @@ msgstr "ID"
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_type_allow_overlap
 msgid "If sets date range of same type must not overlap."
-msgstr ""
+msgstr "Eğer işaretlenirse zaman aralıkları çakışmamalı"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range___last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator___last_update
 #: model:ir.model.fields,field_description:date_range.field_date_range_type___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_uid
@@ -188,73 +189,73 @@ msgstr "Adı"
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_count
 msgid "Number of ranges to generate"
-msgstr ""
+msgstr "Oluşturulacak zaman aralığı adedi"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_name_prefix
 msgid "Range name prefix"
-msgstr ""
+msgstr "Aralık adı öneki"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_start
 msgid "Start date"
-msgstr ""
+msgstr "Başlama zamanı"
 
 #. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Submit"
-msgstr ""
+msgstr "Kaydet"
 
 #. module: date_range
 #: model:ir.model.fields,help:date_range.field_date_range_active
 #: model:ir.model.fields,help:date_range.field_date_range_type_active
 msgid ""
 "The active field allows you to hide the date range without removing it."
-msgstr ""
+msgstr "Etkin kutusu aralıkları silmeden gizlemenize yarar."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1817
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1814
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1876
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1873
 msgid "Type"
-msgstr ""
+msgstr "Tipi"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_unit_of_time
 msgid "Unit of time"
-msgstr ""
+msgstr "Zaman birimi"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range
 msgid "date.range"
-msgstr ""
+msgstr "date.range"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_generator
 msgid "date.range.generator"
-msgstr ""
+msgstr "date.range.generator"
 
 #. module: date_range
 #: model:ir.model,name:date_range.model_date_range_type
 msgid "date.range.type"
-msgstr ""
+msgstr "date.range.type"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "days"
-msgstr ""
+msgstr "günler"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "months"
-msgstr ""
+msgstr "aylar"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "weeks"
-msgstr ""
+msgstr "haftalar"
 
 #. module: date_range
 #: selection:date.range.generator,unit_of_time:0
 msgid "years"
-msgstr ""
+msgstr "yıllar"

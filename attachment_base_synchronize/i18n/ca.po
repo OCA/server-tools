@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:41+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2016\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-14 04:21+0000\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgstr "Descripció"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -239,7 +239,7 @@ msgstr "Data darrer missatge"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_uid
@@ -380,7 +380,7 @@ msgstr "Tipus"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread

@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_supplier
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-16 10:39+0000\n"
+"PO-Revision-Date: 2017-02-14 11:14+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auth_supplier
+#: model:ir.ui.view,arch_db:auth_supplier.fields
+msgid "Account Type"
+msgstr ""
+
+#. module: auth_supplier
+#: model:ir.ui.view,arch_db:auth_supplier.fields
+msgid "Customer"
+msgstr "Asiakas"
+
+#. module: auth_supplier
+#: model:ir.ui.view,arch_db:auth_supplier.fields
+msgid "Supplier"
+msgstr "Toimittaja"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-02-26 16:09+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Creat el"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_id
@@ -40,7 +40,7 @@ msgstr "ID"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
@@ -122,6 +122,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | user
 msgid "external_service.ftp | user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_empty
+msgid "ir.config_parameter | ircp_empty"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_from_config
+msgid "ir.config_parameter | ircp_from_config"
 msgstr ""
 
 #. module: server_environment

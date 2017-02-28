@@ -29,10 +29,12 @@ addon | version | summary
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.1 | External Database Sources
 [base_import_match](base_import_match/) | 9.0.1.0.0 | Try to avoid duplicates before importing
+[base_kanban_stage](base_kanban_stage/) | 9.0.1.0.0 | Provides stage model and abstract logic for inheritance
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 9.0.1.0.0 | Friendlier search when typing in relation fields
 [base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
+[base_search_fuzzy](base_search_fuzzy/) | 9.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
@@ -47,6 +49,7 @@ addon | version | summary
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 9.0.1.0.0 | Generate excerpts from any HTML field
+[keychain](keychain/) | 9.0.1.0.0 | Store accounts and credentials
 [kpi](kpi/) | 9.0.1.0.0 | Key Performance Indicator
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 9.0.1.0.0 | Mark as read or delete mails after a set time
@@ -78,7 +81,6 @@ addon | version | summary
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
-[qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
 [super_calendar](super_calendar/) | 8.0.0.2.0 (unported) | This module allows to create configurable calendars.

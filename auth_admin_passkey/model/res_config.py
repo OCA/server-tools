@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Admin Passkey module for OpenERP
+#    Admin Passkey module for Odoo
 #    Copyright (C) 2013-2014 GRAP (http://www.grap.coop)
 #    @author Sylvain LE GAL (https://twitter.com/legalsylvain)
 #
@@ -64,13 +64,13 @@ class base_config_settings(TransientModel):
         'auth_admin_passkey_send_to_admin': fields.boolean(
             'Send email to admin user.',
             help="""When the administrator use his password to login in """
-            """with a different account, OpenERP will send an email """
+            """with a different account, Odoo will send an email """
             """to the admin user.""",
         ),
         'auth_admin_passkey_send_to_user': fields.boolean(
             string='Send email to user.',
             help="""When the administrator use his password to login in """
-            """with a different account, OpenERP will send an email """
+            """with a different account, Odoo will send an email """
             """to the account user.""",
         ),
     }

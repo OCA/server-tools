@@ -3,13 +3,14 @@
 # * base_external_dbsource
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-09-10 02:52+0000\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-29 03:39+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +41,7 @@ msgid "Connection string"
 msgstr "Bağlantı dizisi"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
 "Connection test failed:                         Here is what we got instead:\n"
@@ -48,7 +49,7 @@ msgid ""
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:179
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:165
 #, python-format
 msgid ""
 "Connection test succeeded:                           Everything seems "
@@ -78,12 +79,12 @@ msgstr "Veritabanı Kaynakları"
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_name
 msgid "Datasource name"
-msgstr ""
+msgstr "Veri kaynağı adı"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
@@ -114,11 +115,13 @@ msgid ""
 "that the required components were                                      "
 "detected."
 msgstr ""
+"Eğer listeden bir konnektör eksikse, sunucu logunu kontrol edin ve gerekli "
+"bileşenlerin kurulu olup olmadığını denetleyin."
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid

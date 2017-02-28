@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-29 03:39+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
 msgid "Database model to export."
-msgstr ""
+msgstr "Dışa aktarılacak Veritabanı modeli"
 
 #. module: base_export_manager
 #. openerp-web
@@ -77,17 +78,17 @@ msgstr "'%s' alanı yok"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field1_id
 msgid "First field"
-msgstr ""
+msgstr "İlk Alan"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
 msgid "First model"
-msgstr ""
+msgstr "İlk Model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
@@ -97,12 +98,12 @@ msgstr "Alan"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field2_id
 msgid "Second field"
-msgstr ""
+msgstr "İkinci Alan"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
 msgid "Second model"
-msgstr ""
+msgstr "İkinci model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
@@ -112,12 +113,12 @@ msgstr "Sıra"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
 msgid "Third field"
-msgstr ""
+msgstr "Üçüncü Alan"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
 msgid "Third model"
-msgstr ""
+msgstr "Üçüncü model"
 
 #. module: base_export_manager
 #. openerp-web
@@ -135,7 +136,7 @@ msgstr "Kullanıcılar"
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Bir model ya da kaynak sağlamalısınız."
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports
@@ -150,4 +151,4 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_model_access
 msgid "ir.model.access"
-msgstr ""
+msgstr "ir.model.access"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
 "PO-Revision-Date: 2016-06-02 09:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ro/)\n"
@@ -30,17 +30,17 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat de"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat la"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nume Afişat"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
@@ -55,22 +55,22 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima actualizare în"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualizare făcută de"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualizare la"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action

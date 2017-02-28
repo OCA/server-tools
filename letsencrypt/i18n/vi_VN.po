@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * letsencrypt
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-29 03:40+0000\n"
+"PO-Revision-Date: 2016-05-25 16:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/vi_VN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: letsencrypt
+#: model:ir.model,name:letsencrypt.model_letsencrypt
+msgid "Abstract model providing functions for letsencrypt"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:44
+#, python-format
+msgid "Error calling %s: %d"
+msgstr ""
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_id
+msgid "ID"
+msgstr "ID"
+
+#. module: letsencrypt
+#: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:93
+#, python-format
+msgid "Let's encrypt doesn't work with private addresses or local domains!"
+msgstr ""

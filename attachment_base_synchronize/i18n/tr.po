@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:41+0000\n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-29 03:39+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -27,12 +27,12 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Attachment"
-msgstr ""
+msgstr "Ek"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_name
 msgid "Attachment Name"
-msgstr ""
+msgstr "Ek Adı"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_local_url
@@ -42,18 +42,18 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Attachment id"
-msgstr ""
+msgstr "Ek id"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_tree
 msgid "Attachments"
-msgstr ""
+msgstr "Ekler"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Binary"
-msgstr ""
+msgstr "Binary"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_checksum
@@ -79,12 +79,12 @@ msgstr "Oluşturuldu"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Creation Month"
-msgstr ""
+msgstr "Oluşturulma Ayı"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_db_datas
 msgid "Database Data"
-msgstr ""
+msgstr "Veritabanı Verisi"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
@@ -99,7 +99,7 @@ msgstr "Açıklama"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -120,18 +120,18 @@ msgstr "Hata"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid "External hash"
-msgstr ""
+msgstr "Dış Hash"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Failed"
-msgstr ""
+msgstr "Başarısız"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas
 msgid "File Content"
-msgstr ""
+msgstr "Dosya İçeriği"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas_fname
@@ -141,7 +141,7 @@ msgstr "Dosya adı"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
 msgid "File Size"
-msgstr ""
+msgstr "Dosya Boyu"
 
 #. module: attachment_base_synchronize
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
@@ -150,6 +150,8 @@ msgid ""
 "File corrupted: Something was wrong with the retrieved file, please relaunch"
 " the task."
 msgstr ""
+"Dosya bozulmuş: Alınan dosya ile ilgili bir terslik var\n"
+" Lütfen işlemi tekrarlayın."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
@@ -157,6 +159,8 @@ msgid ""
 "File hash comes from the external owner of the file.\n"
 "If provided allow to check than downloaded file is the exact copy of the original file."
 msgstr ""
+"Dosya hash bilgisi dışardaki sahibinden geliyor.\n"
+"Eğer sağlanırsa indirilen dosyanın orjinal dosya ile aynı olup olmadığı kontrol edilir."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
@@ -164,17 +168,19 @@ msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
 msgstr ""
+"Dosyanın dışardan gelen hash verisiyle karşılaştırılmak için yerelde "
+"hesaplana hash değeri."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "File type"
-msgstr ""
+msgstr "Dosya tipi"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Filter on my documents"
-msgstr ""
+msgstr "Dökümanlarımda filtre"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_follower_ids
@@ -219,7 +225,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
 msgid "Internal hash"
-msgstr ""
+msgstr "Dahili hash"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_is_follower
@@ -239,7 +245,7 @@ msgstr "Son mesaj tarihi"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_uid
@@ -254,7 +260,7 @@ msgstr "Son güncellenme"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Link to ir.attachment model "
-msgstr ""
+msgstr "ir.attachment modeline bağlantı"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_ids
@@ -265,7 +271,7 @@ msgstr "Mesajlar"
 #: model:ir.actions.act_window,name:attachment_base_synchronize.action_attachment
 #: model:ir.ui.menu,name:attachment_base_synchronize.menu_ir_attachment
 msgid "Meta data Attachments"
-msgstr ""
+msgstr "Meta veri ekleri"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_mimetype
@@ -275,7 +281,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "My Document(s)"
-msgstr ""
+msgstr "Belgelerim"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction_counter
@@ -295,7 +301,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Owner"
-msgstr ""
+msgstr "Sahibi"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -316,7 +322,7 @@ msgstr "Kaynak ID"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_model
 msgid "Resource Model"
-msgstr ""
+msgstr "Kaynak Model"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
@@ -347,7 +353,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_store_fname
 msgid "Stored Filename"
-msgstr ""
+msgstr "Kaydedilen Dosya adı"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
@@ -357,7 +363,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_model
 msgid "The database object this attachment will be attached to"
-msgstr ""
+msgstr "Bu ekin ekleneceği veritabanı nesnesi"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_file_type
@@ -369,7 +375,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_id
 msgid "The record id this is attached to"
-msgstr ""
+msgstr "Bu dosyanın eklendiği kayıt id'si"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_type
@@ -380,7 +386,7 @@ msgstr "Tür"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
@@ -395,7 +401,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_url
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_type

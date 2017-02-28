@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
+"POT-Creation-Date: 2017-01-14 04:21+0000\n"
 "PO-Revision-Date: 2016-01-05 19:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/el_GR/)\n"
@@ -56,7 +56,7 @@ msgstr ""
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Χρήστες"
 
 #. module: base_technical_features
 #: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
