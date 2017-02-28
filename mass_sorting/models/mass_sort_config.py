@@ -48,9 +48,9 @@ class MassSortConfig(models.Model):
     def _check_model_sequence(self):
         field_obj = self.env['ir.model.fields']
         for config in self:
-            if len(field_obj.search([
+            if field_obj.search_count([
                     ('model', '=', config.one2many_field_id.relation),
-                    ('name', '=', 'sequence')])) != 1:
+                    ('name', '=', 'sequence')]) == 0:
                 raise ValidationError(
                     _("The selected Field to Sort doesn't not have"
                         " 'sequence' field defined."))
