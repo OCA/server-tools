@@ -25,12 +25,10 @@ class ResUsers(models.Model):
         icp_obj = self.env['ir.config_parameter']
         admin_user = self.sudo().browse(SUPERUSER_ID)
         login_user = self.sudo().browse(self.env.uid)
-        send_to_admin = safe_eval(icp_obj.sudo().get_param(
-            'auth_admin_passkey.send_to_admin',
-            'True'))
-        send_to_user = safe_eval(icp_obj.sudo().get_param(
-            'auth_admin_passkey.send_to_user',
-            'True'))
+        send_to_admin = icp_obj.sudo().get_param(
+            'auth_admin_passkey.send_to_admin') == 'True' and True or False
+        send_to_user = icp_obj.sudo().get_param(
+            'auth_admin_passkey.send_to_user') == 'True' and True or False
 
         if send_to_admin and admin_user.email:
             mails.append({'email': admin_user.email, 'lang': admin_user.lang})
