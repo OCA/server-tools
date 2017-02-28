@@ -32,10 +32,10 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <form>
                 <header>
                     <button name="create_action" string="Add sidebar button" type="object"  class="btn btn-primary"
-                        attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"
+                        attrs="{'invisible':[('action_id', '!=', False)]}"
                         help="Display a button in the sidebar of related model to open a wizard"/>
                     <button name="unlink_action" string="Remove sidebar button" type="object" class="btn btn-default"
-                         attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
+                         attrs="{'invisible':[('action_id', '=', False)]}"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -45,8 +45,8 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                     <group col="4">
                         <field name="model_id"/>
                         <field name="one2many_field_id"/>
-                        <field name="ref_ir_act_window" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
-                        <field name="ref_ir_value" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
+                        <field name="action_id" attrs="{'invisible':[('action_id', '=', False)]}"/>
+                        <field name="value_id" attrs="{'invisible':[('action_id', '=', False)]}"/>
 
                         <field name="allow_custom_setting"/>
                     </group>

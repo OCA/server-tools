@@ -31,13 +31,13 @@ class MassSortConfig(models.Model):
         string='Model Name of the Field to Sort', hel="Technical field,"
         "used in the model 'mass.sort.config.line'", store=True)
 
-    ref_ir_act_window = fields.Many2one(
+    action_id = fields.Many2one(
         comodel_name='ir.actions.act_window', string='Sidebar Action',
-        readonly=True, copy=False)
+        readonly=True, copy=False, oldname='ref_ir_act_window')
 
-    ref_ir_value = fields.Many2one(
+    value_id = fields.Many2one(
         comodel_name='ir.values', string='Sidebar Button', readonly=True,
-        copy=False)
+        copy=False, oldname='ref_ir_value')
 
     line_ids = fields.One2many(
         comodel_name='mass.sort.config.line', inverse_name='config_id',
@@ -91,7 +91,7 @@ class MassSortConfig(models.Model):
         values_obj = self.env['ir.values']
         for config in self:
             button_name = _('Mass Sort (%s)') % config.name
-            config.ref_ir_act_window = action_obj.create({
+            config.action_id = action_obj.create({
                 'name': button_name,
                 'type': 'ir.actions.act_window',
                 'res_model': 'mass.sort.wizard',
@@ -101,18 +101,18 @@ class MassSortConfig(models.Model):
                 'view_mode': 'form,tree',
                 'target': 'new',
             })
-            config.ref_ir_value = values_obj.create({
+            config.value_id = values_obj.create({
                 'name': button_name,
                 'model': config.model_id.model,
                 'key2': 'client_action_multi',
                 'value': (
-                    "ir.actions.act_window,%s" % config.ref_ir_act_window.id),
+                    "ir.actions.act_window,%s" % config.action_id.id),
             })
 
     @api.multi
     def unlink_action(self):
         for config in self:
-            if config.ref_ir_act_window:
-                config.ref_ir_act_window.unlink()
-            if config.ref_ir_value:
-                config.ref_ir_value.unlink()
+            if config.action_id:
+                config.action_id.unlink()
+            if config.value_id:
+                config.value_id.unlink()
