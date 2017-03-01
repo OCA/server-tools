@@ -18,6 +18,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
+[auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auto_backup](auto_backup/) | 10.0.1.0.1 | Backups database
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
 [base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
@@ -36,6 +37,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
 [mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
+[mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
@@ -54,7 +56,6 @@ addon | version | summary
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 (unported) | Authenticate via HTTP Remote User
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 (unported) | This module disable all inactive sessions since a given delay
-[auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 (unported) | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 (unported) | Auth Supplier
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 (unported) | Shows full debug options for all users
