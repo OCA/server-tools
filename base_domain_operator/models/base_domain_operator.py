@@ -57,6 +57,8 @@ class BaseDomainOperator(models.AbstractModel):
         fields = leaf[0].split('.')
         model = self.env[expression.root_model._name]
         field = model._fields[fields[0]]
+        prefix = ''
+        left = fields[0]
 
         if len(fields) > 1 or (
                 field.type not in ('many2one', 'many2many', 'one2many') and
@@ -66,11 +68,17 @@ class BaseDomainOperator(models.AbstractModel):
                 'Only fields without dotted paths are implemented '
                 'currently'
             )
+
+        if expression.root_model._name != field.comodel_name and\
+           field.comodel_name:
+            model = self.env[field.comodel_name]
+            prefix = field.comodel_name
+
         right = leaf[2]
         if not isinstance(right, Iterable):
             right = [right]
 
         return [
-            ExtendedLeaf(p, model)
-            for p in parent_of_domain(fields[0], right, model)
+            ExtendedLeaf(p, expression.root_model)
+            for p in parent_of_domain(left, right, model, prefix=prefix)
         ] or FALSE_DOMAIN
