@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from collections import Iterable
 # pylint: disable=W0402
-from openerp.osv.expression import ExtendedLeaf, OR_OPERATOR, AND_OPERATOR
+from openerp.osv.expression import ExtendedLeaf, OR_OPERATOR, AND_OPERATOR,\
+    FALSE_DOMAIN
 from openerp import api, models
 from openerp.osv import expression as expression_module
 from ..expression import BaseDomainOperatorExtendedLeaf, Expression,\
@@ -72,4 +73,4 @@ class BaseDomainOperator(models.AbstractModel):
         return [
             ExtendedLeaf(p, model)
             for p in parent_of_domain(fields[0], right, model)
-        ]
+        ] or FALSE_DOMAIN
