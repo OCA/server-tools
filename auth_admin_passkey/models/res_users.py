@@ -6,7 +6,6 @@
 import datetime
 
 from openerp import _, api, exceptions, models, registry, SUPERUSER_ID
-from openerp.tools.safe_eval import safe_eval
 
 
 class ResUsers(models.Model):
