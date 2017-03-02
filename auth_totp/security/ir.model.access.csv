@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+authenticator_access,MFA Authenticator - User Access,model_res_users_authenticator,base.group_user,1,1,1,1
+device_access,MFA Device - Manager Access,model_res_users_device,,0,0,0,0

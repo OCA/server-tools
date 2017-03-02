@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+    <record id="view_users_form_simple_modif" model="ir.ui.view">
+        <field name="name">Change My Preferences - MFA Settings</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer" position="before">
+                <group string="MFA Settings" name="mfa_settings" col="8">
+                    <div colspan="8" class="oe_mb8">
+                        <span>Note: Please add at least one authentication app/device before enabling MFA.</span>
+                    </div>
+                    <field name="mfa_enabled"/>
+                    <newline/>
+                    <field name="authenticator_ids" widget="many2many_tags" options="{'no_create': True}" colspan="7"/>
+                    <button string="Add New App/Device" type="action" name="%(res_users_authenticator_create_action)d" colspan="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
