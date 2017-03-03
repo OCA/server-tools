@@ -4,7 +4,7 @@
 
 {
     'name': 'Import data from SQL and ODBC data sources.',
-    'version': '1.3',
+    'version': '8.0.0.1.3',
     'category': 'Tools',
     'author': "Daniel Reis,Odoo Community Association (OCA)",
     'website': 'http://launchpad.net/addons-tko',

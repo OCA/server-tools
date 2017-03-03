@@ -33,20 +33,24 @@ Features:
 
 Examples:
  * Importing suppliers to res.partner:
-      SELECT distinct
-            [SUPPLIER_CODE] as "ref"
-          , [SUPPLIER_NAME] as "name"
-          , 1 as "is_supplier"
-          , [INFO] as "comment"
+    ::
+
+        SELECT distinct[SUPPLIER_CODE] as "ref",
+            [SUPPLIER_NAME] as "name",
+            1 as "is_supplier",
+            [INFO] as "comment"
         FROM T_SUPPLIERS
-       WHERE INACTIVE_DATE IS NULL and DATE_CHANGED >= %(sync)s
+        WHERE INACTIVE_DATE IS NULL and DATE_CHANGED >= %(sync)s'
 
  * Importing products to product.product:
-      SELECT PRODUCT_CODE as "ref"
-           , PRODUCT_NAME as "name"
-           , 'res_partner_id_'+SUPPLIER_ID as "partner_id/id"
+    ::
+
+        SELECT
+            PRODUCT_CODE as "ref",
+            PRODUCT_NAME as "name",
+            'res_partner_id_' + SUPPLIER_ID as "partner_id/id"
         FROM T_PRODUCTS
-       WHERE DATE_CHANGED >= %(sync)s
+        WHERE DATE_CHANGED >= %(sync)s'
 
 
 Known issues / Roadmap
