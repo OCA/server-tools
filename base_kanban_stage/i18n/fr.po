@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 03:37+0000\n"
-"PO-Revision-Date: 2017-02-08 03:37+0000\n"
+"POT-Creation-Date: 2017-03-01 03:58+0000\n"
+"PO-Revision-Date: 2017-03-01 03:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_description
