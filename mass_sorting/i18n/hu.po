@@ -1,0 +1,280 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mass_sorting
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-01 03:58+0000\n"
+"PO-Revision-Date: 2017-03-01 03:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Hungarian (https://www.transifex.com/oca/teams/23907/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config.py:84
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
+msgid "Add sidebar button"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_allow_custom_setting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_allow_custom_setting
+msgid "Allow Custom Setting"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
+msgid "Cancel"
+msgstr "Mégsem"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_config_id
+msgid "Config id"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_create_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_create_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_create_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_create_uid
+msgid "Created by"
+msgstr "Készítette"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_create_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_create_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_create_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_create_date
+msgid "Created on"
+msgstr "Létrehozás dátuma"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_description
+msgid "Description"
+msgstr "Leírás"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_display_name
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_display_name
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_display_name
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_display_name
+msgid "Display Name"
+msgstr "Név megjelenítése"
+
+#. module: mass_sorting
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
+msgid "Display a button in the sidebar of related model to open a wizard"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_field_id
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_field_id
+msgid "Field"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_one2many_field_id
+msgid "Field to Sort"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,help:mass_sorting.field_mass_sort_config_one2many_model
+#: model:ir.model.fields,help:mass_sorting.field_mass_sort_wizard_one2many_model
+msgid "For relationship fields, the technical name of the target model"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_id
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_id
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_id
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_id
+msgid "ID"
+msgstr "Azonosító ID"
+
+#. module: mass_sorting
+#: model:ir.model.fields,help:mass_sorting.field_mass_sort_config_allow_custom_setting
+#: model:ir.model.fields,help:mass_sorting.field_mass_sort_wizard_allow_custom_setting
+msgid ""
+"If checked, any user could have the possibility to change fields, and use "
+"others."
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_desc
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_desc
+msgid "Inverse Order"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config___last_update
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line___last_update
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard___last_update
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line___last_update
+msgid "Last Modified on"
+msgstr "Utolsó frissítés dátuma"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_write_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Utoljára frissítve, által"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_write_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_date
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_date
+msgid "Last Updated on"
+msgstr "Utoljára frissítve ekkor"
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config.py:93
+#, python-format
+msgid "Mass Sort (%s)"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.actions.act_window,name:mass_sorting.action_mass_sort_config
+#: model:ir.ui.menu,name:mass_sorting.menu_mass_sort_config
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_tree
+msgid "Mass Sorting"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_model_id
+msgid "Model"
+msgstr "Modell, minta"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_one2many_model
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_one2many_model
+msgid "Model Name of the Field to Sort"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_name
+msgid "Name"
+msgstr "Név"
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_wizard.py:71
+#, python-format
+msgid "Please Select at least one Sorting Criteria."
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
+msgid "Remove sidebar button"
+msgstr ""
+
+#. module: mass_sorting
+#: model:mass.sort.config,name:mass_sorting.mass_sort_config_demo
+msgid "Self Mass Sort Demo"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_sequence
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_action_id
+msgid "Sidebar Action"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_value_id
+msgid "Sidebar Button"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_ids
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_ids
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
+#: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
+msgid "Sorting Criterias"
+msgstr ""
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config.py:63
+#, python-format
+msgid ""
+"The selected Field to Sort '%s' doesn't belong to the selected model '%s'."
+msgstr ""
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config.py:55
+#, python-format
+msgid "The selected Field to Sort doesn't not have 'sequence' field defined."
+msgstr ""
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config_line.py:30
+#, python-format
+msgid ""
+"The selected criteria '%s' must belong to the model of the Field to Sort."
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_config_id
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_config.py:72
+#, python-format
+msgid ""
+"You have to define field(s) in 'Sorting Criterias' if you uncheck 'Allow "
+"Custom Setting'."
+msgstr ""
+
+#. module: mass_sorting
+#: code:addons/mass_sorting/models/mass_sort_wizard.py:54
+#, python-format
+msgid ""
+"You will sort the field '%(field)s' for %(qty)d %(model)s(s). \n"
+"\n"
+"The sorting will be done by %(field_list)s."
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model,name:mass_sorting.model_mass_sort_config
+msgid "mass.sort.config"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model,name:mass_sorting.model_mass_sort_config_line
+msgid "mass.sort.config.line"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model,name:mass_sorting.model_mass_sort_wizard
+msgid "mass.sort.wizard"
+msgstr ""
+
+#. module: mass_sorting
+#: model:ir.model,name:mass_sorting.model_mass_sort_wizard_line
+msgid "mass.sort.wizard.line"
+msgstr ""
