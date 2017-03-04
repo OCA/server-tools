@@ -3,14 +3,15 @@
 # * module_prototyper
 # 
 # Translators:
-# Pedro Castro Silva <pedrocs@sossia.pt>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Carla Berjano <berjano.carla@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2016\n"
+"POT-Creation-Date: 2017-03-03 03:49+0000\n"
+"PO-Revision-Date: 2017-03-03 03:49+0000\n"
+"Last-Translator: Carla Berjano <berjano.carla@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -280,7 +281,7 @@ msgstr "Campos"
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_data
 msgid "File"
-msgstr ""
+msgstr "Ficheiro"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
