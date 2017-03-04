@@ -5,13 +5,14 @@
 # Translators:
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
 # Zwygart <zwygart@gmail.com>, 2016
+# Zwygart <zwygart@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
-"Last-Translator: Zwygart <zwygart@gmail.com>\n"
+"POT-Creation-Date: 2017-03-02 09:58+0000\n"
+"PO-Revision-Date: 2017-03-01 16:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,14 +42,14 @@ msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "Les sauvegardes automatisées de la base de donnée peuvent être planifiées comme suit : "
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
-msgstr "La sauvegarde a échoué"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
+msgstr ""
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
-msgstr "La sauvegarde a réussie"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
+msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
@@ -107,14 +108,14 @@ msgstr "Créé le"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
-#: model:mail.message.subtype,description:auto_backup.failure
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:211
-#: model:mail.message.subtype,description:auto_backup.success
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr ""

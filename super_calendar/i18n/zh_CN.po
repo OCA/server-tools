@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-13 09:31+0000\n"
+"POT-Creation-Date: 2017-03-02 09:59+0000\n"
+"PO-Revision-Date: 2017-03-03 07:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
@@ -329,7 +329,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Week"
-msgstr ""
+msgstr "本周"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search

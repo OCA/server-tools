@@ -3,13 +3,13 @@
 # * auto_backup
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-05 05:57+0000\n"
+"POT-Creation-Date: 2017-03-02 09:58+0000\n"
+"PO-Revision-Date: 2017-03-03 13:20+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -40,13 +40,13 @@ msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "Samodejne varnostne kopije podatkovne baze se lahko razporedi na:"
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
 msgstr "Varnostno kopiranje neuspešno"
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
 msgstr "Varnostno kopiranje uspešno"
 
 #. module: auto_backup
@@ -106,14 +106,14 @@ msgstr "Ustvarjeno"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
-#: model:mail.message.subtype,description:auto_backup.failure
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "Varnostno kopiranje podatkovne baze neuspešno."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:211
-#: model:mail.message.subtype,description:auto_backup.success
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr "Varnostno kopiranje podatkovne baze uspešno."

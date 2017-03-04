@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2017-03-02 09:58+0000\n"
+"PO-Revision-Date: 2017-03-03 07:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.banned.remote,active:0
 msgid "Active"
-msgstr ""
+msgstr "有效"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
