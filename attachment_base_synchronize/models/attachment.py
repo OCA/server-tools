@@ -2,12 +2,13 @@
 # @ 2015 Florian DA COSTA @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
-import openerp
-import hashlib
 from base64 import b64decode
+import hashlib
 import logging
+import odoo
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+
 
 _logger = logging.getLogger(__name__)
 
@@ -56,8 +57,7 @@ class IrAttachmentMetadata(models.Model):
     @api.model
     def run_attachment_metadata_scheduler(self, domain=None):
         if domain is None:
-            domain = []
-        domain.append(('state', '=', 'pending'))
+            domain = [('state', '=', 'pending')]
         attachments = self.search(domain)
         if attachments:
             return attachments.run()
@@ -70,7 +70,7 @@ class IrAttachmentMetadata(models.Model):
         """
         for attachment in self:
             with api.Environment.manage():
-                with openerp.registry(self.env.cr.dbname).cursor() as new_cr:
+                with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
                     new_env = api.Environment(
                         new_cr, self.env.uid, self.env.context)
                     attach = attachment.with_env(new_env)
@@ -86,7 +86,11 @@ class IrAttachmentMetadata(models.Model):
                             })
                         attach.env.cr.commit()
                     else:
-                        attach.write({'state': 'done'})
+                        vals = {
+                            'state': 'done',
+                            'sync_date': fields.Datetime.now(),
+                        }
+                        attach.write(vals)
                         attach.env.cr.commit()
         return True
 
