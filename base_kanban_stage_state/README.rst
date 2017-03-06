@@ -1,13 +1,20 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License: LGPL-3
 
 =======================
 Base Kanban Stage State
 =======================
 
 This module extends the functionality of base_kanban_stage to allow you to
-map stages from base_kanban_stage to states.
+map stages from base_kanban_stage to states. The states are:
+
+*. New (draft)
+*. In Progress (open)
+*. Pending (pending)
+*. Done (done)
+*. Cancelled (cancelled)
+*. Exception (exception)
 
 Usage
 =====
