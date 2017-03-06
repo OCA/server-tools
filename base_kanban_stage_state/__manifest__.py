@@ -8,7 +8,7 @@
     "category": "Base",
     "website": "https://odoo-community.org/",
     "author": "SMDrugstore, Odoo Community Association (OCA)",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "application": False,
     "installable": True,
     "depends": [
