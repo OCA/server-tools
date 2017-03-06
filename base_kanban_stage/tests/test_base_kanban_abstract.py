@@ -48,6 +48,11 @@ class TestBaseKanbanAbstract(SavepointCase):
         cls._init_test_model(BaseKanbanAbstractTester)
         cls.test_model = cls.env[BaseKanbanAbstractTester._name]
 
+    @classmethod
+    def tearDownClass(cls):
+        cls.env.registry.leave_test_mode()
+        super(TestBaseKanbanAbstract, cls).tearDownClass()
+
     def setUp(self):
         super(TestBaseKanbanAbstract, self).setUp()
         test_stage_1 = self.env['base.kanban.stage'].create({
