@@ -59,6 +59,7 @@ addon | version | summary
 [field_rrule](field_rrule/) | 8.0.1.0.0 | Provides a field and widget for RRules according to RFC 2445
 [html_image_url_extractor](html_image_url_extractor/) | 8.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 8.0.1.0.0 | Generate excerpts from any HTML field
+[import_odbc](import_odbc/) | 8.0.0.1.3 | Import data from SQL and ODBC data sources.
 [inactive_session_timeout](inactive_session_timeout/) | 8.0.1.0.0 | This module disable all inactive sessions since a given delay
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
 [letsencrypt](letsencrypt/) | 8.0.1.0.0 | Request SSL certificates from letsencrypt.org
@@ -89,7 +90,6 @@ addon | version | summary
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [configuration_helper](configuration_helper/) | 0.8 (unported) | Configuration Helper
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
-[import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
