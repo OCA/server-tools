@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp.tests.common import TransactionCase
-from openerp.tools.config import config
-from openerp.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
+from odoo.tools.config import config
+from odoo.exceptions import ValidationError
 
 
 import logging

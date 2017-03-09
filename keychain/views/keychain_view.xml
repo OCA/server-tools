@@ -43,6 +43,6 @@
         </record>
 
         <menuitem id="keychain_menu" name="Keychain"
-                  parent="base.menu_config"
+                  parent="base.menu_custom"
                   action="keychain_list_action"/>
 </odoo>

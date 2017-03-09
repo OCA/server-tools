@@ -6,10 +6,10 @@ from functools import wraps
 import logging
 import json
 
-from openerp import models, fields, api
-from openerp.exceptions import ValidationError
-from openerp.tools.config import config
-from openerp.tools.translate import _
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+from odoo.tools.config import config
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
