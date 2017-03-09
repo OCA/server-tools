@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "8.0.1.0.2",
+    "version": "8.0.1.0.3",
     "author": (
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Grupo ESOC Ingeniería de Servicios,"
