@@ -7,7 +7,6 @@ from lxml import etree
 
 
 class ResConfigSettings(models.TransientModel):
-
     _inherit = 'res.config.settings'
 
     @api.model
@@ -69,6 +68,12 @@ class ResConfigSettings(models.TransientModel):
                 "//group[5]",
                 "//div[field[@name='module_stock_barcode' and "
                 "@widget='upgrade_boolean']]",
+            ]
+
+        elif page_name == 'project settings':
+            queries += [
+                "//label[@for='id']",
+                "//field[@name='module_project_forecast']/ancestor::div[2]",
             ]
 
         elif page_name == 'mrp settings':
