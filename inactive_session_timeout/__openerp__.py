@@ -27,7 +27,7 @@
     'summary': """
         This module disable all inactive sessions since a given delay""",
 
-    'author': "ACSONE SA/NV", "Odoo Community Association (OCA)"
+    'author': "ACSONE SA/NV, Odoo Community Association (OCA)",
     'website': "http://acsone.eu",
 
     'category': 'Tools',
