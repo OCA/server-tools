@@ -3,13 +3,14 @@
 # * letsencrypt
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:47+0000\n"
-"PO-Revision-Date: 2016-05-17 14:08+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model,name:letsencrypt.model_letsencrypt
 msgid "Abstract model providing functions for letsencrypt"
-msgstr ""
+msgstr "Abstraktes Modell zur Bereitstellung von Letsencrypt-Funktionen"
 
 #. module: letsencrypt
 #: field:letsencrypt,display_name:0
@@ -31,7 +32,7 @@ msgstr "Anzeigename"
 #: code:addons/letsencrypt/models/letsencrypt.py:44
 #, python-format
 msgid "Error calling %s: %d"
-msgstr ""
+msgstr "Aufruffehler %s: %d"
 
 #. module: letsencrypt
 #: field:letsencrypt,id:0
@@ -47,4 +48,4 @@ msgstr "Zuletzt geändert am"
 #: code:addons/letsencrypt/models/letsencrypt.py:93
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
-msgstr ""
+msgstr "Let's encrypt funktioniert mit privaten Adressen oderr localen Domänen nicht!"

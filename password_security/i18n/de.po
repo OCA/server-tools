@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-12 03:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-07 03:47+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,18 +22,18 @@ msgstr ""
 #. module: password_security
 #: help:res.company,password_minimum:0
 msgid "Amount of hours until a user may change password again"
-msgstr ""
+msgstr "Stundenanzahl bis der Benutzer sein Passwort erneut ändern darf"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:145
 #, python-format
 msgid "Cannot use the most recent %d passwords"
-msgstr ""
+msgstr "Die letzten %d Passworte dürfen nicht verwendet werden"
 
 #. module: password_security
 #: field:res.company,password_length:0
 msgid "Characters"
-msgstr ""
+msgstr "Zeichen"
 
 #. module: password_security
 #: model:ir.model,name:password_security.model_res_company
@@ -65,6 +66,8 @@ msgid ""
 "Disallow reuse of this many previous passwords - use negative number for "
 "infinite, or 0 to disable"
 msgstr ""
+"Verbieten der Nutzung dieser Anzahl vorhergehender Passworte - negative "
+"Werte sind unendlich, 0 zum Ausschalten"
 
 #. module: password_security
 #: field:res.users.pass.history,display_name:0
@@ -74,12 +77,12 @@ msgstr "Anzeigename"
 #. module: password_security
 #: field:res.users.pass.history,password_crypt:0
 msgid "Encrypted Password"
-msgstr ""
+msgstr "Verschlüsseltes Passwort"
 
 #. module: password_security
 #: view:res.company:password_security.view_company_form
 msgid "Extra"
-msgstr ""
+msgstr "Extra"
 
 #. module: password_security
 #: field:res.company,password_history:0
@@ -89,7 +92,7 @@ msgstr "Verlauf"
 #. module: password_security
 #: help:res.company,password_expiration:0
 msgid "How many days until passwords expire"
-msgstr ""
+msgstr "Wie viele Tage bis Passworte verfallen"
 
 #. module: password_security
 #: field:res.users.pass.history,id:0
@@ -114,34 +117,34 @@ msgstr "Zuletzt aktualisiert am"
 #. module: password_security
 #: field:res.users,password_write_date:0
 msgid "Last password update"
-msgstr ""
+msgstr "Aktualisierung letzten Passworts"
 
 #. module: password_security
 #: field:res.company,password_lower:0
 msgid "Lowercase"
-msgstr ""
+msgstr "Kleinschreibung"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:51
 #, python-format
 msgid "Lowercase letter"
-msgstr ""
+msgstr "Kleinbuchstabe"
 
 #. module: password_security
 #: field:res.company,password_minimum:0
 msgid "Minimum Hours"
-msgstr ""
+msgstr "Mindeststunden"
 
 #. module: password_security
 #: help:res.company,password_length:0
 msgid "Minimum number of characters"
-msgstr ""
+msgstr "Mindestanzahl an Zeichen"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:59
 #, python-format
 msgid "Must contain the following:"
-msgstr ""
+msgstr "Muss das Folgende enthalten:"
 
 #. module: password_security
 #: field:res.company,password_numeric:0
@@ -152,23 +155,23 @@ msgstr "Numerisch"
 #: code:addons/password_security/models/res_users.py:55
 #, python-format
 msgid "Numeric digit"
-msgstr ""
+msgstr "Numerische Ziffer"
 
 #. module: password_security
 #: field:res.users,password_history_ids:0
 msgid "Password History"
-msgstr ""
+msgstr "Passwortverlauf"
 
 #. module: password_security
 #: view:res.company:password_security.view_company_form
 msgid "Password Policy"
-msgstr ""
+msgstr "Passwort-Regelung"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:62
 #, python-format
 msgid "Password must be %d characters or more."
-msgstr ""
+msgstr "Passwort muss mindestens %d Zeichen haben."
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:121
@@ -177,63 +180,65 @@ msgid ""
 "Passwords can only be reset every %d hour(s). Please contact an "
 "administrator for assistance."
 msgstr ""
+"Passworte dürfen nur alle %d Stunde(n) zurückgesetzt werden. Bitte nehmen "
+"Sie für Hilfestellung mit Ihrem Administrator Kontakt auf."
 
 #. module: password_security
 #: help:res.company,password_lower:0
 msgid "Require lowercase letters"
-msgstr ""
+msgstr "Fordere Kleinbuchstaben"
 
 #. module: password_security
 #: help:res.company,password_numeric:0
 msgid "Require numeric digits"
-msgstr ""
+msgstr "Fordere numerische Ziffern"
 
 #. module: password_security
 #: help:res.company,password_special:0
 msgid "Require special characters"
-msgstr ""
+msgstr "Fordere Sonderzeichen"
 
 #. module: password_security
 #: help:res.company,password_upper:0
 msgid "Require uppercase letters"
-msgstr ""
+msgstr "Fordere Grossbuchstaben"
 
 #. module: password_security
 #: view:res.company:password_security.view_company_form
 msgid "Required Characters"
-msgstr ""
+msgstr "Erforderliche Zeichenzahl"
 
 #. module: password_security
 #: model:ir.model,name:password_security.model_res_users_pass_history
 msgid "Res Users Password History"
-msgstr ""
+msgstr "Res-Users Passworthistorie"
 
 #. module: password_security
 #: field:res.company,password_special:0
 msgid "Special"
-msgstr ""
+msgstr "Besonders"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:57
 #, python-format
 msgid "Special character"
-msgstr ""
+msgstr "Sonderzeichen"
 
 #. module: password_security
 #: view:res.company:password_security.view_company_form
 msgid "Timings"
-msgstr ""
+msgstr "Zeitmessungen"
 
 #. module: password_security
 #: field:res.company,password_upper:0
 msgid "Uppercase"
-msgstr ""
+msgstr "Grossbuchstaben"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:53
 #, python-format
 msgid "Uppercase letter"
-msgstr ""
+msgstr "Grossbuchstabe"
 
 #. module: password_security
 #: field:res.users.pass.history,user_id:0

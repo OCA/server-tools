@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-28 21:28+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-07 03:47+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "Anzeigename"
 #: code:addons/base_field_validator/models/ir_model.py:27
 #, python-format
 msgid "Expression %s not valid for %s"
-msgstr ""
+msgstr "Ausdruck %s unzulässig für %s"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,field_id:0
@@ -88,7 +89,7 @@ msgstr "Modelle"
 #. module: base_field_validator
 #: field:ir.model.fields.regex,regex:0
 msgid "Regular Expression"
-msgstr ""
+msgstr "Gegulärer Ausdruck"
 
 #. module: base_field_validator
 #: help:ir.model.fields.regex,regex:0
@@ -97,19 +98,22 @@ msgid ""
 "[^@]+@[^@]+\\.[^@]+\n"
 "to the email field"
 msgstr ""
+"Regulärer Ausdruck zur Feldprüfung. Sie können zum Beispiel den Ausdruck\n"
+"[^@]+@[^@]+\\.[^@]+\n"
+"dem Email-Feld hinzu fügen"
 
 #. module: base_field_validator
 #: sql_constraint:ir.model.fields.regex:0
 msgid "The name of a regular expression must be unique"
-msgstr ""
+msgstr "Die Bezeichnung des regulären Ausdrucks muss eindeutig sein"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,regex_id:0
 msgid "Validator"
-msgstr ""
+msgstr "Prüfer"
 
 #. module: base_field_validator
 #: view:ir.model:base_field_validator.view_model_form_validator
 #: field:ir.model,validator_line_ids:0
 msgid "Validators"
-msgstr ""
+msgstr "Prüfer"

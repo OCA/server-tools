@@ -4,17 +4,18 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011,2013
 # Florian Hatat, 2015
 # Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-22 12:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-05 12:41+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 #. module: base_export_manager
 #: help:ir.exports,model_id:0 help:ir.exports.line,model1_id:0
 msgid "Database model to export."
-msgstr ""
+msgstr "Zu exportierendes Datenbankmodell."
 
 #. module: base_export_manager
 #: view:ir.exports:base_export_manager.ir_exports_form_view
@@ -55,38 +56,38 @@ msgstr "Feld '%s' existiert nicht"
 #: code:addons/base_export_manager/models/ir_exports_line.py:192
 #, python-format
 msgid "Field '%s' not found in model '%s'"
-msgstr ""
+msgstr "Feld '%s' im Modell '%s' nicht gefunden"
 
 #. module: base_export_manager
 #: field:ir.exports.line,field1_id:0
 msgid "First field"
-msgstr ""
+msgstr "Erstes Feld"
 
 #. module: base_export_manager
 #: field:ir.exports.line,model1_id:0
 msgid "First model"
-msgstr ""
+msgstr "Erstes Modell"
 
 #. module: base_export_manager
 #: field:ir.exports.line,field4_id:0
 msgid "Fourth field"
-msgstr ""
+msgstr "Viertes Feld"
 
 #. module: base_export_manager
 #: field:ir.exports.line,model4_id:0
 msgid "Fourth model"
-msgstr ""
+msgstr "Viertes Modell"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:136
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
-msgstr ""
+msgstr "Mehr als 4 Stufen Tiefe sind nicht zulässig: %s"
 
 #. module: base_export_manager
 #: field:ir.exports.line,label:0
 msgid "Label"
-msgstr ""
+msgstr "Kennung"
 
 #. module: base_export_manager
 #: field:ir.exports,model_id:0
@@ -96,12 +97,12 @@ msgstr "Modell"
 #. module: base_export_manager
 #: field:ir.exports.line,field2_id:0
 msgid "Second field"
-msgstr ""
+msgstr "Zweites Feld"
 
 #. module: base_export_manager
 #: field:ir.exports.line,model2_id:0
 msgid "Second model"
-msgstr ""
+msgstr "Zweites Modell"
 
 #. module: base_export_manager
 #: field:ir.exports.line,sequence:0
@@ -111,15 +112,15 @@ msgstr "Reihenfolge"
 #. module: base_export_manager
 #: field:ir.exports.line,field3_id:0
 msgid "Third field"
-msgstr ""
+msgstr "Drittes Feld"
 
 #. module: base_export_manager
 #: field:ir.exports.line,model3_id:0
 msgid "Third model"
-msgstr ""
+msgstr "Drittes Modell"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Sie müssen ein Modell oder eine Ressource angeben."
