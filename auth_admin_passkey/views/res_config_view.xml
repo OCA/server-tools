@@ -1,47 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ********************************************************************** -->
-<!--Admin Passkey module for Odoo                                        -->
-<!--Copyright (C) 2013-2014 GRAP (http://www.grap.coop)                     -->
-<!--@author Sylvain LE GAL (https://twitter.com/legalsylvain)               -->
-
-<!--This program is free software: you can redistribute it and/or modify    -->
-<!--it under the terms of the GNU Affero General Public License as          -->
-<!--published by the Free Software Foundation, either version 3 of the      -->
-<!--License, or (at your option) any later version.                         -->
-
-<!--This program is distributed in the hope that it will be useful,         -->
-<!--but WITHOUT ANY WARRANTY; without even the implied warranty of          -->
-<!--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           -->
-<!--GNU Affero General Public License for more details.                     -->
-
-<!--You should have received a copy of the GNU Affero General Public License-->
-<!--along with this program.  If not, see <http://www.gnu.org/licenses/>.   -->
-<!-- ********************************************************************** -->
-<openerp>
-    <data>
+<odoo>
 
         <record id="view_res_config_settings" model="ir.ui.view">
             <field name="name">base.config.settings.view</field>
             <field name="model">base.config.settings</field>
             <field name="inherit_id" ref="base_setup.view_general_configuration"/>
             <field name="arch" type="xml">
-                <xpath expr="//label[@string='Email']/.." position='after'>
+                <xpath expr="//label[@name='email_label']/.." position='after'>
                     <group>
                         <label for="id" string="Passkey"/>
                         <div>
-                            <div>
-                                <field name="auth_admin_passkey_send_to_admin" class="oe_inline"/>
-                                <label for="auth_admin_passkey_send_to_admin"/>
-                            </div>
-                            <div>
-                                <field name="auth_admin_passkey_send_to_user" class="oe_inline"/>
-                                <label for="auth_admin_passkey_send_to_user"/>
-                            </div>
+                        <div>
+                            <field name="auth_admin_passkey_send_to_admin" class="oe_inline"/>
+                            <label for="auth_admin_passkey_send_to_admin"/>
+                        </div>
+                        <div>
+                            <field name="auth_admin_passkey_send_to_user" class="oe_inline"/>
+                            <label for="auth_admin_passkey_send_to_user"/>
+                        </div>
                         </div>
                     </group>
                 </xpath>
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
