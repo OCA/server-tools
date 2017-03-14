@@ -89,7 +89,8 @@ class SqlFileWizard(models.TransientModel):
         res = sql_export._execute_sql_request(
             params=variable_dict, mode='stdout',
             copy_options=sql_export.copy_options)
-
+        if self.sql_export_id.encoding:
+            res = res.encode(self.sql_export_id.encoding)
         self.write({
             'binary_file': res,
             'file_name': sql_export.name + '_' + date + '.csv'

@@ -25,6 +25,7 @@
                 </group>
                 <group name="option" groups="sql_request_abstract.group_sql_request_user">
                     <field name="copy_options"/>
+                    <field name="encoding"/>
                 </group>
                 <group name="request" string="SQL Request" groups="sql_request_abstract.group_sql_request_user">
                     <field name="query" nolabel="1" placeholder="select * from res_partner"/>
