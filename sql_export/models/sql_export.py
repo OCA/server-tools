@@ -45,6 +45,14 @@ class SqlExport(models.Model):
         'Parameters',
         domain=[('model', '=', 'sql.file.wizard')])
 
+    encoding = fields.Selection(
+        [('utf-8', 'utf-8'), ('utf-16', 'utf-16'),
+         ('windows-1252', 'windows-1252'), ('latin1', 'latin1'),
+         ('latin2', 'latin2'), ('big5', 'big5'), ('gb18030', 'gb18030'),
+         ('shift_jis', 'shift_jis'), ('windows-1251', 'windows-1251'),
+         ('koir8_r', 'koir8_r')], string='Encoding', required=True,
+        default='utf-8')
+
     @api.multi
     def export_sql_query(self):
         self.ensure_one()
