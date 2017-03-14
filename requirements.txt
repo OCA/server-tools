@@ -4,3 +4,4 @@
   pysftp
   acme_tiny
   IPy
+  python-json-logger

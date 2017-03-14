@@ -24,30 +24,30 @@ except ImportError:
 def is_true(strval):
     return bool(strtobool(strval or '0'.lower()))
 
+
 # The following regex are use to extract information from native odoo log
 # We struct is the following
 # {name_of_the_log : [regex, formatter, extra_vals]}
 # The extra_vals "dict" will be merged into the jsonlogger if the regex match
 # In order to make understandable the regex please add an string example that
 # match
-
 REGEX = {
     'openerp.addons.base.ir.ir_cron': [
         # "cron.object.execute('db', 1, '*', u'base.action.rule', u'_check')"
-        ("cron\.object\.execute\('.+'(?P<cron_model>[\w.]+).+"
-         "'(?P<cron_method>[\w.]+)'\)",
+        (r"cron\.object\.execute\('.+'(?P<cron_model>[\w.]+).+"
+         r"'(?P<cron_method>[\w.]+)'\)",
          {}, {'cron_running': True}),
 
         # "0.016s (base.action.rule, _check)"
-        ("(?P<cron_duration_second>[\d.]+)s \("
-         "(?P<cron_model>[\w.]+), (?P<cron_method>[\w.]+)",
+        (r"(?P<cron_duration_second>[\d.]+)s \("
+         r"(?P<cron_model>[\w.]+), (?P<cron_method>[\w.]+)",
          {'cron_duration_second': float},
          {'cron_running': False, 'cron_status': 'succeeded'}),
 
         # Call of self.pool.get('base.action.rule')._check(
         # cr, uid, *u'()') failed in Job 43
-        ("Call of self\.pool\.get\('(?P<cron_model>[\w.]+)'\)"
-         ".(?P<cron_method>[\w.]+)",
+        (r"Call of self\.pool\.get\('(?P<cron_model>[\w.]+)'\)"
+         r".(?P<cron_method>[\w.]+)",
          {}, {'cron_running': False, 'cron_status': 'failed'}),
     ],
 }
