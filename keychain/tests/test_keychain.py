@@ -21,9 +21,8 @@ class TestKeychain(TransactionCase):
 
         self.keychain = self.env['keychain.account']
         config['keychain_key'] = Fernet.generate_key()
-        config['running_env'] = ""
 
-        self.old_running_env = config['running_env']
+        self.old_running_env = config.get('running_env', '')
         config['running_env'] = None
 
         def _init_data(self):
