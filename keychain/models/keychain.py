@@ -6,10 +6,10 @@ from functools import wraps
 import logging
 import json
 
-from openerp import models, fields, api
-from openerp.exceptions import ValidationError
-from openerp.tools.config import config
-from openerp.tools.translate import _
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+from odoo.tools.config import config
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -40,7 +40,9 @@ class KeychainAccount(models.Model):
     technical_name = fields.Char(
         required=True,
         help="Technical name. Must be unique")
-    namespace = fields.Selection([], help="Type of account", required=True)
+    namespace = fields.Selection(selection=[],
+                                 help="Type of account",
+                                 required=True)
     environment = fields.Char(
         required=False,
         help="'prod', 'dev', etc. or empty (for all)"
