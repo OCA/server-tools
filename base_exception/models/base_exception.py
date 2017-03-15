@@ -34,7 +34,7 @@ class ExceptionRule(models.Model):
         help="Gives the sequence order when applying the test")
     rule_group = fields.Selection(
         [],
-        help="Rule group is used the group the rules that must validated "
+        help="Rule group is used to group the rules that must validated "
         "at same time for a target object. Ex: "
         "validate sale.order.line rules with sale order rules.",
         required=True)
@@ -139,12 +139,12 @@ class BaseException(models.AbstractModel):
         """returns the list of exception_ids for all the considered base.exceptions
         """
         exception_obj = self.env['exception.rule']
-        model_exceptions = exception_obj.sudo().search(
-            [('model', '=', self._name)])
-        sub_exceptions = exception_obj.sudo().search(
-            [('rule_group', '=', self.rule_group),
-             ('id', 'not in', model_exceptions.ids),
-             ])
+        all_exceptions = exception_obj.sudo().search(
+            [('rule_group', '=', self[0].rule_group)])
+        model_exceptions = all_exceptions.filtered(
+            lambda ex: ex.model == self._name)
+        sub_exceptions = all_exceptions.filtered(
+            lambda ex: ex.model != self._name)
 
         all_exception_ids = []
         for obj in self:
