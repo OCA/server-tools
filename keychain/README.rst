@@ -61,7 +61,7 @@ Usage (for module dev)
 ======================
 
 
-* Add this keychain as a dependency in __openerp__.py
+* Add this keychain as a dependency in __manifest__.py
 * Subclass `keychain.account` and add your module in namespaces:  `(see after for the name of namespace )`
 
 .. code:: python

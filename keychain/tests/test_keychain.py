@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp.tests.common import TransactionCase
-from openerp.tools.config import config
-from openerp.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
+from odoo.tools.config import config
+from odoo.exceptions import ValidationError
 
 
 import logging
@@ -21,6 +21,7 @@ class TestKeychain(TransactionCase):
 
         self.keychain = self.env['keychain.account']
         config['keychain_key'] = Fernet.generate_key()
+        config['running_env'] = ""
 
         self.old_running_env = config['running_env']
         config['running_env'] = None
