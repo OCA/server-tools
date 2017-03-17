@@ -6,14 +6,34 @@
 from odoo.tests import common
 
 
-class TestImportSecurityGroup(common.TransactionCase):
+class TestImportSecurityGroup(common.HttpCase):
     def setUp(self):
         super(TestImportSecurityGroup, self).setUp()
         self.Access = self.env['ir.model.access']
         self.user_test = self.env.ref('base.user_demo')
 
-    def test_01_load(self):
+    def has_button_import(self, falsify=False, user=None):
+        """
+        Verify that the button is either visible or invisible.
+        After the adjacent button is loaded, allow for a second for
+        the asynchronous call to finish and update the visibility """
+        code = """
+        window.setTimeout(function () {
+            if (%s$('.o_button_import').length) {
+                console.log('ok');
+            } else {
+                console.log('error');
+            };
+        }, 1000);
+        """ % ('!' if falsify else '')
+        action = self.env.ref('base.action_partner_category_form')
+        link = '/web#action=%s' % action.id
+        self.phantom_js(
+            link, code, "$('button.o_list_button_add').length",
+            login=user.login)
 
+    def test_01_load(self):
+        """ Admin user can import data, but the demo user cannot """
         fields = (
             'id',
             'name',
@@ -28,6 +48,7 @@ class TestImportSecurityGroup(common.TransactionCase):
             ('access_res_users_test2', 'res.users test2', '1', '1', '1', '1'),
         ]
 
+        self.has_button_import(user=self.env.user)
         res = self.Access.load(fields, data)
 
         self.assertEqual(res['ids'], False)
@@ -39,6 +60,7 @@ class TestImportSecurityGroup(common.TransactionCase):
             res['messages'][1]['message'],
             "Missing required value for the field 'Object' (model_id)")
 
+        self.has_button_import(falsify=True, user=self.user_test)
         res2 = self.Access.sudo(self.user_test).load(fields, data)
 
         self.assertEqual(res2['ids'], None)
