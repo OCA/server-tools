@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.0.2",
     "author": (
         "Yenthe Van Ginneken, "
         "Agile Business Group, "
