@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 09:58+0000\n"
-"PO-Revision-Date: 2017-03-01 16:56+0000\n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
+"PO-Revision-Date: 2017-03-13 12:49+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Yedek için saklama yöntemi seçin."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:247
+#: code:addons/auto_backup/models/db_backup.py:250
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Eski veritabanı yedeklerinin temizlenmesi başarısız oldu."
@@ -112,7 +112,7 @@ msgid "Database backup failed."
 msgstr "Veritabanı yedeklemesi başarısız oldu."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:214
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
