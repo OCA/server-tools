@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 03:37+0000\n"
-"PO-Revision-Date: 2017-02-08 03:37+0000\n"
+"POT-Creation-Date: 2017-03-18 02:19+0000\n"
+"PO-Revision-Date: 2017-03-18 02:19+0000\n"
 "Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,9 @@ msgid ""
 "Disallow reuse of this many previous passwords - use negative number for "
 "infinite, or 0 to disable"
 msgstr ""
+"Verhindere das erneute Benutzen dieser Anzahl von Passwörtern - benutze eine"
+" negative Zahl um alle vergangenen Passwörter zu verhindern, oder eine 0 um "
+"dies auszuschalten"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_display_name
@@ -178,6 +181,8 @@ msgid ""
 "Passwords can only be reset every %d hour(s). Please contact an "
 "administrator for assistance."
 msgstr ""
+"Passwörter können nur alle %d Stunde(n) zurückgesetzt werden. Bitte "
+"kontaktiere einen Administrator um Hilfe zu erhalten."
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_lower
@@ -223,7 +228,7 @@ msgstr "Spezialzeichen"
 #. module: password_security
 #: model:ir.ui.view,arch_db:password_security.view_company_form
 msgid "Timings"
-msgstr ""
+msgstr "Zeitliches"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_upper
