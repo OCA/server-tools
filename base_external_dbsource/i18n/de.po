@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Ermin Trevisan <trevi@twanda.com>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:52+0000\n"
-"PO-Revision-Date: 2016-09-10 02:52+0000\n"
-"Last-Translator: Ermin Trevisan <trevi@twanda.com>, 2016\n"
+"POT-Creation-Date: 2017-03-04 07:38+0000\n"
+"PO-Revision-Date: 2017-03-04 07:38+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgid "Connection string"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
 "Connection test failed:                         Here is what we got instead:\n"
@@ -49,7 +49,7 @@ msgid ""
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:179
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:165
 #, python-format
 msgid ""
 "Connection test succeeded:                           Everything seems "
@@ -115,6 +115,8 @@ msgid ""
 "that the required components were                                      "
 "detected."
 msgstr ""
+"Wenn ein Connector in der Liste fehlt, prüfen Sie bitte im Server-Log, ob "
+"die erforderlichen Komponenten gefunden wurden."
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
@@ -134,7 +136,7 @@ msgstr "Zuletzt aktualisiert am"
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
@@ -144,9 +146,9 @@ msgstr ""
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Verbindungstest"

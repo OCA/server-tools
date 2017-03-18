@@ -3,9 +3,10 @@
 # * base_multi_image
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
 # Bole <bole@dajmi5.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
 # Gustavo Lepri <gustavolepri@gmail.com>, 2015
@@ -19,9 +20,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-17 12:15+0000\n"
-"PO-Revision-Date: 2016-04-22 09:06+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"POT-Creation-Date: 2017-03-04 07:38+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +36,11 @@ msgstr ""
 #, python-format
 msgid "A document can have only one image with the same name."
 msgstr "Ein Dokument darf nur ein Bild mit gleichem Namen haben."
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+msgid "Attachment"
+msgstr "Anhang"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
@@ -77,6 +83,11 @@ msgstr "Dateierweiterung"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
 msgid "Filename"
 msgstr "Dateiname"
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Filestore"
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
@@ -205,6 +216,11 @@ msgid "Product Images"
 msgstr "Produktbilder"
 
 #. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+msgid "Referenced Owner"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
 msgstr "Reihenfolge"
@@ -240,6 +256,30 @@ msgstr "Speicher"
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
 msgstr "URL"
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:205
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:199
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:211
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:217
+#, python-format
+msgid "You must provide an attachment for the image."
+msgstr ""
 
 #. module: base_multi_image
 #: model:ir.model,name:base_multi_image.model_base_multi_image_image
