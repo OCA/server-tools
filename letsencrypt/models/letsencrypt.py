@@ -8,8 +8,10 @@ import urllib2
 import urlparse
 import subprocess
 import tempfile
-from openerp import _, api, models, exceptions
+
+from openerp import _, api, models
 from openerp.tools import config
+from openerp.exceptions import Warning as UserError
 
 
 DEFAULT_KEY_LENGTH = 4096
@@ -40,7 +42,7 @@ class Letsencrypt(models.AbstractModel):
             _logger.log(loglevel, stdout)
 
         if process.returncode:
-            raise exceptions.Warning(
+            raise UserError(
                 _('Error calling %s: %d') % (cmdline[0], process.returncode),
                 ' '.join(cmdline),
             )
@@ -89,20 +91,21 @@ class Letsencrypt(models.AbstractModel):
             return ip.iptype() == 'PRIVATE'
 
         if domain in local_domains or _ip_is_private(domain):
-            raise exceptions.Warning(
+            raise UserError(
                 _("Let's encrypt doesn't work with private addresses "
                   "or local domains!"))
 
     @api.model
-    def generate_csr(self, domain):
+    def generate_csr(self, domain, ignore_altnames=False):
         domains = [domain]
         parameter_model = self.env['ir.config_parameter']
-        altnames = parameter_model.search(
-            [('key', 'like', 'letsencrypt.altname.')],
-            order='key'
-        )
-        for altname in altnames:
-            domains.append(altname.value)
+        if not ignore_altnames:
+            altnames = parameter_model.search(
+                [('key', 'like', 'letsencrypt.altname.')],
+                order='key'
+            )
+            for altname in altnames:
+                domains.append(altname.value)
         _logger.info('generating csr for %s', domain)
         if len(domains) > 1:
             _logger.info('with alternative subjects %s', ','.join(domains[1:]))
@@ -132,23 +135,45 @@ class Letsencrypt(models.AbstractModel):
             self.call_cmdline(cmdline)
         return csr
 
+    def _get_crt(self, csr):
+        """Get certificate for csr using the acme protocol."""
+        from acme_tiny import get_crt, DEFAULT_CA
+        account_key = self.generate_account_key()
+        acme_challenge = get_challenge_dir()
+        if not os.path.isdir(acme_challenge):
+            os.makedirs(acme_challenge)
+        return get_crt(
+            account_key,
+            csr,
+            acme_challenge,
+            log=_logger,
+            CA=DEFAULT_CA
+        )
+
     @api.model
     def cron(self):
+        save_error = None
         domain = urlparse.urlparse(
             self.env['ir.config_parameter'].get_param(
                 'web.base.url', 'localhost')).hostname
         self.validate_domain(domain)
-        account_key = self.generate_account_key()
-        csr = self.generate_csr(domain)
-        acme_challenge = get_challenge_dir()
-        if not os.path.isdir(acme_challenge):
-            os.makedirs(acme_challenge)
         if self.env.context.get('letsencrypt_dry_run'):
             crt_text = 'I\'m a test text'
         else:  # pragma: no cover
-            from acme_tiny import get_crt, DEFAULT_CA
-            crt_text = get_crt(
-                account_key, csr, acme_challenge, log=_logger, CA=DEFAULT_CA)
+            csr = self.generate_csr(domain)
+            try:
+                crt_text = self._get_crt(csr)
+            except Exception as ex:
+                # If certificate renewal fails for altname, we still will
+                # keep main domain with valid certificate:
+                _logger.warn(
+                    'Exception occured during certificate retrieval.'
+                    ' Retrying without altnames. Exception was: %s' %
+                    str(ex)
+                )
+                save_error = ex
+                csr = self.generate_csr(domain, ignore_altnames=True)
+                crt_text = self._get_crt(csr)
         with open(os.path.join(get_data_dir(), '%s.crt' % domain), 'w')\
                 as crt:
             crt.write(crt_text)
@@ -169,3 +194,8 @@ class Letsencrypt(models.AbstractModel):
         else:
             _logger.info('no command defined for reloading webserver, please '
                          'do it manually in order to apply new certificate')
+        if save_error:
+            raise UserError(
+                _("Job completed, but following error was encountered: %s") %
+                str(save_error)
+            )
