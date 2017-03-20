@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="onchange_rule_tree" model="ir.ui.view">
+        <field name="model">onchange.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="field_id"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onchange_rule_form_view" model="ir.ui.view">
+        <field name="model">onchange.rule</field>
+        <field name="arch" type="xml">
+            <form>
+              <sheet>
+                <h2>
+                    <field name="name" placeholder="Name"/>
+                </h2>
+                <group col="4">
+                    <field name="model_id"
+                           attrs="{'readonly': [('readonly', '=', True)]}"/>
+                    <field name="active"/>
+                    <field name="field_id"
+                           attrs="{'readonly': [('readonly', '=', True)]}"/>
+                    <field name="sequence"/>
+                    <field name="implied_model" readonly="1"/>
+                    <field name="company_id" groups="base.group_multi_company"       options="{'no_create': True}"/>
+                    <field name="readonly" invisible="1"/>
+                </group>
+                <group col="4">
+                    <field name="line_ids" colspan="4" nolabel="1"
+                           attrs="{'invisible': [('field_id', '=', False)]}"
+                           context="{'default_model_id': model_id}">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="implied_record"/>
+                            <field name="model_id" invisible="1"/>
+                            <field name="field_id"/>
+                            <field name="value"/>
+                            <field name="domain" placeholer="[('', '', '')]"/>
+                            <field name="readonly"/>
+                        </tree>
+                    </field>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="onchange_rule_action" model="ir.actions.act_window">
+        <field name="name">Onchange Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onchange.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem action="onchange_rule_action"
+              id="menu_onchange_rule_action"
+              parent="base.menu_automation" sequence="10"/>
+
+</odoo>
