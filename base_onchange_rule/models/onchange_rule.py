@@ -2,7 +2,6 @@
 # © 2017 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import ast
 from lxml import etree
 from collections import defaultdict
 
@@ -72,36 +71,6 @@ class OnchangeRule(models.Model):
         return res
 
     @api.model
-    def _get_rules_from_model(self, model_name):
-        model = self.env['ir.model'].search([('model', '=', model_name)])
-        return self.env['onchange.rule'].search(
-            [('model_id', '=', model.id)])
-
-    @api.model
-    def _get_config_from_model(self, model_name, rules):
-        params = defaultdict(list)
-        readonly, configs = [], {}
-        for rule in rules:
-            if rule.config:
-                config = ast.literal_eval(rule.config)
-                for __, conf in config.items():
-                    for field, params in conf.items():
-                        if params.get('readonly'):
-                            readonly.append(field)
-                configs[rule.field_id.name] = config
-        return (configs, readonly)
-
-    @api.model
-    def _update_nodes_from_rule(self, doc, fields_def, field, tag, attrs):
-        for path in ("//field[@name='%s']", "//label[@for='%s']"):
-            node = doc.xpath(path % field)
-            if node:
-                for current_node in node:
-                    current_node.set(tag, str(attrs))
-                    orm.setup_modifiers(current_node, fields_def[field])
-                    print "         NODE  ", current_node.values()
-
-    @api.model
     def _update_onchange_values(self, model_name, values, res, field_name):
         rules = self._get_rules_from_model(model_name)
         if rules:
@@ -113,3 +82,37 @@ class OnchangeRule(models.Model):
                     for field in param_field:
                         res['value'][field] = param_field[field]['value']
         return res
+
+    @api.model
+    def _get_rules_from_model(self, model_name):
+        model = self.env['ir.model'].search([('model', '=', model_name)])
+        return self.env['onchange.rule'].search(
+            [('model_id', '=', model.id)])
+
+    @api.model
+    def _get_config_from_model(self, model_name, rules):
+        readonly, configs = [], {}
+        for rule in rules:
+            lines = defaultdict(dict)
+            for line in rule.line_ids:
+                lines[line.implied_record.id][line.field_id.name] = {
+                    'value': line.m2o_value.id or line.selection_value,
+                    'readonly': line.readonly,
+                    'domain': line.domain,
+                }
+                if (lines[line.implied_record.id][line.field_id.name]
+                        ['readonly']):
+                    readonly.append(line.field_id.name)
+                configs[rule.field_id.name] = lines
+        # print '    >>>> CONFIGS', configs, readonly
+        return (configs, readonly)
+
+    @api.model
+    def _update_nodes_from_rule(self, doc, fields_def, field, tag, attrs):
+        for path in ("//field[@name='%s']", "//label[@for='%s']"):
+            node = doc.xpath(path % field)
+            if node:
+                for current_node in node:
+                    current_node.set(tag, str(attrs))
+                    orm.setup_modifiers(current_node, fields_def[field])
+                    print "         NODE  ", current_node.values()
