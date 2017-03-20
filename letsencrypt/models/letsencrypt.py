@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2016 Therp BV <http://therp.nl>
+# © 2016-2017 Therp BV <http://therp.nl>
 # © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import os
@@ -136,7 +136,7 @@ class Letsencrypt(models.AbstractModel):
     def cron(self):
         domain = urlparse.urlparse(
             self.env['ir.config_parameter'].get_param(
-                'web.base.url', 'localhost')).netloc
+                'web.base.url', 'localhost')).hostname
         self.validate_domain(domain)
         account_key = self.generate_account_key()
         csr = self.generate_csr(domain)
