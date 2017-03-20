@@ -26,8 +26,8 @@ class TestImportSecurityGroup(common.HttpCase):
             };
         }, 1000);
         """ % ('!' if falsify else '')
-        action = self.env.ref('base.action_partner_category_form')
-        link = '/web#action=%s' % action.id
+        action = self.env.ref('base.action_partner_category_form').id
+        link = '/web#action=%s' % action
         self.phantom_js(
             link, code, "$('button.o_list_button_add').length",
             login=user.login)
