@@ -45,8 +45,8 @@
                             <field name="field_id"/>
                             <field name="m2o_value"/>
                             <field name="selection_value"/>
+                            <field name="readonly"/>
                             <!-- <field name="domain" placeholer="[('', '', '')]"/> -->
-                            <!-- <field name="readonly"/> -->
                         </tree>
                     </field>
                 </group>

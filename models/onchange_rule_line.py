@@ -32,7 +32,6 @@ class OnchangeRuleLine(models.TransientModel):
         help="Final value after onchange is executed")
     readonly = fields.Boolean()
     domain = fields.Char()
-    implied_model = fields.Char(string='Implied Model')  # Remove
 
     @api.model
     def _authorised_models(self):
@@ -79,10 +78,10 @@ class OnchangeRuleLine(models.TransientModel):
 
     @api.model
     def create(self, vals):
-        self._check_line(vals)
+        # self._check_line(vals)
         return super(OnchangeRuleLine, self).create(vals)
 
     @api.multi
     def write(self, vals):
-        self._check_line(vals)
+        # self._check_line(vals)
         return super(OnchangeRuleLine, self).write(vals)
