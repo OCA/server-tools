@@ -20,35 +20,52 @@ class OnchangeRuleLine(models.TransientModel):
     model_id = fields.Many2one(
         comodel_name='ir.model', string='Model', required=True)
     field_id = fields.Many2one(
-        comodel_name='ir.model.fields', string='Field',
-        domain="[('model_id', '=', model_id)]", required=True,
+        comodel_name='ir.model.fields', string='Destination Field',
+        domain="[('model_id', '=', model_id), "
+               "('ttype', 'in', ('many2one', 'selection'))]",
+        required=True,
         help="Select field that'll be driven by onchange "
              "according to implied record.")
-    value = fields.Char(required=True)
-    domain = fields.Char()
+    selection_value = fields.Char()
+    m2o_value = fields.Reference(
+        selection='_authorised_models', string="Many2one Value",
+        help="Final value after onchange is executed")
     readonly = fields.Boolean()
+    domain = fields.Char()
+    implied_model = fields.Char(string='Implied Model')  # Remove
 
     @api.model
     def _authorised_models(self):
-        if self.onchange_rule_id.implied_model:
-            model = self.env['ir.model'].search(
-                [('model', '=', self.onchange_rule_id.implied_model)])
-            return [(model.model, model.name), ]
-        else:
-            return [('res.partner', 'Partner')]
+        return [(x.model, x.name) for x in self.env['ir.model'].search([])]
 
-    # @api.model
-    # def default_get(self, fields):
-    #     return {
-    #         'implied_record': '%s,False' % self._authorised_models()[0][0]
-    #     }
+    @api.multi
+    @api.onchange('field_id')
+    def _compute_m2o_value(self):
+        for rec in self:
+            if rec.field_id.relation:
+                last = self.env[rec.field_id.relation].search(
+                    [], order='id desc', limit=1)
+                rec.m2o_value = '%s,%s' % (rec.field_id.relation, last.id)
+
+    @api.model
+    def default_get(self, fields):
+        implied_record = False
+        if self._context.get('implied_model'):
+            last = self.env[self._context['implied_model']].search(
+                [], order='id desc', limit=1)
+            implied_record = '%s,%s' % (
+                self._context['implied_model'], last.id)
+        return {
+            'implied_record': implied_record,
+            'model_id': self._context.get('default_model_id')
+        }
 
     @api.model
     def _check_line(self, vals):
         """ Check value and domain
         """
-        # check value field
-        value = vals.get('value') or self.value
+        # TODO transformer pour champ selection
+        value = vals.get('selection_value') or self.selection_value
         field_id = vals.get('field_id') or self.field_id.id
         field = self.env['ir.model.fields'].browse(field_id)
         origin_obj = self.env[field.relation].search([('id', '=', int(value))])
@@ -69,48 +86,3 @@ class OnchangeRuleLine(models.TransientModel):
     def write(self, vals):
         self._check_line(vals)
         return super(OnchangeRuleLine, self).write(vals)
-
-    # @api.model
-    # def default_get(self, fields):
-    #     active_id = self._context.get('active_id')
-    #     origin = self.env['onchange.rule'].browse(active_id)
-    #     if origin:
-    #         return {
-    #             'src_model_id': origin.model_id.id,
-    #             'name': origin.name,
-    #             'config_ids': self._deserialize_dict(origin)
-    #         }
-    #     return {}
-
-    # def _deserialize_dict(self, setting):
-    #     if not setting.config:
-    #         return False
-    #     valist = []
-    #     for id, rule in ast.literal_eval(setting.config).items():
-    #         implied_record = '%s,%s' % (setting.implied_model, id)
-    #         for field, item in rule.items():
-    #             values = {
-    #                 'implied_record': implied_record,
-    #                 'model_id': setting.model_id.id,
-    #                 'field_id': self.env['ir.model.fields'].search([
-    #                     ('name', '=', field),
-    #                     ('relation', '=', setting.implied_model)]).id,
-    #                 'value': str(item['value']),
-    #             }
-
-    #         valist.append((0, 0, values))
-    #     print valist
-    #     return valist
-
-# [(0, 0, {'model_id': False, 'field_id': False, 'value': '1',
-# 'implied_record': u'sale.covenant,1'})]
-
-    # @api.model
-    # def create(self, vals):
-
-    # @api.multi
-    # def write(self, vals):
-
-    # def _default_implied_record(self, *args):
-    #     return '%s,False' % self._implied_model
-

@@ -7,14 +7,11 @@ from lxml import etree
 from collections import defaultdict
 
 from odoo.osv import orm
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import api, fields, models
+# from odoo.exceptions import UserError
 
 
-MESSAGE = _("The field 'Configuration' doesn't contains a valid dict")
-
-
-class RecordSettingRule(models.Model):
+class OnchangeRule(models.Model):
     _name = "onchange.rule"
 
     @api.model
@@ -33,43 +30,19 @@ class RecordSettingRule(models.Model):
         comodel_name='ir.model', string='Model', required=True,
         help="")
     field_id = fields.Many2one(
-        comodel_name='ir.model.fields', string='Field',
+        comodel_name='ir.model.fields', string='Onchange Field',
         domain="[('model_id', '=', model_id)]", required=True)
     implied_model = fields.Char(
         string='Implied Model',
         related='field_id.relation',
         help="")
-    # src_model_id = fields.Many2one(
-    #     comodel_name='ir.model', string='Model', compute='_compute_src_model',
-    #     help="")
     readonly = fields.Boolean(
         help="If checked ensure than record can't be updated by user "
              "(only by inserted data)")
-    # config = fields.Text(string='Configuration')
     sequence = fields.Integer()
     line_ids = fields.One2many(
         comodel_name='onchange.rule.line', inverse_name='onchange_rule_id',
-        string='Lines')
-
-    # @api.one
-    # @api.constrains('config')
-    # def _check_config(self):
-    #     # if not self._context.get('install_mode'):
-    #     try:
-    #         config = False
-    #         if self.config:
-    #             config = ast.literal_eval(self.config)
-    #             if not isinstance(config, dict):
-    #                 raise UserError(MESSAGE)
-    #     except:
-    #         raise UserError(MESSAGE)
-    #     # check ids as first key
-    #     if config and [x for x in config if not isinstance(x, int)]:
-    #         raise UserError("First key in dict must be digit only")
-    #         # could be to search with ids in original model
-    #         # and compare difference
-    #     # TODO check 'value' is int,
-    #     # TODO if exists, check if domain is [()], if readonly is True
+        string='Onchange Rule Lines')
 
     @api.onchange('model_id')
     def _onchange_field(self):
