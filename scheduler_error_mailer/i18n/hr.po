@@ -1,24 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* scheduler_error_mailer
-#
+# * scheduler_error_mailer
+# 
+# Translators:
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 11:55+0000\n"
-"PO-Revision-Date: 2014-09-18 11:55+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-03-02 18:41+0000\n"
+"PO-Revision-Date: 2018-03-02 18:41+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: scheduler_error_mailer
-#: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
-msgid "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+#: model:mail.template,body_html:scheduler_error_mailer.scheduler_error_mailer
+msgid ""
+"\n"
+"                \n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
 "<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
 "\n"
@@ -45,32 +50,32 @@ msgid "\n"
 "Database : ${ctx.get('dbname')}\n"
 "</p>\n"
 "</div>\n"
-"    "
+"    \n"
+"            "
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/ir_cron.py:74
-#, python-format
-msgid "Error :"
-msgstr ""
-
-#. module: scheduler_error_mailer
-#: field:ir.cron,email_template:0
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Error E-mail Template"
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: help:ir.cron,email_template:0
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/ir_cron.py:75
+#: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: model:email.template,subject:scheduler_error_mailer.scheduler_error_mailer
+#: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
 msgstr ""
+
+#. module: scheduler_error_mailer
+#: model:ir.model,name:scheduler_error_mailer.model_ir_cron
+msgid "ir.cron"
+msgstr "ir.cron"
