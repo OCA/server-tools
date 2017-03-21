@@ -73,6 +73,8 @@ class MassEditingWizard(models.TransientModel):
                         'nolabel': '1',
                         'attrs': ("{'invisible': [('selection__" +
                                   field.name + "', '=', 'clear')]}"),
+                        'modifiers': ('{"invisible": [["selection__' +
+                                      field.name + '", "=", "clear"]]}'),
                     })
                 elif field.ttype == "one2many":
                     all_fields["selection__" + field.name] = {
@@ -99,6 +101,8 @@ class MassEditingWizard(models.TransientModel):
                         'nolabel': '1',
                         'attrs': ("{'invisible':[('selection__" +
                                   field.name + "', '=', 'remove')]}"),
+                        'modifiers': ('{"invisible":[["selection__' +
+                                      field.name + '", "=", "remove"]]}'),
                     })
                 elif field.ttype == "many2one":
                     all_fields["selection__" + field.name] = {
@@ -121,6 +125,8 @@ class MassEditingWizard(models.TransientModel):
                         'colspan': '4',
                         'attrs': ("{'invisible':[('selection__" +
                                   field.name + "', '=', 'remove')]}"),
+                        'modifiers': ('{"invisible":[("selection__' +
+                                      field.name + '", "=", "remove")]}'),
                     })
                 elif field.ttype == "char":
                     all_fields["selection__" + field.name] = {
@@ -142,6 +148,8 @@ class MassEditingWizard(models.TransientModel):
                         'nolabel': '1',
                         'attrs': ("{'invisible':[('selection__" +
                                   field.name + "','=','remove')]}"),
+                        'modifiers': ('{"invisible":[("selection__' +
+                                      field.name + '","=","remove")]}'),
                         'colspan': '4',
                     })
                 elif field.ttype == 'selection':
@@ -160,6 +168,8 @@ class MassEditingWizard(models.TransientModel):
                         'colspan': '4',
                         'attrs': ("{'invisible':[('selection__" +
                                   field.name + "', '=', 'remove')]}"),
+                        'modifiers': ('{"invisible":[("selection__' +
+                                      field.name + '", "=", "remove")]}'),
                     })
                     all_fields[field.name] = {
                         'type': field.ttype,
@@ -196,6 +206,8 @@ class MassEditingWizard(models.TransientModel):
                             'nolabel': '1',
                             'attrs': ("{'invisible':[('selection__" +
                                       field.name + "','=','remove')]}"),
+                            'modifiers': ('{"invisible":[("selection__' +
+                                          field.name + '","=","remove")]}'),
                         })
                     else:
                         all_fields["selection__" + field.name] = {
@@ -212,6 +224,8 @@ class MassEditingWizard(models.TransientModel):
                             'nolabel': '1',
                             'attrs': ("{'invisible':[('selection__" +
                                       field.name + "','=','remove')]}"),
+                            'modifiers': ('{"invisible":[("selection__' +
+                                          field.name + '","=","remove")]}'),
                             'colspan': '4',
                         })
             # Patch fields with required extra data
