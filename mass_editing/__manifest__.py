@@ -6,11 +6,13 @@
     'version': '10.0.1.1.0',
     'author': 'Serpent Consulting Services Pvt. Ltd., '
               'Tecnativa, '
+              'MONK Software, '
               'Odoo Community Association (OCA)',
     'contributors': [
         'Oihane Crucelaegui <oihanecrucelaegi@gmail.com>',
         'Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>',
-        'Jay Vora <jay.vora@serpentcs.com>'
+        'Jay Vora <jay.vora@serpentcs.com>',
+        'Leonardo Donelli <leonardo.donelli@monksoftware.it>',
     ],
     'category': 'Tools',
     'website': 'http://www.serpentcs.com',

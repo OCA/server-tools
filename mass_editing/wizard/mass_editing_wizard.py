@@ -47,9 +47,12 @@ class MassEditingWizard(models.TransientModel):
                     all_fields["selection__" + field.name] = {
                         'type': 'selection',
                         'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'),
-                                      ('remove_m2m', 'Remove'),
-                                      ('add', 'Add')]
+                        'selection': [
+                            ('set', 'Set'),
+                            ('clear', 'Clear (remove all values)'),
+                            ('remove_value', 'Remove specific values'),
+                            ('add', 'Add')
+                        ],
                     }
                     xml_group = etree.SubElement(xml_group, 'group', {
                         'colspan': '6',
@@ -69,13 +72,17 @@ class MassEditingWizard(models.TransientModel):
                         'colspan': '6',
                         'nolabel': '1',
                         'attrs': ("{'invisible': [('selection__" +
-                                  field.name + "', '=', 'remove_m2m')]}"),
+                                  field.name + "', '=', 'clear')]}"),
                     })
                 elif field.ttype == "one2many":
                     all_fields["selection__" + field.name] = {
                         'type': 'selection',
                         'string': field_info[field.name]['string'],
-                        'selection': [('set', 'Set'), ('remove', 'Remove')],
+                        'selection': [
+                            ('set', 'Set'),
+                            ('remove', 'Clear'),
+                            ('remove_value', 'Remove specific values'),
+                        ],
                     }
                     all_fields[field.name] = {
                         'type': field.ttype,
@@ -91,7 +98,7 @@ class MassEditingWizard(models.TransientModel):
                         'colspan': '6',
                         'nolabel': '1',
                         'attrs': ("{'invisible':[('selection__" +
-                                  field.name + "', '=', 'remove_o2m')]}"),
+                                  field.name + "', '=', 'remove')]}"),
                     })
                 elif field.ttype == "many2one":
                     all_fields["selection__" + field.name] = {
@@ -245,8 +252,13 @@ class MassEditingWizard(models.TransientModel):
                         values.update({split_key: vals.get(split_key, False)})
                     elif val == 'remove':
                         values.update({split_key: False})
-                    elif val == 'remove_m2m':
+                    elif val == 'clear':
                         values.update({split_key: [(5, 0, [])]})
+                    elif val == 'remove_value':
+                        x2m_list = []
+                        for x2m_id in vals.get(split_key, False)[0][2]:
+                            x2m_list.append((3, x2m_id, False))
+                        values.update({split_key: x2m_list})
                     elif val == 'add':
                         m2m_list = []
                         for m2m_id in vals.get(split_key, False)[0][2]:

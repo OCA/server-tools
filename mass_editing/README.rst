@@ -92,6 +92,7 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@gmail.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
+* Leonardo Donelli @ MONK Software <leonardo.donelli@monksoftware.it>
 
 Maintainer
 ----------
@@ -107,4 +108,3 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
-
