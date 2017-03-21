@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -48,16 +48,18 @@ class OnchangeRuleLine(models.TransientModel):
 
     @api.model
     def default_get(self, fields):
+        res = super(OnchangeRuleLine, self).default_get(fields)
         implied_record = False
         if self._context.get('implied_model'):
             last = self.env[self._context['implied_model']].search(
                 [], order='id desc', limit=1)
             implied_record = '%s,%s' % (
                 self._context['implied_model'], last.id)
-        return {
+        res.update({
             'implied_record': implied_record,
             'model_id': self._context.get('default_model_id')
-        }
+        })
+        return res
 
     @api.model
     def _check_line(self, vals):
@@ -70,8 +72,8 @@ class OnchangeRuleLine(models.TransientModel):
         origin_obj = self.env[field.relation].search([('id', '=', int(value))])
         if not origin_obj:
             raise UserError(
-                "'%s' value doesn't exist in model '%s'. "
-                "Choose an existing value" % (
+                _("'%s' value doesn't exist in model '%s'. "
+                  "Choose an existing value") % (
                     value, origin_obj._description))
         # TODO check domain
         return True

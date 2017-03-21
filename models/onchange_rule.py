@@ -9,6 +9,9 @@ from odoo.osv import orm
 from odoo import api, fields, models
 # from odoo.exceptions import UserError
 
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class OnchangeRule(models.Model):
     _name = "onchange.rule"
@@ -59,7 +62,7 @@ class OnchangeRule(models.Model):
                                         src_model._name, rules))
                 fields_def = src_model.fields_get(
                     allfields=None, attributes=None)
-                print 'params, reado', params, readonly
+                _logger.debug("  >>>> params, reado %s %s ", params, readonly)
                 for field in params.keys():
                     for param in params[field]:
                         self._update_nodes_from_rule(
@@ -104,7 +107,7 @@ class OnchangeRule(models.Model):
                         ['readonly']):
                     readonly.append(line.field_id.name)
                 configs[rule.field_id.name] = lines
-        # print '    >>>> CONFIGS', configs, readonly
+                _logger.debug("  >>>> confs, reado %s %s ", configs, readonly)
         return (configs, readonly)
 
     @api.model
@@ -115,4 +118,3 @@ class OnchangeRule(models.Model):
                 for current_node in node:
                     current_node.set(tag, str(attrs))
                     orm.setup_modifiers(current_node, fields_def[field])
-                    print "         NODE  ", current_node.values()
