@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<template>
+
+    <t t-name="red_october.WidgetProfileChoose">
+        <li id="roUserMenu" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <span class="oe_topbar_name">
+                    <i class="fa fa-lock" />
+                </span>
+                <b class="caret" />
+            </a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-header">
+                    <strong t-esc="widget.currentProfile.name" />
+                </li>
+                <li class="divider" />
+                <li id="roProfilePasswordChange">
+                    <a href="#">Change Password</a>
+                </li>
+                <li id="roProfileNew">
+                    <a href="#">New Profile</a>
+                </li>
+                <li class="divider" />
+                <li class="dropdown-header" t-if="Object.keys(widget.profiles).length > 1">
+                    Change Profile
+                </li>
+                <t t-foreach="Object.keys(widget.profiles)" t-as="profile_id">
+                    <t t-set="profile" t-value="widget.profiles[profile_id]" />
+                    <li t-if="profile.id != widget.currentProfile.id">
+                        <a class="roProfileSelect" href="#"
+                           t-att-data-profile-id="profile.id">
+                            <t t-esc="profile.name"/>
+                        </a>
+                    </li>
+                </t>
+            </ul>
+        </li>
+    </t>
+
+</template>

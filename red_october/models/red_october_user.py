@@ -94,7 +94,7 @@ class RedOctoberUser(models.Model):
         self._update_role('revoke')
         return super(RedOctoberUser, self).unlink()
 
-    @api.model_cr_context
+    @api.model
     def change_current_user(self, ro_user_id):
         """ It changes the current session user to the provided.
 
@@ -104,7 +104,7 @@ class RedOctoberUser(models.Model):
         """
         setattr(request.session, self.SESSION_USER_ATTR, ro_user_id)
 
-    @api.model_cr_context
+    @api.model
     def get_current_user(self):
         """ It returns the RedOctoberUser that the session user is using.
 
@@ -123,16 +123,26 @@ class RedOctoberUser(models.Model):
         except AttributeError:
             pass
         if not user:
-            user = self.env['res.users'].browse(request.session.uid)
-            user = user.default_red_october_id
+            user = self.upsert_by_user()
         return user
 
-    @api.model_cr_context
+    @api.model
+    def read_current_user(self):
+        user = self.get_current_user()
+        return user.read()
+
+    @api.model
     def get_user_profiles(self):
         """ It returns the current user's profiles. """
-        return self.search([
+        users = self.search([
             ('user_id', '=', self.env.user.id),
         ])
+        return users
+
+    @api.model
+    def read_user_profiles(self):
+        users = self.get_user_profiles()
+        return users.read()
 
     @api.model
     def upsert_by_user(self, user=None, vaults=None):
@@ -141,10 +151,10 @@ class RedOctoberUser(models.Model):
             user = self.env.user
         if vaults is None:
             vaults = user.company_id.red_october_ids
-        vault_user = self.search([
-            ('user_id', '=', user.id),
-            ('vault_ids', 'in', vaults.ids),
-        ])
+        domain = [('user_id', '=', user.id)]
+        if vaults:
+            domain += [('vault_ids', 'in', vaults.ids)]
+        vault_user = self.search(domain)
         if not vault_user:
             vault_user = self.create({
                 'user_id': user.id,

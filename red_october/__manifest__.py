@@ -16,12 +16,16 @@
         ],
     },
     'data': [
+        'views/assets.xml',
         'views/red_october_delegation.xml',
         'views/red_october_file.xml',
         'views/red_october_user.xml',
         'views/red_october_vault.xml',
         'views/red_october_menu.xml',
         'wizards/red_october_vault_activate.xml',
+    ],
+    'qweb': [
+        'static/src/xml/*.xml',
     ],
     'installable': True,
 }
