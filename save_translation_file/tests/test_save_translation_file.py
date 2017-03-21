@@ -4,9 +4,9 @@
 
 import os
 
-from openerp.modules import get_module_path
-from openerp.tools.misc import get_iso_codes
-from openerp.tools.translate import load_language
+from odoo.modules import get_module_path
+from odoo.tools.misc import get_iso_codes
+from odoo.tools.translate import load_language
 import openerp.tests.common as common
 
 

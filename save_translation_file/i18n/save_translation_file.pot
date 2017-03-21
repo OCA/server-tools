@@ -18,17 +18,17 @@ msgstr ""
 #. module: save_translation_file
 #: model:ir.model,name:save_translation_file.model_ir_module_module
 msgid "Module"
-msgstr "Module"
+msgstr ""
 
 #. module: save_translation_file
 #: model:ir.ui.view,arch_db:save_translation_file.module_form
 #: model:ir.ui.view,arch_db:save_translation_file.module_tree
 msgid "Overwrite all i18n files for this module ?"
-msgstr "Ecraser tous les fichiers i18n de ce module ?"
+msgstr ""
 
 #. module: save_translation_file
 #: model:ir.ui.view,arch_db:save_translation_file.module_form
 #: model:ir.ui.view,arch_db:save_translation_file.module_tree
 msgid "Save translation file"
-msgstr "Sauvegarder le fichier de traduction"
+msgstr ""
 

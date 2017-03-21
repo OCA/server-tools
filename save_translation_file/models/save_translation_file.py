@@ -4,9 +4,9 @@
 
 import os
 
-from openerp import models, api, tools
-from openerp.modules import get_module_path
-from openerp.tools.misc import get_iso_codes
+from odoo import models, api, tools
+from odoo.modules import get_module_path
+from odoo.tools.misc import get_iso_codes
 
 
 class IrModuleModule(models.Model):
