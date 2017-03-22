@@ -33,13 +33,13 @@ class ExceptionRule(models.Model):
         string='Sequence',
         help="Gives the sequence order when applying the test")
     rule_group = fields.Selection(
-        [],
+        selection=[],
         help="Rule group is used to group the rules that must validated "
         "at same time for a target object. Ex: "
         "validate sale.order.line rules with sale order rules.",
         required=True)
     model = fields.Selection(
-        [],
+        selection=[],
         string='Apply on', required=True)
     active = fields.Boolean('Active')
     code = fields.Text(
