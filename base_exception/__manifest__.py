@@ -9,7 +9,7 @@
   exceptions to be applied on different models (sale order, invoice, ...)""",
  'author': "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
- 'depends': ['base'],
+ 'depends': ['base_setup'],
  'license': 'AGPL-3',
  'data': [
      'security/base_exception_security.xml',
