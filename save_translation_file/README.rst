@@ -50,6 +50,7 @@ Contributors
 ------------
 
 * Sylvain Calador <sylvain.calador@akretion.com>
+* Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 Maintainer
 ----------
