@@ -6,7 +6,7 @@
 {
     "name": "Base Jsonify",
     "summary": "Base module that provide the jsonify method on all object",
-    "version": "9.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://odoo-community.org/",
     "author": "Akretion, Odoo Community Association (OCA)",

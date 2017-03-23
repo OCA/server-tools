@@ -10,6 +10,10 @@ This module add the jsonify method to the ORM. This method take as argument
 the browse record and the "parser" that specify the field to extract.
 
 Example of parser:
+
+
+.. code-block:: python
+
     parser = [
         'name',
         'number',

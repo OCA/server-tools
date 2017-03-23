@@ -5,6 +5,7 @@
 
 from openerp import api, models
 from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 
 @api.multi
@@ -38,7 +39,7 @@ def jsonify(self, parser):
                     else:
                         res[field_name] = None
                 else:
-                    raise UserError('Wrong parser configuration')
+                    raise UserError(_('Wrong parser configuration'))
             else:
                 res[field] = rec[field]
         result.append(res)
