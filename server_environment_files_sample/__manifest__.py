@@ -21,7 +21,7 @@
 
 {
     "name": "Example server configuration environment files repository module",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
@@ -29,6 +29,4 @@
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
-    'installable': False,
-    "active": False,
 }

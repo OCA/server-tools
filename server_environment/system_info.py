@@ -24,8 +24,8 @@ import os
 import platform
 import subprocess
 
-from openerp import release
-from openerp.tools.config import config
+from odoo import release
+from odoo.tools.config import config
 
 
 def _get_output(cmd):
@@ -61,6 +61,6 @@ def get_server_environment():
         ('architecture', platform.architecture()[0]),
         ('locale', os_lang),
         ('python', platform.python_version()),
-        ('openerp', release.version),
+        ('odoo', release.version),
         ('revision', rev_id),
     )
