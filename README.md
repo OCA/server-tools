@@ -20,6 +20,7 @@ addon | version | summary
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
+[base_exception](base_exception/) | 10.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
 [base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
 [base_external_dbsource_mssql](base_external_dbsource_mssql/) | 10.0.1.0.0 | External Database Source - MSSQL
@@ -37,6 +38,7 @@ addon | version | summary
 [date_range](date_range/) | 10.0.1.0.0 | Manage all kind of date range
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
+[keychain](keychain/) | 10.0.1.0.0 | Store accounts and credentials
 [mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
