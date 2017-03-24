@@ -44,6 +44,8 @@ addon | version | summary
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
+[server_environment](server_environment/) | 10.0.1.2.0 | move some configurations out of the database
+[server_environment_files_sample](server_environment_files_sample/) | 10.0.1.0.0 | sample config file for server_environment
 [users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
 
@@ -82,8 +84,6 @@ addon | version | summary
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 (unported) | Remove fields in all settings views marked as enterprise
 [security_protector](security_protector/) | 0.1 (unported) | Security protector
 [server_env_base_external_referentials](server_env_base_external_referentials/) | 1.0 (unported) | Server environment for base_external_referential
-[server_environment](server_environment/) | 9.0.1.2.0 (unported) | move some configurations out of the database
-[server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 (unported) | sample config file for server_environment
 [super_calendar](super_calendar/) | 8.0.0.2.0 (unported) | This module allows to create configurable calendars.
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 (unported) | Configuration Helper - Tests
 [users_ldap_groups](users_ldap_groups/) | 8.0.1.2.0 (unported) | Adds user accounts to groups based on rules defined by the administrator.
