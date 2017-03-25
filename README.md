@@ -13,6 +13,7 @@ This project aim to deal with modules related to manage Odoo server environment 
  - Manage email settings
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
