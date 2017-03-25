@@ -4,8 +4,8 @@
 # © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp.addons.auth_signup.controllers.main import AuthSignupHome
-from openerp.http import request
+from odoo.addons.auth_signup.controllers.main import AuthSignupHome
+from odoo.http import request
 
 
 class AuthSignupHome(AuthSignupHome):
