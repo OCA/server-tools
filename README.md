@@ -94,3 +94,4 @@ addon | version | summary
 Translation Status
 ------------------
 [![Transifex Status](https://www.transifex.com/projects/p/OCA-server-tools-10-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-server-tools-10-0)
+Dummy change to test ssh runbot build connection
