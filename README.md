@@ -50,6 +50,7 @@ addon | version | summary
 [users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
 
+
 Unported addons
 ---------------
 addon | version | summary
