@@ -85,6 +85,7 @@ addon | version | summary
 [users_ldap_push](users_ldap_push/) | 8.0.1.0.0 | Creates a ldap entry when you create a user in Odoo
 [web_context_tunnel](web_context_tunnel/) | 8.0.2.0.0 | Web Context Tunnel
 
+
 Unported addons
 ---------------
 addon | version | summary
