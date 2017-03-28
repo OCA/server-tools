@@ -3,19 +3,19 @@
 # * base_external_dbsource
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
+"POT-Creation-Date: 2017-06-30 12:20+0000\n"
+"PO-Revision-Date: 2017-06-30 12:20+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_ES\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_external_dbsource
@@ -93,48 +93,48 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Aangemaakt door"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Aangemaakt op"
 
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
 msgid "Database Sources"
-msgstr ""
+msgstr "Database-bronnen"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_name
 msgid "Datasource name"
-msgstr ""
+msgstr "Databron-naam"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
 msgid "Display Name"
-msgstr "Nombre para mostrar"
+msgstr "weergavenaam"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Externe DB bron"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr ""
+msgstr "Externe DB bronnen"
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
 #: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr ""
+msgstr "Externe databasebronnen"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Firebird"
-msgstr ""
+msgstr "Firebird"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
@@ -151,37 +151,37 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Laatst gewijzigd op"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Microsoft SQL Server"
-msgstr ""
+msgstr "Microsoft SQL Server"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "MySQL"
-msgstr ""
+msgstr "MySQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "ODBC"
-msgstr ""
+msgstr "ODBC"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_ca_certs
@@ -196,17 +196,17 @@ msgstr ""
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Test Verbinding"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:160

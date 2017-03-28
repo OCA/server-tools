@@ -70,7 +70,6 @@ Contributors
 * Daniel Reis <dreis.pt@hotmail.com>
 * Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
 * Gervais Naoussi <gervaisnaoussi@gmail.com>
-* Michell Stuttgart <michellstut@gmail.com>
 * Dave Lasley <dave@laslabs.com>
 
 Maintainer
