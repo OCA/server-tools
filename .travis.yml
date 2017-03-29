@@ -34,7 +34,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
   # Install libraries that require specific development headers, but not during lint test
-  - if ! [ "$LINT_CHECK" = "1" ]; then pip install pymssql MySQL-python pyodbc raven; fi
+  - if ! [ "$LINT_CHECK" = "1" ]; then pip install pymssql MySQL-python pyodbc; fi
   - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:

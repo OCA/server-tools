@@ -43,6 +43,7 @@ TRANSPORT_CLASS_MAP = {
 ODOO_USER_EXCEPTIONS = [
     'odoo.exceptions.AccessDenied',
     'odoo.exceptions.AccessError',
+    'odoo.exceptions.DeferredException',
     'odoo.exceptions.MissingError',
     'odoo.exceptions.RedirectWarning',
     'odoo.exceptions.UserError',

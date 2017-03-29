@@ -49,7 +49,8 @@ configuration file:
 
 ``sentry_ignored_exceptions``  A string of comma-separated exceptions which should be ignored.       ``odoo.exceptions.AccessDenied,
                                You can use a star symbol (*) at the end, to ignore all exceptions    odoo.exceptions.AccessError,
-                               from a module, eg.: *odoo.exceptions.**.                              odoo.exceptions.MissingError,
+                               from a module, eg.: *odoo.exceptions.**.                              odoo.exceptions.DeferredException,
+                                                                                                     odoo.exceptions.MissingError,
                                                                                                      odoo.exceptions.RedirectWarning,
                                                                                                      odoo.exceptions.UserError,
                                                                                                      odoo.exceptions.ValidationError,
@@ -129,7 +130,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/maintainer-tools/issues>`_. In case of trouble, please
+<https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
