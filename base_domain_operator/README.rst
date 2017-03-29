@@ -16,6 +16,11 @@ Currently implemented operators
 
     [('id', 'parent_of', [42])]
 
+``substring_of``
+  The inverse of ``like``: Searches for values that are a substring of the value given. Note that this is very inefficient in general::
+
+    [('ref', 'substring_of', 'long string')]
+
 Usage
 =====
 

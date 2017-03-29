@@ -27,3 +27,8 @@ class TestBaseDomainOperator(TransactionCase):
             ('id', 'parent_of', child.id),
         ])
         self.assertFalse(parents & nonparents)
+        # substring
+        substring_matches = self.env['res.partner'].search([
+            ('name', 'substring_of', ' YourCompany is great')
+        ])
+        self.assertTrue(substring_matches)

@@ -2,6 +2,7 @@
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from collections import Iterable
+from psycopg2.extensions import AsIs
 # pylint: disable=W0402
 from openerp.osv.expression import ExtendedLeaf, OR_OPERATOR, AND_OPERATOR,\
     FALSE_DOMAIN
@@ -82,3 +83,24 @@ class BaseDomainOperator(models.AbstractModel):
             ExtendedLeaf(p, expression.root_model)
             for p in parent_of_domain(left, right, model, prefix=prefix)
         ] or FALSE_DOMAIN
+
+    @api.model
+    def _operator_substring_of(self, leaf, expression):
+        """Implement ('field', 'substring_of', 'long_string') which is `like`
+        transposed"""
+        field = leaf[0].split('.')[-1]
+        model = expression.root_model
+        return [
+            ExtendedLeaf(
+                (
+                    'id', 'inselect',
+                    (
+                        'select id from "%s" where %s like %s || "%s" || %s',
+                        (
+                            AsIs(model._table), leaf[2], '%', AsIs(field), '%'
+                        )
+                    ),
+                ),
+                model, internal=True,
+            )
+        ]
