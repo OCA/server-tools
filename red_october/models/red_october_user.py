@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 LasLabs Inc.
+# Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+
+import logging
 
 from odoo import _, api, fields, models
 from odoo.http import request
 from odoo.exceptions import ValidationError
+
+
+_logger = logging.getLogger(__name__)
 
 
 class RedOctoberUser(models.Model):
@@ -46,16 +51,24 @@ class RedOctoberUser(models.Model):
         required=True,
     )
 
-    _sql_constraints = [
-        ('user_vaults_unique', 'UNIQUE(user_id, vault_ids)',
-         'This user is already registered in this vault.'),
-    ]
-
     @api.model
     def _default_vault_ids(self):
         return [
-            (4, self.env['red.october.vault'].get_current_vault().id),
+            (6, 0, self.env['red.october.vault'].get_current_vault().ids),
         ]
+
+    @api.multi
+    @api.constrains('user_id', 'vault_ids')
+    def _check_user_id_vault_ids(self):
+        for record in self:
+            results = self.search([
+                ('user_id', '=', record.user_id.id),
+                ('vault_ids', 'in', record.vault_ids.ids),
+            ])
+            if len(results) > 1:
+                raise ValidationError(_(
+                    'This user is already registered in this vault.',
+                ))
 
     @api.model
     def create(self, vals):
@@ -65,7 +78,7 @@ class RedOctoberUser(models.Model):
         res = super(RedOctoberUser, self).create(vals)
         if already_active:
             return res
-        for vault in self.vault_ids:
+        for vault in res.vault_ids:
             with vault.get_api() as api:
                 api.create_user()
                 if res.is_admin:
@@ -103,6 +116,21 @@ class RedOctoberUser(models.Model):
                 session default.
         """
         setattr(request.session, self.SESSION_USER_ATTR, ro_user_id)
+
+    @api.multi
+    def change_password(self, old_passwd, new_passwd, confirm_passwd):
+        """ It changes the password for the user singleton. """
+        self.ensure_one()
+        if new_passwd != confirm_passwd:
+            raise ValidationError(_(
+                'The new password and confirmation do not match. Please '
+                'try again.',
+            ))
+        user = self.get_current_user()
+        for vault in self.vault_ids:
+            with vault.get_api(user, old_passwd) as api:
+                api.change_password(new_passwd)
+        return True
 
     @api.model
     def get_current_user(self):
@@ -151,9 +179,16 @@ class RedOctoberUser(models.Model):
             user = self.env.user
         if vaults is None:
             vaults = user.company_id.red_october_ids
-        domain = [('user_id', '=', user.id)]
-        if vaults:
-            domain += [('vault_ids', 'in', vaults.ids)]
+        if not vaults:
+            _logger.debug(
+                'No vault was selected, and no default vault exists '
+                'for your company.'
+            )
+            return
+        domain = [
+            ('user_id', '=', user.id),
+            ('vault_ids', 'in', vaults.ids),
+        ]
         vault_user = self.search(domain)
         if not vault_user:
             vault_user = self.create({
@@ -163,9 +198,9 @@ class RedOctoberUser(models.Model):
         return vault_user
 
     @api.multi
-    def _update_role(self):
+    def _update_role(self, user=None, passwd=None):
         """ It alters the user role. """
         for record in self:
             for vault in record.vault_ids:
-                with vault.get_api() as api:
+                with vault.get_api(user, passwd) as api:
                     api.modify_user_role(res.name, command=role)

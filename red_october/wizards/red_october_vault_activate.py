@@ -5,8 +5,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-import logging
-_logger = logging.getLogger(__name__)
+from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
 
 
 class RedOctoberVaultActivate(models.TransientModel):
@@ -18,13 +17,6 @@ class RedOctoberVaultActivate(models.TransientModel):
         string='Already Active',
         help='Check this if the vault has already been activated.',
     )
-    root_user_id = fields.Many2one(
-        string='Admin User',
-        comodel_name='res.users',
-        default=lambda s: s.env.ref('base.user_root'),
-        required=True,
-        help="The vault's admin user will be assigned to this Odoo user.",
-    )
     vault_ids = fields.Many2many(
         string='Vaults',
         comodel_name='red.october.vault',
@@ -33,18 +25,18 @@ class RedOctoberVaultActivate(models.TransientModel):
         domain="[('is_active', '=', False)]",
     )
     admin_user_id = fields.Many2one(
-        string='Admin User',
+        string='Red October User',
         comodel_name='red.october.user',
         required=True,
-        context="{'default_user_id': root_user_id,"
-                " 'default_vault_ids': vault_ids,"
+        context="{'default_vault_ids': vault_ids,"
                 " 'default_is_admin': True,"
                 " 'default_is_active': True,"
                 " }",
     )
-    admin_password = fields.Char(
-        computed='_compute_admin_password',
-        inverse='_inverse_admin_password',
+    admin_password = EphemeralChar(
+        required=True,
+    )
+    admin_password_confirm = EphemeralChar(
         required=True,
     )
 
@@ -87,12 +79,9 @@ class RedOctoberVaultActivate(models.TransientModel):
     def activate_vault(self):
         """ It activates a vault with the given admin user and password. """
         self.ensure_one()
-        assert self.admin_password
-        assert not self.is_active
-        _logger.debug('Activating vaults %s' % self.vault_ids)
+        if self.admin_password != self.admin_password_confirm:
+            raise ValidationError(_(
+                'Passwords do not match.',
+            ))
         for vault in self.vault_ids:
-            with vault.get_api(self.admin_user_id,
-                               self.admin_password) as api:
-                _logger.debug('Creating vault with %s' % api)
-                api.create_vault()
-                vault.active = True
+            vault.activate(self.admin_user_id, self.admin_password)

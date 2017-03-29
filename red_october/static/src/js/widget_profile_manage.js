@@ -2,12 +2,13 @@
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
  */
 
-odoo.define('red_october.WidgetProfileChoose', function (require) {
+odoo.define('red_october.WidgetProfileManage', function (require) {
     "use strict";
 
     var core = require('web.core');
     var Widget = require('web.Widget');
     var Model = require('web.DataModel');
+    var DialogPasswordChange = require('red_october.DialogPasswordChange');
 
     /* It allows a user to choose their current encryption profile.
 
@@ -17,9 +18,9 @@ odoo.define('red_october.WidgetProfileChoose', function (require) {
             profiles (Set of obj): This represents all the profiles that the
                 current user can access.
      */
-    var WidgetProfileChoose = Widget.extend({
+    var WidgetProfileManage = Widget.extend({
 
-        template: 'red_october.WidgetProfileChoose',
+        template: 'red_october.WidgetProfileManage',
 
         /* It sets the widget properties */
         init: function () {
@@ -40,6 +41,10 @@ odoo.define('red_october.WidgetProfileChoose', function (require) {
             this.$el.find('a.roProfileSelect').click(
                 $.proxy(this.clickProfile, this)
             );
+            this.$el.find('#roProfilePasswordChange').click(
+                $.proxy(this.clickProfilePasswordChange, this)
+            );
+
         },
 
         /* Load user profiles from the server, add them to the instance, then re-render. */
@@ -106,6 +111,10 @@ odoo.define('red_october.WidgetProfileChoose', function (require) {
             });
         },
 
+        clickProfilePasswordChange: function (event) {
+            new DialogPasswordChange(this).open();
+        },
+
         /* It selects the profile given the ID */
         selectProfile: function (profileID) {
             var self = this;
@@ -119,6 +128,6 @@ odoo.define('red_october.WidgetProfileChoose', function (require) {
 
     });
 
-    return WidgetProfileChoose;
+    return WidgetProfileManage;
 
 });

@@ -10,12 +10,18 @@
     <template id="assets_backend" inherit_id="web.assets_backend">
 
         <xpath expr="." position="inside">
+
+            <script type="application/javascript"
+                    src="/red_october/static/src/js/mixins.js" />
             <script type="application/javascript"
                     src="/red_october/static/src/js/web_client.js" />
             <script type="application/javascript"
-                    src="/red_october/static/src/js/widget_profile_choose.js" />
+                    src="/red_october/static/src/js/widget_profile_manage.js" />
             <script type="application/javascript"
                     src="/red_october/static/src/js/widget_password_get.js" />
+            <script type="application/javascript"
+                    src="/red_october/static/src/js/dialog_password_change.js" />
+
         </xpath>
 
     </template>

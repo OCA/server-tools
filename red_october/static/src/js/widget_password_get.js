@@ -29,7 +29,7 @@ odoo.define('red_october.WidgetPasswordGet', function (require) {
             var self = this;
             RedOctoberUser.call('get_current_profile', []).then(function (profile) {
                 self.loadProfile(profile, true);
-            })
+            });
             RedOctoberUser.call('get_user_profiles', []).then(this.loadProfile);
             this.renderElement();
         },

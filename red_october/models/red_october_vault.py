@@ -6,8 +6,9 @@ import logging
 
 from contextlib import contextmanager
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.http import request
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -69,6 +70,35 @@ class RedOctoberVault(models.Model):
     def _compute_name(self):
         for record in self:
             record.name = '%s:%s' % (record.host, record.port)
+
+    @api.multi
+    def activate(self, user, password):
+        """ It activates a vault with the given admin user and password.
+
+        Args:
+            user (RedOctoberUser): User for session. Set to
+                :type:`None` to use the current session user.
+            password (str): Password for session. Set to
+                :type:`None` to use the current session password.
+        """
+        self.ensure_one()
+        if self.is_active:
+            raise ValidationError(_(
+                'A vault cannot be reactivated.',
+            ))
+        if not user.is_admin and len(user.vault_ids):
+            raise ValidationError(_(
+                'This profile is already assigned to a vault, but is not '
+                'an admin. Please use another profile.',
+            ))
+        with self.get_api(user, password) as api:
+            _logger.debug('Creating vault with %s' % api)
+            api.create_vault()
+            self.is_active = True
+            user.write({
+                'is_admin': True,
+                'vault_ids': [(4, self.id)]
+            })
 
     @api.multi
     @contextmanager

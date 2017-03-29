@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Copyright 2016 LasLabs Inc.
+    Copyright 2016-2017 LasLabs Inc.
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
 <template>
 
-    <t t-name="red_october.WidgetProfileChoose">
-        <li id="roUserMenu" class="dropdown">
+    <t t-name="red_october.WidgetProfileManage">
+        <li id="roUserMenu" class="dropdown" t-if="widget.currentProfile">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <span class="oe_topbar_name">
                     <i class="fa fa-lock" />
@@ -17,6 +17,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li class="dropdown-header">
+                    Crypto Profile:
                     <strong t-esc="widget.currentProfile.name" />
                 </li>
                 <li class="divider" />
@@ -26,18 +27,20 @@
                 <li id="roProfileNew">
                     <a href="#">New Profile</a>
                 </li>
-                <li class="divider" />
-                <li class="dropdown-header" t-if="Object.keys(widget.profiles).length > 1">
-                    Change Profile
-                </li>
-                <t t-foreach="Object.keys(widget.profiles)" t-as="profile_id">
-                    <t t-set="profile" t-value="widget.profiles[profile_id]" />
-                    <li t-if="profile.id != widget.currentProfile.id">
-                        <a class="roProfileSelect" href="#"
-                           t-att-data-profile-id="profile.id">
-                            <t t-esc="profile.name"/>
-                        </a>
+                <t t-if="Object.keys(widget.profiles).length > 1">
+                    <li class="divider" />
+                    <li class="dropdown-header">
+                        Change Profile
                     </li>
+                    <t t-foreach="Object.keys(widget.profiles)" t-as="profile_id">
+                        <t t-set="profile" t-value="widget.profiles[profile_id]" />
+                        <li t-if="profile.id != widget.currentProfile.id">
+                            <a class="roProfileSelect" href="#"
+                               t-att-data-profile-id="profile.id">
+                                <t t-esc="profile.name"/>
+                            </a>
+                        </li>
+                    </t>
                 </t>
             </ul>
         </li>

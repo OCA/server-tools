@@ -24,6 +24,9 @@
         'views/red_october_menu.xml',
         'wizards/red_october_vault_activate.xml',
     ],
+    'demo': [
+        'demo/res_users_demo.xml',
+    ],
     'qweb': [
         'static/src/xml/*.xml',
     ],

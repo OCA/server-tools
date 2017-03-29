@@ -16,8 +16,8 @@
                 <sheet>
                     <group name="main">
                         <field name="admin_user_id" />
-                        <field name="admin_password" />
-                        <field name="root_user_id" />
+                        <field name="admin_password" password="True" />
+                        <field name="admin_password_confirm" password="True" />
                         <field name="is_active" />
                         <field name="vault_ids" />
                     </group>

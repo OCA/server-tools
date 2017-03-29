@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 LasLabs Inc.
+# Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import logging
@@ -7,6 +7,9 @@ import logging
 from odoo import _, api, fields, models
 from odoo.http import request
 from odoo.exceptions import ValidationError
+
+from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
+
 
 _logger = logging.getLogger(__name__)
 
@@ -45,6 +48,9 @@ class RedOctoberFile(models.Model):
     )
     raw_data = fields.Char(
         compute='_compute_raw_data',
+    )
+    password = EphemeralChar(
+        required=True,
     )
 
     _sql_constraints = [
@@ -134,7 +140,7 @@ class RedOctoberFile(models.Model):
         if not user:
             user = self.vault_id.get_current_user()
         if not password:
-            password = request.session.password
+            password = self.password or request.session.password
         if vault is None:
             vault = self.env['red.october.vault'].get_current_vault()
         with vault.get_api(user, password) as api:
@@ -161,7 +167,7 @@ class RedOctoberFile(models.Model):
         if not user:
             user = self.vault_id.get_current_user()
         if not password:
-            password = request.session.password
+            password = self.password or request.session.password
         if vault is None:
             vault = self.env['red.october.vault'].get_current_vault()
         with vault.get_api(user, password) as api:

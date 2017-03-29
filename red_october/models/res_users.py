@@ -21,6 +21,10 @@ class ResUsers(models.Model):
         comodel_name='red.october.user',
         inverse_name='user_id',
     )
+    encrypted_id = fields.Many2one(
+        comodel_name='red.october.file',
+        help='Sample encrypted item',
+    )
 
     @api.multi
     @api.depends('red_october_ids')
