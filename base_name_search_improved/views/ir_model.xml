@@ -16,6 +16,7 @@
                    widget="many2many_tags"
                    domain="[('model_id', '=', id)]"
                 />
+            <field name="name_search_use_standard" />
         </field>
 
     </field>
