@@ -207,6 +207,9 @@ class MassEditingWizard(models.TransientModel):
                                       field.name + "','=','remove')]}"),
                             'colspan': '4',
                         })
+            # Patch fields with required extra data
+            for field in all_fields.values():
+                field.setdefault("views", {})
             etree.SubElement(xml_form, 'separator', {
                 'string': '',
                 'colspan': '6',
