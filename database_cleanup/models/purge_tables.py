@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, fields, models, _
-from openerp.exceptions import UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 from ..identifier_adapter import IdentifierAdapter
 
 
@@ -85,10 +85,8 @@ class CleanupPurgeWizardTable(models.TransientModel):
             known_tables.append(model_pool._table)
             known_tables += [
                 column._sql_names(model_pool)[0]
-                for column in model_pool._columns.values()
-                if (column._type == 'many2many' and
-                    hasattr(column, '_rel'))  # unstored function fields of
-                                              # type m2m don't have _rel
+                for column in model_pool._fields.values()
+                if isinstance(column, fields.Many2many) and column.store
             ]
 
         self.env.cr.execute(
