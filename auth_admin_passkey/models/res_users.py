@@ -6,7 +6,6 @@
 import datetime
 
 from openerp import _, api, exceptions, models, registry, SUPERUSER_ID
-from openerp.tools.safe_eval import safe_eval
 
 
 class ResUsers(models.Model):
@@ -25,12 +24,10 @@ class ResUsers(models.Model):
         icp_obj = self.env['ir.config_parameter']
         admin_user = self.sudo().browse(SUPERUSER_ID)
         login_user = self.sudo().browse(self.env.uid)
-        send_to_admin = safe_eval(icp_obj.sudo().get_param(
-            'auth_admin_passkey.send_to_admin',
-            'True'))
-        send_to_user = safe_eval(icp_obj.sudo().get_param(
-            'auth_admin_passkey.send_to_user',
-            'True'))
+        send_to_admin = icp_obj.sudo().get_param(
+            'auth_admin_passkey.send_to_admin') == 'True' and True or False
+        send_to_user = icp_obj.sudo().get_param(
+            'auth_admin_passkey.send_to_user') == 'True' and True or False
 
         if send_to_admin and admin_user.email:
             mails.append({'email': admin_user.email, 'lang': admin_user.lang})
@@ -55,22 +52,22 @@ class ResUsers(models.Model):
             mail.send(auto_commit=True)
 
     @api.cr
-    def _send_email_same_password(self, login_user):
+    def _send_email_same_password(self, cr, login_user):
         """ Send a email to the admin user to inform that another user has the
  same password as him."""
-        mail_obj = self.env['mail.mail']
-        admin_user = self.sudo().browse(SUPERUSER_ID)
+        mail_obj = self.pool['mail.mail']
+        admin_user = self.browse(cr, SUPERUSER_ID, SUPERUSER_ID)
         if admin_user.email:
-            mail = mail_obj.sudo().create({
+            mail_id = mail_obj.create(cr, SUPERUSER_ID, {
                 'email_to': admin_user.email,
                 'subject': self._get_translation(
-                    admin_user.lang, _('[WARNING] OpenERP Security Risk')),
+                    admin_user.lang, _('[WARNING] Odoo Security Risk')),
                 'body_html': self._get_translation(
                     admin_user.lang, _(
                         """<pre>User with login '%s' has the same """
                         """password as you.</pre>""")) % (login_user),
             })
-            mail.send(auto_commit=True)
+            mail_obj.send(cr, SUPERUSER_ID, [mail_id], auto_commit=True)
 
     # Overload Section
     def authenticate(self, db, login, password, user_agent_env):

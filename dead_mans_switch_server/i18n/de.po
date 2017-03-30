@@ -15,14 +15,14 @@
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
 # Pedro Castro Silva <pedrocs@sossia.pt>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:14+0000\n"
-"PO-Revision-Date: 2016-12-23 13:59+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,12 +51,12 @@ msgstr "Aktiv"
 #: field:dead.mans.switch.instance,last_user_count:0
 #: field:dead.mans.switch.instance,last_user_count_sparkline:0
 msgid "Active users"
-msgstr ""
+msgstr "Aktive Anwender"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive:0
 msgid "Alive"
-msgstr ""
+msgstr "Lebend"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
@@ -130,14 +130,14 @@ msgstr "Anzeigename"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Follower"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Beinhaltet die Dialogzusammenfassung (Anzahl Mitteilungen, ...). Diese Zusammenfassung liegt in HTML vor, um direkt in Kanban-Ansichten verwendet werden zu können."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -147,27 +147,27 @@ msgstr "ID"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Wenn angehakt, erfordern neue Mitteilungen Ihre Aufmerksamkeit."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,instance_id:0
 msgid "Instance"
-msgstr ""
+msgstr "Instanz"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_log
 msgid "Instance log line"
-msgstr ""
+msgstr "Instanz-Logzeile"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_instance
 msgid "Instance to monitor"
-msgstr ""
+msgstr "Zu überwachende Instanz"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "Ist Follower"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_last_post:0
@@ -196,12 +196,12 @@ msgstr "Zuletzt aktualisiert am"
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
 #: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
-msgstr ""
+msgstr "Zuletzt gesehen"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,log_ids:0
 msgid "Log lines"
-msgstr ""
+msgstr "Protokollzeilen"
 
 #. module: dead_mans_switch_server
 #: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
@@ -212,7 +212,7 @@ msgstr "Protokolle"
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_manager
 msgid "Manager"
-msgstr ""
+msgstr "Verwalter"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_ids:0
@@ -222,7 +222,7 @@ msgstr "Nachrichten"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Meldungs- und Kommunikationsverlauf"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
@@ -233,7 +233,7 @@ msgstr "Neu"
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Open logs"
-msgstr ""
+msgstr "Öffne Protokolle"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
@@ -241,12 +241,12 @@ msgstr ""
 #: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,user_id:0
 msgid "Responsible user"
-msgstr ""
+msgstr "Verantwortlicher"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
@@ -257,35 +257,35 @@ msgstr "Status"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Zusammenfassung"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Suspend"
-msgstr ""
+msgstr "Aussetzen"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Suspended"
-msgstr ""
+msgstr "Ausgesetzt"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,alive_max_delay:0
 msgid ""
 "The amount of seconds without notice after which the instance is considered "
 "dead"
-msgstr ""
+msgstr "Die Sekundenzahl ohne Rückmeldung nach der die Instanz als tot betrachtet wird"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log
 msgid "This month"
-msgstr ""
+msgstr "Diesen Monat"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log
 msgid "This week"
-msgstr ""
+msgstr "Diese Woche"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_unread:0
@@ -305,4 +305,4 @@ msgstr "Benutzer"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,user_count:0
 msgid "Users logged in"
-msgstr ""
+msgstr "Angemeldete Anwender"

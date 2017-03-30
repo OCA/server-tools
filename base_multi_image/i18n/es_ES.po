@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-05-04 19:16+0000\n"
+"POT-Creation-Date: 2017-02-11 06:39+0000\n"
+"PO-Revision-Date: 2017-02-16 15:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 #: field:base_multi_image.image,display_name:0
 #: field:base_multi_image.owner,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,extension:0
@@ -106,7 +106,7 @@ msgstr ""
 #: field:base_multi_image.image,__last_update:0
 #: field:base_multi_image.owner,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,write_uid:0

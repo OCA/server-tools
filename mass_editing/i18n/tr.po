@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
-"PO-Revision-Date: 2016-12-30 20:48+0000\n"
+"POT-Creation-Date: 2017-01-17 07:52+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +68,6 @@ msgid ""
 msgstr "ilgili modelin \"DEVAMI\" menüsüne değiştirme sihirbazı açan bir eylem ekler."
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"

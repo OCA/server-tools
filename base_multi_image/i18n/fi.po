@@ -3,7 +3,7 @@
 # * base_multi_image
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Antonio Trueba, 2016
 # danimaribeiro <danimaribeiro@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 18:30+0000\n"
-"PO-Revision-Date: 2016-06-06 13:36+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenssi"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,show_technical:0

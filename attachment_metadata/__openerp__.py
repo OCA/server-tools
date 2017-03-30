@@ -6,7 +6,7 @@
     'name': 'Attachment Metadata',
     'version': '8.0.1.0.0',
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'www.akretion.com',
+    'website': 'http://www.akretion.com/',
     'license': 'AGPL-3',
     'category': 'Generic Modules',
     'depends': [

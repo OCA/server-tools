@@ -4,10 +4,12 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # bossnm11 <bossnm11@gmail.com>, 2014
 # Bruno JOLIVEAU, 2015
-# Chanseok <kcsgoodboy@naver.com>, 2014
+# Chanseok Kang <kcsgoodboy@naver.com>, 2014
+# Chanseok Kang <kcsgoodboy@naver.com>, 2014
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
 # Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
@@ -25,11 +27,12 @@
 # seungil <luck8778@gmail.com>, 2014
 # SEUNGWON <baeksw0620@gmail.com>, 2014
 # yterrettaz, 2015
+# yterrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"POT-Creation-Date: 2017-01-17 07:52+0000\n"
 "PO-Revision-Date: 2016-12-27 08:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
@@ -78,7 +81,6 @@ msgid ""
 msgstr "Afficher un bouton dans le menu latéral des documents associés pour ouvrir un assistant de rédaction"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 #: field:base_multi_image.image,display_name:0
 #: field:base_multi_image.owner,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,extension:0
@@ -106,7 +106,7 @@ msgstr ""
 #: field:base_multi_image.image,__last_update:0
 #: field:base_multi_image.owner,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,write_uid:0
@@ -152,7 +152,7 @@ msgstr ""
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
@@ -188,7 +188,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,show_technical:0
@@ -220,4 +220,4 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
-msgstr ""
+msgstr "URL"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
+"PO-Revision-Date: 2017-03-13 12:49+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -40,14 +40,14 @@ msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "Copias de seguridad automáticas de la base de datos se pueden programar de la siguiente manera:"
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
-msgstr "La copia de seguridad ha fallado"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
+msgstr "Copia de seguridad fallida"
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
-msgstr "Copia de seguridad realizada con éxito"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
+msgstr "Copia de seguridad correcta"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
@@ -77,7 +77,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Elija el método de almacenamiento para esta copia de seguridad."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:247
+#: code:addons/auto_backup/models/db_backup.py:250
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "La limpieza de las copias de seguridad de las bases de datos antiguas ha fallado."
@@ -106,14 +106,14 @@ msgstr "Creado el"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
-#: model:mail.message.subtype,description:auto_backup.failure
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "La copia de seguridad de la base de datos ha fallado."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
-#: model:mail.message.subtype,description:auto_backup.success
+#: code:addons/auto_backup/models/db_backup.py:214
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr "La copia de seguridad de la base de datos se realizo correctamente"

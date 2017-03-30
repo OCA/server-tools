@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-10-11 09:53+0000\n"
+"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Skapad den"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
@@ -136,7 +136,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr ""
+msgstr "Gruppera efter..."
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -397,7 +397,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Användare"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search

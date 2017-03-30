@@ -1,0 +1,227 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sql_export
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-18 02:09+0000\n"
+"PO-Revision-Date: 2017-03-18 02:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Paraguay) (https://www.transifex.com/oca/teams/23907/es_PY/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_PY\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sql_export
+#: model:ir.model,name:sql_export.model_sql_file_wizard
+msgid "Allow the user to save the file with sql request's data"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+#: field:sql.export,group_ids:0
+msgid "Allowed Groups"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form field:sql.export,user_ids:0
+msgid "Allowed Users"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Clean and Check Request"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,copy_options:0
+msgid "Copy Options"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,create_uid:0 field:sql.file.wizard,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sql_export
+#: field:sql.export,create_date:0 field:sql.file.wizard,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Csv File"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,display_name:0 field:sql.file.wizard,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+#: view:sql.export:sql_export.sql_export_view_tree
+msgid "Execute Query"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Export"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "Export file"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.file.wizard,binary_file:0
+msgid "File"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.file.wizard,file_name:0
+msgid "File Name"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,id:0 field:sql.file.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sql_export
+#: field:sql.export,__last_update:0 field:sql.file.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,write_uid:0 field:sql.file.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima actualización por"
+
+#. module: sql_export
+#: field:sql.export,write_date:0 field:sql.file.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sql_export
+#: field:sql.export,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+#: field:sql.export,field_ids:0
+msgid "Parameters"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,query:0
+msgid "Query"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Request Name"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.actions.act_window,name:sql_export.sql_export_tree_action
+#: view:sql.export:sql_export.sql_export_view_tree
+msgid "SQL Export"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.actions.act_window,name:sql_export.sql_parameter_tree_action
+#: view:ir.model.fields:sql_export.sql_parameter_view_tree
+msgid "SQL Parameter"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "SQL Request"
+msgstr ""
+
+#. module: sql_export
+#: selection:sql.export,state:0
+msgid "SQL Valid"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.model,name:sql_export.model_sql_export
+#: view:ir.model.fields:sql_export.sql_parameter_view_form
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "SQL export"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Set to Draft"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.ui.menu,name:sql_export.sql_export_menu
+#: model:ir.ui.menu,name:sql_export.sql_export_menu_view
+msgid "Sql Export"
+msgstr ""
+
+#. module: sql_export
+#: model:ir.ui.menu,name:sql_export.sql_parameter_menu_view
+msgid "Sql Export Variables"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.file.wizard,sql_export_id:0
+msgid "Sql export id"
+msgstr ""
+
+#. module: sql_export
+#: field:sql.export,state:0
+msgid "State"
+msgstr ""
+
+#. module: sql_export
+#: help:sql.export,state:0
+msgid ""
+"State of the Request:\n"
+" * 'Draft': Not tested\n"
+" * 'SQL Valid': SQL Request has been checked and is valid"
+msgstr ""
+
+#. module: sql_export
+#: help:sql.export,query:0
+msgid ""
+"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
+"TRUNCATE, EXECUTE, UPDATE"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "or"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "select * from res_partner"
+msgstr ""
+
+#. module: sql_export
+#: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
+msgid "variables_placeholder"
+msgstr ""

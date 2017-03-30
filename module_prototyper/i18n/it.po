@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2017-01-17 07:52+0000\n"
+"PO-Revision-Date: 2017-01-14 17:51+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -461,12 +462,12 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,report_ids:0
 msgid "Reports"
-msgstr ""
+msgstr "Reports"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "Sicurezza"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0

@@ -8,15 +8,15 @@
 # Hotellook, 2014
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 # SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +37,7 @@ msgstr "Audit"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr ""
+msgstr "Audit-Log - Alte Logs löschen"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
@@ -112,7 +112,7 @@ msgstr "Entwurf"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Schnell-Log"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
@@ -128,14 +128,14 @@ msgstr "Felder aktualisiert"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Volles Log"
 
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
 "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr ""
+msgstr "Volles Log: Protokolliert Unterschiede zwischen Stand vor und nach dem Vorgang (protokolliert mehr Info, wie aktualisierte berechnete Felder, ist aber langsamer)\nSchnell-Log: Protolliert nur Änderungen durch Anlage- und Schreibvorgänge (weniger Auskunft, jedoch schneller)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -148,14 +148,14 @@ msgstr "Gruppieren nach ..."
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr ""
+msgstr "HTTP-Kontext"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,http_request_id:0
 msgid "HTTP Request"
-msgstr ""
+msgstr "HTTP-Anforderung"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -165,7 +165,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 msgid "HTTP Requests"
-msgstr ""
+msgstr "HTTP-Anforderungen"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
@@ -281,7 +281,7 @@ msgstr "Alter Wert Text"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,name:0
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -298,7 +298,7 @@ msgstr "Ressourcenname"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,root_url:0
 msgid "Root URL"
-msgstr ""
+msgstr "Stamm-URL"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -350,12 +350,12 @@ msgstr "Aktivieren Sie dies, wenn die die Lese-Vorgänge aller Datensätze für 
 #: field:auditlog.http.request,http_session_id:0
 #: field:auditlog.log,http_session_id:0
 msgid "Session"
-msgstr ""
+msgstr "Sitzung"
 
 #. module: auditlog
 #: field:auditlog.http.session,name:0
 msgid "Session ID"
-msgstr ""
+msgstr "Sitzungs-ID"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -377,7 +377,7 @@ msgstr "Aktiviert"
 #. module: auditlog
 #: field:auditlog.log.line,field_name:0
 msgid "Technical name"
-msgstr ""
+msgstr "Technische Bezeichnung"
 
 #. module: auditlog
 #: sql_constraint:auditlog.rule:0
@@ -411,7 +411,7 @@ msgstr "Benutzer"
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr ""
+msgstr "Anwendersitzung"
 
 #. module: auditlog
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -419,7 +419,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
 msgid "User sessions"
-msgstr ""
+msgstr "Anwendersitzungen"
 
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
@@ -435,9 +435,9 @@ msgstr "Werte"
 #: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
-msgstr ""
+msgstr "Protokolle ansehen"
 
 #. module: auditlog
 #: help:auditlog.rule,user_ids:0
 msgid "if  User is not added then it will applicable for all users"
-msgstr ""
+msgstr "Wenn kein Anwender gepflegt, dann ist es für Alle anwendbar"

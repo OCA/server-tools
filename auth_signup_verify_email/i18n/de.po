@@ -3,13 +3,18 @@
 # * auth_signup_verify_email
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-18 13:24+0000\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-05 11:56+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -44,4 +49,4 @@ msgstr "EMail"
 #. module: auth_signup_verify_email
 #: view:website:auth_signup.fields
 msgid "only_passwords"
-msgstr ""
+msgstr "only_passwords"

@@ -2,6 +2,7 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from psycopg2.extensions import AsIs
 from openerp import models, fields, api
 from openerp.http import request
 
@@ -47,7 +48,14 @@ class AuditlogHTTPRequest(models.Model):
         httprequest = request.httprequest
         if httprequest:
             if hasattr(httprequest, 'auditlog_http_request_id'):
-                return httprequest.auditlog_http_request_id
+                # Verify existence. Could have been rolled back after a
+                # concurrency error
+                self.env.cr.execute(
+                    "SELECT id FROM %s WHERE id = %s", (
+                        AsIs(self._table),
+                        httprequest.auditlog_http_request_id))
+                if self.env.cr.fetchone():
+                    return httprequest.auditlog_http_request_id
             vals = {
                 'name': httprequest.path,
                 'root_url': httprequest.url_root,

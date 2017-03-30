@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 03:03+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt/)\n"
@@ -34,7 +34,7 @@ msgstr ""
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_configuration
@@ -87,7 +87,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -319,7 +319,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Utilizador"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,user_field_id:0

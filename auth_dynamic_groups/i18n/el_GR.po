@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
 "PO-Revision-Date: 2015-09-18 13:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/el_GR/)\n"
@@ -59,7 +59,7 @@ msgstr ""
 #. module: auth_dynamic_groups
 #: model:ir.model,name:auth_dynamic_groups.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Χρήστες"
 
 #. module: auth_dynamic_groups
 #: view:res.groups:auth_dynamic_groups.view_groups_form

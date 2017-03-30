@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * letsencrypt
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-18 02:09+0000\n"
+"PO-Revision-Date: 2016-05-17 14:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: letsencrypt
+#: model:ir.model,name:letsencrypt.model_letsencrypt
+msgid "Abstract model providing functions for letsencrypt"
+msgstr ""
+
+#. module: letsencrypt
+#: field:letsencrypt,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:44
+#, python-format
+msgid "Error calling %s: %d"
+msgstr ""
+
+#. module: letsencrypt
+#: field:letsencrypt,id:0
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: letsencrypt
+#: field:letsencrypt,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: letsencrypt
+#: code:addons/letsencrypt/models/letsencrypt.py:93
+#, python-format
+msgid "Let's encrypt doesn't work with private addresses or local domains!"
+msgstr ""

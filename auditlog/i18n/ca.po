@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
+"PO-Revision-Date: 2017-03-14 18:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -83,18 +83,18 @@ msgstr "Creat el"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
 #: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -110,7 +110,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
 msgid "Field"
-msgstr ""
+msgstr "Camp"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -136,7 +136,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupat per..."
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -174,7 +174,7 @@ msgstr "ID"
 #: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
 #: field:auditlog.rule,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_uid:0
@@ -248,7 +248,7 @@ msgstr ""
 #: field:auditlog.http.request,display_name:0
 #: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value:0
@@ -354,7 +354,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -382,12 +382,12 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Donar-se de baixa"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -397,7 +397,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -417,7 +417,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
 msgid "Users"
-msgstr ""
+msgstr "Usuaris"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form

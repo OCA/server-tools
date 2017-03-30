@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-03-18 02:09+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -87,7 +87,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -105,7 +105,7 @@ msgstr ""
 #: field:super.calendar.configurator,display_name:0
 #: field:super.calendar.configurator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -155,7 +155,7 @@ msgstr ""
 #. module: super_calendar
 #: selection:super.calendar.configurator.line,description_type:0
 msgid "Field"
-msgstr ""
+msgstr "Camp"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
@@ -165,7 +165,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupat per"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -203,7 +203,7 @@ msgstr "ID"
 #: field:super.calendar.configurator,__last_update:0
 #: field:super.calendar.configurator.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
@@ -239,7 +239,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -249,7 +249,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -319,7 +319,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,user_field_id:0
