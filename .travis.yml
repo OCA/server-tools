@@ -6,6 +6,8 @@ python:
   - "2.7"
 
 addons:
+  postgresql: "9.3" # minimal postgresql version for the base_import_security_group module
+                    # more info: https://github.com/OCA/maintainer-quality-tools/issues/432
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
