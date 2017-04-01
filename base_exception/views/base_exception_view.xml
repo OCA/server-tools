@@ -46,6 +46,6 @@
                   <field name="context">{'active_test': False}</field>
               </record>
 
-        <menuitem action="action_exception_rule_tree" id="menu_action_exception" name="Exceptions" parent="base.menu_custom" sequence="90" />
+        <menuitem action="action_exception_rule_tree" id="menu_action_exception" parent="base.menu_custom" sequence="90" />
 
 </odoo>
