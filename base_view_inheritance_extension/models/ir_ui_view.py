@@ -138,9 +138,7 @@ class IrUiView(models.Model):
             attribute_name = attribute_node.get('name')
             old_value = node.get(attribute_name) or ''
             new_value = old_value + ',' + attribute_node.text
-            node.attrib[attribute_name] = ','.join(filter(
-                None, old_value.split(',') + attribute_node.text.split(','))
-            )
+            node.attrib[attribute_name] = new_value
         return source
 
     @api.model
