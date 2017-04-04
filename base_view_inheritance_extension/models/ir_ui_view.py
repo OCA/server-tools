@@ -122,3 +122,40 @@ class IrUiView(models.Model):
         )
         target_node.append(node)
         return source
+
+    @api.model
+    def inheritance_handler_attributes_list_add(
+        self, source, specs, inherit_id
+    ):
+        """Implement
+        <$node position="attributes">
+            <attribute name="$attribute" operation="list_add">
+                $new_value
+            </attribute>
+        </$node>"""
+        node = self.locate_node(source, specs)
+        for attribute_node in specs:
+            attribute_name = attribute_node.get('name')
+            old_value = node.get(attribute_name) or ''
+            new_value = old_value + ',' + attribute_node.text
+            node.attrib[attribute_name] = new_value
+        return source
+
+    @api.model
+    def inheritance_handler_attributes_list_remove(
+        self, source, specs, inherit_id
+    ):
+        """Implement
+        <$node position="attributes">
+            <attribute name="$attribute" operation="list_remove">
+                $value_to_remove
+            </attribute>
+        </$node>"""
+        node = self.locate_node(source, specs)
+        for attribute_node in specs:
+            attribute_name = attribute_node.get('name')
+            old_values = (node.get(attribute_name) or '').split(',')
+            remove_values = attribute_node.text.split(',')
+            new_values = [x for x in old_values if x not in remove_values]
+            node.attrib[attribute_name] = ','.join(filter(None, new_values))
+        return source
