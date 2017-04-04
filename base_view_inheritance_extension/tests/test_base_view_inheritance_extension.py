@@ -36,6 +36,7 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         source = etree.fromstring(
             """<form><button name="test" states="draft,open"/></form>"""
         )
+        # extend with single value
         specs = etree.fromstring(
             """\
             <button name="test" position="attributes">
@@ -50,5 +51,45 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             source, specs, inherit_id
         )
         button_node = modified_source.xpath('//button[@name="test"]')[0]
-        # verify list was extended
-        self.assertEqual(button_node.attrib['states'], 'draft,open,valid')
+        self.assertEqual(
+            button_node.attrib['states'],
+            'draft,open,valid'
+        )
+        # extend with list of values
+        specs = etree.fromstring(
+            """\
+            <button name="test" position="attributes">
+                <attribute
+                    name="states"
+                    operation="list_add"
+                    >payable,paid</attribute>
+            </button>
+            """
+        )
+        modified_source = view_model.inheritance_handler_attributes_list_add(
+            source, specs, inherit_id
+        )
+        button_node = modified_source.xpath('//button[@name="test"]')[0]
+        self.assertEqual(
+            button_node.attrib['states'],
+            'draft,open,valid,payable,paid'
+        )
+        # remove list of values
+        specs = etree.fromstring(
+            """\
+            <button name="test" position="attributes">
+                <attribute
+                    name="states"
+                    operation="list_remove"
+                    >open,payable</attribute>
+            </button>
+            """
+        )
+        modified_source = view_model.inheritance_handler_attributes_list_add(
+            source, specs, inherit_id
+        )
+        button_node = modified_source.xpath('//button[@name="test"]')[0]
+        self.assertEqual(
+            button_node.attrib['states'],
+            'draft,valid,paid'
+        )
