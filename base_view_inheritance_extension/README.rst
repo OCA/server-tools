@@ -6,7 +6,8 @@
 Extended view inheritance
 =========================
 
-This module was written to make it simple to add custom operators for view inheritance.
+This module was written to make it simple to add custom operators for view
+inheritance.
 
 Usage
 =====
@@ -24,7 +25,8 @@ Change a python dictionary (context for example)
         $new_value
     </attribute>
 
-Note that views are subject to evaluation of xmlids anyways, so if you need to refer to some xmlid, say ``%(xmlid)s``.
+Note that views are subject to evaluation of xmlids anyways, so if you need
+to refer to some xmlid, say ``%(xmlid)s``.
 
 Move an element in the view
 ---------------------------
@@ -33,13 +35,30 @@ Move an element in the view
 
     <xpath expr="$xpath" position="move" target="$targetxpath" />
 
-This can also be used to wrap some element into another, create the target element first, then move the node youwant to wrap there.
+This can also be used to wrap some element into another, create the target
+element first, then move the node youwant to wrap there.
+
+Add to values in a list (states for example)
+--------------------------------------------
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="list_add">
+        $new_value(s)
+    </attribute>
+
+Remove values from a list (states for example)
+----------------------------------------------
+
+.. code-block:: xml
+
+    <attribute name="$attribute" operation="list_remove">
+        $remove_value(s)
+    </attribute>
 
 Known issues / Roadmap
 ======================
 
-* add ``<attribute operation="python_list_add">$value</attribute>``
-* add ``<attribute operation="python_list_remove">$index</attribute>``
 * add ``<attribute operation="json_dict" key="$key">$value</attribute>``
 * support ``<xpath expr="$xpath" position="move" target="xpath" target_position="position" />``
 * support an ``eval`` attribute for our new node types
@@ -58,7 +77,8 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association:
+  `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------
@@ -66,7 +86,12 @@ Contributors
 * Holger Brunn <hbrunn@therp.nl>
 * Ronald Portier <rportier@therp.nl>
 
-Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
+Do not contact contributors directly about help with questions or problems
+concerning this addon, but use the
+`community mailing list <mailto:community@mail.odoo.com>`_ or the
+`appropriate specialized mailinglist <https://odoo-community.org/groups>`_
+for help, and the bug tracker linked in `Bug Tracker`_ above for
+technical issues.
 
 Maintainer
 ----------
