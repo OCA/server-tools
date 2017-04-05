@@ -41,7 +41,7 @@ addon | version | summary
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.0.0 | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.1.0 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
