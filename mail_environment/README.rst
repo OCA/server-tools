@@ -33,28 +33,28 @@ default values with a section named `[outgoing_mail.resource_name]` or
 `[incoming_mail.resource_name]` where "resource_name" is the name of
 the server.
 
-Exemple of config file :
+Exemple of config file ::
 
-[outgoing_mail]
-smtp_host = smtp.myserver.com
-smtp_port = 587
-smtp_user =
-smtp_pass =
-smtp_encryption = ssl
+  [outgoing_mail]
+  smtp_host = smtp.myserver.com
+  smtp_port = 587
+  smtp_user =
+  smtp_pass =
+  smtp_encryption = ssl
 
-[outgoing_mail.odoo_smtp_server1]
-smtp_user = odoo
-smtp_pass = odoo
+  [outgoing_mail.odoo_smtp_server1]
+  smtp_user = odoo
+  smtp_pass = odoo
 
-[incoming_mail.odoo_pop_mail1]
-server = mail.myserver.com
-port = 110
-type = pop
-is_ssl = 0
-attach = 0
-original = 0
-user = odoo@myserver.com
-password = uas1ohV0
+  [incoming_mail.odoo_pop_mail1]
+  server = mail.myserver.com
+  port = 110
+  type = pop
+  is_ssl = 0
+  attach = 0
+  original = 0
+  user = odoo@myserver.com
+  password = uas1ohV0
 
 You will need to create 2 records in the database, one outgoing mail
 server with the field `name` set to "odoo_smtp_server1" and one
@@ -73,7 +73,7 @@ Known issues / Roadmap
 ======================
 
 * Due to the special nature of this addon, you cannot test it on the OCA
-runbot.
+  runbot.
 
 Bug Tracker
 ===========
@@ -81,11 +81,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-server-tools/issues/new?body=module:%20
-mail_environment%0Aversion:%20
-9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
