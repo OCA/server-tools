@@ -14,11 +14,10 @@
             "unidecode",
         ],
     },
-    "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+    "author": "AvanzOSC, "
+              "Tecnativa, "
               "Odoo Community Association (OCA), ",
-    "website": "http://www.odoomrp.com",
+    "website": "https://github.com/OCA/server-tools",
     "license": "AGPL-3",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
