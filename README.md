@@ -40,6 +40,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
 [keychain](keychain/) | 10.0.1.0.0 | Store accounts and credentials
+[mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
@@ -79,7 +80,6 @@ addon | version | summary
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 (unported) | Request SSL certificates from letsencrypt.org
-[mail_environment](mail_environment/) | 9.0.1.0.0 (unported) | Configure mail servers with server_environment_files
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 (unported) | Fast way to look up technical info about menu item.
 [mgmtsystem_kpi](mgmtsystem_kpi/) | 7.0.1.1.1 (unported) | Key Performance Indicator
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 (unported) | Add user time rendering support in QWeb
