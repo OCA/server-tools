@@ -157,7 +157,7 @@ class RedOctoberUser(models.Model):
     @api.model
     def read_current_user(self):
         user = self.get_current_user()
-        return user.read()
+        return user and user.read() or {}
 
     @api.model
     def get_user_profiles(self):

@@ -7,6 +7,5 @@ from odoo import fields
 
 class EphemeralText(fields.Text):
 
-    def convert_to_write(self, value, target=None, fnames=None):
-        """ Always return False in order to not save to database. """
-        return False
+    def write(self, records, value):
+        return

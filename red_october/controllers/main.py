@@ -22,7 +22,7 @@ class RedOctoberController(http.Controller):
         auth='user',
         methods=['POST'],
     )
-    def password_change_post(self, profile_id=None, **kwargs):
+    def password_change(self, profile_id=None, **kwargs):
         User = http.request.env['red.october.user']
         result = None
         errors = []
@@ -40,6 +40,21 @@ class RedOctoberController(http.Controller):
             errors = [e.message or e.value or e.name]
         _logger.debug('Password Change Post.\n%s\n%s', kwargs, result)
         return RedOctoberController._send_result(result, errors)
+
+    @http.route([
+        '/red_october/crypt/<string:command>',
+        '/red_october/vault/<int:vault_id>/crypt/<string:command>',
+    ],
+        type='http',
+        auth='user',
+        methods=['POST'],
+    )
+    def crypt(self, command, user_id, password, data, vault_id=None):
+        user = http.request.env['red.october.user'].browse(
+            int(user_id),
+        )
+        command = getattr(http.request.env['red.october.file'], command)
+        return command(data, vault_id, user, password)
 
     @staticmethod
     def _send_result(data=None, errors=None):

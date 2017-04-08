@@ -42,7 +42,6 @@
                         </page>
                         <page string="Data">
                             <group name="data">
-                                <field name="password" password="1" />
                                 <field name="datas" />
                             </group>
                         </page>

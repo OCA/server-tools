@@ -81,6 +81,7 @@ class RedOctoberVault(models.Model):
             password (str): Password for session. Set to
                 :type:`None` to use the current session password.
         """
+        _logger.debug('Activate vault with %s, %s', user, password)
         self.ensure_one()
         if self.is_active:
             raise ValidationError(_(
@@ -127,6 +128,7 @@ class RedOctoberVault(models.Model):
                 self.host, self.port, user.name, password,
                 verify=self.verify_cert,
             )
+            _logger.debug('Red October with %s, %s', user.name, password)
             yield conn
         finally:
             pass

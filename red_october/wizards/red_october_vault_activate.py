@@ -2,10 +2,15 @@
 # Copyright 2016 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+import logging
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
+
+
+_logger = logging.getLogger(__name__)
 
 
 class RedOctoberVaultActivate(models.TransientModel):
@@ -33,12 +38,8 @@ class RedOctoberVaultActivate(models.TransientModel):
                 " 'default_is_active': True,"
                 " }",
     )
-    admin_password = EphemeralChar(
-        required=True,
-    )
-    admin_password_confirm = EphemeralChar(
-        required=True,
-    )
+    admin_password = EphemeralChar()
+    admin_password_confirm = EphemeralChar()
 
     @api.model
     def _default_vault_ids(self):
@@ -56,20 +57,12 @@ class RedOctoberVaultActivate(models.TransientModel):
                 ))
 
     @api.multi
-    def _compute_admin_password(self):
-        """ It passes because there isn't actually data. """
-        pass
-
-    @api.multi
-    def _inverse_admin_password(self):
-        """ It doesn't save any data, but allows the password in cache. """
-        pass
-
-    @api.multi
     def action_save(self):
         for record in self:
             if not record.is_active:
                 record.activate_vault()
+            else:
+                record.is_active = True
             if self.env.user != record.admin_user_id.user_id:
                 self.env['red.october.user'].upsert_by_user(
                     vaults=record.vault_ids,

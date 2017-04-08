@@ -30,7 +30,6 @@ class RedOctoberFile(models.Model):
         string='Owners',
         comodel_name='red.october.file.owner',
         inverse_name='file_id',
-        default=lambda s: s._default_owner_ids(),
         help='These are the delegations required for decryption.',
     )
     vault_id = fields.Many2one(
@@ -46,23 +45,11 @@ class RedOctoberFile(models.Model):
         help='Minimum amount of delegations that are required from file '
              'owners in order to allow encryption.',
     )
-    raw_data = fields.Char(
-        compute='_compute_raw_data',
-    )
-    password = EphemeralChar(
-        required=True,
-    )
 
     _sql_constraints = [
         ('attachment_id_unique', 'UNIQUE(attachment_id)',
          'This attachment already has an associated Red October file.'),
     ]
-
-    @api.model
-    def _default_owner_ids(self):
-        return [(0, 0, {
-            'user_id': self.env.user.default_red_october_id.id,
-        })]
 
     @api.multi
     @api.constrains('owner_ids')
@@ -79,8 +66,14 @@ class RedOctoberFile(models.Model):
                     'this file.',
                 ))
 
+    @api.model
+    def default_get(self, fields):
+        result = super(RedOctoberFile, self).default_get(fields)
+        result['type'] = self.env['ir.attachment'].RED_OCTOBER
+        return result
+
     @api.multi
-    def update(self, vals):
+    def write(self, vals):
         """ It will not allow vault transfers.
 
         Raises:
@@ -95,7 +88,7 @@ class RedOctoberFile(models.Model):
                     'It is currently not possible to move a file between '
                     'vaults.',
                 ))
-        return super(RedOctoberFile, self).update(vals)
+        return super(RedOctoberFile, self).write(vals)
 
     @api.model_cr_context
     def upsert_by_attachment(self, attachment):
@@ -116,7 +109,7 @@ class RedOctoberFile(models.Model):
             })
         return record
 
-    @api.multi
+    @api.model_cr_context
     def decrypt(self, data, vault=None, user=None, password=None):
         """ It decrypts the data and returns the result.
 
@@ -134,19 +127,20 @@ class RedOctoberFile(models.Model):
         Returns:
             str: The decrypted string.
         """
-        self.ensure_one()
         if not data:
             return
-        if not user:
-            user = self.vault_id.get_current_user()
-        if not password:
-            password = self.password or request.session.password
         if vault is None:
             vault = self.env['red.october.vault'].get_current_vault()
+        if not user:
+            user = vault.get_current_user()
+        if not password:
+            password = request.session.password
         with vault.get_api(user, password) as api:
-            return api.decrypt(data)
+            response = api.decrypt(data)
+            _logger.debug('Response: %s', response)
+            return response['Data']
 
-    @api.multi
+    @api.model_cr_context
     def encrypt(self, data, vault=None, user=None, password=None):
         """ It encrypts data to the vault.
 
@@ -161,19 +155,18 @@ class RedOctoberFile(models.Model):
         Returns:
             str: Encrypted string, encoded in Base64.
         """
-        self.ensure_one()
         if not data:
             return
-        if not user:
-            user = self.vault_id.get_current_user()
-        if not password:
-            password = self.password or request.session.password
         if vault is None:
             vault = self.env['red.october.vault'].get_current_vault()
+        if not user:
+            user = vault.get_current_user()
+        if not password:
+            password = request.session.password
         with vault.get_api(user, password) as api:
-            _logger.debug('Encrypting with %s, %s', user, password)
+            # @TODO: This is hacked in, need true owners and min
             return api.encrypt(
-                owners=[o.name for o in self.owner_ids],
-                minimum=self.delegation_min,
+                owners=[user.name],
+                minimum=1,
                 data=data,
             )

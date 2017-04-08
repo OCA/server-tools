@@ -72,7 +72,10 @@ class TestEphemeralText(SavepointCase):
             self.test_record.field, self.secure,
         )
 
-    def test_field_convert_to_write(self):
-        """ It should return False for convert_to_write on ephemeral field. """
+    def test_field_convert_to_column(self):
+        """ It should return None for convert_to_column on ephemeral field. """
         field = self.test_record._fields['field']
-        self.assertFalse(field.convert_to_write(self.secure))
+        self.assertIs(
+            field.convert_to_column(self.secure, None),
+            None,
+        )

@@ -9,13 +9,15 @@ Red October Attachments
 This module provides a ``red_october`` type to ``ir.attachment``, which provides
 encryption and decryption services using a remote Red October instance.
 
+It also provides a field that uses this attachment type, similar to a Binary field.
+
 
 Installation
 ============
 
 A working Red October installation is required to use this module.
 
-* Install the Python Red October library ``pip install git+https://github.com/LasLabs/python-red-october@feature/master/code-samples``
+* Install the Python Red October library ``pip install git+https://github.com/LasLabs/python-red-october``
 
 Configuration
 =============
@@ -43,12 +45,8 @@ field set to type ``red_october``.
 Known issues / Roadmap
 ======================
 
-* Decouple the Red October user passwords from Odoo passwords.
 * Add caching for most methods
-* Allow for multiple RedOctoberUsers per ResUser, with a selection controlled via the session.
-* Allow for multiple RedOctoberVaults per ResCompany.
 * Allow transferring files between vaults.
-* If decrypt error, fail silently & instead hide the data. Need to handle in the encrypt too.
 * Add delegation uses & delta to ``red.october.file.owner``.
 
 Bug Tracker

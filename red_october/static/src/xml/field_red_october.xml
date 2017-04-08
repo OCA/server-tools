@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<template>
+
+    <t t-name="red_october.FieldRedOctober">
+
+        <span t-if="widget.get('effective_readonly')" />
+
+        <input t-if="!widget.get('effective_readonly')"
+               class="o_form_input"
+               type="text"
+               t-att-barcode_events="widget.options.barcode_events"
+               t-att-id="widget.id_for_label"
+               t-att-tabindex="widget.node.attrs.tabindex"
+               t-att-autofocus="widget.node.attrs.autofocus"
+               t-att-placeholder="widget.node.attrs.placeholder"
+               t-att-autocomplete="widget.node.attrs.autocomplete"
+               t-att-maxlength="widget.field.size"
+               />
+
+    </t>
+
+</template>

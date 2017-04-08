@@ -2,9 +2,9 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import ValidationError
+from .red_october import RedOctober
 
 
-class JSONValidationError(ValidationError):
-
-
+__all__ = [
+    'RedOctober',
+]

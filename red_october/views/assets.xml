@@ -14,6 +14,8 @@
             <script type="application/javascript"
                     src="/red_october/static/src/js/mixins.js" />
             <script type="application/javascript"
+                    src="/red_october/static/src/js/field_red_october.js" />
+            <script type="application/javascript"
                     src="/red_october/static/src/js/web_client.js" />
             <script type="application/javascript"
                     src="/red_october/static/src/js/widget_profile_manage.js" />
@@ -21,6 +23,8 @@
                     src="/red_october/static/src/js/widget_password_get.js" />
             <script type="application/javascript"
                     src="/red_october/static/src/js/dialog_password_change.js" />
+            <script type="application/javascript"
+                    src="/red_october/static/src/js/dialog_password_get.js" />
 
         </xpath>
 

@@ -9,18 +9,26 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
     var Widget = require('web.Widget');
     var Model = require('web.DataModel');
     var DialogPasswordChange = require('red_october.DialogPasswordChange');
+    var DialogPasswordGet = require('red_october.DialogPasswordGet');
 
     /* It allows a user to choose their current encryption profile.
 
         Attributes:
             currentProfile (obj): This is the current profile that is being
                 used for crypto.
+            currentPassword (str): This is the password being used for login
+                to currentProfile.
             profiles (Set of obj): This represents all the profiles that the
                 current user can access.
      */
     var WidgetProfileManage = Widget.extend({
 
         template: 'red_october.WidgetProfileManage',
+
+        events: {
+            'decrypt': 'doDecrypt',
+            'encrypt': 'doEncrypt',
+        },
 
         /* It sets the widget properties */
         init: function () {
@@ -44,7 +52,9 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             this.$el.find('#roProfilePasswordChange').click(
                 $.proxy(this.clickProfilePasswordChange, this)
             );
-
+            this.$el.find('#roProfilePasswordGet').click(
+                $.proxy(this.clickProfilePasswordGet, this)
+            );
         },
 
         /* Load user profiles from the server, add them to the instance, then re-render. */
@@ -115,6 +125,10 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             new DialogPasswordChange(this).open();
         },
 
+        clickProfilePasswordGet: function (event) {
+            new DialogPasswordGet(this).open();
+        },
+
         /* It selects the profile given the ID */
         selectProfile: function (profileID) {
             var self = this;
@@ -125,6 +139,57 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
                 }
             });
         },
+
+        doEncrypt: function (event, field) {
+            var self = this;
+            var _encrypt = function () {
+                self._crypt(field, 'encrypt').always(
+                    function(response) {
+                        field.handleCrypt(response.responseText);
+                    }
+                )
+            };
+            if (!this.currentPassword) {
+                var dialog = new DialogPasswordGet(this);
+                dialog.$modal.on('hide.bs.modal', _encrypt);
+                dialog.open();
+            } else {
+                _encrypt();
+            }
+        },
+
+        doDecrypt: function (event, field) {
+            var self = this;
+            var _decrypt = function () {
+                self._crypt(field, 'decrypt').always(
+                    function(response) {
+                        field.handleCrypt(response.responseText, true);
+                    }
+                )
+            };
+            if (!this.currentPassword) {
+                var dialog = new DialogPasswordGet(this);
+                dialog.$modal.on('hide.bs.modal', _decrypt);
+                dialog.open();
+            } else {
+                _decrypt();
+            }
+        },
+
+        _crypt: function (field, method) {
+            var uri = '/red_october/crypt/' + method;
+            return $.ajax({
+                method: 'POST',
+                url: uri,
+                data: {
+                    data: field.get_value(),
+                    password: this.currentPassword,
+                    user_id: this.currentProfile.id,
+                    csrf_token: odoo.csrf_token,
+                },
+                dataType: 'json',
+            });
+        }
 
     });
 

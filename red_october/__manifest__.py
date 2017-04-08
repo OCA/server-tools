@@ -10,6 +10,9 @@
               "Odoo Community Association (OCA)",
     'website': 'https://laslabs.com',
     'license': 'LGPL-3',
+    'depends': [
+        'base_fields_ephemeral',
+    ],
     'external_dependencies': {
         'python': [
             'red_october',
