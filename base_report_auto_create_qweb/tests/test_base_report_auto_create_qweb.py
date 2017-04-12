@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2015-2017
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
-from openerp import exceptions
+from odoo import exceptions
 
 
 class TestBaseReportAutoQwebCreate(common.TransactionCase):
