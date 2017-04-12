@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Authors: See README.RST for Contributors
-# Copyright 2015-2016 See __openerp__.py for Authors
+# Copyright 2015-2017
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class IrActionsReportDuplicate(models.TransientModel):
