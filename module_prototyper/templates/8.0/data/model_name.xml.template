@@ -1,8 +1,14 @@
 <?xml version="1.0"?>
 <openerp>
-  <data>
-
-      {{ data }}
-
+  <data noupdate="1">
+    {% for record in records %}
+    <record id="{{record._name|replace('.', '_')}}_{{record.id|string}}" model="{{model}}">
+        {% for name, meta in record.fields_get().items() %}
+	{% if not meta['type'] in ('one2many', 'many2one', 'many2many') and meta['store'] %}
+	<field name="{{name}}">{{record|attr(name)}}</field>
+	{% endif %}
+	{% endfor %}
+    </record>
+    {% endfor %}
   </data>
 </openerp>
