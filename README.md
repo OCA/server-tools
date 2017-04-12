@@ -32,6 +32,7 @@ addon | version | summary
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.0.0 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
+[base_search_fuzzy](base_search_fuzzy/) | 10.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.0 | Synchronize Gravatar Image
