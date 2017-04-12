@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Authors: See README.RST for Contributors
-# Copyright 2015-2016 See __openerp__.py for Authors
+# Copyright 2015-2017
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, exceptions, _
+from odoo import models, api, exceptions, _
 import logging
 
 _logger = logging.getLogger(__name__)
