@@ -11,7 +11,7 @@
         <field name="name">red.october.user.tree</field>
         <field name="model">red.october.user</field>
         <field name="arch" type="xml">
-            <tree string="Crypto Users">
+            <tree string="Crypto Users" create="false">
                 <field name="name" />
                 <field name="encrypt_type" />
                 <field name="is_admin" />
