@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: fetchmail_notify_error_to_sender
-#: model:email.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
+#: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
 msgid ""
 "\n"
 "<div>\n"
@@ -48,7 +48,7 @@ msgid "POP/IMAP Server"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
-#: model:email.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
+#: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
 msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
 msgstr ""
 
