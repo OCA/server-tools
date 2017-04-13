@@ -20,11 +20,11 @@
             <script type="application/javascript"
                     src="/red_october/static/src/js/widget_profile_manage.js" />
             <script type="application/javascript"
-                    src="/red_october/static/src/js/widget_password_get.js" />
-            <script type="application/javascript"
                     src="/red_october/static/src/js/dialog_password_change.js" />
             <script type="application/javascript"
                     src="/red_october/static/src/js/dialog_password_get.js" />
+            <script type="application/javascript"
+                    src="/red_october/static/src/js/dialog_vault_delegate.js" />
 
         </xpath>
 

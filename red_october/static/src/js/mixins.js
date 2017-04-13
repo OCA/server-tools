@@ -6,6 +6,7 @@ odoo.define('red_october.mixins', function (require) {
     "use strict";
 
     var core = require('web.core');
+    var web_client = require('web.web_client');
 
     var QWeb = core.qweb;
 
@@ -39,10 +40,11 @@ odoo.define('red_october.mixins', function (require) {
 
         handleResponseSuccess: function(data) {
             this.resetUI();
+            var $target = this.$target || this.$el;
             if (this.$modal) {
                 this.$modal.hide();
             }
-            var redirectUri = this.$target.data('success-page');
+            var redirectUri = $target.data('success-page');
             if (redirectUri) {
                 window.location.href = redirectUri;
             }
@@ -51,9 +53,13 @@ odoo.define('red_october.mixins', function (require) {
         handleResponseFail: function (data) {
             var $errorDivs = $('<div />');
             _.each(data.errors, function(error) {
-                $errorDivs.append(
-                    $('<div class="alert bg-danger">' + error + '</div>')
-                );
+                if ($errorDivs.length) {
+                    $errorDivs.append(
+                        $('<div class="alert bg-danger">' + error + '</div>')
+                    );
+                } else {
+                    web_client.do_warn(error);
+                }
             });
             this.$form.find('.form_result').html($errorDivs);
         },
@@ -89,7 +95,8 @@ odoo.define('red_october.mixins', function (require) {
         templateInner: undefined,
         roProfile: undefined,
 
-        init: function(parent) {
+        init: function(parent, options) {
+            this.options = _.defaults(options || {}, this.options);
             if (parent.currentProfile) {
                 this.roProfile = parent.currentProfile;
             }
@@ -105,15 +112,20 @@ odoo.define('red_october.mixins', function (require) {
                 } else {
                     this.options.$content = this.$extraContent;
                 }
+                this.$extraContent.find('.datepicker').datepicker({
+                    dateFormat: 'yy-mm-dd',
+                })
             }
             this._super(parent, this.options);
         },
 
         getTemplateContext: function() {
-            return {
+            var vals = {
                 csrf_token: core.csrf_token,
                 profile: this.roProfile,
             }
+            vals = _.defaults(this.options.templateVals || {}, vals);
+            return vals;
         },
 
     };

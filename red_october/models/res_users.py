@@ -4,7 +4,7 @@
 
 from odoo import api, fields, models
 
-from odoo.addons.red_october.fields import RedOctober
+from odoo.addons.red_october.fields import RedOctoberChar
 
 
 class ResUsers(models.Model):
@@ -23,7 +23,7 @@ class ResUsers(models.Model):
         comodel_name='red.october.user',
         inverse_name='user_id',
     )
-    encrypted = RedOctober(
+    encrypted_field = RedOctoberChar(
         help='Sample encrypted item',
     )
 

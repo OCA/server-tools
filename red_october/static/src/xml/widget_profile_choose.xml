@@ -18,30 +18,16 @@
             <ul class="dropdown-menu">
                 <li class="dropdown-header">
                     Crypto Profile:
-                    <strong t-esc="widget.currentProfile.name" />
+                    <strong id="roCurrentProfileName">None</strong>
                 </li>
                 <li class="divider" />
-                <li id="roProfilePasswordChange">
+                <li id="roProfilePasswordChange" class="text-center">
                     <a href="#">Change Password</a>
                 </li>
-                <li id="roProfileNew">
-                    <a href="#">New Profile</a>
+                <li class="divider" />
+                <li class="dropdown-header" id="roVaultDelegateHeader">
+                    Delegate Rights
                 </li>
-                <t t-if="Object.keys(widget.profiles).length > 1">
-                    <li class="divider" />
-                    <li class="dropdown-header">
-                        Change Profile
-                    </li>
-                    <t t-foreach="Object.keys(widget.profiles)" t-as="profile_id">
-                        <t t-set="profile" t-value="widget.profiles[profile_id]" />
-                        <li t-if="profile.id != widget.currentProfile.id">
-                            <a class="roProfileSelect" href="#"
-                               t-att-data-profile-id="profile.id">
-                                <t t-esc="profile.name"/>
-                            </a>
-                        </li>
-                    </t>
-                </t>
             </ul>
         </li>
     </t>

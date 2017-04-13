@@ -110,7 +110,8 @@ class RedOctoberFile(models.Model):
         return record
 
     @api.model_cr_context
-    def decrypt(self, data, vault=None, user=None, password=None):
+    def decrypt(self, data, vault=None, user=None, password=None,
+                *args, **kwargs):
         """ It decrypts the data and returns the result.
 
         Args:
@@ -137,11 +138,11 @@ class RedOctoberFile(models.Model):
             password = request.session.password
         with vault.get_api(user, password) as api:
             response = api.decrypt(data)
-            _logger.debug('Response: %s', response)
             return response['Data']
 
     @api.model_cr_context
-    def encrypt(self, data, vault=None, user=None, password=None):
+    def encrypt(self, data, vault=None, user=None, password=None,
+                owner_ids=None, delegation_min=1, *args, **kwargs):
         """ It encrypts data to the vault.
 
         Args:
@@ -152,6 +153,10 @@ class RedOctoberFile(models.Model):
                 for decryption. Omit to use the current session's user.
             password (str, optional): Password to use for decryption. Omit
                 to use the current session's password.
+            owner_ids (list of int, optional): Red October User Ids that own
+                this. 
+            delegation_min (int): Minimum number of delegations required
+                in order to decrypt.
         Returns:
             str: Encrypted string, encoded in Base64.
         """
@@ -163,10 +168,21 @@ class RedOctoberFile(models.Model):
             user = vault.get_current_user()
         if not password:
             password = request.session.password
+        if owner_ids:
+            owners = self.env['red.october.user'].browse(owner_ids)
+        else:
+            owners = []
         with vault.get_api(user, password) as api:
-            # @TODO: This is hacked in, need true owners and min
             return api.encrypt(
-                owners=[user.name],
-                minimum=1,
+                owners=[user.name] + [o.name for o in owners],
+                minimum=delegation_min,
                 data=data,
             )
+
+    @api.model
+    def get_for_field(self, model_name, record_id, field_name,
+                      recordset=True):
+        record = self.env[model_name].browse(record_id)
+        field = record._fields[field_name]
+        file = field._get_attachments(record)
+        return file if recordset else file.read()

@@ -61,8 +61,6 @@ class RedOctoberVaultActivate(models.TransientModel):
         for record in self:
             if not record.is_active:
                 record.activate_vault()
-            else:
-                record.is_active = True
             if self.env.user != record.admin_user_id.user_id:
                 self.env['red.october.user'].upsert_by_user(
                     vaults=record.vault_ids,
@@ -76,5 +74,10 @@ class RedOctoberVaultActivate(models.TransientModel):
             raise ValidationError(_(
                 'Passwords do not match.',
             ))
+        if self.is_active:
+            self.vault_ids.write({
+                'is_active': True,
+            })
+            return
         for vault in self.vault_ids:
             vault.activate(self.admin_user_id, self.admin_password)

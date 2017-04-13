@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<template>
+
+    <t t-name="red_october.FormVaultDelegate">
+        <form id="roVaultDelegateForm"
+              method="POST"
+              t-attf-action="/red_october/vault/{{ vault.id }}/profile/{{ profile.id }}/delegate"
+              >
+            <input type="hidden"
+                   name="csrf_token"
+                   t-att-value="csrf_token" />
+            <div class="form-group">
+                <label for="num_expire">
+                    Number of Uses
+                </label>
+                <input type="number"
+                       name="num_expire"
+                       class="form-control"
+                       required="" />
+            </div>
+            <div class="form-group">
+                <label for="num_expire">
+                    Date of Expiration
+                </label>
+                <input type="text"
+                       class="form-control datepicker"
+                       name="date_expire"
+                       required="" />
+            </div>
+            <div class="form-group">
+                <label for="password">
+                    Password
+                </label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       required="" />
+            </div>
+            <div class="form_result text-center" />
+        </form>
+    </t>
+
+</template>

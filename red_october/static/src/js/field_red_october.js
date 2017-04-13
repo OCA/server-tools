@@ -9,6 +9,8 @@ odoo.define('red_october.FieldRedOctober', function (require) {
     var common = require('web.form_common');
     var formats = require('web.formats');
 
+    var DataModel = require('web.DataModel');
+
     var DialogPasswordGet = require('red_october.DialogPasswordGet');
 
     var FieldRedOctober = common.AbstractField.extend(common.ReinitializeFieldMixin, {
@@ -38,20 +40,24 @@ odoo.define('red_october.FieldRedOctober', function (require) {
         commit_value: function () {
             var result = this._super();
             this.storeDomValue();
-            var doEncrypt = $.proxy(function() {
+            var doEncrypt = this.proxy(function(promise) {
                 this.cryptDefer = $.Deferred();
-                this.doEncrypt();
-                return this.cryptDefer;
-            }, this)
+                if (promise) {
+                    promise.then(this.proxy(this.doEncrypt));
+                } else {
+                    this.doEncrypt();
+                }
+                return this.cryptDefer.promise();
+            });
             if (this.cryptSuccess) {
-                // Handle clearing values
                 if (!this.valueDecrypted) {
+                    // Handle clearing values
                     this.valueEncrypted = false;
                     return result;
                 }
-                return doEncrypt();
-            } else if (!this.cryptAttempted && !this.get('effective_readonly')) {
-                return doEncrypt();
+                return doEncrypt(result);
+            } else if (!this.get('effective_readonly')) {
+                return doEncrypt(result);
             }
             return result;
         },
@@ -69,7 +75,7 @@ odoo.define('red_october.FieldRedOctober', function (require) {
             if (!sameRecord || !value) {
                 this.clearValues();
             }
-            if ((!this.cryptAttempted || this.cryptSuccess) && decrypted) {
+            if (decrypted) {
                 this.valueDecrypted = value;
             } else {
                 this.valueEncrypted = value;
@@ -167,24 +173,23 @@ odoo.define('red_october.FieldRedOctober', function (require) {
             this.cryptCount += 1;
             this.set_value(value, decrypted);
             if (this.cryptDefer) {
-                // This is very hacky
+                // This is very hacky - clear the decrypted contents for save
+                // Then add back and rerender.
                 var decrypted = this.valueDecrypted;
                 this.valueDecrypted = false;
                 this.render_value();
-                debugger;
                 this.cryptDefer.resolve(true);
                 this.cryptDefer = false;
                 this.valueDecrypted = decrypted;
-            } else {
-                this.render_value();
             }
+            this.render_value();
         },
 
         storeDomValue: function () {
             if (this.$input && this.is_syntax_valid()) {
                 this.set_value(
                     this.parse_value(this.$input.val()),
-                    !this.cryptAttempted || this.cryptSuccess
+                    !this.valueDecrypted || this.cryptSuccess
                 );
             }
         },
@@ -196,12 +201,29 @@ odoo.define('red_october.FieldRedOctober', function (require) {
         },
 
         sameRecord: function () {
-            if (this.currentId === this.view.datarecord.id) {
+            if (this.currentID === this.view.datarecord.id) {
                 return true;
             }
-            this.currentId = this.view.datarecord.id;
+            this.currentID = this.view.datarecord.id;
+            this.getAttachment();
             return false;
-        }
+        },
+
+        getAttachment: function () {
+            var Files = new DataModel('red.october.file');
+            var deferred = Files.call(
+                'get_for_field',
+                [this.view.dataset.model,
+                 this.currentID,
+                 this.name,
+                 false,
+                 ]
+            );
+            var setAttachment = function (response) {
+                this.currentAttachment = response.pop();
+            }
+            deferred.done(this.proxy(setAttachment));
+        },
 
     });
 

@@ -13,7 +13,7 @@
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tz_offset']" position="after">
-                <field name="encrypted" />
+                <field name="encrypted_field" />
             </xpath>
         </field>
     </record>

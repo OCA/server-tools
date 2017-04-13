@@ -13,7 +13,7 @@ from odoo.tools import human_size
 _logger = logging.getLogger(__name__)
 
 
-class RedOctober(fields.Field):
+class RedOctoberChar(fields.Field):
 
     type = 'red_october'
     column_type = None
@@ -55,13 +55,22 @@ class RedOctober(fields.Field):
                 attachments.unlink()
 
     def _create_attachment(self, record, value):
-        record.env['red.october.file'].create({
-            'name': self.name,
+        user = record.env['red.october.user'].get_current_user()
+        vault = record.env['red.october.vault'].get_current_vault()
+        _logger.debug('%s, %s', user, user.ids)
+        file = record.env['red.october.file'].create({
+            'name': '%s(%d).%s' % (record._name, record.id, self.name),
             'res_model': record._name,
             'res_field': self.name,
             'res_id': record.id,
             'datas': value,
         })
+        record.env['red.october.file.owner'].create({
+            'vault_id': vault.id,
+            'file_id': file.id,
+            'user_id': user.id,
+        })
+        return file
 
     def _get_attachments(self, records):
         domain = [

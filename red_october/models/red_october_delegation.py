@@ -4,13 +4,18 @@
 
 from datetime import datetime
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+
+from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
 
 
 class RedOctoberDelegation(models.Model):
 
     _name = 'red.october.delegation'
     _description = 'Red October Delegation'
+
+    CONTEXT_SKIP = 'ro_no_delegate'
 
     vault_id = fields.Many2one(
         string='Vault',
@@ -47,39 +52,27 @@ class RedOctoberDelegation(models.Model):
             record.delta_expire = expire - now
 
     @api.multi
-    @api.depends('delta_expire', 'num_expire')
+    @api.depends('date_expire', 'num_expire')
     def _compute_active(self):
         for record in self:
-            record.active = any((
+            record.active = all((
                 record.num_expire, record.delta_expire.total_seconds() > 0
             ))
 
-    @api.model
-    def create(self, vals):
-        """ It creates the delegations on the remote.
-
-        This also deactivates any existing delegations for the user.
-        """
-        record = super(RedOctoberDelegation, self).create(vals)
-        record.delegate()
-        return record
-
     @api.multi
-    def update(self, vals):
-        """ It updates the delegations on the remote. """
-        res = super(RedOctoberDelegation, self).update(vals)
-        self.delegate()
-        return res
-
-    @api.multi
-    def delegate(self):
+    def delegate(self, password):
         """ It runs a remote delegation & deactivates existing active locals.
 
-        The existing locals are deactivated because a vault can only maintain
+        Any existing locals are deactivated because a vault can only maintain
         one active delegation per user.
+        
+        Args:
+            password (str): Password for the associated Red October user.
         """
+        if self._context.get(self.CONTEXT_SKIP):
+            return False
         for record in self:
-            with record.vault_id.get_api() as api:
+            with record.vault_id.get_api(record.user_id, password) as api:
                 api.delegate(
                     record.delta_expire, record.num_expire,
                 )
@@ -90,4 +83,15 @@ class RedOctoberDelegation(models.Model):
                 ('id', '!=', record.id),
             ])
             if existing:
-                existing.write({'date_expire': fields.Datetime.now()})
+                existing.write({
+                    'date_expire': fields.Datetime.now(),
+                })
+        return True
+
+    @api.multi
+    def decrement(self, amount=1):
+        """ It decrements the delegation num_expire by amount. """
+        for record in self:
+            record.write({
+                'num_expire': record.num_expire - amount,
+            })
