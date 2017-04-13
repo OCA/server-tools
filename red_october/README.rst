@@ -58,6 +58,7 @@ Usage
 Create the Vault
 ----------------
 
+* Activate Developer Mode
 * Go to `Settings => Crypto => Vaults` to create a new vault.
 * Once created, a vault must be initialized with an administrative user using the
   `Action => Init Vault` button from the vault form view.

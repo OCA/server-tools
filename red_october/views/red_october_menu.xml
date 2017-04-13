@@ -10,6 +10,7 @@
     <menuitem id="red_october_menu"
               name="Crypto"
               parent="base.menu_administration"
+              groups="base.group_no_one"
               sequence="20"
               />
 
