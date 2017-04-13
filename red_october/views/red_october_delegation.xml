@@ -11,7 +11,7 @@
         <field name="name">red.october.delegation.tree</field>
         <field name="model">red.october.delegation</field>
         <field name="arch" type="xml">
-            <tree string="Crypto Delegations" create="False">
+            <tree string="Crypto Delegations" create="false">
                 <field name="user_id" />
                 <field name="vault_id" />
                 <field name="date_expire" />
