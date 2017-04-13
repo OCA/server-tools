@@ -158,6 +158,8 @@ Known issues / Roadmap
 * Company rules to enforce password change on Crypto Profiles (initial, and recurrent)
 * Company rules to enforce password complexity requirements (glue with
   `OCA/server-tools/password_security`?)
+* Vault activation wizard temporarily stores the administrator password in the database.
+  This should be circumvented by utilizing the Crypto Menu instead of a wizard.
 
 Bug Tracker
 ===========
