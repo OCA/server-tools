@@ -8,8 +8,6 @@ from odoo import _, api, fields, models
 from odoo.http import request
 from odoo.exceptions import ValidationError
 
-from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
-
 
 _logger = logging.getLogger(__name__)
 

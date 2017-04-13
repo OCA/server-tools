@@ -11,7 +11,7 @@
     'website': 'https://laslabs.com',
     'license': 'LGPL-3',
     'depends': [
-        'base_fields_ephemeral',
+        'base',
     ],
     'external_dependencies': {
         'python': [

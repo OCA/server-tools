@@ -7,8 +7,6 @@ from datetime import datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
-
 
 class RedOctoberDelegation(models.Model):
 

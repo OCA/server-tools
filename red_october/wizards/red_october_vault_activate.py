@@ -7,8 +7,6 @@ import logging
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-from odoo.addons.base_fields_ephemeral.fields import EphemeralChar
-
 
 _logger = logging.getLogger(__name__)
 
@@ -38,8 +36,12 @@ class RedOctoberVaultActivate(models.TransientModel):
                 " 'default_is_active': True,"
                 " }",
     )
-    admin_password = EphemeralChar()
-    admin_password_confirm = EphemeralChar()
+    admin_password = fields.Char(
+        required=True,
+    )
+    admin_password_confirm = fields.Char(
+        required=True,
+    )
 
     @api.model
     def _default_vault_ids(self):
@@ -78,6 +80,8 @@ class RedOctoberVaultActivate(models.TransientModel):
             self.vault_ids.write({
                 'is_active': True,
             })
+            self.unlink()
             return
         for vault in self.vault_ids:
             vault.activate(self.admin_user_id, self.admin_password)
+        self.unlink()
