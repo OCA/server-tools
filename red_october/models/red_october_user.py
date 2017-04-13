@@ -72,7 +72,7 @@ class RedOctoberUser(models.Model):
 
     @api.model
     def create(self, vals):
-        """ It creates the user on the remote vaults. """
+        """ Create the user on the remote vaults. """
         already_active = vals.get('is_active')
         vals['is_active'] = True
         res = super(RedOctoberUser, self).create(vals)
@@ -88,7 +88,7 @@ class RedOctoberUser(models.Model):
 
     @api.multi
     def update(self, vals):
-        """ It updates the user on the remote vaults. """
+        """ Update the user on the remote vaults. """
         for record in self:
             role = None
             active = vals.get('is_active')
@@ -103,13 +103,13 @@ class RedOctoberUser(models.Model):
 
     @api.multi
     def unlink(self):
-        """ It removes the user from the remote vaults. """
+        """ Remove the user from the remote vaults. """
         self._update_role('revoke')
         return super(RedOctoberUser, self).unlink()
 
     @api.model
     def change_current_user(self, ro_user_id):
-        """ It changes the current session user to the provided.
+        """ Change the current session user to the provided.
 
         Args:
             ro_user_id (int): ID of the RedOctoberUser to add as the current
@@ -119,7 +119,7 @@ class RedOctoberUser(models.Model):
 
     @api.multi
     def change_password(self, old_passwd, new_passwd, confirm_passwd):
-        """ It changes the password for the user singleton. """
+        """ Change the password for the user singleton. """
         self.ensure_one()
         if new_passwd != confirm_passwd:
             raise ValidationError(_(
@@ -134,7 +134,7 @@ class RedOctoberUser(models.Model):
 
     @api.model
     def get_current_user(self):
-        """ It returns the RedOctoberUser that the session user is using.
+        """ Return the RedOctoberUser that the session user is using.
 
         This method currently returns the default selected in the user, but
         plans are to allow for the control of this via session.
@@ -161,7 +161,7 @@ class RedOctoberUser(models.Model):
 
     @api.model
     def get_user_profiles(self):
-        """ It returns the current user's profiles. """
+        """ Return the current user's profiles. """
         users = self.search([
             ('user_id', '=', self.env.user.id),
         ])
@@ -174,7 +174,7 @@ class RedOctoberUser(models.Model):
 
     @api.model
     def upsert_by_user(self, user=None, vaults=None):
-        """ It returns the existing RedOctoberUser or creates a new one. """
+        """ Return the existing RedOctoberUser or creates a new one. """
         if user is None:
             user = self.env.user
         if vaults is None:
@@ -199,7 +199,7 @@ class RedOctoberUser(models.Model):
 
     @api.multi
     def _update_role(self, user=None, passwd=None):
-        """ It alters the user role. """
+        """ Alter the user role. """
         for record in self:
             for vault in record.vault_ids:
                 with vault.get_api(user, passwd) as api:

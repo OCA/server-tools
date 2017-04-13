@@ -52,7 +52,7 @@ class RedOctoberFile(models.Model):
     @api.multi
     @api.constrains('owner_ids')
     def _check_owner_ids(self):
-        """ It will not allow the same owner twice.
+        """ Do not allow the same owner twice.
 
         Raises:
             ValidationError: If the owner is duplicated on the record.
@@ -66,13 +66,14 @@ class RedOctoberFile(models.Model):
 
     @api.model
     def default_get(self, fields):
+        """ Force the correct `ir.attachment.type` """
         result = super(RedOctoberFile, self).default_get(fields)
         result['type'] = self.env['ir.attachment'].RED_OCTOBER
         return result
 
     @api.multi
     def write(self, vals):
-        """ It will not allow vault transfers.
+        """ Do not allow vault transfers.
 
         Raises:
             NotImplementedError: If a vault transfer is being attempted.
@@ -81,7 +82,7 @@ class RedOctoberFile(models.Model):
             changed = self.filtered(
                 lambda r: r.vault_id.id != vals['vault_id']
             )
-            if len(changed):
+            if changed:
                 raise NotImplementedError(_(
                     'It is currently not possible to move a file between '
                     'vaults.',
@@ -90,7 +91,7 @@ class RedOctoberFile(models.Model):
 
     @api.model_cr_context
     def upsert_by_attachment(self, attachment):
-        """ It returns the RedOctoberFile for attachment or makes a new one.
+        """ Return the RedOctoberFile for attachment or makes a new one.
 
         Args:
             attachment (IrAttachment): Attachment RecordSet singleton
@@ -110,7 +111,7 @@ class RedOctoberFile(models.Model):
     @api.model_cr_context
     def decrypt(self, data, vault=None, user=None, password=None,
                 *args, **kwargs):
-        """ It decrypts the data and returns the result.
+        """ Decrypt the data and returns the result.
 
         Args:
             data (str): Base64 encoded, encrypted data.
@@ -141,7 +142,7 @@ class RedOctoberFile(models.Model):
     @api.model_cr_context
     def encrypt(self, data, vault=None, user=None, password=None,
                 owner_ids=None, delegation_min=1, *args, **kwargs):
-        """ It encrypts data to the vault.
+        """ Encrypt data to the vault.
 
         Args:
             data (str): Plain text string to encrypt.

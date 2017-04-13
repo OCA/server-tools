@@ -28,9 +28,9 @@ class RedOctoberChar(fields.Field):
 
     def read(self, records):
         # values are stored in attachments, retrieve them
-        attachments = self._get_attachments(records).with_context(
-            bin_size=False,
-        )
+        attachments = self._get_attachments(records)
+        if self._context.get('bin_size'):
+            attachments = attachments.with_context(bin_size=False)
         data = {att.res_id: att.datas for att in attachments}
         _logger.debug(data)
         for record in records:

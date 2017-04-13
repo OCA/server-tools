@@ -13,7 +13,7 @@ class ResCompany(models.Model):
         string='Default Crypto Vault',
         comodel_name='red.october.vault',
         store=True,
-        compute="_compute_default_red_october_id",
+        compute="_default_red_october_id",
         domain="[('id', 'in', red_october_ids)]",
         help='Use this Red October vault by default.',
     )
@@ -25,7 +25,7 @@ class ResCompany(models.Model):
 
     @api.multi
     @api.depends('red_october_ids')
-    def _compute_default_red_october_id(self):
+    def _default_default_red_october_id(self):
         for record in self:
             if record.default_red_october_id:
                 continue

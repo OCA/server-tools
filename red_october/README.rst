@@ -68,6 +68,8 @@ Create the Vault
 
 * Activate Developer Mode
 * Go to `Settings => Crypto => Vaults` to create a new vault.
+  * Make sure to uncheck the `Verify Cert` option if your Red October server is using a self
+    signed cert.
 * Once created, a vault must be initialized with an administrative user using the
   `Action => Init Vault` button from the vault form view.
   * If the vault was already activated externally, make sure to check the

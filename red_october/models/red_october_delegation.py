@@ -13,8 +13,6 @@ class RedOctoberDelegation(models.Model):
     _name = 'red.october.delegation'
     _description = 'Red October Delegation'
 
-    CONTEXT_SKIP = 'ro_no_delegate'
-
     vault_id = fields.Many2one(
         string='Vault',
         comodel_name='red.october.vault',
@@ -59,7 +57,7 @@ class RedOctoberDelegation(models.Model):
 
     @api.multi
     def delegate(self, password):
-        """ It runs a remote delegation & deactivates existing active locals.
+        """ Run a remote delegation & deactivate existing active locals.
 
         Any existing locals are deactivated because a vault can only maintain
         one active delegation per user.
@@ -67,8 +65,6 @@ class RedOctoberDelegation(models.Model):
         Args:
             password (str): Password for the associated Red October user.
         """
-        if self._context.get(self.CONTEXT_SKIP):
-            return False
         for record in self:
             with record.vault_id.get_api(record.user_id, password) as api:
                 api.delegate(
@@ -88,7 +84,7 @@ class RedOctoberDelegation(models.Model):
 
     @api.multi
     def decrement(self, amount=1):
-        """ It decrements the delegation num_expire by amount. """
+        """ Decrement the delegation num_expire by amount. """
         for record in self:
             record.write({
                 'num_expire': record.num_expire - amount,
