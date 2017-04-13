@@ -45,7 +45,11 @@ class RedOctoberController(http.Controller):
     )
     def crypt(self, command, user_id, password, data, vault_id=None,
               owner_ids=None, delegation_min=1):
-        assert command in ['encrypt', 'decrypt']
+        valid_commands = ['encrypt', 'decrypt']
+        if command not in valid_commands:
+            raise ValidationError(_(
+                'The only valid commands for this method are %s'
+            ) % valid_commands)
         user = http.request.env['red.october.user'].browse(
             int(user_id),
         )
