@@ -5,14 +5,8 @@
 # License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
 #
 
-from lxml import etree
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
-from odoo.modules.module import get_resource_from_path
-from odoo.tools.parse_version import parse_version
-from odoo.tools.view_validation import valid_view
-from odoo.tools.translate import encode
+from odoo import api, fields, models
 
 
 class IrUiView(models.Model):

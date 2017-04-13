@@ -6,4 +6,3 @@
 #
 
 from . import models
-
