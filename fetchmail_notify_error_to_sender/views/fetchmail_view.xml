@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
-
+<odoo>
         <record model="ir.ui.view" id="view_email_server_form">
             <field name="name">fetchmail.server.form</field>
             <field name="model">fetchmail.server</field>
             <field name="inherit_id" ref="fetchmail.view_email_server_form"></field>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Advanced']/group/field[@name='active']" position="after">
+                <field name="active" position="after">
                     <field name="error_notice_template_id"/>
-                </xpath>
+                </field>
             </field>
         </record>
-    </data>
-</openerp>
+</odoo>
