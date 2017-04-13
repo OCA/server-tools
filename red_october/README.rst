@@ -6,8 +6,16 @@
 Red October Attachments
 =======================
 
-This module provides a ``red_october`` type to ``ir.attachment``, which provides
-encryption and decryption services using a remote Red October instance.
+This module adds support for secure, external encryption and decryption of data
+using `CloudFlare Red October https://blog.cloudflare.com/red-october-cloudflares-open-source-implementation-of-the-two-man-rule/`.
+
+It also allows for the creation of vaults, management of users, and delegation of decryption rights to the vaults.
+
+Technical
+---------
+
+Crypto is implemented by providing a ``red_october`` type to ``ir.attachment``, which utilizes
+a remote Red October instance to seamlessly encrypt and decrypt data on the fly.
 
 It also provides some fields & form widgets to allow for similar operation to
 internal fields with seamless encryption:
