@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <act_window id="action_inbox"
+                res_model="mail.message"
+                view_mode="tree,form"
+                domain="[('model', '=', 'fetchmail.inbox.invoice')]"
+                context="{'set_default_res_model': 'account.invoice'}"
+                name="Invoices per mail"
+                view_id="fetchmail_inbox.tree_mail_message_fetchmail_inbox"
+                />
+    <menuitem id="menu_inbox"
+              action="action_inbox"
+              parent="account.menu_finance_payables"
+              groups="account.group_account_user"
+              />
+</odoo>

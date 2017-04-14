@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* fetchmail_inbox_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-26 15:07+0000\n"
+"PO-Revision-Date: 2017-12-26 15:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_fetchmail_inbox_attach_existing_wizard
+msgid "Attach mail to existing object"
+msgstr "Email koppelen aan bestaand item"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.ui.view,arch_db:fetchmail_inbox_invoice.view_message_form
+msgid "Attach to existing invoice"
+msgstr "Koppelen aan bestaande factuur"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_create_uid_3860
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_create_date_3870
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_display_name_3858
+msgid "Display Name"
+msgstr "Weergave naam"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_fetchmail_inbox_invoice
+msgid "Fetchmail inbox for invoices"
+msgstr "Fetchmail inbox voor facturen"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_id_3869
+msgid "ID"
+msgstr "ID"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.actions.act_window,name:fetchmail_inbox_invoice.action_inbox
+#: model:ir.ui.menu,name:fetchmail_inbox_invoice.menu_inbox
+msgid "Invoices per mail"
+msgstr "Facturen per mail"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox___last_update_3864
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_write_uid_3867
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model.fields,field_description:fetchmail_inbox_invoice.field_fetchmail_inbox_write_date_3868
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: fetchmail_inbox_invoice
+#: model:ir.model,name:fetchmail_inbox_invoice.model_mail_message
+msgid "Message"
+msgstr "Bericht"
+
