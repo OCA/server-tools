@@ -10,8 +10,8 @@
             <form string="SQL export">
                 <sheet>
                     <header>
-                        <button name="button_clean_check_request" type="object" states="draft"
-                                string="Clean and Check Request" class="oe_highlight"/>
+                        <button name="button_validate_sql_expression" type="object" states="draft"
+                                string="Validate SQL Expression" class="oe_highlight"/>
                         <button name="button_set_draft" type="object" states="sql_valid"
                                 string="Set to Draft" groups="sql_request_abstract.group_sql_request_manager"/>
                         <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object" class="oe_highlight"
