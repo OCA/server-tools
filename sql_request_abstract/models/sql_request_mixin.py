@@ -14,7 +14,7 @@ from openerp import _, api, fields, models
 from openerp.exceptions import Warning as UserError
 
 
-class SQLRequestMixin(models.Model):
+class SQLRequestMixin(models.AbstractModel):
     _name = 'sql.request.mixin'
 
     _clean_query_enabled = True
@@ -60,7 +60,7 @@ class SQLRequestMixin(models.Model):
 
     query = fields.Text(
         string='Query', required=True, help="You can't use the following words"
-        ": DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE")
+        ": DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE.")
 
     state = fields.Selection(
         string='State', selection=STATE_SELECTION, default='draft',
@@ -82,7 +82,7 @@ class SQLRequestMixin(models.Model):
 
     # Action Section
     @api.multi
-    def button_clean_check_request(self):
+    def button_validate_sql_expression(self):
         for item in self:
             if item._clean_query_enabled:
                 item._clean_query()
@@ -198,7 +198,10 @@ class SQLRequestMixin(models.Model):
         self.env.cr.execute("SHOW server_version;")
         res = self.env.cr.fetchone()[0].split('.')
         minor_version = float('.'.join(res[:2]))
-        return minor_version >= 9.3
+        if minor_version < 9.3:
+            raise UserError(_(
+                "Materialized View requires PostgreSQL 9.3 or greater but"
+                " PostgreSQL %s is currently installed.") % (minor_version))
 
     @api.multi
     def _clean_query(self):

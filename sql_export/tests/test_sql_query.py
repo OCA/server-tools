@@ -1,23 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Florian da Costa
-#    Copyright 2015 Akretion
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distnaributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright (C) 2015 Akretion (<http://www.akretion.com>)
+# @author: Florian da Costa
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import base64
 from openerp.tests.common import TransactionCase
 from openerp.exceptions import Warning as UserError
@@ -57,7 +42,7 @@ class TestExportSqlQuery(TransactionCase):
                 sql_export = self.sql_export_obj.create({
                     'name': 'test_prohibited',
                     'query': query})
-                sql_export.button_clean_check_request()
+                sql_export.button_validate_sql_expression()
 
     def test_authorized_queries(self):
         authorized_queries = [
@@ -68,7 +53,7 @@ class TestExportSqlQuery(TransactionCase):
             sql_export = self.sql_export_obj.create({
                 'name': 'test_authorized',
                 'query': query})
-            sql_export.button_clean_check_request()
+            sql_export.button_validate_sql_expression()
             self.assertEqual(
                 sql_export.state, 'sql_valid',
                 "%s is a valid request" % (query))

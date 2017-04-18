@@ -10,8 +10,8 @@
             <form string="SQL export">
                 <sheet>
                     <header>
-                        <button name="button_clean_check_request" type="object" states="draft"
-                                string="Clean and Check Request" class="oe_highlight"/>
+                        <button name="button_validate_sql_expression" type="object" states="draft"
+                                string="Validate SQL Expression" class="oe_highlight"/>
                         <button name="button_set_draft" type="object" states="sql_valid"
                                 string="Set to Draft" groups="sql_request_abstract.group_sql_request_manager"/>
                         <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object" class="oe_highlight"
@@ -74,6 +74,7 @@
     <record id="sql_parameter_view_form" model="ir.ui.view">
         <field name="name">Sql_parameter_form_view</field>
         <field name="model">ir.model.fields</field>
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <form string="SQL export">
             </form>
@@ -83,6 +84,7 @@
     <record id="sql_parameter_view_tree" model="ir.ui.view">
         <field name="name">Sql_parameter_tree_view</field>
         <field name="model">ir.model.fields</field>
+        <field name="priority">100</field>
         <field name="arch" type="xml">
             <tree string="SQL Parameter">
                 <field name="name"/>
