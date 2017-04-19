@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+<data noupdate="0">
+
+    <record id="res_partner_category_data_01" model="res.partner.category">
+        <field name="name">Data with reference to unreachable xml_id</field>
+        <field name="parent_id" ref="unreachable.res_partner_category_demo_01"/>
+    </record>
+
+</data>
+</openerp>
