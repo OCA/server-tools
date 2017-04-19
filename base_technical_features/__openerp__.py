@@ -13,6 +13,9 @@
         'views/res_users.xml',
         'data/res_users.xml',
     ],
+    "depends": [
+        'base_import',
+    ],
     "license": "AGPL-3",
     "installable": True,
 }
