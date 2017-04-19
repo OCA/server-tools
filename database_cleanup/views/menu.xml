@@ -52,5 +52,19 @@
             <field name="parent_id" ref="menu_database_cleanup"/>
         </record>
 
+        <record model="ir.ui.menu" id="menu_create_indexes">
+            <field name="name">Create missing indexes</field>
+            <field name="sequence" eval="70" />
+            <field name="action" ref="cleanup_create_indexes_wizard_action" />
+            <field name="parent_id" ref="menu_database_cleanup"/>
+        </record>
+
+        <record model="ir.ui.menu" id="menu_purge_property">
+            <field name="name">Purge obsolete properties</field>
+            <field name="sequence" eval="80" />
+            <field name="action" ref="action_purge_property" />
+            <field name="parent_id" ref="menu_database_cleanup"/>
+        </record>
+
     </data>
 </openerp>
