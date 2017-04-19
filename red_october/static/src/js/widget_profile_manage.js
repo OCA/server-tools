@@ -14,6 +14,7 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
     var DialogPasswordChange = require('red_october.DialogPasswordChange');
     var DialogPasswordGet = require('red_october.DialogPasswordGet');
     var DialogVaultDelegate = require('red_october.DialogVaultDelegate');
+    var DialogVaultNew = require('red_october.DialogVaultNew');
 
     var ERROR_PASSWORD = 'Wrong Password';
 
@@ -35,6 +36,7 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             'decrypt': 'doDecrypt',
             'encrypt': 'doEncrypt',
             'decrementDelegation': 'decrementDelegation',
+            'activateVault': 'activateVault',
         },
 
         /* It sets the widget properties */
@@ -63,6 +65,9 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             );
             this.$el.find('#roProfilePasswordGet').click(
                 this.proxy(this.clickProfilePasswordGet)
+            );
+            this.$el.find('#roVaultNew').click(
+                this.proxy(this.clickVaultNew)
             );
         },
 
@@ -138,6 +143,10 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             new DialogPasswordGet(this).open();
         },
 
+        clickVaultNew: function (event) {
+            new DialogVaultNew(this).open();
+        },
+
         clickVaultDelegate: function (event) {
             var dialog = new DialogVaultDelegate(
                 this,
@@ -195,6 +204,28 @@ odoo.define('red_october.WidgetProfileManage', function (require) {
             delegations.filter([['id', 'in', this.currentProfile.delegation_ids]]);
             delegations.all().then($.proxy(this.loadDelegations, this));
             return delegations;
+        },
+
+        activateVault: function (event, record, is_active) {
+            var Wizards = new Model('red.october.vault.activate');
+            Wizards.call(
+                'create',
+                [{
+                    'is_active': is_active || false,
+                    'vault_ids': [[(6, 0, [record])]],
+                    'admin_user_id':
+                }]
+            )
+        },
+
+        upsertProfile: function (user, vaults) {
+            var Users = new Model('red.october.user');
+            Users.call(
+                'create',
+                [{
+
+                }]
+            )
         },
 
         loadDelegations: function(records) {

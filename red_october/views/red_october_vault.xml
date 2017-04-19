@@ -11,7 +11,7 @@
         <field name="name">red.october.vault.tree</field>
         <field name="model">red.october.vault</field>
         <field name="arch" type="xml">
-            <tree string="Crypto Vaults">
+            <tree string="Crypto Vaults" create="false">
                 <field name="name" />
                 <field name="host" />
                 <field name="port" />

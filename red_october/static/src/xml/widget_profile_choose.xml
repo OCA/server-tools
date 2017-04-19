@@ -25,6 +25,9 @@
                     <a href="#">Change Password</a>
                 </li>
                 <li class="divider" />
+                <li id="roVaultNew" class="text-center">
+                    <a href="#">New Vault</a>
+                </li>
                 <li class="dropdown-header" id="roVaultDelegateHeader">
                     Delegate Rights
                 </li>

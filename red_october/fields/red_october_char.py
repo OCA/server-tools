@@ -34,7 +34,7 @@ class RedOctoberChar(fields.Field):
         data = {att.res_id: att.datas for att in attachments}
         _logger.debug(data)
         for record in records:
-            record._cache[self.name] = data.get(record.id, False)
+            record._cache[self.name] = data.get(record.id, self.null())
 
     def write(self, records, value):
         # retrieve the attachments that stores the value, and adapt them

@@ -51,7 +51,7 @@ class RedOctoberVaultActivate(models.TransientModel):
 
     @api.multi
     def _check_vault_ids(self):
-        """ It should not allow active vaults. """
+        """ Do not allow active vaults. """
         for record in self:
             if len(record.vault_ids.filtered(lambda r: r.is_active)):
                 raise ValidationError(_(
@@ -59,29 +59,25 @@ class RedOctoberVaultActivate(models.TransientModel):
                 ))
 
     @api.multi
-    def action_save(self):
-        for record in self:
-            if not record.is_active:
-                record.activate_vault()
-            if self.env.user != record.admin_user_id.user_id:
-                self.env['red.october.user'].upsert_by_user(
-                    vaults=record.vault_ids,
-                )
+    def activate_vault(self, admin_password, admin_password_confirm):
+        """ Activate a vault with the admin user and given password. """
 
-    @api.multi
-    def activate_vault(self):
-        """ It activates a vault with the given admin user and password. """
         self.ensure_one()
-        if self.admin_password != self.admin_password_confirm:
+
+        if admin_password != admin_password_confirm:
             raise ValidationError(_(
                 'Passwords do not match.',
             ))
+
         if self.is_active:
             self.vault_ids.write({
                 'is_active': True,
             })
-            self.unlink()
-            return
-        for vault in self.vault_ids:
-            vault.activate(self.admin_user_id, self.admin_password)
-        self.unlink()
+        else:
+            for vault in self.vault_ids:
+                vault.activate(self.admin_user_id, admin_password)
+
+        if self.env.user != self.admin_user_id.user_id:
+            self.env['red.october.user'].upsert_by_user(
+                vaults=self.vault_ids,
+            )

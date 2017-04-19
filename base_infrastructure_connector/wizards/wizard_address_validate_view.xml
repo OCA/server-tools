@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="wizard_address_validate_view_form" model="ir.ui.view">
+        <field name="name">Address Verification Form</field>
+        <field name="model">wizard.address.validate</field>
+        <field name="arch" type="xml">
+            <form string="Address Verification">
+                <header/>
+                <sheet>
+                    <group name="group_interface"
+                           attrs="{'invisible': [('is_valid', '!=', False)]}">
+                        <field name="interface_id" />
+                        <field name="partner_id" readonly="True" />
+                        <field name="is_valid" invisible="True"/>
+                        <field name="validation_messages" readonly="True" />
+                    </group>
+                    <group name="group_data"
+                           attrs="{'invisible': [('is_valid', '=', False)]}">
+                        <group name="group_data_original" string="Original">
+                            <field name="street_original" />
+                            <field name="street2_original" />
+                            <field name="city_original" />
+                            <field name="state_id_original" />
+                            <field name="zip_original" />
+                            <field name="country_id_original" />
+                            <field name="latitude_original" />
+                            <field name="longitude_original" />
+                        </group>
+                        <group name="group_data_suggested" string="Suggested">
+                            <field name="street" />
+                            <field name="street2" />
+                            <field name="city" />
+                            <field name="state_id" />
+                            <field name="zip" />
+                            <field name="country_id" />
+                            <field name="latitude" />
+                            <field name="longitude" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button special="cancel"
+                            string="Cancel"
+                            class="pull-left" />
+                    <button name="action_validate"
+                            type="object"
+                            string="Validate"
+                            attrs="{'invisible': [('is_valid', '=', True)]}"
+                            class="oe_highlight pull-right" />
+                    <button name="action_confirm"
+                            type="object"
+                            string="Confirm"
+                            attrs="{'invisible': [('is_valid', '=', False)]}"
+                            class="oe_highlight pull-right" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="wizard_company_address_validate_action"
+                name="Verify Address"
+                src_model="res.company"
+                res_model="wizard.address.validate"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi" />
+
+    <act_window id="wizard_partner_address_validate_action"
+                name="Verify Address"
+                src_model="res.partner"
+                res_model="wizard.address.validate"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi" />
+
+</odoo>
