@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="view_wizard_module_uninstall_form" model="ir.ui.view">
+        <field name="model">wizard.module.uninstall</field>
+        <field name="arch" type="xml">
+            <form string="System Update">
+                <p>The following models and fields will be dropped if uninstallation of the selected module is done</p>
+                <field name="module_qty" invisible="1"/>
+                <group col="4">
+                    <field name="module_id"/>
+                    <field name="module_name" />
+
+                    <field name="module_ids" widget="many2many_tags" attrs="{'invisible': [('module_qty', '=', 0)]}"/>
+                </group>
+                <separator string="Related Models"/>
+                <field name="model_line_ids" notitle="1" colspan="4" attrs="{'invisible': [('model_line_ids', '=', False)]}">
+                    <tree colors="gray:model_row_qty==0">
+                        <field name="model_id" />
+                        <field name="model_name" />
+                        <field name="model_row_qty" />
+                    </tree>
+                </field>
+                <separator string="Related Fields"/>
+                <field name="field_line_ids" notitle="1" colspan="4" attrs="{'invisible': [('field_line_ids', '=', False)]}">
+                    <tree>
+                        <field name="field_id" />
+                        <field name="field_model_name" />
+                        <field name="field_name" />
+                        <field name="field_ttype" />
+                    </tree>
+                </field>
+                <footer>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</data></openerp>

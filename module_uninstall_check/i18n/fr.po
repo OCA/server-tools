@@ -1,0 +1,188 @@
+
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* module_uninstall_check
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-20 20:14+0000\n"
+"PO-Revision-Date: 2017-04-20 20:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: module_uninstall_check
+#: view:wizard.module.uninstall:module_uninstall_check.view_wizard_module_uninstall_form
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: module_uninstall_check
+#: help:wizard.module.uninstall,module_id:0
+msgid "Choose a module. The wizard will display all the models and fields linked to that module, that will be dropped, if selected module is uninstalled.\n"
+" Note : Only Non Transient items will be displayed"
+msgstr "Choisissez un module. L'assistant va afficher tous les modèles et tous les champs associés à ce module, et qui seront supprimés, si le module sélectionné est désinstallé.\n"
+" Note: Seulement les éléments persistants en base de données seront affichés"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,create_uid:0
+#: field:wizard.module.uninstall.line,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,create_date:0
+#: field:wizard.module.uninstall.line,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,display_name:0
+#: field:wizard.module.uninstall.line,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: module_uninstall_check
+#: selection:wizard.module.uninstall.line,type:0
+msgid "Field"
+msgstr "Champ"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,field_model_name:0
+msgid "Field Model Name"
+msgstr "Nom du modèle du champ"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,field_name:0
+msgid "Field Name"
+msgstr "Nom du champ"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,field_ttype:0
+msgid "Field Type"
+msgstr "Type du champ"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,field_id:0
+msgid "Field id"
+msgstr "Field id"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,field_line_ids:0
+msgid "Field line ids"
+msgstr "Field line ids"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,id:0
+#: field:wizard.module.uninstall.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,module_ids:0
+msgid "Impacted modules"
+msgstr "Modules impactés"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,module_qty:0
+msgid "Impacted modules Quantity"
+msgstr "Nombre de modules impactés"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,__last_update:0
+#: field:wizard.module.uninstall.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,write_uid:0
+#: field:wizard.module.uninstall.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,write_date:0
+#: field:wizard.module.uninstall.line,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: module_uninstall_check
+#: selection:wizard.module.uninstall.line,type:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,model_name:0
+msgid "Model Name"
+msgstr "Nom du modèle"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,model_id:0
+msgid "Model id"
+msgstr "Model id"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,model_line_ids:0
+msgid "Model line ids"
+msgstr "Model line ids"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,module_id:0
+msgid "Module"
+msgstr "Module"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall,module_name:0
+msgid "Module Name"
+msgstr "Nom du module"
+
+#. module: module_uninstall_check
+#: help:wizard.module.uninstall,module_ids:0
+msgid "Modules list that will be uninstalled by dependency"
+msgstr "Liste des modules qui seront désinstallés par dépendance"
+
+#. module: module_uninstall_check
+#: view:wizard.module.uninstall:module_uninstall_check.view_wizard_module_uninstall_form
+msgid "Related Fields"
+msgstr "Champs associés"
+
+#. module: module_uninstall_check
+#: view:wizard.module.uninstall:module_uninstall_check.view_wizard_module_uninstall_form
+msgid "Related Models"
+msgstr "Modèle associés"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,model_row_qty:0
+msgid "Row Quantity"
+msgstr "Nombre de lignes"
+
+#. module: module_uninstall_check
+#: view:wizard.module.uninstall:module_uninstall_check.view_wizard_module_uninstall_form
+msgid "System Update"
+msgstr "System Update"
+
+#. module: module_uninstall_check
+#: view:wizard.module.uninstall:module_uninstall_check.view_wizard_module_uninstall_form
+msgid "The following models and fields will be dropped if uninstallation of the selected module is done"
+msgstr "Les modèles et les champs suivants seront supprimés si la désinstallation du module sélectionné est réalisé"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: module_uninstall_check
+#: model:ir.actions.act_window,name:module_uninstall_check.action_wizard_module_uninstall
+#: view:ir.module.module:module_uninstall_check.view_ir_module_module_form
+msgid "Uninstallation Impact"
+msgstr "Impact de la désinstallation"
+
+#. module: module_uninstall_check
+#: field:wizard.module.uninstall.line,wizard_id:0
+msgid "Wizard id"
+msgstr "Wizard id"
+
