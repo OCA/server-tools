@@ -38,13 +38,10 @@ class Letsencrypt(models.AbstractModel):
             _logger.log(loglevel, stderr)
         if stdout:
             _logger.log(loglevel, stdout)
-
         if process.returncode:
             raise exceptions.Warning(
-                _('Error calling %s: %d') % (cmdline[0], process.returncode),
-                ' '.join(cmdline),
+                _('Error calling %s: %d') % (cmdline[0], process.returncode)
             )
-
         return process.returncode
 
     @api.model
@@ -96,19 +93,19 @@ class Letsencrypt(models.AbstractModel):
     @api.model
     def generate_csr(self, domain):
         domains = [domain]
-        i = 0
-        while self.env['ir.config_parameter'].get_param(
-                'letsencrypt.altname.%d' % i):
-            domains.append(
-                self.env['ir.config_parameter']
-                .get_param('letsencrypt.altname.%d' % i)
-            )
-            i += 1
+        parameter_model = self.env['ir.config_parameter']
+        altnames = parameter_model.search(
+            [('key', 'like', 'letsencrypt.altname.')],
+            order='key'
+        )
+        for altname in altnames:
+            domains.append(altname.value)
         _logger.info('generating csr for %s', domain)
         if len(domains) > 1:
             _logger.info('with alternative subjects %s', ','.join(domains[1:]))
-        config = self.env['ir.config_parameter'].get_param(
-            'letsencrypt.openssl.cnf', '/etc/ssl/openssl.cnf')
+        config = parameter_model.get_param(
+            'letsencrypt.openssl.cnf', '/etc/ssl/openssl.cnf'
+        )
         csr = os.path.join(get_data_dir(), '%s.csr' % domain)
         with tempfile.NamedTemporaryFile() as cfg:
             cfg.write(open(config).read())
@@ -119,7 +116,7 @@ class Letsencrypt(models.AbstractModel):
             cfg.file.flush()
             cmdline = [
                 'openssl', 'req', '-new',
-                self.env['ir.config_parameter'].get_param(
+                parameter_model.get_param(
                     'letsencrypt.openssl.digest', '-sha256'),
                 '-key', self.generate_domain_key(domain),
                 '-subj', '/CN=%s' % domain, '-config', cfg.name,
