@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"paperformat_parameter_access_portal","ir_actions_report_paperformat_parameter group_portal","model_report_paperformat_parameter","base.group_portal",1,0,0,0
+"paperformat_parameter_access_employee","ir_actions_report_paperformat_parameter group_hr_user","model_report_paperformat_parameter",,1,0,1,0
