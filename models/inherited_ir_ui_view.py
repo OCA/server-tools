@@ -20,9 +20,14 @@ class IrUiView(models.Model):
 
     copy_id = fields.Many2one(
         comodel_name='ir.ui.view',
-        string=u'Copied View',
+        string='Copied View',
         ondelete='restrict',
         index=True,
+    )
+    copy_children_ids = fields.One2many(
+        comodel_name='ir.ui.view',
+        inverse_name='copy_id',
+        string='Views which copy from this one',
     )
 
     @api.model
@@ -32,9 +37,23 @@ class IrUiView(models.Model):
         # original view
         #
         if values.get('copy_id'):
-            values['arch'] = self.browse(values['copy_id']).arch
+            copied_view = self.browse(values['copy_id'])
+            values['arch'] = copied_view.read_combined(['arch'])['arch']
 
-        return super(IrUiView, self).create(values)
+        copied_views = []
+
+        res = super(IrUiView, self).create(values)
+
+        #
+        # Ensures inheritance gets replicated to copied views
+        #
+        if values.get('inherit_id'):
+            cv = self.search([('copy_id', '=', res.inherit_id.id)])
+            if cv:
+                arch = res.read_combined(['arch'])['arch']
+                cv.write({'arch': arch})
+
+        return res
 
     @api.model
     def write(self, values):
@@ -42,25 +61,70 @@ class IrUiView(models.Model):
 
         for view in self:
             #
-            # Saves copied views for latter proccess
+            # Saves copied views for later proccess
             #
             cv = self.search([('copy_id', '=', view.id)])
             if cv:
                 copied_views += [[view.id, cv]]
 
             #
+            # Saves copied views for later proccess
+            #
+            if values.get('inherit_id'):
+                cv = self.search([('copy_id', '=', values['inherit_id'])])
+                if cv:
+                    copied_views += [[view.id, cv]]
+
+            #
             # Ensures that the arch of the copied view remains copied from the
             # original view
             #
             if values.get('copy_id'):
-                values['arch'] = self.browse(values['copy_id']).arch
+                copied_view = self.browse(values['copy_id'])
+                values['arch'] = copied_view.read_combined(['arch'])['arch']
 
         res = super(IrUiView, self).write(values)
 
         if copied_views:
             for view_id, cv in copied_views:
                 view = self.browse(view_id)
-                cv.write({'arch': view.arch})
+                arch = view.read_combined(['arch'])['arch']
+                cv.write({'arch': arch})
+
+        return res
+
+    @api.model
+    def unlink(self):
+        copied_views = []
+
+        for view in self:
+            if not view.inherit_id:
+                continue
+
+            #
+            # Saves copied views for later proccess
+            #
+            cv = self.search([('copy_id', '=', view.inherit_id.id)])
+            if cv:
+                copied_views += [[view.inherit_id.id, cv]]
+
+        res = super(IrUiView, self).unlink()
+
+        #
+        # Ajusts now the copies of the inherited views
+        #
+        if copied_views:
+            for view_id, cv in copied_views:
+                inherited_view_ids = \
+                    self.search([('inherit_id', '=', view_id)])
+
+                if len(inherited_view_ids) > 0:
+                    view = self.browse(inherited_view_ids[0])
+                else:
+                    view = self.browse(view_id)
+
+                arch = view.read_combined(['arch'])['arch']
+                cv.write({'arch': arch})
 
         return res
 

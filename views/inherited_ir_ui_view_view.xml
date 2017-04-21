@@ -11,8 +11,19 @@
         <field name="priority">100</field>
         <field name="inherit_id" ref="base.view_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='xml_id']" position="after">
+            <xpath expr="//field[@name='inherit_id']" position="after">
                 <field name="copy_id" />
+            </xpath>
+            <xpath expr="//page[@name='inherit_children']" position="after">
+                <page name="copy_children" string="Copied Views">
+                    <field name="copy_children_ids" context="{'default_model':model,'default_type':type,'default_copy_id':active_id,'default_mode':'extension'}">
+                        <tree>
+                            <field name="priority"/>
+                            <field name="name"/>
+                            <field name="xml_id"/>
+                        </tree>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>
@@ -23,8 +34,8 @@
         <field name="priority">100</field>
         <field name="inherit_id" ref="base.view_view_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='xml_id']" position="after">
-                <field name="xml_id" groups="base.group_no_one" />
+            <xpath expr="//field[@name='inherit_id']" position="after">
+                <field name="copy_id" />
             </xpath>
         </field>
     </record>
