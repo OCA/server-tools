@@ -32,6 +32,7 @@ addon | version | summary
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.0.0 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
+[base_optional_quick_create](base_optional_quick_create/) | 10.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_search_fuzzy](base_search_fuzzy/) | 10.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
@@ -69,7 +70,6 @@ addon | version | summary
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 (unported) | Shows full debug options for all users
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 (unported) | Manage model export profiles
-[base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 (unported) | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 (unported) | Report qweb auto generation
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 (unported) | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 (unported) | Database cleanup
