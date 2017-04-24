@@ -51,6 +51,8 @@ Known issues / Roadmap
 This module could implement such feature, adding extra feature on wizard lines,
 deleting or renaming xml ids.
 
+* For the time being, wizard displays size used for models in database. It
+  could be interesting to know the space released by the deletion of a column.
 
 Bug Tracker
 ===========

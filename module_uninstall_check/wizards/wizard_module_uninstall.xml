@@ -7,7 +7,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-    <record id="view_wizard_module_uninstall_form" model="ir.ui.view">
+    <record id="wizard_module_uninstall_view_form" model="ir.ui.view">
         <field name="model">wizard.module.uninstall</field>
         <field name="arch" type="xml">
             <form string="System Update">
@@ -16,15 +16,18 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <group col="4">
                     <field name="module_id"/>
                     <field name="module_name" />
-
-                    <field name="module_ids" widget="many2many_tags" attrs="{'invisible': [('module_qty', '=', 0)]}"/>
+                    <field name="module_ids" widget="many2many_tags" attrs="{'invisible': [('module_qty', '=', 0)]}" colspan="4"/>
                 </group>
                 <separator string="Related Models"/>
                 <field name="model_line_ids" notitle="1" colspan="4" attrs="{'invisible': [('model_line_ids', '=', False)]}">
-                    <tree colors="gray:model_row_qty==0">
+                    <tree colors="gray: db_size==0; brown:db_type=='v'">
+                        <field name="db_type" invisible="1"/>
                         <field name="model_id" />
                         <field name="model_name" />
                         <field name="model_row_qty" />
+                        <field name="table_size" sum="Total"/>
+                        <field name="index_size" sum="Total"/>
+                        <field name="db_size" sum="Total"/>
                     </tree>
                 </field>
                 <separator string="Related Fields"/>

@@ -7,7 +7,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
-    <record id="action_wizard_module_uninstall" model="ir.actions.act_window">
+    <record id="wizard_module_uninstall_action" model="ir.actions.act_window">
         <field name="name">Uninstallation Impact</field>
         <field name="res_model">wizard.module.uninstall</field>
             <field name="view_type">form</field>

@@ -13,9 +13,9 @@
         'base',
     ],
     "data": [
-        'wizards/view_wizard_module_uninstall.xml',
+        'wizards/wizard_module_uninstall.xml',
         'wizards/action.xml',
-        'views/view_ir_module_module.xml',
+        'views/ir_module_module.xml',
     ],
     "demo": [
         'demo/res_groups.xml',

@@ -36,11 +36,11 @@ class WizardModuleUninstall(models.TransientModel):
 
     model_line_ids = fields.One2many(
         comodel_name='wizard.module.uninstall.line', readonly=True,
-        inverse_name='wizard_id', domain=[('type', '=', 'model')])
+        inverse_name='wizard_id', domain=[('line_type', '=', 'model')])
 
     field_line_ids = fields.One2many(
         comodel_name='wizard.module.uninstall.line', readonly=True,
-        inverse_name='wizard_id', domain=[('type', '=', 'field')])
+        inverse_name='wizard_id', domain=[('line_type', '=', 'field')])
 
     # Compute Section
     @api.multi
@@ -67,17 +67,17 @@ class WizardModuleUninstall(models.TransientModel):
             wizard.model_line_ids = False
             wizard.field_line_ids = False
 
-        for wizard in self.filtered(lambda x: x.module_id):
+        for wizard in self:
             model_ids = []
             module_names = wizard.module_ids.mapped('name')\
                 + [wizard.module_id.name]
             # Get Models
             models_data = []
-            model_xml_ids = model_data_obj.search([
+            all_model_ids = model_data_obj.search([
                 ('module', 'in', module_names),
                 ('model', '=', 'ir.model')]).mapped('res_id')
-            model_xml_ids = list(set(model_xml_ids))
-            for model in model_obj.browse(model_xml_ids).filtered(
+            all_model_ids = list(set(all_model_ids))
+            for model in model_obj.browse(all_model_ids).filtered(
                     lambda x: not x.osv_memory):
                 # Filter models that are not associated to other modules,
                 # and that will be removed, if the selected module is
@@ -88,7 +88,7 @@ class WizardModuleUninstall(models.TransientModel):
                     ('res_id', '=', model.id)])
                 if not len(other_declarations):
                     models_data.append((0, 0, {
-                        'type': 'model',
+                        'line_type': 'model',
                         'model_id': model.id,
                     }))
                     model_ids.append(model.id)
@@ -96,11 +96,11 @@ class WizardModuleUninstall(models.TransientModel):
 
             # Get Fields
             fields_data = []
-            field_xml_ids = model_data_obj.search([
+            all_field_ids = model_data_obj.search([
                 ('module', 'in', module_names),
                 ('model', '=', 'ir.model.fields')]).mapped('res_id')
             for field in field_obj.search([
-                    ('id', 'in', field_xml_ids),
+                    ('id', 'in', all_field_ids),
                     ('model_id', 'not in', model_ids),
                     ('ttype', 'not in', ['one2many'])],
                     order='model_id, name'):
@@ -111,7 +111,7 @@ class WizardModuleUninstall(models.TransientModel):
                 if not len(other_declarations)\
                         and not field.model_id.osv_memory:
                     fields_data.append((0, 0, {
-                        'type': 'field',
+                        'line_type': 'field',
                         'field_id': field.id,
                     }))
             wizard.field_line_ids = fields_data
