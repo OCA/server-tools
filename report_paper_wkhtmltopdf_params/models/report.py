@@ -16,9 +16,6 @@ class Report(models.Model):
             specific_paperformat_args
         )
 
-        if paperformat.disable_smart_shrinking:
-            command_args.extend(['--disable-smart-shrinking'])
-
         for param in paperformat.custom_params:
             command_args.extend([param.name])
             if param.value:

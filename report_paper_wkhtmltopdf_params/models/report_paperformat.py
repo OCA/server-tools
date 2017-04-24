@@ -8,13 +8,6 @@ from openerp import models, fields
 class Paper(models.Model):
     _inherit = 'report.paperformat'
 
-    disable_smart_shrinking = fields.Boolean(
-        'Disable Smart Shrinking',
-        help='Disable the intelligent shrinking strategy '
-             'used by WebKit that makes the pixel/dpi '
-             'ratio none constant.'
-    )
-
     custom_params = fields.One2many(
         'report.paperformat.parameter',
         'paperformat_id',

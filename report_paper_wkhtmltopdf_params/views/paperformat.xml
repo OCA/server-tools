@@ -6,9 +6,7 @@
         <field name="model">report.paperformat</field>
         <field name="inherit_id" ref="report.paperformat_view_form"/>
         <field name="arch" type="xml">
-
             <field name="report_ids" position="after">
-                <field name="disable_smart_shrinking"/>
                 <field name="custom_params">
                     <tree editable="bottom">
                         <field name="name"/>

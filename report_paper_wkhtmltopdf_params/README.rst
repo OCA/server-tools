@@ -7,18 +7,26 @@ Report Paper Wkhtmltopdf Params
 ===============================
 
 This module allows you to add new parameters for a paper format which are
-then forwarded to wkhtmltopdf command as arguments.
+then forwarded to wkhtmltopdf command as arguments. To display the arguments
+that wkhtmltopdf accepts go to your command line and type 'wkhtmltopdf -H'.
+
+A commonly used parameter in Odoo is *--disable-smart-shrinking*, that will
+disable the automatic resizing of the PDF when converting. This is
+important when you intend to have a layout that conforms to certain alignment.
+It is very common whenever you need to conform the PDF to a predefined
+layoyut (e.g. checks, official forms,...).
+
 
 Usage
 =====
 
-* Go to *Settings* and press 'Activate the developer mode (with assets)'
+# Go to *Settings* and press 'Activate the developer mode (with assets)'
 
-* Go to *Settings - Technical - Reports - Paper Format*
+# Go to *Settings - Technical - Reports - Paper Format*
 
-* Change the parameter 'Disable Smart Shrinking'.
+# Change the parameter 'Disable Smart Shrinking'.
 
-* Add additional parameters indicating the command argument name (remember to
+# Add additional parameters indicating the command argument name (remember to
   add prefix -- or -) and value.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
