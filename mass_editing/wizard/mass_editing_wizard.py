@@ -4,8 +4,8 @@
 
 from lxml import etree
 
-import openerp.tools as tools
-from openerp import api, models
+import odoo.tools as tools
+from odoo import api, models
 
 
 class MassEditingWizard(models.TransientModel):

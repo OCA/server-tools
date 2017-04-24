@@ -4,9 +4,9 @@
 
 import ast
 
-from openerp.tests import common
-from openerp.modules import registry
-from openerp.addons.mass_editing.hooks import uninstall_hook
+from odoo.tests import common
+from odoo.modules import registry
+from odoo.addons.mass_editing.hooks import uninstall_hook
 
 
 class TestMassEditing(common.TransactionCase):
