@@ -13,6 +13,19 @@ It provides an extra view, on module form to display which models (SQL tables)
 and which fields (SQL columns) will be dropped, if the selected module is
 uninstalled.
 
+Technical Note
+==============
+
+This module uses postgreSQL native column like reltuples in pg_class that
+provides approximative rows quantity. To have a precise value, please
+run first the following code:
+
+```
+
+REINDEX DATABASE my_database_name;
+
+```
+
 
 Usage
 =====

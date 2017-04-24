@@ -80,8 +80,13 @@ class WizardModuleUninstallLine(models.TransientModel):
     def _compute_database(self):
         table_names = []
         for line in self.filtered(lambda x: x.model_id):
-            model_obj = self.env[line.model_id.model]
-            table_names.append(model_obj._table)
+            model_obj = self.env.registry.get(line.model_id.model, False)
+            if model_obj:
+                table_names.append(model_obj._table)
+            else:
+                # Try to guess table name, replacing "." by "_"
+                table_names.append(line.model_id.model.replace('.', '_'))
+
 
         # Get Relation Informations
         req = (
@@ -104,8 +109,13 @@ class WizardModuleUninstallLine(models.TransientModel):
         res = self.env.cr.fetchall()
         table_res = {x[0]: (x[1], x[2], x[3], x[4], x[5]) for x in res}
         for line in self:
-            model_obj = self.env[line.model_id.model]
-            res = table_res.get(model_obj._table, (0, '', 0, 0, 0))
+            model_obj = self.env.registry.get(line.model_id.model, False)
+            if model_obj:
+                table_name = model_obj._table
+            else:
+                # Try to guess table name, replacing "." by "_"
+                table_name = line.model_id.model.replace('.', '_')
+            res = table_res.get(table_name, (0, '', 0, 0, 0))
             line.model_row_qty = res[0]
             line.db_type = res[1]
             line.table_size = res[2] / 1024
