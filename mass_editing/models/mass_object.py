@@ -64,7 +64,6 @@ class MassObject(models.Model):
             'context': "{'mass_editing_object' : %d}" % (self.id),
             'view_mode': 'form, tree',
             'target': 'new',
-            'auto_refresh': 1,
         }).id
         # We make sudo as any user with rights in this model should be able
         # to create the action, not only admin
