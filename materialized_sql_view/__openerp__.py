@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Materialized Sql View',
-    'version': '0.1',
+    'version': '8.0.1.0.1',
     'category': 'Tools',
     'author': 'Pierre Verkest,Odoo Community Association (OCA)',
     'maintainer': 'Odoo Community Association (OCA)',
