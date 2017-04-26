@@ -87,7 +87,6 @@ class WizardModuleUninstallLine(models.TransientModel):
                 # Try to guess table name, replacing "." by "_"
                 table_names.append(line.model_id.model.replace('.', '_'))
 
-
         # Get Relation Informations
         req = (
             "SELECT"
