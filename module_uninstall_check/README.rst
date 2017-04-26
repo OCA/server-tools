@@ -20,12 +20,9 @@ This module uses postgreSQL native column like reltuples in pg_class that
 provides approximative rows quantity. To have a precise value, please
 run first the following code:
 
-```
+.. code-block:: sql
 
-REINDEX DATABASE my_database_name;
-
-```
-
+    REINDEX DATABASE my_database_name;
 
 Usage
 =====
@@ -36,17 +33,17 @@ To use this module, you need to:
 #. Select an installed module
 #. Click on the button 'Uninstallation Impact'
 
-.. figure:: ./module_uninstall_check/static/description/module_form.png
+.. figure:: /module_uninstall_check/static/description/module_form.png
    :width: 800 px
 
 * Sample, selecting sale_margin module
 
-.. figure:: ./module_uninstall_check/static/description/sale_margin_uninstallation.png
+.. figure:: /module_uninstall_check/static/description/sale_margin_uninstallation.png
    :width: 800 px
 
 * Sample, selecting sale_stock module, when sale_margin is installed
 
-.. figure:: ./module_uninstall_check/static/description/sale_uninstallation.png
+.. figure:: /module_uninstall_check/static/description/sale_uninstallation.png
    :width: 800 px
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
