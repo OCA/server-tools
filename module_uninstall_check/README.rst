@@ -54,9 +54,8 @@ Known issues / Roadmap
 ======================
 
 * In some cases, we want to uninstall a module, but prevent some data deletion.
-  This can happen:
-    * if we want to keep backup some datas;
-    * if the data moved into another module after a refactoring;
+  This can happen if we want to keep some datas after uninstallation or if the
+  data moved into another module after a refactoring.
 
 This module could implement such feature, adding extra feature on wizard lines,
 deleting or renaming xml ids.
