@@ -12,6 +12,7 @@
         command as arguments.
     """,
     "author": "Avoin.Systems,"
+              "Eficent,"
               "Odoo Community Association (OCA)",
     "website": "https://avoin.systems",
     "category": "Technical Settings",

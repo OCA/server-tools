@@ -24,8 +24,6 @@ Usage
 
 # Go to *Settings - Technical - Reports - Paper Format*
 
-# Change the parameter 'Disable Smart Shrinking'.
-
 # Add additional parameters indicating the command argument name (remember to
   add prefix -- or -) and value.
 
