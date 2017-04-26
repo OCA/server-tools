@@ -21,5 +21,6 @@
 ##############################################################################
 from . import (
     module_prototyper,
-    ir_model_fields
+    ir_model_fields,
+    topo
 )

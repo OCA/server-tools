@@ -1,13 +1,31 @@
+{% macro get_xml_id(record) -%}
+{% set vars = {'xml_id': record._name|replace('.', '_')~_~record.id|string} %}
+{% for res in record._get_xml_ids()[record.id] %}
+{% if res and '__export__' not in res and '__mail_threads__' not in res %}
+{% if vars.update({'xml_id': res}) %} {% endif %}
+{% endif %}
+{% endfor %}
+{{vars.xml_id}}
+{%- endmacro %}
 <?xml version="1.0"?>
 <openerp>
   <data noupdate="1">
     {% for record in records %}
-    <record id="{{record._name|replace('.', '_')}}_{{record.id|string}}" model="{{model}}">
-        {% for name, meta in record.fields_get().items() %}
-	{% if not meta['type'] in ('one2many', 'many2one', 'many2many') and meta['store'] %}
-	<field name="{{name}}">{{record|attr(name)}}</field>
-	{% endif %}
-	{% endfor %}
+    <record id="{{get_xml_id(record)}}" model="{{record._name}}">
+    {% for name, field in record._fields.items() %}
+    {% if field.store and field.type != 'binary' and name not in magic_columns %}
+    {% set value = record|attr(name) %}
+    {% if value %}
+    {% if field.type == 'many2one' %}
+       <field name="{{name}}" ref="{{get_xml_id(value)}}"/>
+    {% elif field.type == 'selection' and value is number%}
+       <field name="{{name}}" eval="{{value}}"/>
+    {% elif field.type not in ('one2many', 'many2many') %}
+       <field name="{{name}}">{{value}}</field>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
     </record>
     {% endfor %}
   </data>
