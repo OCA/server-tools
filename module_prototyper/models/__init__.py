@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,5 +22,6 @@
 from . import (
     module_prototyper,
     module_prototyper_api_version,
-    ir_model_fields
+    ir_model_fields,
+    topo
 )
