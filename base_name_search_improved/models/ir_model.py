@@ -36,6 +36,10 @@ class ModelExtended(models.Model):
     name_search_ids = fields.Many2many(
         'ir.model.fields',
         string='Name Search Fields')
+    name_search_use_standard = fields.Boolean(
+        'Use standard search', default=True,
+        help='First try to find matches with the standard search',
+    )
 
     def _register_hook(self, cr, ids=None):
 
@@ -44,9 +48,16 @@ class ModelExtended(models.Model):
             @api.model
             def name_search(self, name='', args=None,
                             operator='ilike', limit=100):
+                res = []
+                model_record = self.env['ir.model'].search([
+                    ('model', '=', str(self._model)),
+                ])
                 # Perform standard name search
-                res = name_search.origin(
-                    self, name=name, args=args, operator=operator, limit=limit)
+                if not name or model_record.name_search_use_standard:
+                    res = name_search.origin(
+                        self, name=name, args=args, operator=operator,
+                        limit=limit,
+                    )
                 enabled = self.env.context.get('name_search_extended', True)
                 # Perform extended name search
                 # Note: Empty name causes error on
