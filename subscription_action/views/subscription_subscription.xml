@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_subscription_form" model="ir.ui.view">
+        <field name="model">subscription.subscription</field>
+        <field name="inherit_id" ref="subscription.view_subscription_form" />
+        <field name="arch" type="xml">
+            <field name="cron_id" position="after">
+                <field
+                    name="server_action_id"
+                    attrs="{'invisible': [('doc_source', '=', False)]}"
+                    domain="[('model_id', '=', model_id)]"
+                    context="{'default_model_id': model_id}"
+                />
+                <field
+                    name="model_id"
+                    invisible="1"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
