@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 03:37+0000\n"
-"PO-Revision-Date: 2017-02-08 03:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_color
 msgid "Color Index"
-msgstr ""
+msgstr "Index boje"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_color
@@ -70,7 +71,7 @@ msgstr "Kreirano"
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Obriši"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_description
@@ -175,7 +176,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_stage_id
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
 msgid "Kanban Stage"
-msgstr ""
+msgstr "Kanban status"
 
 #. module: base_kanban_stage
 #: model:ir.actions.act_window,name:base_kanban_stage.base_kanban_stage_action
@@ -274,7 +275,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenca"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_description
