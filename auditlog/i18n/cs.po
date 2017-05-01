@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:50+0000\n"
-"PO-Revision-Date: 2017-01-13 09:26+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Czech (http://www.transifex.com/oca/OCA-server-tools-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Zobrazovaný název"
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Návrh"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0

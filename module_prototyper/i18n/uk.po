@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/uk/)\n"
@@ -137,7 +137,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,dependency_ids:0
 msgid "Dependencies"
-msgstr ""
+msgstr "Залежності"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:52+0000\n"
-"PO-Revision-Date: 2017-01-17 19:08+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-28 16:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,folder_id:0
 msgid "Folder"
-msgstr ""
+msgstr "Carpeta "
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server,folder_ids:0
@@ -224,7 +224,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,object_id:0
 msgid "Object"
-msgstr ""
+msgstr "Objecte "
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,model_order:0
@@ -234,12 +234,12 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: model:ir.model,name:fetchmail_attach_from_folder.model_fetchmail_server
 msgid "POP/IMAP Server"
-msgstr ""
+msgstr "Servidor POP/IMAP"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,path:0
 msgid "Path"
-msgstr ""
+msgstr "Camí "
 
 #. module: fetchmail_attach_from_folder
 #: selection:fetchmail.server.folder,msg_state:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:51+0000\n"
-"PO-Revision-Date: 2017-01-17 19:17+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-28 16:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -196,7 +196,7 @@ msgstr ""
 #. module: base_custom_info
 #: field:custom.info.value,res_id:0
 msgid "Resource ID"
-msgstr ""
+msgstr "ID del recurs "
 
 #. module: base_custom_info
 #: field:custom.info.property,template_id:0
@@ -218,4 +218,4 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
 msgid "Values"
-msgstr ""
+msgstr "Valors "

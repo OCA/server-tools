@@ -9,14 +9,14 @@
 # Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
-# Paolo Valier, 2016
+# Paolo Valier, 2016-2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:52+0000\n"
-"PO-Revision-Date: 2017-01-14 17:51+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-09 06:56+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0

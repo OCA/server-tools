@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,api_version:0
@@ -35,7 +35,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,activity_ids:0
 msgid "Activities"
-msgstr ""
+msgstr "Activitats"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -45,7 +45,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,application:0
 msgid "Application"
-msgstr ""
+msgstr "Aplicació "
 
 #. module: module_prototyper
 #: field:module_prototyper,author:0
@@ -260,7 +260,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Export"
-msgstr ""
+msgstr "Exportar "
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
@@ -284,7 +284,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,field_ids:0
 msgid "Fields"
-msgstr ""
+msgstr "Camps "
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,data:0
@@ -294,7 +294,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper.module.export,name:0
 msgid "File Name"
-msgstr ""
+msgstr "Nom del Fitxer "
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -309,7 +309,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,group_ids:0
 msgid "Groups"
-msgstr ""
+msgstr "Grups"
 
 #. module: module_prototyper
 #: field:ir.model.fields,helper:0

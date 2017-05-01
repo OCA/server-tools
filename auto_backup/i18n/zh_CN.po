@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-19 01:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +39,13 @@ msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "数据库的自动备份时间安排如下："
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
 msgstr ""
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
 msgstr ""
 
 #. module: auto_backup
@@ -76,7 +76,7 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:247
+#: code:addons/auto_backup/models/db_backup.py:250
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
@@ -105,14 +105,14 @@ msgstr "创建时间"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
-#: model:mail.message.subtype,description:auto_backup.failure
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
-#: model:mail.message.subtype,description:auto_backup.success
+#: code:addons/auto_backup/models/db_backup.py:214
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr ""
@@ -174,7 +174,7 @@ msgstr "帮助"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "HTML格式的简介，包括了各种项目的总结信息（比如消息数，作业数……）"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -194,7 +194,7 @@ msgstr "查看是否有需要留意的新信息。"
 #. module: auto_backup
 #: field:db.backup,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "关注者"
 
 #. module: auto_backup
 #: field:db.backup,message_last_post:0

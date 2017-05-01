@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match.field,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Condicional "
 
 #. module: base_import_match
 #: field:base_import.match,create_uid:0
@@ -37,7 +37,7 @@ msgstr "Creat el"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr ""
+msgstr "Deduplicar ajustaments abans de fer importacions CSV."
 
 #. module: base_import_match
 #: field:base_import.match,display_name:0
@@ -48,7 +48,7 @@ msgstr "Veure el nom"
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr ""
+msgstr "Activeu si voleu utilitzar aquest camp només en certes condicions. "
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
@@ -58,22 +58,22 @@ msgstr "Camp"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Camps que defineixen una associació d'importació "
 
 #. module: base_import_match
 #: help:base_import.match.field,field_id:0
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Camps que seran part de una clau única."
 
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
 msgid "Fields"
-msgstr ""
+msgstr "Camps "
 
 #. module: base_import_match
 #: help:base_import.match,field_ids:0
 msgid "Fields that will define an unique key."
-msgstr ""
+msgstr "Camps que definiran una clau única."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
@@ -92,7 +92,7 @@ msgid ""
 "discarded. Be careful, this data is always treated as a string, and "
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
-msgstr ""
+msgstr "Si el valor importat no es aquest, el conjunt de regles d'associació ha de ser descartat. Aneu amb compte, aquestes dades sempre són tractades com una cadena, i la comparació és sensible a majúscules i minúscules, per la qual cosa si s'estableix 'Veritat', NO coincidirà ni amb '1' ni amb 'veritat', només EXACTAMENT amb 'Veritat'."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view
@@ -101,17 +101,17 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
 msgid "Import Match"
-msgstr ""
+msgstr "Importar Associació "
 
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
 msgid "Imported value"
-msgstr ""
+msgstr "Valor Importat "
 
 #. module: base_import_match
 #: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
 msgid "In this model you will apply the match."
-msgstr ""
+msgstr "En aquest model haureu d'aplicar l'associació."
 
 #. module: base_import_match
 #: field:base_import.match,__last_update:0
@@ -134,7 +134,7 @@ msgstr "Darrera Actualització el"
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
 msgid "Match"
-msgstr ""
+msgstr "Associar "
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view

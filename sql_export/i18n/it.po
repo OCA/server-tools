@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
-"PO-Revision-Date: 2017-03-18 02:09+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-28 09:49+0000\n"
 "Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -38,12 +38,7 @@ msgstr ""
 #. module: sql_export
 #: view:sql.file.wizard:sql_export.sql_file_wizard_view_form
 msgid "Cancel"
-msgstr "Cancella"
-
-#. module: sql_export
-#: view:sql.export:sql_export.sql_export_view_form
-msgid "Clean and Check Request"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sql_export
 #: field:sql.export,copy_options:0
@@ -206,10 +201,15 @@ msgid ""
 msgstr ""
 
 #. module: sql_export
+#: view:sql.export:sql_export.sql_export_view_form
+msgid "Validate SQL Expression"
+msgstr ""
+
+#. module: sql_export
 #: help:sql.export,query:0
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE"
+"TRUNCATE, EXECUTE, UPDATE."
 msgstr ""
 
 #. module: sql_export

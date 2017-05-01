@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Imre Kristoffer Eilertsen <imreeil42@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
-"PO-Revision-Date: 2017-03-18 02:09+0000\n"
-"Last-Translator: Imre Kristoffer Eilertsen <imreeil42@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-28 09:49+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/oca/teams/23907/nb_NO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,16 +27,6 @@ msgstr ""
 #: field:sql.request.mixin,user_ids:0
 msgid "Allowed Users"
 msgstr ""
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_uid:0
-msgid "Created by"
-msgstr "Laget av"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_date:0
-msgid "Created on"
-msgstr "Laget den"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,display_name:0
@@ -66,18 +55,16 @@ msgid "Last Modified on"
 msgstr "Sist endret den"
 
 #. module: sql_request_abstract
-#: field:sql.request.mixin,write_uid:0
-msgid "Last Updated by"
-msgstr "Sist oppdatert av"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,write_date:0
-msgid "Last Updated on"
-msgstr "Sist oppdatert den"
-
-#. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_manager
 msgid "Manager"
+msgstr ""
+
+#. module: sql_request_abstract
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
+#, python-format
+msgid ""
+"Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
+"currently installed."
 msgstr ""
 
 #. module: sql_request_abstract
@@ -91,13 +78,13 @@ msgid "Query"
 msgstr ""
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
-msgid "SQL Valid"
+#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
+msgid "SQL Request"
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
-msgid "Sql Request"
+#: selection:sql.request.mixin,state:0
+msgid "SQL Valid"
 msgstr ""
 
 #. module: sql_request_abstract
@@ -114,7 +101,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:238
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -123,7 +110,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:221
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
@@ -143,5 +130,5 @@ msgstr ""
 #: help:sql.request.mixin,query:0
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE"
+"TRUNCATE, EXECUTE, UPDATE."
 msgstr ""

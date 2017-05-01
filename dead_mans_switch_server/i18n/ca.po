@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
-"PO-Revision-Date: 2017-03-14 18:27+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-30 17:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Creat el"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Client "
 
 #. module: dead_mans_switch_server
 #: model:ir.actions.act_window,name:dead_mans_switch_server.action_dead_mans_switch_instance
@@ -117,7 +117,7 @@ msgstr "Veure el nom"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_summary:0
@@ -194,7 +194,7 @@ msgstr ""
 #: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
 #, python-format
 msgid "Logs"
-msgstr ""
+msgstr "Registres "
 
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_manager
@@ -204,7 +204,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Missatges"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0

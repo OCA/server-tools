@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-24 09:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Cancel·la"
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Create QWeb view"
-msgstr ""
+msgstr "Crear una vista QWeb"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,create_uid:0
@@ -45,12 +45,12 @@ msgstr "Veure el nom"
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicar "
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Duplicar Informe"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,id:0
@@ -76,23 +76,23 @@ msgstr "Darrera Actualització el"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr ""
+msgstr "Duplicació d'informe "
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,suffix:0
 msgid "Suffix"
-msgstr ""
+msgstr "Sufix "
 
 #. module: base_report_auto_create_qweb
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr ""
+msgstr "El nom de la plantilla ha de contenir com a mínim un punt al seu nom "
 
 #. module: base_report_auto_create_qweb
 #: help:ir.actions.report.xml.duplicate,suffix:0
 msgid "This suffix will be added to the report"
-msgstr ""
+msgstr "Aquest sufix serà afegit al informe "
 
 #. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view

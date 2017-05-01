@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 09:58+0000\n"
-"PO-Revision-Date: 2017-03-01 16:56+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-25 23:05+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
-msgstr ""
+msgstr "Sauvegarde réussite"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
@@ -79,10 +79,10 @@ msgid "Choose the storage method for this backup."
 msgstr "Choisissez la méthode d'enregistrement pour cette sauvegarde. "
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:247
+#: code:addons/auto_backup/models/db_backup.py:250
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr ""
+msgstr "Le nettoyage des anciennes sauvegardes a échoué"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:131
@@ -94,7 +94,7 @@ msgstr ""
 #: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
-msgstr ""
+msgstr "Test de connexion réussi"
 
 #. module: auto_backup
 #: field:db.backup,create_uid:0
@@ -111,14 +111,14 @@ msgstr "Créé le"
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
-msgstr ""
+msgstr "La sauvegarde de la base a échoué"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:214
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr ""
+msgstr "La sauvegarde de la base est réussie"
 
 #. module: auto_backup
 #: help:db.backup,message_last_post:0
@@ -128,7 +128,7 @@ msgstr "Date du dernier message publié sur cet enregistrement"
 #. module: auto_backup
 #: field:db.backup,days_to_keep:0
 msgid "Days to keep"
-msgstr ""
+msgstr "Nombre de jours à conserver"
 
 #. module: auto_backup
 #: field:db.backup,display_name:0
@@ -150,7 +150,7 @@ msgstr "Discussion de courriel"
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
 msgid "Execute backup(s)"
-msgstr ""
+msgstr "Exécution de(s) sauvegarde(s)"
 
 #. module: auto_backup
 #: field:db.backup,folder:0

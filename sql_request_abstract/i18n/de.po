@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
-"PO-Revision-Date: 2017-03-18 02:09+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-28 09:49+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -22,22 +22,12 @@ msgstr ""
 #. module: sql_request_abstract
 #: field:sql.request.mixin,group_ids:0
 msgid "Allowed Groups"
-msgstr ""
+msgstr "Erlaubte Gruppen"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,user_ids:0
 msgid "Allowed Users"
-msgstr ""
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_uid:0
-msgid "Created by"
-msgstr "Erstellt von"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_date:0
-msgid "Created on"
-msgstr "Erstellt am:"
+msgstr "Erlaubte Benutzer"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,display_name:0
@@ -58,7 +48,7 @@ msgstr "ID"
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:140
 #, python-format
 msgid "It is not allowed to execute a not checked request."
-msgstr ""
+msgstr "Es ist nicht zulässig, eine ungeprüfe Anfrage auszuführen."
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,__last_update:0
@@ -66,19 +56,17 @@ msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: sql_request_abstract
-#: field:sql.request.mixin,write_uid:0
-msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert von"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,write_date:0
-msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
-
-#. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_manager
 msgid "Manager"
 msgstr "Verwalter"
+
+#. module: sql_request_abstract
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
+#, python-format
+msgid ""
+"Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
+"currently installed."
+msgstr ""
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,name:0
@@ -91,14 +79,14 @@ msgid "Query"
 msgstr "Abfrage"
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
-msgid "SQL Valid"
-msgstr ""
+#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
+msgid "SQL Request"
+msgstr "SQL-Abfrage"
 
 #. module: sql_request_abstract
-#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
-msgid "Sql Request"
-msgstr ""
+#: selection:sql.request.mixin,state:0
+msgid "SQL Valid"
+msgstr "SQL gültig"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,state:0
@@ -112,27 +100,33 @@ msgid ""
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
+"Status der Abfrage\n"
+"* 'Entwurf': Ungeprüft\n"
+"* 'SQL gültig': SQL-Abfrage wurde geprüft und ist gültig"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:238
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
 "\n"
 " %s"
 msgstr ""
+"Die SQL-Afrage ist nicht zulässig:\n"
+"\n"
+"%s"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:221
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
-msgstr ""
+msgstr "Die Query ist nicht zulässig, weil sie unsichere Terme enthält '%s'"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:160
 #, python-format
 msgid "Unimplemented mode : '%s'"
-msgstr ""
+msgstr "Nicht implementierter Modus: '%s'"
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
@@ -143,5 +137,5 @@ msgstr "Benutzer"
 #: help:sql.request.mixin,query:0
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE"
+"TRUNCATE, EXECUTE, UPDATE."
 msgstr ""

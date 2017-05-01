@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:52+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Advanced"
-msgstr ""
+msgstr "Avançat "
 
 #. module: mass_editing
 #: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
@@ -53,13 +53,13 @@ msgstr "Veure el nom"
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
 "wizard"
-msgstr ""
+msgstr "Mostra un botó a la barra lateral dels documents relacionats per obrir un assistent de composició "
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"
-msgstr ""
+msgstr "Camps "
 
 #. module: mass_editing
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
@@ -86,13 +86,13 @@ msgstr "Darrera Actualització el"
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 #: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
 msgid "Mass Editing"
-msgstr ""
+msgstr "Edició Massiva "
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:74
 #, python-format
 msgid "Mass Editing (%s)"
-msgstr ""
+msgstr "Edició Massiva (%s)"
 
 #. module: mass_editing
 #: field:mass.object,model_id:0
@@ -102,7 +102,7 @@ msgstr ""
 #. module: mass_editing
 #: field:mass.object,model_ids:0
 msgid "Model List"
-msgstr ""
+msgstr "Llista de Models"
 
 #. module: mass_editing
 #: field:mass.object,name:0
@@ -114,13 +114,13 @@ msgstr "Nom"
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
-msgstr ""
+msgstr "El nom ha de ser únic!"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 #: view:mass.object:mass_editing.view_mass_object_tree
 msgid "Object"
-msgstr ""
+msgstr "Objecte "
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
@@ -130,7 +130,7 @@ msgstr ""
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
-msgstr ""
+msgstr "Eliminar l'acció contextual per utilitzar aquesta plantilla als documents relacionats "
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 03:47+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-13 12:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Naziv "
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Skica"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0

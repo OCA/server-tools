@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:52+0000\n"
-"PO-Revision-Date: 2017-01-17 19:17+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-24 09:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
 msgid "Models"
-msgstr ""
+msgstr "Models "
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.model,purge_line_ids:0

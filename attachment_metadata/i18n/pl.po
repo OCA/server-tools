@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2017-04-28 09:47+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Polish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pl/)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -52,7 +52,7 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: field:ir.attachment.metadata,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_uid:0

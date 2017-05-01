@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2015-10-30 14:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Account Type"
-msgstr ""
+msgstr "Tipus de compte"
 
 #. module: auth_supplier
 #: model:ir.module.category,name:auth_supplier.module_auth_supplier
@@ -30,7 +30,7 @@ msgstr ""
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Customer"
-msgstr ""
+msgstr "Client "
 
 #. module: auth_supplier
 #: model:res.groups,name:auth_supplier.group_auth_supplier
@@ -40,7 +40,7 @@ msgstr ""
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Supplier"
-msgstr ""
+msgstr "Proveïdor "
 
 #. module: auth_supplier
 #: model:ir.model,name:auth_supplier.model_res_users

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:51+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -35,7 +35,7 @@ msgstr "Darrera modificació el"
 #. module: auth_from_http_remote_user
 #: field:res.users,sso_key:0
 msgid "SSO Key"
-msgstr ""
+msgstr "Clau SSO"
 
 #. module: auth_from_http_remote_user
 #: model:ir.model,name:auth_from_http_remote_user.model_res_users

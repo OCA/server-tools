@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:09+0000\n"
-"PO-Revision-Date: 2017-03-18 02:09+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-28 09:49+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -28,16 +28,6 @@ msgstr "Dovoljene skupine"
 #: field:sql.request.mixin,user_ids:0
 msgid "Allowed Users"
 msgstr "Dovoljeni uporabniki"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_uid:0
-msgid "Created by"
-msgstr "Ustvaril"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,create_date:0
-msgid "Created on"
-msgstr "Ustvarjeno"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,display_name:0
@@ -66,19 +56,19 @@ msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
 #. module: sql_request_abstract
-#: field:sql.request.mixin,write_uid:0
-msgid "Last Updated by"
-msgstr "Zadnji posodobil"
-
-#. module: sql_request_abstract
-#: field:sql.request.mixin,write_date:0
-msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
-
-#. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_manager
 msgid "Manager"
 msgstr "Upravitelj"
+
+#. module: sql_request_abstract
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
+#, python-format
+msgid ""
+"Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
+"currently installed."
+msgstr ""
+"Materializiran prikaz zahteva PostgreSQL 9.3 ali novejši, a trenutno je "
+"nameščen PostgreSQL %s ."
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,name:0
@@ -91,14 +81,14 @@ msgid "Query"
 msgstr "Poizvedba"
 
 #. module: sql_request_abstract
+#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
+msgid "SQL Request"
+msgstr "SQL zahtevek"
+
+#. module: sql_request_abstract
 #: selection:sql.request.mixin,state:0
 msgid "SQL Valid"
 msgstr "SQL veljaven"
-
-#. module: sql_request_abstract
-#: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
-msgid "Sql Request"
-msgstr "SQL zahtevek"
 
 #. module: sql_request_abstract
 #: field:sql.request.mixin,state:0
@@ -117,7 +107,7 @@ msgstr ""
 " * 'SQL veljaven': SQL zahtevek je bil preverjen in je veljaven"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:238
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -129,7 +119,7 @@ msgstr ""
 " %s"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:221
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr "Poizvedba ni dovoljena, ker vsebuje besedo vprašljive varnosti '%s'"
@@ -149,7 +139,7 @@ msgstr "Uporabnik"
 #: help:sql.request.mixin,query:0
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE"
+"TRUNCATE, EXECUTE, UPDATE."
 msgstr ""
-"Naslednjih besed ne smete uporabljati: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE"
+"Uporabite lahko naslednje besede: DELETE, DROP, CREATE, INSERT, ALTER, "
+"TRUNCATE, EXECUTE, UPDATE."

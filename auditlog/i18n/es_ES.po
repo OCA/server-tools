@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-11 06:39+0000\n"
-"PO-Revision-Date: 2017-02-16 15:55+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-13 12:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Nombre para mostrar"
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0

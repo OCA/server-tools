@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 07:51+0000\n"
-"PO-Revision-Date: 2017-01-17 07:51+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-28 09:48+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,27 +22,27 @@ msgstr ""
 #. module: base_user_role
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
-msgstr ""
+msgstr "Controls d'accés "
 
 #. module: base_user_role
 #: field:res.users.role,menu_access:0
 msgid "Access Menu"
-msgstr ""
+msgstr "Menú d'accés "
 
 #. module: base_user_role
 #: field:res.users.role,category_id:0
 msgid "Application"
-msgstr ""
+msgstr "Aplicació "
 
 #. module: base_user_role
 #: field:res.users.role,group_id:0
 msgid "Associated group"
-msgstr ""
+msgstr "Grup associat "
 
 #. module: base_user_role
 #: field:res.users.role,comment:0
 msgid "Comment"
-msgstr ""
+msgstr "Comentari "
 
 #. module: base_user_role
 #: field:res.users.role,dynamic_group_condition:0
@@ -73,7 +73,7 @@ msgstr ""
 #. module: base_user_role
 #: field:res.users.role.line,is_enabled:0
 msgid "Enabled"
-msgstr ""
+msgstr "Activat "
 
 #. module: base_user_role
 #: field:res.users.role.line,date_from:0
@@ -83,12 +83,12 @@ msgstr "De"
 #. module: base_user_role
 #: field:res.users.role,full_name:0
 msgid "Group Name"
-msgstr ""
+msgstr "Nom del grup "
 
 #. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form
 msgid "Groups"
-msgstr ""
+msgstr "Grups"
 
 #. module: base_user_role
 #: field:res.users.role,id:0 field:res.users.role.line,id:0
@@ -98,7 +98,7 @@ msgstr "ID"
 #. module: base_user_role
 #: field:res.users.role,implied_ids:0
 msgid "Inherits"
-msgstr ""
+msgstr "Heretats "
 
 #. module: base_user_role
 #: field:res.users.role,__last_update:0
@@ -126,12 +126,12 @@ msgstr "Nom"
 #: view:res.users.role:base_user_role.view_res_users_role_tree
 #: field:res.users.role.line,role_id:0
 msgid "Role"
-msgstr ""
+msgstr "Rol "
 
 #. module: base_user_role
 #: field:res.users,role_line_ids:0
 msgid "Role lines"
-msgstr ""
+msgstr "Línies de Rol "
 
 #. module: base_user_role
 #: model:ir.actions.act_window,name:base_user_role.action_res_users_role_tree
@@ -140,12 +140,12 @@ msgstr ""
 #: field:res.users,role_ids:0
 #: view:res.users.role:base_user_role.view_res_users_role_search
 msgid "Roles"
-msgstr ""
+msgstr "Rols "
 
 #. module: base_user_role
 #: field:res.users.role,rule_groups:0
 msgid "Rules"
-msgstr ""
+msgstr "Regles "
 
 #. module: base_user_role
 #: help:res.users.role,dynamic_group_condition:0
@@ -163,7 +163,7 @@ msgstr "A"
 #. module: base_user_role
 #: field:res.users.role,trans_implied_ids:0
 msgid "Transitively inherits"
-msgstr ""
+msgstr "Herència transitiva  "
 
 #. module: base_user_role
 #: field:res.users.role.line,user_id:0
@@ -173,7 +173,7 @@ msgstr "Usuari"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
-msgstr ""
+msgstr "Rol d'usuari "
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users
@@ -186,12 +186,12 @@ msgstr "Usuaris"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role_line
 msgid "Users associated to a role"
-msgstr ""
+msgstr "Usuaris associats a un rol "
 
 #. module: base_user_role
 #: help:res.users.role,implied_ids:0
 msgid "Users of this group automatically inherit those groups"
-msgstr ""
+msgstr "Els usuaris d'aquest grup automàticament heretaran els grups"
 
 #. module: base_user_role
 #: field:res.users.role,view_access:0

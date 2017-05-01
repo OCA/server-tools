@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -56,7 +56,7 @@ msgstr "Darrera Actualització el"
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr ""
+msgstr "Entorn del Servidor "
 
 #. module: server_environment
 #: fieldserver.config,custom_ged | ged_folder:0
@@ -516,39 +516,39 @@ msgstr ""
 #. module: server_environment
 #: fieldserver.config,system | openerp:0
 msgid "system | openerp"
-msgstr ""
+msgstr "sistema | openerp"
 
 #. module: server_environment
 #: fieldserver.config,system | os_name:0
 msgid "system | os.name"
-msgstr ""
+msgstr "sistema | so.nom"
 
 #. module: server_environment
 #: fieldserver.config,system | platform:0
 msgid "system | platform"
-msgstr ""
+msgstr "sistema | plataforma "
 
 #. module: server_environment
 #: fieldserver.config,system | python:0
 msgid "system | python"
-msgstr ""
+msgstr "sistema | python"
 
 #. module: server_environment
 #: fieldserver.config,system | release:0
 msgid "system | release"
-msgstr ""
+msgstr "sistema | revisió "
 
 #. module: server_environment
 #: fieldserver.config,system | revision:0
 msgid "system | revision"
-msgstr ""
+msgstr "sistema | revisió "
 
 #. module: server_environment
 #: fieldserver.config,system | version:0
 msgid "system | version"
-msgstr ""
+msgstr "sistema | versió "
 
 #. module: server_environment
 #: fieldserver.config,wkhtml2pdf | lib_path:0
 msgid "wkhtml2pdf | lib_path"
-msgstr ""
+msgstr "wkhtml2pdf | lib_path"
