@@ -31,7 +31,7 @@
                             name="action_sftp_test_connection"
                             type="object"
                             string="Test SFTP Connection"
-                            icon="gtk-network"/>
+                            icon="fa-television"/>
                     </group>
                 </div>
                 <separator string="Help" colspan="2"/>
