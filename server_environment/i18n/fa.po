@@ -11,47 +11,47 @@ msgstr ""
 "POT-Creation-Date: 2017-05-01 10:39+0000\n"
 "PO-Revision-Date: 2017-05-01 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "ایجاد شده توسط"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "ایجاد شده در"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "نام نمایشی"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_id
 msgid "ID"
-msgstr "ID"
+msgstr "شناسه"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
 msgid "Last Modified on"
-msgstr "Última modificación"
+msgstr "تاریخ آخرین به‌روزرسانی"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr "ültima actualización por"
+msgstr "آخرین به روز رسانی توسط"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "آخرین به روز رسانی در"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
