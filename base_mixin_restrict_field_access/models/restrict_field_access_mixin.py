@@ -4,8 +4,6 @@
 import json
 from lxml import etree
 from openerp import _, api, fields, models, SUPERUSER_ID
-from openerp.addons.web.controllers.main import Export
-from openerp.http import request
 from openerp.osv import expression  # pylint: disable=W0402
 
 
@@ -72,84 +70,70 @@ class RestrictFieldAccessMixin(models.AbstractModel):
                         self._fields[field].null(self.env))
         return result
 
-    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False, lazy=True):
-        """
-        Remove inaccessible fields from 'fields', 'groupby' and 'orderby'.
-
-        If this removes all 'fields', return no records.
-        If this removes all 'groupby', group by first remaining field.
-        If this removes 'orderby', don't specify order.
-        """
-        requested_fields = fields or self._columns.keys()
-        sanitised_fields = [
-            f for f in requested_fields if self._restrict_field_access_is_field_accessible(
-                cr, uid, [], f
-            )
-        ]
-        if not sanitised_fields:
-            return []
-
-        sanitised_groupby = []
-        groupby = [groupby] if isinstance(groupby, basestring) else groupby
-        for groupby_part in groupby:
-            groupby_field = groupby_part.split(':')[0]
-            if self._restrict_field_access_is_field_accessible(cr, uid, [], groupby_field):
-                sanitised_groupby.append(groupby_part)
-        if not sanitised_groupby:
-            sanitised_groupby.append(sanitised_fields[0])
-
-        if orderby:
-            sanitised_orderby = []
-            for orderby_part in orderby.split(','):
-                orderby_field = orderby_part.split()[0]
-                if self._restrict_field_access_is_field_accessible(cr, uid, [], orderby_field):
-                    sanitised_orderby.append(orderby_part)
-            sanitised_orderby = sanitised_orderby and ','.join(sanitised_orderby) or False
-        else:
-            sanitised_orderby = False
-
-        result = super(RestrictFieldAccessMixin, self).read_group(
-            cr,
-            uid,
-            domain,
-            sanitised_fields,
-            sanitised_groupby,
-            offset=offset,
-            limit=limit,
-            context=context,
-            orderby=sanitised_orderby,
-            lazy=lazy
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None,
+                   orderby=False, lazy=True):
+        """Restrict reading if we read an inaccessible field"""
+        has_inaccessible_field = False
+        has_inaccessible_field |= any(
+            not self._restrict_field_access_is_field_accessible(f)
+            for f in fields or self._fields.keys()
         )
-        # Add inaccessible fields back in with null values
-        inaccessible_fields = [f for f in requested_fields if f not in sanitised_fields]
-        for field_name in inaccessible_fields:
-            field = self._columns[field_name]
-            if lazy:
-                result.append(
-                    {
-                        '__domain': [(True, '=', True)],
-                        field_name: field.null(self.env),
-                        field_name + '_count': 0L
-                    }
+        has_inaccessible_field |= any(
+            expression.is_leaf(term) and
+            not self._restrict_field_access_is_field_accessible(
+                term[0].split('.')[0]
+            )
+            for term in domain
+        )
+        if groupby:
+            if isinstance(groupby, basestring):
+                groupby = [groupby]
+            has_inaccessible_field |= any(
+                not self._restrict_field_access_is_field_accessible(
+                    f.split(':')[0]
                 )
-            else:
-                result.append(
-                    {
-                        '__domain': [(True, '=', True)],
-                        field_name: field.null(self.env),
-                        '__count': 0L
-                    }
-                )
-        return result
+                for f in groupby
+            )
+        if orderby:
+            has_inaccessible_field |= any(
+                not self._restrict_field_access_is_field_accessible(f.split())
+                for f in orderby.split(',')
+            )
+        # just like with search, we restrict read_group to the accessible
+        # records, because we'd either leak data otherwise or have very wrong
+        # results
+        if has_inaccessible_field:
+            self._restrict_field_access_inject_restrict_field_access_domain(
+                domain
+            )
+
+        return super(RestrictFieldAccessMixin, self).read_group(
+            domain, fields, groupby, offset=offset, limit=limit,
+            orderby=orderby, lazy=lazy
+        )
 
     @api.multi
     def _BaseModel__export_rows(self, fields):
-        """Don't export inaccessible fields"""
-        if isinstance(self, RestrictFieldAccessMixin):
-            sanitised_fields = [f for f in fields if f and self._restrict_field_access_is_field_accessible(f[0])]
-            return super(RestrictFieldAccessMixin, self)._BaseModel__export_rows(sanitised_fields)
-        else:
-            return super(RestrictFieldAccessMixin, self)._BaseModel__export_rows(fields)
+        """Null inaccessible fields"""
+        result = []
+        for this in self:
+            rows = super(RestrictFieldAccessMixin, this)\
+                ._BaseModel__export_rows(fields)
+            for row in rows:
+                for i, path in enumerate(fields):
+                    # we only need to take care of our own fields, super calls
+                    # __export_rows again for x2x exports
+                    if not path or len(path) > 1:
+                        continue
+                    if not this._restrict_field_access_is_field_accessible(
+                            path[0],
+                    ) and row[i]:
+                        row[i] = self._fields[path[0]].convert_to_export(
+                            self._fields[path[0]].null(self.env), self.env
+                        )
+            result.extend(rows)
+        return result
 
     @api.multi
     def write(self, vals):
@@ -198,6 +182,7 @@ class RestrictFieldAccessMixin(models.AbstractModel):
     @api.cr_uid_context
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
+        # pylint: disable=R8110
         # This needs to be oldstyle because res.partner in base passes context
         # as positional argument
         result = super(RestrictFieldAccessMixin, self).fields_view_get(
@@ -301,24 +286,13 @@ class RestrictFieldAccessMixin(models.AbstractModel):
     def _restrict_field_access_is_field_accessible(self, field_name,
                                                    action='read'):
         """return True if the current user can perform specified action on
-        all records in self. Override for your own logic"""
+        all records in self. Override for your own logic.
+        This function is also called with an empty recordset to get a list
+        of fields which are accessible unconditionally"""
         if self._restrict_field_access_get_is_suspended() or\
-                self.env.user.id == SUPERUSER_ID:
+                self.env.user.id == SUPERUSER_ID or\
+                not self and action == 'read':
             return True
         whitelist = self._restrict_field_access_get_field_whitelist(
             action=action)
         return field_name in whitelist
-
-
-class RestrictedExport(Export):
-    """Don't (even offer to) export inaccessible fields"""
-    def fields_get(self, model):
-        Model = request.session.model(model)
-        fields = Model.fields_get(False, request.context)
-        model = request.env[model]
-        if isinstance(model, RestrictFieldAccessMixin):
-            sanitised_fields =  {k:fields[k] for k in fields if model._restrict_field_access_is_field_accessible(k)}
-            return sanitised_fields
-        else:
-            return fields
-
