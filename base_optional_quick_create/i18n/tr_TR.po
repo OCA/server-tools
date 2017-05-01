@@ -11,25 +11,25 @@ msgstr ""
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
 "PO-Revision-Date: 2017-05-01 10:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model_avoid_quick_create
 msgid "Avoid quick create"
-msgstr "Izogibanje hitremu ustvarjanju"
+msgstr ""
 
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/models/ir_model.py:21
 #, python-format
 msgid "Can't create quickly. Opening create form"
-msgstr "Ne morete hitro ustvariti. Odpiram obrazec za ustvarjanje"
+msgstr ""
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
 msgid "Models"
-msgstr "Modeli"
+msgstr "Tipler"
