@@ -6,7 +6,7 @@ Restrict field access
 =====================
 
 This module was written to help developers restricting access to fields in a
-secure and flexible manner.
+secure and flexible manner on record level.
 
 If you're not a developer, this module is not for you as you need to write code
 in order to actually use it.
@@ -14,7 +14,9 @@ in order to actually use it.
 Usage
 =====
 
-To use this module, you need to:
+To use this module, you need to inherit this mixin for the model whose fields
+you want to restrict, and implement at least the following methods to do
+something useful:
 
 .. code:: python
 
@@ -76,6 +78,9 @@ To use this module, you need to:
 The example code here will allow only reading a few fields for partners of
 which the current user is neither the sales person nor in this partner's sales
 team.
+
+Read the comments of the mixin, that's part of the documentation. Also have a
+look at the tests, that's another example on how to use this code.
 
 For further information, please visit:
 

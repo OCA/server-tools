@@ -11,5 +11,6 @@
     "certain fields base on some condition",
     "depends": [
         'web',
+        'base_suspend_security',
     ],
 }
