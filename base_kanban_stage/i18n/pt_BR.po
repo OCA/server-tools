@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# falexandresilva <falexandresilva@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 03:37+0000\n"
-"PO-Revision-Date: 2017-02-08 03:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-06-22 01:11+0000\n"
+"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"Last-Translator: falexandresilva <falexandresilva@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_legend_normal
@@ -218,12 +219,12 @@ msgstr "Última atualização em"
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "Medium"
-msgstr ""
+msgstr "Médio"
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_status:0
@@ -263,7 +264,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_status:0
 msgid "Ready"
-msgstr ""
+msgstr "Pronto"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_legend_done
@@ -295,12 +296,12 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_name
 msgid "Stage Name"
-msgstr ""
+msgstr "Nome do estágio"
 
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_menu
 msgid "Stages"
-msgstr ""
+msgstr "Estágios"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_stage_id
