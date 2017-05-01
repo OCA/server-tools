@@ -5,6 +5,8 @@ import json
 from lxml import etree
 from openerp import _, api, fields, models, SUPERUSER_ID
 from openerp.osv import expression  # pylint: disable=W0402
+from openerp.addons.base_suspend_security.base_suspend_security import\
+    BaseSuspendSecurityUid
 
 
 class RestrictFieldAccessMixin(models.AbstractModel):
@@ -64,10 +66,14 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         result = super(RestrictFieldAccessMixin, self).read(
             fields=fields, load=load)
         for record in result:
+            this = self.browse(record['id'])
             for field in record:
-                if not self._restrict_field_access_is_field_accessible(field):
+                if not this._restrict_field_access_is_field_accessible(field):
                     record[field] = self._fields[field].convert_to_read(
                         self._fields[field].null(self.env))
+                    if self._fields[field] in self.env.cache:
+                        self.env.cache[self._fields[field]].pop(
+                            record['id'], False)
         return result
 
     @api.model
@@ -129,8 +135,12 @@ class RestrictFieldAccessMixin(models.AbstractModel):
                     if not this._restrict_field_access_is_field_accessible(
                             path[0],
                     ) and row[i]:
-                        row[i] = self._fields[path[0]].convert_to_export(
-                            self._fields[path[0]].null(self.env), self.env
+                        field = self._fields[path[0]]
+                        row[i] = field.convert_to_export(
+                            field.convert_to_cache(
+                                field.null(self.env), this, validate=False,
+                            ),
+                            self.env
                         )
             result.extend(rows)
         return result
@@ -189,7 +199,9 @@ class RestrictFieldAccessMixin(models.AbstractModel):
             cr, uid, view_id=view_id, view_type=view_type, context=context,
             toolbar=toolbar, submenu=submenu)
 
-        if view_type == 'search':
+        # TODO: for editable trees, we'll have to inject this into the
+        # form the editable list view creates on the fly
+        if view_type != 'form':
             return result
 
         # inject modifiers to make forbidden fields readonly
@@ -260,14 +272,12 @@ class RestrictFieldAccessMixin(models.AbstractModel):
     @api.model
     def _restrict_field_access_suspend(self):
         """set a marker that we don't want to restrict field access"""
-        # TODO: this is insecure. in the end, we need something in the lines of
-        # base_suspend_security's uid-hack
-        return self.with_context(_restrict_field_access_suspend=True)
+        return self.suspend_security()
 
     @api.model
     def _restrict_field_access_get_is_suspended(self):
         """return True if we shouldn't check for field access restrictions"""
-        return self.env.context.get('_restrict_field_access_suspend')
+        return isinstance(self.env.uid, BaseSuspendSecurityUid)
 
     @api.multi
     def _restrict_field_access_filter_vals(self, vals, action='read'):
@@ -288,10 +298,14 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         """return True if the current user can perform specified action on
         all records in self. Override for your own logic.
         This function is also called with an empty recordset to get a list
-        of fields which are accessible unconditionally"""
+        of fields which are accessible unconditionally.
+        Note that this function is called *very* often. Even small things
+        like saying self.env.user.id instead of self.env.uid will give you a
+        massive performance penalty"""
         if self._restrict_field_access_get_is_suspended() or\
-                self.env.user.id == SUPERUSER_ID or\
-                not self and action == 'read':
+                self.env.uid == SUPERUSER_ID or\
+                not self and action == 'read' and\
+                self._fields[field_name].required:
             return True
         whitelist = self._restrict_field_access_get_field_whitelist(
             action=action)
