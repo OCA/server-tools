@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-08 03:36+0000\n"
-"PO-Revision-Date: 2016-12-08 03:36+0000\n"
+"POT-Creation-Date: 2017-02-18 02:29+0000\n"
+"PO-Revision-Date: 2017-02-18 02:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/fr_CA/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/23907/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr_CA\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es_AR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -77,7 +77,7 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:248
+#: code:addons/auto_backup/models/db_backup.py:251
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
@@ -97,12 +97,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_uid
 msgid "Created by"
-msgstr "Cr???? par"
+msgstr "Creado por"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_date
 msgid "Created on"
-msgstr "Cr???? le"
+msgstr "Creado en"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:206
@@ -112,7 +112,7 @@ msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:214
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -126,7 +126,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr "Mostrar Nombre"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:119
@@ -163,22 +163,22 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
 msgid "ID"
-msgstr "Identifiant"
+msgstr "ID"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "??ltima modificaci??n en"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_uid
 msgid "Last Updated by"
-msgstr "Derni??re mise ?? jour par"
+msgstr "??ltima actualizaci??n realizada por"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_date
 msgid "Last Updated on"
-msgstr "Derni??re mise ?? jour le"
+msgstr "??ltima actualizaci??n el"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -193,7 +193,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_name
 msgid "Name"
-msgstr "Nom"
+msgstr "Nombre"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_private_key
