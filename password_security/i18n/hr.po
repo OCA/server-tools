@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2017-02-22 00:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_minimum
 msgid "Amount of hours until a user may change password again"
-msgstr ""
+msgstr "Broj sati prije nego korisnik može ponovo promijeniti pasword"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:145
@@ -32,12 +33,12 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_length
 msgid "Characters"
-msgstr ""
+msgstr "Znakova"
 
 #. module: password_security
 #: model:ir.model,name:password_security.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Tvrtke"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_create_uid
@@ -57,7 +58,7 @@ msgstr "Datum"
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_expiration
 msgid "Days"
-msgstr ""
+msgstr "Dana"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_history
@@ -74,17 +75,17 @@ msgstr "Naziv "
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_password_crypt
 msgid "Encrypted Password"
-msgstr ""
+msgstr "Kriptirana lozina"
 
 #. module: password_security
 #: model:ir.ui.view,arch_db:password_security.view_company_form
 msgid "Extra"
-msgstr ""
+msgstr "Dodatno"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_history
 msgid "History"
-msgstr ""
+msgstr "Povijest"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_expiration
@@ -119,13 +120,13 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_lower
 msgid "Lowercase"
-msgstr ""
+msgstr "Malim slovima"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:51
 #, python-format
 msgid "Lowercase letter"
-msgstr ""
+msgstr "Malo slovo"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_minimum

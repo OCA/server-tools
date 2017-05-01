@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-14 04:21+0000\n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2017-05-01 10:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -76,6 +76,12 @@ msgid "Index Type"
 msgstr "Tip indeksa"
 
 #. module: base_search_fuzzy
+#: code:addons/base_search_fuzzy/models/ir_model.py:40
+#, python-format
+msgid "Invalid field %r in domain term %r"
+msgstr ""
+
+#. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index___last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
@@ -108,7 +114,7 @@ msgstr ""
 "indeks nahaja v drugi tabeli, se ob koncu naziva indeksa doda številka."
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/trgm_index.py:124
+#: code:addons/base_search_fuzzy/models/trgm_index.py:126
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "Razširitev pg_trgm ne obstaja ali pa je ni mogoče namestiti."

@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_exception
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/tr_TR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_active
+msgid "Active"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
+msgid "Apply on"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Blocked in draft due to exceptions"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_date
+msgid "Created on"
+msgstr "Oluşturulma tarihi"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_description
+msgid "Description"
+msgstr "Açıklama"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_display_name
+msgid "Display Name"
+msgstr "Görünen ad"
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:185
+#, python-format
+msgid ""
+"Error when evaluating the exception.rule rule:\n"
+" %s \n"
+"(%s)"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_name
+msgid "Exception Name"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
+msgid "Exception Rule"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Exception Rule Setup"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
+#: model:ir.model,name:base_exception.model_exception_rule
+#: model:ir.ui.menu,name:base_exception.menu_action_exception
+msgid "Exception Rules"
+msgstr ""
+
+#. module: base_exception
+#: model:res.groups,name:base_exception.group_exception_rule_manager
+msgid "Exception manager"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_exception_ids
+msgid "Exceptions"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Exceptions Rules"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_exception_ids
+msgid "Exceptions to resolve"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule_sequence
+msgid "Gives the sequence order when applying the test"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_id
+msgid "ID"
+msgstr "Kimlik"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_ignore_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_ignore
+msgid "Ignore Exceptions"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception___last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule___last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm___last_update
+msgid "Last Modified on"
+msgstr "En son güncelleme tarihi"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_uid
+msgid "Last Updated by"
+msgstr "En son güncelleyen "
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_date
+msgid "Last Updated on"
+msgstr "En son güncelleme tarihi"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_main_exception_id
+msgid "Main Exception"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_code
+msgid "Python Code"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule_code
+msgid ""
+"Python code executed to check if the exception apply or not. The code must "
+"apply block = True to apply the exception."
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_related_model_id
+msgid "Related model id"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_rule_group
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_rule_group
+msgid "Rule group"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule_rule_group
+msgid ""
+"Rule group is used to group the rules that must validated at same time for a"
+" target object. Ex: validate sale.order.line rules with sale order rules."
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "_Close"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception
+msgid "base.exception"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_exception_rule_confirm
+msgid "exception.rule.confirm"
+msgstr ""

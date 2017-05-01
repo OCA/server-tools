@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-06 20:55+0000\n"
-"PO-Revision-Date: 2017-03-06 20:55+0000\n"
+"POT-Creation-Date: 2017-05-01 10:38+0000\n"
+"PO-Revision-Date: 2017-05-01 10:38+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -322,7 +322,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_tree
 msgid "Rules"
-msgstr ""
+msgstr "Pravila"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_model_id
@@ -444,7 +444,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:535
+#: code:addons/auditlog/models/rule.py:536
 #, python-format
 msgid "View logs"
 msgstr ""
