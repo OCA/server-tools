@@ -10,6 +10,6 @@
     "summary": "Make it simple to restrict read and/or write access to "
     "certain fields base on some condition",
     "depends": [
-        'base',
+        'web',
     ],
 }
