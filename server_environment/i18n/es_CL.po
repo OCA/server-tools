@@ -1,0 +1,623 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * server_environment
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 10:39+0000\n"
+"PO-Revision-Date: 2017-05-01 10:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Chile) (https://www.transifex.com/oca/teams/23907/es_CL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_CL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: server_environment
+#: model:ir.actions.act_window,name:server_environment.act_show_config_window
+#: model:ir.ui.menu,name:server_environment.menu_server_show_config
+msgid "Server Environment"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
+#: | ged_folder
+msgid "custom_ged | ged_folder"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
+#: | CONSTA
+msgid "external_service | CONSTA"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
+#: | CONSTB
+msgid "external_service | CONSTB"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
+#: | CONSTC
+msgid "external_service | CONSTC"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | in_path
+msgid "external_service.ftp | in_path"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | out_path
+msgid "external_service.ftp | out_path"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | password
+msgid "external_service.ftp | password"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | port
+msgid "external_service.ftp | port"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | server
+msgid "external_service.ftp | server"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | tls
+msgid "external_service.ftp | tls"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
+#: | user
+msgid "external_service.ftp | user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_misc
+#: | completed_state
+msgid "misc | completed_state"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_misc
+#: | smtp_server
+msgid "misc | smtp_server"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | addons_path
+msgid "odoo | addons_path"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | admin_passwd
+msgid "odoo | admin_passwd"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | config
+msgid "odoo | config"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | csv_internal_sep
+msgid "odoo | csv_internal_sep"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | data_dir
+msgid "odoo | data_dir"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_host
+msgid "odoo | db_host"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_maxconn
+msgid "odoo | db_maxconn"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_name
+msgid "odoo | db_name"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_password
+msgid "odoo | db_password"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_port
+msgid "odoo | db_port"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_template
+msgid "odoo | db_template"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | db_user
+msgid "odoo | db_user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | dbfilter
+msgid "odoo | dbfilter"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | demo
+msgid "odoo | demo"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | dev_mode
+msgid "odoo | dev_mode"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | email_from
+msgid "odoo | email_from"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | geoip_database
+msgid "odoo | geoip_database"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | import_partial
+msgid "odoo | import_partial"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | init
+msgid "odoo | init"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | language
+msgid "odoo | language"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_memory_hard
+msgid "odoo | limit_memory_hard"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_memory_soft
+msgid "odoo | limit_memory_soft"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_request
+msgid "odoo | limit_request"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_time_cpu
+msgid "odoo | limit_time_cpu"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_time_real
+msgid "odoo | limit_time_real"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | limit_time_real_cron
+msgid "odoo | limit_time_real_cron"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | list_db
+msgid "odoo | list_db"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | log_db
+msgid "odoo | log_db"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | log_db_level
+msgid "odoo | log_db_level"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | log_handler
+msgid "odoo | log_handler"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | log_level
+msgid "odoo | log_level"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | logfile
+msgid "odoo | logfile"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | logrotate
+msgid "odoo | logrotate"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | longpolling_port
+msgid "odoo | longpolling_port"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | max_cron_threads
+msgid "odoo | max_cron_threads"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | osv_memory_age_limit
+msgid "odoo | osv_memory_age_limit"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | osv_memory_count_limit
+msgid "odoo | osv_memory_count_limit"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | overwrite_existing_translations
+msgid "odoo | overwrite_existing_translations"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | pg_path
+msgid "odoo | pg_path"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | pidfile
+msgid "odoo | pidfile"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | proxy_mode
+msgid "odoo | proxy_mode"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | publisher_warranty_url
+msgid "odoo | publisher_warranty_url"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | reportgz
+msgid "odoo | reportgz"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | root_path
+msgid "odoo | root_path"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | running_env
+msgid "odoo | running_env"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | save
+msgid "odoo | save"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | server_wide_modules
+msgid "odoo | server_wide_modules"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | shell_interface
+msgid "odoo | shell_interface"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | smtp_password
+msgid "odoo | smtp_password"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | smtp_port
+msgid "odoo | smtp_port"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | smtp_server
+msgid "odoo | smtp_server"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | smtp_ssl
+msgid "odoo | smtp_ssl"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | smtp_user
+msgid "odoo | smtp_user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | stop_after_init
+msgid "odoo | stop_after_init"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | syslog
+msgid "odoo | syslog"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | test_commit
+msgid "odoo | test_commit"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | test_enable
+msgid "odoo | test_enable"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | test_file
+msgid "odoo | test_file"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | test_report_directory
+msgid "odoo | test_report_directory"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | translate_in
+msgid "odoo | translate_in"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | translate_modules
+msgid "odoo | translate_modules"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | translate_out
+msgid "odoo | translate_out"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | unaccent
+msgid "odoo | unaccent"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | update
+msgid "odoo | update"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | without_demo
+msgid "odoo | without_demo"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | workers
+msgid "odoo | workers"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | xmlrpc
+msgid "odoo | xmlrpc"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | xmlrpc_interface
+msgid "odoo | xmlrpc_interface"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
+#: | xmlrpc_port
+msgid "odoo | xmlrpc_port"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model,name:server_environment.model_server_config
+msgid "server.config"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | architecture
+msgid "system | architecture"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | locale
+msgid "system | locale"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | lsb_release
+msgid "system | lsb_release"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | odoo
+msgid "system | odoo"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | os_name
+msgid "system | os.name"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | platform
+msgid "system | platform"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | python
+msgid "system | python"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | release
+msgid "system | release"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | revision
+msgid "system | revision"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_system
+#: | version
+msgid "system | version"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_wkhtml2pdf
+#: | lib_path
+msgid "wkhtml2pdf | lib_path"
+msgstr ""
