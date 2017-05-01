@@ -4,14 +4,14 @@
 import json
 from lxml import etree
 from openerp import _, api, fields, models, SUPERUSER_ID
+from openerp.addons.web.controllers.main import Export
+from openerp.http import request
 from openerp.osv import expression  # pylint: disable=W0402
 
 
 class RestrictFieldAccessMixin(models.AbstractModel):
     """Mixin to restrict access to fields on record level"""
     _name = 'restrict.field.access.mixin'
-
-    # TODO: read_group, __export_rows, everything that was forgotten
 
     @api.multi
     def _compute_restrict_field_access(self):
@@ -71,6 +71,85 @@ class RestrictFieldAccessMixin(models.AbstractModel):
                     record[field] = self._fields[field].convert_to_read(
                         self._fields[field].null(self.env))
         return result
+
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False, lazy=True):
+        """
+        Remove inaccessible fields from 'fields', 'groupby' and 'orderby'.
+
+        If this removes all 'fields', return no records.
+        If this removes all 'groupby', group by first remaining field.
+        If this removes 'orderby', don't specify order.
+        """
+        requested_fields = fields or self._columns.keys()
+        sanitised_fields = [
+            f for f in requested_fields if self._restrict_field_access_is_field_accessible(
+                cr, uid, [], f
+            )
+        ]
+        if not sanitised_fields:
+            return []
+
+        sanitised_groupby = []
+        groupby = [groupby] if isinstance(groupby, basestring) else groupby
+        for groupby_part in groupby:
+            groupby_field = groupby_part.split(':')[0]
+            if self._restrict_field_access_is_field_accessible(cr, uid, [], groupby_field):
+                sanitised_groupby.append(groupby_part)
+        if not sanitised_groupby:
+            sanitised_groupby.append(sanitised_fields[0])
+
+        if orderby:
+            sanitised_orderby = []
+            for orderby_part in orderby.split(','):
+                orderby_field = orderby_part.split()[0]
+                if self._restrict_field_access_is_field_accessible(cr, uid, [], orderby_field):
+                    sanitised_orderby.append(orderby_part)
+            sanitised_orderby = sanitised_orderby and ','.join(sanitised_orderby) or False
+        else:
+            sanitised_orderby = False
+
+        result = super(RestrictFieldAccessMixin, self).read_group(
+            cr,
+            uid,
+            domain,
+            sanitised_fields,
+            sanitised_groupby,
+            offset=offset,
+            limit=limit,
+            context=context,
+            orderby=sanitised_orderby,
+            lazy=lazy
+        )
+        # Add inaccessible fields back in with null values
+        inaccessible_fields = [f for f in requested_fields if f not in sanitised_fields]
+        for field_name in inaccessible_fields:
+            field = self._columns[field_name]
+            if lazy:
+                result.append(
+                    {
+                        '__domain': [(True, '=', True)],
+                        field_name: field.null(self.env),
+                        field_name + '_count': 0L
+                    }
+                )
+            else:
+                result.append(
+                    {
+                        '__domain': [(True, '=', True)],
+                        field_name: field.null(self.env),
+                        '__count': 0L
+                    }
+                )
+        return result
+
+    @api.multi
+    def _BaseModel__export_rows(self, fields):
+        """Don't export inaccessible fields"""
+        if isinstance(self, RestrictFieldAccessMixin):
+            sanitised_fields = [f for f in fields if f and self._restrict_field_access_is_field_accessible(f[0])]
+            return super(RestrictFieldAccessMixin, self)._BaseModel__export_rows(sanitised_fields)
+        else:
+            return super(RestrictFieldAccessMixin, self)._BaseModel__export_rows(fields)
 
     @api.multi
     def write(self, vals):
@@ -229,3 +308,17 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         whitelist = self._restrict_field_access_get_field_whitelist(
             action=action)
         return field_name in whitelist
+
+
+class RestrictedExport(Export):
+    """Don't (even offer to) export inaccessible fields"""
+    def fields_get(self, model):
+        Model = request.session.model(model)
+        fields = Model.fields_get(False, request.context)
+        model = request.env[model]
+        if isinstance(model, RestrictFieldAccessMixin):
+            sanitised_fields =  {k:fields[k] for k in fields if model._restrict_field_access_is_field_accessible(k)}
+            return sanitised_fields
+        else:
+            return fields
+
