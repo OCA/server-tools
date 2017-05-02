@@ -1,0 +1,573 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * oauth_provider
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-19 18:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_active
+msgid "A token is active only if it has not yet expired."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_active
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_active
+msgid "Active"
+msgstr "Actief"
+
+#. module: oauth_provider
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_form
+msgid "Allowed Redirect URIs"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_scope_ids
+msgid "Allowed Scopes"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_redirect_uri_ids
+msgid "Allowed redirect URIs for the client."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_application_type
+msgid "Application type"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_application_type
+msgid "Application type to be used with this client."
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,grant_type:0
+#: selection:oauth.provider.client,response_type:0
+msgid "Authorization Code"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.ui.view,arch_db:oauth_provider.authorization
+msgid "Authorize"
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,application_type:0
+msgid "Backend Application (not implemented)"
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.token,token_type:0
+msgid "Bearer"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_skip_authorization
+msgid ""
+"Check this box if the user shouldn't be prompted to authorize or not the "
+"requested scopes."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_client_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_client_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_client_id
+msgid "Client"
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,grant_type:0
+msgid "Client Credentials"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_identifier
+msgid "Client Identifier"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_redirect_uri_client_id
+msgid "Client allowed to redirect using this URI."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_client_id
+msgid "Client associated to this authorization code."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_client_id
+msgid "Client associated to this token."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_code
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_code
+msgid "Code"
+msgstr "Code"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_code
+msgid "Code of the scope, used in OAuth requests."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_create_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_create_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_create_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_create_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_create_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_create_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_create_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_create_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_description
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_description
+msgid "Description of the scope, displayed to the user."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_display_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_display_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_display_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_display_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_display_name
+msgid "Display Name"
+msgstr "Te tonen naam"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_expires_at
+msgid "Expiration time of the token."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_expires_at
+msgid "Expires at"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_field_ids
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_scope_form
+msgid "Fields"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_field_ids
+msgid "Fields allowed by this scope."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_filter_id
+msgid "Filter"
+msgstr "Filter"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_filter_id
+msgid "Filter applied to retrieve records allowed by this scope."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_scope_form
+msgid "Filter settings"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_grant_type
+msgid "Grant type used by the client for OAuth."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_id
+msgid "ID"
+msgstr "ID"
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,grant_type:0
+msgid "Implicit"
+msgstr ""
+
+#. module: oauth_provider
+#: code:addons/oauth_provider/models/oauth_provider_token.py:75
+#, python-format
+msgid "Invalid operator {operator} for  field active!"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code___last_update
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client___last_update
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri___last_update
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope___last_update
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token___last_update
+msgid "Last Modified on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_write_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_write_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_write_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_write_uid
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_write_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_write_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_write_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_write_date
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,application_type:0
+msgid "Legacy Application"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_scope_ids
+msgid "List of scopes the client is allowed to access."
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,application_type:0
+msgid "Mobile Application"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_model_id
+msgid "Model"
+msgstr "Model"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_model
+msgid "Model Name"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_model_id
+msgid "Model allowed to be accessed by this scope."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_name
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_name
+msgid "Name"
+msgstr "Naam"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_code
+msgid "Name of the authorization code."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_model
+msgid "Name of the model allowed to be accessed by this scope."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_name
+msgid "Name of the scope, displayed to the user."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_name
+msgid "Name of this client."
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,response_type:0
+msgid "None"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_grant_type
+msgid "OAuth Grant Type"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_res_users_oauth_identifier
+msgid "OAuth Identifier"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_oauth_provider_authorization_code
+msgid "OAuth Provider Authorization Code"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_oauth_provider_client
+msgid "OAuth Provider Client"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.actions.act_window,name:oauth_provider.act_open_oauth_provider_client_view
+#: model:ir.ui.menu,name:oauth_provider.menu_oauth_provider_client
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_form
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_search
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_tree
+msgid "OAuth Provider Clients"
+msgstr ""
+
+#. module: oauth_provider
+#: model:res.groups,name:oauth_provider.group_oauth_provider_manager
+msgid "OAuth Provider Manager"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_oauth_provider_redirect_uri
+msgid "OAuth Provider Redirect URI"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_oauth_provider_scope
+msgid "OAuth Provider Scope"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.actions.act_window,name:oauth_provider.act_open_oauth_provider_scope_view
+#: model:ir.ui.menu,name:oauth_provider.menu_oauth_provider_scope
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_scope_form
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_scope_search
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_scope_tree
+msgid "OAuth Provider Scopes"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_oauth_provider_token
+msgid "OAuth Provider Token"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_redirect_uri_ids
+msgid "OAuth Redirect URIs"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_response_type
+msgid "OAuth Response Type"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_secret
+msgid "Optional secret used to authenticate the client."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_redirect_uri_sequence
+msgid "Order of the redirect URIs."
+msgstr ""
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,grant_type:0
+msgid "Password"
+msgstr "Wachtwoord"
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,token_type:0
+msgid "Randomly generated"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_redirect_uri_id
+msgid "Redirect URI"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_redirect_uri_id
+msgid "Redirect URI associated to this authorization code."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_form
+msgid "Redirect URIs"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_refresh_token
+msgid "Refresh token"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_response_type
+msgid "Response type used by the client for OAuth."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_scope_ids
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_scope_ids
+msgid "Scopes"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_scope_ids
+msgid "Scopes allowed by this authorization code."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_scope_ids
+msgid "Scopes allowed by this token."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_secret
+msgid "Secret"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_sequence
+msgid "Sequence"
+msgstr "Reeks"
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_skip_authorization
+msgid "Skip authorization"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_res_users_oauth_identifier
+msgid "String used to identify this user during an OAuth session."
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:res.users:0
+msgid "The OAuth identifier of the user must be unique !"
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:oauth.provider.authorization.code:0
+msgid "The authorization code must be unique per client !"
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:oauth.provider.scope:0
+msgid "The code of the scopes must be unique !"
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:oauth.provider.client:0
+msgid "The identifier of the client must be unique !"
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:oauth.provider.token:0
+msgid "The refresh token must be unique per client !"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_refresh_token
+msgid "The refresh token, if applicable."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_token
+msgid "The token itself."
+msgstr ""
+
+#. module: oauth_provider
+#: sql_constraint:oauth.provider.token:0
+msgid "The token must be unique per client !"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.ui.view,arch_db:oauth_provider.authorization
+msgid "This application would like to access these resources :"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_token
+#: selection:oauth.provider.client,response_type:0
+msgid "Token"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_token_type
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_token_type
+msgid "Token type"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_token_type
+msgid ""
+"Type of token stored. Currently, only the bearer token type is available."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_token_type
+msgid ""
+"Type of token to return. The base module only provides randomly generated "
+"tokens."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_redirect_uri_name
+msgid "URI of the redirect."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_identifier
+msgid "Unique identifier of the client."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_user_id
+#: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_user_id
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_user_id
+msgid "User associated to this authorization code."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_user_id
+msgid "User associated to this token."
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model,name:oauth_provider.model_res_users
+msgid "Users"
+msgstr "Gebruikers"
+
+#. module: oauth_provider
+#: selection:oauth.provider.client,application_type:0
+msgid "Web Application"
+msgstr ""
+
+#. module: oauth_provider
+#: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_active
+msgid "When unchecked, the code is invalidated."
+msgstr ""
