@@ -3,13 +3,14 @@
 # * test_configuration_helper
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
-"PO-Revision-Date: 2016-05-26 06:58+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-13 14:07+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #: model:ir.model,name:test_configuration_helper.model_a_config_settings
 #: model:ir.model,name:test_configuration_helper.model_b_config_settings
 msgid "Abstract configuration settings"
-msgstr ""
+msgstr "Abtrakte Einstellungen"
 
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_res_company
@@ -110,4 +111,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_partner_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_b_partner_id
 msgid "unknown"
-msgstr ""
+msgstr "unbekannt"

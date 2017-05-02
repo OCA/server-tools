@@ -3,13 +3,14 @@
 # * scheduler_error_mailer
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:49+0000\n"
-"PO-Revision-Date: 2017-03-03 03:49+0000\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-19 18:00+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -53,22 +54,53 @@ msgid ""
 "    \n"
 "            "
 msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>Odoo hat versucht die Terminaufgabe <em>${object.name or ''}</em> in der Datenbank <em>${ctx.get('dbname')}</em> auszuführen, scheiterte jedoch. Hier folgt die Fehlermeldung:</p>\n"
+"\n"
+"<strong>\n"
+"${ctx.get('job_exception') and ctx.get('job_exception').value or 'Konnte Fehlermeldung nicht aus dem Kontext erfahren.'}\n"
+"</strong>\n"
+"\n"
+"<p>Sie können die Logs des Odoo-Server überprüfen, um weitere Information zu diesem Fehler zu erhalten.</p>\n"
+"\n"
+"<p>Eigenschaften der Terminaufgabe <em>${object.name or ''}</em> :</p>\n"
+"<ul>\n"
+"<li>Modell: ${object.model or ''}</li>\n"
+"<li>Methode: ${object.function or ''}</li>\n"
+"<li>Argumente: ${object.args or ''}</li>\n"
+"<li>Intervall: ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n"
+"<li>Anzahl Aufrufe: ${object.numbercall or '0'}</li>\n"
+"<li>Verpaßte nachholen: ${object.doall}</li>\n"
+"<li>Benutzer: ${object.user_id.name or ''}</li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"-- <br/>\n"
+"Automatisch versandte Email aus Odoo. Nicht beantworten.<br/>\n"
+"Datenbank : ${ctx.get('dbname')}\n"
+"</p>\n"
+"</div>\n"
+"    "
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Error E-mail Template"
-msgstr ""
+msgstr "Fehler Email-Vorlage"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
+"Wählen Sie die Mailvorlage aus, die scheitern dieser Terminaufgabe verwendet"
+" werden soll."
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/models/ir_cron.py:55
 #, python-format
 msgid "Task failure with UID = %d."
-msgstr ""
+msgstr "Ausführungsfehler mit UID = %d."
 
 #. module: scheduler_error_mailer
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer

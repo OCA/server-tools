@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 13:11+0000\n"
-"PO-Revision-Date: 2017-01-17 13:11+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
+"POT-Creation-Date: 2017-04-19 17:59+0000\n"
+"PO-Revision-Date: 2017-04-19 17:59+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
 msgid "Conditional"
-msgstr ""
+msgstr "Condicional "
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_uid
@@ -39,7 +39,7 @@ msgstr "Creat el"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr ""
+msgstr "Deduplicar ajustaments abans de fer importacions CSV."
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_display_name
@@ -50,7 +50,7 @@ msgstr "Veure el nom"
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_conditional
 msgid "Enable if you want to use this field only in some conditions."
-msgstr ""
+msgstr "Activeu si voleu utilitzar aquest camp només en certes condicions. "
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_field_id
@@ -60,27 +60,27 @@ msgstr "Camp"
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_name
 msgid "Field Name"
-msgstr ""
+msgstr "Nom del Camp"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Camps que defineixen una associació d'importació "
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_field_id
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Camps que seran part de una clau única."
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_ids
 msgid "Fields"
-msgstr ""
+msgstr "Camps "
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_ids
 msgid "Fields that will define an unique key."
-msgstr ""
+msgstr "Camps que definiran una clau única."
 
 #. module: base_import_match
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
@@ -101,6 +101,11 @@ msgid ""
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
 msgstr ""
+"Si el valor importat no es aquest, el conjunt de regles d'associació ha de "
+"ser descartat. Aneu amb compte, aquestes dades sempre són tractades com una "
+"cadena, i la comparació és sensible a majúscules i minúscules, per la qual "
+"cosa si s'estableix 'Veritat', NO coincidirà ni amb '1' ni amb 'veritat', "
+"només EXACTAMENT amb 'Veritat'."
 
 #. module: base_import_match
 #: model:ir.actions.act_window,name:base_import_match.match_action
@@ -109,18 +114,18 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
 #: model:ir.ui.view,arch_db:base_import_match.match_tree_view
 msgid "Import Match"
-msgstr ""
+msgstr "Importar Associació "
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_imported_value
 msgid "Imported value"
-msgstr ""
+msgstr "Valor Importat "
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_model_id
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_model_id
 msgid "In this model you will apply the match."
-msgstr ""
+msgstr "En aquest model haureu d'aplicar l'associació."
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match___last_update
@@ -143,7 +148,7 @@ msgstr "Darrera Actualització el"
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_match_id
 msgid "Match"
-msgstr ""
+msgstr "Associar "
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_model_id

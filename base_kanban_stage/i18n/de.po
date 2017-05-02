@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 04:03+0000\n"
-"PO-Revision-Date: 2017-01-07 04:03+0000\n"
+"POT-Creation-Date: 2017-04-19 17:59+0000\n"
+"PO-Revision-Date: 2017-04-19 17:59+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -27,21 +27,25 @@ msgid ""
 "* Ready: Ready to transition to the next stage\n"
 "* Special Handling: Blocked in some way (e.g. must be handled by a specific user)\n"
 msgstr ""
+"Ein Datensatz kann einen aus mehreren Kanban-Stati annehmen, welche anzeigen, ob dieser von besondere Umstände betroffen ist. Die genaue Bedeutung jeden Status variiert je nach Verlauf, kann aber grob wie folgt verstanden werden:\n"
+"* Normal: Standardzustand, ohne besondere Umstände.\n"
+"* Fertig: Bereit für Übergang zu nächster Stufe\n"
+"* Handlungsbedarf: Aus irgendeinem Grund blockiert (z.B. notwendige Maßnahme durch spezeillen Benutzer)\n"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_user_id
 msgid "Assigned To"
-msgstr ""
+msgstr "Zuweisen an"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_res_model
 msgid "Associated Model"
-msgstr ""
+msgstr "Zugehöriges Modell"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_fold
 msgid "Collapse?"
-msgstr ""
+msgstr "Zusammenklappen?"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_color
@@ -71,7 +75,7 @@ msgstr "erstellt am"
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_description

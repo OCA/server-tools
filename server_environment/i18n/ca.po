@@ -3,13 +3,14 @@
 # * server_environment
 # 
 # Translators:
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-21 08:11+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Darrera Actualització el"
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr ""
+msgstr "Entorn del Servidor "
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
@@ -559,7 +560,7 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_config
 msgid "server.config"
-msgstr ""
+msgstr "server.config"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
@@ -583,46 +584,46 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | openerp
 msgid "system | openerp"
-msgstr ""
+msgstr "sistema | openerp"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | os_name
 msgid "system | os.name"
-msgstr ""
+msgstr "sistema | so.nom"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | platform
 msgid "system | platform"
-msgstr ""
+msgstr "sistema | plataforma "
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | python
 msgid "system | python"
-msgstr ""
+msgstr "sistema | python"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | release
 msgid "system | release"
-msgstr ""
+msgstr "sistema | publicació "
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | revision
 msgid "system | revision"
-msgstr ""
+msgstr "sistema | revisió "
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | version
 msgid "system | version"
-msgstr ""
+msgstr "sistema | versió "
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_wkhtml2pdf
 #: | lib_path
 msgid "wkhtml2pdf | lib_path"
-msgstr ""
+msgstr "wkhtml2pdf | lib_path"

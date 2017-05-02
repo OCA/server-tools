@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:46+0000\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Polish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pl/)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_a_config_settings
@@ -32,7 +32,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_company_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_company_id
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_uid
