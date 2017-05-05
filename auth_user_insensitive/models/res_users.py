@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015-2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
 
@@ -10,9 +10,6 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     login = fields.Char(
-        'Login',
-        size=64,
-        required=True,
         help='Used to log into the system. Case insensitive.',
     )
 
@@ -28,13 +25,13 @@ class ResUsers(models.Model):
         return super(ResUsers, self).search(domain, *args, **kwargs)
 
     @api.model
-    def create(self, vals, ):
+    def create(self, vals):
         """ Overload create to lowercase login """
         vals['login'] = vals.get('login', '').lower()
         return super(ResUsers, self).create(vals)
 
     @api.multi
-    def write(self, vals, ):
+    def write(self, vals):
         """ Overload write to lowercase login """
         if vals.get('login'):
             vals['login'] = vals['login'].lower()

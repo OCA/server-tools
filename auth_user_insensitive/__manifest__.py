@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015-2017 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Case Insensitive Logins",
     "summary": "Makes the user login field case insensitive",
@@ -14,5 +14,6 @@
     "depends": [
         "mail",
     ],
-    "data": [],
+    'pre_init_hook': 'pre_init_hook_login_check',
+    'post_init_hook': 'post_init_hook_login_convert',
 }
