@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-# © 2015-TODAY LasLabs Inc.
+# Copyright 2015-2017 LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, fields
+from odoo import api, fields, models
 
 
 class ResUsers(models.Model):
+
     _inherit = 'res.users'
+
     login = fields.Char(
         'Login',
         size=64,
@@ -16,10 +18,9 @@ class ResUsers(models.Model):
 
     @api.model
     def search(self, domain, *args, **kwargs):
-        '''
-        Overload search to lowercase name domains. Can't do in a typical
-        search method due to the field not being computed
-        '''
+        """ Overload search to lowercase name domains. This can't be done in
+        a regular search method as the field is not computed
+        """
         for idx, _domain in enumerate(domain):
             if _domain[0] == 'login':
                 lower = _domain[2].lower() if _domain[2] else False
@@ -28,13 +29,13 @@ class ResUsers(models.Model):
 
     @api.model
     def create(self, vals, ):
-        ''' Overload create to lowercase login '''
+        """ Overload create to lowercase login """
         vals['login'] = vals.get('login', '').lower()
         return super(ResUsers, self).create(vals)
 
     @api.multi
     def write(self, vals, ):
-        ''' Overload write to lowercase login '''
+        """ Overload write to lowercase login """
         if vals.get('login'):
             vals['login'] = vals['login'].lower()
         return super(ResUsers, self).write(vals)
