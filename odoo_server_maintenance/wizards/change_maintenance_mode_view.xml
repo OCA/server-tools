@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="change_maintenance_mode_wizard_view" model="ir.ui.view">
+            <field name="name">Change Maintenance Mode</field>
+            <field name="model">change.maintenance.mode.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Change Maintenance Mode">
+                    <p>Do you want to change maintenance mode?</p>
+                    <ul>
+                        <li>If you want to select maintenance mode please click select button</li>
+                        <li>If you want to unselect maintenance mode please click unselect button</li>
+                        <li>If you click cancel button window will close</li>
+                    </ul>
+                    <footer>
+                        <button string="Select" name="select_maintenance_mode" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Unselect" name="unselect_maintenance_mode" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
