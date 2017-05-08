@@ -7,7 +7,7 @@
     "version": "10.0.1.0.0",
     "category": "Authentication",
     "website": "https://www.laslabs.com",
-    "author": "LasLabs Inc, Odoo Community Association (OCA)",
+    "author": "LasLabs, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     'installable': True,
