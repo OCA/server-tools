@@ -2,6 +2,7 @@
 # Copyright 2015-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from odoo import api, registry
 from odoo.tests.common import TransactionCase
 
 
@@ -45,12 +46,23 @@ class TestResUsers(TransactionCase):
             'Login was not lowercased when saved to db.',
         )
 
-    def test_login_search_is_lowercased(self):
-        """ It should verify the login is set to lowercase on search """
+    def test_login_login_is_lowercased(self):
+        """ It should verify the login is set to lowercase on login """
         rec_id = self._new_record()
-        res_id = self.model_obj.search([('login', '=', self.login.upper())])
-        res = res_id.id if res_id else False
+        # We have to commit this cursor, because `_login` uses a fresh cursor
+        self.env.cr.commit()
+        res_id = self.model_obj._login(
+            self.env.registry.db_name, self.login.upper(), 'password'
+        )
+        # Now clean up our mess to preserve idempotence
+        with api.Environment.manage():
+            with registry(self.env.registry.db_name).cursor() as new_cr:
+                new_cr.execute(
+                    "DELETE FROM res_users WHERE login='%s'" %
+                    self.login.lower()
+                )
+                new_cr.commit()
         self.assertEqual(
-            rec_id.id, res,
-            'Search for login with uppercase chars did not yield results.',
+            rec_id.id, res_id,
+            'Login with with uppercase chars was not successful',
         )

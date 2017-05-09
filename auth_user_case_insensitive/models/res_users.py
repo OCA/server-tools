@@ -13,16 +13,12 @@ class ResUsers(models.Model):
         help='Used to log into the system. Case insensitive.',
     )
 
-    @api.model
-    def search(self, domain, *args, **kwargs):
-        """ Overload search to lowercase name domains. This can't be done in
-        a regular search method as the field is not computed
-        """
-        for idx, _domain in enumerate(domain):
-            if _domain[0] == 'login':
-                lower = _domain[2].lower() if _domain[2] else False
-                domain[idx] = (_domain[0], _domain[1], lower)
-        return super(ResUsers, self).search(domain, *args, **kwargs)
+    @classmethod
+    def _login(cls, db, login, password):
+        """ Overload _login to lowercase the `login` before passing to the
+        super """
+        login = login.lower()
+        return super(ResUsers, cls)._login(db, login, password)
 
     @api.model
     def create(self, vals):
