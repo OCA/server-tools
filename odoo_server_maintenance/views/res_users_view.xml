@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_users_tree"/>
             <field name="arch" type="xml">
                 <field name="login_date" position="after">
-                    <field name="maintenance_mode"/>
+                    <field name="maintenance_mode" groups="odoo_server_maintenance.group_server_maintenance"/>
                 </field>
             </field>
         </record>
@@ -19,7 +19,7 @@
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="maintenance_mode" attrs="{'readonly': [('id','=',1)]}"/>
+                    <field name="maintenance_mode" attrs="{'readonly': [('id','=',1)]}" groups="odoo_server_maintenance.group_server_maintenance"/>
                 </field>
             </field>
         </record>
@@ -30,7 +30,7 @@
             res_model="change.maintenance.mode.wizard"
             view_type="form" view_mode="form"
             key2="client_action_multi" target="new"
-            groups="base.group_erp_manager"/>
+            groups="odoo_server_maintenance.group_server_maintenance"/>
 
     </data>
 </openerp>

@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_change_maintenance_mode_wizard_group_erp_manager,change.maintenance.mode.wizard.erp.manager,model_change_maintenance_mode_wizard,base.group_erp_manager,1,1,1,1
+access_change_maintenance_mode_wizard_group_server_maintenance,change.maintenance.mode.wizard.server.maintenance,model_change_maintenance_mode_wizard,odoo_server_maintenance.group_server_maintenance,1,1,1,1

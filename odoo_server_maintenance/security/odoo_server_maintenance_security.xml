@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="module_category_server_maintenance" model="ir.module.category">
+            <field name="name">Server Maintenance</field>
+        </record>
+
+        <record id="group_server_maintenance" model="res.groups">
+            <field name="name">Manage maintenance mode</field>
+            <field name="category_id" ref="module_category_server_maintenance"/>
+        </record>
+
+    </data>
+</openerp>
