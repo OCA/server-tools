@@ -8,7 +8,7 @@
     "category": "Authentication",
     "website": "https://www.laslabs.com",
     "author": "LasLabs, Odoo Community Association (OCA)",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "application": False,
     'installable': True,
     "data": [
