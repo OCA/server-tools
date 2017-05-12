@@ -3,27 +3,27 @@
    :alt: License: LGPL-3
 
 ==============
-User Immutable
+User Threshold
 ==============
 
-This module adds the ability to limit the amount of non-portal/public that 
-exist in the database and per-company. It also adds a group named 
-`User Threshold Managers` which are  the only users who can alter the 
-thresholds. This module also limits the  ability of users to add membership 
+This module adds the ability to limit the amount of non-portal/public
+users that exist in the database and per-company.
+
+It adds a group named `User Threshold Managers` which are  the only users
+who can alter the thresholds.
+
+This module also limits the  ability of users to add membership
 to the manager group to  pre-existing members. By default, `Administrator` 
-is the only member of this group. There  is also a flag that can be set on 
-users so that they do not count towards the user threshold.
+is the only member of this group.
+
+Additionally, there is a flag that can be set on users so that they do not
+count towards the user threshold.
 
 Using the `USER_THRESHOLD_HIDE` environment variable, you can also hide the 
 threshold exemption flag from users and the company setting for user 
 threshold. Setting this flag will also remove threshold exemptions for any 
 users who are not defined in the `USER_THRESHOLD_USER` environment variable.
 
-
-Installation
-============
-
-* Install module as normal
 
 Usage
 =====
@@ -44,8 +44,7 @@ pleasure:
 | Name | Description |
 |------|-------------|
 | USER_THRESHOLD_HIDE | Hide all threshold settings and default the exempt users to those definied by the USER_THRESHOLD_USERS variable
-| USER_THRESHOLD_USER | White list of users who are exempt from the 
-threshold.
+| USER_THRESHOLD_USER | White list of users who are exempt from the threshold.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas

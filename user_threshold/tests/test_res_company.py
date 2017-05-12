@@ -11,7 +11,8 @@ from .common import Common
 class TestResCompany(Common):
 
     def test_fields_view_get(self):
-        """ It should verify that setting HIDE_THRESHOLD removes the parameter
+        """
+        It should verify that setting HIDE_THRESHOLD removes the parameter
         from the view
         """
         import odoo.addons.user_threshold.models.res_company as mdl
@@ -23,7 +24,8 @@ class TestResCompany(Common):
         self.assertEquals(doc.xpath("//field[@name='max_users']"), [])
 
     def test_can_write_max_users(self):
-        """ It should restrict the max users parameter to Threshold Managers
+        """
+        It should restrict the max users parameter to Threshold Managers
         """
         u = self._create_test_user()
         self._add_user_to_group(u)
@@ -33,7 +35,8 @@ class TestResCompany(Common):
         self.assertEquals(c.max_users, res)
 
     def test_cannot_write_max_users(self):
-        """ It should restrict the max users parameter to Threshold Managers
+        """
+        It should restrict the max users parameter to Threshold Managers
         """
         u = self._create_test_user()
         c = self.env['res.company'].browse(1)

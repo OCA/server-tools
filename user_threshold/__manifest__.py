@@ -13,6 +13,7 @@
     'installable': True,
     "data": [
         'data/user_threshold_data.xml',
+        'data/ir_config_parameter_data.xml',
         'views/res_company_view.xml',
         'views/res_users_view.xml',
     ],

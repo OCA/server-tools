@@ -18,9 +18,10 @@ class ResCompany(models.Model):
     )
 
     def _can_manipulate_th(self):
-        """ Check to see if the user is a member of the correct group
-         Returns:
-             True when the user is a member of the threshold manager group
+        """
+        Check to see if the user is a member of the correct group
+        Returns:
+            True when the user is a member of the threshold manager group
         """
         return self.env.user.has_group(
             'user_threshold.group_threshold_manager'
@@ -42,7 +43,8 @@ class ResCompany(models.Model):
 
     @api.multi
     def write(self, vals):
-        """ Override to disallow manipulation of the user threshold parameter
+        """
+        Override to disallow manipulation of the user threshold parameter
         when the user does not have the right access
         """
         if not self._can_manipulate_th() and vals.get('max_users'):

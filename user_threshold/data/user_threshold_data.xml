@@ -2,19 +2,12 @@
 <!-- Copyright 2017 LasLabs Inc.
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 
-<odoo noupdate="1">
+<odoo>
 
     <record id="group_threshold_manager" model="res.groups">
         <field name="name">User Threshold Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
         <field name="users" eval="[(4, ref('base.user_root'))]" />
-    </record>
-
-    <record id="config_user_threshold" model="ir.config_parameter">
-        <field name="key">user.threshold.database</field>
-        <field name="value">0</field>
-        <field name="group_ids"
-               eval="[(4, ref('user_threshold.group_threshold_manager'))]" />
     </record>
 
 </odoo>

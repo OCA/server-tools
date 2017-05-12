@@ -15,7 +15,8 @@ class TestResUsers(Common):
         self.env['ir.config_parameter'].set_param(MAX_DB_USER_PARAM, '0')
 
     def test_copy_global(self):
-        """ It should restrict the user count in copy() as prescribed by the
+        """
+        It should restrict the user count in copy() as prescribed by the
         global threshold parameter
         """
         self.env['ir.config_parameter'].set_param(MAX_DB_USER_PARAM, 3)
@@ -24,7 +25,8 @@ class TestResUsers(Common):
             self._create_test_user()
 
     def test_create_global(self):
-        """ It should restrict the user count as prescribed by the global
+        """
+        It should restrict the user count as prescribed by the global
         threshold parameter
         """
         self.env['ir.config_parameter'].set_param(MAX_DB_USER_PARAM, 3)
@@ -37,7 +39,8 @@ class TestResUsers(Common):
             })
 
     def test_copy_company(self):
-        """ It should restrict the user count in copy() as prescribed by the
+        """
+        It should restrict the user count in copy() as prescribed by the
         companies threshold parameter
         """
         c = self.env['res.company'].browse(1)
@@ -47,7 +50,8 @@ class TestResUsers(Common):
             self._create_test_user()
 
     def test_create_company(self):
-        """ It should restrict the user count as prescribed by the companies
+        """
+        It should restrict the user count as prescribed by the companies
         threshold parameter
         """
         c = self.env['res.company'].browse(1)
@@ -61,7 +65,8 @@ class TestResUsers(Common):
             })
 
     def test_fields_view_get(self):
-        """ It should verify that setting HIDE_THRESHOLD removes the parameter
+        """
+        It should verify that setting HIDE_THRESHOLD removes the parameter
         from the view
         """
         import odoo.addons.user_threshold.models.res_users as mdl
@@ -73,7 +78,8 @@ class TestResUsers(Common):
         self.assertEquals(doc.xpath("//group[@name='user_threshold']"), [])
 
     def test_cannot_write_exempt(self):
-        """ It should restrict the threshold exempt parameter to Threshold
+        """
+        It should restrict the threshold exempt parameter to Threshold
         Managers
         """
         u = self._create_test_user()
@@ -82,7 +88,8 @@ class TestResUsers(Common):
             tu.sudo(u.id).write({'threshold_exempt': True})
 
     def test_can_write_exempt(self):
-        """ It should restrict the threshold exempt parameter to Threshold
+        """
+        It should restrict the threshold exempt parameter to Threshold
         Managers
         """
         u = self._create_test_user()
@@ -92,7 +99,8 @@ class TestResUsers(Common):
         self.assertEquals(tu.threshold_exempt, True)
 
     def test_cannot_write_group(self):
-        """ It should restrict additions to the Threshold Managers to users in
+        """
+        It should restrict additions to the Threshold Managers to users in
         that group
         """
         u = self._create_test_user()
@@ -105,7 +113,8 @@ class TestResUsers(Common):
             tu.sudo(u.id).write({'in_group_%s' % th_group.id: True})
 
     def test_can_write_group(self):
-        """ It should restrict additions to the Threshold Managers to users in
+        """
+        It should restrict additions to the Threshold Managers to users in
         that group
         """
         u = self._create_test_user()

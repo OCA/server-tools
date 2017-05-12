@@ -14,8 +14,9 @@ HIDE_THRESHOLD = str(os.environ.get('USER_THRESHOLD_HIDE', '')) == '1'
 class IrConfigParameter(models.Model):
     _inherit = 'ir.config_parameter'
 
-    def _can_manipulate_th(self):
-        """ Check to see if the user is a member of the correct group
+    def _can_manipulate(self):
+        """
+        Check to see if the user is a member of the correct group
          Returns:
              True when the user is a member of the threshold manager group
         """
@@ -25,11 +26,12 @@ class IrConfigParameter(models.Model):
 
     @api.multi
     def unlink(self):
-        """ Override to disallow deletion of the user threshold parameter
+        """
+        Override to disallow deletion of the user threshold parameter
         when the user does not have the right access
         """
         for rec in self.filtered(lambda r: r.key == MAX_DB_USER_PARAM):
-            if not self._can_manipulate_th():
+            if not self._can_manipulate():
                 raise AccessError(_(
                     'You do not have access to delete this parameter'
                 ))
@@ -37,11 +39,12 @@ class IrConfigParameter(models.Model):
 
     @api.multi
     def write(self, vals):
-        """ Override to disallow manipulation of the user threshold parameter
+        """
+        Override to disallow manipulation of the user threshold parameter
         when the user does not have the right access
         """
         for rec in self.filtered(lambda r: r.key == MAX_DB_USER_PARAM):
-            if not self._can_manipulate_th():
+            if not self._can_manipulate():
                 raise AccessError(_(
                     'You do not have access to set this parameter'
                 ))

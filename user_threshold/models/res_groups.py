@@ -17,10 +17,11 @@ class ResGroups(models.Model):
         group is not able to be set by users outside that group
         """
         manager = self.env.ref(THRESHOLD_MANAGER, raise_if_not_found=False)
-        is_manager = self.env.user.has_group(THRESHOLD_MANAGER)
-        if len(self.filtered(lambda r: r == manager)) and not is_manager:
-            raise AccessError(_(
-                'You must be a member of the `User Threshold Manager` group '
-                'to grant access to it'
-            ))
+        if manager:
+            is_manager = self.env.user.has_group(THRESHOLD_MANAGER)
+            if not is_manager and manager in self:
+                raise AccessError(_(
+                    'You must be a member of the `User Threshold Manager` '
+                    'group to grant access to it'
+                ))
         return super(ResGroups, self).write(vals)

@@ -9,7 +9,8 @@ from .common import Common
 class TestResGroups(Common):
 
     def test_can_write_max_users(self):
-        """ It should restrict membership additions to Threshold Managers to
+        """
+        It should restrict membership additions to Threshold Managers to
         pre-existing members of that group
         """
         u = self._create_test_user()
@@ -21,7 +22,8 @@ class TestResGroups(Common):
             g.sudo(u.id).write({'users': self.env.ref('base.user_demo').id})
 
     def test_cannot_write_max_users(self):
-        """ It should restrict membership additions to Threshold Managers to
+        """
+        It should restrict membership additions to Threshold Managers to
         pre-existing members of that group
         """
         u = self._create_test_user()
