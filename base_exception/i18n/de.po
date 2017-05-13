@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Niki Waibel <niki.waibel@gmail.com>, 2017
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-05-10 00:47+0000\n"
+"PO-Revision-Date: 2017-05-10 00:47+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,13 +27,13 @@ msgstr "Aktiv"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
 msgid "Apply on"
-msgstr ""
+msgstr "Anwenden auf"
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Blocked in draft due to exceptions"
-msgstr ""
+msgstr "Wegen Fehlern im Entwurf erzwungen"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid

@@ -3,13 +3,14 @@
 # * users_ldap_mail
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:39+0000\n"
-"PO-Revision-Date: 2017-05-01 10:39+0000\n"
+"POT-Creation-Date: 2017-05-10 00:47+0000\n"
+"PO-Revision-Date: 2017-05-10 00:47+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -24,21 +25,23 @@ msgid ""
 "By default 'cn' is used. For ActiveDirectory you might use 'displayName' "
 "instead."
 msgstr ""
+"Zadano se koristi 'CN'. za ActiveDirectory možete koristiti 'displayName' "
+"umjesto zadanog."
 
 #. module: users_ldap_mail
 #: model:ir.model.fields,field_description:users_ldap_mail.field_res_company_ldap_mail_attribute
 msgid "E-mail attribute"
-msgstr ""
+msgstr "Atribut e-mail"
 
 #. module: users_ldap_mail
 #: model:ir.model.fields,help:users_ldap_mail.field_res_company_ldap_mail_attribute
 msgid "LDAP attribute to use to retrieve em-mail address."
-msgstr ""
+msgstr "LDAP atribut za dohvat email adresa."
 
 #. module: users_ldap_mail
 #: model:ir.model.fields,field_description:users_ldap_mail.field_res_company_ldap_name_attribute
 msgid "Name Attribute"
-msgstr ""
+msgstr "Atribut naziva"
 
 #. module: users_ldap_mail
 #: model:ir.model,name:users_ldap_mail.model_res_company_ldap

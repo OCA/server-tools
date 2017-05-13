@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * company_country
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-05 07:29+0000\n"
+"PO-Revision-Date: 2017-05-05 07:29+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: company_country
+#: code:addons/company_country/models/res_config.py:25
+#, python-format
+msgid "Country code %s not found. Use ISO 3166 codes 2 letters"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: company_country
+#: code:addons/company_country/models/res_config.py:19
+#, python-format
+msgid "Error COUNTRY environment variable with country code not defined"
+msgstr ""
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_id
+msgid "ID"
+msgstr "ID"
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: company_country
+#: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: company_country
+#: model:ir.model,name:company_country.model_country_company_config_settings
+msgid "country.company.config.settings"
+msgstr ""
