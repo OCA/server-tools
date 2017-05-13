@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 14:52+0000\n"
-"PO-Revision-Date: 2016-12-01 10:10+0000\n"
+"POT-Creation-Date: 2017-05-01 23:18+0000\n"
+"PO-Revision-Date: 2017-05-11 14:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Switzerland) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CH/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,filename:0
 msgid "Filename"
-msgstr ""
+msgstr "Nom de fichier"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_main:0
