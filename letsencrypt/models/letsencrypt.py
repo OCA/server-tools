@@ -140,6 +140,7 @@ class Letsencrypt(models.AbstractModel):
         acme_challenge = get_challenge_dir()
         if not os.path.isdir(acme_challenge):
             os.makedirs(acme_challenge)
+        _logger.info(domain)
         if self.env.context.get('letsencrypt_dry_run'):
             crt_text = 'I\'m a test text'
         else:  # pragma: no cover
