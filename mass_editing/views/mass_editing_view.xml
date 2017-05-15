@@ -44,8 +44,7 @@
                     </div>
                     <notebook colspan="4">
                         <page string="Fields">
-                            <field name="field_ids" colspan="4" nolabel="1"
-                            domain="[('ttype', 'not in', ['reference', 'function']), ('model_id', 'in', model_ids and model_ids[0][2] or [])]"/>
+                            <field name="field_ids" colspan="4" nolabel="1"/>
                         </page>
                         <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
                             <group colspan="2" col="2">
