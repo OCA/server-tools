@@ -24,6 +24,12 @@ threshold exemption flag from users and the company setting for user
 threshold. Setting this flag will also remove threshold exemptions for any 
 users who are not defined in the `USER_THRESHOLD_USER` environment variable.
 
+There are two modules available that also implement functionality similar to
+what is provided in this module but in a more abstract way. They are:
+
+https://github.com/it-projects-llc/access-addons/tree/10.0/access_limit_records_number
+https://github.com/it-projects-llc/access-addons/tree/10.0/access_restricted
+
 
 Usage
 =====
@@ -38,12 +44,11 @@ thresholds.
 A field has been added to all companies, which allows you to define the max 
 number of users that the company can have.
 
-The following environment variables are available for your configuration
-pleasure:
+The following environment variables are available for your configuration ease:
 
 | Name | Description |
 |------|-------------|
-| USER_THRESHOLD_HIDE | Hide all threshold settings and default the exempt users to those definied by the USER_THRESHOLD_USERS variable
+| USER_THRESHOLD_HIDE | Hide all threshold settings and default the exempt users to those defined by the USER_THRESHOLD_USERS variable
 | USER_THRESHOLD_USER | White list of users who are exempt from the threshold.
 
 

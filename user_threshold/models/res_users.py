@@ -9,7 +9,7 @@ from lxml import etree
 from odoo import SUPERUSER_ID, _, api, fields, models, registry
 from odoo.exceptions import AccessError, ValidationError
 
-from .ir_config_parameter import HIDE_THRESHOLD, MAX_DB_USER_PARAM
+from .ir_config_parameter import THRESHOLD_HIDE, MAX_DB_USER_PARAM
 from .res_groups import THRESHOLD_MANAGER
 
 
@@ -25,7 +25,7 @@ class ResUsers(models.Model):
         Override to check if env var to hide threshold configuration and
         reset the database state is set. If it is, run those actions
         """
-        if HIDE_THRESHOLD:
+        if THRESHOLD_HIDE:
             exempt_users_var = os.environ.get('USER_THRESHOLD_USER', '')
             exempt_users = reader([exempt_users_var])
             with api.Environment.manage():
@@ -100,7 +100,7 @@ class ResUsers(models.Model):
         res = super(ResUsers, self).fields_view_get(
             view_id, view_type, toolbar, submenu
         )
-        if HIDE_THRESHOLD:
+        if THRESHOLD_HIDE:
             doc = etree.XML(res['arch'])
             for node in doc.xpath("//group[@name='user_threshold']"):
                 node.getparent().remove(node)

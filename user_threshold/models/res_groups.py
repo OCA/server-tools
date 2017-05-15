@@ -22,6 +22,6 @@ class ResGroups(models.Model):
             if not is_manager and manager in self:
                 raise AccessError(_(
                     'You must be a member of the `User Threshold Manager` '
-                    'group to grant access to it'
+                    'group to grant access to it.'
                 ))
         return super(ResGroups, self).write(vals)

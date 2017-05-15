@@ -12,11 +12,11 @@ class TestResCompany(Common):
 
     def test_fields_view_get(self):
         """
-        It should verify that setting HIDE_THRESHOLD removes the parameter
+        It should verify that setting THRESHOLD_HIDE removes the parameter
         from the view
         """
         import odoo.addons.user_threshold.models.res_company as mdl
-        mdl.HIDE_THRESHOLD = True
+        mdl.THRESHOLD_HIDE = True
         view = self.env.ref('user_threshold.view_company_form')
         c = self.env['res.company'].browse(1)
         ret = c.fields_view_get(view.id)

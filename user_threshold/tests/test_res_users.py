@@ -66,11 +66,11 @@ class TestResUsers(Common):
 
     def test_fields_view_get(self):
         """
-        It should verify that setting HIDE_THRESHOLD removes the parameter
+        It should verify that setting THRESHOLD_HIDE removes the parameter
         from the view
         """
         import odoo.addons.user_threshold.models.res_users as mdl
-        mdl.HIDE_THRESHOLD = True
+        mdl.THRESHOLD_HIDE = True
         view = self.env.ref('user_threshold.view_users_form')
         u = self._create_test_user()
         ret = u.fields_view_get(view.id)

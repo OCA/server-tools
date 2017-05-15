@@ -7,7 +7,8 @@ from lxml import etree
 from odoo import _, api, fields, models
 from odoo.exceptions import AccessError
 
-from .ir_config_parameter import HIDE_THRESHOLD
+from .ir_config_parameter import THRESHOLD_HIDE
+from .res_groups import THRESHOLD_MANAGER
 
 
 class ResCompany(models.Model):
@@ -17,16 +18,6 @@ class ResCompany(models.Model):
         'Maximum Number of users allowed for this company',
     )
 
-    def _can_manipulate_th(self):
-        """
-        Check to see if the user is a member of the correct group
-        Returns:
-            True when the user is a member of the threshold manager group
-        """
-        return self.env.user.has_group(
-            'user_threshold.group_threshold_manager'
-        )
-
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
@@ -34,7 +25,7 @@ class ResCompany(models.Model):
         res = super(ResCompany, self).fields_view_get(
             view_id, view_type, toolbar, submenu
         )
-        if HIDE_THRESHOLD:
+        if THRESHOLD_HIDE:
             doc = etree.XML(res['arch'])
             for node in doc.xpath("//field[@name='max_users']"):
                 node.getparent().remove(node)
@@ -47,8 +38,10 @@ class ResCompany(models.Model):
         Override to disallow manipulation of the user threshold parameter
         when the user does not have the right access
         """
-        if not self._can_manipulate_th() and vals.get('max_users'):
-            raise AccessError(
-                _('You do not have access to set this parameter')
-            )
+        is_manager = self.env.user.has_group(THRESHOLD_MANAGER)
+        if vals.get('max_users') and not is_manager:
+            raise AccessError(_(
+                'You must be a member of the `User Threshold Manager` to set '
+                'this parameter'
+            ))
         return super(ResCompany, self).write(vals)
