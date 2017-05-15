@@ -20,7 +20,7 @@ class ResGroups(models.Model):
         if not vals.get('users') or self.env.user.has_group(IMMUTABLE):
             return super(ResGroups, self).write(vals)
         immutable = self.env.ref(IMMUTABLE, raise_if_not_found=False)
-        if len(self.filtered(lambda r: r == immutable)):
+        if immutable and immutable in self:
             raise AccessError(_(
                 'You must be a member of the `Immutable` group to grant'
                 ' access to it'

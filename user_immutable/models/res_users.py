@@ -27,7 +27,8 @@ class ResUsers(models.Model):
         """ Override write to verify that there are no alterations to users
         whom are members of the `Immutable` group
         """
-        self._check_immutable()
+        for rec in self:
+            rec._check_immutable()
         immutable = self.env.ref(IMMUTABLE)
         has_group = self.env.user.has_group(IMMUTABLE)
         if vals.get('in_group_%s' % immutable.id) and not has_group:
@@ -42,5 +43,6 @@ class ResUsers(models.Model):
         """ Override unlink to verify that there are no deletions of users
         whom are members of the `Immutable` group
         """
-        self._check_immutable()
+        for rec in self:
+            rec._check_immutable()
         return super(ResUsers, self).unlink()
