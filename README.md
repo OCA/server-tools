@@ -20,6 +20,7 @@ addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
+[auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_exception](base_exception/) | 10.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
