@@ -16,9 +16,9 @@
                     <div colspan="8" class="oe_mb8">
                         <span>Note: Please add at least one authentication app/device before enabling MFA.</span>
                     </div>
-                    <field name="mfa_enabled"/>
+                    <field name="mfa_enabled" readonly="0"/>
                     <newline/>
-                    <field name="authenticator_ids" widget="many2many_tags" options="{'no_create': True}" colspan="7"/>
+                    <field name="authenticator_ids" widget="many2many_tags" options="{'no_create': True}" colspan="7" readonly="0"/>
                     <button string="Add New App/Device" type="action" name="%(res_users_authenticator_create_action)d" colspan="1"/>
                 </group>
             </xpath>
