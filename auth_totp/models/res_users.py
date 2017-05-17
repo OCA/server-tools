@@ -13,6 +13,12 @@ from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
+    @classmethod
+    def _build_model(cls, pool, cr):
+        ModelCls = super(ResUsers, cls)._build_model(pool, cr)
+        ModelCls.SELF_WRITEABLE_FIELDS += ['mfa_enabled', 'authenticator_ids']
+        return ModelCls
+
     mfa_enabled = fields.Boolean(string='MFA Enabled?')
     authenticator_ids = fields.One2many(
         comodel_name='res.users.authenticator',

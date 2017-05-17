@@ -27,6 +27,12 @@ class TestResUsers(TransactionCase):
         self.test_user.authenticator_ids = False
         self.env.uid = self.test_user.id
 
+    def test_build_model_mfa_fields_in_self_writeable_list(self):
+        '''Should add MFA fields to list of fields users can modify for self'''
+        ResUsersClass = type(self.test_user)
+        self.assertIn('mfa_enabled', ResUsersClass.SELF_WRITEABLE_FIELDS)
+        self.assertIn('authenticator_ids', ResUsersClass.SELF_WRITEABLE_FIELDS)
+
     def test_check_enabled_with_authenticator_mfa_no_auth(self):
         '''Should raise correct error if MFA enabled without authenticators'''
         with self.assertRaisesRegexp(ValidationError, 'locked out'):
