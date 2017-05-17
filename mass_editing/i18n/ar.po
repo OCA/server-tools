@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:100
+#: code:addons/mass_editing/models/mass_object.py:101
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -48,6 +48,11 @@ msgstr "أنشئ في"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
+#: code:addons/mass_editing/models/mass_object.py:89
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr ""
+
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
 msgstr "اسم العرض"
@@ -60,6 +65,7 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -113,7 +119,7 @@ msgid "Model"
 msgstr "النموذج"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
 msgstr ""
 

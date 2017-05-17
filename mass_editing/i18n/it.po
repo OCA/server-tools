@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:100
+#: code:addons/mass_editing/models/mass_object.py:101
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -60,6 +60,7 @@ msgid ""
 msgstr ""
 
 #. module: mass_editing
+#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -113,7 +114,7 @@ msgid "Model"
 msgstr "Modello"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
 msgstr ""
 

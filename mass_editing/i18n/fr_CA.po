@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:100
+#: code:addons/mass_editing/models/mass_object.py:101
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -27,7 +27,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Add Sidebar Button"
-msgstr ""
+msgstr "Ajouter bouton au menu latéral"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -38,19 +38,25 @@ msgstr "Avancé"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/models/mass_object.py:89
+#, python-format
+msgid "Deletion of the action record failed."
+msgstr "Échec de la suppression de l'enregistrement de l'action"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -62,6 +68,7 @@ msgstr ""
 "un assistant de rédaction"
 
 #. module: mass_editing
+#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -71,7 +78,7 @@ msgstr "Champs"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
-msgstr "Identifiant"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
@@ -83,13 +90,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -107,7 +114,7 @@ msgstr "Édition en lot (%s)"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr ""
+msgstr "Objet d'édition en lot"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
@@ -115,9 +122,9 @@ msgid "Model"
 msgstr "Modèle"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
-msgstr ""
+msgstr "Liste de modèles"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
@@ -147,7 +154,7 @@ msgstr "Objet"
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove Sidebar Button"
-msgstr ""
+msgstr "Enlever bouton au menu latéral"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -157,7 +164,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
 msgid "Sidebar action"
-msgstr ""
+msgstr "Action de menu latéral"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
