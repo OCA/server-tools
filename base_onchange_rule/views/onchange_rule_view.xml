@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<odoo>
+<openerp><data>
 
     <record id="onchange_rule_tree" model="ir.ui.view">
         <field name="model">onchange.rule</field>
@@ -67,4 +67,4 @@
               id="menu_onchange_rule_action"
               parent="base.menu_automation" sequence="10"/>
 
-</odoo>
+</data></openerp>

@@ -5,7 +5,7 @@
 {
     "name": "Base Onchange Rules",
     "summary": "Define onchange settings for any models",
-    "version": "10.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://odoo-community.org/",
     "author": "Akretion, Odoo Community Association (OCA)",

@@ -5,9 +5,8 @@
 from lxml import etree
 from collections import defaultdict
 
-from odoo.osv import orm
-from odoo import api, fields, models
-# from odoo.exceptions import UserError
+from openerp.osv import orm
+from openerp import api, fields, models
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -88,9 +87,8 @@ class OnchangeRule(models.Model):
 
     @api.model
     def _get_rules_from_model(self, model_name):
-        model = self.env['ir.model'].search([('model', '=', model_name)])
         return self.env['onchange.rule'].search(
-            [('model_id', '=', model.id)])
+            [('model_id.model', '=', model_name)])
 
     @api.model
     def _get_config_from_model(self, model_name, rules):
@@ -99,7 +97,8 @@ class OnchangeRule(models.Model):
             lines = defaultdict(dict)
             for line in rule.line_ids:
                 lines[line.implied_record.id][line.field_id.name] = {
-                    'value': line.m2o_value.id or line.selection_value,
+                    'value': line.m2o_value and line.m2o_value.id or
+                    line.selection_value,
                     'readonly': line.readonly,
                     'domain': line.domain,
                 }
