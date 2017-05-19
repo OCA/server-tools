@@ -8,8 +8,8 @@ import urllib2
 import urlparse
 import subprocess
 import tempfile
-from openerp import _, api, models, exceptions
-from openerp.tools import config
+from odoo import _, api, models, exceptions
+from odoo.tools import config
 
 
 DEFAULT_KEY_LENGTH = 4096
