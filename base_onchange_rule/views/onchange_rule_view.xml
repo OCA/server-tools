@@ -9,7 +9,6 @@
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="model_id"/>
-                <field name="field_id"/>
                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
             </tree>
         </field>
@@ -23,30 +22,70 @@
                     <field name="name" placeholder="Name"/>
                 </h2>
                 <group col="4">
-                    <field name="model_id"
-                           attrs="{'readonly': [('readonly', '=', True)]}"/>
+                    <field name="model_id"/>
                     <field name="active"/>
-                    <field name="field_id"
-                           attrs="{'readonly': [('readonly', '=', True)]}"/>
-                    <field name="sequence"/>
-                    <field name="implied_model" readonly="1"/>
+                    <field name="sequence"/>                    
                     <field name="company_id" groups="base.group_multi_company"
                            options="{'no_create': True}"/>
-                    <field name="readonly" invisible="1"/>
                 </group>
                 <group col="4">
-                    <field name="line_ids" colspan="4" nolabel="1"
-                           attrs="{'invisible': [('field_id', '=', False)]}"
-                           context="{'default_model_id': model_id, 'implied_model': implied_model}">
-                        <tree editable="bottom">
+                    <field name="rule_line_ids" colspan="4" nolabel="1">
+                        <form string="Rules lines">
+                            <group>
+                                <group>
+                                    <field name="onchange_field_id"
+                                        domain="[('model_id', '=', parent.model_id),
+                                        ('ttype', 'in', ('many2one', 'selection'))]"
+                                       />
+                                    <field name="implied_model" readonly="1"/>
+                                    <label for="implied_record"/>
+                                    <div>
+                                        <field
+                                            context="{'onchange_field_id':
+                                             onchange_field_id,}"
+                                            name="implied_record" class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="dest_field_id"
+                                    domain="[('model_id', '=', parent.model_id),
+                                    ('ttype', 'in', ('many2one', 'selection'))]"/>
+                                    <field name="dest_val_type"/>
+                                    <field name="dest_related_field" attrs="{'required': [('dest_val_type', '=', 'related')], 'invisible': [('dest_val_type', '!=', 'related')]}"
+                                        placeholer="partner_id.price_list_id"/>
+                                    <field name="dest_m2o_value"
+                                        context="{'dest_field_id': onchange_field_id}"
+                                        attrs="{
+                                        'invisible': [('dest_val_type', '!=', 'fixed')]}"/>
+                                    <field name="dest_selection_value" 
+                                        attrs="{
+                                        'invisible': [('dest_val_type', '!=', 'fixed')]}"/>
+                                </group>
+                                <group colspan="4">
+                                    <field name="is_restrictive_rule"/>
+                                    <field name="onchange_domain" placeholer="{'partner_id': [('name', '=', 'Akretion')]}"/>
+                                    <field name="onchange_warning" />
+                                </group>
+                            </group>
+                        </form>                        
+                        <tree>
                             <field name="sequence" widget="handle"/>
-                            <field name="implied_record"/>
-                            <field name="model_id" invisible="1"/>
-                            <field name="field_id"/>
-                            <field name="m2o_value"/>
-                            <field name="selection_value"/>
-                            <field name="readonly"/>
-                            <!-- <field name="domain" placeholer="[('', '', '')]"/> -->
+                            <field name="onchange_field_id"
+                            domain="[('model_id', '=', parent.model_id),
+                            ('ttype', 'in', ('many2one', 'selection'))]"/>
+                            <field name="implied_model" readonly="1"/>
+
+                            <field name="implied_record"
+                                context="{'onchange_field_id': onchange_field_id}"/>
+                            <field name="dest_field_id"
+                            domain="[('model_id', '=', parent.model_id),
+                            ('ttype', 'in', ('many2one', 'selection'))]"/>
+                            <field name="dest_related_field"/>
+                            <field name="dest_m2o_value"
+                                context="{'dest_field_id': onchange_field_id}"/>
+                            <field name="dest_selection_value"/>
+                            <field name="is_restrictive_rule"/>
+                            <field name="onchange_domain"/>
                         </tree>
                     </field>
                 </group>
