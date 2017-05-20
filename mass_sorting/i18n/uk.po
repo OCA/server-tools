@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 03:58+0000\n"
-"PO-Revision-Date: 2017-03-01 03:58+0000\n"
+"POT-Creation-Date: 2017-05-17 21:08+0000\n"
+"PO-Revision-Date: 2017-05-17 21:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Ukrainian (https://www.transifex.com/oca/teams/23907/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: code:addons/mass_sorting/models/mass_sort_config.py:84
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s (copy)"
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
