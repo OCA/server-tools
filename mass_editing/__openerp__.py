@@ -21,7 +21,7 @@
 ##############################################################################
 {
     "name": "Mass Editing",
-    "version": "1.3",
+    "version": "7.0.1.3.0",
     "author": "Serpent Consulting Services,Odoo Community Association (OCA)",
     "category": "Tools",
     "website": "http://www.serpentcs.com",
@@ -44,6 +44,6 @@ This module provides the functionality to add, update or remove the values"""
     'installable': True,
     'application': True,
     'auto_install': False,
+    'license': 'AGPL',
 }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

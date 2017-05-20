@@ -194,7 +194,9 @@ class ServerConfiguration(orm.TransientModel):
         return res
 
     def default_get(self, cr, uid, fields_list, context=None):
-        res = {}
+        res = super(ServerConfiguration, self).default_get(
+            cr, uid, fields_list, context=context
+        )
         for key in self._conf_defaults:
             res[key] = self._conf_defaults[key]()
         return res

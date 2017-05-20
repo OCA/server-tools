@@ -21,7 +21,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "1.0",
+    "version": "7.0.1.0.0",
     "depends": ["base", "server_environment_files"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "description": """\
@@ -83,4 +83,5 @@ Example usage
     ],
     "installable": True,
     "active": False,
+    "license": 'AGPL',
 }
