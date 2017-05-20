@@ -1,0 +1,28 @@
+-
+ I record a process log
+-
+  !python {model: server.monitor.process}: |
+    id = self.log_measure(cr, uid, None, None, 'test', context=context)
+-
+ there should be some class instance counts in database
+-
+  !python {model: server.monitor.class.instance.count}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert ids, 'No class instance count recorded'
+-
+ I cleanup the process logs
+-
+  !python {model: server.monitor.process}: |
+    id = self.cleanup(cr, uid, -1, context=context)
+-
+ there should be no class instance count in database
+-
+  !python {model: server.monitor.class.instance.count}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'Class instance count still present'
+-
+ there should be no monitor process in database
+-
+  !python {model: server.monitor.process}: |
+    ids = self.search(cr, uid, [], context=context)
+    assert not ids, 'server monitor process still present'

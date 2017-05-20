@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="server_monitor_database_tree_view">
+      <field name="name">Server Monitor Database form view</field>
+      <field name="model">server.monitor.database</field>
+      <field name="arch" type="xml">
+        <tree string="Server Monitor" version="7.0">
+          <field name='name'/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_database_form_view">
+      <field name="name">Server Monitor Database tree view</field>
+      <field name="model">server.monitor.database</field>
+      <field name="arch" type="xml">
+        <form string="Server Monitor" version="7.0">
+          <sheet>
+            <field name="name"/>
+            <notebook>
+              <page string="Nb rows">
+                <group>
+                  <field name='table_nb_row_ids' nolabel="1">
+                    <tree>
+                      <field name='name'/>
+                      <field name='count'/>
+                    </tree>
+                  </field>
+                </group>
+              </page>
+              <page string="Table size">
+                <group>
+                  <field name='table_size_ids' nolabel="1">
+                    <tree>
+                      <field name='name'/>
+                      <field name='hsize'/>
+                    </tree>
+                  </field>
+                </group>
+              </page>
+              <page string="Table reads">
+                <group>
+                  <field name='table_activity_read_ids' nolabel="1">
+                    <tree>
+                      <field name='name'/>
+                      <field name='disk_reads'/>
+                      <field name='cache_reads'/>
+                      <field name='total_reads'/>
+                    </tree>
+                  </field>
+                </group>
+              </page>
+              <page string="Table updates">
+                <group>
+                  <field name='table_activity_update_ids' nolabel="1">
+                    <tree>
+                      <field name='name'/>
+                      <field name='seq_scan'/>
+                      <field name='idx_scan'/>
+                      <field name='lines_read_total'/>
+                      <field name='num_insert'/>
+                      <field name='num_update'/>
+                      <field name='num_delete'/>
+                    </tree>
+                  </field>
+                </group>
+              </page>
+            </notebook>
+            <group>
+              <field name='info' string="Information"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="server_monitor_database_info">
+      <field name="name">Database Info</field>
+      <field name="res_model">server.monitor.database</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Database Info"
+              parent="server_monitoring"
+              id="server_monitor_database_menu"
+              action="server_monitor_database_info"
+              sequence="20"/>
+
+  </data>
+</openerp>

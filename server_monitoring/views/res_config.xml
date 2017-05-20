@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+    <data>
+        <record id="view_general_configuration_server_monitoring" model="ir.ui.view">
+            <field name="name">base.config.settings.server.monitoring</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+              <xpath expr="//form/group[8]" position='after'>
+                <group>
+                  <label for="id" string="Server Monitoring"/>
+                  <div>
+                    <div>
+                      <field name="monitor_rpc_calls" class="oe_inline"/>
+                      <label for="monitor_rpc_calls"/>
+                    </div>
+                  </div>
+                </group>
+              </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

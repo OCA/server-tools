@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+  <data>
+    <menuitem groups="base.group_no_one"
+              id="server_monitoring"
+              name="Server Monitoring"
+              parent="base.menu_reporting"
+              sequence="100"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="server_monitor_model_row_count_search_view">
+      <field name="name">Server Monitor model row count search view</field>
+      <field name="model">server.monitor.model.row.count</field>
+      <field name="arch" type="xml">
+        <search string="Search Server Monitor Process" version="7.0">
+          <field name="timestamp"/>
+          <field name="name"/>
+          <field name="count"/>
+          <group expand="0" string="Group By...">
+            <filter string="timestamp" domain="[]" context="{'group_by': 'timestamp'}"/>
+            <filter string="name" domain="[]" context="{'group_by': 'name'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_model_row_count_tree_view">
+      <field name="name">Server Monitor model row count tree view</field>
+      <field name="model">server.monitor.model.row.count</field>
+      <field name="arch" type="xml">
+        <tree string="Server Monitor Process" version="7.0">
+          <field name='timestamp'/>
+          <field name='name'/>
+          <field name='count'/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="server_monitor_database_table_rows">
+      <field name="name">DB Rows</field>
+      <field name="res_model">server.monitor.model.row.count</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="DB Rows"
+              parent="server_monitoring"
+              id="server_monitor_database_table_rows_menu"
+              action="server_monitor_database_table_rows" sequence="30"/>
+  </data>
+</openerp>

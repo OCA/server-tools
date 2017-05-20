@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="server_monitor_process_search_view">
+      <field name="name">Server Monitor Process search view</field>
+      <field name="model">server.monitor.process</field>
+      <field name="arch" type="xml">
+        <search string="Search Server Monitor Process" version="7.0">
+          <field name="model"/>
+          <field name="method"/>
+          <field name="uid"/>
+          <group expand="0" string="Group By...">
+            <filter string="date" domain="[]" context="{'group_by': 'name'}"/>
+            <filter string="PID" domain="[]" context="{'group_by': 'pid'}"/>
+            <filter string="model" domain="[]" context="{'group_by': 'model'}"/>
+            <filter string="method" domain="[]" context="{'group_by': 'method'}"/>
+          </group>
+        </search>
+    </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_process_tree_view">
+      <field name="name">Server Monitor Process tree view</field>
+      <field name="model">server.monitor.process</field>
+      <field name="arch" type="xml">
+        <tree string="Server Monitor Process" version="7.0">
+          <field name='name'/>
+          <field name='pid'/>
+          <field name='cpu_time'/>
+          <field name='memory'/>
+          <field name='uid'/>
+          <field name='model'/>
+          <field name='method'/>
+        </tree>
+    </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_process_form_view">
+      <field name="name">Server Monitor Process form view</field>
+      <field name="model">server.monitor.process</field>
+      <field name="arch" type="xml">
+        <form string="Server Monitor" version="7.0">
+          <sheet>
+            <field name="name"/>
+            <notebook>
+              <page string='call information'>
+                <group>
+                  <field name='pid'/>
+                  <field name='thread'/>
+                  <field name='cpu_time'/>
+                  <field name='memory'/>
+                  <field name='uid'/>
+                  <field name='model'/>
+                  <field name='method'/>
+                  <field name='status'/>
+                  <field name='sessionid'/>
+                </group>
+              </page>
+              <page string="Class count">
+                <group>
+                  <field name='class_count_ids' nolabel="1">
+                    <tree>
+                      <field name='name'/>
+                      <field name='count'/>
+                    </tree>
+                  </field>
+                </group>
+              </page>
+            </notebook>
+            <group>
+              <field name='info' string="Information"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="server_monitor_process_info">
+      <field name="name">Process Info</field>
+      <field name="res_model">server.monitor.process</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Process Info"
+              parent="server_monitoring"
+              id="server_monitor_process_menu"
+              action="server_monitor_process_info"
+              sequence="10"/>
+
+  </data>
+</openerp>

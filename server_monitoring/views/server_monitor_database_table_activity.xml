@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Alexandre Fayolle
+Copyright 2014-2016 Camptocamp SA
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="server_monitor_model_table_activity_read_search_view">
+      <field name="name">Server Monitor table activity updates search view</field>
+      <field name="model">server.monitor.model.table.activity.read</field>
+      <field name="arch" type="xml">
+        <search string="Search Server Monitor Table Activity read" version="7.0">
+          <field name="timestamp"/>
+          <field name="name"/>
+          <group expand="0" string="Group By...">
+            <filter string="timestamp" domain="[]" context="{'group_by': 'timestamp'}"/>
+            <filter string="name" domain="[]" context="{'group_by': 'name'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_model_table_activity_read_tree_view">
+      <field name="name">Server Monitor table activity tree view</field>
+      <field name="model">server.monitor.model.table.activity.read</field>
+      <field name="arch" type="xml">
+        <tree string="Server Monitor DB Table activity" version="7.0">
+          <field name='timestamp'/>
+          <field name='name'/>
+          <field name='disk_reads'/>
+          <field name='cache_reads'/>
+          <field name='total_reads'/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="server_monitor_database_table_activity_read">
+      <field name="name">DB Reads</field>
+      <field name="res_model">server.monitor.model.table.activity.read</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="DB Reads"
+              parent="server_monitoring"
+              id="server_monitor_database_table_activity_read_menu"
+              action="server_monitor_database_table_activity_read"
+              sequence="50"/>
+
+
+    <record model="ir.ui.view" id="server_monitor_model_table_activity_update_search_view">
+      <field name="name">Server Monitor table activity updates search view</field>
+      <field name="model">server.monitor.model.table.activity.update</field>
+      <field name="arch" type="xml">
+        <search string="Search Server Monitor Table Activity updates" version="7.0">
+          <field name="timestamp"/>
+          <field name="name"/>
+          <group expand="0" string="Group By...">
+            <filter string="timestamp" domain="[]" context="{'group_by': 'timestamp'}"/>
+            <filter string="name" domain="[]" context="{'group_by': 'name'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="server_monitor_model_table_activity_update_tree_view">
+      <field name="name">Server Monitor table activity updates tree view</field>
+      <field name="model">server.monitor.model.table.activity.update</field>
+      <field name="arch" type="xml">
+        <tree string="Server Monitor DB Table size" version="7.0">
+          <field name='timestamp'/>
+          <field name='name'/>
+          <field name='seq_scan'/>
+          <field name='idx_scan'/>
+          <field name='lines_read_total'/>
+          <field name='num_insert'/>
+          <field name='num_update'/>
+          <field name='num_delete'/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="server_monitor_database_table_activity_update">
+      <field name="name">DB Updates</field>
+      <field name="res_model">server.monitor.model.table.activity.update</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="DB Updates"
+              parent="server_monitoring"
+              id="server_monitor_database_table_activity_update_menu"
+              action="server_monitor_database_table_activity_update"
+              sequence="60"/>
+
+  </data>
+</openerp>

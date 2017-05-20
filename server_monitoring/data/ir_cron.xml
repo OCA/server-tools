@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+        <record forcecreate="True" id="ir_cron_monitoring_action" model="ir.cron">
+            <field name="name">Database monitoring</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">7</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'server.monitor.database'" name="model"/>
+            <field eval="'log_measure'" name="function"/>
+            <field eval="'()'" name="args"/>
+            <field name="priority" eval='100'/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_monitoring_process_cleanup_action" model="ir.cron">
+            <field name="name">Process monitoring cleanup</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'server.monitor.process'" name="model"/>
+            <field eval="'cleanup'" name="function"/>
+            <field eval="'(30,)'" name="args"/>
+            <field name="priority" eval='500'/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_monitoring_database_cleanup_action" model="ir.cron">
+            <field name="name">Database monitoring cleanup</field>
+            <field eval="True" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'server.monitor.database'" name="model"/>
+            <field eval="'cleanup'" name="function"/>
+            <field eval="'(365,)'" name="args"/>
+            <field name="priority" eval='500'/>
+        </record>
+
+</data>
+</openerp>
