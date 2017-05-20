@@ -40,15 +40,22 @@ class res_users(Model):
         icp_obj = self.pool['ir.config_parameter']
         imd_obj = self.pool['ir.model.data']
         et_obj = self.pool['email.template']
+        globals_dict = {'string': string}
         try:
             int(icp_obj.get_param(
                 cr, uid, 'auth_generate_password.password_size'))
         except:
             raise except_orm(_("error"), _("Only digit chars authorized"))
-        password_size = safe_eval(icp_obj.get_param(
-            cr, uid, 'auth_generate_password.password_size'))
-        password_chars = safe_eval(icp_obj.get_param(
-            cr, uid, 'auth_generate_password.password_chars'))
+        password_size = safe_eval(
+            icp_obj.get_param(
+                cr, uid, 'auth_generate_password.password_size'),
+            globals_dict=globals_dict
+        )
+        password_chars = safe_eval(
+            icp_obj.get_param(
+                cr, uid, 'auth_generate_password.password_chars'),
+            globals_dict=globals_dict
+        )
         et = imd_obj.get_object(
             cr, uid, 'auth_generate_password', 'generate_password_template')
 
