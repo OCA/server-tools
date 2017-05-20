@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- Configurator -->
+
+    <record model="ir.ui.view" id="super_calendar_configurator_form">
+       <field name="name">super_calendar_configurator_form</field>
+       <field name="model">super.calendar.configurator</field>
+       <field name="inherit_id" ref="super_calendar_partner.super_calendar_configurator_form"/>
+       <field name="arch" type="xml">
+
+         <field name="partner_field_id" position="after">
+           <field name="analytic_field_id" />
+         </field>
+
+       </field>
+     </record>
+
+
+    <!-- Calendar -->
+
+    <record id="super_calendar_tree" model="ir.ui.view">
+      <field name="name">super_calendar_tree</field>
+      <field name="inherit_id" ref="super_calendar_partner.super_calendar_tree"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="partner_id" position="after">
+          <field name="analytic_id" />
+        </field>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="super_calendar_form">
+      <field name="name">super_calendar_form</field>
+      <field name="inherit_id" ref="super_calendar_partner.super_calendar_form"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="partner_id" position="after">
+          <field name="analytic_id" />
+        </field>
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="super_calendar_search">
+      <field name="name">super_calendar_search</field>
+      <field name="inherit_id" ref="super_calendar_partner.super_calendar_search"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <field name="partner_id" position="after">
+          <field name="analytic_id" filter_domain="['|',('analytic_id.name','ilike',self),('analytic_id.code','ilike',self)]"/>
+        </field>
+
+        <xpath expr="//filter[@string='Partner']" position="after">
+          <filter string="Analytic Account"
+                  name="group_analytic"
+                  context="{'group_by':'analytic_id'}"
+                  help="Group all elements associated to the same analytic account."/>
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</openerp>
