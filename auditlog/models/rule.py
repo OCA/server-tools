@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
+from openerp import exceptions
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -363,9 +364,12 @@ class AuditlogRule(models.Model):
         http_request_model = self.env['auditlog.http.request']
         http_session_model = self.env['auditlog.http.session']
         for res_id in res_ids:
-            model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1]
+            try:
+                model_model = self.env[res_model]
+                name = model_model.browse(res_id).name_get()
+                res_name = name and name[0] and name[0][1]
+            except exceptions.MissingError:
+                res_name = 'DELETED'
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
@@ -380,12 +384,12 @@ class AuditlogRule(models.Model):
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT),
                 old_values.get(res_id, EMPTY_DICT))
-            if method is 'create':
+            if method == 'create':
                 self._create_log_line_on_create(log, diff.added(), new_values)
-            elif method is 'read':
+            elif method == 'read':
                 self._create_log_line_on_read(
                     log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
-            elif method is 'write':
+            elif method == 'write':
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values)
 
