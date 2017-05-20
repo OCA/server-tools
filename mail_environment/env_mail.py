@@ -99,8 +99,6 @@ class IrMail(osv.osv):
                  "through a dedicated port (default: 465)",
             size=64)}
 
-IrMail()
-
 
 class FetchmailServer(osv.osv):
     """Incoming POP/IMAP mail server account"""
@@ -231,4 +229,3 @@ class FetchmailServer(osv.osv):
             type="char",
             multi='income_mail_config',
             size=64)}
-FetchmailServer()
