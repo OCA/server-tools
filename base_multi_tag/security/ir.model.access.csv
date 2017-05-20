@@ -1,0 +1,12 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_res_tag_all","res_tag all","model_res_tag",,1,1,1,1
+"access_res_tag_model_all","res_tag_model all","model_res_tag_model",,1,0,0,0
+"access_res_tag_category_all","res_tag_category all","model_res_tag_category",,1,1,1,1
+
+"access_res_tag_restricted","res_tag restricted","model_res_tag","base_multi_tag.group_tags_user_restricted",1,0,0,0
+"access_res_tag_model_restricted","res_tag_model restricted","model_res_tag_model","base_multi_tag.group_tags_user_restricted",1,0,0,0
+"access_res_tag_category_restricted","res_tag_category restricted","model_res_tag_category","base_multi_tag.group_tags_user_restricted",1,0,0,0
+
+"access_res_tag_restricted_x2","res_tag restricted_x2","model_res_tag","base_multi_tag.group_tags_user_restricted_x2",1,0,0,0
+"access_res_tag_model_restricted_x2","res_tag_model restricted_x2","model_res_tag_model","base_multi_tag.group_tags_user_restricted_x2",1,0,0,0
+"access_res_tag_category_restricted_x2","res_tag_category restricted_x2","model_res_tag_category","base_multi_tag.group_tags_user_restricted_x2",1,0,0,0
