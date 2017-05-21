@@ -29,7 +29,7 @@ def patch_leaf_trgm(method):
                 query = '(%s %s %s)' % (
                     column,
                     sql_operator,
-                    model._fields[left].column_format,
+                    self._unaccent('%s' or model._fields[left].column_format),
                 )
             elif left in models.MAGIC_COLUMNS:
                 query = "(%s.\"%s\" %s %%s)" % (
@@ -41,7 +41,13 @@ def patch_leaf_trgm(method):
                 ))
 
             if left in model._fields:
-                params = str(right)
+                if isinstance(right, str):
+                    str_utf8 = right
+                elif isinstance(right, unicode):
+                    str_utf8 = right.encode('utf-8')
+                else:
+                    str_utf8 = str(right)
+                params = '%%%s%%' % str_utf8
 
             if isinstance(params, basestring):
                 params = [params]
