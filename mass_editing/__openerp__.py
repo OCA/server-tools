@@ -46,4 +46,3 @@ This module provides the functionality to add, update or remove the values"""
     'auto_install': False,
     'license': 'AGPL',
 }
-

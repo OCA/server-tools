@@ -21,7 +21,7 @@
 
 {
     'name': 'Server env config for mail + fetchmail',
-    'version': '0.1',
+    'version': '7.0.1.0.1',
     'category': 'Tools',
     'description': """
 Extend mail and fetch mail with server environment module.
