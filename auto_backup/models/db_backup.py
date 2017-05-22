@@ -126,7 +126,9 @@ class DbBackup(models.Model):
             # Just open and close the connection
             with self.sftp_connection():
                 raise exceptions.Warning(_("Connection Test Succeeded!"))
-        except (pysftp.CredentialException, pysftp.ConnectionException):
+        except (pysftp.CredentialException,
+                pysftp.ConnectionException,
+                pysftp.SSHException):
             _logger.info("Connection Test Failed!", exc_info=True)
             raise exceptions.Warning(_("Connection Test Failed!"))
 

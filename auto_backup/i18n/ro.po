@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Daniel Schweiger <danielcccasle@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2017-02-18 02:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-06-22 01:11+0000\n"
+"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,38 +22,40 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "/home/odoo/.ssh/id_rsa"
-msgstr ""
+msgstr "/home/odoo/.ssh/id_rsa"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_folder
 msgid "Absolute path for storing the backups"
-msgstr ""
+msgstr "Ruta definitiva pentru salvarea copiilor de siguranta"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr ""
+msgstr "Copii de siguranta automatizate"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr ""
+"Copiile de siguranta automatizate ale bazelor de date pot fi programate "
+"astfel:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
-msgstr ""
+msgstr "Copie de siguranta esuata"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
-msgstr ""
+msgstr "Copie de siguranta realizata cu succes"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr ""
+msgstr "Copii de siguranta"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_days_to_keep
@@ -60,39 +63,41 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
+"Copii de siguranta anterioare acestora se vor elimina de forma automatica. "
+"Seteaza la 0 pentru a dezactiva auto stergerea. "
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Basic backup configuration"
-msgstr ""
+msgstr "Configuratii de copii de siguranta basice."
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "Cannot duplicate a configuration."
-msgstr ""
+msgstr "Nu se poate duplica o configuratie."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
-msgstr ""
+msgstr "Alegeti o metoda de stocare pentru aceasta copie de siguranta."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:251
+#: code:addons/auto_backup/models/db_backup.py:253
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr ""
+msgstr "Curatarea de copie de siguranta a bazei de date a esuat."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:131
+#: code:addons/auto_backup/models/db_backup.py:133
 #, python-format
 msgid "Connection Test Failed!"
-msgstr ""
+msgstr "Test Conexiune Esuat! "
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
-msgstr ""
+msgstr "Test Conexiune Reusit !"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_uid
@@ -105,23 +110,23 @@ msgid "Created on"
 msgstr "Creat la"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:206
+#: code:addons/auto_backup/models/db_backup.py:208
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
-msgstr ""
+msgstr "Copie de siguranta baza de date esuat."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:214
+#: code:addons/auto_backup/models/db_backup.py:216
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr ""
+msgstr "Copie de siguranta baza de date reusit."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_days_to_keep
 msgid "Days to keep"
-msgstr ""
+msgstr "Rest de zile pentru pastrare"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
@@ -134,31 +139,35 @@ msgstr "Nume Afişat"
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
+"Nu stocati copiile de siguranta in arhivatorul electronic, veti stoca "
+"copiile de siguranta ale copiilor de siguranta existente!  "
 
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
 msgid "Execute backup(s)"
-msgstr ""
+msgstr "Executa copii(e) de siguranta"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_folder
 msgid "Folder"
-msgstr ""
+msgstr "Director"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr ""
+msgstr "Mergi la Configuratii / Tehnic / Automatizari / Actiuni Programari"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr ""
+"Nu pot elimina copiile de siguranta din viitor. Intreaba pe Doc pentru mai "
+"multe detalii."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
@@ -183,12 +192,12 @@ msgstr "Ultima actualizare la"
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Local disk"
-msgstr ""
+msgstr "Disc local"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_method
 msgid "Method"
-msgstr ""
+msgstr "Metoda"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_name
@@ -201,46 +210,48 @@ msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
+"Ruta pentru fisierul cu cheia/parola privata. Doar utilizatorul de Odoo ar "
+"trebui sa primeasca permisele necesare pentru a accesa acest fisier."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
 msgid "Private key location"
-msgstr ""
+msgstr "Locatie pentru cheie/parola privata."
 
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Remote SFTP server"
-msgstr ""
+msgstr "Control la distanta SFTP server"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_password
 msgid "SFTP Password"
-msgstr ""
+msgstr "SFTP Parola"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_port
 msgid "SFTP Port"
-msgstr ""
+msgstr "SFTP Port"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_host
 msgid "SFTP Server"
-msgstr ""
+msgstr "SFTP Server"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "SFTP Settings"
-msgstr ""
+msgstr "SFTP Configuratii"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_search
 msgid "Search options"
-msgstr ""
+msgstr "Optiuni Cautare"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr ""
+msgstr "Cautare pentru actiune cu nume 'programare copie de siguranta'."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
