@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_webhook_form" model="ir.ui.view">
+            <field name="name">view.webhook.form</field>
+            <field name="model">webhook</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="address_ids" widget="one2many_list">
+                            <tree string="Address" editable="top">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                        <field name="python_code_get_event"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_webhook_tree" model="ir.ui.view">
+            <field name="name">view.webhook.tree</field>
+            <field name="model">webhook</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_webhook">
+            <field name="name">Webhook</field>
+            <field name="res_model">webhook</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="webhook_menu_action" name="Webhook" parent="base.menu_automation" action="action_webhook"/>
+
+    </data>
+</openerp>
