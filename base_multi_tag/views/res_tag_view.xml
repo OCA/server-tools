@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_res_tags_root"
+                  parent=""
+                  groups="base_multi_tag.group_tags_user"
+                  sequence="120"
+                  name="Tags"/>
+
+        <menuitem id="menu_res_tags_all"
+                  parent="base_multi_tag.menu_res_tags_root"
+                  sequence="10"
+                  name="All Tags"/>
+
+        <menuitem id="menu_res_tags_configuration_root"
+                  parent="base_multi_tag.menu_res_tags_root"
+                  sequence="220"
+                  name="Tags Configuration"/>
+
+        <!-- Tag Views -->
+        <record id="view_res_tag_search" model="ir.ui.view">
+            <field name="name">res.tag.search</field>
+            <field name="model">res.tag</field>
+            <field name="arch" type="xml">
+                <search string="Tag Search">
+                    <field name="model_id"/>
+                    <field name="category_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                        <filter string="Category" domain="[]" context="{'group_by':'category_id'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="view_res_tag_tree" model="ir.ui.view">
+            <field name="name">res.tag.tree</field>
+            <field name="model">res.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom"
+                      colors="grey: objects_count == 0;">
+                    <field name="model_id" widget="selection" invisible="'hide_model' in context"/>
+                    <field name="category_id" domain="[('model_id','=',model_id)]"
+                            context="{'default_model_id': model_id}" attrs="{'readonly': [('model_id','=',False)]}"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="comment"/>
+                    <field name="active"/>
+                    <field name="group_ids" widget="many2many_tags"/>
+                    <field name="objects_count"/>
+                    <button name="action_show_objects" type="object" string="Show Objects" icon="gtk-find"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_tag_form" model="ir.ui.view">
+            <field name="name">res.tag.form</field>
+            <field name="model">res.tag</field>
+            <field name="arch" type="xml">
+                <form string="Tag">
+                    <group>
+                        <group>
+                            <field name="complete_name" string="Complete name"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="model_id" widget="selection" invisible="'hide_model' in context"/>
+                            <field name="category_id" domain="[('model_id','=',model_id)]"
+                                   context="{'default_model_id': model_id}" attrs="{'readonly': [('model_id','=',False)]}"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="comment"/>
+                        </group>
+                    </group>
+                    <newline/>
+                    <button name="action_show_objects" type="object" string="Show Objects" class="oe_link"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_res_tags_view" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">res.tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_res_tag_tree"/>
+        </record>
+
+        <menuitem action="action_res_tags_view" id="menu_action_res_tags_view"
+                  parent="menu_res_tags_all" sequence="10"/>
+        <!-- End tag views -->
+
+        <!-- Tag category views -->
+        <record id="view_res_tag_category_search" model="ir.ui.view">
+            <field name="name">res.tag.category.search</field>
+            <field name="model">res.tag.category</field>
+            <field name="arch" type="xml">
+                <search string="Tag Category Search">
+                    <field name="model_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="view_res_tag_category_tree" model="ir.ui.view">
+            <field name="name">res.tag.category.tree</field>
+            <field name="model">res.tag.category</field>
+            <field name="arch" type="xml">
+                <tree string="Tag Categories" editable="bottom"
+                      colors="grey: tags_count == 0">
+                    <field name="model_id" widget="selection"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="comment"/>
+                    <field name="check_xor"/>
+                    <field name="active"/>
+                    <field name="tags_count"/>
+                    <button name="action_show_tags" type="object" string="Show Tags" icon="gtk-find"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_tag_category_form" model="ir.ui.view">
+            <field name="name">res.tag.category.form</field>
+            <field name="model">res.tag.category</field>
+            <field name="arch" type="xml">
+                <form string="Tag Category">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="comment"/>
+                        </group>
+                        <group>
+                            <field name="model_id" widget="selection"/>
+                            <field name="active"/>
+                            <field name="check_xor"/>
+                        </group>
+                    </group>
+                    <newline/>
+                    <button name="action_show_tags" type="object" string="Show Tags" class="oe_link"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_res_tag_caegories_view" model="ir.actions.act_window">
+            <field name="name">Tag Categories</field>
+            <field name="res_model">res.tag.category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_res_tag_category_tree"/>
+        </record>
+
+        <menuitem action="action_res_tag_caegories_view" id="menu_action_res_tag_categories_view"
+                  parent="menu_res_tags_configuration_root" sequence="20"/>
+        <!-- end tag categories views -->
+
+
+        <!-- Tag model views -->
+        <record id="view_res_tag_model_search" model="ir.ui.view">
+            <field name="name">res.tag.model.search</field>
+            <field name="model">res.tag.model</field>
+            <field name="arch" type="xml">
+                <search string="Tag model Search">
+                    <field name="name"/>
+                    <field name="model"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_res_tag_model_tree" model="ir.ui.view">
+            <field name="name">res.tag.model.tree</field>
+            <field name="model">res.tag.model</field>
+            <field name="arch" type="xml">
+                <tree string="Tag models"
+                      colors="grey: tags_count == 0;">
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="tags_count"/>
+                    <button name="action_show_tags" type="object" string="Show Tags" icon="gtk-find"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_tag_model_form" model="ir.ui.view">
+            <field name="name">res.tag.model.form</field>
+            <field name="model">res.tag.model</field>
+            <field name="arch" type="xml">
+                <form string="Tag model">
+                    <field name="name"/>
+                    <field name="model"/>
+                    <button name="action_show_tags" type="object" string="Show Tags" class="oe_link"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_res_tag_models_view" model="ir.actions.act_window">
+            <field name="name">Tag models</field>
+            <field name="res_model">res.tag.model</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_res_tag_model_tree"/>
+        </record>
+
+        <menuitem action="action_res_tag_models_view" id="menu_action_res_tag_modeles_view"
+                  parent="menu_res_tags_configuration_root" sequence="30"/>
+
+        <!-- end tag categories views -->
+    </data>
+</openerp>
+
