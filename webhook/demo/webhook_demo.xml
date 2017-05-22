@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="webhook_test" model="webhook">
+            <field name="name">wehook_test</field>
+            <field name="python_code_get_event">request.httprequest.headers.get("X-Webhook-Test-Event")</field>
+            <field name="python_code_get_ip">request.httprequest.headers.get("X-Webhook-Test-Address")</field>
+        </record>
+
+        <record id="webhook_address_localhost" model="webhook.address">
+            <field name="name">127.0.0.1</field>
+            <field name="webhook_id" ref="webhook_test"/>
+        </record>
+
+    </data>
+</openerp>
