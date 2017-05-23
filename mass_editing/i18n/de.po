@@ -114,7 +114,7 @@ msgid "Model"
 msgstr "Modell"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
 msgid "Model List"
 msgstr "Modell-Liste"
 

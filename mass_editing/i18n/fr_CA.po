@@ -27,7 +27,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Add Sidebar Button"
-msgstr "Ajouter bouton au menu latéral"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -62,7 +62,6 @@ msgstr ""
 "un assistant de rédaction"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
@@ -108,7 +107,7 @@ msgstr "Édition en lot (%s)"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr "Objet d'édition en lot"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
@@ -116,9 +115,9 @@ msgid "Model"
 msgstr "Modèle"
 
 #. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
 msgid "Model List"
-msgstr "Liste de modèles"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
@@ -148,7 +147,7 @@ msgstr "Objet"
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove Sidebar Button"
-msgstr "Enlever bouton au menu latéral"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
@@ -158,7 +157,7 @@ msgstr ""
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
 msgid "Sidebar action"
-msgstr "Action de menu latéral"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
