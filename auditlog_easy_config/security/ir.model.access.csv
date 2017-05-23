@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_auditlog_all_models_wizard_user","auditlog_all_models_wizard_user","model_auditlog_all_models_wizard","base.group_user",0,0,0,0
+"access_auditlog_all_models_wizard_manager","auditlog_all_models_wizard_manager","model_auditlog_all_models_wizard","base.group_erp_manager",1,1,1,1

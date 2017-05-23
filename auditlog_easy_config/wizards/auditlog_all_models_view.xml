@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- SELECTED -->
+        <record model="ir.actions.act_window" id="action_auditlog_set_options_wizard_view">
+            <field name="name">Set options</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">auditlog.all.models.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="auditlog_set_options_wizard_view" />
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.ui.view" id="auditlog_set_options_wizard_view">
+            <field name="name">auditlog.edit.models.wizard.view</field>
+            <field name="model">auditlog.all.models.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Set options to selected rules">
+                    <group cols="8">
+                        <p>
+                        This wizard allows you to set options to selected rules.
+                        </p>
+                    </group>
+                    <group cols="8">
+                        <group string="Rules options" cols="4">
+                            <field name="log_write"/>
+                            <field name="log_create"/>
+                            <field name="log_unlink"/>
+                        </group>
+                    </group>
+                    <footer id="auditlog_edit_models_wizard_view_footer">
+                        <button name="edit_selected"
+                                type="object"
+                                string="Apply"
+                                class="oe_highlight"
+                                confirm="Are you sure you want to set all selected rules with the new options?" />
+                        or
+                        <button string="Close" class="oe_link"
+                                special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- ALL -->
+        <record model="ir.ui.view" id="auditlog_all_models_wizard_view">
+            <field name="name">auditlog.all.models.wizard.view</field>
+            <field name="model">auditlog.all.models.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Set rules to all models">
+                    <group cols="8">
+                        <p>
+                        This wizard allows you to set rules to every model
+                        currently existing in the database.
+                        </p>
+                    </group>
+                    <group cols="8">
+                        <group string="Rules options" cols="4">
+                            <field name="log_write"/>
+                            <field name="log_create"/>
+                            <field name="log_unlink"/>
+                        </group>
+                        <group string="Existing rules" cols="4">
+                            <p style="font-style: italic; white-space: nowrap;">
+                            Check this to overwrite all existing rules.
+                            </p><br/>
+                            <field name="overwrite_rules"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="subscribe_all"
+                            string="Subscribe all"
+                            type="object"
+                            icon="gtk-execute"
+                            class="oe_highlight"
+                            confirm="The operation could take a few minutes. Are you sure you want to subscribe a rule for each model in the database?" />
+                        or
+                        <button string="Close" class="oe_link"
+                                special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_auditlog_all_models_form">
+            <field name="name">Set rules to all models</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">auditlog.all.models.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="auditlog_all_models_wizard_view" />
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_auditlog_all_models" name="Set rules to all models"
+            parent="auditlog.menu_audit" action="action_auditlog_all_models_form"
+            sequence="0"/>
+    </data>
+</openerp>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="ir_edit_rules" model="ir.values">
+            <field name="name">Edit rules properties</field>
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'auditlog.rule'"/>
+            <field name="value" eval="'ir.actions.act_window,%d'%action_auditlog_set_options_wizard_view"/>
+        </record>
+
+        <record id="act_subscribe_rules" model="ir.actions.server">
+            <field name="name">Subscribe rules</field>
+            <field name="model_id" ref="model_auditlog_rule"/>
+            <field name="state">code</field>
+            <field name="code">action = self.set_subscription_state(cr, uid, 'subscribed', context)
+            </field>
+        </record>
+
+        <record id="ir_subscribe_rules" model="ir.values">
+            <field name="name">Subscribe rules</field>
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'auditlog.rule'"/>
+            <field name="value" eval="'ir.actions.server,%d'%act_subscribe_rules"/>
+        </record>
+
+        <record id="act_unsubscribe_rules" model="ir.actions.server">
+            <field name="name">Unsubscribe rules</field>
+            <field name="model_id" ref="model_auditlog_rule"/>
+            <field name="state">code</field>
+            <field name="code">action = self.set_subscription_state(cr, uid, 'draft', context)
+            </field>
+        </record>
+
+        <record id="ir_unsubscribe_rules" model="ir.values">
+            <field name="name">Unsubscribe rules</field>
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'auditlog.rule'"/>
+            <field name="value" eval="'ir.actions.server,%d'%act_unsubscribe_rules"/>
+        </record>
+    </data>
+</openerp>

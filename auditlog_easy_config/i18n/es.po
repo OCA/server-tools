@@ -1,0 +1,207 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auditlog_easy_config
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-17 18:13+0000\n"
+"PO-Revision-Date: 2015-05-17 21:15+0100\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Spanish\n"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "Are you sure you want to set all selected rules with the new options?"
+msgstr ""
+"¿Realmente desea aplicar las nuevas opciones a todas las reglas "
+"seleccionadas?"
+
+#. module: auditlog_easy_config
+#: model:ir.model,name:auditlog_easy_config.model_auditlog_rule
+msgid "Auditlog - Rule"
+msgstr "Auditlog - Regla"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+msgid "Check this to overwrite all existing rules."
+msgstr "Marque esta casilla para sobreescribir todas las reglas existentes."
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "Close"
+msgstr "Cancelar"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+msgid "Existing rules"
+msgstr "Reglas existentes"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,log_create:0
+msgid "Log creates"
+msgstr "Registrar creaciones"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,log_unlink:0
+msgid "Log deletes"
+msgstr "Registrar borrados"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,log_write:0
+msgid "Log writes"
+msgstr "Registrar modificaciones"
+
+#. module: auditlog_easy_config
+#: field:auditlog.all.models.wizard,overwrite_rules:0
+msgid "Overwrite all existing rules"
+msgstr "Sobreescribir todas las reglas existentes"
+
+#. module: auditlog_easy_config
+#: code:addons/auditlog_easy_config/models/auditlog_rule.py:29
+#: code:addons/auditlog_easy_config/wizards/auditlog_all_models.py:94
+#, python-format
+msgid "Rules"
+msgstr "Reglas"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "Rules options"
+msgstr "Opciones de las reglas"
+
+#. module: auditlog_easy_config
+#: help:auditlog.all.models.wizard,log_create:0
+msgid ""
+"Select this if you want to keep track of creation on all records of every "
+"existing model."
+msgstr ""
+"Marque esta casilla si desea registrar la creación de cualquier registro en "
+"todos los modelos existentes."
+
+#. module: auditlog_easy_config
+#: help:auditlog.all.models.wizard,log_unlink:0
+msgid ""
+"Select this if you want to keep track of deletion on all records of every "
+"existing model."
+msgstr ""
+"Marque esta casilla si desea registrar el borrado de cualquier registro en "
+"todos los modelos existentes."
+
+#. module: auditlog_easy_config
+#: help:auditlog.all.models.wizard,log_write:0
+msgid ""
+"Select this if you want to keep track of modifications on all records of "
+"every existing model."
+msgstr ""
+"Marque esta casilla si desea registrar la modificación de cualquier registro "
+"en todos los modelos existentes."
+
+#. module: auditlog_easy_config
+#: help:auditlog.all.models.wizard,overwrite_rules:0
+msgid ""
+"Select this if you want to overwrite the current existing rules in the "
+"database."
+msgstr ""
+"Marque esta casilla si desea sobreescribir todas las reglas existentes en la "
+"base de datos."
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "Set options to selected rules"
+msgstr "Aplicar opciones a las reglas seleccionadas"
+
+#. module: auditlog_easy_config
+#: model:ir.actions.act_window,name:auditlog_easy_config.action_auditlog_set_options_wizard_view
+msgid "Set options"
+msgstr "Establecer opciones"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+#: model:ir.actions.act_window,name:auditlog_easy_config.action_auditlog_all_models_form
+#: model:ir.ui.menu,name:auditlog_easy_config.menu_auditlog_all_models
+msgid "Set rules to all models"
+msgstr "Crear reglas para todo modelo"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+msgid "Subscribe all"
+msgstr "Suscribir todo"
+
+#. module: auditlog_easy_config
+#: model:ir.actions.server,name:auditlog_easy_config.act_subscribe_rules
+msgid "Subscribe rules"
+msgstr "Suscribir reglas"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+msgid ""
+"The operation could take a few minutes. Are you sure you want to subscribe a "
+"rule for each model in the database?"
+msgstr ""
+"La operación puede llevar unos minutos. ¿Está seguro de que desea suscribir "
+"una regla para cada uno de los modelos existentes en la base de datos?"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "This wizard allows you to set options to selected rules."
+msgstr ""
+"Este asistente le permite establecer las opciones de las reglas "
+"seleccionadas."
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+msgid ""
+"This wizard allows you to set rules to every model\n"
+"                        currently existing in the database."
+msgstr ""
+"Esta ventana le permite establecer reglas a todos los modelos\n"
+"                        actualmente existentes en la base de datos."
+
+#. module: auditlog_easy_config
+#: model:ir.actions.server,name:auditlog_easy_config.act_unsubscribe_rules
+msgid "Unsubscribe rules"
+msgstr "Desuscribir reglas"
+
+#. module: auditlog_easy_config
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_all_models_wizard_view
+#: view:auditlog.all.models.wizard:auditlog_easy_config.auditlog_set_options_wizard_view
+msgid "or"
+msgstr "o"
