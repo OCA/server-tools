@@ -83,13 +83,6 @@ class TestMassEditing(common.TransactionCase):
         for name, values in fields.items():
             self.assertTrue(isinstance(values["views"], dict))
 
-    def test_onchange_model(self):
-        """Test whether onchange model_id returns model_id in list"""
-        new_mass = self.mass_object_model.new({'model_id': self.user_model.id})
-        new_mass._onchange_model_id()
-        self.assertTrue(self.user_model.id in new_mass.model_ids.ids,
-                        'Onchange model ids must contains model_id.')
-
     def test_mass_edit_email(self):
         """Test Case for MASS EDITING which will remove and after add
         Partner's email and will assert the same."""

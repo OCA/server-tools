@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mass_editing
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -111,11 +111,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
 msgid "Model"
 msgstr "Modell, minta"
-
-#. module: mass_editing
-#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_ids
-msgid "Model List"
-msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
