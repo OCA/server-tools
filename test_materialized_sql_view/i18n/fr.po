@@ -1,0 +1,65 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* test_materialized_sql_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-05 19:06+0000\n"
+"PO-Revision-Date: 2015-06-05 21:10+0100\n"
+"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: test_materialized_sql_view
+#: field:test.materialized.view,group_id:0
+msgid "Group"
+msgstr "Groupe"
+
+#. module: test_materialized_sql_view
+#: view:test.materialized.view:0
+msgid "Materialized SQL View"
+msgstr "Vue SQL matérialisée"
+
+#. module: test_materialized_sql_view
+#: model:ir.actions.act_window,name:test_materialized_sql_view.act_open_model_test_using_sql_mat_view_view
+msgid "Materialized SQL view"
+msgstr "Vue SQL matérialisée"
+
+#. module: test_materialized_sql_view
+#: model:ir.ui.menu,name:test_materialized_sql_view.menu_test_materialized
+msgid "Materialized tests"
+msgstr "Tests des vues matérialisées"
+
+#. module: test_materialized_sql_view
+#: model:ir.ui.menu,name:test_materialized_sql_view.sub_menu_test_materialized
+msgid "Materialized view test"
+msgstr "Vue matérialisée de test"
+
+#. module: test_materialized_sql_view
+#: code:_description:0
+#: model:ir.model,name:test_materialized_sql_view.model_test_materialized_view
+#, python-format
+msgid "Model used to test the module"
+msgstr "Modèle utilisé pour tester le module"
+
+#. module: test_materialized_sql_view
+#: field:test.materialized.view,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: test_materialized_sql_view
+#: model:ir.ui.menu,name:test_materialized_sql_view.menu_model_test_using_sql_mat_view
+msgid "User count per group"
+msgstr "Nombre d'utilisateur par groupe"
+
+#. module: test_materialized_sql_view
+#: field:test.materialized.view,user_count:0
+msgid "Users count"
+msgstr "Nb d'utilisateurs"

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_materialized_sql_view_tree" model="ir.ui.view">
+            <field name="name">materialized.sql.view.tree</field>
+            <field name="model">materialized.sql.view</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Materialized SQL View" version="7.0">
+                    <field name="name"/>
+                    <field name="last_refresh_start_date"/>
+                    <field name="pg_version"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_materialized_sql_view_form" model="ir.ui.view">
+            <field name="name">materialized.sql.view.form</field>
+            <field name="model">materialized.sql.view</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Materialized SQL View" version="7.0">
+                    <header>
+                        <button name="launch_refresh_materialized_sql_view"
+                                string="Refresh now"
+                                type="object" states="nonexistent,refreshed,aborted"
+                                groups="materialized_sql_view.manager_group"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="nonexistent,creating,refreshing,refreshed,aborted"
+                               statusbar_color="{'aborted': 'red'}"
+                               readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="Pretty materialized sql view name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="model_id" string="Model" readonly='1'/>
+                                <field name="view_name" placeholder="SQL view name (in the database)" />
+                                <field name="matview_name" placeholder="SQL materialized view name (in the database)"/>
+                            </group>
+                            <group>
+                                <field name="pg_version" readonly='1'/>
+                                <field name="last_refresh_start_date" readonly='1'/>
+                                <field name="last_refresh_end_date" readonly='1'/>
+                            </group>
+                            <field name="last_error_message" readonly='1'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_materialized_sql_view_search" model="ir.ui.view">
+            <field name="name">materialized.sql.view.search</field>
+            <field name="model">materialized.sql.view</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Materialized SQL View">
+                    <field name="name"/>
+                    <field name="model_id"/>
+                    <field name="view_name"/>
+                    <field name="matview_name"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_materialized_sql_view_view">
+            <field name="name">Materialized SQL view</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">materialized.sql.view</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_materialized_sql_view_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_materialized_sql_view_view_tree">
+            <field name="act_window_id" ref="act_open_materialized_sql_view_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_materialized_sql_view_tree"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_materialized_sql_view_view_form">
+            <field name="act_window_id" ref="act_open_materialized_sql_view_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_materialized_sql_view_form"/>
+        </record>
+
+    </data>
+</openerp>

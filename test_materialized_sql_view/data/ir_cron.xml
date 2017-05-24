@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="ir_cron_test_refresh_materialized_view" model="ir.cron" forcecreate="True">
+            <field name="name">Refresh test materialized view</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'materialized.sql.view'" name="model"/>
+            <field eval="'refresh_materialized_view_by_name'" name="function"/>
+            <field eval='"(&#92;"test_materialized_view&#92;",)"' name="args"/>
+        </record>
+    </data>
+</openerp>

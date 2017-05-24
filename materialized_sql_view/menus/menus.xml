@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <menuitem id="menu_materialized_sql_view"
+                  action="act_open_materialized_sql_view_view"
+                  sequence="20"
+                  parent="base.next_id_9"
+                  string="Materialized SQL view"
+                  groups="manager_group"/>
+    </data>
+</openerp>

@@ -1,0 +1,209 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* materialized_sql_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-07 22:05+0000\n"
+"PO-Revision-Date: 2016-03-07 22:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:11
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Aborted"
+msgstr ""
+
+#. module: materialized_sql_view
+#: model:res.groups,comment:materialized_sql_view.manager_group
+msgid "Allow to show and manualy launch \n"
+"            refresh materialized SQL view."
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:267
+#, python-format
+msgid "Create data on materialized view is forbidden"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:268
+#, python-format
+msgid "Create data on materialized view is forbidden, because data would be lost at the next refresh"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:8
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Creating"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_error_message:0
+msgid "Last error"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_refresh_end_date:0
+msgid "Last refreshed end date"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,last_refresh_start_date:0
+msgid "Last refreshed start date"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,pg_version:0
+msgid "Mat view pg version"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:_description:0
+#: model:ir.model,name:materialized_sql_view.model_materialized_sql_view
+#: view:materialized.sql.view:0
+#, python-format
+msgid "Materialized SQL View"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,matview_name:0
+msgid "Materialized SQL View Name"
+msgstr ""
+
+#. module: materialized_sql_view
+#: model:ir.actions.act_window,name:materialized_sql_view.act_open_materialized_sql_view_view
+#: model:ir.ui.menu,name:materialized_sql_view.menu_materialized_sql_view
+msgid "Materialized SQL view"
+msgstr ""
+
+#. module: materialized_sql_view
+#: model:res.groups,name:materialized_sql_view.manager_group
+msgid "Materialized sql view Manager"
+msgstr ""
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+#: field:materialized.sql.view,model_id:0
+msgid "Model"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,name:0
+msgid "Name"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:7
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Nonexistent"
+msgstr ""
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "Pretty materialized sql view name"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:57
+#, python-format
+msgid "Properties must be defined in subclass"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:65
+#, python-format
+msgid "Refresh materialized views"
+msgstr ""
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "Refresh now"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:10
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Refreshed"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/materialized_sql_view.py:9
+#: selection:materialized.sql.view,state:0
+#, python-format
+msgid "Refreshing"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:273
+#, python-format
+msgid "Remove data on materialized view is forbidden"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:274
+#, python-format
+msgid "Remove data on materialized viewis forbidden, because data would be lost at the next refresh"
+msgstr ""
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "SQL materialized view name (in the database)"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,view_name:0
+msgid "SQL view name"
+msgstr ""
+
+#. module: materialized_sql_view
+#: view:materialized.sql.view:0
+msgid "SQL view name (in the database)"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,state:0
+msgid "State"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:261
+#, python-format
+msgid "Write on materialized view is forbidden"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:262
+#, python-format
+msgid "Write on materialized view is forbidden, because data would be lost at the next refreh"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:addons/materialized_sql_view/model/abstract_materialized_sql_view.py:58
+#, python-format
+msgid "_sql_view_definition properties should be redifined in sub class"
+msgstr ""
+
+#. module: materialized_sql_view
+#: code:_description:0
+#: model:ir.model,name:materialized_sql_view.model_abstract_materialized_sql_view
+#, python-format
+msgid "abstract.materialized.sql.view"
+msgstr ""
+
+#. module: materialized_sql_view
+#: field:materialized.sql.view,sql_definition:0
+msgid "sql"
+msgstr ""
+
