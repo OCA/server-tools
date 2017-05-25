@@ -23,6 +23,7 @@ import logging
 import base64
 import simplejson
 from lxml import etree
+import imap_utf7
 from openerp import models, fields, api, exceptions
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
@@ -91,7 +92,7 @@ class fetchmail_server(models.Model):
 
             match_algorithm = folder.get_algorithm()
 
-            if connection.select(folder.path)[0] != 'OK':
+            if connection.select(folder.path.encode('imap4-utf-7'))[0] != 'OK':
                 _logger.error(
                     'Could not open mailbox %s on %s',
                     folder.path, this.server)
@@ -230,7 +231,7 @@ class fetchmail_server(models.Model):
                     raise exceptions.ValidationError(
                         _('Context "%s" is not a dictionary.') %
                         folder.context)
-                if connection.select(folder.path)[0] != 'OK':
+                if connection.select(folder.path.encode('imap4-utf-7'))[0] != 'OK':
                     raise exceptions.ValidationError(
                         _('Mailbox %s not found!') % folder.path)
             connection.close()
