@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 18:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:40+0000\n"
+"POT-Creation-Date: 2017-05-23 02:53+0000\n"
+"PO-Revision-Date: 2017-05-13 18:17+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -215,8 +215,8 @@ msgstr "O campo Ativo permite-lhe esconder o intervalo de datas sem o remover."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1985
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1982
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2037
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2034
 msgid "Type"
 msgstr "Tipo"
 
