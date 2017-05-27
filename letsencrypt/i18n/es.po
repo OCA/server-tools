@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
 "PO-Revision-Date: 2016-12-16 17:40+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es/)\n"
@@ -29,7 +29,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:44
+#: code:addons/letsencrypt/models/letsencrypt.py:43
 #, python-format
 msgid "Error calling %s: %d"
 msgstr "Error llamando a %s: %d"
@@ -45,7 +45,7 @@ msgid "Last Modified on"
 msgstr "Modificado por última vez el"
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:93
+#: code:addons/letsencrypt/models/letsencrypt.py:90
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
 msgstr "Let's encrypt no funciona con direcciones privadas o dominios locales."

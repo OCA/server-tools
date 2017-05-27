@@ -4,16 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Antonio Trueba <atgayol@gmail.com>, 2016
-# Iván Todorovich <ivan.todorovich@gmail.com>, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
+"POT-Creation-Date: 2017-03-18 02:15+0000\n"
+"PO-Revision-Date: 2017-03-18 02:15+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +86,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Elija el método de almacenamiento para esta copia de seguridad."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:248
+#: code:addons/auto_backup/models/db_backup.py:251
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
@@ -126,7 +123,7 @@ msgid "Database backup failed."
 msgstr "La copia de seguridad de la base de datos ha fallado."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:214
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."

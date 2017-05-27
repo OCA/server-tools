@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 04:04+0000\n"
-"PO-Revision-Date: 2017-01-07 04:04+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-19 18:00+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,33 +25,73 @@ msgid "Columns to purge"
 msgstr "Colunas para excluir"
 
 #. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_line_action
+#: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
+msgid "Create"
+msgstr "Criar"
+
+#. module: database_cleanup
+#: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
+msgid "Create all"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_wizard
+msgid "Create indexes"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_wizard_action
+#: model:ir.ui.menu,name:database_cleanup.menu_create_indexes
+msgid "Create missing indexes"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_line_view_tree
+msgid "Create this index"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_purged
+msgid "Created"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_create_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_create_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_uid
 msgid "Created by"
 msgstr "Criado por"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_create_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_create_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_date
 msgid "Created on"
 msgstr "Criado em"
@@ -71,12 +112,15 @@ msgid "Database cleanup"
 msgstr "Limpeza do Banco de Dados"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_display_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_display_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_display_name
@@ -84,9 +128,20 @@ msgstr "Limpeza do Banco de Dados"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_display_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_display_name
 msgid "Display Name"
 msgstr "Nome para Mostrar"
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Duplicated property"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_field_id
+msgid "Field id"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model_fields
@@ -94,12 +149,15 @@ msgid "Fields"
 msgstr "Campos"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_id
@@ -107,17 +165,21 @@ msgstr "Campos"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_id
 msgid "ID"
 msgstr "Identificação"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line___last_update
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module___last_update
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column___last_update
@@ -125,38 +187,47 @@ msgstr "Identificação"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module___last_update
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table___last_update
 msgid "Last Modified on"
 msgstr "Última atualização em"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_write_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_write_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_write_uid
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_uid
 msgid "Last Updated by"
 msgstr "Última atualização por"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_write_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_write_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_data_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_menu_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_module_write_date
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_date
 msgid "Last Updated on"
 msgstr "Última atualização em"
@@ -192,12 +263,14 @@ msgid "Modules to purge"
 msgstr "Módulos para excluir"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_name
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_name
 msgid "Name"
 msgstr "Nome"
@@ -239,11 +312,27 @@ msgid "No orphaned tables found"
 msgstr "Nenhuma tabela orfã encontrada"
 
 #. module: database_cleanup
+#: model:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
+msgid "Nothing found to clean up."
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_purge_line_ids
+msgid "Properties to purge"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_property_id
+msgid "Property id"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.actions.server,name:database_cleanup.action_purge_column_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_data_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_menu_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_model_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_module_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_property_line
 #: model:ir.actions.server,name:database_cleanup.action_purge_table_line
 #: model:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge"
@@ -255,6 +344,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_wizard_id
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_wizard_id
 msgid "Purge Wizard"
 msgstr "Assistente de exclusão"
@@ -281,6 +371,7 @@ msgid "Purge data entries that refer to missing resources"
 msgstr "Excluir entrada de dados que se referem a recursos faltantes"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_wizard_purge_line_ids
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_purge_line_ids
 msgid "Purge line ids"
 msgstr ""
@@ -331,9 +422,21 @@ msgid "Purge obsolete modules"
 msgstr "Excluir módulos obsoletos"
 
 #. module: database_cleanup
+#: model:ir.ui.menu,name:database_cleanup.menu_purge_property
+msgid "Purge obsolete properties"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_tables
 msgid "Purge obsolete tables"
 msgstr "Excluir tabelas obsoletas"
+
+#. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_property
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_property
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard_property
+msgid "Purge properties"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_wizard
@@ -357,10 +460,21 @@ msgstr "Excluir este modelo"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_model_purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_module_purged
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_purged
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_purged
 msgid "Purged"
 msgstr "Excluído"
+
+#. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_reason
+msgid "Reason"
+msgstr "Razão"
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Same value as default"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
@@ -379,8 +493,14 @@ msgid "Tables to purge"
 msgstr "Tabelas para excluir"
 
 #. module: database_cleanup
+#: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_wizard_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_wizard_id
 msgid "Wizard id"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
+msgid "cleanup.create_indexes.line"
 msgstr ""
 
 #. module: database_cleanup

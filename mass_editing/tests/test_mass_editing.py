@@ -80,6 +80,10 @@ class TestMassEditing(common.TransactionCase):
         result = self.mass_wiz_obj.with_context(ctx).fields_view_get()
         self.assertTrue(result.get('arch'),
                         'Fields view get must return architecture.')
+        fields = result.get("fields")
+        self.assertTrue(fields)
+        for name, values in fields.items():
+            self.assertTrue(isinstance(values["views"], dict))
 
     def test_onchange_model(self):
         """Test whether onchange model_id returns model_id in list"""

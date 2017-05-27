@@ -13,6 +13,7 @@ This project aim to deal with modules related to manage Odoo server environment 
  - Manage email settings
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
@@ -24,7 +25,8 @@ addon | version | summary
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
-[auto_backup](auto_backup/) | 9.0.1.0.0 | Backups database
+[auth_totp](auth_totp/) | 9.0.1.0.0 | Allows users to enable MFA and add optional trusted devices
+[auto_backup](auto_backup/) | 9.0.1.1.1 | Backups database
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.1 | External Database Sources
@@ -39,7 +41,7 @@ addon | version | summary
 [base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.0.0 | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.1.0 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
@@ -47,6 +49,7 @@ addon | version | summary
 [dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
+[external_file_location](external_file_location/) | 9.0.1.0.0 | External File Location
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 9.0.1.0.0 | Generate excerpts from any HTML field
 [keychain](keychain/) | 9.0.1.0.0 | Store accounts and credentials
@@ -57,15 +60,19 @@ addon | version | summary
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
+[oauth_provider](oauth_provider/) | 9.0.1.0.0 | Allows to use Odoo as an OAuth2 provider
+[oauth_provider_jwt](oauth_provider_jwt/) | 9.0.1.0.0 | Adds the JSON Web Token support for OAuth2 provider
 [password_security](password_security/) | 9.0.1.0.3 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 9.0.1.0.0 | Override System Parameters from server environment file
+[subscription_action](subscription_action/) | 9.0.1.0.0 | Run a server action on a newly created document
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
+
 
 Unported addons
 ---------------

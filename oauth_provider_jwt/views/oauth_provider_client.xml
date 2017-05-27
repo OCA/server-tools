@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 SYLEAM
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_oauth_provider_client_form" model="ir.ui.view">
+        <field name="name">oauth.provider.client.form</field>
+        <field name="model">oauth.provider.client</field>
+        <field name="inherit_id" ref="oauth_provider.view_oauth_provider_client_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="JSON Web Token" attrs="{'invisible': [('token_type', '!=', 'jwt')]}">
+                    <group>
+                        <field name="jwt_scope_id"/>
+                        <field name="jwt_algorithm" attrs="{'required': [('token_type', '=', 'jwt')]}"/>
+                        <button string="Generate a new random private key" name="generate_private_key" type="object" colspan="2" attrs="{'invisible': [('jwt_algorithm', 'in', [False, 'HS256', 'HS384', 'HS512'])]}"/>
+                        <field name="jwt_private_key"/>
+                        <field name="jwt_public_key"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
+"POT-Creation-Date: 2017-05-23 02:53+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Thai (http://www.transifex.com/oca/OCA-server-tools-9-0/language/th/)\n"
@@ -60,7 +60,7 @@ msgstr "ยกเลิก"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "บริษัท"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -214,8 +214,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1876
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1873
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2037
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2034
 msgid "Type"
 msgstr "ชนิด"
 

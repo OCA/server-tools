@@ -205,7 +205,10 @@ class DbBackup(models.Model):
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
                     escaped_tb),
-                subtype=self.env.ref("auto_backup.failure"))
+                subtype=self.env.ref(
+                    "auto_backup.mail_message_subtype_failure"
+                ),
+            )
         else:
             _logger.info("Database backup succeeded: %s", self.name)
             self.message_post(_("Database backup succeeded."))
@@ -229,7 +232,7 @@ class DbBackup(models.Model):
                         for name in remote.listdir(rec.folder):
                             if (name.endswith(".dump.zip") and
                                     os.path.basename(name) < oldest):
-                                remote.unlink(name)
+                                remote.unlink('%s/%s' % (rec.folder, name))
 
     @api.multi
     @contextmanager

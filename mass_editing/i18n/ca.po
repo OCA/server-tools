@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-14 04:21+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-19 18:00+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,20 +20,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:103
+#: code:addons/mass_editing/models/mass_object.py:98
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s (copia)"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Add Sidebar Button"
-msgstr ""
+msgstr "Afegir botó a la barra lateral "
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Advanced"
-msgstr ""
+msgstr "Avançat "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
@@ -48,12 +48,6 @@ msgid "Created on"
 msgstr "Creat el"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:91
-#, python-format
-msgid "Deletion of the action record failed."
-msgstr ""
-
-#. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
@@ -65,13 +59,15 @@ msgid ""
 "Display a button in the sidebar of related documents to open a composition "
 "wizard"
 msgstr ""
+"Mostra un botó a la barra lateral dels documents relacionats per obrir un "
+"assistent de composició "
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_ir_model_fields
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Fields"
-msgstr ""
+msgstr "Camps "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
@@ -102,18 +98,18 @@ msgstr "Darrera Actualització el"
 #: model:ir.ui.menu,name:mass_editing.menu_mass_editing
 #: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
 msgid "Mass Editing"
-msgstr ""
+msgstr "Edició Massiva "
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:58
+#: code:addons/mass_editing/models/mass_object.py:57
 #, python-format
 msgid "Mass Editing (%s)"
-msgstr ""
+msgstr "Edició Massiva (%s)"
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr ""
+msgstr "Objecte d'edició massiva "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
@@ -123,7 +119,7 @@ msgstr "Model"
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
 msgid "Model List"
-msgstr ""
+msgstr "Llista de Models"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
@@ -131,6 +127,8 @@ msgid ""
 "Model is used for Selecting Fields. This is editable until Sidebar menu is "
 "not created."
 msgstr ""
+"El model s'utilitza pels camps seleccionats. Això és pot editar des del menú"
+" de la barra lateral sinó està creat. "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
@@ -138,32 +136,34 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:34
+#: code:addons/mass_editing/models/mass_object.py:33
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
-msgstr ""
+msgstr "El nom ha de ser únic!"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_tree
 msgid "Object"
-msgstr ""
+msgstr "Objecte "
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove Sidebar Button"
-msgstr ""
+msgstr "Eliminar botó de la barra lateral "
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
+"Eliminar l'acció contextual per utilitzar aquesta plantilla als documents "
+"relacionats "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
 msgid "Sidebar action"
-msgstr ""
+msgstr "Acció de la barra lateral "
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
@@ -171,18 +171,20 @@ msgid ""
 "Sidebar action to make this template available on records of the related "
 "document model."
 msgstr ""
+"Acció de la barra lateral per fer aquesta plantilla disponible en els "
+"registres del model de document relacionat. "
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_value_id
 msgid "Sidebar button"
-msgstr ""
+msgstr "Botó de la barra lateral"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_value_id
 msgid "Sidebar button to open the sidebar action."
-msgstr ""
+msgstr "Botó de la barra lateral per obrir-ne una acció."
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "mass.editing.wizard"
-msgstr ""
+msgstr "mass.editing.wizard"

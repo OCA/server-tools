@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
 "PO-Revision-Date: 2016-05-25 16:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model,name:letsencrypt.model_letsencrypt
 msgid "Abstract model providing functions for letsencrypt"
-msgstr ""
+msgstr "Abstraktes Modell zur Bereitstellung von Letsencrypt-Funktionen"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_display_name
@@ -28,10 +28,10 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:44
+#: code:addons/letsencrypt/models/letsencrypt.py:43
 #, python-format
 msgid "Error calling %s: %d"
-msgstr ""
+msgstr "Aufruffehler %s: %d"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_id
@@ -44,7 +44,7 @@ msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:93
+#: code:addons/letsencrypt/models/letsencrypt.py:90
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
-msgstr ""
+msgstr "Let's encrypt funktioniert mit privaten Adressen oderr localen Domänen nicht!"
