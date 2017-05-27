@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * user_immutable
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-24 02:40+0000\n"
+"PO-Revision-Date: 2017-05-24 02:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: user_immutable
+#: model:ir.model,name:user_immutable.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: user_immutable
+#: model:res.groups,name:user_immutable.group_immutable
+msgid "Immutable"
+msgstr ""
+
+#. module: user_immutable
+#: model:ir.model,name:user_immutable.model_res_users
+msgid "Users"
+msgstr "Uporabniki"
+
+#. module: user_immutable
+#: code:addons/user_immutable/models/res_users.py:22
+#, python-format
+msgid "You do not have permission to alter an Immutable User"
+msgstr ""
+
+#. module: user_immutable
+#: code:addons/user_immutable/models/res_groups.py:24
+#: code:addons/user_immutable/models/res_users.py:36
+#, python-format
+msgid "You must be a member of the `Immutable` group to grant access to it"
+msgstr ""
