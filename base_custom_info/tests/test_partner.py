@@ -2,6 +2,7 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+from psycopg2 import IntegrityError
 from openerp.exceptions import AccessError, ValidationError
 from openerp.tests.common import TransactionCase
 
@@ -16,6 +17,7 @@ class PartnerCase(TransactionCase):
     def set_custom_info_for_agrolait(self):
         """Used when you need to use some created custom info."""
         self.agrolait.custom_info_template_id = self.tpl
+        self.agrolait._onchange_custom_info_template_id()
         self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_haters")).value_int = 5
 
@@ -24,6 +26,7 @@ class PartnerCase(TransactionCase):
         # Demo user has contact creation permissions by default
         agrolait = self.agrolait.sudo(self.demouser)
         agrolait.custom_info_template_id = self.tpl
+        agrolait._onchange_custom_info_template_id()
         prop_weaknesses = agrolait.env.ref("base_custom_info.prop_weaknesses")
         val_weaknesses = agrolait.get_custom_info_value(prop_weaknesses)
         opt_food = agrolait.env.ref("base_custom_info.opt_food")
@@ -59,6 +62,7 @@ class PartnerCase(TransactionCase):
         """(Un)apply a template to a owner and it gets filled."""
         # Applying a template autofills the values
         self.agrolait.custom_info_template_id = self.tpl
+        self.agrolait._onchange_custom_info_template_id()
         self.assertEqual(
             len(self.agrolait.custom_info_ids),
             len(self.tpl.property_ids))
@@ -68,6 +72,7 @@ class PartnerCase(TransactionCase):
 
         # Unapplying a template empties the values
         self.agrolait.custom_info_template_id = False
+        self.agrolait._onchange_custom_info_template_id()
         self.assertFalse(self.agrolait.custom_info_template_id)
         self.assertFalse(self.agrolait.custom_info_ids)
 
@@ -79,7 +84,7 @@ class PartnerCase(TransactionCase):
 
     def test_template_model_must_exist(self):
         """Cannot create templates for unexisting models."""
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(IntegrityError):
             self.tpl.model = "yabadabaduu"
 
     def test_change_used_model_fails(self):
@@ -116,6 +121,7 @@ class PartnerCase(TransactionCase):
     def test_default_values(self):
         """Default values get applied."""
         self.agrolait.custom_info_template_id = self.tpl
+        self.agrolait._onchange_custom_info_template_id()
         val_weaknesses = self.agrolait.get_custom_info_value(
             self.env.ref("base_custom_info.prop_weaknesses"))
         opt_glasses = self.env.ref("base_custom_info.opt_glasses")
@@ -131,6 +137,7 @@ class PartnerCase(TransactionCase):
         tpl_gamer = self.env.ref("base_custom_info.tpl_gamer")
         self.agrolait.invalidate_cache()
         self.assertIn(tpl_gamer, self.agrolait.all_custom_info_templates())
+        self.agrolait._onchange_custom_info_template_id()
         self.assertTrue(
             tpl_gamer.property_ids <
             self.agrolait.mapped("custom_info_ids.property_id"))
