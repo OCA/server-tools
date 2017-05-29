@@ -26,7 +26,7 @@
                         <field name="model"/>
                         <field name="model_id"/>
                     </group>
-                    <group string="Properties">
+                    <group name="Properties">
                         <field name="property_ids"
                                nolabel="1"
                                context="{'form_view_ref': 'base_custom_info.custom_info_property_form', 'tree_view_ref': 'base_custom_info.custom_info_property_tree'}"

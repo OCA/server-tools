@@ -5,7 +5,7 @@
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CustomInfo(models.AbstractModel):

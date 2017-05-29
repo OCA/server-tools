@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CustomInfoCategory(models.Model):
