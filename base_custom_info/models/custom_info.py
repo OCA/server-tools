@@ -39,7 +39,7 @@ class CustomInfo(models.AbstractModel):
             subfields = getattr(self, x2many_field)._fields.keys()
             for subfield in subfields:
                 field_onchange.setdefault(
-                    "{}.{}".format(x2many_field, subfield), u"",
+                    u"{}.{}".format(x2many_field, subfield), u"",
                 )
         return super(CustomInfo, self).onchange(
             values, field_name, field_onchange,
