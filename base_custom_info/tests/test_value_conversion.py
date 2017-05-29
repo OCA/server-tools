@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 _logger = logging.getLogger(__name__)
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # © 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # © 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
@@ -8,7 +7,7 @@
     'name': "Base Custom Info",
     'summary': "Add custom field in models",
     'category': 'Tools',
-    'version': '9.0.2.0.0',
+    'version': '11.0.1.0.0',
     'depends': [
         'base_setup',
     ],

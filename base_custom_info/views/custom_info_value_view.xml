@@ -8,7 +8,7 @@
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
             <tree string="Custom Property Values" create="0" delete="0">
-                <field name="owner_id" invisible="context.get('embed')"/>
+                <field name="owner_id" invisible="context.get('embed', True)"/>
                 <field name="property_id"/>
                 <field name="category_id"/>
                 <field name="required" invisible="1"/>

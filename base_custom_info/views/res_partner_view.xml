@@ -18,11 +18,22 @@
                                    options='{"no_quick_create": True}'
                             />
                         </group>
-                        <field name="custom_info_ids"
-                               colspan="4"
-                               nolabel="1"
-                               context="{'embed': True, 'tree_view_ref': 'base_custom_info.custom_info_value_tree_editable'}"
-                        />
+                        <field name="custom_info_ids" colspan="4" nolabel="1">
+                            <tree string="Custom Property Values" create="0" delete="0">
+                                <field name="owner_id" invisible="1"/>
+                                <field name="property_id"/>
+                                <field name="category_id"/>
+                                <field name="required" invisible="1"/>
+                                <field name="value"
+                                       attrs="{'required': [('required', '=', True)]}"
+                                />
+                                <field name="field_type" invisible="1"/>
+                                <field name="value_id"
+                                       widget="selection"
+                                       attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
+                                />
+                            </tree>
+                        </field>
                     </group>
                 </page>
             </xpath>

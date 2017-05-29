@@ -164,11 +164,11 @@ Configuration
 
 To enable the main *Custom Info* menu:
 
-#. Enable *Settings > General Settings > Manage custom information*.
+#. Enable *Settings > General Settings > Custom Information > Manage custom information*.
 
 To enable partner's custom info tab:
 
-#. Enable *Settings > General Settings > Edit custom information in partners*.
+#. Enable *Settings > General Settings > Custom Information > Edit custom information in partners*.
 
 Usage
 =====
@@ -203,7 +203,7 @@ To manage their values, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/135/9.0
+   :target: https://runbot.odoo-community.org/runbot/135/10.0
 
 Development
 ===========

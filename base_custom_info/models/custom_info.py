@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CustomInfo(models.AbstractModel):
@@ -30,21 +29,6 @@ class CustomInfo(models.AbstractModel):
         auto_join=True, string='Custom Properties',
     )
 
-    # HACK: Until https://github.com/odoo/odoo/pull/10557 is merged
-    # https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
-    @api.multi
-    def onchange(self, values, field_name, field_onchange):  # pragma: no cover
-        x2many_field = 'custom_info_ids'
-        if x2many_field in field_onchange:
-            subfields = getattr(self, x2many_field)._fields.keys()
-            for subfield in subfields:
-                field_onchange.setdefault(
-                    u"{}.{}".format(x2many_field, subfield), u"",
-                )
-        return super(CustomInfo, self).onchange(
-            values, field_name, field_onchange,
-        )
-
     @api.onchange('custom_info_template_id')
     def _onchange_custom_info_template_id(self):
         tmpls = self.all_custom_info_templates()
@@ -60,9 +44,6 @@ class CustomInfo(models.AbstractModel):
                 "res_id": self.id,
                 "value": prop.default_value,
             })
-            # HACK https://github.com/odoo/odoo/issues/13076
-            newvalue._inverse_value()
-            newvalue._compute_value()
             values += newvalue
         self.custom_info_ids = values
         # Default values implied new templates? Then this is recursive
