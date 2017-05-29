@@ -49,7 +49,7 @@
                                attrs="{'invisible': [('field_type', 'not in', ['str', 'int', 'float'])]}"
                         />
                     </group>
-                    <group string="Options" col="1" attrs="{'invisible': [('field_type', '!=', 'id')]}">
+                    <group name="Options" col="1" attrs="{'invisible': [('field_type', '!=', 'id')]}">
                         <label string="Select one of the existing options or create a new one clicking on 'Add an item'"/>
                         <field name="option_ids"
                                nolabel="1"

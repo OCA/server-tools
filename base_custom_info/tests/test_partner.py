@@ -3,8 +3,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from psycopg2 import IntegrityError
-from openerp.exceptions import AccessError, ValidationError
-from openerp.tests.common import TransactionCase
+from odoo.exceptions import AccessError, ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class PartnerCase(TransactionCase):
