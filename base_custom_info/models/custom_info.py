@@ -1,126 +1,97 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# © 2015 Antiun Ingeniería S.L. - Jairo Llopis
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
 
 from openerp import api, fields, models
 
 
-class CustomInfoModelLink(models.AbstractModel):
-    _description = "A model that gets its ``ir.model`` computed"
-    _name = "custom.info.model_link"
-
-    model = fields.Char(
-        index=True,
-        readonly=True,
-        required=True)
-    model_id = fields.Many2one(
-        'ir.model',
-        'Model',
-        compute="_compute_model_id",
-        store=True)
-
-    @api.multi
-    @api.depends("model")
-    def _compute_model_id(self):
-        """Get a related model from its name, for better UI."""
-        for s in self:
-            s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
-
-
-class CustomInfoTemplate(models.Model):
-    """Defines custom properties expected for a given database object."""
-    _description = "Custom information template"
-    _name = "custom.info.template"
-    _inherit = "custom.info.model_link"
-    _sql_constraints = [
-        ("name_model",
-         "UNIQUE (name, model)",
-         "Another template with that name exists for that model."),
-    ]
-
-    name = fields.Char(required=True, translate=True)
-    info_ids = fields.One2many(
-        'custom.info.property',
-        'template_id',
-        'Properties')
-
-
-class CustomInfoProperty(models.Model):
-    """Name of the custom information property."""
-    _description = "Custom information property"
-    _name = "custom.info.property"
-    _sql_constraints = [
-        ("name_template",
-         "UNIQUE (name, template_id)",
-         "Another property with that name exists for that template."),
-    ]
-
-    name = fields.Char(required=True, translate=True)
-    template_id = fields.Many2one(
-        comodel_name='custom.info.template',
-        string='Template',
-        required=True)
-    info_value_ids = fields.One2many(
-        comodel_name="custom.info.value",
-        inverse_name="property_id",
-        string="Property Values")
-
-
-class CustomInfoValue(models.Model):
-    _description = "Custom information value"
-    _name = "custom.info.value"
-    _inherit = "custom.info.model_link"
-    _rec_name = 'value'
-    _sql_constraints = [
-        ("property_model_res",
-         "UNIQUE (property_id, model, res_id)",
-         "Another property with that name exists for that resource."),
-    ]
-
-    res_id = fields.Integer("Resource ID", index=True, required=True)
-    property_id = fields.Many2one(
-        comodel_name='custom.info.property',
-        required=True,
-        string='Property')
-    name = fields.Char(related='property_id.name', readonly=True)
-    value = fields.Char(translate=True, index=True)
-
-
 class CustomInfo(models.AbstractModel):
+    """Models that inherit from this one will get custom information for free!
+
+    They will probably want to declare a default model in the context of the
+    :attr:`custom_info_template_id` field.
+
+    See example in :mod:`res_partner`.
+    """
     _description = "Inheritable abstract model to add custom info in any model"
     _name = "custom.info"
 
     custom_info_template_id = fields.Many2one(
         comodel_name='custom.info.template',
-        string='Custom Information Template')
-    custom_info_ids = fields.One2many(
-        comodel_name='custom.info.value',
-        inverse_name='res_id',
         domain=lambda self: [("model", "=", self._name)],
-        auto_join=True,
-        string='Custom Properties')
+        string='Custom Information Template',
+    )
+    custom_info_ids = fields.One2many(
+        comodel_name='custom.info.value', inverse_name='res_id',
+        domain=lambda self: [("model", "=", self._name)],
+        auto_join=True, string='Custom Properties',
+    )
 
+    # HACK: Until https://github.com/odoo/odoo/pull/10557 is merged
+    # https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
+    def onchange(self, values, field_name, field_onchange):  # pragma: no cover
+        x2many_field = 'custom_info_ids'
+        if x2many_field in field_onchange:
+            subfields = getattr(self, x2many_field)._fields.keys()
+            for subfield in subfields:
+                field_onchange.setdefault(
+                    u"{}.{}".format(x2many_field, subfield), u"",
+                )
+        return super(CustomInfo, self).onchange(
+            values, field_name, field_onchange,
+        )
+
     @api.onchange('custom_info_template_id')
     def _onchange_custom_info_template_id(self):
-        if not self.custom_info_template_id:
-            self.custom_info_ids = False
-        else:
-            info_list = self.custom_info_ids.mapped('property_id')
-            for info_name in self.custom_info_template_id.info_ids:
-                if info_name not in info_list:
-                    self.custom_info_ids |= self.custom_info_ids.new({
-                        'model': self._name,
-                        'property_id': info_name.id,
-                        "res_id": self.id,
-                    })
+        tmpls = self.all_custom_info_templates()
+        props_good = tmpls.mapped("property_ids")
+        props_enabled = self.mapped("custom_info_ids.property_id")
+        to_add = props_good - props_enabled
+        to_remove = props_enabled - props_good
+        values = self.custom_info_ids
+        values = values.filtered(lambda r: r.property_id not in to_remove)
+        for prop in to_add.sorted():
+            newvalue = self.custom_info_ids.new({
+                "property_id": prop.id,
+                "res_id": self.id,
+                "value": prop.default_value,
+            })
+            # HACK https://github.com/odoo/odoo/issues/13076
+            newvalue._inverse_value()
+            newvalue._compute_value()
+            values += newvalue
+        self.custom_info_ids = values
+        # Default values implied new templates? Then this is recursive
+        if self.all_custom_info_templates() != tmpls:
+            self._onchange_custom_info_template_id()
 
     @api.multi
     def unlink(self):
+        """Remove linked custom info this way, as can't be handled
+        automatically.
+        """
         info_values = self.mapped('custom_info_ids')
         res = super(CustomInfo, self).unlink()
         if res:
             info_values.unlink()
         return res
+
+    @api.multi
+    @api.returns("custom.info.value")
+    def get_custom_info_value(self, properties):
+        """Get ``custom.info.value`` records for the given property."""
+        return self.env["custom.info.value"].search([
+            ("model", "=", self._name),
+            ("res_id", "in", self.ids),
+            ("property_id", "in", properties.ids),
+        ])
+
+    @api.multi
+    def all_custom_info_templates(self):
+        """Get all custom info templates involved in these owners."""
+        return (self.mapped("custom_info_template_id") |
+                self.mapped("custom_info_ids.value_id.template_id"))
