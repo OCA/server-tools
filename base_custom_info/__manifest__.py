@@ -1,16 +1,16 @@
-# -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # © 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # © 2015-2016 Jairo Llopis <jairo.llopis@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': "Base Custom Info",
     'summary': "Add custom field in models",
     'category': 'Tools',
-    'version': '9.0.2.0.0',
+    'version': '11.0.1.0.0',
     'depends': [
         'base_setup',
+        'res_partner',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -41,7 +41,7 @@
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
     'website': 'https://www.tecnativa.com',
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'application': True,
     'installable': True,
 }

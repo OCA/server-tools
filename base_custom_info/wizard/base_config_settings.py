@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class BaseConfigSettings(models.TransientModel):
-    _inherit = "base.config.settings"
+    _inherit = "res.config.settings"
 
     group_custom_info_manager = fields.Boolean(
         string="Manage custom information",

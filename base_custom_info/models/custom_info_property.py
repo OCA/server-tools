@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import _, api, fields, models
-from openerp.exceptions import UserError, ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class CustomInfoProperty(models.Model):
@@ -83,7 +82,6 @@ class CustomInfoProperty(models.Model):
         self.mapped("template_id").check_access_rule(operation)
         return super(CustomInfoProperty, self).check_access_rule(operation)
 
-    @api.one
     @api.constrains("default_value", "field_type")
     def _check_default_value(self):
         """Ensure the default value is valid."""

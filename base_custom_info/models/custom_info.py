@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CustomInfo(models.AbstractModel):

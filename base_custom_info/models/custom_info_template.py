@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import _, api, fields, models
-from openerp.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class CustomInfoTemplate(models.Model):

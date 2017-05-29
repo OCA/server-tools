@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from psycopg2 import IntegrityError
-from openerp.exceptions import AccessError, ValidationError
-from openerp.tests.common import TransactionCase
+from odoo.exceptions import AccessError, ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class PartnerCase(TransactionCase):

@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 # © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CustomInfoCategory(models.Model):
@@ -27,7 +26,8 @@ class CustomInfoCategory(models.Model):
             try:
                 prop.check_access_rule(operation)
                 return
-            except Exception as last:
+            except Exception as exep:
+                last = exep
                 pass
         if last:
             raise last
