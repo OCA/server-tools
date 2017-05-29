@@ -24,6 +24,7 @@ class ValueConversionCase(TransactionCase):
         _logger.info(
             "Creating. prop: %s; value: %s; field: %s", prop, value, field)
         self.agrolait.custom_info_template_id = self.tpl
+        self.agrolait._onchange_custom_info_template_id()
         if field == "value":
             value = str(value)
         self.value = self.agrolait.get_custom_info_value(prop)
