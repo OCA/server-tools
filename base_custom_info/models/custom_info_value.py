@@ -2,9 +2,9 @@
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
-from openerp import _, api, fields, models, SUPERUSER_ID
-from openerp.exceptions import ValidationError
-from openerp.tools.safe_eval import safe_eval
+from odoo import _, api, fields, models, SUPERUSER_ID
+from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import safe_eval
 
 
 class CustomInfoValue(models.Model):
