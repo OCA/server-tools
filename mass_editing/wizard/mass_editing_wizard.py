@@ -218,7 +218,7 @@ class MassEditingWizard(orm.TransientModel):
                             translation_ids = translation_obj.search(cr, uid, [
                                                                         ('res_id', 'in', context.get('active_ids')),
                                                                         ('type', '=', 'model'),
-                                                                        ('name', '=', "{0},{1}".format(
+                                                                        ('name', '=', u"{0},{1}".format(
                                                                             context.get('active_model'), split_key))])
                             translation_obj.unlink(cr, uid, translation_ids, context=context)
 
