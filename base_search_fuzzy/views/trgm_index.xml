@@ -9,7 +9,8 @@
         <form string="Trigam Index">
           <sheet>
             <group col="4">
-              <field name="field_id" domain="[('ttype', 'in', ['char', 'text'])]"/>
+              <field name="field_id"
+                     domain="[('ttype', 'in', ['char', 'text', 'html'])]"/>
               <field name="index_name"/>
               <field name="index_type"/>
             </group>

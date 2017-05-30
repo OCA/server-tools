@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="subject_gin_idx" model="trgm.index">
+            <field name="index_type">gin</field>
+            <field name="field_id"
+                   search="[('model','=','mail.message'),('name','=','subject')]"/>
+        </record>
+
+        <record id="body_gin_idx" model="trgm.index">
+            <field name="index_type">gin</field>
+            <field name="field_id"
+                   search="[('model','=','mail.message'),('name','=','body')]"/>
+        </record>
+
+        <record id="record_name_gin_idx" model="trgm.index">
+            <field name="index_type">gin</field>
+            <field name="field_id"
+                   search="[('model','=','mail.message'),('name','=','record_name')]"/>
+        </record>
+
+    </data>
+</openerp>
