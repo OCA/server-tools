@@ -81,6 +81,13 @@ class ResConfigSettings(models.TransientModel):
                 "//group[3]",
             ]
 
+        elif page_name == 'General Settings':
+            queries += [
+                "//label[@for='module_inter_company_rules']",
+                "//div[@name='inter_company']",
+                # "//field[@name='module_project_forecast']/ancestor::div[2]",
+            ]
+
         for query in queries:
             for item in doc.xpath(query):
                 item.getparent().remove(item)
