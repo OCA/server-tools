@@ -3,6 +3,7 @@
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from collections import OrderedDict
 from openerp import api, models
 
 
@@ -14,7 +15,7 @@ def update_dict(data, fields):
         data[field] = True
     else:
         if field not in data:
-            data[field] = {}
+            data[field] = OrderedDict()
         update_dict(data[field], fields[1:])
 
 
@@ -34,7 +35,10 @@ class IrExport(models.Model):
     @api.multi
     def get_json_parser(self):
         self.ensure_one()
-        dict_parser = {}
+        dict_parser = OrderedDict()
         for line in self.export_fields:
-            update_dict(dict_parser, line.name.split('/'))
+            names = line.name.split('/')
+            if line.alias:
+                names = line.alias.split('/')
+            update_dict(dict_parser, names)
         return convert_dict(dict_parser)
