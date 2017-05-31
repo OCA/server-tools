@@ -212,17 +212,18 @@ class MassEditingWizard(orm.TransientModel):
                         dict.update({split_key: False})
                         # If field to remove is translatable,
                         # its translations have to be removed
-                        model_field_id = model_field_obj.search(cr, uid,
-                                   [('model', '=', context.get('active_model')),
-                                    ('name', '=', split_key)])
-                        if model_field_id and \
-                                model_field_obj.browse(cr, uid, model_field_id,
-                                                     context=context).translate:
+                        model_field_id = model_field_obj.search(cr, uid, [
+                            ('model', '=', context.get('active_model')),
+                            ('name', '=', split_key)
+                        ])
+                        if model_field_id and model_field_obj.browse(
+                                cr, uid, model_field_id,
+                                context=context).translate:
                             translation_ids = translation_obj.search(cr, uid, [
-                                    ('res_id', 'in', context.get('active_ids')),
-                                    ('type', '=', 'model'),
-                                    ('name', '=', u"{0},{1}".format(
-                                      context.get('active_model'), split_key))])
+                                ('res_id', 'in', context.get('active_ids')),
+                                ('type', '=', 'model'),
+                                ('name', '=', u"{0},{1}".format(
+                                    context.get('active_model'), split_key))])
                             translation_obj.unlink(cr, uid, translation_ids,
                                                    context=context)
 
