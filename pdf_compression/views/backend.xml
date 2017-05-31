@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- adds the PDF/A option -->
+    <record model="ir.ui.view" id="act_report_xml_view_extend">
+      <field name="model">ir.actions.report.xml</field>
+      <field name="inherit_id" ref="base.act_report_xml_view"/>
+      <field name="arch" type="xml">
+        <field name="report_type" position="after">
+          <field name="pdf_option"
+                 attrs="{'invisible': [('report_type', '!=', 'qweb-pdf')]}"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- adds the PDF/A option and Compression to Knowledge-->
+    <record id="view_knowledge_configuration_pdfa" model="ir.ui.view">
+      <field name="name">Configure Knowledge</field>
+      <field name="model">knowledge.config.settings</field>
+      <field name="inherit_id" ref="knowledge.view_knowledge_configuration"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group" position="after">
+          <group string="Attachment Settings">
+            <label for="compression"/>
+            <div name="compression">
+              <div class="oe_inline">
+                <field name="compression" class="oe_inline" required="1"/>
+              </div>
+            </div>
+            <label for="pdfa_option"/>
+            <div name="pdfa_option">
+              <div class="oe_inline">
+                <field name="pdfa_option" class="oe_inline" required="1"/>
+              </div>
+            </div>
+
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

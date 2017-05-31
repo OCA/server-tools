@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+  <data noupdate="1">
+
+    <!--compression-->
+    <function model="ir.values" name="set_default">
+      <value>ir.attachment</value>
+      <value>compression</value>
+      <value>no</value>
+    </function>
+
+    <!--pdfa_option-->
+    <function model="ir.values" name="set_default">
+      <value>ir.attachment</value>
+      <value>pdfa_option</value>
+      <value>no</value>
+    </function>
+
+  </data>
+</openerp>
