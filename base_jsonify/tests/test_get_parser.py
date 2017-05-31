@@ -7,72 +7,88 @@ from openerp.tests.common import TransactionCase
 
 class TestParser(TransactionCase):
 
-    def setUp(self):
-        super(TestParser, self).setUp()
-        self.expected_parser = [
+    def test_getting_parser(self):
+        expected_parser = [
+            u'active',
+            (u'category_id', [u'name']),
+            (u'child_ids', [(
+                u'child_ids', [u'name']),
+                (u'country_id', [u'code', u'name']),
+                u'email', u'id',
+                u'name'
+            ]),
+            u'color',
+            u'comment',
+            (u'country_id', [u'code', u'name']),
+            u'credit_limit',
+            u'lang',
+            u'name']
+
+        exporter = self.env.ref('base_jsonify.ir_exp_partner')
+        parser = exporter.get_json_parser()
+        self.assertEqual(parser, expected_parser)
+
+        # modify an ir.exports_line to put an alias for a field
+        self.env.ref('base_jsonify.category_id_name').write({
+            'alias': 'category_id:category/name'
+        })
+        expected_parser[1] = (u'category_id:category', [u'name'])
+        parser = exporter.get_json_parser()
+        self.assertEqual(parser, expected_parser)
+
+    def test_json_export(self):
+        parser = [
             u'lang',
             u'comment',
             u'credit_limit',
             u'name',
             u'color',
-            (u'child_ids', [
-                (u'child_ids', [u'name']),
+            (u'child_ids:children', [
+                (u'child_ids:children', [u'name']),
                 u'email',
-                (u'country_id', [u'code', u'name']),
+                (u'country_id:country', [u'code', u'name']),
                 u'name',
                 u'id',
-                ]),
-            (u'country_id', [u'code', u'name']),
+            ]),
+            (u'country_id:country', [u'code', u'name']),
             u'active',
             (u'category_id', [u'name'])
         ]
-
-    # TODO adapt data for 8.0
-    def fixme_test_getting_parser(self):
-        exporter = self.env.ref('base_jsonify.ir_exp_partner')
-        parser = exporter.get_json_parser()
-        self.assertEqual(parser, self.expected_parser)
-
-    def fixme_test_json_export(self):
+        partner = self.env['res.partner'].create({
+            'name': 'Akretion',
+            'country_id': self.env.ref('base.fr').id,
+            'category_id': [(0, 0, {'name': 'Inovator'})],
+            'child_ids': [
+                (0, 0, {
+                    'name': 'Sebatien Beau',
+                    'country_id': self.env.ref('base.fr').id
+                })
+            ]
+        })
         expected_json = [{
             u'lang': False,
             u'comment': False,
             u'credit_limit': 0.0,
-            u'name': u'Camptocamp',
+            u'name': u'Akretion',
             u'color': 0,
-            u'country_id': {u'code': u'FR', u'name': u'France'},
-            u'child_ids': [{
-                u'id': 29,
-                u'country_id': {
-                    u'code': u'FR',
-                    u'name': u'France'
-                    },
-                u'child_ids': [],
-                u'email': u'ayaan.agarwal@bestdesigners.example.com',
-                u'name': u'Ayaan Agarwal'
-            }, {
-                u'id': 35,
-                u'country_id': {
-                    u'code': u'FR',
-                    u'name': u'France'},
-                u'child_ids': [],
-                u'email': u'benjamin.flores@nebula.example.com',
-                u'name': u'Benjamin Flores'
-            }, {
-                u'id': 28,
-                u'country_id': {
-                    u'code': u'FR',
-                    u'name': u'France'},
-                u'child_ids': [],
-                u'email': u'phillipp.miller@mediapole.example.com',
-                u'name': u'Phillipp Miller'
-            }],
+            u'country': {
+                u'code': u'FR',
+                u'name': u'France'
+            },
             u'active': True,
             u'category_id': [
-                {u'name': u'Gold'},
-                {u'name': u'Services'}
-            ]
+                {u'name': u'Inovator'}
+            ],
+            u'children': [{
+                u'id': partner.child_ids.id,
+                u'country': {
+                    u'code': u'FR',
+                    u'name': u'France'
+                },
+                u'children': [],
+                u'name': u'Sebatien Beau',
+                u'email': False
+            }]
         }]
-        partner = self.env.ref('base.res_partner_12')
-        json_partner = partner.jsonify(self.expected_parser)
-        self.assertEqual(json_partner, expected_json)
+        json_partner = partner.jsonify(parser)
+        self.assertDictEqual(json_partner[0], expected_json[0])
