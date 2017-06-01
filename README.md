@@ -20,6 +20,7 @@ addon | version | summary
 --- | --- | ---
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
+[auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_exception](base_exception/) | 10.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
@@ -48,6 +49,7 @@ addon | version | summary
 [mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
+[onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 10.0.1.2.0 | move some configurations out of the database
@@ -69,7 +71,6 @@ addon | version | summary
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 (unported) | Authenticate via HTTP Remote User
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 (unported) | This module disable all inactive sessions since a given delay
-[auth_supplier](auth_supplier/) | 9.0.2.0.0 (unported) | Auth Supplier
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
 [base_debug4all](base_debug4all/) | 8.0.1.0.0 (unported) | Shows full debug options for all users
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 (unported) | Manage model export profiles
