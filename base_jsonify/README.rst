@@ -27,7 +27,7 @@ return a list of object even if there is only one element in input
 
 By default the key into the json is the name of the field extracted
 from the model. If you need to specify an alternate name to use as key, you
-can definne your mapping as follow into the parser definition:
+can define your mapping as follow into the parser definition:
 
 .. code-block:: python
 
