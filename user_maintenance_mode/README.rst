@@ -6,16 +6,42 @@
 User Maintenance Mode
 =====================
 
-In some companies require lock server for some user. By way, we have creating
-group manage maintenance mode which if user is in this group will can manage
-in this section.
+Some companies require odoo server lock for some user to maintenance.
+Which have created group (manage maintenance mode) for users who have permission
+to manage maintenance mode. By eligible users can set maintenance mode of each user
+from menu Settings > Users
 
 Usage
 =====
 
-* Set user in group manage maintenace mode
-* For user in group above can manage by click maintenance mode in menu user,
-  this user will lock.
+* Go to Settings > Users > Groups which you can add eligible users in group (manage maintenance mode)
+
+.. figure:: static/description/group_manage_maintenance_mode.png
+   :scale: 80 %
+   :alt: Add eligible users in group (manage maintenance mode)
+
+* Go to Settings > Users > Users for select maintenance mode for each user
+
+  * first
+
+  .. figure:: static/description/change_maintenance_mode1.png
+     :scale: 80 %
+
+  * second
+
+  .. figure:: static/description/change_maintenance_mode2.png
+     :scale: 80 %
+
+  * third
+
+  .. figure:: static/description/change_maintenance_mode3.png
+     :scale: 80 %
+
+* That user will can't login now.
+
+.. figure:: static/description/warning_login.png
+   :scale: 80 %
+   :alt: Warning Login
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -24,7 +50,7 @@ Usage
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
+Bugs are trackeะ้d on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
