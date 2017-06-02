@@ -13,7 +13,7 @@ class ChangeMaintenanceModeWizard(models.TransientModel):
         context = self._context.copy()
         active_ids = context.get('active_ids', [])
         maintenance_category = Category.search([('name', '=',
-                                                 'Server Maintenance')])
+                                                 'User Maintenance Mode')])
         user_ids = []
         for mc in maintenance_category:
             groups = Group.search([('category_id', '=', mc.id)])

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_change_maintenance_mode_wizard_group_user_maintenance_mode,change.maintenance.mode.wizard.user.maintenance.mode,model_change_maintenance_mode_wizard,user_maintenance_mode.group_user_maintenance_mode,1,1,1,1

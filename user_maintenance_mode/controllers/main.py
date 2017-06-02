@@ -9,6 +9,7 @@ class Home(main.Home):
 
     @http.route('/web/login', type='http', auth="none")
     def web_login(self, redirect=None, **kw):
+        res = super(Home, self).web_login(redirect, **kw)
         values = request.params.copy()
         if request.httprequest.method == 'POST':
             uid = request.session.authenticate(request.session.db,
@@ -21,6 +22,4 @@ class Home(main.Home):
                     values['error'] = _("This user is in maintenance mode")
                     if request.env.ref('web.login', False):
                         return request.render('web.login', values)
-        return super(Home, self).web_login(redirect, **kw)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        return res

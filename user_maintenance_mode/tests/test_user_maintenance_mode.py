@@ -2,20 +2,20 @@
 from openerp.tests.common import TransactionCase
 
 
-class TestOdooServerMaintenance(TransactionCase):
+class TestUserMaintenanceMode(TransactionCase):
 
     def setUp(self):
-        super(TestOdooServerMaintenance, self).setUp()
+        super(TestUserMaintenanceMode, self).setUp()
         self.partner = self.env.ref('base.res_partner_2')
         vals = {
-            'name': 'Test Odoo Server Maintenance',
-            'login': 'test_odoo_server_maintenance',
-            'password': 'test_odoo_server_maintenance',
+            'name': 'Test User Maintenance Mode',
+            'login': 'test_user_maintenance_mode',
+            'password': 'test_user_maintenance_mode',
             'partner_id': self.partner.id,
         }
         self.user = self.env['res.users'].create(vals)
 
-    def test_odoo_server_maintenance(self):
+    def test_user_maintenance_mode(self):
         self.wizard = self.env['change.maintenance.mode.wizard'].create({})
         self.wizard.with_context({'active_ids': [self.user.id]}) \
             .select_maintenance_mode()
@@ -24,5 +24,3 @@ class TestOdooServerMaintenance(TransactionCase):
         self.wizard.with_context({'active_ids': [self.user.id]}) \
             .unselect_maintenance_mode()
         self.assertEqual(self.user.maintenance_mode, False)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

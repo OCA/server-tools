@@ -9,5 +9,3 @@ class ResUsers(models.Model):
         string='Maintenance Mode',
         default=False,
     )
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
