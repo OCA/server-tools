@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-04-19 17:59+0000\n"
+"POT-Creation-Date: 2017-05-30 01:19+0000\n"
+"PO-Revision-Date: 2017-05-30 01:19+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Binär"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_checksum
 msgid "Checksum/SHA1"
-msgstr ""
+msgstr "Prüfsumme/SHA1"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_company_id
@@ -225,7 +225,7 @@ msgstr "Wenn angewählt, erfordern neue Meldungen Ihre Aufmerksamkeit"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_index_content
 msgid "Indexed Content"
-msgstr ""
+msgstr "Indizierter Inhalt"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
@@ -240,7 +240,7 @@ msgstr "Ist Follower"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_public
 msgid "Is public document"
-msgstr ""
+msgstr "Ist öffentliches Dokument"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
@@ -281,7 +281,7 @@ msgstr "Metadaten-Anhänge"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_mimetype
 msgid "Mime Type"
-msgstr ""
+msgstr "Mime-Typ"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -317,7 +317,7 @@ msgstr "laufend"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_field
 msgid "Resource Field"
-msgstr ""
+msgstr "Ressourcen-Feld"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_id
@@ -414,3 +414,5 @@ msgid ""
 "You can either upload a file from your computer or copy/paste an internet "
 "link to your file"
 msgstr ""
+"Sie können entweder eine Datei vom Computer hochladen oder eine "
+"Internetverknüpfung zu Ihrer Datei einfügen"

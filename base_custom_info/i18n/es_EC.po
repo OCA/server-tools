@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
+"POT-Creation-Date: 2017-05-30 01:20+0000\n"
+"PO-Revision-Date: 2017-05-30 01:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Spanish (Ecuador) (https://www.transifex.com/oca/teams/23907/es_EC/)\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,46 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_custom_info
-#: model:ir.model,name:base_custom_info.model_custom_info_model_link
-msgid "A model that gets its ``ir.model`` computed"
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_form
+msgid ""
+"<strong>Warning!</strong>\n"
+"                        You might see no changes in parent form until you save it."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_base_config_settings_group_custom_info_partner
+msgid "Add a tab in the partners form to edit custom information"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_template_id
+msgid "Additional template"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_option_template_id
+msgid ""
+"Additional template to be applied to the owner if this option is chosen."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.menu,name:base_custom_info.menu_advanced
+msgid "Advanced"
+msgstr ""
+
+#. module: base_custom_info
+#: model:res.groups,name:base_custom_info.group_advanced
+msgid "Advanced management"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_base_config_settings_group_custom_info_manager
+msgid "Allow all employees to manage custom information"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_haters
+msgid "Amount of people that hates him/her for being so smart"
 msgstr ""
 
 #. module: base_custom_info
@@ -39,11 +77,57 @@ msgid "Another template with that name exists for that model."
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_option
+msgid "Available options for a custom property"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_avg_note
+msgid "Average note on all subjects"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.menu,name:base_custom_info.menu_basic
+msgid "Basic"
+msgstr ""
+
+#. module: base_custom_info
+#: model:res.groups,name:base_custom_info.group_basic
+msgid "Basic management"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_cars
+msgid "Cars"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_category_action
+#: model:ir.ui.menu,name:base_custom_info.menu_category
+msgid "Categories"
+msgstr "Categorías"
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_custom_info_category
+msgid "Categorize custom info properties"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_category_id
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_category_id
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_search
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
+msgid "Category"
+msgstr "Categoría"
+
+#. module: base_custom_info
 #: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
 msgid "Click to define a new custom info template."
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_create_uid
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_create_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_create_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_uid
@@ -51,6 +135,8 @@ msgid "Created by"
 msgstr "Creado por"
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_create_date
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_date
@@ -63,33 +149,58 @@ msgid "Custom Info"
 msgstr ""
 
 #. module: base_custom_info
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_form
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_category_tree
+msgid "Custom Info Categories"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_option_tree
+msgid "Custom Info Options"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_tree
+msgid "Custom Info Properties"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Custom Info Template"
 msgstr ""
 
 #. module: base_custom_info
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_line_form
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_category_form
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_option_form
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
 msgid "Custom Info Template Properties"
 msgstr ""
 
 #. module: base_custom_info
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_line_tree
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_tree
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_tree
 msgid "Custom Info Templates"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.module.category,name:base_custom_info.category
+#: model:ir.ui.view,arch_db:base_custom_info.view_general_configuration
+#: model:ir.ui.view,arch_db:base_custom_info.view_partner_form
+msgid "Custom Information"
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_custom_info_template_id
+#: model:ir.model.fields,field_description:base_custom_info.field_res_partner_custom_info_template_id
 msgid "Custom Information Template"
 msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_custom_info_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_res_partner_custom_info_ids
 msgid "Custom Properties"
 msgstr ""
 
 #. module: base_custom_info
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_value_tree
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_tree
 msgid "Custom Property Values"
 msgstr ""
 
@@ -109,8 +220,30 @@ msgid "Custom information value"
 msgstr ""
 
 #. module: base_custom_info
+#: selection:custom.info.property,field_type:0
+msgid "Decimal number"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value_float
+msgid "Decimal number value"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_default_value
+msgid "Default value"
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_property.py:99
+#, python-format
+msgid "Default value %s cannot be converted to type %s."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_display_name
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link_display_name
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_display_name
@@ -118,8 +251,89 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: base_custom_info
+#: model:res.groups,name:base_custom_info.group_partner
+msgid "Display in partner form"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_smartypants
+msgid "Does he/she believe he/she is the smartest person on earth?"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_base_config_settings_group_custom_info_partner
+msgid "Edit custom information in partners"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_fav_game
+msgid "Favourite videogame"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_fav_genre
+msgid "Favourite videogames genre"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_field_name
+msgid "Field name"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_field_type
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_field_type
+msgid "Field type"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_property_maximum
+msgid ""
+"For numeric fields, it means the maximum possible value; for text fields, it"
+" means the maximum possible length. If it is smaller than the minimum, then "
+"this check is skipped"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_property_minimum
+msgid ""
+"For numeric fields, it means the minimum possible value; for text fields, it"
+" means the minimum possible length. If it is bigger than the maximum, then "
+"this check is skipped"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.template,name:base_custom_info.tpl_gamer
+msgid "Gamers"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.category,name:base_custom_info.cat_gaming
+msgid "Gaming"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_graphical_adventure
+msgid "Graphical adventure"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_search
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_search
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_glasses
+#: model:custom.info.property,default_value:base_custom_info.prop_weaknesses
+msgid "Huge glasses"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_id
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_id
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link_id
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_id
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_id
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_id
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_id
@@ -127,8 +341,15 @@ msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: base_custom_info
-#: model:ir.ui.view,arch_db:base_custom_info.base_custom_info_template_form
-msgid "Info Lines"
+#: code:addons/base_custom_info/models/custom_info_property.py:109
+#, python-format
+msgid "If you require a Yes/No field, you can only set Yes."
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_property.py:112
+#, python-format
+msgid "If you require a numeric field, you cannot set it to zero."
 msgstr ""
 
 #. module: base_custom_info
@@ -138,7 +359,8 @@ msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info___last_update
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link___last_update
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category___last_update
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option___last_update
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property___last_update
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template___last_update
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value___last_update
@@ -146,6 +368,8 @@ msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_write_uid
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_uid
@@ -153,6 +377,8 @@ msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_write_date
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_date
@@ -160,16 +386,49 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: base_custom_info
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link_model
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_model_link_model_id
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_model
+#: code:addons/base_custom_info/models/custom_info_value.py:151
+#, python-format
+msgid ""
+"Length for %(prop)s is %(val)s, but it should be between %(min)d and "
+"%(max)d."
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_food
+msgid "Loves junk food"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_base_config_settings_group_custom_info_manager
+msgid "Manage custom information"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_maximum
+msgid "Maximum"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_minimum
+msgid "Minimum"
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_model_id
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_model
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_model_id
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_search
 msgid "Model"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_model
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_model
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_model
+msgid "Model technical name"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_name
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_name
@@ -177,14 +436,69 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: base_custom_info
-#: model:ir.actions.act_window,name:base_custom_info.custom_info_template_line_action
-#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_info_ids
-#: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_template_line
+#: model:custom.info.property,name:base_custom_info.prop_teacher
+msgid "Name of his/her teacher"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_videogames
+msgid "Needs videogames"
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_value.py:123
+#: code:addons/base_custom_info/models/custom_info_value.py:214
+#, python-format
+msgid "No"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_option_action
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_option_ids
+#: model:ir.ui.menu,name:base_custom_info.menu_option
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
+msgid "Options"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_owner_id
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
+msgid "Owner"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_platforms
+msgid "Platforms"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,name:base_custom_info.custom_info_property_action
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_property_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_property_ids
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_property_ids
+#: model:ir.ui.menu,name:base_custom_info.menu_property
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_form
 msgid "Properties"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_category_property_ids
+msgid "Properties in this category."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_option_property_ids
+msgid "Properties where this option is enabled."
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_property_id
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
 msgid "Property"
 msgstr ""
 
@@ -194,12 +508,80 @@ msgid "Property Values"
 msgstr ""
 
 #. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_rpg
+msgid "RPG"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_value_owner_id
+msgid "Record that owns this custom value."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_required
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_required
+msgid "Required"
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_res_id
 msgid "Resource ID"
 msgstr ""
 
 #. module: base_custom_info
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_form
+msgid ""
+"Select one of the existing options or create a new one clicking on 'Add an "
+"item'"
+msgstr ""
+
+#. module: base_custom_info
+#: selection:custom.info.property,field_type:0
+msgid "Selection"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value_id
+msgid "Selection value"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_sequence
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_category_sequence
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_sequence
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_category_sequence
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_property_sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_shooter
+msgid "Shooter"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.template,name:base_custom_info.tpl_smart
+msgid "Smart partners"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.category,name:base_custom_info.cat_statics
+msgid "Statistics"
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.option,name:base_custom_info.opt_strategy
+msgid "Strategy"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_value_field_name
+msgid "Technical name of the field where the value is stored."
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_template_id
+#: model:ir.ui.view,arch_db:base_custom_info.custom_info_property_search
 msgid "Template"
 msgstr ""
 
@@ -210,19 +592,128 @@ msgid "Templates"
 msgstr ""
 
 #. module: base_custom_info
+#: selection:custom.info.property,field_type:0
+msgid "Text"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value_str
+msgid "Text value"
+msgstr ""
+
+#. module: base_custom_info
+#: model:res.groups,comment:base_custom_info.group_advanced
+msgid "The user will be able to manage advanced custom information."
+msgstr ""
+
+#. module: base_custom_info
+#: model:res.groups,comment:base_custom_info.group_basic
+msgid "The user will be able to manage basic custom information."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_property_field_type
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_value_field_type
+msgid "Type of information that can be stored in the property."
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value
 msgid "Value"
 msgstr ""
 
 #. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_value.py:157
+#, python-format
+msgid ""
+"Value for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_value.py:161
+#, python-format
+msgid ""
+"Value for %(prop)s is %(val)s, but it should be between %(min)f and %(max)f."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_value_value
+msgid "Value, always converted to/from the typed field."
+msgstr ""
+
+#. module: base_custom_info
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_option_value_ids
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
 msgid "Values"
 msgstr ""
 
 #. module: base_custom_info
-#: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_option_value_ids
+msgid "Values that have set this option."
+msgstr ""
+
+#. module: base_custom_info
+#: model:custom.info.property,name:base_custom_info.prop_weaknesses
+msgid "What weaknesses does he/she have?"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_property_option_ids
+msgid "When the field type is 'selection', choose the available options here."
+msgstr ""
+
+#. module: base_custom_info
+#: selection:custom.info.property,field_type:0
+msgid "Whole number"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value_int
+msgid "Whole number value"
+msgstr ""
+
+#. module: base_custom_info
+#: model:res.groups,comment:base_custom_info.group_partner
+msgid "Will be able to edit custom information from partner's form."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,help:base_custom_info.field_custom_info_property_default_value
 msgid ""
-"You must define a custom info template for each\n"
-"        product properties group."
+"Will be applied by default to all custom values of this property. This is a "
+"char field, so you have to enter some value that can be converted to the "
+"field type you choose."
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_value.py:123
+#, python-format
+msgid "Yes"
+msgstr ""
+
+#. module: base_custom_info
+#: selection:custom.info.property,field_type:0
+msgid "Yes/No"
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_value_bool
+msgid "Yes/No value"
+msgstr ""
+
+#. module: base_custom_info
+#: code:addons/base_custom_info/models/custom_info_template.py:66
+#, python-format
+msgid "You cannot change the model because it is in use."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
+msgid "You must define a custom info template for each properties group."
+msgstr ""
+
+#. module: base_custom_info
+#: model:ir.model,name:base_custom_info.model_base_config_settings
+msgid "base.config.settings"
 msgstr ""
