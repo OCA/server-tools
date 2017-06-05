@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+    <record id="sql_export_view_form" model="ir.ui.view">
+        <field name="name">Sql_export_form_view</field>
+        <field name="model">sql.export</field>
+        <field name="arch" type="xml">
+            <form string="SQL export">
+                <sheet>
+                    <header>
+                        <button name="button_validate_sql_expression" type="object" states="draft"
+                                string="Validate SQL Expression" class="oe_highlight"/>
+                        <button name="button_set_draft" type="object" states="sql_valid"
+                                string="Set to Draft" groups="sql_request_abstract.group_sql_request_manager"/>
+                        <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object" class="oe_highlight"
+                            icon="gtk-execute"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                <group>
+                    <h1>
+                        <field name="name" nolabel="1" placeholder="Request Name"/>
+                    </h1>
+                </group>
+                <group name="option" groups="sql_request_abstract.group_sql_request_user">
+                    <field name="copy_options"/>
+                    <field name="encoding"/>
+                </group>
+                <group name="request" string="SQL Request" groups="sql_request_abstract.group_sql_request_user">
+                    <field name="query" nolabel="1" placeholder="select * from res_partner"/>
+                </group>
+                <group string="Parameters" groups="sql_request_abstract.group_sql_request_user">
+                    <field name="field_ids" nolabel="1"/>
+                </group>
+                <group groups="sql_request_abstract.group_sql_request_manager">
+                    <group string="Allowed Users">
+                        <field name="user_ids" nolabel="1"/>
+                    </group>
+                    <group string="Allowed Groups">
+                        <field name="group_ids" nolabel="1"/>
+                    </group>
+
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sql_export_view_tree" model="ir.ui.view">
+        <field name="name">Sql_export_tree_view</field>
+        <field name="model">sql.export</field>
+        <field name="arch" type="xml">
+            <tree string="SQL Export" colors="blue:state == 'draft'">
+                <field name="name"/>
+                <field name="state"/>
+                <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object"
+                    icon="gtk-execute"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sql_export_tree_action" model="ir.actions.act_window">
+        <field name="name">SQL Export</field>
+        <field name="res_model">sql.export</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="sql_export_menu" name="Sql Export"
+        parent="base.menu_reporting_dashboard" sequence="80"/>
+
+    <menuitem id="sql_export_menu_view" name="Sql Export" parent="sql_export_menu" action="sql_export_tree_action" sequence="1"/>
+
+    <record id="sql_parameter_view_form" model="ir.ui.view">
+        <field name="name">Sql_parameter_form_view</field>
+        <field name="model">ir.model.fields</field>
+        <field name="arch" type="xml">
+            <form string="SQL export">
+            </form>
+        </field>
+    </record>
+
+    <record id="sql_parameter_view_tree" model="ir.ui.view">
+        <field name="name">Sql_parameter_tree_view</field>
+        <field name="model">ir.model.fields</field>
+        <field name="arch" type="xml">
+            <tree string="SQL Parameter">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sql_parameter_tree_action" model="ir.actions.act_window">
+        <field name="name">SQL Parameter</field>
+        <field name="res_model">ir.model.fields</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context" eval="{'default_model_id': ref('sql_export.model_sql_file_wizard'), 'default_size': 64, 'search_default_state': 'manual'}"/>
+        <field name="domain">[('model','=','sql.file.wizard')]</field>
+    </record>
+
+    <menuitem id="sql_parameter_menu_view" name="Sql Export Variables" parent="sql_export_menu" action="sql_parameter_tree_action" sequence="5" groups="sql_request_abstract.group_sql_request_manager"/>
+
+
+</data>
+</openerp>
