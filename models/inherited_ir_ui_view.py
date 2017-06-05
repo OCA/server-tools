@@ -45,7 +45,8 @@ class IrUiView(models.Model):
             cv = self.search([('copy_id', '=', res.inherit_id.id)])
             if cv:
                 arch = res.read_combined(['arch'])['arch']
-                cv.write({'arch': arch})
+                for view in cv:
+                    view.write({'arch': arch})
 
         return res
 
@@ -83,7 +84,8 @@ class IrUiView(models.Model):
             for view_id, cv in copied_views:
                 view = self.browse(view_id)
                 arch = view.read_combined(['arch'])['arch']
-                cv.write({'arch': arch})
+                for view in cv:
+                    view.write({'arch': arch})
 
         return res
 
@@ -118,7 +120,8 @@ class IrUiView(models.Model):
                     view = self.browse(view_id)
 
                 arch = view.read_combined(['arch'])['arch']
-                cv.write({'arch': arch})
+                for view in cv:
+                    view.write({'arch': arch})
 
         return res
 
