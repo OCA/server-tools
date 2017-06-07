@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- FORM: report.paperformat -->
+    <record id="paperformat_view_form_custom" model="ir.ui.view">
+        <field name="name">paperformat with custom parameters</field>
+        <field name="model">report.paperformat</field>
+        <field name="inherit_id" ref="report.paperformat_view_form"/>
+        <field name="arch" type="xml">
+            <field name="report_ids" position="after">
+                <field name="custom_params">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="value"/>
+                    </tree>
+                </field>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
