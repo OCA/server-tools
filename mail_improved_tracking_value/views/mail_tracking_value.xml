@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="tracking_change_list" model="ir.ui.view">
+        <field name="name">Tracking change list"</field>
+        <field name="model">mail.tracking.value</field>
+        <field name="arch" type="xml">
+            <tree string="Tracking change list" default_order="create_date desc"
+                create="false" edit="false" delete="false">
+              <field name="create_date" string="On"/>
+              <field name="record_name" string="For"/>
+              <field name="field_desc" string="Field changed"/>
+              <field name="old_value_formated"/>
+              <field name="new_value_formated"/>
+              <field name="model"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tracking_change_form_view" model="ir.ui.view">
+        <field name="name">Tracking change form</field>
+        <field name="model">mail.tracking.value</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <field name="create_date" class="oe-inline"/>
+                <group>
+                <group string="">
+                    <field name="record_name" string="For"/>
+                    <field name="field_desc" string="Field changed"/>
+                    <field name="old_value_formated"/>
+                    <field name="new_value_formated"/>
+                    <field name="model"/>
+                </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="tracking_change_list_filter" model="ir.ui.view">
+        <field name="name">Tracking change list filter</field>
+        <field name="model">mail.tracking.value</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <group>
+                    <field name="model"/>
+                </group>
+                <group expand="0" string="Group by">
+                    <filter group_by="group_by_model" string="Model" context="{'group_by':'model'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_view_tracking_changes" model="ir.actions.act_window">
+        <field name="name">View last tracked changes</field>
+        <field name="res_model">mail.tracking.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('tracking_change_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('tracking_change_form_view')})]"
+        />
+    </record>
+
+    <menuitem action="action_view_tracking_changes"
+        id ="menu_action_view_tracking_changes"
+        name="View tracking changes"
+        parent="sales_team.menu_sale_report"
+        sequence="100"
+    />
+
+</odoo>
