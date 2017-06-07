@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import _, api, models, fields
-from openerp.exceptions import UserError
-from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
+from odoo import _, api, models, fields
+from odoo.exceptions import UserError
+from odoo.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
 
 class IrModel(models.Model):
     _inherit = 'ir.model'
 
-    @api.multi
     def _drop_table(self):
         # Allow to skip this step during model unlink
         # The super method crashes if the model cannot be instantiated
@@ -17,25 +16,17 @@ class IrModel(models.Model):
             return True
         return super(IrModel, self)._drop_table()
 
-    @api.multi
-    def _inherited_models(self, field_name, arg):
+    @api.depends()
+    def _inherited_models(self):
         """this function crashes for undefined models"""
         result = dict((i, []) for i in self.ids)
         existing_model_ids = [
             this.id for this in self if this.model in self.env
         ]
         super_result = super(IrModel, self.browse(existing_model_ids))\
-            ._inherited_models(field_name, arg)
+            ._inherited_models()
         result.update(super_result)
         return result
-
-    def _register_hook(self, cr):
-        # patch the function field instead of overwriting it
-        if self._columns['inherited_model_ids']._fnct !=\
-                self._inherited_models.__func__:
-            self._columns['inherited_model_ids']._fnct =\
-                self._inherited_models.__func__
-        return super(IrModel, self)._register_hook(cr)
 
 
 class CleanupPurgeLineModel(models.TransientModel):

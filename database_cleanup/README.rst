@@ -6,13 +6,13 @@
 Database cleanup
 ================
 
-Clean your OpenERP database from remnants of modules, models, columns and
+Clean your Odoo database from remnants of modules, models, columns and
 tables left by uninstalled modules (prior to 7.0) or a homebrew database
-upgrade to a new major version of OpenERP.
+upgrade to a new major version of Odoo.
 
 Caution! This module is potentially harmful and can *easily* destroy the
 integrity of your data. Do not use if you are not entirely comfortable
-with the technical details of the OpenERP data model of *all* the modules
+with the technical details of the Odoo data model of *all* the modules
 that have ever been installed on your database, and do not purge any module,
 model, column or table if you do not know exactly what you are doing.
 
@@ -50,6 +50,7 @@ Contributors
 
 * Stefan Rijnhart <stefan@opener.amsterdam>
 * Holger Brunn <hbrunn@therp.nl>
+* Miku Laitinen <miku@avoin.systems>
 
 Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
 

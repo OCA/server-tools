@@ -2,9 +2,9 @@
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from psycopg2 import ProgrammingError
-from openerp.modules.registry import RegistryManager
-from openerp.tools import config
-from openerp.tests.common import TransactionCase
+from odoo.modules.registry import RegistryManager
+from odoo.tools import config
+from odoo.tests.common import TransactionCase
 
 
 class TestDatabaseCleanup(TransactionCase):
