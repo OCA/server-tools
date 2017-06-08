@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_general_configuration" model="ir.ui.view">
+            <field name="name">base.config.settings.password.settings</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@string='Email']/.." position="before">
+                    <group>
+                        <label for="id" string="Password Strength"/>
+                        <div>
+                            <p>
+                                <label string="This section allows you to determine password complexity (the effectiveness of a password in resisting guessing and brute-force attacks). To do that," /><br/>
+                                <label string="* use the Minimum password length to determine how long the password should be to be considered strong."/><br/>
+                                <label string="* check the appropriate boxes below the bar to determine the character set that must be used in the password: capital letters, digits, special characters,"/>
+                            </p>
+                            <div>
+                                <field name="auth_password_min_character" class="oe_inline"/>
+                                <label for="auth_password_min_character"/>
+                            </div>
+                            <div>
+                                <field name="auth_password_has_capital_letter" class="oe_inline"/>
+                                <label for="auth_password_has_capital_letter"/>
+                            </div>
+                            <div>
+                                <field name="auth_password_has_digit" class="oe_inline"/>
+                                <label for="auth_password_has_digit"/>
+                            </div>
+                            <div>
+                                <field name="auth_password_has_special_letter" class="oe_inline"/>
+                                <label for="auth_password_has_special_letter"/>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
