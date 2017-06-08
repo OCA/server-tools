@@ -19,32 +19,29 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
+from openerp import SUPERUSER_ID
 
 import logging
-_log = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 
-class CompanyLDAP(orm.Model):
+class CompanyLDAP(models.Model):
     _inherit = 'res.company.ldap'
-    _columns = {
-        'name_attribute': fields.char(
-            'Name Attribute', size=64,
-            help="By default 'cn' is used. "
-                 "For ActiveDirectory you might use 'displayName' instead."),
-        'mail_attribute': fields.char(
-            'E-mail attribute', size=64,
-            help="LDAP attribute to use to retrieve em-mail address."),
-    }
 
-    _defaults = {
-        'name_attribute': 'cn',
-        'mail_attribute': 'mail',
-    }
+    name_attribute = fields.Char(
+        'Name Attribute',
+        help=("By default 'cn' is used. or ActiveDirectory you might use "
+              "'displayName' instead."),
+        default='cn')
+    mail_attribute = fields.Char(
+        'Email Attribute',
+        help="LDAP attribute to use to retrieve email address.",
+        default='mail')
 
     def get_ldap_dicts(self, cr, ids=None):
         """
-        Copy of auth_ldap's funtion, changing only the SQL, so that it returns
+        Copy of auth_ldap's function, changing only the SQL, so that it returns
         all fields in the table.
         """
         if ids:
@@ -60,18 +57,26 @@ class CompanyLDAP(orm.Model):
         """, args)
         return cr.dictfetchall()
 
-    def map_ldap_attributes(self, cr, uid, conf, login, ldap_entry):
-        values = super(CompanyLDAP, self).map_ldap_attributes(
-            cr, uid, conf, login, ldap_entry)
+    def get_or_create_user(self, cr, uid, conf, login, ldap_entry,
+                           context=None):
+        user_id = super(CompanyLDAP, self).get_or_create_user(
+            cr, uid, conf, login, ldap_entry, context)
+
         mapping = [
             ('name', 'name_attribute'),
             ('email', 'mail_attribute'),
         ]
+        values = {}
         for value_key, conf_name in mapping:
             try:
                 if conf[conf_name]:
                     values[value_key] = ldap_entry[1][conf[conf_name]][0]
             except KeyError:
-                _log.warning('No LDAP attribute "%s" found for login  "%s"' % (
-                    conf.get(conf_name), values.get('login')))
-        return values
+                _logger.warning(
+                    'No LDAP attribute "%s" found for login  "%s"'
+                    % (conf.get(conf_name), values.get('login')))
+
+        new_user = self.pool['res.users'].browse(cr, SUPERUSER_ID, user_id)
+        new_user.write(values)
+
+        return user_id
