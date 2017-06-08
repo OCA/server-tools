@@ -1,0 +1,112 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_recursive_model
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: odoo-vertical-community\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-28 12:18+0000\n"
+"PO-Revision-Date: 2014-11-19 17:37+0100\n"
+"Last-Translator: Lucas Huber <lh@jeema.solutions>\n"
+"Language-Team: German Maintainers <lh@jeema.solutions>\n"
+"MIME-Version: 1.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,action:0
+msgid "Action"
+msgstr "Massnahme"
+
+#. module: base_recursive_model
+#: selection:base.config.inherit.line,action:0
+msgid "Add"
+msgstr "Hinzufügen"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.model,base_config_inherit_line_del_ids:0
+msgid "Configuration line deleted"
+msgstr "Konfigurationszeile gelöscht"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line.del,create_uid:0
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line.del,create_date:0
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: base_recursive_model
+#: constraint:base.recursive.model:0
+msgid "Error! You can not create recursive categories."
+msgstr "Fehler? Du kannst keine rekursiven Kategorien erzeugen"
+
+#. module: base_recursive_model
+#: field:base.recursive.model,complete_name:0
+msgid "Full Name"
+msgstr "Vollständiger Name"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,id:0 field:base.config.inherit.line.del,id:0
+#: field:base.config.inherit.model,id:0 field:base.recursive.model,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line.del,key:0
+msgid "Key"
+msgstr "Schlüssel"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line.del,write_uid:0
+msgid "Last Updated by"
+msgstr "Letzter Update von"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line.del,write_date:0
+msgid "Last Updated on"
+msgstr "Letzter Update am"
+
+#. module: base_recursive_model
+#: field:base.recursive.model,parent_left:0
+msgid "Left parent"
+msgstr "Linke Gegenwärtige"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,res_id:0
+#: field:base.config.inherit.line.del,res_id:0
+msgid "Related Document ID"
+msgstr "Bezogen auf Dokument ID"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,model:0
+#: field:base.config.inherit.line.del,model:0
+msgid "Related Document Model"
+msgstr "Bezogen auf Dokument Modell"
+
+#. module: base_recursive_model
+#: selection:base.config.inherit.line,action:0
+msgid "Remove"
+msgstr "Entfernen"
+
+#. module: base_recursive_model
+#: field:base.recursive.model,parent_right:0
+msgid "Right parent"
+msgstr "Rechts Gegenwärtige"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,sequence:0
+msgid "Sequence"
+msgstr "Folge"
+
+#. module: base_recursive_model
+#: field:base.config.inherit.line,stored:0
+msgid "Stored?"
+msgstr "Gespeichert?"
