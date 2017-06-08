@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="website.robots">
+User-agent: *
+Disallow: /
+Sitemap:<t t-esc="url_root"/>sitemap.xml
+        </template>
+    </data>
+</openerp>
