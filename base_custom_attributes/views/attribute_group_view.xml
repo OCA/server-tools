@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="attribute_group_form_view" model="ir.ui.view">
+            <field name="name">attribute.group.form</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Group">
+                    <group>
+                        <field name="name" />
+                        <field name="sequence" />
+                        <field name="model_id" invisible="context.get('from_attribute_set') or context.get('force_model')"/>
+                        <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
+                        <field name="attribute_ids" colspan="4" nolabel="1">
+                            <form string="Attribute Location">
+                                <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
+                                <field name="sequence" />
+                            </form>
+                            <tree string="Attribute Location" editable="top">
+                                <field name="attribute_id" context="{'default_model_id': parent.model_id}"/>
+                                <field name="sequence" />
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_group_tree_view" model="ir.ui.view">
+            <field name="name">attribute.group.tree</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Group">
+                    <field name="name" />
+                    <field name="sequence" />
+                    <field name="attribute_set_id" invisible="context.get('from_attribute_set')"/>
+                    <field name="model_id" invisible="context.get('from_attribute_set')"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_group_search" model="ir.ui.view">
+            <field name="name">attribute.group.list</field>
+            <field name="model">attribute.group</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Groups">
+                    <field name="name"/>
+                    <field name="attribute_set_id"/>
+                    <field name="model_id" />
+               </search>
+            </field>
+        </record>
+
+
+        <record id="attribute_group_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Groups</field>
+            <field name="res_model">attribute.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_group_form_action" id="menu_attribute_group_action"
+             parent="menu_attribute_in_admin" sequence="20"/>
+
+    </data>
+</openerp>
