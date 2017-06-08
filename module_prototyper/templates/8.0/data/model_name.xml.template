@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 <openerp>
   <data>
+    {% for record in records %}
 
-      {{ data }}
+        <record id="{{ record[0] }}" model="{{ model }}">
+        {% for key, val, ref, field_type in record[1] %}
+          <field name="{{ key }}"{% if ref %} ref="{{ ref }}"{% endif %}{% if field_type %} type="{{ field_type }}"{% endif %}{% if val %}>{{ val }}</field>{% else %}/>{% endif %}
 
+        {% endfor %}
+        </record>
+
+        {% if not loop.last %}
+
+        {% endif %}
+    {% endfor %}
   </data>
 </openerp>

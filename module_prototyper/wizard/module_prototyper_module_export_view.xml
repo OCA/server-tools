@@ -12,6 +12,7 @@
           <group string="Export Settings" states="choose" col="6">
             <group colspan="2">
               <field name="api_version"/>
+              <field name="keep_external_ids"/>
             </group>
             <group colspan="4">
             </group>
@@ -20,8 +21,40 @@
             <h2>Export Complete</h2>
             <p>Here is the exported module: <field name="data" readonly="1" filename="name"/></p>
           </div>
+          <div states="dep">
+            <h2>Circular dependency manual cleaning</h2>
+            <p>We cannot programmatically solve this task, so we need your manual interaction. What you see is a list of circular dependency fields candidates in the upper list and the list of excluded fields in the lower list. A circular dependency cannot be exported, so we need to break it up. A circular dependency is called when Field X of Model A refers to Model B and Field Y of Model B refers to model A, so A refers to B and B, in turn, also refers to A. This way we cannot sort ("toposort") records and files in the correct way and export will fail.</p>
+            <h4>Field Candidates:</h4>
+            <p>Please identify in this list all circular dependencies, if any. Once identified, please delete one member of the circular dependency "ring" of your choice. It doesn't really matter which one. The deleted fields will appear in the excluded list below.</p>
+            <field name="fields_selected" nolabel="1" widget="many2many" options="{'no_create': True}">
+              <tree>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="field_description"/>
+                <field name="model_id"/>
+                <field name="ttype"/>
+              </tree>
+            </field>
+            <h5>Example: account.account &lt;-&gt; account.tax models: account.account have tax_ids field (related with account.tax) and account.tax have account_paid_id and account_collected_id fields (related with account.account). In this case it is necessary to exclude tax_ids or account_paid_id and account_collected_id. This will prevent circular dependency in xml export.</h5>
+            <field name="fields_selected_initial" invisible="1"/>
+            <br/>
+            <h4>List of excluded fields (during export):</h4>
+            <field name="fields_not_selected" options="{'no_create': True}">
+              <tree>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="field_description"/>
+                <field name="model_id"/>
+                <field name="ttype"/>
+              </tree>
+            </field>
+          </div>
           <footer states="choose">
             <button name="action_export" string="Export" type="object" class="oe_highlight"/> or
+            <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+          </footer>
+          <footer states="dep">
+            <button name="action_export" context="{'fields_not_selected':fields_not_selected}" string="Export" type="object" class="oe_highlight"/> or
             <button special="cancel" string="Cancel" type="object" class="oe_link"/>
           </footer>
           <footer states="get">
