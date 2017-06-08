@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="inherit_fetchmail_timeout">
+            <!-- must be unique in this module. -->
+            <field name="name">inherit_fetchmail_for timeout</field>
+            <field name="model">fetchmail.server</field>
+            <!--parent python entity -->
+            <field name="inherit_id" ref="mail_environment.inherit_fetchmail"/>
+            <!-- modulename.view -->
+            <field name="arch" type="xml">
+                <field name="is_ssl" position="after">
+                    <field name="timeout"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
