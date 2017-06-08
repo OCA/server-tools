@@ -3,13 +3,14 @@
 # * auto_backup
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2016-04-05 07:21+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
+"PO-Revision-Date: 2017-03-13 12:49+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,78 +21,78 @@ msgstr ""
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "/home/odoo/.ssh/id_rsa"
-msgstr ""
+msgstr "/home/odoo/.ssh/id_rsa"
 
 #. module: auto_backup
 #: help:db.backup,folder:0
 msgid "Absolute path for storing the backups"
-msgstr ""
+msgstr "yedekleri saklamak için tam dosya yolu"
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr ""
+msgstr "Otomatik Yedekler"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
+msgstr "Veritabanının otomatik yedekleri şöyle programlanabilir:"
+
+#. module: auto_backup
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
 msgstr ""
 
 #. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.failure
-msgid "Backup failed"
-msgstr ""
-
-#. module: auto_backup
-#: model:mail.message.subtype,name:auto_backup.success
-msgid "Backup successful"
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
 msgstr ""
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr ""
+msgstr "Yedekler"
 
 #. module: auto_backup
 #: help:db.backup,days_to_keep:0
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
-msgstr ""
+msgstr "Bu değerden daha eski yedekler otomatik silinir. Otomatik silmeyi iptal etmek için 0 girin."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Basic backup configuration"
-msgstr ""
+msgstr "Temel yedek yapılandırması"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "Cannot duplicate a configuration."
-msgstr ""
+msgstr "Yapılandırma kopyalanamadı"
 
 #. module: auto_backup
 #: help:db.backup,method:0
 msgid "Choose the storage method for this backup."
-msgstr ""
+msgstr "Yedek için saklama yöntemi seçin."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:250
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr ""
+msgstr "Eski veritabanı yedeklerinin temizlenmesi başarısız oldu."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:132
+#: code:addons/auto_backup/models/db_backup.py:131
 #, python-format
 msgid "Connection Test Failed!"
-msgstr ""
+msgstr "Bağlantı denemesi başarsız!"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:129
+#: code:addons/auto_backup/models/db_backup.py:128
 #, python-format
 msgid "Connection Test Succeeded!"
-msgstr ""
+msgstr "Bağlantı denemesi başarılı!"
 
 #. module: auto_backup
 #: field:db.backup,create_uid:0
@@ -104,18 +105,18 @@ msgid "Created on"
 msgstr "Oluşturuldu"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:208
-#: model:mail.message.subtype,description:auto_backup.failure
+#: code:addons/auto_backup/models/db_backup.py:206
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
-msgstr ""
+msgstr "Veritabanı yedeklemesi başarısız oldu."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:213
-#: model:mail.message.subtype,description:auto_backup.success
+#: code:addons/auto_backup/models/db_backup.py:214
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr ""
+msgstr "Veritabanı yedekleme başarılı."
 
 #. module: auto_backup
 #: help:db.backup,message_last_post:0
@@ -125,14 +126,19 @@ msgstr "Kayıda eklenen son mesajın tarihi."
 #. module: auto_backup
 #: field:db.backup,days_to_keep:0
 msgid "Days to keep"
-msgstr ""
+msgstr "Kaç gün tutulacak"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:120
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:119
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
-msgstr ""
+msgstr "Yedeklerinizi filestore alanında tutmayın yoksa yedekleri de yedeklersiniz!"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -142,7 +148,7 @@ msgstr "Eposta konuşması"
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
 msgid "Execute backup(s)"
-msgstr ""
+msgstr "Yedeklemeleri Çalıştır"
 
 #. module: auto_backup
 #: field:db.backup,folder:0
@@ -157,24 +163,24 @@ msgstr "Takipçiler"
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr ""
+msgstr "Ayarlar / Teknik / Otomasyon / Zamanlanmış Eylemler'e gidin."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr ""
+msgstr "Yardım"
 
 #. module: auto_backup
 #: help:db.backup,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Sohbet özetini tutar (kaç mesa vs) Bu özet kanban görünümleri gibi yerlerde kullanılmak için doğrudan HTML formatındadır. "
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "I cannot remove backups from the future. Ask Doc for that."
-msgstr ""
+msgstr "Gelecekten yedekleri kaldıramam. Bunu doktora sorun."
 
 #. module: auto_backup
 #: field:db.backup,id:0
@@ -197,6 +203,11 @@ msgid "Last Message Date"
 msgstr "Son mesaj tarihi"
 
 #. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
+
+#. module: auto_backup
 #: field:db.backup,write_uid:0
 msgid "Last Updated by"
 msgstr "Son güncelleyen"
@@ -209,7 +220,7 @@ msgstr "Son güncellenme"
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Local disk"
-msgstr ""
+msgstr "Yerel disk"
 
 #. module: auto_backup
 #: field:db.backup,message_ids:0
@@ -219,7 +230,7 @@ msgstr "Mesajlar"
 #. module: auto_backup
 #: help:db.backup,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Mesaj ve iletişim geçmişi"
 
 #. module: auto_backup
 #: field:db.backup,method:0
@@ -236,54 +247,54 @@ msgstr "Adı"
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
-msgstr ""
+msgstr "Özel anahtar dosyasının yolu. Sadece Odoo kullanıcısının okuma hakkı olmalı."
 
 #. module: auto_backup
 #: field:db.backup,sftp_private_key:0
 msgid "Private key location"
-msgstr ""
+msgstr "Gizli Anahtar dosya konumu"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Remote SFTP server"
-msgstr ""
+msgstr "Uzak SFTP Sunucu"
 
 #. module: auto_backup
 #: field:db.backup,sftp_password:0
 msgid "SFTP Password"
-msgstr ""
+msgstr "STFP Parolası"
 
 #. module: auto_backup
 #: field:db.backup,sftp_port:0
 msgid "SFTP Port"
-msgstr ""
+msgstr "SFTP Portu"
 
 #. module: auto_backup
 #: field:db.backup,sftp_host:0
 msgid "SFTP Server"
-msgstr ""
+msgstr "SFTP Sunucu"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "SFTP Settings"
-msgstr ""
+msgstr "SFTP Ayarları"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_search
 msgid "Search options"
-msgstr ""
+msgstr "Arama Seçenekleri"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
-msgstr ""
+msgstr "'Yedekleme Zamanlayıcısı' eylemini ara."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups "
 "generated."
-msgstr ""
+msgstr "Yedeklerin ne sıklıkta alınmasını istiyorsanız, zamanlayıcıyı ayarlayıp çalıştırın. "
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
@@ -293,37 +304,37 @@ msgstr "Özet"
 #. module: auto_backup
 #: help:db.backup,name:0
 msgid "Summary of this backup process"
-msgstr ""
+msgstr "Yedekleme işleminin özeti"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
-msgstr ""
+msgstr "SFTP Bağlantısını Dene"
 
 #. module: auto_backup
 #: help:db.backup,sftp_host:0
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
-msgstr ""
+msgstr "Uzak sunucunun IP adresi ya da alan adı. Mesela 192.168.0.11"
 
 #. module: auto_backup
 #: help:db.backup,sftp_password:0
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
-msgstr ""
+msgstr "SFTP bağlantısı için parola. Eğer bir gizli anahtar ayarlamışsanız. O zaman bu anahtarın şifresinin parolasıdır."
 
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
-msgstr ""
+msgstr "SSH/SFTP sunucunun kullanacağı port. (öntanımlı 22)"
 
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
 "The username where the SFTP connection should be made with. This is the user"
 " on the external server."
-msgstr ""
+msgstr "SFTP bağlantısında kullanılacak kullanıcı adı. Bu karşı sunucudaki kullanıcı adıdır."
 
 #. module: auto_backup
 #: field:db.backup,message_unread:0
@@ -335,24 +346,24 @@ msgstr "Okunmamış mesajlar"
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr ""
+msgstr "SFTP kullanırken dikkatli olun. Bu dosyaları dış sunucu üstündeki verilen yola kaydedilir."
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0
 msgid "Username in the SFTP Server"
-msgstr ""
+msgstr "SFTP sunucudaki kullanıcı"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr ""
+msgstr "Uyarı:"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "john"
-msgstr ""
+msgstr "Cemal"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
-msgstr ""
+msgstr "sftp.example.com"

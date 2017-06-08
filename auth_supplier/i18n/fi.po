@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 18:30+0000\n"
-"PO-Revision-Date: 2016-06-06 13:35+0000\n"
+"POT-Creation-Date: 2017-02-11 06:39+0000\n"
+"PO-Revision-Date: 2017-02-14 11:14+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Supplier"
-msgstr ""
+msgstr "Toimittaja"
 
 #. module: auth_supplier
 #: model:ir.model,name:auth_supplier.model_res_users

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-05-04 19:16+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -40,19 +40,19 @@ msgstr ""
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "أنشئ بواسطة"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_date:0
 #: field:tech.guide.rst,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "أنشئ في"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,display_name:0
 #: field:tech.guide.rst,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "اسم العرض"
 
 #. module: base_module_doc_rst
 #: field:tech.guide.rst,rst_file:0
@@ -68,23 +68,23 @@ msgstr ""
 #. module: base_module_doc_rst
 #: field:create.relation.graph,id:0 field:tech.guide.rst,id:0
 msgid "ID"
-msgstr ""
+msgstr "المعرف"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,__last_update:0
 #: field:tech.guide.rst,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "آخر تعديل في"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "آخر تحديث بواسطة"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_date:0 field:tech.guide.rst,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "آخر تحديث في"
 
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module

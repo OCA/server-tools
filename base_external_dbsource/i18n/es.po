@@ -3,7 +3,7 @@
 # * base_external_dbsource
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 23:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -95,18 +95,18 @@ msgstr "Parece que todo está correctamente configurado."
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Fuente BD externa"
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr ""
+msgstr "Fuentes de DB externas"
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
 #: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr ""
+msgstr "Fuentes de bases de datos externas"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:166
@@ -128,7 +128,7 @@ msgid ""
 "list, check the server log to confirm                                      "
 "that the required components were                                      "
 "detected."
-msgstr ""
+msgstr "Si un conector no aparece en la lista, compruebe el registro del servidor para confirmar que los componentes requeridos fueron detectados."
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,__last_update:0
@@ -158,4 +158,4 @@ msgstr "PostgreSQL"
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Comprobar conexión"

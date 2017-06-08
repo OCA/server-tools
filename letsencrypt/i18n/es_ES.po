@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-02-04 06:36+0000\n"
 "PO-Revision-Date: 2016-05-17 14:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: letsencrypt
 #: field:letsencrypt,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre para mostrar"
 
 #. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:44
@@ -41,7 +41,7 @@ msgstr "ID"
 #. module: letsencrypt
 #: field:letsencrypt,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: letsencrypt
 #: code:addons/letsencrypt/models/letsencrypt.py:93

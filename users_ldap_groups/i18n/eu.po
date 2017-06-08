@@ -1,0 +1,135 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * users_ldap_groups
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-21 21:57+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,create_uid:0
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: users_ldap_groups
+#: help:res.company.ldap,group_mappings:0
+msgid "Define how OpenERP groups are assigned to ldap users"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,display_name:0
+#: field:res.company.ldap.operator,display_name:0
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap,group_mappings:0
+msgid "Group mappings"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,id:0
+#: field:res.company.ldap.operator,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: users_ldap_groups
+#: help:res.company.ldap,only_ldap_groups:0
+msgid ""
+"If this is checked, manual changes to group membership are undone on every "
+"login (so OpenERP groups are always synchronous with LDAP groups). If not, "
+"manually added groups are preserved."
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,ldap_attribute:0
+msgid "LDAP attribute"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,ldap_id:0
+msgid "LDAP server"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,__last_update:0
+#: field:res.company.ldap.operator,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: users_ldap_groups
+#: view:res.company:users_ldap_groups.company_form_view
+msgid "Map User Groups"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap,only_ldap_groups:0
+msgid "Only ldap groups"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,group:0
+msgid "OpenERP group"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,operator:0
+msgid "Operator"
+msgstr ""
+
+#. module: users_ldap_groups
+#: help:res.company.ldap.group_mapping,ldap_attribute:0
+msgid ""
+"The LDAP attribute to check.\n"
+"For active directory, use memberOf."
+msgstr ""
+
+#. module: users_ldap_groups
+#: help:res.company.ldap.group_mapping,group:0
+msgid "The OpenERP group to assign"
+msgstr ""
+
+#. module: users_ldap_groups
+#: help:res.company.ldap.group_mapping,operator:0
+msgid ""
+"The operator to check the attribute against the value\n"
+"For active directory, use 'contains'"
+msgstr ""
+
+#. module: users_ldap_groups
+#: help:res.company.ldap.group_mapping,value:0
+msgid ""
+"The value to check the attribute against.\n"
+"For active directory, use the dn of the desired group"
+msgstr ""
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,value:0
+msgid "Value"
+msgstr "Balioa"

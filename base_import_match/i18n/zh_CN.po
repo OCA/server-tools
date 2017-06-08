@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
@@ -78,7 +78,7 @@ msgstr ""
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
 msgid "Group By"
-msgstr ""
+msgstr "分组"
 
 #. module: base_import_match
 #: field:base_import.match,id:0 field:base_import.match.field,id:0
@@ -117,7 +117,7 @@ msgstr ""
 #: field:base_import.match,__last_update:0
 #: field:base_import.match.field,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: base_import_match
 #: field:base_import.match,write_uid:0
@@ -146,9 +146,9 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match,name:0 field:base_import.match.field,name:0
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: base_import_match
 #: field:base_import.match,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "序号"

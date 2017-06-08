@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.banned.remote,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
@@ -77,13 +77,13 @@ msgstr "Creat el"
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,display_name:0
 #: field:res.banned.remote,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33
@@ -91,7 +91,7 @@ msgstr ""
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Failed"
-msgstr ""
+msgstr "Fracassat"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
@@ -102,7 +102,7 @@ msgstr "ID"
 #: field:res.authentication.attempt,__last_update:0
 #: field:res.banned.remote,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_uid:0

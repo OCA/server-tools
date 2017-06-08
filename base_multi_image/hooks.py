@@ -58,7 +58,13 @@ def migrate_from_product_images(cr):
     cr.execute(
         'alter table product_images rename to base_multi_image_image')
     cr.execute(
+        'alter sequence product_images_id_seq '
+        'rename to base_multi_image_image_id_seq')
+    cr.execute(
         'alter table base_multi_image_image rename product_id to owner_id')
+    cr.execute(
+        'alter table base_multi_image_image '
+        'drop constraint product_images_product_id_fkey')
     cr.execute(
         'alter table base_multi_image_image '
         "add column owner_model varchar not null default 'product.template',"

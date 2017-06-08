@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-04 01:04+0000\n"
-"PO-Revision-Date: 2016-09-02 09:59+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-25 10:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -83,12 +83,12 @@ msgstr "Criado em"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
@@ -100,7 +100,7 @@ msgstr "Nome"
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
@@ -382,7 +382,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -397,7 +397,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Utilizador"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search

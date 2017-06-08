@@ -5,12 +5,21 @@
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 02:05+0000\n"
-"PO-Revision-Date: 2016-02-10 16:46+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-20 18:14+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -22,13 +31,13 @@ msgstr ""
 #. module: base_optional_quick_create
 #: field:ir.model,avoid_quick_create:0
 msgid "Avoid quick create"
-msgstr ""
+msgstr "Evitar creado rápido"
 
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/model.py:39
 #, python-format
 msgid "Can't create quickly. Opening create form"
-msgstr ""
+msgstr "No se puede realizar creado rápido. Abriendo formulario de creación"
 
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/model.py:38

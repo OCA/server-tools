@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/el_GR/)\n"
@@ -60,7 +60,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Άκυρο"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
@@ -143,7 +143,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #. module: module_prototyper
 #: field:module_prototyper,display_name:0
@@ -530,7 +530,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Ιστότοπος"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view

@@ -3,20 +3,21 @@
 # * module_prototyper
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
-# Paolo Valier, 2016
+# Paolo Valier, 2016-2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-31 08:37+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-09 06:56+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +68,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
@@ -102,7 +103,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:ir.model.fields,client_context:0
 msgid "Context"
-msgstr ""
+msgstr "Contesto"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:47
@@ -461,17 +462,17 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,report_ids:0
 msgid "Reports"
-msgstr ""
+msgstr "Reports"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "Sicurezza"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: module_prototyper
 #: field:module_prototyper,summary:0
@@ -537,7 +538,7 @@ msgstr "Viste"
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Sito"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view

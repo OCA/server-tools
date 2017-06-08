@@ -3,13 +3,21 @@
 # * fetchmail_attach_from_folder
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2016-12-27 08:25+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +39,24 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
+msgstr "Annuler"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.server.folder,context:0
+msgid "Context"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:231
+#, python-format
+msgid "Context \"%s\" is not a dictionary."
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: help:fetchmail.server.folder,context:0
+msgid ""
+"Context that is passed during mail processing. Can be used to set default "
+"values."
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -38,19 +64,19 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,create_uid:0
 #: field:fetchmail.server.folder,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_date:0
 #: field:fetchmail.attach.mail.manually.mail,create_date:0
 #: field:fetchmail.server.folder,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0
@@ -61,6 +87,13 @@ msgstr ""
 #: field:fetchmail.server.folder,delete_matching:0
 msgid "Delete matches"
 msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,display_name:0
+#: field:fetchmail.attach.mail.manually.mail,display_name:0
+#: field:fetchmail.server.folder,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -123,7 +156,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,id:0
 #: field:fetchmail.server.folder,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
@@ -138,27 +171,40 @@ msgid ""
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:228
+#, python-format
+msgid "Invalid context \"%s\": %s"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,__last_update:0
+#: field:fetchmail.attach.mail.manually.mail,__last_update:0
+#: field:fetchmail.server.folder,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_date:0
 #: field:fetchmail.attach.mail.manually.mail,write_date:0
 #: field:fetchmail.server.folder,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:187
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190
 #, python-format
 msgid "Mail attachment"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:223
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:235
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr ""
@@ -302,6 +348,11 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
 msgid "to,from"
+msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
+msgid "{'default_supplier': True}"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder

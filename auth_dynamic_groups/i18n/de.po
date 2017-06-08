@@ -3,13 +3,22 @@
 # * auth_dynamic_groups
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2017
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-18 13:31+0000\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-05 12:29+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -65,4 +74,4 @@ msgstr "Benutzer"
 #. module: auth_dynamic_groups
 #: view:res.groups:auth_dynamic_groups.view_groups_form
 msgid "{'readonly': [('is_dynamic', '=', True)]}"
-msgstr ""
+msgstr "{'readonly': [('is_dynamic', '=', True)]}"

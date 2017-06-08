@@ -8,15 +8,15 @@
 # danimaribeiro <danimaribeiro@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015,2017
 # SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-21 00:47+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,28 +32,28 @@ msgstr "Aktiv"
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
 msgid "Attempt Date"
-msgstr ""
+msgstr "Versuchsdatum"
 
 #. module: auth_brute_force
 #: field:res.banned.remote,attempt_ids:0
 msgid "Attempts"
-msgstr ""
+msgstr "Anläufe"
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
 #: model:ir.ui.menu,name:auth_brute_force.menu_res_authentication_attempt
 msgid "Authentication Attempts"
-msgstr ""
+msgstr "Authentifizierungsversuche"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,result:0
 msgid "Authentication Result"
-msgstr ""
+msgstr "Ergebnis der Authentifizierung"
 
 #. module: auth_brute_force
 #: field:res.banned.remote,ban_date:0
 msgid "Ban Date"
-msgstr ""
+msgstr "Sperrdatum"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:34
@@ -61,13 +61,13 @@ msgstr ""
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Banned"
-msgstr ""
+msgstr "Gesperrt"
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_banned_remote
 #: model:ir.ui.menu,name:auth_brute_force.menu_res_banned_remote
 msgid "Banned Remotes"
-msgstr ""
+msgstr "Gesperrte Remotes"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,create_uid:0
@@ -98,7 +98,7 @@ msgstr "Anzeigename"
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Failed"
-msgstr ""
+msgstr "Gescheitert"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
@@ -126,31 +126,31 @@ msgstr "Zuletzt aktualisiert am"
 #. module: auth_brute_force
 #: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0
 msgid "Remote ID"
-msgstr ""
+msgstr "Ferne ID"
 
 #. module: auth_brute_force
 #: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
 msgid "Successful"
-msgstr ""
+msgstr "Erfolgreich"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:32
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Successfull"
-msgstr ""
+msgstr "Erfolgreich"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,login:0
 msgid "Tried Login"
-msgstr ""
+msgstr "Versuchte Anmeldung"
 
 #. module: auth_brute_force
 #: help:res.banned.remote,active:0
 msgid "Uncheck this box to unban the remote"
-msgstr ""
+msgstr "Diese Box abwählen, um Fernnutzer zu entsperren"
 
 #. module: auth_brute_force
 #: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
 msgid "Without Success"
-msgstr ""
+msgstr "Erfolglos"

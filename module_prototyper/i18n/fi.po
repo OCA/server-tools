@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 01:06+0000\n"
-"PO-Revision-Date: 2016-06-06 13:36+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -412,7 +412,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Huomautukset"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0
@@ -539,7 +539,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Verkkosivut"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -603,4 +603,4 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "tai"

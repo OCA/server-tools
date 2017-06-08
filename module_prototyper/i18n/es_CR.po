@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_CR/)\n"
@@ -65,7 +65,7 @@ msgstr "Cancelar"
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0
@@ -110,13 +110,13 @@ msgstr ""
 #: field:module_prototyper,create_uid:0
 #: field:module_prototyper.module.export,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_date:0
 #: field:module_prototyper.module.export,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -143,7 +143,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #. module: module_prototyper
 #: field:module_prototyper,display_name:0
@@ -324,7 +324,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,id:0 field:module_prototyper.module.export,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: module_prototyper
 #: field:module_prototyper,icon_image:0
@@ -356,13 +356,13 @@ msgstr ""
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualización por"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_date:0
 #: field:module_prototyper.module.export,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en"
 
 #. module: module_prototyper
 #: field:module_prototyper,license:0
@@ -459,7 +459,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
@@ -524,13 +524,13 @@ msgstr ""
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 #: field:module_prototyper,view_ids:0
 msgid "Views"
-msgstr ""
+msgstr "Vistas"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Sitio web"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view

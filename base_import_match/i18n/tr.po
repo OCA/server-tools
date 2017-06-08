@@ -3,13 +3,14 @@
 # * base_import_match
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-30 20:16+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: base_import_match
 #: field:base_import.match.field,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Koşullu"
 
 #. module: base_import_match
 #: field:base_import.match,create_uid:0
@@ -37,18 +38,18 @@ msgstr "Oluşturuldu"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr ""
+msgstr "CSV içe aktarmadan önce ayarları tekilleştir"
 
 #. module: base_import_match
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr ""
+msgstr "Eğer bu alanı sadece bazı koşullarda kullanmak isterseniz etkinleştirin."
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
@@ -58,12 +59,12 @@ msgstr "Alan"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Alan içe aktarımında eşleştirme tanımı"
 
 #. module: base_import_match
 #: help:base_import.match.field,field_id:0
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Bir tekil anahtarın parçası olacak alan."
 
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
@@ -73,7 +74,7 @@ msgstr "Alanlar"
 #. module: base_import_match
 #: help:base_import.match,field_ids:0
 msgid "Fields that will define an unique key."
-msgstr ""
+msgstr "tekil anahtarı tanımlayacak alan."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
@@ -92,7 +93,7 @@ msgid ""
 "discarded. Be careful, this data is always treated as a string, and "
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
-msgstr ""
+msgstr "Eğer içeri aktarılan değer bu değil ise bütün eşleştirme kuralı dikkate alınmayacak. Dikkatli olun, bu alan her zaman bir string olarak değerlendirilir, ve karşılaştırma büyük küçük harf duyarlıdır. Mesela alana 'True' girmişseniz '1' ile ya da 'true' ile eşleşmeyecektir sadece harf harf aynı olan 'True' ile eşleşir."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view
@@ -101,23 +102,23 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
 msgid "Import Match"
-msgstr ""
+msgstr "İçe Aktarma Eşleşmesi"
 
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
 msgid "Imported value"
-msgstr ""
+msgstr "Alınan Değer"
 
 #. module: base_import_match
 #: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
 msgid "In this model you will apply the match."
-msgstr ""
+msgstr "Bu modelde eşleştirmeyi uygulayacaksınız."
 
 #. module: base_import_match
 #: field:base_import.match,__last_update:0
 #: field:base_import.match.field,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: base_import_match
 #: field:base_import.match,write_uid:0
@@ -134,7 +135,7 @@ msgstr "Son güncellenme"
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
 msgid "Match"
-msgstr ""
+msgstr "Eşleştirme"
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view

@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_from_http_remote_user
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2015-09-18 13:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-server-tools-8-0/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,display_name:0
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_from_http_remote_user
+#: field:auth_from_http_remote_user.installed,__last_update:0
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. module: auth_from_http_remote_user
+#: field:res.users,sso_key:0
+msgid "SSO Key"
+msgstr ""
+
+#. module: auth_from_http_remote_user
+#: model:ir.model,name:auth_from_http_remote_user.model_res_users
+msgid "Users"
+msgstr ""

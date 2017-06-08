@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 07:02+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-13 09:31+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +28,19 @@ msgid "Created on"
 msgstr "创建时间"
 
 #. module: base_concurrency
+#: field:res.users.login,display_name:0
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_concurrency
+#: field:res.users.login,__last_update:0
+msgid "Last Modified on"
+msgstr "最后修改时间"
 
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0
@@ -55,9 +65,9 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,user_id:0
 msgid "User"
-msgstr ""
+msgstr "用户"
 
 #. module: base_concurrency
 #: model:ir.model,name:base_concurrency.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "用户"

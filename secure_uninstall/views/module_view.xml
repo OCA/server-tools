@@ -13,7 +13,7 @@
                 <label string="If you want uninstall module, write required password ('secure_uninstall' key in ERP config file)."
                        colspan="4" />
                 <group col="4">
-                    <field name="uninstall_password" password="True" attrs="{'required': 1}"
+                    <field name="uninstall_password" password="True"
                            placeholder="key_provided_by_administrator"/>
                     <span/>
                 </group>

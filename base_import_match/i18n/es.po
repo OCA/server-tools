@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Nombre a mostrar"
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr ""
+msgstr "Habilítelo si quiere usar este campo sólo bajo ciertas condiciones."
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
@@ -58,12 +58,12 @@ msgstr "Campo"
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Definición de concordancia de importación del campo"
 
 #. module: base_import_match
 #: help:base_import.match.field,field_id:0
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Campo que formará parte de una clave única."
 
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
@@ -92,7 +92,7 @@ msgid ""
 "discarded. Be careful, this data is always treated as a string, and "
 "comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
 " 'true', only EXACTLY 'True'."
-msgstr ""
+msgstr "Si el valor importado no es éste, la regla de concordancia será descartada. Tenga cuidado, ya que estos datos siempre serán tratados como una cadena, y la comparación en sensible a las mayúsculas, por lo que si establece 'True', no concordará con '!' ni con 'true'."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view
@@ -106,7 +106,7 @@ msgstr "Coincidencia de importación"
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
 msgid "Imported value"
-msgstr ""
+msgstr "Valor importado"
 
 #. module: base_import_match
 #: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0

@@ -118,4 +118,5 @@ class ReportGraph(report.interface.report_int):
         )
         return (pdf_string, 'pdf')
 
+
 ReportGraph('report.proximity.graph', 'ir.module.module')

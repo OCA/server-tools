@@ -3,9 +3,11 @@
 # * auditlog
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Alexis de Lattre <alexis@via.ecp.fr>, 2016
 # Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013
@@ -15,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 02:41+0000\n"
-"PO-Revision-Date: 2016-05-04 19:14+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-25 10:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +78,7 @@ msgstr ""
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,create_date:0
@@ -86,12 +88,12 @@ msgstr ""
 #: field:auditlog.http.session,create_date:0 field:auditlog.log,create_date:0
 #: field:auditlog.log.line,create_date:0 field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
@@ -108,7 +110,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Черновик"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
@@ -173,7 +175,7 @@ msgstr ""
 #: field:auditlog.http.session,id:0 field:auditlog.log,id:0
 #: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,__last_update:0
@@ -190,7 +192,7 @@ msgstr ""
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_date:0
@@ -198,7 +200,7 @@ msgstr ""
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -433,7 +435,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:555
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
 msgid "Add populate button to ldap view"
-msgstr ""
+msgstr "Afegir el botó d'omplir a la vista ldap "
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,create_uid:0
@@ -35,7 +35,7 @@ msgstr "Creat el"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,id:0
@@ -45,12 +45,12 @@ msgstr "ID"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,ldap_id:0
 msgid "LDAP Configuration"
-msgstr ""
+msgstr "Configuració LDAP "
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,write_uid:0
@@ -65,24 +65,24 @@ msgstr "Darrera Actualització el"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,users_created:0
 msgid "Number of users created"
-msgstr ""
+msgstr "Número d'usuaris creats "
 
 #. module: users_ldap_populate
 #: view:res.company:users_ldap_populate.company_form_view
 msgid "Populate"
-msgstr ""
+msgstr "Omplir "
 
 #. module: users_ldap_populate
 #: view:res.company:users_ldap_populate.company_form_view
 msgid "Populate user database"
-msgstr ""
+msgstr "Omplir la base de dades de l'usuari "
 
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
-msgstr ""
+msgstr "Omplir els usuaris des de LDAP "

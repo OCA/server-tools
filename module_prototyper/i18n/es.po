@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -302,7 +302,7 @@ msgstr "ARchivo"
 #. module: module_prototyper
 #: field:module_prototyper.module.export,name:0
 msgid "File Name"
-msgstr ""
+msgstr "Nombre del archivo"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -322,7 +322,7 @@ msgstr "Grupos"
 #. module: module_prototyper
 #: field:ir.model.fields,helper:0
 msgid "Helper"
-msgstr ""
+msgstr "Ayudante"
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard

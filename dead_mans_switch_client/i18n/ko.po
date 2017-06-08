@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * dead_mans_switch_client
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-10-11 09:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Korean (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: dead_mans_switch_client
+#: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
+msgid "Configure the dead man's switch server"
+msgstr ""
+
+#. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,display_name:0
+msgid "Display Name"
+msgstr "표시 이름"
+
+#. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,__last_update:0
+msgid "Last Modified on"
+msgstr "최근 수정"

@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_external_dbsource
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2015-09-18 13:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_external_dbsource
+#: help:base.external.dbsource,conn_string:0
+msgid ""
+"\n"
+"Sample connection strings:\n"
+"- Microsoft SQL Server:\n"
+"  mssql+pymssql://username:%s@server:port/dbname?charset=utf8\n"
+"- MySQL: mysql://user:%s@server:port/dbname\n"
+"- ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
+"- ORACLE: username/%s@//server.address:port/instance\n"
+"- PostgreSQL:\n"
+"  dbname='template1' user='dbuser' host='localhost' port='5432' password=%s\n"
+"- SQLite: sqlite:///test.db\n"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,conn_string:0
+msgid "Connection string"
+msgstr ""
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
+#, python-format
+msgid "Connection test failed!"
+msgstr ""
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
+#, python-format
+msgid "Connection test succeeded!"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,connector:0
+msgid "Connector"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: base_external_dbsource
+#: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
+msgid "Database Sources"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,name:0
+msgid "Datasource name"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
+#, python-format
+msgid "Everything seems properly set up!"
+msgstr ""
+
+#. module: base_external_dbsource
+#: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
+msgid "External DB Source"
+msgstr ""
+
+#. module: base_external_dbsource
+#: view:base.external.dbsource:base_external_dbsource.view_dbsource_tree
+msgid "External DB Sources"
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
+#: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
+msgid "External Database Sources"
+msgstr ""
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
+#, python-format
+msgid ""
+"Here is what we got instead:\n"
+" %s"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,id:0
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: base_external_dbsource
+#: help:base.external.dbsource,connector:0
+msgid ""
+"If a connector is missing from the                                      "
+"list, check the server log to confirm                                      "
+"that the required components were                                      "
+"detected."
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,password:0
+msgid "Password"
+msgstr ""
+
+#. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "PostgreSQL"
+msgstr ""
+
+#. module: base_external_dbsource
+#: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
+msgid "Test Connection"
+msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-28 16:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr ""
 #: field:custom.info.template,display_name:0
 #: field:custom.info.value,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_custom_info
 #: field:custom.info,id:0 field:custom.info.model_link,id:0
@@ -147,7 +147,7 @@ msgstr ""
 #: field:custom.info.template,__last_update:0
 #: field:custom.info.value,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_uid:0
@@ -174,7 +174,7 @@ msgstr ""
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
 #: field:custom.info.value,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: base_custom_info
 #: field:custom.info.template,info_ids:0
@@ -196,7 +196,7 @@ msgstr ""
 #. module: base_custom_info
 #: field:custom.info.value,res_id:0
 msgid "Resource ID"
-msgstr ""
+msgstr "ID del recurs "
 
 #. module: base_custom_info
 #: field:custom.info.property,template_id:0
@@ -218,4 +218,4 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_custom_info.custom_info_value_action
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info_value
 msgid "Values"
-msgstr ""
+msgstr "Valors "

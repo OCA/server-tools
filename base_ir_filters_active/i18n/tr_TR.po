@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_ir_filters_active
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-31 08:34+0000\n"
+"PO-Revision-Date: 2016-03-31 06:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr_TR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: base_ir_filters_active
+#: field:ir.filters,active:0
+msgid "Active"
+msgstr "Etkin"
+
+#. module: base_ir_filters_active
+#: model:ir.model,name:base_ir_filters_active.model_ir_filters
+msgid "Filters"
+msgstr ""
+
+#. module: base_ir_filters_active
+#: view:ir.filters:base_ir_filters_active.ir_filters_view_search
+msgid "Show inactive"
+msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"POT-Creation-Date: 2017-05-01 23:18+0000\n"
+"PO-Revision-Date: 2017-05-11 14:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -62,18 +62,18 @@ msgstr ""
 #: field:dead.mans.switch.instance,create_uid:0
 #: field:dead.mans.switch.log,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,create_date:0
 #: field:dead.mans.switch.log,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Klant"
 
 #. module: dead_mans_switch_server
 #: model:ir.actions.act_window,name:dead_mans_switch_server.action_dead_mans_switch_instance
@@ -129,7 +129,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_unread:0
@@ -171,13 +171,13 @@ msgstr "Laatst bijgewerkt op"
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_date:0
 #: field:dead.mans.switch.log,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
@@ -244,7 +244,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Samenvatting"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
@@ -282,12 +282,12 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_user
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,user_count:0

@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-28 05:45+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-19 07:32+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -42,16 +42,22 @@ msgid "Export Profiles"
 msgstr "Izvozni profili"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:140
+#: code:addons/base_export_manager/models/ir_exports_line.py:164
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "Polje '%s' že obstaja"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#: code:addons/base_export_manager/models/ir_exports_line.py:158
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Polje '%s' ne obstaja"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:192
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr "Polja '%s' ni v modelu '%s'"
 
 #. module: base_export_manager
 #: field:ir.exports.line,field1_id:0
@@ -62,6 +68,22 @@ msgstr "Prvo polje"
 #: field:ir.exports.line,model1_id:0
 msgid "First model"
 msgstr "Prvi model"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field4_id:0
+msgid "Fourth field"
+msgstr "Četrto polje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model4_id:0
+msgid "Fourth model"
+msgstr "Četrti model"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
+msgstr "Globina nad 4 nivoji: %s ni dovoljena"
 
 #. module: base_export_manager
 #: field:ir.exports.line,label:0

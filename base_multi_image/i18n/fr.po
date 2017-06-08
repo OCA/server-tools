@@ -3,8 +3,9 @@
 # * base_multi_image
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013
 # Antonio Trueba, 2016
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-17 02:42+0000\n"
-"PO-Revision-Date: 2016-06-23 09:22+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-04-25 23:05+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +37,7 @@ msgstr ""
 #: view:base_multi_image.image:base_multi_image.image_form_view
 #: field:base_multi_image.image,comments:0
 msgid "Comments"
-msgstr ""
+msgstr "Commentaires"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,create_uid:0
@@ -67,7 +68,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,filename:0
 msgid "Filename"
-msgstr ""
+msgstr "Nom du fichier"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,image_main:0
@@ -170,7 +171,7 @@ msgstr ""
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
@@ -196,7 +197,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sequence"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,show_technical:0

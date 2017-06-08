@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "8.0.1.0.1",
+    "version": "8.0.1.0.3",
     "author": (
         "VanRoey.be - Yenthe Van Ginneken, Agile Business Group,"
         " Grupo ESOC Ingeniería de Servicios,"
@@ -19,7 +19,8 @@
     "depends": ['email_template'],
     "demo": [],
     "data": [
-        "data/backup_data.yml",
+        "data/ir_cron.xml",
+        "data/mail_message_subtype.xml",
         "security/ir.model.access.csv",
         "view/db_backup_view.xml",
     ],

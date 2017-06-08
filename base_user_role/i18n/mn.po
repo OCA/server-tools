@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_user_role
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-10 03:03+0000\n"
+"PO-Revision-Date: 2016-12-10 03:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Mongolian (https://www.transifex.com/oca/teams/23907/mn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: mn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_user_role
+#: field:res.users.role,model_access:0
+msgid "Access Controls"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,menu_access:0
+msgid "Access Menu"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,category_id:0
+msgid "Application"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,group_id:0
+msgid "Associated group"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,comment:0
+msgid "Comment"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,dynamic_group_condition:0
+msgid "Condition"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,create_uid:0 field:res.users.role.line,create_uid:0
+msgid "Created by"
+msgstr "Үүсгэгч"
+
+#. module: base_user_role
+#: field:res.users.role,create_date:0 field:res.users.role.line,create_date:0
+msgid "Created on"
+msgstr "Үүсгэсэн"
+
+#. module: base_user_role
+#: field:res.users.role,display_name:0
+#: field:res.users.role.line,display_name:0
+msgid "Display Name"
+msgstr "Дэлгэцийн Нэр"
+
+#. module: base_user_role
+#: field:res.users.role,is_dynamic:0
+msgid "Dynamic"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role.line,is_enabled:0
+msgid "Enabled"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role.line,date_from:0
+msgid "From"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,full_name:0
+msgid "Group Name"
+msgstr ""
+
+#. module: base_user_role
+#: view:res.users.role:base_user_role.view_res_users_role_form
+msgid "Groups"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,id:0 field:res.users.role.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_user_role
+#: field:res.users.role,implied_ids:0
+msgid "Inherits"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,__last_update:0
+#: field:res.users.role.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Сүүлийн засвар хийсэн огноо"
+
+#. module: base_user_role
+#: field:res.users.role,write_uid:0 field:res.users.role.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Сүүлийн засвар хийсэн"
+
+#. module: base_user_role
+#: field:res.users.role,write_date:0 field:res.users.role.line,write_date:0
+msgid "Last Updated on"
+msgstr "Сүүлийн засвар хийсэн огноо"
+
+#. module: base_user_role
+#: field:res.users.role,name:0
+msgid "Name"
+msgstr "Нэр"
+
+#. module: base_user_role
+#: view:res.users.role:base_user_role.view_res_users_role_form
+#: view:res.users.role:base_user_role.view_res_users_role_tree
+#: field:res.users.role.line,role_id:0
+msgid "Role"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users,role_line_ids:0
+msgid "Role lines"
+msgstr ""
+
+#. module: base_user_role
+#: model:ir.actions.act_window,name:base_user_role.action_res_users_role_tree
+#: model:ir.ui.menu,name:base_user_role.menu_action_res_users_role_tree
+#: view:res.users:base_user_role.view_res_users_form_inherit
+#: field:res.users,role_ids:0
+#: view:res.users.role:base_user_role.view_res_users_role_search
+msgid "Roles"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,rule_groups:0
+msgid "Rules"
+msgstr ""
+
+#. module: base_user_role
+#: help:res.users.role,dynamic_group_condition:0
+msgid ""
+"The condition to be met for a user to be a member of this group. It is "
+"evaluated as python code at login time, you get `user` passed as a browse "
+"record"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role.line,date_to:0
+msgid "To"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,trans_implied_ids:0
+msgid "Transitively inherits"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role.line,user_id:0
+msgid "User"
+msgstr "Хэрэглэгч"
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_users_role
+msgid "User role"
+msgstr ""
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_users
+#: view:res.users.role:base_user_role.view_res_users_role_form
+#: field:res.users.role,line_ids:0 field:res.users.role,user_ids:0
+#: field:res.users.role,users:0
+msgid "Users"
+msgstr ""
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_users_role_line
+msgid "Users associated to a role"
+msgstr ""
+
+#. module: base_user_role
+#: help:res.users.role,implied_ids:0
+msgid "Users of this group automatically inherit those groups"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,view_access:0
+msgid "Views"
+msgstr "Дэлгэцүүд"

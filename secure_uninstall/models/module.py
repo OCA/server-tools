@@ -24,6 +24,7 @@ class BaseModuleUpgrade(models.TransientModel):
     def upgrade_module(self):
         for elm in self:
             if not config.get("secure_uninstall"):
+                self.rollback_state_modules()
                 raise UserError(_(
                     "Missing configuration key\n--------------------\n"
                     "'secure_uninstall' configuration key "
@@ -31,6 +32,7 @@ class BaseModuleUpgrade(models.TransientModel):
                     "your Odoo server configuration file: "
                     "please set it a value"))
             if elm.uninstall_password not in _get_authorized_password():
+                self.rollback_state_modules()
                 raise UserError(_(
                     "Password Error\n--------------------\n"
                     "Provided password '%s' doesn't match with "
@@ -42,3 +44,15 @@ class BaseModuleUpgrade(models.TransientModel):
             # keep this password in db is insecure, then we remove it
             elm.uninstall_password = False
         return super(BaseModuleUpgrade, self).upgrade_module()
+
+    def rollback_state_modules(self):
+        modules = self.env['ir.module.module'].browse(
+            self._context.get('active_ids'))
+        if modules:
+            module_ids = modules.downstream_dependencies(
+                exclude_states=['uninstalled', 'uninstallable'])
+            module_ids = module_ids + list(modules._ids)
+            self.env['ir.module.module'].browse(
+                module_ids).button_uninstall_cancel()
+            self._cr.commit()
+        return True

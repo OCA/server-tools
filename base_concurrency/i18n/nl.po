@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2017-01-13 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_concurrency
 #: field:res.users.login,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_concurrency
 #: field:res.users.login,display_name:0
@@ -35,7 +35,7 @@ msgstr "Te tonen naam"
 #. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_concurrency
 #: field:res.users.login,__last_update:0
@@ -45,12 +45,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_concurrency
 #: field:res.users.login,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_concurrency
 #: field:res.users.login,login_dt:0
@@ -65,9 +65,9 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: base_concurrency
 #: model:ir.model,name:base_concurrency.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"

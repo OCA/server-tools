@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: field:base.external.dbsource,conn_string:0
 msgid "Connection string"
-msgstr ""
+msgstr "Cadena de connexió "
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:165
@@ -67,17 +67,17 @@ msgstr "Creat el"
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
 msgid "Database Sources"
-msgstr ""
+msgstr "Origens de la base de dades "
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,name:0
 msgid "Datasource name"
-msgstr ""
+msgstr "Nom del origen de dades "
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:177
@@ -88,18 +88,18 @@ msgstr ""
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Origen extern de la BD "
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr ""
+msgstr "Origens externs de la BD "
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
 #: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr ""
+msgstr "Origens externs de la Base de Dades "
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/base_external_dbsource.py:166
@@ -121,12 +121,12 @@ msgid ""
 "list, check the server log to confirm                                      "
 "that the required components were                                      "
 "detected."
-msgstr ""
+msgstr "Si falta un connector a la llista, comproveu el registre del servidor per confirmar que els components necessaris han sigut detectats. "
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0
@@ -141,14 +141,14 @@ msgstr "Darrera Actualització el"
 #. module: base_external_dbsource
 #: field:base.external.dbsource,password:0
 msgid "Password"
-msgstr ""
+msgstr "Contrasenya "
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Prova de connexió "

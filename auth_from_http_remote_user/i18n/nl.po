@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
 "PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
@@ -25,7 +25,7 @@ msgstr "Te tonen naam"
 #. module: auth_from_http_remote_user
 #: field:auth_from_http_remote_user.installed,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: auth_from_http_remote_user
 #: field:auth_from_http_remote_user.installed,__last_update:0
@@ -40,4 +40,4 @@ msgstr ""
 #. module: auth_from_http_remote_user
 #: model:ir.model,name:auth_from_http_remote_user.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"

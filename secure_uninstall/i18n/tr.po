@@ -3,13 +3,14 @@
 # * secure_uninstall
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-04 01:04+0000\n"
-"PO-Revision-Date: 2016-09-04 01:04+0000\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-24 05:32+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: secure_uninstall
 #: help:base.module.upgrade,uninstall_password:0
 msgid "'secure_uninstall' value from Odoo configuration file "
-msgstr ""
+msgstr "Odoo ayar dosyasından gelen 'secure_uninstall' değeri"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
@@ -29,11 +30,27 @@ msgid ""
 "If you want uninstall module, write required password ('secure_uninstall' "
 "key in ERP config file)."
 msgstr ""
+"Eğer bir modülü kaldırmak istiyorsanız, Gerekli kaldırma parolasını girin.\n"
+"(ERP ayar dosyasındaki 'secure_uninstall' alanı)."
+
+#. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:28
+#, python-format
+msgid ""
+"Missing configuration key\n"
+"--------------------\n"
+"'secure_uninstall' configuration key is not set in \n"
+"your Odoo server configuration file: please set it a value"
+msgstr ""
+"Ayar anahtarı bulunamıyor\n"
+"--------------------\n"
+"'secure_uninstall' ayarı ODOO sunucu ayar dosyasında\n"
+"bulunamadı."
 
 #. module: secure_uninstall
 #: model:ir.model,name:secure_uninstall.model_base_module_upgrade
 msgid "Module Upgrade"
-msgstr ""
+msgstr "Modül Güncelle"
 
 #. module: secure_uninstall
 #: field:base.module.upgrade,uninstall_password:0
@@ -41,11 +58,32 @@ msgid "Password"
 msgstr "Parola"
 
 #. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:36
+#, python-format
+msgid ""
+"Password Error\n"
+"--------------------\n"
+"Provided password '%s' doesn't match with 'Master Password'\n"
+"('secure_uninstall' key) found in the Odoo server configuration file .\n"
+"\n"
+"Resolution\n"
+"-------------\n"
+"Please check your password and retry or cancel"
+msgstr ""
+"Parola Hatası\n"
+"--------------------\n"
+"Girilen kaldırma parolası '%s' odoo sunucu ayar  dosyasında kayıtlı olan parola ile eşleşmiyor. ('secure_uninstall' ayarı)\n"
+"\n"
+"Çözüm\n"
+"-------------\n"
+"Parolanızı kontrol edin ya da vazgeçin."
+
+#. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "Secure Uninstall"
-msgstr ""
+msgstr "Güvenli Kaldırma"
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "key_provided_by_administrator"
-msgstr ""
+msgstr "key_provided_by_administrator"

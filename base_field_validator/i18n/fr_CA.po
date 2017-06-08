@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-11 02:42+0000\n"
-"PO-Revision-Date: 2016-08-11 02:42+0000\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-24 05:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/fr_CA/)\n"
 "MIME-Version: 1.0\n"
@@ -22,13 +22,13 @@ msgstr ""
 #: field:ir.model.fields.regex,create_uid:0
 #: field:ir.model.validator.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,create_date:0
 #: field:ir.model.validator.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,name:0
@@ -39,10 +39,10 @@ msgstr ""
 #: field:ir.model.fields.regex,display_name:0
 #: field:ir.model.validator.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Afficher le nom"
 
 #. module: base_field_validator
-#: code:addons/base_field_validator/models/ir_model.py:29
+#: code:addons/base_field_validator/models/ir_model.py:27
 #, python-format
 msgid "Expression %s not valid for %s"
 msgstr ""
@@ -55,7 +55,7 @@ msgstr ""
 #. module: base_field_validator
 #: field:ir.model.fields.regex,id:0 field:ir.model.validator.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,__last_update:0
@@ -67,13 +67,13 @@ msgstr ""
 #: field:ir.model.fields.regex,write_uid:0
 #: field:ir.model.validator.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: base_field_validator
 #: field:ir.model.fields.regex,write_date:0
 #: field:ir.model.validator.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: base_field_validator
 #: field:ir.model.validator.line,model_id:0

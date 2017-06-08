@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-16 09:29+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -33,12 +33,12 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
@@ -69,7 +69,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,id:0 field:base_multi_image.owner,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_multi_image
 #: view:base_multi_image.image:base_multi_image.image_form_view
@@ -111,12 +111,12 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_multi_image
 #: field:base_multi_image.image,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/owner.py:73
@@ -188,7 +188,7 @@ msgstr ""
 #. module: base_multi_image
 #: field:base_multi_image.image,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Reeks"
 
 #. module: base_multi_image
 #: field:base_multi_image.image,show_technical:0
