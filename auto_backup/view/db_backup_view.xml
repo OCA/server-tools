@@ -79,7 +79,7 @@
         res_model="db.backup"/>
 
     <menuitem
-        parent="base.next_id_9"
+        parent="base.menu_automation"
         action="action_backup_conf_form"
         id="backup_conf_menu"/>
 
