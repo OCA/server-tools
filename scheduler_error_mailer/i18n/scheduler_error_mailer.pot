@@ -18,7 +18,7 @@ msgstr ""
 #. module: scheduler_error_mailer
 #: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
 msgid "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
 "<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
 "\n"
