@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="length_password" model="ir.config_parameter">
+        	<field name="key">length_password</field>
+        	<field name="value">7</field>
+        </record>
+        <record id="password_check_cracklib" model="ir.config_parameter">
+        	<field name="key">password_check_cracklib</field>
+        	<field name="value">False</field>
+        </record>
+
+    </data>
+</openerp>
