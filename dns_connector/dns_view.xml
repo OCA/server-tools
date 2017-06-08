@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- backend-->
+        <record model="ir.actions.act_window" id="dns_backend_action">
+                <field name="name">DNS Backend</field>
+                <field name="res_model">dns.backend</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="dns_backend_tree" model="ir.ui.view">
+            <field name="name">DNS Backend form</field>
+            <field name="model">dns.backend</field>
+            <field name="arch" type="xml" >
+                <tree>
+                    <field name="login" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="dns_backend_form" model="ir.ui.view">
+            <field name="name">DNS Backend form</field>
+            <field name="model">dns.backend</field>
+            <field name="arch" type="xml" >
+                <form>
+                    <header>
+                        <button name="button_connect" string="Connect" type="object" states="draft,exception" />
+                        <button name="button_set_draft" string="Set to draft" type="object" states="done"  />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title" style="width: 390px;">
+                             <label class="oe_edit_only" for="name" string="Product Name"/>
+                             <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="login" widget="email" />
+                            <field name="password" password="True" />
+                            <field name='version' />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- domain -->
+        <record model="ir.actions.act_window" id="dns_domain_action">
+                <field name="name">DNS Domain Action</field>
+                <field name="res_model">dns.domain</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="dns_domain_tree" model="ir.ui.view">
+            <field name="name">DNS domain tree</field>
+            <field name="model">dns.domain</field>
+            <field name="arch" type="xml" >
+                <tree>
+                    <field name="name" />
+                    <field name="backend_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="dns_domain_form" model="ir.ui.view">
+            <field name="name">DNS domain form</field>
+            <field name="model">dns.domain</field>
+            <field name="arch" type="xml" >
+                <form string='Domain'>
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title" style="width: 390px;">
+                             <label class="oe_edit_only" for="name" string="Product Name"/>
+                             <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="backend_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <label for="record_ids" string='Subdomains'/>
+                        <field name="record_ids" attrs="{'readonly':[('state','!=','done')]}">
+                            <tree editable="bottom" >
+                                <field name="name" />
+                                <field name="domain_id" invisible="1"/>
+                                <field name="line" />
+                                <field name="type" />
+                                <field name="value" />
+                                <field name="mx_priority" />
+                                <field name="ttl" />
+                                <field name="backend_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- record -->
+        <record model="ir.actions.act_window" id="dns_record_action">
+                <field name="name">DNS Record Action</field>
+                <field name="res_model">dns.record</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="dns_record_tree" model="ir.ui.view">
+            <field name="name">DNS Record tree</field>
+            <field name="model">dns.record</field>
+            <field name="arch" type="xml" >
+                <tree editable="top">
+                    <field name="name" />
+                    <field name="domain_id" />
+                    <field name="line" />
+                    <field name="type" />
+                    <field name="value" />
+                    <field name="mx_priority" />
+                    <field name="ttl" />
+                    <field name="backend_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="dns_record_form" model="ir.ui.view">
+            <field name="name">DNS Record form</field>
+            <field name="model">dns.record</field>
+            <field name="arch" type="xml" >
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title" style="width: 390px;">
+                             <label class="oe_edit_only" for="name" string="Product Name"/>
+                             <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="domain_id" />
+                            <field name="line" />
+                            <field name="type" />
+                            <field name="value" />
+                            <field name="mx_priority" />
+                            <field name="ttl" />
+                            <field name="backend_id" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

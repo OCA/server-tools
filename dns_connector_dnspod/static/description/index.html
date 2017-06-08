@@ -1,0 +1,99 @@
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Dnspod Connector Management</h2>
+        <h3>Allows to manage your DNS domains through Odoo and www.dnspod.com thanks to odoo-connector .</h3>
+        <h3 class="oe_slogan">Create backend link to DNSpod domain server</h3>
+            
+        <div class="oe_demo oe_picture oe_screenshot">
+            <img src="dnsbackend.png">
+        </div>
+        <p>
+Create a backend for www.dnspod.com in Odoo to allow the synchronization between Odoo and DNS provider.
+        </p>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered oe_mt32">
+                <img class="oe_picture" src="dns8.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered oe_mt32">
+                <img class="oe_picture" src="dns11.png">
+            </div>
+        </div>
+        <p>
+        <br>
+The second step is to create the DNS record you want to populate to the backend.
+        <br>
+        <br>
+Please note that the connector is split in 2 modules:
+        <br>
+- DNS connector to allow generic DNS management
+        <br>
+- DNSpod connector which allows specifically to connect to the www.dnspod.com API
+        </p>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Create DNS records in domain</h2>
+        <div class="oe_span6 oe_centered">
+            <br>
+            <p>
+Use Odoo to create your DNS records
+            </p>
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="dns5.png">
+            </div>
+        </div>
+        <div class="oe_span6 oe_centered">
+        <p>
+Thanks to th odoo-connector technology, a job is enqueud with priority and will directly create the record in DNSPod
+            </p>
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="dns4.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Exception handling</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+            <br>
+            <br>
+            <br>
+When a DNS record created in the odoo is not sync'ed properly with dnspod (API exception), the record state will be changed to Exception. If successfull, the state will display "Done".
+             </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+            <img class="oe_picture oe_screenshot" src="dns7.png">
+                <img class="oe_picture oe_screenshot" src="dns6.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">DNS Record editable tree view</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+You can modify record directly the DNS and records through an editable tree view..
+            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="dns9.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	<menuitem id="menu_dns"
+    	name="DNS"
+    	parent="connector.menu_connector_root"/>
+
+    	<menuitem name="Backends" id="menu_dns_backend" parent="menu_dns" sequence="10" action="dns_backend_action"/>
+
+    	<menuitem name="Domains" id="menu_dns_domain" parent="menu_dns" sequence="20" action="dns_domain_action"/>
+
+    	<menuitem name="Records" id="menu_dns_record" parent="menu_dns" sequence="30" action="dns_record_action"/>
+
+    </data>
+</openerp>
