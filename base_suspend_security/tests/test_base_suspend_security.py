@@ -33,6 +33,11 @@ class TestBaseSuspendSecurity(TransactionCase):
             # notify_email kicks in
             'partner_id': self.env.ref('base.partner_demo').id,
         })
+        import logging
+        logging.error('testerror')
+        logging.warning('testwarning')
+        logging.info('testinfo2')
+        raise 'am I running at all?'
         # be sure what we try is forbidden
         with self.assertRaises(exceptions.AccessError):
             with mute_logger('openerp.addons.base.ir.ir_model'):
