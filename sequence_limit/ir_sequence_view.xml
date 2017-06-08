@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <record id="ir_sequence_view" model="ir.ui.view">
+            <field name="model">ir.sequence</field>
+            <field name="type">form</field>
+            <field name="priority" eval="16"/>
+            <field name="inherit_id" ref="base.sequence_view" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Limit">
+                        <group colspan="2" col="2">
+                            <separator string="Warning on the Max Number"
+                                       colspan="4"/>
+                                <field name="number_max"/>
+                                <field name="number_max_warning_before"/>
+                                <field name="number_warning_active"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <separator string="Warning on the DeadLine"
+                                       colspan="4"/>
+                                <field name="limit_date"/>
+                                <field name="limit_date_warning_before"/>
+                                <field name="date_warning_active"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>

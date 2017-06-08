@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+
+        <!--Email template -->
+        <record id="email_template_sequencelimit" model="email.template">
+            <field name="email_from">noreply@localhost</field>
+            <field name="subject">Limit Max with Sequence (Ref ${object.name or 'n/a' })</field>
+            <field name="email_to">${object.company_id.email}</field>
+            <field name="model_id" ref="base.model_ir_sequence"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.company_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[]]></field>
+            <field name="body_text"><![CDATA[
+Warning: you will soon reach the limit of the sequence: ${object.name} !
+(Please contact the Administrator) ]]></field>
+        </record>
+
+    </data>
+</openerp>
