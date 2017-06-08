@@ -5,6 +5,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models, tools
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class Owner(models.AbstractModel):
@@ -82,11 +85,13 @@ class Owner(models.AbstractModel):
 
     @api.multi
     def _set_multi_image_main_medium(self):
-        self._set_multi_image(self.image_main_medium)
+        _logger.info("Do ignore the medium image - we will calculate it")
+        #self._set_multi_image(self.image_main_medium)
 
     @api.multi
     def _set_multi_image_main_small(self):
-        self._set_multi_image(self.image_main_small)
+        _logger.info("Do ignore the small image - we will calculate it")
+        #self._set_multi_image(self.image_main_small)
 
     @api.multi
     def unlink(self):
