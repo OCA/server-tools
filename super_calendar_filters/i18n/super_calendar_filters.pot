@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* super_calendar_filters
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 15:16+0000\n"
+"PO-Revision-Date: 2015-06-16 15:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Current month"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Current week"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Day"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the current month."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the current week."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the next month."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the next week."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group By"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same day."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same month."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same quarter."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same week."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same year."
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Month"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Next month"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Next week"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Period"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Quarter"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Week"
+msgstr ""
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Year"
+msgstr ""

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="super_calendar_search" model="ir.ui.view">
+      <field name="name">super_calendar_search</field>
+      <field name="inherit_id" ref="super_calendar.super_calendar_search"/>
+      <field name="model">super.calendar</field>
+      <field name="arch" type="xml">
+
+        <xpath expr="group[@string='Extended Filters...']" position="after">
+          <group expand="0" string="Period">
+            <filter string="Current week"
+                    name="current_week"
+                    domain="[('date_start','&lt;=', (context_today() + relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
+                    ('date_start','&gt;',(context_today() - relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                    help="Display all elements in the current week." />
+            <filter string="Current month"
+                    name="current_month"
+                    domain="[('date_start','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                    ('date_start','&gt;=',time.strftime('%%Y-%%m-01'))]"
+                    help="Display all elements in the current month." />
+            <filter string="Next week"
+                    name="next_week"
+                    domain="[('date_start','&gt;',(context_today()+relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
+                    ('date_start','&lt;=',(context_today()+relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                    help="Display all elements in the next week." />
+            <filter string="Next month"
+                    name="next_month"
+                    domain="[('date_start','&gt;=',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                    ('date_start','&lt;',(context_today()+relativedelta(months=2)).strftime('%%Y-%%m-01'))]"
+                    help="Display all elements in the next month." />
+          </group>
+          <group expand="1" string="Group By">
+            <filter string="Day"
+                    name="group_day"
+                    context="{'group_by':'date_start:day'}"
+                    help="Group all elements in the same day."/>
+            <filter string="Week"
+                    name="group_week"
+                    context="{'group_by':'date_start:week'}"
+                    help="Group all elements in the same week."/>
+            <filter string="Month"
+                    name="group_month"
+                    context="{'group_by':'date_start:month'}"
+                    help="Group all elements in the same month."/>
+            <filter string="Quarter"
+                    name="group_quarter"
+                    context="{'group_by':'date_start:quarter'}"
+                    help="Group all elements in the same quarter."/>
+            <filter string="Year"
+                    name="group_year"
+                    context="{'group_by':'date_start:year'}"
+                    help="Group all elements in the same year."/>
+          </group>
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</openerp>

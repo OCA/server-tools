@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* super_calendar_filters
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-16 15:16+0000\n"
+"PO-Revision-Date: 2015-06-16 11:24-0500\n"
+"Last-Translator: Agathe Mollé <agathe.molle@savoirfairelinux.com>\n"
+"Language-Team: Savoir-faire Linux <support@savoirfairelinux.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Current month"
+msgstr "Mois courant"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Current week"
+msgstr "Semaine courante"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Day"
+msgstr "Jour"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the current month."
+msgstr "Afficher tous les éléments du mois courant."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the current week."
+msgstr "Afficher tous les éléments de la semaine courante."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the next month."
+msgstr "Afficher tous les éléments du mois prochain."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Display all elements in the next week."
+msgstr "Afficher tous les éléments de la semaine prochaine."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same day."
+msgstr "Regrouper les éléments par jour."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same month."
+msgstr "Regrouper les éléments par mois."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same quarter."
+msgstr "Regrouper les éléments par trimestre."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same week."
+msgstr "Regrouper les éléments par semaine."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Group all elements in the same year."
+msgstr "Regrouper les éléments par année."
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Month"
+msgstr "Mois"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Next month"
+msgstr "Mois prochain"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Next week"
+msgstr "Semaine prochaine"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Period"
+msgstr "Période"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Quarter"
+msgstr "Trimestre"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Week"
+msgstr "Semaine"
+
+#. module: super_calendar_filters
+#: view:super.calendar:super_calendar_filters.super_calendar_search
+msgid "Year"
+msgstr "Année"
