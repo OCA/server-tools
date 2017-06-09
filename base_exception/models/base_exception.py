@@ -108,7 +108,7 @@ class BaseException(models.AbstractModel):
         action = self.env.ref('base_exception.action_exception_rule_confirm')
         return action
 
-    @api.model
+    @api.multi
     def _check_exception(self):
         """
         This method must be used in a constraint that must be created in the
@@ -138,6 +138,8 @@ class BaseException(models.AbstractModel):
     def detect_exceptions(self):
         """returns the list of exception_ids for all the considered base.exceptions
         """
+        if not self:
+            return []
         exception_obj = self.env['exception.rule']
         all_exceptions = exception_obj.sudo().search(
             [('rule_group', '=', self[0].rule_group)])
