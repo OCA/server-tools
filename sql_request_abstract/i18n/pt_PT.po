@@ -4,39 +4,40 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-06 02:51+0000\n"
 "PO-Revision-Date: 2017-06-06 02:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_group_ids
 msgid "Allowed Groups"
-msgstr "Groupes autorisés"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_user_ids
 msgid "Allowed Users"
-msgstr "Utilisateurs Autorisés"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nome a Apresentar"
 
 #. module: sql_request_abstract
 #: selection:sql.request.mixin,state:0
 msgid "Draft"
-msgstr "En brouillon"
+msgstr "Rascunho"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_id
@@ -47,17 +48,17 @@ msgstr "ID"
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:140
 #, python-format
 msgid "It is not allowed to execute a not checked request."
-msgstr "Il n'est pas autorisé d'exécuter une requête non vérifiée."
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Última Modificação Em"
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_manager
 msgid "Manager"
-msgstr "Responsable"
+msgstr ""
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
@@ -70,27 +71,27 @@ msgstr ""
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_name
 msgid "Name"
-msgstr "Nom"
+msgstr "Nome"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_query
 msgid "Query"
-msgstr "Requête"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
 msgid "SQL Request"
-msgstr "Requête SQL"
+msgstr ""
 
 #. module: sql_request_abstract
 #: selection:sql.request.mixin,state:0
 msgid "SQL Valid"
-msgstr "SQL Validé"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_state
 msgid "State"
-msgstr "Etat"
+msgstr "Estado"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_state
@@ -99,9 +100,6 @@ msgid ""
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
-"Etat de la requête:\n"
-" * 'En brouillon': non testée\n"
-" * 'SQL Validé': La requête SQL a été vérifiée et est valide"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
@@ -111,27 +109,23 @@ msgid ""
 "\n"
 " %s"
 msgstr ""
-"La requête SQL n'est pas valide:\n"
-"\n"
-" %s"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
-"La requête n'est pas autorisée car elle contient un terme non sécurisé '%s'"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:160
 #, python-format
 msgid "Unimplemented mode : '%s'"
-msgstr "Mode non implémenté : '%s'"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
 msgid "User"
-msgstr "Utilisateur"
+msgstr "Utilizador"
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_query
