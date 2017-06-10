@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 01:21+0000\n"
-"PO-Revision-Date: 2017-05-30 01:21+0000\n"
+"POT-Creation-Date: 2017-06-06 02:50+0000\n"
+"PO-Revision-Date: 2017-06-06 02:50+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid "Categories"
 msgstr "Categorias"
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2090
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2098
 #: model:ir.ui.view,arch_db:kpi.view_kpi_category_form
 #: model:ir.ui.view,arch_db:kpi.view_kpi_filter
 msgid "Category"
@@ -384,7 +384,7 @@ msgid "SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
 msgstr ""
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2085
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2093
 #: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
 msgid "Threshold"
 msgstr ""
