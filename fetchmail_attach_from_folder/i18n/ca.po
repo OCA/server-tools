@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2017-03-28 16:56+0000\n"
+"POT-Creation-Date: 2017-06-09 00:38+0000\n"
+"PO-Revision-Date: 2017-06-08 20:49+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Save"
-msgstr ""
+msgstr "Desar"
 
 #. module: fetchmail_attach_from_folder
 #: selection:fetchmail.server.folder,msg_state:0
