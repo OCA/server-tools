@@ -8,72 +8,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 22:05+0000\n"
-"PO-Revision-Date: 2017-08-17 22:05+0000\n"
+"POT-Creation-Date: 2017-06-06 02:51+0000\n"
+"PO-Revision-Date: 2017-06-06 02:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language-Team: Hebrew (https://www.transifex.com/oca/teams/23907/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_file_wizard
 msgid "Allow the user to save the file with sql request's data"
 msgstr ""
-"Permet à l'utilisateur de sauvegarder le fichier contenant les données de la"
-" requête SQL"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_group_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Groups"
-msgstr "Groupes Autorisés"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_user_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Users"
-msgstr "Utilisateurs Autorisés"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "בטל"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_copy_options
 msgid "Copy Options"
-msgstr "Options de copie"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_create_uid
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "נוצר על ידי"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_create_date
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "נוצר ב-"
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "Csv File"
-msgstr "Fichier CSV"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_display_name
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "השם המוצג"
 
 #. module: sql_export
 #: selection:sql.export,state:0
 msgid "Draft"
-msgstr "En brouillon"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_encoding
@@ -84,127 +82,127 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_tree
 msgid "Execute Query"
-msgstr "Execute la requête"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "Export"
-msgstr "Exporter"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "Export file"
-msgstr "Fichier d'export"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_binary_file
 msgid "File"
-msgstr "Fichier"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_file_name
 msgid "File Name"
-msgstr "Nom de fichier"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_id
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_id
 msgid "ID"
-msgstr "ID"
+msgstr "מזהה"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export___last_update
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard___last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "תאריך שינוי אחרון"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_write_uid
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "עודכן לאחרונה על ידי"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_write_date
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr "עודכן לאחרונה על"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_name
 msgid "Name"
-msgstr "Nom"
+msgstr "שם"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_field_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Parameters"
-msgstr "Paramètres"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_query
 msgid "Query"
-msgstr "Requête"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Request Name"
-msgstr "Nom de la requête"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.actions.act_window,name:sql_export.sql_export_tree_action
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_tree
 msgid "SQL Export"
-msgstr "Export SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.actions.act_window,name:sql_export.sql_parameter_tree_action
 #: model:ir.ui.view,arch_db:sql_export.sql_parameter_view_tree
 msgid "SQL Parameter"
-msgstr "Paramètre SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "SQL Request"
-msgstr "Requête SQL"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,state:0
 msgid "SQL Valid"
-msgstr "SQL Validé"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 #: model:ir.ui.view,arch_db:sql_export.sql_parameter_view_form
 msgid "SQL export"
-msgstr "export SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Set to Draft"
-msgstr "Remettre en brouillon"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.menu,name:sql_export.sql_export_menu
 #: model:ir.ui.menu,name:sql_export.sql_export_menu_view
 msgid "Sql Export"
-msgstr "Export SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.ui.menu,name:sql_export.sql_parameter_menu_view
 msgid "Sql Export Variables"
-msgstr "Variables d'export SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_sql_export_id
 msgid "Sql export id"
-msgstr "Sql export id"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_state
 msgid "State"
-msgstr "Etat"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,help:sql_export.field_sql_export_state
@@ -213,14 +211,11 @@ msgid ""
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
-"Etat de la requête:\n"
-" * 'En brouillon': non testée\n"
-" * 'SQL Validé': La requête SQL a été vérifiée et est valide"
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Validate SQL Expression"
-msgstr "Valider l'expression SQL"
+msgstr ""
 
 #. module: sql_export
 #: model:ir.model.fields,help:sql_export.field_sql_export_query
@@ -257,12 +252,12 @@ msgstr ""
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "or"
-msgstr "ou"
+msgstr "או"
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "select * from res_partner"
-msgstr "select * from res_partner"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
@@ -282,7 +277,7 @@ msgstr ""
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "variables_placeholder"
-msgstr "variables_placeholder"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
