@@ -52,7 +52,7 @@ Contributors
 * Valentin CHEMIERE <valentin.chemiere@akretion.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Florian DA COSTA <florian.dacosta@akretion.com>
-* CArlos Almeida <carlos.almeida@tkobr.com>
+* Carlos ALMEIDA <carlos.almeida@tkobr.com>
 
 Maintainer
 ----------
