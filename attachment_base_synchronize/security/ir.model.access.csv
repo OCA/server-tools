@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_attachment_metadata_user,ir.attachment.metadata.user,model_ir_attachment_metadata,,1,0,0,0
-access_attachment_metadata_user,ir.attachment.metadata.user,model_ir_attachment_metadata,base.group_no_one,1,1,1,1
+access_attachment_metadata_user_all,ir.attachment.metadata.user,model_ir_attachment_metadata,,1,0,0,0
+access_attachment_metadata_user_conf,ir.attachment.metadata.user,model_ir_attachment_metadata,base.group_no_one,1,1,1,1
