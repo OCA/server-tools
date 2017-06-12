@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_external_file_location_manager,external.file.location.manager,model_external_file_location,base.group_system,1,1,1,1
+access_external_file_location_user,external.file.location.user,model_external_file_location,base.group_user,1,0,0,0
+access_external_file_task_manager,external.file.task.manager,model_external_file_task,base.group_system,1,1,1,1
+access_external_file_task_user,external.file.task.user,model_external_file_task,base.group_user,1,0,0,0
