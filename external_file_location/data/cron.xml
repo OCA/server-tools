@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.cron" id="cronjob_run_exchange_tasks">
+        <field name='name'>Run file exchange tasks</field>
+        <field name='interval_number'>30</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall" eval="False"/>
+        <field name="model">external.file.task</field>
+        <field name="function">run_task_scheduler</field>
+        <field name="args">([[('method_type', '=', 'import')]])</field>
+    </record>
+</odoo>
