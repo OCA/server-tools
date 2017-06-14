@@ -6,38 +6,43 @@
 User Maintenance Mode
 =====================
 
-Some companies require odoo server lock for some user to maintenance.
-Which have created group (manage maintenance mode) for users who have permission
-to manage maintenance mode. By eligible users can set maintenance mode of each user
-from menu Settings > Users
+Some companies need to use odoo server lock for some user to maintenance mode.
+Which we have created group (manage maintenance mode) by system.
+
+Users in this group can managed maintenance mode.
+
+navigate setting (Settings > Users > Users)
 
 Usage
 =====
 
-* Go to Settings > Users > Groups which you can add eligible users in group (manage maintenance mode)
+* Go to Settings > Users > Groups (Manage maintenance mode)
 
 .. figure:: static/description/group_manage_maintenance_mode.png
    :scale: 80 %
-   :alt: Add eligible users in group (manage maintenance mode)
+   :alt: Group manage maintenance mode
 
-* Go to Settings > Users > Users for select maintenance mode for each user
+* Go to Settings > Users > Users (select the user you want and select change manage maintenance mode as shown below)
 
   * first
 
   .. figure:: static/description/change_maintenance_mode1.png
      :scale: 80 %
+     :alt: Change manintenance mode button
 
   * second
 
   .. figure:: static/description/change_maintenance_mode2.png
      :scale: 80 %
+     :alt: Change maintenance mode wizard
 
   * third
 
   .. figure:: static/description/change_maintenance_mode3.png
      :scale: 80 %
+     :alt: Users are in maintenance mode
 
-* That user will can't login now.
+* The user will can't login again.
 
 .. figure:: static/description/warning_login.png
    :scale: 80 %

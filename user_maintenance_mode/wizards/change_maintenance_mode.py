@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from openerp import models, api, SUPERUSER_ID
 
 
@@ -6,35 +7,32 @@ class ChangeMaintenanceModeWizard(models.TransientModel):
     _name = 'change.maintenance.mode.wizard'
 
     @api.multi
+    def _get_users(self, user_groups=None, type=None):
+        # common
+        context = self._context.copy()
+        users = self.env['res.users'].browse(context.get('active_ids', []))
+        if type == 'select':
+            users = users.filtered(
+                lambda user: user.id not in user_groups.mapped('id') and
+                user.id != SUPERUSER_ID
+            )
+        return users
+
+    @api.multi
     def select_maintenance_mode(self):
-        ResUsers = self.env['res.users']
         Category = self.env['ir.module.category']
         Group = self.env['res.groups']
-        context = self._context.copy()
-        active_ids = context.get('active_ids', [])
         maintenance_category = Category.search([('name', '=',
                                                  'User Maintenance Mode')])
-        user_ids = []
-        for mc in maintenance_category:
-            groups = Group.search([('category_id', '=', mc.id)])
-            for group in groups:
-                for user in group.users:
-                    if user.id not in user_ids:
-                        user_ids.append(user.id)
-        if len(active_ids) > 0:
-            for user in ResUsers.browse(active_ids):
-                if user.id not in user_ids and user.id != SUPERUSER_ID:
-                    user.write({'maintenance_mode': True, })
+        groups = Group.search([('category_id', 'in',
+                                maintenance_category.mapped('id'))])
+        user_groups = groups.mapped('users')
+        users = self._get_users(user_groups=user_groups, type='select')
+        users.write({'maintenance_mode': True, })
         return {'type': 'ir.actions.act_window_close'}
 
     @api.multi
     def unselect_maintenance_mode(self):
-        ResUsers = self.env['res.users']
-        context = self._context.copy()
-        active_ids = context.get('active_ids', [])
-        if len(active_ids) > 0:
-            for user in ResUsers.browse(active_ids):
-                user.write({'maintenance_mode': False, })
+        users = self._get_users(type='unselect')
+        users.write({'maintenance_mode': False, })
         return {'type': 'ir.actions.act_window_close'}
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

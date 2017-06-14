@@ -3,9 +3,10 @@
 {
     'name': 'User Maintenance Mode',
     'version': '8.0.1.0.0',
-    'author': 'Tharathip,Ecosoft,Odoo Community Association (OCA)',
+    'author': 'Tharathip C.,Ecosoft,Odoo Community Association (OCA)',
     'category': 'Hidden',
-    'description': """""",
+    'description': """
+    """,
     'website': 'http://ecosoft.co.th',
     'depends': [
         'web',

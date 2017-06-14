@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from openerp import http
 from openerp.http import request
 from openerp.tools.translate import _
@@ -12,9 +13,7 @@ class Home(main.Home):
         res = super(Home, self).web_login(redirect, **kw)
         values = request.params.copy()
         if request.httprequest.method == 'POST':
-            uid = request.session.authenticate(request.session.db,
-                                               request.params['login'],
-                                               request.params['password'])
+            uid = request.uid
             if uid is not False:
                 maintenance_mode = \
                     request.env.user.browse(uid).maintenance_mode
