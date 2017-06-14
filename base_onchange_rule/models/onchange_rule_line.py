@@ -154,10 +154,9 @@ class OnchangeRuleLine(models.TransientModel):
                 continue
             related_field = rule_line.dest_related_field
             try:
-                locals_dict = {'obj': model_obj}
-                safe_eval(
-                    "obj.%s" % related_field, locals_dict)
-                related_model = locals_dict['result']
+                local_dict = {'obj': model_obj}
+                related_model = safe_eval(
+                    "obj.%s" % related_field, local_dict)
                 if related_model._name != rule_line.dest_field_id.relation:
                     msg = ('The related field model ("%s") is different from '
                            'the destination fiield relation ("%s")' %
