@@ -5,9 +5,9 @@
                "Odoo Community Association (OCA)"),
     "website": "https://github.com/OCA/server-tools/",
     "summary": "Provides ability to send log messages to graylog2 server",
-    "category": "Added functionality",
+    "category": "Extra Tools",
     "depends": [
         'base',
     ],
-    "active": True,
+    "installable": True,
 }
