@@ -7,9 +7,9 @@
         <field name="priority">20</field>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[1]" position="after">
-                <page string="Configuration">
+                <page name="configuration" string="Configuration">
                     <group>
-                        <group string="Technical Parameters" groups="base.group_erp_manager">
+                        <group name="tech_param" string="Technical Parameters" groups="base.group_erp_manager">
                             <field name="user_tech_id"/>
                         </group>
                     </group>
