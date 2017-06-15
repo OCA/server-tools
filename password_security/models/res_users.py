@@ -81,7 +81,9 @@ class ResUsers(models.Model):
             password_regex.append(r'(?=.*?\W)')
         password_regex.append('.{%d,}$' % company_id.password_length)
         if not re.search(''.join(password_regex), password):
-            raise PassError(_(self.password_match_message()))
+            self.env.cr.rollback()
+            self.invalidate_cache()
+            raise PassError(self.password_match_message())
         return True
 
     @api.multi
@@ -117,6 +119,8 @@ class ResUsers(models.Model):
             )
             delta = timedelta(hours=pass_min)
             if write_date + delta > datetime.now():
+                self.env.cr.rollback()
+                self.invalidate_cache()
                 raise PassError(
                     _('Passwords can only be reset every %d hour(s). '
                       'Please contact an administrator for assistance.') %
@@ -138,9 +142,10 @@ class ResUsers(models.Model):
                 recent_passes = rec_id.password_history_ids[
                     0:recent_passes-1
                 ]
-            if len(recent_passes.filtered(
-                lambda r: crypt.verify(password, r.password_crypt)
-            )):
+            if recent_passes.filtered(
+                    lambda r: crypt.verify(password, r.password_crypt)):
+                self.env.cr.rollback()
+                self.invalidate_cache()
                 raise PassError(
                     _('Cannot use the most recent %d passwords') %
                     rec_id.company_id.password_history
