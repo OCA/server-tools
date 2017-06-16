@@ -35,8 +35,11 @@ odoo.define('base_export_manager.base_export_manager', function(require) {
                         });
                         self.sidebar.items.other = items_data;
                         self.sidebar.add_items('other', _.compact([
-                                                                   self.render_export_enable >= 0 && {label: _t("Export"), callback: self.on_sidebar_export},
-                                                               ]));
+                            self.render_export_enable >= 0 && {
+                                label: _t("Export"),
+                                callback: self.on_sidebar_export
+                            },
+                        ]));
                      }
             });
         },
