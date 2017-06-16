@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo noupdate="1">
+
+    <record id="config_user_threshold" model="ir.config_parameter">
+        <field name="key">user.threshold.database</field>
+        <field name="value">0</field>
+        <field name="group_ids"
+               eval="[(4, ref('user_threshold.group_threshold_manager'))]" />
+    </record>
+
+</odoo>
