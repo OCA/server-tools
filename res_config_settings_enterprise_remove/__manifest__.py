@@ -5,14 +5,14 @@
 {
     'name': 'Settings - Remove Enterprise Fields',
     'summary': 'Remove fields in all settings views marked as enterprise',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Maintenance',
     'website': "https://laslabs.com",
     'author': 'LasLabs, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'application': False,
-    'installable': False,
     'depends': [
         'base',
     ],
+    'application': False,
+    'installable': True,
 }
