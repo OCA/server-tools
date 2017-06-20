@@ -68,14 +68,14 @@ class TestResUsers(TransactionCase):
     def test_check_password_returns_true_for_valid_password(self):
         rec_id = self._new_record()
         self.assertTrue(
-            rec_id.check_password('asdQWE123$%^3'),
+            rec_id._check_password('asdQWE123$%^3'),
             'Password is valid but check failed.',
         )
 
     def test_check_password_raises_error_for_invalid_password(self):
         rec_id = self._new_record()
         with self.assertRaises(PassError):
-            rec_id.check_password('password')
+            rec_id._check_password('password')
 
     def test_save_password_crypt(self):
         rec_id = self._new_record()
