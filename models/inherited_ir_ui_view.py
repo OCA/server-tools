@@ -34,8 +34,6 @@ class IrUiView(models.Model):
             copied_view = self.browse(values['copy_id'])
             values['arch'] = copied_view.read_combined(['arch'])['arch']
 
-        copied_views = []
-
         res = super(IrUiView, self).create(values)
 
         #
