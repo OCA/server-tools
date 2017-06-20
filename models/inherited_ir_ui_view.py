@@ -47,7 +47,7 @@ class IrUiView(models.Model):
 
         return res
 
-    @api.model
+    @api.multi
     def write(self, values):
         copied_views = []
 
@@ -86,7 +86,7 @@ class IrUiView(models.Model):
 
         return res
 
-    @api.model
+    @api.multi
     def unlink(self):
         copied_views = []
 
