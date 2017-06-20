@@ -41,10 +41,9 @@ class IrUiView(models.Model):
         #
         if values.get('inherit_id'):
             cv = self.search([('copy_id', '=', res.inherit_id.id)])
-            if cv:
-                arch = res.read_combined(['arch'])['arch']
-                for view in cv:
-                    view.write({'arch': arch})
+            arch = res.read_combined(['arch'])['arch']
+            for view in cv:
+                view.write({'arch': arch})
 
         return res
 
