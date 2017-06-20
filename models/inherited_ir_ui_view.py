@@ -27,7 +27,7 @@ class IrUiView(models.Model):
     @api.model
     def create(self, values):
         #
-        # Ensures that the arch of the copied view is realy copied from the
+        # Ensures that the arch of the copied view is really copied from the
         # original view
         #
         if values.get('copy_id'):
@@ -53,14 +53,14 @@ class IrUiView(models.Model):
 
         for view in self:
             #
-            # Saves copied views for later proccess
+            # Saves copied views for later process
             #
             cv = self.search([('copy_id', '=', view.id)])
             if cv:
                 copied_views += [[view.id, cv]]
 
             #
-            # Saves copied views for later proccess
+            # Saves copied views for later process
             #
             if values.get('inherit_id'):
                 cv = self.search([('copy_id', '=', values['inherit_id'])])
@@ -95,7 +95,7 @@ class IrUiView(models.Model):
                 continue
 
             #
-            # Saves copied views for later proccess
+            # Saves copied views for later process
             #
             cv = self.search([('copy_id', '=', view.inherit_id.id)])
             if cv:
@@ -104,7 +104,7 @@ class IrUiView(models.Model):
         res = super(IrUiView, self).unlink()
 
         #
-        # Ajusts now the copies of the inherited views
+        # Adjusts now the copies of the inherited views
         #
         if copied_views:
             for view_id, cv in copied_views:
@@ -126,7 +126,7 @@ class IrUiView(models.Model):
     def _check_xml(self):
         for view in self:
             #
-            # When the view is being copied, there's no need to validate it's
+            # When the view is being copied, there's no need to validate its
             # arch, because the original view has already been validated
             #
             if view.copy_id:
