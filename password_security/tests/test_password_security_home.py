@@ -68,7 +68,7 @@ class TestPasswordSecurityHome(TransactionCase):
     def test_do_signup_check(self):
         """ It should check password on user """
         with self.mock_assets() as assets:
-            check_password = assets['request'].env.user.check_password
+            check_password = assets['request'].env.user._check_password
             check_password.side_effect = EndTestException
             with self.assertRaises(EndTestException):
                 self.password_security_home.do_signup(self.qcontext)
