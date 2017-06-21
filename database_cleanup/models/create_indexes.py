@@ -2,7 +2,7 @@
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from ..identifier_adapter import IdentifierAdapter
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CreateIndexesLine(models.TransientModel):
@@ -48,6 +48,7 @@ class CreateIndexesWizard(models.TransientModel):
 
     @api.multi
     def find(self):
+        res = list()
         for field in self.env['ir.model.fields'].search([
                 ('index', '=', True),
         ]):
@@ -74,7 +75,8 @@ class CreateIndexesWizard(models.TransientModel):
             if not self.env.cr.rowcount:
                 continue
 
-            yield (0, 0, {
+            res.append((0, 0, {
                 'name': '%s.%s' % (field.model, field.name),
                 'field_id': field.id,
-            })
+            }))
+        return res
