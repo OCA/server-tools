@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, fields, models, _
-from openerp.exceptions import UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 from ..identifier_adapter import IdentifierAdapter
 
 
@@ -18,8 +18,13 @@ class CleanupPurgeLineTable(models.TransientModel):
         """
         Unlink tables upon manual confirmation.
         """
-        tables = self.mapped('name')
-        for line in self:
+        if self:
+            objs = self
+        else:
+            objs = self.env['cleanup.purge.line.table']\
+                .browse(self._context.get('active_ids'))
+        tables = objs.mapped('name')
+        for line in objs:
             if line.purged:
                 continue
 
@@ -84,11 +89,10 @@ class CleanupPurgeWizardTable(models.TransientModel):
             model_pool = self.env[model.model]
             known_tables.append(model_pool._table)
             known_tables += [
-                column._sql_names(model_pool)[0]
-                for column in model_pool._columns.values()
-                if (column._type == 'many2many' and
-                    hasattr(column, '_rel'))  # unstored function fields of
-                                              # type m2m don't have _rel
+                column.relation
+                for column in model_pool._fields.values()
+                if column.type == 'many2many' and
+                (column.compute is None or column.store)
             ]
 
         self.env.cr.execute(
