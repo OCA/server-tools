@@ -2,8 +2,8 @@
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
-from openerp import _, api, fields, models
-from openerp.exceptions import AccessDenied
+from odoo import _, api, fields, models
+from odoo.exceptions import AccessDenied
 
 
 class CleanupPurgeLine(models.AbstractModel):
@@ -15,7 +15,7 @@ class CleanupPurgeLine(models.AbstractModel):
     purged = fields.Boolean('Purged', readonly=True)
     wizard_id = fields.Many2one('cleanup.purge.wizard')
 
-    logger = logging.getLogger('openerp.addons.database_cleanup')
+    logger = logging.getLogger('odoo.addons.database_cleanup')
 
     @api.multi
     def purge(self):
