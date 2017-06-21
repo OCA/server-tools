@@ -1,18 +1,37 @@
 # -*- coding: utf-8 -*-
 # © 2015 Endika Iglesias
+# © 2017 Hugo Rodrigues
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
 import hashlib
 import urllib2
+import logging
 
-from odoo import api, models
+from odoo import api, models, fields
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
+
+_logger = logging.getLogger(__name__)
 
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
+
+    gravatar_autoupdate = fields.Boolean(
+        string='Auto update gravatar'
+        )
+
+    gravatar_autoupdate_enabled = fields.Boolean(
+        compute='_compute_gravatar_autoupdate_enabled'
+        )
+
+    @api.multi
+    def _compute_gravatar_autoupdate_enabled(self):
+        IrParameter = self.env['ir.config_parameter']
+        auto_update = IrParameter.search([('key', '=', 'gravatar.autoupdate')], limit=1)
+        for record in self:
+            record.gravatar_autoupdate_enabled = auto_update and auto_update.value in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
         url = 'http://www.gravatar.com/avatar/{}?s=200'
@@ -38,4 +57,19 @@ class ResUsers(models.Model):
                         email
                     )
                 ))
+        return True
+
+    @api.model
+    def _update_gravatars(self):
+        IrParameter = self.env['ir.config_parameter']
+        auto_update = IrParameter.search([('key', '=', 'gravatar.autoupdate')], limit=1)
+        if auto_update and auto_update.value in ('True', 'true', '1'):
+            _logger.info('Starting gravatar update')
+            # Lets prevent failing in case of no gravatar
+            for user in self.search([('gravatar_autoupdate', '=', True)]):
+                try:
+                    user.get_gravatar_image()
+                except:
+                    _logger.warning('Unable to set gravatar for email %s' % str(user.email) or '')
+            _logger.info('Gravatar auto update ended')
         return True
