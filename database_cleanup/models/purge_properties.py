@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, models, fields
+from odoo import api, models, fields
 REASON_DUPLICATE = 1
 REASON_DEFAULT = 2
 
@@ -76,7 +76,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             for redundant_property in self.env['ir.property'].search(domain):
                 result.append({
                     'name': '%s@%s: %s' % (
-                        prop.name, prop.res_id, prop.get_by_record(prop)
+                        prop.name, prop.res_id, prop.get_by_record()
                     ),
                     'property_id': redundant_property.id,
                     'reason': REASON_DEFAULT,
@@ -98,7 +98,7 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             ])[1:]:
                 result.append({
                     'name': '%s@%s: %s' % (
-                        prop.name, prop.res_id, prop.get_by_record(prop)
+                        prop.name, prop.res_id, prop.get_by_record()
                     ),
                     'property_id': prop.id,
                     'reason': REASON_DUPLICATE,
