@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import _, api, fields, models
-from openerp.exceptions import UserError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from ..identifier_adapter import IdentifierAdapter
 
 
@@ -20,7 +20,12 @@ class CleanupPurgeLineColumn(models.TransientModel):
         """
         Unlink columns upon manual confirmation.
         """
-        for line in self:
+        if self:
+            objs = self
+        else:
+            objs = self.env['cleanup.purge.line.column']\
+                .browse(self._context.get('active_ids'))
+        for line in objs:
             if line.purged:
                 continue
             model_pool = self.env[line.model_id.model]
@@ -71,12 +76,10 @@ class CleanupPurgeWizardColumn(models.TransientModel):
         of fields which have been removed
         """
         columns = list(set([
-            column
+            column.name
             for model_pool in model_pools
-            for column in model_pool._columns
-            if not (isinstance(model_pool._columns[column],
-                               fields.fields.function) and
-                    not model_pool._columns[column].store)
+            for column in model_pool._fields.values()
+            if not (column.compute is not None and not column.store)
         ]))
         columns += models.MAGIC_COLUMNS
         columns += self.blacklist.get(model_pools[0]._table, [])
