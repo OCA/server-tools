@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from lxml import etree
-from openerp.tests.common import TransactionCase
+from odoo.tools import mute_logger
+from odoo.tests.common import TransactionCase
+from ..models import ir_fields_converter
 
 
 class ExtractorCase(TransactionCase):
     def setUp(self):
         super(ExtractorCase, self).setUp()
-
         # Shortcut
         self.imgs_from_html = self.env["ir.fields.converter"].imgs_from_html
 
@@ -44,26 +45,26 @@ class ExtractorCase(TransactionCase):
             self.assertEqual("/path/%d" % n, url)
         self.assertEqual(n, 0)
 
+    @mute_logger(ir_fields_converter.__name__)
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         for laps, text in self.imgs_from_html(""):
             self.assertTrue(False)  # You should never get here
-
         with self.assertRaises(etree.XMLSyntaxError):
             list(self.imgs_from_html("", fail=True))
 
+    @mute_logger(ir_fields_converter.__name__)
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         for laps, text in self.imgs_from_html(False):
             self.assertTrue(False)  # You should never get here
-
         with self.assertRaises(TypeError):
             list(self.imgs_from_html(False, fail=True))
 
+    @mute_logger(ir_fields_converter.__name__)
     def test_bad_html(self):
         """Bad HTML handled correctly."""
         for laps, text in self.imgs_from_html("<<bad>"):
             self.assertTrue(False)  # You should never get here
-
         with self.assertRaises(etree.ParserError):
             list(self.imgs_from_html("<<bad>", fail=True))
