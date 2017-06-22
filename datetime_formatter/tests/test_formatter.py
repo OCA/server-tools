@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-# © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
-# © 2016 Tecnativa, S.L. - Vicent Cubells
+# Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import datetime
 from random import random
-from openerp.tests.common import TransactionCase
-from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                           DEFAULT_SERVER_TIME_FORMAT,
-                           DEFAULT_SERVER_DATETIME_FORMAT)
-from ..models import MODE_DATE, MODE_TIME, MODE_DATETIME
+from odoo.tests.common import TransactionCase
+from odoo.tools import (DEFAULT_SERVER_DATE_FORMAT,
+                        DEFAULT_SERVER_TIME_FORMAT,
+                        DEFAULT_SERVER_DATETIME_FORMAT)
+from ..models.res_lang import MODE_DATE, MODE_TIME, MODE_DATETIME
 
 
 class FormatterCase(TransactionCase):
