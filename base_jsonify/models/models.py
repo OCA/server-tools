@@ -52,10 +52,9 @@ def jsonify(self, parser):
                 field_type = rec._fields[field_name].type
                 if field_type in ('one2many', 'many2many'):
                     res[json_key] = rec[field_name].jsonify(subparser)
-                elif field_type == 'many2one':
-                    data = rec[field_name].jsonify(subparser)
-                    if data:
-                        res[json_key] = data[0]
+                elif field_type in ('many2one', 'reference'):
+                    if rec[field_name]:
+                        res[json_key] = rec[field_name].jsonify(subparser)[0]
                     else:
                         res[json_key] = None
                 else:
