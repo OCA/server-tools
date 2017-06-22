@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2016 Taŭga Tecnologia - Aristides Caldeira <aristides.caldeira@tauga.com.br>
+    License AGPL-3 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+
+    <record model="ir.ui.view" id="ir_ui_view_copy_view_form" >
+        <field name="name">ir.ui.view.copy.view.form</field>
+        <field name="model">ir.ui.view</field>
+        <field name="priority">100</field>
+        <field name="inherit_id" ref="base.view_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='inherit_id']" position="after">
+                <field name="copy_id" />
+            </xpath>
+            <xpath expr="//page[@name='inherit_children']" position="after">
+                <page name="copy_children" string="Copied Views">
+                    <field name="copy_children_ids" context="{'default_model':model,'default_type':type,'default_copy_id':active_id,'default_mode':'extension'}">
+                        <tree>
+                            <field name="priority"/>
+                            <field name="name"/>
+                            <field name="xml_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ir_ui_view_copy_view_tree" >
+        <field name="name">ir.ui.view.copy.view.tree</field>
+        <field name="model">ir.ui.view</field>
+        <field name="priority">100</field>
+        <field name="inherit_id" ref="base.view_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='inherit_id']" position="after">
+                <field name="copy_id" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
