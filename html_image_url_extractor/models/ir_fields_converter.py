@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
 import logging
 from lxml import etree, html
-from openerp import api, models
+from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
 
-class IrFieldsConverter(models.Model):
+class IrFieldsConverter(models.AbstractModel):
     _inherit = "ir.fields.converter"
 
     @api.model
