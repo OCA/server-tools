@@ -61,7 +61,7 @@ To configure this module, you need to:
 #. Go to *Settings > Technical > Database Structure > Import Match*.
 #. *Create*.
 #. Choose a *Model*.
-#. Choose the *Fields* that conform an unique key in that model.
+#. Choose the *Fields* that conform a unique key in that model.
 #. If the rule must be used only for certain imported values, check
    *Conditional* and enter the **exact string** that is going to be imported
    in *Imported value*.
@@ -84,7 +84,7 @@ To use this module, you need to:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
+   :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Known Issues / Roadmap
 ======================

@@ -5,7 +5,7 @@
 {
     "name": "Base Import Match",
     "summary": "Try to avoid duplicates before importing",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Tools",
     "website": "https://tecnativa.com",
     "author": "Grupo ESOC Ingeniería de Servicios,"
