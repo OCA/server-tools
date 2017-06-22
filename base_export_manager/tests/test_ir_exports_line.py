@@ -37,9 +37,8 @@ class TestIrExportsLineCase(TransactionCase):
         m_ir_exports_line = self.env['ir.exports.line']
         export_line = m_ir_exports_line.create({'name': 'parent_id/name',
                                                 'export_id': self.export.id})
-        check_label = " (res.partner) (parent_id/name)"
         self.assertEqual(export_line.with_context(lang="en_US").label,
-                         "Related Company (res.partner)/Name" + check_label)
+                         "Related Company/Name (parent_id/name)")
         with self.assertRaises(ValidationError):
             m_ir_exports_line.create({'name': '',
                                       'export_id': self.export.id})
