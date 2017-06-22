@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
-# © 2016 Tecnativa, S.L. - Vicent Cubells
+# Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp.tests.common import TransactionCase
-from .. import exceptions
+from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
 
 
 class BasicCase(TransactionCase):
@@ -72,5 +72,5 @@ class BasicCase(TransactionCase):
         self.assertEqual(self.rl.best_match("fake_LANG").code, first.code)
 
         # Unsafe mode
-        with self.assertRaises(exceptions.BestMatchedLanguageNotFoundError):
+        with self.assertRaises(UserError):
             self.rl.best_match("fake_LANG", failure_safe=False)

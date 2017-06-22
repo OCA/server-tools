@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
-# © 2016 Tecnativa, S.L. - Vicent Cubells
+# Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import datetime, timedelta
-from openerp import api, fields, models
-from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                           DEFAULT_SERVER_TIME_FORMAT)
-from . import exceptions as ex
+from odoo import _, api, fields, models
+from odoo.tools import (DEFAULT_SERVER_DATE_FORMAT,
+                        DEFAULT_SERVER_TIME_FORMAT)
+from odoo.exceptions import UserError
 
 # Available modes for :param:`.ResLang.datetime_formatter.template`
 MODE_DATETIME = "MODE_DATETIME"
@@ -56,7 +56,9 @@ class ResLang(models.Model):
             record.ensure_one()
         except ValueError:
             if not failure_safe:
-                raise ex.BestMatchedLanguageNotFoundError(lang)
+                raise UserError(
+                    _("Best matched language (%s) not found.") % lang
+                )
             else:
                 record = first_installed
 
