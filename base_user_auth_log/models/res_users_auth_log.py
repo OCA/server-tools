@@ -4,7 +4,6 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning as UserError
-from datetime import datetime
 
 
 class ResUsersAuthLog(models.Model):
@@ -17,8 +16,7 @@ class ResUsersAuthLog(models.Model):
         'res.users', string='User', ondelete='cascade', readonly=True)
     login = fields.Char(string='Login', readonly=True)
     date = fields.Datetime(
-        string='Authentication Date', required=True, readonly=True,
-        default=datetime.utcnow())
+        string='Authentication Date', required=True, readonly=True)
     result = fields.Selection([
         ('success', 'Success'),
         ('failure', 'Failure'),

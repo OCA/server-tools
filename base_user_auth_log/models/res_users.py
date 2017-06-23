@@ -18,7 +18,11 @@ class ResUsers(models.Model):
             db, login, password, user_agent_env)
         cr = registry(db).cursor()
         try:
-            vals = {'login': login, 'result': 'failure'}
+            vals = {
+                'login': login,
+                'result': 'failure',
+                'date': fields.Datetime.now(),
+                }
             if user_id:
                 vals.update({'user_id': user_id, 'result': 'success'})
             elif login:
