@@ -44,12 +44,18 @@ def jsonify(self, parser):
 
     """
     result = []
+    empty_value = {
+        'char': '',
+        'int': 0,
+        'float': 0,
+        }
+
     for rec in self:
         res = {}
         for field in parser:
             field_name, json_key, subparser = __parse_field(field)
+            field_type = rec._fields[field_name].type
             if subparser:
-                field_type = rec._fields[field_name].type
                 if field_type in ('one2many', 'many2many'):
                     res[json_key] = rec[field_name].jsonify(subparser)
                 elif field_type in ('many2one', 'reference'):
@@ -61,6 +67,8 @@ def jsonify(self, parser):
                     raise UserError(_('Wrong parser configuration'))
             else:
                 res[json_key] = rec[field_name]
+                if not res[json_key] and field_type in empty_value:
+                    res[json_key] = empty_value[field_type]
         result.append(res)
     return result
 
