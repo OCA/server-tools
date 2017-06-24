@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * server_environment_ir_config_parameter
+# 
+# Translators:
+# Niki Waibel <niki.waibel@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 01:12+0000\n"
+"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: server_environment_ir_config_parameter
+#: code:addons/server_environment_ir_config_parameter/models/ir_config_parameter.py:23
+#, python-format
+msgid "Key %s is empty in server_environment_file"
+msgstr ""
+
+#. module: server_environment_ir_config_parameter
+#: model:ir.model,name:server_environment_ir_config_parameter.model_ir_config_parameter
+msgid "ir.config_parameter"
+msgstr "ir.config_parameter"
