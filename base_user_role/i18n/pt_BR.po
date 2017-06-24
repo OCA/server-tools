@@ -3,17 +3,15 @@
 # * base_user_role
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2016
-# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# falexandresilva <falexandresilva@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
-"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016\n"
+"POT-Creation-Date: 2017-06-22 01:12+0000\n"
+"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"Last-Translator: falexandresilva <falexandresilva@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +91,7 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_id
@@ -137,7 +135,7 @@ msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1519
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1510
 msgid "Role lines"
 msgstr ""
 
