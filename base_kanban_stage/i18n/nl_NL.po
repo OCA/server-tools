@@ -3,21 +3,20 @@
 # * base_kanban_stage
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# falexandresilva <falexandresilva@gmail.com>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:11+0000\n"
 "PO-Revision-Date: 2017-06-22 01:11+0000\n"
-"Last-Translator: falexandresilva <falexandresilva@gmail.com>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_status
@@ -61,12 +60,12 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Aangemaakt door"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Aangemaakt op"
 
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
@@ -76,7 +75,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_description
 msgid "Description"
-msgstr "Descrição"
+msgstr "Omschrijving"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_fold
@@ -87,7 +86,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_display_name
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "weergavenaam"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_name
@@ -97,7 +96,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_legend_normal
@@ -164,7 +163,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_id
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_root_menu
@@ -204,27 +203,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract___last_update
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Laatst gewijzigd op"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "Medium"
-msgstr "Médio"
+msgstr ""
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_status:0
@@ -264,7 +263,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_status:0
 msgid "Ready"
-msgstr "Pronto"
+msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_legend_done
@@ -275,7 +274,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_sequence
 msgid "Sequence"
-msgstr "Sequência"
+msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_description
@@ -296,12 +295,12 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_name
 msgid "Stage Name"
-msgstr "Nome do estágio"
+msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_menu
 msgid "Stages"
-msgstr "Estágios"
+msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_stage_id
