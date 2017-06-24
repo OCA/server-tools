@@ -3,21 +3,20 @@
 # * keychain
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Daniel Schweiger <danielcccasle@gmail.com>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:12+0000\n"
 "PO-Revision-Date: 2017-06-22 01:12+0000\n"
-"Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
-"Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: keychain
 #: code:addons/keychain/models/keychain.py:72
@@ -56,12 +55,12 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_uid
 msgid "Created by"
-msgstr "Creat de"
+msgstr "Aangemaakt door"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_date
 msgid "Created on"
-msgstr "Creat la"
+msgstr "Aangemaakt op"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_data
@@ -83,7 +82,7 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_display_name
 msgid "Display Name"
-msgstr "Nume Afişat"
+msgstr "weergavenaam"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_environment
@@ -108,17 +107,17 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account___last_update
 msgid "Last Modified on"
-msgstr "Ultima actualizare în"
+msgstr "Laatst gewijzigd op"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualizare făcută de"
+msgstr "Laatst bijgewerkt door"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_write_date
 msgid "Last Updated on"
-msgstr "Ultima actualizare la"
+msgstr "Laatst bijgewerkt op"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_login
@@ -129,7 +128,7 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_name
 msgid "Name"
-msgstr "Nume"
+msgstr "Naam"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_namespace
@@ -169,7 +168,7 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_technical_name
 msgid "Technical name"
-msgstr "Nume tehnic"
+msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,help:keychain.field_keychain_account_technical_name
