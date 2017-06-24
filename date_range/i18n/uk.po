@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-24 02:40+0000\n"
-"PO-Revision-Date: 2017-05-24 02:40+0000\n"
+"POT-Creation-Date: 2017-06-22 01:12+0000\n"
+"PO-Revision-Date: 2017-06-22 01:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Ukrainian (https://www.transifex.com/oca/teams/23907/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -215,8 +215,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1617
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1614
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1619
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1616
 msgid "Type"
 msgstr "Тип"
 
