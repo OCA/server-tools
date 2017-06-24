@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
+# Ediz Duman <neps1192@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 10:39+0000\n"
-"PO-Revision-Date: 2017-02-16 10:39+0000\n"
-"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017\n"
+"POT-Creation-Date: 2017-06-10 10:19+0000\n"
+"PO-Revision-Date: 2017-06-10 10:19+0000\n"
+"Last-Translator: Ediz Duman <neps1192@gmail.com>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:keychain.keychain_list_action
 #: model:ir.ui.view,arch_db:keychain.keychain_account_id
 msgid "Accounts"
-msgstr ""
+msgstr "Hesaplar"
 
 #. module: keychain
 #: model:ir.ui.view,arch_db:keychain.keychain_account_form
