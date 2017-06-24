@@ -3,21 +3,20 @@
 # * module_prototyper
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# falexandresilva <falexandresilva@gmail.com>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:12+0000\n"
 "PO-Revision-Date: 2017-06-22 01:12+0000\n"
-"Last-Translator: falexandresilva <falexandresilva@gmail.com>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_api_version
@@ -47,7 +46,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_author
 msgid "Author"
-msgstr "Autor"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_auto_install
@@ -57,12 +56,12 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_category_id
 msgid "Category"
-msgstr "Categoria"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_application
@@ -77,12 +76,12 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr "Fechar"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_client_context
 msgid "Context"
-msgstr "Contexto"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_ir_model_fields_client_context
@@ -96,14 +95,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Aangemaakt door"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Aangemaakt op"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -130,14 +129,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_description
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Description"
-msgstr "Descrição"
+msgstr "Omschrijving"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "weergavenaam"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_summary
@@ -248,7 +247,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "Export"
-msgstr "Exportar"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
@@ -272,12 +271,12 @@ msgstr ""
 #: model:ir.ui.menu,name:module_prototyper.ir_model_model_fields
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Fields"
-msgstr "Campos"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_data
 msgid "File"
-msgstr "Arquivo"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
@@ -297,7 +296,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_group_ids
 msgid "Groups"
-msgstr "Grupos"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_helper
@@ -341,21 +340,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version___last_update
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export___last_update
 msgid "Last Modified on"
-msgstr "Última Modificação em"
+msgstr "Laatst gewijzigd op"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
-msgstr "Última Atualização por"
+msgstr "Laatst bijgewerkt door"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
-msgstr "Última Atualização em"
+msgstr "Laatst bijgewerkt op"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_license
@@ -381,7 +380,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Module"
-msgstr "Módulo"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_human_name
@@ -401,12 +400,12 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_name
 msgid "Name"
-msgstr "Nome"
+msgstr "Naam"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr "Notas"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_notes
@@ -456,22 +455,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_report_ids
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Reports"
-msgstr "Relatórios"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Security"
-msgstr "Segurança"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_state
 msgid "State"
-msgstr "Situação"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_summary
 msgid "Summary"
-msgstr "Sumário"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_name
@@ -520,19 +519,19 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_version
 msgid "Version"
-msgstr "Versão"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_view_ids
 #: model:ir.ui.menu,name:module_prototyper.menu_action_ui_view
 msgid "Views"
-msgstr "Visualizações"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_website
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Website"
-msgstr "Website"
+msgstr ""
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -592,4 +591,4 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr "ou"
+msgstr ""
