@@ -3,30 +3,33 @@
 # Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import http, models, registry, SUPERUSER_ID
-from odoo.api import Environment
+from odoo import api, http, models, registry, SUPERUSER_ID
 from odoo.http import request, root
 
 from os import utime
 from os.path import getmtime
 from time import time
 
+DELAY_KEY = 'inactive_session_time_out_delay'
+IGNORED_PATH_KEY = 'inactive_session_time_out_ignored_url'
+
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    @classmethod
-    def _check_session_validity(cls, db, uid, passwd):
+    @api.model
+    def _check_session_validity(self):
         if not request:
             return
         session = request.session
         session_store = root.session_store
-        with registry(db).cursor() as cr:
-            env = Environment(cr, SUPERUSER_ID, {})
-            param_obj = env['ir.config_parameter']
-            delay, urls = param_obj.get_session_parameters(db)
-            deadline = time() - delay
-            path = session_store.get_session_filename(session.sid)
+        ipm = self.env['ir.config_parameter']
+        delay = ipm.get_param(DELAY_KEY, 7200)
+        delay = (int(delay) if delay else False)
+        urls = ipm.get_param(IGNORED_PATH_KEY, '')
+        urls = (urls.split(',') if urls else [])
+        deadline = time() - delay
+        path = session_store.get_session_filename(session.sid)
         try:
             if getmtime(path) < deadline:
                 if session.db and session.uid:
@@ -42,5 +45,10 @@ class ResUsers(models.Model):
     @classmethod
     def check(cls, db, uid, passwd):
         res = super(ResUsers, cls).check(db, uid, passwd)
-        cls._check_session_validity(db, uid, passwd)
+        cr = cls.pool.cursor()
+        try:
+            self = api.Environment(cr, uid, {})[cls._name]
+            self._check_session_validity()
+        finally:
+            cr.close()
         return res
