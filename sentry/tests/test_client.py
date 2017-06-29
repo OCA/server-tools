@@ -74,13 +74,13 @@ class TestClientSetup(unittest.TestCase):
     def assertEventCaptured(self, client, event_level, event_msg):
         self.assertTrue(
             client.has_event(event_level, event_msg),
-            msg=u'Event: "%s" was not captured' % event_msg
+            msg='Event: "%s" was not captured' % event_msg
         )
 
     def assertEventNotCaptured(self, client, event_level, event_msg):
         self.assertFalse(
             client.has_event(event_level, event_msg),
-            msg=u'Event: "%s" was captured' % event_msg
+            msg='Event: "%s" was captured' % event_msg
         )
 
     def test_initialize_raven_sets_dsn(self):
