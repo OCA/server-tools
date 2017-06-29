@@ -8,7 +8,7 @@
     'author': "ACSONE SA/NV, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    'website': 'https://www.tecnativa.com',
+    'website': 'https://www.acsone.eu',
     'category': 'Tools',
     'summary': 'This module disable all inactive sessions since a given delay',
     'license': 'AGPL-3',

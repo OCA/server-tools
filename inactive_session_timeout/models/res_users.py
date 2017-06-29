@@ -6,7 +6,6 @@
 from odoo import api, http, models
 from odoo.http import request, root
 
-from os import utime
 from os.path import getmtime
 from time import time
 
@@ -26,18 +25,17 @@ class ResUsers(models.Model):
         ipm = self.env['ir.config_parameter']
         delay = ipm.get_param(DELAY_KEY, 7200)
         delay = (int(delay) if delay else False)
+        # Note that get_param is cached
         urls = ipm.get_param(IGNORED_PATH_KEY, '')
         urls = (urls.split(',') if urls else [])
         deadline = time() - delay
         path = session_store.get_session_filename(session.sid)
         try:
+            if any([url in http.request.httprequest.path for url in urls]):
+                return
             if getmtime(path) < deadline:
                 if session.db and session.uid:
                     session.logout(keep_db=True)
-            elif http.request.httprequest.path not in urls:
-                # the session is not expired, update the last modification
-                # and access time.
-                utime(path, None)
         except OSError:
             pass
         return
