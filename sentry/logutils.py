@@ -14,6 +14,8 @@ try:
     from raven.utils.wsgi import get_environ, get_headers
 except ImportError:
     _logger.debug('Cannot import "raven". Please make sure it is installed.')
+    SentryHandler = object
+    SanitizePasswordsProcessor = object
 
 
 def get_request_info(request):
