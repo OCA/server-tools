@@ -37,7 +37,7 @@ configuration file:
                                *https://<public_key>:<secret_key>@sentry.example.com/<project id>*
                                This is the only required option in order to use the module.
 
-``sentry_enabled``             Whether or not Sentry logging is enabled.                             ``True``
+``sentry_enabled``             Whether or not Sentry logging is enabled.                             ``False``
 
 ``sentry_logging_level``       The minimal logging level for which to send reports to Sentry.        ``warn``
                                Possible values: *notset*, *debug*, *info*, *warn*, *error*,
