@@ -12,6 +12,7 @@ try:
     import raven
     from raven.conf import defaults
 except ImportError:
+    raven = False
     _logger.debug('Cannot import "raven". Please make sure it is installed.')
 
 
@@ -34,10 +35,10 @@ DEFAULT_LOG_LEVEL = 'warn'
 
 DEFAULT_TRANSPORT = 'threaded'
 TRANSPORT_CLASS_MAP = {
-    'requests_synchronous': raven.transport.RequestsHTTPTransport,
-    'requests_threaded': raven.transport.ThreadedRequestsHTTPTransport,
-    'synchronous': raven.transport.HTTPTransport,
-    'threaded': raven.transport.ThreadedHTTPTransport,
+    'requests_synchronous': getattr(raven, 'transport.RequestsHTTPTransport', False),
+    'requests_threaded': getattr(raven, 'transport.ThreadedRequestsHTTPTransport', False),
+    'synchronous': getattr(raven, 'transport.HTTPTransport', False),
+    'threaded': getattr(raven, 'transport.ThreadedHTTPTransport', False),
 }
 
 ODOO_USER_EXCEPTIONS = [
