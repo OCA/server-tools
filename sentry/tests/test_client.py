@@ -85,7 +85,7 @@ class TestClientSetup(unittest.TestCase):
 
     def test_initialize_raven_sets_dsn(self):
         config = {
-            'sentry_enabled': False,
+            'sentry_enabled': True,
             'sentry_dsn': 'http://public:secret@example.com/1',
         }
         client = initialize_raven(config, client_cls=InMemoryClient)
