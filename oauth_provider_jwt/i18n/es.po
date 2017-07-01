@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * oauth_provider_jwt
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-24 08:50+0000\n"
+"PO-Revision-Date: 2017-06-24 08:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,field_description:oauth_provider_jwt.field_oauth_provider_client_jwt_algorithm
+msgid "Algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,help:oauth_provider_jwt.field_oauth_provider_client_jwt_algorithm
+msgid "Algorithm used to sign the JSON Web Token."
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,field_description:oauth_provider_jwt.field_oauth_provider_client_jwt_scope_id
+msgid "Data Scope"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "ECDSA signature algorithm using SHA-256 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "ECDSA signature algorithm using SHA-384 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "ECDSA signature algorithm using SHA-512 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.ui.view,arch_db:oauth_provider_jwt.view_oauth_provider_client_form
+msgid "Generate a new random private key"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "HMAC using SHA-256 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "HMAC using SHA-384 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "HMAC using SHA-512 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.ui.view,arch_db:oauth_provider_jwt.view_oauth_provider_client_form
+msgid "JSON Web Token"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model,name:oauth_provider_jwt.model_oauth_provider_client
+msgid "OAuth Provider Client"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,field_description:oauth_provider_jwt.field_oauth_provider_client_jwt_private_key
+msgid "Private Key"
+msgstr "Clave privada"
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,help:oauth_provider_jwt.field_oauth_provider_client_jwt_private_key
+msgid "Private key used for the JSON Web Token generation."
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,field_description:oauth_provider_jwt.field_oauth_provider_client_jwt_public_key
+msgid "Public Key"
+msgstr "Clave pública"
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,help:oauth_provider_jwt.field_oauth_provider_client_jwt_public_key
+msgid "Public key used for the JSON Web Token generation."
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PKCS1-v1_5 signature algorithm using SHA-256 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PKCS1-v1_5 signature algorithm using SHA-384 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PKCS1-v1_5 signature algorithm using SHA-512 hash algorithm"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PSS signature using SHA-256 and MGF1 padding with SHA-256"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PSS signature using SHA-384 and MGF1 padding with SHA-384"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: selection:oauth.provider.client,jwt_algorithm:0
+msgid "RSASSA-PSS signature using SHA-512 and MGF1 padding with SHA-512"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: model:ir.model.fields,help:oauth_provider_jwt.field_oauth_provider_client_jwt_scope_id
+msgid "Scope executed to add some user's data in the token."
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: code:addons/oauth_provider_jwt/models/oauth_provider_client.py:101
+#, python-format
+msgid "The private key doesn't fit the selected algorithm!"
+msgstr ""
+
+#. module: oauth_provider_jwt
+#: code:addons/oauth_provider_jwt/models/oauth_provider_client.py:122
+#, python-format
+msgid "You can only generate private keys for asymetric algorithms!"
+msgstr ""
