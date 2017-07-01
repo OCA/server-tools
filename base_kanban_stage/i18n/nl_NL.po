@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:11+0000\n"
-"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"POT-Creation-Date: 2017-06-30 12:21+0000\n"
+"PO-Revision-Date: 2017-06-30 12:21+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_user_id
 msgid "Assigned To"
-msgstr ""
+msgstr "Toegewezen aan"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_res_model_id
@@ -40,12 +40,12 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_fold
 msgid "Collapse?"
-msgstr ""
+msgstr "Inklappen?"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_color
 msgid "Color Index"
-msgstr ""
+msgstr "Kleurindex"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_color
@@ -70,7 +70,7 @@ msgstr "Aangemaakt op"
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_description
@@ -157,7 +157,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "High"
-msgstr ""
+msgstr "Hoog"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_id
@@ -168,7 +168,7 @@ msgstr "ID"
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_root_menu
 msgid "Kanban"
-msgstr ""
+msgstr "Kanban"
 
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_stage
@@ -218,7 +218,7 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
@@ -263,7 +263,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_status:0
 msgid "Ready"
-msgstr ""
+msgstr "Klaar"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_legend_done
@@ -325,4 +325,4 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 msgid "base.kanban.abstract"
-msgstr ""
+msgstr "base.kanban.abstract"
