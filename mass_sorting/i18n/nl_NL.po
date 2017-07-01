@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-06-30 12:21+0000\n"
+"PO-Revision-Date: 2017-06-30 12:21+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: code:addons/mass_sorting/models/mass_sort_config.py:84
 #, python-format
 msgid "%s (copy)"
-msgstr ""
+msgstr "%s(kopie)"
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
@@ -38,7 +38,7 @@ msgstr ""
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleer"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_config_id
@@ -48,7 +48,7 @@ msgstr ""
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
 msgid "Confirm"
-msgstr ""
+msgstr "Bevestig"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_create_uid
@@ -88,12 +88,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_field_id
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_field_id
 msgid "Field"
-msgstr ""
+msgstr "Veld"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_one2many_field_id
 msgid "Field to Sort"
-msgstr ""
+msgstr "te Sorteren Veld"
 
 #. module: mass_sorting
 #: model:ir.model.fields,help:mass_sorting.field_mass_sort_config_one2many_model
@@ -121,7 +121,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_desc
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_desc
 msgid "Inverse Order"
-msgstr ""
+msgstr "Omgekeerde volgorde"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config___last_update
@@ -163,7 +163,7 @@ msgstr ""
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_model_id
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_one2many_model
@@ -262,19 +262,19 @@ msgstr ""
 #. module: mass_sorting
 #: model:ir.model,name:mass_sorting.model_mass_sort_config
 msgid "mass.sort.config"
-msgstr ""
+msgstr "mass.sort.config"
 
 #. module: mass_sorting
 #: model:ir.model,name:mass_sorting.model_mass_sort_config_line
 msgid "mass.sort.config.line"
-msgstr ""
+msgstr "mass.sort.config.line"
 
 #. module: mass_sorting
 #: model:ir.model,name:mass_sorting.model_mass_sort_wizard
 msgid "mass.sort.wizard"
-msgstr ""
+msgstr "mass.sort.wizard"
 
 #. module: mass_sorting
 #: model:ir.model,name:mass_sorting.model_mass_sort_wizard_line
 msgid "mass.sort.wizard.line"
-msgstr ""
+msgstr "mass.sort.wizard.line"
