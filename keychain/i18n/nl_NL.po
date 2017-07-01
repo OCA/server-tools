@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-06-30 12:21+0000\n"
+"PO-Revision-Date: 2017-06-30 12:21+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,8 @@ msgid ""
 "%s \n"
 "Account: %s %s %s "
 msgstr ""
+"%s\n"
+"Rekening: %s%s%s"
 
 #. module: keychain
 #: model:ir.model.fields,help:keychain.field_keychain_account_environment
@@ -35,7 +37,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:keychain.keychain_list_action
 #: model:ir.ui.view,arch_db:keychain.keychain_account_id
 msgid "Accounts"
-msgstr ""
+msgstr "Rekeningen"
 
 #. module: keychain
 #: model:ir.ui.view,arch_db:keychain.keychain_account_form
@@ -50,7 +52,7 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_clear_password
 msgid "Clear password"
-msgstr ""
+msgstr "Wachtwoord wissen"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_uid
@@ -123,7 +125,7 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_login
 #: model:ir.model.fields,help:keychain.field_keychain_account_login
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_name
@@ -145,7 +147,7 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_password
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #. module: keychain
 #: code:addons/keychain/models/keychain.py:164
