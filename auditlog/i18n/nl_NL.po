@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:11+0000\n"
-"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"POT-Creation-Date: 2017-06-30 12:20+0000\n"
+"PO-Revision-Date: 2017-06-30 12:20+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_action_id
 msgid "Action"
-msgstr ""
+msgstr "Actie"
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr ""
+msgstr "Audit"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
@@ -88,7 +88,7 @@ msgstr "Aangemaakt op"
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_description
@@ -107,7 +107,7 @@ msgstr "weergavenaam"
 #: selection:auditlog.rule,state:0
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Draft"
-msgstr ""
+msgstr "Concept"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
@@ -117,13 +117,13 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_id
 msgid "Field"
-msgstr ""
+msgstr "Veld"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_ids
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Fields updated"
-msgstr ""
+msgstr "Velden bijgewerkt"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
@@ -143,7 +143,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr ""
+msgstr "Groeperen op...."
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
@@ -258,7 +258,7 @@ msgstr "Methode"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_model_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_display_name
@@ -270,7 +270,7 @@ msgstr "Naam"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_new_value
 msgid "New Value"
-msgstr ""
+msgstr "Nieuwe Waarde"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_new_value_text
@@ -280,7 +280,7 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_old_value
 msgid "Old Value"
-msgstr ""
+msgstr "Oude Waarde"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_old_value_text
@@ -313,7 +313,7 @@ msgstr ""
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Rule"
-msgstr ""
+msgstr "Regel"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
@@ -321,7 +321,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_tree
 msgid "Rules"
-msgstr ""
+msgstr "Regels"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_model_id
@@ -360,7 +360,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_session_id
 msgid "Session"
-msgstr ""
+msgstr "Sessie"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session_name
@@ -415,7 +415,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -440,7 +440,7 @@ msgstr "Gebruikers"
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Values"
-msgstr ""
+msgstr "Waarden"
 
 #. module: auditlog
 #: code:addons/auditlog/models/rule.py:536

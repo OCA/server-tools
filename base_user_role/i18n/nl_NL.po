@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-06-30 12:21+0000\n"
+"PO-Revision-Date: 2017-06-30 12:21+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_category_id
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_group_category_id
 msgid "Application"
-msgstr ""
+msgstr "Applicatie"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_group_id
@@ -42,12 +42,12 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_color
 msgid "Color Index"
-msgstr ""
+msgstr "Kleurindex"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_comment
 msgid "Comment"
-msgstr ""
+msgstr "Commentaar"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_uid
@@ -75,12 +75,12 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_date_from
 msgid "From"
-msgstr ""
+msgstr "Van"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_full_name
 msgid "Group Name"
-msgstr ""
+msgstr "Groepsnaam"
 
 #. module: base_user_role
 #: model:ir.model.fields,help:base_user_role.field_res_users_role_share
@@ -90,7 +90,7 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
 msgid "Groups"
-msgstr ""
+msgstr "Groepen"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_id
@@ -131,12 +131,12 @@ msgstr "Naam"
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_tree
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1510
 msgid "Role lines"
-msgstr ""
+msgstr "Rolregels"
 
 #. module: base_user_role
 #: model:ir.actions.act_window,name:base_user_role.action_res_users_role_tree
@@ -145,22 +145,22 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_form_inherit
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_search
 msgid "Roles"
-msgstr ""
+msgstr "Rollen"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_rule_groups
 msgid "Rules"
-msgstr ""
+msgstr "Regels"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_share
 msgid "Share Group"
-msgstr ""
+msgstr "Deel Groep"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_date_to
 msgid "To"
-msgstr ""
+msgstr "Aan"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_trans_implied_ids
@@ -170,7 +170,7 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_user_id
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role

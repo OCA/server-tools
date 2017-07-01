@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-06-30 12:22+0000\n"
+"PO-Revision-Date: 2017-06-30 12:22+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -52,12 +52,12 @@ msgstr "Aangemaakt op"
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_expiration
 msgid "Days"
-msgstr ""
+msgstr "Dagen"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_history
@@ -79,17 +79,17 @@ msgstr ""
 #. module: password_security
 #: model:ir.ui.view,arch_db:password_security.view_company_form
 msgid "Extra"
-msgstr ""
+msgstr "Extra"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_history
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_expiration
 msgid "How many days until passwords expire"
-msgstr ""
+msgstr "Hoeveel dagen tot wachtwoord vervalt"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_id
@@ -146,7 +146,7 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_numeric
 msgid "Numeric"
-msgstr ""
+msgstr "Numeriek"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:55
@@ -211,7 +211,7 @@ msgstr ""
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_special
 msgid "Special"
-msgstr ""
+msgstr "Speciaal"
 
 #. module: password_security
 #: code:addons/password_security/models/res_users.py:57
@@ -233,12 +233,12 @@ msgstr ""
 #: code:addons/password_security/models/res_users.py:53
 #, python-format
 msgid "Uppercase letter"
-msgstr ""
+msgstr "Hoofdletter"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_user_id
 msgid "User"
-msgstr ""
+msgstr "Gebruiker"
 
 #. module: password_security
 #: model:ir.model,name:password_security.model_res_users

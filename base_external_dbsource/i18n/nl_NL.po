@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:11+0000\n"
-"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"POT-Creation-Date: 2017-06-30 12:20+0000\n"
+"PO-Revision-Date: 2017-06-30 12:20+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -103,12 +103,12 @@ msgstr "Aangemaakt op"
 #. module: base_external_dbsource
 #: model:ir.ui.menu,name:base_external_dbsource.menu_dbsource
 msgid "Database Sources"
-msgstr ""
+msgstr "Database-bronnen"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_name
 msgid "Datasource name"
-msgstr ""
+msgstr "Databron-naam"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_display_name
@@ -118,12 +118,12 @@ msgstr "weergavenaam"
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Externe DB bron"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr ""
+msgstr "Externe DB bronnen"
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
@@ -134,7 +134,7 @@ msgstr "Externe databasebronnen"
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Firebird"
-msgstr ""
+msgstr "Firebird"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
@@ -166,22 +166,22 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Microsoft SQL Server"
-msgstr ""
+msgstr "Microsoft SQL Server"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "MySQL"
-msgstr ""
+msgstr "MySQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "ODBC"
-msgstr ""
+msgstr "ODBC"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_ca_certs
@@ -196,17 +196,17 @@ msgstr ""
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Test Verbinding"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:160

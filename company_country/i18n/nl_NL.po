@@ -22,7 +22,7 @@ msgstr ""
 #: code:addons/company_country/models/res_config.py:25
 #, python-format
 msgid "Country code %s not found. Use ISO 3166 codes 2 letters"
-msgstr ""
+msgstr "Landcode %s niet gevonden. Gebruik ISO 3166 2-letter code"
 
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_create_uid
@@ -68,4 +68,4 @@ msgstr "Laatst bijgewerkt op"
 #. module: company_country
 #: model:ir.model,name:company_country.model_country_company_config_settings
 msgid "country.company.config.settings"
-msgstr ""
+msgstr "country.company.config.settings"
