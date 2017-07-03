@@ -19,8 +19,7 @@
     'qweb': [
         "static/src/xml/base.xml",
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Tecnativa, '
+    'author': 'Tecnativa, '
               'LasLabs, '
               'Ursa Information Systems, '
               'Odoo Community Association (OCA)',
