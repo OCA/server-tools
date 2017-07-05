@@ -47,6 +47,7 @@ class ResUsersAuthenticatorCreate(models.TransientModel):
              ' will be tied to',
         readonly=True,
         index=True,
+        ondelete='cascade',
     )
     confirmation_code = fields.Char(
         string='Confirmation Code',
