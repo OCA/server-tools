@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <template id="profiler_assets_backend" name="profiler assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/profiler/static/src/css/player.css" />
+            <script type="text/javascript" src="/profiler/static/src/js/player.js" />
+        </xpath>
+    </template>
+</data>
+</openerp>
