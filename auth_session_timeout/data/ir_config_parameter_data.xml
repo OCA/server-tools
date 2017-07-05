@@ -1,21 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!-- 
-    (c) 2015 ACSONE SA/NV, Dhinesh D
-    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
--->
+<odoo noupdate="1">
+    <data>
 
-<odoo>
-    <data noupdate="1">
-        <record id="inactive_session_time_out_delay" model="ir.config_parameter">
+        <record id="inactive_session_time_out_delay"
+                model="ir.config_parameter">
             <field name="key">inactive_session_time_out_delay</field>
             <field name="value">7200</field>
         </record>
-    </data>
-    
-    <data noupdate="1">
-        <record id="inactive_session_time_out_ignored_url" model="ir.config_parameter">
+
+        <record id="inactive_session_time_out_ignored_url"
+                model="ir.config_parameter">
             <field name="key">inactive_session_time_out_ignored_url</field>
             <field name="value">/calendar/notify,/longpolling/poll</field>
         </record>
+
     </data>
 </odoo>
