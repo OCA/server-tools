@@ -3,13 +3,23 @@
 # * users_ldap_groups
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-26 10:50+0000\n"
+"POT-Creation-Date: 2017-03-07 03:48+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +42,12 @@ msgstr "Erstellt am:"
 #: help:res.company.ldap,group_mappings:0
 msgid "Define how OpenERP groups are assigned to ldap users"
 msgstr "Legt fest, wie Odoo-Gruppen zu LDAP-Nutzern zugeordnet werden"
+
+#. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,display_name:0
+#: field:res.company.ldap.operator,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap,group_mappings:0
@@ -63,6 +79,12 @@ msgid "LDAP server"
 msgstr "LDAP-Server"
 
 #. module: users_ldap_groups
+#: field:res.company.ldap.group_mapping,__last_update:0
+#: field:res.company.ldap.operator,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,write_uid:0
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
@@ -90,35 +112,35 @@ msgstr "Odoo-Gruppe"
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,operator:0
 msgid "Operator"
-msgstr ""
+msgstr "Bediener"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,ldap_attribute:0
 msgid ""
 "The LDAP attribute to check.\n"
 "For active directory, use memberOf."
-msgstr ""
+msgstr "Das zu prüfende LDAP-Merkmal.\nBei Active Directory verwenden Sie memberOf."
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,group:0
 msgid "The OpenERP group to assign"
-msgstr ""
+msgstr "Die zuzuordnende Odoo-Gruppe"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,operator:0
 msgid ""
 "The operator to check the attribute against the value\n"
 "For active directory, use 'contains'"
-msgstr ""
+msgstr "Der Operator zum Merkmalswertvergleich\nBei Active Directory verwenden Sie 'contains'"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,value:0
 msgid ""
 "The value to check the attribute against.\n"
 "For active directory, use the dn of the desired group"
-msgstr ""
+msgstr "Der Wert gegen den das Merkmal verglichen werden soll.\nBei Active Directory verwenden DN der gewünschten Gruppe"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,value:0
 msgid "Value"
-msgstr ""
+msgstr "Wert"

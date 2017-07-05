@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 ABF OSIELL (<http://osiell.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 ABF OSIELL <http://osiell.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from psycopg2.extensions import AsIs
 from openerp import models, fields, api
 from openerp.http import request
 
@@ -64,7 +48,14 @@ class AuditlogHTTPRequest(models.Model):
         httprequest = request.httprequest
         if httprequest:
             if hasattr(httprequest, 'auditlog_http_request_id'):
-                return httprequest.auditlog_http_request_id
+                # Verify existence. Could have been rolled back after a
+                # concurrency error
+                self.env.cr.execute(
+                    "SELECT id FROM %s WHERE id = %s", (
+                        AsIs(self._table),
+                        httprequest.auditlog_http_request_id))
+                if self.env.cr.fetchone():
+                    return httprequest.auditlog_http_request_id
             vals = {
                 'name': httprequest.path,
                 'root_url': httprequest.url_root,

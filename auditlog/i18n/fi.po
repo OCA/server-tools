@@ -3,13 +3,26 @@
 # * auditlog
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-01 10:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-05-01 23:17+0000\n"
+"PO-Revision-Date: 2017-05-11 14:14+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +33,16 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.rule,action_id:0
 msgid "Action"
-msgstr ""
+msgstr "Toiminto"
 
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
 msgstr ""
 
 #. module: auditlog
@@ -58,6 +76,7 @@ msgid "Context"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_uid:0
 #: field:auditlog.http.request,create_uid:0
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
 #: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
@@ -65,6 +84,7 @@ msgid "Created by"
 msgstr "Luonut"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,create_date:0
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,create_date:0
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
@@ -76,12 +96,28 @@ msgstr "Luotu"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr ""
+msgstr "Päivämäärä"
+
+#. module: auditlog
+#: field:auditlog.log.line,field_description:0
+msgid "Description"
+msgstr "Kuvaus"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: selection:auditlog.rule,state:0
 msgid "Draft"
+msgstr "Luonnos"
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Fast log"
 msgstr ""
 
 #. module: auditlog
@@ -96,12 +132,24 @@ msgid "Fields updated"
 msgstr ""
 
 #. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Full log"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,log_type:0
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr ""
+msgstr "Ryhmittele..."
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -126,13 +174,23 @@ msgid "HTTP Requests"
 msgstr ""
 
 #. module: auditlog
-#: field:auditlog.http.request,id:0 field:auditlog.http.session,id:0
-#: field:auditlog.log,id:0 field:auditlog.log.line,id:0
-#: field:auditlog.rule,id:0
+#: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
+#: field:auditlog.http.session,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,__last_update:0
+#: field:auditlog.http.request,__last_update:0
+#: field:auditlog.http.session,__last_update:0
+#: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
+#: field:auditlog.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
 #: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
@@ -140,6 +198,7 @@ msgid "Last Updated by"
 msgstr "Viimeksi päivittänyt"
 
 #. module: auditlog
+#: field:auditlog.autovacuum,write_date:0
 #: field:auditlog.http.request,write_date:0
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
 #: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
@@ -185,7 +244,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
 #: model:ir.ui.menu,name:auditlog.menu_audit_logs
 msgid "Logs"
-msgstr ""
+msgstr "Lokit"
 
 #. module: auditlog
 #: field:auditlog.log,method:0
@@ -199,7 +258,8 @@ msgid "Model"
 msgstr "Mall"
 
 #. module: auditlog
-#: field:auditlog.rule,name:0
+#: field:auditlog.http.request,display_name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
 msgid "Name"
 msgstr "Nimi"
 
@@ -307,7 +367,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr ""
+msgstr "Tila"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -321,6 +381,11 @@ msgid "Subscribed"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.log.line,field_name:0
+msgid "Technical name"
+msgstr ""
+
+#. module: auditlog
 #: sql_constraint:auditlog.rule:0
 msgid ""
 "There is already a rule defined on this model\n"
@@ -328,9 +393,14 @@ msgid ""
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
+msgid "Type"
+msgstr "Tyyppi"
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Lopeta tilaus"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -340,7 +410,7 @@ msgstr ""
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Käyttäjä"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -360,7 +430,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.rule,user_ids:0
 msgid "Users"
-msgstr ""
+msgstr "Käyttäjät"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
@@ -368,7 +438,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:485
+#: code:addons/auditlog/models/rule.py:538
 #, python-format
 msgid "View logs"
 msgstr ""

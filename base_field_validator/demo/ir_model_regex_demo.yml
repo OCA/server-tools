@@ -1,0 +1,12 @@
+-
+  set regex for partner
+-
+  !python {model: ir.model}: |
+    self.write(cr, uid, [ref('base.model_res_partner')], {
+      'validator_line_ids': [(0,0,
+        {
+        'model_id': ref('base.model_res_partner'),
+        'field_id': ref('base.field_res_partner_email'),
+        'regex_id': ref('regex_mail'),
+        })],
+    })

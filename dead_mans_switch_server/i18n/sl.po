@@ -3,13 +3,22 @@
 # * dead_mans_switch_server
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-27 04:19+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:58+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +28,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:141
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:158
 #, python-format
 msgid "%s seems to be dead"
 msgstr "%s zgleda mrtva"
@@ -36,12 +45,25 @@ msgid "Active"
 msgstr "Aktivno"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,last_user_count:0
+#: field:dead.mans.switch.instance,last_user_count_sparkline:0
+msgid "Active users"
+msgstr "Aktivni uporabniki"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,alive:0
+msgid "Alive"
+msgstr "V živo"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
 msgid "Alive delay"
 msgstr "Zamik žive"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_cpu:0
+#: field:dead.mans.switch.instance,last_cpu_sparkline:0
 #: field:dead.mans.switch.log,cpu:0
 msgid "CPU"
 msgstr "Procesor"
@@ -86,7 +108,7 @@ msgid "Date of the last message posted on the record."
 msgstr "Datum zadnjega sporočila objavljenega na zapisu."
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:139
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:156
 #, python-format
 msgid "Dead man's switch warning: %s"
 msgstr "Opozorilo varnostnega stikala: %s"
@@ -95,6 +117,12 @@ msgstr "Opozorilo varnostnega stikala: %s"
 #: field:dead.mans.switch.instance,description:0
 msgid "Description"
 msgstr "Opis"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,display_name:0
+#: field:dead.mans.switch.log,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
@@ -144,6 +172,12 @@ msgid "Last Message Date"
 msgstr "Datum zadnjega sporočila"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,__last_update:0
+#: field:dead.mans.switch.log,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
@@ -157,6 +191,7 @@ msgstr "Zadnjič posodobljeno"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
 msgstr "Zadnjič viden"
 
@@ -166,7 +201,7 @@ msgid "Log lines"
 msgstr "Dnevniške postavke"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:78
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
 #, python-format
 msgid "Logs"
 msgstr "Dnevniki"
@@ -199,6 +234,8 @@ msgstr "Odpri dnevnike"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_ram:0
+#: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
 msgstr "RAM"

@@ -3,13 +3,21 @@
 # * auth_admin_passkey
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Artūras Griškonis <ArtX38@gmail.com>, 2012,2015-2016
+# Artūras Griškonis <xbmc.lt@gmail.com>, 2012
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# Dorin Hongu <dhongu@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Zapata11 <raimondas.duzinskas@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-26 07:15+0000\n"
+"POT-Creation-Date: 2017-03-02 09:58+0000\n"
+"PO-Revision-Date: 2017-01-12 08:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +27,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:88
+#: code:addons/auth_admin_passkey/models/res_users.py:66
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr "<pre>Uporabnik '%s' ima enako geslo kot vi.</pre>"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:64
+#: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -44,7 +52,7 @@ msgid "Passkey"
 msgstr "Prijavni ključ"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:61
+#: code:addons/auth_admin_passkey/models/res_users.py:38
 #, python-format
 msgid "Passkey used"
 msgstr "Uporabljen prijavni ključ"
@@ -68,18 +76,18 @@ msgstr "Uporabniki"
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the account user."
-msgstr "Ko administrator uporabi svoje geslo za prijavo v drug račun, bo OpenERP poslal e-pošto uporabniku računa."
+"account, Odoo will send an email to the account user."
+msgstr "Ko administrator uporabi svoje geslo za prijavo v drug račun, bo Odoo poslal e-pošto uporabniku računa."
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
-"account, OpenERP will send an email to the admin user."
-msgstr "Ko administrator uporabi svoje geslo za prijavo v drug račun, bo OpenERP poslal e-pošto administratorju."
+"account, Odoo will send an email to the admin user."
+msgstr "Ko administrator uporabi svoje geslo za prijavo v drug račun, bo Odoo poslal e-pošto administratorju."
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/model/res_users.py:86
+#: code:addons/auth_admin_passkey/models/res_users.py:64
 #, python-format
-msgid "[WARNING] OpenERP Security Risk"
-msgstr "[OPOZORILO] OpenERP varnostno tveganje"
+msgid "[WARNING] Odoo Security Risk"
+msgstr "[OPOZORILO] Odoo varnostno tveganje"

@@ -3,13 +3,19 @@
 # * base_concurrency
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-24 11:47+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +35,19 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: base_concurrency
+#: field:res.users.login,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_concurrency
+#: field:res.users.login,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0

@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * secure_uninstall
+# 
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-07 03:47+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: secure_uninstall
+#: help:base.module.upgrade,uninstall_password:0
+msgid "'secure_uninstall' value from Odoo configuration file "
+msgstr "Wert für 'secure_uninstall' in Odoo-Konfigurationsdatei"
+
+#. module: secure_uninstall
+#: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
+msgid ""
+"If you want uninstall module, write required password ('secure_uninstall' "
+"key in ERP config file)."
+msgstr ""
+"Wenn Sie das Modul deinstallieren möchten, geben Sie erforderliches Passwort"
+" an ('secure_uninstall'-Wert in  Konfigurationsdatei)."
+
+#. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:28
+#, python-format
+msgid ""
+"Missing configuration key\n"
+"--------------------\n"
+"'secure_uninstall' configuration key is not set in \n"
+"your Odoo server configuration file: please set it a value"
+msgstr ""
+"Fehlender Konfigurationsschlüssel\n"
+"---------------------------------\n"
+"'secure_uninstall' Einstellungsschlüssel ist in Ihrer\n"
+"Odoo-Server-Konfigurationsdatei nicht gesetzt: Geben Sie bitte einen Wert an"
+
+#. module: secure_uninstall
+#: model:ir.model,name:secure_uninstall.model_base_module_upgrade
+msgid "Module Upgrade"
+msgstr "Modulaktualisierung"
+
+#. module: secure_uninstall
+#: field:base.module.upgrade,uninstall_password:0
+msgid "Password"
+msgstr "Passwort"
+
+#. module: secure_uninstall
+#: code:addons/secure_uninstall/models/module.py:36
+#, python-format
+msgid ""
+"Password Error\n"
+"--------------------\n"
+"Provided password '%s' doesn't match with 'Master Password'\n"
+"('secure_uninstall' key) found in the Odoo server configuration file .\n"
+"\n"
+"Resolution\n"
+"-------------\n"
+"Please check your password and retry or cancel"
+msgstr ""
+"Passwortfehler\n"
+"--------------------\n"
+"Angegebenes Passwort '%s' stimmt nicht mit 'Master-Passwort'\n"
+"('secure_uninstall' Schlüssel) aus der Odoo-Konfigurationsdatei überein.\n"
+"\n"
+"Lösung\n"
+"-------------\n"
+"Überprüfen Sie bitte das Passwort und versuchen es erneut oder\n"
+"brechen Sie ab"
+
+#. module: secure_uninstall
+#: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
+msgid "Secure Uninstall"
+msgstr "Abgesicherte Deinstallation"
+
+#. module: secure_uninstall
+#: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
+msgid "key_provided_by_administrator"
+msgstr "key_provided_by_administrator"

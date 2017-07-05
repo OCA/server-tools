@@ -1,0 +1,369 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auto_backup
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-18 02:08+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "/home/odoo/.ssh/id_rsa"
+msgstr "/home/odoo/.ssh/id_rsa"
+
+#. module: auto_backup
+#: help:db.backup,folder:0
+msgid "Absolute path for storing the backups"
+msgstr "Absolutna pot za shranjevanje varnostnih kopij"
+
+#. module: auto_backup
+#: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
+#: model:ir.ui.menu,name:auto_backup.backup_conf_menu
+msgid "Automated Backups"
+msgstr "Samodejne varnostne kopije"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Automatic backups of the database can be scheduled as follows:"
+msgstr "Samodejne varnostne kopije podatkovne baze se lahko razporedi na:"
+
+#. module: auto_backup
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
+msgid "Backup Failed"
+msgstr "Varnostno kopiranje neuspešno"
+
+#. module: auto_backup
+#: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
+msgid "Backup Successful"
+msgstr "Varnostno kopiranje uspešno"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_tree
+msgid "Backups"
+msgstr "Varnostne kopije"
+
+#. module: auto_backup
+#: help:db.backup,days_to_keep:0
+msgid ""
+"Backups older than this will be deleted automatically. Set 0 to disable "
+"autodeletion."
+msgstr "Varnostne kopije starejše od tega bodo samodejno izbrisane. Nastavite 0, da bi onemogočili samodejno brisanje."
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Basic backup configuration"
+msgstr "Osnove nastavitve varnostnega kopiranja"
+
+#. module: auto_backup
+#: sql_constraint:db.backup:0
+msgid "Cannot duplicate a configuration."
+msgstr "Nastavitev ne morete podvojiti."
+
+#. module: auto_backup
+#: help:db.backup,method:0
+msgid "Choose the storage method for this backup."
+msgstr "Izberite metodo shranjevanja za to varnostno kopiranje."
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:250
+#, python-format
+msgid "Cleanup of old database backups failed."
+msgstr "Brisanje starih varnostnih kopij podatkovnih baz neuspešno."
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:131
+#, python-format
+msgid "Connection Test Failed!"
+msgstr "Test povezave neuspešen!"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:128
+#, python-format
+msgid "Connection Test Succeeded!"
+msgstr "Test povezave uspel!"
+
+#. module: auto_backup
+#: field:db.backup,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: auto_backup
+#: field:db.backup,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:206
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
+#, python-format
+msgid "Database backup failed."
+msgstr "Varnostno kopiranje podatkovne baze neuspešno."
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:214
+#: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
+#, python-format
+msgid "Database backup succeeded."
+msgstr "Varnostno kopiranje podatkovne baze uspešno."
+
+#. module: auto_backup
+#: help:db.backup,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Datum zadnjega sporočila objavljenega na zapisu."
+
+#. module: auto_backup
+#: field:db.backup,days_to_keep:0
+msgid "Days to keep"
+msgstr "Dni za hranjenje"
+
+#. module: auto_backup
+#: field:db.backup,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: auto_backup
+#: code:addons/auto_backup/models/db_backup.py:119
+#, python-format
+msgid ""
+"Do not save backups on your filestore, or you will backup your backups too!"
+msgstr "Ne hranite varnostnih kopij v 'filestore', saj boste tako kopirali tudi same varnostne kopije!"
+
+#. module: auto_backup
+#: model:ir.model,name:auto_backup.model_db_backup
+msgid "Email Thread"
+msgstr "E-poštna nit"
+
+#. module: auto_backup
+#: model:ir.actions.server,name:auto_backup.action_server_backup
+msgid "Execute backup(s)"
+msgstr "Izvedi varnostno/a kopiranje(a)"
+
+#. module: auto_backup
+#: field:db.backup,folder:0
+msgid "Folder"
+msgstr "Mapa"
+
+#. module: auto_backup
+#: field:db.backup,message_follower_ids:0
+msgid "Followers"
+msgstr "Sledilci"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Go to Settings / Technical / Automation / Scheduled Actions."
+msgstr "Pojdi na Nastavitve / Tehnično / Avtomatizacija / Planirana dejanja"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Help"
+msgstr "Pomoč"
+
+#. module: auto_backup
+#: help:db.backup,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr "Povzetek (število sporočil,..) v html formatu, da se lahko neposredno vstavi v poglede tipa kanban."
+
+#. module: auto_backup
+#: sql_constraint:db.backup:0
+msgid "I cannot remove backups from the future. Ask Doc for that."
+msgstr "Varnostnih kopij iz prihodnosti ne morete odstraniti."
+
+#. module: auto_backup
+#: field:db.backup,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auto_backup
+#: help:db.backup,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Če označeno, zahtevajo nova sporočila vašo pozornost."
+
+#. module: auto_backup
+#: field:db.backup,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Je sledilec"
+
+#. module: auto_backup
+#: field:db.backup,message_last_post:0
+msgid "Last Message Date"
+msgstr "Datum zadnjega sporočila"
+
+#. module: auto_backup
+#: field:db.backup,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: auto_backup
+#: field:db.backup,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: auto_backup
+#: field:db.backup,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: auto_backup
+#: selection:db.backup,method:0
+msgid "Local disk"
+msgstr "Lokalni disk"
+
+#. module: auto_backup
+#: field:db.backup,message_ids:0
+msgid "Messages"
+msgstr "Sporočila"
+
+#. module: auto_backup
+#: help:db.backup,message_ids:0
+msgid "Messages and communication history"
+msgstr "Komunikacije in kronologija komunikacij"
+
+#. module: auto_backup
+#: field:db.backup,method:0
+msgid "Method"
+msgstr "Metoda"
+
+#. module: auto_backup
+#: field:db.backup,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: auto_backup
+#: help:db.backup,sftp_private_key:0
+msgid ""
+"Path to the private key file. Only the Odoo user should have read "
+"permissions for that file."
+msgstr "Pot do datoteke privatnega ključa. Le Odoo uporabnik naj ima dovoljenje za branje te datoteke."
+
+#. module: auto_backup
+#: field:db.backup,sftp_private_key:0
+msgid "Private key location"
+msgstr "Lokacija privatnega ključa"
+
+#. module: auto_backup
+#: selection:db.backup,method:0
+msgid "Remote SFTP server"
+msgstr "Oddaljeni SFTP strežnik"
+
+#. module: auto_backup
+#: field:db.backup,sftp_password:0
+msgid "SFTP Password"
+msgstr "SFTP geslo"
+
+#. module: auto_backup
+#: field:db.backup,sftp_port:0
+msgid "SFTP Port"
+msgstr "SFTP port"
+
+#. module: auto_backup
+#: field:db.backup,sftp_host:0
+msgid "SFTP Server"
+msgstr "SFTP strežnik"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "SFTP Settings"
+msgstr "SFTP nastavitve"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_search
+msgid "Search options"
+msgstr "Iskalne opcije"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Search the action named 'Backup scheduler'."
+msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid ""
+"Set the scheduler to active and fill in how often you want backups "
+"generated."
+msgstr "Nastavite razporejevalnik kot aktiven in izpolnite, kako pogosto želite ustvarjati varnostne kopije."
+
+#. module: auto_backup
+#: field:db.backup,message_summary:0
+msgid "Summary"
+msgstr "Povzetek"
+
+#. module: auto_backup
+#: help:db.backup,name:0
+msgid "Summary of this backup process"
+msgstr "Povzetek procesa tega varnostnega kopiranja"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Test SFTP Connection"
+msgstr "Test SFTP povezave"
+
+#. module: auto_backup
+#: help:db.backup,sftp_host:0
+msgid ""
+"The host name or IP address from your remote server. For example 192.168.0.1"
+msgstr "IP naslov ali 'hostname' oddaljenega strežnika. Npr. 192.168.0.1"
+
+#. module: auto_backup
+#: help:db.backup,sftp_password:0
+msgid ""
+"The password for the SFTP connection. If you specify a private key file, "
+"then this is the password to decrypt it."
+msgstr "Geslo za SFTP povezavo. Če določite datoteko privatnega ključa, je to geslo za dešifriranje ključa."
+
+#. module: auto_backup
+#: help:db.backup,sftp_port:0
+msgid "The port on the FTP server that accepts SSH/SFTP calls."
+msgstr "Vrata FTP strežnika, ki sprejema SSH/SFTP klice."
+
+#. module: auto_backup
+#: help:db.backup,sftp_user:0
+msgid ""
+"The username where the SFTP connection should be made with. This is the user"
+" on the external server."
+msgstr "Uporabniško ime SFTP povezave. To je uporabnik zunanjega strežnika."
+
+#. module: auto_backup
+#: field:db.backup,message_unread:0
+msgid "Unread Messages"
+msgstr "Neprebrana sporočila"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid ""
+"Use SFTP with caution! This writes files to external servers under the path "
+"you specify."
+msgstr "SFTP uporabljajte previdno! Datoteke se bodo zapisovale na zunanje strežnike v pot, ki jo sami določite."
+
+#. module: auto_backup
+#: field:db.backup,sftp_user:0
+msgid "Username in the SFTP Server"
+msgstr "Uporabniško ime za SFTP strežnik"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "Warning:"
+msgstr "Opozorilo:"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "john"
+msgstr "john"
+
+#. module: auto_backup
+#: view:db.backup:auto_backup.view_backup_conf_form
+msgid "sftp.example.com"
+msgstr "sftp.example.com"

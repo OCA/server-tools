@@ -3,14 +3,21 @@
 # * mass_editing
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-19 14:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,6 +52,11 @@ msgid "Deletion of the action record failed."
 msgstr "Löschen des Datensatzes fehlgeschlagen."
 
 #. module: mass_editing
+#: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
@@ -52,7 +64,6 @@ msgid ""
 msgstr "Sidebar-Button für verknüpfte Dokumente anzeigen "
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"
@@ -62,6 +73,11 @@ msgstr "Felder"
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing
+#: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0
@@ -117,12 +133,12 @@ msgstr "Objekt"
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove"
-msgstr ""
+msgstr "Entferne"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
-msgstr ""
+msgstr "Entferne die Kontextuelle Aktion, um diese Vorlage auf ähnliche Dokumente anzuwenden"
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
@@ -140,7 +156,7 @@ msgstr "Sidebar-Button"
 msgid ""
 "Sidebar action to make this template available on records                  "
 "of the related document model"
-msgstr ""
+msgstr "Seitenmenü-Aktion, um diese Vorlage für Datensätze des entsprechenden Modells verfügbar zu machen"
 
 #. module: mass_editing
 #: help:mass.object,ref_ir_value:0

@@ -3,12 +3,19 @@
 # * base_export_manager
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-13 11:45+0000\n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-10-19 07:32+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +23,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: base_export_manager
+#: help:ir.exports,model_id:0 help:ir.exports.line,model1_id:0
+msgid "Database model to export."
+msgstr "Model podatkovne baze za izvoz."
 
 #. module: base_export_manager
 #: view:ir.exports:base_export_manager.ir_exports_form_view
@@ -30,18 +42,86 @@ msgid "Export Profiles"
 msgstr "Izvozni profili"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:61
+#: code:addons/base_export_manager/models/ir_exports_line.py:164
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "Polje '%s' že obstaja"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:56
+#: code:addons/base_export_manager/models/ir_exports_line.py:158
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Polje '%s' ne obstaja"
 
 #. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:192
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr "Polja '%s' ni v modelu '%s'"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field1_id:0
+msgid "First field"
+msgstr "Prvo polje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model1_id:0
+msgid "First model"
+msgstr "Prvi model"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field4_id:0
+msgid "Fourth field"
+msgstr "Četrto polje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model4_id:0
+msgid "Fourth model"
+msgstr "Četrti model"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
+msgstr "Globina nad 4 nivoji: %s ni dovoljena"
+
+#. module: base_export_manager
+#: field:ir.exports.line,label:0
+msgid "Label"
+msgstr "Oznaka"
+
+#. module: base_export_manager
+#: field:ir.exports,model_id:0
+msgid "Model"
+msgstr "Model"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field2_id:0
+msgid "Second field"
+msgstr "Drugo polje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model2_id:0
+msgid "Second model"
+msgstr "Drugi model"
+
+#. module: base_export_manager
 #: field:ir.exports.line,sequence:0
 msgid "Sequence"
 msgstr "Zaporedje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field3_id:0
+msgid "Third field"
+msgstr "Tretje polje"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model3_id:0
+msgid "Third model"
+msgstr "Tretji model"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports.py:66
+#, python-format
+msgid "You must supply a model or resource."
+msgstr "Določiti morate model vira."

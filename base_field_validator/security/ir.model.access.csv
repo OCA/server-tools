@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_ir_model_regex_erp_manager","ir_model_regex group_erp_manager","model_ir_model_fields_regex","base.group_erp_manager",1,1,1,1
+"access_ir_model_regex_all","access_ir_model_regex_all","model_ir_model_fields_regex",,1,0,0,0
+"access_ir_model_validator_line_erp_manager","ir_model_validator_line group_erp_manager","model_ir_model_validator_line","base.group_erp_manager",1,1,1,1
+"access_ir_model_validator_line_all","access_ir_model_validator_line_all","model_ir_model_validator_line",,1,0,0,0

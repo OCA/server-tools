@@ -3,13 +3,21 @@
 # * module_prototyper
 # 
 # Translators:
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-01 10:06+0000\n"
+"POT-Creation-Date: 2017-01-12 03:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +29,7 @@ msgstr ""
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #. module: module_prototyper
 #: field:module_prototyper.module.export,api_version:0
@@ -61,7 +69,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
@@ -144,7 +152,13 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Kuvaus"
+
+#. module: module_prototyper
+#: field:module_prototyper,display_name:0
+#: field:module_prototyper.module.export,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
@@ -342,6 +356,12 @@ msgid "LGPL-3 or later version"
 msgstr ""
 
 #. module: module_prototyper
+#: field:module_prototyper,__last_update:0
+#: field:module_prototyper.module.export,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
+
+#. module: module_prototyper
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
@@ -392,7 +412,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Huomautukset"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0
@@ -453,12 +473,12 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
 msgid "State"
-msgstr ""
+msgstr "Tila"
 
 #. module: module_prototyper
 #: field:module_prototyper,summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Yhteenveto"
 
 #. module: module_prototyper
 #: field:module_prototyper,name:0
@@ -519,7 +539,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Verkkosivut"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -583,4 +603,4 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "tai"

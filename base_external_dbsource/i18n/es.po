@@ -3,15 +3,20 @@
 # * base_external_dbsource
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-16 15:21+0000\n"
-"Last-Translator: Antonio Trueba\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 23:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,13 +45,13 @@ msgid "Connection string"
 msgstr "Cadena de conexión"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:163
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
 #, python-format
 msgid "Connection test failed!"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:174
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
 #, python-format
 msgid "Connection test succeeded!"
 msgstr "Conexión de prueba realizada."
@@ -77,7 +82,12 @@ msgid "Datasource name"
 msgstr "Nombre del origen de datos"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:175
+#: field:base.external.dbsource,display_name:0
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
 msgstr "Parece que todo está correctamente configurado."
@@ -85,21 +95,21 @@ msgstr "Parece que todo está correctamente configurado."
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "External DB Source"
-msgstr ""
+msgstr "Fuente BD externa"
 
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_tree
 msgid "External DB Sources"
-msgstr ""
+msgstr "Fuentes de DB externas"
 
 #. module: base_external_dbsource
 #: model:ir.actions.act_window,name:base_external_dbsource.action_dbsource
 #: model:ir.model,name:base_external_dbsource.model_base_external_dbsource
 msgid "External Database Sources"
-msgstr ""
+msgstr "Fuentes de bases de datos externas"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:164
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
 #, python-format
 msgid ""
 "Here is what we got instead:\n"
@@ -118,7 +128,12 @@ msgid ""
 "list, check the server log to confirm                                      "
 "that the required components were                                      "
 "detected."
-msgstr ""
+msgstr "Si un conector no aparece en la lista, compruebe el registro del servidor para confirmar que los componentes requeridos fueron detectados."
+
+#. module: base_external_dbsource
+#: field:base.external.dbsource,__last_update:0
+msgid "Last Modified on"
+msgstr "Última actualización por"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0
@@ -143,4 +158,4 @@ msgstr "PostgreSQL"
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Comprobar conexión"

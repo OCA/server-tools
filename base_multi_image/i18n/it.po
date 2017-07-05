@@ -1,0 +1,233 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_multi_image
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-31 08:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:22
+#: sql_constraint:base_multi_image.image:0
+#, python-format
+msgid "A document can have only one image with the same name."
+msgstr "Un documento può avere una sola immagine con lo stesso nome."
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+#: field:base_multi_image.image,comments:0
+msgid "Comments"
+msgstr "Commenti"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,create_uid:0
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,create_date:0
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Database"
+msgstr "Database"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,display_name:0
+#: field:base_multi_image.owner,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,extension:0
+msgid "File extension"
+msgstr "Estensione file"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,filename:0
+msgid "Filename"
+msgstr "Nome del file"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_main:0
+msgid "Full-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: field:base_multi_image.image,id:0 field:base_multi_image.owner,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+msgid "Image"
+msgstr "Immagine"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,path:0 help:base_multi_image.image,path:0
+msgid "Image path"
+msgstr "Percorso immagine"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,url:0
+msgid "Image remote URL"
+msgstr "URL remoto dell'immagine"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,file_db_store:0
+msgid "Image stored in database"
+msgstr "Immagine salata del database"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,name:0
+msgid "Image title"
+msgstr "Titolo dell'immagine"
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_tree_view
+#: field:base_multi_image.owner,image_ids:0
+msgid "Images"
+msgstr "Immagini"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,__last_update:0
+#: field:base_multi_image.owner,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento da"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,write_date:0
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/owner.py:73
+#: field:base_multi_image.owner,image_main:0
+#, python-format
+msgid "Main image"
+msgstr "Immagine principale"
+
+#. module: base_multi_image
+#: field:base_multi_image.owner,image_main_medium:0
+msgid "Medium image"
+msgstr ""
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_medium:0
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: help:base_multi_image.image,image_medium:0
+msgid ""
+"Medium-sized image. It is automatically resized as a 128 x 128 px image, "
+"with aspect ratio preserved, only when the image exceeds one of those sizes."
+" Use this field in form views or kanban views."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.actions.act_window,name:base_multi_image.image_action
+#: model:ir.ui.menu,name:base_multi_image.image_menu
+msgid "Multi images"
+msgstr "Immagini multiple"
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+msgid "Name"
+msgstr "Nome"
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "OS file"
+msgstr ""
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+msgid "Options"
+msgstr "Opzioni"
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+#: field:base_multi_image.image,owner_id:0
+msgid "Owner"
+msgstr "Proprietario"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,owner_model:0
+msgid "Owner model"
+msgstr ""
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_form_view
+msgid "Preview"
+msgstr "Anteprima"
+
+#. module: base_multi_image
+#: view:base_multi_image.image:base_multi_image.image_kanban_view
+msgid "Product Images"
+msgstr "Immagini del Prodotto"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,sequence:0
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: base_multi_image
+#: field:base_multi_image.image,show_technical:0
+msgid "Show technical"
+msgstr ""
+
+#. module: base_multi_image
+#: field:base_multi_image.owner,image_main_small:0
+msgid "Small image"
+msgstr ""
+
+#. module: base_multi_image
+#: field:base_multi_image.image,image_small:0
+msgid "Small-sized image"
+msgstr ""
+
+#. module: base_multi_image
+#: help:base_multi_image.image,image_small:0
+msgid ""
+"Small-sized image. It is automatically resized as a 64 x 64 px image, with "
+"aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: base_multi_image
+#: field:base_multi_image.image,storage:0
+msgid "Storage"
+msgstr ""
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "URL"
+msgstr "URL"

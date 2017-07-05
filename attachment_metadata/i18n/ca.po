@@ -1,0 +1,242 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * attachment_metadata
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 09:47+0000\n"
+"PO-Revision-Date: 2016-06-01 09:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Attachment"
+msgstr "Adjunt "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,name:0
+msgid "Attachment Name"
+msgstr "Nom de l'Adjunt "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,attachment_id:0
+msgid "Attachment id"
+msgstr "ID de l'adjunt "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_tree
+msgid "Attachments"
+msgstr ""
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Binary"
+msgstr "Binari "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,type:0
+msgid "Binary File or URL"
+msgstr ""
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,company_id:0
+msgid "Company"
+msgstr "Empresa"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,create_uid:0
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,create_date:0
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Creation Month"
+msgstr "Mes de creació "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,db_datas:0
+msgid "Database Data"
+msgstr "Dades de la Base de Dades "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,description:0
+msgid "Description"
+msgstr "Descripció"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,display_name:0
+msgid "Display Name"
+msgstr "Veure el nom"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,external_hash:0
+msgid "External hash"
+msgstr "Hash extern "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas:0
+msgid "File Content"
+msgstr "Contingut del fitxer "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,datas_fname:0
+msgid "File Name"
+msgstr "Nom del Fitxer "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,file_size:0
+msgid "File Size"
+msgstr "Mida del Fitxer "
+
+#. module: attachment_metadata
+#: code:addons/attachment_metadata/models/attachment.py:43
+#, python-format
+msgid ""
+"File corrupted: Something was wrong with the retrieved file, please relaunch"
+" the task."
+msgstr "Fitxer corromput: Alguna cosa ha fallat al rebre el fitxer, si us plau torneu a carregar la tasca. "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,external_hash:0
+msgid ""
+"File hash comes from the external owner of the file.\n"
+"If provided allow to check than downloaded file is the exact copy of the original file."
+msgstr "El Hash del fitxer prové del propietari extern del fitxer. Si es proporciona ens permet comprovar que el fitxer descarregat és una còpia exacta del fitxer original. "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,internal_hash:0
+msgid ""
+"File hash computed with file data to be compared to external hash when "
+"provided."
+msgstr "El hash del fitxer és calcula amb les dades del fitxer comparades amb el hash extern quan es proporciona. "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,file_type:0
+msgid "File type"
+msgstr "Tipus de fitxer "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Filter on my documents"
+msgstr "Filtre als meus documents "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Group By"
+msgstr "Agrupat per"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,internal_hash:0
+msgid "Internal hash"
+msgstr "Hash intern "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,__last_update:0
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,write_uid:0
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,write_date:0
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,attachment_id:0
+msgid "Link to ir.attachment model "
+msgstr "Enllaça al model ir.attachment"
+
+#. module: attachment_metadata
+#: model:ir.actions.act_window,name:attachment_metadata.action_attachment
+#: model:ir.ui.menu,name:attachment_metadata.menu_ir_attachment
+msgid "Meta data Attachments"
+msgstr "Adjunts de meta-dades "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "My Document(s)"
+msgstr "El meu(s) Document(s)"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "Owner"
+msgstr "Propietari "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_id:0
+msgid "Resource ID"
+msgstr "ID del recurs "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_model:0
+msgid "Resource Model"
+msgstr "Model del recurs "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,res_name:0
+msgid "Resource Name"
+msgstr "Nom del recurs "
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,store_fname:0
+msgid "Stored Filename"
+msgstr "Nom del fitxer desat "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,res_model:0
+msgid "The database object this attachment will be attached to"
+msgstr "Els objectes de la base de dades en aquesta adjunció també seran adjuntats "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,file_type:0
+msgid ""
+"The file type determines an import method to be used to parse and transform "
+"data before their import in ERP"
+msgstr "El tipus de fitxer determina un mètode d'importació per ser utilitzat per analitzar i transformar les dades abans des ser importades al ERP  "
+
+#. module: attachment_metadata
+#: help:ir.attachment.metadata,res_id:0
+msgid "The record id this is attached to"
+msgstr "L'ID del registre també està adjuntat "
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+#: field:ir.attachment.metadata,type:0
+msgid "Type"
+msgstr "Tipus"
+
+#. module: attachment_metadata
+#: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
+msgid "URL"
+msgstr "URL"
+
+#. module: attachment_metadata
+#: field:ir.attachment.metadata,url:0
+msgid "Url"
+msgstr "Url"

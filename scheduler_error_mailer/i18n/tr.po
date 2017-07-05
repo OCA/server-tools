@@ -3,14 +3,25 @@
 # * scheduler_error_mailer
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013,2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013,2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013
+# Antonio Trueba, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 12:49+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"PO-Revision-Date: 2017-04-19 13:07+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,15 +33,19 @@ msgstr ""
 #: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
 msgid ""
 "\n"
-"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
-"<p>OpenERP tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
+"<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
 "\n"
 "<strong>\n"
-"${ctx.get('job_exception') and ctx.get('job_exception').value or 'Failed to get the error message from the context.'}\n"
+"${ctx.get('job_exception') and ctx.get('job_exception').value or ctx.get('job_exception') or 'Failed to get the error message from the context.'|e}\n"
 "</strong>\n"
 "\n"
-"<p>You may check the logs of the OpenERP server to get more information about this failure.</p>\n"
+"<pre>\n"
+"${ctx.get('traceback')|e}\n"
+"</pre>\n"
+"\n"
+"<p>You may check the logs of the Odoo server to get more information about this failure.</p>\n"
 "\n"
 "<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
 "<ul>\n"
@@ -45,15 +60,15 @@ msgid ""
 "\n"
 "<p>\n"
 "-- <br/>\n"
-"Automatic e-mail sent by OpenERP. Do not reply.<br/>\n"
+"Automatic e-mail sent by Odoo. Do not reply.<br/>\n"
 "Database : ${ctx.get('dbname')}\n"
 "</p>\n"
 "</div>\n"
 "    "
-msgstr "\n<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n\n<p>Odoo <em>${object.name or ''}</em> isimli zamanlayıcıyı çalıştırırken hata oluştu. Veritabanı <em>${ctx.get('dbname')}</em> . Hata mesajı :</p>\n\n<strong>\n${ctx.get('job_exception') and ctx.get('job_exception').value or 'Bağlamdan hata mesajını alamadık.'}\n</strong>\n\n<p>Odoo sunucunun loglarını inceleyerek hata hakkında ayrıntılı bilgiye ulaşabilirsiniz. </p>\n\n<p>Zamanlayıcı bilgileri <em>${object.name or ''}</em> :</p>\n<ul>\n<li>Model : ${object.model or ''}</li>\n<li>Method : ${object.function or ''}</li>\n<li>Arguments : ${object.args or ''}</li>\n<li>Aralık : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n<li>Çalıştırma sayısı : ${object.numbercall or '0'}</li>\n<li>Kaçırılan tekrarlar : ${object.doall}</li>\n<li>Kullanıcı : ${object.user_id.name or ''}</li>\n</ul>\n\n<p>\n-- <br/>\nBu e-posta mesajı Odoo tarafından otomatik olarak gönderilmiştir. Lütfen cevap vermeyiniz. .<br/>\nVeritabanı : ${ctx.get('dbname')}\n</p>\n</div>"
+msgstr ""
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/ir_cron.py:75
+#: code:addons/scheduler_error_mailer/ir_cron.py:79
 #, python-format
 msgid "Error :"
 msgstr "Hata :"
@@ -69,7 +84,7 @@ msgid "Select the email template that will be sent when this scheduler fails."
 msgstr "Zamanlayıcı başarısız olunca gönderilecek e-posta şablonu."
 
 #. module: scheduler_error_mailer
-#: code:addons/scheduler_error_mailer/ir_cron.py:76
+#: code:addons/scheduler_error_mailer/ir_cron.py:80
 #, python-format
 msgid "Task failure with UID = %d."
 msgstr "Görev başarızı oldu UID = %d."

@@ -19,7 +19,10 @@
 #
 ##############################################################################
 import os
-import pydot
+try:
+    import pydot
+except ImportError:
+    pydot = False
 
 from openerp import report
 from openerp import pooler
@@ -114,5 +117,6 @@ class ReportGraph(report.interface.report_int):
             cr, uid, context.get('active_id')
         )
         return (pdf_string, 'pdf')
+
 
 ReportGraph('report.proximity.graph', 'ir.module.module')

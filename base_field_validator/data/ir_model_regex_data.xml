@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="regex_mail" model="ir.model.fields.regex">
+            <field name="regex">[^@]+@[^@]+\.[^@]+</field>
+            <field name="name">Email</field>
+        </record>
+    </data>
+</openerp>

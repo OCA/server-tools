@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_export_manager
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-27 23:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_export_manager
+#: help:ir.exports,model_id:0 help:ir.exports.line,model1_id:0
+msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#: view:ir.exports:base_export_manager.ir_exports_form_view
+msgid "Export Profile"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
+#: view:ir.exports:base_export_manager.ir_exports_tree_view
+#: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
+msgid "Export Profiles"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:140
+#, python-format
+msgid "Field '%s' already exists"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#, python-format
+msgid "Field '%s' does not exist"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,field1_id:0
+msgid "First field"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,model1_id:0
+msgid "First model"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,label:0
+msgid "Label"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports,model_id:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field2_id:0
+msgid "Second field"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,model2_id:0
+msgid "Second model"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,sequence:0
+msgid "Sequence"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,field3_id:0
+msgid "Third field"
+msgstr ""
+
+#. module: base_export_manager
+#: field:ir.exports.line,model3_id:0
+msgid "Third model"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports.py:66
+#, python-format
+msgid "You must supply a model or resource."
+msgstr ""

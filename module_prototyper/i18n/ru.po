@@ -3,13 +3,25 @@
 # * module_prototyper
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Bole <bole@dajmi5.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-12 19:47+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +72,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Отменена"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
@@ -110,13 +122,13 @@ msgstr ""
 #: field:module_prototyper,create_uid:0
 #: field:module_prototyper.module.export,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_date:0
 #: field:module_prototyper.module.export,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -144,6 +156,12 @@ msgstr ""
 #: field:module_prototyper,description:0
 msgid "Description"
 msgstr "Описание"
+
+#. module: module_prototyper
+#: field:module_prototyper,display_name:0
+#: field:module_prototyper.module.export,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: module_prototyper
 #: help:module_prototyper,summary:0
@@ -318,7 +336,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper,id:0 field:module_prototyper.module.export,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: module_prototyper
 #: field:module_prototyper,icon_image:0
@@ -341,16 +359,22 @@ msgid "LGPL-3 or later version"
 msgstr ""
 
 #. module: module_prototyper
+#: field:module_prototyper,__last_update:0
+#: field:module_prototyper.module.export,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: module_prototyper
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_date:0
 #: field:module_prototyper.module.export,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: module_prototyper
 #: field:module_prototyper,license:0
@@ -518,7 +542,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,website:0
 msgid "Website"
-msgstr ""
+msgstr "Сайт"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -582,4 +606,4 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "or"
-msgstr ""
+msgstr "или"

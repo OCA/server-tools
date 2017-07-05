@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * log_forwarded_for_ip
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-18 02:09+0000\n"
+"PO-Revision-Date: 2017-03-13 12:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: log_forwarded_for_ip
+#: field:log.forwarded.for.ip.installed,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: log_forwarded_for_ip
+#: field:log.forwarded.for.ip.installed,id:0
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: log_forwarded_for_ip
+#: field:log.forwarded.for.ip.installed,__last_update:0
+msgid "Last Modified on"
+msgstr ""

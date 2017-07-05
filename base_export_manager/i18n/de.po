@@ -3,13 +3,18 @@
 # * base_export_manager
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011,2013
+# Florian Hatat, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-18 13:24+0000\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-05 12:41+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +22,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_export_manager
+#: help:ir.exports,model_id:0 help:ir.exports.line,model1_id:0
+msgid "Database model to export."
+msgstr "Zu exportierendes Datenbankmodell."
 
 #. module: base_export_manager
 #: view:ir.exports:base_export_manager.ir_exports_form_view
@@ -31,18 +41,86 @@ msgid "Export Profiles"
 msgstr "Profile exportieren"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:61
+#: code:addons/base_export_manager/models/ir_exports_line.py:164
 #, python-format
 msgid "Field '%s' already exists"
 msgstr "Feld '%s' besteht bereits"
 
 #. module: base_export_manager
-#: code:addons/base_export_manager/models/ir_exports_line.py:56
+#: code:addons/base_export_manager/models/ir_exports_line.py:158
 #, python-format
 msgid "Field '%s' does not exist"
 msgstr "Feld '%s' existiert nicht"
 
 #. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:192
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr "Feld '%s' im Modell '%s' nicht gefunden"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field1_id:0
+msgid "First field"
+msgstr "Erstes Feld"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model1_id:0
+msgid "First model"
+msgstr "Erstes Modell"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field4_id:0
+msgid "Fourth field"
+msgstr "Viertes Feld"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model4_id:0
+msgid "Fourth model"
+msgstr "Viertes Modell"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:136
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
+msgstr "Mehr als 4 Stufen Tiefe sind nicht zulässig: %s"
+
+#. module: base_export_manager
+#: field:ir.exports.line,label:0
+msgid "Label"
+msgstr "Kennung"
+
+#. module: base_export_manager
+#: field:ir.exports,model_id:0
+msgid "Model"
+msgstr "Modell"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field2_id:0
+msgid "Second field"
+msgstr "Zweites Feld"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model2_id:0
+msgid "Second model"
+msgstr "Zweites Modell"
+
+#. module: base_export_manager
 #: field:ir.exports.line,sequence:0
 msgid "Sequence"
 msgstr "Reihenfolge"
+
+#. module: base_export_manager
+#: field:ir.exports.line,field3_id:0
+msgid "Third field"
+msgstr "Drittes Feld"
+
+#. module: base_export_manager
+#: field:ir.exports.line,model3_id:0
+msgid "Third model"
+msgstr "Drittes Modell"
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports.py:66
+#, python-format
+msgid "You must supply a model or resource."
+msgstr "Sie müssen ein Modell oder eine Ressource angeben."

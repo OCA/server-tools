@@ -3,12 +3,24 @@
 # * super_calendar
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# SaFi J. <safi2266@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-10-16 07:39+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -71,17 +83,17 @@ msgstr "Creato il"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current month"
-msgstr ""
+msgstr "Mese corrente"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Current week"
-msgstr ""
+msgstr "Settimana corrente"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Day"
-msgstr ""
+msgstr "Giorno"
 
 #. module: super_calendar
 #: field:super.calendar,name:0
@@ -99,6 +111,13 @@ msgstr "Tipo di descrizione"
 #: field:super.calendar.configurator.line,description_field_id:0
 msgid "Description field"
 msgstr "Campo descrizione"
+
+#. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -158,7 +177,7 @@ msgstr "Generazione calendario"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -190,6 +209,13 @@ msgstr ""
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
@@ -225,7 +251,7 @@ msgstr "Modello"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Month"
-msgstr ""
+msgstr "Mese"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -240,17 +266,17 @@ msgstr "Nome"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next month"
-msgstr ""
+msgstr "Prossimo mese"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Next week"
-msgstr ""
+msgstr "Prossima settimana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Period"
-msgstr ""
+msgstr "Periodo"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -315,9 +341,9 @@ msgstr "Campo Utente"
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Week"
-msgstr ""
+msgstr "Settimana"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Year"
-msgstr ""
+msgstr "Anno"

@@ -3,13 +3,30 @@
 # * dead_mans_switch_server
 # 
 # Translators:
+# Accounts-Payable - Alkemics, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# Dimitrios Glentadakis <dglent@gmail.com>, 2013-2014, 2015-2016
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2014
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# François Breysse <fb@alkemics.com>, 2015
+# Guewen Baconnier <guewen.baconnier@camptocamp.com>, 2015
+# Hotellook, 2014
+# Jim Spentzos, 2014
+# Jim Spentzos, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# njeudy <njeudy@tuxservices.com>, 2015
+# Pierre Verkest <pverkest@anybox.fr>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-26 12:51+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-03-18 02:09+0000\n"
+"PO-Revision-Date: 2017-03-13 13:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +35,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:141
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:158
 #, python-format
 msgid "%s seems to be dead"
 msgstr ""
@@ -26,12 +43,23 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Activate"
-msgstr ""
+msgstr "Activer"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Active"
+msgstr "Active"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,last_user_count:0
+#: field:dead.mans.switch.instance,last_user_count_sparkline:0
+msgid "Active users"
+msgstr ""
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,alive:0
+msgid "Alive"
 msgstr ""
 
 #. module: dead_mans_switch_server
@@ -41,6 +69,8 @@ msgstr ""
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_cpu:0
+#: field:dead.mans.switch.instance,last_cpu_sparkline:0
 #: field:dead.mans.switch.log,cpu:0
 msgid "CPU"
 msgstr ""
@@ -82,10 +112,10 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Date du dernier message publié sur cet enregistrement"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:139
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:156
 #, python-format
 msgid "Dead man's switch warning: %s"
 msgstr ""
@@ -96,16 +126,22 @@ msgid "Description"
 msgstr "Descriptions"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,display_name:0
+#: field:dead.mans.switch.log,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Abonnés"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Contient le résumé de la discussion (nombre de messages, ...). Ce résumé est au format HTML pour permettre son utilisation dans la vue kanban."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -115,7 +151,7 @@ msgstr "ID"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Si coché, les nouveaux messages seront portés à votre attention."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,instance_id:0
@@ -135,12 +171,18 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "Est un abonné"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Date du dernier message"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,__last_update:0
+#: field:dead.mans.switch.log,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
@@ -156,6 +198,7 @@ msgstr "Mis à jour le"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
 msgstr ""
 
@@ -165,7 +208,7 @@ msgid "Log lines"
 msgstr ""
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:78
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
 #, python-format
 msgid "Logs"
 msgstr "Journaux"
@@ -173,23 +216,23 @@ msgstr "Journaux"
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_manager
 msgid "Manager"
-msgstr ""
+msgstr "Responsable"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Historique des messages et communications"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
@@ -198,6 +241,8 @@ msgstr ""
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_ram:0
+#: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
 msgstr ""
@@ -249,7 +294,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Messages non-lus"
 
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_user

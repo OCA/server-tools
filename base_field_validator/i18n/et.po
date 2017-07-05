@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_field_validator
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-28 21:28+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Estonian (https://www.transifex.com/oca/teams/23907/et/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,create_uid:0
+#: field:ir.model.validator.line,create_uid:0
+msgid "Created by"
+msgstr "Loonud"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,create_date:0
+#: field:ir.model.validator.line,create_date:0
+msgid "Created on"
+msgstr "Loodud"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,name:0
+msgid "Description"
+msgstr "Kirjeldus"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,display_name:0
+#: field:ir.model.validator.line,display_name:0
+msgid "Display Name"
+msgstr "Näidatav nimi"
+
+#. module: base_field_validator
+#: code:addons/base_field_validator/models/ir_model.py:27
+#, python-format
+msgid "Expression %s not valid for %s"
+msgstr ""
+
+#. module: base_field_validator
+#: field:ir.model.validator.line,field_id:0
+msgid "Field"
+msgstr ""
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,id:0 field:ir.model.validator.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,__last_update:0
+#: field:ir.model.validator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimati muudetud"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,write_uid:0
+#: field:ir.model.validator.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Viimati uuendatud"
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,write_date:0
+#: field:ir.model.validator.line,write_date:0
+msgid "Last Updated on"
+msgstr "Viimati uuendatud"
+
+#. module: base_field_validator
+#: field:ir.model.validator.line,model_id:0
+msgid "Model"
+msgstr ""
+
+#. module: base_field_validator
+#: model:ir.model,name:base_field_validator.model_ir_model
+msgid "Models"
+msgstr ""
+
+#. module: base_field_validator
+#: field:ir.model.fields.regex,regex:0
+msgid "Regular Expression"
+msgstr ""
+
+#. module: base_field_validator
+#: help:ir.model.fields.regex,regex:0
+msgid ""
+"Regular expression used to validate the field. For example, you can add the expression\n"
+"[^@]+@[^@]+\\.[^@]+\n"
+"to the email field"
+msgstr ""
+
+#. module: base_field_validator
+#: sql_constraint:ir.model.fields.regex:0
+msgid "The name of a regular expression must be unique"
+msgstr ""
+
+#. module: base_field_validator
+#: field:ir.model.validator.line,regex_id:0
+msgid "Validator"
+msgstr ""
+
+#. module: base_field_validator
+#: view:ir.model:base_field_validator.view_model_form_validator
+#: field:ir.model,validator_line_ids:0
+msgid "Validators"
+msgstr ""

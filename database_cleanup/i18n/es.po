@@ -3,14 +3,28 @@
 # * database_cleanup
 # 
 # Translators:
-# Carles Antolí <carlesantoli@hotmail.com>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-15 12:20+0000\n"
-"Last-Translator: Carles Antolí <carlesantoli@hotmail.com>\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-23 23:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +85,24 @@ msgid "Database cleanup"
 msgstr "Limpieza de la base de datos"
 
 #. module: database_cleanup
+#: field:cleanup.purge.line,display_name:0
+#: field:cleanup.purge.line.column,display_name:0
+#: field:cleanup.purge.line.data,display_name:0
+#: field:cleanup.purge.line.menu,display_name:0
+#: field:cleanup.purge.line.model,display_name:0
+#: field:cleanup.purge.line.module,display_name:0
+#: field:cleanup.purge.line.table,display_name:0
+#: field:cleanup.purge.wizard,display_name:0
+#: field:cleanup.purge.wizard.column,display_name:0
+#: field:cleanup.purge.wizard.data,display_name:0
+#: field:cleanup.purge.wizard.menu,display_name:0
+#: field:cleanup.purge.wizard.model,display_name:0
+#: field:cleanup.purge.wizard.module,display_name:0
+#: field:cleanup.purge.wizard.table,display_name:0
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: database_cleanup
 #: field:cleanup.purge.line,id:0 field:cleanup.purge.line.column,id:0
 #: field:cleanup.purge.line.data,id:0 field:cleanup.purge.line.menu,id:0
 #: field:cleanup.purge.line.model,id:0 field:cleanup.purge.line.module,id:0
@@ -81,6 +113,24 @@ msgstr "Limpieza de la base de datos"
 #: field:cleanup.purge.wizard.table,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: database_cleanup
+#: field:cleanup.purge.line,__last_update:0
+#: field:cleanup.purge.line.column,__last_update:0
+#: field:cleanup.purge.line.data,__last_update:0
+#: field:cleanup.purge.line.menu,__last_update:0
+#: field:cleanup.purge.line.model,__last_update:0
+#: field:cleanup.purge.line.module,__last_update:0
+#: field:cleanup.purge.line.table,__last_update:0
+#: field:cleanup.purge.wizard,__last_update:0
+#: field:cleanup.purge.wizard.column,__last_update:0
+#: field:cleanup.purge.wizard.data,__last_update:0
+#: field:cleanup.purge.wizard.menu,__last_update:0
+#: field:cleanup.purge.wizard.model,__last_update:0
+#: field:cleanup.purge.wizard.module,__last_update:0
+#: field:cleanup.purge.wizard.table,__last_update:0
+msgid "Last Modified on"
+msgstr "Última actualización por"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_uid:0
@@ -166,19 +216,19 @@ msgid "No dangling menu entries found"
 msgstr "No encontradas entradas de menú colgando"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_modules.py:122
+#: code:addons/database_cleanup/model/purge_modules.py:127
 #, python-format
 msgid "No modules found to purge"
 msgstr "No se han encontrado módulos para purgar"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:148
+#: code:addons/database_cleanup/model/purge_columns.py:151
 #, python-format
 msgid "No orphaned columns found"
 msgstr "No encontradas columnas huérfanas"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:99
+#: code:addons/database_cleanup/model/purge_data.py:100
 #, python-format
 msgid "No orphaned data entries found"
 msgstr "No encontradas entradas de datos huérfanos"
@@ -190,21 +240,31 @@ msgid "No orphaned models found"
 msgstr "No encontrados modelos huérfanos"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:131
+#: code:addons/database_cleanup/model/purge_tables.py:133
 #, python-format
 msgid "No orphaned tables found"
 msgstr "No encontradas tablas huérfanas"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:147
-#: code:addons/database_cleanup/model/purge_data.py:98
+#: code:addons/database_cleanup/model/purge_columns.py:150
+#: code:addons/database_cleanup/model/purge_data.py:99
 #: code:addons/database_cleanup/model/purge_menus.py:73
 #: code:addons/database_cleanup/model/purge_models.py:147
-#: code:addons/database_cleanup/model/purge_modules.py:121
-#: code:addons/database_cleanup/model/purge_tables.py:130
+#: code:addons/database_cleanup/model/purge_modules.py:126
+#: code:addons/database_cleanup/model/purge_tables.py:132
 #, python-format
 msgid "Nothing to do"
 msgstr "Nada que hacer"
+
+#. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_column_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_data_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_menu_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_model_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_module_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_table_line
+msgid "Purge"
+msgstr "Limpiar"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,wizard_id:0
@@ -247,7 +307,8 @@ msgid "Purge all tables"
 msgstr "Purgar todas las tablas"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:86
+#: code:addons/database_cleanup/model/purge_columns.py:89
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
 #, python-format
@@ -255,7 +316,8 @@ msgid "Purge columns"
 msgstr "Purgar columnas"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:60
+#: code:addons/database_cleanup/model/purge_data.py:61
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 #, python-format
 msgid "Purge data"
@@ -276,6 +338,7 @@ msgstr "Purgar menús"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_models.py:133
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
 #: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
 #, python-format
@@ -284,6 +347,7 @@ msgstr "Purgar modelos"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_modules.py:104
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_modules
 #, python-format
@@ -321,7 +385,8 @@ msgid "Purge obsolete tables"
 msgstr "Purgar tablas obsoletos"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:92
+#: code:addons/database_cleanup/model/purge_tables.py:96
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #, python-format
@@ -329,27 +394,37 @@ msgid "Purge tables"
 msgstr "Purgar tablas"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 msgid "Purge this column"
 msgstr "Purgar esta columna"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 msgid "Purge this data"
 msgstr "Purgar este dato"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
+msgid "Purge this menu"
+msgstr ""
+
+#. module: database_cleanup
+#: view:cleanup.purge.line.menu:database_cleanup.purge_menu_line_tree
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
 #: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
 msgid "Purge this model"
 msgstr "Purgar este modelo"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 msgid "Purge this module"
 msgstr "Purgar este módulo"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 msgid "Purge this table"
 msgstr "Purgar esta tabla"
@@ -363,6 +438,16 @@ msgstr "Purgar esta tabla"
 #: field:cleanup.purge.line.table,purged:0
 msgid "Purged"
 msgstr "Purgado"
+
+#. module: database_cleanup
+#: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
+#: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
+#: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
+#: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
+#: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
+#: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
+msgid "Select lines"
+msgstr "Seleccionar líneas"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.table,purge_line_ids:0

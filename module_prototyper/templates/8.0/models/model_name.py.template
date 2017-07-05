@@ -6,7 +6,7 @@ from openerp.tools.translate import _
 
 
 class {{ unprefix(name) }}(models.Model):
-    {% if model.state == 'base' %}
+    {% if model.state == 'manual' %}
     _name = "{{ model.model }}"
     {% else %}
     _inherit = "{{ model.model }}"

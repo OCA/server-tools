@@ -3,14 +3,24 @@
 # * super_calendar
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Bole <bole@dajmi5.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 13:31+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"PO-Revision-Date: 2016-12-30 22:02+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,6 +112,13 @@ msgid "Description field"
 msgstr "Açıklama Alanı"
 
 #. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
+
+#. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current month."
 msgstr "Bu ayda gösterilen bütün elemanlar"
@@ -191,6 +208,13 @@ msgstr "aynı yıldaki bütün elemanları grupla"
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0

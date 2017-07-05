@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_model_form_validator" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="inherit_id" ref="base.view_model_form"></field>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Validators">
+                        <field name="validator_line_ids">
+                            <tree editable="bottom">
+                                <field name="field_id"
+                                domain="[('model_id','=',parent.id)]"></field>
+                                <field name="regex_id"></field>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -3,13 +3,17 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-30 11:15+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +43,11 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_report_auto_create_qweb
 #: view:ir.actions.report.xml.duplicate:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
 msgstr "Podvoji"
@@ -52,6 +61,11 @@ msgstr "Podvoji poročilo"
 #: field:ir.actions.report.xml.duplicate,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_report_auto_create_qweb
+#: field:ir.actions.report.xml.duplicate,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: base_report_auto_create_qweb
 #: field:ir.actions.report.xml.duplicate,write_uid:0

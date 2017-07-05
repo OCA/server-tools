@@ -3,14 +3,22 @@
 # * database_cleanup
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 14:58+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-30 20:22+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +79,24 @@ msgid "Database cleanup"
 msgstr "Veritabanı temizliği"
 
 #. module: database_cleanup
+#: field:cleanup.purge.line,display_name:0
+#: field:cleanup.purge.line.column,display_name:0
+#: field:cleanup.purge.line.data,display_name:0
+#: field:cleanup.purge.line.menu,display_name:0
+#: field:cleanup.purge.line.model,display_name:0
+#: field:cleanup.purge.line.module,display_name:0
+#: field:cleanup.purge.line.table,display_name:0
+#: field:cleanup.purge.wizard,display_name:0
+#: field:cleanup.purge.wizard.column,display_name:0
+#: field:cleanup.purge.wizard.data,display_name:0
+#: field:cleanup.purge.wizard.menu,display_name:0
+#: field:cleanup.purge.wizard.model,display_name:0
+#: field:cleanup.purge.wizard.module,display_name:0
+#: field:cleanup.purge.wizard.table,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
+
+#. module: database_cleanup
 #: field:cleanup.purge.line,id:0 field:cleanup.purge.line.column,id:0
 #: field:cleanup.purge.line.data,id:0 field:cleanup.purge.line.menu,id:0
 #: field:cleanup.purge.line.model,id:0 field:cleanup.purge.line.module,id:0
@@ -81,6 +107,24 @@ msgstr "Veritabanı temizliği"
 #: field:cleanup.purge.wizard.table,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: database_cleanup
+#: field:cleanup.purge.line,__last_update:0
+#: field:cleanup.purge.line.column,__last_update:0
+#: field:cleanup.purge.line.data,__last_update:0
+#: field:cleanup.purge.line.menu,__last_update:0
+#: field:cleanup.purge.line.model,__last_update:0
+#: field:cleanup.purge.line.module,__last_update:0
+#: field:cleanup.purge.line.table,__last_update:0
+#: field:cleanup.purge.wizard,__last_update:0
+#: field:cleanup.purge.wizard.column,__last_update:0
+#: field:cleanup.purge.wizard.data,__last_update:0
+#: field:cleanup.purge.wizard.menu,__last_update:0
+#: field:cleanup.purge.wizard.model,__last_update:0
+#: field:cleanup.purge.wizard.module,__last_update:0
+#: field:cleanup.purge.wizard.table,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,write_uid:0
@@ -166,45 +210,55 @@ msgid "No dangling menu entries found"
 msgstr "Sarkan menü ögesi bununmadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_modules.py:122
+#: code:addons/database_cleanup/model/purge_modules.py:127
 #, python-format
 msgid "No modules found to purge"
 msgstr "Silinecek modül bulunamadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:148
+#: code:addons/database_cleanup/model/purge_columns.py:151
 #, python-format
 msgid "No orphaned columns found"
-msgstr ""
+msgstr "Yetim kolon bulunamadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:99
+#: code:addons/database_cleanup/model/purge_data.py:100
 #, python-format
 msgid "No orphaned data entries found"
-msgstr ""
+msgstr "Yetim veri girişi bulunamadı"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_models.py:148
 #, python-format
 msgid "No orphaned models found"
-msgstr ""
+msgstr "Yetim model bulunamadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:131
+#: code:addons/database_cleanup/model/purge_tables.py:133
 #, python-format
 msgid "No orphaned tables found"
 msgstr "Hiç yetim tablo bulunamadı"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:147
-#: code:addons/database_cleanup/model/purge_data.py:98
+#: code:addons/database_cleanup/model/purge_columns.py:150
+#: code:addons/database_cleanup/model/purge_data.py:99
 #: code:addons/database_cleanup/model/purge_menus.py:73
 #: code:addons/database_cleanup/model/purge_models.py:147
-#: code:addons/database_cleanup/model/purge_modules.py:121
-#: code:addons/database_cleanup/model/purge_tables.py:130
+#: code:addons/database_cleanup/model/purge_modules.py:126
+#: code:addons/database_cleanup/model/purge_tables.py:132
 #, python-format
 msgid "Nothing to do"
 msgstr "Yapılacak birşey yok"
+
+#. module: database_cleanup
+#: model:ir.actions.server,name:database_cleanup.action_purge_column_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_data_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_menu_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_model_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_module_line
+#: model:ir.actions.server,name:database_cleanup.action_purge_table_line
+msgid "Purge"
+msgstr "Boşalt (sil)"
 
 #. module: database_cleanup
 #: field:cleanup.purge.line.column,wizard_id:0
@@ -219,12 +273,12 @@ msgstr "Silme Sihirbazı"
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 msgid "Purge all columns"
-msgstr ""
+msgstr "Bütün kolonları sil"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 msgid "Purge all data"
-msgstr ""
+msgstr "Bütün verileri sil"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
@@ -239,7 +293,7 @@ msgstr "tüm modelleri sil"
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 msgid "Purge all modules"
-msgstr ""
+msgstr "Bütün modülleri sil"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
@@ -247,7 +301,8 @@ msgid "Purge all tables"
 msgstr "Tüm tabloları sil"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_columns.py:86
+#: code:addons/database_cleanup/model/purge_columns.py:89
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_columns
 #, python-format
@@ -255,7 +310,8 @@ msgid "Purge columns"
 msgstr "Kolonları sil"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_data.py:60
+#: code:addons/database_cleanup/model/purge_data.py:61
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 #, python-format
 msgid "Purge data"
@@ -265,7 +321,7 @@ msgstr "Veriyi Sil"
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_data
 msgid "Purge data entries that refer to missing resources"
-msgstr ""
+msgstr "Kayıp kaynalara başvuran verileri sil"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_menus.py:52
@@ -276,6 +332,7 @@ msgstr "Menüleri Sil"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_models.py:133
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
 #: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_models
 #, python-format
@@ -284,6 +341,7 @@ msgstr "Modelleri Sil"
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/model/purge_modules.py:104
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_modules
 #, python-format
@@ -293,7 +351,7 @@ msgstr "Modülleri sil"
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_columns
 msgid "Purge obsolete columns"
-msgstr ""
+msgstr "Eski kolonları sil"
 
 #. module: database_cleanup
 #: model:ir.ui.menu,name:database_cleanup.menu_purge_data
@@ -321,7 +379,8 @@ msgid "Purge obsolete tables"
 msgstr "Eskimiş tabloları sil"
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/model/purge_tables.py:92
+#: code:addons/database_cleanup/model/purge_tables.py:96
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 #: model:ir.actions.server,name:database_cleanup.action_purge_tables
 #, python-format
@@ -329,27 +388,37 @@ msgid "Purge tables"
 msgstr "Tabloları sil"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.column:database_cleanup.purge_column_line_tree
 #: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
 msgid "Purge this column"
 msgstr "Bu kolonu sil"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.data:database_cleanup.purge_data_line_tree
 #: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
 msgid "Purge this data"
 msgstr "Bu veriyi sil"
 
 #. module: database_cleanup
 #: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
-#: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
-msgid "Purge this model"
-msgstr ""
+msgid "Purge this menu"
+msgstr "Bu menüyü sil"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.menu:database_cleanup.purge_menu_line_tree
+#: view:cleanup.purge.line.model:database_cleanup.purge_model_line_tree
+#: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
+msgid "Purge this model"
+msgstr "Bu modülü sil"
+
+#. module: database_cleanup
+#: view:cleanup.purge.line.module:database_cleanup.purge_module_line_tree
 #: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
 msgid "Purge this module"
 msgstr "Bu modülü sil"
 
 #. module: database_cleanup
+#: view:cleanup.purge.line.table:database_cleanup.purge_table_line_tree
 #: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
 msgid "Purge this table"
 msgstr "Bu tabloyu sil"
@@ -363,6 +432,16 @@ msgstr "Bu tabloyu sil"
 #: field:cleanup.purge.line.table,purged:0
 msgid "Purged"
 msgstr "Silinmiş"
+
+#. module: database_cleanup
+#: view:cleanup.purge.wizard.column:database_cleanup.purge_columns_view
+#: view:cleanup.purge.wizard.data:database_cleanup.purge_data_view
+#: view:cleanup.purge.wizard.menu:database_cleanup.purge_menus_view
+#: view:cleanup.purge.wizard.model:database_cleanup.purge_models_view
+#: view:cleanup.purge.wizard.module:database_cleanup.purge_modules_view
+#: view:cleanup.purge.wizard.table:database_cleanup.purge_tables_view
+msgid "Select lines"
+msgstr "Satırları Seç"
 
 #. module: database_cleanup
 #: field:cleanup.purge.wizard.table,purge_line_ids:0

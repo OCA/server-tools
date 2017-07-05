@@ -1,24 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 ABF OSIELL (<http://osiell.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# © 2015 ABF OSIELL <http://osiell.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp import models, fields
 
 
@@ -54,7 +36,7 @@ class AuditlogLogLine(models.Model):
     field_id = fields.Many2one(
         'ir.model.fields', ondelete='cascade', string=u"Field", required=True)
     log_id = fields.Many2one(
-        'auditlog.log', string=u"Log", ondelete='cascade')
+        'auditlog.log', string=u"Log", ondelete='cascade', index=True)
     old_value = fields.Text(u"Old Value")
     new_value = fields.Text(u"New Value")
     old_value_text = fields.Text(u"Old value Text")

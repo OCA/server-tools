@@ -3,13 +3,28 @@
 # * dead_mans_switch_server
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Alexsandro Haag <alex@hgsoft.com.br>, 2015
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# llum.birque@gmail.com <llum.birque@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Stéphane Bidoul <sbi@skynet.be>, 2015
+# Yael Terrettaz, 2015
+# yterrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2015-11-26 12:51+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-06-09 18:30+0000\n"
+"PO-Revision-Date: 2016-06-06 13:58+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,32 +33,45 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:141
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:158
 #, python-format
 msgid "%s seems to be dead"
-msgstr ""
+msgstr "%s näyttää olevan alhaalla"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Activate"
-msgstr ""
+msgstr "Aktivoi"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,last_user_count:0
+#: field:dead.mans.switch.instance,last_user_count_sparkline:0
+msgid "Active users"
+msgstr "Aktiiviset käyttäjät"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,alive:0
+msgid "Alive"
+msgstr "Pystyssä"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
 msgid "Alive delay"
-msgstr ""
+msgstr "Tarkistuksen viive"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_cpu:0
+#: field:dead.mans.switch.instance,last_cpu_sparkline:0
 #: field:dead.mans.switch.log,cpu:0
 msgid "CPU"
-msgstr ""
+msgstr "Prosessori"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,create_uid:0
@@ -60,52 +88,58 @@ msgstr "Luotu"
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
 msgid "Customer"
-msgstr ""
+msgstr "Asiakas"
 
 #. module: dead_mans_switch_server
 #: model:ir.actions.act_window,name:dead_mans_switch_server.action_dead_mans_switch_instance
 #: model:ir.ui.menu,name:dead_mans_switch_server.menu_dead_mans_switch
 #: model:ir.ui.menu,name:dead_mans_switch_server.menu_dead_mans_switch_instance
 msgid "Customer instances"
-msgstr ""
+msgstr "Asiakasinstanssit"
 
 #. module: dead_mans_switch_server
 #: sql_constraint:dead.mans.switch.instance:0
 msgid "Database ID must be unique"
-msgstr ""
+msgstr "Tietokannan ID:n täytyy olla uniikki"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,database_uuid:0
 msgid "Database id"
-msgstr ""
+msgstr "Tietokannan ID"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr ""
+msgstr "Viimeisimmän lähetetyn viestin päiväys."
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:139
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:156
 #, python-format
 msgid "Dead man's switch warning: %s"
-msgstr ""
+msgstr "Varoitus: %s"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,description:0
 msgid "Description"
-msgstr ""
+msgstr "Kuvaus"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,display_name:0
+#: field:dead.mans.switch.log,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
 msgid "Followers"
-msgstr ""
+msgstr "Seuraajat"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_summary:0
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Sisältää chatter-yhteenvedon (viestien määrä, ...). Tämä yhteenveto on html-formaatissa, jotta se voidaan näyttää kanban-näkymässä."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -115,32 +149,38 @@ msgstr "ID"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr ""
+msgstr "Jos valittuna, uudet viestit vaatii toimenpiteitä."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,instance_id:0
 msgid "Instance"
-msgstr ""
+msgstr "Instanssi"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_log
 msgid "Instance log line"
-msgstr ""
+msgstr "Instanssin logirivi"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_instance
 msgid "Instance to monitor"
-msgstr ""
+msgstr "Instanssi jota seurataan"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_is_follower:0
 msgid "Is a Follower"
-msgstr ""
+msgstr "On seuraaja"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_last_post:0
 msgid "Last Message Date"
-msgstr ""
+msgstr "Viimeisimmän viestin päiväys"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,__last_update:0
+#: field:dead.mans.switch.log,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
@@ -156,112 +196,115 @@ msgstr "Viimeksi päivitetty"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
-msgstr ""
+msgstr "Nähty viimeksi"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,log_ids:0
 msgid "Log lines"
-msgstr ""
+msgstr "Logirivit"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:78
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
 #, python-format
 msgid "Logs"
-msgstr ""
+msgstr "Logit"
 
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_manager
 msgid "Manager"
-msgstr ""
+msgstr "Ylläpitäjä"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_ids:0
 msgid "Messages"
-msgstr ""
+msgstr "Viestejä"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Viesti- ja kommunikointihistoria"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "New"
-msgstr ""
+msgstr "Uusi"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Open logs"
-msgstr ""
+msgstr "Avoimet logit"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_ram:0
+#: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
-msgstr ""
+msgstr "RAM"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,user_id:0
 msgid "Responsible user"
-msgstr ""
+msgstr "Vastuukäyttäjä"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: field:dead.mans.switch.instance,state:0
 msgid "State"
-msgstr ""
+msgstr "Tila"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_summary:0
 msgid "Summary"
-msgstr ""
+msgstr "Yhteenveto"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.form_dead_mans_switch_instance
 msgid "Suspend"
-msgstr ""
+msgstr "Keskeytä"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: selection:dead.mans.switch.instance,state:0
 msgid "Suspended"
-msgstr ""
+msgstr "Keskeytetty"
 
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,alive_max_delay:0
 msgid ""
 "The amount of seconds without notice after which the instance is considered "
 "dead"
-msgstr ""
+msgstr "Kuinka monen sekunnin kuluttua instanssin todetaan olevan alhaalla"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log
 msgid "This month"
-msgstr ""
+msgstr "Tässä kuussa"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log
 msgid "This week"
-msgstr ""
+msgstr "Tällä viikolla"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_unread:0
 msgid "Unread Messages"
-msgstr ""
+msgstr "Lukemattomia viestejä"
 
 #. module: dead_mans_switch_server
 #: model:res.groups,name:dead_mans_switch_server.group_user
 msgid "User"
-msgstr ""
+msgstr "Käyttäjä"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
 msgid "Users"
-msgstr ""
+msgstr "Käyttäjät"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,user_count:0
 msgid "Users logged in"
-msgstr ""
+msgstr "Kirjautuneita käyttäjiä"

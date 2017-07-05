@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2015 ABF OSIELL (<http://osiell.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 ABF OSIELL <http://osiell.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
 from openerp.http import request
@@ -30,9 +13,9 @@ class AuditlogtHTTPSession(models.Model):
     _rec_name = 'display_name'
 
     display_name = fields.Char(u"Name", compute="_display_name")
-    name = fields.Char(u"Session ID")
+    name = fields.Char(u"Session ID", index=True)
     user_id = fields.Many2one(
-        'res.users', string=u"User")
+        'res.users', string=u"User", index=True)
     http_request_ids = fields.One2many(
         'auditlog.http.request', 'http_session_id', string=u"HTTP Requests")
 
@@ -60,7 +43,8 @@ class AuditlogtHTTPSession(models.Model):
         if httpsession:
             existing_session = self.search(
                 [('name', '=', httpsession.sid),
-                 ('user_id', '=', request.uid)])
+                 ('user_id', '=', request.uid)],
+                limit=1)
             if existing_session:
                 return existing_session.id
             vals = {

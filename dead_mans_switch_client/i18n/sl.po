@@ -3,13 +3,22 @@
 # * dead_mans_switch_client
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Miku Laitinen <miku.laitinen@gmail.com>, 2015
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-27 04:10+0000\n"
+"POT-Creation-Date: 2016-05-06 02:41+0000\n"
+"PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +33,16 @@ msgid "Configure the dead man's switch server"
 msgstr "Nastavitev strežnika varnostnega stikala"
 
 #. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: dead_mans_switch_client
 #: field:dead.mans.switch.client,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: dead_mans_switch_client
+#: field:dead.mans.switch.client,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"

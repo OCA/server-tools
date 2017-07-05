@@ -3,14 +3,25 @@
 # * super_calendar
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Alexsandro Haag <alex@hgsoft.com.br>, 2015
+# Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# llum.birque@gmail.com <llum.birque@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Stéphane Bidoul <sbi@skynet.be>, 2015
+# Yael Terrettaz, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-19 00:48+0000\n"
-"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
+"POT-Creation-Date: 2016-05-12 14:34+0000\n"
+"PO-Revision-Date: 2016-05-11 16:42+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,6 +113,13 @@ msgid "Description field"
 msgstr "Campo Descrição"
 
 #. module: super_calendar
+#: field:super.calendar,display_name:0
+#: field:super.calendar.configurator,display_name:0
+#: field:super.calendar.configurator.line,display_name:0
+msgid "Display Name"
+msgstr "Nome para Mostrar"
+
+#. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Display all elements in the current month."
 msgstr "Mostra todos os elementos no mês atual"
@@ -191,6 +209,13 @@ msgstr "Agrupe todos os elemsnto do mesmo ano."
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
 msgstr "Identificação"
+
+#. module: super_calendar
+#: field:super.calendar,__last_update:0
+#: field:super.calendar.configurator,__last_update:0
+#: field:super.calendar.configurator.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Última atualização em"
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0

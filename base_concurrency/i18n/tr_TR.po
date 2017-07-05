@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_concurrency
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-31 08:34+0000\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr_TR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: base_concurrency
+#: field:res.users.login,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: base_concurrency
+#: field:res.users.login,create_date:0
+msgid "Created on"
+msgstr "Oluşturulma tarihi"
+
+#. module: base_concurrency
+#: field:res.users.login,display_name:0
+msgid "Display Name"
+msgstr "Görünen ad"
+
+#. module: base_concurrency
+#: field:res.users.login,id:0
+msgid "ID"
+msgstr "Kimlik"
+
+#. module: base_concurrency
+#: field:res.users.login,__last_update:0
+msgid "Last Modified on"
+msgstr "En son güncelleme tarihi"
+
+#. module: base_concurrency
+#: field:res.users.login,write_uid:0
+msgid "Last Updated by"
+msgstr "En son güncelleyen "
+
+#. module: base_concurrency
+#: field:res.users.login,write_date:0
+msgid "Last Updated on"
+msgstr "En son güncelleme tarihi"
+
+#. module: base_concurrency
+#: field:res.users.login,login_dt:0
+msgid "Latest connection"
+msgstr ""
+
+#. module: base_concurrency
+#: sql_constraint:res.users.login:0
+msgid "The user can only have one login line!"
+msgstr ""
+
+#. module: base_concurrency
+#: field:res.users.login,user_id:0
+msgid "User"
+msgstr "Kullanıcı"
+
+#. module: base_concurrency
+#: model:ir.model,name:base_concurrency.model_res_users
+msgid "Users"
+msgstr "Kullanıcılar"

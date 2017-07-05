@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_supplier
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-12 03:50+0000\n"
+"PO-Revision-Date: 2015-10-30 14:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/hr_HR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hr_HR\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: auth_supplier
+#: view:website:auth_signup.fields
+msgid "Account Type"
+msgstr ""
+
+#. module: auth_supplier
+#: model:ir.module.category,name:auth_supplier.module_auth_supplier
+msgid "Auth Supplier"
+msgstr ""
+
+#. module: auth_supplier
+#: view:website:auth_signup.fields
+msgid "Customer"
+msgstr ""
+
+#. module: auth_supplier
+#: model:res.groups,name:auth_supplier.group_auth_supplier
+msgid "Portal Supplier"
+msgstr ""
+
+#. module: auth_supplier
+#: view:website:auth_signup.fields
+msgid "Supplier"
+msgstr ""
+
+#. module: auth_supplier
+#: model:ir.model,name:auth_supplier.model_res_users
+msgid "Users"
+msgstr "Korisnici"

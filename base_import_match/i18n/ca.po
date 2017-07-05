@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_import_match
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2016-05-27 15:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_import_match
+#: field:base_import.match.field,conditional:0
+msgid "Conditional"
+msgstr "Condicional "
+
+#. module: base_import_match
+#: field:base_import.match,create_uid:0
+#: field:base_import.match.field,create_uid:0
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: base_import_match
+#: field:base_import.match,create_date:0
+#: field:base_import.match.field,create_date:0
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_match
+msgid "Deduplicate settings prior to CSV imports."
+msgstr "Deduplicar ajustaments abans de fer importacions CSV."
+
+#. module: base_import_match
+#: field:base_import.match,display_name:0
+#: field:base_import.match.field,display_name:0
+msgid "Display Name"
+msgstr "Veure el nom"
+
+#. module: base_import_match
+#: help:base_import.match.field,conditional:0
+msgid "Enable if you want to use this field only in some conditions."
+msgstr "Activeu si voleu utilitzar aquest camp només en certes condicions. "
+
+#. module: base_import_match
+#: field:base_import.match.field,field_id:0
+msgid "Field"
+msgstr "Camp"
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_match_field
+msgid "Field import match definition"
+msgstr "Camps que defineixen una associació d'importació "
+
+#. module: base_import_match
+#: help:base_import.match.field,field_id:0
+msgid "Field that will be part of an unique key."
+msgstr "Camps que seran part de una clau única."
+
+#. module: base_import_match
+#: field:base_import.match,field_ids:0
+msgid "Fields"
+msgstr "Camps "
+
+#. module: base_import_match
+#: help:base_import.match,field_ids:0
+msgid "Fields that will define an unique key."
+msgstr "Camps que definiran una clau única."
+
+#. module: base_import_match
+#: view:base_import.match:base_import_match.match_search_view
+msgid "Group By"
+msgstr "Agrupat per"
+
+#. module: base_import_match
+#: field:base_import.match,id:0 field:base_import.match.field,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_import_match
+#: help:base_import.match.field,imported_value:0
+msgid ""
+"If the imported value is not this, the whole matching rule will be "
+"discarded. Be careful, this data is always treated as a string, and "
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
+" 'true', only EXACTLY 'True'."
+msgstr "Si el valor importat no es aquest, el conjunt de regles d'associació ha de ser descartat. Aneu amb compte, aquestes dades sempre són tractades com una cadena, i la comparació és sensible a majúscules i minúscules, per la qual cosa si s'estableix 'Veritat', NO coincidirà ni amb '1' ni amb 'veritat', només EXACTAMENT amb 'Veritat'."
+
+#. module: base_import_match
+#: view:base_import.match:base_import_match.match_form_view
+#: view:base_import.match:base_import_match.match_search_view
+#: view:base_import.match:base_import_match.match_tree_view
+#: model:ir.actions.act_window,name:base_import_match.match_action
+#: model:ir.ui.menu,name:base_import_match.match_menu
+msgid "Import Match"
+msgstr "Importar Associació "
+
+#. module: base_import_match
+#: field:base_import.match.field,imported_value:0
+msgid "Imported value"
+msgstr "Valor Importat "
+
+#. module: base_import_match
+#: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
+msgid "In this model you will apply the match."
+msgstr "En aquest model haureu d'aplicar l'associació."
+
+#. module: base_import_match
+#: field:base_import.match,__last_update:0
+#: field:base_import.match.field,__last_update:0
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: base_import_match
+#: field:base_import.match,write_uid:0
+#: field:base_import.match.field,write_uid:0
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: base_import_match
+#: field:base_import.match,write_date:0
+#: field:base_import.match.field,write_date:0
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: base_import_match
+#: field:base_import.match.field,match_id:0
+msgid "Match"
+msgstr "Associar "
+
+#. module: base_import_match
+#: view:base_import.match:base_import_match.match_search_view
+#: field:base_import.match,model_id:0 field:base_import.match,model_name:0
+#: field:base_import.match.field,model_id:0
+msgid "Model"
+msgstr ""
+
+#. module: base_import_match
+#: field:base_import.match,name:0 field:base_import.match.field,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: base_import_match
+#: field:base_import.match,sequence:0
+msgid "Sequence"
+msgstr "Seqüència"

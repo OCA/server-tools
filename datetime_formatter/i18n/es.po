@@ -4,12 +4,19 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Gustavo Lepri <gustavolepri@gmail.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-10 16:46+0000\n"
+"POT-Creation-Date: 2016-12-24 04:14+0000\n"
+"PO-Revision-Date: 2016-12-22 09:18+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +29,7 @@ msgstr ""
 #: code:addons/datetime_formatter/exceptions.py:9
 #, python-format
 msgid "Best matched language (%s) not found."
-msgstr ""
+msgstr "No se ha encontrado ningún idioma (%s) que mejor case."
 
 #. module: datetime_formatter
 #: model:ir.model,name:datetime_formatter.model_res_lang

@@ -3,13 +3,25 @@
 # * base_external_dbsource
 # 
 # Translators:
+# Antonio Trueba, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# SaFi J. <safi2266@gmail.com>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 16:46+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-07-28 00:59+0000\n"
+"PO-Revision-Date: 2016-07-31 08:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,21 +50,21 @@ msgid "Connection string"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:163
+#: code:addons/base_external_dbsource/base_external_dbsource.py:165
 #, python-format
 msgid "Connection test failed!"
-msgstr ""
+msgstr "Test di connessione non riuscito!"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:174
+#: code:addons/base_external_dbsource/base_external_dbsource.py:176
 #, python-format
 msgid "Connection test succeeded!"
-msgstr ""
+msgstr "Test di connessione riuscito!"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,connector:0
 msgid "Connector"
-msgstr ""
+msgstr "Connettore"
 
 #. module: base_external_dbsource
 #: field:base.external.dbsource,create_uid:0
@@ -75,7 +87,12 @@ msgid "Datasource name"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:175
+#: field:base.external.dbsource,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/base_external_dbsource.py:177
 #, python-format
 msgid "Everything seems properly set up!"
 msgstr ""
@@ -97,7 +114,7 @@ msgid "External Database Sources"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/base_external_dbsource.py:164
+#: code:addons/base_external_dbsource/base_external_dbsource.py:166
 #, python-format
 msgid ""
 "Here is what we got instead:\n"
@@ -119,6 +136,11 @@ msgid ""
 msgstr ""
 
 #. module: base_external_dbsource
+#: field:base.external.dbsource,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: base_external_dbsource
 #: field:base.external.dbsource,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento da"
@@ -131,7 +153,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: base_external_dbsource
 #: field:base.external.dbsource,password:0
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
@@ -141,4 +163,4 @@ msgstr ""
 #. module: base_external_dbsource
 #: view:base.external.dbsource:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Prova la Connessione"

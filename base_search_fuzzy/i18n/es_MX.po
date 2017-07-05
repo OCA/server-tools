@@ -1,0 +1,124 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_search_fuzzy
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"PO-Revision-Date: 2016-11-28 21:28+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (Mexico) (https://www.transifex.com/oca/teams/23907/es_MX/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_MX\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_search_fuzzy
+#: help:trgm.index,index_type:0
+msgid ""
+"Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
+"faster to search than a GiST index, but slower to build or update; so GIN is"
+" better suited for static data and GiST for often-updated data.\""
+msgstr ""
+
+#. module: base_search_fuzzy
+#: field:trgm.index,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,display_name:0
+msgid "Display Name"
+msgstr "Nombre desplegado"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,field_id:0
+msgid "Field"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: selection:trgm.index,index_type:0
+msgid "GIN"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: selection:trgm.index,index_type:0
+msgid "GiST"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: field:trgm.index,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,index_name:0
+msgid "Index Name"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: field:trgm.index,index_type:0
+msgid "Index Type"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: field:trgm.index,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modificacion realizada"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: base_search_fuzzy
+#: field:trgm.index,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima actualización realizada"
+
+#. module: base_search_fuzzy
+#: model:ir.model,name:base_search_fuzzy.model_ir_model
+msgid "Models"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: help:trgm.index,index_name:0
+msgid ""
+"The index name is automatically generated like fieldname_indextype_idx. If "
+"the index already exists and the index is located in the same table then "
+"this index is resused. If the index is located in another table then a "
+"number is added at the end of the index name."
+msgstr ""
+
+#. module: base_search_fuzzy
+#: code:addons/base_search_fuzzy/models/trgm_index.py:122
+#, python-format
+msgid "The pg_trgm extension does not exists or cannot be installed."
+msgstr ""
+
+#. module: base_search_fuzzy
+#: view:trgm.index:base_search_fuzzy.trgm_index_view_form
+#: view:trgm.index:base_search_fuzzy.trgm_index_view_tree
+msgid "Trigam Index"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
+#: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
+msgid "Trigram Index"
+msgstr ""
+
+#. module: base_search_fuzzy
+#: help:trgm.index,field_id:0
+msgid "You can either select a field of type \"text\" or \"char\"."
+msgstr ""

@@ -3,13 +3,24 @@
 # * base_module_doc_rst
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Mohamed HABOU <m.habou@agoradeveloppement.com>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016-2017
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-26 10:52+0000\n"
+"POT-Creation-Date: 2017-03-07 03:47+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +61,12 @@ msgid "Created on"
 msgstr "Erstellt am:"
 
 #. module: base_module_doc_rst
+#: field:create.relation.graph,display_name:0
+#: field:tech.guide.rst,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: base_module_doc_rst
 #: field:tech.guide.rst,rst_file:0
 msgid "File"
 msgstr "Datei"
@@ -64,6 +81,12 @@ msgstr "Erzeuge Beziehunggraph"
 #: field:create.relation.graph,id:0 field:tech.guide.rst,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: base_module_doc_rst
+#: field:create.relation.graph,__last_update:0
+#: field:tech.guide.rst,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
@@ -88,25 +111,25 @@ msgstr "Bestimmen Sie bitte den Dateinamen, den der Technische Leitfaden erhalte
 #. module: base_module_doc_rst
 #: model:ir.actions.report.xml,name:base_module_doc_rst.report_proximity_graph
 msgid "Proximity graph"
-msgstr ""
+msgstr "Umgebungsgraph"
 
 #. module: base_module_doc_rst
 #: view:ir.module.module:base_module_doc_rst.view_module_module_graph
 #: field:ir.module.module,file_graph:0
 msgid "Relationship Graph"
-msgstr ""
+msgstr "Beziehungs-Graph"
 
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 msgid "Relationship Graphs"
-msgstr ""
+msgstr "Beziehungs-Graphen"
 
 #. module: base_module_doc_rst
 #: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
 msgid "Technical Guide in rst format"
-msgstr ""
+msgstr "Technischer Leitfaden im RST-Format"
 
 #. module: base_module_doc_rst
 #: view:ir.module.module:base_module_doc_rst.view_module_module_graph
 msgid "You can save this image as .png file"
-msgstr ""
+msgstr "Sie können dieses Bild als .PNG speichern"

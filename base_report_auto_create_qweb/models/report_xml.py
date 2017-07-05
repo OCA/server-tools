@@ -79,7 +79,10 @@ class IrActionsReport(models.Model):
                 origin_name = report_name.replace(('_%s' % suffix), '')
                 origin_module = module.replace(('_%s' % suffix), '')
                 new_report_name = '%s_%s' % (origin_name, suffix)
-                qweb_name = report_view.name.replace(
+                report_view_name = report_view.name
+                if report_view.name.find('.') != -1:
+                    report_view_name = report_view.name.split('.')[1]
+                qweb_name = report_view_name.replace(
                     origin_name, new_report_name)
                 arch = report_view.arch.replace(
                     origin_name, new_report_name).replace(origin_module + '.',

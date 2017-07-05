@@ -3,13 +3,29 @@
 # * fetchmail_attach_from_folder
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Hotellook, 2014
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# Mohamed HABOU <m.habou@agoradeveloppement.com>, 2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-05-01 23:18+0000\n"
+"PO-Revision-Date: 2017-05-11 14:14+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +36,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -31,7 +47,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,context:0
@@ -39,7 +55,7 @@ msgid "Context"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:230
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:231
 #, python-format
 msgid "Context \"%s\" is not a dictionary."
 msgstr ""
@@ -68,7 +84,7 @@ msgstr "Luotu"
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Päivämäärä"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0
@@ -79,6 +95,13 @@ msgstr ""
 #: field:fetchmail.server.folder,delete_matching:0
 msgid "Delete matches"
 msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,display_name:0
+#: field:fetchmail.attach.mail.manually.mail,display_name:0
+#: field:fetchmail.server.folder,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -156,10 +179,17 @@ msgid ""
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:227
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:228
 #, python-format
 msgid "Invalid context \"%s\": %s"
 msgstr ""
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,__last_update:0
+#: field:fetchmail.attach.mail.manually.mail,__last_update:0
+#: field:fetchmail.server.folder,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
@@ -176,13 +206,13 @@ msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:189
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190
 #, python-format
 msgid "Mail attachment"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:234
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:235
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr ""
@@ -240,12 +270,12 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: selection:fetchmail.server.folder,msg_state:0
 msgid "Sent"
-msgstr ""
+msgstr "Lähetetty"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenssi"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,server_id:0
@@ -255,7 +285,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,subject:0
 msgid "Subject"
-msgstr ""
+msgstr "Aihe"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,match_algorithm:0
@@ -321,7 +351,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "or"
-msgstr ""
+msgstr "tai"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form

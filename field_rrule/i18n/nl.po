@@ -1,0 +1,216 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* field_rrule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-19 09:53+0000\n"
+"PO-Revision-Date: 2016-07-19 09:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:307
+#, python-format
+msgid "%s occurrences"
+msgstr "%s herhalingen"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:4
+#, python-format
+msgid "Add instance"
+msgstr "Regel toevoegen"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:33
+#, python-format
+msgid "After an amount of occurrences"
+msgstr "Na een aantal herhalingen"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:30
+#, python-format
+msgid "At a date"
+msgstr "Op een datum"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:14
+#, python-format
+msgid "Begin"
+msgstr "Begin"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:287
+#, python-format
+msgid "Daily"
+msgstr "Dagelijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:76
+#, python-format
+msgid "Day of month"
+msgstr "Dag in de maand"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:63
+#, python-format
+msgid "Day of year"
+msgstr "Daf in het jaar"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:23
+#, python-format
+msgid "End"
+msgstr "Einde"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:275
+#, python-format
+msgid "Friday"
+msgstr "Vrijdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:288
+#, python-format
+msgid "Hourly"
+msgstr "Uurlijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:305
+#, python-format
+msgid "Indefinitely"
+msgstr "Oneindig"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:54
+#, python-format
+msgid "Interval"
+msgstr "Interval"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:37
+#, python-format
+msgid "Leave empty for no limit"
+msgstr "Laat leeg voor geen limiet"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:289
+#, python-format
+msgid "Minutely"
+msgstr "Minutelijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:271
+#, python-format
+msgid "Monday"
+msgstr "Maandag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:285
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:48
+#, python-format
+msgid "Monthly"
+msgstr "Maandelijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:41
+#, python-format
+msgid "Recurrence"
+msgstr "Herhaling"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:10
+#, python-format
+msgid "Remove this rule"
+msgstr "Verwijder deze regel"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:276
+#, python-format
+msgid "Saturday"
+msgstr "Zaterdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:290
+#, python-format
+msgid "Secondly"
+msgstr "Secondelijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:277
+#, python-format
+msgid "Sunday"
+msgstr "Zondag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:274
+#, python-format
+msgid "Thursday"
+msgstr "Donderdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:272
+#, python-format
+msgid "Tuesday"
+msgstr "Dinsdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:273
+#, python-format
+msgid "Wednesday"
+msgstr "Woensdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:89
+#, python-format
+msgid "Weekday"
+msgstr "Weekdag"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:286
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:47
+#, python-format
+msgid "Weekly"
+msgstr "Wekelijks"
+
+#. module: field_rrule
+#. openerp-web
+#: code:addons/field_rrule/static/src/js/field_rrule.js:284
+#: code:addons/field_rrule/static/src/xml/field_rrule.xml:49
+#, python-format
+msgid "Yearly"
+msgstr "Jaarlijks"
+

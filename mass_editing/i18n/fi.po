@@ -3,13 +3,22 @@
 # * mass_editing
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013,2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2013
+# Antonio Trueba, 2016
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-02-01 10:09+0000\n"
+"POT-Creation-Date: 2017-01-17 07:52+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +54,11 @@ msgid "Deletion of the action record failed."
 msgstr "Toiminnon poistaminen ei onnistunut."
 
 #. module: mass_editing
+#: field:mass.editing.wizard,display_name:0 field:mass.object,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
@@ -52,7 +66,6 @@ msgid ""
 msgstr "Näytä tähän liittyvien tietuiden sivupalkissa painike, joka avaa ohjatun toiminnon"
 
 #. module: mass_editing
-#: model:ir.model,name:mass_editing.model_ir_model_fields
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,field_ids:0
 msgid "Fields"
@@ -62,6 +75,11 @@ msgstr "Kentät"
 #: field:mass.editing.wizard,id:0 field:mass.object,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: mass_editing
+#: field:mass.editing.wizard,__last_update:0 field:mass.object,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,write_uid:0 field:mass.object,write_uid:0

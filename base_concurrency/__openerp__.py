@@ -20,7 +20,7 @@
 ##############################################################################
 
 {"name": "Base Concurrency",
- "version": "8.0.1.0.0",
+ "version": "8.0.1.1.0",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Specific Module",
  "description": """

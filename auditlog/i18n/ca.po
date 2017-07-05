@@ -1,0 +1,436 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auditlog
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-28 09:48+0000\n"
+"PO-Revision-Date: 2017-03-30 17:07+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auditlog
+#: field:auditlog.rule,action_id:0
+msgid "Action"
+msgstr "Acció"
+
+#. module: auditlog
+#: model:ir.ui.menu,name:auditlog.menu_audit
+msgid "Audit"
+msgstr "Auditoria "
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_autovacuum
+msgid "Auditlog - Delete old logs"
+msgstr "Registre d'auditoria - Esborrar els registres antics"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_session
+msgid "Auditlog - HTTP User session log"
+msgstr "Registre d'auditoria - Registre de sessió"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_http_request
+msgid "Auditlog - HTTP request log"
+msgstr "Registre d'auditoria - Registre de sol·licitud "
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_log
+msgid "Auditlog - Log"
+msgstr "Registre d'auditoria - Registre "
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_log_line
+msgid "Auditlog - Log details (fields updated)"
+msgstr "Registre d'auditoria - Detall del registre (camps actualitzats)"
+
+#. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_rule
+msgid "Auditlog - Rule"
+msgstr "Registre d'auditoria - Regles "
+
+#. module: auditlog
+#: field:auditlog.http.request,user_context:0
+msgid "Context"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.autovacuum,create_uid:0
+#: field:auditlog.http.request,create_uid:0
+#: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
+#: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,create_date:0
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,create_date:0
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: field:auditlog.http.session,create_date:0 field:auditlog.log,create_date:0
+#: field:auditlog.log.line,create_date:0 field:auditlog.rule,create_date:0
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "Date"
+msgstr "Data"
+
+#. module: auditlog
+#: field:auditlog.log.line,field_description:0
+msgid "Description"
+msgstr "Descripció"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
+#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+msgid "Display Name"
+msgstr "Veure el nom"
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_search
+#: selection:auditlog.rule,state:0
+msgid "Draft"
+msgstr "Esborrany"
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Fast log"
+msgstr "Registre ràpid "
+
+#. module: auditlog
+#: field:auditlog.log.line,field_id:0
+msgid "Field"
+msgstr "Camp"
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+#: field:auditlog.log,line_ids:0
+msgid "Fields updated"
+msgstr "Camps actualitzats "
+
+#. module: auditlog
+#: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
+msgid "Full log"
+msgstr "Registre complert "
+
+#. module: auditlog
+#: help:auditlog.rule,log_type:0
+msgid ""
+"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+msgstr "Registre sencer: fa una diferenciació entre les dades abans i després de l'operació (registra més informació tipus camps processats que s'han actualitzat, però és més lent)\nRegistre ràpid: només registra els canvis fets per les operacions de crear i escriure (menys informació, però és més ràpid)"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: view:auditlog.rule:auditlog.view_auditlog_rule_search
+msgid "Group By..."
+msgstr "Agrupat per..."
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+msgid "HTTP Context"
+msgstr "Context HTTP "
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: field:auditlog.log,http_request_id:0
+msgid "HTTP Request"
+msgstr "Sol·licitud HTTP "
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_tree
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
+#: field:auditlog.http.session,http_request_ids:0
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
+msgid "HTTP Requests"
+msgstr "Sol·licituds HTTP "
+
+#. module: auditlog
+#: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
+#: field:auditlog.http.session,id:0 field:auditlog.log,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,__last_update:0
+#: field:auditlog.http.request,__last_update:0
+#: field:auditlog.http.session,__last_update:0
+#: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
+#: field:auditlog.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,write_uid:0
+#: field:auditlog.http.request,write_uid:0
+#: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
+#: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: auditlog
+#: field:auditlog.autovacuum,write_date:0
+#: field:auditlog.http.request,write_date:0
+#: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
+#: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+#: field:auditlog.log.line,log_id:0
+msgid "Log"
+msgstr "Registre "
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+msgid "Log - Field updated"
+msgstr "Registre - Camp actualitzat "
+
+#. module: auditlog
+#: field:auditlog.rule,log_create:0
+msgid "Log Creates"
+msgstr "Crear registre "
+
+#. module: auditlog
+#: field:auditlog.rule,log_unlink:0
+msgid "Log Deletes"
+msgstr "Esborrar registre "
+
+#. module: auditlog
+#: field:auditlog.rule,log_read:0
+msgid "Log Reads"
+msgstr "Llegir registre"
+
+#. module: auditlog
+#: field:auditlog.rule,log_write:0
+msgid "Log Writes"
+msgstr "Escriure registre"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
+#: field:auditlog.http.request,log_ids:0
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: view:auditlog.log:auditlog.view_auditlog_log_tree
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_log_tree
+#: model:ir.ui.menu,name:auditlog.menu_audit_logs
+msgid "Logs"
+msgstr "Registres "
+
+#. module: auditlog
+#: field:auditlog.log,method:0
+msgid "Method"
+msgstr "Mètode "
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
+msgid "Model"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.http.request,display_name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: auditlog
+#: field:auditlog.log.line,new_value:0
+msgid "New Value"
+msgstr "Nou valor "
+
+#. module: auditlog
+#: field:auditlog.log.line,new_value_text:0
+msgid "New value Text"
+msgstr "Nou valor Text"
+
+#. module: auditlog
+#: field:auditlog.log.line,old_value:0
+msgid "Old Value"
+msgstr "Valor vell "
+
+#. module: auditlog
+#: field:auditlog.log.line,old_value_text:0
+msgid "Old value Text"
+msgstr "Valor antic Text"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,name:0
+msgid "Path"
+msgstr "Camí "
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: field:auditlog.log,res_id:0
+msgid "Resource ID"
+msgstr "ID del recurs "
+
+#. module: auditlog
+#: field:auditlog.log,name:0
+msgid "Resource Name"
+msgstr "Nom del recurs "
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,root_url:0
+msgid "Root URL"
+msgstr "Arrel URL"
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_form
+msgid "Rule"
+msgstr "Regla "
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_search
+#: view:auditlog.rule:auditlog.view_auditlog_rule_tree
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
+msgid "Rules"
+msgstr "Regles "
+
+#. module: auditlog
+#: help:auditlog.rule,model_id:0
+msgid "Select model for which you want to generate log."
+msgstr "Seleccioneu el model pel qual voleu generar un registre. "
+
+#. module: auditlog
+#: help:auditlog.rule,log_create:0
+msgid ""
+"Select this if you want to keep track of creation on any record of the model"
+" of this rule"
+msgstr "Seleccioneu això si voleu fer un seguiment de la creació de qualsevol registre del model d'aquesta regla"
+
+#. module: auditlog
+#: help:auditlog.rule,log_unlink:0
+msgid ""
+"Select this if you want to keep track of deletion on any record of the model"
+" of this rule"
+msgstr "Seleccioneu això si voleu fer un seguiment de la eliminació de qualsevol registre del model d'aquesta regla"
+
+#. module: auditlog
+#: help:auditlog.rule,log_write:0
+msgid ""
+"Select this if you want to keep track of modification on any record of the "
+"model of this rule"
+msgstr "Seleccioneu això si voleu fer un seguiment de la modificació de qualsevol registre del model d'aquesta regla"
+
+#. module: auditlog
+#: help:auditlog.rule,log_read:0
+msgid ""
+"Select this if you want to keep track of read/open on any record of the "
+"model of this rule"
+msgstr "Seleccioneu això si voleu fer un seguiment de la lectura/obertura de qualsevol registre del model d'aquesta regla"
+
+#. module: auditlog
+#: field:auditlog.http.request,http_session_id:0
+#: field:auditlog.log,http_session_id:0
+msgid "Session"
+msgstr "Sessió "
+
+#. module: auditlog
+#: field:auditlog.http.session,name:0
+msgid "Session ID"
+msgstr "ID de sessió "
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_search
+#: field:auditlog.rule,state:0
+msgid "State"
+msgstr "Estat"
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_form
+msgid "Subscribe"
+msgstr "Subscriure "
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_search
+#: selection:auditlog.rule,state:0
+msgid "Subscribed"
+msgstr "Subscrit "
+
+#. module: auditlog
+#: field:auditlog.log.line,field_name:0
+msgid "Technical name"
+msgstr "Nom tècnic "
+
+#. module: auditlog
+#: sql_constraint:auditlog.rule:0
+msgid ""
+"There is already a rule defined on this model\n"
+"You cannot define another: please edit the existing one."
+msgstr "Ja hi ha una regla definida per aquest mode\nNo en podeu definir una altra: si us plau editeu la existent."
+
+#. module: auditlog
+#: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
+msgid "Type"
+msgstr "Tipus"
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_form
+msgid "Unsubscribe"
+msgstr "Donar-se de baixa"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: field:auditlog.http.request,user_id:0
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: field:auditlog.http.session,user_id:0
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+#: field:auditlog.log,user_id:0
+msgid "User"
+msgstr "Usuari"
+
+#. module: auditlog
+#: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_form
+#: view:auditlog.log:auditlog.view_auditlog_log_search
+msgid "User session"
+msgstr "Sessió d'usuari"
+
+#. module: auditlog
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
+#: view:auditlog.http.session:auditlog.view_auditlog_http_session_tree
+#: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
+#: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_session_tree
+msgid "User sessions"
+msgstr "Sessions d'usuari"
+
+#. module: auditlog
+#: field:auditlog.rule,user_ids:0
+msgid "Users"
+msgstr "Usuaris"
+
+#. module: auditlog
+#: view:auditlog.log:auditlog.view_auditlog_log_form
+msgid "Values"
+msgstr "Valors "
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:538
+#, python-format
+msgid "View logs"
+msgstr "Veure registres "
+
+#. module: auditlog
+#: help:auditlog.rule,user_ids:0
+msgid "if  User is not added then it will applicable for all users"
+msgstr "Si l'usuari no està afegit aleshores s'aplicarà per a tots els usuaris "

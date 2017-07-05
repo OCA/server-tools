@@ -1,0 +1,105 @@
+<template>
+    <div t-name="FieldRRule" class="oe_form_field_rrule">
+        <div t-if="!widget.get('effective_readonly') and !widget.options.no_add_rule">
+            <a class="oe_link add_rule">Add instance</a>
+        </div>
+        <form t-foreach="widget.get('value')" t-as="rule" class="rule_item">
+            <table t-if="rule.type == 'rrule'" class="rule_item" t-att-data-id="rule.__id">
+                <tr t-if="!widget.get('effective_readonly') and !widget.options.no_add_rule">
+                    <td colspan="2" class="rule_header">
+                        <a class="oe_link rule_remove" title="Remove this rule"><i class="fa fa-times" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Begin</th>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-esc="widget.format_field_dtstart(rule.dtstart)" />
+                    </td>
+                    <td t-if="!widget.get('effective_readonly')" class="oe_form_required">
+                        <input name="dtstart" type="datetime" t-att-value="widget.format_field_dtstart(rule.dtstart)" required="required" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>End</th>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-esc="widget.format_field_dtstart(rule.until) or widget.format_field_count(rule.count)" />
+                    </td>
+                    <td t-if="!widget.get('effective_readonly')" class="oe_form_required">
+                        <div>
+                            <label>
+                                <input type="radio" name="recurrence_type" value="until" class="rule_ignore_input" t-att-checked="rule.until and 'checked' or None" />At a date
+                            </label>
+                            <label>
+                                <input type="radio" name="recurrence_type" value="count" class="rule_ignore_input" t-att-checked="!rule.until and 'checked' or None" />After an amount of occurrences
+                            </label>
+                        </div>
+                        <input name="until" type="datetime" t-att-value="widget.format_field_until(rule.until)" required="required" />
+                        <input name="count" type="number" step="1" t-att-value="rule.count" required="required" placeholder="Leave empty for no limit" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Recurrence</th>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-esc="widget.format_field_freq(rule.freq)" />
+                    </td>
+                    <td t-if="!widget.get('effective_readonly')" class="oe_form_required">
+                        <select name="freq" type="select" required="required">
+                            <option value="2" t-att-selected="rule.freq == 2 and 'selected' or None">Weekly</option>
+                            <option value="1" t-att-selected="rule.freq == 1 and 'selected' or None">Monthly</option>
+                            <option value="0" t-att-selected="rule.freq == 0 and 'selected' or None">Yearly</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Interval</th>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-esc="rule.interval" />
+                    </td>
+                    <td t-if="!widget.get('effective_readonly')" class="oe_form_required">
+                        <input type="number" step="1" name="interval" t-att-value="rule.interval" />
+                    </td>
+                </tr>
+                <tr data-visible-freq="0" t-if="!widget.get('effective_readonly') or rule.freq == 0">
+                    <th>Day of year</th>
+                    <td t-if="!widget.get('effective_readonly')">
+                        <t t-foreach="_.range(1, 366)" t-as="day_of_year">
+                            <label><input name="byyearday" type="checkbox" t-att-value="day_of_year" t-att-checked="rule.byyearday.indexOf(day_of_year) >= 0 and 'checked' or None" /><t t-esc="day_of_year" /></label>
+                        </t>
+                    </td>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-foreach="rule.byyearday" t-as="day_of_year">
+                            <t t-esc="day_of_year" /><t t-if="!day_of_year_last">, </t>
+                        </t>
+                    </td>
+                </tr>
+                <tr data-visible-freq="1" t-if="!widget.get('effective_readonly') or rule.freq == 1">
+                    <th>Day of month</th>
+                    <td t-if="!widget.get('effective_readonly')">
+                        <t t-foreach="_.range(1, 32)" t-as="day_of_month">
+                            <label><input name="bymonthday" type="checkbox" t-att-value="day_of_month" t-att-checked="rule.bymonthday.indexOf(day_of_month) >= 0 and 'checked' or None" /><t t-esc="day_of_month" /></label>
+                        </t>
+                    </td>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-foreach="rule.bymonthday" t-as="day_of_month">
+                            <t t-esc="day_of_month" /><t t-if="!day_of_month_last">, </t>
+                        </t>
+                    </td>
+                </tr>
+                <tr data-visible-freq="2" t-if="!widget.get('effective_readonly') or rule.freq == 2">
+                    <th>Weekday</th>
+                    <td t-if="!widget.get('effective_readonly')">
+                        <t t-foreach="_.range(0, 7)" t-as="weekday">
+                            <label><input name="byweekday" type="checkbox" t-att-value="weekday" t-att-checked="rule.byweekday.indexOf(weekday) >= 0 and 'checked' or None" /><t t-esc="widget.format_field_weekday(weekday)" /></label>
+                        </t>
+                    </td>
+                    <td t-if="widget.get('effective_readonly')">
+                        <t t-foreach="rule.byweekday" t-as="weekday">
+                            <t t-esc="widget.format_field_weekday(weekday)" /><t t-if="!weekday_last">, </t>
+                        </t>
+                    </td>
+                </tr>
+            </table>
+            <hr t-if="!rule_last" />
+        </form>
+    </div>
+</template>

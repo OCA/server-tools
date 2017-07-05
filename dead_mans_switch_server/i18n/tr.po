@@ -3,14 +3,21 @@
 # * dead_mans_switch_server
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Sofce Dimitrijeva <sofce@eskon.com.mk>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-19 14:44+0000\n"
-"PO-Revision-Date: 2016-01-31 14:58+0000\n"
-"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"PO-Revision-Date: 2016-12-30 20:32+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:141
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:158
 #, python-format
 msgid "%s seems to be dead"
 msgstr "%s ölü güzüküyor"
@@ -36,12 +43,25 @@ msgid "Active"
 msgstr "Aktif"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,last_user_count:0
+#: field:dead.mans.switch.instance,last_user_count_sparkline:0
+msgid "Active users"
+msgstr "Aktif Kullanıcılar"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,alive:0
+msgid "Alive"
+msgstr "Canlı"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,alive_max_delay:0
 msgid "Alive delay"
 msgstr "Canlı gecikmesi"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_cpu:0
+#: field:dead.mans.switch.instance,last_cpu_sparkline:0
 #: field:dead.mans.switch.log,cpu:0
 msgid "CPU"
 msgstr "CPU"
@@ -68,7 +88,7 @@ msgstr "MüşteriMüşteri"
 #: model:ir.ui.menu,name:dead_mans_switch_server.menu_dead_mans_switch
 #: model:ir.ui.menu,name:dead_mans_switch_server.menu_dead_mans_switch_instance
 msgid "Customer instances"
-msgstr ""
+msgstr "Müşteri sunucu kopyaları"
 
 #. module: dead_mans_switch_server
 #: sql_constraint:dead.mans.switch.instance:0
@@ -86,7 +106,7 @@ msgid "Date of the last message posted on the record."
 msgstr "Kayıda eklenen son mesajın tarihi."
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:139
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:156
 #, python-format
 msgid "Dead man's switch warning: %s"
 msgstr "Ölü adam tetiği uyarısı: %s"
@@ -95,6 +115,12 @@ msgstr "Ölü adam tetiği uyarısı: %s"
 #: field:dead.mans.switch.instance,description:0
 msgid "Description"
 msgstr "Açıklama"
+
+#. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,display_name:0
+#: field:dead.mans.switch.log,display_name:0
+msgid "Display Name"
+msgstr "Görünen İsim"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_follower_ids:0
@@ -106,7 +132,7 @@ msgstr "Takipçiler"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr ""
+msgstr "Sohbet özetini tutar (kaç mesa vs) Bu özet kanban görünümleri gibi yerlerde kullanılmak için doğrudan HTML formatındadır. "
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -121,12 +147,12 @@ msgstr "Eğer işaretlenirse yeni mesajlar dikkatinizi ister."
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.log,instance_id:0
 msgid "Instance"
-msgstr ""
+msgstr "Kopya"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_log
 msgid "Instance log line"
-msgstr ""
+msgstr "Kopya log kaydı"
 
 #. module: dead_mans_switch_server
 #: model:ir.model,name:dead_mans_switch_server.model_dead_mans_switch_instance
@@ -144,6 +170,12 @@ msgid "Last Message Date"
 msgstr "Son mesaj tarihi"
 
 #. module: dead_mans_switch_server
+#: field:dead.mans.switch.instance,__last_update:0
+#: field:dead.mans.switch.log,__last_update:0
+msgid "Last Modified on"
+msgstr "Son değişiklik"
+
+#. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
@@ -157,16 +189,17 @@ msgstr "Son güncellenme"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_seen:0
 msgid "Last seen"
 msgstr "Son görülme"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,log_ids:0
 msgid "Log lines"
-msgstr ""
+msgstr "Log kayıtları"
 
 #. module: dead_mans_switch_server
-#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:78
+#: code:addons/dead_mans_switch_server/models/dead_mans_switch_instance.py:79
 #, python-format
 msgid "Logs"
 msgstr "günlükler"
@@ -184,7 +217,7 @@ msgstr "Mesajlar"
 #. module: dead_mans_switch_server
 #: help:dead.mans.switch.instance,message_ids:0
 msgid "Messages and communication history"
-msgstr ""
+msgstr "Mesaj ve iletişim geçmişi"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
@@ -199,6 +232,8 @@ msgstr "Günlükleri Aç"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance
+#: field:dead.mans.switch.instance,last_ram:0
+#: field:dead.mans.switch.instance,last_ram_sparkline:0
 #: field:dead.mans.switch.log,ram:0
 msgid "RAM"
 msgstr "RAM"
@@ -235,7 +270,7 @@ msgstr "Duraklatılmış"
 msgid ""
 "The amount of seconds without notice after which the instance is considered "
 "dead"
-msgstr ""
+msgstr "Sunucu kopyasının ölü kabul edilmesi kaç saniye cevapsız geçmeli"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log

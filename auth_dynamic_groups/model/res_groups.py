@@ -60,4 +60,4 @@ class res_groups(models.Model):
     def action_evaluate(self):
         res_users = self.env['res.users']
         for user in res_users.search([]):
-            res_users.update_dynamic_groups(user.id, self.env.cr.dbname)
+            res_users._model.update_dynamic_groups(user.id, self.env.cr.dbname)

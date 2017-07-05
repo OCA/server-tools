@@ -3,13 +3,22 @@
 # * fetchmail_attach_from_folder
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Antonio Trueba, 2016
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# danimaribeiro <danimaribeiro@gmail.com>, 2016
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010,2012,2014
+# Giacomo <giacomo.spettoli@gmail.com>, 2015
+# Giedrius Slavinskas <giedrius@inovera.lt>, 2012
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
-"PO-Revision-Date: 2015-11-14 04:49+0000\n"
+"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"PO-Revision-Date: 2016-11-22 16:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +49,7 @@ msgid "Context"
 msgstr "Kontekst"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:230
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:231
 #, python-format
 msgid "Context \"%s\" is not a dictionary."
 msgstr "Kontekst \"%s\" ni slovar."
@@ -80,6 +89,13 @@ msgstr "Izbris ujemajočih se e-poštnih sporočil iz strežnika"
 #: field:fetchmail.server.folder,delete_matching:0
 msgid "Delete matches"
 msgstr "Izbris ujemajočih"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,display_name:0
+#: field:fetchmail.attach.mail.manually.mail,display_name:0
+#: field:fetchmail.server.folder,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -157,10 +173,17 @@ msgid ""
 msgstr "Ko je več ujemajočih se sporočil, uporabi prvo. Če ni označeno, se več ujemajočih se sporočil smatra kot, da sploh ni ujemajočih se sporočil"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:227
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:228
 #, python-format
 msgid "Invalid context \"%s\": %s"
 msgstr "Neveljaven kontekst \"%s\": %s"
+
+#. module: fetchmail_attach_from_folder
+#: field:fetchmail.attach.mail.manually,__last_update:0
+#: field:fetchmail.attach.mail.manually.mail,__last_update:0
+#: field:fetchmail.server.folder,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
@@ -177,13 +200,13 @@ msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:189
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190
 #, python-format
 msgid "Mail attachment"
 msgstr "E-poštna priponka"
 
 #. module: fetchmail_attach_from_folder
-#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:234
+#: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:235
 #, python-format
 msgid "Mailbox %s not found!"
 msgstr "Poštni predal %s ni najden!"

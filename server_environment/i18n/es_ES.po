@@ -1,0 +1,554 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * server_environment
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: server-tools (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-04 06:36+0000\n"
+"PO-Revision-Date: 2015-09-18 13:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: server_environment
+#: field:server.config,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: server_environment
+#: field:server.config,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: server_environment
+#: field:server.config,display_name:0
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: server_environment
+#: field:server.config,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: server_environment
+#: field:server.config,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: server_environment
+#: field:server.config,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: server_environment
+#: field:server.config,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: server_environment
+#: model:ir.actions.act_window,name:server_environment.act_show_config_window
+#: model:ir.ui.menu,name:server_environment.menu_server_show_config
+msgid "Server Environment"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,custom_ged | ged_folder:0
+msgid "custom_ged | ged_folder"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service | CONSTA:0
+msgid "external_service | CONSTA"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service | CONSTB:0
+msgid "external_service | CONSTB"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service | CONSTC:0
+msgid "external_service | CONSTC"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | in_path:0
+msgid "external_service.ftp | in_path"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | out_path:0
+msgid "external_service.ftp | out_path"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | password:0
+msgid "external_service.ftp | password"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | port:0
+msgid "external_service.ftp | port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | server:0
+msgid "external_service.ftp | server"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | tls:0
+msgid "external_service.ftp | tls"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,external_service_ftp | user:0
+msgid "external_service.ftp | user"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,misc | completed_state:0
+msgid "misc | completed_state"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,misc | smtp_server:0
+msgid "misc | smtp_server"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | addons_path:0
+msgid "openerp | addons_path"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | admin_passwd:0
+msgid "openerp | admin_passwd"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | auto_reload:0
+msgid "openerp | auto_reload"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | config:0
+msgid "openerp | config"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | csv_internal_sep:0
+msgid "openerp | csv_internal_sep"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | data_dir:0
+msgid "openerp | data_dir"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_host:0
+msgid "openerp | db_host"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_maxconn:0
+msgid "openerp | db_maxconn"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_name:0
+msgid "openerp | db_name"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_password:0
+msgid "openerp | db_password"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_port:0
+msgid "openerp | db_port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_template:0
+msgid "openerp | db_template"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | db_user:0
+msgid "openerp | db_user"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | dbfilter:0
+msgid "openerp | dbfilter"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | debug_mode:0
+msgid "openerp | debug_mode"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | demo:0
+msgid "openerp | demo"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | email_from:0
+msgid "openerp | email_from"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | geoip_database:0
+msgid "openerp | geoip_database"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | import_partial:0
+msgid "openerp | import_partial"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | init:0
+msgid "openerp | init"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | language:0
+msgid "openerp | language"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | limit_memory_hard:0
+msgid "openerp | limit_memory_hard"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | limit_memory_soft:0
+msgid "openerp | limit_memory_soft"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | limit_request:0
+msgid "openerp | limit_request"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | limit_time_cpu:0
+msgid "openerp | limit_time_cpu"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | limit_time_real:0
+msgid "openerp | limit_time_real"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | list_db:0
+msgid "openerp | list_db"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | load_language:0
+msgid "openerp | load_language"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | log_db:0
+msgid "openerp | log_db"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | log_db_level:0
+msgid "openerp | log_db_level"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | log_handler:0
+msgid "openerp | log_handler"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | log_level:0
+msgid "openerp | log_level"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | logfile:0
+msgid "openerp | logfile"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | logrotate:0
+msgid "openerp | logrotate"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | longpolling_port:0
+msgid "openerp | longpolling_port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | max_cron_threads:0
+msgid "openerp | max_cron_threads"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | osv_memory_age_limit:0
+msgid "openerp | osv_memory_age_limit"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | osv_memory_count_limit:0
+msgid "openerp | osv_memory_count_limit"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | overwrite_existing_translations:0
+msgid "openerp | overwrite_existing_translations"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | pg_path:0
+msgid "openerp | pg_path"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | pidfile:0
+msgid "openerp | pidfile"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | proxy_mode:0
+msgid "openerp | proxy_mode"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | publisher_warranty_url:0
+msgid "openerp | publisher_warranty_url"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | reportgz:0
+msgid "openerp | reportgz"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | root_path:0
+msgid "openerp | root_path"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | running_env:0
+msgid "openerp | running_env"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | save:0
+msgid "openerp | save"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | secure_cert_file:0
+msgid "openerp | secure_cert_file"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | secure_pkey_file:0
+msgid "openerp | secure_pkey_file"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | server_wide_modules:0
+msgid "openerp | server_wide_modules"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | smtp_password:0
+msgid "openerp | smtp_password"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | smtp_port:0
+msgid "openerp | smtp_port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | smtp_server:0
+msgid "openerp | smtp_server"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | smtp_ssl:0
+msgid "openerp | smtp_ssl"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | smtp_user:0
+msgid "openerp | smtp_user"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | stop_after_init:0
+msgid "openerp | stop_after_init"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | syslog:0
+msgid "openerp | syslog"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | test_commit:0
+msgid "openerp | test_commit"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | test_enable:0
+msgid "openerp | test_enable"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | test_file:0
+msgid "openerp | test_file"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | test_report_directory:0
+msgid "openerp | test_report_directory"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | timezone:0
+msgid "openerp | timezone"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | translate_in:0
+msgid "openerp | translate_in"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | translate_modules:0
+msgid "openerp | translate_modules"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | translate_out:0
+msgid "openerp | translate_out"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | unaccent:0
+msgid "openerp | unaccent"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | update:0
+msgid "openerp | update"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | without_demo:0
+msgid "openerp | without_demo"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | workers:0
+msgid "openerp | workers"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpc:0
+msgid "openerp | xmlrpc"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpc_interface:0
+msgid "openerp | xmlrpc_interface"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpc_port:0
+msgid "openerp | xmlrpc_port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpcs:0
+msgid "openerp | xmlrpcs"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpcs_interface:0
+msgid "openerp | xmlrpcs_interface"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,openerp | xmlrpcs_port:0
+msgid "openerp | xmlrpcs_port"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | architecture:0
+msgid "system | architecture"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | locale:0
+msgid "system | locale"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | lsb_release:0
+msgid "system | lsb_release"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | openerp:0
+msgid "system | openerp"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | os_name:0
+msgid "system | os.name"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | platform:0
+msgid "system | platform"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | python:0
+msgid "system | python"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | release:0
+msgid "system | release"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | revision:0
+msgid "system | revision"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,system | version:0
+msgid "system | version"
+msgstr ""
+
+#. module: server_environment
+#: fieldserver.config,wkhtml2pdf | lib_path:0
+msgid "wkhtml2pdf | lib_path"
+msgstr ""
