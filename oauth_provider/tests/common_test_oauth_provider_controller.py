@@ -7,7 +7,7 @@ import json
 import mock
 import logging
 from datetime import datetime
-from openerp import fields
+from odoo import fields
 
 _logger = logging.getLogger(__name__)
 
@@ -111,7 +111,7 @@ class TestOAuthProviderAurhorizeController(object):
         self.assertTrue('Unknown Client Identifier!' in response.data)
         self.assertTrue('This client identifier is invalid.' in response.data)
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
     def test_authorize_unsafe_chars(self, request_env):
         """ Call /oauth2/authorize with unsafe chars in the query string """
         # Mock the http request's environ to allow it to see test records

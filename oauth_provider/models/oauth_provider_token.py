@@ -2,7 +2,7 @@
 # Copyright 2016 SYLEAM
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api, fields, exceptions, _
+from odoo import models, api, fields, exceptions, _
 
 
 class OAuthProviderToken(models.Model):

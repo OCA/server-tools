@@ -6,8 +6,8 @@ import datetime
 import dateutil
 import time
 from collections import defaultdict
-from openerp import models, api, fields
-from openerp.tools.safe_eval import safe_eval
+from odoo import models, api, fields
+from odoo.tools.safe_eval import safe_eval
 
 
 class OAuthProviderScope(models.Model):

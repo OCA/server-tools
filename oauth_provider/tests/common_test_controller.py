@@ -7,10 +7,10 @@ import logging
 from datetime import datetime, timedelta
 from werkzeug.test import Client
 from werkzeug.wrappers import BaseResponse
-from openerp import fields
-from openerp.service import wsgi_server
-from openerp.tests.common import TransactionCase
-from openerp.tools.misc import consteq
+from odoo import fields
+from odoo.service import wsgi_server
+from odoo.tests.common import TransactionCase
+from odoo.tools.misc import consteq
 
 _logger = logging.getLogger(__name__)
 
@@ -83,7 +83,7 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         self.get_request('/web/session/logout')
         self.logged_user = False
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
     def get_request(self, uri, request_env, data=None, headers=None):
         """ Execute a GET request on the test client """
         # Mock the http request's environ to allow it to see test records
@@ -94,8 +94,8 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
             uri, query_string=data, environ_base=self.werkzeug_environ,
             headers=headers)
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
-    @mock.patch('openerp.http.WebRequest.validate_csrf')
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
+    @mock.patch('odoo.http.WebRequest.validate_csrf')
     def post_request(
             self, uri, validate_csrf, request_env, data=None, headers=None):
         """ Execute a POST request on the test client """

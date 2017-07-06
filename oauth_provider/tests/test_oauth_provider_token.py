@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
-from openerp import fields, exceptions
-from openerp.tests.common import TransactionCase
+from odoo import fields, exceptions
+from odoo.tests.common import TransactionCase
 
 
 class TestOAuthProviderToken(TransactionCase):

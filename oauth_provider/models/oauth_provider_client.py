@@ -5,7 +5,7 @@
 import hashlib
 import uuid
 import logging
-from openerp import models, api, fields
+from odoo import models, api, fields
 from ..oauth2.validator import OdooValidator
 
 _logger = logging.getLogger(__name__)

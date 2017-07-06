@@ -7,8 +7,8 @@ import logging
 import werkzeug.utils
 import werkzeug.wrappers
 from datetime import datetime
-from openerp import http, fields
-from openerp.addons.web.controllers.main import ensure_db
+from odoo import http, fields
+from odoo.addons.web.controllers.main import ensure_db
 
 _logger = logging.getLogger(__name__)
 

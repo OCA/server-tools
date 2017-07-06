@@ -5,8 +5,8 @@
 import base64
 import logging
 from datetime import datetime, timedelta
-from openerp import http
-from openerp import fields
+from odoo import http
+from odoo import fields
 
 _logger = logging.getLogger(__name__)
 

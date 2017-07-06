@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 from ..oauth2.validator import OdooValidator
 
 _logger = logging.getLogger(__name__)
