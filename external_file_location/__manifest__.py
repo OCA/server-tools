@@ -6,8 +6,7 @@
 {
     'name': 'External File Location',
     'version': '10.0.1.0.0',
-    'author': 'Akretion,Odoo Community Association (OCA),'
-              'ThinkOpen Solutions Brasil',
+    'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com/',
     'license': 'AGPL-3',
     'category': 'Generic Modules',
