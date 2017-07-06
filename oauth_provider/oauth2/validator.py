@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import base64
 import logging
 from datetime import datetime, timedelta
-from openerp import http
-from openerp import fields
+from odoo import http
+from odoo import fields
 
 _logger = logging.getLogger(__name__)
 
@@ -185,7 +185,8 @@ class OdooValidator(RequestValidator):
             'expires_at': fields.Datetime.to_string(
                 datetime.now() + timedelta(seconds=token['expires_in'])),
         })
-        return request.client.redirect_uri_ids[0].name
+        redirect_uris = request.client.redirect_uri_ids
+        return redirect_uris[:1].name
 
     def validate_bearer_token(self, token, scopes, request):
         """ Ensure the supplied bearer token is valid, and allowed for the scopes

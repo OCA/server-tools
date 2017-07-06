@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import json
 import logging
-from .common_test_controller import OAuthProviderControllerTransactionCase
+from .common_test_controller import OauthProviderControllerTransactionCase
 from .common_test_oauth_provider_controller import \
-    TestOAuthProviderRefreshTokenController, \
-    TestOAuthProviderAurhorizeController, \
-    TestOAuthProviderTokeninfoController, \
-    TestOAuthProviderUserinfoController, \
-    TestOAuthProviderOtherinfoController, \
-    TestOAuthProviderRevokeTokenController
+    TestOauthProviderRefreshTokenController, \
+    TestOauthProviderAuthorizeController, \
+    TestOauthProviderTokeninfoController, \
+    TestOauthProviderUserinfoController, \
+    TestOauthProviderOtherinfoController, \
+    TestOauthProviderRevokeTokenController
 
 _logger = logging.getLogger(__name__)
 
@@ -21,16 +21,16 @@ except ImportError:
     _logger.debug('Cannot `import oauthlib`.')
 
 
-class TestOAuthProviderController(
-        OAuthProviderControllerTransactionCase,
-        TestOAuthProviderRefreshTokenController,
-        TestOAuthProviderAurhorizeController,
-        TestOAuthProviderTokeninfoController,
-        TestOAuthProviderUserinfoController,
-        TestOAuthProviderOtherinfoController,
-        TestOAuthProviderRevokeTokenController):
+class TestOauthProviderController(
+        OauthProviderControllerTransactionCase,
+        TestOauthProviderRefreshTokenController,
+        TestOauthProviderAuthorizeController,
+        TestOauthProviderTokeninfoController,
+        TestOauthProviderUserinfoController,
+        TestOauthProviderOtherinfoController,
+        TestOauthProviderRevokeTokenController):
     def setUp(self):
-        super(TestOAuthProviderController, self).setUp('web application')
+        super(TestOauthProviderController, self).setUp('web application')
 
     def new_code(self):
         # Configure the client to skip the authorization page

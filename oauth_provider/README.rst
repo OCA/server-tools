@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License: LGPL-3
 
 ==============
 OAuth Provider
@@ -82,7 +82,7 @@ Once configured, you must give these information to your client application :
      Parameters : access_token
   - User information request : http://odoo.example.com/oauth2/userinfo
      Parameters : access_token
-  - Any other model information request (depending on the scopes) : http://odoo.example.com/oauth2/otherinfo
+  - Any other model information request (depending on the scopes) : http://odoo.example.com/oauth2/data
      Parameters : access_token and model
 
 For example, to configure the *auth_oauth* Odoo module as a client, you will enter these values :
@@ -95,9 +95,292 @@ For example, to configure the *auth_oauth* Odoo module as a client, you will ent
 - Validation URL : http://odoo.example.com/oauth2/tokeninfo
 - Data URL : http://odoo.example.com/oauth2/userinfo
 
+Following is an example of obtaining an OAuth2 token in Python using the Legacy Application type (requires `requests_oauth`):
+
+.. code-block:: python
+
+   import os
+   import requests
+
+   from oauthlib.oauth2 import LegacyApplicationClient
+   from requests_oauthlib import OAuth2Session
+
+   # Allows for no HTTPS verification. DO NOT USE IN PRODUCTION!
+   os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+   client_id = '2ec860db-ce81-49c2-b4b7-c71bcbee481f'
+   client_secret = 'Test'
+   username = 'admin'
+   password = 'admin'
+
+   oauth = OAuth2Session(client=LegacyApplicationClient(client_id=client_id))
+   token = oauth.fetch_token(
+       token_url='http://localhost:8060/oauth2/token',
+       username=username,
+       password=password,
+       client_id=client_id,
+       client_secret=client_secret,
+       scope=['public-pricelist', 'pricelist-item', 'medical-medicament'],
+   )
+
+REST API
+========
+
+This module also includes a basic REST-style CRUD interface backed by OAuth2 authentication.
+
+List
+----
+
+Return allowed information from all records, with optional query.
+
+Route: `/api/rest/1.0/<string:model>`
+
+Accepts: `GET`
+
+Args:
+   access_token (str): OAuth2 access token to utilize for the
+       operation.
+   model (str): Name of model to operate on.
+   domain (array, optional): Domain to apply to the search, in the
+       standard Odoo format. This will be appended to the scope's
+       pre-existing filter.
+
+Returns:
+   array of objs: List of data mappings matching query.
+
+Example:
+
+Bash:
+
+.. code-block:: bash
+
+   curl -H "Content-Type: application/json" \
+      -H "Authorization: ${ACCESS_TOKEN} \
+      -X GET \
+      http://localhost:8060/api/gogo/1.0/res.partner?access_token=2J391BkHipPmM9nXv2BF6V07fehWtM&domain=%5B%5B%22company_id%22%2C%20%22%3D%22%2C%201%5D%5D
+
+   {"jsonrpc": "2.0", "id": 5602, "result": [{"name": "Test Partner", "id": 5602}]}
+
+Python:
+
+.. code-block:: python
+
+   json_data = {
+       'access_token': token['access_token'],
+       'domain': [('company_id', '=', 1)],
+   }
+   response = requests.get(
+       'http://localhost:8060/api/gogo/1.0/res.partner/',
+       params=json_data,
+   )
+   response_data = response.json()
+
+   {u'jsonrpc': u'2.0', u'id': 5602, u'result': [{u'name': u'Test Partner', u'id': 5602}]}
+
+Read
+----
+
+Return allowed information from specific records.
+
+Route: `/api/rest/1.0/<string:model>/<int:record_id>`
+
+Accepts: `GET`
+
+Args:
+   access_token (str): OAuth2 access token to utilize for the
+       operation.
+   model (str): Name of model to operate on.
+   record_id (int): ID of record to get.
+
+Returns:
+   obj: Record data.
+
+Example:
+
+Bash:
+
+.. code-block:: bash
+
+   curl -H "Content-Type: application/json" \
+      -H "Authorization: ${ACCESS_TOKEN} \
+      -X GET \
+      http://localhost:8060/api/gogo/1.0/res.partner/5602?access_token=2J391BkHipPmM9nXv2BF6V07fehWtM
+
+   {"jsonrpc": "2.0", "id": 5602, "result": [{"name": "Test Partner", "id": 5602}]}
+
+Python:
+
+.. code-block:: python
+
+   json_data = {
+       'access_token': token['access_token'],
+   }
+   response = requests.post(
+       'http://localhost:8060/api/gogo/1.0/res.partner/5602',
+      params=json_data,
+   )
+   response_data = response.json()
+
+   {u'jsonrpc': u'2.0', u'id': 5602, u'result': [{u'name': u'Test Partner', u'id': 5602}]}
+
+Create
+------
+
+Return allowed information from specific records.
+
+Route: `/api/rest/1.0/<string:model>`
+
+Accepts: `POST`
+
+Args:
+   access_token (str): OAuth2 access token to utilize for the
+       operation.
+   model (str): Name of model to operate on.
+   kwargs (mixed): All other named arguments are used as the data
+       for record mutation.
+
+Returns:
+   obj: Record data.
+
+Example:
+
+Bash:
+
+.. code-block:: bash
+
+   curl -H "Content-Type: application/json" \
+      -H "Authorization: ${ACCESS_TOKEN} \
+      -X POST \
+      -d '{ "params": { "access_token": "2J391BkHipPmM9nXv2BF6V07fehWtM", "name": "Test Partner" }' \
+      http://localhost:8060/api/gogo/1.0/res.partner
+
+   {"jsonrpc": "2.0", "id": 5602, "result": [{"name": "Test Partner", "id": 5602}]}
+
+Python:
+
+.. code-block:: python
+
+   json_data = {
+       'access_token': token['access_token'],
+       'name': 'Test Partner',
+   }
+   response = requests.post(
+       'http://localhost:8060/api/gogo/1.0/res.partner',
+       json={'params': json_data}
+   )
+   response_data = response.json()
+
+   {u'jsonrpc': u'2.0', u'id': 5602, u'result': [{u'name': u'Test Partner', u'id': 5602}]}
+
+Update
+------
+
+Modify the defined records and return the newly modified data.
+
+Route:
+ * `/api/rest/1.0/<string:model>/<int:record_id>`
+ * `/api/rest/1.0/<string:model>`
+
+Accepts: `PUT`
+
+Args:
+   access_token (str): OAuth2 access token to utilize for the
+       operation.
+   model (str): Name of model to operate on.
+   record_id (int): ID of record to mutate (provided as route argument).
+   record_ids (array of ints): IDs of record to mutate (provided as PUT
+      argument).
+   kwargs (mixed): All other named arguments are used as the data
+      for record mutation.
+
+Returns:
+   list of objs: Newly modified record data.
+
+Example:
+
+Bash:
+
+.. code-block:: bash
+
+   curl -H "Content-Type: application/json" \
+      -H "Authorization: ${ACCESS_TOKEN} \
+      -X PUT \
+      -d '{ "params": { "access_token": "2J391BkHipPmM9nXv2BF6V07fehWtM", "name": "Test Partner (Edited)" }' \
+      http://localhost:8060/api/gogo/1.0/res.partner/5602
+
+   {"jsonrpc": "2.0", "id": 5602, "result": [{"name": "Test Partner (Edited)", "id": 5602}]}
+
+Python
+
+.. code-block:: python
+
+   json_data = {
+       'access_token': token['access_token'],
+       'name': 'Test Partner (Edited)',
+   }
+   response = requests.put(
+       'http://localhost:8060/api/gogo/1.0/res.partner/5602',
+       json={'params': json_data}
+   )
+   response_data = response.json()
+
+   {u'jsonrpc': u'2.0', u'id': 5602, u'result': [{u'name': u'Test Partner (Edited)', u'id': 5602}]}
+
+Delete
+------
+
+Delete the defined records.
+
+Route:
+ * `/api/rest/1.0/<string:model>/<int:record_id>`
+ * `/api/rest/1.0/<string:model>`
+
+Accepts: `DELETE`
+
+Args:
+   access_token (str): OAuth2 access token to utilize for the
+       operation.
+   model (str): Name of model to operate on.
+   record_id (int): ID of record to mutate (provided as route argument).
+   record_ids (array of ints): IDs of record to mutate (provided as PUT
+      argument).
+
+Returns:
+   bool
+
+Example:
+
+Bash:
+
+.. code-block:: bash
+
+   curl -H "Content-Type: application/json" \
+      -H "Authorization: ${ACCESS_TOKEN} \
+      -X DELETE \
+      -d '{ "params": { "access_token": "2J391BkHipPmM9nXv2BF6V07fehWtM" }' \
+      http://localhost:8060/api/gogo/1.0/res.partner/5602
+
+   {"jsonrpc": "2.0", "id": null, "result": true}
+
+Python:
+
+.. code-block:: python
+
+   json_data = {
+       'access_token': token['access_token'],
+   }
+   response = requests.delete(
+       'http://localhost:8060/api/gogo/1.0/res.partner/5602',
+       json={'params': json_data}
+   )
+   response_data = response.json()
+
+   {u'jsonrpc': u'2.0', u'id': None, u'result': True}
+
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
+   :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Known issues / Roadmap
 ======================
@@ -125,6 +408,7 @@ Contributors
 ------------
 
 * Sylvain Garancher <sylvain.garancher@syleam.fr>
+* Dave Lasley <dave@laslabs.com>
 
 Maintainer
 ----------

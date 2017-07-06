@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
+from json import dumps
 import mock
 import logging
 from datetime import datetime, timedelta
 from werkzeug.test import Client
 from werkzeug.wrappers import BaseResponse
-from openerp import fields
-from openerp.service import wsgi_server
-from openerp.tests.common import TransactionCase
-from openerp.tools.misc import consteq
+from odoo import fields
+from odoo.service import wsgi_server
+from odoo.tests.common import TransactionCase
+from odoo.tools.misc import consteq
 
 _logger = logging.getLogger(__name__)
 
 
-class OAuthProviderControllerTransactionCase(TransactionCase):
+class OauthProviderControllerTransactionCase(TransactionCase):
     def setUp(self, application_type):
-        super(OAuthProviderControllerTransactionCase, self).setUp()
+        super(OauthProviderControllerTransactionCase, self).setUp()
 
         # Initialize controller test stuff
         self.werkzeug_environ = {
@@ -56,6 +57,7 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
                 'filter_id': self.filter.id,
                 'field_ids': [
                     (6, 0, [
+                        self.env.ref('base.field_res_users_login').id,
                         self.env.ref('base.field_res_users_name').id,
                         self.env.ref('base.field_res_users_city').id,
                     ]),
@@ -83,21 +85,26 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         self.get_request('/web/session/logout')
         self.logged_user = False
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
-    def get_request(self, uri, request_env, data=None, headers=None):
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
+    def get_request(self, uri, request_env, data=None, headers=None,
+                    json=False):
         """ Execute a GET request on the test client """
         # Mock the http request's environ to allow it to see test records
         user = self.logged_user or self.env.ref('base.public_user')
         request_env.return_value = self.env(user=user)
 
+        content_type = 'application/json' if json else None
+        data = {'params': dumps(data)} if json else data
+
         return self.test_client.get(
             uri, query_string=data, environ_base=self.werkzeug_environ,
-            headers=headers)
+            headers=headers, content_type=content_type)
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
-    @mock.patch('openerp.http.WebRequest.validate_csrf')
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
+    @mock.patch('odoo.http.WebRequest.validate_csrf')
     def post_request(
-            self, uri, validate_csrf, request_env, data=None, headers=None):
+            self, uri, validate_csrf, request_env, data=None, headers=None,
+            json=False):
         """ Execute a POST request on the test client """
         # Mock the http request's environ to allow it to see test records
         user = self.logged_user or self.env.ref('base.public_user')
@@ -105,12 +112,45 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         # Disable CSRF tokens check during tests
         validate_csrf.return_value = consteq('', '')
 
+        content_type = 'application/json' if json else None
+        data = dumps({'params': data}) if json else data
+
         return self.test_client.post(
             uri, data=data, environ_base=self.werkzeug_environ,
-            headers=headers)
+            headers=headers, content_type=content_type)
 
-    def new_token(self):
-        return self.env['oauth.provider.token'].create({
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
+    def put_request(
+            self, uri, request_env, data=None, headers=None, json=False):
+        """ Execute a POST request on the test client """
+        # Mock the http request's environ to allow it to see test records
+        user = self.logged_user or self.env.ref('base.public_user')
+        request_env.return_value = self.env(user=user)
+
+        content_type = 'application/json' if json else None
+        data = dumps({'params': data}) if json else data
+
+        return self.test_client.put(
+            uri, data=data, environ_base=self.werkzeug_environ,
+            headers=headers, content_type=content_type)
+
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
+    def delete_request(
+            self, uri, request_env, data=None, headers=None, json=False):
+        """ Execute a POST request on the test client """
+        # Mock the http request's environ to allow it to see test records
+        user = self.logged_user or self.env.ref('base.public_user')
+        request_env.return_value = self.env(user=user)
+
+        content_type = 'application/json' if json else None
+        data = dumps({'params': data}) if json else data
+
+        return self.test_client.delete(
+            uri, data=data, environ_base=self.werkzeug_environ,
+            headers=headers, content_type=content_type)
+
+    def new_token(self, add_scopes=False):
+        vals = {
             'token': 'token',
             'token_type': 'Bearer',
             'refresh_token': 'refresh token',
@@ -118,4 +158,9 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
             'user_id': self.user.id,
             'expires_at': fields.Datetime.to_string(
                 datetime.now() + timedelta(seconds=3600)),
-        })
+        }
+        if add_scopes:
+            vals.update({
+                'scope_ids': [(6, 0, self.client.scope_ids.ids)],
+            })
+        return self.env['oauth.provider.token'].create(vals)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright 2016 SYLEAM
-    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
     <template id="oauth_provider.authorization" name="OAuth Authorization Error">
@@ -11,7 +11,7 @@
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                 <div>
                     <h3 t-esc="oauth_client"/>
-                    This application would like to access these resources :
+                    This application would like to access these resources:
                 </div>
                 <div class="list-group">
                     <span t-foreach="oauth_scopes" t-as="scope" class="list-group-item">

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from datetime import datetime, timedelta
-from openerp import fields, exceptions
-from openerp.tests.common import TransactionCase
+from odoo import fields, exceptions
+from odoo.tests.common import TransactionCase
 
 
-class TestOAuthProviderToken(TransactionCase):
+class TestOauthProviderToken(TransactionCase):
 
     def setUp(self):
-        super(TestOAuthProviderToken, self).setUp()
+        super(TestOauthProviderToken, self).setUp()
         self.client = self.env['oauth.provider.client'].create({
             'name': 'Client',
             'identifier': 'client',
@@ -222,7 +222,7 @@ class TestOAuthProviderToken(TransactionCase):
             token_obj.search([('active', '>', True)])
 
     def test_get_data_from_model_with_at_least_one_scope_matching(self):
-        """ Check the values returned by the get_data_for_model method with
+        """ Check the values returned by the get_data method with
         at least one scope matching the data
         """
         scopes = self.new_scope()
@@ -235,12 +235,12 @@ class TestOAuthProviderToken(TransactionCase):
         })
 
         # Check a simple call with the right model with empty fields
-        data = token.get_data_for_model('res.users')
+        data = token.get_data('res.users')
         self.assertEqual(
             sorted(data.keys()), sorted(self.env['res.users'].search([]).ids))
 
     def test_get_data_from_model_with_all_scopes_matching(self):
-        """ Check the values returned by the get_data_for_model method with
+        """ Check the values returned by the get_data method with
         all scopes required to match the data
         """
         scopes = self.new_scope()
@@ -253,18 +253,18 @@ class TestOAuthProviderToken(TransactionCase):
         })
 
         # Check a simple call with the right model without empty fields
-        data = token.get_data_for_model('res.users', all_scopes_match=True)
+        data = token.get_data('res.users', all_scopes_match=True)
         self.assertEqual(data, {self.env.user.id: {
             'id': 1,
             'email': self.env.user.email,
         }})
 
     def test_get_data_from_model_with_no_scope_matching(self):
-        """ Check the values returned by the get_data_for_model method with
+        """ Check the values returned by the get_data method with
         an unauthorized model
         """
         token = self.new_token()
 
         # Check a simple call with a wrong model
-        data = token.get_data_for_model('res.partner')
+        data = token.get_data('res.partner')
         self.assertEqual(data, {})

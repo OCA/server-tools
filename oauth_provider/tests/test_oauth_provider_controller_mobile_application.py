@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
-from .common_test_controller import OAuthProviderControllerTransactionCase
+from .common_test_controller import OauthProviderControllerTransactionCase
 from .common_test_oauth_provider_controller import \
-    TestOAuthProviderAurhorizeController, \
-    TestOAuthProviderTokeninfoController, \
-    TestOAuthProviderUserinfoController, \
-    TestOAuthProviderOtherinfoController, \
-    TestOAuthProviderRevokeTokenController
+    TestOauthProviderAuthorizeController, \
+    TestOauthProviderTokeninfoController, \
+    TestOauthProviderUserinfoController, \
+    TestOauthProviderOtherinfoController, \
+    TestOauthProviderRevokeTokenController
 
 _logger = logging.getLogger(__name__)
 
@@ -19,15 +19,15 @@ except ImportError:
     _logger.debug('Cannot `import oauthlib`.')
 
 
-class TestOAuthProviderController(
-        OAuthProviderControllerTransactionCase,
-        TestOAuthProviderAurhorizeController,
-        TestOAuthProviderTokeninfoController,
-        TestOAuthProviderUserinfoController,
-        TestOAuthProviderOtherinfoController,
-        TestOAuthProviderRevokeTokenController):
+class TestOauthProviderController(
+        OauthProviderControllerTransactionCase,
+        TestOauthProviderAuthorizeController,
+        TestOauthProviderTokeninfoController,
+        TestOauthProviderUserinfoController,
+        TestOauthProviderOtherinfoController,
+        TestOauthProviderRevokeTokenController):
     def setUp(self):
-        super(TestOAuthProviderController, self).setUp('mobile application')
+        super(TestOauthProviderController, self).setUp('mobile application')
 
     def test_authorize_skip_authorization(self):
         """ Call /oauth2/authorize while skipping the authorization page """

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp import models, api, fields, exceptions, _
+from odoo import models, api, fields, exceptions, _
 
 
-class OAuthProviderToken(models.Model):
+class OauthProviderToken(models.Model):
     _name = 'oauth.provider.token'
     _description = 'OAuth Provider Token'
     _rec_name = 'token'
@@ -38,6 +38,12 @@ class OAuthProviderToken(models.Model):
         ('refresh_token_unique', 'UNIQUE (refresh_token, client_id)',
          'The refresh token must be unique per client !'),
     ]
+
+    @property
+    @api.multi
+    def user_scopes(self):
+        self.ensure_one()
+        return self.sudo(user=self.user_id).scope_ids
 
     @api.multi
     def _compute_active(self):
@@ -85,15 +91,50 @@ class OAuthProviderToken(models.Model):
         return self.client_id.generate_user_id(self.user_id)
 
     @api.multi
-    def get_data_for_model(self, model, res_id=None, all_scopes_match=False):
-        """ Returns the data of the accessible records of the requested model,
+    def get_data(self, model, record_ids=None, all_scopes_match=False,
+                 domain=None):
+        """ Returns the data of the accessible records of the requested model.
+
+        Args:
+            model (str): Name of the model to operate on.
+            record_ids (int or list of ints): ID of record to find. Will
+                only return this record, if defined.
+            all_scopes_match (bool): True to filter out records that do not
+                match all of the scopes in the current recordset.
+            domain (list of tuples, optional): Domain to append to the
+                `filter_domain` that is defined in the scope.
+
+        Returns:
+            dict: If `record_ids` is defined, this will be the scoped data for
+                the appropriate record (or empty dict if no match). Otherwise,
+                this will be a dictionary of scoped record data, keyed by
+                record ID.
 
         Data are returned depending on the allowed scopes for the token
         If the all_scopes_match argument is set to True, return only records
         allowed by all token's scopes
         """
-        self.ensure_one()
+        return self.user_scopes.get_data(
+            model,
+            record_ids,
+            all_scopes_match=all_scopes_match,
+            domain=domain,
+        )
 
-        # Retrieve records allowed from all scopes
-        return self.sudo(user=self.user_id).scope_ids.get_data_for_model(
-            model, res_id=res_id, all_scopes_match=all_scopes_match)
+    @api.multi
+    def create_record(self, model, vals):
+        return self.user_scopes.create_record(model, vals)
+
+    @api.multi
+    def write_record(self, model, record_ids, vals):
+        scopes = self.user_scopes
+        # Browse using the scope env, which is in the token's user
+        records = scopes.env[model].browse(record_ids)
+        return scopes.write_record(records, vals)
+
+    @api.multi
+    def delete_record(self, model, record_ids):
+        scopes = self.user_scopes
+        # Browse using the scope env, which is in the token's user
+        records = scopes.env[model].browse(record_ids)
+        return scopes.delete_record(records)

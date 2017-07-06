@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import hashlib
 import json
 import mock
 import logging
 from datetime import datetime
-from openerp import fields
+from odoo import fields
 
 _logger = logging.getLogger(__name__)
 
 
-class TestOAuthProviderAurhorizeController(object):
+class TestOauthProviderAuthorizeController(object):
     def test_authorize_error_missing_arguments(self):
         """ Call /oauth2/authorize without any argument
 
@@ -111,7 +111,7 @@ class TestOAuthProviderAurhorizeController(object):
         self.assertTrue('Unknown Client Identifier!' in response.data)
         self.assertTrue('This client identifier is invalid.' in response.data)
 
-    @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
+    @mock.patch('odoo.http.WebRequest.env', new_callable=mock.PropertyMock)
     def test_authorize_unsafe_chars(self, request_env):
         """ Call /oauth2/authorize with unsafe chars in the query string """
         # Mock the http request's environ to allow it to see test records
@@ -129,13 +129,14 @@ class TestOAuthProviderAurhorizeController(object):
         self.assertTrue(self.client.name in response.data)
 
 
-class TestOAuthProviderRefreshTokenController(object):
+class TestOauthProviderRefreshTokenController(object):
     def test_refresh_token_error_too_much_scopes(self):
         """ Call /oauth2/token using a refresh token, with too much scopes """
         token = self.new_token()
+        token.scope_ids = [(5, )]
         response = self.post_request('/oauth2/token', data={
             'client_id': self.client.identifier,
-            'scope': self.client.scope_ids.mapped('code'),
+            'scope': ' '.join(self.client.scope_ids.mapped('code')),
             'grant_type': 'refresh_token',
             'refresh_token': token.refresh_token,
         })
@@ -168,7 +169,7 @@ class TestOAuthProviderRefreshTokenController(object):
         self.assertEqual(new_token.user_id, self.user)
 
 
-class TestOAuthProviderTokeninfoController(object):
+class TestOauthProviderTokeninfoController(object):
     def test_tokeninfo_error_missing_arguments(self):
         """ Call /oauth2/tokeninfo without any argument
 
@@ -230,7 +231,7 @@ class TestOAuthProviderTokeninfoController(object):
             token_lifetime + 5)
 
 
-class TestOAuthProviderUserinfoController(object):
+class TestOauthProviderUserinfoController(object):
     def test_userinfo_error_missing_arguments(self):
         """ Call /oauth2/userinfo without any argument
 
@@ -274,10 +275,11 @@ class TestOAuthProviderUserinfoController(object):
             'name': self.user.name,
             'email': self.user.email,
             'city': self.user.city,
+            'login': self.user.login,
         })
 
 
-class TestOAuthProviderOtherinfoController(object):
+class TestOauthProviderOtherinfoController(object):
     def test_otherinfo_error_missing_arguments(self):
         """ Call /oauth2/otherinfo method without any argument
 
@@ -341,6 +343,7 @@ class TestOAuthProviderOtherinfoController(object):
             'name': self.user.name,
             'email': self.user.email,
             'city': self.user.city,
+            'login': self.user.login,
         }})
 
     def test_otherinfo_group_information(self):
@@ -372,7 +375,7 @@ class TestOAuthProviderOtherinfoController(object):
             sorted(map(str, all_groups.ids)))
 
 
-class TestOAuthProviderRevokeTokenController(object):
+class TestOauthProviderRevokeTokenController(object):
     def test_revoke_token_error_missing_arguments(self):
         """ Call /oauth2/revoke_token method without any argument """
         response = self.post_request('/oauth2/revoke_token')

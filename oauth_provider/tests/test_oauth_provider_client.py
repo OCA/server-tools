@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 SYLEAM
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 from ..oauth2.validator import OdooValidator
 
 _logger = logging.getLogger(__name__)
@@ -14,10 +14,10 @@ except ImportError:
     _logger.debug('Cannot `import oauthlib`.')
 
 
-class TestOAuthProviderClient(TransactionCase):
+class TestOauthProviderClient(TransactionCase):
 
     def setUp(self):
-        super(TestOAuthProviderClient, self).setUp()
+        super(TestOauthProviderClient, self).setUp()
         self.client_vals = {
             'name': 'Client',
             'identifier': 'client',
