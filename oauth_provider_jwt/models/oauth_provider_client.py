@@ -4,7 +4,7 @@
 
 import logging
 from datetime import datetime, timedelta
-from openerp import models, api, fields, exceptions, _
+from odoo import models, api, fields, exceptions, _
 
 _logger = logging.getLogger(__name__)
 

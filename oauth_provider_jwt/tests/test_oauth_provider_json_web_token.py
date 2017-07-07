@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from openerp import exceptions
-from openerp.addons.oauth_provider.tests.common_test_controller import \
+from odoo import exceptions
+from odoo.addons.oauth_provider.tests.common_test_controller import \
     OAuthProviderControllerTransactionCase
 from ..models.oauth_provider_client import OAuthProviderClient
 

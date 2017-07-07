@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import werkzeug
-from openerp import http
-from openerp.addons import oauth_provider
-from openerp.addons.web.controllers.main import ensure_db
+from odoo import http
+from odoo.addons import oauth_provider
+from odoo.addons.web.controllers.main import ensure_db
 
 
 class OAuth2ProviderController(

@@ -8,3 +8,5 @@ fdb
 sqlalchemy
 raven
 oauthlib
+cryptography
+pyjwt
