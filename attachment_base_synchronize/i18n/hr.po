@@ -4,50 +4,51 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"POT-Creation-Date: 2017-07-13 00:59+0000\n"
+"PO-Revision-Date: 2017-07-13 00:59+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Attachment"
-msgstr ""
+msgstr "Privitak"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_name
 msgid "Attachment Name"
-msgstr ""
+msgstr "Naziv privitka"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_local_url
 msgid "Attachment URL"
-msgstr ""
+msgstr "URL Privitka"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Attachment id"
-msgstr ""
+msgstr "ID privitka"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_tree
 msgid "Attachments"
-msgstr ""
+msgstr "Privitci"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Binary"
-msgstr ""
+msgstr "Binarno"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_checksum
@@ -58,48 +59,48 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_company_id
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Company"
-msgstr "Compañía"
+msgstr "Poduzeće"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Kreirao"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Kreirano"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Creation Month"
-msgstr ""
+msgstr "Mrjesec kreiranja"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_db_datas
 msgid "Database Data"
-msgstr ""
+msgstr "Podaci u bazi"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_description
 msgid "Description"
-msgstr "Descripción"
+msgstr "Opis"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Naziv "
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Done"
-msgstr ""
+msgstr "Gotovo"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
@@ -110,22 +111,22 @@ msgstr ""
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Failed"
-msgstr "Fallido"
+msgstr "Neuspjelo"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas
 msgid "File Content"
-msgstr ""
+msgstr "Sadržaj datoteke"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas_fname
 msgid "File Name"
-msgstr ""
+msgstr "Naziv datoteke"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
 msgid "File Size"
-msgstr ""
+msgstr "Veličina datoteke"
 
 #. module: attachment_base_synchronize
 #: code:addons/attachment_base_synchronize/models/attachment.py:54
@@ -163,7 +164,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr "Grupiraj po"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_id
@@ -188,17 +189,17 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Zadnje modificirano"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Zadnji ažurirao"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Zadnje ažuriranje"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
@@ -224,7 +225,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Owner"
-msgstr ""
+msgstr "Vlasnik"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -240,7 +241,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_id
 msgid "Resource ID"
-msgstr "ID del recurso"
+msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_model
@@ -250,7 +251,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
 msgid "Resource Name"
-msgstr "Nombre del recurso"
+msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
@@ -266,7 +267,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "State"
-msgstr "Estado"
+msgstr "Status"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state_message
@@ -304,7 +305,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Type"
-msgstr "Tipo"
+msgstr "Tip"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -326,4 +327,4 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model,name:attachment_base_synchronize.model_ir_attachment_metadata
 msgid "ir.attachment.metadata"
-msgstr ""
+msgstr "ir.attachment.metadata"
