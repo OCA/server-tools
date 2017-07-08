@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 ACSONE SA/NV, Dhinesh D, Jesse Morgan
+# (c) 2015 ACSONE SA/NV, Dhinesh D
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -22,10 +22,7 @@ class TestIrConfigParameter(common.TransactionCase):
             'auth_session_timeout.inactive_session_time_out_delay')
 
     def test_check_delay(self):
-        delay = self.param_obj._auth_timeout_get_parameter_delay(self.db)
+        delay, urls = self.param_obj.get_session_parameters(self.db)
         self.assertEqual(delay, int(self.delay.value))
         self.assertIsInstance(delay, int)
-
-    def test_check_urls(self):
-        urls = self.param_obj._auth_timeout_get_parameter_urls(self.db)
-        self.assertIsInstance(urls, list)       
+        self.assertIsInstance(urls, list)
