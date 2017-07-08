@@ -25,16 +25,15 @@ class ResUsers(models.Model):
         """Pluggable method for calculating ignored urls
         Defaults to stored config param
         """
-        ir_config_parameter_model = request.env['ir.config_parameter']
-        return ir_config_parameter_model \
-                    ._auth_timeout_get_parameter_ignoredurls(db)
+        param_model = request.env['ir.config_parameter']
+        return param_model._auth_timeout_get_parameter_ignoredurls(db)
 
     def _auth_timeout_deadline_calculate(self, session, db, uid):
         """Pluggable method for calculating timeout deadline
         Defaults to current time minus delay using delay stored as config param
         """
-        ir_config_parameter_model = request.env['ir.config_parameter']
-        delay = ir_config_parameter_model._auth_timeout_get_parameter_delay(db)
+        param_model = request.env['ir.config_parameter']
+        delay = param_model._auth_timeout_get_parameter_delay(db)
         if delay is False or delay <= 0:
             return False
         return time() - delay
@@ -85,7 +84,7 @@ class ResUsers(models.Model):
         if terminated:
             return
 
-        # Otherwise, conditionally update session last modified and access times
+        # Else, conditionally update session modified and access times
         ignoredurls = self._auth_timeout_ignoredurls_get(session, db, uid)
 
         if http.request.httprequest.path not in ignoredurls:
@@ -94,7 +93,7 @@ class ResUsers(models.Model):
             except OSError:
                 _logger.warning(
                     'Exception updating session file access/modified times: %s'
-                     % e
+                    % e
                 )
                 pass
 
