@@ -18,6 +18,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[attachment_base_synchronize](attachment_base_synchronize/) | 10.0.1.0.0 | Attachment Base Synchronize
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
@@ -69,7 +70,6 @@ Unported addons
 addon | version | summary
 --- | --- | ---
 [admin_technical_features](admin_technical_features/) | 9.0.0.1.0 (unported) | Checks the technical features box for admin user.
-[attachment_base_synchronize](attachment_base_synchronize/) | 9.0.1.0.0 (unported) | Attachment Base Synchronize
 [auth_admin_passkey](auth_admin_passkey/) | 8.0.2.1.1 (unported) | Authentification - Admin Passkey
 [auth_dynamic_groups](auth_dynamic_groups/) | 8.0.1.0.0 (unported) | Have membership conditions for certain groups
 [auth_from_http_basic](auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
