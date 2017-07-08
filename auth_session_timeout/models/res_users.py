@@ -26,7 +26,8 @@ class ResUsers(models.Model):
         Defaults to stored config param
         """
         ir_config_parameter_model = request.env['ir.config_parameter']
-        return ir_config_parameter_model._auth_timeout_get_parameter_ignoredurls(db)
+        return ir_config_parameter_model \
+                    ._auth_timeout_get_parameter_ignoredurls(db)
 
     def _auth_timeout_deadline_calculate(self, session, db, uid):
         """Pluggable method for calculating timeout deadline
@@ -34,7 +35,7 @@ class ResUsers(models.Model):
         """
         ir_config_parameter_model = request.env['ir.config_parameter']
         delay = ir_config_parameter_model._auth_timeout_get_parameter_delay(db)
-        if delay == False or delay <= 0:
+        if delay is False or delay <= 0:
             return False
         return time() - delay
 
@@ -64,12 +65,15 @@ class ResUsers(models.Model):
 
         # Check if past deadline
         expired = False
-        if deadline != False:
+        if deadline is not False:
             path = root.session_store.get_session_filename(session.sid)
             try:
                 expired = getmtime(path) < deadline
             except OSError as e:
-                _logger.warning('Exception reading session file modified time: %s' % e)
+                _logger.warning(
+                    'Exception reading session file modified time: %s'
+                    % e
+                )
                 pass
 
         # Try to terminate the session
@@ -88,7 +92,10 @@ class ResUsers(models.Model):
             try:
                 utime(path, None)
             except OSError:
-                _logger.warning('Exception updating session file access/modified times: %s' % e)
+                _logger.warning(
+                    'Exception updating session file access/modified times: %s'
+                     % e
+                )
                 pass
 
         return

@@ -3,7 +3,7 @@
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, tools, SUPERUSER_ID
+from openerp import models, api, tools
 
 DELAY_KEY = 'inactive_session_time_out_delay'
 IGNORED_PATH_KEY = 'inactive_session_time_out_ignored_url'
@@ -17,21 +17,21 @@ class IrConfigParameter(models.Model):
         """Method no longer required by module auth_session_timeout.
         Left here in case any other modules referenced it.
         """
-        ir_config_parameter_model = self.env['ir.config_parameter']
-        delay = int(ir_config_parameter_model.sudo().get_param(DELAY_KEY, 7200))
-        urls = ir_config_parameter_model.sudo().get_param(IGNORED_PATH_KEY, '').split(',')
+        param_model = self.env['ir.config_parameter']
+        delay = int(param_model.sudo().get_param(DELAY_KEY, 7200))
+        urls = param_model.sudo().get_param(IGNORED_PATH_KEY, '').split(',')
         return delay, urls
 
     @tools.ormcache(skiparg=0)
     def _auth_timeout_get_parameter_delay(self, db):
-        ir_config_parameter_model = self.env['ir.config_parameter']
-        delay = int(ir_config_parameter_model.sudo().get_param(DELAY_KEY, 7200))
+        param_model = self.env['ir.config_parameter']
+        delay = int(param_model.sudo().get_param(DELAY_KEY, 7200))
         return delay
 
     @tools.ormcache(skiparg=0)
     def _auth_timeout_get_parameter_ignoredurls(self, db):
-        ir_config_parameter_model = self.env['ir.config_parameter']
-        urls = ir_config_parameter_model.sudo().get_param(IGNORED_PATH_KEY, '').split(',')
+        param_model = self.env['ir.config_parameter']
+        urls = param_model.sudo().get_param(IGNORED_PATH_KEY, '').split(',')
         return urls
 
     @api.multi
