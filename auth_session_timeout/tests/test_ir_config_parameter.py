@@ -4,7 +4,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import threading
-from time import time
 
 from openerp.tests import common
 import openerp
@@ -38,88 +37,42 @@ class TestIrConfigParameter(common.TransactionCase):
         self.assertIsInstance(urls, list)
 
 
-class MockSession():
-    uid = 1
-    db = 'test'
-    sid = 123
-    loggedout = False
-
-    def logout(self, keep_db):
-        self.loggedout = True
-
-class MockHttpRequest():
-    path = 'test'
-
-
-class MockRequest():
-    session = MockSession()
-    httprequest = MockHttpRequest()
-
-
-class TestSessionExpiry(common.TransactionCase):
+class TestIrConfigParameterCaching(common.TransactionCase):
 
     def setUp(self):
-        super(TestSessionExpiry, self).setUp()
-        self.resusers_obj = self.env['res.users']
-        self.request = MockRequest()
+        super(TestIrConfigParameterCaching, self).setUp()
+        self.db = openerp.tools.config['db_name']
+        if not self.db and hasattr(threading.current_thread(), 'dbname'):
+            self.db = threading.current_thread().dbname
+        self.param_obj = self.env['ir.config_parameter']
+        self.get_param_called = False
+        test = self
 
-        def _auth_timeout_deadline_calculate(*args, **kwargs):
-            return time()
-        self.resusers_obj._patch_method(
-            '_auth_timeout_deadline_calculate',
-            _auth_timeout_deadline_calculate)
-
-        def _auth_timeout_request_get(*args, **kwargs):
-            return self.request
-        self.resusers_obj._patch_method(
-            '_auth_timeout_request_get',
-            _auth_timeout_request_get)
-
-        def _auth_timeout_session_filename_get(*args, **kwargs):
-            return 'non-existent-filename'
-        self.resusers_obj._patch_method(
-            '_auth_timeout_session_filename_get',
-            _auth_timeout_session_filename_get)
-
-        def _auth_timeout_getmtime(*args, **kwargs):
-            return time() - 61
-        self.resusers_obj._patch_method(
-            '_auth_timeout_getmtime',
-            _auth_timeout_getmtime)
+        def get_param(*args, **kwargs):
+            test.get_param_called = True
+            return orig_get_param(args[3], args[4])
+        orig_get_param = self.param_obj.get_param
+        self.param_obj._patch_method(
+            'get_param',
+            get_param)
 
     def tearDown(self):
-        super(TestSessionExpiry, self).tearDown()
-        self.resusers_obj._revert_method('_auth_timeout_deadline_calculate')
-        self.resusers_obj._revert_method('_auth_timeout_request_get')
-        self.resusers_obj._revert_method('_auth_timeout_session_filename_get')
-        self.resusers_obj._revert_method('_auth_timeout_getmtime')
+        super(TestIrConfigParameterCaching, self).tearDown()
+        self.param_obj._revert_method('get_param')
 
-    def test_check_timedout_session_loggedout(self):
-        self.resusers_obj._auth_timeout_check()
-        self.assertEquals(self.request.session.loggedout, True)
+    def test_check_param_cache_working(self):
+        self.get_param_called = False
+        delay, urls = self.param_obj.get_session_parameters(self.db)
+        self.assertEquals(self.get_param_called, True)
+        self.get_param_called = False
+        delay, urls = self.param_obj.get_session_parameters(self.db)
+        self.assertEquals(self.get_param_called, False)
 
-class TestSessionFileReadWriteException(common.TransactionCase):
-
-    def setUp(self):
-        super(TestSessionFileReadWriteException, self).setUp()
-        self.resusers_obj = self.env['res.users']
-
-        def _auth_timeout_request_get(*args, **kwargs):
-            return MockRequest()
-        self.resusers_obj._patch_method(
-            '_auth_timeout_request_get',
-            _auth_timeout_request_get)
-
-        def _auth_timeout_session_filename_get(*args, **kwargs):
-            return 'non-existent-filename'
-        self.resusers_obj._patch_method(
-            '_auth_timeout_session_filename_get',
-            _auth_timeout_session_filename_get)
-
-    def tearDown(self):
-        super(TestSessionFileReadWriteException, self).tearDown()
-        self.resusers_obj._revert_method('_auth_timeout_request_get')
-        self.resusers_obj._revert_method('_auth_timeout_session_filename_get')
-
-    def test_check_sessionfile_time_readwrite_exception(self):
-        self.resusers_obj._auth_timeout_check()
+    def test_check_param_writes_clear_cache(self):
+        self.get_param_called = False
+        delay, urls = self.param_obj.get_session_parameters(self.db)
+        self.assertEquals(self.get_param_called, True)
+        self.get_param_called = False
+        self.param_obj.set_param('inactive_session_time_out_delay', 7201)
+        delay, urls = self.param_obj.get_session_parameters(self.db)
+        self.assertEquals(self.get_param_called, True)
