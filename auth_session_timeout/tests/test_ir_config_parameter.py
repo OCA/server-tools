@@ -88,6 +88,7 @@ class TestSessionExpiry(common.TransactionCase):
             _auth_timeout_getmtime)
 
     def tearDown(self):
+        super(TestSessionExpiry, self).tearDown()
         self.resusers_obj._revert_method('_auth_timeout_deadline_calculate')
         self.resusers_obj._revert_method('_auth_timeout_request_get')
         self.resusers_obj._revert_method('_auth_timeout_session_filename_get')
@@ -116,6 +117,7 @@ class TestSessionFileReadWriteException(common.TransactionCase):
             _auth_timeout_session_filename_get)
 
     def tearDown(self):
+        super(TestSessionFileReadWriteException, self).tearDown()
         self.resusers_obj._revert_method('_auth_timeout_request_get')
         self.resusers_obj._revert_method('_auth_timeout_session_filename_get')
 
