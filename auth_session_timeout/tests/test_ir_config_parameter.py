@@ -76,4 +76,3 @@ class TestIrConfigParameterCaching(common.TransactionCase):
         self.param_obj.set_param('inactive_session_time_out_delay', 7201)
         delay, urls = self.param_obj.get_session_parameters(self.db)
         self.assertEquals(self.get_param_called, True)
-        
