@@ -6,7 +6,6 @@
 import logging
 
 from openerp import models
-from openerp import http
 
 from openerp.http import root
 from openerp.http import request

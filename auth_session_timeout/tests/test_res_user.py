@@ -97,4 +97,4 @@ class TestSessionFileReadWriteException(common.TransactionCase):
 
     def test_check_sessionfile_time_readwrite_exception(self):
         self.resusers_obj._auth_timeout_check()
-
+        

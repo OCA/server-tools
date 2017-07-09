@@ -39,9 +39,7 @@ class IrConfigParameter(models.Model):
     def write(self, vals, context=None):
         res = super(IrConfigParameter, self).write(vals)
         if self.key == DELAY_KEY:
-            #self._auth_timeout_get_parameter_delay.clear_cache(self)
             self.get_session_parameters.clear_cache(self)
         elif self.key == IGNORED_PATH_KEY:
-            #self._auth_timeout_get_parameter_ignoredurls.clear_cache(self)
             self.get_session_parameters.clear_cache(self)
         return res
