@@ -57,7 +57,7 @@ class ResUsers(models.Model):
         return request
 
     def _auth_timeout_session_filename_get(self, sid):
-        root.session_store.get_session_filename(sid)
+        return root.session_store.get_session_filename(sid)
 
     def _auth_timeout_utime(self, path, dates=None):
         return utime(path, dates)
