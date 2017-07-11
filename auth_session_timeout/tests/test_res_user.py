@@ -7,7 +7,9 @@ from errno import ENOENT
 
 from openerp.tests import common
 
+
 _packagepath = 'openerp.addons.auth_session_timeout'
+
 
 class ResUsers(common.TransactionCase):
     def setUp(self):
@@ -17,8 +19,8 @@ class ResUsers(common.TransactionCase):
     @mock.patch(_packagepath + '.models.res_users.request')
     @mock.patch(_packagepath + '.models.res_users.root')
     @mock.patch(_packagepath + '.models.res_users.getmtime')
-    def test_check_timedout_session_loggedout(
-        self, mock_getmtime, mock_root, mock_request):
+    def test_on_timeout_session_loggedout(self, mock_getmtime,
+                                          mock_root, mock_request):
         mock_getmtime.return_value = 0
         mock_request.session.uid = self.env.uid
         mock_request.session.dbname = self.env.cr.dbname
@@ -31,9 +33,10 @@ class ResUsers(common.TransactionCase):
     @mock.patch(_packagepath + '.models.res_users.root')
     @mock.patch(_packagepath + '.models.res_users.getmtime')
     @mock.patch(_packagepath + '.models.res_users.utime')
-    def test_check_sessionfile_time_readwrite_exception(
-        self, mock_utime, mock_getmtime, mock_root, mock_request):
-        mock_getmtime.side_effect = OSError(ENOENT, strerror(ENOENT), 'non-existent-filename')
+    def test_sessionfile_io_exceptions_managed(self, mock_utime, mock_getmtime,
+                                               mock_root, mock_request):
+        mock_getmtime.side_effect = OSError(
+            ENOENT, strerror(ENOENT), 'non-existent-filename')
         mock_request.session.uid = self.env.uid
         mock_request.session.dbname = self.env.cr.dbname
         mock_request.session.sid = 123
