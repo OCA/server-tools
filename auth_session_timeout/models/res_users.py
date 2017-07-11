@@ -52,25 +52,11 @@ class ResUsers(models.Model):
             session.logout(keep_db=True)
         return True
 
-    def _auth_timeout_request_get(self):
-        return request
-
-    def _auth_timeout_session_filename_get(self, sid):
-        return root.session_store.get_session_filename(sid)
-
-    def _auth_timeout_utime(self, path, dates=None):
-        return utime(path, dates)
-
-    def _auth_timeout_getmtime(self, path):
-        return getmtime(path)
-
     def _auth_timeout_check(self):
-        _request = self._auth_timeout_request_get()
-
-        if not _request:
+        if not request:
             return
 
-        session = _request.session
+        session = request.session
 
         # Calculate deadline
         deadline = self._auth_timeout_deadline_calculate()
@@ -78,9 +64,9 @@ class ResUsers(models.Model):
         # Check if past deadline
         expired = False
         if deadline is not False:
-            path = self._auth_timeout_session_filename_get(session.sid)
+            path = root.session_store.get_session_filename(session.sid)
             try:
-                expired = self._auth_timeout_getmtime(path) < deadline
+                expired = getmtime(path) < deadline
             except OSError as e:
                 _logger.warning(
                     'Exception reading session file modified time: %s'
@@ -100,11 +86,11 @@ class ResUsers(models.Model):
         # Else, conditionally update session modified and access times
         ignoredurls = self._auth_timeout_ignoredurls_get()
 
-        if _request.httprequest.path not in ignoredurls:
+        if request.httprequest.path not in ignoredurls:
             if 'path' not in locals():
-                path = self._auth_timeout_session_filename_get(session.sid)
+                path = root.session_store.get_session_filename(session.sid)
             try:
-                self._auth_timeout_utime(path, None)
+                utime(path, None)
             except OSError as e:
                 _logger.warning(
                     'Exception updating session file access/modified times: %s'

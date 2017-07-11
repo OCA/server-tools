@@ -3,23 +3,17 @@
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import threading
-
 from openerp.tests import common
-import openerp
 
 
 class TestIrConfigParameter(common.TransactionCase):
 
     def setUp(self):
         super(TestIrConfigParameter, self).setUp()
-        self.db = openerp.tools.config['db_name']
-        if not self.db and hasattr(threading.current_thread(), 'dbname'):
-            self.db = threading.current_thread().dbname
+        self.db = self.env.cr.dbname
         self.param_obj = self.env['ir.config_parameter']
         self.data_obj = self.env['ir.model.data']
-        self.delay = self.env.ref(
-            'auth_session_timeout.inactive_session_time_out_delay')
+        self.delay = self.env.ref('auth_session_timeout.inactive_session_time_out_delay')
 
     def test_check_session_params(self):
         delay, urls = self.param_obj.get_session_parameters(self.db)
@@ -41,9 +35,7 @@ class TestIrConfigParameterCaching(common.TransactionCase):
 
     def setUp(self):
         super(TestIrConfigParameterCaching, self).setUp()
-        self.db = openerp.tools.config['db_name']
-        if not self.db and hasattr(threading.current_thread(), 'dbname'):
-            self.db = threading.current_thread().dbname
+        self.db = self.env.cr.dbname
         self.param_obj = self.env['ir.config_parameter']
         self.get_param_called = False
         test = self
@@ -63,16 +55,16 @@ class TestIrConfigParameterCaching(common.TransactionCase):
     def test_check_param_cache_working(self):
         self.get_param_called = False
         delay, urls = self.param_obj.get_session_parameters(self.db)
-        self.assertEquals(self.get_param_called, True)
+        self.assertTrue(self.get_param_called)
         self.get_param_called = False
         delay, urls = self.param_obj.get_session_parameters(self.db)
-        self.assertEquals(self.get_param_called, False)
+        self.assertFalse(self.get_param_called)
 
     def test_check_param_writes_clear_cache(self):
         self.get_param_called = False
         delay, urls = self.param_obj.get_session_parameters(self.db)
-        self.assertEquals(self.get_param_called, True)
+        self.assertTrue(self.get_param_called)
         self.get_param_called = False
         self.param_obj.set_param('inactive_session_time_out_delay', 7201)
         delay, urls = self.param_obj.get_session_parameters(self.db)
-        self.assertEquals(self.get_param_called, True)
+        self.assertTrue(self.get_param_called)

@@ -9,7 +9,7 @@
     'summary': """
         This module disable all inactive sessions since a given delay""",
 
-    'author': "ACSONE SA/NV, Dhinesh D, Odoo Community Association (OCA)",
+    'author': "ACSONE SA/NV, Dhinesh D, Jesse Morgan, Odoo Community Association (OCA)",
     'maintainer': 'Odoo Community Association (OCA)',
     'website': "http://acsone.eu",
 
