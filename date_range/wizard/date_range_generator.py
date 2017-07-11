@@ -51,7 +51,7 @@ class DateRangeGenerator(models.TransientModel):
             dt_end = vals[idx+1].date() - relativedelta(days=1)
             date_end = fields.Date.to_string(dt_end)
             date_ranges.append({
-                'name': '%s-%s' % (
+                'name': '%s%s' % (
                     self.name_prefix,
                     unicode(idx + 1).zfill(month_digits)),
                 'date_start': date_start,
