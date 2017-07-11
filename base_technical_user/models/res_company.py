@@ -11,4 +11,4 @@ class ResCompany(models.Model):
         comodel_name="res.users",
         string="Technical User",
         help="This user can be used by process for technical purpose",
-        domain="[('company_id', '=', id), ('active', '=', False)]")
+        domain="[('company_id', '=', id)]")
