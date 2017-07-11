@@ -43,6 +43,7 @@ class DateRangeGenerator(models.TransientModel):
                      count=self.count+1)
         vals = list(vals)
         date_ranges = []
+        month_digits = len(unicode(self.count))
         for idx, dt_start in enumerate(vals[:-1]):
             date_start = fields.Date.to_string(dt_start.date())
             # always remove 1 day for the date_end since range limits are
@@ -50,7 +51,9 @@ class DateRangeGenerator(models.TransientModel):
             dt_end = vals[idx+1].date() - relativedelta(days=1)
             date_end = fields.Date.to_string(dt_end)
             date_ranges.append({
-                'name': '%s-%d' % (self.name_prefix, idx + 1),
+                'name': '%s-%s' % (
+                    self.name_prefix,
+                    unicode(idx + 1).zfill(month_digits)),
                 'date_start': date_start,
                 'date_end': date_end,
                 'type_id': self.type_id.id,
