@@ -55,6 +55,7 @@ class AuthTotp(Home):
 
         user.generate_mfa_login_token()
         request.session.logout(keep_db=True)
+        request.params['login_success'] = False
         return http.local_redirect(
             '/auth_totp/login',
             query={
@@ -64,7 +65,13 @@ class AuthTotp(Home):
             keep_hash=True,
         )
 
-    @http.route('/auth_totp/login', type='http', auth='none', methods=['GET'])
+    @http.route(
+        '/auth_totp/login',
+        type='http',
+        auth='public',
+        methods=['GET'],
+        website=True,
+    )
     def mfa_login_get(self, *args, **kwargs):
         return request.render('auth_totp.mfa_login', qcontext=request.params)
 
@@ -127,6 +134,7 @@ class AuthTotp(Home):
                 temp_user.generate_mfa_login_token(60 * 24 * 30)
                 token = temp_user.mfa_login_token
         request.session.authenticate(request.db, user.login, token, user.id)
+        request.params['login_success'] = True
 
         redirect = request.params.get('redirect')
         if not redirect:
