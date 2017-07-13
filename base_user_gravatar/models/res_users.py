@@ -29,7 +29,7 @@ class ResUsers(models.Model):
     @api.multi
     def _compute_gravatar_autoupdate_enabled(self):
         IrParameter = self.env['ir.config_parameter']
-        auto_update = IrParameter.search([('key', '=', 'gravatar.autoupdate')], limit=1)
+        auto_update = IrParameter.get_param('gravatar.autoupdate')
         for record in self:
             record.gravatar_autoupdate_enabled = auto_update and auto_update.value in ('True', 'true', '1')
 
@@ -62,14 +62,14 @@ class ResUsers(models.Model):
     @api.model
     def _update_gravatars(self):
         IrParameter = self.env['ir.config_parameter']
-        auto_update = IrParameter.search([('key', '=', 'gravatar.autoupdate')], limit=1)
+        auto_update = IrParameter.get_param('gravatar.autoupdate')
         if auto_update and auto_update.value in ('True', 'true', '1'):
-            _logger.info('Starting gravatar update')
+            _logger.info('Starting Gravatar update')
             # Lets prevent failing in case of no gravatar
             for user in self.search([('gravatar_autoupdate', '=', True)]):
                 try:
                     user.get_gravatar_image()
                 except:
-                    _logger.warning('Unable to set gravatar for email %s' % str(user.email) or '')
+                    _logger.warning('Unable to set Gravatar for email %s' % str(user.email) or '')
             _logger.info('Gravatar auto update ended')
         return True
