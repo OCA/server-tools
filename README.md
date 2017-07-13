@@ -42,7 +42,7 @@ addon | version | summary
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 10.0.1.0.0 | User roles
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
-[date_range](date_range/) | 10.0.1.0.0 | Manage all kind of date range
+[date_range](date_range/) | 10.0.1.0.1 | Manage all kind of date range
 [datetime_formatter](datetime_formatter/) | 10.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
