@@ -32,7 +32,7 @@ class ResUsers(models.Model):
         auto_update = IrParameter.get_param('gravatar.autoupdate')
         for record in self:
             record.gravatar_autoupdate_enabled = auto_update and \
-                    auto_update.value in ('True', 'true', '1')
+                auto_update.value in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
         url = 'http://www.gravatar.com/avatar/{}?s=200'
