@@ -3,20 +3,20 @@
 # * fetchmail_notify_error_to_sender
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-26 07:45+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"POT-Creation-Date: 2016-01-19 14:44+0000\n"
+"PO-Revision-Date: 2016-01-31 13:32+0000\n"
+"Last-Translator: Ahmet Altınışık <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
@@ -31,31 +31,31 @@ msgid ""
 "    <p><i>${ctx.get('route_exception').message}</i></p>\n"
 "</div>\n"
 "            "
-msgstr "\n<div>\n    <p>Pozdravljeni ${ctx.get('sender_message').get('from')}.</p>\n    <p>Z vašim e-poštnim sporočilom imamo težave: <i>${ctx.get('sender_message').get('subject')}</i></p>\n    <p>Ste mogoče uporabili napačen e-poštni naslov?</p>\n    <p><br/></p>\n    <p>Tehnični podatki:</p>\n    <p><i>${ctx.get('route_exception').message}</i></p>\n</div>\n            "
+msgstr "\n<div>\n    <p>Merhaba ${ctx.get('sender_message').get('from')},</p>\n    <p>E-postanız ile ilgili bir problem var: <i>${ctx.get('sender_message').get('subject')}</i></p>\n    <p>Belki alıcı adresi yanlıştır?</p>\n    <p><br/></p>\n    <p>Teknik detaylar:</p>\n    <p><i>${ctx.get('route_exception').message}</i></p>\n</div>\n            "
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
 msgid "Email Thread"
-msgstr "E-poštna nit"
+msgstr "Eposta konuşması"
 
 #. module: fetchmail_notify_error_to_sender
 #: field:fetchmail.server,error_notice_template_id:0
 msgid "Error notice template"
-msgstr "Predloga obvestila o napaki"
+msgstr "Hata bildirim şablonu"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model,name:fetchmail_notify_error_to_sender.model_fetchmail_server
 msgid "POP/IMAP Server"
-msgstr "POP/IMAP strežnik"
+msgstr "POP/IMAP sunucu"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
 msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
-msgstr "Napaka pri prejemu: ${ctx.get('sender_message').get('subject')|safe}"
+msgstr "Alınan hata : ${ctx.get('sender_message').get('subject')|safe}"
 
 #. module: fetchmail_notify_error_to_sender
 #: help:fetchmail.server,error_notice_template_id:0
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
-msgstr "Nastavite predlogo, ki bo uporabljena za pošiljanje obvestila pošiljatelju, kadar se bi pojavile napake pri prejemu e-pošte"
+msgstr "E-posta alınırken oluşan hatalarda gönderilecek bildirim mesajı için şablonu belirleyin."
