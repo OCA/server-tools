@@ -5,7 +5,8 @@
 {
     'name': 'Synchronize Gravatar Image',
     'version': '10.0.2.0.0',
-    'author': 'LasLabs, Endika Iglesias, Odoo Community Association (OCA), Hugo Rodrigues',
+    'author': 'LasLabs, Endika Iglesias, Odoo Community Association (OCA),'
+              'Hugo Rodrigues',
     'category': 'Tools',
     'website': 'https://odoo-community.org/',
     "license": "AGPL-3",

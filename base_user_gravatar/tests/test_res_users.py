@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
-from odoo.addons.base_user_gravatar.models.res_users import ResUsers
+from ..models.res_users import ResUsers
 import mock
 import hashlib
 

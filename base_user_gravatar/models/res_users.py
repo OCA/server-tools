@@ -31,7 +31,8 @@ class ResUsers(models.Model):
         IrParameter = self.env['ir.config_parameter']
         auto_update = IrParameter.get_param('gravatar.autoupdate')
         for record in self:
-            record.gravatar_autoupdate_enabled = auto_update and auto_update.value in ('True', 'true', '1')
+            record.gravatar_autoupdate_enabled = auto_update and \
+                    auto_update.value in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
         url = 'http://www.gravatar.com/avatar/{}?s=200'
@@ -70,6 +71,7 @@ class ResUsers(models.Model):
                 try:
                     user.get_gravatar_image()
                 except:
-                    _logger.warning('Unable to set Gravatar for email %s' % str(user.email) or '')
+                    _logger.warning('Unable to set Gravatar for email %s' %
+                                    str(user.email) or '')
             _logger.info('Gravatar auto update ended')
         return True
