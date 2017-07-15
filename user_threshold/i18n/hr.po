@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-07-13 01:01+0000\n"
+"PO-Revision-Date: 2017-07-13 01:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: user_threshold
 #: model:ir.model,name:user_threshold.model_res_groups
 msgid "Access Groups"
-msgstr ""
+msgstr "Pristupne grupe"
 
 #. module: user_threshold
 #: code:addons/user_threshold/models/res_users.py:79
