@@ -50,6 +50,7 @@ addon | version | summary
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [external_file_location](external_file_location/) | 9.0.1.0.0 | External File Location
+[fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 9.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 9.0.1.0.0 | Generate excerpts from any HTML field
 [keychain](keychain/) | 9.0.1.0.0 | Store accounts and credentials
@@ -86,7 +87,6 @@ addon | version | summary
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
-[fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.0 (unported) | If fetching mails gives error, send an email to sender
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
 [ir_config_parameter_viewer](ir_config_parameter_viewer/) | 0.1 (unported) | Ir.config_parameter view
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 (unported) | Setting the partner's language in RML reports
