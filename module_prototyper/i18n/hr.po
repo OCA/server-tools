@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"POT-Creation-Date: 2017-07-13 01:01+0000\n"
+"PO-Revision-Date: 2017-07-13 01:01+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -282,7 +282,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
 msgid "File Name"
-msgstr ""
+msgstr "Naziv datoteke"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
