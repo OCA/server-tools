@@ -3,23 +3,15 @@
 # * fetchmail_notify_error_to_sender
 # 
 # Translators:
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011-2012
-# Hotellook, 2014
-# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Paolo Valier, 2016
-# Paolo Valier, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 00:59+0000\n"
-"PO-Revision-Date: 2016-07-31 08:52+0000\n"
-"Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
+"POT-Creation-Date: 2017-07-15 02:48+0000\n"
+"PO-Revision-Date: 2017-07-15 02:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -47,7 +39,7 @@ msgid "Email Thread"
 msgstr "Discussione Email"
 
 #. module: fetchmail_notify_error_to_sender
-#: field:fetchmail.server,error_notice_template_id:0
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
 msgid "Error notice template"
 msgstr "Modello per il messaggio di errore"
 
@@ -62,7 +54,7 @@ msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
-#: help:fetchmail.server,error_notice_template_id:0
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
