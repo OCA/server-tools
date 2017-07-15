@@ -3,15 +3,15 @@
 # * fetchmail_notify_error_to_sender
 # 
 # Translators:
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 22:16+0000\n"
-"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"POT-Creation-Date: 2017-07-15 02:48+0000\n"
+"PO-Revision-Date: 2017-07-15 02:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -39,7 +39,7 @@ msgid "Email Thread"
 msgstr "Processo Email"
 
 #. module: fetchmail_notify_error_to_sender
-#: field:fetchmail.server,error_notice_template_id:0
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
 msgid "Error notice template"
 msgstr "Modelo de aviso de erro"
 
@@ -54,8 +54,10 @@ msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
 msgstr "Recebendo erro com: ${ctx.get('sender_message').get('subject')|safe}"
 
 #. module: fetchmail_notify_error_to_sender
-#: help:fetchmail.server,error_notice_template_id:0
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
-msgstr "Configure aqui o modelo para usar para enviar aviso ao remetente quando ocorrer erro durante a carga de email"
+msgstr ""
+"Configure aqui o modelo para usar para enviar aviso ao remetente quando "
+"ocorrer erro durante a carga de email"
