@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===============================
-Send notice on fetchmail errors
-===============================
+================================
+Fetchmail Notify Error to Sender
+================================
 
 If fetchmail is not able to correctly route an email, the email is
 "silently" lost (you get an error message in server log).
@@ -57,7 +57,7 @@ Contributors
 ------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Miquel Raïch <miquel.raich@eficent.com> (migration to v9)
+* Miquel Raïch <miquel.raich@eficent.com> (migration to v9 and v10)
 
 Maintainer
 ----------
