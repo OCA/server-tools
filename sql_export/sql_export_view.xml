@@ -29,7 +29,7 @@
                 <group name="request" string="SQL Request" groups="sql_request_abstract.group_sql_request_user">
                     <field name="query" nolabel="1" placeholder="select * from res_partner"/>
                 </group>
-                <group string="Parameters" groups="sql_request_abstract.group_sql_request_user">
+                <group name="parameters" string="Parameters" groups="sql_request_abstract.group_sql_request_user">
                     <field name="field_ids" nolabel="1"/>
                 </group>
                 <group groups="sql_request_abstract.group_sql_request_manager">
