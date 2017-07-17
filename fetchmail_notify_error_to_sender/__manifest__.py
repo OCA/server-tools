@@ -4,9 +4,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Send notice on fetchmail errors',
+    'name': 'Fetchmail Notify Error to Sender',
     'summary': 'If fetching mails gives error, send an email to sender',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Tools',
     'author': "Agile Business Group,Eficent,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/server-tools',
