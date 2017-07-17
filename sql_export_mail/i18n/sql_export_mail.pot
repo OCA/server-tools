@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sql_export_mail
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-18 13:24+0000\n"
+"PO-Revision-Date: 2017-07-18 13:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sql_export_mail
+#: model:email.template,body_html:sql_export_mail.sql_export_mailer
+msgid "\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>You will find the report ${object.name or ''} as an attachment of the mail.</p>\n"
+"\n"
+"</div>\n"
+"    "
+msgstr ""
+
+#. module: sql_export_mail
+#: model:email.template,subject:sql_export_mail.sql_export_mailer
+msgid "${object.name or ''}"
+msgstr ""
+
+#. module: sql_export_mail
+#: help:sql.export,mail_user_ids:0
+msgid "Add the users who want to receive the report by e-mail. You need to link the sql query with a cron to send mail automatically"
+msgstr ""
+
+#. module: sql_export_mail
+#: view:sql.export:sql_export_mail.sql_export_mail_view_form
+msgid "Create Cron"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export_cron_ids
+#: view:sql.export:sql_export_mail.sql_export_mail_view_form
+#: field:sql.export,cron_ids:0
+msgid "Crons"
+msgstr ""
+
+#. module: sql_export_mail
+#: selection:sql.export,mail_condition:0
+msgid "File Not Empty"
+msgstr ""
+
+#. module: sql_export_mail
+#: code:addons/sql_export_mail/models/sql_export.py:126
+#, python-format
+msgid "It is not possible to execute and send a query automatically by e-mail if there are parameters to fill"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export_mail_condition
+#: field:sql.export,mail_condition:0
+msgid "Mail condition"
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model,name:sql_export_mail.model_sql_export
+msgid "SQL export"
+msgstr ""
+
+#. module: sql_export_mail
+#: code:addons/sql_export_mail/models/sql_export.py:135
+#, python-format
+msgid "The user does not have any e-mail address."
+msgstr ""
+
+#. module: sql_export_mail
+#: model:ir.model.fields,field_description:sql_export_mail.field_sql_export_mail_user_ids
+#: field:sql.export,mail_user_ids:0
+msgid "User to notify"
+msgstr ""
+
+#. module: sql_export_mail
+#: view:sql.export:sql_export_mail.sql_export_mail_view_form
+msgid "Users Notified by e-mail"
+msgstr ""
+
