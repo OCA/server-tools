@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2017 Akretion (http://www.akretion.com/)
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+<!-- Error Email template  -->
+<record id="sql_export_mailer" model="email.template">
+    <field name="name">SQL Export</field>
+    <field name="email_from">admin@example.com</field>
+    <field name="email_to">${object.get_email_address_for_template()}</field>
+    <field name="subject">${object.name or ''}</field>
+    <field name="model_id" ref="sql_export.model_sql_export"/>
+    <field name="auto_delete" eval="True"/>
+    <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+<p>You will find the report ${object.name or ''} as an attachment of the mail.</p>
+
+</div>
+    ]]></field>
+</record>
+
+</data>
+</openerp>
