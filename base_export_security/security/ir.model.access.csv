@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+export_rights,export rights,model_export,base_export_security.export_group,1,1,1,1
