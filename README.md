@@ -46,6 +46,8 @@ addon | version | summary
 [datetime_formatter](datetime_formatter/) | 10.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
+[html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 | Extract images found in any HTML field
+[html_text](html_text/) | 10.0.1.0.0 | Generate excerpts from any HTML field
 [keychain](keychain/) | 10.0.1.0.0 | Store accounts and credentials
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
