@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
+from openerp.exceptions import ValidationError
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -71,6 +72,11 @@ class AuditlogRule(models.Model):
         u"Log Creates", default=True,
         help=(u"Select this if you want to keep track of creation on any "
               u"record of the model of this rule"))
+    log_custom = fields.Boolean(
+        u"Log Methods",
+        help=(u"Select this if you want to keep track of custom methods on "
+              u"any record of the model of this rule"))
+    custom_method_ids = fields.One2many('auditlog.methods', 'rule_id')
     log_type = fields.Selection(
         [('full', u"Full log"),
          ('fast', u"Fast log"),
@@ -154,6 +160,29 @@ class AuditlogRule(models.Model):
                 model_model._patch_method('unlink', rule._make_unlink())
                 setattr(model_model, check_attr, True)
                 updated = True
+            # Check if custom methods are enabled and patch the different
+            # rule methods
+            if getattr(rule, 'log_custom'):
+                for custom_method in rule.custom_method_ids:
+                    check_attr = 'auditlog_ruled_%s' % custom_method.name
+
+                    if not hasattr(model_model, custom_method.name):
+                        raise ValidationError(
+                            _('Method %s does not exist for model %s.' % (
+                                custom_method.name,
+                                model_model
+                            )))
+
+                    if not hasattr(model_model, check_attr):
+                        model_model._patch_method(
+                            custom_method.name,
+                            rule._make_custom(
+                                custom_method.message,
+                                custom_method.use_active_ids,
+                                custom_method.context_field_number)
+                        )
+                        setattr(model_model, check_attr, True)
+                        updated = True
         return updated
 
     @api.multi
@@ -167,6 +196,12 @@ class AuditlogRule(models.Model):
                         getattr(model_model, method), 'origin'):
                     model_model._revert_method(method)
                     updated = True
+            if hasattr(rule, 'log_custom'):
+                for custom_method in rule.custom_method_ids:
+                    method = custom_method.name
+                    if hasattr(getattr(model_model, method), 'origin'):
+                        model_model._revert_method(method)
+                        updated = True
         if updated:
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
@@ -348,6 +383,79 @@ class AuditlogRule(models.Model):
             return unlink_fast.origin(self, **kwargs)
 
         return unlink_full if self.log_type == 'full' else unlink_fast
+
+    @api.multi
+    def _make_custom(self, message, use_active_ids, context_field_number):
+        """Instanciate a read method that log its calls."""
+        self.ensure_one()
+        log_type = self.log_type
+
+        def custom(self, *args, **kwargs):
+            result = custom.origin(self, *args, **kwargs)
+
+            result2 = result
+            if not isinstance(result2, list):
+                result2 = [result]
+            # Old API
+            if args and isinstance(args[0], sql_db.Cursor):
+                cr, uid, ids = args[0], args[1], args[2]
+                if isinstance(ids, (int, long)):
+                    ids = [ids]
+
+                context = kwargs.get('context', {})
+
+                # Set specific context if it is defined by our rule
+                if not context and context_field_number:
+                    if context_field_number - 1 < len(args):
+                        context = args[context_field_number - 1]
+
+                if context.get('auditlog_disabled'):
+                    return result
+
+                env = api.Environment(cr, uid, {'auditlog_disabled': True})
+                rule_model = env['auditlog.rule']
+
+                # Overwrite the ids and object_model if it is required
+                # by the auditlog rule
+                object_model = self._name
+                if use_active_ids:
+                    if context.get('active_model'):
+                        if context.get('active_ids'):
+                            object_model = context.get(
+                                'active_model',
+                                object_model)
+                            ids = context.get('active_ids', ids)
+
+                rule_model.sudo().create_logs(
+                    env.uid, object_model, ids,
+                    message, None, None, {'log_type': log_type})
+            # New API
+            else:
+                if self.env.context.get('auditlog_disabled'):
+                    return result
+                self = self.with_context(auditlog_disabled=True)
+
+                context = self.env.context
+
+                # Overwrite the ids and object_model if it is required
+                # by the auditlog rule
+                ids = self.ids
+                object_model = self._name
+                if use_active_ids:
+                    if context.get('active_model'):
+                        if context.get('active_ids'):
+                            object_model = context.get(
+                                'active_model',
+                                object_model)
+                            ids = context.get('active_ids', ids)
+
+                rule_model = self.env['auditlog.rule']
+                rule_model.sudo().create_logs(
+                    self.env.uid, object_model, ids,
+                    message, None, None, {'log_type': log_type})
+            return result
+
+        return custom
 
     def create_logs(self, uid, res_model, res_ids, method,
                     old_values=None, new_values=None,
