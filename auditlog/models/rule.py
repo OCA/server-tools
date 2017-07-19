@@ -472,11 +472,20 @@ class AuditlogRule(models.Model):
         http_session_model = self.env['auditlog.http.session']
         for res_id in res_ids:
             model_model = self.env[res_model]
+            # Do extra check for active_model situations where res_model
+            # is not preloaded in auditlog model_cache
+            model_id = self.pool._auditlog_model_cache.get(res_model, False)
+            if not model_id:
+                model = self.env['ir.model'].search([
+                    ('model', '=', res_model)])
+                if model:
+                    model_id = model.id
+                    self.pool._auditlog_model_cache[res_model] = model_id
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
             vals = {
                 'name': res_name,
-                'model_id': self.pool._auditlog_model_cache[res_model],
+                'model_id': model_id,
                 'res_id': res_id,
                 'method': method,
                 'user_id': uid,
