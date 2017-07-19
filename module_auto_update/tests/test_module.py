@@ -153,13 +153,20 @@ class TestModule(TransactionCase):
             '_store_checksum_installed',
         )
 
-    def test_update_list(self):
+    @mock.patch('%s.get_module_path' % model)
+    def test_update_list(self, get_module_path_mock):
         """It should change the state of modules with different
         checksum_dir and checksum_installed to 'to upgrade'"""
-        self.own_module.checksum_installed = 'test'
+        get_module_path_mock.return_value = self.own_dir_path
+        vals = {
+            'name': 'module_auto_update_test_module',
+            'state': 'installed',
+        }
+        test_module = self.create_test_module(vals)
+        test_module.checksum_installed = 'test'
         self.env['ir.module.module'].update_list()
         self.assertEqual(
-            self.own_module.state, 'to upgrade',
+            test_module.state, 'to upgrade',
             'List update does not mark upgradeable modules "to upgrade"',
         )
 
