@@ -132,7 +132,6 @@ class TestMethods(TransactionCase):
         self.partner_model = self.env['ir.model'].search([
             ('model', '=', 'res.partner')])
 
-        # Setup rule for model "account.period.close" and method "data_save"
         self.auditlog_rule = self.env['auditlog.rule'].create({
             'name': 'res.partner',
             'model_id': self.partner_model.id,
@@ -169,4 +168,3 @@ class TestMethods(TransactionCase):
         ])
 
         self.assertEqual(len(logs), 1)
-
