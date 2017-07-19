@@ -168,4 +168,3 @@ class TestMethods(TransactionCase):
         ])
 
         self.assertEqual(len(logs), 1)
-        
