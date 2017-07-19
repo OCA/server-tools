@@ -7,7 +7,8 @@ Audit Log - Track user operations
 =================================
 
 This module allows the administrator to log user operations performed on data
-models such as ``create``, ``read``, ``write`` and ``delete``.
+models such as ``create``, ``read``, ``write`` and ``delete``. Furthermore
+it allows logging of custom methods.
 
 Usage
 =====

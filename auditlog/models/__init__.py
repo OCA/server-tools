@@ -7,3 +7,4 @@ from . import http_session
 from . import http_request
 from . import log
 from . import autovacuum
+from . import methods

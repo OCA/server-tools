@@ -38,6 +38,21 @@
                                 <!--<field name="log_workflow"/>-->
                             </group>
                         </group>
+                        <group string="Custom Methods" attrs="{'invisible': [('log_custom', '=', False)]}">
+                            <group colspan="2">
+                                <div attrs="{'invisible': [('log_custom', '=', False)]}" colspan="2">
+                                    You can only edit custom methods when the rule is unsubscribed.
+                                </div>
+                                <field name="custom_method_ids" nolabel="1" attrs="{'readonly': [('state', '=', 'subscribed')]}" colspan="2">
+                                    <tree string="Custom Methods" editable="top">
+                                        <field name="name"/>
+                                        <field name="message"/>
+                                        <field name="use_active_ids"/>
+                                        <field name="context_field_number"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
                         <!--
                         <group string="Users">
                             <field name="user_ids" nolabel="1"/>
@@ -60,6 +75,7 @@
                     <field name="log_write"/>
                     <field name="log_unlink"/>
                     <field name="log_create"/>
+                    <field name="log_custom"/>
                     <!--<field name="log_action"/>-->
                     <!--<field name="log_workflow"/>-->
                     <field name="state"/>
