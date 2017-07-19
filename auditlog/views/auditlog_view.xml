@@ -34,6 +34,7 @@
                                 <field name="log_write"/>
                                 <field name="log_unlink"/>
                                 <field name="log_create"/>
+                                <field name="log_custom"/>
                                 <!--<field name="log_action"/>-->
                                 <!--<field name="log_workflow"/>-->
                             </group>
