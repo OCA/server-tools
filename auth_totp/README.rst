@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/lgpl.html
    :alt: License: LGPL-3
 
-===========
-MFA Support
-===========
+====================
+MFA Support via TOTP
+====================
 
 This module adds support for MFA using TOTP (time-based, one-time passwords). 
 It allows users to enable/disable MFA and manage authentication apps/devices 

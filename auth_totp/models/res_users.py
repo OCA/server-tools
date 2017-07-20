@@ -13,6 +13,13 @@ from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
+    @classmethod
+    def _build_model(cls, pool, cr):
+        model = super(ResUsers, cls)._build_model(pool, cr)
+        ModelCls = type(model)
+        ModelCls.SELF_WRITEABLE_FIELDS += ['mfa_enabled', 'authenticator_ids']
+        return model
+
     mfa_enabled = fields.Boolean(string='MFA Enabled?')
     authenticator_ids = fields.One2many(
         comodel_name='res.users.authenticator',
@@ -20,7 +27,8 @@ class ResUsers(models.Model):
         string='Authentication Apps/Devices',
         help='To delete an authentication app, remove it from this list. To'
              ' add a new authentication app, please use the button to the'
-             ' right.',
+             ' right. If the button is not present, you do not have the'
+             ' permissions to do this.',
     )
     mfa_login_token = fields.Char()
     mfa_login_token_exp = fields.Datetime()
