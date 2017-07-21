@@ -72,7 +72,7 @@ class AuditlogRule(models.Model):
         u"Log Creates", default=True,
         help=(u"Select this if you want to keep track of creation on any "
               u"record of the model of this rule"))
-    log_custom = fields.Boolean(
+    log_custom_method = fields.Boolean(
         u"Log Methods",
         help=(u"Select this if you want to keep track of custom methods on "
               u"any record of the model of this rule"))
@@ -162,7 +162,7 @@ class AuditlogRule(models.Model):
                 updated = True
             # Check if custom methods are enabled and patch the different
             # rule methods
-            if getattr(rule, 'log_custom'):
+            if getattr(rule, 'log_custom_method'):
                 for custom_method in rule.custom_method_ids:
                     check_attr = 'auditlog_ruled_%s' % custom_method.name
 
@@ -196,7 +196,7 @@ class AuditlogRule(models.Model):
                         getattr(model_model, method), 'origin'):
                     model_model._revert_method(method)
                     updated = True
-            if hasattr(rule, 'log_custom'):
+            if hasattr(rule, 'log_custom_method'):
                 for custom_method in rule.custom_method_ids:
                     method = custom_method.name
                     if hasattr(getattr(model_model, method), 'origin'):

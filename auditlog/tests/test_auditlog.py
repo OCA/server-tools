@@ -140,7 +140,7 @@ class TestMethods(TransactionCase):
             'log_create': False,
             'log_write': False,
             'log_unlink': False,
-            'log_custom': True,
+            'log_custom_method': True,
             'custom_method_ids': [(0, 0, {
                 'name': 'copy',
                 'message': 'execute_copy',
