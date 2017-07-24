@@ -124,14 +124,13 @@ class TestMethods(TransactionCase):
         existing_audit_logs = self.env['auditlog.log'].search([])
         existing_audit_logs.unlink()
 
-        # Create account period to test
-        self.partner = self.env['res.partner'].create({
-            'name': 'Test User'
-        })
+        # Get partner to test
+        self.partner = self.env['res.partner'].search([], limit=1)
 
         self.partner_model = self.env['ir.model'].search([
             ('model', '=', 'res.partner')])
 
+        # Setup auditlog rules
         self.auditlog_rule = self.env['auditlog.rule'].create({
             'name': 'res.partner',
             'model_id': self.partner_model.id,
@@ -142,8 +141,8 @@ class TestMethods(TransactionCase):
             'log_unlink': False,
             'log_custom_method': True,
             'custom_method_ids': [(0, 0, {
-                'name': 'copy',
-                'message': 'execute_copy',
+                'name': 'onchange_type',
+                'message': 'onchange_type',
             })]
         })
 
@@ -159,12 +158,26 @@ class TestMethods(TransactionCase):
         self.auditlog_rule.subscribe()
 
     def test_02_copy_res_partner_logging(self):
-        self.partner.copy()
+        """ Copy partner and see if the action gets logged """
+        self.partner.onchange_type(False)
 
         logs = self.env['auditlog.log'].search([
             ('res_id', '=', self.partner.id),
             ('model_id', '=', self.partner_model.id),
-            ('method', '=', 'execute_copy')
+            ('method', '=', 'onchange_type')
+        ])
+
+        self.assertEqual(len(logs), 1)
+
+    def test_03_copy_res_partner_logging_old_api(self):
+        """ Perform the same test as 02 but with the old API """
+        self.registry('res.partner').onchange_type(
+            self.cr, self.uid, self.partner.id, False)
+
+        logs = self.env['auditlog.log'].search([
+            ('res_id', '=', self.partner.id),
+            ('model_id', '=', self.partner_model.id),
+            ('method', '=', 'onchange_type')
         ])
 
         self.assertEqual(len(logs), 1)
