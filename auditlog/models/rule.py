@@ -2,6 +2,8 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+from psycopg2 import ProgrammingError
 from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
 from openerp.exceptions import ValidationError
 
@@ -123,6 +125,14 @@ class AuditlogRule(models.Model):
         """Patch ORM methods of models defined in rules to log their calls."""
         updated = False
         model_cache = self.pool._auditlog_model_cache
+        try:
+            with self.env.cr.savepoint():
+                self.read()
+        except ProgrammingError:
+            logging.getLogger(__name__).error(
+                "Error reading auditlog rules. Logs will not be created. "
+                "Do you need to upgrade the auditlog module?", exc_info=True)
+            return False
         for rule in self:
             if rule.state != 'subscribed':
                 continue
