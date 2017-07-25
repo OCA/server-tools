@@ -13,10 +13,6 @@
     'depends': [
         'base_import',
     ],
-    'data': [
-    ],
-    'demo': [
-    ],
     'qweb': [
         'static/src/xml/base_import.xml',
     ],
