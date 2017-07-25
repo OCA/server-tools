@@ -2,12 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-PostgreSQL Trigram Search
-=========================
+===================================================
+Fuzzy search using the PostgreSQL trigram extension
+===================================================
 
-This addon provides the ability to create GIN or GiST indexes of char and text
-fields and also to use the search operator `%` in search domains. Currently
+This addon adds the new search operator `%` in search domains. Currently
 this module doesn't change the backend search or anything else. It provides
 only the possibilty to perfrom the fuzzy search for external addons.
 
@@ -15,11 +14,8 @@ only the possibilty to perfrom the fuzzy search for external addons.
 Installation
 ============
 
-#. The PostgreSQL extension ``pg_trgm`` should be available. In debian based
-   distribution you have to install the `postgresql-contrib` module.
-#. Install the ``pg_trgm`` extension to your database or give your postgresql
-   user the ``SUPERUSER`` right (this allows the odoo module to install the
-   extension to the database).
+#. The PostgreSQL extension ``pg_trgm`` should be available. See the README of
+   base_trigram_index.
 
 
 Configuration
@@ -27,9 +23,8 @@ Configuration
 
 If the odoo module is installed:
 
-#. You can define ``GIN`` and ``GiST`` indexes for `char` and `text` via
-   `Settings -> Database Structure -> Trigram Index`. The index name will
-   automatically created for new entries.
+#. You can define ``GIN`` and ``GiST`` indexes for `char` and `text` fields.
+   See the README of base_trigram_index.
 
 
 Usage
@@ -59,6 +54,7 @@ Usage
 
 For further questions read the Documentation of the
 `pg_trgm <https://www.postgresql.org/docs/current/static/pgtrgm.html>`_ module.
+
 
 Known issues / Roadmap
 ======================

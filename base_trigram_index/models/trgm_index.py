@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
-
-from openerp import SUPERUSER_ID, _, api, exceptions, fields, models
-
 from psycopg2.extensions import AsIs
+
+from openerp import SUPERUSER_ID, _, api, fields, models
+from openerp.exceptions import Warning as UserError
+
 
 _logger = logging.getLogger(__name__)
 
@@ -89,8 +90,7 @@ class TrgmIndex(models.Model):
     def _auto_init(self, cr, context=None):
         res = super(TrgmIndex, self)._auto_init(cr, context)
         if self._install_trgm_extension(cr, SUPERUSER_ID, context=context):
-            _logger.info('The pg_trgm is loaded in the database and the '
-                         'fuzzy search can be used.')
+            _logger.info('The pg_trgm is loaded in the database.')
         return res
 
     @api.model
@@ -119,7 +119,7 @@ class TrgmIndex(models.Model):
         self.ensure_one()
 
         if not self._install_trgm_extension():
-            raise exceptions.UserError(_(
+            raise UserError(_(
                 'The pg_trgm extension does not exists or cannot be '
                 'installed.'))
 
