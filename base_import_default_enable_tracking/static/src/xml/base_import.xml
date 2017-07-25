@@ -3,8 +3,8 @@
 
     <t t-extend="ImportView">
 
-        <t t-jquery="input#oe_import_tracking" t-operation="replace">
-            <input type="checkbox" id="oe_import_tracking" checked="true"/>
+        <t t-jquery="input#oe_import_tracking" t-operation="attributes">
+            <attribute name="checked">checked</attribute>
         </t>
 
     </t>
