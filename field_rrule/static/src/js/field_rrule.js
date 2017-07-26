@@ -16,7 +16,7 @@ openerp.field_rrule = function(instance)
         },
         set_value: function(val)
         {
-            var result = this._super(jQuery.extend([], val));
+            var result = this._super(jQuery.extend(true, [], val));
             _.each(this.get('value'), function(rule)
             {
                 rule.__id = _.uniqueId();
