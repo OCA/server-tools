@@ -4,7 +4,7 @@
 {
     "name": "Keychain",
     "summary": "Store accounts and credentials",
-    "version": "9.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://akretion.com/",
     "author": "Akretion, Odoo Community Association (OCA)",
