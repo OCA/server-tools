@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import datetime
 from psycopg2.extensions import AsIs
 from dateutil.rrule import MONTHLY, rrule
+from dateutil.tz import gettz
 from openerp import SUPERUSER_ID, fields, models
 from openerp.tests.common import TransactionCase
-from openerp.addons.field_rrule import FieldRRule
-from openerp.addons.field_rrule.field_rrule import SerializableRRuleSet
+from ..field_rrule import FieldRRule, SerializableRRuleSet
 
 
 class RRuleTest(models.TransientModel):
@@ -35,6 +36,8 @@ class RRuleTest(models.TransientModel):
         )))
     # also fiddle with an empty one
     rrule = FieldRRule()
+    # and the timezone aware version
+    rrule_with_tz = FieldRRule(stable_times=True)
 
 
 class TestFieldRrule(TransactionCase):
@@ -61,3 +64,65 @@ class TestFieldRrule(TransactionCase):
             fields.Datetime.from_string('2016-02-01 00:00:00')))
         self.assertTrue(record.rrule_with_default.after(
             fields.Datetime.from_string('2016-02-01 00:00:00'), inc=True))
+        record.env.user.write({'tz': 'Europe/Amsterdam'})
+        record.rrule_with_tz = SerializableRRuleSet(
+            rrule(
+                dtstart=fields.Datetime.from_string('2017-02-02 23:00:00'),
+                interval=1,
+                freq=MONTHLY,
+                count=2,
+                bymonthday=[1],
+            )
+        )
+        # this rruleset should receive Amsterdam as timezone, and should yield
+        # different naive utc times depending on dst (NL switches in March)
+        self.assertTrue(record.rrule_with_tz.tz)
+        self.assertEqual(
+            list(record.rrule_with_tz()),
+            [
+                datetime.datetime(2017, 2, 28, 23, 0),
+                datetime.datetime(2017, 3, 31, 22, 0),
+            ]
+        )
+        # doing the same with a timezone-aware datetime should work too
+        record.rrule_with_tz = SerializableRRuleSet(
+            rrule(
+                dtstart=fields.Datetime.from_string('2017-02-03 00:00:00')
+                .replace(tzinfo=gettz('Europe/Amsterdam')),
+                interval=1,
+                freq=MONTHLY,
+                count=2,
+                bymonthday=[1],
+            )
+        )
+        self.assertTrue(record.rrule_with_tz.tz)
+        self.assertEqual(
+            list(record.rrule_with_tz()),
+            [
+                datetime.datetime(2017, 2, 28, 23, 0),
+                datetime.datetime(2017, 3, 31, 22, 0),
+            ]
+        )
+        # and the same again with the json representation
+        record.rrule_with_tz = [
+            {
+                'type': 'rrule',
+                'dtstart': '2017-02-02 23:00:00',
+                'interval': 1,
+                'freq': MONTHLY,
+                'count': 2,
+                'bymonthday': [1],
+            },
+            {
+                'type': 'tz',
+                'tz': 'Europe/Amsterdam',
+            }
+        ]
+        self.assertTrue(record.rrule_with_tz.tz)
+        self.assertEqual(
+            list(record.rrule_with_tz()),
+            [
+                datetime.datetime(2017, 2, 28, 23, 0),
+                datetime.datetime(2017, 3, 31, 22, 0),
+            ]
+        )
