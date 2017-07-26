@@ -1,33 +1,26 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :target: http://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ===============================================
 Group-based permissions for importing CSV files 
 ===============================================
 
-This module makes importing data from CSV files optional for each user,
+This module makes importing data from CSV and Excel files optional for each user,
 allowing it only for those users belonging to a specific group.
 Any other user not belonging to such group will not have the "Import" button
 available anywhere. The action will even be blocked internally (to prevent
 XMLRPC access, for example).
 
-
 Usage
 =====
 
-To allow a user to import data from CSV files, just follow this steps:
+To allow a user to import data from CSV and Excel files, just follow this steps:
 
 * Go to *Settings/Users/Users* menu.
 * Enter the user you want to allow.
 * Within the "Access Rights" tab and "Technical Settings" group, check the
-  option "Allow importing CSV files".
-
-
-For further information, please visit:
-
-- https://www.odoo.com/forum/help-1
-
+  option "Allow importing CSV/Excel files".
 
 Bug Tracker
 ===========
@@ -45,6 +38,8 @@ Contributors
 
 * Alejandro Santana <alejandrosantana@anubia.es>
 * Antonio Esposito <a.esposito@onestein.nl>
+
+Do not contact contributors directly about support or help with technical issues.
 
 Maintainer
 ----------
