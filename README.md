@@ -32,6 +32,7 @@ addon | version | summary
 [base_external_dbsource_odbc](base_external_dbsource_odbc/) | 10.0.1.0.0 | External Database Source - ODBC
 [base_external_dbsource_oracle](base_external_dbsource_oracle/) | 10.0.1.0.0 | External Database Source - Oracle
 [base_external_dbsource_sqlite](base_external_dbsource_sqlite/) | 10.0.1.0.0 | External Database Source - SQLite
+[base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.0.0 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
