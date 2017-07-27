@@ -58,3 +58,8 @@ class TestResUsers(TransactionCase):
                 mk.side_effect = ['Fail', expect]
                 user_id.get_gravatar_image()
                 write_mk.assert_called_once_with({'image': expect})
+
+    def test_update_gravatars(self, ):
+        """Tests cron"""
+        result = self.model_obj._update_gravatars()
+        self.assertEquals(True, result)
