@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * subscription_action
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-26 13:31+0000\n"
+"PO-Revision-Date: 2017-07-26 13:31+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: subscription_action
+#: model:ir.model.fields,help:subscription_action.field_subscription_subscription_server_action_id
+msgid "If you need to run multiple actions, use an umbrella action"
+msgstr ""
+
+#. module: subscription_action
+#: model:ir.model.fields,field_description:subscription_action.field_subscription_subscription_model_id
+msgid "Model id"
+msgstr "Model id"
+
+#. module: subscription_action
+#: model:ir.model.fields,field_description:subscription_action.field_subscription_subscription_server_action_id
+msgid "Run action"
+msgstr ""
+
+#. module: subscription_action
+#: model:ir.model,name:subscription_action.model_subscription_subscription
+msgid "Subscription"
+msgstr ""

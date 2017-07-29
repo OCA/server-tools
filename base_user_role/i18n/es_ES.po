@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Fernando Lara <gennesis45@gmail.com>, 2017
+# Daniel <dani_dca@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 10:39+0000\n"
-"PO-Revision-Date: 2017-02-16 10:39+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-07-26 13:30+0000\n"
+"PO-Revision-Date: 2017-07-26 13:30+0000\n"
+"Last-Translator: Daniel <dani_dca@hotmail.com>, 2017\n"
 "Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,7 +135,7 @@ msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1558
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1514
 msgid "Role lines"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_rule_groups
 msgid "Rules"
-msgstr ""
+msgstr "Reglas"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_share

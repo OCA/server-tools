@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Sébastien Alix <seb@usr-src.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:49+0000\n"
-"PO-Revision-Date: 2017-03-03 03:49+0000\n"
-"Last-Translator: Sébastien Alix <seb@usr-src.org>, 2017\n"
+"POT-Creation-Date: 2017-07-26 13:31+0000\n"
+"PO-Revision-Date: 2017-07-26 13:31+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -376,7 +375,7 @@ msgstr "Éléments du menu"
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Module"
-msgstr ""
+msgstr "Module"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_human_name
