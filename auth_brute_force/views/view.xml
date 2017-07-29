@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 GRAP -Sylvain LE GAL
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<!-- Model: res.authentication.attempt -->
+        <record id="view_res_authentication_attempt_tree" model="ir.ui.view">
+            <field name="model">res.authentication.attempt</field>
+            <field name="arch" type="xml">
+                <tree colors="orange: result == 'failed';red: result == 'banned'">
+                    <field name="attempt_date" />
+                    <field name="remote" />
+                    <field name="login" />
+                    <field name="result" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_authentication_attempt_graph" model="ir.ui.view">
+            <field name="model">res.authentication.attempt</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="attempt_date" />
+                    <field name="result" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_res_authentication_attempt_search" model="ir.ui.view">
+            <field name="model">res.authentication.attempt</field>
+            <field name="arch" type="xml">
+                <search>
+                   <field name="login"/>
+                   <filter name="filter_no_success" string="Without Success" domain="[('result','!=', 'successfull')]"/>
+                   <filter name="filter_banned" string="Banned" domain="[('result','=', 'banned')]"/>
+                   <filter name="filter_failed" string="Failed" domain="[('result','=', 'failed')]"/>
+                   <filter name="filter_successful" string="Successful" domain="[('result','=', 'successfull')]"/>
+                </search>
+            </field>
+        </record>
+
+<!-- Model: res.banned.remote -->
+        <record id="view_res_banned_remote_tree" model="ir.ui.view">
+            <field name="model">res.banned.remote</field>
+            <field name="arch" type="xml">
+                <tree colors="gray: active==False">
+                    <field name="remote" />
+                    <field name="ban_date" />
+                    <field name="active" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_banned_remote_form" model="ir.ui.view">
+            <field name="model">res.banned.remote</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="remote" />
+                            <field name="ban_date" />
+                            <field name="active" />
+                            <field name="description" />
+                            <field name="attempt_ids" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_res_banned_remote_search" model="ir.ui.view">
+            <field name="model">res.banned.remote</field>
+            <field name="arch" type="xml">
+                <search>
+                   <field name="remote"/>
+                </search>
+            </field>
+        </record>
+
+</odoo>
