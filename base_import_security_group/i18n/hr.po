@@ -3,20 +3,20 @@
 # * base_import_security_group
 # 
 # Translators:
-# Fernando Lara <gennesis45@gmail.com>, 2017
+# Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-26 11:57+0000\n"
 "PO-Revision-Date: 2017-07-26 11:57+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_import_security_group
 #: model:res.groups,name:base_import_security_group.group_import_csv
@@ -26,4 +26,4 @@ msgstr ""
 #. module: base_import_security_group
 #: model:ir.model,name:base_import_security_group.model_base
 msgid "base"
-msgstr "base de datos"
+msgstr "base"
