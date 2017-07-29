@@ -3,6 +3,7 @@
 # * module_uninstall_check
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
@@ -11,17 +12,17 @@ msgstr ""
 "POT-Creation-Date: 2017-07-26 03:00+0000\n"
 "PO-Revision-Date: 2017-07-26 03:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Preklic"
 
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall,module_id:0
@@ -29,66 +30,66 @@ msgid ""
 "Choose a module. The wizard will display all the models and fields linked to that module, that will be dropped, if selected module is uninstalled.\n"
 " Note : Only Non Transient items will be displayed"
 msgstr ""
-"Choisissez un module. L'assistant va afficher tous les modèles et tous les champs associés à ce module, et qui seront supprimés, si le module sélectionné est désinstallé.\n"
-" Note: Seulement les éléments persistants en base de données seront affichés"
+"Izberite modul. Čarovnik bo prikazal vse modele in polja, ki so povezani s tem modulom in ki bodo opuščeni, če se omenjeni modul odstrani.\n"
+" Opomba : Prikazani bodo le prehodni predmeti"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "Composite Type"
-msgstr ""
+msgstr "Tip kompozita"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,create_uid:0
 #: field:wizard.module.uninstall.line,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Ustvaril"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,create_date:0
 #: field:wizard.module.uninstall.line,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Ustvarjeno"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,db_type:0
 msgid "Db type"
-msgstr ""
+msgstr "Tip pod. baze"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,display_name:0
 #: field:wizard.module.uninstall.line,display_name:0
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Prikazni naziv"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,line_type:0
 msgid "Field"
-msgstr "Champ"
+msgstr "Polje"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,field_model_name:0
 msgid "Field Model Name"
-msgstr "Nom du modèle du champ"
+msgstr "Naziv modela polja"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,field_name:0
 msgid "Field Name"
-msgstr "Nom du champ"
+msgstr "Naziv polja"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,field_ttype:0
 msgid "Field Type"
-msgstr "Type du champ"
+msgstr "Tip polja"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,field_id:0
 msgid "Field id"
-msgstr "Field id"
+msgstr "ID polja"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,field_line_ids:0
 msgid "Field line ids"
-msgstr "Field line ids"
+msgstr "ID-ji postavk polj"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,id:0 field:wizard.module.uninstall.line,id:0
@@ -98,120 +99,120 @@ msgstr "ID"
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_ids:0
 msgid "Impacted modules"
-msgstr "Modules impactés"
+msgstr "Prizadeti moduli"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_qty:0
 msgid "Impacted modules Quantity"
-msgstr "Nombre de modules impactés"
+msgstr "Količina prizadetih modulov"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "Index"
-msgstr ""
+msgstr "Indeks"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,index_size:0
 msgid "Indexes Size (KB)"
-msgstr ""
+msgstr "Velikost indeksa (KB)"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,__last_update:0
 #: field:wizard.module.uninstall.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Zadnjič spremenjeno"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,write_uid:0
 #: field:wizard.module.uninstall.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Zadnji posodobil"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,write_date:0
 #: field:wizard.module.uninstall.line,write_date:0
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr "Zadnjič posodobljeno"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,line_type:0
 msgid "Line type"
-msgstr ""
+msgstr "Tip postavke"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,line_type:0
 msgid "Model"
-msgstr "Modèle"
+msgstr "Model"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,model_name:0
 msgid "Model Name"
-msgstr "Nom du modèle"
+msgstr "Naziv modela"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,model_id:0
 msgid "Model id"
-msgstr "Model id"
+msgstr "ID modela"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,model_line_ids:0
 msgid "Model line ids"
-msgstr "Model line ids"
+msgstr "ID-ji postavk modela"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_id:0
 msgid "Module"
-msgstr "Module"
+msgstr "Modul"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_name:0
 msgid "Module Name"
-msgstr "Nom du module"
+msgstr "Naziv modula"
 
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall,module_ids:0
 msgid "Modules list that will be uninstalled by dependency"
-msgstr "Liste des modules qui seront désinstallés par dépendance"
+msgstr "Seznam modulov, ki bodo odstranjeni kot odvisni"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "Ordinary Table"
-msgstr ""
+msgstr "Običajna tabela"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "Related Fields"
-msgstr "Champs associés"
+msgstr "Povezana polja"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "Related Models"
-msgstr "Modèle associés"
+msgstr "Povezani modeli"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,model_row_qty:0
 msgid "Rows Quantity"
-msgstr ""
+msgstr "Količina vrstic"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "Sequence"
-msgstr "Séquence"
+msgstr "Zaporedje"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "System Update"
-msgstr "System Update"
+msgstr "Posodobitev sistema"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "TOAST table"
-msgstr ""
+msgstr "TOAST tabela"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,table_size:0
 msgid "Table Size (KB)"
-msgstr ""
+msgstr "Velikost tabele (KB)"
 
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall.line,model_row_qty:0
@@ -221,6 +222,10 @@ msgid ""
 "\n"
 " 'REINDEX database your_database_name;'"
 msgstr ""
+"Približna vrednost števila zapisov v bazi glede na PostgreSQL stolpec 'reltuples'.\n"
+" Za natančnejšo vrednost bi morali re-indeksirati podatkovno bazo\n"
+"\n"
+" 'REINDEX database naziv_vaše_baze;'"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
@@ -228,36 +233,36 @@ msgid ""
 "The following models and fields will be dropped if uninstallation of the "
 "selected module is done"
 msgstr ""
-"Les modèles et les champs suivants seront supprimés si la désinstallation du"
-" module sélectionné est réalisé"
+"Naslednji modeli in polja bodo opuščeni v primeru odstranitve izbranega "
+"modula"
 
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "Total"
-msgstr "Total"
+msgstr "Skupaj"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,db_size:0
 msgid "Total DB Size (KB)"
-msgstr ""
+msgstr "Skupna velikost pod. baze (KB)"
 
 #. module: module_uninstall_check
 #: model:ir.actions.act_window,name:module_uninstall_check.wizard_module_uninstall_action
 #: view:ir.module.module:module_uninstall_check.ir_module_module_view_form
 msgid "Uninstallation Impact"
-msgstr "Impact de la désinstallation"
+msgstr "Vpliv odstranitve"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "Unknown Type"
-msgstr ""
+msgstr "Neznani tip"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,wizard_id:0
 msgid "Wizard id"
-msgstr "Wizard id"
+msgstr "ID čarovnika"
 
 #. module: module_uninstall_check
 #: selection:wizard.module.uninstall.line,db_type:0
 msgid "view"
-msgstr ""
+msgstr "prikaz"

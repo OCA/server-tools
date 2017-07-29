@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2017-03-13 12:51+0000\n"
+"POT-Creation-Date: 2017-07-26 02:59+0000\n"
+"PO-Revision-Date: 2017-07-24 07:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -304,7 +304,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_rule_tree
 msgid "Rules"
-msgstr ""
+msgstr "Reglas"
 
 #. module: auditlog
 #: help:auditlog.rule,model_id:0
