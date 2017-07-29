@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import random
 import string
 from openerp import _, api, fields, models
-from openerp.exceptions import AccessDenied, ValidationError
+from openerp.exceptions import AccessDenied, ValidationError, except_orm
 from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 
 
@@ -88,7 +88,7 @@ class ResUsers(models.Model):
     def _user_from_mfa_login_token_validate(self):
         try:
             self.ensure_one()
-        except ValueError:
+        except except_orm:
             raise MfaTokenInvalidError(_(
                 'Your MFA login token is not valid. Please try again.'
             ))

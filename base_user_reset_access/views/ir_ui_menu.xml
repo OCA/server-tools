@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	   <record id="ir_ui_menu_view_form" model="ir.ui.view">
+            <field name="name">Ir Ui Menu : Custom Group ID</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='groups_id']" position="before">
+                    <group>
+                        <field name="custom_group_id"/>
+                    </group>
+                </xpath>
+            </field>
+       </record>
+    </data>
+</openerp>
+

@@ -35,10 +35,9 @@ class AuthTotp(Home):
         # since there may be no user logged in at the start of the request)
         user_model_sudo = request.env['res.users'].sudo()
         config_model_sudo = user_model_sudo.env['ir.config_parameter']
-
         response = super(AuthTotp, self).web_login(*args, **kwargs)
 
-        if not request.params.get('login_success'):
+        if request.httprequest.method == 'GET' and not request.session.uid:
             return response
 
         user = user_model_sudo.browse(request.uid)
@@ -55,7 +54,6 @@ class AuthTotp(Home):
 
         user.generate_mfa_login_token()
         request.session.logout(keep_db=True)
-        request.params['login_success'] = False
         return http.local_redirect(
             '/auth_totp/login',
             query={
@@ -134,12 +132,18 @@ class AuthTotp(Home):
                 temp_user.generate_mfa_login_token(60 * 24 * 30)
                 token = temp_user.mfa_login_token
         request.session.authenticate(request.db, user.login, token, user.id)
-        request.params['login_success'] = True
 
         redirect = request.params.get('redirect')
         if not redirect:
             redirect = '/web'
-        response = Response(http.redirect_with_hash(redirect))
+        headers = [
+            ('Content-Type', 'text/html;charset=utf8')
+        ]
+        response = Response(
+            http.redirect_with_hash(redirect),
+            headers=headers,
+            status=500
+        )
 
         if request.params.get('remember_device'):
             device = device_model_sudo.create({'user_id': user.id})

@@ -50,7 +50,8 @@ class TestAuthTotp(TransactionCase):
         '''Should return wrapped result of super if no password log in'''
         test_response = 'Test Response'
         super_mock.return_value = test_response
-        request_mock.params = {}
+        request_mock.env = self.env
+        request_mock.uid = False
 
         self.assertEqual(self.test_controller.web_login().data, test_response)
 
@@ -59,7 +60,6 @@ class TestAuthTotp(TransactionCase):
         '''Should return wrapped result of super if user did not enable MFA'''
         test_response = 'Test Response'
         super_mock.return_value = test_response
-        request_mock.params = {'login_success': True}
         request_mock.env = self.env
         request_mock.uid = self.test_user.id
         self.test_user.mfa_enabled = False
@@ -72,7 +72,6 @@ class TestAuthTotp(TransactionCase):
         '''Should return wrapped result of super if valid device cookie'''
         test_response = 'Test Response'
         super_mock.return_value = test_response
-        request_mock.params = {'login_success': True}
         request_mock.env = self.env
         request_mock.uid = self.test_user.id
 

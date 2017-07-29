@@ -5,7 +5,7 @@
 from datetime import datetime
 import mock
 import string
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, except_orm
 from openerp.tests.common import TransactionCase
 from ..exceptions import (
     MfaTokenError,
@@ -192,9 +192,9 @@ class TestResUsers(TransactionCase):
         test_user_3 = self.env.ref('base.public_user')
         test_set = self.test_user + test_user_3
 
-        with self.assertRaisesRegexp(ValueError, 'Expected singleton'):
+        with self.assertRaisesRegexp(except_orm, 'Expected singleton'):
             test_user_2.validate_mfa_confirmation_code('Test Code')
-        with self.assertRaisesRegexp(ValueError, 'Expected singleton'):
+        with self.assertRaisesRegexp(except_orm, 'Expected singleton'):
             test_set.validate_mfa_confirmation_code('Test Code')
 
     @mock.patch.object(ResUsersAuthenticator, 'validate_conf_code')
