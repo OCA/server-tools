@@ -20,6 +20,7 @@ addon | version | summary
 --- | --- | ---
 [attachment_base_synchronize](attachment_base_synchronize/) | 10.0.1.0.0 | Attachment Base Synchronize
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
+[auth_brute_force](auth_brute_force/) | 10.0.1.0.0 | Tracks Authentication Attempts and Prevents Brute-force Attacks module
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
