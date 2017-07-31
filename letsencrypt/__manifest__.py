@@ -3,9 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Let's encrypt",
-    "version": "9.0.1.0.0",
+    "version": "1.0.0",
     "author": "Therp BV,"
               "Tecnativa,"
+              "VK Data ApS,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
@@ -19,7 +20,7 @@
         "demo/ir_cron.xml",
     ],
     "post_init_hook": 'post_init_hook',
-    'installable': False,
+    'installable': True,
     "external_dependencies": {
         'bin': [
             'openssl',
