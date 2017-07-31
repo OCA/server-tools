@@ -3,35 +3,29 @@
 # * auth_admin_passkey
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
-# Giacomo <giacomo.spettoli@gmail.com>, 2015
-# Hotellook, 2014
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
-# Miku Laitinen <miku.laitinen@gmail.com>, 2015
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2015-2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 09:58+0000\n"
-"PO-Revision-Date: 2017-01-10 14:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"POT-Creation-Date: 2016-03-17 15:36+0000\n"
+"PO-Revision-Date: 2016-03-13 08:47+0000\n"
+"Last-Translator: Paolo Valier\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:66
+#: code:addons/auth_admin_passkey/model/res_users.py:88
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr "<pre>Benutzer mit Anmeldename '%s' hat das gleiche Passwort wie Sie.</pre>"
+msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:41
+#: code:addons/auth_admin_passkey/model/res_users.py:64
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -42,50 +36,50 @@ msgid ""
 "\n"
 "- Login date : %s\n"
 "\n"
-msgstr "Admin-Benutzer hat seinen PassKey verwendet, um sich als '%s' anzumelden.\n\n\n\nTechnische Information folgt : \n\n- Login-Datum: %s\n\n"
+msgstr ""
 
 #. module: auth_admin_passkey
 #: view:base.config.settings:auth_admin_passkey.view_res_config_settings
 msgid "Passkey"
-msgstr "PassKey"
+msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:38
+#: code:addons/auth_admin_passkey/model/res_users.py:61
 #, python-format
 msgid "Passkey used"
-msgstr "Verwendeter PassKey"
+msgstr ""
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid "Send email to admin user."
-msgstr "Sende Email an Admin-Benutzer."
+msgstr "Invia email all'utente amministratore."
 
 #. module: auth_admin_passkey
 #: field:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid "Send email to user."
-msgstr "Sende Email an Benutzer"
+msgstr "Invia email all'utente."
 
 #. module: auth_admin_passkey
 #: model:ir.model,name:auth_admin_passkey.model_res_users
 msgid "Users"
-msgstr "Benutzer"
+msgstr "Utenti"
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_user:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the account user."
-msgstr "Wenn der Administrator sein Passwort verwendet, um sich mit anderem Konto anzumelden, sendet das System dem Kontoinhaber eine Email."
+msgstr ""
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the admin user."
-msgstr "Wenn der Administrator sein Passwort verwendet, um sich als anderer Benutzer anzumelden, wird Oddoeine entsprechende Email an den Admin-Nutzer senden."
+msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:64
+#: code:addons/auth_admin_passkey/model/res_users.py:86
 #, python-format
 msgid "[WARNING] Odoo Security Risk"
-msgstr "[Warnung] Odoo Sicherheitsrisiko"
+msgstr ""
