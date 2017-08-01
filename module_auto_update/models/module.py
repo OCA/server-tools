@@ -4,8 +4,8 @@
 
 import logging
 
-from odoo import api, fields, models
-from odoo.modules.module import get_module_path
+from openerp import api, fields, models
+from openerp.modules.module import get_module_path
 
 _logger = logging.getLogger(__name__)
 try:
@@ -30,11 +30,15 @@ class Module(models.Model):
         ).split(",")
 
         for r in self:
-            r.checksum_dir = dirhash(
-                get_module_path(r.name),
-                'sha1',
-                excluded_extensions=exclude,
-            )
+            try:
+                r.checksum_dir = dirhash(
+                    get_module_path(r.name),
+                    'sha1',
+                    excluded_extensions=exclude,
+                )
+            except TypeError:
+                # Module path not found
+                pass
 
     def _store_checksum_installed(self, vals):
         if self.env.context.get('retain_checksum_installed'):
@@ -48,17 +52,19 @@ class Module(models.Model):
 
     @api.multi
     def button_uninstall_cancel(self):
-        return super(
-            Module,
-            self.with_context(retain_checksum_installed=True),
-        ).button_uninstall_cancel()
+        # TODO Use super() like in v10 after pull is merged
+        # HACK https://github.com/odoo/odoo/pull/18597
+        return self.with_context(retain_checksum_installed=True).write({
+            'state': 'installed',
+        })
 
     @api.multi
     def button_upgrade_cancel(self):
-        return super(
-            Module,
-            self.with_context(retain_checksum_installed=True),
-        ).button_upgrade_cancel()
+        # TODO Use super() like in v10 after pull is merged
+        # HACK https://github.com/odoo/odoo/pull/18597
+        return self.with_context(retain_checksum_installed=True).write({
+            'state': 'installed',
+        })
 
     @api.model
     def create(self, vals):

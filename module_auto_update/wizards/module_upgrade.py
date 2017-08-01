@@ -2,7 +2,7 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import api, models
+from openerp import api, models
 
 
 class ModuleUpgrade(models.TransientModel):
@@ -18,4 +18,4 @@ class ModuleUpgrade(models.TransientModel):
     @api.multi
     def upgrade_module(self):
         self.env['ir.module.module'].update_list()
-        super(ModuleUpgrade, self).upgrade_module()
+        return super(ModuleUpgrade, self).upgrade_module()

@@ -34,7 +34,7 @@ To perform upgrades manually, click the "Apply Scheduled Upgrades" menu item in 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/9.0
 
 Bug Tracker
 ===========
@@ -57,6 +57,7 @@ Contributors
 
 * Brent Hughes <brent.hughes@laslabs.com>
 * Juan José Scarafía <jjs@adhoc.com.ar>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Do not contact contributors directly about support or help with technical issues.
 

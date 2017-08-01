@@ -4,9 +4,9 @@
 
 import mock
 
-from odoo.modules import get_module_path
-from odoo.modules.registry import Registry
-from odoo.tests.common import TransactionCase
+from openerp.modules import get_module_path
+from openerp.modules.registry import RegistryManager
+from openerp.tests.common import TransactionCase
 
 
 class TestModuleUpgrade(TransactionCase):
@@ -29,7 +29,7 @@ class TestModuleUpgrade(TransactionCase):
             'Upgrade cancellation does not preserve checksum_installed',
         )
 
-    @mock.patch.object(Registry, 'new')
+    @mock.patch.object(RegistryManager, 'new')
     def test_upgrade_module(self, new_mock):
         """It should call update_list method on ir.module.module"""
         update_list_mock = mock.MagicMock()
