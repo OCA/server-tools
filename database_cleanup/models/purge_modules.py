@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.modules.registry import RegistryManager
 from odoo.modules.module import get_module_path
 from odoo.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
@@ -41,25 +40,19 @@ class CleanupPurgeLineModule(models.TransientModel):
         Uninstall modules upon manual confirmation, then reload
         the database.
         """
-        if self:
-            objs = self
-        else:
-            objs = self.env['cleanup.purge.line.module']\
-                .browse(self._context.get('active_ids'))
-        module_names = objs.filtered(lambda x: not x.purged).mapped('name')
+        module_names = self.filtered(lambda x: not x.purged).mapped('name')
         modules = self.env['ir.module.module'].search([
             ('name', 'in', module_names)
         ])
         if not modules:
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
-        modules.button_uninstall()
-        # we need this commit because reloading the registry would roll back
-        # our changes
-        self.env.cr.commit()  # pylint: disable=invalid-commit
-        RegistryManager.new(self.env.cr.dbname, update_module=True)
+        modules.filtered(
+            lambda x: x.state not in ('uninstallable', 'uninstalled')
+        ).button_immediate_uninstall()
+        modules.refresh()
         modules.unlink()
-        return objs.write({'purged': True})
+        return self.write({'purged': True})
 
 
 class CleanupPurgeWizardModule(models.TransientModel):
