@@ -12,11 +12,10 @@ odoo.define('base_export_security', function(require){
         render_sidebar: function($node) {
             var exportLabel = core._t('Export');
             var users = new Model('res.users');
-            var res = this._super.apply(this, arguments);
+            var res = this._super($node);
 
-            if (this.sidebar && this.sidebar.items.hasOwnProperty('other')) {
-                users.call('has_group', ['base_export_security.export_group'])
-                .then(function(result){
+            if (this.sidebar && Object.prototype.hasOwnProperty.call(this.sidebar.items, 'other')) {
+                users.call('has_group', ['base_export_security.export_group']).then(function(result){
                     if(!result){
                         var filteredItems = this.sidebar.items.other.filter(
                             function(item){
@@ -30,7 +29,7 @@ odoo.define('base_export_security', function(require){
             }
 
             return res;
-        },
+        }
     });
 
 });

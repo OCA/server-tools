@@ -45,8 +45,7 @@ odoo.define_section('base_export_security',
         var fields_view = data_manager._postprocess_fvg(fields_view_get());
         var listView = new ListView({}, dataset, fields_view, {sidebar: true});
 
-        listView.appendTo($fix)
-        .then(listView.render_sidebar($fix));
+        listView.appendTo($fix).then(listView.render_sidebar($fix));
     }
 
     test('It should display the Export menu item to authorized users',
