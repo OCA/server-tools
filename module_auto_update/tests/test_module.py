@@ -7,8 +7,8 @@ import tempfile
 
 import mock
 
-from odoo.modules import get_module_path
-from odoo.tests.common import TransactionCase
+from openerp.modules import get_module_path
+from openerp.tests.common import TransactionCase
 
 from .. import post_init_hook
 
@@ -18,7 +18,7 @@ try:
 except ImportError:
     _logger.debug('Cannot `import checksumdir`.')
 
-model = 'odoo.addons.module_auto_update.models.module'
+model = 'openerp.addons.module_auto_update.models.module'
 
 
 class TestModule(TransactionCase):
@@ -170,9 +170,11 @@ class TestModule(TransactionCase):
             'List update does not mark upgradeable modules "to upgrade"',
         )
 
-    def test_update_list_only_changes_installed(self):
+    @mock.patch('%s.get_module_path' % model)
+    def test_update_list_only_changes_installed(self, get_module_path_mock):
         """It should not change the state of a module with a former state
         other than 'installed' to 'to upgrade'"""
+        get_module_path_mock.return_value = self.own_dir_path
         vals = {
             'name': 'module_auto_update_test_module',
             'state': 'uninstalled',
