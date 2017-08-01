@@ -4,6 +4,7 @@
 
 import mock
 
+from odoo import _
 from odoo.exceptions import AccessError
 from odoo.tests.common import HttpCase, TransactionCase
 
@@ -42,7 +43,7 @@ class TestExport(TransactionCase):
 
     def test_log_export(self):
         """It should create a new Export record with correct data"""
-        log = self.env['export'].sudo(self.authorized_user).log_export(
+        log = self.env['export.event'].sudo(self.authorized_user).log_export(
             self.recordset,
             self.field_names,
         )
@@ -55,36 +56,40 @@ class TestExport(TransactionCase):
     def test_log_export_posts_notification(self):
         """It should call post_notification method"""
         post_notification_mock = mock.MagicMock()
-        self.env['export']._patch_method(
+        self.env['export.event']._patch_method(
             'post_notification',
             post_notification_mock,
         )
-        self.env['export'].sudo(self.authorized_user).log_export(
+        self.env['export.event'].sudo(self.authorized_user).log_export(
             self.recordset,
             self.field_names,
         )
         post_notification_mock.assert_called_once_with()
-        self.env['export']._revert_method('post_notification')
+        self.env['export.event']._revert_method('post_notification')
 
     def test_post_notification(self):
         """It should post a notification with appropriate data
         to the #data export channel"""
-        export = self.env['export'].create({
+        export = self.env['export.event'].create({
             'model_id': self.model.id,
             'field_ids': [(4, self.fields.ids)],
             'record_ids': [(4, self.records.ids)],
             'user_id': self.authorized_user.id,
         })
         message = export.sudo().post_notification()
-        records = len(self.records.ids)
-        model = self.model.name
         field_labels = ', '.join(
             self.fields.sorted().mapped('field_description'),
         )
-        message_body = (
-            '<p>{} <b>{}</b> records exported by <b>{}</b>.<br><b>Fields '
-            'exported:</b> {}</p>'
-        ).format(records, model, self.authorized_user.name, field_labels)
+        message_data = {
+            'records': len(self.records.ids),
+            'model': self.model.name,
+            'user': self.authorized_user.name,
+            'fields': field_labels,
+        }
+        message_body = _(
+            '<p>%(records)d <b>%(model)s</b> records exported by <b>%(user)s'
+            '</b>.<br><b>Fields exported:</b> %(fields)s</p>'
+        ) % message_data
         self.assertEqual(
             [message.body, message.message_type, message.model],
             [message_body, 'notification', 'mail.channel'],
@@ -101,11 +106,11 @@ class TestExport(TransactionCase):
     def test_export_data_calls_log_export(self):
         """It should call log_export if user has export rights"""
         log_export_mock = mock.MagicMock()
-        self.env['export']._patch_method('log_export', log_export_mock)
+        self.env['export.event']._patch_method('log_export', log_export_mock)
         model = self.env[self.model_name]
         model.sudo(self.authorized_user).export_data(self.field_names)
         log_export_mock.assert_called_once_with(model, self.field_names)
-        self.env['export']._revert_method('log_export')
+        self.env['export.event']._revert_method('log_export')
 
 
 class TestJS(HttpCase):
