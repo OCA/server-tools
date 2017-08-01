@@ -10,11 +10,9 @@ class IrModel(models.Model):
     _inherit = 'ir.model'
 
     def _drop_table(self):
-        # Allow to skip this step during model unlink
-        # The super method crashes if the model cannot be instantiated
-        if self.env.context.get('no_drop_table'):
-            return True
-        return super(IrModel, self)._drop_table()
+        """this function crashes for undefined models"""
+        existing_model_ids = self.filtered(lambda x: x.model in self.env)
+        return super(IrModel, existing_model_ids)._drop_table()
 
     @api.depends()
     def _inherited_models(self):
@@ -28,11 +26,9 @@ class IrModelFields(models.Model):
 
     @api.multi
     def _prepare_update(self):
-        # Allow to skip this step during model unlink
-        # The super method crashes if the model cannot be instantiated
-        if self.env.context.get('no_prepare_update'):
-            return True
-        return super(IrModelFields, self)._prepare_update()
+        """this function crashes for undefined models"""
+        existing = self.filtered(lambda x: x.model in self.env)
+        return super(IrModelFields, existing)._prepare_update()
 
 
 class CleanupPurgeLineModel(models.TransientModel):
@@ -50,9 +46,7 @@ class CleanupPurgeLineModel(models.TransientModel):
         """
         context_flags = {
             MODULE_UNINSTALL_FLAG: True,
-            'no_drop_table': True,
             'purge': True,
-            'no_prepare_update': True,
         }
 
         if self:
