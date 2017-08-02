@@ -15,7 +15,7 @@ class ModuleUpgrade(models.TransientModel):
         upgradeable_modules = installed_modules.filtered(
             lambda r: r.checksum_dir != r.checksum_installed,
         )
-        upgradeable_modules.write({'state': "to upgrade"})
+        upgradeable_modules.button_upgrade()
         return super(ModuleUpgrade, self).get_module_list()
 
     @api.multi
