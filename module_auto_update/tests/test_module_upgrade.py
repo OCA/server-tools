@@ -31,12 +31,14 @@ class TestModuleUpgrade(TransactionCase):
 
     @mock.patch.object(RegistryManager, 'new')
     def test_upgrade_module(self, new_mock):
-        """It should call update_list method on ir.module.module"""
-        update_list_mock = mock.MagicMock()
-        self.env['ir.module.module']._patch_method(
-            'update_list',
-            update_list_mock,
-        )
-        self.env['base.module.upgrade'].upgrade_module()
-        update_list_mock.assert_called_once_with()
-        self.env['ir.module.module']._revert_method('update_list')
+        """Calls get_module_list when upgrading in api.model mode"""
+        get_module_list_mock = mock.MagicMock()
+        try:
+            self.env['base.module.upgrade']._patch_method(
+                'get_module_list',
+                get_module_list_mock,
+            )
+            self.env['base.module.upgrade'].upgrade_module()
+            get_module_list_mock.assert_called_once_with()
+        finally:
+            self.env['base.module.upgrade']._revert_method('get_module_list')
