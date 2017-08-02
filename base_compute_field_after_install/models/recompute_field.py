@@ -6,6 +6,7 @@
 
 from openerp import api, fields, models
 from openerp.exceptions import Warning as UserError
+from openerp.tools.translate import _
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -32,6 +33,7 @@ class RecomputeField(models.Model):
 
     def run(self):
         for task in self:
+            cursor = self.env.cr
             offset = 0
             model = self.env[task.model]
             if task.last_id:
@@ -55,13 +57,14 @@ class RecomputeField(models.Model):
                 records._recompute_todo(field)
                 records.recompute()
                 task.last_id = records[-1].id
-                self.env.cr.commit()
+                cursor.commit()
             task.state = 'done'
-            self.env.cr.commit()
+            cursor.commit()
         return True
 
 
 ori_recompute = models.Model.recompute
+
 
 @api.model
 def recompute(self):
@@ -70,7 +73,8 @@ def recompute(self):
             in self.env.registry._init_modules:
         for field, recs in self.env.all.todo.items():
             if len(recs[0]) > DIFFER_COMPUTE_SIZE:
-                _logger.info('Differs recomputation of field %s for model %s',
+                _logger.info(
+                    'Differs recomputation of field %s for model %s',
                     field.name, recs[0]._name)
                 with self.env.norecompute():
                     self.env['recompute.field'].create({

@@ -24,6 +24,7 @@
     "data": [
         "data/ir_cron.xml",
         "views/recompute_field_view.xml",
+        "security/ir.model.access.csv",
     ],
     "demo": [
     ],
