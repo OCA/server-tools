@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
+import os
 import tempfile
 
 import mock
@@ -35,6 +36,7 @@ class TestModule(TransactionCase):
             'sha1',
             excluded_extensions=['pyc', 'pyo'],
         )
+        self.own_writeable = os.access(self.own_dir_path, os.W_OK)
 
     @mock.patch('%s.get_module_path' % model)
     def create_test_module(self, vals, get_module_path_mock):
@@ -52,6 +54,8 @@ class TestModule(TransactionCase):
     def test_compute_checksum_dir_ignore_excluded(self):
         """It should exclude .pyc/.pyo extensions from checksum
         calculations"""
+        if not self.own_writeable:
+            self.skipTest("Own directory not writeable")
         with tempfile.NamedTemporaryFile(
                 suffix='.pyc', dir=self.own_dir_path):
             self.assertEqual(
@@ -62,6 +66,8 @@ class TestModule(TransactionCase):
     def test_compute_checksum_dir_recomputes_when_file_added(self):
         """It should return a different value when a non-.pyc/.pyo file is
         added to the module directory"""
+        if not self.own_writeable:
+            self.skipTest("Own directory not writeable")
         with tempfile.NamedTemporaryFile(
                 suffix='.py', dir=self.own_dir_path):
             self.assertNotEqual(
