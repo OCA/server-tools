@@ -154,33 +154,33 @@ class TestModule(TransactionCase):
         )
 
     @mock.patch('%s.get_module_path' % model)
-    def test_update_list(self, get_module_path_mock):
+    def test_get_module_list(self, module_path_mock):
         """It should change the state of modules with different
         checksum_dir and checksum_installed to 'to upgrade'"""
-        get_module_path_mock.return_value = self.own_dir_path
+        module_path_mock.return_value = self.own_dir_path
         vals = {
             'name': 'module_auto_update_test_module',
             'state': 'installed',
         }
         test_module = self.create_test_module(vals)
         test_module.checksum_installed = 'test'
-        self.env['ir.module.module'].update_list()
+        self.env['base.module.upgrade'].get_module_list()
         self.assertEqual(
             test_module.state, 'to upgrade',
             'List update does not mark upgradeable modules "to upgrade"',
         )
 
     @mock.patch('%s.get_module_path' % model)
-    def test_update_list_only_changes_installed(self, get_module_path_mock):
+    def test_get_module_list_only_changes_installed(self, module_path_mock):
         """It should not change the state of a module with a former state
         other than 'installed' to 'to upgrade'"""
-        get_module_path_mock.return_value = self.own_dir_path
+        module_path_mock.return_value = self.own_dir_path
         vals = {
             'name': 'module_auto_update_test_module',
             'state': 'uninstalled',
         }
         test_module = self.create_test_module(vals)
-        self.env['ir.module.module'].update_list()
+        self.env['base.module.upgrade'].get_module_list()
         self.assertNotEqual(
             test_module.state, 'to upgrade',
             'List update changed state of an uninstalled module',
