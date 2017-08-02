@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="recompute_field_view_tree" model="ir.ui.view">
+        <field name="model">recompute.field</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="model" />
+                <field name="field" />
+                <field name="step" />
+                <field name="last_id" />
+                <field name="state" />
+                <button
+                    string="Process"
+                    icon="gtk-ok"
+                    states="draft"
+                    type="run"
+                    name="run"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="recompute_field_view_form" model="ir.ui.view">
+        <field name="model">recompute.field</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="model" />
+                    <field name="field" />
+                    <field name="step" />
+                    <field name="last_id" />
+                    <field name="state" />
+                    <button
+                        string="Process"
+                        icon="gtk-ok"
+                        states="draft"
+                        type="run"
+                        name="run"
+                    />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="recompute_field_view_search" model="ir.ui.view">
+        <field name="model">recompute.field</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model" />
+                <field name="field" />
+                <field name="step" />
+                <field name="state" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_recompute_field_view">
+        <field name="name">Recompute Field</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recompute.field</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="recompute_field_view_search" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="menu_recompute_field"
+        parent="base.next_id_9"
+        sequence="100"
+        action="act_open_recompute_field_view"
+    />
+
+</odoo>
