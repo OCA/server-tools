@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import logging
+import os
 import tempfile
 
 import mock
@@ -35,6 +36,7 @@ class TestModule(TransactionCase):
             'sha1',
             excluded_extensions=['pyc', 'pyo'],
         )
+        self.own_writeable = os.access(self.own_dir_path, os.W_OK)
 
     @mock.patch('%s.get_module_path' % model)
     def create_test_module(self, vals, get_module_path_mock):
@@ -52,6 +54,8 @@ class TestModule(TransactionCase):
     def test_compute_checksum_dir_ignore_excluded(self):
         """It should exclude .pyc/.pyo extensions from checksum
         calculations"""
+        if not self.own_writeable:
+            self.skipTest("Own directory not writeable")
         with tempfile.NamedTemporaryFile(
                 suffix='.pyc', dir=self.own_dir_path):
             self.assertEqual(
@@ -62,6 +66,8 @@ class TestModule(TransactionCase):
     def test_compute_checksum_dir_recomputes_when_file_added(self):
         """It should return a different value when a non-.pyc/.pyo file is
         added to the module directory"""
+        if not self.own_writeable:
+            self.skipTest("Own directory not writeable")
         with tempfile.NamedTemporaryFile(
                 suffix='.py', dir=self.own_dir_path):
             self.assertNotEqual(
@@ -154,31 +160,33 @@ class TestModule(TransactionCase):
         )
 
     @mock.patch('%s.get_module_path' % model)
-    def test_update_list(self, get_module_path_mock):
+    def test_get_module_list(self, module_path_mock):
         """It should change the state of modules with different
         checksum_dir and checksum_installed to 'to upgrade'"""
-        get_module_path_mock.return_value = self.own_dir_path
+        module_path_mock.return_value = self.own_dir_path
         vals = {
             'name': 'module_auto_update_test_module',
             'state': 'installed',
         }
         test_module = self.create_test_module(vals)
         test_module.checksum_installed = 'test'
-        self.env['ir.module.module'].update_list()
+        self.env['base.module.upgrade'].get_module_list()
         self.assertEqual(
             test_module.state, 'to upgrade',
             'List update does not mark upgradeable modules "to upgrade"',
         )
 
-    def test_update_list_only_changes_installed(self):
+    @mock.patch('%s.get_module_path' % model)
+    def test_get_module_list_only_changes_installed(self, module_path_mock):
         """It should not change the state of a module with a former state
         other than 'installed' to 'to upgrade'"""
+        module_path_mock.return_value = self.own_dir_path
         vals = {
             'name': 'module_auto_update_test_module',
             'state': 'uninstalled',
         }
         test_module = self.create_test_module(vals)
-        self.env['ir.module.module'].update_list()
+        self.env['base.module.upgrade'].get_module_list()
         self.assertNotEqual(
             test_module.state, 'to upgrade',
             'List update changed state of an uninstalled module',
