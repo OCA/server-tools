@@ -10,6 +10,7 @@
     'website': 'https://odoo-community.org/',
     'author': 'LasLabs, '
               'Juan José Scarafía, '
+              'Tecnativa, '
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'application': False,
