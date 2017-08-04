@@ -60,6 +60,7 @@ addon | version | summary
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
+[module_auto_update](module_auto_update/) | 9.0.1.0.0 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [oauth_provider](oauth_provider/) | 9.0.1.0.0 | Allows to use Odoo as an OAuth2 provider
 [oauth_provider_jwt](oauth_provider_jwt/) | 9.0.1.0.0 | Adds the JSON Web Token support for OAuth2 provider
