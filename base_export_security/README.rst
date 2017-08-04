@@ -12,6 +12,30 @@ This module adds the following security features to Odoo's data exporting:
 #. A log of exports detailing the user responsible, as well as the model, records, and fields exported
 #. A `#data exports` channel for export activity notifications
 
+Screenshots
+===========
+
+Hidden Export Menu Item
+-----------------------
+
+.. image:: /base_export_security/static/description/export_menu_item_hidden.png?raw=true
+   :alt: Hidden Export Menu Item
+   :width: 600 px
+
+Export Log
+----------
+
+.. image:: /base_export_security/static/description/export_log.png?raw=true
+   :alt: Export Log
+   :width: 600 px
+
+Channel Notification
+--------------------
+
+.. image:: /base_export_security/static/description/export_notification.png?raw=true
+   :alt: Export Notification
+   :width: 500 px
+
 Configuration
 =============
 
