@@ -20,8 +20,12 @@ class RecomputeField(models.Model):
 
     model = fields.Char(required=True)
     field = fields.Char(required=True)
-    last_id = fields.Integer()
-    step = fields.Integer(required=True, default=1000)
+    last_id = fields.Integer(
+        string="Last ID",
+        help="Last record ID on which computing have been executed")
+    step = fields.Integer(
+        required=True, default=1000,
+        help="Recomputing batch size.")
     state = fields.Selection([
         ('todo', 'Todo'),
         ('done', 'Done'),
@@ -41,7 +45,7 @@ class RecomputeField(models.Model):
             else:
                 domain = []
             if task.step <= 0:
-                raise UserError(_('Step must by superior to 0'))
+                raise UserError(_('Step must be upper than 0'))
             else:
                 limit = task.step
             while True:
@@ -81,7 +85,7 @@ def recompute(self):
                         'field': field.name,
                         'model': recs[0]._name,
                         'state': 'todo',
-                        })
+                    })
                 map(recs[0]._recompute_done, field.computed_fields)
     return ori_recompute(self)
 
