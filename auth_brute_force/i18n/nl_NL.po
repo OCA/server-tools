@@ -3,25 +3,25 @@
 # * auth_brute_force
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
 "PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Arabic (https://www.transifex.com/oca/teams/23907/ar/)\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_active
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_attempt_date
@@ -67,24 +67,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_create_uid
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_create_uid
 msgid "Created by"
-msgstr "أنشئ بواسطة"
+msgstr "Aangemaakt door"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_create_date
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_create_date
 msgid "Created on"
-msgstr "أنشئ في"
+msgstr "Aangemaakt op"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_description
 msgid "Description"
-msgstr "الوصف"
+msgstr "Omschrijving"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_display_name
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_display_name
 msgid "Display Name"
-msgstr "اسم العرض"
+msgstr "weergavenaam"
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:14
@@ -98,25 +98,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_id
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_id
 msgid "ID"
-msgstr "المعرف"
+msgstr "ID"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt___last_update
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote___last_update
 msgid "Last Modified on"
-msgstr "آخر تعديل في"
+msgstr "Laatst gewijzigd op"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_write_uid
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_write_uid
 msgid "Last Updated by"
-msgstr "آخر تحديث بواسطة"
+msgstr "Laatst bijgewerkt door"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_write_date
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_write_date
 msgid "Last Updated on"
-msgstr "آخر تحديث في"
+msgstr "Laatst bijgewerkt op"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_remote
