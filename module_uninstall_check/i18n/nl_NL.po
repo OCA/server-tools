@@ -3,14 +3,13 @@
 # * module_uninstall_check
 # 
 # Translators:
-# Peter Hageman <hageman.p@gmail.com>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 03:00+0000\n"
-"PO-Revision-Date: 2017-07-26 03:00+0000\n"
+"POT-Creation-Date: 2017-08-01 00:43+0000\n"
+"PO-Revision-Date: 2017-08-01 00:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -160,7 +159,7 @@ msgstr ""
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_id:0
 msgid "Module"
-msgstr ""
+msgstr "Module"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,module_name:0

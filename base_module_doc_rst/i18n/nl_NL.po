@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 10:06+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-01 00:43+0000\n"
+"PO-Revision-Date: 2017-08-03 08:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr ""
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module
 msgid "Module"
-msgstr ""
+msgstr "Module"
 
 #. module: base_module_doc_rst
 #: view:tech.guide.rst:base_module_doc_rst.view_technical_guide

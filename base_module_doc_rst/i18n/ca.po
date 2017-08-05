@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-08-01 00:43+0000\n"
+"PO-Revision-Date: 2017-08-03 08:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr "Darrera Actualització el"
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module
 msgid "Module"
-msgstr ""
+msgstr "Mòdul"
 
 #. module: base_module_doc_rst
 #: view:tech.guide.rst:base_module_doc_rst.view_technical_guide
