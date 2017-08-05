@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 02:50+0000\n"
+"POT-Creation-Date: 2017-08-04 02:55+0000\n"
 "PO-Revision-Date: 2016-04-29 09:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/id/)\n"
@@ -214,8 +214,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2001
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1998
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2003
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2000
 msgid "Type"
 msgstr "Jenis"
 
