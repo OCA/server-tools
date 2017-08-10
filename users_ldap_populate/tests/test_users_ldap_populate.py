@@ -56,6 +56,7 @@ def get_fake_ldap(self):
 
 
 class TestUsersLdapPopulate(TransactionCase):
+
     def test_users_ldap_populate(self):
         with patch_ldap(self, [('DN=fake', {
             'cn': ['fake'],
