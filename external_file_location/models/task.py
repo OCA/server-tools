@@ -153,7 +153,7 @@ class Task(models.Model):
         attach_obj = self.env['ir.attachment.metadata']
         with cls.connect(self.location_id) as conn:
             md5_datas = ''
-            if os.path.isdir(self.filepath):
+            if os.path.isdir(os.path.join(conn.root_path, self.filepath)):
                 for file_name in conn.listdir(path=self.filepath,
                                               wildcard=self.filename or '',
                                               files_only=True):
