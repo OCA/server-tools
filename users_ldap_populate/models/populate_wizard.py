@@ -18,11 +18,16 @@ class CompanyLDAPPopulateWizard(models.TransientModel):
         'Number of users created',
         readonly=True
     )
+    users_deactivated = fields.Integer(
+        'Number of users deactivated',
+        readonly=True
+    )
 
     @api.model
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
         if 'ldap_id' in vals:
             ldap = self.env['res.company.ldap'].browse(vals['ldap_id'])
-            vals['users_created'] = ldap.action_populate()
+            vals['users_created'], vals['users_deactivated'] =\
+                ldap.action_populate()
         return super(CompanyLDAPPopulateWizard, self).create(vals)
