@@ -45,8 +45,8 @@ object you want to query.
         'python': ['ldap'],
     },
     "data": [
-        'view/users_ldap.xml',
-        'view/populate_wizard.xml',
+        'views/users_ldap.xml',
+        'views/populate_wizard.xml',
     ],
     'installable': True,
 }
