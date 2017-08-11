@@ -87,3 +87,10 @@ class ResUsersRoleLine(models.Model):
                 date_to = fields.Date.from_string(role_line.date_to)
                 if today > date_to:
                     role_line.is_enabled = False
+
+    @api.multi
+    def unlink(self):
+        users = self.mapped('user_id')
+        res = super(ResUsersRoleLine, self).unlink()
+        users.set_groups_from_roles()
+        return res
