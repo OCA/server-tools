@@ -35,14 +35,25 @@ defined in the email server. If all mails have been processed successfully,
 it will update this date with the latest message received.
 
 System administrators need to be attentive to the Odoo logs, looking for errors
-raised during the processing of emails, in order to avoid situations
-lots of emails are now being downloaded and reprocessed every time, due to
-errors found in a few old emails.
+raised during the processing of emails, in order to avoid situations where
+lots of emails are downloaded and reprocessed every time, due to errors found
+ in a few old emails that were unattended.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0
+
+
+Known issues / Roadmap
+======================
+
+* This module should not be used together with the OCA module
+  `fetchmail_notify_error_to_sender <https://github.com/OCA/server-tools/tree/9
+  .0/fetchmail_notify_error_to_sender>`_, because this other module sends an
+  email to the author of an email when it could not be processed. And you
+  would be spamming to the original authors every time Odoo tries to
+  re-process the email.
 
 Bug Tracker
 ===========
