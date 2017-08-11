@@ -52,6 +52,13 @@ class Module(models.Model):
                 self.write({'checksum_installed': False})
 
     @api.multi
+    def button_uninstall(self):
+        return super(
+            Module,
+            self.with_context(module_uninstall=True),
+        ).button_uninstall()
+
+    @api.multi
     def button_uninstall_cancel(self):
         return super(
             Module,
