@@ -22,6 +22,10 @@ except ImportError:
 model = 'odoo.addons.module_auto_update.models.module'
 
 
+class EndTestException(Exception):
+    pass
+
+
 class TestModule(TransactionCase):
 
     def setUp(self):
@@ -121,6 +125,41 @@ class TestModule(TransactionCase):
             'Providing retain_checksum_installed context did not prevent '
             'overwrite',
         )
+
+    @mock.patch('%s.get_module_path' % model)
+    def test_button_uninstall_no_recompute(self, module_path_mock):
+        """It should not attempt update on `button_uninstall`."""
+        module_path_mock.return_value = self.own_dir_path
+        vals = {
+            'name': 'module_auto_update_test_module',
+            'state': 'installed',
+        }
+        test_module = self.create_test_module(vals)
+        test_module.checksum_installed = 'test'
+        uninstall_module = self.env['ir.module.module'].search([
+            ('name', '=', 'web'),
+        ])
+        uninstall_module.button_uninstall()
+        self.assertNotEqual(
+            test_module.state, 'to upgrade',
+            'Auto update logic was triggered during uninstall.',
+        )
+
+    def test_button_immediate_uninstall_no_recompute(self):
+        """It should not attempt update on `button_immediate_uninstall`."""
+
+        uninstall_module = self.env['ir.module.module'].search([
+            ('name', '=', 'web'),
+        ])
+
+        try:
+            mk = mock.MagicMock()
+            uninstall_module._patch_method('button_uninstall', mk)
+            mk.side_effect = EndTestException
+            with self.assertRaises(EndTestException):
+                uninstall_module.button_immediate_uninstall()
+        finally:
+            uninstall_module._revert_method('button_uninstall')
 
     def test_button_uninstall_cancel(self):
         """It should preserve checksum_installed when cancelling uninstall"""
