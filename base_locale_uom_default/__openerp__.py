@@ -6,7 +6,7 @@
     'name': 'Locale - Default UoM',
     'summary': 'This provides settings to select default UoMs at the '
                'language level.',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Extra Tools',
     'website': 'https://laslabs.com/',
     'author': 'LasLabs, '
