@@ -208,7 +208,7 @@ class Task(models.Model):
                                                   file_name,
                                                   self.filepath,
                                                   e)
-                                    return
+                                    # move on to process other files
                                 else:
                                     new_env.cr.commit()
                 except:
