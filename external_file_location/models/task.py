@@ -3,16 +3,16 @@
 #  © @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
-import odoo
-from odoo import tools
-from base64 import b64encode
-import os
 import datetime
 import logging
+import os
+from base64 import b64encode
+
+import odoo
+from odoo import models, fields, api
+from odoo import tools
 
 _logger = logging.getLogger(__name__)
-
 
 try:
     # We use a jinja2 sandboxed environment to render mako templates.
@@ -23,11 +23,12 @@ try:
     # This is done on purpose: it prevents incidental or malicious execution of
     # Python code that may break the security of the server.
     from jinja2.sandbox import SandboxedEnvironment
+
     mako_template_env = SandboxedEnvironment(
         variable_start_string="${",
         variable_end_string="}",
         line_statement_prefix="%",
-        trim_blocks=True,               # do not output newline after blocks
+        trim_blocks=True,  # do not output newline after blocks
     )
     mako_template_env.globals.update({
         'str': str,
@@ -77,7 +78,7 @@ class Task(models.Model):
                                 '  ${obj.name}-${obj.create_date}.csv')
 
     md5_check = fields.Boolean(help='Control file integrity after import with'
-                               ' a md5 file')
+                                    ' a md5 file')
 
     after_import = fields.Selection(selection='_get_action',
                                     help='Action after import a file')
@@ -151,60 +152,69 @@ class Task(models.Model):
         protocols = self.env['external.file.location']._get_classes()
         cls = protocols.get(self.location_id.protocol)[1]
         attach_obj = self.env['ir.attachment.metadata']
-        with cls.connect(self.location_id) as conn:
-            md5_datas = ''
-            if os.path.isdir(os.path.join(conn.root_path, self.filepath)):
-                for file_name in conn.listdir(path=self.filepath,
-                                              wildcard=self.filename or '',
-                                              files_only=True):
-                    with api.Environment.manage():
-                        with odoo.registry(
-                                self.env.cr.dbname).cursor() as new_cr:
-                            new_env = api.Environment(new_cr, self.env.uid,
-                                                      self.env.context)
-                            try:
-                                full_path = os.path.join(self.filepath, file_name)
-                                file_data = conn.open(full_path, 'rb')
-                                datas = file_data.read()
-                                if self.md5_check:
-                                    md5_file = conn.open(full_path + '.md5', 'rb')
-                                    md5_datas = md5_file.read().rstrip('\r\n')
-                                attach_vals = self._prepare_attachment_vals(
-                                    datas, file_name, md5_datas)
-                                attachment = attach_obj.with_env(new_env).create(
-                                    attach_vals)
-                                new_full_path = False
-                                if self.after_import == 'rename':
-                                    new_name = self._template_render(
-                                        self.new_name, attachment)
-                                    new_full_path = os.path.join(
-                                        self.filepath, new_name)
-                                elif self.after_import == 'move':
-                                    new_full_path = os.path.join(
-                                        self.move_path, file_name)
-                                elif self.after_import == 'move_rename':
-                                    new_name = self._template_render(
-                                        self.new_name, attachment)
-                                    new_full_path = os.path.join(
-                                        self.move_path, new_name)
-                                if new_full_path:
-                                    conn.rename(full_path, new_full_path)
+        try:
+            connection = cls.connect(self.location_id)
+            with connection as conn:
+                md5_datas = ''
+                try:
+                    files = conn.listdir(path=self.filepath,
+                                         wildcard=self.filename or '',
+                                         files_only=True)
+                    for file_name in files:
+                        with api.Environment.manage():
+                            with odoo.registry(
+                                    self.env.cr.dbname).cursor() as new_cr:
+                                new_env = api.Environment(new_cr, self.env.uid,
+                                                          self.env.context)
+                                try:
+                                    full_path = os.path.join(self.filepath, file_name)
+                                    file_data = conn.open(full_path, 'rb')
+                                    datas = file_data.read()
                                     if self.md5_check:
-                                        conn.rename(
-                                            full_path + '.md5',
-                                            new_full_path + '/md5')
-                                if self.after_import == 'delete':
-                                    conn.remove(full_path)
-                                    if self.md5_check:
-                                        conn.remove(full_path + '.md5')
-                            except Exception, e:
-                                new_env.cr.rollback()
-                                raise e
-                            else:
-                                new_env.cr.commit()
-            else:
-                _logger.error("Directory %s not found", self.filepath)
-
+                                        md5_file = conn.open(full_path + '.md5', 'rb')
+                                        md5_datas = md5_file.read().rstrip('\r\n')
+                                    attach_vals = self._prepare_attachment_vals(
+                                        datas, file_name, md5_datas)
+                                    attachment = attach_obj.with_env(new_env).create(
+                                        attach_vals)
+                                    new_full_path = False
+                                    if self.after_import == 'rename':
+                                        new_name = self._template_render(
+                                            self.new_name, attachment)
+                                        new_full_path = os.path.join(
+                                            self.filepath, new_name)
+                                    elif self.after_import == 'move':
+                                        new_full_path = os.path.join(
+                                            self.move_path, file_name)
+                                    elif self.after_import == 'move_rename':
+                                        new_name = self._template_render(
+                                            self.new_name, attachment)
+                                        new_full_path = os.path.join(
+                                            self.move_path, new_name)
+                                    if new_full_path:
+                                        conn.rename(full_path, new_full_path)
+                                        if self.md5_check:
+                                            conn.rename(
+                                                full_path + '.md5',
+                                                new_full_path + '/md5')
+                                    if self.after_import == 'delete':
+                                        conn.remove(full_path)
+                                        if self.md5_check:
+                                            conn.remove(full_path + '.md5')
+                                except Exception, e:
+                                    new_env.cr.rollback()
+                                    _logger.error('Error importing file %s '
+                                                  'from %s: %s',
+                                                  file_name,
+                                                  self.filepath,
+                                                  e)
+                                    # raise e
+                                else:
+                                    new_env.cr.commit()
+                except:
+                    _logger.error('Directory %s does not exist', self.filepath)
+        except:
+            _logger.error('Root directory %s does not exist', self.filepath)
 
     @api.multi
     def run_export(self):
