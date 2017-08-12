@@ -208,13 +208,15 @@ class Task(models.Model):
                                                   file_name,
                                                   self.filepath,
                                                   e)
-                                    # raise e
+                                    return
                                 else:
                                     new_env.cr.commit()
                 except:
                     _logger.error('Directory %s does not exist', self.filepath)
+                    return
         except:
             _logger.error('Root directory %s does not exist', self.filepath)
+            return
 
     @api.multi
     def run_export(self):
