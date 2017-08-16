@@ -4,6 +4,8 @@
 
 from openerp import models, fields
 
+from non_exist import something
+
 
 class ResCompany(models.Model):
     _inherit = 'res.company'
