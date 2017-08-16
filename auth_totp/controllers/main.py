@@ -5,6 +5,7 @@
 from datetime import datetime, timedelta
 import json
 from werkzeug.contrib.securecookie import SecureCookie
+from werkzeug.wrappers import Response as WerkzeugResponse
 from openerp import _, http, registry, SUPERUSER_ID
 from openerp.api import Environment
 from openerp.http import Response, request
@@ -139,7 +140,9 @@ class AuthTotp(Home):
         redirect = request.params.get('redirect')
         if not redirect:
             redirect = '/web'
-        response = Response(http.redirect_with_hash(redirect))
+        response = http.redirect_with_hash(redirect)
+        if not isinstance(response, WerkzeugResponse):
+            response = Response(response)
 
         if request.params.get('remember_device'):
             device = device_model_sudo.create({'user_id': user.id})
