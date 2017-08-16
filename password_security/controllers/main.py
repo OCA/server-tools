@@ -35,6 +35,7 @@ class PasswordSecurityHome(AuthSignupHome):
     @http.route()
     def web_login(self, *args, **kw):
         ensure_db()
+        old_uid = request.uid
         response = super(PasswordSecurityHome, self).web_login(*args, **kw)
         if not request.httprequest.method == 'POST':
             return response
@@ -44,6 +45,7 @@ class PasswordSecurityHome(AuthSignupHome):
             request.params['password']
         )
         if not uid:
+            request.uid = old_uid
             return response
         users_obj = request.env['res.users'].sudo()
         user_id = users_obj.browse(request.uid)
