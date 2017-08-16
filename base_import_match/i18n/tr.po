@@ -1,0 +1,170 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_import_match
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-29 03:39+0000\n"
+"PO-Revision-Date: 2016-12-29 03:39+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
+"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
+msgid "Conditional"
+msgstr "Koşullı"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_uid
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_date
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_create_date
+msgid "Created on"
+msgstr "Oluşturuldu"
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_match
+msgid "Deduplicate settings prior to CSV imports."
+msgstr "CSV içe aktarmadan önce ayarları tekilleştir"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_display_name
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_display_name
+msgid "Display Name"
+msgstr "Görünen İsim"
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_conditional
+msgid "Enable if you want to use this field only in some conditions."
+msgstr ""
+"Eğer bu alanı sadece bazı koşullarda kullanmak isterseniz etkinleştirin."
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_field_id
+msgid "Field"
+msgstr "Alan"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_name
+msgid "Field Name"
+msgstr ""
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base_import_match_field
+msgid "Field import match definition"
+msgstr "Alan içe aktarımında eşleştirme tanımı"
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_field_id
+msgid "Field that will be part of an unique key."
+msgstr "Bir tekil anahtarın parçası olacak alan."
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_ids
+msgid "Fields"
+msgstr "Alanlar"
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_ids
+msgid "Fields that will define an unique key."
+msgstr "tekil anahtarı tanımlayacak alan."
+
+#. module: base_import_match
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
+msgid "Group By"
+msgstr "Grupla"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_imported_value
+msgid ""
+"If the imported value is not this, the whole matching rule will be "
+"discarded. Be careful, this data is always treated as a string, and "
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
+" 'true', only EXACTLY 'True'."
+msgstr ""
+"Eğer içeri aktarılan değer bu değil ise bütün eşleştirme kuralı dikkate "
+"alınmayacak. Dikkatli olun, bu alan her zaman bir string olarak "
+"değerlendirilir, ve karşılaştırma büyük küçük harf duyarlıdır. Mesela alana "
+"'True' girmişseniz '1' ile ya da 'true' ile eşleşmeyecektir sadece harf harf"
+" aynı olan 'True' ile eşleşir."
+
+#. module: base_import_match
+#: model:ir.actions.act_window,name:base_import_match.match_action
+#: model:ir.ui.menu,name:base_import_match.match_menu
+#: model:ir.ui.view,arch_db:base_import_match.match_form_view
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
+#: model:ir.ui.view,arch_db:base_import_match.match_tree_view
+msgid "Import Match"
+msgstr "İçe Aktarma Eşleşmesi"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_imported_value
+msgid "Imported value"
+msgstr "Alınan Değer"
+
+#. module: base_import_match
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_field_model_id
+#: model:ir.model.fields,help:base_import_match.field_base_import_match_model_id
+msgid "In this model you will apply the match."
+msgstr "Bu modelde eşleştirmeyi uygulayacaksınız."
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match___last_update
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field___last_update
+msgid "Last Modified on"
+msgstr "Son değişiklik"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_uid
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_uid
+msgid "Last Updated by"
+msgstr "Son güncelleyen"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_write_date
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_write_date
+msgid "Last Updated on"
+msgstr "Son güncellenme"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_match_id
+msgid "Match"
+msgstr "Eşleştirme"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_model_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_model_id
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_model_name
+#: model:ir.ui.view,arch_db:base_import_match.match_search_view
+msgid "Model"
+msgstr "Model"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_name
+msgid "Name"
+msgstr "Adı"
+
+#. module: base_import_match
+#: model:ir.model.fields,field_description:base_import_match.field_base_import_match_sequence
+msgid "Sequence"
+msgstr "Sıra"
