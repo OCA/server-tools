@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <template id="layout" inherit_id="website.layout">
+        <xpath expr="//script[contains(text(), 'session_info')]" position="replace">
+            <script type="application/javacscript">
+                odoo.session_info = {
+                    is_superuser: <t t-esc="json.dumps(request.env.user and request.env.user._is_superuser() or False)"/>,
+                    is_frontend: true,
+                };
+            </script>
+        </xpath>
+    </template>
+
+</odoo>
