@@ -5,12 +5,11 @@
 {
     'name': "Manage model export profiles",
     'category': 'Personalization',
-    'version': '9.0.1.1.0',
+    'version': '10.0.1.0.0',
     'depends': [
         'web',
     ],
     'data': [
-        'data/ir_exports_data.xml',
         'views/assets.xml',
         'views/ir_exports.xml',
         'views/ir_model.xml',
@@ -20,13 +19,12 @@
     'qweb': [
         "static/src/xml/base.xml",
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Tecnativa, '
+    'author': 'Tecnativa, '
               'LasLabs, '
               'Ursa Information Systems, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'website': 'https://www.tecnativa.com',
     'license': 'AGPL-3',
-    'installable': False,
+    'installable': True,
     'application': False,
 }
