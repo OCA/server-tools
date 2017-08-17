@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<openerp>
+<data>
+
+
+<record id="res_users_auth_log_form" model="ir.ui.view">
+    <field name="name">res.users.auth.logs.form</field>
+    <field name="model">res.users.auth.log</field>
+    <field name="arch" type="xml">
+        <form string="Authentication Log">
+            <group name="main">
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="login"/>
+                <field name="result"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="res_users_auth_log_tree" model="ir.ui.view">
+    <field name="name">res.users.auth.logs.tree</field>
+    <field name="model">res.users.auth.log</field>
+    <field name="arch" type="xml">
+        <tree string="Authentication Logs" colors="red:result=='failure'">
+            <field name="date"/>
+            <field name="user_id" invisible="not context.get('auth_logs_main_view')"/>
+            <field name="login" invisible="not context.get('auth_logs_main_view')"/>
+            <field name="result"/>
+        </tree>
+    </field>
+</record>
+
+<record id="res_users_auth_log_search" model="ir.ui.view">
+    <field name="name">res.users.auth.logs.search</field>
+    <field name="model">res.users.auth.log</field>
+    <field name="arch" type="xml">
+        <search string="Search Authentication Logs">
+            <field name="user_id"/>
+            <filter name="success" string="Success" domain="[('result', '=', 'success')]"/>
+            <filter name="failure" string="Failure" domain="[('result', '=', 'failure')]"/>
+            <group string="Group By" name="groupby">
+                <filter name="day_groupby" string="Day" context="{'group_by': 'date:day'}"/>
+                <filter name="week_groupby" string="Week" context="{'group_by': 'date:week'}"/>
+                <filter name="month_groupby" string="Month" context="{'group_by': 'date:month'}"/>
+                <filter name="user_groupby" string="User" context="{'group_by': 'user_id'}"/>
+                <filter name="result_groupby" string="Result" context="{'group_by': 'result'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="res_users_auth_log_graph" model="ir.ui.view">
+    <field name="name">res.users.auth.logs.graph</field>
+    <field name="model">res.users.auth.log</field>
+    <field name="arch" type="xml">
+        <graph string="Analyze Authentication Logs" type="pivot">
+            <field name="date" type="row" interval="week"/>
+            <field name="user_id" type="col"/>
+        </graph>
+    </field>
+</record>
+
+<record id="res_users_auth_log_action" model="ir.actions.act_window">
+    <field name="name">Authentication Logs</field>
+    <field name="res_model">res.users.auth.log</field>
+    <field name="view_mode">tree,form,graph</field>
+    <field name="context">{'auth_logs_main_view': True}</field>
+</record>
+
+<menuitem id="res_users_auth_log_menu" action="res_users_auth_log_action"
+    parent="base.menu_security" sequence="100"/>
+
+
+</data>
+</openerp>
