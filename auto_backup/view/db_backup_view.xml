@@ -34,6 +34,24 @@
                             icon="fa-television"/>
                     </group>
                 </div>
+                <div attrs="{'invisible': [('method', '!=', 's3')]}">
+                    <div class="bg-warning text-warning">
+                        <h3>Warning:</h3>
+                        Use S3 with caution.
+                    </div>
+                    <group string="S3 Settings">
+                        <field name="s3_bucket_name"/>
+                        <field name="s3_region"/>
+                        <field name="s3_auth_key"/>
+                        <field name="s3_auth_secret"/>
+                        <button
+                            name="action_s3_test_connection"
+                            type="object"
+                            string="Test S3 Connection"
+                            icon="fa-television"/>
+                    </group>
+                </div>
+
                 <separator string="Help" colspan="2"/>
                 <div>
                     Automatic backups of the database can be scheduled as follows:
@@ -56,6 +74,8 @@
                 <field name='name'/>
                 <field name='folder'/>
                 <field name="sftp_host"/>
+                <field name="s3_bucket_name"/>
+                <field name="s3_region"/>
             </tree>
         </field>
     </record>
@@ -69,6 +89,8 @@
                 <field name='name'/>
                 <field name='folder'/>
                 <field name="sftp_host"/>
+                <field name="s3_bucket_name"/>
+                <field name="s3_region"/>
             </search>
         </field>
     </record>
