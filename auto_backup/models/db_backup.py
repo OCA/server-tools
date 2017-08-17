@@ -13,9 +13,12 @@ from glob import iglob
 from odoo import exceptions, models, fields, api, _, tools
 from odoo.service import db
 import logging
+
 _logger = logging.getLogger(__name__)
 try:
     import pysftp
+    import boto3
+    from botocore.exceptions import ClientError
 except ImportError:  # pragma: no cover
     _logger.debug('Cannot import pysftp')
 
@@ -50,7 +53,7 @@ class DbBackup(models.Model):
              "Set 0 to disable autodeletion.",
     )
     method = fields.Selection(
-        selection=[("local", "Local disk"), ("sftp", "Remote SFTP server")],
+        selection=[("local", "Local disk"), ("sftp", "Remote SFTP server"), ("s3", "AWS S3 Bucket")],
         default="local",
         help="Choose the storage method for this backup.",
     )
@@ -88,6 +91,28 @@ class DbBackup(models.Model):
              "read permissions for that file.",
     )
 
+    # S3 Components
+    s3_bucket_name = fields.Char(String='S3 Bucket Name')
+    s3_auth_key = fields.Char(String='S3 Authentication Key')
+    s3_auth_secret = fields.Char(String='S3 Authentication Secret')
+    s3_region = fields.Selection(String='Region', default='eu-west-1',
+                                 selection=[
+                                     ('us-east-2', 'US East (Ohio)'),
+                                     ('us-east-1', 'US East (N. Virginia)'),
+                                     ('us-west-1', 'US West (N. California)'),
+                                     ('us-west-2', 'US West (Oregon)'),
+                                     ('ca-central-1', 'Canada (Central)'),
+                                     ('ap-south-1', 'Asia Pacific (Mumbai)'),
+                                     ('ap-northeast-2', 'Asia Pacific (Seoul)'),
+                                     ('ap-southeast-1', 'Asia Pacific (Singapore)'),
+                                     ('ap-southeast-2', 'Asia Pacific (Sydney)'),
+                                     ('ap-northeast-1', 'Asia Pacific (Tokyo)'),
+                                     ('eu-central-1', 'EU (Frankfurt)'),
+                                     ('eu-west-1', 'EU (Ireland)'),
+                                     ('eu-west-2', 'EU (London)'),
+                                     ('sa-east-1', 'South America (São Paulo)'),
+                                 ])
+
     @api.model
     def _default_folder(self):
         """Default to ``backups`` folder inside current server datadir."""
@@ -97,7 +122,7 @@ class DbBackup(models.Model):
             self.env.cr.dbname)
 
     @api.multi
-    @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user")
+    @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user", "s3_bucket_name")
     def _compute_name(self):
         """Get the right summary for this job."""
         for rec in self:
@@ -106,6 +131,8 @@ class DbBackup(models.Model):
             elif rec.method == "sftp":
                 rec.name = "sftp://%s@%s:%d%s" % (
                     rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
+            elif rec.method == "s3":
+                rec.name = "%s" % (rec.s3_bucket_name)
 
     @api.multi
     @api.constrains("folder", "method")
@@ -129,6 +156,19 @@ class DbBackup(models.Model):
         except (pysftp.CredentialException,
                 pysftp.ConnectionException,
                 pysftp.SSHException):
+            _logger.info("Connection Test Failed!", exc_info=True)
+            raise exceptions.Warning(_("Connection Test Failed!"))
+
+    @api.multi
+    def action_s3_test_connection(self):
+        """Check if the S3 credentials are correct by creating a new bucket."""
+        try:
+            # Just open and close the connection
+            s3 = self.s3_connection()
+            s3.head_bucket(Bucket=self.s3_bucket_name)
+            raise exceptions.Warning(_("Connection Test Succeeded!"))
+
+        except ClientError:
             _logger.info("Connection Test Failed!", exc_info=True)
             raise exceptions.Warning(_("Connection Test Failed!"))
 
@@ -185,6 +225,29 @@ class DbBackup(models.Model):
                                 shutil.copyfileobj(cached, destiny)
                         successful |= rec
 
+        s3 = self.filtered(lambda r: r.method == "s3")
+        if s3:
+            if backup:
+                cached = open(backup)
+            else:
+                cached = db.dump_db(self.env.cr.dbname, None)
+
+            with cached:
+                for rec in s3:
+                    with rec.backup_log():
+                        client = rec.s3_connection()
+                        try:
+                            params = {
+                                'Fileobj': cached,
+                                'Bucket': rec.s3_bucket_name,
+                                'Key': filename
+                            }
+                            client.upload_fileobj(**params)
+
+                        except ClientError:
+                            pass
+                    successful |= rec
+
         # Remove old files for successful backups
         successful.cleanup()
 
@@ -233,7 +296,7 @@ class DbBackup(models.Model):
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
                             if (name.endswith(".dump.zip") and
-                                    os.path.basename(name) < oldest):
+                                        os.path.basename(name) < oldest):
                                 remote.unlink('%s/%s' % (rec.folder, name))
 
     @api.multi
@@ -286,3 +349,19 @@ class DbBackup(models.Model):
             params["password"] = self.sftp_password
 
         return pysftp.Connection(**params)
+
+    @api.multi
+    def s3_connection(self):
+        """Return a new SFTP connection with found parameters."""
+        self.ensure_one()
+        params = {
+            "aws_access_key_id": self.s3_auth_key,
+            "aws_secret_access_key": self.s3_auth_secret,
+            "region_name": self.s3_region
+        }
+        _logger.debug(
+            "Trying to connect to S3 %s" % (self.s3_bucket_name))
+
+        s3 = boto3.client('s3', **params)
+        s3.create_bucket(Bucket=self.s3_bucket_name)
+        return s3
