@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="name">User Form - MFA Settings</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='messaging']" position="after">
+                <group string="MFA Settings" name="mfa_settings" col="8">
+                    <p colspan="8">Note: Please have user add at least one authentication app/device before enabling MFA.</p>
+                    <label for="mfa_enabled" colspan="3"/>
+                    <field name="mfa_enabled" colspan="5" nolabel="1"/>
+                    <label for="authenticator_ids" colspan="3"/>
+                    <field name="authenticator_ids" widget="many2many_tags" options="{'no_create': True}" domain="[('user_id', '=', id)]" colspan="5" nolabel="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form_simple_modif" model="ir.ui.view">
+        <field name="name">Change My Preferences - MFA Settings</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer" position="before">
+                <group string="MFA Settings" name="mfa_settings" col="8">
+                    <p colspan="8">Note: Please add at least one authentication app/device before enabling MFA.</p>
+                    <label for="mfa_enabled" colspan="3"/>
+                    <field name="mfa_enabled" readonly="0" colspan="5" nolabel="1"/>
+                    <label for="authenticator_ids" colspan="3"/>
+                    <field name="authenticator_ids" widget="many2many_tags" options="{'no_create': True}" colspan="4" readonly="0" nolabel="1"/>
+                    <button string="Add New App/Device" type="action" name="%(res_users_authenticator_create_action)d" colspan="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

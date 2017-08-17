@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+    <record id="res_users_authenticator_create_view_form" model="ir.ui.view">
+        <field name="name">MFA App/Device Creation Wizard</field>
+        <field name="model">res.users.authenticator.create</field>
+        <field name="arch" type="xml">
+            <form string="Authenticator Info">
+                <header/>
+                <sheet>
+                    <div>
+                        <span>Please provide a name for your app/device. </span>
+                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>
+                    </div>
+                    <group name="data">
+                        <field name="name"/>
+                        <field name="user_id"/>
+                        <field name="qr_code_tag"/>
+                        <field name="confirmation_code"/>
+                        <field name="secret_key" invisible="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button special="cancel" string="Cancel" class="pull-left"/>
+                    <button name="action_create" type="object" string="Create" class="oe_highlight pull-right"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_users_authenticator_create_action" model="ir.actions.act_window">
+        <field name="name">MFA App/Device Creation Wizard</field>
+        <field name="res_model">res.users.authenticator.create</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
