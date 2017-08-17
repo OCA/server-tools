@@ -15,6 +15,7 @@ JSON_PATH = CONTROLLER_PATH + '.JsonSecureCookie'
 ENVIRONMENT_PATH = CONTROLLER_PATH + '.Environment'
 RESPONSE_PATH = CONTROLLER_PATH + '.Response'
 DATETIME_PATH = CONTROLLER_PATH + '.datetime'
+REDIRECT_PATH = CONTROLLER_PATH + '.http.redirect_with_hash'
 TRANSLATE_PATH_CONT = CONTROLLER_PATH + '._'
 MODEL_PATH = 'openerp.addons.auth_totp.models.res_users'
 GENERATE_PATH = MODEL_PATH + '.ResUsers.generate_mfa_login_token'
@@ -391,3 +392,20 @@ class TestAuthTotp(TransactionCase):
 
         new_test_security = resp_mock().set_cookie.mock_calls[0][2]['secure']
         self.assertIs(new_test_security, True)
+
+    @mock.patch(REDIRECT_PATH)
+    @mock.patch(GENERATE_PATH)
+    @mock.patch(VALIDATE_PATH)
+    def test_mfa_login_post_firefox_response_returned(
+        self, val_mock, gen_mock, redirect_mock, request_mock
+    ):
+        '''Should behave well if redirect returns Response (Firefox case)'''
+        request_mock.env = self.env
+        request_mock.db = self.registry.db_name
+        redirect_mock.return_value = Response('Test Response')
+        test_token = self.test_user.mfa_login_token
+        request_mock.params = {'mfa_login_token': test_token}
+        val_mock.return_value = True
+
+        test_result = self.test_controller.mfa_login_post()
+        self.assertIn('Test Response', test_result.response)
