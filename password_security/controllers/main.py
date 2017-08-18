@@ -46,6 +46,7 @@ class PasswordSecurityHome(AuthSignupHome):
         )
         if not uid:
             request.uid = old_uid
+            request.uid = request.env.ref('base.public_user').id
             return response
         users_obj = request.env['res.users'].sudo()
         user_id = users_obj.browse(request.uid)
