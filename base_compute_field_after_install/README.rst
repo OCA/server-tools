@@ -7,15 +7,10 @@ Base compute field after install
 =================================
 
 Computed field can be really long to be computed when installing a module and so block
-the migration process during a long time. This module give the possibility to compute
+the migration process during a long time. 
+
+This module give the possibility to compute
 the field added after the installation
-
-Installation
-============
-
-To install this module, you need to:
-
-#. Install the module
 
 Configuration
 =============
@@ -25,9 +20,10 @@ No configuration is required
 Usage
 =====
 
-To use this module, you need to:
+Just install any module with computed field.
 
-#. Go to your product and tag it
+Database is available quickly whatever its size and computed fields.
+
 
 Known issues / Roadmap
 ======================
