@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 01:20+0000\n"
-"PO-Revision-Date: 2017-05-30 01:20+0000\n"
+"POT-Creation-Date: 2017-08-17 22:04+0000\n"
+"PO-Revision-Date: 2017-08-17 22:04+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/teams/23907/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -433,7 +433,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_name
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_teacher
