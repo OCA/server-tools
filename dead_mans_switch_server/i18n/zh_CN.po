@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2017-04-19 01:22+0000\n"
+"POT-Creation-Date: 2017-08-17 03:36+0000\n"
+"PO-Revision-Date: 2017-08-11 11:59+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -239,7 +239,7 @@ msgstr ""
 #: view:dead.mans.switch.instance:dead_mans_switch_server.search_dead_mans_switch_instance
 #: field:dead.mans.switch.instance,state:0
 msgid "State"
-msgstr ""
+msgstr "状态"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,message_summary:0

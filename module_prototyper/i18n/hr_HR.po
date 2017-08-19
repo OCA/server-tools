@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
+"POT-Creation-Date: 2017-08-17 03:36+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/hr_HR/)\n"
@@ -464,7 +464,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
 msgid "State"
-msgstr ""
+msgstr "Oblast/Županija"
 
 #. module: module_prototyper
 #: field:module_prototyper,summary:0

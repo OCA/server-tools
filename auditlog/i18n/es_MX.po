@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2017-04-25 10:40+0000\n"
+"POT-Creation-Date: 2017-08-17 03:34+0000\n"
+"PO-Revision-Date: 2017-08-11 11:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -58,15 +58,26 @@ msgid "Auditlog - Rule"
 msgstr ""
 
 #. module: auditlog
+#: model:ir.model,name:auditlog.model_auditlog_methods
+msgid "Auditlog custom methods"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.http.request,user_context:0
 msgid "Context"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.methods,context_field_number:0
+msgid "Context field number"
 msgstr ""
 
 #. module: auditlog
 #: field:auditlog.autovacuum,create_uid:0
 #: field:auditlog.http.request,create_uid:0
 #: field:auditlog.http.session,create_uid:0 field:auditlog.log,create_uid:0
-#: field:auditlog.log.line,create_uid:0 field:auditlog.rule,create_uid:0
+#: field:auditlog.log.line,create_uid:0 field:auditlog.methods,create_uid:0
+#: field:auditlog.rule,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
@@ -76,9 +87,20 @@ msgstr "Creado por"
 #: field:auditlog.http.request,create_date:0
 #: view:auditlog.http.session:auditlog.view_auditlog_http_session_search
 #: field:auditlog.http.session,create_date:0 field:auditlog.log,create_date:0
-#: field:auditlog.log.line,create_date:0 field:auditlog.rule,create_date:0
+#: field:auditlog.log.line,create_date:0 field:auditlog.methods,create_date:0
+#: field:auditlog.rule,create_date:0
 msgid "Created on"
 msgstr "Creado en"
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_form
+msgid "Custom Methods"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.rule,custom_method_ids:0
+msgid "Custom method ids"
+msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
@@ -92,7 +114,8 @@ msgstr "Descripción"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
-#: field:auditlog.log.line,display_name:0 field:auditlog.rule,display_name:0
+#: field:auditlog.log.line,display_name:0
+#: field:auditlog.methods,display_name:0 field:auditlog.rule,display_name:0
 msgid "Display Name"
 msgstr "Nombre desplegado"
 
@@ -163,7 +186,8 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
 #: field:auditlog.http.session,id:0 field:auditlog.log,id:0
-#: field:auditlog.log.line,id:0 field:auditlog.rule,id:0
+#: field:auditlog.log.line,id:0 field:auditlog.methods,id:0
+#: field:auditlog.rule,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -172,7 +196,7 @@ msgstr "ID"
 #: field:auditlog.http.request,__last_update:0
 #: field:auditlog.http.session,__last_update:0
 #: field:auditlog.log,__last_update:0 field:auditlog.log.line,__last_update:0
-#: field:auditlog.rule,__last_update:0
+#: field:auditlog.methods,__last_update:0 field:auditlog.rule,__last_update:0
 msgid "Last Modified on"
 msgstr "Ultima modificacion realizada"
 
@@ -180,7 +204,8 @@ msgstr "Ultima modificacion realizada"
 #: field:auditlog.autovacuum,write_uid:0
 #: field:auditlog.http.request,write_uid:0
 #: field:auditlog.http.session,write_uid:0 field:auditlog.log,write_uid:0
-#: field:auditlog.log.line,write_uid:0 field:auditlog.rule,write_uid:0
+#: field:auditlog.log.line,write_uid:0 field:auditlog.methods,write_uid:0
+#: field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
 msgstr "Ultima actualizacion por"
 
@@ -188,7 +213,8 @@ msgstr "Ultima actualizacion por"
 #: field:auditlog.autovacuum,write_date:0
 #: field:auditlog.http.request,write_date:0
 #: field:auditlog.http.session,write_date:0 field:auditlog.log,write_date:0
-#: field:auditlog.log.line,write_date:0 field:auditlog.rule,write_date:0
+#: field:auditlog.log.line,write_date:0 field:auditlog.methods,write_date:0
+#: field:auditlog.rule,write_date:0
 msgid "Last Updated on"
 msgstr "Ultima actualización realizada"
 
@@ -214,6 +240,11 @@ msgid "Log Deletes"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.rule,log_custom_method:0
+msgid "Log Methods"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.rule,log_read:0
 msgid "Log Reads"
 msgstr ""
@@ -234,19 +265,31 @@ msgid "Logs"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.methods,message:0
+msgid "Message"
+msgstr ""
+
+#. module: auditlog
 #: field:auditlog.log,method:0
 msgid "Method"
+msgstr ""
+
+#. module: auditlog
+#: code:addons/auditlog/models/rule.py:181
+#, python-format
+msgid "Method %s does not exist for model %s."
 msgstr ""
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,model_id:0 field:auditlog.rule,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: auditlog
 #: field:auditlog.http.request,display_name:0
-#: field:auditlog.http.session,display_name:0 field:auditlog.rule,name:0
+#: field:auditlog.http.session,display_name:0 field:auditlog.methods,name:0
+#: field:auditlog.rule,name:0
 msgid "Name"
 msgstr "Nombre"
 
@@ -299,6 +342,11 @@ msgid "Rule"
 msgstr ""
 
 #. module: auditlog
+#: field:auditlog.methods,rule_id:0
+msgid "Rule id"
+msgstr ""
+
+#. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: view:auditlog.rule:auditlog.view_auditlog_rule_tree
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
@@ -316,6 +364,13 @@ msgstr ""
 msgid ""
 "Select this if you want to keep track of creation on any record of the model"
 " of this rule"
+msgstr ""
+
+#. module: auditlog
+#: help:auditlog.rule,log_custom_method:0
+msgid ""
+"Select this if you want to keep track of custom methods on any record of the"
+" model of this rule"
 msgstr ""
 
 #. module: auditlog
@@ -354,7 +409,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -387,6 +442,11 @@ msgstr "Tipo"
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
 msgid "Unsubscribe"
+msgstr ""
+
+#. module: auditlog
+#: field:auditlog.methods,use_active_ids:0
+msgid "Use active ids"
 msgstr ""
 
 #. module: auditlog
@@ -425,9 +485,14 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:538
+#: code:addons/auditlog/models/rule.py:662
 #, python-format
 msgid "View logs"
+msgstr ""
+
+#. module: auditlog
+#: view:auditlog.rule:auditlog.view_auditlog_rule_form
+msgid "You can only edit custom methods when the rule is unsubscribed."
 msgstr ""
 
 #. module: auditlog

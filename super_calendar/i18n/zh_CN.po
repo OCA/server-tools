@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-02 09:59+0000\n"
-"PO-Revision-Date: 2017-03-03 07:12+0000\n"
+"POT-Creation-Date: 2017-08-17 03:37+0000\n"
+"PO-Revision-Date: 2017-08-11 11:59+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -234,7 +234,7 @@ msgstr ""
 #: field:super.calendar,model_id:0
 #: field:super.calendar.configurator.line,name:0
 msgid "Model"
-msgstr ""
+msgstr "模型"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search

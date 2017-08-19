@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:49+0000\n"
+"POT-Creation-Date: 2017-08-17 03:36+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
@@ -97,7 +97,7 @@ msgstr "Edició Massiva (%s)"
 #. module: mass_editing
 #: field:mass.object,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: mass_editing
 #: field:mass.object,model_ids:0
