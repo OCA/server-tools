@@ -30,11 +30,16 @@ class Module(models.Model):
         ).split(",")
 
         for r in self:
-            r.checksum_dir = dirhash(
-                get_module_path(r.name),
-                'sha1',
-                excluded_extensions=exclude,
-            )
+            try:
+                r.checksum_dir = dirhash(
+                    get_module_path(r.name),
+                    'sha1',
+                    excluded_extensions=exclude,
+                )
+            except TypeError:
+                _logger.debug(
+                    "Cannot compute dir hash for %s, module not found",
+                    r.display_name)
 
     def _store_checksum_installed(self, vals):
         if self.env.context.get('retain_checksum_installed'):
@@ -45,6 +50,13 @@ class Module(models.Model):
                     r.checksum_installed = r.checksum_dir
             elif vals.get('state') == 'uninstalled':
                 self.write({'checksum_installed': False})
+
+    @api.multi
+    def button_uninstall(self):
+        return super(
+            Module,
+            self.with_context(module_uninstall=True),
+        ).button_uninstall()
 
     @api.multi
     def button_uninstall_cancel(self):
@@ -64,16 +76,6 @@ class Module(models.Model):
     def create(self, vals):
         res = super(Module, self).create(vals)
         res._store_checksum_installed(vals)
-        return res
-
-    @api.model
-    def update_list(self):
-        res = super(Module, self).update_list()
-        installed_modules = self.search([('state', '=', 'installed')])
-        upgradeable_modules = installed_modules.filtered(
-            lambda r: r.checksum_dir != r.checksum_installed,
-        )
-        upgradeable_modules.write({'state': "to upgrade"})
         return res
 
     @api.multi
