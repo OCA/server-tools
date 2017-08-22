@@ -5,8 +5,8 @@
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
-<odoo>
-    
+<odoo noupdate="1">
+
     <record id="res_users_pass_history_rule" model="ir.rule">
         <field name="name">Res Users Pass History Access</field>
         <field name="model_id" ref="password_security.model_res_users_pass_history"/>
