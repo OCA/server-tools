@@ -56,7 +56,7 @@ class DateRangeTest(TransactionCase):
             })
         self.assertEqual(
             cm.exception.name,
-            'FS2016 is not a valid range (2016-12-31 >= 2015-01-01)')
+            'FS2016 is not a valid range (2016-12-31 > 2015-01-01)')
 
     def test_overlap(self):
         date_range = self.env['date.range']
