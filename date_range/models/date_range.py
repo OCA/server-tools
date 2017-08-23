@@ -38,9 +38,9 @@ class DateRange(models.Model):
         for this in self:
             start = fields.Date.from_string(this.date_start)
             end = fields.Date.from_string(this.date_end)
-            if start >= end:
+            if start > end:
                 raise ValidationError(
-                    _("%s is not a valid range (%s >= %s)") % (
+                    _("%s is not a valid range (%s > %s)") % (
                         this.name, this.date_start, this.date_end))
             if this.type_id.allow_overlap:
                 continue
