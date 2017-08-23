@@ -41,31 +41,21 @@ class Module(models.Model):
                     "Cannot compute dir hash for %s, module not found",
                     r.display_name)
 
+    @api.multi
     def _store_checksum_installed(self, vals):
-        if self.env.context.get('retain_checksum_installed'):
-            return
+        """Store the right installed checksum, if addon is installed."""
         if 'checksum_installed' not in vals:
-            if vals.get('state') == 'installed':
-                for r in self:
-                    r.checksum_installed = r.checksum_dir
-            elif vals.get('state') == 'uninstalled':
+            try:
+                version = vals["latest_version"]
+            except KeyError:
+                return  # Not [un]installing/updating any addon
+            if version is False:
+                # Uninstalling
                 self.write({'checksum_installed': False})
-
-    @api.multi
-    def button_uninstall_cancel(self):
-        # TODO Use super() like in v10 after pull is merged
-        # HACK https://github.com/odoo/odoo/pull/18597
-        return self.with_context(retain_checksum_installed=True).write({
-            'state': 'installed',
-        })
-
-    @api.multi
-    def button_upgrade_cancel(self):
-        # TODO Use super() like in v10 after pull is merged
-        # HACK https://github.com/odoo/odoo/pull/18597
-        return self.with_context(retain_checksum_installed=True).write({
-            'state': 'installed',
-        })
+            else:
+                # Installing or updating
+                for one in self:
+                    one.checksum_installed = one.checksum_dir
 
     @api.model
     def create(self, vals):
