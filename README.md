@@ -44,7 +44,7 @@ addon | version | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 9.0.1.1.0 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 9.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 9.0.1.0.0 | Database cleanup
-[date_range](date_range/) | 9.0.1.0.0 | Manage all kind of date range
+[date_range](date_range/) | 9.0.1.0.1 | Manage all kind of date range
 [datetime_formatter](datetime_formatter/) | 9.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 9.0.1.0.0 | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
@@ -64,7 +64,7 @@ addon | version | summary
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
 [oauth_provider](oauth_provider/) | 9.0.1.0.0 | Allows to use Odoo as an OAuth2 provider
 [oauth_provider_jwt](oauth_provider_jwt/) | 9.0.1.0.0 | Adds the JSON Web Token support for OAuth2 provider
-[password_security](password_security/) | 9.0.1.0.3 | Allow admin to set password security requirements.
+[password_security](password_security/) | 9.0.1.1.0 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
