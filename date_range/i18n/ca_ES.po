@@ -21,8 +21,8 @@ msgstr ""
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:43
 #, python-format
-msgid "%s is not a valid range (%s >= %s)"
-msgstr ""
+msgid "%s is not a valid range (%s > %s)"
+msgstr "%s no és un rang vàlid (%s > %s)"
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:71
