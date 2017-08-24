@@ -93,6 +93,7 @@ Contributors
 * Dave Lasley <dave@laslabs.com>
 * Oleg Bulkin <obulkin@laslabs.com>
 * Daniel Reis <dreis.pt@hotmail.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
