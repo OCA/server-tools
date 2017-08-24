@@ -39,7 +39,7 @@ class BaseKanbanAbstract(models.AbstractModel):
         default=lambda s: s._default_stage_id(),
         domain=lambda s: [('res_model.model', '=', s._name)],
     )
-    user_id = fields.Many2one(
+    kanban_user_id = fields.Many2one(
         string='Assigned To',
         comodel_name='res.users',
         index=True,
