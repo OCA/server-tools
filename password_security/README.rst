@@ -83,6 +83,7 @@ Contributors
 
 * James Foster <jfoster@laslabs.com>
 * Dave Lasley <dave@laslabs.com>
+* Nguyen Duc Tam <nguyenductamlhp@gmail.com>
 
 Maintainer
 ----------
