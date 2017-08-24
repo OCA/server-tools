@@ -50,7 +50,7 @@
                                 <div class="oe_kanban_bottom_left">
                                     <field name="kanban_priority" widget="priority"/>
                                 </div>
-                                <div class="oe_kanban_bottom_right" t-if="record.kanban_user_id">
+                                <div class="oe_kanban_bottom_right" t-if="record.user_id">
                                     <img t-att-src="kanban_image('res.users', 'image_small', record.kanban_user_id.raw_value)"
                                         class="oe_kanban_avatar_smallbox pull-right"/>
                                 </div>
