@@ -37,5 +37,9 @@ class ModuleUpgrade(models.TransientModel):
         # Update base addon checksum if its state changed
         base.invalidate_cache()
         if base.state != pre_state:
+            # This triggers the write hook that should have been triggered
+            # when the module was [un]installed/updated in the base-only
+            # module graph inside above call to super(), and updates its
+            # dir checksum as needed
             base.latest_version = base.latest_version
         return result
