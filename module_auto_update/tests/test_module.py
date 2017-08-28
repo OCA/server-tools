@@ -10,6 +10,7 @@ import mock
 
 from odoo.modules import get_module_path
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 from .. import post_init_hook
 
@@ -81,24 +82,19 @@ class TestModule(TransactionCase):
 
     def test_store_checksum_installed_state_installed(self):
         """It should set the module's checksum_installed equal to
-        checksum_dir when vals contain state 'installed'"""
+        checksum_dir when vals contain a ``latest_version`` str."""
         self.own_module.checksum_installed = 'test'
-        self.own_module._store_checksum_installed({'state': 'installed'})
+        self.own_module._store_checksum_installed({'latest_version': '1.0'})
         self.assertEqual(
             self.own_module.checksum_installed, self.own_module.checksum_dir,
-            'Setting state to installed does not store checksum_dir '
-            'as checksum_installed',
         )
 
     def test_store_checksum_installed_state_uninstalled(self):
         """It should clear the module's checksum_installed when vals
-        contain state 'uninstalled'"""
+        contain ``"latest_version": False``"""
         self.own_module.checksum_installed = 'test'
-        self.own_module._store_checksum_installed({'state': 'uninstalled'})
-        self.assertEqual(
-            self.own_module.checksum_installed, False,
-            'Setting state to uninstalled does not clear checksum_installed',
-        )
+        self.own_module._store_checksum_installed({'latest_version': False})
+        self.assertIs(self.own_module.checksum_installed, False)
 
     def test_store_checksum_installed_vals_contain_checksum_installed(self):
         """It should not set checksum_installed to False or checksum_dir when
@@ -198,6 +194,7 @@ class TestModule(TransactionCase):
             '_store_checksum_installed',
         )
 
+    @mute_logger("openerp.modules.module")
     @mock.patch('%s.get_module_path' % model)
     def test_get_module_list(self, module_path_mock):
         """It should change the state of modules with different
