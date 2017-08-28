@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_users_form_readonly" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"></field>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="readonly_user"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
