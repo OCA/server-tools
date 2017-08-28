@@ -1,9 +1,7 @@
 <?xml version="1.0" ?>
-<openerp>
-
-    <data noupdate="1">
+<odoo noupdate="1">
         <!--Email template -->
-        <record id="email_template_error_notice" model="email.template">
+        <record id="email_template_error_notice" model="mail.template">
             <field name="name">Fetchmail - error notice</field>
             <field name="email_from">${ctx.get('sender_message').get('to')|safe}</field>
             <field name="email_to">${ctx.get('sender_message').get('from')|safe}</field>
@@ -23,5 +21,4 @@
 </div>
             ]]></field>
         </record>
-    </data>
-</openerp>
+</odoo>
