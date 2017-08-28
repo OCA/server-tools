@@ -30,4 +30,16 @@ class ModuleUpgrade(models.TransientModel):
         # Compute updates by checksum when called in @api.model fashion
         if not self:
             self.get_module_list()
-        return super(ModuleUpgrade, self).upgrade_module()
+        # Get base adddon status before updating
+        base = self.env["ir.module.module"].search([("name", "=", "base")])
+        pre_state = base.state
+        result = super(ModuleUpgrade, self).upgrade_module()
+        # Update base addon checksum if its state changed
+        base.invalidate_cache()
+        if base.state != pre_state:
+            # This triggers the write hook that should have been triggered
+            # when the module was [un]installed/updated in the base-only
+            # module graph inside above call to super(), and updates its
+            # dir checksum as needed
+            base.latest_version = base.latest_version
+        return result
