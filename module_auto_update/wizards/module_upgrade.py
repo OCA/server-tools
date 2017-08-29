@@ -10,6 +10,7 @@ class ModuleUpgrade(models.TransientModel):
 
     @api.model
     def get_module_list(self):
+        """Set modules to upgrade searching by their dir checksum."""
         Module = self.env["ir.module.module"]
         installed_modules = Module.search([('state', '=', 'installed')])
         upgradeable_modules = installed_modules.filtered(
@@ -27,19 +28,23 @@ class ModuleUpgrade(models.TransientModel):
 
     @api.multi
     def upgrade_module(self):
+        """Make a fully automated addon upgrade."""
         # Compute updates by checksum when called in @api.model fashion
         if not self:
             self.get_module_list()
-        # Get base adddon status before updating
-        base = self.env["ir.module.module"].search([("name", "=", "base")])
-        pre_state = base.state
+        Module = self.env["ir.module.module"]
+        # Get every addon state before updating
+        pre_states = {addon.name: addon.state for addon in Module.search([])}
+        # Perform upgrade, possibly in an addon graph that has no notion of
+        # ``module_auto_update`` and skips its triggers
         result = super(ModuleUpgrade, self).upgrade_module()
-        # Update base addon checksum if its state changed
-        base.invalidate_cache()
-        if base.state != pre_state:
-            # This triggers the write hook that should have been triggered
-            # when the module was [un]installed/updated in the base-only
-            # module graph inside above call to super(), and updates its
-            # dir checksum as needed
-            base.latest_version = base.latest_version
+        # Update addon checksum if state changed
+        Module.invalidate_cache()
+        for addon in Module.search([]):
+            if addon.state != pre_states.get(addon.name):
+                # This triggers the write hook that should have been triggered
+                # when the module was [un]installed/updated in the limited
+                # module graph inside above call to super(), and updates its
+                # dir checksum as needed
+                addon.latest_version = addon.latest_version
         return result
