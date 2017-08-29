@@ -29,22 +29,30 @@ class ModuleUpgrade(models.TransientModel):
     @api.multi
     def upgrade_module(self):
         """Make a fully automated addon upgrade."""
+        # Avoid transaction lock
+        self.env.cr.autocommit(True)
         # Compute updates by checksum when called in @api.model fashion
         if not self:
             self.get_module_list()
         Module = self.env["ir.module.module"]
         # Get every addon state before updating
-        pre_states = {addon.name: addon.state for addon in Module.search([])}
-        # Perform upgrade, possibly in an addon graph that has no notion of
-        # ``module_auto_update`` and skips its triggers
+        pre_states = {addon["name"]: addon["state"]
+                      for addon in Module.search_read([], ["name", "state"])}
+        # Perform upgrades, possibly in a limited graph that excludes me
         result = super(ModuleUpgrade, self).upgrade_module()
-        # Update addon checksum if state changed
-        Module.invalidate_cache()
-        for addon in Module.search([]):
-            if addon.state != pre_states.get(addon.name):
-                # This triggers the write hook that should have been triggered
-                # when the module was [un]installed/updated in the limited
-                # module graph inside above call to super(), and updates its
-                # dir checksum as needed
-                addon.latest_version = addon.latest_version
+        # Reload environments, anything may have changed
+        self.env.clear()
+        # Update addons checksum if state changed and I wasn't uninstalled
+        own = Module.search_read(
+            [("name", "=", "module_auto_upgrade")],
+            ["state"],
+            limit=1)
+        if own and own[0]["state"] != "uninstalled":
+            for addon in Module.search([]):
+                if addon.state != pre_states.get(addon.name):
+                    # Trigger the write hook that should have been
+                    # triggered when the module was [un]installed/updated in
+                    # the limited module graph inside above call to super(),
+                    # and updates its dir checksum as needed
+                    addon.latest_version = addon.latest_version
         return result
