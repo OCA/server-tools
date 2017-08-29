@@ -77,6 +77,7 @@ Contributors
 ------------
 
 * Ted Salmon <tsalmon@laslabs.com>
+* Dave Lasley <dave@laslabs.com>
 
 
 Maintainer
