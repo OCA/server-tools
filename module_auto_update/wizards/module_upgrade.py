@@ -29,8 +29,6 @@ class ModuleUpgrade(models.TransientModel):
     @api.multi
     def upgrade_module(self):
         """Make a fully automated addon upgrade."""
-        # Avoid transaction lock
-        self.env.cr.autocommit(True)
         # Compute updates by checksum when called in @api.model fashion
         if not self:
             self.get_module_list()
@@ -39,7 +37,9 @@ class ModuleUpgrade(models.TransientModel):
         pre_states = {addon["name"]: addon["state"]
                       for addon in Module.search_read([], ["name", "state"])}
         # Perform upgrades, possibly in a limited graph that excludes me
+        self.env.cr.autocommit(True)  # Avoid transaction lock
         result = super(ModuleUpgrade, self).upgrade_module()
+        self.env.cr.autocommit(False)
         # Reload environments, anything may have changed
         self.env.clear()
         # Update addons checksum if state changed and I wasn't uninstalled
