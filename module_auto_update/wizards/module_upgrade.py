@@ -20,13 +20,6 @@ class ModuleUpgrade(models.TransientModel):
         return super(ModuleUpgrade, self).get_module_list()
 
     @api.multi
-    def upgrade_module_cancel(self):
-        return super(
-            ModuleUpgrade,
-            self.with_context(retain_checksum_installed=True),
-        ).upgrade_module_cancel()
-
-    @api.multi
     def upgrade_module(self):
         """Make a fully automated addon upgrade."""
         # Compute updates by checksum when called in @api.model fashion
