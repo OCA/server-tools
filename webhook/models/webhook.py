@@ -5,9 +5,9 @@
 import logging
 import traceback
 
-from openerp import api, exceptions, fields, models, tools
-from openerp.tools.safe_eval import safe_eval
-from openerp.tools.translate import _
+from odoo import api, exceptions, fields, models, tools
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
@@ -111,7 +111,7 @@ class Webhook(models.Model):
         :return: object of webhook found or
                  if not found then return False
         """
-        for webhook in self.search([('active', '=', True)]):
+        for webhook in self.search([]):
             remote_address = webhook.process_python_code(
                 webhook.python_code_get_ip, request)
             if not remote_address:
