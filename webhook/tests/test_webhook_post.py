@@ -5,9 +5,9 @@
 import json
 import requests
 
-from openerp.tests.common import HttpCase
-from openerp import api, exceptions, tools, models
-from openerp.tools.translate import _
+from odoo.tests.common import HttpCase
+from odoo import api, exceptions, tools, models
+from odoo.tools.translate import _
 
 
 HOST = '127.0.0.1'

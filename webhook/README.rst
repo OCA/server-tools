@@ -6,7 +6,7 @@
 Webhook
 =======
 
-Module to receive .. _global webhooks: https://en.wikipedia.org/wiki/Webhook events.
+Module to receive `webhook <https://en.wikipedia.org/wiki/Webhook>`_ events.
 This module invoke methods to process webhook events.
 
 

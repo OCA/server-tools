@@ -4,10 +4,10 @@
 
 import pprint
 
-from openerp.addons.web import http
-from openerp.http import request
-from openerp import SUPERUSER_ID, exceptions
-from openerp.tools.translate import _
+from odoo import http
+from odoo.http import request
+from odoo import exceptions
+from odoo.tools.translate import _
 
 
 class WebhookController(http.Controller):
@@ -25,15 +25,11 @@ class WebhookController(http.Controller):
         # Deprecated by webhook_name dynamic name
         # webhook = webhook_registry.search_with_request(
         #     cr, SUPERUSER_ID, request, context=context)
-        webhook = request.env['webhook'].with_env(
-            request.env(user=SUPERUSER_ID)).search(
-                [('name', '=', webhook_name)], limit=1)
+        webhook = request.env['webhook'].sudo().search(
+            [('name', '=', webhook_name)], limit=1)
         # TODO: Add security by secret string  or/and ip consumer
         if not webhook:
-            remote_addr = ''
-            if hasattr(request, 'httprequest'):
-                if hasattr(request.httprequest, 'remote_addr'):
-                    remote_addr = request.httprequest.remote_addr
+            remote_addr = getattr(request.httprequest, 'remote_addr', None)
             raise exceptions.ValidationError(_(
                 'webhook consumer [%s] from remote address [%s] '
                 'not found jsonrequest [%s]' % (
