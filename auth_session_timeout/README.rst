@@ -35,6 +35,8 @@ Contributors
 ------------
 
 * Cédric Pigeon <cedric.pigeon@acsone.eu>
+* Dhinesh D <dvdhinesh.mail@gmail.com>
+* Jesse Morgan <jmorgan.nz@gmail.com>
 * David Vidal <david.vidal@tecnativa.com>
 
 Maintainer

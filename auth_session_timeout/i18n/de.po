@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * inactive_session_timeout
+# * auth_session_timeout
 # 
 # Translators:
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: inactive_session_timeout
-#: model:ir.model,name:inactive_session_timeout.model_res_users
+#. module: auth_session_timeout
+#: model:ir.model,name:auth_session_timeout.model_res_users
 msgid "Users"
 msgstr "Benutzer"

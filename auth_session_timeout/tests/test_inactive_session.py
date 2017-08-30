@@ -33,16 +33,16 @@ class TestInactiveSession(common.HttpCase):
     def test_02_urls(self):
         """ Test logout method """
         self.ipm.set_param(IGNORED_PATH_KEY, False)
-        self.assertEqual(self.rus._auth_timeout_urls_get(), [])
+        self.assertEqual(self.rus._auth_timeout_ignoredurls_get(), [])
         url_1 = '/calendar/notify'
         url_2 = '/longpolling/poll'
         urls = url_1 + ',' + url_2
         self.ipm.set_param(IGNORED_PATH_KEY, urls)
-        urls = self.rus._auth_timeout_urls_get()
+        urls = self.rus._auth_timeout_ignoredurls_get()
         self.assertEqual(len(urls), 2)
         self.assertEqual(urls[0], url_1)
         self.assertEqual(urls[1], url_2)
 
     def test_03_logout(self):
         """ Test logout method """
-        self.assertTrue(self.rus._auth_timeout_session_expire(self.session))
+        self.assertTrue(self.rus._auth_timeout_session_terminate(self.session))

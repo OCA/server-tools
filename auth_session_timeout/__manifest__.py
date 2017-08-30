@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 ACSONE - Cédric Pigeon
+# Copyright 2015 ACSONE - Dhinesh D
+# Copyright 2017 Jesse Morgan
 # Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': "Inactive Sessions Timeout",
     'version': '10.0.1.0.0',
     'author': "ACSONE SA/NV, "
+              "Jesse Morgan, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
     'website': 'https://www.acsone.eu',
