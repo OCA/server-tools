@@ -37,7 +37,7 @@ class ModuleUpgrade(models.TransientModel):
         self.env.clear()
         # Update addons checksum if state changed and I wasn't uninstalled
         own = Module.search_read(
-            [("name", "=", "module_auto_upgrade")],
+            [("name", "=", "module_auto_update")],
             ["state"],
             limit=1)
         if own and own[0]["state"] != "uninstalled":
