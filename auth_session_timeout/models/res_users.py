@@ -4,7 +4,7 @@
 # Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, http, models
+from odoo import api, models
 from odoo.http import request, root
 
 import logging
@@ -22,7 +22,7 @@ class ResUsers(models.Model):
 
     def _auth_timeout_ignoredurls_get(self):
         """
-        Pluggable method for calculating ignored urls.     
+        Pluggable method for calculating ignored urls.
         :return: ignored urls
         """
         urls = self.env['ir.config_parameter'].get_param(IGNORED_PATH_KEY)
@@ -30,10 +30,10 @@ class ResUsers(models.Model):
 
     def _auth_timeout_deadline_calculate(self):
         """
-        Pluggable method for calculating timeout deadline. Defaults to current 
+        Pluggable method for calculating timeout deadline. Defaults to current
         time minus delay using delay stored as session param.
-        :param session: 
-        :return: calculated delay 
+        :param session:
+        :return: calculated delay
         """
         delay = self.env['ir.config_parameter'].get_param(DELAY_KEY)
         delay = (int(delay) if delay else False)
@@ -43,11 +43,11 @@ class ResUsers(models.Model):
 
     def _auth_timeout_session_terminate(self, session):
         """
-        Pluggable method for enacting logout on an expired session. This is a 
-        late stage where a timeout can be aborted. Useful if you want to do 
-        some heavy checking, as it won't be called unless the session 
+        Pluggable method for enacting logout on an expired session. This is a
+        late stage where a timeout can be aborted. Useful if you want to do
+        some heavy checking, as it won't be called unless the session
         inactivity deadline has been reached.
-        :param session: 
+        :param session:
         :return: True if session is timed out/expired.
         """
         if session.db and session.uid:
