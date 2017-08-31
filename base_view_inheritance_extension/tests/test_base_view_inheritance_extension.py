@@ -2,13 +2,13 @@
 # © 2016 Therp BV <http://therp.nl>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestBaseViewInheritanceExtension(TransactionCase):
 
     def test_base_view_inheritance_extension(self):
-        view_id = self.env.ref('base.view_partner_form').id
+        view_id = self.env.ref('base.view_partner_simple_form').id
         fields_view_get = self.env['res.partner'].fields_view_get(
             view_id=view_id
         )
@@ -26,8 +26,8 @@ class TestBaseViewInheritanceExtension(TransactionCase):
         )
         # verify we moved the child_ids field
         self.assertEqual(
-            view.xpath('//field[@name="child_ids"]')[0].getparent(),
-            view.xpath('//page[@name="my_new_page"]')[0]
+            view.xpath('//field[@name="mobile"]')[0].getparent(),
+            view.xpath('//page[@name="phone_book"]')[0]
         )
 
     def test_list_add(self):
