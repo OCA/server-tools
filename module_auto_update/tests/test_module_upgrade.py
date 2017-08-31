@@ -9,6 +9,10 @@ from odoo.modules.registry import Registry
 from odoo.tests.common import TransactionCase
 
 
+class EndTestException(Exception):
+    pass
+
+
 class TestModuleUpgrade(TransactionCase):
 
     def setUp(self):
@@ -30,7 +34,7 @@ class TestModuleUpgrade(TransactionCase):
         )
 
     @mock.patch.object(Registry, 'new')
-    def test_upgrade_module(self, new_mock):
+    def test_upgrade_module_gets_module_list(self, _):
         """Calls get_module_list when upgrading in api.model mode"""
         get_module_list_mock = mock.MagicMock()
         try:
@@ -42,3 +46,24 @@ class TestModuleUpgrade(TransactionCase):
             get_module_list_mock.assert_called_once_with()
         finally:
             self.env['base.module.upgrade']._revert_method('get_module_list')
+
+    @mock.patch.object(Registry, 'new')
+    def test_upgrade_module_updates_module_list(self, _):
+        """Calls update_list before the module list is retrieved."""
+        update_list_mock = mock.MagicMock()
+        get_module_list_mock = mock.MagicMock()
+        get_module_list_mock.side_effect = EndTestException
+        try:
+            self.env['base.module.upgrade']._patch_method(
+                'get_module_list',
+                get_module_list_mock,
+            )
+            self.env['ir.module.module']._patch_method(
+                'update_list',
+                update_list_mock,
+            )
+            with self.assertRaises(EndTestException):
+                self.env['base.module.upgrade'].upgrade_module()
+            update_list_mock.assert_called_once_with()
+        finally:
+            self.env['ir.module.module']._revert_method('update_list')

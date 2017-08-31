@@ -22,10 +22,12 @@ class ModuleUpgrade(models.TransientModel):
     @api.multi
     def upgrade_module(self):
         """Make a fully automated addon upgrade."""
+        Module = self.env["ir.module.module"]
+        # Update the modules list to resolve new dependencies
+        Module.update_list()
         # Compute updates by checksum when called in @api.model fashion
         if not self:
             self.get_module_list()
-        Module = self.env["ir.module.module"]
         # Get every addon state before updating
         pre_states = {addon["name"]: addon["state"]
                       for addon in Module.search_read([], ["name", "state"])}
