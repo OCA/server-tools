@@ -9,8 +9,10 @@ import logging
 import os
 import threading
 import re
+import json
 
 from distutils.util import strtobool
+from openerp.netsvc import ColoredFormatter
 
 _logger = logging.getLogger(__name__)
 
@@ -73,8 +75,29 @@ class OdooJsonFormatter(jsonlogger.JsonFormatter):
         return res
 
 
+class OdooJsonDevFormatter(ColoredFormatter):
+
+    def format(self, record):
+        response = super(OdooJsonDevFormatter, self).format(record)
+        extra = {}
+        RESERVED_ATTRS = list(jsonlogger.RESERVED_ATTRS) + ["dbname", "pid"]
+        for key, value in record.__dict__.items():
+            if (key not in RESERVED_ATTRS and not
+                    (hasattr(key, "startswith") and key.startswith('_'))):
+                extra[key] = value
+        if extra:
+            response += " extra: " + json.dumps(
+                extra, indent=4, sort_keys=True)
+        return response
+
+
 if is_true(os.environ.get('ODOO_LOGGING_JSON')):
     format = ('%(asctime)s %(pid)s %(levelname)s'
               '%(dbname)s %(name)s: %(message)s')
     formatter = OdooJsonFormatter(format)
+    logging.getLogger().handlers[0].formatter = formatter
+elif is_true(os.environ.get('ODOO_LOGGING_JSON_DEV')):
+    format = ('%(asctime)s %(pid)s %(levelname)s'
+              '%(dbname)s %(name)s: %(message)s')
+    formatter = OdooJsonDevFormatter(format)
     logging.getLogger().handlers[0].formatter = formatter

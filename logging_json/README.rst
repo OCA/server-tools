@@ -9,6 +9,20 @@ JSON Logging
 This addon allows to output the Odoo logs in JSON.
 
 
+It also add the possibility to log extra data in json in your log.
+See documentation of json logger here : https://github.com/madzak/python-json-logger
+
+Example:
+
+.. code-block:: python
+
+   _logger.info('My Message', extra={
+       'my_extra_key_1': 'value_1',
+       'my_extra_key_2': 'value_2'})
+
+The key "extra" is a standard key of logger module so you can add this key and your log will work with or without this module (see documentation here : https://docs.python.org/2/library/logging.html#logging.Logger.debug)
+
+
 Configuration
 =============
 
@@ -18,7 +32,12 @@ The json logging is activated with the environment variable
 In order to have the logs from the start of the server, you should add
 ``logging_json`` in the ``--load`` flag or in the ``server_wide_modules``
 option in the configuration file.
-To configure this module, you need to:
+
+If you want to see the extra keys when you are developping in local
+but with the odoo logger output and not the JSON output
+you can add the environment variable ``ODOO_LOGGING_JSON_DEV`` set to ``1``.
+
+Note : ``ODOO_LOGGING_JSON_DEV`` and ``ODOO_LOGGING_JSON`` should be not set both to ``1``
 
 Known issues / Roadmap
 ======================
