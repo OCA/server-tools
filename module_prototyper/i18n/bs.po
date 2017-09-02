@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Bosnian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/bs/)\n"
@@ -80,7 +80,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #. module: module_prototyper
 #: field:ir.model.fields,column1:0
@@ -403,7 +403,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Zabilješke"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0

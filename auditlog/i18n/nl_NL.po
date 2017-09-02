@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 03:34+0000\n"
-"PO-Revision-Date: 2017-08-11 11:56+0000\n"
+"POT-Creation-Date: 2017-08-19 09:44+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr ""
 #: field:auditlog.log.line,create_uid:0 field:auditlog.methods,create_uid:0
 #: field:auditlog.rule,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,create_date:0
@@ -90,7 +90,7 @@ msgstr ""
 #: field:auditlog.log.line,create_date:0 field:auditlog.methods,create_date:0
 #: field:auditlog.rule,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -110,7 +110,7 @@ msgstr ""
 #. module: auditlog
 #: field:auditlog.log.line,field_description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,display_name:0 field:auditlog.log,display_name:0
@@ -207,7 +207,7 @@ msgstr "Laatst gewijzigd op"
 #: field:auditlog.log.line,write_uid:0 field:auditlog.methods,write_uid:0
 #: field:auditlog.rule,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,write_date:0
@@ -216,7 +216,7 @@ msgstr ""
 #: field:auditlog.log.line,write_date:0 field:auditlog.methods,write_date:0
 #: field:auditlog.rule,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form

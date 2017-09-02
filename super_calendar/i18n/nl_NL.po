@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 10:08+0000\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
@@ -59,14 +59,14 @@ msgstr ""
 #: field:super.calendar.configurator,create_uid:0
 #: field:super.calendar.configurator.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: super_calendar
 #: field:super.calendar,create_date:0
 #: field:super.calendar.configurator,create_date:0
 #: field:super.calendar.configurator.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -87,7 +87,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -210,14 +210,14 @@ msgstr "Laatst gewijzigd op"
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: super_calendar
 #: field:super.calendar,write_date:0
 #: field:super.calendar.configurator,write_date:0
 #: field:super.calendar.configurator.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form

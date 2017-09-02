@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 00:43+0000\n"
-"PO-Revision-Date: 2017-08-01 00:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"PO-Revision-Date: 2017-08-19 09:46+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: module_uninstall_check
 #: view:wizard.module.uninstall:module_uninstall_check.wizard_module_uninstall_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall,module_id:0
@@ -39,13 +40,13 @@ msgstr ""
 #: field:wizard.module.uninstall,create_uid:0
 #: field:wizard.module.uninstall.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,create_date:0
 #: field:wizard.module.uninstall.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,db_type:0
@@ -123,13 +124,13 @@ msgstr "Laatst gewijzigd op"
 #: field:wizard.module.uninstall,write_uid:0
 #: field:wizard.module.uninstall.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall,write_date:0
 #: field:wizard.module.uninstall.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: module_uninstall_check
 #: field:wizard.module.uninstall.line,line_type:0

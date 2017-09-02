@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 03:36+0000\n"
-"PO-Revision-Date: 2017-08-11 11:59+0000\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"PO-Revision-Date: 2017-08-21 07:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -403,7 +403,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "备注"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0

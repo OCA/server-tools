@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-08-19 09:45+0000\n"
+"PO-Revision-Date: 2017-08-21 07:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 10:07+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-19 09:45+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -62,13 +62,13 @@ msgstr ""
 #: field:dead.mans.switch.instance,create_uid:0
 #: field:dead.mans.switch.log,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,create_date:0
 #: field:dead.mans.switch.log,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,partner_id:0
@@ -106,7 +106,7 @@ msgstr ""
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,display_name:0
@@ -171,13 +171,13 @@ msgstr "Laatst gewijzigd op"
 #: field:dead.mans.switch.instance,write_uid:0
 #: field:dead.mans.switch.log,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,write_date:0
 #: field:dead.mans.switch.log,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.instance:dead_mans_switch_server.kanban_dead_mans_switch_instance

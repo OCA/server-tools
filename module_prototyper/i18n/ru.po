@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:32+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"PO-Revision-Date: 2017-08-21 07:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #. module: module_prototyper
 #: field:ir.model.fields,column1:0
@@ -415,7 +415,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Примечания"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0

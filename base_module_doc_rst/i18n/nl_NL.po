@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 00:43+0000\n"
-"PO-Revision-Date: 2017-08-03 08:34+0000\n"
+"POT-Creation-Date: 2017-08-19 09:45+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: base_module_doc_rst
 #: view:create.relation.graph:base_module_doc_rst.view_relationship_graph
@@ -40,13 +40,13 @@ msgstr ""
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_date:0
 #: field:tech.guide.rst,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,display_name:0
@@ -79,12 +79,12 @@ msgstr "Laatst gewijzigd op"
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_date:0 field:tech.guide.rst,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module

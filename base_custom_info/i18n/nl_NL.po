@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 10:05+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-19 09:44+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -54,14 +54,14 @@ msgstr ""
 #: field:custom.info.template,create_uid:0
 #: field:custom.info.value,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: base_custom_info
 #: field:custom.info.property,create_date:0
 #: field:custom.info.template,create_date:0
 #: field:custom.info.value,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: base_custom_info
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
@@ -153,14 +153,14 @@ msgstr "Laatst gewijzigd op"
 #: field:custom.info.property,write_uid:0
 #: field:custom.info.template,write_uid:0 field:custom.info.value,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_custom_info
 #: field:custom.info.property,write_date:0
 #: field:custom.info.template,write_date:0
 #: field:custom.info.value,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_custom_info
 #: field:custom.info.model_link,model:0

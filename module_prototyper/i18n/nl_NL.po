@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 00:43+0000\n"
+"POT-Creation-Date: 2017-08-19 09:46+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
@@ -60,7 +60,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
@@ -110,13 +110,13 @@ msgstr ""
 #: field:module_prototyper,create_uid:0
 #: field:module_prototyper.module.export,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_date:0
 #: field:module_prototyper.module.export,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: module_prototyper
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
@@ -143,7 +143,7 @@ msgstr ""
 #: view:module_prototyper:module_prototyper.module_prototyper_base_form_view
 #: field:module_prototyper,description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: module_prototyper
 #: field:module_prototyper,display_name:0
@@ -356,13 +356,13 @@ msgstr "Laatst gewijzigd op"
 #: field:module_prototyper,write_uid:0
 #: field:module_prototyper.module.export,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: module_prototyper
 #: field:module_prototyper,write_date:0
 #: field:module_prototyper.module.export,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: module_prototyper
 #: field:module_prototyper,license:0
