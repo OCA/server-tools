@@ -77,6 +77,7 @@ addon | version | summary
 [user_threshold](user_threshold/) | 10.0.1.0.0 | Add Configurable User Threshold Support
 [users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
+[webhook](webhook/) | 10.0.1.0.0 | Webhook
 
 
 Unported addons
