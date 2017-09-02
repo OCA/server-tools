@@ -3,13 +3,14 @@
 # * external_file_location
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 08:50+0000\n"
-"PO-Revision-Date: 2017-06-24 08:50+0000\n"
+"POT-Creation-Date: 2017-08-31 00:48+0000\n"
+"PO-Revision-Date: 2017-08-31 00:48+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -58,13 +59,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_uid
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_date
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: external_file_location
 #: model:ir.ui.view,arch_db:external_file_location.view_task_form
@@ -184,13 +185,13 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_uid
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_date
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: external_file_location
 #: model:ir.model,name:external_file_location.model_external_file_location

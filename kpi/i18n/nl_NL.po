@@ -3,13 +3,14 @@
 # * kpi
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 08:50+0000\n"
-"PO-Revision-Date: 2017-06-24 08:50+0000\n"
+"POT-Creation-Date: 2017-08-31 00:48+0000\n"
+"PO-Revision-Date: 2017-08-31 00:48+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +33,7 @@ msgid "Categories"
 msgstr ""
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2098
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2100
 #: model:ir.ui.view,arch_db:kpi.view_kpi_category_form
 #: model:ir.ui.view,arch_db:kpi.view_kpi_filter
 msgid "Category"
@@ -74,7 +75,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_create_uid
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: kpi
 #: model:ir.model.fields,field_description:kpi.field_kpi_category_create_date
@@ -83,7 +84,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_create_date
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: kpi
 #: model:ir.ui.menu,name:kpi.menu_configuration_kpi_dbsource
@@ -100,7 +101,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:kpi.field_kpi_description
 #: model:ir.ui.view,arch_db:kpi.view_kpi_form
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: kpi
 #: model:ir.model.fields,field_description:kpi.field_kpi_category_display_name
@@ -237,7 +238,7 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_write_uid
 #: model:ir.model.fields,field_description:kpi.field_kpi_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: kpi
 #: model:ir.model.fields,field_description:kpi.field_kpi_category_write_date
@@ -246,7 +247,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_write_date
 #: model:ir.model.fields,field_description:kpi.field_kpi_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: kpi
 #: code:addons/kpi/models/kpi_threshold.py:71
@@ -384,7 +385,7 @@ msgid "SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
 msgstr ""
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2093
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2095
 #: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
 msgid "Threshold"
 msgstr ""

@@ -3,13 +3,14 @@
 # * database_cleanup
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 08:50+0000\n"
-"PO-Revision-Date: 2017-06-24 08:50+0000\n"
+"POT-Creation-Date: 2017-08-31 00:48+0000\n"
+"PO-Revision-Date: 2017-08-31 00:48+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +74,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_date
@@ -93,7 +94,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_data_id
@@ -209,7 +210,7 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_write_date
@@ -229,7 +230,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_menu_id
