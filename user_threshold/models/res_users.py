@@ -29,16 +29,15 @@ class ResUsers(models.Model):
         if THRESHOLD_HIDE:
             exempt_users_var = os.environ.get('USER_THRESHOLD_USER', '')
             exempt_users = reader([exempt_users_var])
-            users = env['res.users'].search([
+            users = self.env['res.users'].search([
                 ('share', '=', False),
                 ('threshold_exempt', '=', True),
             ])
-            non_ex = users.filtered(
-                lambda r: r.login not in exempt_users
-            )
+            non_ex = users.filtered(lambda r: r.login not in exempt_users)
+
             for user in non_ex:
                 user.threshold_exempt = False
-
+                
     def _check_thresholds(self):
         """
         Check to see if any user thresholds are met
