@@ -21,7 +21,7 @@ class ResUsers(models.Model):
     )
 
     @api.model_cr
-    def _register_hook(self, pool, cr):
+    def _register_hook(self):
         """
         Override to check if env var to hide threshold configuration and
         reset the database state is set. If it is, run those actions
