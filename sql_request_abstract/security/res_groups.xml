@@ -5,7 +5,7 @@ Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record model="res.groups" id="group_sql_request_user">
         <field name="name">User</field>
@@ -20,4 +20,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="implied_ids" eval="[(4, ref('group_sql_request_user'))]" />
     </record>
 
-</data></openerp>
+</odoo>
