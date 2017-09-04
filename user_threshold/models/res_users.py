@@ -20,6 +20,7 @@ class ResUsers(models.Model):
         'Exempt User From User Count Thresholds',
     )
 
+    @api.model_cr
     def _register_hook(self, pool, cr):
         """
         Override to check if env var to hide threshold configuration and
