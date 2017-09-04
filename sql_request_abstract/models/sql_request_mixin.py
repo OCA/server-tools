@@ -10,8 +10,8 @@ import StringIO
 import base64
 from psycopg2 import ProgrammingError
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class SQLRequestMixin(models.AbstractModel):
@@ -129,7 +129,7 @@ class SQLRequestMixin(models.AbstractModel):
 
         ..note:: The following exceptions could be raised:
             psycopg2.ProgrammingError: Error in the SQL Request.
-            openerp.exceptions.Warning:
+            odoo.exceptions.UserError:
                 * 'mode' is not implemented.
                 * materialized view is not supported by the Postgresql Server.
         """
