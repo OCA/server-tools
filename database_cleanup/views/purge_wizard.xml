@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="form_purge_wizard" model="ir.ui.view">
-            <field name="model">cleanup.purge.wizard</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <button type="object" name="purge_all" string="Purge all" class="oe_highlight" />
-                        <button type="object" name="select_lines" string="Select lines" />
-                    </header>
-                    <field name="purge_line_ids">
-                        <form>
-                            <group>
-                                <field name="name" />
-                                <field name="purged" />
-                            </group>
-                            <footer>
-                                <button type="object" name="purge" class="oe_highlight"
-                                        string="Purge"
-                                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                            </footer>
-                        </form>
-                    </field>
-                </form>
-            </field>
-        </record>
-        <record id="tree_purge_line" model="ir.ui.view">
-            <field name="model">cleanup.purge.line</field>
-            <field name="arch" type="xml">
-                <tree string="Purge models" delete="false">
-                    <field name="name" />
-                    <field name="purged" />
-                    <button type="object" name="purge"
-                        icon="gtk-cancel" string="Purge this model"
-                        attrs="{'invisible': [('purged', '=', True)]}"/>
-                </tree>
-            </field>
-        </record>
-    </data>
-</openerp>
+<odoo>
+    <record id="form_purge_wizard" model="ir.ui.view">
+        <field name="model">cleanup.purge.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="purge_all" string="Purge all" class="oe_highlight" />
+                    <button type="object" name="select_lines" string="Select lines" />
+                </header>
+                <field name="purge_line_ids">
+                    <form>
+                        <group>
+                            <field name="name" />
+                            <field name="purged" />
+                        </group>
+                        <footer>
+                            <button type="object" name="purge" class="oe_highlight"
+                                    string="Purge"
+                                    attrs="{'invisible': [('purged', '=', True)]}"/>
+                        </footer>
+                    </form>
+                </field>
+            </form>
+        </field>
+    </record>
+    <record id="tree_purge_line" model="ir.ui.view">
+        <field name="model">cleanup.purge.line</field>
+        <field name="arch" type="xml">
+            <tree string="Purge models" delete="false">
+                <field name="name" />
+                <field name="purged" />
+                <button type="object" name="purge"
+                    icon="gtk-cancel" string="Purge this model"
+                    attrs="{'invisible': [('purged', '=', True)]}"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
