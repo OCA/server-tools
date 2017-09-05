@@ -2,7 +2,7 @@
 # Copyright 2016 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class BaseKanbanStage(models.Model):
@@ -30,32 +30,35 @@ class BaseKanbanStage(models.Model):
     legend_priority = fields.Text(
         string='Priority Explanation',
         translate=True,
-        default='Mark a card as medium or high priority (one or two stars) to'
-                ' indicate that it should be escalated ahead of others with'
-                ' lower priority/star counts.',
+        default=lambda s: _(
+            'Give a card the special handling status to indicate that it'
+            ' requires handling by a special user or subset of users.'),
         help='Explanation text to help users understand how the priority/star'
              ' mechanism applies to this stage',
     )
     legend_blocked = fields.Text(
         string='Special Handling Explanation',
         translate=True,
-        default='Give a card the special handling status to indicate that it'
-                ' requires handling by a special user or subset of users.',
+        default=lambda s: _(
+            'Give a card the special handling status to indicate that it'
+            ' requires handling by a special user or subset of users.'),
         help='Explanation text to help users understand how the special'
              ' handling status applies to this stage',
     )
     legend_done = fields.Text(
         string='Ready Explanation',
         translate=True,
-        default='Mark a card as ready when it has been fully processed.',
+        default=lambda s: _(
+            'Mark a card as ready when it has been fully processed.'),
         help='Explanation text to help users understand how the ready status'
              ' applies to this stage',
     )
     legend_normal = fields.Text(
         string='Normal Handling Explanation',
         translate=True,
-        default='This is the default status and indicates that a card can be'
-                ' processed by any user working this queue.',
+        default=lambda s: _(
+            'This is the default status and indicates that a card can be'
+            ' processed by any user working this queue.'),
         help='Explanation text to help users understand how the normal'
              ' handling status applies to this stage',
     )

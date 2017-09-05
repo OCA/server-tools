@@ -2,7 +2,7 @@
 # Copyright 2016 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class BaseKanbanAbstract(models.AbstractModel):
@@ -84,7 +84,7 @@ class BaseKanbanAbstract(models.AbstractModel):
             ('blocked', 'Special Handling'),
         ],
         string='Kanban Status',
-        default='normal',
+        default=lambda s: _('normal'),
         track_visibility='onchange',
         required=True,
         copy=False,
