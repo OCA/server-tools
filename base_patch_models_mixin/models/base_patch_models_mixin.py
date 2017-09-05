@@ -9,8 +9,6 @@ from openerp import models
 _logger = logging.getLogger(__file__)
 
 
-# TODO: this should be a helper module to cetralize the point of failure
-# in case this introduces tacit bugs
 class BasePatchModelsMixin(models.AbstractModel):
     """
     This is a mixin class meant to simplify working with patches
