@@ -67,6 +67,7 @@ addon | version | summary
 [language_path_mixin](language_path_mixin/) | 8.0.1.0.0 | Setting the partner's language in RML reports
 [letsencrypt](letsencrypt/) | 8.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [log_forwarded_for_ip](log_forwarded_for_ip/) | 8.0.1.0.0 | Displays source IPs in log when behind a reverse proxy
+[logging_json](logging_json/) | 8.0.1.0.0 | JSON Logging
 [mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 | Prototype your module.
