@@ -40,12 +40,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         Uninstall modules upon manual confirmation, then reload
         the database.
         """
-        if self:
-            objs = self
-        else:
-            objs = self.env['cleanup.purge.line.module']\
-                .browse(self._context.get('active_ids'))
-        module_names = objs.filtered(lambda x: not x.purged).mapped('name')
+        module_names = self.filtered(lambda x: not x.purged).mapped('name')
         modules = self.env['ir.module.module'].search([
             ('name', 'in', module_names)
         ])
@@ -57,7 +52,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         ).button_immediate_uninstall()
         modules.refresh()
         modules.unlink()
-        return objs.write({'purged': True})
+        return self.write({'purged': True})
 
 
 class CleanupPurgeWizardModule(models.TransientModel):
