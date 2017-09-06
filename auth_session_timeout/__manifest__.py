@@ -8,6 +8,7 @@
         This module disable all inactive sessions since a given delay""",
     'author': "ACSONE SA/NV, "
               "Dhinesh D, "
+              "Jesse Morgan, "
               "LasLabs, "
               "Odoo Community Association (OCA)",
     'maintainer': 'Odoo Community Association (OCA)',
