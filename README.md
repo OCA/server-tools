@@ -39,7 +39,7 @@ addon | version | summary
 [base_import_default_enable_tracking](base_import_default_enable_tracking/) | 10.0.1.0.0 | This modules simply enables history tracking when doing an import.
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
 [base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
-[base_kanban_stage](base_kanban_stage/) | 10.0.1.0.0 | Provides stage model and abstract logic for inheritance
+[base_kanban_stage](base_kanban_stage/) | 10.0.1.0.1 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
