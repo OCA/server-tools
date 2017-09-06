@@ -31,7 +31,7 @@ addon | version | summary
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.1 | External Database Sources
 [base_import_match](base_import_match/) | 9.0.1.0.0 | Try to avoid duplicates before importing
-[base_kanban_stage](base_kanban_stage/) | 9.0.1.0.0 | Provides stage model and abstract logic for inheritance
+[base_kanban_stage](base_kanban_stage/) | 9.0.1.0.1 | Provides stage model and abstract logic for inheritance
 [base_multi_image](base_multi_image/) | 9.0.1.1.0 | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 9.0.1.0.0 | Friendlier search when typing in relation fields
 [base_optional_quick_create](base_optional_quick_create/) | 9.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
@@ -58,6 +58,7 @@ addon | version | summary
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 9.0.1.0.0 | Mark as read or delete mails after a set time
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
+[mail_log_messages_to_process](mail_log_messages_to_process/) | 9.0.1.0.0 | Log all messages received, before they start to be processed.
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [menu_technical_info](menu_technical_info/) | 9.0.1.0.0 | Fast way to look up technical info about menu item.
 [module_auto_update](module_auto_update/) | 9.0.1.0.2 | Automatically update Odoo modules
