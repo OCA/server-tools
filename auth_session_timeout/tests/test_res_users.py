@@ -3,10 +3,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import mock
+from os import strerror
+from errno import ENOENT
 
 from contextlib import contextmanager
 
 from odoo.tests.common import TransactionCase
+
+_package_path = 'odoo.addons.auth_session_timeout'
 
 
 class EndTestException(Exception):
@@ -102,3 +106,30 @@ class TestResUsers(TransactionCase):
             assets['getmtime'].side_effect = OSError
             res = self._check_session_validity()
             self.assertFalse(res)
+
+    @mock.patch(_package_path + '.models.res_users.request')
+    @mock.patch(_package_path + '.models.res_users.root')
+    @mock.patch(_package_path + '.models.res_users.getmtime')
+    def test_on_timeout_session_loggedout(self, mock_getmtime,
+                                          mock_root, mock_request):
+        mock_getmtime.return_value = 0
+        mock_request.session.uid = self.env.uid
+        mock_request.session.dbname = self.env.cr.dbname
+        mock_request.session.sid = 123
+        mock_request.session.logout = mock.Mock()
+        self.resUsers._auth_timeout_check()
+        self.assertTrue(mock_request.session.logout.called)
+
+    @mock.patch(_package_path + '.models.res_users.request')
+    @mock.patch(_package_path + '.models.res_users.root')
+    @mock.patch(_package_path + '.models.res_users.getmtime')
+    @mock.patch(_package_path + '.models.res_users.utime')
+    def test_sessionfile_io_exceptions_managed(self, mock_utime, mock_getmtime,
+                                               mock_root, mock_request):
+        mock_getmtime.side_effect = OSError(
+            ENOENT, strerror(ENOENT), 'non-existent-filename')
+        mock_request.session.uid = self.env.uid
+        mock_request.session.dbname = self.env.cr.dbname
+        mock_request.session.sid = 123
+        self.resUsers._auth_timeout_check()
+
