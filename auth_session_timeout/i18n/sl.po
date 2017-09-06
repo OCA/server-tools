@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_session_timeout
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
