@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import _, api, fields, models
-from openerp.exceptions import UserError
-from openerp.modules.registry import RegistryManager
-from openerp.modules.module import get_module_path
-from openerp.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+from odoo.modules.module import get_module_path
+from odoo.addons.base.ir.ir_model import MODULE_UNINSTALL_FLAG
 
 
 class IrModelData(models.Model):
@@ -48,11 +47,10 @@ class CleanupPurgeLineModule(models.TransientModel):
         if not modules:
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
-        modules.button_uninstall()
-        # we need this commit because reloading the registry would roll back
-        # our changes
-        self.env.cr.commit()  # pylint: disable=invalid-commit
-        RegistryManager.new(self.env.cr.dbname, update_module=True)
+        modules.filtered(
+            lambda x: x.state not in ('uninstallable', 'uninstalled')
+        ).button_immediate_uninstall()
+        modules.refresh()
         modules.unlink()
         return self.write({'purged': True})
 
