@@ -39,7 +39,7 @@ addon | version | summary
 [base_import_default_enable_tracking](base_import_default_enable_tracking/) | 10.0.1.0.0 | This modules simply enables history tracking when doing an import.
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
 [base_import_security_group](base_import_security_group/) | 10.0.1.0.0 | Group-based permissions for importing CSV files
-[base_kanban_stage](base_kanban_stage/) | 10.0.1.0.1 | Provides stage model and abstract logic for inheritance
+[base_kanban_stage](base_kanban_stage/) | 10.0.1.1.0 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
@@ -51,6 +51,7 @@ addon | version | summary
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 10.0.1.0.0 | User roles
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
+[database_cleanup](database_cleanup/) | 10.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 10.0.1.0.2 | Manage all kind of date range
 [datetime_formatter](datetime_formatter/) | 10.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
@@ -61,7 +62,7 @@ addon | version | summary
 [keychain](keychain/) | 10.0.1.0.0 | Store accounts and credentials
 [letsencrypt](letsencrypt/) | 10.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
-[mass_editing](mass_editing/) | 10.0.1.0.0 | Mass Editing
+[mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_auto_update](module_auto_update/) | 10.0.1.0.1 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
@@ -92,7 +93,6 @@ addon | version | summary
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 (unported) | This module disable all inactive sessions since a given delay
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 (unported) | Report qweb auto generation
-[database_cleanup](database_cleanup/) | 9.0.1.0.0 (unported) | Database cleanup
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 (unported) | Be notified when customers' odoo instances go down
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
