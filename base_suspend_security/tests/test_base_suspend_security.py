@@ -20,6 +20,7 @@
 from openerp import exceptions
 from openerp.tools import mute_logger
 from openerp.tests.common import TransactionCase
+from ..base_suspend_security import BaseSuspendSecurityUid
 
 
 class TestBaseSuspendSecurity(TransactionCase):
@@ -52,3 +53,11 @@ class TestBaseSuspendSecurity(TransactionCase):
         # this tests if _normalize_args conversion works
         self.env['res.users'].browse(
             self.env['res.users'].suspend_security().env.uid)
+        # check equality, that's relevant for picking the right environment
+        self.assertNotEqual(BaseSuspendSecurityUid(42), 42)
+        self.assertNotEqual(
+            BaseSuspendSecurityUid(42), BaseSuspendSecurityUid(43),
+        )
+        self.assertEqual(
+            BaseSuspendSecurityUid(42), BaseSuspendSecurityUid(42),
+        )
