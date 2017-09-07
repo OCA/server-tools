@@ -2,13 +2,12 @@
 # Copyright 2017 Lorenzo Battistini - Agile Business Group
 # License GPL-3.0 or later (http://www.gnu.org/licenses/gpl).
 
-from openerp.osv import orm, fields
+from openerp import fields, models
 
 
-class ResUser(orm.Model):
+class ResUser(models.Model):
     _inherit = 'res.users'
-    _columns = {
-        'readonly_user': fields.boolean(
-            "Read only user",
-            help="Set this to prevent this user to modify any data")
-    }
+
+    readonly_user = fields.Boolean(
+        string="Read only user",
+        help="Set this to prevent this user to modify any data")

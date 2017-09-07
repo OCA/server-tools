@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_readonly_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-07 15:15+0000\n"
+"PO-Revision-Date: 2017-09-07 17:16+0200\n"
+"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 2.0.1\n"
+
+#. module: base_readonly_user
+#: code:addons/base_readonly_user/models/model.py:21
+#: code:addons/base_readonly_user/models/model.py:34
+#: code:addons/base_readonly_user/models/model.py:47
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: base_readonly_user
+#: model:ir.model,name:base_readonly_user.model_ir_model
+msgid "Models"
+msgstr "Modelli"
+
+#. module: base_readonly_user
+#: field:res.users,readonly_user:0
+msgid "Read only user"
+msgstr "Utente in sola lettura"
+
+#. module: base_readonly_user
+#: code:addons/base_readonly_user/models/model.py:22
+#, python-format
+msgid "Readonly user can't create records"
+msgstr "Gli utenti in sola lettura non possono creare record"
+
+#. module: base_readonly_user
+#: code:addons/base_readonly_user/models/model.py:48
+#, python-format
+msgid "Readonly user can't unlink records"
+msgstr "Gli utenti in sola lettura non possono eliminare record"
+
+#. module: base_readonly_user
+#: code:addons/base_readonly_user/models/model.py:35
+#, python-format
+msgid "Readonly user can't write records"
+msgstr "Gli utenti in sola lettura non possono scrivere record"
+
+#. module: base_readonly_user
+#: help:res.users,readonly_user:0
+msgid "Set this to prevent this user to modify any data"
+msgstr "Con questo flag selezionato l'utente non potrà modificare alcun dato"
+
+#. module: base_readonly_user
+#: model:ir.model,name:base_readonly_user.model_res_users
+msgid "Users"
+msgstr "Utenti"
