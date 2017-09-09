@@ -1,0 +1,3 @@
+[submodule "dbf2csv"]
+	path = dbf2csv
+	url = git@github.com:Ingetive/dbf2csv.git
