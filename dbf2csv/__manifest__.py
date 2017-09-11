@@ -20,7 +20,7 @@
         'views/views.xml',
     ],
     'external_dependencies': {
-    'python': ['ydbf']
+        'python': ['dbfpy']
     },
     'auto_install': False,
     'installable': True,
