@@ -10,7 +10,7 @@ from odoo.exceptions import UserError
 try:
     from dbfpy import dbf
 except ImportError:
-    unicodecsv = None
+    dbfpy = None
 
 logger = logging.getLogger(__name__)
 
