@@ -11,7 +11,7 @@ import csv
 import base64
 from dbfpy import dbf
 
-class fileDBF(models.TransientModel):
+class FileDBF(models.TransientModel):
     _name = 'dbftocsv.filedbf'
     _description = 'File DBF to convert to CSV'
 
