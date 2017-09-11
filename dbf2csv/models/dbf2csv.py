@@ -12,7 +12,9 @@ class FileDBF(models.TransientModel):
     _name = 'dbftocsv.filedbf'
     _description = 'File DBF to convert to CSV'
 
-    data_file = fields.Binary(string='DBF file', required=True,
+    data_file = fields.Binary(
+        string='DBF file',
+        required=True,
         help='Get you DBF file.')
     filename = fields.Char(string='DBF file name')
 
@@ -26,8 +28,9 @@ class FileDBF(models.TransientModel):
         fp.write(base64.decodestring(self.data_file))
         fp.close()
 
-        with open('/tmp/'+ self.filename.replace('dbf', 'csv'), \
-        'w+') as csvfile:
+        with open(
+            '/tmp/' + self.filename.replace('dbf', 'csv'),
+            'w+') as csvfile:
             in_db = dbf.Dbf('/tmp/' + self.filename)
             out_csv = csv.writer(csvfile)
             names = []
@@ -40,7 +43,7 @@ class FileDBF(models.TransientModel):
 
         return {
             'type': 'ir.actions.act_url',
-            'url': '/web/binary/download_document?filename=%s' \
-            % (self.filename.replace('dbf','csv')),
+            'url': '/web/binary/download_document?filename=%s'
+            % (self.filename.replace('dbf', 'csv')),
             'target': 'new',
         }

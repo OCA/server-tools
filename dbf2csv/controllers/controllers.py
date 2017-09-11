@@ -13,6 +13,7 @@ class Dbf2csvController(http.Controller):
     def download_document(self, filename, **kw):
         with open('/tmp/' + filename) as f:
             filecontent = f.read() + '\n'
-        return request.make_response(filecontent,
+        return request.make_response(
+            filecontent,
             [('Content-Type', 'application/octet-stream'),
              ('Content-Disposition', content_disposition(filename))])
