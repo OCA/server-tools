@@ -5,7 +5,8 @@
 {
     'name': 'Convert DBF to CSV',
     'version': '10.0.1.0.0',
-    'author': 'Ingetive, Félix Villafranca',
+    'author': 'Félix Villafranca (Ingetive),'
+              'Odoo Community Association (OCA)',
     'website': 'http://www.ingetive.com',
     'license': 'AGPL-3',
     'category': 'Usability',
