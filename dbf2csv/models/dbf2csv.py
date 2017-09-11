@@ -4,8 +4,8 @@
 
 import csv
 import base64
+import logging
 from odoo import models, fields, api
-from odoo.exceptions import UserError
 
 try:
     from dbfpy import dbf
@@ -13,6 +13,7 @@ except ImportError:
     dbfpy = None
 
 logger = logging.getLogger(__name__)
+
 
 class FileDBF(models.TransientModel):
     _name = 'dbftocsv.filedbf'
