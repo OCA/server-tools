@@ -29,7 +29,7 @@ class FileDBF(models.TransientModel):
         fp.close()
 
         with open('/tmp/' + self.filename.replace('dbf', 'csv'),
-        'w+') as csvfile:
+                  'w+') as csvfile:
             in_db = dbf.Dbf('/tmp/' + self.filename)
             out_csv = csv.writer(csvfile)
             names = []
