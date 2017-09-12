@@ -23,7 +23,8 @@ class TrgmIndex(models.Model):
         comodel_name='ir.model.fields',
         string='Field',
         required=True,
-        help='You can either select a field of type "text" or "char".'
+        domain=[('ttype', 'in', ('text', 'char', 'html'))],
+        help='Select the textual field to index.'
     )
 
     index_name = fields.Char(
@@ -41,10 +42,11 @@ class TrgmIndex(models.Model):
         string='Index Type',
         default='gin',
         required=True,
-        help='Cite from PostgreSQL documentation: "As a rule of thumb, a '
-             'GIN index is faster to search than a GiST index, but slower to '
-             'build or update; so GIN is better suited for static data and '
-             'GiST for often-updated data."'
+        help='For more information on the different index types please visit '
+             'https://www.postgresql.org/docs/current/static/'
+             'textsearch-indexes.html.  Performance and guidance differs '
+             'by version, but in general GIN indexes are the preferred text '
+             'search index type for modern postgres versions.'
     )
 
     @api.model_cr
