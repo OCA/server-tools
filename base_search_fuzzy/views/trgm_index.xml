@@ -6,10 +6,10 @@
       <field name="name">trgm.index.view.form</field>
       <field name="model">trgm.index</field>
       <field name="arch" type="xml">
-        <form string="Trigam Index">
+        <form string="Trigram Index">
           <sheet>
             <group col="4">
-              <field name="field_id" domain="[('ttype', 'in', ['char', 'text'])]"/>
+              <field name="field_id" options="{'no_create_edit': True}"/>
               <field name="index_name"/>
               <field name="index_type"/>
             </group>
@@ -22,7 +22,7 @@
       <field name="name">trgm.index.view.tree</field>
       <field name="model">trgm.index</field>
       <field name="arch" type="xml">
-        <tree string="Trigam Index">
+        <tree string="Trigram Index">
           <field name="field_id"/>
           <field name="index_name"/>
           <field name="index_type"/>
