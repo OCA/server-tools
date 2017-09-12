@@ -27,6 +27,11 @@ In case you work with defaults and want to dumb down the UI a bit, use ``{'no_ad
 
 Further, as this is a serialized field, a value of `not set` will be represented in the database as ``'null'`` if the value was set and unset afterwards, or a database ``null`` if the value was never set - this is then also what you have to search for when you need records with your field unset.
 
+Daylight saving time
+====================
+
+By default, this field keep intervals stable, as Odoo handles UTC times internally. If you need stable times (think of some repetition of an appointment) in time zones with daylight saving, you need to set ``stable_times=True`` in the field's constructor.
+
 Known issues / Roadmap
 ======================
 
