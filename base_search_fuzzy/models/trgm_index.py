@@ -31,7 +31,7 @@ class TrgmIndex(models.Model):
         readonly=True,
         help='The index name is automatically generated like '
              'fieldname_indextype_idx. If the index already exists and the '
-             'index is located in the same table then this index is resused. '
+             'index is located in the same table then this index is reused. '
              'If the index is located in another table then a number is added '
              'at the end of the index name.'
     )
