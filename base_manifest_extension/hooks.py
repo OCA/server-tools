@@ -1,21 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Therp BV <http://therp.nl>
+# Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html)
 
 import inspect
+from werkzeug.local import Local
 from openerp.sql_db import Cursor
 from openerp.modules import module
 from openerp.modules.graph import Graph
+
 original = module.load_information_from_description_file
+local = Local()
+local.rdepends_to_process = {}
 
 
 def load_information_from_description_file(module, mod_path=None):
     result = original(module, mod_path=mod_path)
+
     # add the keys you want to react on here
     if result.get('depends_if_installed'):
         cr = _get_cr()
         if cr:
             _handle_depends_if_installed(cr, result)
+    if result.get('rdepends_if_installed'):
+        cr = _get_cr()
+        if cr:
+            _handle_rdepends_if_installed(cr, result, module)
+
+    # Apply depends specified in other modules as rdepends
+    extra_depends = local.rdepends_to_process.get(module)
+    if extra_depends:
+        result['depends'] += extra_depends
 
     return result
 
@@ -23,17 +38,44 @@ def load_information_from_description_file(module, mod_path=None):
 def _handle_depends_if_installed(cr, manifest):
     if not manifest.get('depends_if_installed'):
         return
+
+    added_depends = manifest.pop('depends_if_installed')
+    added_depends = _installed_modules(cr, added_depends)
+
+    depends = manifest.setdefault('depends', [])
+    depends.extend(added_depends)
+
+
+def _handle_rdepends_if_installed(cr, manifest, current_module):
+    graph = _get_graph()
+    if not graph:
+        return
+
+    rdepends = manifest.pop('rdepends_if_installed')
+    rdepends = _installed_modules(cr, rdepends)
+
+    for rdepend in rdepends:
+        to_process = local.rdepends_to_process.get(rdepend, set([]))
+        local.rdepends_to_process[rdepend] = to_process | set([current_module])
+        # If rdepend already in graph, reload it so new depend is applied
+        if graph.get(rdepend):
+            del graph[rdepend]
+            graph.add_module(cr, rdepend)
+
+
+def _installed_modules(cr, modules):
+    if not modules:
+        return []
+
     cr.execute(
-        'select name from ir_module_module '
-        'where state in %s and name in %s',
+        'SELECT name FROM ir_module_module '
+        'WHERE state IN %s AND name IN %s',
         (
             tuple(['installed', 'to install', 'to upgrade']),
-            tuple(manifest['depends_if_installed']),
+            tuple(modules),
         ),
     )
-    manifest.pop('depends_if_installed')
-    depends = manifest.setdefault('depends', [])
-    depends.extend(module for module, in cr.fetchall())
+    return [module for module, in cr.fetchall()]
 
 
 def _get_cr():
@@ -62,15 +104,10 @@ def post_load_hook():
     cr = _get_cr()
     if not cr:
         return
-    cr.execute(
-        'select id from ir_module_module where name=%s and state in %s',
-        (
-            'base_manifest_extension',
-            tuple(['installed', 'to install', 'to upgrade']),
-        ),
-    )
+
     # do nothing if we're not installed
-    if not cr.rowcount:
+    installed = _installed_modules(cr, ['base_manifest_extension'])
+    if not installed:
         return
 
     module.load_information_from_description_file =\
