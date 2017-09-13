@@ -9,7 +9,8 @@ import base64
 
 
 class IrAttachmentMetadata(models.Model):
-    _inherit = "ir.attachment.metadata"
+    _name = 'ir.attachment.metadata'
+    _inherit = ["ir.attachment.metadata", "mail.thread"]
 
     fetchmail_attachment_condition_id = fields.Many2one(
         'fetchmail.attachment.condition',
@@ -23,23 +24,23 @@ class IrAttachmentMetadata(models.Model):
         readonly=True,
         help="The email server used to create this attachment")
 
-    @api.model
-    def message_process(self, model, message, custom_values=None,
-                        save_original=False, strip_attachments=False,
-                        thread_id=None):
-        if context is None:
-            context = {}
-        context['no_post'] = True
-        return True
+#    @api.model
+#    def message_process(self, model, message, custom_values=None,
+#                        save_original=False, strip_attachments=False,
+#                        thread_id=None):
+#        if context is None:
+#            context = {}
+#        context['no_post'] = True
+#        return True
 
-    @api.multi
-    def message_post(self, body='', subject=None,
-                     message_type='notification', subtype=None,
-                    parent_id=False, attachments=None, content_subtype='html',
-                     **kwargs):
-        if self.env.context.get('no_post'):
-            return None
-        return True
+#    @api.multi
+#    def message_post(self, body='', subject=None,
+#                     message_type='notification', subtype=None,
+#                    parent_id=False, attachments=None, content_subtype='html',
+#                     **kwargs):
+#        if self.env.context.get('no_post'):
+#            return None
+#        return True
 
     @api.model
     def _get_attachment_metadata_data(self, condition, msg, att):
