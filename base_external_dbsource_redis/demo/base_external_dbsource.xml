@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="base.external.dbsource" id="demo_redis">
+        <field name="name">Redis Demo</field>
+        <field name="conn_string">redis://redis.example.com:6379?db=12</field>
+        <field name="password">password</field>
+        <field name="connector">redis</field>
+    </record>
+</odoo>

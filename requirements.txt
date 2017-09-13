@@ -9,3 +9,4 @@ fdb
 sqlalchemy
 raven
 checksumdir
+redis-py
