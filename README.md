@@ -59,7 +59,7 @@ addon | version | summary
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 | Attach mails in an IMAP folder to existing objects
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 8.0.1.0.1 | If fetching mails gives error, send an email to sender
 [field_char_transformed](field_char_transformed/) | 8.0.1.0.0 | Allows to transform input in character fields before writing or reading it to/from the database
-[field_rrule](field_rrule/) | 8.0.1.0.0 | Provides a field and widget for RRules according to RFC 2445
+[field_rrule](field_rrule/) | 8.0.1.0.1 | Provides a field and widget for RRules according to RFC 2445
 [html_image_url_extractor](html_image_url_extractor/) | 8.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 8.0.1.0.0 | Generate excerpts from any HTML field
 [import_odbc](import_odbc/) | 8.0.0.1.3 | Import data from SQL and ODBC data sources.
