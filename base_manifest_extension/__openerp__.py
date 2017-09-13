@@ -6,6 +6,7 @@
 {
     'name': 'Module Manifest - Extra Options',
     'version': '9.0.1.0.0',
+    'website': 'https://github.com/OCA/server-tools',
     'author': 'Therp BV, LasLabs, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'category': 'Hidden/Dependency',

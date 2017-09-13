@@ -10,9 +10,13 @@ This is a technical module that allows developers to make use of extra keys in
 module manifests. The following keys are available currently:
 
 * ``depends_if_installed`` - Your module will depend on modules listed here but
-  only if those modules are already installed. This is useful if your module is
-  supposed to override the behavior of a certain module (dependencies determine
-  load order) but does not need it to be installed.
+  only if those modules are already installed. This is useful if your module
+  needs to override the behavior of a certain module (dependencies determine
+  load order) but would also work without it.
+* ``rdepends_if_installed`` - The modules listed here will depend on your
+  module if they are already installed. This is useful if you want your module
+  to be higher in the inheritance chain than the target modules and do not want
+  to or cannot make changes to those modules.
 
 Usage
 =====
@@ -30,8 +34,6 @@ Add support for the following additional keys:
 * ``demo_if_installed``, ``data_if_installed``, ``qweb_if_installed`` - Dicts
   with module names as keys and lists of files as values. Used to load files
   only if some other module is installed.
-* ``rdepends_if_installed`` - Similar to ``depends_if_installed`` but
-  used to make another installed module depend on the current one.
 * ``_if_module`` - Used on models to load them only if the appropriate module
   is installed.
 
