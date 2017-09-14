@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015 Innoviu srl <http://www.innoviu.it>
+     Copyright 2015 Agile Business Group <http://www.agilebg.com>
+     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+                    <http://www.eficent.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="view_fethmail_bydate_form">
+        <field name="name">fetchmail.bydate.form</field>
+        <field name="model">fetchmail.server</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after" >
+                <field name="last_internal_date"
+                       attrs="{'invisible':[('type','!=','imap')]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
