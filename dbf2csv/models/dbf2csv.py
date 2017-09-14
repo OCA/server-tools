@@ -2,54 +2,61 @@
 # Copyright 2017 INGETIVE (<https://ingetive.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import tempfile
 import csv
 import base64
 import logging
-from odoo import models, fields, api
 
-try:
-    from dbfpy import dbf
-except ImportError:
-    dbfpy = None
+from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
+try:
+    from dbfpy import dbf
+except ImportError as err:
+    _logger.debug(err)
 
-class FileDBF(models.TransientModel):
-    _name = 'dbftocsv.filedbf'
+
+class Conversion(models.Model):
+    _name = 'dbftocsv.conversion'
     _description = 'File DBF to convert to CSV'
 
+    name = fields.Char(string= 'Description',required = True)
+
     data_file = fields.Binary(
-        string='DBF file',
-        required=True,
-        help='Get you DBF file.')
-    filename = fields.Char(string='DBF file name')
+        string = 'DBF file',
+        required = True,
+        help = 'Get you DBF file.')
+    filename = fields.Char(string='DBF file')
 
-    @api.multi
-    def proccess_file(self):
-        # Process the DBF file chosen in the wizard,
-        # create and download CSV file.
-        self.ensure_one()
-        # Create DBF file in TMP
-        fp = open('/tmp/' + self.filename, 'w+')
-        fp.write(base64.decodestring(self.data_file))
-        fp.close()
+    data_file_csv = fields.Binary(
+        string = 'CSV file',
+        readonly = True,
+        help = 'Get you CSV file.')
+    filename_csv = fields.Char(string='CSV file')
 
-        with open('/tmp/' + self.filename.replace('dbf', 'csv'),
-                  'w+') as csvfile:
-            in_db = dbf.Dbf('/tmp/' + self.filename)
-            out_csv = csv.writer(csvfile)
-            names = []
-            for field in in_db.header.fields:
-                names.append(field.name)
-            out_csv.writerow(names)
-            for rec in in_db:
-                out_csv.writerow(rec.fieldData)
-            in_db.close()
-
-        return {
-            'type': 'ir.actions.act_url',
-            'url': '/web/binary/download_document?filename=%s'
-            % (self.filename.replace('dbf', 'csv')),
-            'target': 'new',
-        }
+    def process_file(self):
+        try:
+            with tempfile.NamedTemporaryFile(mode='w+') as tmp_dbf_file:
+                tmp_dbf_file.write(base64.decodestring(self.data_file))
+                with tempfile.NamedTemporaryFile(mode='w+') as tmp_csv_file:
+                    in_db = dbf.Dbf(tmp_dbf_file)
+                    out_csv = csv.writer(tmp_csv_file)
+                    names = []
+                    for field in in_db.header.fields:
+                        names.append(field.name)
+                    out_csv.writerow(names)
+                    for rec in in_db:
+                        out_csv.writerow(rec.fieldData)
+                    in_db.close()
+                    tmp_csv_file.seek(0)
+                    file_csv_content = tmp_csv_file.read()
+                    self.data_file_csv = base64.encodestring(file_csv_content)
+                    self.filename_csv = self.filename.replace('.dbf','.csv')
+                    tmp_csv_file.close()
+                tmp_dbf_file.close()
+        except (IOError, OSError) as error:
+            raise UserError('Unable to save csv file')
+        except ValueError as error:
+            raise UserError('Unable to convert to csv')

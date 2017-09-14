@@ -22,10 +22,10 @@ No configuration is needed or possible.
 Usage
 =====
 
-To use this module, you need:
+To use this module, you have to belong to "Administration|Setting" group, and then:
 
-* Go to *Settings > DBF to CSV > DBF to CSV*.
-* Select '.dbf' file you want to convert to '.csv' and automatically download.
+* Go to *Settings > DBF to CSV > Conversions*.
+* After upload a '.dbf' file hten you can launch the conversion process.
 
 
 Known issues / Roadmap

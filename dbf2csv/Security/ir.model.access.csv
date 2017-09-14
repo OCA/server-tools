@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_conversions_user","Manage dbf to csv conversions","model_dbftocsv_conversion","base.group_user",0,0,0,0
+"access_conversions_manager","Manage dbf to csv conversions","model_dbftocsv_conversion","base.group_system",1,1,1,1
