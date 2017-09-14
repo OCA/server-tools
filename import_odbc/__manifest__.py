@@ -26,9 +26,10 @@ Features:
    unique identifier for the record, and will be used to build its xml_id.
  * SQL columns named "none" are ignored. This can be used for the first column
    of the SQL, so that it's used to build the XML Id but it's not imported to
-   any OpenERP field.
+   any Odoo field.
  * The last sync date is the last successfull execution can be used in the SQL
-   using "%(sync)s", or ":sync" in the case of Oracle.
+   using "CAST(? as datetime)" in the case of MSSQL.
+   Using "%(sync)s", or ":sync" in the case of Oracle.
  * When errors are found, only the record with the error fails import. The
    other correct records are commited. However, the "last sync date" will only
    be automaticaly updated when no errors are found.
