@@ -7,7 +7,7 @@ import csv
 import base64
 import logging
 
-from odoo import models, fields
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -56,7 +56,7 @@ class Conversion(models.Model):
                     self.filename_csv = self.filename.replace('.dbf', '.csv')
                     tmp_csv_file.close()
                 tmp_dbf_file.close()
-        except (IOError, OSError) as error:
+        except (IOError, OSError):
             raise UserError(_("Unable to save csv file"))
         except ValueError as error:
             raise UserError(_("Unable to convert to csv"))
