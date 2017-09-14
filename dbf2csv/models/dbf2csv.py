@@ -58,5 +58,5 @@ class Conversion(models.Model):
                 tmp_dbf_file.close()
         except (IOError, OSError):
             raise UserError(_("Unable to save csv file"))
-        except ValueError as error:
+        except ValueError:
             raise UserError(_("Unable to convert to csv"))
