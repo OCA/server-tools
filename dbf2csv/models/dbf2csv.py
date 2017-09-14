@@ -7,10 +7,10 @@ import csv
 import base64
 import logging
 
-from odoo import models, fields, api
+from odoo import models, fields
 from odoo.exceptions import UserError
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 try:
     from dbfpy import dbf
@@ -22,18 +22,18 @@ class Conversion(models.Model):
     _name = 'dbftocsv.conversion'
     _description = 'File DBF to convert to CSV'
 
-    name = fields.Char(string= 'Description',required = True)
+    name = fields.Char(string='Description', required=True)
 
     data_file = fields.Binary(
-        string = 'DBF file',
-        required = True,
-        help = 'Get you DBF file.')
+        string='DBF file',
+        required=True,
+        help='Get you DBF file.')
     filename = fields.Char(string='DBF file')
 
     data_file_csv = fields.Binary(
-        string = 'CSV file',
-        readonly = True,
-        help = 'Get you CSV file.')
+        string='CSV file',
+        readonly=True,
+        help='Get you CSV file.')
     filename_csv = fields.Char(string='CSV file')
 
     def process_file(self):
@@ -53,10 +53,10 @@ class Conversion(models.Model):
                     tmp_csv_file.seek(0)
                     file_csv_content = tmp_csv_file.read()
                     self.data_file_csv = base64.encodestring(file_csv_content)
-                    self.filename_csv = self.filename.replace('.dbf','.csv')
+                    self.filename_csv = self.filename.replace('.dbf', '.csv')
                     tmp_csv_file.close()
                 tmp_dbf_file.close()
         except (IOError, OSError) as error:
-            raise UserError('Unable to save csv file')
+            raise UserError(_("Unable to save csv file"))
         except ValueError as error:
-            raise UserError('Unable to convert to csv')
+            raise UserError(_("Unable to convert to csv"))

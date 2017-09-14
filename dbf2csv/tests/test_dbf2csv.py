@@ -12,7 +12,8 @@ class TestConversion(TransactionCase):
         self.conversion_test = self.env.ref('dbf2csv.demo_conversion_1')
 
     def test__conversions(self):
-        "Only check that the conversion process finished satifactory, name for csv file was created"
+        "Check conversion proggress was correct (name exists)
         self.conversion_test.process_file()
         filename_csv_test = self.conversion_test.filename_csv
-        self.assertEqual(filename_csv_test, 'demo.csv', 'Wrong number of conversions')
+        self.assertEqual(filename_csv_test,
+                         'demo.csv', 'Wrong number of conversions')
