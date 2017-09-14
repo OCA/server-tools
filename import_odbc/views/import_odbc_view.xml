@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Table form -->
+
+        <record model="ir.ui.view" id="view_import_dbtable_form">
+            <field name="name">import.odbc.dbtable.form</field>
+            <field name="model">import.odbc.dbtable</field>
+            <field name="arch" type="xml">
+                <form string="Import Table">
+                    <group>
+                        <group>
+                            <field name="name" search="1"/>
+                            <field name="model_target"/>
+                            <field name="noupdate"/>
+                            <field name="ignore_rel_errors"/>
+                            <field name="last_sync"/>
+                            <button name="import_run" string="Run Import" type="object" icon="fa-refresh"/>
+                        </group>
+                        <group>
+                            <field name="exec_order"/>
+                            <field name="dbsource_id" search="1"/>
+                            <field name="enabled"/>
+                            <field name="raise_import_errors"/>
+                            <button name="import_schedule" string="Schedule Import" type="object" icon="fa-calendar"/>
+                        </group>
+                    </group>
+                    <group col="1">
+                        <field name="sql_source"/>
+                    </group>
+                    <separator string="Last execution" colspan="4"/>
+                    <group>
+                        <group>
+                            <field name="last_record_count"/>
+                            <field name="last_warn_count"/>
+                            <field name="last_error_count"/>
+                        </group>
+                        <group>
+                            <field name="start_run"/>
+                            <field name="last_run"/>
+                            <field name="last_log" colspan="4"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Table Tree -->
+
+        <record model="ir.ui.view" id="view_import_dbtable_tree">
+            <field name="name">import.odbc.dbtable.tree</field>
+            <field name="model">import.odbc.dbtable</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Import Tables"
+                      colors="grey: enabled==False; red:last_error_count>0; blue:last_warn_count>0">
+                    <field name="exec_order"/>
+                    <field name="name"/>
+                    <field name="model_target"/>
+                    <field name="dbsource_id"/>
+                    <field name="enabled"/>
+                    <field name="last_run"/>
+                    <field name="last_sync"/>
+                    <field name="last_record_count"/>
+                    <field name="last_error_count"/>
+                    <field name="last_warn_count"/>
+                </tree>
+    	    </field>
+        </record>
+
+       <!-- Tree Search -->
+       <record id="view_import_dbtable_filter" model="ir.ui.view">
+           <field name="name">import.odbc.dbtable.filter</field>
+           <field name="model">import.odbc.dbtable</field>
+           <field name="type">search</field>
+           <field name="arch" type="xml">
+               <search string="Search ODBC Imports">
+                   <field name="name"/>
+                   <field name="dbsource_id"/>
+                   <field name="model_target"/>
+               </search>
+           </field>
+       </record>
+
+       <!--Menu-->
+       <record model="ir.actions.act_window" id="action_import_dbtable">
+           <field name="name">Import from SQL</field>
+           <field name="res_model">import.odbc.dbtable</field>
+           <field name="view_type">form</field>
+       </record>
+
+       <menuitem name="Import from SQL"
+                 id="menu_import_dbtable"
+                 parent="base.next_id_9"
+                 action="action_import_dbtable"/>
+
+</odoo>
+
+
+
