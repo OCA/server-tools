@@ -13,7 +13,7 @@
                             class="oe_highlight"/>
                 </head>
                 <sheet>
-                    <h2> Upload a DBF file and convert to CSV</h2>
+                    <h2>Upload a DBF file and convert to CSV</h2>
                     <group string="Conversion">
                         <field name="name"/>
                     </group>

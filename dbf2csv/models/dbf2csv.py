@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 try:
     from dbfpy import dbf
 except ImportError as err:
-    _logger.debug(err)
+    _logger.info(err)
 
 
 class Conversion(models.Model):
