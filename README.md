@@ -50,6 +50,7 @@ addon | version | summary
 [dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 | Be notified when customers' odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 9.0.1.0.0 | Remove odoo.com bindings
 [external_file_location](external_file_location/) | 9.0.1.0.0 | External File Location
+[fetchmail_bydate](fetchmail_bydate/) | 9.0.1.0.0 | Fetchmail by date and unseen messages
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 9.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 9.0.1.0.0 | Generate excerpts from any HTML field
