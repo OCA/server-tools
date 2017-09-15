@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="dbf_file_process_view" model="ir.ui.view">
+        <field name="name">Conversions</field>
+        <field name="model">dbftocsv.conversion</field>
+        <field name="arch" type="xml">
+            <form string="Select DBF file">
+                <sheet>
+                    <h2>Upload a DBF file and convert to CSV</h2>
+                    <group>
+                        <group string="DBF">
+                            <field name="data_file" filename="filename" placeholder="Choose a DBF file ..."/>
+                            <field name="filename" invisible="1"/>
+                        </group>
+                        <group string="CSV">
+                            <field name="data_file_csv" filename="filename_csv" readonly="1"/>
+                            <field name="filename_csv" invisible="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object"
+                            name="process_file"
+                            string="Convert to csv"
+                            class="oe_highlight"/>
+                        <button string="Cancel"
+                            class="btn_default"
+                            special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="dbf_file_process" model="ir.actions.act_window">
+        <field name="name">Conversions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dbftocsv.conversion</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="DBF to CSV"
+              id="dbf2csv_parent_menu"
+              parent="base.menu_administration"
+              sequence="10"
+    />
+
+    <menuitem name="Conversions"
+              id="dbf2csv_child_menu"
+              parent="dbf2csv_parent_menu"
+              sequence="10"
+              action="dbf_file_process"
+    />
+</odoo>
