@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Copyright (C) 2016-TODAY LasLabs, Inc. [https://laslabs.com]
-    @author Dave Lasley <dave@laslabs.com>
-    @license AGPL-3
+    Copyright 2016-201 LasLabs Inc.
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 
-<openerp>
-    <data>
+<odoo>
 
-		<record id="connector_sftp_example" model="connector.sftp">
-			<field name="name">Example SFTP Connection</field>
-            <field name="host">sftp.example.com</field>
-            <field name="port">22</field>
-            <field name="username">Test</field>
-            <field name="password">Password</field>
-            <field name="private_key"><![CDATA[-----BEGIN RSA PRIVATE KEY-----
+    <record id="connector_sftp_example" model="external.system">
+        <field name="name">Example SFTP Connection</field>
+        <field name="system_type">connector.sftp</field>
+        <field name="host">sftp.example.com</field>
+        <field name="port">22</field>
+        <field name="username">Test</field>
+        <field name="password">Password</field>
+        <field name="private_key"><![CDATA[-----BEGIN RSA PRIVATE KEY-----
 MIIJKAIBAAKCAgEAt844jjlr3VwEUPEfKx9AjPzEy38RdRW+oZJXOqoeRWfcRanU
 kDGeAJNLHqSE2qVbNwreqi4Cu2IJ1nNg+3SrAP5tf68cHC5/LyeWmLLm0mhng1it
 YJRyamv4pDIQeDYPyjV0pTURv5ECsvkeNwE4DL7qhf+fUFKkYAxxSgg0qT5M7frf
@@ -66,8 +65,7 @@ pPfJ1dA3cD4gGLI9H5l1W2ORvrCDwlRoXiFoXfmDAmRoxG0Rhaf6jhPwcwiiJSOb
 KkXPfxHHBqQzepIJ1qVjxAraXWxQSPlquKw5Shm/JdGdpxGpDZdfnoBZTwbwB4KH
 gKnvy9Dd0LVOLW1SuekkqZnaPq+bZsd0EEMmJgwQ/Gh42IX650n8rcXaLJc=
 -----END RSA PRIVATE KEY-----]]></field>
-            <field name="company_id" ref="base.main_company" />
-		</record>
-		
-    </data>
-</openerp>
+        <field name="company_ids" eval="[(5, 0), (4, ref('base.main_company'))]" />
+    </record>
+
+</odoo>
