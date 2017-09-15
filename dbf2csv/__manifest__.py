@@ -18,11 +18,9 @@
         'base',
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'views/dbf2csv.xml',
+        'wizard/dbf2csv.xml',
     ],
     "demo": [
-        "demo/conversion_demo.xml",
     ],
     'external_dependencies': {
         'python': ['dbfpy'],

@@ -22,10 +22,10 @@ No configuration is needed or possible.
 Usage
 =====
 
-To use this module, you have to belong to "Administration|Setting" group, and then:
+To use this module,
 
 * Go to *Settings > DBF to CSV > Conversions*.
-* After upload a '.dbf' file hten you can launch the conversion process.
+* After upload a '.dbf' file then you can launch the conversion process.
 
 
 Known issues / Roadmap
