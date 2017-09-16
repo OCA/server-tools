@@ -6,12 +6,12 @@
 from mock import Mock, patch
 import os
 import tempfile
-from openerp.modules.module import load_information_from_description_file,\
-    get_module_path, MANIFEST
-from openerp.tests.common import TransactionCase
+from odoo.modules.module import load_information_from_description_file,\
+    get_module_path
+from odoo.tests.common import TransactionCase
 from ..hooks import _handle_rdepends_if_installed, _installed_modules
 
-MOCK_PATH = 'openerp.addons.base_manifest_extension.hooks'
+MOCK_PATH = 'odoo.addons.base_manifest_extension.hooks'
 
 
 class TestHooks(TransactionCase):
@@ -40,7 +40,8 @@ class TestHooks(TransactionCase):
         module_path = tempfile.mkdtemp(dir=os.path.join(
             get_module_path('base_manifest_extension'), 'static'
         ))
-        with open(os.path.join(module_path, MANIFEST), 'w') as manifest:
+        manifest_path = os.path.join(module_path, '__manifest__.py')
+        with open(manifest_path, 'w') as manifest:
             manifest.write(repr({
                 'depends_if_installed': [
                     'base_manifest_extension',
@@ -61,7 +62,7 @@ class TestHooks(TransactionCase):
         result = _installed_modules(self.test_cr, self.test_rdepends)
 
         expected = self.test_rdepends[:2]
-        self.assertEqual(result, expected)
+        self.assertItemsEqual(result, expected)
 
     def test_installed_modules_empty_starting_list(self):
         """It should safely handle being passed an empty module list"""

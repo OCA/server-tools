@@ -5,9 +5,9 @@
 
 import inspect
 from werkzeug.local import Local
-from openerp.sql_db import Cursor
-from openerp.modules import module
-from openerp.modules.graph import Graph
+from odoo.sql_db import Cursor
+from odoo.modules import module
+from odoo.modules.graph import Graph
 
 original = module.load_information_from_description_file
 local = Local()
