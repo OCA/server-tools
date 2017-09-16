@@ -51,13 +51,15 @@ class Conversion(models.TransientModel):
         dbf_buf = cStringIO.StringIO(base64.b64decode(self.data_file))
         csv_buf = cStringIO.StringIO()
         writer = csv.writer(csv_buf)
-        with contextlib.closing(dbf.Dbf(dbf_buf)) as in_db:
-            writer.writerow([f.name for f in in_db.header.fields])
-            for rec in in_db:
-                writer.writerow(rec.fieldData)
-        self.write({
-            'data_file_csv': base64.b64encode(csv_buf.getvalue()),
-            'filename_csv': os.path.splitext(self.filename)[0] + '.csv',
-        })
-        return self.reopen_wizard()
-
+        try:
+            with contextlib.closing(dbf.Dbf(dbf_buf)) as in_db:
+                writer.writerow([f.name for f in in_db.header.fields])
+                for rec in in_db:
+                    writer.writerow(rec.fieldData)
+            self.write({
+                'data_file_csv': base64.b64encode(csv_buf.getvalue()),
+                'filename_csv': os.path.splitext(self.filename)[0] + '.csv',
+            })
+            return self.reopen_wizard()
+        except ValueError:
+            raise UserError(_("Unable to convert to csv"))
