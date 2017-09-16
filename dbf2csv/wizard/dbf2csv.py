@@ -2,10 +2,12 @@
 # Copyright 2017 INGETIVE (<https://ingetive.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import tempfile
+import contextlib
 import csv
 import base64
 import logging
+import cStringIO
+import os
 
 from odoo import models, fields, _
 from odoo.exceptions import UserError
@@ -36,36 +38,26 @@ class Conversion(models.TransientModel):
 
     def reopen_wizard(self):
         return {
-            'type': 'ir.action.act_windows',
+            'type': 'ir.action.act_window',
             'name': 'Conversion',
             'res_model': 'dbftocsv.conversion',
             'res_id': self.id,
             'view_type': 'form',
             'view_mode': 'form',
-            'target': 'new'}
+            'target': 'new',
+        }
 
     def process_file(self):
-        try:
-            with tempfile.NamedTemporaryFile(mode='w+') as tmp_dbf_file:
-                tmp_dbf_file.write(base64.decodestring(self.data_file))
-                with tempfile.NamedTemporaryFile(mode='w+') as tmp_csv_file:
-                    in_db = dbf.Dbf(tmp_dbf_file)
-                    out_csv = csv.writer(tmp_csv_file)
-                    names = []
-                    for field in in_db.header.fields:
-                        names.append(field.name)
-                    out_csv.writerow(names)
-                    for rec in in_db:
-                        out_csv.writerow(rec.fieldData)
-                    in_db.close()
-                    tmp_csv_file.seek(0)
-                    file_csv_content = tmp_csv_file.read()
-                    self.data_file_csv = base64.encodestring(file_csv_content)
-                    self.filename_csv = self.filename.replace('.dbf', '.csv')
-                    tmp_csv_file.close()
-                tmp_dbf_file.close()
-                return self.reopen_wizard()
-        except (IOError, OSError):
-            raise UserError(_("Unable to save csv file"))
-        except ValueError:
-            raise UserError(_("Unable to convert to csv"))
+        dbf_buf = cStringIO.StringIO(base64.b64decode(self.data_file))
+        csv_buf = cStringIO.StringIO()
+        writer = csv.writer(csv_buf)
+        with contextlib.closing(dbf.Dbf(dbf_buf)) as in_db:
+            writer.writerow([f.name for f in in_db.header.fields])
+            for rec in in_db:
+                writer.writerow(rec.fieldData)
+        self.write({
+            'data_file_csv': base64.b64encode(csv_buf.getvalue()),
+            'filename_csv': os.path.splitext(self.filename)[0] + '.csv',
+        })
+        return self.reopen_wizard()
+

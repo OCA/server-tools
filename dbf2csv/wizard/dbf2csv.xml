@@ -21,7 +21,7 @@
                     <footer>
                         <button type="object"
                             name="process_file"
-                            string="Convert to csv"
+                            string="Convert to CSV"
                             class="oe_highlight"/>
                         <button string="Cancel"
                             class="btn_default"
