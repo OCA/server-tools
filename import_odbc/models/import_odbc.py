@@ -2,7 +2,6 @@
 # Copyright <2011> <Daniel Reis>
 # Copyright <2017> <Jesus Ramiro>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.exceptions import UserError
 import sys
 import logging
 from datetime import datetime
@@ -40,15 +39,16 @@ class ImportOdbcDbtable(models.Model):
     last_record_count = fields.Integer(string='Last record count',
                                        readonly=True)
     last_error_count = fields.Integer(string='Last error count', readonly=True)
-    last_warn_count = fields.Integer(string='Last warning count', readonly=True)
+    last_warn_count = fields.Integer(string='Last warning count',
+                                     readonly=True)
     last_log = fields.Text(string='Last run log', readonly=True)
     ignore_rel_errors = fields.Boolean(string='Ignore relationship errors',
                                        help="On error try to reimport \
                                        rows ignoring relationships.")
     raise_import_errors = fields.Boolean(
         string='Raise import errors',
-        help="Import errors not handled, intended for debugging purposes. "\
-             "Also forces debug messages to be written to the server log."
+        help="Import errors not handled, intended for debugging purposes. \
+             Also forces debug messages to be written to the server log."
     )
 
     @api.multi
@@ -213,7 +213,7 @@ class ImportOdbcDbtable(models.Model):
             'numbercall': -1,
             'doall': False,
             'active': True,
-            'args' : '[(%s,)]' % (self.id),
+            'args': '[(%s,)]' % (self.id),
             'model': 'import.odbc.dbtable',
             'function': 'import_run'
             })
