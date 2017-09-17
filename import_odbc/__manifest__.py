@@ -27,7 +27,8 @@ Features:
  * SQL columns named "none" are ignored. This can be used for the first column
    of the SQL, so that it's used to build the XML Id but it's not imported to
    any Odoo field.
- * The last sync date is the last successfull execution can be used in the SQL:\n
+ * The last sync date, is the last successfull execution can 
+   be used in the SQL:\n
    -Using "CAST(? as datetime)" in the case of MSSQL.\n
    -Using "%(sync)s", or ":sync" in the case of Oracle.
  * When errors are found, only the record with the error fails import. The
@@ -84,4 +85,3 @@ Contributors
     'installable': True,
     'active': False,
 }
-

@@ -6,10 +6,11 @@ from odoo.exceptions import UserError
 import sys
 import logging
 from datetime import datetime
-from odoo import api, models, fields, tools
+from odoo import api, models, fields
 
 _logger = logging.getLogger(__name__)
 _loglvl = _logger.getEffectiveLevel()
+
 
 class ImportOdbcDbtable(models.Model):
     _name = "import.odbc.dbtable"
@@ -19,31 +20,31 @@ class ImportOdbcDbtable(models.Model):
     name = fields.Char(string='Datasource name', required=True, size=64)
     enabled = fields.Boolean(string='Execution enabled', default=True)
     dbsource_id = fields.Many2one('base.external.dbsource',
-                                       string='Database source', required=True)
+                                  string='Database source', required=True)
     sql_source = fields.Text(string='SQL', required=True,
-                                  help='Column names must be valid \
-                                  "import_data" columns.')
+                             help='Column names must be valid \
+                             "import_data" columns.')
     model_target = fields. Many2one('ir.model', string='Target object')
     noupdate = fields.Boolean(string='No updates',
-                                   help="Only create new records;\
-                                   disable updates to existing records.")
+                              help="Only create new records;\
+                              disable updates to existing records.")
     exec_order = fields.Integer(string='Execution order', default=10,
-                                     help="Defines the order to perform \
-                                     the import")
+                                help="Defines the order to perform \
+                                the import")
     last_sync = fields.Datetime(string='Last sync date',
-                                     help="Datetime for the last succesfull \
-                                     sync. \nLater changes on the source may \
-                                     not be replicated on the destination")
+                                help="Datetime for the last succesfull \
+                                sync. \nLater changes on the source may \
+                                not be replicated on the destination")
     start_run = fields.Datetime(string='Time started', readonly=True)
     last_run = fields.Datetime(string='Time ended', readonly=True)
     last_record_count = fields.Integer(string='Last record count',
-                                            readonly=True)
+                                       readonly=True)
     last_error_count = fields.Integer(string='Last error count', readonly=True)
     last_warn_count = fields.Integer(string='Last warning count', readonly=True)
     last_log = fields.Text(string='Last run log', readonly=True)
     ignore_rel_errors = fields.Boolean(string='Ignore relationship errors',
-                                            help="On error try to reimport \
-                                            rows ignoring relationships.")
+                                       help="On error try to reimport \
+                                       rows ignoring relationships.")
     raise_import_errors = fields.Boolean(
         string='Raise import errors',
         help="Import errors not handled, intended for debugging purposes. "\
@@ -121,7 +122,8 @@ class ImportOdbcDbtable(models.Model):
         # Consider each dbtable:
         for action_ref in actions:
             obj = self.browse(action_ref['id'])
-            db_model = self.env['base.external.dbsource'].browse(obj.dbsource_id.id)
+            db_model = \
+                self.env['base.external.dbsource'].browse(obj.dbsource_id.id)
             if not obj.enabled:
                 continue  # skip
 
