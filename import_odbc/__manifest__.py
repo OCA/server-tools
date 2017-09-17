@@ -27,9 +27,9 @@ Features:
  * SQL columns named "none" are ignored. This can be used for the first column
    of the SQL, so that it's used to build the XML Id but it's not imported to
    any Odoo field.
- * The last sync date is the last successfull execution can be used in the SQL
-   using "CAST(? as datetime)" in the case of MSSQL.
-   Using "%(sync)s", or ":sync" in the case of Oracle.
+ * The last sync date is the last successfull execution can be used in the SQL:\n
+   -Using "CAST(? as datetime)" in the case of MSSQL.\n
+   -Using "%(sync)s", or ":sync" in the case of Oracle.
  * When errors are found, only the record with the error fails import. The
    other correct records are commited. However, the "last sync date" will only
    be automaticaly updated when no errors are found.
@@ -57,7 +57,7 @@ Improvements ideas waiting for a contributor:
    second SQL sentence to get child record list?
  * Allow "import sets" that can be executed at different time intervals using
    different scheduler jobs.
- * Allow to inactivate/delete OpenERP records when not present in an SQL
+ * Allow to inactivate/delete Odoo records when not present in an SQL
    result set.
 
 Contributors
