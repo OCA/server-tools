@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="model_partner" model="import.odoo.database.model">
+            <field name="sequence">1</field>
+            <field name="model_id" ref="base.model_res_partner" />
+            <field name="database_id" ref="demodb" />
+            <field name="domain">[(1, '=', 1)]</field>
+        </record>
+        <record id="model_users" model="import.odoo.database.model">
+            <field name="sequence">2</field>
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="database_id" ref="demodb" />
+            <field name="domain">[(1, '=', 1)]</field>
+        </record>
+     </data>
+</openerp>
