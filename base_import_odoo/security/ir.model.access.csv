@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_import_odoo_database,access_import_odoo_database,model_import_odoo_database,base.group_system,1,1,1,1
+access_import_odoo_database_model,access_import_odoo_database_model,model_import_odoo_database_model,base.group_system,1,1,1,1
+access_import_odoo_database_field,access_import_odoo_database_field,model_import_odoo_database_field,base.group_system,1,1,1,1
