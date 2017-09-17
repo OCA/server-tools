@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_import_odoo_database_tree" model="ir.ui.view">
+            <field name="model">import.odoo.database</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="url" />
+                    <field name="database" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_import_odoo_database_form" model="ir.ui.view">
+            <field name="model">import.odoo.database</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="action_import" string="Run import" class="oe_highlight" attrs="{'invisible': [('cronjob_running', '=', True)]}" />
+                        <button type="object" name="exists" string="Refresh" class="oe_highlight" attrs="{'invisible': [('cronjob_running', '=', False)]}" />
+                        <field name="cronjob_running" invisible="1" />
+                    </header>
+                    <sheet>
+                        <group col="4" name="credentials">
+                            <field name="url" widget="url" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="database" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="user" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="password" password="True" attrs="{'readonly': [('cronjob_running', '=', True)], 'required': [('cronjob_running', '=', False)]}" />
+                            <field name="cronjob_id" attrs="{'invisible': [('cronjob_id', '=', False)]}" />
+                            <field name="status_html" attrs="{'invisible': [('status_html', '=', False)]}" string="Progress" />
+                        </group>
+                        <field name="import_line_ids" attrs="{'readonly': [('cronjob_running', '=', True)]}">
+                            <tree editable="top">
+                                <field name="sequence" widget="handle" />
+                                <field name="model_id" />
+                                <field name="domain" />
+                            </tree>
+                        </field>
+                        <field name="import_field_mappings" attrs="{'readonly': [('cronjob_running', '=', True)]}">
+                            <tree>
+                                <field name="model_id" />
+                                <field name="fields_id" />
+                                <field name="local_id" />
+                                <field name="remote_id" />
+                                <field name="unique" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <template id="view_import_odoo_database_qweb">
+            <script type="text/javascript">
+                function base_import_database_open(model, model_name, database_id)
+                {
+                    return new openerp.web.Model('ir.model.data')
+                    .query(['res_id'])
+                    .filter([
+                        ['module', '=', 'base_import_odoo'],
+                        ['model', '=', model],
+                        ['import_database_id', '=', database_id],
+                    ])
+                    .all()
+                    .then(function(data)
+                    {
+                        return openerp.webclient.action_manager.do_action({
+                            'name': model_name,
+                            'type': 'ir.actions.act_window',
+                            'views': [[false, 'list'], [false, 'form']],
+                            'res_model': model,
+                            'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
+                        });
+                    });
+                }
+            </script>
+            <dl>
+                <t t-foreach="object.status_data.get('counts', [])" t-as="model_name">
+                    <t t-set="model_display_name" t-value="request.env['ir.model'].search([('model', '=', model_name)]).name" />
+                    <dt t-esc="model_display_name" />
+                    <dd>
+                        <a t-att-href="'javascript:base_import_database_open(&quot;%s&quot;, &quot;%s&quot;, %s)' % (model_name, model_display_name, object.id)">
+                            <span t-esc="object.status_data.get('done', {}).get(model_name, 0)" />/<span t-esc="object.status_data['counts'][model_name]" /> done
+                        </a>
+                    </dd>
+                </t>
+            </dl>
+            <t t-if="object.status_data.get('error')"><pre t-esc="object.status_data['error']" /></t>
+        </template>
+    </data>
+</openerp>
