@@ -50,6 +50,7 @@ class PasswordSecurityHome(AuthSignupHome):
         if not user_id._password_has_expired():
             return response
         user_id.action_expire_password()
+        request.session.logout(keep_db=True)
         redirect = user_id.partner_id.signup_url
         return http.redirect_with_hash(redirect)
 
