@@ -19,20 +19,13 @@
 ##############################################################################
 {
     "name": "Suspend security",
-    "version": "8.0.1.0.0",
-    "author": "Therp BV",
+    "version": "8.0.1.0.1",
+    "author": "Therp BV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Hidden/Dependency",
     "summary": "Suspend security checks for a call",
     "depends": [
         'base',
     ],
-    "test": [
-    ],
-    "auto_install": False,
     "installable": True,
-    "application": False,
-    "external_dependencies": {
-        'python': [],
-    },
 }
