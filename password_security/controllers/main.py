@@ -36,7 +36,8 @@ class PasswordSecurityHome(AuthSignupHome):
     def web_login(self, *args, **kw):
         ensure_db()
         response = super(PasswordSecurityHome, self).web_login(*args, **kw)
-        if not request.httprequest.method == 'POST':
+        login_success = request.params.get('login_success', True)
+        if not request.httprequest.method == 'POST' or not login_success:
             return response
         uid = request.session.authenticate(
             request.session.db,
