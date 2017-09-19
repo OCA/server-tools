@@ -37,7 +37,7 @@ class ResUsers(models.Model):
 
             for user in non_ex:
                 user.threshold_exempt = False
-                
+
     def _check_thresholds(self):
         """
         Check to see if any user thresholds are met
