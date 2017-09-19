@@ -6,7 +6,7 @@ import os
 from csv import reader
 from lxml import etree
 
-from odoo import SUPERUSER_ID, _, api, fields, models, registry
+from odoo import api, fields, models, _
 from odoo.exceptions import AccessError, ValidationError
 
 from .ir_config_parameter import THRESHOLD_HIDE, MAX_DB_USER_PARAM
@@ -20,7 +20,8 @@ class ResUsers(models.Model):
         'Exempt User From User Count Thresholds',
     )
 
-    def __init__(self, pool, cr):
+    @api.model_cr
+    def _register_hook(self):
         """
         Override to check if env var to hide threshold configuration and
         reset the database state is set. If it is, run those actions
@@ -28,24 +29,14 @@ class ResUsers(models.Model):
         if THRESHOLD_HIDE:
             exempt_users_var = os.environ.get('USER_THRESHOLD_USER', '')
             exempt_users = reader([exempt_users_var])
-            with api.Environment.manage():
-                with registry(cr.dbname).cursor() as new_cr:
-                    new_env = api.Environment(new_cr, SUPERUSER_ID, {})
-                    installed = new_env['ir.module.module'].search_count([
-                        ('name', '=', 'user_threshold'),
-                        ('state', '=', 'installed'),
-                    ])
-                    if installed:
-                        users = new_env['res.users'].search([
-                            ('share', '=', False),
-                            ('threshold_exempt', '=', True),
-                        ])
-                        non_ex = users.filtered(
-                            lambda r: r.login not in exempt_users
-                        )
-                        for user in non_ex:
-                            user.threshold_exempt = False
-                        new_cr.commit()
+            users = self.env['res.users'].search([
+                ('share', '=', False),
+                ('threshold_exempt', '=', True),
+            ])
+            non_ex = users.filtered(lambda r: r.login not in exempt_users)
+
+            for user in non_ex:
+                user.threshold_exempt = False
 
     def _check_thresholds(self):
         """
