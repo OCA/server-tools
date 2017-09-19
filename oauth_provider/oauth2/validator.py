@@ -186,7 +186,7 @@ class OdooValidator(RequestValidator):
                 datetime.now() + timedelta(seconds=token['expires_in'])),
         })
         redirect_uris = request.client.redirect_uri_ids
-        return redirect_uris and redirect_uris[0].name or ''
+        return redirect_uris[:1].name
 
     def validate_bearer_token(self, token, scopes, request):
         """ Ensure the supplied bearer token is valid, and allowed for the scopes
