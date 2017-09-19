@@ -114,6 +114,16 @@ class TestPasswordSecurityHome(TransactionCase):
                 assets['web_login'](), res,
             )
 
+    def test_web_login_login_success_flag(self):
+        """It should return result of super when login_success flag False"""
+        with self.mock_assets() as assets:
+            assets['request'].httprequest.method = 'POST'
+            assets['request'].params = {'login_success': False}
+            result = self.password_security_home.web_login()
+
+            expected = assets['web_login']()
+            self.assertEqual(result, expected)
+
     def test_web_login_authenticate(self):
         """ It should attempt authentication to obtain uid """
         with self.mock_assets() as assets:
@@ -217,6 +227,8 @@ class TestPasswordSecurityHome(TransactionCase):
                 main.AuthSignupHome, 'get_auth_signup_qcontext', spec=dict
             ) as qcontext:
                 assets['web_auth_signup'].side_effect = MockPassError
+                assets['request'].render.return_value = MockResponse()
+
                 res = self.password_security_home.web_auth_signup()
                 assets['request'].render.assert_called_once_with(
                     'auth_signup.signup', qcontext(),
