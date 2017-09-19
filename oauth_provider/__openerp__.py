@@ -15,7 +15,7 @@
         'python': ['oauthlib'],
     },
     'depends': [
-        'base',
+        'web',
     ],
     'data': [
         'security/oauth_provider_security.xml',
