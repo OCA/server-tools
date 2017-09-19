@@ -44,7 +44,7 @@ addon | version | summary
 [base_optional_quick_create](base_optional_quick_create/) | 8.0.0.1.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 8.0.1.0.0 | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 8.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
-[base_suspend_security](base_suspend_security/) | 8.0.1.0.0 | Suspend security checks for a call
+[base_suspend_security](base_suspend_security/) | 8.0.1.0.1 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
 [base_user_role](base_user_role/) | 8.0.1.1.0 | User roles
