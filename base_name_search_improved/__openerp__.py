@@ -4,7 +4,7 @@
 {
     'name': 'Improved Name Search',
     'summary': 'Friendlier search when typing in relation fields',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Uncategorized',
     'website': 'https://odoo-community.org/',
     'author': 'Daniel Reis, Odoo Community Association (OCA)',
