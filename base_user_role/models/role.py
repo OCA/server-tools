@@ -50,7 +50,7 @@ class ResUsersRole(models.Model):
 
     @api.multi
     def unlink(self):
-        users = self.mapped('user_id')
+        users = self.mapped('user_ids')
         res = super(ResUsersRole, self).unlink()
         users.set_groups_from_roles()
         return res
