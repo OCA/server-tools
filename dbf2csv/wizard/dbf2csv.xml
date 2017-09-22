@@ -10,11 +10,11 @@
                     <h2>Upload a DBF file and convert to CSV</h2>
                     <group>
                         <group string="DBF">
-                            <field name="data_file" filename="filename" placeholder="Choose a DBF file ..."/>
-                            <field name="filename" invisible="1"/>
+                            <field name="data_dbf" filename="filename_dbf" placeholder="Choose a DBF file ..."/>
+                            <field name="filename_dbf" invisible="1"/>
                         </group>
                         <group string="CSV">
-                            <field name="data_file_csv" filename="filename_csv" readonly="1"/>
+                            <field name="data_csv" filename="filename_csv" readonly="1"/>
                             <field name="filename_csv" invisible="1"/>
                         </group>
                     </group>
