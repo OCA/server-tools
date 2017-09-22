@@ -58,7 +58,8 @@ class Conversion(models.TransientModel):
                     writer.writerow(rec.fieldData)
             self.write({
                 'data_csv': base64.b64encode(csv_buf.getvalue()),
-                'filename_csv': os.path.splitext(self.filename_dbf)[0] + '.csv',
+                'filename_csv': os.path.splitext(
+                    self.filename_dbf)[0] + '.csv',
             })
             return self.reopen_wizard()
         except ValueError:
