@@ -25,7 +25,7 @@ addon | version | summary
 [auth_session_timeout](auth_session_timeout/) | 10.0.1.0.1 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
-[auth_totp](auth_totp/) | 10.0.1.0.1 | Allows users to enable MFA and add optional trusted devices
+[auth_totp](auth_totp/) | 10.0.1.1.0 | Allows users to enable MFA and add optional trusted devices
 [auth_totp_password_security](auth_totp_password_security/) | 10.0.1.0.0 | auth_totp and password_security compatibility
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
