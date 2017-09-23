@@ -105,3 +105,53 @@ class TestUserRole(TransactionCase):
         role1_group_ids.append(role1.group_id.id)
         role_group_ids = sorted(set(role1_group_ids))
         self.assertEqual(user_group_ids, role_group_ids)
+
+    def test_role_unlink(self):
+        # Get role1 groups
+        role1 = self.role_model.browse(self.cr, self.uid, self.role1_id)
+        role1_group_ids = role1.implied_ids.ids
+        role1_group_ids.append(role1.group_id.id)
+        role1_group_ids = sorted(set(role1_group_ids))
+        # Get role2
+        role2 = self.role_model.browse(self.cr, self.uid, self.role2_id)
+        # Configure the user with role1 and role2
+        self.user_model.write(
+            self.cr, self.uid, [self.user_id],
+            {'role_line_ids': [
+                (0, 0, {'role_id': self.role1_id}),
+                (0, 0, {'role_id': self.role2_id}),
+            ]})
+        user = self.user_model.browse(self.cr, self.uid, self.user_id)
+        # Remove role2
+        role2.unlink()
+        user_group_ids = sorted(set([group.id for group in user.groups_id]))
+        self.assertEqual(user_group_ids, role1_group_ids)
+        # Remove role1
+        role1.unlink()
+        user_group_ids = sorted(set([group.id for group in user.groups_id]))
+        self.assertEqual(user_group_ids, [])
+
+    def test_role_line_unlink(self):
+        # Get role1 groups
+        role1 = self.role_model.browse(self.cr, self.uid, self.role1_id)
+        role1_group_ids = role1.implied_ids.ids
+        role1_group_ids.append(role1.group_id.id)
+        role1_group_ids = sorted(set(role1_group_ids))
+        # Configure the user with role1 and role2
+        self.user_model.write(
+            self.cr, self.uid, [self.user_id],
+            {'role_line_ids': [
+                (0, 0, {'role_id': self.role1_id}),
+                (0, 0, {'role_id': self.role2_id}),
+            ]})
+        user = self.user_model.browse(self.cr, self.uid, self.user_id)
+        # Remove role2 from the user
+        user.role_line_ids.filtered(
+            lambda l: l.role_id.id == self.role2_id).unlink()
+        user_group_ids = sorted(set([group.id for group in user.groups_id]))
+        self.assertEqual(user_group_ids, role1_group_ids)
+        # Remove role1 from the user
+        user.role_line_ids.filtered(
+            lambda l: l.role_id.id == self.role1_id).unlink()
+        user_group_ids = sorted(set([group.id for group in user.groups_id]))
+        self.assertEqual(user_group_ids, [])
