@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<openerp>
     <data noupdate="1">
         <record id="date_range_type_comp_rule" model="ir.rule">
             <field name="name">Date Range Type multi-company</field>
@@ -16,4 +16,4 @@
             <field eval="False" name="active"/>
         </record>
     </data>
-</odoo>
+</openerp>

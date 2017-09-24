@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <record id="date_range_generator_view_form" model="ir.ui.view">
-        <field name="name">date.range.generator.form</field>
-        <field name="model">date.range.generator</field>
-        <field name="arch" type="xml">
-            <form string="Genrate Date Ranges">
-                <group col="4">
-                    <field name="name_prefix"/>
-                    <field name="type_id"/>
-                    <label for="duration_count"/>
-                    <div>
-                        <field class="oe_inline" name="duration_count"/>
-                        <field class="oe_inline" name="unit_of_time"/>
-                    </div>
-                    <field name="date_start"/>
-                    <field name="count"/>
-                    <field groups="base.group_multi_company"
-                        name="company_id" options="{'no_create': True}"/>
-                </group>
-                <footer>
-                    <button class="btn btn-sm btn-primary"
-                        name="action_apply" string="Submit" type="object"/>
-                    <button class="btn btn-sm btn-default"
-                        special="cancel" string="Cancel"/>
-                </footer>
-            </form>
-        </field>
-    </record>
-    <record id="date_range_generator_action" model="ir.actions.act_window">
-        <field name="name">Generate Date Ranges</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">date.range.generator</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="date_range_generator_view_form"/>
-        <field name="target">new</field>
-    </record>
-    <menuitem action="date_range_generator_action"
-        id="menu_date_range_generator_action" parent="menu_date_range"/>
-</odoo>
+<openerp>
+    <data>
+        <record id="date_range_generator_view_form" model="ir.ui.view">
+            <field name="name">date.range.generator.form</field>
+            <field name="model">date.range.generator</field>
+            <field name="arch" type="xml">
+                <form string="Genrate Date Ranges">
+                    <group col="4">
+                        <field name="name_prefix"/>
+                        <field name="type_id"/>
+                        <label for="duration_count"/>
+                        <div>
+                            <field class="oe_inline" name="duration_count"/>
+                            <field class="oe_inline" name="unit_of_time"/>
+                        </div>
+                        <field name="date_start"/>
+                        <field name="count"/>
+                        <field groups="base.group_multi_company"
+                            name="company_id" options="{'no_create': True}"/>
+                    </group>
+                    <footer>
+                        <button class="btn btn-sm btn-primary"
+                            name="action_apply" string="Submit" type="object"/>
+                        <button class="btn btn-sm btn-default"
+                            special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="date_range_generator_action" model="ir.actions.act_window">
+            <field name="name">Generate Date Ranges</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">date.range.generator</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="date_range_generator_view_form"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem action="date_range_generator_action"
+            id="menu_date_range_generator_action" parent="menu_date_range"/>
+    </data>
+</openerp>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <template id="assets_backend" inherit_id="web.assets_backend" name="Module name backend assets">
-        <xpath expr="." position="inside">
-            <script src="/date_range/static/src/js/date_range.js" type="text/javascript"></script>
-        </xpath>
-    </template>
-</odoo>
+<openerp>
+    <data>
+        <template id="assets_backend" inherit_id="web.assets_backend" name="Module name backend assets">
+            <xpath expr="." position="inside">
+                <script src="/date_range/static/src/js/date_range.js" type="text/javascript"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
