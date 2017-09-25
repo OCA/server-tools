@@ -90,10 +90,12 @@ class BaseDomainOperator(models.AbstractModel):
         transposed"""
         field = leaf[0].split('.')[-1]
         model = expression.root_model
+        for chunk in leaf[0].split('.')[:-1]:
+            model = self.env[model._fields[chunk].comodel_name]
         return [
             ExtendedLeaf(
                 (
-                    'id', 'inselect',
+                    '.'.join(leaf[0].split('.')[:-1]) or 'id', 'inselect',
                     (
                         'select id from "%s" where %s like %s || "%s" || %s',
                         (
@@ -101,6 +103,6 @@ class BaseDomainOperator(models.AbstractModel):
                         )
                     ),
                 ),
-                model, internal=True,
+                expression.root_model, internal=True,
             )
         ]
