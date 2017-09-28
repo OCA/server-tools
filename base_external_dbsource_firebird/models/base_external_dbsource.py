@@ -53,4 +53,5 @@ class BaseExternalDbsource(models.Model):
             cur = conn.cursor()
             cur.execute(sqlquery % sqlparams)
             rows = cur.fetchall()
-            return rows, [i[0] for i in cur.description]
+            cols = [d[0] for d in cur.description] if metadata else []
+            return rows, cols

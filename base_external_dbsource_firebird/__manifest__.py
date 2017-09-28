@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     'name': 'External Database Source - Firebird',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Tools',
     'author': "Daniel Reis, "
               "LasLabs, "
