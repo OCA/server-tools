@@ -10,3 +10,4 @@ fs==0.5.4
 oauthlib
 pyjwt
 cryptography
+python-stdnum
