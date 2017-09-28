@@ -1,6 +1,7 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+    :alt: License: LGPL-3
 
+====================
 Sequence Check Digit
 ====================
 
@@ -22,20 +23,15 @@ Usage
 
 * Access sequences and configurate the model to use.
 * The model will check if the format of prefix, suffix and number is valid
-
-Implemented algorithms
-======================
-
-The implemented algorithms with its alphabet are the following:
-
-* Luhn: [0-9]*
-* Damm: [0-9]*
-* Verhoeff: [0-9]*
-* ISO 7064 Mod 11, 2: [0-9]*
-* ISO 7064 Mod 11, 10: [0-9]*
-* ISO 7064 Mod 37, 2: [0-9A-Z]*
-* ISO 7064 Mod 37, 36: [0-9A-Z]*
-* ISO 7064 Mod 97, 10: [0-9A-Z]*
+* Implemented algorithms
+    * Luhn: [0-9]*
+    * Damm: [0-9]*
+    * Verhoeff: [0-9]*
+    * ISO 7064 Mod 11, 2: [0-9]*
+    * ISO 7064 Mod 11, 10: [0-9]*
+    * ISO 7064 Mod 37, 2: [0-9A-Z]*
+    * ISO 7064 Mod 37, 36: [0-9A-Z]*
+    * ISO 7064 Mod 97, 10: [0-9A-Z]*
 
 Credits
 =======
