@@ -9,7 +9,7 @@
     "website": "https://odoo-community.org",
     "author": "Creu Blanca, "
               "Odoo Community Association (OCA)",
-    "license": "AGPL-3",
+    "license": "LGPL-3",
     "installable": True,
     "application": False,
     "summary": "Adds a check digit on sequences",
