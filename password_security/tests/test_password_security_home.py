@@ -179,6 +179,18 @@ class TestPasswordSecurityHome(TransactionCase):
             with self.assertRaises(EndTestException):
                 self.password_security_home.web_login()
 
+    def test_web_login_log_out_if_expired(self):
+        """It should log out user if password expired"""
+        with self.mock_assets() as assets:
+            request = assets['request']
+            request.httprequest.method = 'POST'
+            user = request.env['res.users'].sudo().browse()
+            user._password_has_expired.return_value = True
+            self.password_security_home.web_login()
+
+            logout_mock = request.session.logout
+            logout_mock.assert_called_once_with(keep_db=True)
+
     def test_web_login_redirect(self):
         """ It should redirect w/ hash to reset after expiration """
         with self.mock_assets() as assets:
