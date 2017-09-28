@@ -6,7 +6,7 @@
     "name": "Check Digit on Sequences",
     "version": "10.0.1.0.0",
     "category": "Reporting",
-    "website": "https://odoo-community.org",
+    "website": "https://github.com/OCA/server-tools",
     "author": "Creu Blanca, "
               "Odoo Community Association (OCA)",
     "license": "LGPL-3",
@@ -21,7 +21,7 @@
     ],
     "external_dependencies": {
         "python": [
-            "stdnum"
+            "stdnum",
         ],
-    }
+    },
 }

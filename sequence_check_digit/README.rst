@@ -12,12 +12,6 @@ It is useful when some manual checks are required or on integrations.
 The implemented codes can avoid modification of one character and flip of
 two consecutive characters.
 
-
-Configuration
-=============
-
-No manual configuration is needed.
-
 Usage
 =====
 

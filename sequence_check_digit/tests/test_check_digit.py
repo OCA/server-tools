@@ -6,6 +6,7 @@
 from odoo.tests import common
 import logging
 from odoo.exceptions import ValidationError
+
 try:
     from stdnum.iso7064 import mod_97_10
     from stdnum.iso7064 import mod_37_2, mod_37_36
@@ -16,32 +17,49 @@ except(ImportError, IOError) as err:
 
 
 class TestSequenceCheckDigit(common.TransactionCase):
-
-    def test_check_digit(self):
-        sequence_obj = self.env['ir.sequence']
-        sequence = sequence_obj.create({
+    def get_sequence(self, method):
+        return self.env['ir.sequence'].create({
             'name': 'Test sequence',
             'implementation': 'standard',
-            'check_digit_formula': 'none',
+            'check_digit_formula': method,
             'padding': '5'
         })
-        sequence.check_digit_formula = 'luhn'
+
+    def test_luhn(self):
+        sequence = self.get_sequence('luhn')
         self.assertTrue(luhn.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'damm'
+
+    def test_damm(self):
+        sequence = self.get_sequence('damm')
         self.assertTrue(damm.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'verhoeff'
+
+    def test_verhoeff(self):
+        sequence = self.get_sequence('verhoeff')
         self.assertTrue(verhoeff.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'ISO7064_11_2'
+
+    def test_mod_11_2(self):
+        sequence = self.get_sequence('ISO7064_11_2')
         self.assertTrue(mod_11_2.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'ISO7064_11_10'
+
+    def test_mod11_10(self):
+        sequence = self.get_sequence('ISO7064_11_10')
         self.assertTrue(mod_11_10.validate(sequence.next_by_id()))
+
+    def test_validation(self):
+        sequence = self.get_sequence('ISO7064_11_10')
         with self.assertRaises(ValidationError):
             sequence.prefix = 'A'
         sequence.prefix = ''
-        sequence.check_digit_formula = 'ISO7064_37_2'
+
+    def test_mod37_2(self):
+        sequence = self.get_sequence('ISO7064_37_2')
         sequence.prefix = 'A'
         self.assertTrue(mod_37_2.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'ISO7064_37_36'
+
+    def test_mod37_36(self):
+        sequence = self.get_sequence('ISO7064_37_36')
         self.assertTrue(mod_37_36.validate(sequence.next_by_id()))
-        sequence.check_digit_formula = 'ISO7064_97_10'
+
+    def test_mod97_10(self):
+        sequence = self.get_sequence('ISO7064_97_10')
         self.assertTrue(mod_97_10.validate(sequence.next_by_id()))

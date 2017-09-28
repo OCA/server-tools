@@ -5,6 +5,7 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 import logging
+
 try:
     from stdnum.iso7064 import mod_97_10
     from stdnum.iso7064 import mod_37_2, mod_37_36
@@ -39,31 +40,29 @@ class IrSequence(models.Model):
             raise ValidationError(_('Format is not accepted'))
 
     def get_check_digit(self, code):
-        if self.check_digit_formula == 'none':
-            return ''
         try:
-            if self.check_digit_formula == 'luhn':
-                return luhn.calc_check_digit(code)
-            if self.check_digit_formula == 'damm':
-                return damm.calc_check_digit(code)
-            if self.check_digit_formula == 'verhoeff':
-                return verhoeff.calc_check_digit(code)
-            if self.check_digit_formula == 'ISO7064_11_2':
-                return mod_11_2.calc_check_digit(code)
-            if self.check_digit_formula == 'ISO7064_11_10':
-                return mod_11_10.calc_check_digit(code)
-            if self.check_digit_formula == 'ISO7064_37_2':
-                return mod_37_2.calc_check_digit(code)
-            if self.check_digit_formula == 'ISO7064_37_36':
-                return mod_37_36.calc_check_digit(code)
-            if self.check_digit_formula == 'ISO7064_97_10':
-                return mod_97_10.calc_check_digits(code)
-            raise ValidationError(_('Function not found'))
+            return self.get_formula_map()[self.check_digit_formula](code)
+        except KeyError:
+            raise ValidationError(_('%s is not an implemented function'
+                                    % self.check_digit_formula))
         except Exception:
             raise ValidationError(_('Format is not accepted'))
+
+    def get_formula_map(self):
+        return {
+            'none': lambda _: '',
+            'luhn': luhn.calc_check_digit,
+            'damm': damm.calc_check_digit,
+            'verhoeff': verhoeff.calc_check_digit,
+            'ISO7064_11_2': mod_11_2.calc_check_digit,
+            'ISO7064_11_10': mod_11_10.calc_check_digit,
+            'ISO7064_37_2': mod_37_2.calc_check_digit,
+            'ISO7064_37_36': mod_37_36.calc_check_digit,
+            'ISO7064_97_10': mod_97_10.calc_check_digits
+        }
 
     def get_next_char(self, number_next):
         code = super(IrSequence, self).get_next_char(number_next)
         if not self.check_digit_formula:
             return code
-        return code + self.get_check_digit(code)
+        return '%s%s' % (code, self.get_check_digit(code))
