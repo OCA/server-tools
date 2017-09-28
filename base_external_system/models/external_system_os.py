@@ -9,7 +9,7 @@ from contextlib import contextmanager
 from odoo import api, models
 
 
-class ExternalSystemOs(models.AbstractModel):
+class ExternalSystemOs(models.Model):
     """This is an Interface implementing the OS module.
 
     For the most part, this is just a sample of how to implement an external

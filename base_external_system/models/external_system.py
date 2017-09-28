@@ -4,7 +4,8 @@
 
 from contextlib import contextmanager
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class ExternalSystem(models.Model):
@@ -40,8 +41,9 @@ class ExternalSystem(models.Model):
              'order to validate its identity.',
     )
     ignore_fingerprint = fields.Boolean(
+        default=True,
         help='Set this to `True` in order to ignore an invalid/unknown '
-             'fingerprint from the system.'
+             'fingerprint from the system.',
     )
     remote_path = fields.Char(
         help='Restrict to this directory path on the remote, if applicable.',
@@ -75,6 +77,17 @@ class ExternalSystem(models.Model):
         return [
             (m, self.env[m]._description) for m in adapter._inherit_children
         ]
+
+    @api.multi
+    @api.constrains('fingerprint', 'ignore_fingerprint')
+    def check_fingerprint_ignore_fingerprint(self):
+        """Do not allow a blank fingerprint if not set to ignore."""
+        for record in self:
+            if not record.ignore_fingerprint and not record.fingerprint:
+                raise ValidationError(_(
+                    'Fingerprint cannot be empty when Ignore Fingerprint is '
+                    'not checked.',
+                ))
 
     @api.model
     def create(self, vals):

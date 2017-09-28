@@ -14,6 +14,7 @@ class ExternalSystemAdapter(models.AbstractModel):
 
     _name = 'external.system.adapter'
     _description = 'External System Adapter'
+    _inherits = {'external.system': 'system_id'}
 
     system_id = fields.Many2one(
         string='System',
