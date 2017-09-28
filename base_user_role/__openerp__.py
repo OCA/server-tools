@@ -4,7 +4,7 @@
 
 {
     'name': 'User roles',
-    'version': '8.0.1.1.0',
+    'version': '8.0.1.2.0',
     'category': 'Tools',
     'author': 'ABF OSIELL, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
@@ -21,4 +21,5 @@
     ],
     'installable': True,
     'auto_install': False,
+    'post_init_hook': 'post_init_hook',
 }

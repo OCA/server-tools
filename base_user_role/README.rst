@@ -65,6 +65,7 @@ Contributors
 ------------
 
 * Sébastien Alix <sebastien.alix@osiell.com>
+* Stefan Rijnhart <stefan@opener.amsterdam>
 
 Maintainer
 ----------
