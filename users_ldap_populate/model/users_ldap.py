@@ -21,16 +21,16 @@
 
 import re
 from openerp.osv import orm, fields  # pylint: disable=W0402
-import ldap
 from openerp import SUPERUSER_ID
 import logging
 
 _logger = logging.getLogger(__name__)
 
 try:
+    import ldap
     from ldap.filter import filter_format
 except ImportError:
-    _logger.debug('Can not `from ldap.filter import filter_format`.')
+    _logger.debug('Cannot import ldap')
 
 
 class CompanyLDAP(orm.Model):
