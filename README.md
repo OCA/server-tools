@@ -67,10 +67,11 @@ addon | version | summary
 [module_auto_update](module_auto_update/) | 10.0.1.0.1 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
-[password_security](password_security/) | 10.0.1.0.1 | Allow admin to set password security requirements.
+[password_security](password_security/) | 10.0.1.0.2 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 10.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
 [sentry](sentry/) | 10.0.1.0.0 | Report Odoo errors to Sentry
+[sequence_check_digit](sequence_check_digit/) | 10.0.1.0.0 | Adds a check digit on sequences
 [server_environment](server_environment/) | 10.0.1.2.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 10.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 10.0.1.0.1 | Override System Parameters from server environment file
