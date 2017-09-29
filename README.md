@@ -38,6 +38,7 @@ addon | version | summary
 [base_import_security_group](base_import_security_group/) | 8.0.1.0.0 | Group-based permissions for importing CSV files
 [base_ir_filters_active](base_ir_filters_active/) | 8.0.1.0.0 | Allows you to disable (hide) filters
 [base_manifest_extension](base_manifest_extension/) | 8.0.1.0.0 | Adds some useful keys to manifest files
+[base_mixin_restrict_field_access](base_mixin_restrict_field_access/) | 8.0.1.0.0 | Make it simple to restrict read and/or write access to certain fields base on some condition
 [base_module_doc_rst](base_module_doc_rst/) | 8.0.1.0.0 | Modules Technical Guides in RST and Relationship Graphs
 [base_multi_image](base_multi_image/) | 8.0.2.0.0 | Allow multiple images for database objects
 [base_name_search_improved](base_name_search_improved/) | 8.0.1.0.2 | Friendlier search when typing in relation fields
@@ -47,7 +48,7 @@ addon | version | summary
 [base_suspend_security](base_suspend_security/) | 8.0.1.0.1 | Suspend security checks for a call
 [base_user_gravatar](base_user_gravatar/) | 8.0.1.0.0 | Synchronize Gravatar image
 [base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
-[base_user_role](base_user_role/) | 8.0.1.1.0 | User roles
+[base_user_role](base_user_role/) | 8.0.1.2.0 | User roles
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 8.0.1.0.0 | Adds more operators for view inheritance
 [cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
