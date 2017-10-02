@@ -7,14 +7,14 @@ import re
 from odoo import models, fields, api, _, SUPERUSER_ID
 from odoo.exceptions import UserError
 import logging
-import ldap
 
 _logger = logging.getLogger(__name__)
 
 try:
+    import ldap
     from ldap.filter import filter_format
 except ImportError:
-    _logger.debug('Can not `from ldap.filter import filter_format`.')
+    _logger.debug('Cannot import ldap.')
 
 
 class CompanyLDAP(models.Model):
