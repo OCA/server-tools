@@ -209,6 +209,9 @@ help us smashing it by providing a detailed and welcomed feedback.
 Credits
 =======
 
+* `Akretion <https://akretion.com>`_
+
+
 Contributors
 ------------
 
@@ -219,7 +222,7 @@ Funders
 
 The development of this module has been financially supported by:
 
-* `Akretion <https://akretion.com>`_
+* Akretion
 
 Maintainer
 ----------
