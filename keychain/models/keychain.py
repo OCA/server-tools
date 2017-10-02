@@ -204,6 +204,7 @@ class KeychainBackend(models.AbstractModel):
     _name = 'keychain.backend'
     _backend_name = None
 
+    name = fields.Char(required=True)
     password = fields.Char(
         compute="_compute_password",
         inverse="_inverse_password",
