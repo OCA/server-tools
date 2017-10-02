@@ -4,9 +4,9 @@
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, models
-from openerp.exceptions import Warning as UserError
-from openerp.tools.translate import _
+from odoo import api, models
+from odoo.exceptions import Warning as UserError
+from odoo.tools.translate import _
 
 
 def __parse_field(parser_field):
