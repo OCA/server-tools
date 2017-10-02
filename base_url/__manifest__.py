@@ -13,7 +13,7 @@
     'author': 'Akretion',
     'website': 'http://www.akretion.com/fr',
     # any module necessary for this one to work correctly
-    'depends': [],
+    'depends': ['base'],
     'external_dependencies': {
         'python': ['slugify'],
     },
