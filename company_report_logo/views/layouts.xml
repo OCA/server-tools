@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="internal_layout" inherit_id="report.internal_layout">
+      <xpath expr="//div[@class='header']" position="replace">
+        <div class="header">
+          <div class="row">
+            <div class="col-xs-1">
+              <img t-if="company.report_logo" t-att-src="'data:image/png;base64,%s' % company.report_logo" style="max-height: 45px;"/>
+            </div>
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-3">
+            </div>
+            <div class="col-xs-4">
+              <t t-if="o is not None and o._name == 'transport.order'">
+                <h1>
+                  Transport Order
+                </h1>
+              </t>
+              <t t-if="o is None or o._name != 'transport.order'">
+                <ul class="list-inline">
+                  <li>Page:</li>
+                  <li><span class="page"/></li>
+                  <li>/</li>
+                  <li><span class="topage"/></li>
+                </ul>
+              </t>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+  </data>
+</openerp>
