@@ -23,6 +23,11 @@ class ExternalSystemAdapter(models.AbstractModel):
         ondelete='cascade',
     )
 
+    def client(self):
+        """Return the system's context manager as the client."""
+        self.ensure_one()
+        return self.system_id.client()
+
     @api.multi
     def external_get_client(self):
         """Return a usable client representing the remote system."""

@@ -36,6 +36,10 @@ class ExternalSystem(models.Model):
         help='This is the private key that is used for authenticating to '
              'this system, if applicable.',
     )
+    private_key_password = fields.Text(
+        help='This is the password to unlock the private key that was '
+             'provided for this sytem.',
+    )
     fingerprint = fields.Text(
         help='This is the fingerprint that is advertised by this system in '
              'order to validate its identity.',
