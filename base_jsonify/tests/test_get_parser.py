@@ -2,7 +2,7 @@
 # © <YEAR(S)> <AUTHOR(S)>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestParser(TransactionCase):
@@ -57,17 +57,18 @@ class TestParser(TransactionCase):
         partner = self.env['res.partner'].create({
             'name': 'Akretion',
             'country_id': self.env.ref('base.fr').id,
+            'lang': 'en_US', # default
             'category_id': [(0, 0, {'name': 'Inovator'})],
             'child_ids': [
                 (0, 0, {
                     'name': 'Sebatien Beau',
                     'country_id': self.env.ref('base.fr').id
                 })
-            ]
+            ],
         })
         expected_json = [{
-            u'lang': False,
-            u'comment': False,
+            u'lang': u'en_US',
+            u'comment': None,
             u'credit_limit': 0.0,
             u'name': u'Akretion',
             u'color': 0,
@@ -87,8 +88,9 @@ class TestParser(TransactionCase):
                 },
                 u'children': [],
                 u'name': u'Sebatien Beau',
-                u'email': False
+                u'email': None
             }]
         }]
         json_partner = partner.jsonify(parser)
+
         self.assertDictEqual(json_partner[0], expected_json[0])
