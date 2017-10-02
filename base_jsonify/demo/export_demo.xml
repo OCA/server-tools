@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-
-<record id="ir_exp_partner" model="ir.exports">
-    <field name="name">Partner Export</field>
-    <field name="resource">res.partner</field>
-</record>
-
-    </data>
-</openerp>
+<odoo>
+    <record id="ir_exp_partner" model="ir.exports">
+        <field name="name">Partner Export</field>
+        <field name="resource">res.partner</field>
+    </record>
+</odoo>
