@@ -46,9 +46,10 @@ def jsonify(self, parser):
     """
     result = []
     empty_value = {
-        'char': '',
-        'int': 0,
-        'float': 0,
+        'char': None,
+        'int': None,
+        # 'float': None, TODO:  0.0 != False
+        'text': None,
         }
 
     for rec in self:
