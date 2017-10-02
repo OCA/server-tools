@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
+
     <record id="url_view_form" model="ir.ui.view">
         <field name="model">url.url</field>
         <field name="arch" type="xml">
@@ -16,7 +16,7 @@
                 </sheet>
             </form>
         </field>
-    </record>	
+    </record>
 
     <record id="url_view_tree" model="ir.ui.view">
         <field name="model">url.url</field>
@@ -35,7 +35,7 @@
         <field name="view_mode">tree,form</field>
      </record>
         <!-- This Menu Item Must have a parent -->
-    <menuitem id="url_menu_view" name="Url_rewrite" parent="base.next_id_9" action="base_url_action_view"/>
+    <menuitem id="url_menu_view" name="Url_rewrite" parent="base.next_id_9"
+              action="base_url_action_view"/>
 
-</data>
-</openerp>
+</odoo>
