@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+============
 Base Jsonify
-==============
+============
 
 This module add the jsonify method to the ORM. This method take as argument
 the browse record and the "parser" that specify the field to extract.
@@ -76,7 +76,7 @@ This is a technical module not function feature is added
 Known issues / Roadmap
 ======================
 
-Nothing yet
+No distinction between float 0.0L and no value
 
 Bug Tracker
 ===========
@@ -98,6 +98,7 @@ Contributors
 ------------
 
 * BEAU Sébastien <sebastien.beau@akretion.com>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainer
