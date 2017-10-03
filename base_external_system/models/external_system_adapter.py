@@ -30,19 +30,19 @@ class ExternalSystemAdapter(models.AbstractModel):
     def client(self):
         """Client object usable as a context manager to include destruction.
 
-        Yields the result from ``interface.external_get_client``, then calls
-        ``interface.external_destroy_client`` to cleanup the client.
+        Yields the result from ``external_get_client``, then calls
+        ``external_destroy_client`` to cleanup the client.
 
         Yields:
             mixed: An object representing the client connection to the remote
              system.
         """
         self.ensure_one()
-        client = self.system_id.external_get_client()
+        client = self.external_get_client()
         try:
             yield client
         finally:
-            self.system_id.external_destroy_client(client)
+            self.external_destroy_client(client)
 
     @api.multi
     def external_get_client(self):

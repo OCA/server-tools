@@ -2,6 +2,8 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from contextlib import contextmanager
+
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
@@ -90,6 +92,25 @@ class ExternalSystem(models.Model):
                     'Fingerprint cannot be empty when Ignore Fingerprint is '
                     'not checked.',
                 ))
+
+    @api.multi
+    @contextmanager
+    def client(self):
+        """Client object usable as a context manager to include destruction.
+
+        Yields the result from ``external_get_client``, then calls
+        ``external_destroy_client`` to cleanup the client.
+
+        Yields:
+            mixed: An object representing the client connection to the remote
+             system.
+        """
+        self.ensure_one()
+        client = self.interface.external_get_client()
+        try:
+            yield client
+        finally:
+            self.interface.external_destroy_client(client)
 
     @api.model
     def create(self, vals):
