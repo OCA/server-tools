@@ -79,4 +79,3 @@ class TestKeychain(TransactionCase):
         self.assertEqual(
             account.technical_name, '%s,%s' % (backend._name, backend.id),
             'Account technical_name is not correct')
-
