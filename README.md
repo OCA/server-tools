@@ -42,6 +42,7 @@ addon | version | summary
 [base_kanban_stage](base_kanban_stage/) | 10.0.1.1.1 | Provides stage model and abstract logic for inheritance
 [base_kanban_stage_state](base_kanban_stage_state/) | 10.0.1.0.0 | Maps stages from base_kanban_stage to states
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
+[base_manifest_extension](base_manifest_extension/) | 10.0.1.0.0 | Adds useful keys to manifest files
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
 [base_optional_quick_create](base_optional_quick_create/) | 10.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_search_fuzzy](base_search_fuzzy/) | 10.0.1.1.0 | Fuzzy search with the PostgreSQL trigram extension
@@ -78,7 +79,7 @@ addon | version | summary
 [user_immutable](user_immutable/) | 10.0.1.0.0 | Add Immutable User Support
 [user_threshold](user_threshold/) | 10.0.1.0.1 | Add Configurable User Threshold Support
 [users_ldap_mail](users_ldap_mail/) | 10.0.1.0.0 | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 10.0.1.0.0 | LDAP Populate
+[users_ldap_populate](users_ldap_populate/) | 10.0.1.0.1 | LDAP Populate
 [webhook](webhook/) | 10.0.1.0.0 | Webhook
 
 
