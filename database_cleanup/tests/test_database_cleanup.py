@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from psycopg2 import ProgrammingError
 from odoo.modules.registry import Registry
-from odoo.tools import config
+from odoo.tools import config, mute_logger
 from odoo.tests.common import TransactionCase, at_install, post_install
 
 
@@ -52,7 +52,8 @@ class TestDatabaseCleanup(TransactionCase):
         # must be removed by the wizard
         with self.assertRaises(ProgrammingError):
             with self.env.registry.cursor() as cr:
-                cr.execute('select database_cleanup_test from res_partner')
+                with mute_logger('odoo.sql_db'):
+                    cr.execute('select database_cleanup_test from res_partner')
 
         # create a data entry pointing nowhere
         self.env.cr.execute('select max(id) + 1 from res_users')
@@ -77,8 +78,6 @@ class TestDatabaseCleanup(TransactionCase):
             'insert into ir_attachment (name, res_model, res_id, type) values '
             "('test attachment', 'database.cleanup.test.model', 42, 'binary')")
         self.env.registry.models.pop('x_database.cleanup.test.model')
-        self.env.registry._fields_by_model.pop(
-            'x_database.cleanup.test.model')
         purge_models = self.env['cleanup.purge.wizard.model'].create({})
         purge_models.purge_all()
         # must be removed by the wizard
@@ -112,7 +111,8 @@ class TestDatabaseCleanup(TransactionCase):
         purge_tables.purge_all()
         with self.assertRaises(ProgrammingError):
             with self.env.registry.cursor() as cr:
-                cr.execute('select * from database_cleanup_test')
+                with mute_logger('odoo.sql_db'):
+                    cr.execute('select * from database_cleanup_test')
 
     def tearDown(self):
         super(TestDatabaseCleanup, self).tearDown()
