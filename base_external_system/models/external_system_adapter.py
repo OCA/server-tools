@@ -2,6 +2,8 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from contextlib import contextmanager
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -23,10 +25,12 @@ class ExternalSystemAdapter(models.AbstractModel):
         ondelete='cascade',
     )
 
+    @contextmanager
     def client(self):
         """Return the system's context manager as the client."""
         self.ensure_one()
-        return self.system_id.client()
+        with self.system_id.client() as client:
+            yield client
 
     @api.multi
     def external_get_client(self):
