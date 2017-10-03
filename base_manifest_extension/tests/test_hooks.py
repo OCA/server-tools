@@ -61,7 +61,7 @@ class TestHooks(TransactionCase):
         result = _installed_modules(self.test_cr, self.test_rdepends)
 
         expected = self.test_rdepends[:2]
-        self.assertEqual(result, expected)
+        self.assertItemsEqual(result, expected)
 
     def test_installed_modules_empty_starting_list(self):
         """It should safely handle being passed an empty module list"""
