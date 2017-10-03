@@ -2,8 +2,8 @@
 # © 2016 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
-from odoo.tools.config import config
+from openerp.tests.common import TransactionCase
+from openerp.tools.config import config
 
 import logging
 
@@ -79,4 +79,3 @@ class TestKeychain(TransactionCase):
         self.assertEqual(
             account.technical_name, '%s,%s' % (backend._name, backend.id),
             'Account technical_name is not correct')
-
