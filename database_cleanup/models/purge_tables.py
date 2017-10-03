@@ -81,8 +81,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
         Search for tables that cannot be instantiated.
         Ignore views for now.
         """
-        # Start out with known tables with no model
-        known_tables = ['wkf_witm_trans']
+        known_tables = []
         for model in self.env['ir.model'].search([]):
             if model.model not in self.env:
                 continue
