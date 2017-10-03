@@ -19,6 +19,14 @@ replaced with the updated version of this module.
 Then in your theme styles (or any other CSS file) you can benefit from latest FA features.
 
 
+Roadmap
+=======
+
+As of today Odoo v11 (master) is already shipping the latest version of FA.
+In case they keep it up to date we can skip the migration of this module to v11.
+Otherwise we can keep it and upgrade it to have always the most recent version.
+
+
 Bug Tracker
 ===========
 
