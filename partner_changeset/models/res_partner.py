@@ -2,7 +2,7 @@
 # Copyright 2015-2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -17,13 +17,13 @@ class ResPartner(models.Model):
         compute='_count_pending_changesets',
         search='_search_count_pending_changesets')
 
-    @api.one
     @api.depends('changeset_ids', 'changeset_ids.state')
     def _count_pending_changesets(self):
-        changesets = self.changeset_ids.filtered(
-            lambda rev: rev.state == 'draft' and rev.partner_id == self
-        )
-        self.count_pending_changesets = len(changesets)
+        for rec in self:
+            changesets = rec.changeset_ids.filtered(
+                lambda rev: rev.state == 'draft' and rev.partner_id == rec
+            )
+            rec.count_pending_changesets = len(changesets)
 
     @api.multi
     def write(self, values):

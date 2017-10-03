@@ -6,7 +6,8 @@ from itertools import groupby
 from lxml import etree
 from operator import attrgetter
 
-from odoo import models, fields, api, exceptions, _
+from odoo import api, fields, models
+from odoo import exceptions, _
 from odoo.osv.orm import setup_modifiers
 
 # sentinel object to be sure that no empty value was passed to
@@ -52,14 +53,14 @@ class ResPartnerChangeset(models.Model):
         models = self.env['ir.model'].search([])
         return [(model.model, model.name) for model in models]
 
-    @api.one
     @api.depends('change_ids', 'change_ids.state')
     def _compute_state(self):
-        if all(change.state in ('done', 'cancel') for change
-                in self.mapped('change_ids')):
-            self.state = 'done'
-        else:
-            self.state = 'draft'
+        for rec in self:
+            if all(change.state in ('done', 'cancel') for change
+                    in rec.mapped('change_ids')):
+                rec.state = 'done'
+            else:
+                rec.state = 'draft'
 
     @api.multi
     def apply(self):
@@ -69,7 +70,7 @@ class ResPartnerChangeset(models.Model):
     def cancel(self):
         self.mapped('change_ids').cancel()
 
-    @api.multi
+    @api.model
     def add_changeset(self, record, values):
         """ Add a changeset on a partner
 
@@ -306,25 +307,25 @@ class ResPartnerChangesetChange(models.Model):
                      _old_value_fields +
                      _new_value_fields)
 
-    @api.one
     @api.depends('changeset_id.partner_id')
     def _compute_origin_values(self):
-        field_name = self.get_field_for_type(self.field_id, 'origin')
-        if self.state == 'draft':
-            value = self.changeset_id.partner_id[self.field_id.name]
-        else:
-            old_field = self.get_field_for_type(self.field_id, 'old')
-            value = self[old_field]
-        setattr(self, field_name, value)
+        for rec in self:
+            field_name = rec.get_field_for_type(rec.field_id, 'origin')
+            if rec.state == 'draft':
+                value = rec.changeset_id.partner_id[rec.field_id.name]
+            else:
+                old_field = rec.get_field_for_type(rec.field_id, 'old')
+                value = rec[old_field]
+            setattr(rec, field_name, value)
 
-    @api.one
     @api.depends(lambda self: self._value_fields)
     def _compute_value_display(self):
-        for prefix in ('origin', 'new'):
-            value = getattr(self, 'get_%s_value' % prefix)()
-            if self.field_id.ttype == 'many2one' and value:
-                value = value.display_name
-            setattr(self, '%s_value_display' % prefix, value)
+        for rec in self:
+            for prefix in ('origin', 'new'):
+                value = getattr(rec, 'get_%s_value' % prefix)()
+                if rec.field_id.ttype == 'many2one' and value:
+                    value = value.display_name
+                setattr(rec, '%s_value_display' % prefix, value)
 
     @api.model
     def get_field_for_type(self, field, prefix):
@@ -369,7 +370,8 @@ class ResPartnerChangesetChange(models.Model):
         """
         changes_ok = self.browse()
         key = attrgetter('changeset_id')
-        for changeset, changes in groupby(self.sorted(key=key), key=key):
+        for changeset, changes in groupby(self.with_context(
+                __no_changeset=True).sorted(key=key), key=key):
             values = {}
             partner = changeset.partner_id
             for change in changes:
@@ -405,7 +407,7 @@ class ResPartnerChangesetChange(models.Model):
                       'this one.')
                 )
 
-            partner.with_context(__no_changeset=True).write(values)
+            partner.write(values)
 
         changes_ok.write({'state': 'done'})
 
@@ -455,7 +457,7 @@ class ResPartnerChangesetChange(models.Model):
         else:
             return value
 
-    @api.multi
+    @api.model
     def _prepare_changeset_change(self, record, rule, field_name, value):
         """ Prepare data for a changeset change
 
@@ -494,6 +496,7 @@ class ResPartnerChangesetChange(models.Model):
 
         return change, pop_value
 
+    @api.model
     def fields_view_get(self, *args, **kwargs):
         _super = super(ResPartnerChangesetChange, self)
         result = _super.fields_view_get(*args, **kwargs)
