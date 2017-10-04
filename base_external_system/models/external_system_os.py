@@ -4,8 +4,6 @@
 
 import os
 
-from contextlib import contextmanager
-
 from odoo import api, models
 
 
