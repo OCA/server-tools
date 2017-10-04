@@ -29,7 +29,7 @@
                             <field name="host" />
                             <field name="port" />
                             <field name="username" />
-                            <field name="password" />
+                            <field name="password" widget="password" />
                             <field name="system_type" />
                         </group>
                     </group>
