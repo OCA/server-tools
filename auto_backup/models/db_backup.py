@@ -4,7 +4,6 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 
-import os
 import shutil
 import traceback
 from contextlib import contextmanager
@@ -14,10 +13,6 @@ from odoo import exceptions, models, fields, api, _, tools
 from odoo.service import db
 import logging
 _logger = logging.getLogger(__name__)
-try:
-    import pysftp
-except ImportError:  # pragma: no cover
-    _logger.debug('Cannot import pysftp')
 
 
 class DbBackup(models.Model):
@@ -31,32 +26,39 @@ class DbBackup(models.Model):
     ]
 
     name = fields.Char(
-        string="Name",
-        compute="_compute_name",
+        string='Name',
+        compute='_compute_name',
         store=True,
-        help="Summary of this backup process",
+        help='Summary of this backup process',
+    )
+    system_id = fields.Many2one(
+        string='External System',
+        comodel_name='external.system',
+        required=True,
     )
     folder = fields.Char(
         default=lambda self: self._default_folder(),
-        oldname="bkp_dir",
+        oldname='bkp_dir',
         help='Absolute path for storing the backups',
-        required=True
+        compute='_compute_folder',
+        inverse='_inverse_folder',
+        required=True,
+    )
+    _folder = fields.Char(
+        help='Path, relative to the external system root, to store the '
+             'backup.',
     )
     days_to_keep = fields.Integer(
-        oldname="daystokeep",
+        oldname='daystokeep',
         required=True,
         default=0,
-        help="Backups older than this will be deleted automatically. "
-             "Set 0 to disable autodeletion.",
-    )
-    method = fields.Selection(
-        selection=[("local", "Local disk"), ("sftp", "Remote SFTP server")],
-        default="local",
-        help="Choose the storage method for this backup.",
+        help='Backups older than this will be deleted automatically. '
+             'Set 0 to disable autodeletion.',
     )
     sftp_host = fields.Char(
         string='SFTP Server',
         oldname="sftpip",
+        related='system_id.host',
         help=(
             "The host name or IP address from your remote"
             " server. For example 192.168.0.1"
@@ -66,11 +68,13 @@ class DbBackup(models.Model):
         string="SFTP Port",
         default=22,
         oldname="sftpport",
+        related='system_id.port',
         help="The port on the FTP server that accepts SSH/SFTP calls."
     )
     sftp_user = fields.Char(
         string='Username in the SFTP Server',
         oldname="sftpusername",
+        related='system_id.username',
         help=(
             "The username where the SFTP connection "
             "should be made with. This is the user on the external server."
@@ -79,40 +83,61 @@ class DbBackup(models.Model):
     sftp_password = fields.Char(
         string="SFTP Password",
         oldname="sftppassword",
+        related='system_id.password',
         help="The password for the SFTP connection. If you specify a private "
              "key file, then this is the password to decrypt it.",
     )
     sftp_private_key = fields.Char(
         string="Private key location",
+        related='system_id.private_key',
         help="Path to the private key file. Only the Odoo user should have "
              "read permissions for that file.",
+    )
+    method = fields.Selection(
+        related='system_id.system_type',
+        default='external.system.os',
+        help='Choose the storage method for this backup.',
     )
 
     @api.model
     def _default_folder(self):
         """Default to ``backups`` folder inside current server datadir."""
         return os.path.join(
-            tools.config["data_dir"],
-            "backups",
-            self.env.cr.dbname)
+            tools.config['data_dir'],
+            'backups',
+            self.env.cr.dbname,
+        )
 
     @api.multi
-    @api.depends("folder", "method", "sftp_host", "sftp_port", "sftp_user")
+    @api.depends('folder', 'system_id.name')
     def _compute_name(self):
         """Get the right summary for this job."""
-        for rec in self:
-            if rec.method == "local":
-                rec.name = "%s @ localhost" % rec.folder
-            elif rec.method == "sftp":
-                rec.name = "sftp://%s@%s:%d%s" % (
-                    rec.sftp_user, rec.sftp_host, rec.sftp_port, rec.folder)
+        for record in self:
+            record.name = '%s/%s' % (
+                record.system_id.name, record.folder,
+            )
+
+    @api.multi
+    @api.depends('_folder', 'system_id.remote_folder')
+    def _compute_folder(self):
+        for record in self:
+            record.folder = '%s/%s' % (
+                record.system_id.remote_folder, record._folder,
+            )
+
+    @api.multi
+    def _inverse_folder(self):
+        for record in self:
+            record._folder = record.folder.replace(
+                '%s/' % record.system_id.remote_folder, '',
+            )
 
     @api.multi
     @api.constrains("folder", "method")
     def _check_folder(self):
         """Do not use the filestore or you will backup your backups."""
         for s in self:
-            if (s.method == "local" and
+            if (s.method == "external.system.os" and
                     s.folder.startswith(
                         tools.config.filestore(self.env.cr.dbname))):
                 raise exceptions.ValidationError(
@@ -122,15 +147,8 @@ class DbBackup(models.Model):
     @api.multi
     def action_sftp_test_connection(self):
         """Check if the SFTP settings are correct."""
-        try:
-            # Just open and close the connection
-            with self.sftp_connection():
-                raise exceptions.Warning(_("Connection Test Succeeded!"))
-        except (pysftp.CredentialException,
-                pysftp.ConnectionException,
-                pysftp.SSHException):
-            _logger.info("Connection Test Failed!", exc_info=True)
-            raise exceptions.Warning(_("Connection Test Failed!"))
+        self.ensure_one()
+        self.system_id.action_test_connection()
 
     @api.multi
     def action_backup(self):
@@ -138,18 +156,25 @@ class DbBackup(models.Model):
         backup = None
         filename = self.filename(datetime.now())
         successful = self.browse()
+        local, external = self.browse()
+
+        for record in self:
+            if record.method == 'external.system.os':
+                local |= record
+            else:
+                external |= record
 
         # Start with local storage
-        for rec in self.filtered(lambda r: r.method == "local"):
-            with rec.backup_log():
-                # Directory must exist
-                try:
-                    os.makedirs(rec.folder)
-                except OSError:
-                    pass
+        for record in local:
+            with record.backup_log():
+                with record.system_id.client() as os:
+                    # Directory must exist
+                    try:
+                        os.makedirs(record.folder)
+                    except OSError:
+                        pass
 
-                with open(os.path.join(rec.folder, filename),
-                          'wb') as destiny:
+                with os.open(filename, 'wb') as destiny:
                     # Copy the cached backup
                     if backup:
                         with open(backup) as cached:
@@ -158,32 +183,29 @@ class DbBackup(models.Model):
                     else:
                         db.dump_db(self.env.cr.dbname, destiny)
                         backup = backup or destiny.name
-                successful |= rec
+                successful |= record
 
         # Ensure a local backup exists if we are going to write it remotely
-        sftp = self.filtered(lambda r: r.method == "sftp")
-        if sftp:
+        if external:
             if backup:
                 cached = open(backup)
             else:
                 cached = db.dump_db(self.env.cr.dbname, None)
 
             with cached:
-                for rec in sftp:
-                    with rec.backup_log():
-                        with rec.sftp_connection() as remote:
+                for record in external:
+                    with record.backup_log():
+                        with record.system_id.client() as remote:
                             # Directory must exist
                             try:
-                                remote.makedirs(rec.folder)
-                            except pysftp.ConnectionException:
+                                remote.mkdir(record._folder)
+                            except Exception:
                                 pass
 
                             # Copy cached backup to remote server
-                            with remote.open(
-                                    os.path.join(rec.folder, filename),
-                                    "wb") as destiny:
+                            with remote.open(filename, "wb") as destiny:
                                 shutil.copyfileobj(cached, destiny)
-                        successful |= rec
+                        successful |= record
 
         # Remove old files for successful backups
         successful.cleanup()
@@ -219,22 +241,14 @@ class DbBackup(models.Model):
     def cleanup(self):
         """Clean up old backups."""
         now = datetime.now()
-        for rec in self.filtered("days_to_keep"):
-            with rec.cleanup_log():
-                oldest = self.filename(now - timedelta(days=rec.days_to_keep))
-
-                if rec.method == "local":
-                    for name in iglob(os.path.join(rec.folder,
-                                                   "*.dump.zip")):
-                        if os.path.basename(name) < oldest:
-                            os.unlink(name)
-
-                elif rec.method == "sftp":
-                    with rec.sftp_connection() as remote:
-                        for name in remote.listdir(rec.folder):
-                            if (name.endswith(".dump.zip") and
-                                    os.path.basename(name) < oldest):
-                                remote.unlink('%s/%s' % (rec.folder, name))
+        for record in self.filtered("days_to_keep"):
+            with record.cleanup_log():
+                oldest = self.filename(now - timedelta(days=record.days_to_keep))
+                with record.system_id.client() as remote:
+                    for name in remote.listdir(record._folder):
+                        if (name.endswith(".dump.zip") and
+                                os.path.basename(name) < oldest):
+                            remote.unlink('%s/%s' % (record._folder, name))
 
     @api.multi
     @contextmanager
@@ -265,24 +279,3 @@ class DbBackup(models.Model):
             Use this datetime instead of :meth:`datetime.datetime.now`.
         """
         return "{:%Y_%m_%d_%H_%M_%S}.dump.zip".format(when)
-
-    @api.multi
-    def sftp_connection(self):
-        """Return a new SFTP connection with found parameters."""
-        self.ensure_one()
-        params = {
-            "host": self.sftp_host,
-            "username": self.sftp_user,
-            "port": self.sftp_port,
-        }
-        _logger.debug(
-            "Trying to connect to sftp://%(username)s@%(host)s:%(port)d",
-            extra=params)
-        if self.sftp_private_key:
-            params["private_key"] = self.sftp_private_key
-            if self.sftp_password:
-                params["private_key_pass"] = self.sftp_password
-        else:
-            params["password"] = self.sftp_password
-
-        return pysftp.Connection(**params)

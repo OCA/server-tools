@@ -7,7 +7,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "10.0.1.0.2",
+    "version": "10.0.2.0.0",
     "author": (
         "Yenthe Van Ginneken, "
         "Agile Business Group, "
@@ -16,10 +16,11 @@
         "Odoo Community Association (OCA)"
     ),
     'license': "AGPL-3",
-    "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
+    "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
     "depends": [
         'mail',
+        'connector_sftp',
     ],
     "data": [
         "data/ir_cron.xml",
@@ -29,7 +30,4 @@
     ],
     "application": True,
     "installable": True,
-    "external_dependencies": {
-        "python": ["pysftp"],
-    },
 }
