@@ -105,12 +105,8 @@ class ExternalSystem(models.Model):
             mixed: An object representing the client connection to the remote
              system.
         """
-        self.ensure_one()
-        client = self.interface.external_get_client()
-        try:
+        with self.interface.client() as client:
             yield client
-        finally:
-            self.interface.external_destroy_client(client)
 
     @api.model
     def create(self, vals):

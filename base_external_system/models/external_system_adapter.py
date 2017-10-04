@@ -37,7 +37,6 @@ class ExternalSystemAdapter(models.AbstractModel):
             mixed: An object representing the client connection to the remote
              system.
         """
-        self.ensure_one()
         client = self.external_get_client()
         try:
             yield client
