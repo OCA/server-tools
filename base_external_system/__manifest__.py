@@ -16,6 +16,8 @@
         'base',
     ],
     'data': [
+        'demo/external_system_os_demo.xml',
+        'security/ir.model.access.csv',
         'views/external_system_view.xml',
     ],
 }
