@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_technical_features
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-18 02:29+0000\n"
+"PO-Revision-Date: 2017-02-18 02:29+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Arabic (https://www.transifex.com/oca/teams/23907/ar/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+msgid "Show field Technical Features"
+msgstr ""
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+msgid "Technical features"
+msgstr ""
+
+#. module: base_technical_features
+#: code:addons/base_technical_features/models/res_users.py:48
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_res_users
+msgid "Users"
+msgstr "المستخدمون"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+msgid ""
+"Whether to display the technical features field in the user preferences."
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "base"
+msgstr ""
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "ir.ui.menu"
+msgstr ""
