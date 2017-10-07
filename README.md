@@ -87,7 +87,7 @@ addon | version | summary
 [super_calendar](super_calendar/) | 8.0.0.2.0 | This module allows to create configurable calendars.
 [users_ldap_groups](users_ldap_groups/) | 8.0.1.2.1 | Adds user accounts to groups based on rules defined by the administrator.
 [users_ldap_mail](users_ldap_mail/) | 8.0.1.0.0 | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 8.0.1.2.0 | Create users from LDAP before they log in
+[users_ldap_populate](users_ldap_populate/) | 8.0.1.2.1 | Create users from LDAP before they log in
 [users_ldap_push](users_ldap_push/) | 8.0.1.0.0 | Creates a ldap entry when you create a user in Odoo
 [web_context_tunnel](web_context_tunnel/) | 8.0.2.0.0 | Web Context Tunnel
 
