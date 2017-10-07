@@ -26,8 +26,9 @@ env:
   - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
   - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
+  # database_cleanup has not been migrated yet
+  #- TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
+  #- TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
 
 
 before_install:
@@ -42,7 +43,8 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
   # Install libraries that require specific development headers, but not during lint test
-  - if ! [ "$LINT_CHECK" = "1" ]; then pip install pymssql MySQL-python pyodbc; fi
+  - if ! [ "$LINT_CHECK" = "1" ]; then pip install pymssql pyodbc; fi
+  # MySQL-python library is not compatible with Python 3
   - printf '[options]\n\nrunning_env = dev\n' > ${HOME}/.openerp_serverrc
   - ln -s ${TRAVIS_BUILD_DIR}/server_environment_files_sample ${TRAVIS_BUILD_DIR}/server_environment_files
 script:
