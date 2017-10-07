@@ -30,6 +30,7 @@ addon | version | summary
 [base_custom_info](base_custom_info/) | 9.0.2.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
 [base_external_dbsource](base_external_dbsource/) | 9.0.1.0.1 | External Database Sources
+[base_fontawesome](base_fontawesome/) | 9.0.4.7.0 | Up to date Fontawesome resources.
 [base_import_match](base_import_match/) | 9.0.1.0.0 | Try to avoid duplicates before importing
 [base_kanban_stage](base_kanban_stage/) | 9.0.1.1.0 | Provides stage model and abstract logic for inheritance
 [base_manifest_extension](base_manifest_extension/) | 9.0.1.0.0 | Adds useful keys to manifest files
