@@ -35,7 +35,7 @@ from odoo import models, api, fields
 from odoo.tools.safe_eval import safe_eval
 
 from . import licenses
-from .topo import find_depends, MAGIC_COLUMNS
+from ..utils.closure import find_closure, NON_CLOSURE_COLUMNS as MAGIC_COLUMNS
 
 _logger = logging.getLogger(__name__)
 
@@ -457,7 +457,7 @@ class ModulePrototyper(models.Model):
                 fname = self.friendly_name(self.unprefix(model_name))
                 filename = '%s/%s.xml' % (prefix, fname)
                 self._data_files.append(filename)
-                dependencies = find_depends(records)
+                dependencies = find_closure(records)
                 res.append(self.generate_file_details(
                     filename,
                     'data/model_name.xml.template',
