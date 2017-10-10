@@ -6,7 +6,8 @@ python:
   - "2.7"
 
 addons:
-  postgresql: "9.2" # minimal postgresql version for the daterange method
+  postgresql: "9.3" # minimal postgresql version for the base_import_security_group module
+                    # more info: https://github.com/OCA/maintainer-quality-tools/issues/432
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
@@ -23,11 +24,20 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo"
-  - TESTS="1" ODOO_REPO="OCA/OCB"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
 
 virtualenv:
   system_site_packages: true
+
+before_install:
+ - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
+ - "if [ $(phantomjs --version) != '2.1.1' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
+ - "if [ $(phantomjs --version) != '2.1.1' ]; then wget https://assets.membergetmember.co/software/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2; fi"
+ - "if [ $(phantomjs --version) != '2.1.1' ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
+ - "phantomjs --version"
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools

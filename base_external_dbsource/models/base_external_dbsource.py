@@ -296,7 +296,7 @@ class BaseExternalDbsource(models.Model):
         return connection.close()
 
     def connection_open_postgresql(self):
-        return psycopg2.connect(self.conn_string)
+        return psycopg2.connect(self.conn_string_full)
 
     def execute_postgresql(self, query, params, metadata):
         return self._execute_generic(query, params, metadata)

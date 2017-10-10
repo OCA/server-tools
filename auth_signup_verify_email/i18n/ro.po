@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_signup_verify_email
+# 
+# Translators:
+# Daniel Schweiger <danielcccasle@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 01:11+0000\n"
+"PO-Revision-Date: 2017-06-22 01:11+0000\n"
+"Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
+"Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:54
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:30
+#, python-format
+msgid "Check your email to activate your account!"
+msgstr "Ati primit un email pentru activarea acestui cont!"
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:50
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:28
+#, python-format
+msgid "Something went wrong, please try again later or contact us."
+msgstr ""
+"Sa produs o eroare, va rugam sa incercati mai tarziu sau contacteaza-ne."
+
+#. module: auth_signup_verify_email
+#: code:addons/auth_signup_verify_email/controllers/main.py:31
+#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:27
+#, python-format
+msgid "That does not seem to be an email address."
+msgstr "Nu ati introdus o  directie email corespunzatoare."

@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_webhook_address,access_webhook_address,model_webhook_address,base.group_system,1,1,1,1
+access_webhook,access_webhook,model_webhook,base.group_system,1,1,1,1

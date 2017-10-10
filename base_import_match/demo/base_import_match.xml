@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+     Copyright 2016 Tecnativa - Vicent Cubells
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo noupdate="1">
+
+    <!-- Match partners by name, parent_id and is_company -->
+    <record model="base_import.match" id="res_partner_parent_name_is_company">
+      <field name="model_id" eval="ref('base.model_res_partner')"/>
+      <field name="sequence" type="int">20</field>
+    </record>
+    <record model="base_import.match.field" id="res_partner_parent_name_is_company_name">
+      <field name="match_id" ref="res_partner_parent_name_is_company"/>
+      <field name="field_id" ref="base.field_res_partner_name"/>
+    </record>
+    <record model="base_import.match.field" id="res_partner_parent_name_is_company_parent">
+      <field name="match_id" ref="res_partner_parent_name_is_company"/>
+      <field name="field_id" ref="base.field_res_partner_parent_id"/>
+    </record>
+    <record model="base_import.match.field" id="res_partner_parent_name_is_company_is_company">
+      <field name="match_id" ref="res_partner_parent_name_is_company"/>
+      <field name="field_id" ref="base.field_res_partner_is_company"/>
+    </record>
+
+    <!-- Match partner by email -->
+    <record model="base_import.match" id="res_partner_email">
+      <field name="model_id" eval="ref('base.model_res_partner')"/>
+      <field name="sequence" type="int">30</field>
+    </record>
+    <record model="base_import.match.field" id="res_partner_email_email">
+      <field name="match_id" ref="base_import_match.res_partner_email"/>
+      <field name="field_id" ref="base.field_res_partner_email"/>
+    </record>
+
+    <!-- Match partner by name -->
+    <record model="base_import.match" id="res_partner_name">
+      <field name="model_id" eval="ref('base.model_res_partner')"/>
+      <field name="sequence" type="int">40</field>
+    </record>
+    <record model="base_import.match.field" id="res_partner_name_name">
+      <field name="match_id" ref="base_import_match.res_partner_name"/>
+      <field name="field_id" ref="base.field_res_partner_name"/>
+    </record>
+
+</odoo>

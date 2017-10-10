@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * auth_user_case_insensitive
+# 
+# Translators:
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-01 02:43+0000\n"
+"PO-Revision-Date: 2017-08-01 02:43+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auth_user_case_insensitive
+#: code:addons/auth_user_case_insensitive/hooks.py:24
+#, python-format
+msgid "Conflicting user logins exist for `%s`"
+msgstr ""
+
+#. module: auth_user_case_insensitive
+#: model:ir.model,name:auth_user_case_insensitive.model_res_users
+msgid "Users"
+msgstr "Utilizadores"

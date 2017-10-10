@@ -35,7 +35,7 @@ class ResUsers(models.Model):
                 auto_update in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
-        url = 'http://www.gravatar.com/avatar/{}?s=200'
+        url = 'https://www.gravatar.com/avatar/{}?s=200'
         _hash = hashlib.md5(email).hexdigest()
         try:
             res = urllib2.urlopen(url.format(_hash))

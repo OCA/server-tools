@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2016-2017 LasLabs Inc.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+    <record id="auth_access_owners" model="ir.rule">
+        <field name="name">MFA Authenticators - Owner Access</field>
+        <field name="model_id" ref="model_res_users_authenticator"/>
+        <field name="domain_force">[('user_id', '=?', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="auth_access_admins" model="ir.rule">
+        <field name="name">MFA Authenticators - Admin Read/Unlink</field>
+        <field name="model_id" ref="model_res_users_authenticator"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4, ref('base.group_erp_manager'))]"/>
+    </record>
+</odoo>
