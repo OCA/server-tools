@@ -59,6 +59,17 @@ class TestResUsers(TransactionCase):
                 user_id.get_gravatar_image()
                 write_mk.assert_called_once_with({'image': expect})
 
+    def test_compute_gravatar_autoupdate_enabled(self, ):
+        """Update computed module"""
+        IrParameter = self.env['ir.config.parameter']
+        IrParameter.set_param('gravatar.autoupdate', False)
+        user_id = self._test_record()
+        user_id.recompute()
+        self.assertEquals(False, user_id.gravatar_autoupdate_enabled)
+        IrParameter.set_param('gravatar.autoupdate', True)
+        user_id.recompute()
+        self.assertEquals(True, user_id.gravatar_autoupdate_enabled)
+
     def test_update_gravatars(self, ):
         """Tests cron"""
         result = self.model_obj._update_gravatars()

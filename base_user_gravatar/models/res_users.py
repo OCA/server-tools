@@ -32,7 +32,7 @@ class ResUsers(models.Model):
         auto_update = IrParameter.get_param('gravatar.autoupdate')
         for record in self:
             record.gravatar_autoupdate_enabled = auto_update and \
-                auto_update.value in ('True', 'true', '1')
+                auto_update in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
         url = 'http://www.gravatar.com/avatar/{}?s=200'
@@ -64,7 +64,7 @@ class ResUsers(models.Model):
     def _update_gravatars(self):
         IrParameter = self.env['ir.config_parameter']
         auto_update = IrParameter.get_param('gravatar.autoupdate')
-        if auto_update and auto_update.value in ('True', 'true', '1'):
+        if auto_update and auto_update in ('True', 'true', '1'):
             _logger.info('Starting Gravatar update')
             # Lets prevent failing in case of no gravatar
             for user in self.search([('gravatar_autoupdate', '=', True)]):
