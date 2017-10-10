@@ -61,7 +61,7 @@ class TestResUsers(TransactionCase):
 
     def test_compute_gravatar_autoupdate_enabled(self, ):
         """Update computed module"""
-        IrParameter = self.env['ir.config.parameter']
+        IrParameter = self.env['ir.config_parameter']
         IrParameter.set_param('gravatar.autoupdate', False)
         user_id = self._test_record()
         user_id.recompute()
