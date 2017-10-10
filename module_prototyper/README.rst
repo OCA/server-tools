@@ -13,9 +13,10 @@ in addition to everything the prototype does not export yet.
 Installation
 ============
 
-Make sure you have Jinja2 version 2.7.3 or higher installed::
+Make sure you have installed Jinja2 version 2.7.3 or higher and xoutil 1.7.4::
 
-$ pip install --upgrade Jinja2==2.7.3
+$ pip install --upgrade Jinja2==2.7.3 xoutil==1.7.4
+
 
 Configuration
 =============
