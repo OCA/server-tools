@@ -220,25 +220,9 @@ class ImportOdooDatabase(models.Model):
                     dummy_instance(*(context.field_context + (_id,)))
                 )
         if not _id:
-            mapping = self.import_field_mappings.filtered(
-                lambda x: x.model_id.model == model._name and
-                (
-                    not x.fields_id or
-                    x.fields_id.name == context.field_context.field_name and
-                    x.fields_id.model_id.model ==
-                    context.field_context.record_model
-                ) and
-                x.local_id and
-                (x.remote_id == record['id'] or not x.remote_id)
-            )[:1]
-            if mapping:
-                if mapping.local_id:
-                    _id = mapping.local_id
-                    context.idmap[(model._name, record['id'])] = _id
-                else:
-                    _id = self._run_import_create_dummy(
-                        context, model, record, forcecreate=True,
-                    )
+            _id = self._run_import_get_record_mapping(
+                context, model, record, create_dummy=create_dummy,
+            )
         if not _id:
             xmlid = self.env['ir.model.data'].search([
                 ('import_database_id', '=', self.id),
@@ -250,6 +234,48 @@ class ImportOdooDatabase(models.Model):
                 context.idmap[(model._name, record['id'])] = _id
         if not _id and create_dummy:
             _id = self._run_import_create_dummy(context, model, record)
+        return _id
+
+    @api.multi
+    def _run_import_get_record_mapping(
+        self, context, model, record, create_dummy=True,
+    ):
+        current_field = self.env['ir.model.fields'].search([
+            ('name', '=', context.field_context.field_name),
+            ('model_id.model', '=', context.field_context.record_model),
+        ])
+        mappings = self.import_field_mappings.filtered(
+            lambda x:
+            x.mapping_type == 'fixed' and
+            x.model_id.model == model._name and
+            (
+                not x.field_ids or current_field in x.field_ids
+            ) and x.local_id and
+            (x.remote_id == record['id'] or not x.remote_id) or
+            x.mapping_type == 'by_field' and
+            x.model_id.model == model._name
+        )
+        _id = None
+        for mapping in mappings:
+            if mapping.mapping_type == 'fixed':
+                assert mapping.local_id
+                _id = mapping.local_id
+                context.idmap[(model._name, record['id'])] = _id
+                break
+            elif mapping.mapping_type == 'by_field':
+                assert mapping.field_ids
+                if len(record) == 1:
+                    continue
+                records = model.search([
+                    (field.name, '=', record[field.name])
+                    for field in mapping.field_ids
+                ], limit=1)
+                if records:
+                    _id = records.id
+                    context.idmap[(model._name, record['id'])] = _id
+                    break
+            else:
+                raise exceptions.UserError(_('Unknown mapping'))
         return _id
 
     @api.multi
@@ -265,6 +291,12 @@ class ImportOdooDatabase(models.Model):
                     v for (model_name, remote_id), v
                     in context.dummies.iteritems()
                     if model_name == model._name
+                ] +
+                [
+                    mapping.local_id for mapping
+                    in self.import_field_mappings
+                    if mapping.model_id.model == model._name and
+                    mapping.local_id
                 ]
             ),
         ], limit=1)
@@ -336,12 +368,15 @@ class ImportOdooDatabase(models.Model):
             new_context = context.with_field_context(
                 model._name, field_name, data['id']
             )
+            comodel = self.env[model._fields[field_name].comodel_name]
             data[field_name] = [
                 self._run_import_get_record(
-                    new_context,
-                    self.env[model._fields[field_name].comodel_name],
-                    {'id': _id},
-                    create_dummy=model._fields[field_name].required,
+                    new_context, comodel, {'id': _id},
+                    create_dummy=model._fields[field_name].required or
+                    any(
+                        m.model_id._name == comodel._name
+                        for m in self.import_line_ids
+                    ),
                 )
                 for _id in ids
             ]
@@ -354,18 +389,16 @@ class ImportOdooDatabase(models.Model):
             else:
                 data[field_name] = [(6, 0, data[field_name])]
         for mapping in self.import_field_mappings:
-            if mapping.model_id.model != model._name or not mapping.fields_id:
+            if mapping.model_id.model != model._name or\
+               mapping.mapping_type != 'unique':
                 continue
-            if mapping.unique:
-                value = data.get(mapping.fields_id.name, '')
+            for field in mapping.field_ids:
+                value = data.get(field.name, '')
                 counter = 1
                 while model.with_context(active_test=False).search([
-                        (
-                            mapping.fields_id.name, '=',
-                            data.get(mapping.fields_id.name, value)
-                        ),
+                    (field.name, '=', data.get(field.name, value)),
                 ]):
-                    data[mapping.fields_id.name] = '%s (%d)' % (value, counter)
+                    data[field.name] = '%s (%d)' % (value, counter)
                     counter += 1
         return data
 

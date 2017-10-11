@@ -13,5 +13,11 @@
             <field name="database_id" ref="demodb" />
             <field name="domain">[(1, '=', 1)]</field>
         </record>
+        <record id="model_groups" model="import.odoo.database.model">
+            <field name="sequence">3</field>
+            <field name="model_id" ref="base.model_res_groups" />
+            <field name="database_id" ref="demodb" />
+            <field name="domain">[(1, '=', 1)]</field>
+        </record>
      </data>
 </openerp>
