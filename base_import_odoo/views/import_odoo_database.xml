@@ -35,15 +35,7 @@
                                 <field name="domain" />
                             </tree>
                         </field>
-                        <field name="import_field_mappings" attrs="{'readonly': [('cronjob_running', '=', True)]}">
-                            <tree>
-                                <field name="model_id" />
-                                <field name="fields_id" />
-                                <field name="local_id" />
-                                <field name="remote_id" />
-                                <field name="unique" />
-                            </tree>
-                        </field>
+                        <field name="import_field_mappings" attrs="{'readonly': [('cronjob_running', '=', True)]}"/>
                     </sheet>
                 </form>
             </field>
