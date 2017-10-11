@@ -31,6 +31,9 @@ class TestBaseImportOdoo(TransactionCase):
                 **(context or self.env.context)
             ).browse(domain_or_ids).read(fields=fields)
 
+        group_count = self.env['res.groups'].search([], count=True)
+        user_count = self.env['res.users'].search([], count=True)
+        run = 1
         for dummy in range(2):
             # we run this two times to enter the code path where xmlids exist
             self.env.ref('base_import_odoo.demodb').write({
@@ -46,11 +49,32 @@ class TestBaseImportOdoo(TransactionCase):
                 self.env.ref(self._get_xmlid('base.user_demo')),
                 self.env.ref('base.user_demo'),
             )
+            # check that the imported scalars are equal
+            fields = ['name', 'email', 'signature', 'active']
+            (
+                self.env.ref(self._get_xmlid('base.user_demo')) +
+                self.env.ref('base.user_demo')
+            ).read(fields)
             self.assertEqual(
-                dict(self.env.ref(self._get_xmlid('base.user_demo'))._cache),
-                dict(self.env.ref('base.user_demo')._cache),
+                self._get_cache(self._get_xmlid('base.user_demo'), fields),
+                self._get_cache('base.user_demo', fields),
+            )
+            # check that links are correctly mapped
+            self.assertEqual(
+                self.env.ref(self._get_xmlid('base.user_demo')).partner_id,
+                self.env.ref(self._get_xmlid('base.partner_demo'))
+            )
+            # no new groups because they should be mapped by name
+            self.assertEqual(
+                group_count, self.env['res.groups'].search([], count=True)
+            )
+            # all users save for root should be duplicated for every run
+            self.assertEqual(
+                self.env['res.users'].search([], count=True),
+                user_count + (user_count - 1) * run,
             )
             # TODO: test much more
+            run += 1
         demodb = self.env.ref('base_import_odoo.demodb')
         demodb.action_import()
         self.assertTrue(demodb.cronjob_id)
@@ -66,3 +90,11 @@ class TestBaseImportOdoo(TransactionCase):
             remote_obj._name.replace('.', '_'),
             remote_obj.id,
         )
+
+    def _get_cache(self, xmlid, fields):
+        record = self.env.ref(xmlid)
+        return {
+            field_name: record._cache[field_name]
+            for field_name in record._fields
+            if field_name in fields
+        }
