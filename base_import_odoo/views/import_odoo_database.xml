@@ -69,7 +69,7 @@
                     <t t-set="model_display_name" t-value="request.env['ir.model'].search([('model', '=', model_name)]).name" />
                     <dt t-esc="model_display_name" />
                     <dd>
-                        <a t-att-href="'javascript:base_import_database_open(&quot;%s&quot;, &quot;%s&quot;, %s)' % (model_name, model_display_name, object.id)">
+                        <a href="#" t-att-onclick="'base_import_database_open(&quot;%s&quot;, &quot;%s&quot;, %s)' % (model_name, model_display_name, object.id)">
                             <span t-esc="object.status_data.get('done', {}).get(model_name, 0)" />/<span t-esc="object.status_data['counts'][model_name]" /> done
                         </a>
                     </dd>
