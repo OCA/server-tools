@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
 try:
     from erppeek import Client
 except:
-    pass
+    logging.debug('Unable to import erppeek')
 import psycopg2
 import traceback
 from openerp import _, api, exceptions, fields, models, tools
@@ -123,12 +124,15 @@ class ImportOdooDatabase(models.Model):
         for model_line in self.import_line_ids:
             model = self.env[model_line.model_id.model]
             done[model._name] = 0
+            chunk_len = commit and (commit_threshold or 1) or len(
+                remote_ids[model._name]
+            )
 
             for start_index in range(
-                    len(remote_ids[model._name]) / commit_threshold + 1
+                    len(remote_ids[model._name]) / chunk_len + 1
             ):
-                index = start_index * commit_threshold
-                ids = remote_ids[model._name][index:index + commit_threshold]
+                index = start_index * chunk_len
+                ids = remote_ids[model._name][index:index + chunk_len]
                 context = ImportContext(
                     remote, model_line, ids, idmap, dummies, dummy_instances,
                     to_delete, field_context(None, None, None),
@@ -289,7 +293,7 @@ class ImportOdooDatabase(models.Model):
                 'id', 'not in',
                 [
                     v for (model_name, remote_id), v
-                    in context.dummies.iteritems()
+                    in context.dummies.items()
                     if model_name == model._name
                 ] +
                 [
@@ -308,12 +312,12 @@ class ImportOdooDatabase(models.Model):
             return dummy.id
         required = [
             name
-            for name, field in model._fields.iteritems()
+            for name, field in model._fields.items()
             if field.required
         ]
         defaults = model.default_get(required)
         values = {'id': record['id']}
-        for name, field in model._fields.iteritems():
+        for name, field in model._fields.items():
             if name not in required or name in defaults:
                 continue
             value = None
@@ -338,7 +342,6 @@ class ImportOdooDatabase(models.Model):
                 value = field.selection[0][0]
             elif field.type in ['selection'] and callable(field.selection):
                 value = field.selection(model)[0][0]
-            # TODO: support more types, refactor to one function per type
             values[name] = value
         dummy = self._create_record(context, model, values)
         context.dummies[mapping_key(model._name, record['id'])] = dummy.id
@@ -407,7 +410,7 @@ class ImportOdooDatabase(models.Model):
         return {
             name: field
             for name, field
-            in self.env[context.model_line.model_id.model]._fields.iteritems()
+            in self.env[context.model_line.model_id.model]._fields.items()
             if not field.compute or field.related
         }
 
