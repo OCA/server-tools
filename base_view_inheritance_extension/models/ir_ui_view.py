@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
 from odoo import api, models, tools
+from odoo.tools.safe_eval import safe_eval
 
 
 class UnquoteObject(str):
@@ -103,9 +104,10 @@ class IrUiView(models.Model):
         </$node>"""
         node = self.locate_node(source, specs)
         for attribute_node in specs:
-            python_dict = tools.safe_eval(
+            python_dict = safe_eval(
                 node.get(attribute_node.get('name')) or '{}',
-                UnquoteEvalObjectContext()
+                UnquoteEvalObjectContext(),
+                nocopy=True
             )
             python_dict[attribute_node.get('key')] = UnquoteObject(
                 attribute_node.text
