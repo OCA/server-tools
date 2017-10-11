@@ -6,12 +6,12 @@ import mock
 
 from contextlib import contextmanager
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 from ..controllers import main
 
 
-IMPORT = 'openerp.addons.password_security.controllers.main'
+IMPORT = 'odoo.addons.password_security.controllers.main'
 
 
 class EndTestException(Exception):
@@ -40,7 +40,7 @@ class TestPasswordSecuritySession(TransactionCase):
     def test_change_password_check(self):
         """ It should check password on request user """
         with self.mock_assets() as assets:
-            check_password = assets['request'].env.user.check_password
+            check_password = assets['request'].env.user._check_password
             check_password.side_effect = EndTestException
             with self.assertRaises(EndTestException):
                 self.password_security_session.change_password(self.fields)

@@ -39,13 +39,23 @@ These are defined at the company level:
 =====================  =======   ===================================================
  password_expiration   60        Days until passwords expire
  password_length       12        Minimum number of characters in password
- password_lower        True      Require lowercase letter in password
- password_upper        True      Require uppercase letters in password
- password_numeric      True      Require number in password
- password_special      True      Require special character in password
+ password_lower        0         Minimum number of lowercase letter in password
+ password_upper        0         Minimum number of uppercase letters in password
+ password_numeric      0         Minimum number of number in password
+ password_special      0         Minimum number of unique special character in password
  password_history      30        Disallow reuse of this many previous passwords
  password_minimum      24        Amount of hours that must pass until another reset
 =====================  =======   ===================================================
+
+Usage
+=====
+
+Configure using above instructions for each company that should have password
+security mandates.
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+    :alt: Try me on Runbot
+    :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Known Issues / Roadmap
 ======================
@@ -73,6 +83,7 @@ Contributors
 
 * James Foster <jfoster@laslabs.com>
 * Dave Lasley <dave@laslabs.com>
+* Kaushal Prajapati <kbprajapati@live.com>
 
 Maintainer
 ----------

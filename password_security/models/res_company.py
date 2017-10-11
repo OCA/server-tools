@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2015 LasLabs Inc.
+# Copyright 2017 Kaushal Prajapati <kbprajapati@live.com>.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class ResCompany(models.Model):
@@ -18,25 +18,21 @@ class ResCompany(models.Model):
         default=12,
         help='Minimum number of characters',
     )
-    password_lower = fields.Boolean(
+    password_lower = fields.Integer(
         'Lowercase',
-        default=True,
         help='Require lowercase letters',
     )
-    password_upper = fields.Boolean(
+    password_upper = fields.Integer(
         'Uppercase',
-        default=True,
         help='Require uppercase letters',
     )
-    password_numeric = fields.Boolean(
+    password_numeric = fields.Integer(
         'Numeric',
-        default=True,
         help='Require numeric digits',
     )
-    password_special = fields.Boolean(
+    password_special = fields.Integer(
         'Special',
-        default=True,
-        help='Require special characters',
+        help='Require unique special characters',
     )
     password_history = fields.Integer(
         'History',

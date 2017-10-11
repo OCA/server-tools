@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2015 LasLabs Inc.
+# Copyright 2017 Kaushal Prajapati <kbprajapati@live.com>.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import re
 
 from datetime import datetime, timedelta
 
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 
 from ..exceptions import PassError
 
@@ -38,51 +38,57 @@ class ResUsers(models.Model):
     @api.multi
     def write(self, vals):
         if vals.get('password'):
-            self.check_password(vals['password'])
+            self._check_password(vals['password'])
             vals['password_write_date'] = fields.Datetime.now()
         return super(ResUsers, self).write(vals)
 
     @api.multi
-    def password_match_message(self):
-        self.ensure_one()
-        company_id = self.company_id
-        message = []
-        if company_id.password_lower:
-            message.append('* ' + _('Lowercase letter'))
-        if company_id.password_upper:
-            message.append('* ' + _('Uppercase letter'))
-        if company_id.password_numeric:
-            message.append('* ' + _('Numeric digit'))
-        if company_id.password_special:
-            message.append('* ' + _('Special character'))
-        if len(message):
-            message = [_('Must contain the following:')] + message
-        if company_id.password_length:
-            message = [
-                _('Password must be %d characters or more.') %
-                company_id.password_length
-            ] + message
-        return '\r'.join(message)
+    def _check_password(self, password):
+        self._check_password_rules(password)
+        self._check_password_history(password)
+        return True
 
     @api.multi
-    def check_password(self, password):
+    def _check_password_rules(self, password):
         self.ensure_one()
         if not password:
             return True
         company_id = self.company_id
-        password_regex = ['^']
-        if company_id.password_lower:
-            password_regex.append('(?=.*?[a-z])')
-        if company_id.password_upper:
-            password_regex.append('(?=.*?[A-Z])')
-        if company_id.password_numeric:
-            password_regex.append(r'(?=.*?\d)')
-        if company_id.password_special:
-            password_regex.append(r'(?=.*?\W)')
-        password_regex.append('.{%d,}$' % company_id.password_length)
-        if not re.search(''.join(password_regex), password):
-            raise PassError(_(self.password_match_message()))
-        return True
+        message = []
+        if company_id.password_lower and sum(map(str.islower, password)) < \
+                company_id.password_lower:
+            message.append('\n ' + _('Lowercase letter (At least ' +
+                                     str(company_id.password_lower) +
+                                     ' character)')
+                           )
+        if company_id.password_upper and sum(map(str.isupper, password)) < \
+                company_id.password_upper:
+            message.append('\n ' + _('Uppercase letter (At least ' +
+                                     str(company_id.password_upper) +
+                                     ' character)')
+                           )
+        if company_id.password_numeric and sum(map(str.isdigit, password)) < \
+                company_id.password_numeric:
+            message.append('\n ' + _('Numeric digit (At least ' +
+                                     str(company_id.password_numeric) +
+                                     ' numeric)')
+                           )
+        if company_id.password_special and len(set('[~!@#$%^&*()_+{}":;\']+$'
+                                               ).intersection(
+                password)) < company_id.password_numeric:
+            message.append('\n ' + _('Special character (At least ' +
+                                     str(company_id.password_special) +
+                                     ' character of [ ~ ! @ # $ % ^ & * ( )_+ {'
+                                     ' } " : ; \' ])')
+                           )
+        if company_id.password_length and len(password) < \
+                company_id.password_length:
+            message = [_('Password must be %d characters or more.') %
+                       company_id.password_length] + message
+        if len(message) > 0:
+            raise PassError('\r'.join(message))
+        else:
+            return True
 
     @api.multi
     def _password_has_expired(self):
@@ -125,11 +131,11 @@ class ResUsers(models.Model):
         return True
 
     @api.multi
-    def _set_password(self, password):
+    def _check_password_history(self, password):
         """ It validates proposed password against existing history
         :raises: PassError on reused password
         """
-        crypt = self._crypt_context()[0]
+        crypt = self._crypt_context()
         for rec_id in self:
             recent_passes = rec_id.company_id.password_history
             if recent_passes < 0:
@@ -138,14 +144,12 @@ class ResUsers(models.Model):
                 recent_passes = rec_id.password_history_ids[
                     0:recent_passes-1
                 ]
-            if len(recent_passes.filtered(
-                lambda r: crypt.verify(password, r.password_crypt)
-            )):
+            if recent_passes.filtered(
+                    lambda r: crypt.verify(password, r.password_crypt)):
                 raise PassError(
                     _('Cannot use the most recent %d passwords') %
                     rec_id.company_id.password_history
                 )
-        super(ResUsers, self)._set_password(password)
 
     @api.multi
     def _set_encrypted_password(self, encrypted):

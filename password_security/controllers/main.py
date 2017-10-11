@@ -4,10 +4,10 @@
 
 import operator
 
-from openerp import http
-from openerp.http import request
-from openerp.addons.auth_signup.controllers.main import AuthSignupHome
-from openerp.addons.web.controllers.main import ensure_db, Session
+from odoo import http
+from odoo.http import request
+from odoo.addons.auth_signup.controllers.main import AuthSignupHome
+from odoo.addons.web.controllers.main import ensure_db, Session
 
 from ..exceptions import PassError
 
@@ -20,7 +20,7 @@ class PasswordSecuritySession(Session):
             dict(map(operator.itemgetter('name', 'value'), fields))
         )
         user_id = request.env.user
-        user_id.check_password(new_password)
+        user_id._check_password(new_password)
         return super(PasswordSecuritySession, self).change_password(fields)
 
 
@@ -29,7 +29,7 @@ class PasswordSecurityHome(AuthSignupHome):
     def do_signup(self, qcontext):
         password = qcontext.get('password')
         user_id = request.env.user
-        user_id.check_password(password)
+        user_id._check_password(password)
         return super(PasswordSecurityHome, self).do_signup(qcontext)
 
     @http.route()
@@ -50,6 +50,7 @@ class PasswordSecurityHome(AuthSignupHome):
         if not user_id._password_has_expired():
             return response
         user_id.action_expire_password()
+        request.session.logout(keep_db=True)
         redirect = user_id.partner_id.signup_url
         return http.redirect_with_hash(redirect)
 
