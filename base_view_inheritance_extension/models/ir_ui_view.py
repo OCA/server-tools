@@ -105,7 +105,8 @@ class IrUiView(models.Model):
         for attribute_node in specs:
             python_dict = tools.safe_eval(
                 node.get(attribute_node.get('name')) or '{}',
-                UnquoteEvalObjectContext()
+                UnquoteEvalObjectContext(),
+                nocopy=True
             )
             python_dict[attribute_node.get('key')] = UnquoteObject(
                 attribute_node.text
