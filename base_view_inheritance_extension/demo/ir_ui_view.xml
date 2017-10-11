@@ -11,6 +11,10 @@
                     <attribute name="context" operation="python_dict" key="default_name">'The company name'</attribute>
                     <attribute name="context" operation="python_dict" key="default_company_id">context.get('company_id', context.get('company'))</attribute>
                 </field>
+                <!-- without operations, the standard handler should be called /-->
+                <field name="parent_id" position="attributes">
+                    <attribute name="name">parent_id</attribute>
+                </field>
                 <form position="inside">
                     <notebook>
                         <page string="Phone numbers" name="phone_book" />

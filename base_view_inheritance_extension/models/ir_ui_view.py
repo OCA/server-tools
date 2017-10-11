@@ -55,6 +55,9 @@ class IrUiView(models.Model):
                     yield node, handler
             return
         if spec.get('position') == 'attributes':
+            if all(not c.get('operation') for c in spec):
+                yield spec, self._get_inheritance_handler(spec)
+                return
             for child in spec:
                 node = etree.Element(spec.tag, **spec.attrib)
                 node.insert(0, child)
