@@ -8,7 +8,7 @@ import hashlib
 import urllib2
 import logging
 
-from odoo import api, models, fields
+from odoo import api, models
 from odoo.exceptions import Warning as UserError
 from odoo.tools.translate import _
 
@@ -17,22 +17,6 @@ _logger = logging.getLogger(__name__)
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
-
-    gravatar_autoupdate = fields.Boolean(
-        string='Auto update gravatar'
-        )
-
-    gravatar_autoupdate_enabled = fields.Boolean(
-        compute='_compute_gravatar_autoupdate_enabled'
-        )
-
-    @api.multi
-    def _compute_gravatar_autoupdate_enabled(self):
-        IrParameter = self.env['ir.config_parameter']
-        auto_update = IrParameter.get_param('gravatar.autoupdate')
-        for record in self:
-            record.gravatar_autoupdate_enabled = auto_update and \
-                auto_update in ('True', 'true', '1')
 
     def _get_gravatar_base64(self, email=''):
         url = 'https://www.gravatar.com/avatar/{}?s=200'

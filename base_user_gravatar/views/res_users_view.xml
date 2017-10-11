@@ -13,10 +13,6 @@
                         class="oe_edit_only"
                         />
             </field>
-            <xpath expr="//field[@name='tz_offset']" position="after">
-                <field name="gravatar_autoupdate_enabled" invisible="1" />
-                <field name="gravatar_autoupdate" attrs="{'invisible': [('gravatar_autoupdate_enabled', '=', False)]}"/>
-            </xpath>
         </field>
     </record>
 
@@ -32,12 +28,6 @@
                         class="oe_edit_only"
                         />
             </field>
-            <xpath expr="//group[@name='messaging']" position="after">
-                <group string="Gravatar" name="gravatar">
-                    <field name="gravatar_autoupdate_enabled" invisible="1" />
-                    <field name="gravatar_autoupdate" attrs="{'invisible': [('gravatar_autoupdate_enabled', '=', False)]}"/>
-                </group>
-            </xpath>
         </field>
     </record>
 

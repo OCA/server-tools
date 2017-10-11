@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1" >
-    <record id="gravatar_autoupdate" model="ir.config_parameter">
-        <field name="key">gravatar.autoupdate</field>
-        <field name="value">True</field>
-    </record>
-</odoo>

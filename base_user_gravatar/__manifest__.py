@@ -15,6 +15,5 @@
     'data': [
         'views/res_users_view.xml',
         'data/cron.xml',
-        'data/ir_parameter.xml'
     ],
 }
