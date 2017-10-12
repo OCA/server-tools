@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class ImportOdooDatabaseField(models.Model):
@@ -22,6 +22,18 @@ class ImportOdooDatabaseField(models.Model):
         'ir.model.fields', string='Field', help='If set, the mapping is only '
         'effective when setting said field', ondelete='cascade',
     )
+    model_field_id = fields.Many2one(
+        'ir.model.fields', string='Model field', compute=lambda self:
+        self._compute_reference_field('model_field_id', 'char'),
+        inverse=lambda self:
+        self._inverse_reference_field('model_field_id', 'char'),
+    )
+    id_field_id = fields.Many2one(
+        'ir.model.fields', string='ID field', compute=lambda self:
+        self._compute_reference_field('id_field_id', 'integer'),
+        inverse=lambda self:
+        self._inverse_reference_field('id_field_id', 'integer'),
+    )
     # TODO: create a reference function field to set this conveniently
     local_id = fields.Integer(
         'Local ID', help='If you leave this empty, a new record will be '
@@ -36,7 +48,21 @@ class ImportOdooDatabaseField(models.Model):
         [
             ('fixed', 'Fixed'),
             ('by_field', 'Based on equal fields'),
+            ('by_reference', 'By reference'),
             ('unique', 'Unique'),
         ],
         string='Type', required=True, default='fixed',
     )
+
+    @api.multi
+    def _compute_reference_field(self, field_name, ttype):
+        for this in self:
+            this[field_name] = this.field_ids.filtered(
+                lambda x: x.ttype == ttype
+            )
+
+    @api.multi
+    def _inverse_reference_field(self, field_name, ttype):
+        self.field_ids = self.field_ids.filtered(
+            lambda x: x.ttype != ttype
+        ) + self[field_name]
