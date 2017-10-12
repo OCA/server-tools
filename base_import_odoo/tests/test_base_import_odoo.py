@@ -73,6 +73,8 @@ class TestBaseImportOdoo(TransactionCase):
             # TODO: test much more
             run += 1
         demodb = self.env.ref('base_import_odoo.demodb')
+        for line in demodb.import_line_ids:
+            self.assertIn(line.model_id.model, demodb.status_html)
         demodb.action_import()
         self.assertTrue(demodb.cronjob_id)
         demodb.cronjob_id.write({'active': False})
