@@ -7,7 +7,7 @@
     <field name="name">res.users.role.form</field>
     <field name="model">res.users.role</field>
     <field name="arch" type="xml">
-        <form string="Role">
+        <form>
             <sheet>
                 <group>
                     <field name="name"/>
@@ -19,7 +19,7 @@
                     </page>
                     <page string="Users">
                         <field name="line_ids" nolabel="1">
-                            <tree editable="bottom" colors="grey: not is_enabled;">
+                            <tree editable="bottom" decoration-muted="not is_enabled">
                                 <field name="user_id"/>
                                 <field name="date_from"/>
                                 <field name="date_to"/>
@@ -37,7 +37,7 @@
     <field name="name">res.users.role.tree</field>
     <field name="model">res.users.role</field>
     <field name="arch" type="xml">
-        <tree string="Role">
+        <tree>
             <field name="name"/>
             <field name="user_ids"/>
         </tree>

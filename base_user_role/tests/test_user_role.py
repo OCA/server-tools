@@ -15,6 +15,7 @@ class TestUserRole(TransactionCase):
         self.user_model = self.env['res.users']
         self.role_model = self.env['res.users.role']
 
+        self.default_user = self.env.ref('base.default_user')
         self.user_id = self.user_model.create(
             {'name': u"USER TEST (ROLES)", 'login': 'user_test_roles'})
 
@@ -94,3 +95,21 @@ class TestUserRole(TransactionCase):
         role1_group_ids.append(self.role1_id.group_id.id)
         role_group_ids = sorted(set(role1_group_ids))
         self.assertEqual(user_group_ids, role_group_ids)
+
+    def test_default_user_roles(self):
+        self.default_user.write({
+            'role_line_ids': [
+                (0, 0, {
+                    'role_id': self.role1_id.id,
+                }),
+                (0, 0, {
+                    'role_id': self.role2_id.id,
+                })
+            ]
+        })
+        user = self.user_model.create({
+            'name': "USER TEST (DEFAULT ROLES)",
+            'login': 'user_test_default_roles'
+        })
+        roles = self.role_model.browse([self.role1_id.id, self.role2_id.id])
+        self.assertEqual(user.role_ids, roles)
