@@ -8,28 +8,21 @@ from openerp.tests.common import TransactionCase, post_install, at_install
 class TestBaseImportOdoo(TransactionCase):
     @at_install(False)
     @post_install(True)
-    @patch('erppeek.Client.__init__', side_effect=lambda *args: None)
-    def test_base_import_odoo(self, mock_client_init):
+    @patch(
+        'odoorpc.ODOO.__init__',
+        side_effect=lambda self, *args, **kwargs: None,
+    )
+    @patch('odoorpc.ODOO.login', side_effect=lambda *args: None)
+    def test_base_import_odoo(self, mock_client, mock_client_login):
         # the mocked functions simply search/read in the current database
         # the effect then should be that the models in question are duplicated,
         # we just need to try not to be confused by the fact that local and
         # remote ids are the same
-        def _mock_search(
-                model, domain, offset=0, limit=None, order=None, context=None,
-        ):
-            return self.env[model].with_context(
-                **(context or self.env.context)
-            ).search(
-                domain, offset=offset, limit=limit, order=order,
-            ).ids
-
-        def _mock_read(
-            model, domain_or_ids, fields=None, offset=0, limit=None,
-            order=None, context=None,
-        ):
-            return self.env[model].with_context(
-                **(context or self.env.context)
-            ).browse(domain_or_ids).read(fields=fields)
+        def _mock_execute(model, method, *args):
+            if method == 'read':
+                return self.env[model].browse(args[0]).read(fields=args[1])
+            if method == 'search':
+                return self.env[model].search(args[0]).ids
 
         group_count = self.env['res.groups'].search([], count=True)
         user_count = self.env['res.users'].search([], count=True)
@@ -39,9 +32,8 @@ class TestBaseImportOdoo(TransactionCase):
             self.env.ref('base_import_odoo.demodb').write({
                 'password': 'admin',
             })
-            with patch('erppeek.Client.search', side_effect=_mock_search):
-                with patch('erppeek.Client.read', side_effect=_mock_read):
-                    self.env.ref('base_import_odoo.demodb')._run_import()
+            with patch('odoorpc.ODOO.execute', side_effect=_mock_execute):
+                self.env.ref('base_import_odoo.demodb')._run_import()
             # here the actual test begins - check that we created new
             # objects, check xmlids, check values, check if dummies are
             # cleaned up/replaced
