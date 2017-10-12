@@ -3,11 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 try:
-    from erppeek import Client
+    import odoorpc
 except:
-    logging.debug('Unable to import erppeek')
+    logging.error('Unable to import odoorpc')
 import psycopg2
 import traceback
+from urlparse import urlparse
 from openerp import _, api, exceptions, fields, models, tools
 from collections import namedtuple
 
@@ -105,8 +106,8 @@ class ImportOdooDatabase(models.Model):
             self.env.cr.commit()
         for model_line in self.import_line_ids:
             model = model_line.model_id
-            remote_ids[model.model] = remote.search(
-                model.model,
+            remote_ids[model.model] = remote.execute(
+                model.model, 'search',
                 tools.safe_eval(model_line.domain) if model_line.domain else []
             )
             remote_counts[model.model] = len(remote_ids[model.model])
@@ -159,8 +160,8 @@ class ImportOdooDatabase(models.Model):
         """Import records of a configured model"""
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
-        for data in context.remote.read(
-                model._name, context.ids, fields.keys()
+        for data in context.remote.execute(
+                model._name, 'read', context.ids, fields.keys()
         ):
             self._run_import_get_record(context, model, data)
             if (model._name, data['id']) in context.idmap:
@@ -449,7 +450,18 @@ class ImportOdooDatabase(models.Model):
 
     def _get_connection(self):
         self.ensure_one()
-        return Client(self.url, self.database, self.user, self.password)
+        url = urlparse(self.url)
+        hostport = url.netloc.split(':')
+        if len(hostport) == 1:
+            hostport.append('80')
+        host, port = hostport
+        remote = odoorpc.ODOO(
+            host,
+            protocol='jsonrpc+ssl' if url.scheme == 'https' else 'jsonrpc',
+            port=int(port),
+        )
+        remote.login(self.database, self.user, self.password)
+        return remote
 
     @api.constrains('url', 'database', 'user', 'password')
     @api.multi
