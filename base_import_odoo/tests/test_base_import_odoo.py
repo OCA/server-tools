@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from mock import patch
 from openerp.tests.common import TransactionCase, post_install, at_install
+from ..models.import_odoo_database import ImportContext, field_context
 
 
 class TestBaseImportOdoo(TransactionCase):
@@ -70,7 +71,6 @@ class TestBaseImportOdoo(TransactionCase):
             self.assertTrue(attachment)
             self.assertEqual(attachment.datas, imported_attachment.datas)
             self.assertNotEqual(attachment, imported_attachment)
-            # TODO: test much more
             run += 1
         demodb = self.env.ref('base_import_odoo.demodb')
         for line in demodb.import_line_ids:
@@ -81,6 +81,15 @@ class TestBaseImportOdoo(TransactionCase):
         demodb.action_import()
         self.assertTrue(demodb.cronjob_id.active)
         self.assertFalse(demodb.cronjob_running)
+        # in our setting we won't get dummies, so we test this manually
+        import_context = ImportContext(
+            None, None, [], {}, {}, [], {}, field_context(None, None, None)
+        )
+        dummy_id = demodb._run_import_create_dummy(
+            import_context, self.env['res.partner'], {'id': 424242},
+            forcecreate=True,
+        )
+        self.assertTrue(self.env['res.partner'].browse(dummy_id).exists())
 
     def _get_xmlid(self, remote_xmlid):
         remote_obj = self.env.ref(remote_xmlid)
