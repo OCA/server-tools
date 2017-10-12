@@ -393,17 +393,38 @@ class ImportOdooDatabase(models.Model):
             else:
                 data[field_name] = [(6, 0, data[field_name])]
         for mapping in self.import_field_mappings:
-            if mapping.model_id.model != model._name or\
-               mapping.mapping_type != 'unique':
+            if mapping.model_id.model != model._name:
                 continue
-            for field in mapping.field_ids:
-                value = data.get(field.name, '')
-                counter = 1
-                while model.with_context(active_test=False).search([
-                    (field.name, '=', data.get(field.name, value)),
-                ]):
-                    data[field.name] = '%s (%d)' % (value, counter)
-                    counter += 1
+            if mapping.mapping_type == 'unique':
+                for field in mapping.field_ids:
+                    value = data.get(field.name, '')
+                    counter = 1
+                    while model.with_context(active_test=False).search([
+                        (field.name, '=', data.get(field.name, value)),
+                    ]):
+                        data[field.name] = '%s (%d)' % (value, counter)
+                        counter += 1
+            elif mapping.mapping_type == 'by_reference':
+                res_model = data.get(mapping.model_field_id.name)
+                res_id = data.get(mapping.id_field_id.name)
+                update = {
+                    mapping.model_field_id.name: None,
+                    mapping.id_field_id.name: None,
+                }
+                if res_model in self.env.registry and res_id:
+                    new_context = context.with_field_context(
+                        model._name, res_id, data['id']
+                    )
+                    record_id = self._run_import_get_record(
+                        new_context, self.env[res_model], {'id': res_id},
+                        create_dummy=False
+                    )
+                    if record_id:
+                        update.update({
+                            mapping.model_field_id.name: res_model,
+                            mapping.id_field_id.name: record_id,
+                        })
+                data.update(update)
         return data
 
     @api.multi

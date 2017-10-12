@@ -13,6 +13,7 @@
     ],
     "demo": [
         "demo/res_users.xml",
+        "demo/ir_attachment.xml",
         "demo/import_odoo_database.xml",
         "demo/import_odoo_database_field.xml",
         "demo/import_odoo_database_model.xml",
