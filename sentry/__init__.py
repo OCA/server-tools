@@ -4,8 +4,8 @@
 
 import logging
 
-from odoo.service import wsgi_server
-from odoo.tools import config as odoo_config
+from openerp.service import wsgi_server
+from openerp.tools import config as odoo_config
 
 from . import const
 from .logutils import LoggerNameFilter, OdooSentryHandler

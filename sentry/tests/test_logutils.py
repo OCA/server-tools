@@ -2,14 +2,14 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import unittest
+import unittest2
 
 import mock
 
 from ..logutils import SanitizeOdooCookiesProcessor
 
 
-class TestOdooCookieSanitizer(unittest.TestCase):
+class TestOdooCookieSanitizer(unittest2.TestCase):
 
     def test_cookie_as_string(self):
         data = {
