@@ -160,6 +160,7 @@ class ImportOdooDatabase(models.Model):
         """Import records of a configured model"""
         model = self.env[context.model_line.model_id.model]
         fields = self._run_import_model_get_fields(context)
+        recompute_ids = []
         for data in context.remote.execute(
                 model._name, 'read', context.ids, fields.keys()
         ):
@@ -170,9 +171,16 @@ class ImportOdooDatabase(models.Model):
             data = self._run_import_map_values(context, data)
             _id = data['id']
             record = self._create_record(context, model, data)
+            recompute_ids.append(record.id)
             self._run_import_model_cleanup_dummies(
                 context, model, _id, record.id,
             )
+        to_recompute = model.browse(recompute_ids)
+        for field in model._fields.values():
+            if not field.compute:
+                continue
+            to_recompute._recompute_todo(field)
+        to_recompute.recompute()
 
     @api.multi
     def _create_record(self, context, model, record):
@@ -183,13 +191,15 @@ class ImportOdooDatabase(models.Model):
         )
         if self.env.ref('base_import_odoo.%s' % xmlid, False):
             new = self.env.ref('base_import_odoo.%s' % xmlid)
-            new.with_context(
-                **self._create_record_context(model, record)
-            ).write(record)
+            with self.env.norecompute():
+                new.with_context(
+                    **self._create_record_context(model, record)
+                ).write(record)
         else:
-            new = model.with_context(
-                **self._create_record_context(model, record)
-            ).create(record)
+            with self.env.norecompute():
+                new = model.with_context(
+                    **self._create_record_context(model, record)
+                ).create(record)
             self.env['ir.model.data'].create({
                 'name': xmlid,
                 'model': model._name,
