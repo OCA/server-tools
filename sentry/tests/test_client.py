@@ -4,11 +4,11 @@
 
 import logging
 import sys
-import unittest
+import unittest2
 
 import raven
 
-from odoo import exceptions
+from openerp import exceptions
 
 from .. import initialize_raven
 from ..logutils import OdooSentryHandler
@@ -59,16 +59,16 @@ class InMemoryClient(raven.Client):
         return False
 
 
-class TestClientSetup(unittest.TestCase):
+class TestClientSetup(unittest2.TestCase):
 
     def setUp(self):
         super(TestClientSetup, self).setUp()
         self.logger = logging.getLogger(__name__)
 
-        # Sentry is enabled by default, so the default handler will be added
-        # when the module is loaded. After that, subsequent calls to
-        # setup_logging will not re-add our handler. We explicitly remove
-        # OdooSentryHandler handler so we can test with our in-memory client.
+    def tearDown(self):
+        super(TestClientSetup, self).tearDown()
+        # Remove our logging handler to avoid interfering with tests of other
+        # modules.
         remove_logging_handler('', OdooSentryHandler)
 
     def assertEventCaptured(self, client, event_level, event_msg):
@@ -105,9 +105,9 @@ class TestClientSetup(unittest.TestCase):
         config = {
             'sentry_enabled': True,
             'sentry_dsn': 'http://public:secret@example.com/1',
-            'sentry_ignore_exceptions': 'odoo.exceptions.UserError',
+            'sentry_ignore_exceptions': 'openerp.exceptions.ValidationError',
         }
-        level, msg = logging.WARNING, 'Test UserError'
+        level, msg = logging.WARNING, 'Test ValidationError'
         client = initialize_raven(config, client_cls=InMemoryClient)
 
         handlers = list(
@@ -116,8 +116,8 @@ class TestClientSetup(unittest.TestCase):
         self.assertTrue(handlers)
         handler = handlers[0]
         try:
-            raise exceptions.UserError(msg)
-        except exceptions.UserError:
+            raise exceptions.ValidationError(msg)
+        except exceptions.ValidationError:
             exc_info = sys.exc_info()
         record = logging.LogRecord(
             __name__, level, __file__, 42, msg, (), exc_info)
