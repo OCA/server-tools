@@ -20,7 +20,7 @@ class TestBaseImportOdoo(TransactionCase):
         # remote ids are the same
         def _mock_execute(model, method, *args):
             if method == 'read':
-                return self.env[model].browse(args[0]).read(fields=args[1])
+                return self.env[model].browse(args[0]).read(args[1])
             if method == 'search':
                 return self.env[model].search(args[0]).ids
 
@@ -37,23 +37,19 @@ class TestBaseImportOdoo(TransactionCase):
             # here the actual test begins - check that we created new
             # objects, check xmlids, check values, check if dummies are
             # cleaned up/replaced
-            self.assertNotEqual(
-                self.env.ref(self._get_xmlid('base.user_demo')),
-                self.env.ref('base.user_demo'),
-            )
+            imported_user = self.env.ref(self._get_xmlid('base.user_demo'))
+            user = self.env.ref('base.user_demo')
+            self.assertNotEqual(imported_user, user)
             # check that the imported scalars are equal
             fields = ['name', 'email', 'signature', 'active']
-            (
-                self.env.ref(self._get_xmlid('base.user_demo')) +
-                self.env.ref('base.user_demo')
-            ).read(fields)
+            (imported_user + user).read(fields)
             self.assertEqual(
                 self._get_cache(self._get_xmlid('base.user_demo'), fields),
                 self._get_cache('base.user_demo', fields),
             )
             # check that links are correctly mapped
             self.assertEqual(
-                self.env.ref(self._get_xmlid('base.user_demo')).partner_id,
+                imported_user.partner_id,
                 self.env.ref(self._get_xmlid('base.partner_demo'))
             )
             # no new groups because they should be mapped by name
@@ -65,6 +61,15 @@ class TestBaseImportOdoo(TransactionCase):
                 self.env['res.users'].search([], count=True),
                 user_count + (user_count - 1) * run,
             )
+            # check that there's a new attachment
+            attachment = self.env.ref('base_import_odoo.attachment_demo')
+            imported_attachment = self.env['ir.attachment'].search([
+                ('res_model', '=', 'res.users'),
+                ('res_id', '=', imported_user.id),
+            ])
+            self.assertTrue(attachment)
+            self.assertEqual(attachment.datas, imported_attachment.datas)
+            self.assertNotEqual(attachment, imported_attachment)
             # TODO: test much more
             run += 1
         demodb = self.env.ref('base_import_odoo.demodb')

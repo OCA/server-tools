@@ -19,5 +19,11 @@
             <field name="database_id" ref="demodb" />
             <field name="domain">[(1, '=', 1)]</field>
         </record>
+        <record id="model_attachment" model="import.odoo.database.model">
+            <field name="sequence">4</field>
+            <field name="model_id" ref="base.model_ir_attachment" />
+            <field name="database_id" ref="demodb" />
+            <field name="domain">[('res_model', 'in', ['res.users'])]</field>
+        </record>
      </data>
 </openerp>
