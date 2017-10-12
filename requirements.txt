@@ -7,3 +7,4 @@
   IPy
   python-json-logger
   odoorpc
+  raven
