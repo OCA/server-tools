@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="attachment_demo" model="ir.attachment">
+            <field name="name">Demo attachment</field>
+            <field name="res_model">res.users</field>
+            <field name="res_id" ref="base.user_demo" />
+            <field name="datas">aGVsbG8gd29ybGQK</field>
+        </record>
+    </data>
+</openerp>
