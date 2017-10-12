@@ -25,6 +25,6 @@
     ],
     "installable": True,
     "external_dependencies": {
-        "python": ['erppeek'],
+        "python": ['odoorpc'],
     },
 }
