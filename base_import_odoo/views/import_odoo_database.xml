@@ -76,6 +76,16 @@
                 </div>
             </div>
             <t t-if="object.status_data.get('error')"><pre t-esc="object.status_data['error']" /></t>
+            <div t-if="object.status_data.get('dummies')">
+                The following remote ids don't have a mapping but have to be imported anyways due to not null constraints.
+                <dl>
+                    <t t-foreach="object.status_data['dummies']" t-as="model_name">
+                        <dt t-esc="model_name" />
+                        <dd t-esc="object.status_data['dummies'][model_name]" />
+                    </t>
+                </dl>
+                To fix this, create mappings for the remote ids listed, or if this is not feasible, map the whole model. You might also have a too specific domain on your import model definition.
+            </div>
         </template>
     </data>
 </openerp>
