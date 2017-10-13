@@ -12,6 +12,7 @@
         'base',
     ],
     "demo": [
+        "demo/res_partner.xml",
         "demo/res_users.xml",
         "demo/ir_attachment.xml",
         "demo/import_odoo_database.xml",
