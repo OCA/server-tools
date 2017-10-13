@@ -4,7 +4,7 @@
 
 from cStringIO import StringIO
 
-from openerp.exceptions import UserError
+from openerp.exceptions import ValidationError
 from openerp.tests import common
 from openerp.tools import convert
 
@@ -63,19 +63,19 @@ class TestEnv(common.TransactionCase):
 
     def test_empty(self):
         """ Empty config values cause error """
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             self.ICP.get_param('ircp_empty')
         self.assertEqual(self.ICP.get_param('ircp_nonexistant'), False)
 
     def test_override_xmldata(self):
-        xml = """<odoo>
+        xml = """<openerp>
             <data>
                 <record model="ir.config_parameter" id="some_record_id">
                     <field name="key">ircp_from_config</field>
                     <field name="value">value_from_xml</field>
                 </record>
             </data>
-        </odoo>"""
+        </openerp>"""
         convert.convert_xml_import(self.env.cr, 'testmodule', StringIO(xml))
         value = self.ICP.get_param('ircp_from_config')
         self.assertEqual(value, 'config_value')

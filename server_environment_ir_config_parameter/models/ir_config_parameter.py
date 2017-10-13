@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, models, _, SUPERUSER_ID
-from openerp.exceptions import UserError
+from openerp.exceptions import ValidationError
 from openerp.addons.server_environment import serv_config
 
 
@@ -20,9 +20,9 @@ class IrConfigParameter(models.Model):
         if serv_config.has_option(SECTION, key):
             cvalue = serv_config.get(SECTION, key)
             if not cvalue:
-                raise UserError(_("Key %s is empty in "
-                                  "server_environment_file") %
-                                (key, ))
+                raise ValidationError(_("Key %s is empty in "
+                                        "server_environment_file") %
+                                      (key, ))
             if cvalue != value:
                 # we write in db on first access;
                 # should we have preloaded values in database at,
