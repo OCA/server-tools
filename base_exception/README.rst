@@ -1,19 +1,24 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 ==============
 Base Exception
 ==============
 
-This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...). It is not usefull for itself. You can see an example of implementation in the 'sale_exception' module. (sale-workflow repository).
+This module provide an abstract model to manage customizable
+exceptions to be applied on different models (sale order, invoice, ...).
+
+It is not useful for itself. You can see an example of implementation
+in the 'sale_exception' module. (sale-workflow repository) or
+'purchase_exception' module (purchase-workflow repository).
 
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 
 Bug Tracker
@@ -22,11 +27,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-server-tools/issues/new?body=module:%20
-base_exception%0Aversion:%20
-10.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smash it by providing detailed and welcomed feedback.
 
 Images
 ------
