@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
+# © 2017 Akretion (http://www.akretion.com)
+# Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
@@ -42,6 +44,12 @@ class ExceptionRule(models.Model):
         selection=[],
         string='Apply on', required=True)
     active = fields.Boolean('Active')
+    next_state = fields.Char(
+        'Next state',
+        help="If we detect exception we set de state of object (ex purchase) "
+             "to the next_state (ex 'to approve'). If there are more than one "
+             "exception detected and all have a value for next_state, we use"
+             "the exception having the smallest sequence value")
     code = fields.Text(
         'Python Code',
         help="Python code executed to check if the exception apply or "
@@ -62,6 +70,26 @@ class ExceptionRule(models.Model):
 #  - uid: current user id
 #  - context: current context
 """)
+
+    @api.constrains('next_state')
+    def _check_next_state_value(self):
+        """ Ensure that the next_state value is in the state values of
+        destination model  """
+        for rule in self:
+            if rule.next_state:
+                select_vals = self.env[
+                    rule.model].fields_get()[
+                        'state']['selection']
+                if rule.next_state\
+                        not in [s[0] for s in select_vals]:
+                    raise ValidationError(
+                        _('The value "%s" you chose for the "next state" '
+                          'field state of "%s" is wrong.'
+                          ' Value must be in this list %s')
+                        % (rule.next_state,
+                           rule.model,
+                           select_vals)
+                    )
 
 
 class BaseException(models.AbstractModel):
@@ -182,7 +210,7 @@ class BaseException(models.AbstractModel):
                       space,
                       mode='exec',
                       nocopy=True)  # nocopy allows to return 'result'
-        except Exception, e:
+        except Exception as e:
             raise UserError(
                 _('Error when evaluating the exception.rule '
                   'rule:\n %s \n(%s)') % (rule.name, e))
@@ -193,9 +221,16 @@ class BaseException(models.AbstractModel):
                            sub_exceptions):
         self.ensure_one()
         exception_ids = []
+        next_state_rule = False
         for rule in model_exceptions:
             if self._rule_eval(rule, self.rule_group, self):
                 exception_ids.append(rule.id)
+                if rule.next_state:
+                    if not next_state_rule:
+                        next_state_rule = rule
+                    elif next_state_rule and\
+                            rule.sequence < next_state_rule.sequence:
+                        next_state_rule = rule
         if sub_exceptions:
             for obj_line in self._get_lines():
                 for rule in sub_exceptions:
@@ -207,6 +242,9 @@ class BaseException(models.AbstractModel):
                     group_line = self.rule_group + '_line'
                     if self._rule_eval(rule, group_line, obj_line):
                         exception_ids.append(rule.id)
+        # set object to next state
+        if next_state_rule:
+            self.state = next_state_rule.next_state
         return exception_ids
 
     @implemented_by_base_exception
