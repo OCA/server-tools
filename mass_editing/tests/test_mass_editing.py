@@ -139,7 +139,7 @@ class TestMassEditing(common.TransactionCase):
                         'Partner\'s category should be added.')
         # Check window close action
         res = wiz_action.action_apply()
-        self.assertTrue(res['type'] == 'ir.actions.act_window_close',
+        self.assertEqual(res['type'], 'ir.actions.act_window_close',
                         'IR Action must be window close.')
 
     def test_mass_edit_copy(self):
@@ -166,9 +166,9 @@ class TestMassEditing(common.TransactionCase):
         """
         mass_action_id = "ir.actions.act_window," + str(self.mass.id)
         self.mass.unlink()
-        self.assertTrue(value_cnt == 0,
         value_cnt = self.env['ir.values'].search(
             [('value', '=', mass_action_id)], count=True)
+        self.assertEqual(value_cnt, 0,
                         "Sidebar action must be removed when mass"
                         " editing is unlinked.")
 
@@ -179,8 +179,8 @@ class TestMassEditing(common.TransactionCase):
         """
         uninstall_hook(self.cr, registry)
         mass_action_id = "ir.actions.act_window," + str(self.mass.id)
-        self.assertTrue(value_cnt == 0,
-                        "Sidebar action must be removed when mass"
-                        " editing module is uninstalled.")
         value_cnt = self.env['ir.values'].search(
             [('value', '=', mass_action_id)], count=True)
+        self.assertEqual(value_cnt, 0,
+                         "Sidebar action must be removed when mass"
+                         " editing module is uninstalled.")
