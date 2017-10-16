@@ -123,11 +123,11 @@ class TestMassEditing(common.TransactionCase):
         """
         # Remove m2m categories
         vals = {
-            'selection__category_id': 'remove_m2m',
+            'selection__category_id': 'clear',
         }
         self._apply_action(self.partner, vals)
-        self.assertNotEqual(self.partner.category_id, False,
-                            'Partner\'s category should be removed.')
+        self.assertEqual(len(self.partner.category_id), 0,
+                         'All partner\'s categories should be removed.')
         # Add m2m categories
         dist_categ_id = self.env.ref('base.res_partner_category_13').id
         vals = {
@@ -141,6 +141,18 @@ class TestMassEditing(common.TransactionCase):
         res = wiz_action.action_apply()
         self.assertEqual(res['type'], 'ir.actions.act_window_close',
                         'IR Action must be window close.')
+
+    def test_mass_edit_remove_single_m2m_value(self):
+        original_categories = self.partner.category_id
+        categories_to_remove = self.partner.category_id[:2]
+        vals = {
+            'selection__category_id': 'remove_value',
+            'category_id': [[6, 0, categories_to_remove.ids]]
+        }
+        self._apply_action(self.partner, vals)
+        self.assertEqual(
+            self.partner.category_id, original_categories-categories_to_remove,
+            'Only some specific partner categories should be removed')
 
     def test_mass_edit_copy(self):
         """
