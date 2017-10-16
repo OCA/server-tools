@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2016 Serpent Consulting Services Pvt. Ltd. (support@serpentcs.com)
+# © 2017 Leonardo Donelli @ MONK Software (<leonardo.donelli@monksoftware.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import ast
@@ -49,8 +50,10 @@ class TestMassEditing(common.TransactionCase):
         })
 
     def _create_mass_editing(self, model, fields):
-        """Create a Mass Editing with Partner as model and
-        email field of partner."""
+        """
+        Create a Mass Editing with Partner as model and
+        email field of partner.
+        """
         mass = self.mass_object_model.create({
             'name': 'Mass Editing for Partner',
             'model_id': model.id,
@@ -60,8 +63,10 @@ class TestMassEditing(common.TransactionCase):
         return mass
 
     def _apply_action(self, partner, vals):
-        """Create Wizard object to perform mass editing to
-        REMOVE field's value."""
+        """
+        Create Wizard object to perform mass editing to
+        REMOVE field's value.
+        """
         ctx = {
             'active_id': partner.id,
             'active_ids': partner.ids,
@@ -90,8 +95,10 @@ class TestMassEditing(common.TransactionCase):
                         'Onchange model list must contains model_id.')
 
     def test_mass_edit_email(self):
-        """Test Case for MASS EDITING which will remove and after add
-        Partner's email and will assert the same."""
+        """
+        Test Case for MASS EDITING which will remove and after add
+        Partner's email and will assert the same.
+        """
         # Remove email address
         vals = {
             'selection__email': 'remove',
@@ -110,8 +117,10 @@ class TestMassEditing(common.TransactionCase):
                             'Partner\'s Email should be set.')
 
     def test_mass_edit_m2m_categ(self):
-        """Test Case for MASS EDITING which will remove and add
-        Partner's category m2m."""
+        """
+        Test Case for MASS EDITING which will remove and add
+        Partner's category m2m.
+        """
         # Remove m2m categories
         vals = {
             'selection__category_id': 'remove_m2m',
@@ -134,7 +143,8 @@ class TestMassEditing(common.TransactionCase):
                         'IR Action must be window close.')
 
     def test_mass_edit_copy(self):
-        """Test if fields one2many field gets blank when mass editing record
+        """
+        Test if fields one2many field gets blank when mass editing record
         is copied.
         """
         self.assertEqual(self.copy_mass.field_ids.ids, [],
@@ -150,25 +160,27 @@ class TestMassEditing(common.TransactionCase):
         self.assertFalse(action, 'Sidebar action must be removed.')
 
     def test_unlink_mass(self):
-        """Test if related actions are removed when mass editing
-        record is unlinked."""
+        """
+        Test if related actions are removed when mass editing
+        record is unlinked.
+        """
         mass_action_id = "ir.actions.act_window," + str(self.mass.id)
         self.mass.unlink()
-        value_cnt = self.env['ir.values'].search([('value', '=',
-                                                   mass_action_id)],
-                                                 count=True)
         self.assertTrue(value_cnt == 0,
+        value_cnt = self.env['ir.values'].search(
+            [('value', '=', mass_action_id)], count=True)
                         "Sidebar action must be removed when mass"
                         " editing is unlinked.")
 
     def test_uninstall_hook(self):
-        """Test if related actions are removed when mass editing
-        record is uninstalled."""
+        """
+        Test if related actions are removed when mass editing
+        record is uninstalled.
+        """
         uninstall_hook(self.cr, registry)
         mass_action_id = "ir.actions.act_window," + str(self.mass.id)
-        value_cnt = self.env['ir.values'].search([('value', '=',
-                                                   mass_action_id)],
-                                                 count=True)
         self.assertTrue(value_cnt == 0,
                         "Sidebar action must be removed when mass"
                         " editing module is uninstalled.")
+        value_cnt = self.env['ir.values'].search(
+            [('value', '=', mass_action_id)], count=True)
