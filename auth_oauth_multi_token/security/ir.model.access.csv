@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_auth_oauth_multi_token,auth_oauth_multi_token,model_auth_oauth_multi_token,base.group_system,1,1,1,1
+access_auth_oauth_multi_token_admin,auth_oauth_multi_token admin,model_auth_oauth_multi_token,base.group_system,1,1,1,1
