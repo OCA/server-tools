@@ -9,7 +9,7 @@
     "category": "Tools",
     "summary": "Import records from another Odoo instance",
     "depends": [
-        'base',
+        'mail',
     ],
     "demo": [
         "demo/res_partner.xml",

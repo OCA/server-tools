@@ -49,6 +49,12 @@
             <field name="model_id" ref="base.model_res_users" />
             <field name="field_ids" eval="[(4, ref('base.field_res_users_login'))]" />
         </record>
+        <record id="mapping_models" model="import.odoo.database.field">
+            <field name="database_id" ref="demodb" />
+            <field name="mapping_type">by_field</field>
+            <field name="model_id" ref="base.model_ir_model" />
+            <field name="field_ids" eval="[(4, ref('base.field_ir_model_name'))]" />
+        </record>
         <record id="mapping_groups" model="import.odoo.database.field">
             <field name="database_id" ref="demodb" />
             <field name="mapping_type">by_field</field>
