@@ -35,14 +35,31 @@ class TestIrRule(TransactionCase):
             'name': 'company2'
         })
 
-    def test_bypass_ir_rule_by_ctx(self):
+    def test_bypass_ir_rule(self):
         # User1 can only see his own company
         self.assertEqual(
             self.company_model.sudo(self.user1.id).search_count([]), 1
         )
 
-        # By pass rule using context
-        ctx = {'bypass_record_rules': True}
+        # Add the context
+        ctx = {'can_bypass_record_rules': ['base.group_user']}
+
+        # User1 can still only see his own company
+        self.assertEqual(
+            self.company_model.sudo(self.user1.id).search_count([]), 1
+        )
+
+        # Check the flag in every rule regarding company model
+        ir_rule_model = self.env['ir.rule']
+        rules_on_company = ir_rule_model.search([
+            ('model_id', '=', 'res.company')
+        ])
+        for rule in rules_on_company:
+            rule.sudo().update({
+                'can_be_bypassed': True
+            })
+
+        # Now User1 can see every company
         self.assertGreater(
             self.company_model.sudo(self.user1.id)
                 .with_context(ctx).search_count([]), 1

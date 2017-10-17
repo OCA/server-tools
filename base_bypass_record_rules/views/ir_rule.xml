@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_rule_bypass_form" model="ir.ui.view">
+        <field name="name">ir.rule form with bypass</field>
+        <field name="model">ir.rule</field>
+        <field name="inherit_id" ref="base.view_rule_form"/>
+        <field name="arch" type="xml">
+            <field name="global" position="after">
+                <field name="can_be_bypassed"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

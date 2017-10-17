@@ -15,5 +15,8 @@
     "depends": [
         'base',
     ],
+    "data": [
+        'views/ir_rule.xml',
+    ],
     "installable": True,
 }

@@ -6,7 +6,9 @@
 Bypass Record Rules
 ===================
 
-This module bypasses permissions on fields visibility by field context.
+This module allows to bypass record rule permissions on relational fields
+visibility.
+
 For example in a multi-company environment it allows to see the records of
 company B for a user of company A, even if the user has no visibility on
 these records (i.e. B is not an allowed company).
@@ -19,22 +21,27 @@ No specific requirements.
 Configuration
 =============
 
-Add a context ref in a model view for the desired field with the
-'bypass_record_rules' key set to 1, for example:
+Check the flag 'Can be bypassed' in the record rule form.
+In a model view, edit the context property for the desired field: add the
+'can_bypass_record_rules' key set to a list of groups that should be able to
+bypass the record rule permissions.
 
-<field name="my_field" context="{'bypass_record_rules':1}">
+If the user is in any of the listed groups, he will be able to bypass the
+flagged record rule.
+
+For example:
+
+<field name="my_field"
+   context="{'can_bypass_record_rules': ['base.group_user']}">
 
 Usage
 =====
 
 No specific requirements.
 
-#. Go to ...
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
-
 
 Known issues / Roadmap
 ======================
