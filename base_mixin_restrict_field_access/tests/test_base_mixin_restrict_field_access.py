@@ -95,12 +95,12 @@ class TestBaseMixinRestrictFieldAccess(TransactionCase):
         data = partner_model.read_group(
             [], [], ['user_id']
         )
-        self.assertEqual(data[0]['credit_limit'], 41)
+        self.assertEqual(sum(d['credit_limit'] for d in data), 41)
         # but users with permissions should see the sum for all records
         data = partner_model.sudo().read_group(
             [], [], ['user_id']
         )
         self.assertEqual(
-            data[0]['credit_limit'],
+            sum(d['credit_limit'] for d in data),
             sum(partner_model.sudo().search([]).mapped('credit_limit'))
         )
