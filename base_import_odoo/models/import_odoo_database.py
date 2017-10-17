@@ -159,7 +159,8 @@ class ImportOdooDatabase(models.Model):
                     self.env.cr.commit()
         missing = {}
         for dummy_model, remote_id in dummies.keys():
-            missing.setdefault(dummy_model, []).append(remote_id)
+            if remote_id:
+                missing.setdefault(dummy_model, []).append(remote_id)
         self.write({
             'status_data': dict(self.status_data, dummies=dict(missing)),
         })
