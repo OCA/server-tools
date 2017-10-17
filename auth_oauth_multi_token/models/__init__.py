@@ -1,2 +1,4 @@
-import auth_oauth_multi_token
-import res_users
+# -*- coding: utf-8 -*-
+
+from . import auth_oauth_multi_token
+from . import res_users

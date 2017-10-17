@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="auth_oauth_multi_token_form" model="ir.ui.view">
-            <field name="name">multi.token.res.users.form</field>
-            <field name="model">res.users</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="auth_oauth.view_users_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='oauth_uid']" position="after">
-                    <field name="oauth_access_max_token"/>
-                </xpath>
-                <xpath expr="//page[2]/group[1]" position="after">
-                    <group string="Last tokens">
-                        <field name="oauth_access_token_ids" nolabel="1">
-                            <tree limit="10">
-                                <field name="id" invisible="1"/>
-                                <field name="create_date"/>
-                                <field name="oauth_access_token"/>
-                                <field name="active_token"/>
-                            </tree>
-                        </field>
-                    </group>
-                    <group>
-                        <button string="Clear Tokens" type="object" name="clear_token" class="oe_highlight"/>
-                    </group>
-                </xpath>
-            </field>
-        </record>
-    </data>
-</openerp>
+<odoo>
+
+  <record id="user_oauth_multi_token_form" model="ir.ui.view">
+    <field name="name">auth_oauth_multi_token user form</field>
+    <field name="model">res.users</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="auth_oauth.view_users_form"/>
+    <field name="arch" type="xml">
+      <field name="oauth_uid" position="after">
+        <field name="oauth_access_max_token" />
+      </field>
+      <xpath expr="//field[@name='oauth_provider_id']/.." position="after">
+        <group name="multi_token_info" string="Latest tokens">
+          <field name="oauth_access_token_ids" nolabel="1" options="{'no_create': True, 'no_open': True}">
+            <tree limit="10">
+              <field name="create_date"/>
+              <field name="oauth_access_token"/>
+              <field name="active_token"/>
+            </tree>
+          </field>
+          <button string="Clear Tokens" type="object" name="action_oauth_clear_token" class="oe_highlight"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
