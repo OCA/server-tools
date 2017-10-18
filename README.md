@@ -52,7 +52,7 @@ addon | version | summary
 [base_technical_user](base_technical_user/) | 10.0.1.0.0 | Add a technical user parameter on the company
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.1 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 10.0.1.0.0 | User roles
-[base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.0 | Adds more operators for view inheritance
+[base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.1 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 10.0.1.0.0 | Database cleanup
 [date_range](date_range/) | 10.0.1.0.2 | Manage all kind of date range
