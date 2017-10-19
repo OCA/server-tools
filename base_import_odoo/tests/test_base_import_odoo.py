@@ -7,6 +7,27 @@ from ..models.import_odoo_database import ImportContext, field_context
 
 
 class TestBaseImportOdoo(TransactionCase):
+    def setUp(self):
+        super(TestBaseImportOdoo, self).setUp()
+        # if our tests run with an accounting scheme, it will fail on accounts
+        # to fix this, if the account model exists, we create mappings for it
+        if 'account.account' in self.env.registry:
+            self.env.ref('base_import_odoo.demodb').write({
+                'import_field_mappings': [
+                    (
+                        4,
+                        {
+                            'mapping_type': 'fixed',
+                            'model_id':
+                            self.env.ref('account.model_account_account').id,
+                            'local_id': account.id,
+                            'remote_id': account.id,
+                        },
+                    )
+                    for account in self.env['account.account'].search([])
+                ],
+            })
+
     @at_install(False)
     @post_install(True)
     @patch(
