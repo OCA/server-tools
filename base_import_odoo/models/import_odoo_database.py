@@ -201,8 +201,8 @@ class ImportOdooDatabase(models.Model):
         xmlid = '%d-%s-%d' % (
             self.id, model._name.replace('.', '_'), _id or 0,
         )
-        if self.env.ref('base_import_odoo.%s' % xmlid, False).exists():
-            new = self.env.ref('base_import_odoo.%s' % xmlid)
+        new = self.env.ref('base_import_odoo.%s' % xmlid, False)
+        if new and new.exists():
             if self.duplicates == 'overwrite_empty':
                 record = {
                     key: value
