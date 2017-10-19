@@ -74,7 +74,13 @@ class TestDatabaseCleanup(TransactionCase):
         # create an orphaned table
         self.env.cr.execute('create table database_cleanup_test (test int)')
         purge_tables = self.env['cleanup.purge.wizard.table'].create({})
-        purge_tables.purge_all()
+        self.assertIn(
+            'database_cleanup_test',
+            purge_tables.purge_line_ids.mapped('name')
+        )
+        purge_tables.purge_line_ids.filtered(
+            lambda x: x.name == 'database_cleanup_test'
+        ).purge()
         with self.assertRaises(ProgrammingError):
             with self.registry.cursor() as cr:
                 self.env.cr.execute('select * from database_cleanup_test')
