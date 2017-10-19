@@ -12,7 +12,7 @@ Use cases
 =========
 
 - merging databases
-- one way sync (needs a bit polishing)
+- one way sync
 - aggregating management data from distributed systems
 
 
@@ -57,6 +57,7 @@ Known issues / Roadmap
 * Do something with workflows
 * Support reference fields, while being at it refactor _run_import_map_values to call a function per field type
 * Probably it's safer and faster to disable recomputation during import, and recompute all fields afterwards
+* Add duplicate handling strategy 'Overwrite older'
 
 Bug Tracker
 ===========
