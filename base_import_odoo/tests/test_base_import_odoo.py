@@ -15,7 +15,7 @@ class TestBaseImportOdoo(TransactionCase):
             self.env.ref('base_import_odoo.demodb').write({
                 'import_field_mappings': [
                     (
-                        4,
+                        0, False,
                         {
                             'mapping_type': 'fixed',
                             'model_id':
