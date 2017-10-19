@@ -62,6 +62,13 @@ class ImportOdooDatabase(models.Model):
     status_html = fields.Html(
         compute='_compute_status_html', readonly=True, sanitize=False,
     )
+    duplicates = fields.Selection(
+        [
+            ('skip', 'Skip existing'), ('overwrite', 'Overwrite existing'),
+            ('overwrite_empty', 'Overwrite empty fields'),
+        ],
+        'Duplicate handling', default='skip', required=True,
+    )
 
     @api.multi
     def action_import(self):
@@ -177,8 +184,9 @@ class ImportOdooDatabase(models.Model):
                 context, model, data, create_dummy=False,
             )
             if (model._name, data['id']) in context.idmap:
-                # there's a mapping for this record, nothing to do
-                continue
+                if self.duplicates == 'skip':
+                    # there's a mapping for this record, nothing to do
+                    continue
             data = self._run_import_map_values(context, data)
             _id = data['id']
             record = self._create_record(context, model, data)
@@ -193,8 +201,14 @@ class ImportOdooDatabase(models.Model):
         xmlid = '%d-%s-%d' % (
             self.id, model._name.replace('.', '_'), _id or 0,
         )
-        if self.env.ref('base_import_odoo.%s' % xmlid, False):
+        if self.env.ref('base_import_odoo.%s' % xmlid, False).exists():
             new = self.env.ref('base_import_odoo.%s' % xmlid)
+            if self.duplicates == 'overwrite_empty':
+                record = {
+                    key: value
+                    for key, value in record.items()
+                    if not new[key]
+                }
             new.with_context(
                 **self._create_record_context(model, record)
             ).write(record)
