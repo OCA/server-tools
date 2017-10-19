@@ -26,6 +26,7 @@
                             <field name="database" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
                             <field name="user" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
                             <field name="password" password="True" attrs="{'readonly': [('cronjob_running', '=', True)], 'required': [('cronjob_running', '=', False)]}" />
+                            <field name="duplicates" />
                             <field name="cronjob_id" attrs="{'invisible': [('cronjob_id', '=', False)]}" />
                         </group>
                         <field name="import_line_ids" attrs="{'readonly': [('cronjob_running', '=', True)]}">
@@ -64,8 +65,9 @@
                     });
                 }
             </script>
-            <h2>Import progress</h2>
-            <div style="display: flex;">
+            <h2 t-if="object.cronjob_running">Import progress</h2>
+            <h2 t-if="not object.cronjob_running">Import results</h2>
+            <div style="display: flex; flex-flow: row wrap">
                 <div style="margin-right: .5em" t-foreach="object.import_line_ids" t-as="import_line">
                     <t t-set="model_name" t-value="import_line.model_id.model" />
                     <t t-set="model_display_name" t-value="import_line.model_id.name" />
