@@ -48,6 +48,15 @@ class TestExternalSystem(Common):
             self.record.interface._name, 'external.system.os',
         )
 
+    def test_create_context_override(self):
+        """It should create and assign the interface on record create."""
+        model = self.env['external.system'].with_context(
+            no_create_interface=True,
+        )
+        self.assertFalse(
+            model.create({'name': 'Test'}).interface,
+        )
+
     def test_action_test_connection(self):
         """It should proxy to the interface connection tester."""
         with self.assertRaises(UserError):

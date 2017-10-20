@@ -112,10 +112,11 @@ class ExternalSystem(models.Model):
     def create(self, vals):
         """Create the interface for the record and assign to ``interface``."""
         record = super(ExternalSystem, self).create(vals)
-        interface = self.env[vals['system_type']].create({
-            'system_id': record.id,
-        })
-        record.interface = interface
+        if not self.env.context.get('no_create_interface'):
+            interface = self.env[vals['system_type']].create({
+                'system_id': record.id,
+            })
+            record.interface = interface
         return record
 
     @api.multi

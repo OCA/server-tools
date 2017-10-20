@@ -69,3 +69,8 @@ class ExternalSystemAdapter(models.AbstractModel):
             odoo.exceptions.UserError: In the event of a good connection.
         """
         raise UserError(_('The connection was a success.'))
+
+    @api.model
+    def create(self, vals):
+        context_self = self.with_context(no_create_interface=True)
+        return super(ExternalSystemAdapter, context_self).create(vals)
