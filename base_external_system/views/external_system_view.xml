@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2017 LasLabs Inc.
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+
+<odoo>
+
+    <record id="external_system_view_form" model="ir.ui.view">
+        <field name="name">external.system.view.form</field>
+        <field name="model">external.system</field>
+        <field name="arch" type="xml">
+            <form string="External System">
+                <header>
+                    <button name="action_test_connection"
+                            type="object"
+                            string="Test Connection" />
+                </header>
+                <sheet>
+                    <group name="data">
+                        <group name="group_server_data">
+                            <field name="name" />
+                            <field name="company_ids" widget="many2many_tags" />
+                            <field name="remote_path" />
+                            <field name="ignore_fingerprint" />
+                        </group>
+                        <group name="group_connection_data">
+                            <field name="host" />
+                            <field name="port" />
+                            <field name="username" />
+                            <field name="password" widget="password" />
+                            <field name="system_type" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Keys">
+                            <group>
+                                <group>
+                                    <field name="private_key" />
+                                </group>
+                                <group>
+                                    <field name="fingerprint" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer />
+            </form>
+        </field>
+    </record>
+
+    <record id="external_system_view_tree" model="ir.ui.view">
+        <field name="name">external.system.view.tree</field>
+        <field name="model">external.system</field>
+        <field name="arch" type="xml">
+            <tree string="External Systems">
+                <field name="name" />
+                <field name="host" />
+                <field name="port" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="external_system_view_search" model="ir.ui.view">
+        <field name="name">external.system.view.search</field>
+        <field name="model">external.system</field>
+        <field name="arch" type="xml">
+            <search string="External Systems">
+
+                <field name="name" />
+                <field name="company_ids" />
+                <field name="host" />
+                <field name="port" />
+                <field name="username" />
+
+                <group expand="0" string="Group By">
+                    <filter string="Host"
+                            domain=""
+                            context="{'group_by': 'host'}" />
+                    <filter string="Port"
+                            domain=""
+                            context="{'group_by': 'port'}" />
+                    <filter string="Username"
+                            domain=""
+                            context="{'group_by': 'username'}" />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="external_system_action" model="ir.actions.act_window">
+         <field name="name">External Systems</field>
+         <field name="res_model">external.system</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+     </record>
+
+    <menuitem id="menu_external_system"
+              name="External Systems"
+              parent="base.menu_custom"
+              action="external_system_action"
+              sequence="50" />
+
+</odoo>
