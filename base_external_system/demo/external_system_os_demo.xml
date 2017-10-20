@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2017 LasLabs Inc.
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+
+<odoo>
+
+    <record id="external_system_os" model="external.system.os">
+        <field name="name">Example OS Connection</field>
+        <field name="system_type">external.system.os</field>
+        <field name="remote_path">/tmp</field>
+        <field name="company_ids" eval="[(5, 0), (4, ref('base.main_company'))]" />
+    </record>
+
+</odoo>
