@@ -44,11 +44,33 @@ class TestExternalSystem(Common):
 
     def test_create_creates_and_assigns_interface(self):
         """It should create and assign the interface on record create."""
+        record = self.env['external.system'].create({
+            'name': 'Test',
+            'system_type': 'external.system.os',
+        })
         self.assertEqual(
-            self.record.interface._name, 'external.system.os',
+            record.interface._name, 'external.system.os',
         )
+
+    def test_create_context_override(self):
+        """It should allow for interface create override with context."""
+        model = self.env['external.system'].with_context(
+            no_create_interface=True,
+        )
+        record = model.create({
+            'name': 'Test',
+            'system_type': 'external.system.os',
+        })
+        self.assertFalse(record.interface)
 
     def test_action_test_connection(self):
         """It should proxy to the interface connection tester."""
         with self.assertRaises(UserError):
             self.record.system_id.action_test_connection()
+
+    def test_unlink_deletes_interface(self):
+        """It should delete the interface when the system is deleted."""
+        interface = self.record.interface
+        self.assertTrue(interface.exists())
+        self.record.unlink()
+        self.assertFalse(interface.exists())
