@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_external_system_os_admin,access_external_system_os_admin,model_external_system_os,base.group_system,1,1,1,1
+access_external_system_admin,access_external_system_admin,model_external_system,base.group_system,1,1,1,1
