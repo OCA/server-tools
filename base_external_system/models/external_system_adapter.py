@@ -73,8 +73,12 @@ class ExternalSystemAdapter(models.AbstractModel):
     @api.model
     def create(self, vals):
         context_self = self.with_context(no_create_interface=True)
-        vals['system_type'] = self._name
-        return super(ExternalSystemAdapter, context_self).create(vals)
+        vals.update({
+            'system_type': self._name,
+        })
+        record = super(ExternalSystemAdapter, context_self).create(vals)
+        record.system_id.interface = record
+        return record
 
     @api.multi
     def unlink(self):
