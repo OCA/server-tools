@@ -73,4 +73,5 @@ class ExternalSystemAdapter(models.AbstractModel):
     @api.model
     def create(self, vals):
         context_self = self.with_context(no_create_interface=True)
+        vals['system_type'] = self._name
         return super(ExternalSystemAdapter, context_self).create(vals)
