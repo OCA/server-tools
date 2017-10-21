@@ -181,8 +181,16 @@ class TestOAuthProviderController(
             'client_id': self.client.identifier,
             'code': code.code,
         })
-        self.assertEqual(response.status_code, 401)
-        self.assertEqual(json.loads(response.data), {'error': 'access_denied'})
+        # Two possible returned errors, depending on the oauthlib version
+        self.assertIn(response.status_code, (400, 401))
+        if response.status_code == 400:
+            self.assertEqual(json.loads(response.data), {
+                'error': 'invalid_request',
+                'error_description': 'Mismatching redirect URI.',
+            })
+        else:
+            self.assertEqual(
+                json.loads(response.data), {'error': 'access_denied'})
 
     def test_token_error_wrong_redirect_uri(self):
         """ Check /oauth2/token with a wrong redirect_uri
@@ -198,8 +206,16 @@ class TestOAuthProviderController(
             'code': code.code,
             'redirect_uri': 'Wrong redirect URI',
         })
-        self.assertEqual(response.status_code, 401)
-        self.assertEqual(json.loads(response.data), {'error': 'access_denied'})
+        # Two possible returned errors, depending on the oauthlib version
+        self.assertIn(response.status_code, (400, 401))
+        if response.status_code == 400:
+            self.assertEqual(json.loads(response.data), {
+                'error': 'invalid_request',
+                'error_description': 'Mismatching redirect URI.',
+            })
+        else:
+            self.assertEqual(
+                json.loads(response.data), {'error': 'access_denied'})
 
     def test_token_error_wrong_client_id(self):
         """ Check /oauth2/token with a wrong client id
