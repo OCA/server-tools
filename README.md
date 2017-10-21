@@ -36,6 +36,7 @@ addon | version | summary
 [base_external_dbsource_odbc](base_external_dbsource_odbc/) | 10.0.1.0.0 | External Database Source - ODBC
 [base_external_dbsource_oracle](base_external_dbsource_oracle/) | 10.0.1.0.0 | External Database Source - Oracle
 [base_external_dbsource_sqlite](base_external_dbsource_sqlite/) | 10.0.1.0.0 | External Database Source - SQLite
+[base_external_system](base_external_system/) | 10.0.1.0.0 | Data models allowing for connection to external systems.
 [base_fontawesome](base_fontawesome/) | 10.0.4.7.0 | Up to date Fontawesome resources.
 [base_import_default_enable_tracking](base_import_default_enable_tracking/) | 10.0.1.0.0 | This modules simply enables history tracking when doing an import.
 [base_import_match](base_import_match/) | 10.0.1.0.0 | Try to avoid duplicates before importing
