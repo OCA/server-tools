@@ -3,69 +3,69 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-<record id="view_res_users_role_form" model="ir.ui.view">
-    <field name="name">res.users.role.form</field>
-    <field name="model">res.users.role</field>
-    <field name="arch" type="xml">
-        <form string="Role">
-            <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="group_id" required="0" readonly="1"/>
-                </group>
-                <notebook>
-                    <page string="Groups">
-                        <field name="implied_ids" nolabel="1"/>
-                    </page>
-                    <page string="Users">
-                        <field name="line_ids" nolabel="1">
-                            <tree editable="bottom" colors="grey: not is_enabled;">
-                                <field name="user_id"/>
-                                <field name="date_from"/>
-                                <field name="date_to"/>
-                                <field name="is_enabled"/>
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
-            </sheet>
-        </form>
-    </field>
-</record>
+    <record id="view_res_users_role_form" model="ir.ui.view">
+        <field name="name">res.users.role.form</field>
+        <field name="model">res.users.role</field>
+        <field name="arch" type="xml">
+            <form string="Role">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="group_id" required="0" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Groups">
+                            <field name="implied_ids" nolabel="1"/>
+                        </page>
+                        <page string="Users">
+                            <field name="line_ids" nolabel="1">
+                                <tree editable="bottom" colors="grey: not is_enabled;">
+                                    <field name="user_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="is_enabled"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-<record id="view_res_users_role_tree" model="ir.ui.view">
-    <field name="name">res.users.role.tree</field>
-    <field name="model">res.users.role</field>
-    <field name="arch" type="xml">
-        <tree string="Role">
-            <field name="name"/>
-            <field name="user_ids"/>
-        </tree>
-    </field>
-</record>
+    <record id="view_res_users_role_tree" model="ir.ui.view">
+        <field name="name">res.users.role.tree</field>
+        <field name="model">res.users.role</field>
+        <field name="arch" type="xml">
+            <tree string="Role">
+                <field name="name"/>
+                <field name="user_ids"/>
+            </tree>
+        </field>
+    </record>
 
-<record id="view_res_users_role_search" model="ir.ui.view">
-    <field name="name">res.users.role.search</field>
-    <field name="model">res.users.role</field>
-    <field name="arch" type="xml">
-        <search string="Roles">
-            <field name="name"/>
-            <field name="user_ids"/>
-            <field name="implied_ids"/>
-        </search>
-    </field>
-</record>
+    <record id="view_res_users_role_search" model="ir.ui.view">
+        <field name="name">res.users.role.search</field>
+        <field name="model">res.users.role</field>
+        <field name="arch" type="xml">
+            <search string="Roles">
+                <field name="name"/>
+                <field name="user_ids"/>
+                <field name="implied_ids"/>
+            </search>
+        </field>
+    </record>
 
-<record model="ir.actions.act_window" id="action_res_users_role_tree">
-    <field name="name">Roles</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">res.users.role</field>
-    <field name="view_type">form</field>
-    <field name="view_id" ref="view_res_users_role_tree"/>
-</record>
+    <record model="ir.actions.act_window" id="action_res_users_role_tree">
+        <field name="name">Roles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users.role</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_res_users_role_tree"/>
+    </record>
 
-<menuitem id="menu_action_res_users_role_tree"
-    parent="base.menu_users"
-    action="action_res_users_role_tree"/>
+    <menuitem id="menu_action_res_users_role_tree"
+        parent="base.menu_users"
+        action="action_res_users_role_tree"/>
 
 </odoo>

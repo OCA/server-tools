@@ -3,35 +3,35 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-<record id="view_res_users_form_inherit" model="ir.ui.view">
-    <field name="name">res.users.form.inherit</field>
-    <field name="model">res.users</field>
-    <field name="inherit_id" ref="base.view_users_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="//notebook/page[1]" position="before">
-            <page string="Roles">
-                <field name="role_line_ids" nolabel="1">
-                    <tree editable="bottom" colors="grey: not is_enabled;">
-                        <field name="role_id" required="1"/>
-                        <field name="date_from"/>
-                        <field name="date_to"/>
-                        <field name="is_enabled"/>
-                    </tree>
-                </field>
-            </page>
-        </xpath>
-    </field>
-</record>
-
-<record id="view_res_users_search_inherit" model="ir.ui.view">
-    <field name="name">res.users.search.inherit</field>
-    <field name="model">res.users</field>
-    <field name="inherit_id" ref="base.view_users_search"/>
-    <field name="arch" type="xml">
-        <field name="company_ids" position="after">
-            <field name="role_ids"/>
+    <record id="view_res_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="before">
+                <page string="Roles">
+                    <field name="role_line_ids" nolabel="1">
+                        <tree editable="bottom" colors="grey: not is_enabled;">
+                            <field name="role_id" required="1"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="is_enabled"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
         </field>
-    </field>
-</record>
+    </record>
+
+    <record id="view_res_users_search_inherit" model="ir.ui.view">
+        <field name="name">res.users.search.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_search"/>
+        <field name="arch" type="xml">
+            <field name="company_ids" position="after">
+                <field name="role_ids"/>
+            </field>
+        </field>
+    </record>
 
 </odoo>

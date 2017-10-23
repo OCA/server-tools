@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import datetime
 import logging
 
@@ -17,12 +15,14 @@ class ResUsersRole(models.Model):
     _description = "User role"
 
     group_id = fields.Many2one(
-        'res.groups', required=True, ondelete='cascade',
-        readonly=True, string=u"Associated group")
+        comodel_name='res.groups', required=True, ondelete='cascade',
+        readonly=True, string="Associated group")
     line_ids = fields.One2many(
-        'res.users.role.line', 'role_id', string=u"Users")
+        comodel_name='res.users.role.line',
+        inverse_name='role_id', string="Users")
     user_ids = fields.One2many(
-        'res.users', string=u"Users", compute='_compute_user_ids')
+        comodel_name='res.users', string="Users",
+        compute='_compute_user_ids')
     group_category_id = fields.Many2one(
         related='group_id.category_id',
         default=lambda cls: cls.env.ref(
@@ -55,7 +55,7 @@ class ResUsersRole(models.Model):
 
     @api.model
     def cron_update_users(self):
-        logging.info(u"Update user roles")
+        logging.info("Update user roles")
         self.search([]).update_users()
 
 
@@ -64,12 +64,13 @@ class ResUsersRoleLine(models.Model):
     _description = 'Users associated to a role'
 
     role_id = fields.Many2one(
-        'res.users.role', string=u"Role", ondelete='cascade')
+        comodel_name='res.users.role', string="Role",
+        ondelete='cascade')
     user_id = fields.Many2one(
-        'res.users', string=u"User")
-    date_from = fields.Date(u"From")
-    date_to = fields.Date(u"To")
-    is_enabled = fields.Boolean(u"Enabled", compute='_compute_is_enabled')
+        comodel_name='res.users', string="User")
+    date_from = fields.Date("From")
+    date_to = fields.Date("To")
+    is_enabled = fields.Boolean("Enabled", compute='_compute_is_enabled')
 
     @api.multi
     @api.depends('date_from', 'date_to')

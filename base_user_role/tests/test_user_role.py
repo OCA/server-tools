@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import datetime
 
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
@@ -16,13 +14,13 @@ class TestUserRole(TransactionCase):
         self.role_model = self.env['res.users.role']
 
         self.user_id = self.user_model.create(
-            {'name': u"USER TEST (ROLES)", 'login': 'user_test_roles'})
+            {'name': "USER TEST (ROLES)", 'login': 'user_test_roles'})
 
         # ROLE_1
         self.group_user_id = self.env.ref('base.group_user')
         self.group_no_one_id = self.env.ref('base.group_no_one')
         vals = {
-            'name': u"ROLE_1",
+            'name': "ROLE_1",
             'implied_ids': [
                 (6, 0, [self.group_user_id.id, self.group_no_one_id.id])],
         }
@@ -33,7 +31,7 @@ class TestUserRole(TransactionCase):
             'base.group_multi_currency')
         self.group_settings_id = self.env.ref('base.group_system')
         vals = {
-            'name': u"ROLE_2",
+            'name': "ROLE_2",
             'implied_ids': [
                 (6, 0, [self.group_multi_currency_id.id,
                         self.group_settings_id.id])],
@@ -76,10 +74,10 @@ class TestUserRole(TransactionCase):
         self.assertEqual(user_group_ids, role_group_ids)
 
     def test_role_1_2_with_dates(self):
-        today = datetime.date.today()
-        today_str = today.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        today_str = fields.Date.today()
+        today = fields.Date.from_string(today)
         yesterday = today - datetime.timedelta(days=1)
-        yesterday_str = yesterday.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        yesterday_str = fields.Date.to_string(yesterday)
         self.user_id.write(
             {'role_line_ids': [
                 # Role 1 should be enabled

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models
 
 
@@ -9,9 +7,11 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     role_line_ids = fields.One2many(
-        'res.users.role.line', 'user_id', string=u"Role lines")
+        comodel_name='res.users.role.line',
+        inverse_name='user_id', string="Role lines")
     role_ids = fields.One2many(
-        'res.users.role', string=u"Roles", compute='_compute_role_ids')
+        comodel_name='res.users.role', string="Roles",
+        compute='_compute_role_ids')
 
     @api.multi
     @api.depends('role_line_ids.role_id')
