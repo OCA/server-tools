@@ -335,7 +335,7 @@ class ImportOdooDatabase(models.Model):
                         continue
                     if isinstance(record, list):
                         record = record[0]
-                records = model.search([
+                records = model.with_context(active_test=False).search([
                     (field.name, '=', record.get(field.name))
                     for field in mapping.field_ids
                 ], limit=1)
