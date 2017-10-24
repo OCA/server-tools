@@ -335,10 +335,18 @@ class ImportOdooDatabase(models.Model):
                         continue
                     if isinstance(record, list):
                         record = record[0]
-                records = model.with_context(active_test=False).search([
+                domain = [
                     (field.name, '=', record.get(field.name))
                     for field in mapping.field_ids
-                ], limit=1)
+                    if record.get(field.name)
+                ]
+                if len(domain) < len(mapping.field_ids):
+                    # play it save, only use mapping if we really select
+                    # something specific
+                    continue
+                records = model.with_context(active_test=False).search(
+                    domain, limit=1,
+                )
                 if records:
                     _id = records.id
                     context.idmap[(model._name, record['id'])] = _id
