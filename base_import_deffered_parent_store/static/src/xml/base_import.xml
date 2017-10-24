@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-extend="ImportView">
+
+        <t t-jquery="div.oe_import_tracking" t-operation="after">
+            <div title="If the model has the parent store feature. Parent store computation will be called at the end of the import."
+                 class="oe_import_defer_parent_store_computation">
+                <input type="checkbox" id="oe_import_defer_parent_store_computation"/>
+                <label for="oe_import_defer_parent_store_computation">
+                    Deffered parent store computation
+                </label>
+            </div>
+        </t>
+
+    </t>
+
+</templates>
