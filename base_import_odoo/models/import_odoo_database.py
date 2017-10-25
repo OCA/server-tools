@@ -398,11 +398,11 @@ class ImportOdooDatabase(models.Model):
         defaults = model.default_get(required)
         values = {'id': record['id']}
         for name, field in model._fields.items():
-            if name not in required or name in defaults:
+            if name not in required or defaults.get(name):
                 continue
             value = None
             if field.type in ['char', 'text', 'html']:
-                value = ''
+                value = '/'
             elif field.type in ['boolean']:
                 value = False
             elif field.type in ['integer', 'float']:
