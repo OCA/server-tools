@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_import_odoo_database_field_form" model="ir.ui.view">
+            <field name="model">import.odoo.database.field</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="model_id" />
+                        <field name="model" invisible="True" />
+                        <field name="mapping_type" />
+                    </group>
+                    <div attrs="{'invisible': [('mapping_type', '!=', 'fixed')]}" class="oe_edit_only">
+                        When a record of this model is imported, it will be replaced with the record you select as local ID. If you select a field and/or a remote ID, this replacement is only effective when setting the specified field and/or when the remote value is the specified record.
+                    </div>
+                    <div attrs="{'invisible': [('mapping_type', '!=', 'by_field')]}" class="oe_edit_only">
+                        Select fields which must be equal to treat a pair of remote and local records of this model as being equal.
+                    </div>
+                    <div attrs="{'invisible': [('mapping_type', '!=', 'by_reference')]}" class="oe_edit_only">
+                        Select the field that stores the model name and the one that stores the linked ID. The IDs for previously imported records will be mapped to the local ID, for unknown models or IDs, the fields are set to NULL.
+                    </div>
+                    <div attrs="{'invisible': [('mapping_type', '!=', 'unique')]}" class="oe_edit_only">
+                        Select fields for which to generate unique values during import. You'll need this for res.users#login for example.
+                    </div>
+                    <group>
+                        <field name="local_id" attrs="{'invisible': [('mapping_type', '!=', 'fixed')], 'required': [('mapping_type', '=', 'fixed')]}" />
+                        <field name="remote_id" attrs="{'invisible': [('mapping_type', '!=', 'fixed')]}" />
+                        <field name="field_ids" attrs="{'invisible': [('mapping_type', 'not in', ['fixed', 'by_field', 'unique'])], 'required': [('mapping_type', 'in', ['by_field', 'unique'])]}" widget="many2many_tags" domain="[mapping_type == 'fixed' and ('relation', '=', model) or ('model_id', '=', model_id)]"/>
+                        <field name="model_field_id" attrs="{'invisible': [('mapping_type', '!=', 'by_reference')], 'required': [('mapping_type', '=', 'by_reference')]}" domain="[('ttype', '=', 'char'), ('model_id.model', '=', model)]" />
+                        <field name="id_field_id" attrs="{'invisible': [('mapping_type', '!=', 'by_reference')], 'required': [('mapping_type', '=', 'by_reference')]}" domain="[('ttype', '=', 'integer'), ('model_id.model', '=', model)]" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_import_odoo_database_field_tree" model="ir.ui.view">
+            <field name="model">import.odoo.database.field</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle" />
+                    <field name="model_id" />
+                    <field name="mapping_type" />
+                    <field name="field_ids" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

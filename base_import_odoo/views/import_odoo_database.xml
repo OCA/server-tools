@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_import_odoo_database_tree" model="ir.ui.view">
+            <field name="model">import.odoo.database</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="url" />
+                    <field name="database" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_import_odoo_database_form" model="ir.ui.view">
+            <field name="model">import.odoo.database</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="action_import" string="Run import" class="oe_highlight" attrs="{'invisible': [('cronjob_running', '=', True)]}" />
+                        <button type="object" name="exists" string="Refresh" class="oe_highlight" attrs="{'invisible': [('cronjob_running', '=', False)]}" />
+                        <field name="cronjob_running" invisible="1" />
+                    </header>
+                    <sheet>
+                        <field name="status_html" attrs="{'invisible': [('status_html', '=', False)]}" />
+                        <group col="4" name="credentials">
+                            <field name="url" widget="url" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="database" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="user" attrs="{'readonly': [('cronjob_running', '=', True)]}" />
+                            <field name="password" password="True" attrs="{'readonly': [('cronjob_running', '=', True)], 'required': [('cronjob_running', '=', False)]}" />
+                            <field name="duplicates" />
+                            <field name="cronjob_id" attrs="{'invisible': [('cronjob_id', '=', False)]}" />
+                        </group>
+                        <field name="import_line_ids" attrs="{'readonly': [('cronjob_running', '=', True)]}">
+                            <tree editable="top">
+                                <field name="sequence" widget="handle" />
+                                <field name="model_id" />
+                                <field name="domain" />
+                            </tree>
+                        </field>
+                        <field name="import_field_mappings" attrs="{'readonly': [('cronjob_running', '=', True)]}"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <template id="view_import_odoo_database_qweb">
+            <script type="text/javascript">
+                function base_import_database_open(model, model_name, database_id)
+                {
+                    return new openerp.web.Model('ir.model.data')
+                    .query(['res_id'])
+                    .filter([
+                        ['module', '=', 'base_import_odoo'],
+                        ['model', '=', model],
+                        ['import_database_id', '=', database_id],
+                    ])
+                    .all()
+                    .then(function(data)
+                    {
+                        return openerp.webclient.action_manager.do_action({
+                            'name': model_name,
+                            'type': 'ir.actions.act_window',
+                            'views': [[false, 'list'], [false, 'form']],
+                            'res_model': model,
+                            'domain': [['id', 'in', _.map(data, function(x) {return x.res_id})]]
+                        });
+                    });
+                }
+            </script>
+            <h2 t-if="object.cronjob_running">Import progress</h2>
+            <h2 t-if="not object.cronjob_running">Import results</h2>
+            <div style="display: flex; flex-flow: row wrap">
+                <div style="margin-right: .5em" t-foreach="object.import_line_ids" t-as="import_line">
+                    <t t-set="model_name" t-value="import_line.model_id.model" />
+                    <t t-set="model_display_name" t-value="import_line.model_id.name" />
+                    <h3 t-esc="model_display_name" />
+                    <a href="#" t-att-onclick="'base_import_database_open(&quot;%s&quot;, &quot;%s&quot;, %s)' % (model_name, model_display_name, object.id)">
+                        <span t-esc="object.status_data.get('done', {}).get(model_name, 0)" />/<span t-esc="object.status_data.get('counts', {}).get(model_name, 0)" /> done
+                    </a>
+                </div>
+            </div>
+            <t t-if="object.status_data.get('error')"><pre t-esc="object.status_data['error']" /></t>
+            <div t-if="object.status_data.get('dummies')">
+                The following remote ids don't have a mapping but have to be imported anyways due to not null constraints.
+                <dl>
+                    <t t-foreach="object.status_data['dummies']" t-as="model_name">
+                        <dt t-esc="model_name" />
+                        <dd t-esc="object.status_data['dummies'][model_name]" />
+                    </t>
+                </dl>
+                To fix this, create mappings for the remote ids listed, or if this is not feasible, map the whole model. You might also have a too specific domain on your import model definition.
+            </div>
+        </template>
+    </data>
+</openerp>
