@@ -402,7 +402,7 @@ class ImportOdooDatabase(models.Model):
                 continue
             value = None
             if field.type in ['char', 'text', 'html']:
-                value = ''
+                value = '/'
             elif field.type in ['boolean']:
                 value = False
             elif field.type in ['integer', 'float']:
