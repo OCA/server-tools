@@ -35,6 +35,7 @@ addon | version | summary
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
 [base_field_validator](base_field_validator/) | 8.0.1.0.0 | Validate fields using regular expressions
 [base_import_match](base_import_match/) | 8.0.1.0.1 | Try to avoid duplicates before importing
+[base_import_odoo](base_import_odoo/) | 8.0.1.0.0 | Import records from another Odoo instance
 [base_import_security_group](base_import_security_group/) | 8.0.1.0.0 | Group-based permissions for importing CSV files
 [base_ir_filters_active](base_ir_filters_active/) | 8.0.1.0.0 | Allows you to disable (hide) filters
 [base_manifest_extension](base_manifest_extension/) | 8.0.1.0.0 | Adds some useful keys to manifest files
