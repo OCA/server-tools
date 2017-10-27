@@ -75,7 +75,7 @@ class TestUserRole(TransactionCase):
 
     def test_role_1_2_with_dates(self):
         today_str = fields.Date.today()
-        today = fields.Date.from_string(today)
+        today = fields.Date.from_string(today_str)
         yesterday = today - datetime.timedelta(days=1)
         yesterday_str = fields.Date.to_string(yesterday)
         self.user_id.write(
