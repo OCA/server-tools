@@ -1,0 +1,464 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * server_monitoring
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-13 00:55+0000\n"
+"PO-Revision-Date: 2017-10-13 00:55+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: server_monitoring
+#: field:server.monitor.process,cpu_time:0
+msgid "CPU time"
+msgstr "Čas CPU"
+
+#. module: server_monitoring
+#: help:server.monitor.process,cpu_time:0
+msgid "CPU time consumed by the current server process"
+msgstr "Porabljeni čas CPU za tekoči strežniški proces"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,cache_reads:0
+msgid "Cache reads"
+msgstr "Branja predpolnilnika"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "Class count"
+msgstr "Štetje razredov"
+
+#. module: server_monitoring
+#: field:server.monitor.process,class_count_ids:0
+msgid "Class counts"
+msgstr "Štetja razredov"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,name:0
+msgid "Class name"
+msgstr "Naziv razreda"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,create_uid:0
+#: field:server.monitor.database,create_uid:0
+#: field:server.monitor.model.row.count,create_uid:0
+#: field:server.monitor.model.table.activity.read,create_uid:0
+#: field:server.monitor.model.table.activity.update,create_uid:0
+#: field:server.monitor.model.table.size,create_uid:0
+#: field:server.monitor.process,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,create_date:0
+#: field:server.monitor.database,create_date:0
+#: field:server.monitor.model.row.count,create_date:0
+#: field:server.monitor.model.table.activity.read,create_date:0
+#: field:server.monitor.model.table.activity.update,create_date:0
+#: field:server.monitor.model.table.size,create_date:0
+#: field:server.monitor.process,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_activity_read
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_activity_read_menu
+msgid "DB Reads"
+msgstr "Branja DB"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_rows
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_rows_menu
+msgid "DB Rows"
+msgstr "Vrstic DB"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_size
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_size_menu
+msgid "DB Table Size"
+msgstr "Velikost tabele DB"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_activity_update
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_activity_update_menu
+msgid "DB Updates"
+msgstr "Posodobitev DB"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_info
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_menu
+msgid "Database Info"
+msgstr "Informacije o podatkovni bazi"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_delete:0
+msgid "Deletes"
+msgstr "Izbrisov"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,disk_reads:0
+msgid "Disk reads (heap blocks)"
+msgstr "Branj diska (smetiščni bloki)"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,display_name:0
+#: field:server.monitor.database,display_name:0
+#: field:server.monitor.model.row.count,display_name:0
+#: field:server.monitor.model.table.activity.read,display_name:0
+#: field:server.monitor.model.table.activity.update,display_name:0
+#: field:server.monitor.model.table.size,display_name:0
+#: field:server.monitor.process,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: server_monitoring
+#: help:base.config.settings,monitor_rpc_calls:0
+msgid ""
+"Enabling this setting will log information about RPC calls in Reporting / "
+"Server Monitoring / Process info. This is not enabled by default as it "
+"generates a small performance overhead."
+msgstr ""
+"Omogočitev te nastavitve sproži zapisovanje informacij o RPC klicih in "
+"Poročanje / Nadzor strežnika / Procesni podatki. Privzeto ni omogočeno, saj "
+"sproži manjšo preobremenitev."
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "Group By..."
+msgstr "Združi po..."
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,id:0
+#: field:server.monitor.database,id:0
+#: field:server.monitor.model.row.count,id:0
+#: field:server.monitor.model.table.activity.read,id:0
+#: field:server.monitor.model.table.activity.update,id:0
+#: field:server.monitor.model.table.size,id:0
+#: field:server.monitor.process,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,idx_scan:0
+msgid "Idx scans"
+msgstr "Idx skeni"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+#: field:server.monitor.database,info:0
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+#: field:server.monitor.process,info:0
+msgid "Information"
+msgstr "Informacije"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_insert:0
+msgid "Inserts"
+msgstr "Vstavki"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,count:0
+msgid "Instance count"
+msgstr "Števec instanc"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,__last_update:0
+#: field:server.monitor.database,__last_update:0
+#: field:server.monitor.model.row.count,__last_update:0
+#: field:server.monitor.model.table.activity.read,__last_update:0
+#: field:server.monitor.model.table.activity.update,__last_update:0
+#: field:server.monitor.model.table.size,__last_update:0
+#: field:server.monitor.process,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,write_uid:0
+#: field:server.monitor.database,write_uid:0
+#: field:server.monitor.model.row.count,write_uid:0
+#: field:server.monitor.model.table.activity.read,write_uid:0
+#: field:server.monitor.model.table.activity.update,write_uid:0
+#: field:server.monitor.model.table.size,write_uid:0
+#: field:server.monitor.process,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,write_date:0
+#: field:server.monitor.database,write_date:0
+#: field:server.monitor.model.row.count,write_date:0
+#: field:server.monitor.model.table.activity.read,write_date:0
+#: field:server.monitor.model.table.activity.update,write_date:0
+#: field:server.monitor.model.table.size,write_date:0
+#: field:server.monitor.process,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,measure_id:0
+#: field:server.monitor.model.row.count,measure_id:0
+#: field:server.monitor.model.table.activity.read,measure_id:0
+#: field:server.monitor.model.table.activity.update,measure_id:0
+#: field:server.monitor.model.table.size,measure_id:0
+msgid "Measure"
+msgstr "Izmera"
+
+#. module: server_monitoring
+#: field:server.monitor.process,memory:0
+msgid "Memory"
+msgstr "Spomin"
+
+#. module: server_monitoring
+#: help:server.monitor.process,memory:0
+msgid "Memory consumed by the current server process"
+msgstr "Porabljeni spomin za tekoči strežniški proces"
+
+#. module: server_monitoring
+#: field:server.monitor.process,method:0
+msgid "Method"
+msgstr "Metoda"
+
+#. module: server_monitoring
+#: field:server.monitor.process,model:0
+msgid "Model"
+msgstr "Model"
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_nb_row_ids:0
+msgid "Model row counts"
+msgstr "Števec vrstic modela"
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_activity_read_ids:0
+msgid "Model table read activity"
+msgstr "Aktivnost branja tabele modela"
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_size_ids:0
+msgid "Model table size"
+msgstr "Velikost tabele modela"
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_activity_update_ids:0
+msgid "Model table update activity"
+msgstr "Aktivnosti posodabljanja tabele modela"
+
+#. module: server_monitoring
+#: field:base.config.settings,monitor_rpc_calls:0
+msgid "Monitor RPC calls"
+msgstr "Nadzor RPC klicev"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Nb rows"
+msgstr "Nb vrstic"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "PID"
+msgstr "PID"
+
+#. module: server_monitoring
+#: field:server.monitor.process,pid:0
+msgid "Process ID"
+msgstr "ID procesa"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_process_info
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_process_menu
+msgid "Process Info"
+msgstr "Informacije o procesu"
+
+#. module: server_monitoring
+#: field:server.monitor.process,status:0
+msgid "RPC status"
+msgstr "RPC status"
+
+#. module: server_monitoring
+#: field:server.monitor.model.row.count,count:0
+msgid "Row count"
+msgstr "Števec vrstic"
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "Search Server Monitor Process"
+msgstr "Iskanje strežniških nadzornih procesov"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+msgid "Search Server Monitor Table Activity read"
+msgstr "Iskanje aktivnosti branja strežniških nadzornih tabel"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+msgid "Search Server Monitor Table Activity updates"
+msgstr "Iskanje aktivnosti posodabljanja nadzornih tabel strežnika"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "Search Server Monitor Table Row Count"
+msgstr "Iskanje seštevka vrstic strežniških nadzornih tabel"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,seq_scan:0
+msgid "Seq scans"
+msgstr "Seq skeni"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+#: view:server.monitor.database:server_monitoring.server_monitor_database_tree_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "Server Monitor"
+msgstr "Nadzor strežnika"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_tree_view
+msgid "Server Monitor DB Table Row Count"
+msgstr "Nadzor seštevka vrstic tabele podatkovne baze strežnika"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_tree_view
+msgid "Server Monitor DB Table activity"
+msgstr "Nadzor aktivnost DB tabele strežnika"
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_tree_view
+msgid "Server Monitor DB Table size"
+msgstr "Nadzor velikosti DB tabele strežnika"
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_tree_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_tree_view
+msgid "Server Monitor Process"
+msgstr "Proces nadzora strežnika"
+
+#. module: server_monitoring
+#: view:base.config.settings:server_monitoring.view_general_configuration_server_monitoring
+#: model:ir.ui.menu,name:server_monitoring.server_monitoring
+msgid "Server Monitoring"
+msgstr "Nadziranje strežnika"
+
+#. module: server_monitoring
+#: field:server.monitor.process,sessionid:0
+msgid "Session ID"
+msgstr "ID seje"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.size,hsize:0
+msgid "Size"
+msgstr "Velikost"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.size,size:0
+msgid "Size (bytes)"
+msgstr "Velikost (bytes)"
+
+#. module: server_monitoring
+#: field:server.monitor.model.row.count,name:0
+#: field:server.monitor.model.table.activity.read,name:0
+#: field:server.monitor.model.table.activity.update,name:0
+#: field:server.monitor.model.table.size,name:0
+msgid "Table name"
+msgstr "Naziv tabele"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table reads"
+msgstr "Branja tabele"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table size"
+msgstr "Velikost tabele"
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table updates"
+msgstr "Posodobitve tabele"
+
+#. module: server_monitoring
+#: field:server.monitor.process,thread:0
+msgid "Thread ID"
+msgstr "ID niti"
+
+#. module: server_monitoring
+#: field:server.monitor.database,name:0
+#: field:server.monitor.model.row.count,timestamp:0
+#: field:server.monitor.model.table.activity.read,timestamp:0
+#: field:server.monitor.model.table.activity.update,timestamp:0
+#: field:server.monitor.model.table.size,timestamp:0
+#: field:server.monitor.process,name:0
+msgid "Timestamp"
+msgstr "Časovni žig"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,lines_read_total:0
+msgid "Tot lines read"
+msgstr "Skupaj branj vrstic"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,total_reads:0
+msgid "Total reads"
+msgstr "Skupaj branj"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_update:0
+msgid "Updates"
+msgstr "Posodobitve"
+
+#. module: server_monitoring
+#: field:server.monitor.process,uid:0
+msgid "User"
+msgstr "Uporabnik"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "call information"
+msgstr "podatki o klicu"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "date"
+msgstr "date"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "method"
+msgstr "metoda"
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "model"
+msgstr "model"
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "name"
+msgstr "naziv"
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "timestamp"
+msgstr "časovni žig"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"POT-Creation-Date: 2017-10-26 03:05+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
@@ -165,7 +165,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr ""
+msgstr "Groeperen op"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -249,7 +249,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search

@@ -4,16 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Paolo Valier <paolo.valier@hotmail.it>, 2016
-# Giacomo <giacomo.spettoli@gmail.com>, 2016
-# Nicola Malcontenti <nicola.malcontenti@gmail.com>, 2016
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 03:03+0000\n"
-"PO-Revision-Date: 2016-12-10 03:03+0000\n"
-"Last-Translator: Nicola Malcontenti <nicola.malcontenti@gmail.com>, 2016\n"
+"POT-Creation-Date: 2017-10-26 03:04+0000\n"
+"PO-Revision-Date: 2017-10-26 03:04+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +23,11 @@ msgstr ""
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
 msgstr ""
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_groups
+msgid "Access Groups"
+msgstr "Gruppi di Accesso"
 
 #. module: base_user_role
 #: field:res.users.role,menu_access:0

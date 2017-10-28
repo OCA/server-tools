@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 03:47+0000\n"
-"PO-Revision-Date: 2017-03-07 03:47+0000\n"
+"POT-Creation-Date: 2017-10-26 03:04+0000\n"
+"PO-Revision-Date: 2017-10-26 03:04+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,11 @@ msgstr ""
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
 msgstr "Berechtigungseinstellungen"
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_groups
+msgid "Access Groups"
+msgstr "Berechtigungsgruppen"
 
 #. module: base_user_role
 #: field:res.users.role,menu_access:0

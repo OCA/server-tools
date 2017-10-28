@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:44+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-10-26 03:03+0000\n"
+"PO-Revision-Date: 2017-09-22 15:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr ""
 #: field:auditlog.http.session,display_name:0 field:auditlog.methods,name:0
 #: field:auditlog.rule,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: auditlog
 #: field:auditlog.log.line,new_value:0
@@ -409,7 +409,7 @@ msgstr ""
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
 #: field:auditlog.rule,state:0
 msgid "State"
-msgstr ""
+msgstr "Provincie"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form

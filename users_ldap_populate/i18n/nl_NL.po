@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:47+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-10-26 03:05+0000\n"
+"PO-Revision-Date: 2017-09-22 23:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr ""
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,users_created:0

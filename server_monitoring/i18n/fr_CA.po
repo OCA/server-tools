@@ -1,0 +1,460 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * server_monitoring
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-13 00:55+0000\n"
+"PO-Revision-Date: 2017-10-13 00:55+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/fr_CA/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: server_monitoring
+#: field:server.monitor.process,cpu_time:0
+msgid "CPU time"
+msgstr ""
+
+#. module: server_monitoring
+#: help:server.monitor.process,cpu_time:0
+msgid "CPU time consumed by the current server process"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,cache_reads:0
+msgid "Cache reads"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "Class count"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,class_count_ids:0
+msgid "Class counts"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,name:0
+msgid "Class name"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,create_uid:0
+#: field:server.monitor.database,create_uid:0
+#: field:server.monitor.model.row.count,create_uid:0
+#: field:server.monitor.model.table.activity.read,create_uid:0
+#: field:server.monitor.model.table.activity.update,create_uid:0
+#: field:server.monitor.model.table.size,create_uid:0
+#: field:server.monitor.process,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,create_date:0
+#: field:server.monitor.database,create_date:0
+#: field:server.monitor.model.row.count,create_date:0
+#: field:server.monitor.model.table.activity.read,create_date:0
+#: field:server.monitor.model.table.activity.update,create_date:0
+#: field:server.monitor.model.table.size,create_date:0
+#: field:server.monitor.process,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_activity_read
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_activity_read_menu
+msgid "DB Reads"
+msgstr ""
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_rows
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_rows_menu
+msgid "DB Rows"
+msgstr ""
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_size
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_size_menu
+msgid "DB Table Size"
+msgstr ""
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_table_activity_update
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_table_activity_update_menu
+msgid "DB Updates"
+msgstr ""
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_database_info
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_database_menu
+msgid "Database Info"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_delete:0
+msgid "Deletes"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,disk_reads:0
+msgid "Disk reads (heap blocks)"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,display_name:0
+#: field:server.monitor.database,display_name:0
+#: field:server.monitor.model.row.count,display_name:0
+#: field:server.monitor.model.table.activity.read,display_name:0
+#: field:server.monitor.model.table.activity.update,display_name:0
+#: field:server.monitor.model.table.size,display_name:0
+#: field:server.monitor.process,display_name:0
+msgid "Display Name"
+msgstr "Afficher le nom"
+
+#. module: server_monitoring
+#: help:base.config.settings,monitor_rpc_calls:0
+msgid ""
+"Enabling this setting will log information about RPC calls in Reporting / "
+"Server Monitoring / Process info. This is not enabled by default as it "
+"generates a small performance overhead."
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "Group By..."
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,id:0
+#: field:server.monitor.database,id:0
+#: field:server.monitor.model.row.count,id:0
+#: field:server.monitor.model.table.activity.read,id:0
+#: field:server.monitor.model.table.activity.update,id:0
+#: field:server.monitor.model.table.size,id:0
+#: field:server.monitor.process,id:0
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,idx_scan:0
+msgid "Idx scans"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+#: field:server.monitor.database,info:0
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+#: field:server.monitor.process,info:0
+msgid "Information"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_insert:0
+msgid "Inserts"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,count:0
+msgid "Instance count"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,__last_update:0
+#: field:server.monitor.database,__last_update:0
+#: field:server.monitor.model.row.count,__last_update:0
+#: field:server.monitor.model.table.activity.read,__last_update:0
+#: field:server.monitor.model.table.activity.update,__last_update:0
+#: field:server.monitor.model.table.size,__last_update:0
+#: field:server.monitor.process,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,write_uid:0
+#: field:server.monitor.database,write_uid:0
+#: field:server.monitor.model.row.count,write_uid:0
+#: field:server.monitor.model.table.activity.read,write_uid:0
+#: field:server.monitor.model.table.activity.update,write_uid:0
+#: field:server.monitor.model.table.size,write_uid:0
+#: field:server.monitor.process,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,write_date:0
+#: field:server.monitor.database,write_date:0
+#: field:server.monitor.model.row.count,write_date:0
+#: field:server.monitor.model.table.activity.read,write_date:0
+#: field:server.monitor.model.table.activity.update,write_date:0
+#: field:server.monitor.model.table.size,write_date:0
+#: field:server.monitor.process,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: server_monitoring
+#: field:server.monitor.class.instance.count,measure_id:0
+#: field:server.monitor.model.row.count,measure_id:0
+#: field:server.monitor.model.table.activity.read,measure_id:0
+#: field:server.monitor.model.table.activity.update,measure_id:0
+#: field:server.monitor.model.table.size,measure_id:0
+msgid "Measure"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,memory:0
+msgid "Memory"
+msgstr ""
+
+#. module: server_monitoring
+#: help:server.monitor.process,memory:0
+msgid "Memory consumed by the current server process"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,method:0
+msgid "Method"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,model:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_nb_row_ids:0
+msgid "Model row counts"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_activity_read_ids:0
+msgid "Model table read activity"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_size_ids:0
+msgid "Model table size"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.database,table_activity_update_ids:0
+msgid "Model table update activity"
+msgstr ""
+
+#. module: server_monitoring
+#: field:base.config.settings,monitor_rpc_calls:0
+msgid "Monitor RPC calls"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Nb rows"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "PID"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,pid:0
+msgid "Process ID"
+msgstr ""
+
+#. module: server_monitoring
+#: model:ir.actions.act_window,name:server_monitoring.server_monitor_process_info
+#: model:ir.ui.menu,name:server_monitoring.server_monitor_process_menu
+msgid "Process Info"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,status:0
+msgid "RPC status"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.row.count,count:0
+msgid "Row count"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "Search Server Monitor Process"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+msgid "Search Server Monitor Table Activity read"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+msgid "Search Server Monitor Table Activity updates"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "Search Server Monitor Table Row Count"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,seq_scan:0
+msgid "Seq scans"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+#: view:server.monitor.database:server_monitoring.server_monitor_database_tree_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "Server Monitor"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_tree_view
+msgid "Server Monitor DB Table Row Count"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_tree_view
+msgid "Server Monitor DB Table activity"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_tree_view
+msgid "Server Monitor DB Table size"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_tree_view
+#: view:server.monitor.process:server_monitoring.server_monitor_process_tree_view
+msgid "Server Monitor Process"
+msgstr ""
+
+#. module: server_monitoring
+#: view:base.config.settings:server_monitoring.view_general_configuration_server_monitoring
+#: model:ir.ui.menu,name:server_monitoring.server_monitoring
+msgid "Server Monitoring"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,sessionid:0
+msgid "Session ID"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.size,hsize:0
+msgid "Size"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.size,size:0
+msgid "Size (bytes)"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.row.count,name:0
+#: field:server.monitor.model.table.activity.read,name:0
+#: field:server.monitor.model.table.activity.update,name:0
+#: field:server.monitor.model.table.size,name:0
+msgid "Table name"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table reads"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table size"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.database:server_monitoring.server_monitor_database_form_view
+msgid "Table updates"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,thread:0
+msgid "Thread ID"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.database,name:0
+#: field:server.monitor.model.row.count,timestamp:0
+#: field:server.monitor.model.table.activity.read,timestamp:0
+#: field:server.monitor.model.table.activity.update,timestamp:0
+#: field:server.monitor.model.table.size,timestamp:0
+#: field:server.monitor.process,name:0
+msgid "Timestamp"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,lines_read_total:0
+msgid "Tot lines read"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.read,total_reads:0
+msgid "Total reads"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.model.table.activity.update,num_update:0
+msgid "Updates"
+msgstr ""
+
+#. module: server_monitoring
+#: field:server.monitor.process,uid:0
+msgid "User"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_form_view
+msgid "call information"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "date"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "method"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
+msgid "model"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "name"
+msgstr ""
+
+#. module: server_monitoring
+#: view:server.monitor.model.row.count:server_monitoring.server_monitor_model_row_count_search_view
+#: view:server.monitor.model.table.activity.read:server_monitoring.server_monitor_model_table_activity_read_search_view
+#: view:server.monitor.model.table.activity.update:server_monitoring.server_monitor_model_table_activity_update_search_view
+#: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
+msgid "timestamp"
+msgstr ""

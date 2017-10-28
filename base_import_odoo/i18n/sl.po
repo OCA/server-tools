@@ -1,0 +1,366 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_import_odoo
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-26 03:03+0000\n"
+"PO-Revision-Date: 2017-10-26 03:03+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: base_import_odoo
+#: model:ir.model,name:base_import_odoo.model_import_odoo_database_field
+msgid "A field mapping for records in the remote database"
+msgstr "Mapiranje polj za zapise v oddaljenih podatkovnih bazah"
+
+#. module: base_import_odoo
+#: model:ir.model,name:base_import_odoo.model_import_odoo_database_model
+msgid "A model to import from a remote database"
+msgstr "Model za uvoz iz oddaljene podatkovne baze"
+
+#. module: base_import_odoo
+#: model:ir.model,name:base_import_odoo.model_import_odoo_database
+msgid "An Odoo database to import"
+msgstr "Odoo podatkovna baza za uvoz"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database.field,mapping_type:0
+msgid "Based on equal fields"
+msgstr "Glede na enaka polja"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database.field,mapping_type:0
+msgid "By reference"
+msgstr "Po sklicu"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,create_uid:0
+#: field:import.odoo.database.field,create_uid:0
+#: field:import.odoo.database.model,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,create_date:0
+#: field:import.odoo.database.field,create_date:0
+#: field:import.odoo.database.model,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,cronjob_running:0
+msgid "Cronjob running"
+msgstr "Cronjob v teku"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,database:0
+#: field:import.odoo.database.field,database_id:0
+#: field:import.odoo.database.model,database_id:0
+msgid "Database"
+msgstr "Podatkovna baza"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,display_name:0
+#: field:import.odoo.database.field,display_name:0
+#: field:import.odoo.database.model,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.model,domain:0
+msgid "Domain"
+msgstr "Domena"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,duplicates:0
+msgid "Duplicate handling"
+msgstr ""
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,field_ids:0
+msgid "Field"
+msgstr "Polje"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,import_field_mappings:0
+msgid "Field mappings"
+msgstr "Mapiranja polj"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database.field,mapping_type:0
+msgid "Fixed"
+msgstr "Fiksni"
+
+#. module: base_import_odoo
+#: field:ir.model.data,import_database_id:0
+msgid "From remote database"
+msgstr "Iz oddaljene podatkovne baze"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,id:0 field:import.odoo.database.field,id:0
+#: field:import.odoo.database.model,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,id_field_id:0
+msgid "ID field"
+msgstr "ID polja"
+
+#. module: base_import_odoo
+#: help:import.odoo.database.field,field_ids:0
+msgid "If set, the mapping is only effective when setting said field"
+msgstr ""
+"Če je nastavljeno, je mapiranje efektivno le ob nastavitvi danega polja"
+
+#. module: base_import_odoo
+#: help:import.odoo.database.field,local_id:0
+msgid ""
+"If you leave this empty, a new record will be created in the local database "
+"when this field is set on the remote database"
+msgstr ""
+"Če pustite prazno, bo kadar je v oddaljeni podatkovni bazi to polje "
+"določeno, v lokalni bazi ustvarjen nov zapis."
+
+#. module: base_import_odoo
+#: help:import.odoo.database.field,remote_id:0
+msgid ""
+"If you leave this empty, every (set) field value will be mapped to the local"
+" ID"
+msgstr ""
+"Če pustite prazno, bo vsaka (določena) vrednost polja mapirana v lokalni ID"
+
+#. module: base_import_odoo
+#: model:ir.actions.act_window,name:base_import_odoo.action_import_odoo_database
+#: model:ir.ui.menu,name:base_import_odoo.menu_import_odoo_database
+msgid "Import configurations"
+msgstr "Nastavitve uvoza"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,cronjob_id:0
+msgid "Import job"
+msgstr "Uvozno opravilo"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,import_line_ids:0
+msgid "Import models"
+msgstr "Uvozni modeli"
+
+#. module: base_import_odoo
+#: view:website:base_import_odoo.view_import_odoo_database_qweb
+msgid "Import progress"
+msgstr "Napredovanje uvoza"
+
+#. module: base_import_odoo
+#: view:website:base_import_odoo.view_import_odoo_database_qweb
+msgid "Import results"
+msgstr ""
+
+#. module: base_import_odoo
+#: field:import.odoo.database,__last_update:0
+#: field:import.odoo.database.field,__last_update:0
+#: field:import.odoo.database.model,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,write_uid:0
+#: field:import.odoo.database.field,write_uid:0
+#: field:import.odoo.database.model,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnjič posodobil"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,write_date:0
+#: field:import.odoo.database.field,write_date:0
+#: field:import.odoo.database.model,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,local_id:0
+msgid "Local ID"
+msgstr "Lokalni ID"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,model:0
+#: field:import.odoo.database.field,model_id:0
+#: field:import.odoo.database.model,model_id:0
+msgid "Model"
+msgstr "Model"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,model_field_id:0
+msgid "Model field"
+msgstr "Polje modela"
+
+#. module: base_import_odoo
+#: help:import.odoo.database.model,domain:0
+msgid "Optional filter to import only a subset"
+msgstr "Opcijski filter za uvoz dela podatkov"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database,duplicates:0
+msgid "Overwrite empty fields"
+msgstr ""
+
+#. module: base_import_odoo
+#: selection:import.odoo.database,duplicates:0
+msgid "Overwrite existing"
+msgstr ""
+
+#. module: base_import_odoo
+#: field:import.odoo.database,password:0
+msgid "Password"
+msgstr "Geslo"
+
+#. module: base_import_odoo
+#: view:import.odoo.database:base_import_odoo.view_import_odoo_database_form
+msgid "Refresh"
+msgstr "Osveži"
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,remote_id:0
+msgid "Remote ID"
+msgstr "Oddaljeni ID"
+
+#. module: base_import_odoo
+#: model:ir.ui.menu,name:base_import_odoo.menu_main
+msgid "Remote Odoo import"
+msgstr "Uvoz oddaljenega Odoo"
+
+#. module: base_import_odoo
+#: field:ir.model.data,import_database_record_id:0
+msgid "Remote database ID"
+msgstr "ID oddaljene podatkovne baze"
+
+#. module: base_import_odoo
+#: view:import.odoo.database:base_import_odoo.view_import_odoo_database_form
+msgid "Run import"
+msgstr "Zaženi uvoz"
+
+#. module: base_import_odoo
+#: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
+msgid ""
+"Select fields for which to generate unique values during import. You'll need"
+" this for res.users#login for example."
+msgstr ""
+"Izberi polja, za katere se ustvari unikatne vrednosti med uvozom. To je "
+"potrebno npr. za res.users#login."
+
+#. module: base_import_odoo
+#: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
+msgid ""
+"Select fields which must be equal to treat a pair of remote and local "
+"records of this model as being equal."
+msgstr ""
+"Izberi polja, ki morajo biti enaka za obravnavo para oddaljenih in lokalnih "
+"podatkov modela kot enaka."
+
+#. module: base_import_odoo
+#: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
+msgid ""
+"Select the field that stores the model name and the one that stores the "
+"linked ID. The IDs for previously imported records will be mapped to the "
+"local ID, for unknown models or IDs, the fields are set to NULL."
+msgstr ""
+"Izberi polje, ki shranjuje naziv modela in polje, ki shrani povezani ID. ID "
+"prej uvoženih zapisov bo mapiran na lokalni ID, za neznane modele in ID-je "
+"se polja nastavi kot NULL."
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,sequence:0
+#: field:import.odoo.database.model,sequence:0
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database,duplicates:0
+msgid "Skip existing"
+msgstr ""
+
+#. module: base_import_odoo
+#: field:import.odoo.database,status_data:0
+msgid "Status"
+msgstr "Status"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,status_html:0
+msgid "Status html"
+msgstr "Status html"
+
+#. module: base_import_odoo
+#: view:website:base_import_odoo.view_import_odoo_database_qweb
+msgid ""
+"The following remote ids don't have a mapping but have to be imported "
+"anyways due to not null constraints."
+msgstr ""
+
+#. module: base_import_odoo
+#: view:website:base_import_odoo.view_import_odoo_database_qweb
+msgid ""
+"To fix this, create mappings for the remote ids listed, or if this is not "
+"feasible, map the whole model. You might also have a too specific domain on "
+"your import model definition."
+msgstr ""
+
+#. module: base_import_odoo
+#: field:import.odoo.database.field,mapping_type:0
+msgid "Type"
+msgstr "Tip"
+
+#. module: base_import_odoo
+#: code:addons/base_import_odoo/models/import_odoo_database.py:558
+#, python-format
+msgid "Unhandled field type %s"
+msgstr "Neobravnavani tip polja %s"
+
+#. module: base_import_odoo
+#: selection:import.odoo.database.field,mapping_type:0
+msgid "Unique"
+msgstr "Unikatno"
+
+#. module: base_import_odoo
+#: code:addons/base_import_odoo/models/import_odoo_database.py:355
+#, python-format
+msgid "Unknown mapping"
+msgstr "Neznano mapiranje"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,url:0
+msgid "Url"
+msgstr "URL"
+
+#. module: base_import_odoo
+#: field:import.odoo.database,user:0
+msgid "User"
+msgstr "Uporabnik"
+
+#. module: base_import_odoo
+#: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
+msgid ""
+"When a record of this model is imported, it will be replaced with the record"
+" you select as local ID. If you select a field and/or a remote ID, this "
+"replacement is only effective when setting the specified field and/or when "
+"the remote value is the specified record."
+msgstr ""
+"Ob uvozu zapisa tega modela, bo le-ta zamenjan z zapisom, ki ga boste "
+"izbrali kot lokalen ID. Če izberete polje in/ali oddaljeni ID, bo ta "
+"zamenjava izvedena le, kadar se nastavlja specifično polje in/ali ko je "
+"oddaljena vrednost enaka specificiranemu zapisu."
+
+#. module: base_import_odoo
+#: view:website:base_import_odoo.view_import_odoo_database_qweb
+msgid "done"
+msgstr "opravljeno"

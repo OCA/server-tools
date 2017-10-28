@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:45+0000\n"
-"PO-Revision-Date: 2017-08-19 09:45+0000\n"
+"POT-Creation-Date: 2017-10-26 03:04+0000\n"
+"PO-Revision-Date: 2017-10-26 03:04+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,11 @@ msgstr ""
 #. module: base_user_role
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
+msgstr ""
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_groups
+msgid "Access Groups"
 msgstr ""
 
 #. module: base_user_role
@@ -119,7 +124,7 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_user_role
 #: field:res.users.role,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: base_user_role
 #: view:res.users.role:base_user_role.view_res_users_role_form

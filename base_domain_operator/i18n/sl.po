@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_domain_operator
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-13 00:54+0000\n"
+"PO-Revision-Date: 2017-10-13 00:54+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: base_domain_operator
+#: field:base.domain.operator,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: base_domain_operator
+#: field:base.domain.operator,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: base_domain_operator
+#: model:ir.model,name:base_domain_operator.model_base_domain_operator
+msgid "Implement custom domain operators"
+msgstr "Implementiraj prilagojene domenske operatorje"
+
+#. module: base_domain_operator
+#: view:res.partner:base_domain_operator.view_res_partner_filter
+msgid "Is parent of"
+msgstr "Je nadrejeni"
+
+#. module: base_domain_operator
+#: field:base.domain.operator,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"

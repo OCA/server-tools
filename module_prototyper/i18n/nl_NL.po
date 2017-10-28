@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"POT-Creation-Date: 2017-10-26 03:04+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
@@ -464,7 +464,7 @@ msgstr ""
 #. module: module_prototyper
 #: field:module_prototyper.module.export,state:0
 msgid "State"
-msgstr ""
+msgstr "Provincie"
 
 #. module: module_prototyper
 #: field:module_prototyper,summary:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:44+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-10-26 03:03+0000\n"
+"PO-Revision-Date: 2017-09-22 21:18+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr ""
 #: field:custom.info.property,name:0 field:custom.info.template,name:0
 #: field:custom.info.value,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: base_custom_info
 #: field:custom.info.template,info_ids:0

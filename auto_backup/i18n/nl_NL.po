@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:44+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-10-26 03:03+0000\n"
+"PO-Revision-Date: 2017-09-22 22:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -239,7 +239,7 @@ msgstr ""
 #. module: auto_backup
 #: field:db.backup,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: auto_backup
 #: help:db.backup,sftp_private_key:0
