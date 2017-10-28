@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 00:47+0000\n"
-"PO-Revision-Date: 2017-08-31 00:47+0000\n"
+"POT-Creation-Date: 2017-10-21 22:54+0000\n"
+"PO-Revision-Date: 2017-10-21 22:54+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Laatst bijgewerkt op"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_name
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_role_id

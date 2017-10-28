@@ -3,21 +3,20 @@
 # * auditlog
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Jan Prokop <jprokop@creativehome.sk>, 2017
+# Hans Henrik Gabelgaard <hhg@gabelgaard.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-21 22:53+0000\n"
 "PO-Revision-Date: 2017-10-21 22:53+0000\n"
-"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
-"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
+"Last-Translator: Hans Henrik Gabelgaard <hhg@gabelgaard.org>, 2017\n"
+"Language-Team: Danish (Denmark) (https://www.transifex.com/oca/teams/23907/da_DK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: da_DK\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_action_id
@@ -72,7 +71,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_create_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_create_uid
 msgid "Created by"
-msgstr "Vytvoril"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_create_date
@@ -84,17 +83,17 @@ msgstr "Vytvoril"
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 msgid "Created on"
-msgstr "Vytvorené"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Date"
-msgstr "Dátum"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_description
 msgid "Description"
-msgstr "Popis"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_display_name
@@ -102,7 +101,7 @@ msgstr "Popis"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_display_name
 msgid "Display Name"
-msgstr "Zobraziť meno"
+msgstr ""
 
 #. module: auditlog
 #: selection:auditlog.rule,state:0
@@ -144,7 +143,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Zoskupiť podľa..."
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
@@ -176,7 +175,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum___last_update
@@ -186,7 +185,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line___last_update
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule___last_update
 msgid "Last Modified on"
-msgstr "Posledná modifikácia"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_write_uid
@@ -196,7 +195,7 @@ msgstr "Posledná modifikácia"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_write_uid
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_write_uid
 msgid "Last Updated by"
-msgstr "Naposledy upravoval"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_write_date
@@ -206,7 +205,7 @@ msgstr "Naposledy upravoval"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_write_date
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_write_date
 msgid "Last Updated on"
-msgstr "Naposledy upravované"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_log_id
@@ -247,7 +246,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_tree
 msgid "Logs"
-msgstr "Logy"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_method
@@ -259,14 +258,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_model_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session_display_name
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_name
 msgid "Name"
-msgstr "Meno"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_new_value
@@ -372,7 +371,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_state
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "State"
-msgstr "Stav"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
@@ -401,7 +400,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_log_type
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_log_type
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form

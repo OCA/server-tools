@@ -3,20 +3,19 @@
 # * base_custom_info
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Peter Hageman <hageman.p@gmail.com>, 2017
+# Hans Henrik Gabelgaard <hhg@gabelgaard.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-21 22:53+0000\n"
 "PO-Revision-Date: 2017-10-21 22:53+0000\n"
-"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
+"Last-Translator: Hans Henrik Gabelgaard <hhg@gabelgaard.org>, 2017\n"
+"Language-Team: Danish (Denmark) (https://www.transifex.com/oca/teams/23907/da_DK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl_NL\n"
+"Language: da_DK\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_custom_info
@@ -133,7 +132,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_uid
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_create_date
@@ -142,7 +141,7 @@ msgstr "Aangemaakt door"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_create_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_create_date
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr ""
 
 #. module: base_custom_info
 #: model:ir.ui.menu,name:base_custom_info.menu_base_custom_info
@@ -249,7 +248,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_display_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_display_name
 msgid "Display Name"
-msgstr "Weergavenaam"
+msgstr ""
 
 #. module: base_custom_info
 #: model:res.groups,name:base_custom_info.group_partner
@@ -323,7 +322,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_search
 #: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
 msgid "Group By"
-msgstr "Groeperen op"
+msgstr ""
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_glasses
@@ -339,7 +338,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_id
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_property.py:109
@@ -366,7 +365,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template___last_update
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value___last_update
 msgid "Last Modified on"
-msgstr "Laatst gewijzigd op"
+msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_write_uid
@@ -375,7 +374,7 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_uid
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_uid
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_category_write_date
@@ -384,7 +383,7 @@ msgstr "Laatst bijgewerkt door"
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_write_date
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: base_custom_info
 #: code:addons/base_custom_info/models/custom_info_value.py:151
@@ -418,7 +417,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_model_id
 #: model:ir.ui.view,arch_db:base_custom_info.custom_info_template_search
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: base_custom_info
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_property_model
@@ -434,7 +433,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_template_name
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_name
 msgid "Name"
-msgstr "Naam"
+msgstr ""
 
 #. module: base_custom_info
 #: model:custom.info.property,name:base_custom_info.prop_teacher
@@ -553,7 +552,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_category_sequence
 #: model:ir.model.fields,field_description:base_custom_info.field_custom_info_value_property_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Rækkefølge"
 
 #. module: base_custom_info
 #: model:custom.info.option,name:base_custom_info.opt_shooter
