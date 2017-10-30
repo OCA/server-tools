@@ -38,13 +38,17 @@ class PasswordSecurityHome(AuthSignupHome):
         response = super(PasswordSecurityHome, self).web_login(*args, **kw)
         if not request.httprequest.method == 'POST':
             return response
+
+        old_uid = request.uid
         uid = request.session.authenticate(
             request.session.db,
             request.params['login'],
             request.params['password']
         )
         if not uid:
+            request.uid = old_uid
             return response
+
         users_obj = request.env['res.users'].sudo()
         user_id = users_obj.browse(request.uid)
         if not user_id._password_has_expired():
@@ -92,3 +96,4 @@ class PasswordSecurityHome(AuthSignupHome):
         return super(PasswordSecurityHome, self).web_auth_reset_password(
             *args, **kw
         )
+
