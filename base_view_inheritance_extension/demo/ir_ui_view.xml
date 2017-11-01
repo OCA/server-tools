@@ -18,5 +18,15 @@
                 <xpath expr="//field[@name='child_ids']" position="move" target="//page[@name='my_new_page']" />
             </field>
         </record>
-    </data>
+        <record id="view_partner_form_demo" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="user_ids" eval="[(4, ref('base.user_demo'))]" />
+            <field name="arch" type="xml">
+                <sheet position="inside">
+                    <div>I am a private form for the demo user</div>
+                </sheet>
+            </field>
+        </record>
+     </data>
 </openerp>

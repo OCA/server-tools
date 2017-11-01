@@ -111,3 +111,17 @@ class TestBaseViewInheritanceExtension(TransactionCase):
             button_node.attrib['states'],
             'draft,valid,paid'
         )
+
+    def test_user_ids(self):
+        view_id = self.env.ref('base.view_partner_form').id
+        demo_marker = 'I am a private form for the demo user'
+        fields_view_get = self.env['res.partner'].fields_view_get(
+            view_id=view_id
+        )
+        self.assertNotIn(demo_marker, fields_view_get['arch'])
+        fields_view_get = self.env['res.partner'].sudo(
+            self.env.ref('base.user_demo')
+        ).fields_view_get(
+            view_id=view_id
+        )
+        self.assertIn(demo_marker, fields_view_get['arch'])
