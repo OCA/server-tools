@@ -10,7 +10,7 @@
     'website': "http://www.osiell.com",
     'category': "Tools",
     'depends': [
-        'base',
+        'report',
     ],
     'data': [
         'security/ir.model.access.csv',

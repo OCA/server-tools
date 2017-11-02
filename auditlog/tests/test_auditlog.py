@@ -91,6 +91,17 @@ class TestAuditlogFull(TransactionCase, TestAuditlog):
             'log_type': 'full',
         })
 
+    def test_Report(self):
+        self.test_LogCreation()
+        report = self.env['report'].get_html(
+            self.env['auditlog.log'].search([]),
+            'auditlog.view_auditlog_log_qweb'
+        )
+        self.assertIn(
+            self.env.ref('base.model_res_groups').name.encode('utf8'),
+            report,
+        )
+
     def tearDown(self):
         self.groups_rule.unlink()
         super(TestAuditlogFull, self).tearDown()
