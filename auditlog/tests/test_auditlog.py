@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests.common import TransactionCase
@@ -8,6 +7,9 @@ class TestAuditlog(object):
 
     def test_LogCreation(self):
         """First test, caching some data."""
+
+        self.groups_rule.subscribe()
+
         auditlog_log = self.env['auditlog.log']
         group = self.env['res.groups'].create({
             'name': 'testgroup1',
@@ -32,6 +34,9 @@ class TestAuditlog(object):
 
     def test_LogCreation2(self):
         """Second test, using cached data of the first one."""
+
+        self.groups_rule.subscribe()
+
         auditlog_log = self.env['auditlog.log']
         testgroup2 = self.env['res.groups'].create({
             'name': 'testgroup2',
@@ -48,6 +53,8 @@ class TestAuditlog(object):
         of a 'write' log with a deleted resource (so with no text
         representation).
         """
+
+        self.groups_rule.subscribe()
         auditlog_log = self.env['auditlog.log']
         testgroup3 = testgroup3 = self.env['res.groups'].create({
             'name': 'testgroup3',
@@ -86,7 +93,6 @@ class TestAuditlogFull(TransactionCase, TestAuditlog):
             'log_create': True,
             'log_write': True,
             'log_unlink': True,
-            'state': 'subscribed',
             'log_type': 'full',
         })
 
@@ -107,7 +113,6 @@ class TestAuditlogFast(TransactionCase, TestAuditlog):
             'log_create': True,
             'log_write': True,
             'log_unlink': True,
-            'state': 'subscribed',
             'log_type': 'fast',
         })
 
