@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, modules, _, sql_db
+from odoo import models, fields, api, modules, _
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -45,42 +44,42 @@ class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
-    name = fields.Char(u"Name", size=32, required=True)
+    name = fields.Char("Name", size=32, required=True)
     model_id = fields.Many2one(
-        'ir.model', u"Model", required=True,
-        help=u"Select model for which you want to generate log.")
+        'ir.model', "Model", required=True,
+        help="Select model for which you want to generate log.")
     user_ids = fields.Many2many(
         'res.users',
         'audittail_rules_users',
         'user_id', 'rule_id',
-        string=u"Users",
-        help=u"if  User is not added then it will applicable for all users")
+        string="Users",
+        help="if  User is not added then it will applicable for all users")
     log_read = fields.Boolean(
-        u"Log Reads",
-        help=(u"Select this if you want to keep track of read/open on any "
-              u"record of the model of this rule"))
+        "Log Reads",
+        help=("Select this if you want to keep track of read/open on any "
+              "record of the model of this rule"))
     log_write = fields.Boolean(
-        u"Log Writes", default=True,
-        help=(u"Select this if you want to keep track of modification on any "
-              u"record of the model of this rule"))
+        "Log Writes", default=True,
+        help=("Select this if you want to keep track of modification on any "
+              "record of the model of this rule"))
     log_unlink = fields.Boolean(
-        u"Log Deletes", default=True,
-        help=(u"Select this if you want to keep track of deletion on any "
-              u"record of the model of this rule"))
+        "Log Deletes", default=True,
+        help=("Select this if you want to keep track of deletion on any "
+              "record of the model of this rule"))
     log_create = fields.Boolean(
-        u"Log Creates", default=True,
-        help=(u"Select this if you want to keep track of creation on any "
-              u"record of the model of this rule"))
+        "Log Creates", default=True,
+        help=("Select this if you want to keep track of creation on any "
+              "record of the model of this rule"))
     log_type = fields.Selection(
-        [('full', u"Full log"),
-         ('fast', u"Fast log"),
+        [('full', "Full log"),
+         ('fast', "Fast log"),
          ],
-        string=u"Type", required=True, default='full',
-        help=(u"Full log: make a diff between the data before and after "
-              u"the operation (log more info like computed fields which were "
-              u"updated, but it is slower)\n"
-              u"Fast log: only log the changes made through the create and "
-              u"write operations (less information, but it is faster)"))
+        string="Type", required=True, default='full',
+        help=("Full log: make a diff between the data before and after "
+              "the operation (log more info like computed fields which were "
+              "updated, but it is slower)\n"
+              "Fast log: only log the changes made through the create and "
+              "write operations (less information, but it is faster)"))
     # log_action = fields.Boolean(
     #     "Log Action",
     #     help=("Select this if you want to keep track of actions on the "
@@ -91,7 +90,7 @@ class AuditlogRule(models.Model):
     #           "record of the model of this rule"))
     state = fields.Selection(
         [('draft', "Draft"), ('subscribed', "Subscribed")],
-        string=u"State", required=True, default='draft')
+        string="State", required=True, default='draft')
     action_id = fields.Many2one(
         'ir.actions.act_window', string="Action")
 
@@ -169,16 +168,14 @@ class AuditlogRule(models.Model):
                     delattr(type(model_model), 'auditlog_ruled_%s' % method)
                     updated = True
         if updated:
-            modules.registry.RegistryManager.signal_registry_change(
-                self.env.cr.dbname)
+            modules.registry.Registry(self.env.cr.dbname).signal_changes()
 
     @api.model
     def create(self, vals):
         """Update the registry when a new rule is created."""
         new_record = super(AuditlogRule, self).create(vals)
         if new_record._register_hook():
-            modules.registry.RegistryManager.signal_registry_change(
-                self.env.cr.dbname)
+            modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return new_record
 
     @api.multi
@@ -186,8 +183,7 @@ class AuditlogRule(models.Model):
         """Update the registry when existing rules are updated."""
         super(AuditlogRule, self).write(vals)
         if self._register_hook():
-            modules.registry.RegistryManager.signal_registry_change(
-                self.env.cr.dbname)
+            modules.registry.Registry(self.env.cr.dbname).signal_changes()
         return True
 
     @api.multi
@@ -237,8 +233,8 @@ class AuditlogRule(models.Model):
         self.ensure_one()
         log_type = self.log_type
 
-        def read(self, *args, **kwargs):
-            result = read.origin(self, *args, **kwargs)
+        def read(self, fields=None, load='_classic_read', **kwargs):
+            result = read.origin(self, fields, load, **kwargs)
             # Sometimes the result is not a list but a dictionary
             # Also, we can not modify the current result as it will break calls
             result2 = result
@@ -246,34 +242,18 @@ class AuditlogRule(models.Model):
                 result2 = [result]
             read_values = dict((d['id'], d) for d in result2)
             # Old API
-            if args and isinstance(args[0], sql_db.Cursor):
-                cr, uid, ids = args[0], args[1], args[2]
-                if isinstance(ids, (int, long)):
-                    ids = [ids]
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if kwargs.get('context', {}).get('auditlog_disabled'):
-                    return result
-                env = api.Environment(cr, uid, {'auditlog_disabled': True})
-                rule_model = env['auditlog.rule']
-                rule_model.sudo().create_logs(
-                    env.uid, self._name, ids,
-                    'read', read_values, None, {'log_type': log_type})
-            # New API
-            else:
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if self.env.context.get('auditlog_disabled'):
-                    return result
-                self = self.with_context(auditlog_disabled=True)
-                rule_model = self.env['auditlog.rule']
-                rule_model.sudo().create_logs(
-                    self.env.uid, self._name, self.ids,
-                    'read', read_values, None, {'log_type': log_type})
+
+            # If the call came from auditlog itself, skip logging:
+            # avoid logs on `read` produced by auditlog during internal
+            # processing: read data of relevant records, 'ir.model',
+            # 'ir.model.fields'... (no interest in logging such operations)
+            if self.env.context.get('auditlog_disabled'):
+                return result
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env['auditlog.rule']
+            rule_model.sudo().create_logs(
+                self.env.uid, self._name, self.ids,
+                'read', read_values, None, {'log_type': log_type})
             return result
         return read
 
@@ -307,7 +287,7 @@ class AuditlogRule(models.Model):
             # afterwards as it could not represent the real state
             # of the data in the database
             vals2 = dict(vals)
-            old_vals2 = dict.fromkeys(vals2.keys(), False)
+            old_vals2 = dict.fromkeys(list(vals2.keys()), False)
             old_values = dict((id_, old_vals2) for id_ in self.ids)
             new_values = dict((id_, vals2) for id_ in self.ids)
             result = write_fast.origin(self, vals, **kwargs)
@@ -382,7 +362,9 @@ class AuditlogRule(models.Model):
                 self._create_log_line_on_create(log, diff.added(), new_values)
             elif method is 'read':
                 self._create_log_line_on_read(
-                    log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
+                    log,
+                    list(old_values.get(res_id, EMPTY_DICT).keys()), old_values
+                )
             elif method is 'write':
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values)
@@ -527,49 +509,30 @@ class AuditlogRule(models.Model):
         to view logs on that model.
         """
         act_window_model = self.env['ir.actions.act_window']
-        model_ir_values = self.env['ir.values']
         for rule in self:
             # Create a shortcut to view logs
             domain = "[('model_id', '=', %s), ('res_id', '=', active_id)]" % (
                 rule.model_id.id)
             vals = {
-                'name': _(u"View logs"),
+                'name': _("View logs"),
                 'res_model': 'auditlog.log',
                 'src_model': rule.model_id.model,
+                'binding_model_id': rule.model_id.id,
                 'domain': domain,
             }
             act_window = act_window_model.sudo().create(vals)
             rule.write({'state': 'subscribed', 'action_id': act_window.id})
-            keyword = 'client_action_relate'
-            value = 'ir.actions.act_window,%s' % act_window.id
-            model_ir_values.sudo().set_action(
-                'View_log_' + rule.model_id.model,
-                action_slot=keyword,
-                model=rule.model_id.model,
-                action=value)
-
         return True
 
     @api.multi
     def unsubscribe(self):
         """Unsubscribe Auditing Rule on model."""
-        act_window_model = self.env['ir.actions.act_window']
-        ir_values_model = self.env['ir.values']
         # Revert patched methods
         self._revert_methods()
         for rule in self:
             # Remove the shortcut to view logs
-            act_window = act_window_model.search(
-                [('name', '=', 'View Log'),
-                 ('res_model', '=', 'auditlog.log'),
-                 ('src_model', '=', rule.model_id.model)])
+            act_window = rule.action_id
             if act_window:
-                value = 'ir.actions.act_window,%s' % act_window.id
                 act_window.unlink()
-                ir_value = ir_values_model.search(
-                    [('model', '=', rule.model_id.model),
-                     ('value', '=', value)])
-                if ir_value:
-                    ir_value.unlink()
         self.write({'state': 'draft'})
         return True
