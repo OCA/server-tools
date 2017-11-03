@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
@@ -36,6 +35,6 @@ class AuditlogAutovacuum(models.TransientModel):
             nb_records = len(records)
             records.unlink()
             _logger.info(
-                u"AUTOVACUUM - %s '%s' records deleted",
+                "AUTOVACUUM - %s '%s' records deleted",
                 nb_records, data_model)
         return True
