@@ -10,20 +10,20 @@ from odoo.http import request
 
 class AuditlogHTTPRequest(models.Model):
     _name = 'auditlog.http.request'
-    _description = u"Auditlog - HTTP request log"
+    _description = "Auditlog - HTTP request log"
     _order = "create_date DESC"
 
     display_name = fields.Char(
-        u"Name", compute="_compute_display_name", store=True)
-    name = fields.Char(u"Path")
-    root_url = fields.Char(u"Root URL")
+        "Name", compute="_compute_display_name", store=True)
+    name = fields.Char("Path")
+    root_url = fields.Char("Root URL")
     user_id = fields.Many2one(
-        'res.users', string=u"User")
+        'res.users', string="User")
     http_session_id = fields.Many2one(
-        'auditlog.http.session', string=u"Session")
-    user_context = fields.Char(u"Context")
+        'auditlog.http.session', string="Session")
+    user_context = fields.Char("Context")
     log_ids = fields.One2many(
-        'auditlog.log', 'http_request_id', string=u"Logs")
+        'auditlog.log', 'http_request_id', string="Logs")
 
     @api.depends('create_date', 'name')
     def _compute_display_name(self):
@@ -31,7 +31,7 @@ class AuditlogHTTPRequest(models.Model):
             create_date = fields.Datetime.from_string(httprequest.create_date)
             tz_create_date = fields.Datetime.context_timestamp(
                 httprequest, create_date)
-            httprequest.display_name = u"%s (%s)" % (
+            httprequest.display_name = "%s (%s)" % (
                 httprequest.name or '?',
                 fields.Datetime.to_string(tz_create_date))
 
