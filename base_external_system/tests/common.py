@@ -5,10 +5,10 @@
 from contextlib import contextmanager
 from mock import MagicMock
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import HttpCase
 
 
-class Common(TransactionCase):
+class Common(HttpCase):
 
     @contextmanager
     def _mock_method(self, method_name, method_obj=None):
