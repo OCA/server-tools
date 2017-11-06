@@ -3,7 +3,7 @@
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, tools, SUPERUSER_ID
+from openerp import models, api, tools
 
 
 DELAY_KEY = 'inactive_session_time_out_delay'
@@ -14,16 +14,14 @@ class IrConfigParameter(models.Model):
     _inherit = 'ir.config_parameter'
 
     @tools.ormcache(skiparg=0)
-    def get_session_parameters(self, db):
-        param_model = self.pool['ir.config_parameter']
+    def get_session_parameters(self, db, uid):
         cr = self.pool.cursor()
+        ICP = api.Environment(cr, uid, {})['ir.config_parameter']
         delay = False
         urls = []
         try:
-            delay = int(param_model.get_param(
-                cr, SUPERUSER_ID, DELAY_KEY, 7200))
-            urls = param_model.get_param(
-                cr, SUPERUSER_ID, IGNORED_PATH_KEY, '').split(',')
+            delay = int(ICP.get_param(DELAY_KEY, 7200))
+            urls = ICP.get_param(IGNORED_PATH_KEY, '').split(',')
         finally:
             cr.close()
         return delay, urls

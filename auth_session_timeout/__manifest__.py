@@ -14,7 +14,7 @@
     'website': "http://acsone.eu",
 
     'category': 'Tools',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'license': 'AGPL-3',
 
     'depends': [
@@ -24,5 +24,5 @@
     'data': [
         'data/ir_config_parameter_data.xml'
     ],
-    'installable': False,
+    'installable': True,
 }
