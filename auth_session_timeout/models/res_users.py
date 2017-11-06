@@ -5,14 +5,11 @@
 
 import logging
 
-from odoo import models
-
-from odoo.http import root
-from odoo.http import request
-
-from os import utime
 from os.path import getmtime
 from time import time
+from os import utime
+
+from odoo import api, http, models
 
 _logger = logging.getLogger(__name__)
 
@@ -20,23 +17,27 @@ _logger = logging.getLogger(__name__)
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    def _auth_timeout_ignoredurls_get(self):
+    @api.model_cr_context
+    def _auth_timeout_get_ignored_urls(self):
         """Pluggable method for calculating ignored urls
         Defaults to stored config param
         """
-        param_model = self.pool['ir.config_parameter']
-        return param_model._auth_timeout_get_parameter_ignoredurls()
+        params = self.env['ir.config_parameter']
+        return params._auth_timeout_get_parameter_ignored_urls()
 
+    @api.model_cr_context
     def _auth_timeout_deadline_calculate(self):
         """Pluggable method for calculating timeout deadline
-        Defaults to current time minus delay using delay stored as config param
+        Defaults to current time minus delay using delay stored as config
+        param.
         """
-        param_model = self.pool['ir.config_parameter']
-        delay = param_model._auth_timeout_get_parameter_delay()
-        if delay is False or delay <= 0:
+        params = self.env['ir.config_parameter']
+        delay = params._auth_timeout_get_parameter_delay()
+        if delay <= 0:
             return False
         return time() - delay
 
+    @api.model_cr_context
     def _auth_timeout_session_terminate(self, session):
         """Pluggable method for terminating a timed-out session
 
@@ -52,11 +53,14 @@ class ResUsers(models.Model):
             session.logout(keep_db=True)
         return True
 
+    @api.model_cr_context
     def _auth_timeout_check(self):
-        if not request:
+        """Perform session timeout validation and expire if needed."""
+
+        if not http.request:
             return
 
-        session = request.session
+        session = http.request.session
 
         # Calculate deadline
         deadline = self._auth_timeout_deadline_calculate()
@@ -64,15 +68,15 @@ class ResUsers(models.Model):
         # Check if past deadline
         expired = False
         if deadline is not False:
-            path = root.session_store.get_session_filename(session.sid)
+            path = http.root.session_store.get_session_filename(session.sid)
             try:
                 expired = getmtime(path) < deadline
             except OSError as e:
-                _logger.warning(
-                    'Exception reading session file modified time: %s'
-                    % e
+                _logger.exception(
+                    'Exception reading session file modified time.',
                 )
-                pass
+                # Force expire the session. Will be resolved with new session.
+                expired = True
 
         # Try to terminate the session
         terminated = False
@@ -84,27 +88,22 @@ class ResUsers(models.Model):
             return
 
         # Else, conditionally update session modified and access times
-        ignoredurls = self._auth_timeout_ignoredurls_get()
+        ignored_urls = self._auth_timeout_get_ignored_urls()
 
-        if request.httprequest.path not in ignoredurls:
+        if http.request.http.request.path not in ignored_urls:
             if 'path' not in locals():
-                path = root.session_store.get_session_filename(session.sid)
+                path = http.root.session_store.get_session_filename(
+                    session.sid,
+                )
             try:
                 utime(path, None)
             except OSError as e:
-                _logger.warning(
-                    'Exception updating session file access/modified times: %s'
-                    % e
+                _logger.exception(
+                    'Exception updating session file access/modified times.',
                 )
-                pass
 
-        return
-
-    def _check_session_validity(self, db, uid, passwd):
-        """Adaptor method for backward compatibility"""
-        return self._auth_timeout_check()
-
-    def check(self, db, uid, passwd):
-        res = super(ResUsers, self).check(db, uid, passwd)
-        self._check_session_validity(db, uid, passwd)
+    @classmethod
+    def check(cls, *args, **kwargs):
+        res = super(ResUsers, cls).check(*args, **kwargs)
+        http.request.env.user._auth_timeout_check()
         return res
