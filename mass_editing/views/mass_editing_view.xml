@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_mass_object_form">
+        <field name="name">mass.object.form</field>
+        <field name="model">mass.object</field>
+        <field name="arch" type="xml">
+            <form string="Object">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" required="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="model_id" required="1"
+                                       attrs="{'readonly':[('ref_ir_act_window_id','!=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="model_list" invisible="1"/>
+                            </group>
+                        </group>
+                    </div>
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <field name="ref_ir_act_window_id" invisible="1"/>
+                        <button name="create_action"
+                            type="object"
+                            string="Add Sidebar Button"
+                            class="oe_inline oe_stat_button"
+                            attrs="{'invisible':[('ref_ir_act_window_id','!=',False)]}"
+                            icon="fa-plus"
+                            help="Display a button in the sidebar of related documents to open a composition wizard"/>
+                        <button name="unlink_action"
+                            type="object"
+                            string="Remove Sidebar Button"
+                            class="oe_stat_button" icon="fa-minus"
+                            attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}"
+                            help="Remove the contextual action to use this template on related documents"
+                            widget="statinfo"/>
+                    </div>
+                    <notebook colspan="4">
+                        <page string="Fields">
+                            <field name="field_ids" colspan="4" nolabel="1"
+                            domain="[('ttype', 'not in', ['refenrence', 'function', 'monetary']), ('model_id', 'in', model_list)]"/>
+                        </page>
+                        <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
+                            <group colspan="2" col="2">
+                                <field name="ref_ir_act_window_id"/>
+                                <field name="ref_ir_value_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_mass_object_tree">
+        <field name="name">mass.object.tree</field>
+        <field name="model">mass.object</field>
+        <field name="arch" type="xml">
+            <tree string="Object">
+                <field name="name"/>
+                <field name="model_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_mass_object_form">
+        <field name="name">Mass Editing</field>
+        <field name="res_model">mass.object</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_mass_object_tree"/>
+    </record>
+
+    <record id="action_mass_object_form_view1" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_mass_object_tree"/>
+        <field name="act_window_id" ref="action_mass_object_form"/>
+    </record>
+    <record id="action_mass_object_form_view2" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_mass_object_form"/>
+        <field name="act_window_id" ref="action_mass_object_form"/>
+    </record>
+
+    <menuitem id="menu_mass_editing" name="Mass Editing"
+        parent="base.menu_administration" sequence="6"/>
+
+    <menuitem id="menu_mass_object_view" action="action_mass_object_form"
+        parent="menu_mass_editing"/>
+
+</odoo>
