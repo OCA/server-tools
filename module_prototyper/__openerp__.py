@@ -33,7 +33,7 @@
         'admin_technical_features',
     ],
     'external_dependencies': {
-        'python': [],
+        'python': ['xoutil>=1.7.0,<1.8',],
     },
     'data': [
         'wizard/module_prototyper_module_export_view.xml',
