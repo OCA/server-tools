@@ -142,7 +142,7 @@ class BaseException(models.AbstractModel):
             return []
         exception_obj = self.env['exception.rule']
         all_exceptions = exception_obj.sudo().search(
-            [('rule_group', '=', self[0].rule_group)])
+            [('rule_group', '=', self[0].rule_group), ('active', '=', True)])
         model_exceptions = all_exceptions.filtered(
             lambda ex: ex.model == self._name)
         sub_exceptions = all_exceptions.filtered(
