@@ -1,0 +1,14 @@
+---Fields in module 'mass_editing'---
+mass_editing / mass.object              / model_ids (many2many)         : DEL relation: ir.model
+mass_editing / mass.object              / model_list (char)             : NEW
+# NOTHING TO DO
+
+mass_editing / mass.object              / ref_ir_act_window (many2one)  : DEL relation: ir.actions.act_window
+mass_editing / mass.object              / ref_ir_act_window_id (many2one): NEW relation: ir.actions.act_window
+# Done: pre-migration: Renamed fields.
+
+mass_editing / mass.object              / ref_ir_value (many2one)       : DEL relation: ir.values
+mass_editing / mass.object              / ref_ir_value_id (many2one)    : NEW relation: ir.values
+# Done: pre-migration: Renamed fields.
+
+---XML records in module 'mass_editing'---
