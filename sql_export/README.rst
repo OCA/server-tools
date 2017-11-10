@@ -5,14 +5,15 @@ SQL Export
 ==========
 
 Allow to export data in csv files FROM sql requests.
-There are some restrictions in the sql sql request, you can only read datas.
+There are some restrictions in the sql query, you can only read datas.
 No update, deletion or creation are possible.
 A new menu named Export is created.
 
 Known issues / Roadmap
 ======================
 
-* Some words are prohibeted and can't be used is the query in anyways, even in a select query :
+* Some words are prohibeted and can't be used is the query in anyways, even in
+  a select query :
     * delete
     * drop
     * insert
@@ -28,6 +29,14 @@ See sql_request_abstract module to fix this issue.
   since variables features has been introduced. This can be fixed by
   overloading _prepare_request_check_execution() function.
 
+Usage
+=====
+
+Dashboards > Sql Export.
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+    :alt: Try me on Runbot
+    :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Bug Tracker
 ===========

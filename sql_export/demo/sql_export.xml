@@ -5,7 +5,7 @@ Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record id="sql_export_partner" model="sql.export">
         <field name="name">Export Partners (Demo Data)</field>
@@ -14,4 +14,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
     <function model="sql.export" name="button_validate_sql_expression" eval="([ref('sql_export.sql_export_partner')])"/>
 
-</data></openerp>
+</odoo>
