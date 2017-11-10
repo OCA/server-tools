@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
-
-
+<odoo>
     <record id="sql_export_view_form" model="ir.ui.view">
         <field name="name">Sql_export_form_view</field>
         <field name="model">sql.export</field>
         <field name="arch" type="xml">
             <form string="SQL export">
+                <header>
+                    <button name="button_validate_sql_expression" type="object" states="draft"
+                            string="Validate SQL Expression" class="oe_highlight"/>
+                    <button name="button_set_draft" type="object" states="sql_valid"
+                            string="Set to Draft" groups="sql_request_abstract.group_sql_request_manager"/>
+                    <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object" class="oe_highlight"
+                        icon="fa-arrow-right text-success"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
-                    <header>
-                        <button name="button_validate_sql_expression" type="object" states="draft"
-                                string="Validate SQL Expression" class="oe_highlight"/>
-                        <button name="button_set_draft" type="object" states="sql_valid"
-                                string="Set to Draft" groups="sql_request_abstract.group_sql_request_manager"/>
-                        <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object" class="oe_highlight"
-                            icon="gtk-execute"/>
-                        <field name="state" widget="statusbar" />
-                    </header>
-                <group>
-                    <h1>
-                        <field name="name" nolabel="1" placeholder="Request Name"/>
-                    </h1>
-                </group>
-                <group name="option" groups="sql_request_abstract.group_sql_request_user">
-                    <field name="copy_options"/>
-                    <field name="encoding"/>
-                </group>
-                <group name="request" string="SQL Request" groups="sql_request_abstract.group_sql_request_user">
-                    <field name="query" nolabel="1" placeholder="select * from res_partner"/>
-                </group>
-                <group string="Parameters" groups="sql_request_abstract.group_sql_request_user">
-                    <field name="field_ids" nolabel="1"/>
-                </group>
-                <group groups="sql_request_abstract.group_sql_request_manager">
-                    <group string="Allowed Users">
-                        <field name="user_ids" nolabel="1"/>
+                    <group>
+                        <h1>
+                            <field name="name" nolabel="1" placeholder="Request Name"/>
+                        </h1>
                     </group>
-                    <group string="Allowed Groups">
-                        <field name="group_ids" nolabel="1"/>
+                    <group name="option" groups="sql_request_abstract.group_sql_request_user">
+                        <field name="copy_options"/>
+                        <field name="encoding"/>
                     </group>
+                    <group name="request" string="SQL Request" groups="sql_request_abstract.group_sql_request_user">
+                        <field name="query" nolabel="1" placeholder="select * from res_partner"/>
+                    </group>
+                    <group name="parameters" string="Parameters" groups="sql_request_abstract.group_sql_request_user">
+                        <field name="field_ids" nolabel="1"/>
+                    </group>
+                    <group groups="sql_request_abstract.group_sql_request_manager">
+                        <group string="Allowed Users" name="users_allowed">
+                            <field name="user_ids" nolabel="1"/>
+                        </group>
+                        <group string="Allowed Groups" name="groups_allowed">
+                            <field name="group_ids" nolabel="1"/>
+                        </group>
 
-                </group>
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -55,7 +52,7 @@
                 <field name="name"/>
                 <field name="state"/>
                 <button name="export_sql_query" string="Execute Query" states="sql_valid" type="object"
-                    icon="gtk-execute"/>
+                        icon="fa-arrow-right text-success"/>
             </tree>
         </field>
     </record>
@@ -103,6 +100,4 @@
 
     <menuitem id="sql_parameter_menu_view" name="Sql Export Variables" parent="sql_export_menu" action="sql_parameter_tree_action" sequence="5" groups="sql_request_abstract.group_sql_request_manager"/>
 
-
-</data>
-</openerp>
+</odoo>
