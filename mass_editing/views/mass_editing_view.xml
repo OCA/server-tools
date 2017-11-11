@@ -46,7 +46,6 @@
                         <page string="Advanced" attrs="{'invisible':[('ref_ir_act_window_id','=',False)]}">
                             <group colspan="2" col="2">
                                 <field name="ref_ir_act_window_id"/>
-                                <field name="ref_ir_value_id"/>
                             </group>
                         </page>
                     </notebook>

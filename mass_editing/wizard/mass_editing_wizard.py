@@ -208,7 +208,7 @@ class MassEditingWizard(models.TransientModel):
                             'colspan': '4',
                         })
             # Patch fields with required extra data
-            for field in all_fields.values():
+            for field in list(all_fields.values()):
                 field.setdefault("views", {})
             etree.SubElement(xml_form, 'separator', {
                 'string': '',
@@ -238,7 +238,7 @@ class MassEditingWizard(models.TransientModel):
                 self._context.get('active_ids')):
             model_obj = self.env[self._context.get('active_model')]
             values = {}
-            for key, val in vals.items():
+            for key, val in list(vals.items()):
                 if key.startswith('selection_'):
                     split_key = key.split('__', 1)[1]
                     if val == 'set':
