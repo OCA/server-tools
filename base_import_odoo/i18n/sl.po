@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-26 03:03+0000\n"
-"PO-Revision-Date: 2017-10-26 03:03+0000\n"
+"POT-Creation-Date: 2017-11-11 07:46+0000\n"
+"PO-Revision-Date: 2017-11-11 07:46+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Domena"
 #. module: base_import_odoo
 #: field:import.odoo.database,duplicates:0
 msgid "Duplicate handling"
-msgstr ""
+msgstr "Ravnanje z duplikati"
 
 #. module: base_import_odoo
 #: field:import.odoo.database.field,field_ids:0
@@ -165,7 +165,7 @@ msgstr "Napredovanje uvoza"
 #. module: base_import_odoo
 #: view:website:base_import_odoo.view_import_odoo_database_qweb
 msgid "Import results"
-msgstr ""
+msgstr "Uvozi rezultate"
 
 #. module: base_import_odoo
 #: field:import.odoo.database,__last_update:0
@@ -213,12 +213,12 @@ msgstr "Opcijski filter za uvoz dela podatkov"
 #. module: base_import_odoo
 #: selection:import.odoo.database,duplicates:0
 msgid "Overwrite empty fields"
-msgstr ""
+msgstr "Prepiši prazna polja"
 
 #. module: base_import_odoo
 #: selection:import.odoo.database,duplicates:0
 msgid "Overwrite existing"
-msgstr ""
+msgstr "Prepiši obstoječe"
 
 #. module: base_import_odoo
 #: field:import.odoo.database,password:0
@@ -288,7 +288,7 @@ msgstr "Zaporedje"
 #. module: base_import_odoo
 #: selection:import.odoo.database,duplicates:0
 msgid "Skip existing"
-msgstr ""
+msgstr "Preskoči obstoječe"
 
 #. module: base_import_odoo
 #: field:import.odoo.database,status_data:0
@@ -306,6 +306,8 @@ msgid ""
 "The following remote ids don't have a mapping but have to be imported "
 "anyways due to not null constraints."
 msgstr ""
+"Naslednji oddaljeni id-ji niso mapirani, a morajo vseeno biti uvoženi zaradi"
+" omejitev 'not null'."
 
 #. module: base_import_odoo
 #: view:website:base_import_odoo.view_import_odoo_database_qweb
@@ -314,6 +316,9 @@ msgid ""
 "feasible, map the whole model. You might also have a too specific domain on "
 "your import model definition."
 msgstr ""
+"Da bi to popravili, ustvarite mapiranja za navedene oddaljene id-je, ali pa,"
+" če to ni uresničljivo, mapirajte celoten model. Mogoče je tudi, da imate "
+"preveč specifično domeno v definiciji uvoznega modela."
 
 #. module: base_import_odoo
 #: field:import.odoo.database.field,mapping_type:0

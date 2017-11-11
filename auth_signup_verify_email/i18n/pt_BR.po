@@ -3,11 +3,19 @@
 # * auth_signup_verify_email
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-27 14:01+0000\n"
+"POT-Creation-Date: 2017-11-11 07:46+0000\n"
 "PO-Revision-Date: 2015-11-12 20:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
@@ -21,19 +29,19 @@ msgstr ""
 #: code:addons/auth_signup_verify_email/controllers/main.py:54
 #, python-format
 msgid "Check your email to activate your account!"
-msgstr ""
+msgstr "Cheque seu email para ativar sua conta!"
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:50
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
-msgstr ""
+msgstr "Algo deu errado, tente novamente mais tarde ou contate-nos."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31
 #, python-format
 msgid "That does not seem to be an email address."
-msgstr ""
+msgstr "Isso não parece ser um endereço de e-mail."
 
 #. module: auth_signup_verify_email
 #: view:website:auth_signup.fields

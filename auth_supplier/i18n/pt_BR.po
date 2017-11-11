@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:31+0000\n"
+"POT-Creation-Date: 2017-11-11 07:46+0000\n"
 "PO-Revision-Date: 2015-10-30 14:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
@@ -28,7 +28,7 @@ msgstr ""
 #. module: auth_supplier
 #: view:website:auth_signup.fields
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo de Conta"
 
 #. module: auth_supplier
 #: model:ir.module.category,name:auth_supplier.module_auth_supplier

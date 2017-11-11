@@ -1,9 +1,8 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_name_search_improved
+# * base_view_inheritance_extension
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2017
 msgid ""
 msgstr ""
@@ -19,22 +18,22 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: base_name_search_improved
-#: help:ir.model,name_search_use_standard:0
-msgid "First try to find matches with the standard search"
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "'The company name'"
 msgstr ""
 
-#. module: base_name_search_improved
-#: model:ir.model,name:base_name_search_improved.model_ir_model
-msgid "Models"
-msgstr "Modelos"
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "A new page"
+msgstr "Uma nova página"
 
-#. module: base_name_search_improved
-#: field:ir.model,name_search_ids:0
-msgid "Name Search Fields"
-msgstr "Campos de pesquisa de nome"
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "Partner form"
+msgstr "Formulário parceiro"
 
-#. module: base_name_search_improved
-#: field:ir.model,name_search_use_standard:0
-msgid "Use standard search"
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "context.get('company_id', context.get('company'))"
 msgstr ""

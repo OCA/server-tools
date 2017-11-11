@@ -11,6 +11,7 @@
 # Chanseok <kcsgoodboy@gmail.com>, 2014
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012,2014
+# Gu Hong Min <placidmoon1@gmail.com>, 2015
 # jeon <bluerespect@nate.com>, 2014
 # Jong-Dae Park <jdpark7@gmail.com>, 2013,2015
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
@@ -20,8 +21,9 @@
 # Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
 # Sam Ryoo <samryoo@gmail.com>, 2014
+# Seo. Junmin <inactive+trans_alice@transifex.com>, 2015
 # Seo. Junmin <inactive+trans_alice@transifex.com>, 2015
 # seungil <luck8778@gmail.com>, 2014
 # SEUNGWON <baeksw0620@gmail.com>, 2014
@@ -29,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 03:34+0000\n"
-"PO-Revision-Date: 2017-08-11 11:55+0000\n"
+"POT-Creation-Date: 2017-11-11 07:46+0000\n"
+"PO-Revision-Date: 2017-11-09 00:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +152,7 @@ msgstr "Rascunho"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Registro rápido"
 
 #. module: auditlog
 #: field:auditlog.log.line,field_id:0
@@ -166,14 +168,14 @@ msgstr "Campos atualizados"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Registro completo"
 
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
 "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr ""
+msgstr "Registro completo: faça uma diferença entre os dados antes e depois da operação (registra mais informações como campos calculados que foram atualizados, mas é mais lento) \nRegistro rápido: apenas registra as alterações feitas através das operações de criação e gravação (menos informações, mas é mais rápido)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -186,14 +188,14 @@ msgstr "Agrupado por"
 #. module: auditlog
 #: view:auditlog.log:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr ""
+msgstr "Contexto HTTP"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_form
 #: view:auditlog.log:auditlog.view_auditlog_log_search
 #: field:auditlog.log,http_request_id:0
 msgid "HTTP Request"
-msgstr ""
+msgstr "Solicitação HTTP"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -203,7 +205,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
 #: model:ir.ui.menu,name:auditlog.menu_action_auditlog_http_request_tree
 msgid "HTTP Requests"
-msgstr ""
+msgstr "Solicitações HTTP"
 
 #. module: auditlog
 #: field:auditlog.autovacuum,id:0 field:auditlog.http.request,id:0
@@ -356,7 +358,7 @@ msgstr "Nome do Recurso"
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
 #: field:auditlog.http.request,root_url:0
 msgid "Root URL"
-msgstr ""
+msgstr "URL Raiz"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_form
@@ -420,12 +422,12 @@ msgstr "Selecione este se quiser manter o rastreio de leitura/abertura de qualqu
 #: field:auditlog.http.request,http_session_id:0
 #: field:auditlog.log,http_session_id:0
 msgid "Session"
-msgstr ""
+msgstr "Sessão"
 
 #. module: auditlog
 #: field:auditlog.http.session,name:0
 msgid "Session ID"
-msgstr ""
+msgstr "ID da Sessão"
 
 #. module: auditlog
 #: view:auditlog.rule:auditlog.view_auditlog_rule_search
@@ -454,7 +456,7 @@ msgstr "Nome técnico"
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr ""
+msgstr "Já existe uma regra definida neste modelo.\nVocê não pode definir outro: edite o existente."
 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0

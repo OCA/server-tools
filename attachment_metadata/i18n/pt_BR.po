@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
+"POT-Creation-Date: 2017-11-11 07:45+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
@@ -20,17 +20,17 @@ msgstr ""
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Attachment"
-msgstr ""
+msgstr "Anexo"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,name:0
 msgid "Attachment Name"
-msgstr ""
+msgstr "Nome anexo"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,attachment_id:0
 msgid "Attachment id"
-msgstr ""
+msgstr "Id do anexo"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -41,7 +41,7 @@ msgstr ""
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Binary"
-msgstr ""
+msgstr "Binário"
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,type:0
@@ -67,12 +67,12 @@ msgstr "Criado em"
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Creation Month"
-msgstr ""
+msgstr "Mês criação"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,db_datas:0
 msgid "Database Data"
-msgstr ""
+msgstr "Dados da Base de Dados"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
@@ -92,17 +92,17 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,datas:0
 msgid "File Content"
-msgstr ""
+msgstr "Conteúdo do arquivo"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,datas_fname:0
 msgid "File Name"
-msgstr ""
+msgstr "Nome do arquivo"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,file_size:0
 msgid "File Size"
-msgstr ""
+msgstr "Tamanho do arquivo"
 
 #. module: attachment_metadata
 #: code:addons/attachment_metadata/models/attachment.py:43
@@ -110,7 +110,7 @@ msgstr ""
 msgid ""
 "File corrupted: Something was wrong with the retrieved file, please relaunch"
 " the task."
-msgstr ""
+msgstr "Arquivo corrompido: Alguma coisa estava errada com o arquivo recuperado, reexecute a tarefa."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
@@ -130,12 +130,12 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: field:ir.attachment.metadata,file_type:0
 msgid "File type"
-msgstr ""
+msgstr "Tipo do arquivo"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "Filter on my documents"
-msgstr ""
+msgstr "Filtrar em meus documentos"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -181,7 +181,7 @@ msgstr ""
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "My Document(s)"
-msgstr ""
+msgstr "Meus Documentos"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -206,7 +206,7 @@ msgstr "Nome do Recurso"
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,store_fname:0
 msgid "Stored Filename"
-msgstr ""
+msgstr "Nome de arquivo armazenado"
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_model:0
@@ -223,7 +223,7 @@ msgstr ""
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0
 msgid "The record id this is attached to"
-msgstr ""
+msgstr "O id deste registro está anexado a"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -234,9 +234,9 @@ msgstr "Tipo"
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,url:0
 msgid "Url"
-msgstr ""
+msgstr "Url"

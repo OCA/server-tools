@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:48+0000\n"
-"PO-Revision-Date: 2017-04-28 09:48+0000\n"
+"POT-Creation-Date: 2017-11-11 07:46+0000\n"
+"PO-Revision-Date: 2017-11-11 07:46+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,11 @@ msgstr ""
 #: field:res.users.role,model_access:0
 msgid "Access Controls"
 msgstr "Controls d'accés "
+
+#. module: base_user_role
+#: model:ir.model,name:base_user_role.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: base_user_role
 #: field:res.users.role,menu_access:0
@@ -174,6 +179,11 @@ msgstr "Usuari"
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
 msgstr "Rol d'usuari "
+
+#. module: base_user_role
+#: model:ir.module.category,name:base_user_role.ir_module_category_role
+msgid "User roles"
+msgstr "Rols d'usuaris "
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users
