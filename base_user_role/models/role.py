@@ -24,6 +24,12 @@ class ResUsersRole(models.Model):
     user_ids = fields.One2many(
         'res.users', string=u"Users", compute='_compute_user_ids')
 
+    _defaults = {   # pylint: disable=attribute-deprecated
+        'category_id': api.model(
+            lambda cls: cls.env.ref(
+                'base_user_role.ir_module_category_role').id),
+    }
+
     @api.multi
     @api.depends('line_ids.user_id')
     def _compute_user_ids(self):
@@ -40,6 +46,13 @@ class ResUsersRole(models.Model):
     def write(self, vals):
         res = super(ResUsersRole, self).write(vals)
         self.update_users()
+        return res
+
+    @api.multi
+    def unlink(self):
+        users = self.mapped('user_id')
+        res = super(ResUsersRole, self).unlink()
+        users.set_groups_from_roles()
         return res
 
     @api.multi
@@ -81,3 +94,10 @@ class ResUsersRoleLine(models.Model):
                 date_to = fields.Date.from_string(role_line.date_to)
                 if today > date_to:
                     role_line.is_enabled = False
+
+    @api.multi
+    def unlink(self):
+        users = self.mapped('user_id')
+        res = super(ResUsersRoleLine, self).unlink()
+        users.set_groups_from_roles()
+        return res
