@@ -5,6 +5,7 @@
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
@@ -25,8 +26,9 @@
 # jeon <bluerespect@nate.com>, 2014
 # JiyeonLee <leejiyeon00@gmail.com>, 2014
 # Jong-Dae Park <jdpark7@gmail.com>, 2013
-# Kevin Min <gr326887@graded.br>, 2015
+# Gu Hong Min <placidmoon1@gmail.com>, 2015
 # KimKyudong <choemh@nate.com>, 2014
+# kmooc <shevious@gmail.com>, 2015
 # mariana1201 <gogo3135@naver.com>, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Nicole <dlruddk1112@gmail.com>, 2014
@@ -35,7 +37,7 @@
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 # Pope, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
-# SaFi J. <safi2266@gmail.com>, 2015
+# Mustafa J. Kadhem <safi2266@gmail.com>, 2015
 # Sarina Canelake <sarina@edx.org>, 2014
 # Seok Jun Yoon <fake2real@dctribe.com>, 2015
 # shin2012 <shin2013@gmail.com>, 2014
@@ -46,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 07:38+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"POT-Creation-Date: 2017-10-28 11:05+0000\n"
+"PO-Revision-Date: 2017-11-09 00:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +68,7 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Anexo"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
@@ -281,7 +283,7 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:205

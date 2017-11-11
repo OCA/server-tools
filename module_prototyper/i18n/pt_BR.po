@@ -4,18 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Claudio Araujo Santos <claudioaraujosantos@gmail.com>, 2016
-# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2016
-# Felipe Lopes <ti@trojahntoppel.com.br>, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: Felipe Lopes <ti@trojahntoppel.com.br>, 2016\n"
+"POT-Creation-Date: 2017-10-28 11:06+0000\n"
+"PO-Revision-Date: 2017-10-28 11:06+0000\n"
+"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -290,7 +286,7 @@ msgstr "Arquivo"
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_name
 msgid "File Name"
-msgstr ""
+msgstr "Nome do arquivo"
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0

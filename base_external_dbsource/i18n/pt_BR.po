@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Armando Vulcano Junior <vulcano@uol.com.br>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 09:42+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-10-28 11:05+0000\n"
+"PO-Revision-Date: 2017-10-28 11:05+0000\n"
+"Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,20 +41,23 @@ msgid "Connection string"
 msgstr "Caracter de Conexão"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
 "Connection test failed:                         Here is what we got instead:\n"
 " %s"
 msgstr ""
+"Teste de conexão falhou: Aqui está o que obtemos disso:\n"
+"%s"
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:179
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:165
 #, python-format
 msgid ""
 "Connection test succeeded:                           Everything seems "
 "properly set up!"
 msgstr ""
+"O teste de conexão foi bem-sucedido: tudo parece corretamente configurado!"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_connector
@@ -140,7 +144,7 @@ msgstr "Senha"
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Please check the tooltip for connection string examples"
-msgstr ""
+msgstr "Verifique a dica de ferramenta para exemplos de seqüência de conexão"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
