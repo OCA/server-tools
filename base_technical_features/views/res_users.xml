@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_simple_modif" model="ir.ui.view">
+        <field name="name">Add technical features checkbox to user preferences form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="technical_features" readonly="0"
+                       attrs="{'invisible': [('show_technical_features', '=', False)]}" />
+                <field name="show_technical_features" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
+
