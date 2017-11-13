@@ -27,7 +27,7 @@ class DateRangeGeneratorTest(TransactionCase):
         generator.action_apply()
         ranges = self.env['date.range'].search(
             [('type_id', '=', self.type.id)])
-        self.assertEquals(len(ranges), 4)
+        self.assertEqual(len(ranges), 4)
         range4 = ranges[3]
         self.assertEqual(range4.date_start, '1943-10-01')
         self.assertEqual(range4.date_end, '1943-12-31')

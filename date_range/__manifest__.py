@@ -4,7 +4,7 @@
 {
     "name": "Date Range",
     "summary": "Manage all kind of date range",
-    "version": "10.0.1.0.2",
+    "version": "11.0.1.0.0",
     "category": "Uncategorized",
     "website": "https://odoo-community.org/",
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
