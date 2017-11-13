@@ -3,8 +3,8 @@
 
 
 def uninstall_hook(cr, registry):
-    cr.execute("""SELECT id FROM ir_act_window
-               WHERE res_model = 'mass.editing.wizard'""")
-    for res in cr.dictfetchall():
-        cr.execute("DELETE FROM ir_act_window WHERE id = '%s'" % res.get('id'))
+    """Delete the actions that were created with mass_editing when
+    the module is uninstalled"""
+    cr.execute("""DELETE FROM ir_act_window
+                  WHERE res_model = 'mass.editing.wizard'""")
     return True
