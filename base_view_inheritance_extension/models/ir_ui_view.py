@@ -2,7 +2,7 @@
 # © 2016 Therp BV <http://therp.nl>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from lxml import etree
-from openerp import api, models, tools
+from openerp import api, models, tools, _
 
 
 class UnquoteObject(str):
@@ -120,7 +120,18 @@ class IrUiView(models.Model):
         target_node = self.locate_node(
             source, etree.Element(specs.tag, expr=specs.get('target'))
         )
-        target_node.append(node)
+        
+        target_position = specs.get('target_position') or 'inside'
+        
+        if target_position == 'after':
+            target_node.addnext(node)
+        elif target_position == 'before':
+            target_node.addprevious(node)
+        elif target_position == 'inside':
+            target_node.append(node)
+        else:
+            self.raise_view_error(_("Invalid target_position attribute: '%s'") % target_position, inherit_id, context=self.env.context)
+
         return source
 
     @api.model
