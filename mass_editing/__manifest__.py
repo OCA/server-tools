@@ -6,11 +6,6 @@
     'author': 'Serpent Consulting Services Pvt. Ltd., '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'contributors': [
-        'Oihane Crucelaegui <oihanecrucelaegi@gmail.com>',
-        'Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>',
-        'Jay Vora <jay.vora@serpentcs.com>'
-    ],
     'category': 'Tools',
     'website': 'http://www.serpentcs.com',
     'license': 'GPL-3 or any later version',
