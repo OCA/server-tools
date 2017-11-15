@@ -199,8 +199,7 @@ class ServerConfiguration(models.TransientModel):
     @classmethod
     def _build_osv(cls):
         """Build the view for the current configuration."""
-        arch = ('<?xml version="1.0" encoding="utf-8"?>'
-                '<form string="Configuration Form">'
+        arch = ('<form string="Configuration Form">'
                 '<notebook colspan="4">')
 
         # Odoo server configuration
