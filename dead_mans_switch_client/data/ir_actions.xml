@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <act_window id="action_setup" res_model="ir.config_parameter"
-            name="Configure the dead man's switch server" view_mode="form"
-            context="{'default_key': 'dead_mans_switch_client.url'}"/>
-        <record id="todo_setup" model="ir.actions.todo">
-            <field name="name">Configure the dead man's switch server</field>
-            <field name="type">automatic</field>
-            <field name="action_id" ref="action_setup" />
-        </record>
-    </data>
-</openerp>
+<odoo>
+    <act_window id="action_setup" res_model="ir.config_parameter"
+                name="Configure the dead man's switch server" view_mode="form"
+                context="{'default_key': 'dead_mans_switch_client.url'}"/>
+    <record id="todo_setup" model="ir.actions.todo">
+        <field name="name">Configure the dead man's switch server</field>
+        <field name="type">automatic</field>
+        <field name="action_id" ref="action_setup"/>
+    </record>
+</odoo>
