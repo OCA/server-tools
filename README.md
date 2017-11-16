@@ -43,7 +43,6 @@ addon | version | summary
 [mass_editing](mass_editing/) | 9.0.1.0.0 | Mass Editing
 [mass_mailing_enterprise_remove](mass_mailing_enterprise_remove/) | 9.0.1.0.0 | Mass Mailing - Remove Enterprise Features
 [module_prototyper](module_prototyper/) | 9.0.0.1.0 | Prototype your module.
-[pos_environment](pos_environment/) | 9.0.1.0.0 | Configure POS proxy_ip with server_environment_files
 [project_enterprise_remove](project_enterprise_remove/) | 9.0.1.0.0 | Project - Remove Enterprise Features
 [sale_enterprise_remove](sale_enterprise_remove/) | 9.0.1.0.0 | Sale - Remove Enterprise Features
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer

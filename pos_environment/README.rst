@@ -7,7 +7,7 @@ POS configuration with server_environment
 =========================================
 
 This module allows to configure the hardware proxy (PosBox)
-using the `server_environment` mechanism: you can then have different
+using the ``server_environment`` mechanism: you can then have different
 hardware proxy for the production and the test environment.
 
 Installation
@@ -20,16 +20,16 @@ Configuration
 =============
 
 With this module installed, the hardware proxy are configured in
-the `server_environment_files` module (which is a module
-you should provide, see the documentation of `server_environment` for
+the ``server_environment_files`` module (which is a module
+you should provide, see the documentation of ``server_environment`` for
 more information).
 
 In the configuration file of each environment, you may use the
-section `[hardware_proxy]` to configure the
+section ``[hardware_proxy]`` to configure the
 default values respectively for hardware proxy.
 
 Then for each server, you can define additional values or override the
-default values with a section named `[hardware_proxy.resource_name]`
+default values with a section named ``[hardware_proxy.resource_name]``
 where "resource_name" is the name of the server.
 
 Exemple of config file ::
@@ -41,7 +41,7 @@ Exemple of config file ::
    proxy_ip = 158.24.86.95
 
 You will need to create record in the database for pos configuration
-with the field `name` set to "pos_box_01"
+with the field ``name`` set to "pos_box_01"
 
 
 Usage
@@ -64,11 +64,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-server-tools/issues/new?body=module:%20
-pos_environment%0Aversion:%20
-9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
