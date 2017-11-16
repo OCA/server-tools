@@ -184,6 +184,11 @@ class ImportOdooDatabase(models.Model):
                 context, model, data, create_dummy=False,
             )
             if (model._name, data['id']) in context.idmap:
+                # one of our mappings hit, create an xmlid to persist
+                # this knowledge
+                self._create_record_xmlid(
+                    model, context.idmap[(model._name, data['id'])], data['id']
+                )
                 if self.duplicates == 'skip':
                     # there's a mapping for this record, nothing to do
                     continue
@@ -217,18 +222,26 @@ class ImportOdooDatabase(models.Model):
             new = model.with_context(
                 **self._create_record_context(model, record)
             ).create(record)
-            self.env['ir.model.data'].create({
-                'name': xmlid,
-                'model': model._name,
-                'module': 'base_import_odoo',
-                'res_id': new.id,
-                'noupdate': True,
-                'import_database_id': self.id,
-                'import_database_record_id': _id,
-            })
+            self._create_record_xmlid(model, new.id, _id)
             _logger.debug('Created record %s', xmlid)
         context.idmap[mapping_key(model._name, _id)] = new.id
         return new
+
+    def _create_record_xmlid(self, model, local_id, remote_id):
+        xmlid = '%d-%s-%d' % (
+            self.id, model._name.replace('.', '_'), remote_id or 0,
+        )
+        if self.env.ref('base_import_odoo.%s' % xmlid, False):
+            return
+        return self.env['ir.model.data'].create({
+            'name': xmlid,
+            'model': model._name,
+            'module': 'base_import_odoo',
+            'res_id': local_id,
+            'noupdate': True,
+            'import_database_id': self.id,
+            'import_database_record_id': remote_id,
+        })
 
     def _create_record_context(self, model, record):
         """Return a context that is used when creating a record"""
