@@ -13,7 +13,6 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
       - unixodbc-dev
-      - python-mysqldb
 
 env:
   global:
