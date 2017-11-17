@@ -2,12 +2,12 @@
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from datetime import datetime, timedelta
-import random
-import string
+import uuid
 from odoo import _, api, fields, models
-from odoo.exceptions import AccessDenied, ValidationError
-from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
+from odoo.exceptions import ValidationError
+from odoo.http import request
+from ..controllers.main import JsonSecureCookie
+from ..exceptions import MfaLoginNeeded
 
 
 class ResUsers(models.Model):
@@ -29,13 +29,19 @@ class ResUsers(models.Model):
              ' right. If the button is not present, you do not have the'
              ' permissions to do this.',
     )
-    mfa_login_token = fields.Char()
-    mfa_login_token_exp = fields.Datetime()
-    trusted_device_ids = fields.One2many(
-        comodel_name='res.users.device',
-        inverse_name='user_id',
-        string='Trusted Devices',
+    trusted_device_cookie_key = fields.Char(
+        compute='_compute_trusted_device_cookie_key',
+        store=True,
     )
+
+    @api.multi
+    @api.depends('mfa_enabled')
+    def _compute_trusted_device_cookie_key(self):
+        for record in self:
+            if record.mfa_enabled:
+                record.trusted_device_cookie_key = uuid.uuid4()
+            else:
+                record.trusted_device_cookie_key = False
 
     @api.multi
     @api.constrains('mfa_enabled', 'authenticator_ids')
@@ -50,53 +56,38 @@ class ResUsers(models.Model):
 
     @api.model
     def check_credentials(self, password):
-        try:
+        """Add MFA logic to core authentication process
+
+        Overview:
+            * If user does not have MFA enabled, defer to parent logic
+            * If user has MFA enabled and has gone through MFA login process
+              this session or has correct device cookie, defer to parent logic
+            * If neither of these is true, call parent logic. If successful,
+              prevent auth while updating session to indicate that MFA login
+              process can now commence
+        """
+        user_model_sudo = self.sudo()
+        user = user_model_sudo.search([('id', '=', self.env.uid)])
+
+        if not user.mfa_enabled:
             return super(ResUsers, self).check_credentials(password)
-        except AccessDenied:
-            user = self.sudo().search([
-                ('id', '=', self.env.uid),
-                ('mfa_login_token', '=', password),
-            ])
-            user._user_from_mfa_login_token_validate()
 
-    @api.multi
-    def generate_mfa_login_token(self, lifetime_mins=15):
-        char_set = string.ascii_letters + string.digits
+        if request:
+            if request.session.get('mfa_login_active') == user.id:
+                return super(ResUsers, self).check_credentials(password)
 
-        for record in self:
-            record.mfa_login_token = ''.join(
-                random.SystemRandom().choice(char_set) for __ in range(20)
-            )
+            cookie_key = 'trusted_devices_%d' % user.id
+            device_cook = request.httprequest.cookies.get(cookie_key)
+            if device_cook:
+                secret = user.trusted_device_cookie_key
+                device_cook = JsonSecureCookie.unserialize(device_cook, secret)
+                if device_cook:
+                    return super(ResUsers, self).check_credentials(password)
 
-            expiration = datetime.now() + timedelta(minutes=lifetime_mins)
-            record.mfa_login_token_exp = fields.Datetime.to_string(expiration)
-
-    @api.model
-    def user_from_mfa_login_token(self, token):
-        if not token:
-            raise MfaTokenInvalidError(_(
-                'Your MFA login token is not valid. Please try again.'
-            ))
-
-        user = self.search([('mfa_login_token', '=', token)])
-        user._user_from_mfa_login_token_validate()
-
-        return user
-
-    @api.multi
-    def _user_from_mfa_login_token_validate(self):
-        try:
-            self.ensure_one()
-        except ValueError:
-            raise MfaTokenInvalidError(_(
-                'Your MFA login token is not valid. Please try again.'
-            ))
-
-        token_exp = fields.Datetime.from_string(self.mfa_login_token_exp)
-        if token_exp < datetime.now():
-            raise MfaTokenExpiredError(_(
-                'Your MFA login token has expired. Please try again.'
-            ))
+        super(ResUsers, self).check_credentials(password)
+        if request:
+            request.session['mfa_login_needed'] = True
+        raise MfaLoginNeeded
 
     @api.multi
     def validate_mfa_confirmation_code(self, confirmation_code):

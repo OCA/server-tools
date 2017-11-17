@@ -11,7 +11,6 @@
             <form class="oe_login_form" role="form" t-attf-action="/auth_totp/login" method="post" onsubmit="this.action = this.action + location.hash">
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                 <input type="hidden" name="redirect" t-att-value="redirect"/>
-                <input type="hidden" name="mfa_login_token" t-att-value="mfa_login_token"/>
                 <div class="form-group field-login">
                     <label for="confirmation_code" class="control-label">MFA Confirmation Code</label>
                     <input type="text" name="confirmation_code" id="confirmation_code" class="form-control" required="required" autofocus="autofocus" autocapitalize="off"/>

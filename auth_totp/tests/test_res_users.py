@@ -2,19 +2,15 @@
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from datetime import datetime
-import mock
-import string
-from odoo.exceptions import ValidationError
+from mock import patch
+from odoo.exceptions import AccessDenied, ValidationError
 from odoo.tests.common import TransactionCase
-from ..exceptions import (
-    MfaTokenError,
-    MfaTokenInvalidError,
-    MfaTokenExpiredError,
-)
+from ..exceptions import MfaLoginNeeded
+from ..models.res_users import JsonSecureCookie
 from ..models.res_users_authenticator import ResUsersAuthenticator
 
-DATETIME_PATH = 'odoo.addons.auth_totp.models.res_users.datetime'
+MODEL_PATH = 'odoo.addons.auth_totp.models.res_users'
+REQUEST_PATH = MODEL_PATH + '.request'
 
 
 class TestResUsers(TransactionCase):
@@ -25,7 +21,28 @@ class TestResUsers(TransactionCase):
         self.test_user = self.env.ref('base.user_root')
         self.test_user.mfa_enabled = False
         self.test_user.authenticator_ids = False
+        self.env['res.users.authenticator'].create({
+            'name': 'Test Name',
+            'secret_key': 'Test Key',
+            'user_id': self.test_user.id,
+        })
+        self.test_user.mfa_enabled = True
+
         self.env.uid = self.test_user.id
+
+    def test_compute_trusted_device_cookie_key_disable_mfa(self):
+        """It should clear out existing key when MFA is disabled"""
+        self.test_user.mfa_enabled = False
+
+        self.assertFalse(self.test_user.trusted_device_cookie_key)
+
+    def test_compute_trusted_device_cookie_key_enable_mfa(self):
+        """It should generate a new key when MFA is enabled"""
+        old_key = self.test_user.trusted_device_cookie_key
+        self.test_user.mfa_enabled = False
+        self.test_user.mfa_enabled = True
+
+        self.assertNotEqual(self.test_user.trusted_device_cookie_key, old_key)
 
     def test_build_model_mfa_fields_in_self_writeable_list(self):
         '''Should add MFA fields to list of fields users can modify for self'''
@@ -36,155 +53,133 @@ class TestResUsers(TransactionCase):
     def test_check_enabled_with_authenticator_mfa_no_auth(self):
         '''Should raise correct error if MFA enabled without authenticators'''
         with self.assertRaisesRegexp(ValidationError, 'locked out'):
-            self.test_user.mfa_enabled = True
+            self.test_user.authenticator_ids = False
 
     def test_check_enabled_with_authenticator_no_mfa_auth(self):
         '''Should not raise error if MFA not enabled with authenticators'''
         try:
-            self.env['res.users.authenticator'].create({
-                'name': 'Test Name',
-                'secret_key': 'Test Key',
-                'user_id': self.test_user.id,
-            })
+            self.test_user.mfa_enabled = False
         except ValidationError:
             self.fail('A ValidationError was raised and should not have been.')
 
-    def test_check_enabled_with_authenticator_mfa_auth(self):
-        '''Should not raise error if MFA enabled with authenticators'''
-        try:
-            self.env['res.users.authenticator'].create({
-                'name': 'Test Name',
-                'secret_key': 'Test Key',
-                'user_id': self.test_user.id,
-            })
-            self.test_user.mfa_enabled = True
-        except ValidationError:
-            self.fail('A ValidationError was raised and should not have been.')
+    def test_check_credentials_mfa_not_enabled(self):
+        '''Should check password if user does not have MFA enabled'''
+        self.test_user.mfa_enabled = False
 
-    def test_check_credentials_no_match(self):
-        '''Should raise appropriate error if there is no match'''
-        with self.assertRaises(MfaTokenInvalidError):
+        with self.assertRaises(AccessDenied):
             self.env['res.users'].check_credentials('invalid')
-
-    @mock.patch(DATETIME_PATH)
-    def test_check_credentials_expired(self, datetime_mock):
-        '''Should raise appropriate error if match based on expired token'''
-        datetime_mock.now.return_value = datetime(2016, 12, 1)
-        self.test_user.generate_mfa_login_token()
-        test_token = self.test_user.mfa_login_token
-        datetime_mock.now.return_value = datetime(2017, 12, 1)
-
-        with self.assertRaises(MfaTokenExpiredError):
-            self.env['res.users'].check_credentials(test_token)
-
-    def test_check_credentials_current(self):
-        '''Should not raise error if match based on active token'''
-        self.test_user.generate_mfa_login_token()
-        test_token = self.test_user.mfa_login_token
-
         try:
-            self.env['res.users'].check_credentials(test_token)
-        except MfaTokenError:
-            self.fail('An MfaTokenError was raised and should not have been.')
+            self.env['res.users'].check_credentials('admin')
+        except AccessDenied:
+            self.fail('An exception was raised with a correct password.')
 
-    def test_generate_mfa_login_token_token_field_content(self):
-        '''Should set token field to 20 char string of ASCII letters/digits'''
-        self.test_user.generate_mfa_login_token()
-        test_chars = set(string.ascii_letters + string.digits)
+    @patch(REQUEST_PATH, new=None)
+    def test_check_credentials_mfa_and_no_request(self):
+        '''Should raise correct exception if MFA enabled and no request'''
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        with self.assertRaises(MfaLoginNeeded):
+            self.env['res.users'].check_credentials('admin')
 
-        self.assertEqual(len(self.test_user.mfa_login_token), 20)
-        self.assertTrue(set(self.test_user.mfa_login_token) <= test_chars)
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_login_active(self, request_mock):
+        '''Should check password if user has finished MFA auth this session'''
+        request_mock.session = {'mfa_login_active': self.test_user.id}
 
-    def test_generate_mfa_login_token_token_field_random(self):
-        '''Should set token field to new value each time'''
-        test_tokens = set([])
-        for __ in xrange(3):
-            self.test_user.generate_mfa_login_token()
-            test_tokens.add(self.test_user.mfa_login_token)
-
-        self.assertEqual(len(test_tokens), 3)
-
-    @mock.patch(DATETIME_PATH)
-    def test_generate_mfa_login_token_exp_field_default(self, datetime_mock):
-        '''Should set token lifetime to 15 minutes if no argument provided'''
-        datetime_mock.now.return_value = datetime(2016, 12, 1)
-        self.test_user.generate_mfa_login_token()
-
-        self.assertEqual(
-            self.test_user.mfa_login_token_exp,
-            '2016-12-01 00:15:00'
-        )
-
-    @mock.patch(DATETIME_PATH)
-    def test_generate_mfa_login_token_exp_field_custom(self, datetime_mock):
-        '''Should set token lifetime to value provided'''
-        datetime_mock.now.return_value = datetime(2016, 12, 1)
-        self.test_user.generate_mfa_login_token(45)
-
-        self.assertEqual(
-            self.test_user.mfa_login_token_exp,
-            '2016-12-01 00:45:00'
-        )
-
-    def test_user_from_mfa_login_token_validate_not_singleton(self):
-        '''Should raise correct error when recordset is not a singleton'''
-        self.test_user.copy()
-        test_set = self.env['res.users'].search([('id', '>', 0)], limit=2)
-
-        with self.assertRaises(MfaTokenInvalidError):
-            self.env['res.users']._user_from_mfa_login_token_validate()
-        with self.assertRaises(MfaTokenInvalidError):
-            test_set._user_from_mfa_login_token_validate()
-
-    @mock.patch(DATETIME_PATH)
-    def test_user_from_mfa_login_token_validate_expired(self, datetime_mock):
-        '''Should raise correct error when record has expired token'''
-        datetime_mock.now.return_value = datetime(2016, 12, 1)
-        self.test_user.generate_mfa_login_token()
-        datetime_mock.now.return_value = datetime(2017, 12, 1)
-
-        with self.assertRaises(MfaTokenExpiredError):
-            self.test_user._user_from_mfa_login_token_validate()
-
-    def test_user_from_mfa_login_token_validate_current_singleton(self):
-        '''Should not raise error when one record with active token'''
-        self.test_user.generate_mfa_login_token()
-
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
         try:
-            self.test_user._user_from_mfa_login_token_validate()
-        except MfaTokenError:
-            self.fail('An MfaTokenError was raised and should not have been.')
+            self.env['res.users'].check_credentials('admin')
+        except AccessDenied:
+            self.fail('An exception was raised with a correct password.')
 
-    def test_user_from_mfa_login_token_match(self):
-        '''Should retreive correct user when there is a current match'''
-        self.test_user.generate_mfa_login_token()
-        test_token = self.test_user.mfa_login_token
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_different_login_active(self, request_mock):
+        '''Should correctly raise/update if other user finished MFA auth'''
+        request_mock.session = {'mfa_login_active': self.test_user.id + 1}
+        request_mock.httprequest.cookies = {}
 
-        self.assertEqual(
-            self.env['res.users'].user_from_mfa_login_token(test_token),
-            self.test_user,
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        self.assertFalse(request_mock.session.get('mfa_login_needed'))
+        with self.assertRaises(MfaLoginNeeded):
+            self.env['res.users'].check_credentials('admin')
+        self.assertTrue(request_mock.session.get('mfa_login_needed'))
+
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_no_device_cookie(self, request_mock):
+        '''Should correctly raise/update session if MFA and no device cookie'''
+        request_mock.session = {'mfa_login_active': False}
+        request_mock.httprequest.cookies = {}
+
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        self.assertFalse(request_mock.session.get('mfa_login_needed'))
+        with self.assertRaises(MfaLoginNeeded):
+            self.env['res.users'].check_credentials('admin')
+        self.assertTrue(request_mock.session.get('mfa_login_needed'))
+
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_corrupted_device_cookie(self, request_mock):
+        '''Should correctly raise/update session if MFA and corrupted cookie'''
+        request_mock.session = {'mfa_login_active': False}
+        test_key = 'trusted_devices_%d' % self.test_user.id
+        request_mock.httprequest.cookies = {test_key: 'invalid'}
+
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        self.assertFalse(request_mock.session.get('mfa_login_needed'))
+        with self.assertRaises(MfaLoginNeeded):
+            self.env['res.users'].check_credentials('admin')
+        self.assertTrue(request_mock.session.get('mfa_login_needed'))
+
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_cookie_from_wrong_user(self, request_mock):
+        '''Should raise and update session if MFA and wrong user's cookie'''
+        request_mock.session = {'mfa_login_active': False}
+        test_user_2 = self.env['res.users'].create({
+            'name': 'Test User',
+            'login': 'test_user',
+        })
+        test_id_2 = test_user_2.id
+        self.env['res.users.authenticator'].create({
+            'name': 'Test Name',
+            'secret_key': 'Test Key',
+            'user_id': test_id_2,
+        })
+        test_user_2.mfa_enabled = True
+        secret = test_user_2.trusted_device_cookie_key
+        test_device_cookie = JsonSecureCookie({'user_id': test_id_2}, secret)
+        test_device_cookie = test_device_cookie.serialize()
+        test_key = 'trusted_devices_%d' % self.test_user.id
+        request_mock.httprequest.cookies = {test_key: test_device_cookie}
+
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        self.assertFalse(request_mock.session.get('mfa_login_needed'))
+        with self.assertRaises(MfaLoginNeeded):
+            self.env['res.users'].check_credentials('admin')
+        self.assertTrue(request_mock.session.get('mfa_login_needed'))
+
+    @patch(REQUEST_PATH)
+    def test_check_credentials_mfa_correct_device_cookie(self, request_mock):
+        '''Should check password if MFA and correct device cookie'''
+        request_mock.session = {'mfa_login_active': False}
+        secret = self.test_user.trusted_device_cookie_key
+        test_device_cookie = JsonSecureCookie(
+            {'user_id': self.test_user.id},
+            secret,
         )
+        test_device_cookie = test_device_cookie.serialize()
+        test_key = 'trusted_devices_%d' % self.test_user.id
+        request_mock.httprequest.cookies = {test_key: test_device_cookie}
 
-    def test_user_from_mfa_login_token_falsy(self):
-        '''Should raise correct error when token is falsy'''
-        with self.assertRaises(MfaTokenInvalidError):
-            self.env['res.users'].user_from_mfa_login_token(None)
-
-    def test_user_from_mfa_login_token_no_match(self):
-        '''Should raise correct error when there is no match'''
-        with self.assertRaises(MfaTokenInvalidError):
-            self.env['res.users'].user_from_mfa_login_token('Test Token')
-
-    @mock.patch(DATETIME_PATH)
-    def test_user_from_mfa_login_token_match_expired(self, datetime_mock):
-        '''Should raise correct error when the match is expired'''
-        datetime_mock.now.return_value = datetime(2016, 12, 1)
-        self.test_user.generate_mfa_login_token()
-        test_token = self.test_user.mfa_login_token
-        datetime_mock.now.return_value = datetime(2017, 12, 1)
-
-        with self.assertRaises(MfaTokenExpiredError):
-            self.env['res.users'].user_from_mfa_login_token(test_token)
+        with self.assertRaises(AccessDenied):
+            self.env['res.users'].check_credentials('invalid')
+        try:
+            self.env['res.users'].check_credentials('admin')
+        except AccessDenied:
+            self.fail('An exception was raised with a correct password.')
 
     def test_validate_mfa_confirmation_code_not_singleton(self):
         '''Should raise correct error when recordset is not singleton'''
@@ -197,7 +192,7 @@ class TestResUsers(TransactionCase):
         with self.assertRaisesRegexp(ValueError, 'Expected singleton'):
             test_set.validate_mfa_confirmation_code('Test Code')
 
-    @mock.patch.object(ResUsersAuthenticator, 'validate_conf_code')
+    @patch.object(ResUsersAuthenticator, 'validate_conf_code')
     def test_validate_mfa_confirmation_code_singleton_return(self, mock_func):
         '''Should return validate_conf_code() value if singleton recordset'''
         mock_func.return_value = 'Test Result'

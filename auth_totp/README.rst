@@ -26,15 +26,17 @@ Configuration
 =============
 
 By default, the trusted device cookies introduced by this module have a 
-``Secure`` flag and can only be sent via HTTPS. You can disable this by going 
-to ``Settings > Parameters > System Parameters`` and changing the 
-``auth_totp.secure_cookie`` key to ``0``, but this is not recommended in 
-production as it increases the likelihood of cookie theft via eavesdropping.
+``Secure`` flag. This decreases the likelihood of cookie theft via
+eavesdropping but may result in cookies not being set by certain browsers
+unless your Odoo instance uses HTTPS. If necessary, you can disable this flag
+by going to ``Settings > Parameters > System Parameters`` and changing the
+``auth_totp.secure_cookie`` key to ``0``.
 
 Usage
 =====
 
-Install and enjoy.
+If necessary, a user's trusted devices can be revoked by disabling and
+re-enabling MFA for that user.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -43,28 +45,9 @@ Install and enjoy.
 Known Issues / Roadmap
 ======================
 
-Known Issues
-------------
-
-* The module does not uninstall cleanly due to an Odoo bug, leaving the 
-  ``res.users.authenticator`` and ``res.users.device`` models partially in 
-  place. This may be addressed at a later time via an Odoo fix or by adding 
-  custom uninstall logic via an uninstall hook.
-
-Roadmap
--------
-
-* Make the various durations associated with the module configurable. They are 
-  currently hard-coded as follows:
-  
-  * 15 minutes to enter an MFA confirmation code after a password log in
-  * 30 days before the MFA session expires and the user has to log in again
-  * 30 days before the trusted device cookie expires
-
-* Add logic to extend an MFA user's session each time it's validated, 
-  effectively keeping it alive indefinitely as long as the user remains active
-* Add device fingerprinting to the trusted device cookie and provide a way to 
-  revoke trusted devices
+* Make the lifetime of the trusted device cookie configurable rather than fixed
+  at 30 days
+* Add device fingerprinting to the trusted device cookie
 * Add company-level settings for forcing all users to enable MFA and disabling 
   the trusted device option
 

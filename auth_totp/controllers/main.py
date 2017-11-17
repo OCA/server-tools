@@ -6,11 +6,9 @@ from datetime import datetime, timedelta
 import json
 from werkzeug.contrib.securecookie import SecureCookie
 from werkzeug.wrappers import Response as WerkzeugResponse
-from odoo import _, http, registry, SUPERUSER_ID
-from odoo.api import Environment
+from odoo import _, http
 from odoo.http import Response, request
 from odoo.addons.web.controllers.main import Home
-from ..exceptions import MfaTokenInvalidError, MfaTokenExpiredError
 
 
 class JsonSecureCookie(SecureCookie):
@@ -18,53 +16,19 @@ class JsonSecureCookie(SecureCookie):
 
 
 class AuthTotp(Home):
-
     @http.route()
     def web_login(self, *args, **kwargs):
-        """Add MFA logic to the web_login action in Home
-
-        Overview:
-            * Call web_login in Home
-            * Return the result of that call if the user has not logged in yet
-              using a password, does not have MFA enabled, or has a valid
-              trusted device cookie
-            * If none of these is true, generate a new MFA login token for the
-              user, log the user out, and redirect to the MFA login form
-        """
-
-        # sudo() is required because there may be no request.env.uid (likely
-        # since there may be no user logged in at the start of the request)
-        user_model_sudo = request.env['res.users'].sudo()
-        config_model_sudo = user_model_sudo.env['ir.config_parameter']
-
         response = super(AuthTotp, self).web_login(*args, **kwargs)
 
-        if not request.params.get('login_success'):
-            return response
+        if request.session.get('mfa_login_needed'):
+            request.session['mfa_login_needed'] = False
+            return http.local_redirect(
+                '/auth_totp/login',
+                query={'redirect': request.params.get('redirect')},
+                keep_hash=True,
+            )
 
-        user = user_model_sudo.browse(request.uid)
-        if not user.mfa_enabled:
-            return response
-
-        cookie_key = 'trusted_devices_%d' % user.id
-        device_cookie = request.httprequest.cookies.get(cookie_key)
-        if device_cookie:
-            secret = config_model_sudo.get_param('database.secret')
-            device_cookie = JsonSecureCookie.unserialize(device_cookie, secret)
-            if device_cookie.get('device_id') in user.trusted_device_ids.ids:
-                return response
-
-        user.generate_mfa_login_token()
-        request.session.logout(keep_db=True)
-        request.params['login_success'] = False
-        return http.local_redirect(
-            '/auth_totp/login',
-            query={
-                'mfa_login_token': user.mfa_login_token,
-                'redirect': request.params.get('redirect'),
-            },
-            keep_hash=True,
-        )
+        return response
 
     @http.route(
         '/auth_totp/login',
@@ -81,12 +45,12 @@ class AuthTotp(Home):
         """Process MFA login attempt
 
         Overview:
-            * Try to find a user based on the MFA login token. If this doesn't
+            * Identify current user based on login in session. If this doesn't
               work, redirect to the password login page with an error message
             * Validate the confirmation code provided by the user. If it's not
               valid, redirect to the previous login step with an error message
-            * Generate a long-term MFA login token for the user and log the
-              user in using the token
+            * Update the session to indicate that the MFA login process for
+              this user is complete and attempt password authentication again
             * Build a trusted device cookie and add it to the response if the
               trusted device option was checked
             * Redirect to the provided URL or to '/web' if one was not given
@@ -95,18 +59,19 @@ class AuthTotp(Home):
         # sudo() is required because there is no request.env.uid (likely since
         # there is no user logged in at the start of the request)
         user_model_sudo = request.env['res.users'].sudo()
-        device_model_sudo = user_model_sudo.env['res.users.device']
         config_model_sudo = user_model_sudo.env['ir.config_parameter']
 
-        token = request.params.get('mfa_login_token')
-        try:
-            user = user_model_sudo.user_from_mfa_login_token(token)
-        except (MfaTokenInvalidError, MfaTokenExpiredError) as exception:
+        user_login = request.session.get('login')
+        user = user_model_sudo.search([('login', '=', user_login)])
+        if not user:
             return http.local_redirect(
                 '/web/login',
                 query={
                     'redirect': request.params.get('redirect'),
-                    'error': exception.message,
+                    'error': _(
+                        'You must log in with a password before starting the'
+                        ' MFA login process.'
+                    ),
                 },
                 keep_hash=True,
             )
@@ -121,21 +86,15 @@ class AuthTotp(Home):
                         'Your confirmation code is not correct. Please try'
                         ' again.'
                     ),
-                    'mfa_login_token': token,
                 },
                 keep_hash=True,
             )
+        request.session['mfa_login_active'] = user.id
 
-        # These context managers trigger a safe commit, which persists the
-        # changes right away and is needed for the auth call
-        with Environment.manage():
-            with registry(request.db).cursor() as temp_cr:
-                temp_env = Environment(temp_cr, SUPERUSER_ID, request.context)
-                temp_user = temp_env['res.users'].browse(user.id)
-                temp_user.generate_mfa_login_token(60 * 24 * 30)
-                token = temp_user.mfa_login_token
-        request.session.authenticate(request.db, user.login, token, user.id)
-        request.params['login_success'] = True
+        user_pass = request.session.get('password')
+        uid = request.session.authenticate(request.db, user.login, user_pass)
+        if uid:
+            request.params['login_success'] = True
 
         redirect = request.params.get('redirect')
         if not redirect:
@@ -145,9 +104,8 @@ class AuthTotp(Home):
             response = Response(response)
 
         if request.params.get('remember_device'):
-            device = device_model_sudo.create({'user_id': user.id})
-            secret = config_model_sudo.get_param('database.secret')
-            device_cookie = JsonSecureCookie({'device_id': device.id}, secret)
+            secret = user.trusted_device_cookie_key
+            device_cookie = JsonSecureCookie({'user_id': user.id}, secret)
             cookie_lifetime = timedelta(days=30)
             cookie_exp = datetime.utcnow() + cookie_lifetime
             device_cookie = device_cookie.serialize(cookie_exp)

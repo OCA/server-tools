@@ -4,4 +4,3 @@
 
 from . import res_users
 from . import res_users_authenticator
-from . import res_users_device
