@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Adapted by Nicolas Bessi. Copyright Camptocamp SA
@@ -21,7 +20,7 @@
 
 {
     "name": "Example server configuration environment files repository module",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
