@@ -137,7 +137,7 @@ msgstr ""
 #: view:server.monitor.model.table.size:server_monitoring.server_monitor_model_table_size_search_view
 #: view:server.monitor.process:server_monitoring.server_monitor_process_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Dikelompokan berdasarkan .."
 
 #. module: server_monitoring
 #: field:server.monitor.class.instance.count,id:0
