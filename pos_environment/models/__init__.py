@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import env_pos
+from . import pos_config

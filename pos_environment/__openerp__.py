@@ -13,10 +13,8 @@
     'depends': [
         'point_of_sale',
         'server_environment',
-        'server_environment_files',
     ],
     'data': [
-        'views/pos_view.xml',
     ],
     'installable': True,
     'active': False,

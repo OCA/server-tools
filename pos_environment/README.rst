@@ -79,6 +79,7 @@ Contributors
 
 * Oleksandr Paziuk <oleksandr.paziuk@camptocamp.com>
 * Denis Leemann <denis.leemann@camptocamp.com>
+* Simone Orsi <simone.orsi@camptocamp.com>
 
 Maintainer
 ----------
