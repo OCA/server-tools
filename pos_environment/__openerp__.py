@@ -13,9 +13,9 @@
     'depends': [
         'point_of_sale',
         'server_environment',
+        'server_environment_files',
     ],
     'data': [
     ],
     'installable': True,
-    'active': False,
 }

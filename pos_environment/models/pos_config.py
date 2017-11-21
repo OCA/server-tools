@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2012-2017 Camptocamp SA
+# Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from openerp.osv import fields as oldfields
@@ -16,6 +16,7 @@ class PosConfig(models.Model):
             lambda self, *a, **kw: self._compute_proxy_ip(*a, **kw),
             type='char',
             readonly=True,
+            string='IP Address'
         ),
     }
 
