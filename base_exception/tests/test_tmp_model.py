@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2017 Akretion (http://www.akretion.com)
+# Copyright 2017 Akretion (http://www.akretion.com)
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 from odoo import fields, models, api
