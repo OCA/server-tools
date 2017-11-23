@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2017 Akretion (<http://www.akretion.com>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2017 Akretion
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -69,8 +52,9 @@ class SqlExport(models.Model):
 
         self.write({'cron_ids': [(4, cron.id)]})
 
-    @api.one
+    @api.multi
     def send_mail(self, params=None):
+        self.ensure_one()
         mail_template = self.env.ref('sql_export_mail.sql_export_mailer')
         now_time = datetime.strftime(datetime.now(),
                                      DEFAULT_SERVER_DATETIME_FORMAT)
@@ -119,21 +103,23 @@ class SqlExport(models.Model):
             else:
                 export.send_mail()
 
-    @api.one
+    @api.multi
     @api.constrains('field_ids', 'mail_user_ids')
     def check_no_parameter_if_sent_by_mail(self):
-        if self.field_ids and self.mail_user_ids:
-            raise UserError(_(
-                "It is not possible to execute and send a query automatically"
-                " by e-mail if there are parameters to fill"))
+        for export in self:
+            if export.field_ids and export.mail_user_ids:
+                raise UserError(_(
+                    "It is not possible to execute and send a query "
+                    "automatically by mail if there are parameters to fill"))
 
-    @api.one
+    @api.multi
     @api.constrains('mail_user_ids')
     def check_mail_user(self):
-        for user in self.mail_user_ids:
-            if not user.email:
-                raise UserError(_(
-                    "The user does not have any e-mail address."))
+        for export in self:
+            for user in export.mail_user_ids:
+                if not user.email:
+                    raise UserError(_(
+                        "The user does not have any e-mail address."))
 
     @api.multi
     def get_email_address_for_template(self):
