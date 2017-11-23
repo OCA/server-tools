@@ -62,7 +62,7 @@ msgstr "Fichier non vide."
 #. module: sql_export_mail
 #: code:addons/sql_export_mail/models/sql_export.py:126
 #, python-format
-msgid "It is not possible to execute and send a query automatically by e-mail if there are parameters to fill"
+msgid "It is not possible to execute and send a query automatically by mail if there are parameters to fill"
 msgstr "Il n'est pas possible d'exécuter en envoyer le résultat d'une requête par mail si celle-ci contient des paramètres."
 
 #. module: sql_export_mail
