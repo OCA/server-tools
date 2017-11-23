@@ -137,7 +137,11 @@ class ServerConfiguration(models.TransientModel):
 
     @classmethod
     def _format_key(cls, section, key):
-        return '%s | %s' % (section, key)
+        return '%s_I_%s' % (section, key)
+
+    @classmethod
+    def _format_key_display_name(cls, key_name):
+        return key_name.replace('_I_', ' | ')
 
     @classmethod
     def _add_columns(cls):
@@ -151,7 +155,10 @@ class ServerConfiguration(models.TransientModel):
             col_name = col.replace('.', '_')
             setattr(ServerConfiguration,
                     col_name,
-                    fields.Char(string=col, readonly=True))
+                    fields.Char(
+                        string=cls._format_key_display_name(col_name),
+                        readonly=True)
+                    )
             cls._conf_defaults[col_name] = value
 
     @classmethod
