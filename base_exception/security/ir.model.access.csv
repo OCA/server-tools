@@ -3,5 +3,3 @@ access_exception_rule,base.exception,model_exception_rule,base.group_user,1,0,0,
 access_exception_rule_manager,base.exception,model_exception_rule,base_exception.group_exception_rule_manager,1,1,1,1
 access_base_exception,base.exception,model_base_exception,base.group_user,1,0,0,0
 access_base_exception_manager,base.exception,model_base_exception,base_exception.group_exception_rule_manager,1,1,1,1
-access_base_exception_test_purchase,access_base_exception_test_purchase,model_base_exception_test_purchase,base.group_system,1,1,1,1
-access_base_exception_test_model_line,access_base_exception_test_model_line,model_base_exception_test_model_line,base.group_system,1,1,1,1
