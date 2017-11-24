@@ -18,6 +18,7 @@
     'data': [
         'security/base_exception_security.xml',
         'security/ir.model.access.csv',
+        'security/tmp_test_model_access_rule.xml',
         'wizard/base_exception_confirm_view.xml',
         'views/base_exception_view.xml',
     ],

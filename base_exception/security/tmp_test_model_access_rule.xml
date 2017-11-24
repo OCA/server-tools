@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <function
+            model="base.exception"
+            name="_import_acl_for_tmp_test_model"/>
+    </data>
+</odoo>
