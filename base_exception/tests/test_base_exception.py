@@ -2,35 +2,38 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
-
+from .common import setup_test_model
+from .purchase_test import PurchaseTest, LineTest
 import logging
 
 _logger = logging.getLogger(__name__)
 
 
-# @common.at_install(False)
-# @common.post_install(True)
-class TestBaseException(common.TransactionCase):
+class TestBaseException(common.SavepointCase):
 
-    def setUp(self):
-        super(TestBaseException, self).setUp()
+    # pylint: disable=missing-return
 
-        self.base_exception = self.env['base.exception']
-        self.exception_rule = self.env['exception.rule']
-        self.exception_confirm = self.env['exception.rule.confirm']
+    @classmethod
+    def setUpClass(cls):
+        super(TestBaseException, cls).setUpClass()
+        setup_test_model(cls.env, [PurchaseTest, LineTest])
 
-        self.exception_rule._fields['rule_group'].selection.append(
+        cls.base_exception = cls.env['base.exception']
+        cls.exception_rule = cls.env['exception.rule']
+        cls.exception_confirm = cls.env['exception.rule.confirm']
+
+        cls.exception_rule._fields['rule_group'].selection.append(
             ('test_base', 'test base exception')
         )
-        self.exception_rule._fields['model'].selection.append(
+        cls.exception_rule._fields['model'].selection.append(
             ('base.exception.test.purchase',
              'base.exception.test.purchase')
         )
-        self.exception_rule._fields['model'].selection.append(
+        cls.exception_rule._fields['model'].selection.append(
             ('base.exception.test.purchase.line',
              'base.exception.test.purchase.line')
         )
-        self.exceptionnozip = self.env['exception.rule'].create({
+        cls.exceptionnozip = cls.env['exception.rule'].create({
             'name': "No ZIP code on destination",
             'sequence': 10,
             'rule_group': "test_base",
@@ -38,7 +41,7 @@ class TestBaseException(common.TransactionCase):
             'code': """if not test_base.partner_id.zip:
     failed=True""",
         })
-        self.exceptionno_minorder = self.env['exception.rule'].create({
+        cls.exceptionno_minorder = cls.env['exception.rule'].create({
             'name': "Min order except",
             'sequence': 10,
             'rule_group': "test_base",
@@ -47,7 +50,7 @@ class TestBaseException(common.TransactionCase):
     failed=True""",
         })
 
-        self.exceptionno_lineqty = self.env['exception.rule'].create({
+        cls.exceptionno_lineqty = cls.env['exception.rule'].create({
             'name': "Qty > 0",
             'sequence': 10,
             'rule_group': "test_base",
@@ -55,7 +58,7 @@ class TestBaseException(common.TransactionCase):
             'code': """if test_base_line.qty <= 0:
         failed=True"""})
 
-    def test_sale_order_exception(self):
+    def test_purchase_order_exception(self):
         partner = self.env.ref('base.res_partner_1')
         partner.zip = False
         potest1 = self.env['base.exception.test.purchase'].create({
