@@ -5,10 +5,14 @@
 
 import time
 from functools import wraps
+import os
+from odoo import api, fields, models, tools, _
+import logging
 
-from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
 
 
 def implemented_by_base_exception(func):
@@ -45,15 +49,14 @@ class ExceptionRule(models.Model):
     active = fields.Boolean('Active')
     next_state = fields.Char(
         'Next state',
-        help="If we detect exception we set de state of object (ex purchase) "
+        help="If we detect exception we set the state of object (ex purchase) "
              "to the next_state (ex 'to approve'). If there are more than one "
              "exception detected and all have a value for next_state, we use"
              "the exception having the smallest sequence value")
     code = fields.Text(
         'Python Code',
         help="Python code executed to check if the exception apply or "
-             "not. The code must apply block = True to apply the "
-             "exception.",
+             "not. Use failed = True to block the exception",
         default="""
 # Python code. Use failed = True to block the base.exception.
 # You can use the following variables :
@@ -63,7 +66,7 @@ class ExceptionRule(models.Model):
 #       base.exception line (ex rule_group = sale for sale order)
 #  - object: same as order or line, browse_record of the base.exception or
 #    base.exception line
-#  - pool: ORM model pool (i.e. self.pool)
+#  - env: Odoo Environment (i.e. self.env)
 #  - time: Python time module
 #  - cr: database cursor
 #  - uid: current user id
@@ -79,10 +82,10 @@ class ExceptionRule(models.Model):
                 select_vals = self.env[
                     rule.model].fields_get()[
                         'state']['selection']
-                if rule.next_state\
-                        not in [s[0] for s in select_vals]:
+                select_vals_code = [s[0] for s in select_vals]
+                if rule.next_state not in select_vals_code:
                     raise ValidationError(
-                        _('The value "%s" you chose for the "next state" '
+                        _('The value "%s" you choose for the "next state" '
                           'field state of "%s" is wrong.'
                           ' Value must be in this list %s')
                         % (rule.next_state,
@@ -121,14 +124,14 @@ class BaseException(models.AbstractModel):
     @api.multi
     def _popup_exceptions(self):
         action = self._get_popup_action()
-        action = action.read()[0]
-        action.update({
+        action_data = action.read()[0]
+        action_data.update({
             'context': {
                 'active_id': self.ids[0],
                 'active_ids': self.ids
             }
         })
-        return action
+        return action_data
 
     @api.model
     def _get_popup_action(self):
@@ -187,18 +190,17 @@ class BaseException(models.AbstractModel):
 
     @api.model
     def _exception_rule_eval_context(self, obj_name, rec):
-        user = self.env['res.users'].browse(self._uid)
         return {obj_name: rec,
-                'self': self.pool.get(rec._name),
+                'self': self.env[rec._name],
                 'object': rec,
                 'obj': rec,
-                'pool': self.pool,
-                'cr': self._cr,
-                'uid': self._uid,
-                'user': user,
+                'env': self.env,
+                'cr': self.env.cr,
+                'uid': self.env.user.id,
+                'user': self.env.user,
                 'time': time,
                 # copy context to prevent side-effects of eval
-                'context': self._context.copy()}
+                'context': self.env.context.copy()}
 
     @api.model
     def _rule_eval(self, rule, obj_name, rec):
@@ -225,10 +227,8 @@ class BaseException(models.AbstractModel):
             if self._rule_eval(rule, self.rule_group, self):
                 exception_ids.append(rule.id)
                 if rule.next_state:
-                    if not next_state_rule:
-                        next_state_rule = rule
-                    elif next_state_rule and\
-                            rule.sequence < next_state_rule.sequence:
+                    if not next_state_rule or\
+                       rule.sequence < next_state_rule.sequence:
                         next_state_rule = rule
         if sub_exceptions:
             for obj_line in self._get_lines():
@@ -252,3 +252,28 @@ class BaseException(models.AbstractModel):
 
     def _default_get_lines(self):
         return []
+
+    @api.model
+    def _import_acl_for_tmp_test_model(self):
+        # import the access rule of temp test model only if testing
+        testing = tools.config.get('test_enable')\
+            or os.environ.get('ODOO_TEST_ENABLE')
+        if testing:
+            header = ['id', 'name', 'model_id:id', 'group_id:id',
+                      'perm_read', 'perm_write',
+                      'perm_create', 'perm_unlink']
+            IrModelAccess = self.env['ir.model.access']
+            acl_data = [
+                ['access_base_exception_test_purchase',
+                 'access_base_exception_test_purchase',
+                 'base_exception.model_base_exception_test_purchase',
+                 'base.group_system', '1', '1', '1', '1'],
+                ['access_base_exception_test_purchase_line',
+                 'access_base_exception_test_purchase_line',
+                 'base_exception.model_base_exception_test_purchase_line',
+                 'base.group_system', '1', '1', '1', '1']
+            ]
+
+            result = IrModelAccess.load(header, acl_data)
+            if result['messages']:
+                _logger.warning(result['messages'])
