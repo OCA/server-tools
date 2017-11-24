@@ -1,7 +1,6 @@
-# Copyright 2017 Akretion (http://www.akretion.com)
-# Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
-
-from odoo import fields, models, api
+# Copyright 2016 Akretion Mourad EL HADJ MIMOUNE
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo import api, fields, models
 
 
 class PurchaseTest(models.Model):
@@ -22,50 +21,53 @@ class PurchaseTest(models.Model):
         string="Status", readonly=True, default='draft')
     active = fields.Boolean(default=True)
     partner_id = fields.Many2one('res.partner', string='Partner')
-    line_ids = fields.One2many('base.exception.test.model.line', 'lead_id')
-    amount_total = fields.Float(compute='_compute_amount_total', store=True)
+    line_ids = fields.One2many(
+        'base.exception.test.purchase.line', 'lead_id')
+    amount_total = fields.Float(
+        compute='_compute_amount_total', store=True)
 
     @api.depends('line_ids')
-    def _compute_amount_total(self):
-        for record in self:
+    def _compute_amount_total(cls):
+        for record in cls:
             for line in record.line_ids:
                 record.amount_total += line.amount * line.qty
 
     @api.constrains('ignore_exception', 'line_ids', 'state')
-    def test_purchase_check_exception(self):
-        orders = self.filtered(lambda s: s.state == 'purchase')
+    def test_purchase_check_exception(cls):
+        orders = cls.filtered(lambda s: s.state == 'purchase')
         if orders:
             orders._check_exception()
 
     @api.multi
-    def button_approve(self, force=False):
-        self.write({'state': 'to approve'})
+    def button_approve(cls, force=False):
+        cls.write({'state': 'to approve'})
         return {}
 
     @api.multi
-    def button_draft(self):
-        self.write({'state': 'draft'})
+    def button_draft(cls):
+        cls.write({'state': 'draft'})
         return {}
 
     @api.multi
-    def button_confirm(self):
-        self.write({'state': 'purchase'})
+    def button_confirm(cls):
+        cls.write({'state': 'purchase'})
         return True
 
     @api.multi
-    def button_cancel(self):
-        self.write({'state': 'cancel'})
+    def button_cancel(cls):
+        cls.write({'state': 'cancel'})
 
-    def test_base_get_lines(self):
-        self.ensure_one()
-        return self.line_ids
+    def test_base_get_lines(cls):
+        cls.ensure_one()
+        return cls.line_ids
 
 
 class LineTest(models.Model):
-    _name = "base.exception.test.model.line"
-    _description = "Base Ecxeption Test Model Line"
+    _name = "base.exception.test.purchase.line"
+    _description = "Base Exception Test Model Line"
 
     name = fields.Char()
-    lead_id = fields.Many2one('base.exception.test.model', ondelete='cascade')
+    lead_id = fields.Many2one('base.exception.test.purchase',
+                              ondelete='cascade')
     qty = fields.Float()
     amount = fields.Float()
