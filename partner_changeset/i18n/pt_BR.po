@@ -3,19 +3,15 @@
 # * partner_changeset
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Letícia do Nascimento Souza <leticia.souza@kmee.com.br>, 2016
-# Armando Vulcano Junior <vulcano@uol.com.br>, 2016
-# Felipe Lopes <ti@trojahntoppel.com.br>, 2016
-# danimaribeiro <danimaribeiro@gmail.com>, 2016
-# Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Albert Vonpupp <vonpupp@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 03:39+0000\n"
-"PO-Revision-Date: 2016-12-16 03:39+0000\n"
-"Last-Translator: Paulo Ricardo <ti@shoppingescritorio.com.br>, 2016\n"
+"POT-Creation-Date: 2017-11-21 01:48+0000\n"
+"PO-Revision-Date: 2017-11-21 01:48+0000\n"
+"Last-Translator: Albert Vonpupp <vonpupp@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,18 +27,18 @@ msgstr ""
 #. module: partner_changeset
 #: selection:res.partner.changeset.change,state:0
 msgid "Accepted"
-msgstr "Aceito"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_action
 msgid "Action"
-msgstr "Ação"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_change_form
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Apply"
-msgstr "Aplicar"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
@@ -58,12 +54,14 @@ msgid ""
 msgstr ""
 
 #. module: partner_changeset
+#: model:ir.model.fields,field_description:partner_changeset.field_res_partner_alias_count_pending_changesets
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_ids
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_count_pending_changesets
+#: model:ir.model.fields,field_description:partner_changeset.field_res_users_count_pending_changesets
 #: model:ir.ui.view,arch_db:partner_changeset.res_partner_view_buttons
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Changes"
-msgstr "Alterações"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_changeset_id
@@ -89,7 +87,9 @@ msgid "Changeset Fields Rules"
 msgstr ""
 
 #. module: partner_changeset
+#: model:ir.model.fields,field_description:partner_changeset.field_res_partner_alias_changeset_ids
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_ids
+#: model:ir.model.fields,field_description:partner_changeset.field_res_users_changeset_ids
 #: model:ir.ui.menu,name:partner_changeset.menu_res_partner_changeset
 msgid "Changesets"
 msgstr ""
@@ -116,26 +116,26 @@ msgstr "Criado em"
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_date
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_display_name
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_display_name
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Mostrar Nome"
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_search
 #: selection:res.partner.changeset,state:0
 msgid "Done"
-msgstr "Feito"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_field_id
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_field_id
 msgid "Field"
-msgstr "Campo"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.menu,name:partner_changeset.menu_changeset_field_rule
@@ -171,21 +171,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset___last_update
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Última Modificação em"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_write_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_write_uid
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Útima atualização por"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_write_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_write_date
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Útima atualização em"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_boolean
@@ -203,7 +203,7 @@ msgstr "Novo"
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_note
 msgid "Note"
-msgstr "Nota"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_old_value_boolean
@@ -250,7 +250,7 @@ msgstr ""
 #: selection:res.partner.changeset,state:0
 #: selection:res.partner.changeset.change,state:0
 msgid "Pending"
-msgstr "Pendente"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_filter
@@ -269,13 +269,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_origin_value_text
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Previous"
-msgstr "Anterior"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_change_form
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
 msgid "Reject"
-msgstr "Rejeitar"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.ui.view,arch_db:partner_changeset.view_res_partner_changeset_form
@@ -285,7 +285,7 @@ msgstr ""
 #. module: partner_changeset
 #: selection:res.partner.changeset.change,state:0
 msgid "Rejected"
-msgstr "Rejeitado"
+msgstr ""
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_changeset_field_rule_source_model_id
@@ -316,7 +316,7 @@ msgid ""
 msgstr ""
 
 #. module: partner_changeset
-#: code:addons/partner_changeset/models/res_partner_changeset.py:401
+#: code:addons/partner_changeset/models/res_partner_changeset.py:404
 #, python-format
 msgid ""
 "This change cannot be applied because a previous changeset for the same partner is pending.\n"
@@ -324,7 +324,7 @@ msgid ""
 msgstr ""
 
 #. module: partner_changeset
-#: code:addons/partner_changeset/models/res_partner_changeset.py:416
+#: code:addons/partner_changeset/models/res_partner_changeset.py:419
 #, python-format
 msgid "This change has already be applied."
 msgstr ""
