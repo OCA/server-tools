@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:46+0000\n"
+"POT-Creation-Date: 2017-11-18 08:56+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ro/)\n"
@@ -65,7 +65,7 @@ msgstr "Anuleaza"
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "Categorie"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0

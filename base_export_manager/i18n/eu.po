@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-21 21:56+0000\n"
-"PO-Revision-Date: 2017-02-23 07:59+0000\n"
+"POT-Creation-Date: 2017-11-18 08:55+0000\n"
+"PO-Revision-Date: 2017-11-23 23:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-server-tools-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr ""
 #. module: base_export_manager
 #: field:ir.exports.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sekuentzia"
 
 #. module: base_export_manager
 #: field:ir.exports.line,field3_id:0

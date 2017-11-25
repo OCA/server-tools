@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-26 03:04+0000\n"
-"PO-Revision-Date: 2017-10-26 03:04+0000\n"
+"POT-Creation-Date: 2017-11-18 08:56+0000\n"
+"PO-Revision-Date: 2017-11-18 08:56+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -181,6 +181,11 @@ msgstr "Uporabnik"
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
 msgstr "Uporabniška vloga"
+
+#. module: base_user_role
+#: model:ir.module.category,name:base_user_role.ir_module_category_role
+msgid "User roles"
+msgstr "Uporabniške vloge"
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 03:36+0000\n"
+"POT-Creation-Date: 2017-11-18 08:56+0000\n"
 "PO-Revision-Date: 2015-10-12 19:47+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-server-tools-8-0/language/gl/)\n"
@@ -65,7 +65,7 @@ msgstr "Cancelar"
 #. module: module_prototyper
 #: field:module_prototyper,category_id:0
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #. module: module_prototyper
 #: help:module_prototyper,application:0
@@ -403,7 +403,7 @@ msgstr ""
 #. module: module_prototyper
 #: view:ir.model:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
 #. module: module_prototyper
 #: field:ir.model.fields,notes:0
