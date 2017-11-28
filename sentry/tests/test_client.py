@@ -8,7 +8,7 @@ import unittest
 
 import raven
 
-from odoo import exceptions
+from openerp import exceptions
 
 from .. import initialize_raven
 from ..logutils import OdooSentryHandler
@@ -105,7 +105,7 @@ class TestClientSetup(unittest.TestCase):
         config = {
             'sentry_enabled': True,
             'sentry_dsn': 'http://public:secret@example.com/1',
-            'sentry_ignore_exceptions': 'odoo.exceptions.UserError',
+            'sentry_ignore_exceptions': 'openerp.exceptions.UserError',
         }
         level, msg = logging.WARNING, 'Test UserError'
         client = initialize_raven(config, client_cls=InMemoryClient)

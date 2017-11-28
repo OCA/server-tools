@@ -48,17 +48,17 @@ configuration file:
                                from Sentry.
 
 ``sentry_ignored_exceptions``  A string of comma-separated exceptions which should be ignored.       ``odoo.exceptions.AccessDenied,
-                               You can use a star symbol (*) at the end, to ignore all exceptions    odoo.exceptions.AccessError,
-                               from a module, eg.: *odoo.exceptions.**.                              odoo.exceptions.DeferredException,
-                                                                                                     odoo.exceptions.MissingError,
-                                                                                                     odoo.exceptions.RedirectWarning,
-                                                                                                     odoo.exceptions.UserError,
-                                                                                                     odoo.exceptions.ValidationError,
-                                                                                                     odoo.exceptions.Warning,
-                                                                                                     odoo.exceptions.except_orm``
+                               You can use a star symbol (*) at the end, to ignore all exceptions    openerp.exceptions.AccessError,
+                               from a module, eg.: *odoo.exceptions.**.                              openerp.exceptions.DeferredException,
+                                                                                                     openerp.exceptions.MissingError,
+                                                                                                     openerp.exceptions.RedirectWarning,
+                                                                                                     openerp.exceptions.UserError,
+                                                                                                     openerp.exceptions.ValidationError,
+                                                                                                     openerp.exceptions.Warning,
+                                                                                                     openerp.exceptions.except_orm``
 
 ``sentry_processors``          A string of comma-separated processor classes which will be applied   ``raven.processors.SanitizePasswordsProcessor,
-                               on an event before sending it to Sentry.                              odoo.addons.sentry.logutils.SanitizeOdooCookiesProcessor``
+                               on an event before sending it to Sentry.                              openerp.addons.sentry.logutils.SanitizeOdooCookiesProcessor``
 
 ``sentry_transport``           Transport class which will be used to send events to Sentry.          ``threaded``
                                Possible values: *threaded*: spawns an async worker for processing
@@ -93,8 +93,8 @@ Below is an example of Odoo configuration file with *Odoo Sentry* options::
     sentry_enabled = true
     sentry_logging_level = warn
     sentry_exclude_loggers = werkzeug
-    sentry_ignore_exceptions = odoo.exceptions.AccessDenied,odoo.exceptions.AccessError,odoo.exceptions.MissingError,odoo.exceptions.RedirectWarning,odoo.exceptions.UserError,odoo.exceptions.ValidationError,odoo.exceptions.Warning,odoo.exceptions.except_orm
-    sentry_processors = raven.processors.SanitizePasswordsProcessor,odoo.addons.sentry.logutils.SanitizeOdooCookiesProcessor
+    sentry_ignore_exceptions = openerp.exceptions.AccessDenied,openerp.exceptions.AccessError,openerp.exceptions.MissingError,openerp.exceptions.RedirectWarning,openerp.exceptions.UserError,openerp.exceptions.ValidationError,openerp.exceptions.Warning,openerp.exceptions.except_orm
+    sentry_processors = raven.processors.SanitizePasswordsProcessor,openerp.addons.sentry.logutils.SanitizeOdooCookiesProcessor
     sentry_transport = threaded
     sentry_include_context = true
     sentry_environment = production
@@ -109,7 +109,7 @@ above the configured Sentry logging level, no additional actions are necessary.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/8.0
 
 Known issues / Roadmap
 ======================

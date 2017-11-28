@@ -5,7 +5,7 @@
 import logging
 import urlparse
 
-import odoo.http
+import openerp.http
 
 _logger = logging.getLogger(__name__)
 try:
@@ -38,7 +38,7 @@ def get_extra_context():
     '''
     Extracts additional context from the current request (if such is set).
     '''
-    request = odoo.http.request
+    request = openerp.http.request
     try:
         session = getattr(request, 'session', {})
     except RuntimeError:
