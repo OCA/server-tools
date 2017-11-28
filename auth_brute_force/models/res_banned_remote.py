@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 GRAP - Sylvain LE GAL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import json
 
 from odoo import api, fields, models
@@ -33,9 +32,9 @@ class ResBannedRemote(models.Model):
     def _compute_description(self):
         for item in self:
             url = self._GEOLOCALISATION_URL.format(item.remote)
-            res = json.loads(urllib.urlopen(url).read())
+            res = json.loads(urllib.request.urlopen(url).read())
             item.description = ''
-            for k, v in res.iteritems():
+            for k, v in res.items():
                 item.description += '%s : %s\n' % (k, v)
 
     @api.multi

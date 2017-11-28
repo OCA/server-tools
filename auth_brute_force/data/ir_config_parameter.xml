@@ -3,13 +3,9 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo noupdate="1">
 
-    <data>
-
-        <record id="max_attempt_qty" model="ir.config_parameter">
-            <field name="key">auth_brute_force.max_attempt_qty</field>
-            <field name="value">10</field>
-        </record>
-
-    </data>
+<record id="max_attempt_qty" model="ir.config_parameter">
+    <field name="key">auth_brute_force.max_attempt_qty</field>
+    <field name="value">10</field>
+</record>
 
 </odoo>
