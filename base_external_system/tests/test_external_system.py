@@ -74,9 +74,3 @@ class TestExternalSystem(Common):
         self.assertTrue(interface.exists())
         self.record.unlink()
         self.assertFalse(interface.exists())
-
-    def test_unlink_delete_interface_context_override(self):
-        """It should not delete the interface when overridden in context."""
-        interface = self.record.interface
-        self.record.with_context(no_interface_unlink=True).unlink()
-        self.assertTrue(interface.exists())

@@ -79,14 +79,3 @@ class ExternalSystemAdapter(models.AbstractModel):
         record = super(ExternalSystemAdapter, context_self).create(vals)
         record.system_id.interface = record
         return record
-
-    @api.multi
-    def unlink(self):
-        if not self.env.context.get('no_interface_unlink'):
-            for record in self:
-                system = record.system_id.with_context(
-                    no_interface_unlink=True,
-                )
-                return system.unlink()
-        else:
-            return super(ExternalSystemAdapter, self).unlink()
