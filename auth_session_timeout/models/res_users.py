@@ -90,7 +90,7 @@ class ResUsers(models.Model):
         # Else, conditionally update session modified and access times
         ignored_urls = self._auth_timeout_get_ignored_urls()
 
-        if http.request.http.request.path not in ignored_urls:
+        if http.request.httprequest.path not in ignored_urls:
             if 'path' not in locals():
                 path = http.root.session_store.get_session_filename(
                     session.sid,
