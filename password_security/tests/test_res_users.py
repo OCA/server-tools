@@ -159,3 +159,8 @@ class TestResUsers(TransactionCase):
         self.assertEqual(
             True, rec_id._validate_pass_reset(),
         )
+
+    def test_underscore_is_special_character(self):
+        self.assertTrue(self.main_comp.password_special)
+        rec_id = self._new_record()
+        rec_id._check_password('asdQWE12345_3')

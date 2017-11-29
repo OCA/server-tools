@@ -84,7 +84,7 @@ class ResUsers(models.Model):
         if company_id.password_numeric:
             password_regex.append(r'(?=.*?\d)')
         if company_id.password_special:
-            password_regex.append(r'(?=.*?\W)')
+            password_regex.append(r'(?=.*?[\W_])')
         password_regex.append('.{%d,}$' % company_id.password_length)
         if not re.search(''.join(password_regex), password):
             raise PassError(self.password_match_message())
