@@ -32,12 +32,13 @@ class ResUsers(models.Model):
         return res
 
     @api.multi
-    def set_groups_from_roles(self):
+    def set_groups_from_roles(self, force=False):
         """Set (replace) the groups following the roles defined on users.
-        If no role is defined on the user, its groups are let untouched.
+        If no role is defined on the user, its groups are let untouched unless
+        the `force` parameter is `True`.
         """
         for user in self:
-            if not user.role_line_ids:
+            if not user.role_line_ids and not force:
                 continue
             group_ids = []
             role_lines = user.role_line_ids.filtered(
