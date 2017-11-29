@@ -4,6 +4,7 @@
 from psycopg2 import ProgrammingError
 from openerp.modules.registry import RegistryManager
 from openerp.tools import config
+from openerp.tools.misc import mute_logger
 from openerp.tests.common import TransactionCase
 
 
@@ -16,8 +17,9 @@ class TestDatabaseCleanup(TransactionCase):
         purge_columns.purge_all()
         # must be removed by the wizard
         with self.assertRaises(ProgrammingError):
-            with self.registry.cursor() as cr:
-                cr.execute('select database_cleanup_test from res_users')
+            with mute_logger('openerp.sql_db'):
+                with self.registry.cursor() as cr:
+                    cr.execute('select database_cleanup_test from res_users')
 
         # create a data entry pointing nowhere
         self.cr.execute('select max(id) + 1 from res_users')
@@ -82,5 +84,6 @@ class TestDatabaseCleanup(TransactionCase):
             lambda x: x.name == 'database_cleanup_test'
         ).purge()
         with self.assertRaises(ProgrammingError):
-            with self.registry.cursor() as cr:
-                self.env.cr.execute('select * from database_cleanup_test')
+            with mute_logger('openerp.sql_db'):
+                with self.registry.cursor() as cr:
+                    self.env.cr.execute('select * from database_cleanup_test')
