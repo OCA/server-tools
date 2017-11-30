@@ -85,7 +85,13 @@ class ResConfigSettings(models.TransientModel):
             queries += [
                 "//label[@for='module_inter_company_rules']",
                 "//div[@name='inter_company']",
-                # "//field[@name='module_project_forecast']/ancestor::div[2]",
+            ]
+
+        elif page_name == 'Configure Mass Mailing':
+            queries += [
+                "//group[@name='mass_mailing_group']/"
+                "label[@for='module_mass_mailing_themes']",
+                "//group[@name='mass_mailing_group']/div",
             ]
 
         for query in queries:
