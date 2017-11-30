@@ -22,7 +22,7 @@ addon | version | summary
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 10.0.1.0.0 | Authentification - Admin Passkey
 [auth_brute_force](auth_brute_force/) | 10.0.1.0.0 | Tracks Authentication Attempts and Prevents Brute-force Attacks module
-[auth_session_timeout](auth_session_timeout/) | 10.0.1.0.0 | This module disable all inactive sessions since a given delay
+[auth_session_timeout](auth_session_timeout/) | 10.0.1.0.1 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
 [auth_totp](auth_totp/) | 10.0.1.0.0 | Allows users to enable MFA and add optional trusted devices
