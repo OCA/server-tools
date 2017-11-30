@@ -5,7 +5,7 @@
 
     'name': 'Password Security',
     "summary": "Allow admin to set password security requirements.",
-    'version': '9.0.1.2.0',
+    'version': '9.0.1.2.1',
     'author': "LasLabs, Odoo Community Association (OCA)",
     'category': 'Base',
     'depends': [
