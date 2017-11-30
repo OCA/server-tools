@@ -79,7 +79,12 @@ class SqlFileWizard(models.TransientModel):
         date = today_tz.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         if sql_export.field_ids:
             for field in sql_export.field_ids:
-                variable_dict[field.name] = self[field.name]
+                if field.ttype == 'many2one':
+                    variable_dict[field.name] = self[field.name].id
+                elif field.ttype == 'many2many':
+                    variable_dict[field.name] = tuple(self[field.name].ids)
+                else:
+                    variable_dict[field.name] = self[field.name]
         if "%(company_id)s" in sql_export.query:
             variable_dict['company_id'] = self.env.user.company_id.id
         if "%(user_id)s" in sql_export.query:
