@@ -120,9 +120,9 @@ class IrUiView(models.Model):
         target_node = self.locate_node(
             source, etree.Element(specs.tag, expr=specs.get('target'))
         )
-        
+
         target_position = specs.get('target_position') or 'inside'
-        
+
         if target_position == 'after':
             target_node.addnext(node)
         elif target_position == 'before':
@@ -130,7 +130,11 @@ class IrUiView(models.Model):
         elif target_position == 'inside':
             target_node.append(node)
         else:
-            self.raise_view_error(_("Invalid target_position attribute: '%s'") % target_position, inherit_id, context=self.env.context)
+            self.raise_view_error(
+                _("Invalid target_position attribute: '%s'") % target_position,
+                inherit_id,
+                context=self.env.context
+            )
 
         return source
 
