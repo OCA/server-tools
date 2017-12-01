@@ -74,7 +74,7 @@ addon | version | summary
 [module_auto_update](module_auto_update/) | 10.0.1.0.1 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
-[password_security](password_security/) | 10.0.1.1.0 | Allow admin to set password security requirements.
+[password_security](password_security/) | 10.0.1.1.1 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 10.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
 [sentry](sentry/) | 10.0.1.0.0 | Report Odoo errors to Sentry
