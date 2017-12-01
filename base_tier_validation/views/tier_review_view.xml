@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="tier_review_view_tree" model="ir.ui.view">
+        <field name="name">tier.review.tree</field>
+        <field name="model">tier.review</field>
+        <field name="arch" type="xml">
+            <tree string="Tier Review"
+                  decoration-danger="status=='rejected'"
+                  decoration-success="status=='approved'">
+                <field name="sequence"/>
+                <field name="review_type"/>
+                <field name="reviewer_id"/>
+                <field name="reviewer_group_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
