@@ -3,20 +3,20 @@
 # * module_prototyper
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2017-02-18 02:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_api_version
@@ -102,7 +102,7 @@ msgstr "Utworzone przez"
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
-msgstr "Data utworzenia"
+msgstr "Utworzono"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -354,7 +354,7 @@ msgstr "Ostatnio modyfikowane przez"
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
-msgstr "Data ostatniej modyfikacji"
+msgstr "Ostatnia zmiana"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_license

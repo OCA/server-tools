@@ -3,14 +3,14 @@
 # * module_prototyper
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2017-02-18 02:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +136,7 @@ msgstr "Descrição"
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
-msgstr "Nome a Apresentar"
+msgstr "Nome"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_summary
@@ -347,7 +347,7 @@ msgstr "Última Modificação Em"
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
-msgstr "Última Atualização Por"
+msgstr "Última Modificação Por"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_api_version_write_date
