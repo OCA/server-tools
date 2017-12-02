@@ -3,14 +3,14 @@
 # * base_multi_image
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 00:47+0000\n"
-"PO-Revision-Date: 2017-05-10 00:47+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Bilder"
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner___last_update
 msgid "Last Modified on"
-msgstr "Zuletzt verändert am"
+msgstr "Zuletzt geändert am"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
