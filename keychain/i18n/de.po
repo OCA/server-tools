@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 00:47+0000\n"
-"PO-Revision-Date: 2017-05-10 00:47+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -36,17 +36,12 @@ msgstr "'prod', 'dev', usw. oder leer (für alle)"
 
 #. module: keychain
 #: model:ir.actions.act_window,name:keychain.keychain_list_action
-#: model:ir.ui.view,arch_db:keychain.keychain_account_id
 msgid "Accounts"
 msgstr "Konten"
 
 #. module: keychain
-#: model:ir.ui.view,arch_db:keychain.keychain_account_form
-msgid "Accounts form"
-msgstr "Kontenformular"
-
-#. module: keychain
 #: model:ir.model.fields,help:keychain.field_keychain_account_data
+#: model:ir.model.fields,help:keychain.field_keychain_backend_data
 msgid "Additionnal data as json"
 msgstr "Zusätzliche Daten als JSON"
 
@@ -58,15 +53,16 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_uid
 msgid "Created by"
-msgstr "Erstellt durch"
+msgstr "Erstellt von"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_date
 msgid "Created on"
-msgstr "Erstellt am"
+msgstr "Erstellt am:"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_data
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_data
 msgid "Data"
 msgstr "Daten"
 
@@ -84,6 +80,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_display_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
@@ -99,6 +96,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_id
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_id
 msgid "ID"
 msgstr "ID"
 
@@ -109,13 +107,14 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account___last_update
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend___last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert durch"
+msgstr "Zuletzt aktualisiert von"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_write_date
@@ -130,8 +129,9 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_name
 msgid "Name"
-msgstr "Bezeichnung"
+msgstr "Name"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_namespace
@@ -147,6 +147,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_password
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_password
 msgid "Password"
 msgstr "Passwort"
 
@@ -186,4 +187,9 @@ msgstr ""
 #. module: keychain
 #: model:ir.model,name:keychain.model_keychain_account
 msgid "keychain.account"
+msgstr ""
+
+#. module: keychain
+#: model:ir.model,name:keychain.model_keychain_backend
+msgid "keychain.backend"
 msgstr ""
