@@ -3,25 +3,25 @@
 # * base_report_auto_create_qweb
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
 "PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Cancel"
-msgstr "取消"
+msgstr "Annuleer"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
@@ -31,17 +31,17 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_uid
 msgid "Created by"
-msgstr "建立者"
+msgstr "Aangemaakt door"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_date
 msgid "Created on"
-msgstr "建立於"
+msgstr "Aangemaakt op"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_display_name
 msgid "Display Name"
-msgstr "顯示名稱"
+msgstr "weergavenaam"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
@@ -56,22 +56,22 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_id
 msgid "ID"
-msgstr "編號"
+msgstr "ID"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate___last_update
 msgid "Last Modified on"
-msgstr "最後修改:"
+msgstr "Laatst gewijzigd op"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_uid
 msgid "Last Updated by"
-msgstr "最後更新："
+msgstr "Laatst bijgewerkt door"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_write_date
 msgid "Last Updated on"
-msgstr "最後更新於"
+msgstr "Laatst bijgewerkt op"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
@@ -108,4 +108,4 @@ msgstr ""
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "or"
-msgstr "或"
+msgstr "of"
