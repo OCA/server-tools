@@ -3,26 +3,26 @@
 # * auth_session_timeout
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Paolo Valier <paolo.valier@hotmail.it>, 2018
+# Daniel Schweiger <danielcccasle@gmail.com>, 2017
+# Dorin Hongu <dhongu@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 02:24+0000\n"
-"PO-Revision-Date: 2018-01-06 02:24+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"POT-Creation-Date: 2017-12-16 02:16+0000\n"
+"PO-Revision-Date: 2017-12-16 02:16+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2017\n"
+"Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #. module: auth_session_timeout
 #: model:ir.model,name:auth_session_timeout.model_res_users
 msgid "Users"
-msgstr "Utenti"
+msgstr "Utilizatori"
 
 #. module: auth_session_timeout
 #: model:ir.model,name:auth_session_timeout.model_ir_config_parameter
