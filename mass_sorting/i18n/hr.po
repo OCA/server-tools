@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Kreirao"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_create_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_create_date
 msgid "Created on"
-msgstr "Kreirano "
+msgstr "Kreirano"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_description
@@ -78,7 +78,7 @@ msgstr "Opis"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_display_name
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_display_name
 msgid "Display Name"
-msgstr "Prikaži naziv"
+msgstr "Naziv "
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
@@ -130,7 +130,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard___last_update
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line___last_update
 msgid "Last Modified on"
-msgstr "Zadnja izmjena na"
+msgstr "Zadnje modificirano"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_uid
@@ -138,7 +138,7 @@ msgstr "Zadnja izmjena na"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Zadnje ažuriranje izvršio"
+msgstr "Zadnji ažurirao"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
@@ -146,7 +146,7 @@ msgstr "Zadnje ažuriranje izvršio"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje na"
+msgstr "Zadnje ažuriranje"
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:93
