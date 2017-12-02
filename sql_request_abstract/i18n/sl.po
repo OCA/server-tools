@@ -3,14 +3,13 @@
 # * sql_request_abstract
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 02:51+0000\n"
-"PO-Revision-Date: 2017-06-06 02:51+0000\n"
+"POT-Creation-Date: 2017-12-01 02:11+0000\n"
+"PO-Revision-Date: 2017-12-01 02:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +21,12 @@ msgstr ""
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_group_ids
 msgid "Allowed Groups"
-msgstr "Dovoljene skupine"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_user_ids
 msgid "Allowed Users"
-msgstr "Dovoljeni uporabniki"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_display_name
@@ -48,7 +47,7 @@ msgstr "ID"
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:140
 #, python-format
 msgid "It is not allowed to execute a not checked request."
-msgstr "Nepreverjenih zahtev ni dovoljeno izvajati."
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin___last_update
@@ -58,7 +57,7 @@ msgstr "Zadnjič spremenjeno"
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_manager
 msgid "Manager"
-msgstr "Upravitelj"
+msgstr ""
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
@@ -67,8 +66,6 @@ msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
 "currently installed."
 msgstr ""
-"Materializiran prikaz zahteva PostgreSQL 9.3 ali novejši, a trenutno je "
-"nameščen PostgreSQL %s ."
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_name
@@ -78,17 +75,17 @@ msgstr "Naziv"
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_query
 msgid "Query"
-msgstr "Poizvedba"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.module.category,name:sql_request_abstract.category_sql_abstract
 msgid "SQL Request"
-msgstr "SQL zahtevek"
+msgstr ""
 
 #. module: sql_request_abstract
 #: selection:sql.request.mixin,state:0
 msgid "SQL Valid"
-msgstr "SQL veljaven"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_state
@@ -102,9 +99,6 @@ msgid ""
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
 msgstr ""
-"Stanje zahtevka:\n"
-" * 'Osnutek': ni testirano\n"
-" * 'SQL veljaven': SQL zahtevek je bil preverjen in je veljaven"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
@@ -114,21 +108,18 @@ msgid ""
 "\n"
 " %s"
 msgstr ""
-"SQL poizvedba ni veljvna:\n"
-"\n"
-" %s"
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
-msgstr "Poizvedba ni dovoljena, ker vsebuje besedo vprašljive varnosti '%s'"
+msgstr ""
 
 #. module: sql_request_abstract
 #: code:addons/sql_request_abstract/models/sql_request_mixin.py:160
 #, python-format
 msgid "Unimplemented mode : '%s'"
-msgstr "Neimplementirani način: '%s'"
+msgstr ""
 
 #. module: sql_request_abstract
 #: model:res.groups,name:sql_request_abstract.group_sql_request_user
@@ -141,8 +132,6 @@ msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
 "TRUNCATE, EXECUTE, UPDATE."
 msgstr ""
-"Uporabite lahko naslednje besede: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE."
 
 #. module: sql_request_abstract
 #: model:ir.model,name:sql_request_abstract.model_sql_request_mixin
