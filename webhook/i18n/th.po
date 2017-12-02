@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * webhook
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:11+0000\n"
+"PO-Revision-Date: 2017-12-01 02:11+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Thai (https://www.transifex.com/oca/teams/23907/th/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_active
+msgid "Active"
+msgstr ""
+
+#. module: webhook
+#: model:ir.ui.view,arch_db:webhook.view_webhook_form
+msgid "Address"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_name
+msgid "Consumer name"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_create_uid
+#: model:ir.model.fields,field_description:webhook.field_webhook_create_uid
+msgid "Created by"
+msgstr "สร้างโดย"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_create_date
+#: model:ir.model.fields,field_description:webhook.field_webhook_create_date
+msgid "Created on"
+msgstr "สร้างเมื่อ"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_display_name
+#: model:ir.model.fields,field_description:webhook.field_webhook_display_name
+msgid "Display Name"
+msgstr "ชื่อที่ใช้แสดง"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_python_code_get_ip
+msgid "Get IP"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_python_code_get_event
+msgid "Get event"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_id
+#: model:ir.model.fields,field_description:webhook.field_webhook_id
+msgid "ID"
+msgstr "รหัส"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_ids
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_name
+msgid "IP or Network Address"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,help:webhook.field_webhook_address_name
+msgid ""
+"IP or network address of your consumer webhook:\n"
+"ip address e.g.: 10.10.0.8\n"
+"network address e.g. of: 10.10.0.8/24"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook___last_update
+#: model:ir.model.fields,field_description:webhook.field_webhook_address___last_update
+msgid "Last Modified on"
+msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_write_uid
+#: model:ir.model.fields,field_description:webhook.field_webhook_write_uid
+msgid "Last Updated by"
+msgstr "อัพเดทครั้งสุดท้ายโดย"
+
+#. module: webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_write_date
+#: model:ir.model.fields,field_description:webhook.field_webhook_write_date
+msgid "Last Updated on"
+msgstr "อัพเดทครั้งสุดท้ายเมื่อ"
+
+#. module: webhook
+#: model:ir.model.fields,help:webhook.field_webhook_name
+msgid ""
+"Name of your consumer webhook. This name will be used in named of event "
+"methods"
+msgstr ""
+
+#. module: webhook
+#: code:addons/webhook/models/webhook.py:195
+#, python-format
+msgid "Not defined methods \"%s\" yet"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,help:webhook.field_webhook_python_code_get_event
+msgid ""
+"Python code to get event from request data.\n"
+"You have object.env.request variable with full webhook request."
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,help:webhook.field_webhook_python_code_get_ip
+msgid ""
+"Python code to get remote IP address from request data.\n"
+"You have object.env.request variable with full webhook request."
+msgstr ""
+
+#. module: webhook
+#: model:ir.model.fields,help:webhook.field_webhook_address_ids
+msgid "This address will be filter to know who is consumer webhook"
+msgstr ""
+
+#. module: webhook
+#: model:ir.actions.act_window,name:webhook.action_webhook
+#: model:ir.model.fields,field_description:webhook.field_webhook_address_webhook_id
+#: model:ir.ui.menu,name:webhook.webhook_menu_action
+msgid "Webhook"
+msgstr ""
+
+#. module: webhook
+#: code:addons/webhook/tests/test_webhook_post.py:30
+#, python-format
+msgid "Wrong value received"
+msgstr ""
+
+#. module: webhook
+#: code:addons/webhook/models/webhook.py:183
+#, python-format
+msgid "event is not defined"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model,name:webhook.model_webhook
+msgid "webhook"
+msgstr ""
+
+#. module: webhook
+#: code:addons/webhook/controllers/main.py:38
+#, python-format
+msgid ""
+"webhook consumer [%s] from remote address [%s] not found jsonrequest [%s]"
+msgstr ""
+
+#. module: webhook
+#: model:ir.model,name:webhook.model_webhook_address
+msgid "webhook.address"
+msgstr ""
