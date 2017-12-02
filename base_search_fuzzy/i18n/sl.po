@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -106,12 +106,9 @@ msgstr "Modeli"
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
 "the index already exists and the index is located in the same table then "
-"this index is resused. If the index is located in another table then a "
-"number is added at the end of the index name."
+"this index is reused. If the index is located in another table then a number"
+" is added at the end of the index name."
 msgstr ""
-"Naziv indeksa samodejno nastane kot fieldname_indextype_idx. Če indeks že "
-"obstaja in se nahaja v isti tabeli, se ponovno uporabi isti indeks. Če se "
-"indeks nahaja v drugi tabeli, se ob koncu naziva indeksa doda številka."
 
 #. module: base_search_fuzzy
 #: code:addons/base_search_fuzzy/models/trgm_index.py:126
@@ -120,14 +117,10 @@ msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr "Razširitev pg_trgm ne obstaja ali pa je ni mogoče namestiti."
 
 #. module: base_search_fuzzy
-#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
-#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
-msgid "Trigam Index"
-msgstr "Trigram indeks"
-
-#. module: base_search_fuzzy
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
+#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
+#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
 msgid "Trigram Index"
 msgstr "Trigram indeks"
 
