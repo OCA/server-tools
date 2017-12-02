@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -53,19 +53,19 @@ msgstr "Comment"
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Créé par"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Créé le"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_display_name
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nom affiché"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_is_enabled
@@ -107,19 +107,19 @@ msgstr "Inherits"
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role___last_update
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Mis à jour par"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Mis à jour le"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_name
@@ -134,7 +134,7 @@ msgid "Role"
 msgstr "Rôle"
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1510
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1573
 msgid "Role lines"
 msgstr "Role lines"
 
@@ -150,7 +150,7 @@ msgstr "Rôles"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_rule_groups
 msgid "Rules"
-msgstr "Rules"
+msgstr "Règles"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_share

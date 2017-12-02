@@ -3,14 +3,14 @@
 # * base_kanban_stage_state
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Daniel Schweiger <danielcccasle@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-18 02:19+0000\n"
-"PO-Revision-Date: 2017-03-18 02:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,4 +26,4 @@ msgstr ""
 #. module: base_kanban_stage_state
 #: model:ir.model.fields,field_description:base_kanban_stage_state.field_base_kanban_stage_state
 msgid "State"
-msgstr "Județ"
+msgstr "Tara"

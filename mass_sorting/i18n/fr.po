@@ -1,19 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* mass_sorting
-#
+# * mass_sorting
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 16:46+0000\n"
-"PO-Revision-Date: 2017-01-19 16:46+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:84
@@ -36,6 +39,11 @@ msgstr "Autoriser un paramétrage personnalisé"
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
 msgid "Cancel"
 msgstr "Annuler"
+
+#. module: mass_sorting
+#: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_config_id
+msgid "Config id"
+msgstr ""
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_wizard_form
@@ -74,7 +82,8 @@ msgstr "Nom affiché"
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
 msgid "Display a button in the sidebar of related model to open a wizard"
-msgstr "Afficher un bouton dans la barre de menu du modèle pour ouvrir un assistant"
+msgstr ""
+"Afficher un bouton dans la barre de menu du modèle pour ouvrir un assistant"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_field_id
@@ -104,8 +113,12 @@ msgstr "ID"
 #. module: mass_sorting
 #: model:ir.model.fields,help:mass_sorting.field_mass_sort_config_allow_custom_setting
 #: model:ir.model.fields,help:mass_sorting.field_mass_sort_wizard_allow_custom_setting
-msgid "If checked, any user could have the possibility to change fields, and use others."
-msgstr "Si la case est cochée, chaque utilisateur aura la possibilité de changer les champs et d'en utiliser d'autres."
+msgid ""
+"If checked, any user could have the possibility to change fields, and use "
+"others."
+msgstr ""
+"Si la case est cochée, chaque utilisateur aura la possibilité de changer les"
+" champs et d'en utiliser d'autres."
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_desc
@@ -119,7 +132,7 @@ msgstr "Ordre inverse"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard___last_update
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line___last_update
 msgid "Last Modified on"
-msgstr "Dernière Modification le"
+msgstr "Dernière modification le"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_uid
@@ -127,7 +140,7 @@ msgstr "Dernière Modification le"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Mis à jour par"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
@@ -135,7 +148,7 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr "Mis à jour le"
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:93
@@ -209,8 +222,11 @@ msgstr "Critères de tri"
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:63
 #, python-format
-msgid "The selected Field to Sort '%s' doesn't belong to the selected model '%s'."
-msgstr "Le champ sélectionné pour le tri '%s' n'appartient pas au modèle sélectionné '%s'."
+msgid ""
+"The selected Field to Sort '%s' doesn't belong to the selected model '%s'."
+msgstr ""
+"Le champ sélectionné pour le tri '%s' n'appartient pas au modèle sélectionné"
+" '%s'."
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:55
@@ -221,8 +237,10 @@ msgstr "Le champ sélectionné pour le tri n'a pas de champ séquence défini."
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config_line.py:30
 #, python-format
-msgid "The selected criteria '%s' must belong to the model of the Field to Sort."
-msgstr "Le critère sélectionné '%s' doit appartenir au modèle du champ à trier."
+msgid ""
+"The selected criteria '%s' must belong to the model of the Field to Sort."
+msgstr ""
+"Le critère sélectionné '%s' doit appartenir au modèle du champ à trier."
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_config_id
@@ -233,16 +251,22 @@ msgstr "Assistant"
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:72
 #, python-format
-msgid "You have to define field(s) in 'Sorting Criterias' if you uncheck 'Allow Custom Setting'."
-msgstr "Vous devez définir des champs dans 'Critères de Tri', si vous décochez 'Autoriser un paramétrage personnalisé'."
+msgid ""
+"You have to define field(s) in 'Sorting Criterias' if you uncheck 'Allow "
+"Custom Setting'."
+msgstr ""
+"Vous devez définir des champs dans 'Critères de Tri', si vous décochez "
+"'Autoriser un paramétrage personnalisé'."
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_wizard.py:54
 #, python-format
-msgid "You will sort the field '%(field)s' for %(qty)d %(model)s(s). \n"
+msgid ""
+"You will sort the field '%(field)s' for %(qty)d %(model)s(s). \n"
 "\n"
 "The sorting will be done by %(field_list)s."
-msgstr "Vous allez trier le champ '%(field)s' pour %(qty)d %(model)s(s). \n"
+msgstr ""
+"Vous allez trier le champ '%(field)s' pour %(qty)d %(model)s(s). \n"
 "\n"
 "Le tri sera réalisé par %(field_list)s."
 
@@ -265,4 +289,3 @@ msgstr "mass.sort.wizard"
 #: model:ir.model,name:mass_sorting.model_mass_sort_wizard_line
 msgid "mass.sort.wizard.line"
 msgstr "mass.sort.wizard.line"
-

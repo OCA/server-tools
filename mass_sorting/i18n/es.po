@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 03:58+0000\n"
-"PO-Revision-Date: 2017-03-01 03:58+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_create_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_description
@@ -78,7 +78,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_display_name
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
@@ -130,7 +130,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard___last_update
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última actualización por"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_uid
@@ -138,7 +138,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
@@ -146,7 +146,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:93
