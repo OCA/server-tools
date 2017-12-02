@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 09:44+0000\n"
+"POT-Creation-Date: 2017-11-30 09:35+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/nl_NL/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: auth_brute_force
 #: field:res.banned.remote,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,attempt_date:0
