@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_kanban_stage
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
@@ -9,39 +9,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_status
 msgid ""
-"A record can have one of several Kanban statuses, which are used to indicate whether there are any special situations affecting it. The exact meaning of each status is allowed to vary based on the stage the record is in but they are roughly as follow:\n"
+"A record can have one of several Kanban statuses, which are used to indicate "
+"whether there are any special situations affecting it. The exact meaning of "
+"each status is allowed to vary based on the stage the record is in but they "
+"are roughly as follow:\n"
 "* Normal Handling: Default status, no special situations\n"
 "* Ready: Ready to transition to the next stage\n"
-"* Special Handling: Blocked in some way (e.g. must be handled by a specific user)\n"
+"* Special Handling: Blocked in some way (e.g. must be handled by a specific "
+"user)\n"
 msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_user_id
 msgid "Assigned To"
-msgstr ""
+msgstr "Dodijeljeno"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_res_model_id
 msgid "Associated Model"
-msgstr ""
+msgstr "Pridruženi model"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_fold
 msgid "Collapse?"
-msgstr ""
+msgstr "Skupi?"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_color
@@ -56,7 +61,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
 msgid "Core Info"
-msgstr ""
+msgstr "Osnovne informacije"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_create_uid
@@ -97,7 +102,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_legend_normal
@@ -158,7 +163,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "High"
-msgstr ""
+msgstr "Visoko"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_id
@@ -169,7 +174,7 @@ msgstr "ID"
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_root_menu
 msgid "Kanban"
-msgstr ""
+msgstr "Kanban"
 
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_stage
@@ -246,8 +251,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_sequence
-msgid ""
-"Order of stage in relation to other stages available for the same model"
+msgid "Order of stage in relation to other stages available for the same model"
 msgstr ""
 
 #. module: base_kanban_stage
@@ -326,4 +330,4 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 msgid "base.kanban.abstract"
-msgstr ""
+msgstr "base.kanban.abstract"

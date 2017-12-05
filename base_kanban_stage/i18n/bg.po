@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_kanban_stage
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,19 +12,23 @@ msgstr ""
 "PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_status
 msgid ""
-"A record can have one of several Kanban statuses, which are used to indicate whether there are any special situations affecting it. The exact meaning of each status is allowed to vary based on the stage the record is in but they are roughly as follow:\n"
+"A record can have one of several Kanban statuses, which are used to indicate "
+"whether there are any special situations affecting it. The exact meaning of "
+"each status is allowed to vary based on the stage the record is in but they "
+"are roughly as follow:\n"
 "* Normal Handling: Default status, no special situations\n"
 "* Ready: Ready to transition to the next stage\n"
-"* Special Handling: Blocked in some way (e.g. must be handled by a specific user)\n"
+"* Special Handling: Blocked in some way (e.g. must be handled by a specific "
+"user)\n"
 msgstr ""
 
 #. module: base_kanban_stage
@@ -245,8 +249,7 @@ msgstr ""
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_stage_sequence
-msgid ""
-"Order of stage in relation to other stages available for the same model"
+msgid "Order of stage in relation to other stages available for the same model"
 msgstr ""
 
 #. module: base_kanban_stage
