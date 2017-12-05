@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 LasLabs Inc.
+# Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, fields, models
@@ -19,6 +19,13 @@ class BaseKanbanAbstract(models.AbstractModel):
     _group_by_full = {
         'stage_id': lambda s, *a, **k: s._read_group_stage_ids(*a, **k),
     }
+
+    @api.model
+    def _default_stage_id(self):
+        return self.env['base.kanban.stage'].search(
+            [('res_model_id.model', '=', self._name)],
+            limit=1,
+        )
 
     kanban_sequence = fields.Integer(
         default=10,
@@ -100,10 +107,6 @@ class BaseKanbanAbstract(models.AbstractModel):
              '* Special Handling: Blocked in some way (e.g. must be handled by'
              ' a specific user)\n'
     )
-
-    @api.model
-    def _default_stage_id(self):
-        return self.env['base.kanban.stage']
 
     @api.multi
     def _read_group_stage_ids(self, stages, domain, order):
