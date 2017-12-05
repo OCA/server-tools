@@ -16,15 +16,14 @@ addons:
 env:
   global:
   - VERSION="11.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='transbot@odoo-community.org'
+  - secure: Z06mZCN+Hm3myqHSOZpOOk1pd4oq1epAWZv6m9OX2bTNHbhyOVOGK6JWWsnDm/3DUCN1ZeLtSGOl9bvQfMa8ahQHA80MkLL16YlTvQV59Lh+L2gAYmxX+ogJCJgeQSVAXlGLscgkADCu/HzDlmatrDeROMtULn5i23j2qcyUNyM=
 
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
-#  EXCLUDE="database_cleanup"
-#  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
-#  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
 
 before_install:
  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
