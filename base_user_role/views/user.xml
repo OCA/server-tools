@@ -11,7 +11,7 @@
         <xpath expr="//notebook/page[1]" position="before">
             <page string="Roles">
                 <field name="role_line_ids" nolabel="1">
-                    <tree editable="bottom" colors="grey: not is_enabled;">
+                    <tree editable="bottom" decoration-muted="not is_enabled">
                         <field name="role_id" required="1"/>
                         <field name="date_from"/>
                         <field name="date_to"/>
