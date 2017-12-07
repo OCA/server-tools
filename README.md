@@ -55,7 +55,7 @@ addon | version | summary
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
 [base_technical_user](base_technical_user/) | 10.0.1.0.0 | Add a technical user parameter on the company
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.1 | Synchronize Gravatar Image
-[base_user_role](base_user_role/) | 10.0.1.0.0 | User roles
+[base_user_role](base_user_role/) | 10.0.1.0.1 | User roles
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.1 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 10.0.1.0.0 | Database cleanup
@@ -74,7 +74,7 @@ addon | version | summary
 [module_auto_update](module_auto_update/) | 10.0.1.0.1 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
-[password_security](password_security/) | 10.0.1.1.1 | Allow admin to set password security requirements.
+[password_security](password_security/) | 10.0.1.1.2 | Allow admin to set password security requirements.
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 10.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
 [sentry](sentry/) | 10.0.1.0.0 | Report Odoo errors to Sentry
