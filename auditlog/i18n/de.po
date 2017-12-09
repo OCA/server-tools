@@ -7,10 +7,10 @@
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 00:47+0000\n"
-"PO-Revision-Date: 2017-05-10 00:47+0000\n"
+"POT-Creation-Date: 2017-12-09 11:43+0000\n"
+"PO-Revision-Date: 2017-12-09 11:43+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,13 @@ msgstr "Auditlog - Log-Informationen (Feldänderungen)"
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
 msgstr "Auditlog - Regel"
+
+#. module: auditlog
+#: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
+#: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
+#: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
+msgid "Auto-vacuum audit logs"
+msgstr "Auto-vacuum Audit-Protokolle"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_user_context
@@ -113,7 +120,7 @@ msgstr "Entwurf"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Kurz-Protokoll"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_id
@@ -129,7 +136,7 @@ msgstr "Felder aktualisiert"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Ausführliches Protokoll"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
@@ -137,6 +144,8 @@ msgid ""
 "Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
 "Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
 msgstr ""
+"Ausführliches Protokoll: Erstellt ein Diff der Daten vor und nach dem Vorgang (Protokolliert mehr Inhalte, wie berechnete Felder die aktualisiert wurden, ist aber langsamer)\n"
+"Kurz-Protokoll: Protokolliert nur Änderungen durch Anlage- und Schreibvorgänge (weniger Daten, aber schnell)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -149,14 +158,14 @@ msgstr "Gruppieren nach ..."
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr ""
+msgstr "HTTP-Kontext"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_request_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "HTTP Request"
-msgstr ""
+msgstr "HTTP-Anforderung"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
@@ -166,7 +175,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_tree
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
-msgstr ""
+msgstr "HTTP-Anforderungen"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_id
@@ -292,7 +301,7 @@ msgstr "Alter Wert Text"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_name
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_res_id
@@ -309,7 +318,7 @@ msgstr "Ressourcenname"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_root_url
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 msgid "Root URL"
-msgstr ""
+msgstr "Stamm-URL"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
@@ -369,12 +378,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_session_id
 msgid "Session"
-msgstr ""
+msgstr "Sitzung"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session_name
 msgid "Session ID"
-msgstr ""
+msgstr "Sitzungs-ID"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_state
@@ -433,7 +442,7 @@ msgstr "Benutzer"
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "User session"
-msgstr ""
+msgstr "Anwender-Sitzung"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_session_tree
@@ -441,7 +450,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_tree
 msgid "User sessions"
-msgstr ""
+msgstr "Anwender-Sitzungen"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_user_ids
@@ -454,12 +463,12 @@ msgid "Values"
 msgstr "Werte"
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:536
+#: code:addons/auditlog/models/rule.py:517
 #, python-format
 msgid "View logs"
-msgstr ""
+msgstr "Protokolle sichten"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_user_ids
 msgid "if  User is not added then it will applicable for all users"
-msgstr ""
+msgstr "Wenn User nicht angegeben, wirkt dies auf alle Anwender"
