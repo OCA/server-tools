@@ -62,6 +62,7 @@ addon | version | summary
 [date_range](date_range/) | 10.0.1.0.2 | Manage all kind of date range
 [datetime_formatter](datetime_formatter/) | 10.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
+[dead_mans_switch_client](dead_mans_switch_client/) | 10.0.1.0.0 | Be notified when customers' Odoo instances go down
 [disable_odoo_online](disable_odoo_online/) | 10.0.1.0.0 | Remove odoo.com Bindings
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 10.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 | Extract images found in any HTML field
@@ -100,7 +101,6 @@ addon | version | summary
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 (unported) | Authenticate via HTTP Remote User
 [base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
-[dead_mans_switch_client](dead_mans_switch_client/) | 9.0.1.0.1 (unported) | Be notified when customers' odoo instances go down
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
