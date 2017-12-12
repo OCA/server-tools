@@ -1,0 +1,201 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * auth_saml
+# Vincent Lhote-Hatakeyama <vincent.lhote@xcg-consulting.fr>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-03 15:51+0000\n"
+"PO-Revision-Date: 2015-03-03 16:56+0100\n"
+"Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
+"Language-Team: XCG Consulting\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: auth_saml
+#: constraint:res.users:0
+msgid ""
+"SAML2 authentication: An Odoo user cannot posess both an SAML user ID and an "
+"Odoo password."
+msgstr ""
+"Authentification SAML2 : Un utilisateur Odoo ne peut pas posséder à la fois "
+"un ID utilisateur SAML et un mot de passe Odoo."
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_base_config_settings
+msgid "base.config.settings"
+msgstr "base.config.settings"
+
+#. module: auth_saml
+#: field:auth_saml.token,saml_access_token:0
+msgid "Current SAML token for this user"
+msgstr "Jeton SAML courant de l’utilisateur"
+
+#. module: auth_saml
+#. openerp-web
+#: code:addons/auth_saml/static/src/js/auth_saml.js:14
+#, python-format
+msgid "Sign up error"
+msgstr "Erreur d’inscription"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_auth_saml_token
+msgid "auth_saml.token"
+msgstr "auth_saml.token"
+
+#. module: auth_saml
+#: field:auth_saml.token,saml_provider_id:0
+msgid "SAML Provider that issued the token"
+msgstr "Fournisseur SAML qui a fourni le token"
+
+#. module: auth_saml
+#: model:ir.ui.menu,name:auth_saml.menu_saml_providers
+msgid "SAML Providers"
+msgstr "Fournisseurs SAML"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: auth_saml
+#. openerp-web
+#: code:addons/auth_saml/static/src/js/auth_saml.js:16
+#: code:addons/auth_saml/static/src/js/auth_saml.js:18
+#, python-format
+msgid "Authentication error"
+msgstr "Erreur d’authentification"
+
+#. module: auth_saml
+#: help:auth_saml.token,saml_access_token:0
+msgid "The current SAML token in use"
+msgstr "Le jeton SAML courant en cours d’utilisation"
+
+#. module: auth_saml
+#: field:auth_saml.token,user_id:0
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_auth_saml_provider
+msgid "SAML2 provider"
+msgstr "Fournisseur SAML2"
+
+#. module: auth_saml
+#. openerp-web
+#: code:addons/auth_saml/static/src/js/auth_saml.js:16
+#, python-format
+msgid "Access Denied"
+msgstr "Accès refusé"
+
+#. module: auth_saml
+#: model:ir.model,name:auth_saml.model_res_config
+msgid "res.config"
+msgstr "res.config"
+
+#. module: auth_saml
+#: field:res.users,saml_provider_id:0
+msgid "SAML Provider"
+msgstr "Fournisseur SAML"
+
+#. module: auth_saml
+#: field:base.config.settings,allow_saml_uid_and_internal_password:0
+msgid ""
+"Allow SAML users to posess an Odoo password (warning: decreases security)"
+msgstr ""
+"Autoriser les utilisateurs avec SAML à aussi avoir un mot de passe Odoo "
+"(attention : abaisse la sécurité)"
+
+#. module: auth_saml
+#: view:auth.saml.provider:0
+msgid "arch"
+msgstr "arch"
+
+#. module: auth_saml
+#: sql_constraint:res.users:0
+msgid "SAML UID must be unique per provider"
+msgstr "L’identifiant SAML doit être unique par fournisseur"
+
+#. module: auth_saml
+#: field:res.users,saml_uid:0
+msgid "SAML User ID"
+msgstr "Identifiant utilisateur SAML"
+
+#. module: auth_saml
+#: view:res.users:0
+msgid "SAML"
+msgstr "SAML"
+
+#. module: auth_saml
+#: help:res.users,saml_uid:0
+msgid "SAML Provider user_id"
+msgstr "Fournisseur SAML user_id"
+
+#. module: auth_saml
+#: model:ir.actions.act_window,name:auth_saml.action_saml_provider
+msgid "Providers"
+msgstr "Fournisseurs"
+
+#. module: auth_saml
+#. openerp-web
+#: code:addons/auth_saml/static/src/js/auth_saml.js:14
+#, python-format
+msgid "Sign up is not allowed on this database."
+msgstr "L’inscription n’est pas autorisée sur cette base de donnée."
+
+#. module: auth_saml
+#. openerp-web
+#: code:addons/auth_saml/static/src/js/auth_saml.js:18
+#, python-format
+msgid ""
+"You do not have access to this database or your invitation has expired. "
+"Please ask for an invitation and be sure to follow the link in your "
+"invitation email."
+msgstr ""
+"Vous n’avez pas accès à cette base de donnée ou votre invitation a expirée. "
+"Demandez une invitation et assurez-vous de suivre le lien dans le courriel "
+"d’invitation."
+
+#~ msgid "CSS class"
+#~ msgstr "Classe CSS"
+
+#~ msgid "Body"
+#~ msgstr "Corps"
+
+#~ msgid "unknown"
+#~ msgstr "inconnu"
+
+#~ msgid "http://localhost:8000"
+#~ msgstr "http://localhost :8000"
+
+#~ msgid "running on"
+#~ msgstr "en fonctionnement sur"
+
+#~ msgid "You must have an"
+#~ msgstr "Vous devez avoir un"
+
+#~ msgid "authentic2 server"
+#~ msgstr "serveur authentic2"
+
+#~ msgid "Allow users to sign in with a Local Authentic"
+#~ msgstr "Autoriser les utilisateurs à s’inscrire avec un Authentic local"
+
+#~ msgid "SP Configuration"
+#~ msgstr "Configuration du FS"
+
+#~ msgid "Private key of our service provider (this openerpserver)"
+#~ msgstr "Clef privée de notre fournisseur de service (ce serveur OpenERP)"
+
+#~ msgid "Provider name"
+#~ msgstr "Nom du fournisseur"
+
+#~ msgid "IDP Configuration"
+#~ msgstr "Configuration FI"
+
+#~ msgid "Allowed"
+#~ msgstr "Autorisé"

@@ -12,6 +12,7 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-lasso # Used by the "auth_saml" addon.
 
 env:
   global:
