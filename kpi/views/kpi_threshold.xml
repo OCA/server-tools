@@ -35,8 +35,8 @@
                             <newline/>
                             <field name="kpi_ids" nolabel="1" colspan="6"/>
                             <newline/>
-                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
-                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
+                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
                             <newline/>
                         </group>
                     </sheet>
