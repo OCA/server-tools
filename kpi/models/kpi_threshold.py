@@ -13,15 +13,19 @@ class KPIThreshold(models.Model):
 
     @api.multi
     def _compute_is_valid_threshold(self):
-        result = {}
         for obj in self:
             # check if ranges overlap
             # TODO: This code can be done better
+            obj.valid = True
             for range1 in obj.range_ids:
-                for range2 in obj.range_ids:
-                    if (range1.valid and range2.valid and
-                            range1.min_value < range2.min_value):
-                        obj.valid = range1.max_value <= range2.min_value
+                if not range1.valid:
+                    obj.valid = False
+                    break
+                for range2 in (obj.range_ids-range1):
+                    if (range1.max_value >= range2.min_value and
+                            range1.min_value <= range2.max_value):
+                        obj.valid = False
+                        break
             if obj.valid:
                 obj.invalid_message = None
             else:
