@@ -54,8 +54,8 @@
                             <newline/>
                             <separator string="Thresholds" colspan="4"/>
                             <field name="threshold_ids" nolabel="1" colspan="4"/>
-                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
-                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
+                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
                         </group>
                     </sheet>
                 </form>
