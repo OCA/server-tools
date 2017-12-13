@@ -33,7 +33,6 @@ class KPIThreshold(models.Model):
                     "Some ranges are invalid or overlapping. "
                     "Please make sure your ranges do not overlap.")
 
-
     name = fields.Char('Name', size=50, required=True)
     range_ids = fields.Many2many(
         'kpi.threshold.range',
