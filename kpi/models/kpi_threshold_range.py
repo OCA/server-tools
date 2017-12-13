@@ -92,7 +92,6 @@ class KPIThresholdRange(models.Model):
         'res.company', 'Company',
         default=lambda self: self.env.user.company_id.id)
 
-
     @api.multi
     def _compute_min_value(self):
         for obj in self:
@@ -165,4 +164,3 @@ class KPIThresholdRange(models.Model):
             else:
                 obj.valid = True
                 obj.invalid_message = ""
-
