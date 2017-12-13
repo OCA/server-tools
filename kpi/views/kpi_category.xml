@@ -23,11 +23,13 @@
             <field name="model">kpi.category</field>
             <field name="arch" type="xml">
                 <form string="Category">
-                    <group col="2" colspan="2">
-                        <field name="name" colspan="2"/>
-                        <newline/>
-                        <field name="description" colspan="2"/>
-                    </group>
+                    <sheet>
+                        <group col="2" colspan="2">
+                            <field name="name" colspan="2"/>
+                            <newline/>
+                            <field name="description" colspan="2"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
