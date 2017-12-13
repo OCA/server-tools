@@ -60,6 +60,7 @@ Contributors
 * Loic Lacroix <loic.lacroix@savoirfairelinux.com>
 * Sandy Carter <sandy.carter@savoirfairelinux.com>
 * Gervais Naoussi <gervaisnaoussi@gmail.com>
+* Iván Todorovich <ivan.todorovich@gmail.com>
 
 Maintainer
 ----------
