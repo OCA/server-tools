@@ -46,7 +46,7 @@ class KPIThresholdRange(models.Model):
     valid = fields.Boolean(string='Valid', required=True,
                            compute="_compute_is_valid_range", default=True)
     invalid_message = fields.Char(string='Message', size=100,
-                                  compute="_compute_generate_invalid_message")
+                                  compute="_compute_is_valid_range")
     min_type = fields.Selection((
         ('static', 'Fixed value'),
         ('python', 'Python Code'),
@@ -56,6 +56,7 @@ class KPIThresholdRange(models.Model):
     min_value = fields.Float(string='Minimum', compute="_compute_min_value")
     min_fixed_value = fields.Float('Minimum')
     min_code = fields.Text('Minimum Computation Code')
+    min_error = fields.Char('Error', compute="_compute_min_value")
     min_dbsource_id = fields.Many2one(
         'base.external.dbsource',
         'External DB Source',
@@ -69,6 +70,7 @@ class KPIThresholdRange(models.Model):
     max_value = fields.Float(string='Maximum', compute="_compute_max_value")
     max_fixed_value = fields.Float('Maximum')
     max_code = fields.Text('Maximum Computation Code')
+    max_error = fields.Char('Error', compute="_compute_max_value")
     max_dbsource_id = fields.Many2one(
         'base.external.dbsource',
         'External DB Source',
@@ -90,28 +92,35 @@ class KPIThresholdRange(models.Model):
         'res.company', 'Company',
         default=lambda self: self.env.user.company_id.id)
 
+
     @api.multi
     def _compute_min_value(self):
         result = {}
         for obj in self:
             value = None
-            if obj.min_type == 'local' and is_sql_or_ddl_statement(
-                    obj.min_code):
-                self.env.cr.execute(obj.min_code)
-                dic = self.env.cr.dictfetchall()
-                if is_one_value(dic):
-                    value = dic[0]['value']
-            elif (obj.min_type == 'external' and obj.min_dbsource_id.id and
-                  is_sql_or_ddl_statement(obj.min_code)):
-                dbsrc_obj = obj.min_dbsource_id
-                res = dbsrc_obj.execute(obj.min_code)
-                if is_one_value(res):
-                    value = res[0]['value']
-            elif obj.min_type == 'python':
-                value = safe_eval(obj.min_code)
-            else:
-                value = obj.min_fixed_value
+            error = None
+            try:
+                if obj.min_type == 'local' and is_sql_or_ddl_statement(
+                        obj.min_code):
+                    self.env.cr.execute(obj.min_code)
+                    dic = self.env.cr.dictfetchall()
+                    if is_one_value(dic):
+                        value = dic[0]['value']
+                elif (obj.min_type == 'external' and obj.min_dbsource_id.id and
+                      is_sql_or_ddl_statement(obj.min_code)):
+                    dbsrc_obj = obj.min_dbsource_id
+                    res = dbsrc_obj.execute(obj.min_code)
+                    if is_one_value(res):
+                        value = res[0]['value']
+                elif obj.min_type == 'python':
+                    value = safe_eval(obj.min_code)
+                else:
+                    value = obj.min_fixed_value
+            except Exception as e:
+                value = None
+                error = str(e)
             obj.min_value = value
+            obj.min_error = error
         return result
 
     @api.multi
@@ -119,43 +128,47 @@ class KPIThresholdRange(models.Model):
         result = {}
         for obj in self:
             value = None
-            if obj.max_type == 'local' and is_sql_or_ddl_statement(
-                    obj.max_code):
-                self.env.cr.execute(obj.max_code)
-                dic = self.env.cr.dictfetchall()
-                if is_one_value(dic):
-                    value = dic[0]['value']
-            elif obj.max_type == 'python':
-                value = safe_eval(obj.max_code)
-            elif (obj.max_type == 'external' and obj.max_dbsource_id.id and
-                  is_sql_or_ddl_statement(obj.max_code)):
-                dbsrc_obj = obj.max_dbsource_id
-                res = dbsrc_obj.execute(obj.max_code)
-                if is_one_value(res):
-                    value = res[0]['value']
-            else:
-                value = obj.max_fixed_value
+            error = None
+            try:
+                if obj.max_type == 'local' and is_sql_or_ddl_statement(
+                        obj.max_code):
+                    self.env.cr.execute(obj.max_code)
+                    dic = self.env.cr.dictfetchall()
+                    if is_one_value(dic):
+                        value = dic[0]['value']
+                elif (obj.max_type == 'external' and obj.max_dbsource_id.id and
+                      is_sql_or_ddl_statement(obj.max_code)):
+                    dbsrc_obj = obj.max_dbsource_id
+                    res = dbsrc_obj.execute(obj.max_code)
+                    if is_one_value(res):
+                        value = res[0]['value']
+                elif obj.max_type == 'python':
+                    value = safe_eval(obj.max_code)
+                else:
+                    value = obj.max_fixed_value
+            except Exception as e:
+                value = None
+                error = str(e)
             obj.max_value = value
+            obj.max_error = error
         return result
 
     @api.multi
     def _compute_is_valid_range(self):
         result = {}
         for obj in self:
-            if obj.max_value < obj.min_value:
+            if obj.min_error or obj.max_error:
                 obj.valid = False
-            else:
-                obj.valid = True
-        return result
-
-    @api.multi
-    def _compute_generate_invalid_message(self):
-        result = {}
-        for obj in self:
-            if obj.valid:
-                obj.invalid_message = ""
-            else:
+                obj.invalid_message = (
+                    "Either minimum or maximum value has "
+                    "computation errors. Please fix them.")
+            elif obj.max_value < obj.min_value:
+                obj.valid = False
                 obj.invalid_message = (
                     "Minimum value is greater than the maximum "
                     "value! Please adjust them.")
+            else:
+                obj.valid = True
+                obj.invalid_message = ""
         return result
+
