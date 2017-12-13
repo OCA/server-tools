@@ -9,7 +9,7 @@
             <field name="name">kpi.threshold.range.tree</field>
             <field name="model">kpi.threshold.range</field>
             <field name="arch" type="xml">
-                <tree string="Ranges">
+                <tree string="Ranges" decoration-danger="invalid_message">
                     <field name="name"/>
                     <field name="min_value"/>
                     <field name="max_value"/>
