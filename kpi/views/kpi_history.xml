@@ -23,14 +23,16 @@
             <field name="model">kpi.history</field>
             <field name="arch" type="xml">
                 <form string="KPI History">
-                    <group col="4" colspan="4">
-                        <field name="kpi_id"/>
-                        <field name="name"/>
-                        <field name="date"/>
-                        <field name="value"/>
-                        <field name="color" widget="color"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
-                    </group>
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="kpi_id"/>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="value"/>
+                            <field name="color" widget="color"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
