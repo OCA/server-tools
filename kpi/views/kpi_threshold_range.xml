@@ -37,7 +37,9 @@
                         <field name="min_fixed_value" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
                         <field name="min_dbsource_id" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
                         <newline/>
-                        <field name="min_code" colspan="4" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <field name="min_code" colspan="6" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <newline/>
+                        <field name="min_error" colspan="6" attrs="{'invisible': [('min_error', '=', False)]}" />
                         <newline/>
                         <separator string="Maximum" colspan="4"/>
                         <newline/>
@@ -45,10 +47,13 @@
                         <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
                         <field name="max_dbsource_id" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
                         <newline/>
-                        <field name="max_code" colspan="4" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <field name="max_code" colspan="6" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
+                        <newline/>
+                        <field name="max_error" colspan="6" attrs="{'invisible': [('max_error', '=', False)]}" />
                         <newline/>
                         <separator string="Thresholds" colspan="4"/>
                         <field name="threshold_ids" nolabel="1" colspan="4"/>
+                        <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
                         <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="4"/>
                     </group>
                 </form>
