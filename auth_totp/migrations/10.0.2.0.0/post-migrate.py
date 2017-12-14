@@ -2,18 +2,18 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-import uuid
+from uuid import uuid4
 from odoo import api, SUPERUSER_ID
 
 
 def migrate(cr, version):
-    """Generate cookie keys for all users with MFA enabled and clean up"""
+    """Generate cookie keys for all users with MFA enabled and clean up."""
     env = api.Environment(cr, SUPERUSER_ID, {})
     user_model = env['res.users'].with_context(active_test=False)
     mfa_users = user_model.search([('mfa_enabled', '=', True)])
 
     for mfa_user in mfa_users:
-        mfa_user.trusted_device_cookie_key = uuid.uuid4()
+        mfa_user.trusted_device_cookie_key = uuid4()
 
     # Clean up ir records for device model to prevent warnings
     removed_model = 'res.users.device'

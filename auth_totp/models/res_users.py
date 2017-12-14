@@ -2,7 +2,7 @@
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-import uuid
+from uuid import uuid4
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.http import request
@@ -39,7 +39,7 @@ class ResUsers(models.Model):
     def _compute_trusted_device_cookie_key(self):
         for record in self:
             if record.mfa_enabled:
-                record.trusted_device_cookie_key = uuid.uuid4()
+                record.trusted_device_cookie_key = uuid4()
             else:
                 record.trusted_device_cookie_key = False
 
@@ -56,30 +56,27 @@ class ResUsers(models.Model):
 
     @api.model
     def check_credentials(self, password):
-        """Add MFA logic to core authentication process
+        """Add MFA logic to core authentication process.
 
         Overview:
-            * If user does not have MFA enabled, defer to parent logic
+            * If user does not have MFA enabled, defer to parent logic.
             * If user has MFA enabled and has gone through MFA login process
-              this session or has correct device cookie, defer to parent logic
+              this session or has correct device cookie, defer to parent logic.
             * If neither of these is true, call parent logic. If successful,
               prevent auth while updating session to indicate that MFA login
-              process can now commence
+              process can now commence.
         """
-        user_model_sudo = self.sudo()
-        user = user_model_sudo.search([('id', '=', self.env.uid)])
-
-        if not user.mfa_enabled:
+        if not self.env.user.mfa_enabled:
             return super(ResUsers, self).check_credentials(password)
 
         if request:
-            if request.session.get('mfa_login_active') == user.id:
+            if request.session.get('mfa_login_active') == self.env.uid:
                 return super(ResUsers, self).check_credentials(password)
 
-            cookie_key = 'trusted_devices_%d' % user.id
+            cookie_key = 'trusted_devices_%d' % self.env.uid
             device_cook = request.httprequest.cookies.get(cookie_key)
             if device_cook:
-                secret = user.trusted_device_cookie_key
+                secret = self.env.user.trusted_device_cookie_key
                 device_cook = JsonSecureCookie.unserialize(device_cook, secret)
                 if device_cook:
                     return super(ResUsers, self).check_credentials(password)

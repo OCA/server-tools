@@ -42,18 +42,18 @@ class AuthTotp(Home):
 
     @http.route('/auth_totp/login', type='http', auth='none', methods=['POST'])
     def mfa_login_post(self, *args, **kwargs):
-        """Process MFA login attempt
+        """Process MFA login attempt.
 
         Overview:
             * Identify current user based on login in session. If this doesn't
-              work, redirect to the password login page with an error message
+              work, redirect to the password login page with an error message.
             * Validate the confirmation code provided by the user. If it's not
-              valid, redirect to the previous login step with an error message
+              valid, redirect to the previous login step with an error message.
             * Update the session to indicate that the MFA login process for
-              this user is complete and attempt password authentication again
+              this user is complete and attempt password authentication again.
             * Build a trusted device cookie and add it to the response if the
-              trusted device option was checked
-            * Redirect to the provided URL or to '/web' if one was not given
+              trusted device option was checked.
+            * Redirect to the provided URL or to '/web' if one was not given.
         """
 
         # sudo() is required because there is no request.env.uid (likely since
