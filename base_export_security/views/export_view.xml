@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+    <record id="export_view_form" model="ir.ui.view">
+        <field name="name">Export Log</field>
+        <field name="model">export.event</field>
+        <field name="arch" type="xml">
+            <form string="Export Log" create="false">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_id"/>
+                        <field name="user_id"/>
+                        <field name="create_date"
+                               string="Export Date"
+                               readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Exported Fields">
+                            <field name="field_ids"/>
+                        </page>
+                        <page string="Exported Records">
+                            <field name="record_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="export_view_tree" model="ir.ui.view">
+        <field name="name">Export Logs</field>
+        <field name="model">export.event</field>
+        <field name="arch" type="xml">
+            <tree string="Export Logs" create="false" default_order='create_date desc'>
+                <field name="model_id"/>
+                <field name="user_id"/>
+                <field name="create_date" string="Export Date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="export_view_search" model="ir.ui.view">
+        <field name="name">Export Logs Search</field>
+        <field name="model">export.event</field>
+        <field name="arch" type="xml">
+            <search string="Export Logs">
+                <field name="user_id"/>
+                <field name="create_date" string="Export Date"/>
+                <field name="model_id"/>
+                <field name="field_ids"/>
+                <field name="record_ids"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="export_action_log" model="ir.actions.act_window">
+        <field name="name">Export Logs</field>
+        <field name="res_model">export.event</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="export_view_search"/>
+    </record>
+
+    <menuitem id="export_category"
+              name="Data Exports"
+              parent="base.menu_administration"/>
+
+    <menuitem id="export_menu"
+              name="Export Logs"
+              sequence="7"
+              parent="export_category"
+              action="export_action_log"/>
+
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr=".">
+            <script type="text/javascript"
+                    src="/base_export_security/static/src/js/base_export_security.js"/>
+        </xpath>
+    </template>
+
+    <template id="qunit_suite" inherit_id="web.qunit_suite">
+        <xpath expr="//t[@t-set='head']" position="inside">
+            <script type="application/javascript"
+                    src="/base_export_security/static/tests/js/base_export_security.js"/>
+        </xpath>
+    </template>
+</odoo>
