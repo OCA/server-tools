@@ -31,6 +31,7 @@ addon | version | summary
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_exception](base_exception/) | 10.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_export_manager](base_export_manager/) | 10.0.1.0.0 | Manage model export profiles
+[base_export_security](base_export_security/) | 10.0.1.0.0 | Security features for Odoo exports
 [base_external_dbsource](base_external_dbsource/) | 10.0.2.0.0 | External Database Sources
 [base_external_dbsource_firebird](base_external_dbsource_firebird/) | 10.0.1.0.0 | External Database Source - Firebird
 [base_external_dbsource_mssql](base_external_dbsource_mssql/) | 10.0.1.0.0 | External Database Source - MSSQL
