@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <record id="infrastructure_connector_view_form" model="ir.ui.view">
+        <field name="name">infrastructure.connector.view.form</field>
+        <field name="model">infrastructure.connector</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_form" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='system_type']" position="replace">
+                <field name="interface_type" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="infrastructure_connector_view_tree" model="ir.ui.view">
+        <field name="name">infrastructure.connector.view.tree</field>
+        <field name="model">infrastructure.connector</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_tree" />
+        <field name="mode">primary</field>
+    </record>
+
+    <record id="infrastructure_connector_view_search" model="ir.ui.view">
+        <field name="name">infrastructure.connector.view.search</field>
+        <field name="model">infrastructure.connector</field>
+        <field name="inherit_id" ref="base_external_system.external_system_view_search" />
+        <field name="mode">primary</field>
+    </record>
+
+    <record id="infrastructure_connector_action" model="ir.actions.act_window">
+        <field name="name">Infrastructure Connectors</field>
+        <field name="red_model">infrastructure.connector</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

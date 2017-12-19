@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <menuitem id="menu_infrastructure"
+              name="Infrastructure"
+              sequence="90"
+              web_icon="infrastructure,static/description/icon.png"
+              load_xmlid="True"
+              />
+
+</odoo>

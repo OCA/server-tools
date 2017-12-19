@@ -3,15 +3,15 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'Base Partner Validate Address',
-    'summary': 'Provides an abstract interface/adapter mechanism allowing '
-               'for the unification of address verification providers.',
+    'name': 'Infrastructure',
+    'summary': 'Provides models and methods required for connecting Odoo '
+               'with infrastructure orchestration systems.',
     'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'website': 'https://laslabs.com/',
     'author': 'LasLabs, Odoo Community Association (OCA)',
     'license': 'LGPL-3',
-    'application': False,
+    'application': True,
     'installable': True,
     'depends': [
         'base_external_system',
