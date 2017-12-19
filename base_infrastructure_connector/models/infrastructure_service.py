@@ -22,7 +22,6 @@ class InfrastructureService(models.Model):
         default=fields.Datetime.now,
     )
     scale_current = fields.Integer()
-    scale_max = fields.Integer()
     fqdn = fields.Char()
     state_health = fields.Selection([
         # @TODO: Centralize from volumes
@@ -32,7 +31,21 @@ class InfrastructureService(models.Model):
         comodel_name='infrastructure.instance',
     )
     config_id = fields.Many2one(
-        string='Configuration',
+        string='Current Configuration',
+        comodel_name='infrastructure.service.config',
+        compute='_compute_config_id',
+    )
+    previous_config_id = fields.One2many(
+        string='Previous Configuration',
         comodel_name='infrastructure.service.config',
     )
 
+    @api.multi
+    def write(self, values):
+
+        if not values.get('config_id'):
+            return super(InfrastructureService, self).write(values)
+
+        for record in self:
+            values['previous_config_id'] = record.config_id.id
+            super(InfrastructureService, record).write(values)
