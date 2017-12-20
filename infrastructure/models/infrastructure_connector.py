@@ -10,7 +10,12 @@ class InfrastructureConnector(models.Model):
     _name = 'infrastructure.connector'
     _description = 'Infrastructure Connector Adapter'
     _inherit = 'external.system.adapter'
+    _order = 'sequence'
 
+    sequence = fields.Integer(
+        required=True,
+        default=50,
+    )
     interface_type = fields.Selection(
         selection='_get_interface_types',
         required=True,

@@ -20,6 +20,7 @@ class InfrastructureEnvironment(models.Model):
     ],
         default='deactivated',
         required=True,
+        readonly=True,
     )
     state_health = fields.Selection([
         ('healthy', 'Healthy'),
@@ -28,6 +29,7 @@ class InfrastructureEnvironment(models.Model):
     ],
         default='unhealthy',
         required=True,
+        readonly=True,
     )
     date_create = fields.Datetime(
         string='Create Date',
@@ -36,4 +38,18 @@ class InfrastructureEnvironment(models.Model):
         string='Hosts',
         comodel_name='infrastructure.host',
         inverse_name='environment_id',
+    )
+    connector_id = fields.Many2one(
+        string='Connector',
+        comodel_name='infrastructure.connector',
+        required=True,
+        ondelete='restrict',
+    )
+    company_ids = fields.Many2many(
+        string='Companies',
+        comodel_name='res.company',
+        help='Users from these companies have access to the environment.',
+    )
+    domain = fields.Char(
+        help='This is the base domain for the environment.',
     )

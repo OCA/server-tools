@@ -11,4 +11,10 @@
               load_xmlid="True"
               />
 
+    <menuitem id="menu_infrastucture_connector"
+              name="Systems"
+              parent="menu_infrastructure"
+              sequence="10"
+              />
+
 </odoo>

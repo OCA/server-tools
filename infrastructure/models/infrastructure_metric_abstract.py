@@ -17,10 +17,12 @@ class InfrastructureMetricAbstract(models.AbstractModel):
         ('infrastructure.file.system', 'File System'),
     ],
         required=True,
+        readonly=True,
         help='This is the object that the metric was taken from.',
     )
     date = fields.Datetime(
         default=fields.Datetime.now,
+        readonly=True,
     )
 
     @api.model

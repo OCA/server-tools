@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <record id="infrastructure_environment_view_form" model="ir.ui.view">
+        <field name="name">infrastructure.environment.view.form</field>
+        <field name="model">infrastructure.environment</field>
+        <field name="arch" type="xml">
+            <form string="Environment">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" class="oe_inline" />
+                    </h1>
+                    <group name="group_options" colspan="6">
+                        <field name="description" />
+                        <field name="connector_id" />
+                    </group>
+                    <group group="group_meta">
+                        <field name="state_health" />
+                        <field name="host_ids"
+                               context="{'default_environment_id': id}"
+                               />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="infrastructure_environment_view_tree" model="ir.ui.view">
+        <field name="name">infrastructure.environment.view.tree</field>
+        <field name="model">infrastructure.environment</field>
+        <field name="arch" type="xml">
+            <tree string="Environments">
+                <field name="name" />
+                <field name="connector_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="infrastructure_environment_view_search" model="ir.ui.view">
+        <field name="name">infrastructure.environment.view.search</field>
+        <field name="model">infrastructure.environment</field>
+        <field name="arch" type="xml">
+            <search string="Environments">
+
+                <field name="name" />
+                <field name="description" />
+                <field name="state" />
+                <field name="state_health" />
+                <field name="connector_id" />
+                <field name="host_ids" />
+
+                <group expand="0" string="Group By">
+                    <filter string="Connector"
+                            domain=""
+                            context="{'group_by': 'connector_id'}"
+                            />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="infrastructure_environment_action" model="ir.actions.act_window">
+        <field name="name">Environments</field>
+        <field name="red_model">infrastructure.environment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

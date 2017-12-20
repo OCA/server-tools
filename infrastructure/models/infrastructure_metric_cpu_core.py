@@ -14,6 +14,9 @@ class InfrastructureMetricCpuCore(models.Model):
         string='CPU Metric',
         comodel_name='infrastructure.metric.cpu',
         required=True,
+        readonly=True,
         ondelete='cascade',
     )
-    percent_use = fields.Float()
+    percent_use = fields.Float(
+        readonly=True,
+    )

@@ -38,6 +38,7 @@ class InfrastructureHost(models.Model):
     memory_metric_ids = fields.Many2many(
         string='Memory Metrics',
         comodel_name='infrastructure.metric.memory',
+        readonly=True,
     )
     label_ids = fields.Many2many(
         string='Labels',
@@ -51,11 +52,14 @@ class InfrastructureHost(models.Model):
     parent_id = fields.Many2one(
         string='Hypervisor',
         comodel_name=_name,
+        help='This is the hypervisor for the host, if virtualized.',
+        readonly=True,
     )
     child_ids = fields.One2many(
         string='Virtual Machines',
         comodel_name=_name,
         inverse_name='parent_id',
+        help='If this host is a hypervisor, these are its virtual machines.',
     )
 
     @api.multi

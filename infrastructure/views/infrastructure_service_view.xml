@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <record id="infrastructure_service_view_form" model="ir.ui.view">
+        <field name="name">infrastructure.service.view.form</field>
+        <field name="model">infrastructure.service</field>
+        <field name="arch" type="xml">
+            <form string="Service">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" class="oe_inline" />
+                    </h1>
+                    <group group="group_meta" colspan="6">
+                        <field name="state_health" />
+                        <field name="scale_current" />
+                        <field name="date_create" />
+                    </group>
+                    <group name="group_config" colspan="6">
+                        <field name="config_id" />
+                        <field name="previous_config_id" />
+                    </group>
+                    <group name="group_instances">
+                        <field name="instance_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="infrastructure_service_view_tree" model="ir.ui.view">
+        <field name="name">infrastructure.service.view.tree</field>
+        <field name="model">infrastructure.service</field>
+        <field name="arch" type="xml">
+            <tree string="Services">
+                <field name="name" />
+                <field name="connector_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="infrastructure_service_view_search" model="ir.ui.view">
+        <field name="name">infrastructure.service.view.search</field>
+        <field name="model">infrastructure.service</field>
+        <field name="arch" type="xml">
+            <search string="Services">
+
+                <field name="name" />
+                <field name="description" />
+                <field name="state" />
+                <field name="state_health" />
+                <field name="connector_id" />
+                <field name="host_ids" />
+
+                <group expand="0" string="Group By">
+                    <filter string="Connector"
+                            domain=""
+                            context="{'group_by': 'connector_id'}"
+                            />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="infrastructure_service_action" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="red_model">infrastructure.service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

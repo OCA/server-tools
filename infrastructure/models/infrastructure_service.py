@@ -22,7 +22,6 @@ class InfrastructureService(models.Model):
         default=fields.Datetime.now,
     )
     scale_current = fields.Integer()
-    fqdn = fields.Char()
     state_health = fields.Selection([
         # @TODO: Centralize from volumes
     ])

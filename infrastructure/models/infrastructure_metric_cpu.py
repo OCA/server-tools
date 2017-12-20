@@ -16,20 +16,39 @@ class InfrastructureMetricCpu(models.Model):
         string='Core Metrics',
         comodel_name='infrastructure.cpu.core',
         inverse_name='cpu_metric_id',
+        readonly=True,
     )
     load_one = fields.Float(
+        readonly=True,
         help='Load average for past minute.',
     )
     load_five = fields.Float(
+        readonly=True,
         help='Load average for past five minutes.',
     )
     load_fifteen = fields.Float(
+        readonly=True,
         help='Load average for past fifteen minutes.',
     )
-    core_count = fields.Integer()
-    frequency = fields.Float()
+    core_count = fields.Integer(
+        readonly=True,
+    )
+    frequency = fields.Float(
+        readonly=True,
+    )
     frequency_uom_id = fields.Many2one(
         string='Frequency Units',
         comodel_name='product.uom',
+        readonly=True,
         domain="[('category_id.name', '=', 'Frequency')]",
     )
+
+    @api.multi
+    def name_get(self):
+        names = []
+        for record in self:
+            name = '%s, %s, %s' % (
+                record.load_one, record.load_five, record.load_fifteen,
+            )
+            names.append((record.id, name))
+        return names

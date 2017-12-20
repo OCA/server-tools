@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+
+    <record id="infrastructure_host_view_form" model="ir.ui.view">
+        <field name="name">infrastructure.host.view.form</field>
+        <field name="model">infrastructure.host</field>
+        <field name="arch" type="xml">
+            <form string="Host">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" class="oe_inline" />
+                    </h1>
+                    <group name="group_options">
+                        <field name="description" />
+                        <field name="environment_id" />
+                        <field name="label_ids" />
+                    </group>
+                    <notebook>
+                        <page name="page_storage" string="Storage">
+                            <group name="group_storage">
+                                <field name="file_system_ids"
+                                       context="{'default_host_id': id}"
+                                       />
+                            </group>
+                        </page>
+                        <page name="page_virtualization" string="Virtualization">
+                            <group name="group_virtualization">
+                                <field name="parent_id" />
+                                <field name="child_ids"
+                                       context="{'default_parent_id': id}"
+                                       />
+                            </group>
+                        </page>
+                        <page name="page_metrics" string="Metrics">
+                            <group name="group_memory_metrics" string="Memory">
+                                <field name="memory_metric_id" />
+                                <field name="memory_metric_ids" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="infrastructure_host_view_tree" model="ir.ui.view">
+        <field name="name">infrastructure.host.view.tree</field>
+        <field name="model">infrastructure.host</field>
+        <field name="arch" type="xml">
+            <tree string="Hosts">
+                <field name="name" />
+                <field name="environment_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="infrastructure_host_view_search" model="ir.ui.view">
+        <field name="name">infrastructure.host.view.search</field>
+        <field name="model">infrastructure.host</field>
+        <field name="arch" type="xml">
+            <search string="Hosts">
+
+                <field name="name" />
+                <field name="description" />
+                <field name="state" />
+                <field name="environment_id" />
+                <field name="label_ids" />
+                <field name="file_system_ids" />
+                <field name="parent_id" />
+                <field name="child_ids" />
+
+                <group expand="0" string="Group By">
+
+                    <filter string="Environment"
+                            domain=""
+                            context="{'group_by': 'environment_id'}"
+                            />
+                    <filter string="State"
+                            domain=""
+                            context="{'group_by': 'state'}"
+                            />
+                    <filter string="Label"
+                            domain=""
+                            context="{'group_by': 'label_ids'}"
+                            />
+                    <field string="Hypervisor"
+                           domain=""
+                           context="{'group_by': 'parent_id'}"
+                           />s
+
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="infrastructure_host_action" model="ir.actions.act_window">
+        <field name="name">Hosts</field>
+        <field name="red_model">infrastructure.host</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
