@@ -3,9 +3,9 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 
-from odoo.tests import common
+from openerp.tests import common
 import logging
-from odoo.exceptions import ValidationError
+from openerp.exceptions import ValidationError
 
 try:
     from stdnum.iso7064 import mod_97_10
