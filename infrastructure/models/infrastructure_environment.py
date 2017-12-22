@@ -28,7 +28,6 @@ class InfrastructureEnvironment(models.Model):
         ('unhealthy', 'Unhealthy'),
     ],
         default='unhealthy',
-        required=True,
         readonly=True,
     )
     date_create = fields.Datetime(
@@ -39,17 +38,8 @@ class InfrastructureEnvironment(models.Model):
         comodel_name='infrastructure.host',
         inverse_name='environment_id',
     )
-    connector_id = fields.Many2one(
-        string='Connector',
-        comodel_name='infrastructure.connector',
-        required=True,
-        ondelete='restrict',
-    )
     company_ids = fields.Many2many(
         string='Companies',
         comodel_name='res.company',
         help='Users from these companies have access to the environment.',
-    )
-    domain = fields.Char(
-        help='This is the base domain for the environment.',
     )

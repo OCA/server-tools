@@ -104,7 +104,7 @@
 
     <record id="infrastructure_host_action" model="ir.actions.act_window">
         <field name="name">Hosts</field>
-        <field name="red_model">infrastructure.host</field>
+        <field name="res_model">infrastructure.host</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

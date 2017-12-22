@@ -14,10 +14,9 @@
     'application': True,
     'installable': True,
     'depends': [
-        'base_external_system',
+        'product',
     ],
     'data': [
-        'views/infrastructure_connector_view.xml',
         'views/infrastructure_environment_view.xml',
         'views/infrastructure_host_view.xml',
         'views/infrastructure_instance_view.xml',

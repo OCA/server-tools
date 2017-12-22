@@ -40,8 +40,9 @@
         <field name="arch" type="xml">
             <tree string="Services">
                 <field name="name" />
-                <field name="connector_id" />
                 <field name="state" />
+                <field name="state_health" />
+                <field name="scale_current" />
             </tree>
         </field>
     </record>
@@ -56,13 +57,12 @@
                 <field name="description" />
                 <field name="state" />
                 <field name="state_health" />
-                <field name="connector_id" />
-                <field name="host_ids" />
+                <field name="instance_ids" />
 
                 <group expand="0" string="Group By">
-                    <filter string="Connector"
+                    <filter string="State"
                             domain=""
-                            context="{'group_by': 'connector_id'}"
+                            context="{'group_by': 'state'}"
                             />
                 </group>
 
@@ -72,7 +72,7 @@
 
     <record id="infrastructure_service_action" model="ir.actions.act_window">
         <field name="name">Services</field>
-        <field name="red_model">infrastructure.service</field>
+        <field name="res_model">infrastructure.service</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

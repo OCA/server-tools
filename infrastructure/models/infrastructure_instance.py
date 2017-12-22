@@ -22,4 +22,5 @@ class InfrastructureInstance(models.Model):
     mount_ids = fields.One2many(
         string='Mounts',
         comodel_name='infrastructure.volume.mount',
+        inverse_name='instance_id',
     )

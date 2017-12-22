@@ -8,13 +8,13 @@ from odoo import api, fields, models
 class InfrastructureMetricCpu(models.Model):
 
     _name = 'infrastructure.metric.cpu'
-    _description = 'Infrastructure CPU Metrics'
     _inherit = 'infrastructure.metric.abstract'
+    _description = 'Infrastructure CPU Metrics'
 
     name = fields.Char()
     core_metric_ids = fields.One2many(
         string='Core Metrics',
-        comodel_name='infrastructure.cpu.core',
+        comodel_name='infrastructure.metric.cpu.core',
         inverse_name='cpu_metric_id',
         readonly=True,
     )

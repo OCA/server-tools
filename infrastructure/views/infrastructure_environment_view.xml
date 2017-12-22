@@ -17,9 +17,8 @@
                     <h1>
                         <field name="name" class="oe_inline" />
                     </h1>
-                    <group name="group_options" colspan="6">
+                    <group name="group_options">
                         <field name="description" />
-                        <field name="connector_id" />
                     </group>
                     <group group="group_meta">
                         <field name="state_health" />
@@ -38,7 +37,6 @@
         <field name="arch" type="xml">
             <tree string="Environments">
                 <field name="name" />
-                <field name="connector_id" />
                 <field name="state" />
             </tree>
         </field>
@@ -54,13 +52,13 @@
                 <field name="description" />
                 <field name="state" />
                 <field name="state_health" />
-                <field name="connector_id" />
                 <field name="host_ids" />
+                <field name="company_ids" />
 
                 <group expand="0" string="Group By">
-                    <filter string="Connector"
+                    <filter string="Company"
                             domain=""
-                            context="{'group_by': 'connector_id'}"
+                            context="{'group_by': 'company_ids'}"
                             />
                 </group>
 
@@ -70,7 +68,7 @@
 
     <record id="infrastructure_environment_action" model="ir.actions.act_window">
         <field name="name">Environments</field>
-        <field name="red_model">infrastructure.environment</field>
+        <field name="res_model">infrastructure.environment</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

@@ -11,10 +11,25 @@
               load_xmlid="True"
               />
 
-    <menuitem id="menu_infrastucture_connector"
-              name="Systems"
+    <menuitem id="menu_infrastucture_environment"
+              name="Enviroments"
               parent="menu_infrastructure"
               sequence="10"
+              action="infrastructure_environment_action"
+              />
+
+    <menuitem id="menu_infrastucture_host"
+              name="Enviroments"
+              parent="menu_infrastructure"
+              sequence="10"
+              action="infrastructure_host_action"
+              />
+
+    <menuitem id="menu_infrastucture_service"
+              name="Enviroments"
+              parent="menu_infrastructure"
+              sequence="10"
+              action="infrastructure_service_action"
               />
 
 </odoo>
