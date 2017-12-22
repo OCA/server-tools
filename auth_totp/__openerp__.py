@@ -5,7 +5,7 @@
 {
     'name': 'MFA Support',
     'summary': 'Allows users to enable MFA and add optional trusted devices',
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.0.1',
     'category': 'Extra Tools',
     'website': 'https://laslabs.com/',
     'author': 'LasLabs, Odoo Community Association (OCA)',
