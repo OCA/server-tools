@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright <2011> <Daniel Reis>
+# Copyright <2016> <Liu Jianyun>
 # Copyright <2017> <Jesus Ramiro>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import sys
 import logging
 from datetime import datetime
@@ -11,47 +12,49 @@ _logger = logging.getLogger(__name__)
 _loglvl = _logger.getEffectiveLevel()
 
 
-class ImportOdbcDbtable(models.Model):
-    _name = "import.odbc.dbtable"
-    _description = 'Import Table Data'
-    _order = 'exec_order'
+class Log(models.Model):
+    _name = "base.external.import.log"
+    _description = 'Log'
+    _rec_name = 'import_id'
 
-    name = fields.Char(string='Datasource name', required=True, size=64)
-    enabled = fields.Boolean(string='Execution enabled', default=True)
-    dbsource_id = fields.Many2one('base.external.dbsource',
-                                  string='Database source', required=True)
-    sql_source = fields.Text(string='SQL', required=True,
-                             help='Column names must be valid \
-                             "import_data" columns.')
-    model_target = fields. Many2one('ir.model', string='Target object')
-    noupdate = fields.Boolean(string='No updates',
-                              help="Only create new records;\
-                              disable updates to existing records.")
-    exec_order = fields.Integer(string='Execution order', default=10,
-                                help="Defines the order to perform \
-                                the import")
-    last_sync = fields.Datetime(string='Last sync date',
-                                help="Datetime for the last succesfull \
-                                sync. \nLater changes on the source may \
-                                not be replicated on the destination")
+    import_id = fields.Many2one('base.external.import.task',
+                                string='Import Task', readonly=True)
     start_run = fields.Datetime(string='Time started', readonly=True)
     last_run = fields.Datetime(string='Time ended', readonly=True)
     last_record_count = fields.Integer(string='Last record count',
                                        readonly=True)
     last_error_count = fields.Integer(string='Last error count', readonly=True)
-    last_warn_count = fields.Integer(string='Last warning count',
-                                     readonly=True)
+    last_warn_count = fields.Integer(string='Last warning count', readonly=True)
     last_log = fields.Text(string='Last run log', readonly=True)
-    ignore_rel_errors = fields.Boolean(string='Ignore relationship errors',
-                                       help="On error try to reimport \
-                                       rows ignoring relationships.")
-    raise_import_errors = fields.Boolean(
-        string='Raise import errors',
-        help="Import errors not handled, intended for debugging purposes. \
-             Also forces debug messages to be written to the server log."
-    )
 
-    @api.multi
+
+class Task(models.Model):
+    _name = "base.external.import.task"
+    _description = 'Task'
+    _order = 'exec_order'
+
+    name = fields.Char(required=True, string='Name', size=64)
+    enabled = fields.Boolean(string='Execution enabled', default=True)
+    dbsource_id = fields.Many2one('base.external.dbsource',
+                                  string='Database source', required=True)
+    sql_source = fields.Text(string='SQL', required=True,
+                    help='Column names must be valid "import_data" columns.')
+    model_target = fields.Many2one('ir.model', string='Target object',
+                                   required=True)
+    exec_order = fields.Integer(string='Execution order',
+                                help="Defines the order to perform the import",
+                                default=10)
+    last_sync = fields.Datetime(string='Last sync time',
+                help="Datetime for the last successful sync. \nLater changes \
+                    on the source may not be replicated on the destination")
+    start_run = fields.Datetime(string='Time started', readonly=True)
+    last_run = fields.Datetime(string='Time ended', readonly=True)
+    last_record_count = fields.Integer(string='Last record count',
+                                       readonly=True)
+    last_error_count = fields.Integer(string='Last error count', readonly=True)
+    last_warn_count = fields.Integer(string='Last warning count', readonly=True)
+    last_log = fields.Text(string='Last run log', readonly=True)
+
     def _import_data(self, flds, data, model_obj, table_obj, log):
         # Import data and returns error msg or empty string
 
@@ -72,7 +75,6 @@ class ImportOdbcDbtable(models.Model):
         cols = list(flds)  # copy to avoid side effects
         errmsg = str()
 
-        model_obj = model_obj.with_context(noupdate=table_obj.noupdate)
         importmsg = dict()
         try:
             importmsg = model_obj.load(cols, [data])
@@ -94,12 +96,13 @@ class ImportOdbcDbtable(models.Model):
 
         return True
 
-    @api.multi
     def import_run(self, ids=None):
         # ids value depends where the function is called.
         run_ids = None
         if isinstance(ids, dict):
             run_ids = self.ids
+        elif isinstance(ids, int):
+            run_ids = [ids]
         else:
             run_ids = ids
 
@@ -114,7 +117,7 @@ class ImportOdbcDbtable(models.Model):
         for action_ref in actions:
             obj = self.browse(action_ref['id'])
             if not obj.enabled:
-                continue  # skip
+                continue
 
             db_model = \
                 self.env['base.external.dbsource'].browse(obj.dbsource_id.id)
@@ -123,7 +126,7 @@ class ImportOdbcDbtable(models.Model):
             _logger.debug('Importing %s...' % obj.name)
 
             model_name = obj.model_target.model
-            model_obj = self.env[model_name]
+            model_obj = self.env.get(model_name)
 
             # now() microseconds are stripped
             # to avoid problem with SQL smalldate
@@ -133,7 +136,7 @@ class ImportOdbcDbtable(models.Model):
                    'last_error_count': 0,
                    'last_warn_count': 0,
                    'last_log': list()}
-            self.write(log)
+            obj.write(log)
 
             # Prepare SQL sentence; replace "%s" with the last_sync date
             if obj.last_sync:
@@ -188,11 +191,10 @@ class ImportOdbcDbtable(models.Model):
             # Write run log, either if the table import is active or inactive
             if log['last_log']:
                 log['last_log'].insert(0,
-                                       'LEVEL|== Line ==    |== Relationship \
-                                       ==|== Message ==')
+                    'LEVEL | == Line == | == Relationship == | == Message ==')
             log.update({'last_log': '\n'.join(log['last_log'])})
             log.update({'last_run': datetime.now().replace(microsecond=0)})
-            self.write(log)
+            obj.write(log)
 
             # Save log in the table
             import_logs = {
@@ -210,25 +212,24 @@ class ImportOdbcDbtable(models.Model):
         _logger.debug('Import job FINISHED.')
         return True
 
-    @api.multi
     def import_schedule(self):
         cron_obj = self.env['ir.cron']
-        new_create_cron = cron_obj.create({
-            'name': 'Import ODBC tables',
+        new_create = cron_obj.create({
+            'name': self.name,
             'interval_type': 'hours',
             'interval_number': 24,
             'numbercall': -1,
+            'model': 'base.external.import.task',
+            'function': 'import_run',
             'doall': False,
             'active': True,
-            'args': '[(%s,)]' % (self.id),
-            'model': 'import.odbc.dbtable',
-            'function': 'import_run'
-            })
+            'args': '[(%s,)]' % (self.id)
+        })
         return {
-            'name': 'Import ODBC tables',
+            'name': 'External Data Import',
             'view_type': 'form',
             'view_mode': 'form,tree',
             'res_model': 'ir.cron',
-            'res_id': new_create_cron.id,
-            'type': 'ir.actions.act_window'
-            }
+            'res_id': new_create.id,
+            'type': 'ir.actions.act_window',
+        }

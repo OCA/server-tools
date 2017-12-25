@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- Table Tasks form -->
+        <record model="ir.ui.view" id="view_import_task_form">
+            <field name="name">base.external.import.task.form</field>
+            <field name="model">base.external.import.task</field>
+            <field name="arch" type="xml">
+                <form string="Table">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="model_target"/>
+                                <field name="last_sync"/>
+                            </group>
+                            <group>
+                                <field name="exec_order"/>
+                                <field name="dbsource_id"/>
+                                <field name="enabled"/>
+                            </group>
+                        </group>
+                        <field name="sql_source" placeholder="SQL ..."/>
+                        <separator string="Last execution" colspan="4"/>
+                        <group>
+                            <group>
+                                <field name="last_record_count"/>
+                                <field name="last_warn_count"/>
+                                <field name="last_error_count"/>
+                            </group>
+                            <group>
+                                <field name="start_run"/>
+                                <field name="last_run"/>
+                            </group>
+                        </group>
+                        <group>
+                            <button class="btn-primary" name="import_run"
+                                    string="Run Import" type="object"
+                                    icon="fa-gear"/>
+                            <button name="import_schedule"
+                                    string="Schedule Import"
+                                    type="object" icon="fa-clock-o"
+                                    confirm="This will create a new schedule \
+                                    job. Do you still want to proceed?"/>
+                        </group>
+                        <field name="last_log"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Table Tasks Tree -->
+        <record id="view_import_task_tree" model="ir.ui.view">
+            <field name="name">base.external.import.task.tree</field>
+            <field name="model">base.external.import.task</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tables"
+                      colors="grey: enabled==False;
+                              red:last_error_count>0;
+                              blue:last_warn_count>0">
+                    <field name="exec_order"/>
+                    <field name="name"/>
+                    <field name="model_target"/>
+                    <field name="dbsource_id"/>
+                    <field name="enabled"/>
+                    <field name="last_run"/>
+                    <field name="last_sync"/>
+                    <field name="last_record_count"/>
+                    <field name="last_error_count"/>
+                    <field name="last_warn_count"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree Tasks Search -->
+        <record id="view_import_task_search" model="ir.ui.view">
+            <field name="name">base.external.import.task.search</field>
+            <field name="model">base.external.import.task</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Imports">
+                    <field name="name"/>
+                    <field name="dbsource_id"/>
+                    <field name="model_target"/>
+                </search>
+            </field>
+        </record>
+
+        <!--Menu Tasks Action-->
+        <record model="ir.actions.act_window" id="action_import_task">
+            <field name="name">External Import Task</field>
+            <field name="res_model">base.external.import.task</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <!--Menu Tasks-->
+        <menuitem name="External Import Task"
+                  id="menu_import_task"
+                  parent="base.next_id_9"
+                  action="action_import_task"/>
+
+        <!-- Table Log Tasks form -->
+        <record model="ir.ui.view" id="view_import_log_form">
+            <field name="name">base.external.import.log.form</field>
+            <field name="model">base.external.import.log</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" string="Import Log">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="import_id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="last_record_count"/>
+                                <field name="last_warn_count"/>
+                                <field name="last_error_count"/>
+                            </group>
+                            <group>
+                                <field name="start_run"/>
+                                <field name="last_run"/>
+                            </group>
+                        </group>
+                        <separator string="Import Task Log" colspan="4"/>
+                        <field name="last_log"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Table Log Tasks Tree -->
+        <record id="view_import_log_tree" model="ir.ui.view">
+            <field name="name">base.external.import.log.tree</field>
+            <field name="model">base.external.import.log</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false"
+                        colors="red:last_error_count>0;
+                                blue:last_warn_count>0">
+                    <field name="import_id"/>
+                    <field name="start_run"/>
+                    <field name="last_run"/>
+                    <field name="last_record_count"/>
+                    <field name="last_error_count"/>
+                    <field name="last_warn_count"/>
+                    <!--<field name="last_log"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree Log Tasks Search-->
+        <record id="view_import_log_search" model="ir.ui.view">
+            <field name="name">base.external.import.log.search</field>
+            <field name="model">base.external.import.log</field>
+            <field name="arch" type="xml">
+                <search string="Search Import Logs">
+                    <field name="import_id"/>
+                    <field name="start_run"/>
+                </search>
+            </field>
+        </record>
+
+        <!--Menu Log Tasks Action-->
+        <record id="action_import_log" model="ir.actions.act_window">
+            <field name="name">External Import Log</field>
+            <field name="res_model">base.external.import.log</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <!--Menu Log Tasks-->
+        <menuitem name="External Import Log"
+                  id="menu_import_log"
+                  parent="base.next_id_9"
+                  action="action_import_log"/>
+    </data>
+</odoo>

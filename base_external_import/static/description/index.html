@@ -1,0 +1,79 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">
+            Import data from external databases
+        </h2>
+        <p>
+            <img src="snapshot1.png" width="699">
+        </p>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span10">
+            <h2 class="oe_slogan" style="color:#875A7B; text-align: left;">Usage</h2>
+            <p>
+                Installed in the Administration module, menu Settings ->
+                Technical -> Database Structure -> External Import Task.
+            </p>
+            <p>Features:</p>
+            <ul>
+                <li>Fetched data from the databases are used to build lines
+                    equivalent to regular import files. These are imported
+                    using the standard "load()" ORM method, same as regular
+                    import function, benefiting from all its features,
+                    including xml_ids.
+                </li>
+                <li>Each table import is defined by an SQL statement, used to
+                    build the equivalent for an import file. Each column's name
+                    should match the column names you would use in an import
+                    file. <br/>
+                    No column can called "id" and <b>The first column</b> must
+                    provide an unique identifier for the record, and will be
+                    used to build its xml_id.
+                </li>
+                <li>Allow to import many2one fields, same as regular import
+                    module.</li>
+                <li>The last sync date is the last successfully execution can
+                    be used in the SQL using "%(sync)s", or ":sync" in the
+                    case of Oracle.
+                </li>
+                <li>When errors are found, only the record with the error
+                    fails import. The other correct records are committed.
+                    However, the "last sync date" will only be automatically
+                    updated when no errors are found.
+                </li>
+                <li>The import execution can be scheduled to run
+                    automatically.</li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span10">
+            <p>
+                <img src="snapshot2.png" width="699">
+            </p>
+            <h2 class="oe_slogan" style="color:#875A7B; text-align: left;">Contributors</h2>
+            <ul>
+                <li class="oe_mt32 text-justify">
+                    Jesus Ramiro
+                    <<a href="mailto:lnkdel@gmail.com">jesus@bilbonet.net</a>&gt;
+                </li>
+                <li>
+                    Liu Jianyun
+                    <<a href="mailto:lnkdel@gmail.com">lnkdel@gmail.com</a>&gt;
+                </li>
+                <li>
+                    Maxime Chambreuil
+                    &lt;<a href="mailto:maxime.chambreuil@savoirfairelinux.com">
+                    maxime.chambreuil@savoirfairelinux.com</a>&gt;
+                </li>
+                <li>
+                    Daniel Reis, Odoo Community Association (OCA)
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_separator">
+</section>
