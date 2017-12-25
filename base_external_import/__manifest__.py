@@ -17,8 +17,8 @@ Database Structure -> External Import Task.
 Features:
  * Fetched data from the databases are used to build lines equivalent to
    regular import files. These are imported using the standard "load()"
-   ORM method, same as regular import function, benefiting from all its features,
-   including xml_ids.
+   ORM method, same as regular import function, benefiting from all its 
+   features, including xml_ids.
  * Each table import is defined by an SQL statement, used to build the
    equivalent for an import file. Each column's name should match the column
    names you would use in an import file. No column can called "id" and 
