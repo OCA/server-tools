@@ -2,7 +2,7 @@
 # © 2014-2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import base64
-from openerp import api, models
+from odoo import api, models
 
 
 class MailMessage(models.Model):
@@ -46,7 +46,7 @@ class MailMessage(models.Model):
     def fetchmail_inbox_to_msg_dict(self):
         '''
         return a dict to be consumed by mail_thread.message_{new,update}
-        ideally, the original mail is attached, otherwise, try toyield a
+        ideally, the original mail is attached, otherwise, try to yield a
         similar result to mail_thread.message_parse()
         '''
         result = {}
@@ -63,7 +63,7 @@ class MailMessage(models.Model):
                     return self.env['mail.thread'].message_parse(
                         name_data[1], save_original=False)
                 msg['attachments'].append(name_data)
-            for field in ['type', 'author_id', 'message_id', 'subject',
+            for field in ['author_id', 'message_id', 'subject',
                           'email_from', 'date', 'parent_id', 'body']:
                 if isinstance(this[field], models.BaseModel):
                     msg[field] = this[field].id
@@ -101,6 +101,8 @@ class MailMessage(models.Model):
 
     @api.model
     def _needaction_count(self, dom):
+        """ Needaction is true for every message on this record, regardless
+        of read status """
         if dom == [('model', '=', 'fetchmail.inbox')]:
             return self.search(dom, count=True)
         return super(MailMessage, self)._needaction_count(dom)

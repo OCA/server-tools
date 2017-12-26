@@ -15,7 +15,8 @@ Create a fetchmail configuration and use 'Fetchmail inbox' as object to be
 created on mail arrival. Be sure to check Advanced/Keep original in order
 not to lose data in the intermediate step via the inbox.
 
-Mails fetched from this configuration end up in Email/Fetchmail Inbox,
+Mails fetched from this configuration end up in
+Settings/Technical/Email/Fetchmail Inbox,
 where they can be reviewed and eventually used to create new objects or
 attached to existing objects.
 
@@ -35,3 +36,9 @@ Credits
 -------
 
 * icon courtesy of http://fortawesome.github.io/Font-Awesome/icon/inbox/
+
+Contributors
+============
+
+* Holger Brunn <hbrunn@therp.nl>
+* Stefan Rijnhart <stefan@opener.amsterdam>
