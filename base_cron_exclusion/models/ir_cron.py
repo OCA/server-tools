@@ -5,9 +5,9 @@
 
 import logging
 
-from openerp import sql_db
-from openerp import api, fields, models, _
-from openerp.exceptions import ValidationError
+from odoo import sql_db
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -51,11 +51,12 @@ class IrCron(models.Model):
             lock_cr.fetchall()
         return lock_cr
 
-    def _process_job(self, job_cr, job, cron_cr):
-        db = sql_db.db_connect(self.pool._db.dbname)
-        locked_crons = self._lock_mutually_exclusive_cron(db, job['id'])
+    @classmethod
+    def _process_job(cls, job_cr, job, cron_cr):
+        db = sql_db.db_connect(cls.pool._db.dbname)
+        locked_crons = cls._lock_mutually_exclusive_cron(db, job['id'])
         try:
-            res = super(IrCron, self)._process_job(job_cr, job, cron_cr)
+            res = super(IrCron, cls)._process_job(job_cr, job, cron_cr)
         finally:
             locked_crons.close()
             _logger.debug("released blocks for cron job %s" % job['name'])
