@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="base.external.dbsource" id="demo_sqlite">
+        <field name="name">SQLite Demo</field>
+        <field name="conn_string">sqlite:///test.db</field>
+        <field name="password">password</field>
+        <field name="connector">sqlite</field>
+    </record>
+</odoo>

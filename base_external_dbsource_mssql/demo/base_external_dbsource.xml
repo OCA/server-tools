@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="base.external.dbsource" id="demo_mssql">
+        <field name="name">MSSQL Demo</field>
+        <field name="conn_string">mssql+pymssql://username:%s@server:port/dbname?charset=utf8</field>
+        <field name="password">password</field>
+        <field name="connector">mssql</field>
+    </record>
+</odoo>

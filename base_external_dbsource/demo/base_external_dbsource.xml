@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="base.external.dbsource" id="demo_postgre">
+        <field name="name">PostgreSQL local</field>
+        <field name="conn_string">dbname='postgres' password=%s</field>
+        <field name="password">postgresql</field>
+        <field name="connector">postgresql</field>
+    </record>
+    <record model="base.external.dbsource" id="demo_postgre_remote">
+        <field name="name">PostgreSQL remote</field>
+        <field name="conn_string">dbname='template1' user='dbuser' host='localhost' port='5432' password=%s</field>
+        <field name="password">postgresql</field>
+        <field name="connector">postgresql</field>
+    </record>
+</odoo>
