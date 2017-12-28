@@ -2,7 +2,7 @@
 <odoo>
     <record model="base.external.dbsource" id="demo_mysql">
         <field name="name">MySQL Demo</field>
-        <field name="conn_string">mysql://user:%s@server:port/dbname</field>
+        <field name="conn_string">mysql://user:%s@server:port/dbname?charset=utf8</field>
         <field name="password">password</field>
         <field name="connector">mysql</field>
     </record>
