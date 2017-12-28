@@ -5,8 +5,7 @@
 
 import time
 from functools import wraps
-import os
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 import logging
 
 from odoo.exceptions import UserError, ValidationError
@@ -252,28 +251,3 @@ class BaseException(models.AbstractModel):
 
     def _default_get_lines(self):
         return []
-
-    @api.model
-    def _import_acl_for_tmp_test_model(self):
-        # import the access rule of temp test model only if testing
-        testing = tools.config.get('test_enable')\
-            or os.environ.get('ODOO_TEST_ENABLE')
-        if testing:
-            header = ['id', 'name', 'model_id:id', 'group_id:id',
-                      'perm_read', 'perm_write',
-                      'perm_create', 'perm_unlink']
-            IrModelAccess = self.env['ir.model.access']
-            acl_data = [
-                ['access_base_exception_test_purchase',
-                 'access_base_exception_test_purchase',
-                 'base_exception.model_base_exception_test_purchase',
-                 'base.group_system', '1', '1', '1', '1'],
-                ['access_base_exception_test_purchase_line',
-                 'access_base_exception_test_purchase_line',
-                 'base_exception.model_base_exception_test_purchase_line',
-                 'base.group_system', '1', '1', '1', '1']
-            ]
-
-            result = IrModelAccess.load(header, acl_data)
-            if result['messages']:
-                _logger.warning(result['messages'])
