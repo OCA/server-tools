@@ -8,21 +8,20 @@ class TestBaseExternalImport(common.TransactionCase):
 
     def setUp(self):
         super(TestBaseExternalImport, self).setUp()
-        self.dbtable = self.env.ref('import_odbc.demo_postgresql_users')
+        self.task = self.env.ref(
+                            'base_external_import.demo_task_postgresql_users')
 
     def test_import_run_dbtable_arg(self):
-        """ It should raise a TypeError if dbtable conectión not in args """
+        # It should raise a TypeError if task connectión not in args
         with self.assertRaises(TypeError):
-            self.dbtable.import_run(self, ids=None)
+            self.task.import_run(self, ids=None)
 
     def test_execute_import_return_true(self):
-        """ It should return true if import the data """
-        res = self.dbtable.import_run(ids=None)
-        self.assertEqual(
-            res, True
-        )
+        # It should return true if import the data
+        res = self.task.import_run(ids=None)
+        self.assertEqual(res, True)
 
     def test_import_schedule_create(self):
-        """ It should raise a TypeError if create cron fails """
+        # It should raise a TypeError if create cron fails
         with self.assertRaises(TypeError):
-            self.dbtable.import_schedule(self)
+            self.task.import_schedule(self)
