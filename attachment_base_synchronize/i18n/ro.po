@@ -5,13 +5,14 @@
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Daniel Schweiger <danielcccasle@gmail.com>, 2017
+# Dorin Hongu <dhongu@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:09+0000\n"
-"PO-Revision-Date: 2017-12-01 02:09+0000\n"
-"Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
+"POT-Creation-Date: 2017-12-16 02:16+0000\n"
+"PO-Revision-Date: 2017-12-16 02:16+0000\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_company_id
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Company"
-msgstr ""
+msgstr "Companie"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_create_uid
