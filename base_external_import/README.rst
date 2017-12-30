@@ -53,8 +53,6 @@ Examples:
         FROM T_PRODUCTS
         WHERE DATE_CHANGED >= CAST(? as datetime)
 
-
-
 Credits
 =======
 

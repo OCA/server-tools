@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-
-        <record model="base.external.import.task" id="demo_task_postgresql_users">
+        <record model="base.external.import.task"
+                id="demo_task_postgresql_users">
             <field name="name">Users from PostgreSQL </field>
-            <field name="dbsource_id" ref="base_external_dbsource.demo_postgre"/>
-            <field name="sql_source">select usename as "login", usename as "name" from pg_catalog.pg_user</field>
+            <field name="dbsource_id"
+                   ref="base_external_dbsource.demo_postgre"/>
+            <field name="sql_source">
+                select usename as "login", usename as "name"
+                from pg_catalog.pg_user</field>
             <field name="model_target" ref="base.model_res_users"/>
         </record>
-
     </data>
 </odoo>
 

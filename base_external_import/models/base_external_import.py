@@ -88,7 +88,8 @@ class Task(models.Model):
 
         # Check the import model returned message
         if not importmsg['ids']:
-            message = [i['message'] for i in importmsg['messages'] if 'message' in i]
+            message = [i['message'] for i in importmsg['messages']
+                                                            if 'message' in i]
             _logger.debug(message)
             append_to_log(log, 'WARN', data, message)
             log['last_warn_count'] += 1
