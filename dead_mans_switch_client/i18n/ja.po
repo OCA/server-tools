@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-12-16 02:17+0000\n"
 "PO-Revision-Date: 2017-12-16 02:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language-Team: Japanese (https://www.transifex.com/oca/teams/23907/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: dead_mans_switch_client
 #: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
@@ -26,7 +26,7 @@ msgstr ""
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "表示名"
 
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_id
@@ -36,7 +36,7 @@ msgstr "ID"
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "最終更新日"
 
 #. module: dead_mans_switch_client
 #: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
