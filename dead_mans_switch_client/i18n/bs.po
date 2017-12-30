@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-12-16 02:17+0000\n"
 "PO-Revision-Date: 2017-12-16 02:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language-Team: Bosnian (https://www.transifex.com/oca/teams/23907/bs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: bs\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: dead_mans_switch_client
 #: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
@@ -26,7 +26,7 @@ msgstr ""
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Prikaži naziv"
 
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_id
@@ -36,7 +36,7 @@ msgstr "ID"
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client___last_update
 msgid "Last Modified on"
-msgstr "Ultima modifica il"
+msgstr "Zadnje mijenjano"
 
 #. module: dead_mans_switch_client
 #: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
