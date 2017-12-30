@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_export_security
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-16 02:16+0000\n"
+"PO-Revision-Date: 2017-12-16 02:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_export_security
+#: model:res.groups,comment:base_export_security.export_group
+msgid ""
+"\n"
+"            The user will be able to export data.\n"
+"        "
+msgstr ""
+
+#. module: base_export_security
+#: code:addons/base_export_security/models/export.py:72
+#, python-format
+msgid ""
+"%(records)d <b>%(model)s</b> records exported by "
+"<b>%(user)s</b>.<br><b>Fields exported:</b> %(fields)s"
+msgstr ""
+
+#. module: base_export_security
+#: code:addons/base_export_security/tests/test_export.py:89
+#, python-format
+msgid ""
+"<p>%(records)d <b>%(model)s</b> records exported by "
+"<b>%(user)s</b>.<br><b>Fields exported:</b> %(fields)s</p>"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_create_uid
+msgid "Created by"
+msgstr "Opprettet av"
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_create_date
+msgid "Created on"
+msgstr "Opprettet den"
+
+#. module: base_export_security
+#: model:ir.model,name:base_export_security.model_export_event
+msgid "Data Export Record"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.ui.menu,name:base_export_security.export_category
+msgid "Data Exports"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_display_name
+msgid "Display Name"
+msgstr "Visnings navn"
+
+#. module: base_export_security
+#. openerp-web
+#: code:addons/base_export_security/static/src/js/base_export_security.js:13
+#, python-format
+msgid "Export"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.ui.view,arch_db:base_export_security.export_view_form
+#: model:ir.ui.view,arch_db:base_export_security.export_view_search
+#: model:ir.ui.view,arch_db:base_export_security.export_view_tree
+msgid "Export Date"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.ui.view,arch_db:base_export_security.export_view_form
+msgid "Export Log"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.actions.act_window,name:base_export_security.export_action_log
+#: model:ir.ui.menu,name:base_export_security.export_menu
+#: model:ir.ui.view,arch_db:base_export_security.export_view_search
+#: model:ir.ui.view,arch_db:base_export_security.export_view_tree
+msgid "Export Logs"
+msgstr ""
+
+#. module: base_export_security
+#: model:res.groups,name:base_export_security.export_group
+msgid "Export Rights"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_field_ids
+#: model:ir.ui.view,arch_db:base_export_security.export_view_form
+msgid "Exported Fields"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_model_id
+msgid "Exported Model"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_record_ids
+#: model:ir.ui.view,arch_db:base_export_security.export_view_form
+msgid "Exported Records"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_user_id
+msgid "Exported by"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_id
+msgid "ID"
+msgstr "ID"
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event___last_update
+msgid "Last Modified on"
+msgstr "Sist oppdatert "
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_write_uid
+msgid "Last Updated by"
+msgstr "Sist oppdatert av"
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_write_date
+msgid "Last Updated on"
+msgstr "Sist oppdatert"
+
+#. module: base_export_security
+#: model:ir.model.fields,field_description:base_export_security.field_export_event_name
+msgid "Name"
+msgstr "Navn"
+
+#. module: base_export_security
+#: code:addons/base_export_security/models/base.py:25
+#, python-format
+msgid "You do not have permission to export data"
+msgstr ""
+
+#. module: base_export_security
+#: model:ir.model,name:base_export_security.model_base
+msgid "base"
+msgstr ""
+
+#. module: base_export_security
+#: model:mail.channel,name:base_export_security.export_channel
+msgid "data exports"
+msgstr ""

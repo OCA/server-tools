@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * dead_mans_switch_client
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-16 02:17+0000\n"
+"PO-Revision-Date: 2017-12-16 02:17+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: dead_mans_switch_client
+#: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
+msgid "Configure the dead man's switch server"
+msgstr ""
+
+#. module: dead_mans_switch_client
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
+msgid "Display Name"
+msgstr "Име за Показване"
+
+#. module: dead_mans_switch_client
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_id
+msgid "ID"
+msgstr "ID"
+
+#. module: dead_mans_switch_client
+#: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client___last_update
+msgid "Last Modified on"
+msgstr "Последно обновено на"
+
+#. module: dead_mans_switch_client
+#: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
+msgid "dead.mans.switch.client"
+msgstr ""
