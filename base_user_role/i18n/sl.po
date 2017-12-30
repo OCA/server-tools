@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-18 09:38+0000\n"
-"PO-Revision-Date: 2017-11-18 09:38+0000\n"
+"POT-Creation-Date: 2017-12-28 03:54+0000\n"
+"PO-Revision-Date: 2017-12-28 03:54+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgid "Role"
 msgstr "Vloga"
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1514
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1515
 msgid "Role lines"
 msgstr "Postavke vlog"
 
