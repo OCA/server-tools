@@ -12,7 +12,9 @@ This project aim to deal with modules related to manage Odoo server environment 
  - Keep the security on update
  - Manage email settings
 
-
+Contributing
+------------
+Do you want to contribute? Please read our [contributing guidelines](https://github.com/OCA/maintainer-tools/blob/master/CONTRIBUTING.md).
 
 Translation Status
 ------------------
