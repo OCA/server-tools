@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -9,6 +8,7 @@ class ModuleUpgrade(models.TransientModel):
     _inherit = 'base.module.upgrade'
 
     @api.model
+    @api.returns('ir.module.module')
     def get_module_list(self):
         """Set modules to upgrade searching by their dir checksum."""
         Module = self.env["ir.module.module"]
