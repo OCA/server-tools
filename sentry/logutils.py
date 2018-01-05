@@ -101,6 +101,9 @@ class SanitizeOdooCookiesProcessor(SanitizePasswordsProcessor):
     Allows to sanitize sensitive Odoo cookies, namely the "session_id" cookie.
     '''
 
-    FIELDS = frozenset([
+    # `FIELDS` was renamed to `KEYS` in raven 6.4.0.
+    # Keep `FIELDS` for backwards compatibility.
+    # See also issue #1096 on OCA/server-tools.
+    KEYS = FIELDS = frozenset([
         'session_id',
     ])
