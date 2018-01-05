@@ -101,6 +101,6 @@ class SanitizeOdooCookiesProcessor(SanitizePasswordsProcessor):
     Allows to sanitize sensitive Odoo cookies, namely the "session_id" cookie.
     '''
 
-    KEYS = frozenset([
+    KEYS = FIELDS = frozenset([
         'session_id',
     ])
