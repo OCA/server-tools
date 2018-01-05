@@ -15,7 +15,7 @@ Installation
 
 Prior to installing this module, you need to:
 
-#. Install checksumdir with `pip install checksumdir`
+#. Install checksumdir with ``pip install checksumdir``
 #. Ensure all installed modules are up-to-date. When installed, this module will assume the versions found in the addons directories are currently installed.
 
 Configuration
@@ -23,7 +23,7 @@ Configuration
 
 The default time for checking and applying upgrades is 3:00 AM (UTC). To change this schedule, modify the "Perform Module Upgrades" scheduled action.
 
-This module will ignore .pyc and .pyo file extensions by default. To modify this, create a module_auto_update.checksum_excluded_extensions system parameter with the desired extensions listed as comma-separated values.
+This module will ignore ``.pyc`` and ``.pyo`` file extensions by default. To modify this, create a ``module_auto_update.checksum_excluded_extensions`` system parameter with the desired extensions listed as comma-separated values.
 
 Usage
 =====
@@ -34,7 +34,7 @@ To perform upgrades manually, click the "Apply Scheduled Upgrades" menu item in 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 Bug Tracker
 ===========
@@ -57,6 +57,7 @@ Contributors
 
 * Brent Hughes <brent.hughes@laslabs.com>
 * Juan José Scarafía <jjs@adhoc.com.ar>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
