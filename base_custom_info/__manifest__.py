@@ -10,7 +10,6 @@
     'version': '11.0.1.0.0',
     'depends': [
         'base_setup',
-        'res_partner',
     ],
     'data': [
         'security/ir.model.access.csv',
