@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">Allow to enable partners custom info</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='company_id']" position="before">
+            <div id="custom_info"/>
+            <h2>Custom Information</h2>
+            <div class="row mt16 o_settings_container" id="default_user_rights">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="group_custom_info_partner"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="group_custom_info_partner"/>
+                        <div class="text-muted">
+                            Add a tab in the partners form to edit custom information
+                        </div>
+                     </div>
+                </div>
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="group_custom_info_manager"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="group_custom_info_manager"/>
+                        <div class="text-muted">
+                            Allow all employees to manage custom information
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </xpath>
+    </field>
+</record>
+
+</odoo>

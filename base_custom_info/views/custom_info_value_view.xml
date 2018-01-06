@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+    <record id="custom_info_value_tree" model="ir.ui.view">
+        <field name="model">custom.info.value</field>
+        <field name="arch" type="xml">
+            <tree string="Custom Property Values" create="0" delete="0">
+                <field name="owner_id" invisible="context.get('embed')"/>
+                <field name="property_id"/>
+                <field name="category_id"/>
+                <field name="required" invisible="1"/>
+                <field name="value"
+                       attrs="{'required': [('required', '=', True)]}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="custom_info_value_tree_editable" model="ir.ui.view">
+        <field name="model">custom.info.value</field>
+        <field name="priority" eval="999"/>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="custom_info_value_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="editable">bottom</attribute>
+            </tree>
+            <field name="value" position="after">
+                <field name="field_type" invisible="1"/>
+                <field name="value_id"
+                       widget="selection"
+                       attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="custom_info_value_form" model="ir.ui.view">
+        <field name="model">custom.info.value</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="metadata">
+                        <field name="owner_id" invisible="context.get('embed')"/>
+                        <field name="property_id" readonly="context.get('embed')"/>
+                        <field name="category_id"/>
+                        <field name="field_type" readonly="True"/>
+                        <field name="required" readonly="True"/>
+                    </group>
+                    <group name="value">
+                        <field name="value_str"
+                               attrs="{'invisible': [('field_type', '!=', 'str')], 'required': [('required', '=', True), ('field_type', '=', 'str')]}"
+                        />
+                        <field name="value_int"
+                               attrs="{'invisible': [('field_type', '!=', 'int')], 'required': [('required', '=', True), ('field_type', '=', 'int')]}"
+                        />
+                        <field name="value_float"
+                               attrs="{'invisible': [('field_type', '!=', 'float')], 'required': [('required', '=', True), ('field_type', '=', 'float')]}"
+                        />
+                        <field name="value_bool"
+                               attrs="{'invisible': [('field_type', '!=', 'bool')], 'required': [('required', '=', True), ('field_type', '=', 'bool')]}"
+                        />
+                        <field name="value_id"
+                               widget="selection"
+                               attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
+                        />
+                    </group>
+                    <div class="alert alert-warning" invisible="not context.get('embed')">
+                        <strong>Warning!</strong>
+                        You might see no changes in parent form until you save it.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_info_value_search" model="ir.ui.view">
+        <field name="model">custom.info.value</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="model"/>
+                <field name="res_id"/>
+                <field name="category_id"/>
+                <field name="property_id"/>
+                <field name="value"/>
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Owner"
+                        context="{'group_by': ['model' , 'res_id']}"/>
+                    <filter
+                        string="Category"
+                        context="{'group_by': 'category_id'}"/>
+                    <filter
+                        string="Property"
+                        context="{'group_by': 'property_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="custom_info_value_action" model="ir.actions.act_window">
+        <field name="name">Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.info.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+</odoo>
