@@ -80,6 +80,7 @@ addon | version | summary
 [save_translation_file](save_translation_file/) | 8.0.1.0.0 | Allows developpers to easily generate i18n files
 [scheduler_error_mailer](scheduler_error_mailer/) | 8.0.1.0.0 | Send an e-mail when a scheduler fails
 [secure_uninstall](secure_uninstall/) | 8.0.1.0.0 | Ask password to authorize uninstall
+[sentry](sentry/) | 8.0.1.0.0 | Report Odoo errors to Sentry
 [server_environment](server_environment/) | 8.0.1.1.0 | server configuration environment files
 [server_environment_files_sample](server_environment_files_sample/) | 8.0.1.0.0 | Example server configuration environment files repository module
 [shell](shell/) | 8.0.1.0.0 | Backport of the v9 shell CLI command.
