@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp import api
-from openerp.exceptions import AccessError
-from openerp.tests import common
+from odoo import api
+from odoo.exceptions import AccessError
+from odoo.tests import common
 from lxml import etree
 
 

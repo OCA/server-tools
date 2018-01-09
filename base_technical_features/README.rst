@@ -60,6 +60,7 @@ Contributors
 ------------
 
 * Stefan Rijnhart <stefan@opener.am>
+* Istvan Szalai <istvan.szalai@savoirfairelinux.com>
 
 Maintainer
 ----------
