@@ -15,6 +15,7 @@ except ImportError:
 
 
 class SignupVerifyEmail(AuthSignupHome):
+
     @http.route()
     def web_auth_signup(self, *args, **kw):
         if (http.request.params.get("login") and
@@ -22,6 +23,19 @@ class SignupVerifyEmail(AuthSignupHome):
             return self.passwordless_signup(http.request.params)
         else:
             return super(SignupVerifyEmail, self).web_auth_signup(*args, **kw)
+
+    def _get_user_lang(self):
+        """Retrieve user language."""
+        langs = http.request.env['res.lang'].search_read([], ['code'])
+        supported_langs = [
+            lang['code'] for lang in langs
+        ]
+        lang = 'en_US'
+        if http.request.website:
+            lang = http.request.website.default_lang_code
+        if http.request.lang in supported_langs:
+            lang = http.request.lang
+        return lang
 
     def passwordless_signup(self, values):
         qcontext = self.get_auth_signup_qcontext()
@@ -32,6 +46,9 @@ class SignupVerifyEmail(AuthSignupHome):
             return http.request.render("auth_signup.signup", qcontext)
         elif not values.get("email"):
             values["email"] = values.get("login")
+
+        # retrieve user lang
+        values['lang'] = self._get_user_lang()
 
         # Remove password
         values["password"] = False
