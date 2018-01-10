@@ -1,0 +1,60 @@
+- Fix issues when there is no analytic structure
+
+analytic_structure 1.9
+
+- Add License and Copyright (AGPL & XCG)
+
+- Remove field 'validated'
+
+analytic_structure 1.8
+
+- Odoo8 Fix: Find the class oe_analytic on all elements (not only div)
+
+analytic_structure 1.7
+
+Production release
+
+analytic_structure 1.6.2
+
+- [fix] error on write
+
+analytic_structure 1.6.1
+
+- Added possibility to give particular external ID on bound dimensions.
+- [fix] issue with the tree view with analytic
+
+analytic_structure 1.6
+
+Production release
+
+analytic_structure 1.5.1
+
+- [fix] searching for disabled analytic structures
+
+analytic_structure 1.5
+
+- [l10n] Updated French translation
+- Analytic codes can be blacklisted per company
+- Renamed fields for clarity
+
+analytic_structure 1.4.1
+
+- Improve ease of use of the module by other module
+
+analytic_structure 1.4
+
+Production release
+
+analytic_structure 1.3.8
+
+- [fix] bug in some view when using analytic.
+- Added support for para-analytic fields.
+
+analytic_structure 1.3.7
+
+- Structures can now be restricted to one company.
+- Bound dimensions: added the code_ref_ids (and code_ref_module) options to generate external IDs for all analytic codes of the dimension. Generated during a write operation.
+
+analytic_structure 1.3.6
+
+…

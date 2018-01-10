@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_analytic_structure_user,analytic_structure.analytic_structure_user,model_analytic_structure,base.group_user,1,0,0,0
+access_analytic_dimension_user,analytic_structure.analytic_dimension_user,model_analytic_dimension,base.group_user,1,0,0,0
+access_analytic_code_user,analytic_structure.analytic_code_user,model_analytic_code,base.group_user,1,0,0,0
+
+access_analytic_structure_manager,analytic_structure.analytic_structure_manager,model_analytic_structure,group_ans_manager,1,1,1,1
+access_analytic_dimension_manager,analytic_structure.analytic_dimension_manager,model_analytic_dimension,group_ans_manager,1,1,1,1
+access_analytic_code_manager,analytic_structure.analytic_code_manager,model_analytic_code,group_ans_manager,1,1,1,1

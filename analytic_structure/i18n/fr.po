@@ -1,0 +1,317 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * analytic_structure
+# Jérémie Gavrel <jeremie.gavrel@xcg-consulting.fr>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-19 10:18+0000\n"
+"PO-Revision-Date: 2014-09-19 12:20+0100\n"
+"Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+msgid "Analytic Structures"
+msgstr "Structures analytiques"
+
+#. module: analytic_structure
+#: field:analytic.dimension,nc_ids:0
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_code
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_code
+msgid "Codes"
+msgstr "Codes"
+
+#. module: analytic_structure
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_dimension
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_dimension
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#. module: analytic_structure
+#: sql_constraint:analytic.structure:0
+msgid "One dimension per Analysis slot per object per company."
+msgstr "Une dimension par slot d'analyse par objet et par société."
+
+#. module: analytic_structure
+#: field:analytic.code,parent_left:0
+msgid "Left parent"
+msgstr "Parent gauche"
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_structure
+msgid "analytic.structure"
+msgstr "analytic.structure"
+
+#. module: analytic_structure
+#: sql_constraint:analytic.dimension:0
+msgid "Name must be unique"
+msgstr "Le nom doit être unique"
+
+#. module: analytic_structure
+#: field:analytic.code,view_type:0
+msgid "View type"
+msgstr "Type vue"
+
+#. module: analytic_structure
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_config_root
+msgid "Analytic"
+msgstr "Analytique"
+
+#. module: analytic_structure
+#: view:analytic.code:0
+msgid "Analytic Codes"
+msgstr "Codes analytiques"
+
+#. module: analytic_structure
+#: field:analytic.dimension,ns_id:0
+#: model:ir.actions.act_window,name:analytic_structure.action_analytic_structure
+#: model:ir.ui.menu,name:analytic_structure.menu_analytic_structure
+msgid "Structures"
+msgstr "Structures"
+
+#. module: analytic_structure
+#: constraint:analytic.code:0
+msgid "Error ! You can not create recursive analytic codes."
+msgstr "Erreur ! Vous ne pouvez créer de code analytique récursif."
+
+#. module: analytic_structure
+#: field:analytic.code,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+msgid "Target Model Name"
+msgstr "Nom du Model Cible"
+
+#. module: analytic_structure
+#: field:analytic.structure,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: analytic_structure
+#: field:analytic.structure,model_name:0
+msgid "Object"
+msgstr "Objet"
+
+#. module: analytic_structure
+#: field:analytic.code,code_parent_id:0
+msgid "Parent Code"
+msgstr "Code parent"
+
+#. module: analytic_structure
+#: view:analytic.code:0
+msgid "Code Dimension"
+msgstr "Dimension du code"
+
+#. module: analytic_structure
+#: field:analytic.code,blacklist_ids:0
+msgid "Blacklist"
+msgstr "Liste noire"
+
+#. module: analytic_structure
+#: code:addons/analytic_structure/analytic_structure.py:40
+#, python-format
+msgid "Analysis {}"
+msgstr "Analytique {}"
+
+#. module: analytic_structure
+#: help:analytic.code,disabled_per_company:0
+msgid ""
+"Determines whether an analytic code is disabled for the current company."
+msgstr "Définit si un code analytique est désactivé pour la société actuelle."
+
+#. module: analytic_structure
+#: field:analytic.code,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: analytic_structure
+#: model:ir.actions.act_window,help:analytic_structure.action_analytic_structure
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                    Define Analytical Structures (ANS) for objects in\n"
+"                    your system.\n"
+"                </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Définissez les structures analytiques (ANS) pour les objets "
+"dans votre système.\n"
+"              </p>\n"
+"            "
+
+#. module: analytic_structure
+#: help:analytic.code,blacklist_ids:0
+msgid "Companies the code is hidden in."
+msgstr "Sociétés dans lesquelles le code n'est pas utilisable."
+
+#. module: analytic_structure
+#: field:analytic.code,nd_name:0 view:analytic.dimension:0
+msgid "Dimension Name"
+msgstr "Nom dimension"
+
+#. module: analytic_structure
+#: model:ir.actions.act_window,help:analytic_structure.action_analytic_dimension
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                    Create Analytical Dimensions (AND) for your system.\n"
+"                </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Créez des dimensions analytiques (AND) pour votre système\n"
+"              </p>\n"
+"            "
+
+#. module: analytic_structure
+#: field:analytic.code,name:0 field:analytic.dimension,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: analytic_structure
+#: constraint:analytic.structure:0
+msgid ""
+"One dimension per Analysis slot per object when the structure is common to "
+"all companies."
+msgstr ""
+"Une dimension par slot d'analyse par objet quand la structure est partagée "
+"par toutes les sociétés."
+
+#. module: analytic_structure
+#: model:res.groups,name:analytic_structure.group_ans_manager
+msgid " Manage analytic structure"
+msgstr "Gestion des structures analytiques"
+
+#. module: analytic_structure
+#: field:analytic.structure,ordering:0
+msgid "Analysis slot"
+msgstr "Emplacement d'analyse"
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_code
+msgid "analytic.code"
+msgstr "analytic.code"
+
+#. module: analytic_structure
+#: model:res.groups,comment:analytic_structure.group_ans_manager
+msgid "the user will be able to create analysis codes"
+msgstr "L'utilisateur sera capable de créer des codes analytiques"
+
+#. module: analytic_structure
+#: field:analytic.code,disabled_per_company:0
+msgid "Disabled in my company"
+msgstr "Désactivé dans ma société"
+
+#. module: analytic_structure
+#: field:analytic.code,child_ids:0
+msgid "Child Codes"
+msgstr "Codes enfants"
+
+#. module: analytic_structure
+#: view:analytic.dimension:0
+msgid "ANCs"
+msgstr "Codes"
+
+#. module: analytic_structure
+#: field:analytic.code,nd_id:0
+msgid "Dimension"
+msgstr "Dimension"
+
+#. module: analytic_structure
+#: model:ir.model,name:analytic_structure.model_analytic_dimension
+msgid "analytic.dimension"
+msgstr "analytic.dimension"
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+msgid "All"
+msgstr "Tous"
+
+#. module: analytic_structure
+#: view:analytic.structure:0
+msgid "Analytic Structure"
+msgstr "Structure analytique"
+
+#. module: analytic_structure
+#: view:analytic.code:0
+msgid "Group By..."
+msgstr "Regrouper par…"
+
+#. module: analytic_structure
+#: help:analytic.code,active:0
+msgid "Determines whether an analytic code is in the referential."
+msgstr "Définit si un code analytique fait partie du référentiel."
+
+#. module: analytic_structure
+#: view:analytic.dimension:0
+msgid "Analytic Dimension"
+msgstr "Dimension analytique"
+
+#. module: analytic_structure
+#: view:analytic.code:0
+msgid "Analytic Code"
+msgstr "Code analytique"
+
+#. module: analytic_structure
+#: field:analytic.dimension,ns1_id:0 field:analytic.dimension,ns2_id:0
+#: field:analytic.dimension,ns3_id:0 field:analytic.dimension,ns4_id:0
+#: field:analytic.dimension,ns5_id:0
+msgid "Generated Subset of Structures"
+msgstr "Sous-ensemble de structures autogénéré"
+
+#. module: analytic_structure
+#: field:analytic.dimension,validated:0
+msgid "Validated"
+msgstr "Validé"
+
+#. module: analytic_structure
+#: field:analytic.structure,nd_id:0
+msgid "Related Dimension"
+msgstr "Dimension associée"
+
+#. module: analytic_structure
+#: field:analytic.code,parent_right:0
+msgid "Right parent"
+msgstr "Parent droit"
+
+#. module: analytic_structure
+#: help:analytic.code,view_type:0
+msgid ""
+"Determines whether an analytic code is not selectable (but still in the "
+"referential)."
+msgstr ""
+"Définit si un code analytique n'est pas sélectionnable (tout en restant "
+"présent dans le référentiel)."
+
+#~ msgid "Usable"
+#~ msgstr "Utilisable"
+
+#~ msgid "Structure"
+#~ msgstr "Structure"
+
+#~ msgid "Analysis 4"
+#~ msgstr "Analytique 4"
+
+#~ msgid "Analysis 5"
+#~ msgstr "Analytique 5"
+
+#~ msgid "Analysis 1"
+#~ msgstr "Analytique 1"
+
+#~ msgid "Analysis 2"
+#~ msgstr "Analytique 2"
+
+#~ msgid "Analysis 3"
+#~ msgstr "Analytique 3"
+
+#~ msgid "Analysis Codes"
+#~ msgstr "Codes Analytiques"

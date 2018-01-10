@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- This file contains views for the analytic.code, analytic.structure,
+            analytic.dimension models. -->
+
+        <!-- Views for the analytic.code model. -->
+
+        <record id="view_analytic_search_global" model="ir.ui.view">
+            <field name="name"> view.analytic.search.global</field>
+            <field name="model">analytic.code</field>
+            <field name="arch" type="xml">
+                <search string="Analytic Codes">
+                    <field name="name"
+                        filter_domain="['|',('name', 'ilike', self), ('description', 'ilike', self)]" />
+                    <field name="nd_name" filter_domain="[('nd_name', 'ilike', self)]" />
+                    <group expand="0" string="Group By...">
+                        <filter string="Code Dimension" domain=""
+                            context="{'group_by':'nd_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- TODO WTF with the view ID and name? -->
+        <record id="view_analytic_code" model="ir.ui.view">
+            <field name="name">analytic.code.view.form</field>
+            <field name="model">analytic.code</field>
+
+            <field name="arch" type="xml">
+                <tree string="Analytic Codes" version="7.0">
+                    <field name="id" invisible="1" />
+                    <field name="active" />
+                    <field name="view_type" invisible="1" />
+                    <field name="disabled_per_company" />
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="nd_id"
+                        invisible="context.get('default_nd_id', None) is not None"
+                        required="context.get('default_nd_id', None) is not False" />
+                    <field name="code_parent_id" attrs="{'readonly': [('nd_id', '=', False)]}"
+                        domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- if nd_id is not filled the analytic code won't appear in the dimension
+            list -->
+        <!-- TODO WTF with the view ID and name? -->
+        <record id="analytic_dimension_form" model="ir.ui.view">
+            <field name="name">analytic.dimension.form</field>
+            <field name="model">analytic.code</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Code">
+                    <group>
+                        <field name="id" invisible="1" />
+
+                        <group>
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="nd_id"
+                                invisible="context.get('default_nd_id', None) is not None"
+                                required="context.get('default_nd_id', None) is not False" />
+                            <field name="code_parent_id"
+                                attrs="{'readonly': [('nd_id', '=', False)]}"
+                                domain="[('id', '!=', id), ('nd_id', '=', nd_id)]" />
+                        </group>
+
+                        <group>
+                            <field name="active" />
+                            <field name="view_type" invisible="1" />
+                            <field name="disabled_per_company" />
+                        </group>
+
+                        <group colspan="2">
+                            <field name="blacklist_ids" groups="base.group_multi_company" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Views for the analytic.dimension model. -->
+
+        <record id="view_analytic_dimension" model="ir.ui.view">
+            <field name="name">analytic.dimension.view.form</field>
+            <field name="model">analytic.dimension</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Dimension" version="7.0">
+                    <field name="id" invisible="1" />
+                    <label for="name" class="oe_edit_only" string="Dimension Name" />
+                    <h1>
+                        <field name="name" class="oe_inline" placeholder="Dimension Name"
+                            style="width: 6em" />
+                    </h1>
+                    <group colspan="4" col="4">
+                        <field name="nc_ids" string="ANCs"
+                            context="{'default_nd_id': id}" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Views for the analytic.structure model. -->
+
+        <record id="tree_analytic_structure" model="ir.ui.view">
+            <field name="name">analytic.structure.view.tree</field>
+            <field name="model">analytic.structure</field>
+            <field name="arch" type="xml">
+                <tree string="Analytic Structures" version="7.0">
+                    <field name="model_name" placeholder="Target Model Name" />
+                    <field name="nd_id" />
+                    <field name="ordering" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_analytic_structure" model="ir.ui.view">
+            <field name="name">analytic.structure.view.form</field>
+            <field name="model">analytic.structure</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Structure" version="7.0">
+                    <label for="model_name" class="oe_edit_only" string="Target Model Name" />
+                    <h1>
+                        <field name="model_name" class="oe_inline"
+                            placeholder="Target Model Name" style="width: 6em" />
+                    </h1>
+                    <group colspan="4" col="4">
+                        <field name="nd_id" />
+                        <newline />
+                        <field name="ordering" />
+                        <newline />
+                        <field name="company_id" placeholder="All" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

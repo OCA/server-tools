@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="group_ans_manager" model="res.groups">
+            <field name="name"> Manage analytic structure</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">the user will be able to create analysis codes</field>
+        </record>
+    </data>
+</openerp>
