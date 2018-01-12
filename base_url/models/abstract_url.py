@@ -7,6 +7,7 @@ from odoo import api, fields, models, _
 import logging
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
+
 try:
     from slugify import slugify
 except ImportError:
@@ -27,11 +28,20 @@ class AbstractUrl(models.AbstractModel):
             ], default='auto')
     manual_url_key = fields.Char()
     url_key = fields.Char(
+        string='Url key',
         compute='_compute_url',
-        store=True)
+        store=True,
+    )
+    url_url_ids = fields.One2many(
+        compute='_compute_url_url_id',
+        comodel_name='url.url')
     redirect_url_key_ids = fields.One2many(
         compute='_compute_redirect_url',
         comodel_name='url.url')
+    lang_id = fields.Many2one(
+        'res.lang',
+        string='Lang',
+        required=True)
 
     def _build_url_key(self):
         self.ensure_one()
@@ -57,7 +67,6 @@ class AbstractUrl(models.AbstractModel):
         3 write the new one
         """
         self.ensure_one()
-
         existing_url = self.env['url.url'].search([
             ('url_key', '=', url_key),
             ('backend_id', '=', get_model_ref(self.backend_id)),
@@ -115,6 +124,12 @@ class AbstractUrl(models.AbstractModel):
             record.redirect_url_key_ids = record.env["url.url"].search([
                 ('model_id', '=', get_model_ref(record)),
                 ('redirect', '=', True),
+                ])
+
+    def _compute_url_url_ids(self):
+        for record in self:
+            record.redirect_url_key_ids = record.env["url.url"].search([
+                ('model_id', '=', get_model_ref(record)),
                 ])
 
     @api.onchange('manual_url_key')
