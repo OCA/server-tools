@@ -43,8 +43,11 @@ def initialize_raven(config, client_cls=None):
     enabled = config.get('sentry_enabled', False)
     if not (HAS_RAVEN and enabled):
         return
+
+    if config.get('sentry_odoo_dir') and config.get('sentry_release'):
+        _logger.debug('Both sentry_odoo_dir and sentry_release defined, choosing sentry_release')
     options = {
-        'release': get_odoo_commit(config.get('sentry_odoo_dir')),
+        'release': config.get('sentry_release', get_odoo_commit(config.get('sentry_odoo_dir'))),
     }
     for option in const.get_sentry_options():
         value = config.get('sentry_%s' % option.key, option.default)
