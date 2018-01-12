@@ -71,9 +71,16 @@ configuration file:
                                HTTP request and user session (if available). This has no effect
                                for Cron jobs, as no request/session is available inside a Cron job.
 
+``sentry_release``             Explicitly define a version to be sent as the release version to
+                               Sentry. Useful in conjuntion with Sentry's "Resolve in the next
+                               release"-functionality. Also useful if your production deployment
+                               does not include any Git context from which a commit might be read.
+                               Overrides *sentry_odoo_dir*.
+
 ``sentry_odoo_dir``            Absolute path to your Odoo installation directory. This is optional
                                and will only be used to extract the Odoo Git commit, which will be
                                sent to Sentry, to allow to distinguish between Odoo updates.
+                               Overridden by *sentry_release*
 =============================  ====================================================================  ==========================================================
 
 Other `client arguments
@@ -100,6 +107,7 @@ Below is an example of Odoo configuration file with *Odoo Sentry* options::
     sentry_environment = production
     sentry_auto_log_stacks = false
     sentry_odoo_dir = /home/odoo/odoo/
+    sentry_release = 1.3.2
 
 Usage
 =====
@@ -148,6 +156,7 @@ Contributors
 * Mohammed Barsi <barsintod@gmail.com>
 * Andrius Preimantas <andrius@versada.eu>
 * Naglis Jonaitis <naglis@versada.eu>
+* Atte Isopuro <atte.isopuro@avoin.systems>
 
 Maintainer
 ----------
