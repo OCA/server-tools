@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2016-2017 Akretion (http://www.akretion.com)
-# © 2016-2017 Camptocamp (http://www.camptocamp.com/)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2016-2017 Akretion (http://www.akretion.com)
+# Copyright 2016-2017 Camptocamp (http://www.camptocamp.com/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
 
@@ -9,7 +8,7 @@ from odoo import api, models
 def get_new_values(model, record, on_change_result):
     vals = on_change_result.get('value', {})
     new_values = {}
-    for fieldname, value in vals.iteritems():
+    for fieldname, value in vals.items():
         if fieldname not in record:
             column = model._fields[fieldname]
             if value and column.type == 'many2one':
@@ -38,15 +37,15 @@ def play_onchanges(self, values, onchange_fields):
         new_values.update(get_new_values(self, values, onchange_values))
         all_values.update(new_values)
 
-    res = {f: v for f, v in all_values.iteritems()
+    res = {f: v for f, v in all_values.items()
            if f in values or f in new_values}
     return res
 
 
-class IrRule(models.Model):
-    _inherit = 'ir.rule'
+class Base(models.AbstractModel):
+    _inherit = 'base'
 
     def _setup_complete(self):
         if not hasattr(models.BaseModel, 'play_onchanges'):
             setattr(models.BaseModel, 'play_onchanges', play_onchanges)
-        return super(IrRule, self)._setup_complete()
+        return super(Base, self)._setup_complete()
