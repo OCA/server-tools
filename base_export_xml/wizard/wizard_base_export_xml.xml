@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_base_export_xml_form" model="ir.ui.view">
+        <field name="name">base.export.xml.form</field>
+        <field name="model">base.export.xml</field>
+        <field name="arch" type="xml">
+            <form name="Base Export XML">
+                <sheet>
+                    <group string="Models">
+                        <field name="model_ids" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="model"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="with_binary"/>
+                            <field name="with_no_update"/>
+                            <field name="with_archived"/>
+                            <field name="default_export"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="special" special="cancel" string="CANCEL"/>
+                    <button name="action_export" string="EXPORT" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="base_export_xml_action" model="ir.actions.act_window">
+        <field name="name">Base Export XML</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">base.export.xml</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record>
+    <menuitem action="base_export_xml_action" id="menu_base_export_xml_action" parent="base.next_id_9" sequence="20"/>
+
+</odoo>
