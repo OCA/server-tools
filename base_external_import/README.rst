@@ -26,7 +26,7 @@ Features:
    and will be used to build its xml_id.
  * Allow to import many2one fields, same as regular import module.
  * The last sync date is the last successfully execution can be used in the SQL
-   using "%(sync)s", or ":sync" in the case of Oracle.
+   using "?".
  * When errors are found, only the record with the error fails import. The
    other correct records are committed. However, the "last sync date" will only
    be automatically updated when no errors are found.
@@ -43,14 +43,21 @@ Examples:
         FROM T_SUPPLIERS
         WHERE INACTIVE_DATE IS NULL and DATE_CHANGED >= CAST(? as datetime)
 
- * Importing products to product.product:
+ * Importing products to product.template:
     ::
 
         SELECT
-            PRODUCT_CODE as "ref",
-            PRODUCT_NAME as "name",
-            'res_partner_id_' + SUPPLIER_ID as "partner_id/id"
-        FROM T_PRODUCTS
+          Product_Code as "default_code",
+          Descripc as "name",
+          active,
+          type,
+          sale_ok,
+          purchase_ok,
+          list_price,
+          standard_price,
+          description_sale,
+          'res_partner_id_' + SUPPLIER_ID as "seller_ids/name/id"
+        FROM _Products
         WHERE DATE_CHANGED >= CAST(? as datetime)
 
 Credits

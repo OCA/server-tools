@@ -6,7 +6,7 @@
 import sys
 import logging
 from datetime import datetime
-from odoo import api, models, fields
+from odoo import models, fields
 
 _logger = logging.getLogger(__name__)
 _loglvl = _logger.getEffectiveLevel()
@@ -23,8 +23,10 @@ class Log(models.Model):
     last_run = fields.Datetime(string='Time ended', readonly=True)
     last_record_count = fields.Integer(string='Last record count',
                                        readonly=True)
-    last_error_count = fields.Integer(string='Last error count', readonly=True)
-    last_warn_count = fields.Integer(string='Last warning count', readonly=True)
+    last_error_count = fields.Integer(string='Last error count',
+                                      readonly=True)
+    last_warn_count = fields.Integer(string='Last warning count',
+                                     readonly=True)
     last_log = fields.Text(string='Last run log', readonly=True)
 
 
@@ -51,8 +53,10 @@ class Task(models.Model):
     last_run = fields.Datetime(string='Time ended', readonly=True)
     last_record_count = fields.Integer(string='Last record count',
                                        readonly=True)
-    last_error_count = fields.Integer(string='Last error count', readonly=True)
-    last_warn_count = fields.Integer(string='Last warning count', readonly=True)
+    last_error_count = fields.Integer(string='Last error count',
+                                      readonly=True)
+    last_warn_count = fields.Integer(string='Last warning count',
+                                     readonly=True)
     last_log = fields.Text(string='Last run log', readonly=True)
 
     def _import_data(self, flds, data, model_obj, table_obj, log):
@@ -98,6 +102,7 @@ class Task(models.Model):
         return True
 
     def import_run(self, ids=None):
+
         # ids value depends where the function is called.
         run_ids = None
         if isinstance(ids, dict):
@@ -153,8 +158,13 @@ class Task(models.Model):
             cols = ([x for i, x in enumerate(res['cols'])
                      if x.upper() != 'ID'] + ['id'])
 
-            # Prepare prefix for the internal XML-ID in column "id"
-            xml_prefix = '__import__.' + model_name.replace('.', '_') + '_'
+            # Prepare the internal XML-ID in column "id"
+            def build_xmlid(row_id):
+                # Replace dots "." by "-" in XML-ID dots are not allowed
+                row_id = row_id.replace('.', '-')
+                # Prepare prefix
+                xml_prefix = '__import__.' + model_name.replace('.', '_') + '_'
+                return xml_prefix + row_id
 
             # Import each row:
             for row in res['rows']:
@@ -166,7 +176,7 @@ class Task(models.Model):
                     if isinstance(v, str):
                         v = v.strip()
                     data.append(v)
-                data.append(xml_prefix + str(row[0]).strip())
+                data.append(build_xmlid(row[0]).strip())
 
                 # Import the row; on error, write line to the log
                 log['last_record_count'] += 1

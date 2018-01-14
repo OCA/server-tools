@@ -11,7 +11,7 @@ class TestBaseExternalImport(common.TransactionCase):
         self.task = self.env.ref(
                             'base_external_import.demo_task_postgresql_users')
 
-    def test_import_run_dbtable_arg(self):
+    def test_import_run_task_arg(self):
         # It should raise a TypeError if task connectión not in args
         with self.assertRaises(TypeError):
             self.task.import_run(self, ids=None)

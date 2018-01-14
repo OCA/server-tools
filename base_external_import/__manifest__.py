@@ -26,7 +26,7 @@ Features:
    and will be used to build its xml_id.
  * Allow to import many2one fields, same as regular import module.
  * The last sync date is the last successfully execution can be used in the SQL
-   using "%(sync)s", or ":sync" in the case of Oracle.
+   using "?".
  * When errors are found, only the record with the error fails import. The
    other correct records are committed. However, the "last sync date" will only
    be automatically updated when no errors are found.
