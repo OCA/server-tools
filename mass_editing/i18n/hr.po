@@ -1,0 +1,191 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * mass_editing
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2017
+# Goran Kliska <gkliska@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"Last-Translator: Goran Kliska <gkliska@gmail.com>, 2017\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: mass_editing
+#: code:addons/mass_editing/models/mass_object.py:98
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (kopija)"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Add Sidebar Button"
+msgstr "Dodaj bočni gumb"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Advanced"
+msgstr "Napredno"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
+msgid "Display Name"
+msgstr "Naziv "
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid ""
+"Display a button in the sidebar of related documents to open a composition "
+"wizard"
+msgstr ""
+"Prikaži ugumb u bočnoj traci izbornika povezanih dokumenata za otvaranje "
+"čarobnjaka."
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_ir_model_fields
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_field_ids
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Fields"
+msgstr "Polja"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object___last_update
+msgid "Last Modified on"
+msgstr "Zadnje modificirano"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
+msgid "Last Updated by"
+msgstr "Zadnji ažurirao"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažuriranje"
+
+#. module: mass_editing
+#: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
+#: model:ir.ui.menu,name:mass_editing.menu_mass_editing
+#: model:ir.ui.menu,name:mass_editing.menu_mass_object_view
+msgid "Mass Editing"
+msgstr "Grupno uređivanje"
+
+#. module: mass_editing
+#: code:addons/mass_editing/models/mass_object.py:58
+#, python-format
+msgid "Mass Editing (%s)"
+msgstr "Grupno uredi (%s)"
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_object
+msgid "Mass Editing Object"
+msgstr "Objekt grupnog uređivanja"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
+msgid "Model"
+msgstr "Model"
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_list
+msgid "Model List"
+msgstr "Popis modela"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
+msgid ""
+"Model is used for Selecting Fields. This is editable until Sidebar menu is "
+"not created."
+msgstr ""
+"Model se koristi za odabir polja. Ovo je moguće uređivati sve dok bočni "
+"izbornik nije kreiran."
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
+msgid "Name"
+msgstr "Naziv"
+
+#. module: mass_editing
+#: code:addons/mass_editing/models/mass_object.py:34
+#: sql_constraint:mass.object:0
+#, python-format
+msgid "Name must be unique!"
+msgstr "Naziv mora biti jedinstven"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_tree
+msgid "Object"
+msgstr "Objekt"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Remove Sidebar Button"
+msgstr "Ukloni bočni gumb"
+
+#. module: mass_editing
+#: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
+msgid "Remove the contextual action to use this template on related documents"
+msgstr ""
+"Ukloni kontekstni izbornik za korištenje ovog predloška na povezanim "
+"dokumentima."
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
+msgid "Sidebar action"
+msgstr "Akcija bočnog izbornika"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
+msgid ""
+"Sidebar action to make this template available on records of the related "
+"document model."
+msgstr ""
+"Akcija bočnog izbornika koja omogućuje korištenje ovog predloška na "
+"povezanom modelu podataka."
+
+#. module: mass_editing
+#: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_value_id
+msgid "Sidebar button"
+msgstr "Bočni gumb"
+
+#. module: mass_editing
+#: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_value_id
+msgid "Sidebar button to open the sidebar action."
+msgstr "Gumb za otvaranje bočne akcije."
+
+#. module: mass_editing
+#: model:ir.model,name:mass_editing.model_mass_editing_wizard
+msgid "mass.editing.wizard"
+msgstr "mass.editing.wizard"
