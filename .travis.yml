@@ -14,6 +14,7 @@ addons:
       - python-lxml # because pip installation is slow
       - unixodbc-dev
       - python-mysqldb
+      - postfix # some tests want a local mail server
 
 env:
   global:
@@ -24,10 +25,12 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup,auth_session_timeout"
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup,auth_session_timeout"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="auth_session_timeout"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="auth_session_timeout"
 
 virtualenv:
   system_site_packages: true
@@ -51,4 +54,4 @@ script:
   - travis_run_tests
 
 after_success:
-  - travis_after_tests_success
+- travis_after_tests_success
