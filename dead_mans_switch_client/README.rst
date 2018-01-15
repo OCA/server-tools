@@ -7,7 +7,8 @@ Dead man's switch (client)
 
 This module is the client part of `dead_mans_switch_server`. It is responsible
 of sending the server status updates, which in turn takes action if those
-updates don't come in time.
+updates don't come in time. Using `dead_mans_switch_server` is not mandatory;
+you can use this module with any other similar service, eg. https://healthchecks.io.
 
 Configuration
 =============
@@ -26,7 +27,10 @@ works if the ``bus`` module is installed and longpolling configured correctly.
 Usage
 =====
 
-This module doesn't have any visible effect on the client.
+This module adds only one visible field for ``ir.filters``: "Is a Dead Man's Switch filter".
+If you create a filter with "Is a Dead Man's Switch filter" checked, the cron routine
+expects this filter never to yield any records. If it does, the Dead Man's Switch URL
+will not be called. For example you might want to monitor failed outgoing emails or stuck queue jobs.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot

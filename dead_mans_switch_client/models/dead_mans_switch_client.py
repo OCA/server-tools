@@ -13,8 +13,14 @@ except ImportError:  # pragma: no cover
 import urllib2
 from odoo import api, models
 from odoo.tools.config import config
+from odoo.exceptions import except_orm
 
 SEND_TIMEOUT = 60
+
+
+class DMSFilterException(except_orm):
+    def __init__(self, msg):
+        super(DMSFilterException, self).__init__(msg, value='')
 
 
 class DeadMansSwitchClient(models.AbstractModel):
@@ -61,6 +67,22 @@ class DeadMansSwitchClient(models.AbstractModel):
         }
 
     @api.model
+    def _filter_check(self):
+        filters = self.env['ir.filters']\
+            .search([('is_dead_mans_switch_filter', '=', True)])
+        filters_with_recs = []
+        for f in filters:
+            has_recs = bool(self.env[f.model_id].search(f._get_eval_domain(),
+                                                        limit=1))
+            if has_recs:
+                filters_with_recs.append(f.name)
+
+        if filters_with_recs:
+            raise DMSFilterException(u"Dead Man's Switch filters {} yielded "
+                                     u"records.".format(filters_with_recs))
+        return True
+
+    @api.model
     def alive(self):
         url = self.env['ir.config_parameter'].get_param(
             'dead_mans_switch_client.url')
@@ -70,6 +92,9 @@ class DeadMansSwitchClient(models.AbstractModel):
             return
         timeout = self.env['ir.config_parameter'].get_param(
             'dead_mans_switch_client.send_timeout', SEND_TIMEOUT)
+
+        self._filter_check()
+
         data = self._get_data()
         logger.debug('sending %s', data)
         urllib2.urlopen(
