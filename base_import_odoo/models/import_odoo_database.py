@@ -4,8 +4,10 @@
 import logging
 try:
     import odoorpc
-except:
-    logging.error('Unable to import odoorpc')
+except ImportError:  # pragma: no cover
+    logging.info('Unable to import odoorpc, used in base_import_odoo')
+    odoorpc = False
+
 import psycopg2
 import traceback
 from urlparse import urlparse
@@ -572,6 +574,9 @@ class ImportOdooDatabase(models.Model):
         if len(hostport) == 1:
             hostport.append('80')
         host, port = hostport
+        if not odoorpc:  # pragma: no cover
+            raise exceptions.UserError(
+                _('Please install the "odoorpc" libary in your environment'))
         remote = odoorpc.ODOO(
             host,
             protocol='jsonrpc+ssl' if url.scheme == 'https' else 'jsonrpc',
