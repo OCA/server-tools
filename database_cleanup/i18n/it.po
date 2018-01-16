@@ -3,13 +3,14 @@
 # * database_cleanup
 # 
 # Translators:
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"POT-Creation-Date: 2018-01-06 02:25+0000\n"
+"PO-Revision-Date: 2018-01-06 02:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -27,12 +28,12 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_line_action
 #: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
 msgid "Create"
-msgstr ""
+msgstr "Crea"
 
 #. module: database_cleanup
 #: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
 msgid "Create all"
-msgstr ""
+msgstr "Crea tutti"
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_wizard
@@ -73,7 +74,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_date
@@ -93,7 +94,7 @@ msgstr "Created by"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_data_id

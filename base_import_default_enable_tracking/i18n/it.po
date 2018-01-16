@@ -1,9 +1,8 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * auth_session_timeout
+# * base_import_default_enable_tracking
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 # Paolo Valier <paolo.valier@hotmail.it>, 2018
 msgid ""
 msgstr ""
@@ -19,12 +18,9 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: auth_session_timeout
-#: model:ir.model,name:auth_session_timeout.model_res_users
-msgid "Users"
-msgstr "Utenti"
-
-#. module: auth_session_timeout
-#: model:ir.model,name:auth_session_timeout.model_ir_config_parameter
-msgid "ir.config_parameter"
-msgstr "ir.config_parameter"
+#. module: base_import_default_enable_tracking
+#. openerp-web
+#: code:addons/base_import_default_enable_tracking/static/src/xml/base_import.xml:7
+#, python-format
+msgid "checked"
+msgstr "selezionato"
