@@ -3,14 +3,14 @@
 # * users_ldap_populate
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 02:29+0000\n"
-"PO-Revision-Date: 2017-02-18 02:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-12-01 02:11+0000\n"
+"PO-Revision-Date: 2017-12-01 02:11+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/oca/teams/23907/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,12 @@ msgstr "Opprettet av"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_create_date
 msgid "Created on"
-msgstr "Opprettet"
+msgstr "Opprettet den"
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_deactivate_unknown_users
+msgid "Deactivate unknown users"
+msgstr ""
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_display_name
@@ -64,12 +69,17 @@ msgid "Last Updated on"
 msgstr "Sist oppdatert"
 
 #. module: users_ldap_populate
+#: model:ir.model.fields,help:users_ldap_populate.field_res_company_ldap_no_deactivate_user_ids
+msgid "List users who never should be deactivated by the deactivation wizard"
+msgstr ""
+
+#. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_name
 msgid "Name"
 msgstr "Navn"
 
 #. module: users_ldap_populate
-#: code:addons/users_ldap_populate/models/users_ldap.py:47
+#: code:addons/users_ldap_populate/models/users_ldap.py:67
 #, python-format
 msgid ""
 "No login attribute found: Could not extract login attribute from filter %s"
@@ -78,6 +88,11 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_created
 msgid "Number of users created"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_users_deactivated
+msgid "Number of users deactivated"
 msgstr ""
 
 #. module: users_ldap_populate
@@ -91,8 +106,18 @@ msgid "Populate"
 msgstr ""
 
 #. module: users_ldap_populate
+#: model:ir.ui.view,arch_db:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr ""
+
+#. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_no_deactivate_user_ids
+msgid "Users never to deactivate"
 msgstr ""
 
 #. module: users_ldap_populate

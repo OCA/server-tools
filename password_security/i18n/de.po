@@ -3,14 +3,15 @@
 # * password_security
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Niki Waibel <niki.waibel@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-12-07 01:47+0000\n"
+"PO-Revision-Date: 2017-12-07 01:47+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgid "Amount of hours until a user may change password again"
 msgstr "Anzahl der Stunden bis der Benutzer das Passwort wieder ändern darf"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:150
+#: code:addons/password_security/models/res_users.py:151
 #, python-format
 msgid "Cannot use the most recent %d passwords"
 msgstr "Die letzten %d Passwörter dürfen nicht verwendet werden"
@@ -102,7 +103,7 @@ msgstr "ID"
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history___last_update
 msgid "Last Modified on"
-msgstr "Zuletzt verändert am"
+msgstr "Zuletzt geändert am"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_users_pass_history_write_uid
@@ -125,7 +126,7 @@ msgid "Lowercase"
 msgstr "Kleinbuchstaben"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:51
+#: code:addons/password_security/models/res_users.py:52
 #, python-format
 msgid "Lowercase letter"
 msgstr "Kleinbuchstabe"
@@ -141,7 +142,7 @@ msgid "Minimum number of characters"
 msgstr "Minimale Anzahl der Zeichen"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:59
+#: code:addons/password_security/models/res_users.py:60
 #, python-format
 msgid "Must contain the following:"
 msgstr "Muss das Folgende beinhalten:"
@@ -152,7 +153,7 @@ msgid "Numeric"
 msgstr "Numerisch"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:55
+#: code:addons/password_security/models/res_users.py:56
 #, python-format
 msgid "Numeric digit"
 msgstr "Zahl"
@@ -168,13 +169,13 @@ msgid "Password Policy"
 msgstr "Passwort Regeln"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:62
+#: code:addons/password_security/models/res_users.py:63
 #, python-format
 msgid "Password must be %d characters or more."
 msgstr "Das Passwort muss mehr als %d Zeichen haben."
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:127
+#: code:addons/password_security/models/res_users.py:128
 #, python-format
 msgid ""
 "Passwords can only be reset every %d hour(s). Please contact an "
@@ -219,7 +220,7 @@ msgid "Special"
 msgstr "Spezial"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:57
+#: code:addons/password_security/models/res_users.py:58
 #, python-format
 msgid "Special character"
 msgstr "Spezialzeichen"
@@ -235,7 +236,7 @@ msgid "Uppercase"
 msgstr "Großbuchstabe"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:53
+#: code:addons/password_security/models/res_users.py:54
 #, python-format
 msgid "Uppercase letter"
 msgstr "Großbuchstabe"

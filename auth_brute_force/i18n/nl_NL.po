@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
+"POT-Creation-Date: 2017-12-01 02:09+0000\n"
+"PO-Revision-Date: 2017-12-01 02:09+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "weergavenaam"
 #: selection:res.authentication.attempt,result:0
 #, python-format
 msgid "Failed"
-msgstr ""
+msgstr "Mislukt"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_id

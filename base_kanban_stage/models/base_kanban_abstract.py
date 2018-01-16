@@ -8,8 +8,11 @@ from odoo import api, fields, models
 class BaseKanbanAbstract(models.AbstractModel):
     """ Inherit from this class to add support for Kanban stages to your model.
     All public properties are preceded with kanban_ in order to isolate from
-    child models, with the exception of stage_id, which is a required field in
-    the Kanban widget and must be defined as such. """
+    child models, with the exception of: stage_id, which is a required field in
+    the Kanban widget and must be defined as such, and user_id, which is a
+    special field that has special treatment in some places (such as the
+    mail module).
+    """
 
     _name = 'base.kanban.abstract'
     _order = 'kanban_priority desc, kanban_sequence'
@@ -105,6 +108,4 @@ class BaseKanbanAbstract(models.AbstractModel):
     @api.multi
     def _read_group_stage_ids(self, stages, domain, order):
         search_domain = [('res_model_id.model', '=', self._name)]
-        if domain:
-            search_domain.extend(domain)
         return stages.search(search_domain, order=order)

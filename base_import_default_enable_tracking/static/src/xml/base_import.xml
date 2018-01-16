@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-extend="ImportView">
+
+        <t t-jquery="input#oe_import_tracking" t-operation="attributes">
+            <attribute name="checked">checked</attribute>
+        </t>
+
+    </t>
+
+</templates>

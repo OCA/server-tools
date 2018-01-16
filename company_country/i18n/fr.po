@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Quentin THEURET <odoo@kerpeo.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 07:29+0000\n"
 "PO-Revision-Date: 2017-05-05 07:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,6 +24,7 @@ msgstr ""
 #, python-format
 msgid "Country code %s not found. Use ISO 3166 codes 2 letters"
 msgstr ""
+"Code du pays %snon trouvé. Utilisez les codes ISO 3166 sur 2 caractères"
 
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_create_uid
@@ -44,6 +46,8 @@ msgstr "Nom affiché"
 #, python-format
 msgid "Error COUNTRY environment variable with country code not defined"
 msgstr ""
+"Erreur car la variable d'environnement COUNTRY avec le code du pays n'est "
+"pas définie"
 
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_id
@@ -68,4 +72,4 @@ msgstr "Mis à jour le"
 #. module: company_country
 #: model:ir.model,name:company_country.model_country_company_config_settings
 msgid "country.company.config.settings"
-msgstr ""
+msgstr "country.company.config.settings"

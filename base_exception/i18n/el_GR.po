@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"POT-Creation-Date: 2017-12-01 02:09+0000\n"
+"PO-Revision-Date: 2017-12-01 02:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:185
+#: code:addons/base_exception/models/base_exception.py:187
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -180,7 +180,7 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Ιεράρχηση"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm

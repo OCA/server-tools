@@ -28,7 +28,7 @@ class IrConfigParameter(models.Model):
                 # should we have preloaded values in database at,
                 # server startup, modules loading their parameters
                 # from data files would break on unique key error.
-                self.set_param(key, cvalue)
+                self.sudo().set_param(key, cvalue)
                 value = cvalue
         if value is None:
             return default
@@ -52,3 +52,4 @@ class IrConfigParameter(models.Model):
             else:
                 newvals = vals
             super(IrConfigParameter, rec).write(newvals)
+        return True

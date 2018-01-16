@@ -54,7 +54,7 @@ class ResUsers(models.Model):
         """ Send an email to the admin user to inform that
             another user has the same password as him."""
         mail_obj = self.env['mail.mail'].sudo()
-        admin_user = self.browse(SUPERUSER_ID)
+        admin_user = self.sudo().browse(SUPERUSER_ID)
 
         if admin_user.email:
             mail_obj.create({

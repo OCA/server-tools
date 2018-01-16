@@ -3,15 +3,15 @@
 # * attachment_base_synchronize
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 11:57+0000\n"
-"PO-Revision-Date: 2017-07-26 11:57+0000\n"
-"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2017\n"
+"POT-Creation-Date: 2017-12-16 02:16+0000\n"
+"PO-Revision-Date: 2017-12-16 02:16+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,28 +22,28 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Attachment"
-msgstr ""
+msgstr "Bijlage"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_name
 msgid "Attachment Name"
-msgstr ""
+msgstr "Bijlagenaam"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_local_url
 msgid "Attachment URL"
-msgstr ""
+msgstr "Bijlage URL"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Attachment id"
-msgstr ""
+msgstr "Bijlage ID"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_tree
 msgid "Attachments"
-msgstr ""
+msgstr "Bijlages"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -95,12 +95,12 @@ msgstr "weergavenaam"
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Done"
-msgstr ""
+msgstr "Gereed"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
@@ -111,12 +111,12 @@ msgstr ""
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Failed"
-msgstr ""
+msgstr "Mislukt"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas
 msgid "File Content"
-msgstr ""
+msgstr "Bestandsinhoud"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas_fname
@@ -126,7 +126,7 @@ msgstr "Bestandsnaam"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
 msgid "File Size"
-msgstr ""
+msgstr "Bestandsgrootte"
 
 #. module: attachment_base_synchronize
 #: code:addons/attachment_base_synchronize/models/attachment.py:54
@@ -164,7 +164,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Group By"
-msgstr ""
+msgstr "Groeperen op"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_id
@@ -220,18 +220,18 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "My Document(s)"
-msgstr ""
+msgstr "Mijn Document(en)"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Owner"
-msgstr ""
+msgstr "Eigenaar"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Pending"
-msgstr ""
+msgstr "Wachtend"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_field
@@ -261,7 +261,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Set to Done"
-msgstr ""
+msgstr "Gereed melden"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state
@@ -277,7 +277,7 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_store_fname
 msgid "Stored Filename"
-msgstr ""
+msgstr "Opgeslagen Bestandsnaam"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
@@ -310,12 +310,12 @@ msgstr "Type"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_url
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_type
@@ -327,4 +327,4 @@ msgstr ""
 #. module: attachment_base_synchronize
 #: model:ir.model,name:attachment_base_synchronize.model_ir_attachment_metadata
 msgid "ir.attachment.metadata"
-msgstr ""
+msgstr "ir.attachment.metadata"

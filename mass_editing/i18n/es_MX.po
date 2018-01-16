@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 00:55+0000\n"
-"PO-Revision-Date: 2017-02-22 00:55+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/oca/teams/23907/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:101
+#: code:addons/mass_editing/models/mass_object.py:98
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -45,12 +45,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
 msgstr "Creado en"
-
-#. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:89
-#, python-format
-msgid "Deletion of the action record failed."
-msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
@@ -88,13 +82,13 @@ msgstr "Ultima modificacion realizada"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualización por"
+msgstr "Ultima actualizacion por"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
 msgid "Last Updated on"
-msgstr "Ultima actualización en"
+msgstr "Ultima actualización realizada"
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form

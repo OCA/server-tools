@@ -3,8 +3,10 @@ unidecode
 acme_tiny
 IPy
 validate_email
+pyotp
 pysftp
 fdb
 sqlalchemy
 raven
 checksumdir
+python-stdnum
