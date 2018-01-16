@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -104,7 +103,7 @@ class ResLang(models.Model):
             template = separator.join(defaults)
 
         # Convert str to datetime objects
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             try:
                 value = fields.Datetime.from_string(value)
             except ValueError:
