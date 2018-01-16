@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -8,7 +7,7 @@ from odoo.exceptions import UserError
 
 class BasicCase(TransactionCase):
     def setUp(self):
-        super(BasicCase, self).setUp()
+        super().setUp()
         self.langs = ("en_US", "es_ES", "it_IT", "pt_PT", "zh_CN")
         self.rl = self.env["res.lang"]
         for lang in self.langs:

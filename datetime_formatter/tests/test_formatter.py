@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015, 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2016 Tecnativa, S.L. - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -13,7 +12,7 @@ from ..models.res_lang import MODE_DATE, MODE_TIME, MODE_DATETIME
 
 class FormatterCase(TransactionCase):
     def setUp(self):
-        super(FormatterCase, self).setUp()
+        super().setUp()
         self.rl = self.env["res.lang"]
         self.bm = self.rl.best_match()
         self.dt = datetime.datetime.now()
@@ -51,10 +50,10 @@ class FormatterCase(TransactionCase):
         self.assertEqual(
             self.expected,
             self.rl.datetime_formatter(
-                unicode(self.dt_str),
+                str(self.dt_str),
                 **self.kwargs))
 
-        super(FormatterCase, self).tearDown()
+        super().tearDown()
 
     def test_datetime(self):
         """Format a datetime."""
