@@ -2,6 +2,7 @@
 # Copyright 2016-2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from collections import defaultdict
 from uuid import uuid4
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -12,6 +13,7 @@ from ..exceptions import MfaLoginNeeded
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
+    _mfa_uid_cache = defaultdict(set)
 
     @classmethod
     def _build_model(cls, pool, cr):
@@ -54,6 +56,15 @@ class ResUsers(models.Model):
                     ' please add one before you activate this feature.'
                 ))
 
+    @classmethod
+    def check(cls, db, uid, password):
+        """Prevent auth caching for MFA users without active MFA session"""
+        if uid in cls._mfa_uid_cache[db]:
+            if not request or request.session.get('mfa_login_active') != uid:
+                cls._Users__uid_cache[db].pop(uid, None)
+
+        return super(ResUsers, cls).check(db, uid, password)
+
     @api.model
     def check_credentials(self, password):
         """Add MFA logic to core authentication process.
@@ -68,6 +79,8 @@ class ResUsers(models.Model):
         """
         if not self.env.user.mfa_enabled:
             return super(ResUsers, self).check_credentials(password)
+
+        self._mfa_uid_cache[self.env.cr.dbname].add(self.env.uid)
 
         if request:
             if request.session.get('mfa_login_active') == self.env.uid:

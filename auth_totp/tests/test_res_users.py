@@ -18,6 +18,8 @@ class TestResUsers(TransactionCase):
     def setUp(self):
         super(TestResUsers, self).setUp()
 
+        self.test_model = self.env['res.users']
+
         self.test_user = self.env.ref('base.user_root')
         self.test_user.mfa_enabled = False
         self.test_user.authenticator_ids = False
@@ -62,6 +64,67 @@ class TestResUsers(TransactionCase):
         except ValidationError:
             self.fail('A ValidationError was raised and should not have been.')
 
+    @patch(REQUEST_PATH, new=None)
+    def test_check_mfa_without_request(self):
+        """It should remove UID from cache if in MFA cache and no request"""
+        test_cache = self.test_model._Users__uid_cache[self.env.cr.dbname]
+        test_cache[self.env.uid] = 'test'
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].add(self.env.uid)
+        try:
+            self.test_model.check(self.env.cr.dbname, self.env.uid, 'test')
+        except AccessDenied:
+            pass
+
+        self.assertFalse(test_cache.get(self.env.uid))
+
+    @patch(REQUEST_PATH)
+    def test_check_mfa_no_mfa_session(self, request_mock):
+        """It should remove UID from cache if MFA cache but no MFA session"""
+        request_mock.session = {}
+        test_cache = self.test_model._Users__uid_cache[self.env.cr.dbname]
+        test_cache[self.env.uid] = 'test'
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].add(self.env.uid)
+        try:
+            self.test_model.check(self.env.cr.dbname, self.env.uid, 'test')
+        except AccessDenied:
+            pass
+
+        self.assertFalse(test_cache.get(self.env.uid))
+
+    @patch(REQUEST_PATH)
+    def test_check_mfa_invalid_mfa_session(self, request_mock):
+        """It should remove UID if in MFA cache but invalid MFA session"""
+        request_mock.session = {'mfa_login_active': self.env.uid + 1}
+        test_cache = self.test_model._Users__uid_cache[self.env.cr.dbname]
+        test_cache[self.env.uid] = 'test'
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].add(self.env.uid)
+        try:
+            self.test_model.check(self.env.cr.dbname, self.env.uid, 'test')
+        except AccessDenied:
+            pass
+
+        self.assertFalse(test_cache.get(self.env.uid))
+
+    def test_check_no_mfa(self):
+        """It should not remove UID from cache if not in MFA cache"""
+        test_cache = self.test_model._Users__uid_cache[self.env.cr.dbname]
+        test_cache[self.env.uid] = 'test'
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].clear()
+        self.test_model.check(self.env.cr.dbname, self.env.uid, 'test')
+
+        self.assertEqual(test_cache.get(self.env.uid), 'test')
+
+    @patch(REQUEST_PATH)
+    def test_check_mfa_valid_session(self, request_mock):
+        """It should not remove UID if in MFA cache and valid session"""
+        request_mock.session = {'mfa_login_active': self.env.uid}
+        test_cache = self.test_model._Users__uid_cache[self.env.cr.dbname]
+        test_cache[self.env.uid] = 'test'
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].add(self.env.uid)
+        self.test_model.check(self.env.cr.dbname, self.env.uid, 'test')
+
+        self.assertEqual(test_cache.get(self.env.uid), 'test')
+
     def test_check_credentials_mfa_not_enabled(self):
         '''Should check password if user does not have MFA enabled'''
         self.test_user.mfa_enabled = False
@@ -72,6 +135,17 @@ class TestResUsers(TransactionCase):
             self.env['res.users'].check_credentials('admin')
         except AccessDenied:
             self.fail('An exception was raised with a correct password.')
+
+    def test_check_credentials_mfa_uid_cache(self):
+        """It should add user's ID to MFA UID cache if MFA enabled"""
+        self.test_model._mfa_uid_cache[self.env.cr.dbname].clear()
+        try:
+            self.test_model.check_credentials('invalid')
+        except AccessDenied:
+            pass
+
+        result_cache = self.test_model._mfa_uid_cache[self.env.cr.dbname]
+        self.assertEqual(result_cache, {self.test_user.id})
 
     @patch(REQUEST_PATH, new=None)
     def test_check_credentials_mfa_and_no_request(self):
