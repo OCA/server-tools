@@ -45,6 +45,18 @@ re-enabling MFA for that user.
 Known Issues / Roadmap
 ======================
 
+Known Issues
+------------
+
+* External calls to the Odoo XML-RPC API are blocked for users who enable MFA
+  since there is currently no way to perform MFA authentication as part of this
+  process. However, due to the way that Odoo handles authentication caching,
+  multi-threaded or multi-process servers will need to be restarted before the
+  block can take effect for users who have just enabled MFA.
+
+Roadmap
+-------
+
 * Make the lifetime of the trusted device cookie configurable rather than fixed
   at 30 days
 * Add device fingerprinting to the trusted device cookie
@@ -54,10 +66,10 @@ Known Issues / Roadmap
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues 
-<https://github.com/OCA/server-tools/issues>`_. In case of trouble, please 
-check there if your issue has already been reported. If you spotted it first, 
-help us smash it by providing detailed and welcomed feedback.
+Bugs are tracked on
+`GitHub Issues <https://github.com/OCA/server-tools/issues>`_. In case of
+trouble, please check there if your issue has already been reported. If you
+spotted it first, help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
@@ -65,7 +77,8 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association:
+  `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------
