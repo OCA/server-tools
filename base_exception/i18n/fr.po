@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2017-12-06 03:40+0000\n"
+"POT-Creation-Date: 2018-01-16 12:37+0000\n"
+"PO-Revision-Date: 2018-01-16 12:37+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgid "Display Name"
 msgstr "Nom à afficher"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:216
+#: code:addons/base_exception/models/base_exception.py:215
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -213,7 +213,7 @@ msgid "Sequence"
 msgstr "Séquence"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:88
+#: code:addons/base_exception/models/base_exception.py:87
 #, python-format
 msgid ""
 "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
