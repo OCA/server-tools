@@ -27,7 +27,9 @@ class ResPartner(models.Model):
 
     @api.multi
     def write(self, values):
-        if self.env.context.get('__no_changeset'):
+        if (self.env.context.get('__no_changeset') or
+                self.env.context.get('test_enable') and
+                not self.env.context.get('test_partner_changeset')):
             return super(ResPartner, self).write(values)
         else:
             changeset_model = self.env['res.partner.changeset']

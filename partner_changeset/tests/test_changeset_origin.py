@@ -30,6 +30,8 @@ class TestChangesetOrigin(ChangesetMixin, common.TransactionCase):
         self.partner = self.env['res.partner'].create({
             'name': 'X',
         })
+        # Add context for this test for compatibility with other modules' tests
+        self.partner = self.partner.with_context(test_partner_changeset=True)
 
     def test_origin_value_of_change_with_apply(self):
         """ Origin field is read from the parter or 'old' - with apply
