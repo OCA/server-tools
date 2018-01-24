@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_backup_scheduler_0" model="ir.cron">
+        <field name="name">Backup Scheduler</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 03:00:00')"/>
+        <field name="model_id" ref="model_db_backup"/>
+        <field name="state">code</field>
+        <field name="code">action_backup_all()</field>
+    </record>
+</odoo>
