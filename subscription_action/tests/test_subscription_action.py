@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# © 2017 Therp BV <http://therp.nl>
+# © 2017-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestSubscriptionAction(TransactionCase):
@@ -29,6 +29,9 @@ class TestSubscriptionAction(TransactionCase):
                 ],
             }).id,
         })
+        self.assertEqual(
+            subscription.model_id.model, subscription.doc_source._name
+        )
         subscription.set_process()
         subscription.model_copy()
         self.assertEqual(
