@@ -23,5 +23,5 @@
         'test/validator.yml',
     ],
     "active": False,
-    "installable": True
+    "installable": False,
 }

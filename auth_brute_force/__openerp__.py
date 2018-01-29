@@ -39,4 +39,5 @@
         'views/action.xml',
         'views/menu.xml',
     ],
+    'installable': False,
 }

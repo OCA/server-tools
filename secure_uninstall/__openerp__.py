@@ -15,5 +15,5 @@
     'data': ['views/module_view.xml'],
     'website': 'http://www.akretion.com/',
     'license': 'AGPL-3',
-    'installable': True,
+    'installable': False,
 }

@@ -25,6 +25,6 @@
         'import_odbc_demo.xml',
     ],
     'test': [],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }

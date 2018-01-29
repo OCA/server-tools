@@ -25,6 +25,6 @@
     'qweb': [
         'static/src/xml/base_import_security_group.xml',
     ],
-    'installable': True,
+    'installable': False,
     'post_load': 'post_load',
 }

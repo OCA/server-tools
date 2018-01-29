@@ -35,5 +35,5 @@
         'view/users_ldap.xml',
         'view/populate_wizard.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

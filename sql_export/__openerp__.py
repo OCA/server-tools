@@ -39,5 +39,5 @@
     'demo': [
         'demo/sql_export.xml',
     ],
-    'installable': True,
+    'installable': False,
     }

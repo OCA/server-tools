@@ -91,4 +91,5 @@ https://github.com/openerpbrasil/l10n_br_core/commit/33065366726a83dbc69b9f0031c
     'css': [],
     'auto_install': False,
     'web_preload': False,
+    "installable": False,
 }

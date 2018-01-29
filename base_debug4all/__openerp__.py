@@ -30,5 +30,5 @@
     "qweb": [
         'static/src/xml/base.xml',
     ],
-    "installable": True,
+    "installable": False,
 }

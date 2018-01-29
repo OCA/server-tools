@@ -25,7 +25,7 @@
         "views/import_odoo_database.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
     "external_dependencies": {
         "python": ['odoorpc'],
     },

@@ -36,4 +36,5 @@
     'data': [
         'views/res_users_view.xml',
     ],
+    'installable': False,
 }

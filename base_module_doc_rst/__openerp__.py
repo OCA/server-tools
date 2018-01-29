@@ -44,5 +44,5 @@
         "module_report.xml",
     ],
     "demo": [],
-    "installable": True,
+    "installable": False,
 }

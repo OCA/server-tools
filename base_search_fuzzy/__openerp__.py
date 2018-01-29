@@ -16,5 +16,5 @@
         'views/trgm_index.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
 }

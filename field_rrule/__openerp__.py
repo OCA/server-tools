@@ -23,4 +23,5 @@
     "qweb": [
         'static/src/xml/field_rrule.xml',
     ],
+    'installable': False,
 }

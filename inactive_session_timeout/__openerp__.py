@@ -40,5 +40,6 @@
 
     'data': [
         'data/ir_config_parameter_data.xml'
-    ]
+    ],
+    'installable': False,
 }

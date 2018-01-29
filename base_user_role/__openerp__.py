@@ -21,6 +21,6 @@
         'views/user.xml',
     ],
     'installable': True,
-    'auto_install': False,
+    'auto_install': True,
     'post_init_hook': 'post_init_hook',
 }

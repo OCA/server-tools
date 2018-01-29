@@ -32,7 +32,7 @@
         'view/res_groups.xml',
     ],
     "auto_install": False,
-    "installable": True,
+    "installable": False,
     "external_dependencies": {
         'python': [],
     },

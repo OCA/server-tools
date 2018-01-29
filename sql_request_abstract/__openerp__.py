@@ -19,5 +19,5 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
 }

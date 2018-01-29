@@ -30,4 +30,5 @@
     'depends': [
         'base',
     ],
+    'installable': False,
 }

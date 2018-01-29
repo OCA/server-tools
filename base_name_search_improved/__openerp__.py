@@ -12,7 +12,7 @@
     'data': [
         'views/ir_model.xml',
     ],
-    'installable': True,
+    'installable': False,
     'depends': [
         'base',
     ],

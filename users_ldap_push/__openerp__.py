@@ -37,7 +37,7 @@
     ],
     "test": [
     ],
-    "installable": True,
+    "installable": False,
     "external_dependencies": {
         'python': ['ldap'],
     },

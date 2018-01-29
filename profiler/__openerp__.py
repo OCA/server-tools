@@ -25,7 +25,7 @@
     'qweb': [
         'static/src/xml/player.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
     'post_load': 'post_load',

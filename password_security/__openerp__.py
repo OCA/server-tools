@@ -22,5 +22,5 @@
     "demo": [
         'demo/res_users.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

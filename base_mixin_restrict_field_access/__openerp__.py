@@ -13,4 +13,5 @@
         'web',
         'base_suspend_security',
     ],
+    'installable': False,
 }

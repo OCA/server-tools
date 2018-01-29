@@ -25,7 +25,7 @@
         "view/db_backup_view.xml",
     ],
     "application": True,
-    "installable": True,
+    "installable": False,
     "external_dependencies": {
         "python": ["pysftp"],
     },

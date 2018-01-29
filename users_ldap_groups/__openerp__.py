@@ -33,7 +33,7 @@ Adds user accounts to groups based on rules defined by the administrator.
         'users_ldap_groups.xml',
         'security/ir.model.access.csv',
     ],
-    "installable": True,
+    "installable": False,
     "external_dependencies": {
         'python': ['ldap'],
     },

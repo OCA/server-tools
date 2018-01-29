@@ -14,4 +14,5 @@
     "demo": [
         "demo/ir_ui_view.xml",
     ],
+    'installable': False,
 }

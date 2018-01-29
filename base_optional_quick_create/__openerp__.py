@@ -41,5 +41,5 @@ Got the idea from https://twitter.com/nbessi/status/337869826028605441
     ],
     "demo": [],
     'test': [],
-    "installable": True
+    "installable": False,
 }
