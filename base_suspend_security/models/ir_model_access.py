@@ -24,7 +24,8 @@ from ..base_suspend_security import BaseSuspendSecurityUid
 class IrModelAccess(models.Model):
     _inherit = 'ir.model.access'
 
-    @tools.ormcache_context(accepted_keys=('lang'))
+    @tools.ormcache_context('uid', 'model', 'mode', 'raise_exception',
+                            keys=('lang',))
     def check(self, cr, uid, model, mode='read', raise_exception=True,
               context=None):
         # pylint: disable=old-api7-method-defined
