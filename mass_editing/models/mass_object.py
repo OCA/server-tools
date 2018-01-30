@@ -91,7 +91,7 @@ class MassObject(models.Model):
         self.unlink_action()
         return super(MassObject, self).unlink()
 
-    @api.returns('self', lambda value: value.id)
+    @api.multi
     def copy(self, default=None):
         if default is None:
             default = {}
