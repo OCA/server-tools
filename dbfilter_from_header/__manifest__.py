@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2013  Therp BV
 # © 2014  ACSONE SA/NV
 # Copyright 2018 Quartile Limited
