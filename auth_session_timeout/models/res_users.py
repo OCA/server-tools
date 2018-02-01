@@ -106,7 +106,6 @@ class ResUsers(models.Model):
     def check(cls, *args, **kwargs):
         res = super(ResUsers, cls).check(*args, **kwargs)
         # Bypass call from xmlrpc
-        if http and http.request and http.request.env and\
-                http.request.env.user:
+        if http and http.request:
             http.request.env.user._auth_timeout_check()
         return res
