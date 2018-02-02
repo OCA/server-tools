@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Creu Blanca <https://creublanca.es/>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+
+<odoo>
+     <record id="sequence_view" model="ir.ui.view">
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view"/>
+        <field name="arch" type="xml">
+            <field name="implementation" position="after">
+                <field name="check_digit_formula"/>
+            </field>
+        </field>
+     </record>
+</odoo>
