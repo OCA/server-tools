@@ -1,34 +1,27 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-users_ldap_groups
-=================
+LDAP groups assignment
+======================
 
 Adds user accounts to groups based on rules defined by the administrator.
-
 
 Usage
 =====
 
-Define mappings in Settings->Companies->[your company]->tab configuration->[
-your ldap server].
+Define mappings in Settings / General Settings / LDAP Parameters
 
-Decide whether you want only groups mapped from ldap (Only ldap groups=y) or a
-mix of manually set groups and ldap groups (Only ldap groups=n). Setting this
-to 'no' will result in users never losing privileges when you remove them from
-a ldap group, so that's a potential security issue. It is still the default to
-prevent losing group information by accident.
+Decide whether you want only groups mapped from ldap (`Only ldap groups` checked) or a mix of manually set groups and ldap groups (`Only ldap groups` unchecked). Setting this to 'no' will result in users never losing privileges when you remove them from a ldap group, so that's a potential security issue. It is still the default to prevent losing group information by accident.
 
-For active directory, use LDAP attribute 'memberOf' and operator 'contains'.
-Fill in the DN of the windows group as value and choose an OpenERP group users
-with this windows group are to be assigned to.
+For active directory, use LDAP attribute 'memberOf' and operator 'contains'. Fill in the DN of the windows group as value and choose an Odoo group users with this windows group are to be assigned to.
 
-For posix accounts, use operator 'query' and a value like
-(&(cn=bzr)(objectClass=posixGroup)(memberUid=$uid))
+For posix accounts, use operator 'query' and a value like::
+
+    (&(cn=bzr)(objectClass=posixGroup)(memberUid=$uid))
 
 The operator query matches if the filter in value returns something, and value
-can contain $[attribute] which will be replaced by the first value of the
-user's ldap record's attribute named [attribute].
+can contain ``$attribute`` which will be replaced by the first value of the
+user's ldap record's attribute named `attribute`.
 
 Bug Tracker
 ===========
@@ -42,10 +35,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 Credits
 =======
 
+Images
+------
+
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+
 Contributors
 ------------
 
-* Therp BV <info@therp.nl>
+* Holger Brunn <hbrunn@therp.nl>
 * Giacomo Spettoli <giacomo.spettoli@gmail.com>
 
 Maintainer
@@ -61,4 +59,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
