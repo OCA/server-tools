@@ -139,7 +139,9 @@ class ResUsers(models.Model):
         crypt = self._crypt_context()
         for rec_id in self:
             recent_passes = rec_id.company_id.password_history
-            if recent_passes < 0:
+            if recent_passes == 0:
+                continue
+            elif recent_passes < 0:
                 recent_passes = rec_id.password_history_ids
             else:
                 recent_passes = rec_id.password_history_ids[
