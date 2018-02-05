@@ -62,7 +62,7 @@ class KeychainAccount(models.Model):
         # Only needed in v8 for _description_searchable issues
         return True
 
-    def get_password(self):
+    def _get_password(self):
         """Password in clear text."""
         try:
             return self._decode_password(self.password)
