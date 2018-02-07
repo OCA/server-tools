@@ -38,7 +38,12 @@ class TestBaseTechnicalFeatures(common.TransactionCase):
         self.env.user.write({'technical_features': True})
         self.assertEqual(get_partner_field_invisible(), None)
 
-    def test03_user_access(self):
+
+@common.at_install(False)
+@common.post_install(True)
+class UserCase(common.TransactionCase):
+
+    def test_user_access(self):
         """ Setting the user pref raises an access error if the user is not \
         in group_no_one """
         user = self.env['res.users'].create({
