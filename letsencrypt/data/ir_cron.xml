@@ -7,8 +7,7 @@
             <field name="interval_number">11</field>
             <field name="numbercall">-1</field>
             <field name="model">letsencrypt</field>
-            <field name="function">cron</field>
-            <field name="nextcall">2016-01-01</field>
+            <field name="function">_cron</field>
         </record>
     </data>
 </openerp>
