@@ -23,22 +23,6 @@ the SSL version.
 After installation, trigger the cronjob `Update letsencrypt certificates` and
 watch your log for messages.
 
-This addon depends on the ``openssl`` binary and the ``acme_tiny`` and ``IPy``
-python modules.
-
-For installing the OpenSSL binary you can use your distro package manager.
-For Debian and Ubuntu, that would be:
-
-    sudo apt-get install openssl
-
-For installing the ACME-Tiny python module, use the PIP package manager:
-
-    sudo pip install acme-tiny
-
-For installing the IPy python module, use the PIP package manager:
-
-    sudo pip install IPy
-
 
 Configuration
 =============
@@ -47,14 +31,25 @@ This addons requests a certificate for the domain named in the configuration
 parameter ``web.base.url`` - if this comes back as ``localhost`` or the like,
 the module doesn't request anything.
 
-If you want your certificate to contain multiple alternative names, just add
-them as configuration parameters ``letsencrypt.altname.N`` with ``N`` starting
-from ``0``. The amount of domains that can be added are subject to `rate
+Futher self-explanatory settings are in Settings -> General Settings. There you
+can add further domains to the CSR, add a custom script that updates your DNS
+and add a script that will be used to reload your web server (if needed).
+The amount of domains that can be added are subject to `rate
 limiting <https://community.letsencrypt.org/t/rate-limits-for-lets-encrypt/6769>`_.
 
 Note that all those domains must be publicly reachable on port 80 via HTTP, and
 they must have an entry for ``.well-known/acme-challenge`` pointing to your odoo
 instance.
+
+Since DNS changes can take some time to propagate, when we respond to a DNS challenge
+and the server tries to check our response, it might fail (and probably will).
+The solution to this is documented in https://tools.ietf.org/html/rfc8555#section-8.2
+and basically is a `Retry-After` header under which we can instruct the server to
+retry the challenge.
+At the time these lines were written, Boulder had not implemented this functionality.
+This prompted us to use `letsencrypt_backoff` configuration parameter, which is the
+amount of minutes this module will try poll the server to retry validating the answer
+to our challenge, specifically it is the `deadline` parameter of `poll_and_finalize`.
 
 Usage
 =====
@@ -75,15 +70,22 @@ For further information, please visit:
 In depth configuration
 ======================
 
-This module uses ``openssl`` to generate CSRs suitable to be submitted to
-letsencrypt.org. In order to do this, it copies ``/etc/ssl/openssl.cnf`` to a
-temporary and adapts it according to its needs (currently, that's just adding a
-``[SAN]`` section if necessary). If you want the module to use another configuration
-template, set config parameter ``letsencrypt.openssl.cnf``.
+If you want to use multiple domains on your CSR then you have to configure them
+from Settings -> General Settings. If you use a wildcard in any of those domains
+then letsencrypt will return a DNS challenge. In order for that challenge to be
+answered you will need to **either** provide a script (as seen in General Settings)
+or install a module that provides support for your VPS. In that module you will
+need to create a function in the letsencrypt model with the name
+`_respond_challenge_dns_$DNS_PROVIDER` where `$DNS_PROVIDER` is the name of your
+provider and can be any string with length greater than zero, and add the name
+of your DNS provider in the settings dns_provider selection field.
 
-After refreshing the certificate, the module attempts to run the content of
-``letsencrypt.reload_command``, which is by default ``sudo service nginx reload``.
-Change this to match your server's configuration.
+In any case if a script path is inserted in the settings page, it will be run
+in case you want to update multiple DNS servers.
+
+A reload command can be set in the Settings as well in case you need to reload
+your web server. This by default is ``sudo /usr/sbin/service nginx reload``
+
 
 You'll also need a matching sudo configuration, like::
 
@@ -140,11 +142,12 @@ Contributors
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Dave Lasley <dave@laslabs.com>
 * Ronald Portier <ronald@therp.nl>
+* George Daramouskas <gdaramouskas@therp.nl>
 
 ACME implementation
 -------------------
 
-* https://github.com/diafygi/acme-tiny/blob/master/acme_tiny.py
+* https://github.com/certbot/certbot/tree/0.22.x/acme
 
 Icon
 ----
