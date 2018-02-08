@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from os import path
-from openerp.tests.common import TransactionCase
+from openerp.tests.common import at_install, post_install, TransactionCase
 
 
 PATH = path.join(path.dirname(__file__), "import_data", "%s.csv")
@@ -15,6 +15,8 @@ OPTIONS = {
 }
 
 
+@at_install(False)
+@post_install(True)
 class ImportCase(TransactionCase):
     def _base_import_record(self, res_model, file_name):
         """Create and return a ``base_import.import`` record."""
