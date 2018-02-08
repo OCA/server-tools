@@ -5,9 +5,9 @@
 
 import ast
 
-from odoo import _, api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.tools.safe_eval import safe_eval
-from odoo.exceptions import Warning, ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class OnchangeRuleLine(models.TransientModel):
@@ -22,53 +22,53 @@ class OnchangeRuleLine(models.TransientModel):
         related='onchange_rule_id.model_id',
         help="")
     onchange_field_id = fields.Many2one(
-        comodel_name='ir.model.fields',
+        comodel_name='ir.model.fields', string="Onchange Field",
         required=True)
     implied_model = fields.Char(
-        related='onchange_field_id.relation',
+        related='onchange_field_id.relation', string="Implied Model",
         help="")
     implied_record = fields.Reference(
         selection='_authorised_implied_models', required=True,
         help="Select the object that'll execute onchange.")
     sequence = fields.Integer()
     dest_field_id = fields.Many2one(
-        string="Destination field",
+        string="Destination Field",
         comodel_name='ir.model.fields',
         required=True,
         help="Select field that'll be driven by onchange "
              "according to implied record.")
     dest_val_type = fields.Selection(
-        string="Destination value type",
+        string="Value Type",
         selection=[
-            ("fixed", "Fixed value"),
-            ("related", "Related value"),
-        ])
+            ("fixed", "Fixed"),
+            ("related", "Related")],
+        help="Destination value type")
     dest_selection_value = fields.Char(
-        string="Destination selection value",
+        string="Selection Value",
         # selection='_compute_destination_value',
         help="Final select value after onchange is executed")
     dest_m2o_value = fields.Reference(
-        selection='_authorised_destination_models', string="Many2one Value",
-        help="Final value after onchange is executed")
+        selection='_authorised_destination_models', string="M2O Value",
+        help="Final value after onchange is executed (Many2one)")
     dest_related_field = fields.Char(
-        string="Destination related field",
+        string="Destination Related Field",
         help="Related value is used to apply the onchange value get"
-        " form related fields. Ex: on sale order we can apply"
-        " the partner price list by using this notation:"
-        " partner_id.price_list_id")
+             " form related fields.\nE.g.: on sale order we can apply"
+             " the partner price list by using this notation:"
+             " partner_id.price_list_id")
     readonly = fields.Boolean(
         help="If checked ensure than record can't be updated by user "
              "(only by inserted data)")
     is_restrictive_rule = fields.Boolean(
-        string="Restrictive Rule?",
-        help="Restrictive rule is used to force the value "
-        "of destination field. If restrictive rule is False, "
-        "destination value is set as default and can be modified by user", )
-    onchange_warning = fields.Text()
+        string="Restrictive Rule",
+        help="Restrictive rule is used to force the value of destination "
+             "field.\nIf restrictive rule is False, destination value "
+             "is set as default and can be modified by user", )
+    onchange_warning = fields.Text(string="Warning")
     onchange_domain = fields.Char(
-        help="Domain is used in on_change. "
-        "Domain must be in this form:"
-        " {'partner_id': [('name', '=', 'Akretion')]}")
+        string="Domain",
+        help="Domain is used in on_change. Domain must be in this form:"
+             " {'partner_id': [('name', '=', 'Akretion')]}")
 
     CRITICAL_FIELDS = ['model_id', 'onchange_field_id']
 
@@ -85,19 +85,13 @@ class OnchangeRuleLine(models.TransientModel):
             self.onchange_rule_id._update_registry()
         return res
 
-    @api.multi
-    def unlink(self):
-        res = super(OnchangeRuleLine, self).unlink()
-        self.onchange_rule_id._update_registry()
-        return res
-
     @api.model
     def _authorised_implied_models(self):
         # can be used to restrict use of some models
         domain = []
         if self.onchange_field_id.relation:
             domain = [('name', '=', self.onchange_field_id.relation)]
-        models = self.env['ir.model'].search(domain)
+        models = self.env['ir.model'].search(domain, order='name')
         return [(x.model, x.name) for x in models]
 
     @api.model
@@ -136,11 +130,11 @@ class OnchangeRuleLine(models.TransientModel):
             last = self.env[self.dest_field_id.relation].search(
                 [], order='id desc', limit=1)
             self.dest_m2o_value = last
-        # if self.dest_field_id.ttype == 'selection':
-        #     select_vals = self.env[
-        #         self.dest_field_id.model_id.model].fields_get()[
-        #         self.dest_field_id.name]['selection']
-        #     return select_vals
+        if self.dest_field_id.ttype == 'selection':
+            select_vals = self.env[
+                self.dest_field_id.model_id.model].fields_get()[
+                self.dest_field_id.name]['selection']
+            return select_vals
         return
 
     @api.constrains('dest_related_field', 'model_id')
@@ -163,7 +157,7 @@ class OnchangeRuleLine(models.TransientModel):
                            (related_model._name,
                             rule_line.dest_field_id.relation))
                     raise ValidationError(msg)
-            except Warning as err:
+            except UserError as err:
                 # constrains should raise ValidationError exceptions
                 raise ValidationError(err)
 
@@ -184,7 +178,7 @@ class OnchangeRuleLine(models.TransientModel):
                             domain_field
                         raise ValidationError(msg)
                     model_obj[domain_field].search(domain)
-            except Warning as err:
+            except UserError as err:
                 # constrains should raise ValidationError exceptions
                 raise ValidationError(err)
 
@@ -246,7 +240,7 @@ class OnchangeRuleLine(models.TransientModel):
                     result['domain'] = domain
                 if rule_line.onchange_warning:
                     result['warning'] = {
-                        'title': _('Rule Error ! %s') % 
+                        'title': _('Rule Error ! %s') %
                         rule_line.onchange_rule_id.name,
                         'message': rule_line.onchange_warning,
                     }
@@ -282,3 +276,15 @@ class OnchangeRuleLine(models.TransientModel):
         rule_lines = self.env['onchange.rule.line'].with_context(
             active_test=True).search(domain)
         return rule_lines.with_env(self.env)
+
+    def duplicate_record(self):
+        self.ensure_one()
+        record = self.copy()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'onchange.rule',
+            'target': 'current',
+            # 'context': dict(self.env.context, default_folder_id=self.id),
+            'view_mode': 'form',
+            'res_id': record.onchange_rule_id.id,
+        }

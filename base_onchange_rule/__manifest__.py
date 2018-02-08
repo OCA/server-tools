@@ -17,5 +17,8 @@
         'security/ir.model.access.csv',
         'views/onchange_rule_view.xml',
     ],
+    "demo": [
+        'demo/partner_demo.xml',
+    ],
     "installable": True,
 }

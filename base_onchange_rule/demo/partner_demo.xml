@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- <record id="base.res_partner_10" model="res.partner"> -->
+
+    <!-- Install french localization -->
+    <record id="french_language" model="base.language.install">
+        <field name="lang">fr_FR</field>
+    </record>
+    <function model="base.language.install" name="lang_install"
+              eval="[ref('french_language')]"/>
+
+
+    <!-- Salesman / Language -->
+    <record id="salesperson_lang" model="onchange.rule">
+        <field name="name">Salesman according to language</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+    </record>
+
+    <record id="salesperson_lang_line_fr" model="onchange.rule.line">
+        <field name="onchange_rule_id" eval="ref('salesperson_lang')"/>
+        <field name="onchange_field_id" eval="ref('base.field_res_partner_user_id')"/>
+        <field name="implied_record">res.users,1</field>
+        <field name="dest_field_id" eval="ref('base.field_res_partner_lang')"/>
+        <field name="dest_selection_value">fr_FR</field>
+        <field name="dest_val_type">fixed</field>
+    </record>
+
+      <record id="salesperson_lang_line_en" model="onchange.rule.line">
+        <field name="onchange_rule_id" eval="ref('salesperson_lang')"/>
+        <field name="onchange_field_id" eval="ref('base.field_res_partner_user_id')"/>
+        <field name="implied_record">res.users,5</field>
+        <field name="dest_field_id" eval="ref('base.field_res_partner_lang')"/>
+        <field name="dest_m2o_value">res.lang,1</field>
+        <field name="dest_val_type">fixed</field>
+    </record>
+
+
+</odoo>
