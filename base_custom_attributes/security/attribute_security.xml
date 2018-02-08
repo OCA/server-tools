@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record id="base.group_advanced_attribute" model="res.groups">
+        <field name="name">Advanced Attribute Option</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</data>
+</odoo>

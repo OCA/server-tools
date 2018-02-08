@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="attribute_attribute_form_view" model="ir.ui.view">
+            <field name="name">attribute.attribute.form</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <form string="Attribute">
+                    <group>
+                        <field name="field_description"/>
+                        <field name="name" attrs="{'readonly':[('create_date', '!=', False)]}"/>
+                        <field name="attribute_type" />
+                        <field name="model_id" />
+                        <field name="serialized" attrs="{'invisible':[('attribute_type', '=', 'multiselect')]}"/>
+                        <field name="size" attrs="{'invisible':[('attribute_type', '!=', 'char')]}"/>
+                        <field name="required_on_views"/>
+                        <field name="translate" attrs="{'invisible':[('attribute_type', 'not in', ('char', 'text'))]}"/>
+                    </group>
+                    <group colspan="4" attrs="{'invisible':[('attribute_type', 'not in', ['select', 'multiselect'])]}">
+                        <group groups="base.group_advanced_attribute">
+                            <field name="relation_model_id"/>
+                            <field name="domain" attrs="{'invisible':[('relation_model_id', '=', False)]}"/>
+                            <button name="button_add_options" attrs="{'invisible':[('relation_model_id', '=', False), ('domain', '!=', False)]}" type="object" string="Load Options"/>
+                        </group>
+                        <field name="option_ids" colspan="4" nolabel="1">
+                            <tree string="Attribute Options" editable="top">
+                                <field name="sequence" invisible="1"/>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <field name="create_date" invisible="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_attribute_tree_view" model="ir.ui.view">
+            <field name="name">attribute.attribute.tree</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute">
+                    <field name="name" />
+                    <field name="attribute_type" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_attribute_search" model="ir.ui.view">
+            <field name="name">attribute.attribute.list</field>
+            <field name="model">attribute.attribute</field>
+            <field name="arch" type="xml">
+                <search string="Search Attributes">
+                    <field name="name"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_attribute_form_action" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="res_model">attribute.attribute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_attribute_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+        <menuitem
+            action="attribute_attribute_form_action" id="menu_attribute_attribute_action"
+            parent="menu_attribute_in_admin" sequence="30"/>
+
+    </data>
+</odoo>

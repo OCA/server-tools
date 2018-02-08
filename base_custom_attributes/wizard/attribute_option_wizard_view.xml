@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="attribute_option_wizard_form_view" model="ir.ui.view">
+            <field name="name">attribute.option.wizard</field>
+            <field name="model">attribute.option.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Options Wizard" version="7.0">
+                    <field name="attribute_id" invisible="1"/>
+                    <separator string="options_placeholder"/>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" icon="gtk-convert" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
