@@ -53,10 +53,3 @@ class ExtractorCase(TransactionCase):
         self.assertEqual(self.text_from_html(False), "")
         with self.assertRaises(Exception):
             self.text_from_html(False, fail=True)
-
-    @mute_logger("openerp.addons.html_text.models.ir_fields_converter")
-    def test_bad_html(self):
-        """Bad HTML handled correctly."""
-        self.assertEqual(self.text_from_html("<<bad>"), "")
-        with self.assertRaises(Exception):
-            self.text_from_html("<<bad>", fail=True)
