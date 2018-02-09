@@ -1,6 +1,6 @@
 # coding: utf-8
-# © 2017 David BEAL @ Akretion
-# © 2017 Mourad EL HADJ MIMOUNE @ Akretion
+# © 2018 David BEAL @ Akretion
+# © 2018 Mourad EL HADJ MIMOUNE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import ast
@@ -88,18 +88,18 @@ class OnchangeRuleLine(models.TransientModel):
     @api.model
     def _authorised_implied_models(self):
         # can be used to restrict use of some models
-        domain = []
+        domain = [('onchange_rule_unavailable', '=', False)]
         if self.onchange_field_id.relation:
-            domain = [('name', '=', self.onchange_field_id.relation)]
+            domain.append(('name', '=', self.onchange_field_id.relation))
         models = self.env['ir.model'].search(domain, order='name')
         return [(x.model, x.name) for x in models]
 
     @api.model
     def _authorised_destination_models(self):
         # can be used to restrict use of some models
-        domain = []
+        domain = [('onchange_rule_unavailable', '=', False)]
         if self.dest_field_id.relation:
-            domain = [('name', '=', self.dest_field_id.relation)]
+            domain.append(('name', '=', self.dest_field_id.relation))
         models = self.env['ir.model'].search(domain)
         return [(x.model, x.name) for x in models]
 
@@ -118,7 +118,7 @@ class OnchangeRuleLine(models.TransientModel):
         for rec in self:
             if rec.dest_val_type == 'fixed':
                 rec.dest_related_field = False
-            elif rec.dest_val_type == 'relted':
+            elif rec.dest_val_type == 'related':
                 rec.dest_m2o_value = False
                 rec.dest_selection_value = False
 
@@ -161,7 +161,7 @@ class OnchangeRuleLine(models.TransientModel):
                 # constrains should raise ValidationError exceptions
                 raise ValidationError(err)
 
-    @api.constrains('domain')
+    @api.constrains('onchange_domain')
     def _check_des_field_domain(self):
         """ Ensuring that the domain is for destination field relation """
         for rule_line in self:
@@ -266,7 +266,7 @@ class OnchangeRuleLine(models.TransientModel):
         return result
 
     def _get_restrictive_rule_line(self, records):
-        """ Return the onchage restrictive rule.
+        """ Return the onchange restrictive rule.
         The returned actions' context contain an object to manage processing.
         """
         if '__onchange_action_done' not in self._context:
@@ -277,14 +277,13 @@ class OnchangeRuleLine(models.TransientModel):
             active_test=True).search(domain)
         return rule_lines.with_env(self.env)
 
-    def duplicate_record(self):
+    def button_duplicate_record(self):
         self.ensure_one()
         record = self.copy()
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'onchange.rule',
             'target': 'current',
-            # 'context': dict(self.env.context, default_folder_id=self.id),
             'view_mode': 'form',
             'res_id': record.onchange_rule_id.id,
         }

@@ -84,7 +84,7 @@
                             <field name="dest_selection_value" string="Select. Value"/>
                             <field name="onchange_domain"/>
                             <field name="is_restrictive_rule" string="Restrictive"/>
-                            <button name="duplicate_record" type="object" icon="fa-copy"/>
+                            <button name="button_duplicate_record" type="object" icon="fa-copy"/>
                         </tree>
                     </field>
                 </group>

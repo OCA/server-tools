@@ -13,6 +13,7 @@
     "depends": [
         'base',
     ],
+    "post_init_hook": "post_init_hook",
     "data": [
         'security/ir.model.access.csv',
         'views/onchange_rule_view.xml',

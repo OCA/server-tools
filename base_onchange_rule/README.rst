@@ -44,6 +44,7 @@ Contributors
 ------------
 
 * David BEAL <david.beal@akretion.com>
+* Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 Maintainer
 ----------
