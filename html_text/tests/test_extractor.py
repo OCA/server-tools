@@ -2,8 +2,8 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from lxml import etree
 from openerp.tests.common import TransactionCase
+from openerp.tools import mute_logger
 
 
 class ExtractorCase(TransactionCase):
@@ -40,20 +40,16 @@ class ExtractorCase(TransactionCase):
             self.text_from_html(html, 7, ellipsis=""),
             u"I'm a title I'm a paragraph ¡Pues")
 
+    @mute_logger("openerp.addons.html_text.models.ir_fields_converter")
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         self.assertEqual(self.text_from_html(""), "")
-        with self.assertRaises(etree.XMLSyntaxError):
+        with self.assertRaises(Exception):
             self.text_from_html("", fail=True)
 
+    @mute_logger("openerp.addons.html_text.models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         self.assertEqual(self.text_from_html(False), "")
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Exception):
             self.text_from_html(False, fail=True)
-
-    def test_bad_html(self):
-        """Bad HTML handled correctly."""
-        self.assertEqual(self.text_from_html("<<bad>"), "")
-        with self.assertRaises(etree.ParserError):
-            self.text_from_html("<<bad>", fail=True)
