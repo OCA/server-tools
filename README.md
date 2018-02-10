@@ -69,7 +69,7 @@ addon | version | summary
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 10.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 10.0.1.0.0 | Generate excerpts from any HTML field
-[keychain](keychain/) | 10.0.1.0.0 | Store accounts and credentials
+[keychain](keychain/) | 10.0.2.0.0 | Store accounts and credentials
 [letsencrypt](letsencrypt/) | 10.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
