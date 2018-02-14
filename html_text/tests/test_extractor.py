@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-2017 Jairo Llopis <jairo.llopis@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from lxml import etree
 from odoo.tools import mute_logger
 from odoo.tests.common import TransactionCase
-from ..models import ir_fields_converter
 
 
 class ExtractorCase(TransactionCase):
@@ -41,23 +38,16 @@ class ExtractorCase(TransactionCase):
             self.text_from_html(html, 7, ellipsis=""),
             u"I'm a title I'm a paragraph ¡Pues")
 
-    @mute_logger(ir_fields_converter.__name__)
+    @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         self.assertEqual(self.text_from_html(""), "")
-        with self.assertRaises(etree.XMLSyntaxError):
+        with self.assertRaises(Exception):
             self.text_from_html("", fail=True)
 
-    @mute_logger(ir_fields_converter.__name__)
+    @mute_logger("odoo.addons.html_text.models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         self.assertEqual(self.text_from_html(False), "")
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Exception):
             self.text_from_html(False, fail=True)
-
-    @mute_logger(ir_fields_converter.__name__)
-    def test_bad_html(self):
-        """Bad HTML handled correctly."""
-        self.assertEqual(self.text_from_html("<<bad>"), "")
-        with self.assertRaises(etree.ParserError):
-            self.text_from_html("<<bad>", fail=True)
