@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ====================
@@ -13,12 +13,12 @@ Installation
 
 Before installing this module, you need to execute::
 
-    pip install pysftp
+    pip3 install pysftp
 
 Configuration
 =============
 
-Go to *Settings -> Configuration -> Configure Backup* to
+Go to *Settings -> Database Structure -> Automated Backup* to
 create your configurations for each database that you needed
 to backups.
 
@@ -70,7 +70,7 @@ manually execute the selected processes.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 Known issues / Roadmap
 ======================
@@ -87,7 +87,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
+help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
@@ -99,6 +99,7 @@ Contributors
 * Alessio Gerace <alessio.gerace@agilebg.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
 * Dave Lasley <dave@laslabs.com>
+* Andrea Stirpe <a.stirpe@onestein.nl>
 
 Maintainer
 ----------
