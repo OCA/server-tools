@@ -47,6 +47,7 @@ Contributors
 
 * Therp BV <info@therp.nl>
 * Giacomo Spettoli <giacomo.spettoli@gmail.com>
+* Luc De Meyer <luc.demeyer@noviat.com>
 
 Maintainer
 ----------

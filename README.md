@@ -35,7 +35,7 @@ addon | version | summary
 [base_external_dbsource](base_external_dbsource/) | 8.0.1.3.0 | External Database Sources
 [base_field_validator](base_field_validator/) | 8.0.1.0.0 | Validate fields using regular expressions
 [base_import_match](base_import_match/) | 8.0.1.0.1 | Try to avoid duplicates before importing
-[base_import_odoo](base_import_odoo/) | 8.0.1.0.0 | Import records from another Odoo instance
+[base_import_odoo](base_import_odoo/) | 8.0.1.0.1 | Import records from another Odoo instance
 [base_import_security_group](base_import_security_group/) | 8.0.1.0.0 | Group-based permissions for importing CSV files
 [base_ir_filters_active](base_ir_filters_active/) | 8.0.1.0.0 | Allows you to disable (hide) filters
 [base_manifest_extension](base_manifest_extension/) | 8.0.1.0.0 | Adds some useful keys to manifest files
@@ -87,7 +87,7 @@ addon | version | summary
 [sql_export](sql_export/) | 8.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 8.0.1.0.0 | Abstract Model to manage SQL Requests
 [super_calendar](super_calendar/) | 8.0.0.2.0 | This module allows to create configurable calendars.
-[users_ldap_groups](users_ldap_groups/) | 8.0.1.2.1 | Adds user accounts to groups based on rules defined by the administrator.
+[users_ldap_groups](users_ldap_groups/) | 8.0.1.2.2 | Adds user accounts to groups based on rules defined by the administrator.
 [users_ldap_mail](users_ldap_mail/) | 8.0.1.0.0 | LDAP mapping for user name and e-mail
 [users_ldap_populate](users_ldap_populate/) | 8.0.1.2.1 | Create users from LDAP before they log in
 [users_ldap_push](users_ldap_push/) | 8.0.1.0.0 | Creates a ldap entry when you create a user in Odoo
