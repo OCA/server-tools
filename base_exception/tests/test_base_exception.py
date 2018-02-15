@@ -9,6 +9,8 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestBaseException(common.SavepointCase):
 
     # pylint: disable=missing-return
