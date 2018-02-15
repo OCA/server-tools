@@ -1,18 +1,19 @@
-# -*- coding: utf-8 -*-
 # © 2004-2009 Tiny SPRL (<http://tiny.be>).
 # © 2015 Agile Business Group <http://www.agilebg.com>
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import logging
 import os
 import shutil
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from glob import iglob
-from odoo import exceptions, models, fields, api, _, tools
+
+from odoo import _, api, exceptions, fields, models, tools
 from odoo.service import db
-import logging
+
 _logger = logging.getLogger(__name__)
 try:
     import pysftp
@@ -21,6 +22,7 @@ except ImportError:  # pragma: no cover
 
 
 class DbBackup(models.Model):
+    _description = 'Database Backup'
     _name = 'db.backup'
     _inherit = "mail.thread"
 
@@ -31,59 +33,52 @@ class DbBackup(models.Model):
     ]
 
     name = fields.Char(
-        string="Name",
         compute="_compute_name",
         store=True,
         help="Summary of this backup process",
     )
     folder = fields.Char(
         default=lambda self: self._default_folder(),
-        oldname="bkp_dir",
         help='Absolute path for storing the backups',
         required=True
     )
     days_to_keep = fields.Integer(
-        oldname="daystokeep",
         required=True,
         default=0,
         help="Backups older than this will be deleted automatically. "
              "Set 0 to disable autodeletion.",
     )
     method = fields.Selection(
-        selection=[("local", "Local disk"), ("sftp", "Remote SFTP server")],
+        [("local", "Local disk"), ("sftp", "Remote SFTP server")],
         default="local",
         help="Choose the storage method for this backup.",
     )
     sftp_host = fields.Char(
-        string='SFTP Server',
-        oldname="sftpip",
+        'SFTP Server',
         help=(
             "The host name or IP address from your remote"
             " server. For example 192.168.0.1"
         )
     )
     sftp_port = fields.Integer(
-        string="SFTP Port",
+        "SFTP Port",
         default=22,
-        oldname="sftpport",
         help="The port on the FTP server that accepts SSH/SFTP calls."
     )
     sftp_user = fields.Char(
-        string='Username in the SFTP Server',
-        oldname="sftpusername",
+        'Username in the SFTP Server',
         help=(
             "The username where the SFTP connection "
             "should be made with. This is the user on the external server."
         )
     )
     sftp_password = fields.Char(
-        string="SFTP Password",
-        oldname="sftppassword",
+        "SFTP Password",
         help="The password for the SFTP connection. If you specify a private "
              "key file, then this is the password to decrypt it.",
     )
     sftp_private_key = fields.Char(
-        string="Private key location",
+        "Private key location",
         help="Path to the private key file. Only the Odoo user should have "
              "read permissions for that file.",
     )
@@ -111,9 +106,9 @@ class DbBackup(models.Model):
     @api.constrains("folder", "method")
     def _check_folder(self):
         """Do not use the filestore or you will backup your backups."""
-        for s in self:
-            if (s.method == "local" and
-                    s.folder.startswith(
+        for record in self:
+            if (record.method == "local" and
+                    record.folder.startswith(
                         tools.config.filestore(self.env.cr.dbname))):
                 raise exceptions.ValidationError(
                     _("Do not save backups on your filestore, or you will "
@@ -200,10 +195,10 @@ class DbBackup(models.Model):
         try:
             _logger.info("Starting database backup: %s", self.name)
             yield
-        except:
+        except Exception:
             _logger.exception("Database backup failed: %s", self.name)
             escaped_tb = tools.html_escape(traceback.format_exc())
-            self.message_post(
+            self.message_post(  # pylint: disable=translation-required
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
                     escaped_tb),
@@ -242,23 +237,25 @@ class DbBackup(models.Model):
         """Log a possible cleanup failure."""
         self.ensure_one()
         try:
-            _logger.info("Starting cleanup process after database backup: %s",
-                         self.name)
+            _logger.info(
+                "Starting cleanup process after database backup: %s",
+                self.name)
             yield
-        except:
+        except Exception:
             _logger.exception("Cleanup of old database backups failed: %s")
             escaped_tb = tools.html_escape(traceback.format_exc())
-            self.message_post(
+            self.message_post(  # pylint: disable=translation-required
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Cleanup of old database backups failed."),
                     escaped_tb),
                 subtype=self.env.ref("auto_backup.failure"))
         else:
-            _logger.info("Cleanup of old database backups succeeded: %s",
-                         self.name)
+            _logger.info(
+                "Cleanup of old database backups succeeded: %s",
+                self.name)
 
-    @api.model
-    def filename(self, when):
+    @staticmethod
+    def filename(when):
         """Generate a file name for a backup.
 
         :param datetime.datetime when:
