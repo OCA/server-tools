@@ -1,18 +1,17 @@
-# -*- coding: utf-8 -*-
 # © 2015 Agile Business Group <http://www.agilebg.com>
 # © 2015 Alessio Gerace <alesiso.gerace@agilebg.com>
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # Copyright 2016 LasLabs Inc.
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import os
+from contextlib import contextmanager
+from datetime import datetime, timedelta
+
 import mock
 
-from datetime import datetime
-from contextlib import contextmanager
-
-from odoo.tests import common
 from odoo import exceptions, tools
+from odoo.tests import common
 
 try:
     import pysftp
@@ -121,6 +120,23 @@ class TestDbBackup(common.TransactionCase):
     def test_action_backup_local(self):
         """ It should backup local database """
         rec_id = self.new_record('local')
+        filename = rec_id.filename(datetime.now())
+        rec_id.action_backup()
+        generated_backup = [f for f in os.listdir(rec_id.folder)
+                            if f >= filename]
+        self.assertEqual(1, len(generated_backup))
+
+    def test_action_backup_local_cleanup(self):
+        """ Backup local database and cleanup old databases """
+        rec_id = self.new_record('local')
+        rec_id.days_to_keep = 1
+        old_date = datetime.now() - timedelta(days=3)
+        filename = rec_id.filename(old_date)
+        rec_id.action_backup()
+        generated_backup = [f for f in os.listdir(rec_id.folder)
+                            if f >= filename]
+        self.assertEqual(2, len(generated_backup))
+
         filename = rec_id.filename(datetime.now())
         rec_id.action_backup()
         generated_backup = [f for f in os.listdir(rec_id.folder)
