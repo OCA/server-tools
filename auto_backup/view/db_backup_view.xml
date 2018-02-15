@@ -1,14 +1,16 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_backup_conf_form">
-        <field name="name">Automated Backups</field>
+    <record id="view_backup_conf_form" model="ir.ui.view">
         <field name="model">db.backup</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
-                <h1><field name="name"/></h1>
-
+                <header>
+                    <button name="action_backup" type="object" string="Execute backup" class="oe_highlight"/>
+                </header>
+                <div class="oe_title">
+                   <h1><field name="name"/></h1>
+                </div>
                 <group string="Basic backup configuration">
                     <field name="folder"/>
                     <field name="days_to_keep"/>
@@ -47,27 +49,23 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_backup_conf_tree">
-        <field name="name">Automated Backups</field>
+    <record id="view_backup_conf_tree" model="ir.ui.view">
         <field name="model">db.backup</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Backups">
-                <field name='name'/>
-                <field name='folder'/>
-                <field name="sftp_host"/>
+            <tree>
+                <field name="name"/>
+                <field name="folder"/>
+                <field name="days_to_keep"/>
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_backup_conf_search">
-        <field name="name">Automated Backups</field>
+    <record id="view_backup_conf_search" model="ir.ui.view">
         <field name="model">db.backup</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
-            <search string="Search options">
-                <field name='name'/>
-                <field name='folder'/>
+            <search>
+                <field name="name"/>
+                <field name="folder"/>
                 <field name="sftp_host"/>
             </search>
         </field>
@@ -86,22 +84,11 @@
     <!-- Execute backup from "More" menu -->
     <record id="action_server_backup" model="ir.actions.server">
         <field name="name">Execute backup(s)</field>
-        <field name="model_id" ref="model_db_backup"/>
-        <field name="code">
-            object.action_backup()
-        </field>
-    </record>
-
-    <record model="ir.values" id="action_backup">
-        <field name="name">Execute backup(s)</field>
-        <field name="action_id" ref="action_server_backup" />
-        <field
-            name="value"
-            eval="'ir.actions.server,%d' % ref('action_server_backup')" />
-        <field name="key">action</field>
+        <field name="type">ir.actions.server</field>
         <field name="model_id" ref="model_db_backup" />
-        <field name="model">db.backup</field>
-        <field name="key2">client_action_multi</field>
+        <field name="binding_model_id" ref="model_db_backup" />
+        <field name="state">code</field>
+        <field name="code">records.action_backup()</field>
     </record>
 
 </odoo>
