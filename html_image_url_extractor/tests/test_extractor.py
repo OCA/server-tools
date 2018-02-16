@@ -65,5 +65,3 @@ class ExtractorCase(TransactionCase):
         """Bad HTML handled correctly."""
         for laps, text in self.imgs_from_html("<<bad>"):
             self.assertTrue(False)  # You should never get here
-        with self.assertRaises(etree.ParserError):
-            list(self.imgs_from_html("<<bad>", fail=True))
