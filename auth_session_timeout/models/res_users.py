@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # (c) 2015 ACSONE SA/NV, Dhinesh D
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -70,6 +69,7 @@ class ResUsers(models.Model):
         if deadline is not False:
             path = http.root.session_store.get_session_filename(session.sid)
             try:
+
                 expired = getmtime(path) < deadline
             except OSError as e:
                 _logger.exception(
