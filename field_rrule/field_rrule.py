@@ -31,6 +31,8 @@ class SerializableRRuleSet(list):
     stuff in __iter__"""
     def __init__(self, *args):
         self._rrule = list(args)
+        self._exdate = []
+        self._rdate = []
         self.tz = None
         super(SerializableRRuleSet, self).__init__(self)
 
@@ -59,9 +61,13 @@ class SerializableRRuleSet(list):
                     '_byeaster',
                 ]
             })
+        for exdate in self._exdate:
+            yield dict(type='exdate', date=fields.Datetime.to_string(exdate))
+        for rdate in self._rdate:
+            yield dict(type='rdate', date=fields.Datetime.to_string(rdate))
         if self.tz:
             yield dict(type='tz', tz=self.tz)
-        # TODO: implement rdate, exrule, exdate
+        # TODO: implement exrule
 
     def __call__(self, default_self=None):
         """convert self to a proper rruleset for iteration.
@@ -71,10 +77,12 @@ class SerializableRRuleSet(list):
             return self
         result = LocalRRuleSet()
         result._rrule = self._rrule
+        result._exdate = self._exdate
+        result._rdate = self._rdate
         return result
 
     def __nonzero__(self):
-        return bool(self._rrule)
+        return bool(self._rrule) or bool(self._rdate)
 
     def __repr__(self):
         return ', '.join(str(a) for a in self)
@@ -133,9 +141,14 @@ class FieldRRule(fields.Field):
                 )(record, data)
             if data_type == 'rrule':
                 result._rrule.append(rrule(**data))
+            elif data_type == 'exdate':
+                result._exdate.append(
+                    fields.Datetime.from_string(data['date'])
+                )
+            elif data_type == 'rdate':
+                result._rdate.append(fields.Datetime.from_string(data['date']))
             elif data_type == 'tz' and self.stable_times:
                 tz = data['tz']
-            # TODO: implement rdate, exrule, exdate
             else:
                 raise ValueError('Unknown type given')
         if self.stable_times:
@@ -184,3 +197,11 @@ class FieldRRule(fields.Field):
                 if not time.tzinfo else time
                 for time in rule._timeset
             ])
+        value._exdate = [
+            _date.replace(tzinfo=pytz.utc).astimezone(tz)
+            for _date in value._exdate
+        ]
+        value._rdate = [
+            _date.replace(tzinfo=pytz.utc).astimezone(tz)
+            for _date in value._rdate
+        ]

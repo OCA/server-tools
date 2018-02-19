@@ -36,7 +36,7 @@ Known issues / Roadmap
 ======================
 
 * support the unimplemented features of rrules
-* support rdates, exdates, exrules
+* support exrules
 * consider multiple widgets with different feature sets
 
 Bug Tracker

@@ -127,3 +127,24 @@ class TestFieldRrule(TransactionCase):
                 datetime.datetime(2017, 3, 31, 22, 0),
             ]
         )
+        # now an empty rule with an rdate
+        record.rrule = [
+            {
+                'type': 'rdate',
+                'date': '2018-02-19',
+            },
+            {
+                'type': 'rdate',
+                'date': '2018-02-20',
+            },
+            {
+                'type': 'exdate',
+                'date': '2018-02-20',
+            }
+        ]
+        self.assertEqual(
+            list(record.rrule()),
+            [
+                datetime.datetime(2018, 2, 19),
+            ]
+        )
