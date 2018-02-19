@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2016 Therp BV <http://therp.nl>
+# © 2016-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import json
 import pytz
 from dateutil.rrule import rrule, rruleset
 from dateutil.tz import gettz
-from openerp import fields, models
+from odoo import fields, models
 _RRULE_DATETIME_FIELDS = ['_until', '_dtstart']
 _RRULE_SCALAR_FIELDS = [
     '_wkst', '_cache', '_until', '_dtstart', '_count', '_freq', '_interval',
@@ -103,13 +104,17 @@ class SerializableRRuleSet(list):
         return self().count()
 
 
-class FieldRRule(fields.Serialized):
+class FieldRRule(fields.Field):
+    type = 'rrule'
+    column_type = ('text', 'text')
     _slots = {
         'stable_times': None,
     }
 
     def convert_to_cache(self, value, record, validate=True):
         result = SerializableRRuleSet()
+        if isinstance(value, basestring):
+            value = json.loads(value)
         if not value:
             return result
         if isinstance(value, SerializableRRuleSet):
@@ -152,11 +157,8 @@ class FieldRRule(fields.Serialized):
             if key != 'type'
         }
 
-    def to_column(self):
-        """set our flag on the resulting column"""
-        result = super(FieldRRule, self).to_column()
-        result.stable_times = self.stable_times
-        return result
+    def convert_to_column(self, value, record):
+        return json.dumps(value)
 
     def _add_tz(self, value, tz):
         """set the timezone on an rruleset and adjust dates there"""

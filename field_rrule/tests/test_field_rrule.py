@@ -5,8 +5,8 @@ import datetime
 from psycopg2.extensions import AsIs
 from dateutil.rrule import MONTHLY, rrule
 from dateutil.tz import gettz
-from openerp import SUPERUSER_ID, fields, models
-from openerp.tests.common import TransactionCase
+from odoo import fields, models
+from odoo.tests.common import TransactionCase
 from ..field_rrule import FieldRRule, SerializableRRuleSet
 
 
@@ -42,19 +42,20 @@ class RRuleTest(models.TransientModel):
 
 class TestFieldRrule(TransactionCase):
     def test_field_rrule(self):
-        model = RRuleTest._build_model(self.registry, self.cr)
-        model._prepare_setup(self.cr, SUPERUSER_ID, False)
-        model._setup_base(self.cr, SUPERUSER_ID, False)
-        model._setup_fields(self.cr, SUPERUSER_ID)
-        model._auto_init(self.cr)
-        record_id = model.create(self.cr, SUPERUSER_ID, {'rrule': None})
+        RRuleTest._build_model(self.registry, self.cr)
+        model = self.env['test.field.rrule']
+        model._prepare_setup()
+        model._setup_base(False)
+        model._setup_fields(False)
+        model.with_context(todo=[])._auto_init()
+        record_id = model.create({'rrule': None}).id
         self.cr.execute(
             'select rrule, rrule_with_default, rrule_with_default2 from '
             '%s where id=%s', (AsIs(model._table), record_id))
         data = self.cr.fetchall()[0]
         self.assertEqual(data[0], 'null')
         self.assertEqual(data[1], data[2])
-        record = model.browse(self.cr, SUPERUSER_ID, record_id)
+        record = model.browse(record_id)
         self.assertFalse(record.rrule)
         self.assertTrue(record.rrule_with_default)
         self.assertTrue(record.rrule_with_default2)

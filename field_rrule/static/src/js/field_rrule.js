@@ -1,11 +1,16 @@
 //-*- coding: utf-8 -*-
-//© 2016 Therp BV <http://therp.nl>
+//© 2016-2018 Therp BV <http://therp.nl>
 //License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-openerp.field_rrule = function(instance)
+odoo.define('field_rrule', function(require)
 {
-    instance.field_rrule.FieldRRule = instance.web.form.AbstractField
-    .extend(instance.web.form.ReinitializeFieldMixin, {
+    "use strict";
+    var core = require('web.core');
+    var common = require('web.form_common');
+    var formats = require('web.formats');
+    var time = require('web.time');
+    var _t = core._t;
+    var FieldRRule = common.AbstractField
+    .extend(common.ReinitializeFieldMixin, {
         template: 'FieldRRule',
         events: {
             'click a.add_rule': 'add_rule',
@@ -46,63 +51,23 @@ openerp.field_rrule = function(instance)
                     current_value = input.val();
                 input.datetimepicker({
                     closeOnDateSelect: true,
-                    value: current_value ? instance.web.str_to_datetime(
-                        instance.web.parse_value(
-                            input.val(), {type: 'datetime'})) : new Date(),
-                    dateFormat: self.datetimepicker_format(
-                        instance.web._t.database.parameters.date_format),
-                    timeFormat: self.datetimepicker_format(
-                        instance.web._t.database.parameters.time_format),
+                    value: current_value ? time.str_to_datetime(
+                        formats.parse_value(
+                            input.val(), {type: 'datetime'})
+                    ) : new Date(),
+                    dateFormat: time.strftime_to_moment_format(
+                        _t.database.parameters.date_format
+                    ),
+                    timeFormat: time.strftime_to_moment_format(
+                        _t.database.parameters.time_format
+                    ),
                     changeMonth: true,
                     changeYear: true,
                     showWeek: true,
                     showButtonPanel: true,
-                    firstDay: Date.CultureInfo.firstDayOfWeek,
+                    firstDay: moment().weekday(0),
                 });
             });
-        },
-        datetimepicker_format: function(odoo_format)
-        {
-            var result = '',
-                map = {
-                    '%a': 'D',
-                    '%A': 'DD',
-                    '%b': 'M',
-                    '%B': 'MM',
-                    '%c': '', // locale's datetime representation
-                    '%d': 'dd',
-                    '%H': 'hh',
-                    '%T': 'hh:mm:ss',
-                    '%I': 'h',
-                    '%j': '', // day of the year unsuported
-                    '%m': 'mm',
-                    '%M': 'mm',
-                    '%p': 't',
-                    '%S': 'ss',
-                    '%U': '', // weeknumber unsupported
-                    '%w': '', // weekday unsupported
-                    '%W': '', // weeknumber unsupported
-                    '%x': '', // locale's date representation
-                    '%X': '', // locale's time representation
-                    '%y': 'y',
-                    '%Y': 'yy',
-                    '%Z': 'z',
-                    '%%': '%',
-                };
-
-            for(var i=0; i < odoo_format.length; i++)
-            {
-                if(map[odoo_format.substring(i, i+2)])
-                {
-                    result += map[odoo_format.substring(i, i+2)];
-                    i++;
-                }
-                else
-                {
-                    result += odoo_format[i];
-                }
-            }
-            return result;
         },
         frequency_changed: function(e, noreset)
         {
@@ -125,7 +90,7 @@ openerp.field_rrule = function(instance)
                 current_item = input
                     .parentsUntil('form', 'table.rule_item'),
                 all_values = this.get('value') || [],
-                old_values = jQuery.extend(true, [], all_values);
+                old_values = jQuery.extend(true, [], all_values),
                 value = _.findWhere(all_values, {
                     '__id': String(current_item.data('id')),
                 });
@@ -143,7 +108,7 @@ openerp.field_rrule = function(instance)
             }
             else if(input.attr('type') == 'datetime')
             {
-                value[input.attr('name')] = instance.web.parse_value(
+                value[input.attr('name')] = formats.parse_value(
                     input.val(), {type: 'datetime'});
             }
             else
@@ -245,7 +210,7 @@ openerp.field_rrule = function(instance)
                 freq: 1,
                 count: undefined,
                 interval: 1,
-                dtstart: instance.datetime_to_str(new Date()),
+                dtstart: time.datetime_to_str(new Date()),
                 byweekday: [],
                 bymonthday: [],
                 byyearday: [],
@@ -261,51 +226,54 @@ openerp.field_rrule = function(instance)
         },
         format_timepicker_value: function(input)
         {
-            input.val(instance.web.format_value(
+            input.val(formats.format_value(
                 input.datetimepicker('getDate'), {type: 'datetime'}));
         },
         format_field_weekday: function(weekday)
         {
             switch(parseInt(weekday))
             {
-                case 0: return instance.web._t('Monday');
-                case 1: return instance.web._t('Tuesday');
-                case 2: return instance.web._t('Wednesday');
-                case 3: return instance.web._t('Thursday');
-                case 4: return instance.web._t('Friday');
-                case 5: return instance.web._t('Saturday');
-                case 6: return instance.web._t('Sunday');
+                case 0: return _t('Monday');
+                case 1: return _t('Tuesday');
+                case 2: return _t('Wednesday');
+                case 3: return _t('Thursday');
+                case 4: return _t('Friday');
+                case 5: return _t('Saturday');
+                case 6: return _t('Sunday');
             }
         },
         format_field_freq: function(frequency)
         {
             switch(parseInt(frequency))
             {
-                case 0: return instance.web._t('Yearly');
-                case 1: return instance.web._t('Monthly');
-                case 2: return instance.web._t('Weekly');
-                case 3: return instance.web._t('Daily');
-                case 4: return instance.web._t('Hourly');
-                case 5: return instance.web._t('Minutely');
-                case 6: return instance.web._t('Secondly');
+                case 0: return _t('Yearly');
+                case 1: return _t('Monthly');
+                case 2: return _t('Weekly');
+                case 3: return _t('Daily');
+                case 4: return _t('Hourly');
+                case 5: return _t('Minutely');
+                case 6: return _t('Secondly');
             }
         },
         format_field_dtstart: function(dtstart)
         {
-            return instance.web.format_value(dtstart, {type: 'datetime'});
+            return formats.format_value(dtstart, {type: 'datetime'});
         },
         format_field_until: function(until)
         {
-            return instance.web.format_value(until, {type: 'datetime'});
+            return formats.format_value(until, {type: 'datetime'});
         },
         format_field_count: function(count)
         {
             if(!count)
             {
-                return instance.web._t('Indefinitely');
+                return _t('Indefinitely');
             }
-            return _.str.sprintf(instance.web._t('%s occurrences'), count);
+            return _.str.sprintf(_t('%s occurrences'), count);
         },
     });
-    instance.web.form.widgets.add('rrule', 'instance.field_rrule.FieldRRule');
-};
+    core.form_widget_registry.add('rrule', FieldRRule);
+    return {
+        FieldRRule: FieldRRule,
+    }
+});

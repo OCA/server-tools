@@ -14,7 +14,7 @@ Usage
 To use this module, you need to:
 
 * depend on it
-* say ``from openerp.addons.field_rrule import FieldRRule``
+* say ``from odoo.addons.field_rrule import FieldRRule``
 * use ``FieldRRule`` like any other field
 * on forms, use ``widget="rrule"``
 * have a look at ``demo/res_partner.*``
@@ -58,7 +58,7 @@ Images
 Contributors
 ------------
 
-* Holger Brunn <hbrunn@therp.nl>  
+* Holger Brunn <hbrunn@therp.nl>
 
 Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
 
