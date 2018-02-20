@@ -58,7 +58,7 @@ class TestKeychain(TransactionCase):
         backend._inverse_keychain()
         account = backend._get_existing_keychain()
         self.assertEqual(
-            account.data, '{"a": "o", "c": "b"}',
+            backend.data, '{"a": "o", "c": "b"}',
             'Account data is not correct')
         backend._inverse_password()
         self.assertTrue(account, 'Account was not created')
