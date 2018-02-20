@@ -72,4 +72,4 @@ msgstr "Mis à jour le"
 #. module: company_country
 #: model:ir.model,name:company_country.model_country_company_config_settings
 msgid "country.company.config.settings"
-msgstr ""
+msgstr "country.company.config.settings"

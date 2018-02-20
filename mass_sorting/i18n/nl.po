@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 03:58+0000\n"
-"PO-Revision-Date: 2017-03-01 03:58+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "Omschrijving"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_display_name
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_display_name
 msgid "Display Name"
-msgstr "Weergave naam"
+msgstr "Te tonen naam"
 
 #. module: mass_sorting
 #: model:ir.ui.view,arch_db:mass_sorting.view_mass_sort_config_form
@@ -137,7 +137,7 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Laatste bijgewerkt door"
+msgstr "Laatst bijgewerkt door"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
@@ -196,7 +196,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_sequence
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Reeks"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_action_id

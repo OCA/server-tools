@@ -36,7 +36,8 @@ class PasswordSecurityHome(AuthSignupHome):
     def web_login(self, *args, **kw):
         ensure_db()
         response = super(PasswordSecurityHome, self).web_login(*args, **kw)
-        if not request.httprequest.method == 'POST':
+        login_success = request.params.get('login_success', False)
+        if not request.httprequest.method == 'POST' or not login_success:
             return response
         uid = request.session.authenticate(
             request.session.db,
@@ -50,6 +51,7 @@ class PasswordSecurityHome(AuthSignupHome):
         if not user_id._password_has_expired():
             return response
         user_id.action_expire_password()
+        request.session.logout(keep_db=True)
         redirect = user_id.partner_id.signup_url
         return http.redirect_with_hash(redirect)
 

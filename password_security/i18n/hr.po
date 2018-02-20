@@ -3,14 +3,14 @@
 # * password_security
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
+"POT-Creation-Date: 2017-12-07 01:47+0000\n"
+"PO-Revision-Date: 2017-12-07 01:47+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Amount of hours until a user may change password again"
 msgstr "Broj sati prije nego korisnik može ponovo promijeniti pasword"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:145
+#: code:addons/password_security/models/res_users.py:151
 #, python-format
 msgid "Cannot use the most recent %d passwords"
 msgstr ""
@@ -123,7 +123,7 @@ msgid "Lowercase"
 msgstr "Malim slovima"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:51
+#: code:addons/password_security/models/res_users.py:52
 #, python-format
 msgid "Lowercase letter"
 msgstr "Malo slovo"
@@ -139,7 +139,7 @@ msgid "Minimum number of characters"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:59
+#: code:addons/password_security/models/res_users.py:60
 #, python-format
 msgid "Must contain the following:"
 msgstr ""
@@ -150,7 +150,7 @@ msgid "Numeric"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:55
+#: code:addons/password_security/models/res_users.py:56
 #, python-format
 msgid "Numeric digit"
 msgstr ""
@@ -166,13 +166,13 @@ msgid "Password Policy"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:62
+#: code:addons/password_security/models/res_users.py:63
 #, python-format
 msgid "Password must be %d characters or more."
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:121
+#: code:addons/password_security/models/res_users.py:128
 #, python-format
 msgid ""
 "Passwords can only be reset every %d hour(s). Please contact an "
@@ -215,7 +215,7 @@ msgid "Special"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:57
+#: code:addons/password_security/models/res_users.py:58
 #, python-format
 msgid "Special character"
 msgstr ""
@@ -231,7 +231,7 @@ msgid "Uppercase"
 msgstr ""
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:53
+#: code:addons/password_security/models/res_users.py:54
 #, python-format
 msgid "Uppercase letter"
 msgstr ""

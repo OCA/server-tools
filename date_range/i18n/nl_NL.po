@@ -3,14 +3,15 @@
 # * date_range
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-16 02:17+0000\n"
+"PO-Revision-Date: 2017-12-16 02:17+0000\n"
+"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr ""
 #: code:addons/date_range/models/date_range.py:43
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
-msgstr "%s is geen geldig bereik (%s > %s)"
+msgstr ""
 
 #. module: date_range
 #: code:addons/date_range/models/date_range.py:71
@@ -218,8 +219,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1647
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1644
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1913
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1910
 msgid "Type"
 msgstr "Type"
 

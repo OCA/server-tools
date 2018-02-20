@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:39+0000\n"
-"PO-Revision-Date: 2017-05-01 10:39+0000\n"
+"POT-Creation-Date: 2017-12-01 02:11+0000\n"
+"PO-Revision-Date: 2017-12-01 02:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -46,12 +46,12 @@ msgstr "Última Modificação Em"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr "Atualizado pela última vez por"
+msgstr "Última Atualização Por"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr "Atualizado pela última vez em"
+msgstr "Última Atualização Em"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
@@ -123,6 +123,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | user
 msgid "external_service.ftp | user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_empty
+msgid "ir.config_parameter | ircp_empty"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_from_config
+msgid "ir.config_parameter | ircp_from_config"
 msgstr ""
 
 #. module: server_environment

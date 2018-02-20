@@ -3,14 +3,15 @@
 # * date_range
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2018-01-06 02:25+0000\n"
+"PO-Revision-Date: 2018-01-06 02:25+0000\n"
+"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,7 +62,7 @@ msgstr "Annulla"
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_company_id
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_company_id
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_create_uid
@@ -171,14 +172,14 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_uid
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Last Updated by"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_type_write_date
 #: model:ir.model.fields,field_description:date_range.field_date_range_write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento il"
+msgstr "Last Updated on"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_name
@@ -215,8 +216,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1647
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1644
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_1913
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_1910
 msgid "Type"
 msgstr "Tipo"
 

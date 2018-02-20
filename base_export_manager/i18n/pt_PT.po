@@ -1,0 +1,155 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_export_manager
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-01 02:09+0000\n"
+"PO-Revision-Date: 2017-12-01 02:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: base_export_manager
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
+#: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
+msgid "Database model to export."
+msgstr ""
+
+#. module: base_export_manager
+#. openerp-web
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:32
+#: code:addons/base_export_manager/static/src/js/base_export_manager.js:39
+#, python-format
+msgid "Export"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
+msgid "Export Access"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
+msgid "Export Profile"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
+#: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
+#: model:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
+msgid "Export Profiles"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:163
+#, python-format
+msgid "Field '%s' already exists"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:157
+#, python-format
+msgid "Field '%s' does not exist"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:191
+#, python-format
+msgid "Field '%s' not found in model '%s'"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field1_id
+msgid "First field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
+msgid "First model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field4_id
+msgid "Fourth field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model4_id
+msgid "Fourth model"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports_line.py:135
+#, python-format
+msgid "It's not allowed to have more than 4 levels depth: %s"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
+msgid "Label"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field2_id
+msgid "Second field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
+msgid "Second model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
+msgid "Third field"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
+msgid "Third model"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: base_export_manager
+#: code:addons/base_export_manager/models/ir_exports.py:66
+#, python-format
+msgid "You must supply a model or resource."
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports
+msgid "ir.exports"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_exports_line
+msgid "ir.exports.line"
+msgstr ""
+
+#. module: base_export_manager
+#: model:ir.model,name:base_export_manager.model_ir_model_access
+msgid "ir.model.access"
+msgstr ""

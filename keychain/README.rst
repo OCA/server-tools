@@ -44,7 +44,7 @@ in Odoo's config file: (etc/openerp.cfg)
 
 > keychain_key = fyeMIx9XVPBBky5XZeLDxVc9dFKy7Uzas3AoyMarHPA=
 
-You can generate keys with `python keychain/bin/generate_key.py`.
+You can generate keys with `python -c 'from cryptography.fernet import Fernet; print Fernet.generate_key()'`.
 
 This key is used to encrypt account passwords.
 
@@ -209,7 +209,7 @@ help us smashing it by providing a detailed and welcomed feedback.
 Credits
 =======
 
-`Akretion <https://akretion.com>`_
+* `Akretion <https://akretion.com>`_
 
 
 Contributors
@@ -222,7 +222,7 @@ Funders
 
 The development of this module has been financially supported by:
 
-* `Akretion <https://akretion.com>`_
+* Akretion
 
 Maintainer
 ----------

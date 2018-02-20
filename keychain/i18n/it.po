@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Stefano <stefano.sforzi@agilebg.com>, 2017
 # Paolo Valier <paolo.valier@hotmail.it>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 10:39+0000\n"
-"PO-Revision-Date: 2017-02-16 10:39+0000\n"
+"POT-Creation-Date: 2018-01-06 02:25+0000\n"
+"PO-Revision-Date: 2018-01-06 02:25+0000\n"
 "Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:70
+#: code:addons/keychain/models/keychain.py:72
 #, python-format
 msgid ""
 "%s \n"
@@ -35,17 +34,12 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.actions.act_window,name:keychain.keychain_list_action
-#: model:ir.ui.view,arch_db:keychain.keychain_account_id
 msgid "Accounts"
 msgstr "Conti"
 
 #. module: keychain
-#: model:ir.ui.view,arch_db:keychain.keychain_account_form
-msgid "Accounts form"
-msgstr ""
-
-#. module: keychain
 #: model:ir.model.fields,help:keychain.field_keychain_account_data
+#: model:ir.model.fields,help:keychain.field_keychain_backend_data
 msgid "Additionnal data as json"
 msgstr ""
 
@@ -57,32 +51,34 @@ msgstr ""
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creato da"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creato il"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_data
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_data
 msgid "Data"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:87
+#: code:addons/keychain/models/keychain.py:89
 #, python-format
 msgid "Data not valid"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:149
+#: code:addons/keychain/models/keychain.py:151
 #, python-format
 msgid "Data should be a valid JSON"
 msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_display_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_display_name
 msgid "Display Name"
 msgstr "Nome da visualizzare"
 
@@ -98,6 +94,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_id
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_id
 msgid "ID"
 msgstr "ID"
 
@@ -108,6 +105,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account___last_update
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend___last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -129,6 +127,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_name
 msgid "Name"
 msgstr "Nome"
 
@@ -138,7 +137,7 @@ msgid "Namespace"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:198
+#: code:addons/keychain/models/keychain.py:200
 #, python-format
 msgid ""
 "No 'keychain_key_%s' entries found in config file. Use a key similar to: %s"
@@ -146,11 +145,12 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_password
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_password
 msgid "Password"
 msgstr "Password"
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:162
+#: code:addons/keychain/models/keychain.py:164
 #, python-format
 msgid ""
 "Password has been encrypted with a different key. Unless you can recover the"
@@ -185,4 +185,9 @@ msgstr ""
 #. module: keychain
 #: model:ir.model,name:keychain.model_keychain_account
 msgid "keychain.account"
+msgstr ""
+
+#. module: keychain
+#: model:ir.model,name:keychain.model_keychain_backend
+msgid "keychain.backend"
 msgstr ""

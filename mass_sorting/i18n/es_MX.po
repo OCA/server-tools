@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 03:58+0000\n"
-"PO-Revision-Date: 2017-03-01 03:58+0000\n"
+"POT-Creation-Date: 2017-12-01 02:10+0000\n"
+"PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/oca/teams/23907/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Ultima modificacion realizada"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_uid
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualización por"
+msgstr "Ultima actualizacion por"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_write_date
@@ -145,7 +145,7 @@ msgstr "Ultima actualización por"
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_write_date
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_write_date
 msgid "Last Updated on"
-msgstr "Ultima actualización en"
+msgstr "Ultima actualización realizada"
 
 #. module: mass_sorting
 #: code:addons/mass_sorting/models/mass_sort_config.py:93
@@ -196,7 +196,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_line_sequence
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_wizard_line_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: mass_sorting
 #: model:ir.model.fields,field_description:mass_sorting.field_mass_sort_config_action_id

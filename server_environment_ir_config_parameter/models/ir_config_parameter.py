@@ -52,3 +52,4 @@ class IrConfigParameter(models.Model):
             else:
                 newvals = vals
             super(IrConfigParameter, rec).write(newvals)
+        return True

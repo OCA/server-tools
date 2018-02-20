@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2015-2016 Therp BV <http://therp.nl>
 # © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# © 2017 Avoin.Systems - Miku Laitinen
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import json
 import logging
@@ -10,8 +11,8 @@ try:
 except ImportError:  # pragma: no cover
     psutil = None
 import urllib2
-from openerp import api, models
-from openerp.tools.config import config
+from odoo import api, models
+from odoo.tools.config import config
 
 SEND_TIMEOUT = 60
 

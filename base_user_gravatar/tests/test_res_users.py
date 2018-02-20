@@ -24,7 +24,7 @@ class TestResUsers(TransactionCase):
             'name': 'Test',
             'login': 'test_login',
         }
-        self.url = 'http://www.gravatar.com/avatar/{}?s=200'
+        self.url = 'https://www.gravatar.com/avatar/{}?s=200'
 
     def _test_record(self, ):
         partner_id = self.env['res.partner'].create(self.partner_vals)

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="view_partner_simple_form" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_simple_form" />
+            <field name="arch" type="xml">
+                <xpath expr="." position="attributes">
+                    <attribute name="string">Partner form</attribute>
+                </xpath>
+                <field name="parent_id" position="attributes">
+                    <attribute name="context" operation="python_dict" key="default_name">'The company name'</attribute>
+                    <attribute name="context" operation="python_dict" key="default_company_id">context.get('company_id', context.get('company'))</attribute>
+                </field>
+                <!-- without operations, the standard handler should be called /-->
+                <field name="parent_id" position="attributes">
+                    <attribute name="name">parent_id</attribute>
+                </field>
+                <form position="inside">
+                    <notebook>
+                        <page string="Phone numbers" name="phone_book" />
+                    </notebook>
+                </form>
+                <xpath expr="//field[@name='phone']" position="move" target="//page[@name='phone_book']" />
+                <xpath expr="//field[@name='mobile']" position="move" target="//page[@name='phone_book']" />
+            </field>
+        </record>
+</odoo>
