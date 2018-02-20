@@ -42,8 +42,8 @@ class ExtractorCase(TransactionCase):
             self.assertEqual("/path/%d" % n, url)
         self.assertEqual(n, 0)
 
-    @mute_logger("odoo.addons.html_image_url_extractor"
-                 + ".models.ir_fields_converter")
+    @mute_logger("odoo.addons.html_image_url_extractor" +
+                 ".models.ir_fields_converter")
     def test_empty_html(self):
         """Empty HTML handled correctly."""
         for laps, text in self.imgs_from_html(""):
@@ -51,8 +51,8 @@ class ExtractorCase(TransactionCase):
         with self.assertRaises(Exception):
             list(self.imgs_from_html("", fail=True))
 
-    @mute_logger("odoo.addons.html_image_url_extractor"
-                 + ".models.ir_fields_converter")
+    @mute_logger("odoo.addons.html_image_url_extractor" +
+                 ".models.ir_fields_converter")
     def test_false_html(self):
         """``False`` HTML handled correctly."""
         for laps, text in self.imgs_from_html(False):
