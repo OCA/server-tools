@@ -19,6 +19,13 @@ class KeychainBackend(models.AbstractModel):
         compute="_compute_keychain",
         inverse="_inverse_keychain",
         help="Additionnal data as json")
+    keychain_account_id = fields.Many2one(
+        'keychain.account', compute='_compute_keychain_account')
+
+    @api.multi
+    def _compute_keychain_account(self):
+        for backend in self:
+            backend.keychain_account_id = backend._get_existing_keychain()
 
     @api.multi
     def _get_technical_name(self):
@@ -47,11 +54,11 @@ class KeychainBackend(models.AbstractModel):
     @api.multi
     def _get_keychain_account(self):
         self.ensure_one()
-        account = self._get_existing_keychain()
-        if not account:
+        if not self.keychain_account_id:
             vals = self._prepare_keychain()
-            account = self.env['keychain.account'].create(vals)
-        return account
+            self.keychain_account_id = self.env['keychain.account'].create(
+                vals)
+        return self.keychain_account_id
 
     @api.multi
     def _inverse_password(self):
