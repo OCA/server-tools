@@ -11,6 +11,12 @@ from openerp.exceptions import ValidationError
 from openerp.tools.config import config
 from openerp.tools.translate import _
 
+try:
+    from openerp.addons.server_environment import serv_config
+except ImportError:  # server_environment not installed or configured
+    serv_config = None
+
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -172,7 +178,7 @@ class KeychainAccount(models.Model):
         force_env = name of the env key.
         Useful for encoding against one precise env
         """
-        def _get_keys(envs):
+        def _get_keys_main_config(envs):
             suffixes = [
                 '_%s' % env if env else ''
                 for env in envs]  # ('_dev', '')
@@ -187,11 +193,30 @@ class KeychainAccount(models.Model):
                 if key and len(key) > 0  # remove False values
             ]
 
+        def _get_keys_serv_config(envs):
+            keys_name = [
+                env for env in envs if env]  # ignores empty env
+            keys_str = [
+                serv_config.get('keychain', key)
+                for key in keys_name]  # fetch from config
+            return [
+                Fernet(key) for key in keys_str  # build Fernet object
+                if key and len(key) > 0  # remove False values
+            ]
+
+        keys = []
+
         if force_env:
             envs = [force_env]
         else:
             envs = cls._retrieve_env()  # ex: ('dev', False)
-        keys = _get_keys(envs)
+
+        if serv_config and serv_config.has_section('keychain'):
+            keys = _get_keys_serv_config(envs)
+
+        if not keys:
+            keys = _get_keys_main_config(envs)
+
         if len(keys) == 0:
             raise Warning(_(
                 "No 'keychain_key_%s' entries found in config file. "
