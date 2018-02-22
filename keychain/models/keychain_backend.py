@@ -90,3 +90,11 @@ class KeychainBackend(models.AbstractModel):
                 record.data = account.get_data()
             else:
                 record.data = {}
+
+    @api.multi
+    def _get_password(self):
+        self.ensure_one()
+        if self.keychain_account_id:
+            return self.keychain_account_id._get_password()
+        else:
+            return False
