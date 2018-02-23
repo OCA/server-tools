@@ -6,6 +6,7 @@ from urllib import urlencode
 from lxml.html import document_fromstring
 from openerp import _
 from openerp.tests.common import HttpCase
+from openerp.tools import mute_logger
 
 
 class UICase(HttpCase):
@@ -58,6 +59,8 @@ class UICase(HttpCase):
         doc = self.html_doc(data=self.data)
         self.assertTrue(self.search_text(doc, self.msg["badmail"]))
 
+    @mute_logger("openerp.addons.mail.models.mail_mail")
+    @mute_logger("openerp.addons.auth_signup_verify_email.controllers.main")
     def test_good_email(self):
         """Test acceptance of good emails.
 
