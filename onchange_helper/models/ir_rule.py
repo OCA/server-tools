@@ -17,7 +17,6 @@ def get_new_values(model, record, on_change_result):
             new_values[fieldname] = value
     return new_values
 
-
 @api.model
 def play_onchanges(self, values, onchange_fields):
     onchange_specs = self._onchange_spec()
@@ -26,7 +25,10 @@ def play_onchanges(self, values, onchange_fields):
     all_values = values.copy()
     for field in self._fields:
         if field not in all_values:
-            all_values[field] = False
+            # If self is a record (play onchange on existing record)
+            # we take the value of the field
+            # If self is an empty record we will have an empty value
+            all_values[field] = self[field]
 
     # we work on a temporary record
     new_record = self.new(all_values)
@@ -39,7 +41,7 @@ def play_onchanges(self, values, onchange_fields):
         all_values.update(new_values)
 
     res = {f: v for f, v in all_values.iteritems()
-           if f in values or f in new_values}
+           if not self._fields[f].compute and (f in values or f in new_values)}
     return res
 
 

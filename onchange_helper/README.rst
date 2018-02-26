@@ -24,6 +24,15 @@ Example if you want to create a sale order and you want to get the values relati
 
 Then, `vals` will be updated with partner_invoice_id, partner_shipping_id, pricelist_id, etc...
 
+You can also use it on existing record for example:
+
+    `vals = {'partner_shipping_id: 1'}`
+
+    `vals = sale.play_onchanges(vals, ['partner_shipping_id'])`
+
+Then the onchange will be played with the vals passed and the existing vals of the sale. `vals` will be updated with partner_invoice_id, pricelist_id, etc...
+
+
 Bug Tracker
 ===========
 
