@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data noupdate="1">
         <record model="ir.cron" id="generate_calendar_records_cron">
             <field name="name">Generate Calendar Records</field>
@@ -12,4 +12,4 @@
             <field eval="'[]'" name="args"/>
         </record>
     </data>
-</openerp>
+</odoo>

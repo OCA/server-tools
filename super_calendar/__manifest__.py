@@ -26,8 +26,6 @@
         'data/cron_data.xml',
         'security/ir.model.access.csv',
     ],
-    'demo': [],
-    'test': [],
     'installable': True,
     'application': True,
     'auto_install': False,

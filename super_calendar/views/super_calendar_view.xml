@@ -1,213 +1,211 @@
 <?xml version="1.0"?>
 <odoo>
-    <data>
 
-        <!-- Configurator -->
+    <!-- Configurator -->
 
-        <record model="ir.ui.view" id="super_calendar_configurator_tree">
-            <field name="name">super_calendar_configurator_tree</field>
-            <field name="model">super.calendar.configurator</field>
-            <field name="arch" type="xml">
-                <tree string="Configurators">
-                    <field name="name"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="super_calendar_configurator_tree">
+        <field name="name">super_calendar_configurator_tree</field>
+        <field name="model">super.calendar.configurator</field>
+        <field name="arch" type="xml">
+            <tree string="Configurators">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="super_calendar_configurator_form">
-            <field name="name">super_calendar_configurator_form</field>
-            <field name="model">super.calendar.configurator</field>
-            <field name="arch" type="xml">
-                <form string="Configurator">
-                    <header>
-                        <button name="generate_calendar_records"
-                                string="Generate Calendar" type="object" icon="fa-calendar-plus-o" colspan="2"/>
-                    </header>
-                    <sheet>
+    <record model="ir.ui.view" id="super_calendar_configurator_form">
+        <field name="name">super_calendar_configurator_form</field>
+        <field name="model">super.calendar.configurator</field>
+        <field name="arch" type="xml">
+            <form string="Configurator">
+                <header>
+                    <button name="generate_calendar_records"
+                            string="Generate Calendar" type="object" icon="fa-calendar-plus-o" colspan="2"/>
+                </header>
+                <sheet>
+                <group>
                     <group>
-                        <group>
+                        <field name="name"/>
+                    </group>
+                    <group colspan="8">
+                        <field name="line_ids" nolabel="1" colspan="8">
+                        <tree string="Lines">
                             <field name="name"/>
-                        </group>
-                        <group colspan="8">
-                            <field name="line_ids" nolabel="1" colspan="8">
-                            <tree string="Lines">
-                                <field name="name"/>
-                                <field name="domain"/>
-                            </tree>
-                            <form string="Line">
+                            <field name="domain"/>
+                        </tree>
+                        <form string="Line">
+                            <group>
                                 <group>
-                                    <group>
-                                        <field name="name"/>
-                                        <field name="domain"/>
-                                        <field name="user_field_id"/>
-                                    </group>
-                                    <group>
-                                        <field name="date_start_field_id"/>
-                                        <field name="duration_field_id"/>
-                                        <field name="date_stop_field_id"
-                                               attrs="{'readonly':[('duration_field_id','!=',False)], 'visible': [('duration_field_id','!=',False)]}"/>
-                                    </group>
+                                    <field name="name"/>
+                                    <field name="domain"/>
+                                    <field name="user_field_id"/>
                                 </group>
-                                <group string="Description">
-                                    <field name="description_type"/>
-                                    <newline/>
-                                    <field name="description_field_id"
-                                           attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
-                                    <group colspan="4" col="1" attrs="{'invisible':[('description_type','!=','code')]}">
-                                        <label string="Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'" />
-                                        <field name="description_code" nolabel="1"
-                                               attrs="{'required':[('description_type','==','code')]}"/>
-                                    </group>
+                                <group>
+                                    <field name="date_start_field_id"/>
+                                    <field name="duration_field_id"/>
+                                    <field name="date_stop_field_id"
+                                           attrs="{'readonly':[('duration_field_id','!=',False)], 'visible': [('duration_field_id','!=',False)]}"/>
                                 </group>
+                            </group>
+                            <group string="Description">
+                                <field name="description_type"/>
+                                <newline/>
+                                <field name="description_field_id"
+                                       attrs="{'required':[('description_type','!=','code')], 'invisible':[('description_type','==','code')]}"/>
+                                <group colspan="4" col="1" attrs="{'invisible':[('description_type','!=','code')]}">
+                                    <label string="Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'" />
+                                    <field name="description_code" nolabel="1"
+                                           attrs="{'required':[('description_type','==','code')]}"/>
+                                </group>
+                            </group>
 
-                            </form>
-                        </field>
-                        </group>
-                    </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="super_calendar_configurator">
-            <field name="name">Calendar Configurators</field>
-            <field name="res_model">super.calendar.configurator</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="super_calendar_configurator_tree"/>
-        </record>
-
-        <!-- Calendar -->
-
-        <record model="ir.ui.view" id="super_calendar_tree">
-            <field name="name">super_calendar_tree</field>
-            <field name="model">super.calendar</field>
-            <field name="arch" type="xml">
-                <tree string="Calendar">
-                    <field name="name"/>
-                    <field name="date_start"/>
-                    <field name="duration"/>
-                    <field name="user_id"/>
-                    <field name="configurator_id"/>
-                    <field name="model_id"/>
-                </tree>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="super_calendar_form">
-            <field name="name">super_calendar_form</field>
-            <field name="model">super.calendar</field>
-            <field name="arch" type="xml">
-                <form string="Calendar">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="date_start"/>
-                            <field name="duration"/>
-                            <field name="user_id"/>
-                            <field name="configurator_id"/>
-                            <field name="model_id"/>
-                            <field name="res_id"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="super_calendar">
-            <field name="name">super_calendar</field>
-            <field name="model">super.calendar</field>
-            <field name="arch" type="xml">
-                <calendar string="Calendar" color="model_id"
-                          date_start="date_start" date_delay="duration"
-                          quick_add="false">
-                    <field name="name"/>
-                </calendar>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="super_calendar_search">
-            <field name="name">super_calendar_search</field>
-            <field name="model">super.calendar</field>
-            <field name="arch" type="xml">
-                <search string="Search Calendar" >
-                    <field name="name"/>
-                    <field name="configurator_id" select="1"/>
-                    <field name="model_id" select="1"/>
-                    <field name="user_id" widget="selection" >
-                        <filter domain="[('user_id','=',uid)]" help="My Items" icon="terp-personal"/>
+                        </form>
                     </field>
-                    <newline/>
-                    <group expand="0" string="Extended Filters..." colspan="4" col="8">
-                        <field name="date_start" />
-                        <field name="duration" />
                     </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-                    <group expand="0" string="Period">
-                        <filter string="Current week"
-                                name="current_week"
-                                domain="[('date_start','&lt;=', (context_today() + relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
-                                ('date_start','&gt;',(context_today() - relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
-                                help="Display all elements in the current week." />
-                        <filter string="Current month"
-                                name="current_month"
-                                domain="[('date_start','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
-                                ('date_start','&gt;=',time.strftime('%%Y-%%m-01'))]"
-                                help="Display all elements in the current month." />
-                        <filter string="Next week"
-                                name="next_week"
-                                domain="[('date_start','&gt;',(context_today()+relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
-                                ('date_start','&lt;=',(context_today()+relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
-                                help="Display all elements in the next week." />
-                        <filter string="Next month"
-                                name="next_month"
-                                domain="[('date_start','&gt;=',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
-                                ('date_start','&lt;',(context_today()+relativedelta(months=2)).strftime('%%Y-%%m-01'))]"
-                                help="Display all elements in the next month." />
+    <record model="ir.actions.act_window" id="super_calendar_configurator">
+        <field name="name">Calendar Configurators</field>
+        <field name="res_model">super.calendar.configurator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="super_calendar_configurator_tree"/>
+    </record>
+
+    <!-- Calendar -->
+
+    <record model="ir.ui.view" id="super_calendar_tree">
+        <field name="name">super_calendar_tree</field>
+        <field name="model">super.calendar</field>
+        <field name="arch" type="xml">
+            <tree string="Calendar">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="duration"/>
+                <field name="user_id"/>
+                <field name="configurator_id"/>
+                <field name="model_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="super_calendar_form">
+        <field name="name">super_calendar_form</field>
+        <field name="model">super.calendar</field>
+        <field name="arch" type="xml">
+            <form string="Calendar">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date_start"/>
+                        <field name="duration"/>
+                        <field name="user_id"/>
+                        <field name="configurator_id"/>
+                        <field name="model_id"/>
+                        <field name="res_id"/>
                     </group>
-                    <group expand="1" string="Group By">
-                        <filter string="Day"
-                                name="group_day"
-                                context="{'group_by':'date_start:day'}"
-                                help="Group all elements in the same day."/>
-                        <filter string="Week"
-                                name="group_week"
-                                context="{'group_by':'date_start:week'}"
-                                help="Group all elements in the same week."/>
-                        <filter string="Month"
-                                name="group_month"
-                                context="{'group_by':'date_start:month'}"
-                                help="Group all elements in the same month."/>
-                        <filter string="Quarter"
-                                name="group_quarter"
-                                context="{'group_by':'date_start:quarter'}"
-                                help="Group all elements in the same quarter."/>
-                        <filter string="Year"
-                                name="group_year"
-                                context="{'group_by':'date_start:year'}"
-                                help="Group all elements in the same year."/>
-                     </group>
-                </search>
-            </field>
-        </record>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="super_calendar_action">
-            <field name="name">Super Calendar</field>
-            <field name="res_model">super.calendar</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">calendar,tree,form</field>
-            <field name="view_id" ref="super_calendar"/>
-        </record>
+    <record model="ir.ui.view" id="super_calendar">
+        <field name="name">super_calendar</field>
+        <field name="model">super.calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendar" color="model_id"
+                      date_start="date_start" date_delay="duration"
+                      quick_add="false">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
 
-        <menuitem id="super_calendar_menu" name="Super Calendar"
-                  action="super_calendar_action"/>
-        <menuitem id="super_calendar_calendar" name="Calendar"
-                  parent="super_calendar_menu" />
-        <menuitem id="super_calendar_calendar_calendar" name="Calendar"
-                  parent="super_calendar_calendar" action="super_calendar_action"/>
-        <menuitem id="super_calendar_configuration" name="Configuration"
-                  parent="super_calendar_menu" />
-        <menuitem id="super_calendar_configurators" name="Configurators"
-                  parent="super_calendar_configuration" action="super_calendar_configurator"/>
-    </data>
+    <record model="ir.ui.view" id="super_calendar_search">
+        <field name="name">super_calendar_search</field>
+        <field name="model">super.calendar</field>
+        <field name="arch" type="xml">
+            <search string="Search Calendar" >
+                <field name="name"/>
+                <field name="configurator_id" select="1"/>
+                <field name="model_id" select="1"/>
+                <field name="user_id" widget="selection" >
+                    <filter domain="[('user_id','=',uid)]" help="My Items" icon="terp-personal"/>
+                </field>
+                <newline/>
+                <group expand="0" string="Extended Filters..." colspan="4" col="8">
+                    <field name="date_start" />
+                    <field name="duration" />
+                </group>
+
+                <group expand="0" string="Period">
+                    <filter string="Current week"
+                            name="current_week"
+                            domain="[('date_start','&lt;=', (context_today() + relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
+                            ('date_start','&gt;',(context_today() - relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                            help="Display all elements in the current week." />
+                    <filter string="Current month"
+                            name="current_month"
+                            domain="[('date_start','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                            ('date_start','&gt;=',time.strftime('%%Y-%%m-01'))]"
+                            help="Display all elements in the current month." />
+                    <filter string="Next week"
+                            name="next_week"
+                            domain="[('date_start','&gt;',(context_today()+relativedelta(weeks=0, weekday=6)).strftime('%%Y-%%m-%%d')),
+                            ('date_start','&lt;=',(context_today()+relativedelta(weeks=1, weekday=6)).strftime('%%Y-%%m-%%d'))]"
+                            help="Display all elements in the next week." />
+                    <filter string="Next month"
+                            name="next_month"
+                            domain="[('date_start','&gt;=',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                            ('date_start','&lt;',(context_today()+relativedelta(months=2)).strftime('%%Y-%%m-01'))]"
+                            help="Display all elements in the next month." />
+                </group>
+                <group expand="1" string="Group By">
+                    <filter string="Day"
+                            name="group_day"
+                            context="{'group_by':'date_start:day'}"
+                            help="Group all elements in the same day."/>
+                    <filter string="Week"
+                            name="group_week"
+                            context="{'group_by':'date_start:week'}"
+                            help="Group all elements in the same week."/>
+                    <filter string="Month"
+                            name="group_month"
+                            context="{'group_by':'date_start:month'}"
+                            help="Group all elements in the same month."/>
+                    <filter string="Quarter"
+                            name="group_quarter"
+                            context="{'group_by':'date_start:quarter'}"
+                            help="Group all elements in the same quarter."/>
+                    <filter string="Year"
+                            name="group_year"
+                            context="{'group_by':'date_start:year'}"
+                            help="Group all elements in the same year."/>
+                 </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="super_calendar_action">
+        <field name="name">Super Calendar</field>
+        <field name="res_model">super.calendar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_id" ref="super_calendar"/>
+    </record>
+
+    <menuitem id="super_calendar_menu" name="Super Calendar"
+              action="super_calendar_action"/>
+    <menuitem id="super_calendar_calendar" name="Calendar"
+              parent="super_calendar_menu" />
+    <menuitem id="super_calendar_calendar_calendar" name="Calendar"
+              parent="super_calendar_calendar" action="super_calendar_action"/>
+    <menuitem id="super_calendar_configuration" name="Configuration"
+              parent="super_calendar_menu" />
+    <menuitem id="super_calendar_configurators" name="Configurators"
+              parent="super_calendar_configuration" action="super_calendar_configurator"/>
 </odoo>
