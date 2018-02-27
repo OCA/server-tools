@@ -7,9 +7,9 @@
             <field name="interval_type">minutes</field>
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"></field>
-            <field eval="'super.calendar.configurator'" name="model"/>
-            <field eval="'generate_calendar_records'" name="function"/>
-            <field eval="'[]'" name="args"/>
+            <field name="model_id" ref="model_super_calendar_configurator"/>
+            <field name="function" eval="'generate_calendar_records'"/>
+            <field name="args" eval="'[]'"/>
         </record>
     </data>
 </odoo>

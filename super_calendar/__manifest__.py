@@ -17,10 +17,7 @@
                'Odoo Community Association (OCA)'),
     'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
-    'depends': [
-        'base',
-        'web_calendar',
-    ],
+    'depends': ['calendar'],
     'data': [
         'views/super_calendar_view.xml',
         'data/cron_data.xml',
