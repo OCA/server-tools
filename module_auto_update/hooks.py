@@ -6,8 +6,4 @@ from odoo import SUPERUSER_ID, api
 
 def post_init_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
-    installed_modules = env['ir.module.module'].search([
-        ('state', '=', 'installed'),
-    ])
-    for r in installed_modules:
-        r.checksum_installed = r.checksum_dir
+    env['ir.module.module']._save_installed_checksums()
