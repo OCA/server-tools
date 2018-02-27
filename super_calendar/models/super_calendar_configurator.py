@@ -146,7 +146,7 @@ class SuperCalendarConfigurator(models.Model):
 
                 # Recurrent events have an string id like '14-20151110120000'
                 # We need to split that to get the first part (id)
-                if isinstance(cur_rec['id'], basestring):
+                if isinstance(cur_rec['id'], str):
                     rec_id = cur_rec['id'].split('-')[0]
                 else:
                     rec_id = cur_rec['id']
