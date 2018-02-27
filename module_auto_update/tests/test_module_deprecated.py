@@ -2,7 +2,6 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import logging
 import os
 import tempfile
 
@@ -12,13 +11,10 @@ from odoo.modules import get_module_path
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
+from ..addon_hash import addon_hash
+
 from .. import post_init_hook
 
-_logger = logging.getLogger(__name__)
-try:
-    from checksumdir import dirhash
-except ImportError:
-    _logger.debug('Cannot `import checksumdir`.')
 
 model = 'odoo.addons.module_auto_update.models.module_deprecated'
 
@@ -36,10 +32,11 @@ class TestModule(TransactionCase):
             ('name', '=', module_name),
         ])
         self.own_dir_path = get_module_path(module_name)
-        self.own_checksum = dirhash(
+        keep_langs = self.env['res.lang'].search([]).mapped('code')
+        self.own_checksum = addon_hash(
             self.own_dir_path,
-            'sha1',
-            excluded_extensions=['pyc', 'pyo'],
+            exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
+            keep_langs=keep_langs,
         )
         self.own_writeable = os.access(self.own_dir_path, os.W_OK)
 
