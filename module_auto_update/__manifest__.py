@@ -5,7 +5,7 @@
 {
     'name': 'Module Auto Update',
     'summary': 'Automatically update Odoo modules',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.1.0',
     'category': 'Extra Tools',
     'website': 'https://odoo-community.org/',
     'author': 'LasLabs, '
@@ -21,7 +21,7 @@
         ],
     },
     'depends': [
-        'base',
+        'module_checksum_upgrade',
     ],
     'data': [
         'views/module_views.xml',

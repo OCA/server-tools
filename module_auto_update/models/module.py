@@ -2,16 +2,7 @@
 # Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import logging
-
 from odoo import api, fields, models
-from odoo.modules.module import get_module_path
-
-_logger = logging.getLogger(__name__)
-try:
-    from checksumdir import dirhash
-except ImportError:
-    _logger.debug('Cannot `import checksumdir`.')
 
 
 class Module(models.Model):
@@ -20,26 +11,27 @@ class Module(models.Model):
     checksum_dir = fields.Char(
         compute='_compute_checksum_dir',
     )
-    checksum_installed = fields.Char()
+    checksum_installed = fields.Char(
+        compute='_compute_checksum_installed',
+        inverse='_inverse_checksum_installed',
+        store=False,
+    )
 
     @api.depends('name')
     def _compute_checksum_dir(self):
-        exclude = self.env["ir.config_parameter"].get_param(
-            "module_auto_update.checksum_excluded_extensions",
-            "pyc,pyo",
-        ).split(",")
+        for rec in self:
+            rec.checksum_dir = rec._get_checksum_dir()
 
-        for r in self:
-            try:
-                r.checksum_dir = dirhash(
-                    get_module_path(r.name),
-                    'sha1',
-                    excluded_extensions=exclude,
-                )
-            except TypeError:
-                _logger.debug(
-                    "Cannot compute dir hash for %s, module not found",
-                    r.display_name)
+    def _compute_checksum_installed(self):
+        saved_checksums = self._get_saved_checksums()
+        for rec in self:
+            rec.checksum_installed = saved_checksums.get(rec.name, False)
+
+    def _inverse_checksum_installed(self):
+        saved_checksums = self._get_saved_checksums()
+        for rec in self:
+            saved_checksums[rec.name] = rec.checksum_installed
+        self._save_installed_checksums()
 
     @api.multi
     def _store_checksum_installed(self, vals):
