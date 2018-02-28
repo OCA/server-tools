@@ -12,9 +12,6 @@ class TierDefinition(models.Model):
     @api.model
     def _get_tier_validation_model_names(self):
         res = []
-        for n, m in self.env.registry.models.iteritems():
-            if hasattr(m, '_inherit') and 'tier.validation' in m._inherit:
-                res.append(n)
         return res
 
     model_id = fields.Many2one(
@@ -53,4 +50,5 @@ class TierDefinition(models.Model):
     @api.onchange('model_id')
     def onchange_model_id(self):
         return {'domain': {
-            'model_id': [('model', 'in', self._get_tier_validation_model_names())]}}
+            'model_id': [
+                ('model', 'in', self._get_tier_validation_model_names())]}}
