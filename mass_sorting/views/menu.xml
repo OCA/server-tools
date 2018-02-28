@@ -5,10 +5,10 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<odoo>
+<openerp><data>
 
     <menuitem id="menu_mass_sort_config"
         action="action_mass_sort_config"
         parent="base.menu_custom" sequence="30"/>
 
-</odoo>
+</data></openerp>

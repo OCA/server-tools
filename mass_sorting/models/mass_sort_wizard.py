@@ -3,8 +3,8 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from openerp import _, api, fields, models
+from openerp.exceptions import ValidationError
 
 
 class MassSortWizard(models.TransientModel):
@@ -72,6 +72,7 @@ class MassSortWizard(models.TransientModel):
                     "Please Select at least one Sorting Criteria."))
 
     # Action Section
+    @api.multi
     def button_apply(self):
         self.ensure_one()
         wizard = self

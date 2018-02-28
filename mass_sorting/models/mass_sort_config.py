@@ -5,8 +5,8 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from openerp import _, api, fields, models
+from openerp.exceptions import ValidationError
 
 
 class MassSortConfig(models.Model):
@@ -74,10 +74,12 @@ class MassSortConfig(models.Model):
                     " you uncheck 'Allow Custom Setting'."))
 
     # Overload Section
+    @api.multi
     def unlink(self):
         self.unlink_action()
         return super(MassSortConfig, self).unlink()
 
+    @api.multi
     def copy(self, default=None):
         default = default or {}
         default.update({

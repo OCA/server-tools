@@ -5,7 +5,7 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<odoo>
+<openerp><data>
 
     <record id="view_mass_sort_wizard_form" model="ir.ui.view">
         <field name="model">mass.sort.wizard</field>
@@ -34,4 +34,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-</odoo>
+</data></openerp>
