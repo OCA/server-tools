@@ -59,8 +59,10 @@ class TierValidation(models.AbstractModel):
     @api.multi
     def _compute_need_validation(self):
         for rec in self:
-            rec.need_validation = not self.review_ids and self.env[
-                'tier.definition'].search([('model', '=', self._name)]) and \
+            tiers = self.env[
+                'tier.definition'].search([('model', '=', self._name)])
+            valid_tiers = any([self.evaluate_tier(tier) for tier in tiers])
+            rec.need_validation = not self.review_ids and valid_tiers and \
                 getattr(rec, self._state_field) in self._state_from
 
     @api.multi
