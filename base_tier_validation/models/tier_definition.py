@@ -20,8 +20,6 @@ class TierDefinition(models.Model):
     model_id = fields.Many2one(
         comodel_name="ir.model",
         string="Referenced Model",
-        domain=lambda self: [
-            ('model', 'in', self._get_tier_validation_model_names())],
     )
     model = fields.Char(
         related='model_id.model', index=True, store=True,
@@ -51,3 +49,8 @@ class TierDefinition(models.Model):
         default=lambda self: self.env["res.company"]._company_default_get(
             "tier.definition"),
     )
+
+    @api.onchange('model_id')
+    def onchange_model_id(self):
+        return {'domain': {
+            'model_id': [('model', 'in', self._get_tier_validation_model_names())]}}
