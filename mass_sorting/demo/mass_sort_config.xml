@@ -5,7 +5,7 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<odoo>
+<openerp><data>
 
     <record id="mass_sort_config_demo" model="mass.sort.config">
         <field name="name">Self Mass Sort Demo</field>
@@ -13,4 +13,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="one2many_field_id" ref="mass_sorting.field_mass_sort_config_line_ids"/>
     </record>
 
-</odoo>
+</data></openerp>
