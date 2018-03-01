@@ -1,43 +1,25 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-class base(object):
-    name = None
-    '''Name shown to the user'''
+class Base(object):
+    name = None  # Name shown to the user
 
+    # Fields on fetchmail_server folder required for this algorithm
     required_fields = []
-    '''Fields on fetchmail_server folder required for this algorithm'''
 
+    # Fields on fetchmail_server folder readonly for this algorithm
     readonly_fields = []
-    '''Fields on fetchmail_server folder readonly for this algorithm'''
 
-    def search_matches(self, cr, uid, conf, mail_message, mail_message_org):
-        '''Returns ids found for model with mail_message'''
+    def search_matches(self, folder, mail_message, mail_message_org):
+        """Returns recordset found for model with mail_message."""
         return []
 
     def handle_match(
-            self, cr, uid, connection, object_id, folder,
-            mail_message, mail_message_org, msgid, context=None):
-        '''Do whatever it takes to handle a match'''
-        return folder.server_id.attach_mail(connection, object_id, folder,
-                                            mail_message, msgid)
+            self, connection, match_object, folder,
+            mail_message, mail_message_org, msgid):
+        """Do whatever it takes to handle a match"""
+        folder.attach_mail(match_object, mail_message)
+        if folder.delete_matching:
+            connection.store(msgid, '+FLAGS', '\\DELETED')

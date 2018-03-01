@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_email_server_form">
+        <field name="name">fetchmail.server.form</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
+        <field name="arch" type="xml">
+            <field name="object_id" position="attributes">
+                <attribute
+                    name="attrs">{'required': [('type', '!=', 'imap')]}</attribute>
+            </field>
+            <field name="type" position="after">
+                <field name="folders_only" />
+            </field>
+            <xpath
+                expr="//notebook"
+                position="inside">
+                <page
+                    string="Folders to monitor"
+                    attrs="{'invisible': [('type','!=','imap')]}">
+                    <group>
+                        <field
+                            name="folder_ids"
+                            nolabel="1">
+                            <tree colors="gray:active==False">
+                                <field name="active" invisible="True" />
+                                <field name="sequence" widget="handle" />
+                                <field name="path" />
+                                <field name="model_id" />
+                                <field name="model_field" />
+                                <field name="match_algorithm" />
+                                <field name="mail_field" />
+                            </tree>
+                            <form>
+                                <header>
+                                    <button
+                                        type="object"
+                                        name="button_attach_mail_manually"
+                                        string="Attach mail manually"
+                                        icon="gtk-redo" />
+                                </header>
+                                <group>
+                                    <group>
+                                        <field
+                                            name="path"
+                                            placeholder="INBOX.subfolder1" />
+                                        <field name="model_id" />
+                                        <field
+                                            name="model_field"
+                                            placeholder="email" />
+                                        <field name="match_algorithm" />
+                                        <field
+                                            name="mail_field"
+                                            placeholder="to,from" />
+                                    </group>
+                                    <group>
+                                        <field name="active" />
+                                        <field name="delete_matching" />
+                                        <field name="flag_nonmatching" />
+                                        <field name="match_first" />
+                                        <field name="msg_state" />
+                                        <field
+                                            name="model_order"
+                                            attrs="{'readonly': [('match_first','==',False)], 'required': [('match_first','==',True)]}"
+                                            placeholder="name asc,type desc" />
+                                        <field
+                                            name="domain"
+                                            placeholder="[('state', '=', 'open')]" />
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
