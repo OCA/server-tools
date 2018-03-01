@@ -13,7 +13,7 @@ class ExtractorCase(TransactionCase):
 
     def test_mixed_images_found(self):
         """Images correctly found in <img> elements and backgrounds."""
-        content = u"""
+        content = """
             <div>
                 <!-- src-less img -->
                 <img/>

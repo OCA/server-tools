@@ -89,7 +89,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
             known_tables.append(model_pool._table)
             known_tables += [
                 column.relation
-                for column in model_pool._fields.values()
+                for column in list(model_pool._fields.values())
                 if column.type == 'many2many' and
                 (column.compute is None or column.store)
             ]
