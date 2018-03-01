@@ -78,7 +78,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
         columns = list(set([
             column.name
             for model_pool in model_pools
-            for column in model_pool._fields.values()
+            for column in list(model_pool._fields.values())
             if not (column.compute is not None and not column.store)
         ]))
         columns += models.MAGIC_COLUMNS
@@ -117,7 +117,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
                 model_pool._table, (model.id, [])
             )[1].append(model_pool)
 
-        for table, model_spec in table2model.items():
+        for table, model_spec in list(table2model.items()):
             for column in self.get_orphaned_columns(model_spec[1]):
                 res.append((0, 0, {
                             'name': column,

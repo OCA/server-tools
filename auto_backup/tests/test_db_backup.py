@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015 Agile Business Group <http://www.agilebg.com>
 # © 2015 Alessio Gerace <alesiso.gerace@agilebg.com>
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
@@ -62,7 +61,7 @@ class TestDbBackup(common.TransactionCase):
 
     def new_record(self, method='sftp'):
         vals = {
-            'name': u'Têst backup',
+            'name': 'Têst backup',
             'method': method,
         }
         if method == 'sftp':

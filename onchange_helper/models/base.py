@@ -8,7 +8,7 @@ from odoo import api, models
 def get_new_values(model, record, on_change_result):
     vals = on_change_result.get('value', {})
     new_values = {}
-    for fieldname, value in vals.items():
+    for fieldname, value in list(vals.items()):
         if fieldname not in record:
             column = model._fields[fieldname]
             if value and column.type == 'many2one':
@@ -37,7 +37,7 @@ def play_onchanges(self, values, onchange_fields):
         new_values.update(get_new_values(self, values, onchange_values))
         all_values.update(new_values)
 
-    res = {f: v for f, v in all_values.items()
+    res = {f: v for f, v in list(all_values.items())
            if f in values or f in new_values}
     return res
 

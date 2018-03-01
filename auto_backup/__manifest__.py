@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2004-2009 Tiny SPRL (<http://tiny.be>).
 # © 2015 Agile Business Group <http://www.agilebg.com>
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
@@ -7,7 +6,7 @@
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "10.0.1.0.2",
+    "version": "11.0.1.0.0",
     "author": (
         "Yenthe Van Ginneken, "
         "Agile Business Group, "

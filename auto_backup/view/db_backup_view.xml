@@ -88,20 +88,10 @@
         <field name="name">Execute backup(s)</field>
         <field name="model_id" ref="model_db_backup"/>
         <field name="code">
-            object.action_backup()
+            model.action_backup()
         </field>
-    </record>
-
-    <record model="ir.values" id="action_backup">
-        <field name="name">Execute backup(s)</field>
-        <field name="action_id" ref="action_server_backup" />
-        <field
-            name="value"
-            eval="'ir.actions.server,%d' % ref('action_server_backup')" />
-        <field name="key">action</field>
-        <field name="model_id" ref="model_db_backup" />
-        <field name="model">db.backup</field>
-        <field name="key2">client_action_multi</field>
+        <field name="binding_model_id"/>
+        <field name="binding_type">report</field>
     </record>
 
 </odoo>
