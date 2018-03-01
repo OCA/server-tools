@@ -1,30 +1,15 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import fields, models
+# -*- coding: utf-8 -*-
+# Copyright - 2013-2018 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
+
+from odoo import api, fields, models
+
+
 _logger = logging.getLogger(__name__)
 
 
-class attach_mail_manually(models.TransientModel):
+class AttachMailManually(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually'
 
     folder_id = fields.Many2one(
@@ -32,17 +17,13 @@ class attach_mail_manually(models.TransientModel):
     mail_ids = fields.One2many(
         'fetchmail.attach.mail.manually.mail', 'wizard_id', 'Emails')
 
-    def default_get(self, cr, uid, fields_list, context=None):
-        if context is None:
-            context = {}
-
-        defaults = super(attach_mail_manually, self).default_get(
-            cr, uid, fields_list, context
-        )
-
-        for folder in self.pool.get('fetchmail.server.folder').browse(
-                cr, uid,
-                [context.get('default_folder_id')], context):
+    @api.model
+    def default_get(self, fields_list):
+        folder_model = self.env['fetchmail.server.folder']
+        thread_model = self.env['mail.thread']
+        defaults = super(AttachMailManually, self).default_get(fields_list)
+        default_folder_id = self.env.context.get('default_folder_id')
+        for folder in folder_model.browse([default_folder_id]):
             defaults['mail_ids'] = []
             connection = folder.server_id.connect()
             connection.select(folder.path)
@@ -50,70 +31,72 @@ class attach_mail_manually(models.TransientModel):
                 None,
                 'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
             if result != 'OK':
-                _logger.error('Could not search mailbox %s on %s',
-                              folder.path, folder.server_id.name)
+                _logger.error(
+                    'Could not search mailbox %s on %s',
+                    folder.path, folder.server_id.name)
                 continue
             for msgid in msgids[0].split():
                 result, msgdata = connection.fetch(msgid, '(RFC822)')
                 if result != 'OK':
-                    _logger.error('Could not fetch %s in %s on %s',
-                                  msgid, folder.path, folder.server_id.name)
+                    _logger.error(
+                        'Could not fetch %s in %s on %s',
+                        msgid, folder.path, folder.server_id.name)
                     continue
-                mail_message = self.pool.get('mail.thread').message_parse(
-                    cr, uid, msgdata[0][1],
-                    save_original=folder.server_id.original,
-                    context=context
-                )
+                mail_message = thread_model.message_parse(
+                    msgdata[0][1],
+                    save_original=folder.server_id.original)
                 defaults['mail_ids'].append((0, 0, {
                     'msgid': msgid,
                     'subject': mail_message.get('subject', ''),
                     'date': mail_message.get('date', ''),
-                    'object_id': '%s,-1' % folder.model_id.model,
-                }))
+                    'object_id': '%s,-1' % folder.model_id.model}))
             connection.close()
-
         return defaults
 
-    def attach_mails(self, cr, uid, ids, context=None):
-        for this in self.browse(cr, uid, ids, context):
+    @api.multi
+    def attach_mails(self):
+        thread_model = self.env['mail.thread']
+        for this in self:
+            folder = this.folder_id
+            server = folder.server_id
+            connection = server.connect()
+            connection.select(folder.path)
             for mail in this.mail_ids:
-                connection = this.folder_id.server_id.connect()
-                connection.select(this.folder_id.path)
+                if not mail.object_id:
+                    continue
                 result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
                 if result != 'OK':
-                    _logger.error('Could not fetch %s in %s on %s',
-                                  mail.msgid, this.folder_id.path, this.server)
+                    _logger.error(
+                        'Could not fetch %s in %s on %s',
+                        mail.msgid, folder.path, server)
                     continue
-
-                mail_message = self.pool.get('mail.thread').message_parse(
-                    cr, uid, msgdata[0][1],
-                    save_original=this.folder_id.server_id.original,
-                    context=context)
-
-                this.folder_id.server_id.attach_mail(
-                    connection,
-                    mail.object_id.id, this.folder_id, mail_message,
-                    mail.msgid
-                )
-                connection.close()
+                mail_message = thread_model.message_parse(
+                    msgdata[0][1], save_original=server.original)
+                folder.attach_mail(mail.object_id, mail_message)
+                if folder.delete_matching:
+                    connection.store(mail.msgid, '+FLAGS', '\\DELETED')
+                elif folder.flag_nonmatching:
+                    connection.store(mail.msgid, '-FLAGS', '\\FLAGGED')
+            connection.close()
         return {'type': 'ir.actions.act_window_close'}
 
-    def fields_view_get(self, cr, user, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
-        result = super(attach_mail_manually, self).fields_view_get(
-            cr, user, view_id, view_type, context, toolbar, submenu)
-
+    @api.model
+    def fields_view_get(
+            self, view_id=None, view_type='form',
+            toolbar=False, submenu=False):
+        result = super(AttachMailManually, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu)
         tree = result['fields']['mail_ids']['views']['tree']
-        for folder in self.pool['fetchmail.server.folder'].browse(
-                cr, user, [context.get('default_folder_id')], context):
+        folder_model = self.env['fetchmail.server.folder']
+        default_folder_id = self.env.context.get('default_folder_id')
+        for folder in folder_model.browse([default_folder_id]):
             tree['fields']['object_id']['selection'] = [
-                (folder.model_id.model, folder.model_id.name)
-            ]
-
+                (folder.model_id.model, folder.model_id.name)]
         return result
 
 
-class attach_mail_manually_mail(models.TransientModel):
+class AttachMailManuallyMail(models.TransientModel):
     _name = 'fetchmail.attach.mail.manually.mail'
 
     wizard_id = fields.Many2one(
@@ -124,6 +107,5 @@ class attach_mail_manually_mail(models.TransientModel):
     object_id = fields.Reference(
         lambda self: [
             (m.model, m.name)
-            for m in self.env['ir.model'].search([])
-        ],
+            for m in self.env['ir.model'].search([])],
         string='Object')
