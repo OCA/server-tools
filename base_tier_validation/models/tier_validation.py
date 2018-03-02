@@ -24,7 +24,10 @@ class TierValidation(models.AbstractModel):
         domain=lambda self: [('model', '=', self._name)],
         auto_join=True,
     )
-    validated = fields.Boolean(compute="_compute_validated_rejected")
+    validated = fields.Boolean(
+        compute="_compute_validated_rejected",
+        search="_search_validated",
+    )
     need_validation = fields.Boolean(compute="_compute_need_validation")
     rejected = fields.Boolean(compute="_compute_validated_rejected")
     reviewer_ids = fields.Many2many(
@@ -39,6 +42,15 @@ class TierValidation(models.AbstractModel):
         for rec in self:
             rec.reviewer_ids = rec.review_ids.filtered(
                 lambda r: r.status == 'pending').mapped('reviewer_ids')
+
+    @api.model
+    def _search_validated(self, operator, value):
+        assert operator in ('=', '!='), 'Invalid domain operator'
+        assert value in (True, False), 'Invalid domain value'
+        pos = self.search([
+            (self._state_field, 'in', self._state_from)]).filtered(
+            lambda r: r.review_ids and r.validated == value)
+        return [('id', 'in', pos.ids)]
 
     @api.model
     def _search_reviewer_ids(self, operator, value):
