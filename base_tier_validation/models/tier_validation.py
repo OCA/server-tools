@@ -43,7 +43,9 @@ class TierValidation(models.AbstractModel):
     @api.model
     def _search_reviewer_ids(self, operator, value):
         reviews = self.env['tier.review'].search([
-            ('model', '=', self._name), ('reviewer_ids', operator, value)])
+            ('model', '=', self._name),
+            ('reviewer_ids', operator, value),
+            ('status', '=', 'pending')])
         return [('id', 'in', list(set(reviews.mapped('res_id'))))]
 
     @api.multi
