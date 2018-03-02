@@ -48,13 +48,19 @@ class TierValidation(models.AbstractModel):
 
     @api.multi
     def _compute_validated_rejected(self):
-        """Override for different validation/rejection policy."""
         for rec in self:
-            # sort by tier
-            rec.validated = not any(
-                [s != 'approved' for s in self.review_ids.mapped('status')])
-            rec.rejected = any(
-                [s == 'rejected' for s in self.review_ids.mapped('status')])
+            rec.validated = self._calc_reviews_validated(rec.review_ids)
+            rec.rejected = self._calc_reviews_rejected(rec.review_ids)
+
+    @api.model
+    def _calc_reviews_validated(self, reviews):
+        """Override for different validation policy."""
+        return not any([s != 'approved' for s in reviews.mapped('status')])
+
+    @api.model
+    def _calc_reviews_rejected(self, reviews):
+        """Override for different rejection policy."""
+        return any([s == 'rejected' for s in reviews.mapped('status')])
 
     @api.multi
     def _compute_need_validation(self):
@@ -80,9 +86,13 @@ class TierValidation(models.AbstractModel):
             if (getattr(rec, self._state_field) in self._state_from and
                     vals.get(self._state_field) in self._state_to):
                 if rec.need_validation:
-                    raise ValidationError(_(
-                        "This action needs to be validated for at least one "
-                        "record. \nPlease request a validation."))
+                    # try to validate operation
+                    reviews = rec.request_validation()
+                    rec._validate_tier(reviews)
+                    if not self._calc_reviews_validated(reviews):
+                        raise ValidationError(_(
+                            "This action needs to be validated for at least "
+                            "one record. \nPlease request a validation."))
                 if not rec.validated:
                     raise ValidationError(_(
                         "A validation process is still open for at least "
@@ -95,14 +105,19 @@ class TierValidation(models.AbstractModel):
             self.mapped('review_ids').sudo().unlink()
         return super(TierValidation, self).write(vals)
 
+    def _validate_tier(self, tiers=False):
+        self.ensure_one()
+        tier_reviews = tiers or self.review_ids
+        user_reviews = tier_reviews.filtered(
+            lambda r: r.status in ('pending', 'rejected') and
+            (r.reviewer_id == self.env.user or
+             r.reviewer_group_id in self.env.user.groups_id))
+        user_reviews.write({'status': 'approved'})
+
     @api.multi
     def validate_tier(self):
         for rec in self:
-            user_reviews = rec.review_ids.filtered(
-                lambda r: r.status in ('pending', 'rejected') and
-                (r.reviewer_id == self.env.user or
-                 r.reviewer_group_id in self.env.user.groups_id))
-            user_reviews.write({'status': 'approved'})
+            rec._validate_tier()
 
     @api.multi
     def reject_tier(self):
@@ -116,7 +131,7 @@ class TierValidation(models.AbstractModel):
     @api.multi
     def request_validation(self):
         td_obj = self.env['tier.definition']
-        tr_obj = self.env['tier.review']
+        tr_obj = created_trs = self.env['tier.review']
         for rec in self:
             if getattr(rec, self._state_field) in self._state_from:
                 if rec.need_validation:
@@ -126,11 +141,11 @@ class TierValidation(models.AbstractModel):
                     for td in tier_definitions:
                         if self.evaluate_tier(td):
                             sequence += 1
-                            tr_obj.create({
+                            created_trs += tr_obj.create({
                                 'model': self._name,
                                 'res_id': rec.id,
                                 'definition_id': td.id,
                                 'sequence': sequence,
                             })
                     # TODO: notify? post some msg in chatter?
-        return True
+        return created_trs
