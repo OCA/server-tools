@@ -9,6 +9,8 @@ from odoo.modules import registry
 from odoo.addons.mass_editing.hooks import uninstall_hook
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestMassEditing(common.TransactionCase):
 
     def setUp(self):
