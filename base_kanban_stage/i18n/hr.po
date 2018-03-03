@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -31,17 +31,17 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_user_id
 msgid "Assigned To"
-msgstr ""
+msgstr "Dodijeljeno"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_res_model_id
 msgid "Associated Model"
-msgstr ""
+msgstr "Pridruženi model"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_fold
 msgid "Collapse?"
-msgstr ""
+msgstr "Skupi?"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_kanban_color
@@ -56,7 +56,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_stage_view_form
 msgid "Core Info"
-msgstr ""
+msgstr "Osnovne informacije"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_stage_create_uid
@@ -97,7 +97,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.ui.view,arch_db:base_kanban_stage.base_kanban_abstract_view_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,help:base_kanban_stage.field_base_kanban_abstract_kanban_legend_normal
@@ -158,7 +158,7 @@ msgstr ""
 #. module: base_kanban_stage
 #: selection:base.kanban.abstract,kanban_priority:0
 msgid "High"
-msgstr ""
+msgstr "Visoko"
 
 #. module: base_kanban_stage
 #: model:ir.model.fields,field_description:base_kanban_stage.field_base_kanban_abstract_id
@@ -169,7 +169,7 @@ msgstr "ID"
 #. module: base_kanban_stage
 #: model:ir.ui.menu,name:base_kanban_stage.base_kanban_stage_root_menu
 msgid "Kanban"
-msgstr ""
+msgstr "Kanban"
 
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_stage
@@ -326,4 +326,4 @@ msgstr ""
 #. module: base_kanban_stage
 #: model:ir.model,name:base_kanban_stage.model_base_kanban_abstract
 msgid "base.kanban.abstract"
-msgstr ""
+msgstr "base.kanban.abstract"
