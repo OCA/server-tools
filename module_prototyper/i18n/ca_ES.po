@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Carlos Hormigo, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-10 02:53+0000\n"
-"PO-Revision-Date: 2016-09-10 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2018-02-23 18:00+0000\n"
+"PO-Revision-Date: 2018-02-23 18:00+0000\n"
+"Last-Translator: Carlos Hormigo, 2018\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,13 +102,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_create_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
@@ -134,13 +135,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_description
 #: model:ir.ui.view,arch_db:module_prototyper.module_prototyper_base_form_view
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_display_name
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: module_prototyper
 #: model:ir.model.fields,help:module_prototyper.field_module_prototyper_summary
@@ -342,19 +343,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper___last_update
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_uid
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_module_export_write_date
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_license
@@ -395,7 +396,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.ui.view,arch_db:module_prototyper.view_ir_model_form
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_ir_model_fields_notes
@@ -511,7 +512,7 @@ msgstr ""
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_version
 msgid "Version"
-msgstr ""
+msgstr "Versió"
 
 #. module: module_prototyper
 #: model:ir.model.fields,field_description:module_prototyper.field_module_prototyper_view_ids

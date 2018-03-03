@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"POT-Creation-Date: 2018-02-23 18:01+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/ca_ES/)\n"
@@ -38,19 +38,19 @@ msgstr "Companyia"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_uid
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_date
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_display_name
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_id
@@ -62,19 +62,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings___last_update
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_uid
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_date
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_integer

@@ -1,19 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sequence_check_digit
-#
+# * sequence_check_digit
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 10:14+0000\n"
-"PO-Revision-Date: 2017-09-28 10:14+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2018-02-23 18:00+0000\n"
+"PO-Revision-Date: 2018-02-23 18:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sequence_check_digit
+#: code:addons/sequence_check_digit/models/ir_sequence.py:46
+#, python-format
+msgid "%s is not an implemented function"
+msgstr ""
 
 #. module: sequence_check_digit
 #: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence_check_digit_formula
@@ -26,17 +35,11 @@ msgid "Damm"
 msgstr "Damm"
 
 #. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:39
-#: code:addons/sequence_check_digit/models/ir_sequence.py:63
+#: code:addons/sequence_check_digit/models/ir_sequence.py:40
+#: code:addons/sequence_check_digit/models/ir_sequence.py:49
 #, python-format
 msgid "Format is not accepted"
 msgstr "El formato no está aceptado"
-
-#. module: sequence_check_digit
-#: code:addons/sequence_check_digit/models/ir_sequence.py:61
-#, python-format
-msgid "Function not found"
-msgstr "Función no encontrada"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
@@ -82,4 +85,3 @@ msgstr "Verhoeff"
 #: model:ir.model,name:sequence_check_digit.model_ir_sequence
 msgid "ir.sequence"
 msgstr "ir.sequence"
-
