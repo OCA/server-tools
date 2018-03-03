@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"POT-Creation-Date: 2018-02-01 01:51+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -40,19 +40,19 @@ msgstr ""
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_uid:0 field:tech.guide.rst,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,create_date:0
 #: field:tech.guide.rst,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,display_name:0
 #: field:tech.guide.rst,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: base_module_doc_rst
 #: field:tech.guide.rst,rst_file:0
@@ -74,17 +74,17 @@ msgstr ""
 #: field:create.relation.graph,__last_update:0
 #: field:tech.guide.rst,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_uid:0 field:tech.guide.rst,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: base_module_doc_rst
 #: field:create.relation.graph,write_date:0 field:tech.guide.rst,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: base_module_doc_rst
 #: model:ir.model,name:base_module_doc_rst.model_ir_module_module

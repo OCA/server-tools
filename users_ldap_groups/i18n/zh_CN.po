@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-25 14:56+0000\n"
+"POT-Creation-Date: 2018-02-01 01:52+0000\n"
+"PO-Revision-Date: 2018-01-31 12:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -128,6 +128,11 @@ msgid ""
 "The value to check the attribute against.\n"
 "For active directory, use the dn of the desired group"
 msgstr ""
+
+#. module: users_ldap_groups
+#: model:ir.model,name:users_ldap_groups.model_res_users
+msgid "Users"
+msgstr "用户"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,value:0

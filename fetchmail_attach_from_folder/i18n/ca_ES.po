@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:29+0000\n"
-"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"POT-Creation-Date: 2018-02-01 01:51+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -56,14 +56,14 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,create_uid:0
 #: field:fetchmail.server.folder,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_date:0
 #: field:fetchmail.attach.mail.manually.mail,create_date:0
 #: field:fetchmail.server.folder,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
@@ -85,7 +85,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,display_name:0
 #: field:fetchmail.server.folder,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -173,21 +173,21 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,__last_update:0
 #: field:fetchmail.server.folder,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_date:0
 #: field:fetchmail.attach.mail.manually.mail,write_date:0
 #: field:fetchmail.server.folder,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: fetchmail_attach_from_folder
 #: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190
