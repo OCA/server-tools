@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# lfreeke <lfreeke@therp.nl>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-21 01:48+0000\n"
-"PO-Revision-Date: 2017-11-21 01:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-02-21 03:58+0000\n"
+"PO-Revision-Date: 2018-02-21 03:58+0000\n"
+"Last-Translator: lfreeke <lfreeke@therp.nl>, 2018\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,7 +198,7 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_reference
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_change_new_value_text
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 #. module: partner_changeset
 #: model:ir.model.fields,field_description:partner_changeset.field_res_partner_changeset_note
