@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
 "PO-Revision-Date: 2018-03-03 10:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -99,12 +99,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_uid
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Aangemaakt door"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_date
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Aangemaakt op"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -133,7 +133,7 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
 msgid "Display Name"
-msgstr "Nom a mostrar"
+msgstr "Weergavenaam"
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:114
@@ -180,17 +180,17 @@ msgstr "ID"
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup___last_update
 msgid "Last Modified on"
-msgstr "Darrera modificació el"
+msgstr "Laatst gewijzigd op"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_uid
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Laatst bijgewerkt door"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_date
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Laatst bijgewerkt op"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
@@ -200,12 +200,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_method
 msgid "Method"
-msgstr ""
+msgstr "Methode"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_name
 msgid "Name"
-msgstr "Nom"
+msgstr "Naam"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_private_key
