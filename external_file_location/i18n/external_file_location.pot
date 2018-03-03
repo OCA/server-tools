@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-10 16:51+0000\n"
-"PO-Revision-Date: 2016-08-10 16:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_needaction
-msgid "Action Needed"
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_after_import
+msgid "Action after import a file"
 msgstr ""
 
 #. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_external_file_task_after_import
-msgid "Action after import a file"
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_active
+msgid "Active"
 msgstr ""
 
 #. module: external_file_location
@@ -38,6 +36,12 @@ msgstr ""
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_attachment_ids
 msgid "Attachment"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_company_id
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_company_id
+msgid "Company"
 msgstr ""
 
 #. module: external_file_location
@@ -63,19 +67,14 @@ msgid "Data importation setting"
 msgstr ""
 
 #. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_ir_attachment_metadata_message_last_post
-msgid "Date of the last message posted on the record."
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model,name:external_file_location.model_external_file_location
-msgid "Description"
-msgstr ""
-
-#. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_display_name
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model,name:external_file_location.model_ir_attachment_metadata
+msgid "Email Thread"
 msgstr ""
 
 #. module: external_file_location
@@ -100,6 +99,11 @@ msgid "File Locations"
 msgstr ""
 
 #. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_file_type
+msgid "File Type"
+msgstr ""
+
+#. module: external_file_location
 #: model:ir.ui.menu,name:external_file_location.menu_file_exchange
 msgid "File exchange"
 msgstr ""
@@ -107,11 +111,6 @@ msgstr ""
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_filename
 msgid "File name which is imported.You can use file pattern like *.txtto import all txt files"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_file_type
-msgid "File type"
 msgstr ""
 
 #. module: external_file_location
@@ -127,21 +126,6 @@ msgstr ""
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_filepath
 msgid "Filepath"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_follower_ids
-msgid "Followers"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_partner_ids
-msgid "Followers (Partners)"
 msgstr ""
 
 #. module: external_file_location
@@ -166,16 +150,6 @@ msgid "ID"
 msgstr ""
 
 #. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_ir_attachment_metadata_message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_ir_attachment_metadata_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr ""
-
-#. module: external_file_location
 #: selection:external.file.task,method_type:0
 msgid "Import"
 msgstr ""
@@ -188,16 +162,6 @@ msgstr ""
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_new_name
 msgid "Imported File will be renamed to this nameName can use mako template where obj is an ir_attachement. template exemple :   ${obj.name}-${obj.create_date}.csv"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_is_follower
-msgid "Is Follower"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_last_post
-msgid "Last Message Date"
 msgstr ""
 
 #. module: external_file_location
@@ -219,6 +183,7 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: external_file_location
+#: model:ir.model,name:external_file_location.model_external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_location_id
 #: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_location_id
 #: model:ir.ui.view,arch_db:external_file_location.view_location_form
@@ -236,18 +201,13 @@ msgid "Md5 check"
 msgstr ""
 
 #. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_ids
-msgid "Messages"
-msgstr ""
-
-#. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_method_type
 msgid "Method type"
 msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_move_path
-msgid "Move path"
+msgid "Move Path"
 msgstr ""
 
 #. module: external_file_location
@@ -260,22 +220,7 @@ msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_new_name
-msgid "New name"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_needaction_counter
-msgid "Number of Actions"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_ir_attachment_metadata_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,help:external_file_location.field_ir_attachment_metadata_message_unread_counter
-msgid "Number of unread messages"
+msgid "New Name"
 msgstr ""
 
 #. module: external_file_location
@@ -328,20 +273,5 @@ msgstr ""
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_file_type
 msgid "The file type determines an import method to be used to parse and transform data before their import in ERP"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: external_file_location
-#: model:ir.model,name:external_file_location.model_ir_attachment_metadata
-msgid "ir.attachment.metadata"
 msgstr ""
 
