@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-07 01:47+0000\n"
-"PO-Revision-Date: 2017-12-07 01:47+0000\n"
+"POT-Creation-Date: 2018-03-02 18:41+0000\n"
+"PO-Revision-Date: 2018-03-02 18:41+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 "nouveau son mot de passe"
 
 #. module: password_security
-#: code:addons/password_security/models/res_users.py:151
+#: code:addons/password_security/models/res_users.py:153
 #, python-format
 msgid "Cannot use the most recent %d passwords"
 msgstr "Interdire l'utilisation des %d mots de passe les plus récents"

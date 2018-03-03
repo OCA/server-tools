@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
 msgid "Conditional"
-msgstr ""
+msgstr "Uvjetno"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_create_uid
@@ -61,17 +61,17 @@ msgstr "Polje"
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_name
 msgid "Field Name"
-msgstr ""
+msgstr "Naziv polja"
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr ""
+msgstr "Definicja usporedbe za uvoz polja"
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_field_id
 msgid "Field that will be part of an unique key."
-msgstr ""
+msgstr "Polje koje će biti dio jedinstvenog ključa"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_ids
@@ -81,7 +81,7 @@ msgstr "Polja"
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_ids
 msgid "Fields that will define an unique key."
-msgstr ""
+msgstr "Polje koje će definirati jedinstveni ključ."
 
 #. module: base_import_match
 #: model:ir.ui.view,arch_db:base_import_match.match_search_view
@@ -115,7 +115,7 @@ msgstr ""
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_imported_value
 msgid "Imported value"
-msgstr ""
+msgstr "Uvežena vrijednost"
 
 #. module: base_import_match
 #: model:ir.model.fields,help:base_import_match.field_base_import_match_field_model_id

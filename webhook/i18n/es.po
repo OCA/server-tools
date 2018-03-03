@@ -5,13 +5,14 @@
 # Translators:
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:11+0000\n"
-"PO-Revision-Date: 2017-12-01 02:11+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-02 18:42+0000\n"
+"PO-Revision-Date: 2018-03-02 18:42+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Activo"
 #. module: webhook
 #: model:ir.ui.view,arch_db:webhook.view_webhook_form
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_name
@@ -55,12 +56,12 @@ msgstr "Nombre a mostrar"
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_python_code_get_ip
 msgid "Get IP"
-msgstr ""
+msgstr "Obtener IP"
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_python_code_get_event
 msgid "Get event"
-msgstr ""
+msgstr "Obtener evento"
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_id
@@ -72,7 +73,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_ids
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_name
 msgid "IP or Network Address"
-msgstr ""
+msgstr "Dirección IP o de red"
 
 #. module: webhook
 #: model:ir.model.fields,help:webhook.field_webhook_address_name
@@ -86,7 +87,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:webhook.field_webhook___last_update
 #: model:ir.model.fields,field_description:webhook.field_webhook_address___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Última modificación el"
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_write_uid
@@ -166,4 +167,4 @@ msgstr ""
 #. module: webhook
 #: model:ir.model,name:webhook.model_webhook_address
 msgid "webhook.address"
-msgstr ""
+msgstr "webhook.address"

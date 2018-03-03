@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr "Otkaži"
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Create QWeb view"
-msgstr ""
+msgstr "Kreira QWeb pogled"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_create_uid
@@ -46,12 +47,12 @@ msgstr "Naziv "
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliciraj"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
 msgid "Duplicate Report"
-msgstr ""
+msgstr "Dupliciraj izvještaj"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_id
@@ -77,33 +78,33 @@ msgstr "Zadnje ažuriranje"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr ""
+msgstr "Dupliciranje izvještaja"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
 msgid "Suffix"
-msgstr ""
+msgstr "Sufiks"
 
 #. module: base_report_auto_create_qweb
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr ""
+msgstr "Naziv predloška mora sadržavati najmanje jednu točku"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
 msgid "This suffix will be added to the report"
-msgstr ""
+msgstr "Ovaj sufiks će biti dodan izvještaju"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml
 msgid "ir.actions.report.xml"
-msgstr ""
+msgstr "ir.actions.report.xml"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml_duplicate
 msgid "ir.actions.report.xml.duplicate"
-msgstr ""
+msgstr "ir.actions.report.xml.duplicate"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view

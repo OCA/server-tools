@@ -3,14 +3,15 @@
 # * dead_mans_switch_client
 # 
 # Translators:
-# Bole <bole@dajmi5.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 10:34+0000\n"
-"PO-Revision-Date: 2016-07-09 10:34+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2016\n"
+"POT-Creation-Date: 2018-03-02 18:41+0000\n"
+"PO-Revision-Date: 2018-03-02 18:41+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: dead_mans_switch_client
 #: model:ir.actions.act_window,name:dead_mans_switch_client.action_setup
 msgid "Configure the dead man's switch server"
-msgstr ""
+msgstr "Postavite server zaisključivanje \"mrtvih\" konekcija"
 
 #. module: dead_mans_switch_client
 #: model:ir.model.fields,field_description:dead_mans_switch_client.field_dead_mans_switch_client_display_name
@@ -41,4 +42,4 @@ msgstr "Zadnje modificirano"
 #. module: dead_mans_switch_client
 #: model:ir.model,name:dead_mans_switch_client.model_dead_mans_switch_client
 msgid "dead.mans.switch.client"
-msgstr ""
+msgstr "dead.mans.switch.client"

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-05 07:29+0000\n"
 "PO-Revision-Date: 2017-05-05 07:29+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "ID"
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_country_company_config_settings___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Última actualización el"
 
 #. module: company_country
 #: model:ir.model.fields,field_description:company_country.field_country_company_config_settings_write_uid
@@ -68,4 +69,4 @@ msgstr "Última actualización el"
 #. module: company_country
 #: model:ir.model,name:company_country.model_country_company_config_settings
 msgid "country.company.config.settings"
-msgstr ""
+msgstr "country.company.config.settings"

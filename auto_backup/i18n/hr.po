@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:09+0000\n"
-"PO-Revision-Date: 2017-12-01 02:09+0000\n"
+"POT-Creation-Date: 2018-03-02 18:39+0000\n"
+"PO-Revision-Date: 2018-03-02 18:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,8 @@ msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
 msgstr ""
+"Arhive starije od navedenog će biti automatski obrisane. Postavite na 0 za "
+"gašenje automatike brisanja."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -151,7 +153,7 @@ msgstr "Folder"
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr ""
+msgstr "Idite na Postavke / Tehnički / Automatizacija / Zakazane radnje."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -255,12 +257,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_name
 msgid "Summary of this backup process"
-msgstr ""
+msgstr "Sažetak ovog procesa arhiviranja"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
-msgstr ""
+msgstr "Test SFTP veze"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_host
@@ -302,12 +304,12 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr ""
+msgstr "Upozorenje:"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
 msgid "db.backup"
-msgstr ""
+msgstr "db.backup"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -317,4 +319,4 @@ msgstr ""
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
-msgstr ""
+msgstr "sftp.example.com"
