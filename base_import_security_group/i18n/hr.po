@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 11:57+0000\n"
-"PO-Revision-Date: 2017-07-26 11:57+0000\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: base_import_security_group
 #: model:res.groups,name:base_import_security_group.group_import_csv
 msgid "Import CSV/Excel files"
-msgstr ""
+msgstr "Uvoz CSV/Excel datoteka"
 
 #. module: base_import_security_group
 #: model:ir.model,name:base_import_security_group.model_base
