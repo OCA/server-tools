@@ -206,6 +206,7 @@ class ImportOdooDatabase(models.Model):
         xmlid = '%d-%s-%d' % (
             self.id, model._name.replace('.', '_'), _id or 0,
         )
+        record = self._create_record_filter_fields(model, record)
         new = self.env.ref('base_import_odoo.%s' % xmlid, False)
         if new and new.exists():
             if self.duplicates == 'overwrite_empty':
@@ -242,6 +243,14 @@ class ImportOdooDatabase(models.Model):
             'import_database_id': self.id,
             'import_database_record_id': remote_id,
         })
+
+    def _create_record_filter_fields(self, model, record):
+        """Return a version of record with unknown fields for model removed"""
+        return {
+            key: value
+            for key, value in record.items()
+            if key in model._fields
+        }
 
     def _create_record_context(self, model, record):
         """Return a context that is used when creating a record"""
