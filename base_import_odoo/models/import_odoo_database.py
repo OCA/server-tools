@@ -149,7 +149,8 @@ class ImportOdooDatabase(models.Model):
                 )
                 try:
                     self._run_import_model(context)
-                except:
+                except:  # noqa: E722
+                    # pragma: no cover
                     error = traceback.format_exc()
                     self.env.cr.rollback()
                     self.write({
