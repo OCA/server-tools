@@ -37,6 +37,11 @@ Once installed, you can change the ir.config_parameter value for the key
 'auth_brute_force.max_attempt_qty' (10 by default) that define the max number
 of attempts allowed before the user was banned.
 
+You can also add a ir.config_parameter value for the key
+'auth_brute_force.environ_log' which allow to log also specific request
+environment variables. The format comma-delimited list of varible names
+example: REMOTE_ADDR,REMOTE_PORT
+
 Usage
 -----
 
@@ -97,6 +102,7 @@ Contributors
 ------------
 
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
+* Sylvain CALADOR (https://akretion.com)
 
 Maintainer
 ----------

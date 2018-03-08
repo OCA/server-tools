@@ -49,6 +49,11 @@ class LoginController(Home):
                 [('key', '=', 'auth_brute_force.max_attempt_qty')],
                 ['value'])[0]['value'])
 
+            environ_log = config_obj.search_read(
+                cursor, SUPERUSER_ID,
+                [('key', '=', 'auth_brute_force.environ_log')],
+                ['value'])
+
             # Test if remote user is banned
             banned = banned_remote_obj.search(cursor, SUPERUSER_ID, [
                 ('remote', '=', remote)])
@@ -68,10 +73,20 @@ class LoginController(Home):
 
             # Log attempt
             cursor.commit()
+
+            environ = ''
+            if environ_log:
+                value = environ_log[0]['value']
+                log_keys = [k.strip() for k in value.split(',')]
+                for key, value in request.httprequest.environ.items():
+                    if key in log_keys:
+                        environ += '%s=%s\n' % (key, value)
+
             attempt_obj.create(cursor, SUPERUSER_ID, {
                 'attempt_date': fields.Datetime.now(),
                 'login': request.params['login'],
                 'remote': remote,
+                'environ': environ,
                 'result': banned and 'banned' or (
                     result and 'successfull' or 'failed'),
             })
