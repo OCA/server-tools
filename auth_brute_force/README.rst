@@ -39,8 +39,13 @@ of attempts allowed before the user was banned.
 
 You can also add a ir.config_parameter value for the key
 'auth_brute_force.environ_log' which allows to log also specific request
-environment variables. The format comma-delimited list of varible names
+environment variables.
+
+The format is a  comma-delimited list of variable names
 example: REMOTE_ADDR,REMOTE_PORT
+
+or you can just use the jocker '*' for log or discover all variables,
+the variable names depends of the reverse-proxy configuration.
 
 Usage
 -----

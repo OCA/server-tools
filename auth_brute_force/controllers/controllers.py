@@ -76,10 +76,10 @@ class LoginController(Home):
 
             environ = ''
             if environ_log:
-                value = environ_log[0]['value']
-                log_keys = [k.strip() for k in value.split(',')]
+                filter_value = environ_log[0]['value']
+                filter_keys = [k.strip() for k in filter_value.split(',')]
                 for key, value in request.httprequest.environ.items():
-                    if key in log_keys:
+                    if key in filter_keys or filter_value == '*':
                         environ += '%s=%s\n' % (key, value)
 
             attempt_obj.create(cursor, SUPERUSER_ID, {
