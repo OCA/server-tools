@@ -45,7 +45,7 @@ The format is a  comma-delimited list of variable names
 example: REMOTE_ADDR,REMOTE_PORT
 
 or you can just use the jocker '*' for log or discover all variables,
-the variable names depends of the reverse-proxy configuration.
+most variable names depends of WSGI specification and reverse-proxy configuration.
 
 Usage
 -----
