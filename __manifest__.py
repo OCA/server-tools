@@ -18,4 +18,5 @@
         "views/menu.xml",
         'security/ir.model.access.csv',
     ],
+    "license": "AGPL-3",
 }

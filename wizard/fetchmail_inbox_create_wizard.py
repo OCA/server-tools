@@ -23,7 +23,8 @@ class FetchmailInboxCreateWizard(models.TransientModel):
                 object_id = model.create({}).id
 
             this.mail_id.fetchmail_inbox_move_to_record(
-                    this.model_id.model, object_id)
+                this.model_id.model, object_id,
+            )
 
         return {
             'type': 'ir.actions.act_window',
