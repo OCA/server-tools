@@ -41,6 +41,8 @@ class ResAuthenticationAttempt(models.Model):
 
     remote = fields.Char(string='Remote ID')
 
+    environ = fields.Text(string='Environment')
+
     result = fields.Selection(
         selection=_ATTEMPT_RESULT, string='Authentication Result')
 
