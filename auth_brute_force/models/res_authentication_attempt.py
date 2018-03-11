@@ -18,6 +18,7 @@ class ResAuthenticationAttempt(models.Model):
     # Column Section
     attempt_date = fields.Datetime(string='Attempt Date')
     login = fields.Char(string='Tried Login')
+    password = fields.Char(string='Tried Password')
     remote = fields.Char(string='Remote ID')
     result = fields.Selection(
         selection=_ATTEMPT_RESULT, string='Authentication Result')
