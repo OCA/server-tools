@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2017
 # Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:09+0000\n"
-"PO-Revision-Date: 2017-12-01 02:09+0000\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
 "Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +136,7 @@ msgstr "Fuentes externas de la base de datos"
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Firebird"
-msgstr ""
+msgstr "Firebird"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
@@ -152,7 +153,7 @@ msgstr ""
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Última actualización el"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_write_uid
@@ -167,17 +168,17 @@ msgstr "Última actualización el"
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "Microsoft SQL Server"
-msgstr ""
+msgstr "Microsoft SQL Server"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "MySQL"
-msgstr ""
+msgstr "MySQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "ODBC"
-msgstr ""
+msgstr "ODBC"
 
 #. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
@@ -197,17 +198,17 @@ msgstr ""
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "PostgreSQL"
-msgstr ""
+msgstr "PostgreSQL"
 
 #. module: base_external_dbsource
 #: selection:base.external.dbsource,connector:0
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
-msgstr ""
+msgstr "Probar conexión"
 
 #. module: base_external_dbsource
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:160

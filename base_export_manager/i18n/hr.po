@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:09+0000\n"
-"PO-Revision-Date: 2017-12-01 02:09+0000\n"
+"POT-Creation-Date: 2018-03-02 18:39+0000\n"
+"PO-Revision-Date: 2018-03-02 18:39+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_line_model1_id
 #: model:ir.model.fields,help:base_export_manager.field_ir_exports_model_id
 msgid "Database model to export."
-msgstr ""
+msgstr "Model iz baze za izvoz."
 
 #. module: base_export_manager
 #. openerp-web
@@ -36,68 +36,68 @@ msgstr "Izvoz"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_model_access_perm_export
 msgid "Export Access"
-msgstr ""
+msgstr "Pristup izvozu"
 
 #. module: base_export_manager
 #: model:ir.ui.view,arch_db:base_export_manager.ir_exports_form_view
 msgid "Export Profile"
-msgstr ""
+msgstr "Profil izvoza"
 
 #. module: base_export_manager
 #: model:ir.actions.act_window,name:base_export_manager.ir_exports_action
 #: model:ir.ui.menu,name:base_export_manager.ir_exports_menu
 #: model:ir.ui.view,arch_db:base_export_manager.ir_exports_tree_view
 msgid "Export Profiles"
-msgstr ""
+msgstr "Profili izvoza"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:163
 #, python-format
 msgid "Field '%s' already exists"
-msgstr ""
+msgstr "Polje  '%s' već postoji"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:157
 #, python-format
 msgid "Field '%s' does not exist"
-msgstr ""
+msgstr "Polje '%s' ne postoji"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:191
 #, python-format
 msgid "Field '%s' not found in model '%s'"
-msgstr ""
+msgstr "Polje '%s' nije pronađeno u modelu '%s'"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field1_id
 msgid "First field"
-msgstr ""
+msgstr "Prvo polje"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model1_id
 msgid "First model"
-msgstr ""
+msgstr "Prvi model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field4_id
 msgid "Fourth field"
-msgstr ""
+msgstr "Četvrto polje"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model4_id
 msgid "Fourth model"
-msgstr ""
+msgstr "Četvrti model"
 
 #. module: base_export_manager
 #: code:addons/base_export_manager/models/ir_exports_line.py:135
 #, python-format
 msgid "It's not allowed to have more than 4 levels depth: %s"
-msgstr ""
+msgstr "Nije omogućeno ići više od 4 nivoa u dubinu: %s"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_label
 msgid "Label"
-msgstr ""
+msgstr "Natpis"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_model_id
@@ -107,12 +107,12 @@ msgstr "Model"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field2_id
 msgid "Second field"
-msgstr ""
+msgstr "Drugo polje"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model2_id
 msgid "Second model"
-msgstr ""
+msgstr "Drugi model"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
@@ -122,12 +122,12 @@ msgstr "Sekvenca"
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
 msgid "Third field"
-msgstr ""
+msgstr "Treće polje"
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_model3_id
 msgid "Third model"
-msgstr ""
+msgstr "Treći model"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_res_users
@@ -138,17 +138,17 @@ msgstr "Korisnici"
 #: code:addons/base_export_manager/models/ir_exports.py:66
 #, python-format
 msgid "You must supply a model or resource."
-msgstr ""
+msgstr "Morate odabrati model ili reurs."
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports
 msgid "ir.exports"
-msgstr ""
+msgstr "ir.exports"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_exports_line
 msgid "ir.exports.line"
-msgstr ""
+msgstr "ir.exports.line"
 
 #. module: base_export_manager
 #: model:ir.model,name:base_export_manager.model_ir_model_access

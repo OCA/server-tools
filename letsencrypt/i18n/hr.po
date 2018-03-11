@@ -3,14 +3,16 @@
 # * letsencrypt
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Bole <bole@dajmi5.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (9.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-28 02:43+0000\n"
-"PO-Revision-Date: 2016-05-25 16:43+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Croatian (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr/)\n"
+"POT-Creation-Date: 2018-03-02 18:41+0000\n"
+"PO-Revision-Date: 2018-03-02 18:41+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,7 +22,7 @@ msgstr ""
 #. module: letsencrypt
 #: model:ir.model,name:letsencrypt.model_letsencrypt
 msgid "Abstract model providing functions for letsencrypt"
-msgstr ""
+msgstr "Apstraktni model sa metodama za letsencrypt"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_display_name
@@ -28,10 +30,10 @@ msgid "Display Name"
 msgstr "Naziv "
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:44
+#: code:addons/letsencrypt/models/letsencrypt.py:43
 #, python-format
 msgid "Error calling %s: %d"
-msgstr ""
+msgstr "Greška u pozivu %s: %d"
 
 #. module: letsencrypt
 #: model:ir.model.fields,field_description:letsencrypt.field_letsencrypt_id
@@ -44,7 +46,7 @@ msgid "Last Modified on"
 msgstr "Zadnje modificirano"
 
 #. module: letsencrypt
-#: code:addons/letsencrypt/models/letsencrypt.py:93
+#: code:addons/letsencrypt/models/letsencrypt.py:90
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
-msgstr ""
+msgstr "Let's encrypt ne radi sa privatnim adresama ili lokalnim domenama."

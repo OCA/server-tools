@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-02 18:40+0000\n"
+"PO-Revision-Date: 2018-03-02 18:40+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
 msgid "Attachment"
-msgstr ""
+msgstr "Adjunto"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,help:base_multi_image.image_action
@@ -39,7 +40,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_comments
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_create_uid
@@ -54,7 +55,7 @@ msgstr "Creado el"
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "Database"
-msgstr ""
+msgstr "Base de datos"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_display_name
@@ -65,12 +66,12 @@ msgstr "Nombre a mostrar"
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_extension
 msgid "File extension"
-msgstr ""
+msgstr "Extensión del archivo"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
 msgid "Filename"
-msgstr ""
+msgstr "Nombre del archivo"
 
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
@@ -80,7 +81,7 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_image_main
 msgid "Full-sized image"
-msgstr ""
+msgstr "Imagen de tamaño completo"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_id
@@ -91,13 +92,13 @@ msgstr "ID"
 #. module: base_multi_image
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_path
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_path
 msgid "Image path"
-msgstr ""
+msgstr "Ruta de la imagen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_url
@@ -112,19 +113,19 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_name
 msgid "Image title"
-msgstr ""
+msgstr "Título de la imagen"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner_image_ids
 #: model:ir.ui.view,arch_db:base_multi_image.image_tree_view
 msgid "Images"
-msgstr ""
+msgstr "Imágenes"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image___last_update
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_owner___last_update
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr "Última actualización el"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_write_uid
@@ -186,7 +187,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_id
 #: model:ir.ui.view,arch_db:base_multi_image.image_form_view
 msgid "Owner"
-msgstr ""
+msgstr "Propietario"
 
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_model

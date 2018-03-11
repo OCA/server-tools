@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-16 02:16+0000\n"
-"PO-Revision-Date: 2017-12-16 02:16+0000\n"
+"POT-Creation-Date: 2018-03-02 18:39+0000\n"
+"PO-Revision-Date: 2018-03-02 18:39+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,9 @@ msgid ""
 "            The user will be able to export data.\n"
 "        "
 msgstr ""
+"\n"
+"        Korisnik ć emoći izvoziti podatke.\n"
+"        "
 
 #. module: base_export_security
 #: code:addons/base_export_security/models/export.py:72
@@ -34,6 +37,8 @@ msgid ""
 "%(records)d <b>%(model)s</b> records exported by "
 "<b>%(user)s</b>.<br><b>Fields exported:</b> %(fields)s"
 msgstr ""
+"%(records)d <b>%(model)s</b> zapisa izvezao <b>%(user)s</b>.<br><b>izežena "
+"polja :</b> %(fields)s"
 
 #. module: base_export_security
 #: code:addons/base_export_security/tests/test_export.py:89
@@ -42,6 +47,8 @@ msgid ""
 "<p>%(records)d <b>%(model)s</b> records exported by "
 "<b>%(user)s</b>.<br><b>Fields exported:</b> %(fields)s</p>"
 msgstr ""
+"<p>%(records)d <b>%(model)s</b> zapisa izvezao "
+"<b>%(user)s</b>.<br><b>Izvežena polja:</b> %(fields)s</p>"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_create_uid
@@ -56,12 +63,12 @@ msgstr "Kreirano"
 #. module: base_export_security
 #: model:ir.model,name:base_export_security.model_export_event
 msgid "Data Export Record"
-msgstr ""
+msgstr "Zapis izvoza podataka"
 
 #. module: base_export_security
 #: model:ir.ui.menu,name:base_export_security.export_category
 msgid "Data Exports"
-msgstr ""
+msgstr "Izvozi podataka"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_display_name
@@ -80,12 +87,12 @@ msgstr "Izvoz"
 #: model:ir.ui.view,arch_db:base_export_security.export_view_search
 #: model:ir.ui.view,arch_db:base_export_security.export_view_tree
 msgid "Export Date"
-msgstr ""
+msgstr "Datum izvoza"
 
 #. module: base_export_security
 #: model:ir.ui.view,arch_db:base_export_security.export_view_form
 msgid "Export Log"
-msgstr ""
+msgstr "Dnevnik izvoza"
 
 #. module: base_export_security
 #: model:ir.actions.act_window,name:base_export_security.export_action_log
@@ -93,34 +100,34 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_export_security.export_view_search
 #: model:ir.ui.view,arch_db:base_export_security.export_view_tree
 msgid "Export Logs"
-msgstr ""
+msgstr "Dnevnici izvoza"
 
 #. module: base_export_security
 #: model:res.groups,name:base_export_security.export_group
 msgid "Export Rights"
-msgstr ""
+msgstr "Ovlasti izvoza"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_field_ids
 #: model:ir.ui.view,arch_db:base_export_security.export_view_form
 msgid "Exported Fields"
-msgstr ""
+msgstr "Izvežena polja"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_model_id
 msgid "Exported Model"
-msgstr ""
+msgstr "Izveženi model"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_record_ids
 #: model:ir.ui.view,arch_db:base_export_security.export_view_form
 msgid "Exported Records"
-msgstr ""
+msgstr "Izveženi zapisi"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_user_id
 msgid "Exported by"
-msgstr ""
+msgstr "Izvezao"
 
 #. module: base_export_security
 #: model:ir.model.fields,field_description:base_export_security.field_export_event_id
@@ -151,7 +158,7 @@ msgstr "Naziv"
 #: code:addons/base_export_security/models/base.py:25
 #, python-format
 msgid "You do not have permission to export data"
-msgstr ""
+msgstr "Nemate ovlasti za izvoz podataka"
 
 #. module: base_export_security
 #: model:ir.model,name:base_export_security.model_base
@@ -161,4 +168,4 @@ msgstr "base"
 #. module: base_export_security
 #: model:mail.channel,name:base_export_security.export_channel
 msgid "data exports"
-msgstr ""
+msgstr "izvozi podataka"
