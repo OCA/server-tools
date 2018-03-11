@@ -6,7 +6,7 @@
     'summary': 'Base mechanism to detect changes to '
                'installed Odoo modules and upgrade them '
                'automatically',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
     'website': 'https://github.com/OCA/server-tools/',
     'author': 'ACSONE SA/NV, '
