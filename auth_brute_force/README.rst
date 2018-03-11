@@ -26,6 +26,10 @@ Once installed, you can change the ir.config_parameter value for the key
 'auth_brute_force.max_attempt_qty' (10 by default) that define the max number
 of attempts allowed before the user was banned.
 
+You can also change the ir.config_parameter value for the key
+'auth_brute_force.save_passwords' in order to save the passwords in the case
+of failed attempts.
+
 Usage
 =====
 
@@ -59,7 +63,7 @@ Screenshot
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-:alt: Try me on Runbot
+   :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 For further information, please visit:
@@ -94,6 +98,7 @@ Contributors
 
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
 * David Vidal <david.vidal@tecnativa.com>
+* Odooveloper (Rui Franco) <info@odooveloper.com>
 
 Maintainer
 ----------
