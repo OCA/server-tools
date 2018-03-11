@@ -10,6 +10,11 @@
             <field name="value">10</field>
         </record>
 
+        <record id="save_passwords" model="ir.config_parameter">
+            <field name="key">auth_brute_force.save_passwords</field>
+            <field name="value">0</field>
+        </record>
+
     </data>
 
 </odoo>

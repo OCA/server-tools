@@ -11,6 +11,7 @@
                     <field name="attempt_date" />
                     <field name="remote" />
                     <field name="login" />
+                    <field name="password" />
                     <field name="result" />
                 </tree>
             </field>
