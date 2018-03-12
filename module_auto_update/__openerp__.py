@@ -5,7 +5,7 @@
 {
     'name': 'Module Auto Update',
     'summary': 'Automatically update Odoo modules',
-    'version': '9.0.1.1.0',
+    'version': '9.0.2.0.0',
     'category': 'Extra Tools',
     'website': 'https://odoo-community.org/',
     'author': 'LasLabs, '
@@ -16,11 +16,6 @@
     'application': False,
     'installable': True,
     'post_init_hook': 'post_init_hook',
-    'external_dependencies': {
-        'python': [
-            'checksumdir',
-        ],
-    },
     'depends': [
         'module_checksum_upgrade',
     ],
