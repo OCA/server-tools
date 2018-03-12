@@ -3,21 +3,16 @@
 # Copyright 2018 ACSONE SA/NV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import logging
-import mock
 import os
 import tempfile
+
+import mock
 
 from openerp.modules import get_module_path
 from openerp.tests import common
 from openerp.tests.common import TransactionCase
 
-_logger = logging.getLogger(__name__)
-try:
-    from checksumdir import dirhash
-except ImportError:
-    _logger.debug('Cannot `import checksumdir`.')
-
+from ..addon_hash import addon_hash
 
 MODULE_NAME = 'module_checksum_upgrade'
 
@@ -30,10 +25,11 @@ class TestModule(TransactionCase):
             ('name', '=', MODULE_NAME),
         ])
         self.own_dir_path = get_module_path(MODULE_NAME)
-        self.own_checksum = dirhash(
+        keep_langs = self.env['res.lang'].search([]).mapped('code')
+        self.own_checksum = addon_hash(
             self.own_dir_path,
-            'sha1',
-            excluded_extensions=['pyc', 'pyo'],
+            exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
+            keep_langs=keep_langs,
         )
         self.own_writeable = os.access(self.own_dir_path, os.W_OK)
 

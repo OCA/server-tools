@@ -17,11 +17,6 @@
     'license': 'LGPL-3',
     'application': False,
     'installable': True,
-    'external_dependencies': {
-        'python': [
-            'checksumdir',
-        ],
-    },
     'depends': [
         'base',
     ],

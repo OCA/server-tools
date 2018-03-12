@@ -10,16 +10,14 @@ import os
 from openerp import api, models
 from openerp.modules.module import get_module_path
 
-_logger = logging.getLogger(__name__)
-try:
-    from checksumdir import dirhash
-except ImportError:
-    _logger.debug('Cannot `import checksumdir`.')
+from ..addon_hash import addon_hash
 
 PARAM_INSTALLED_CHECKSUMS = \
     'module_checksum_upgrade.installed_checksums'
-PARAM_EXCLUDED_EXTENSIONS = \
-    'module_checksum_upgrade.checksum_excluded_extensions'
+PARAM_EXCLUDE_PATTERNS = \
+    'module_checksum_upgrade.exclude_patterns'
+
+_logger = logging.getLogger(__name__)
 
 
 class Module(models.Model):
@@ -29,17 +27,19 @@ class Module(models.Model):
     def _get_checksum_dir(self):
         self.ensure_one()
 
-        excluded_extensions = self.env["ir.config_parameter"].get_param(
-            PARAM_EXCLUDED_EXTENSIONS,
-            'pyc,pyo',
-        ).split(",")
+        exclude_patterns = self.env["ir.config_parameter"].get_param(
+            PARAM_EXCLUDE_PATTERNS,
+            '*.pyc,*.pyo,*.pot,static/*',
+        )
+        exclude_patterns = [p.strip() for p in exclude_patterns.split(',')]
+        keep_langs = self.env['res.lang'].search([]).mapped('code')
 
         module_path = get_module_path(self.name)
         if module_path and os.path.isdir(module_path):
-            checksum_dir = dirhash(
+            checksum_dir = addon_hash(
                 module_path,
-                'sha1',
-                excluded_extensions=excluded_extensions,
+                exclude_patterns,
+                keep_langs,
             )
         else:
             checksum_dir = False

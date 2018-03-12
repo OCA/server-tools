@@ -31,6 +31,19 @@ in an Odoo shell session::
 
   env['ir.module.module'].upgrade_changed_checksum()
 
+Configuration
+=============
+
+This module supports the following system parameters:
+
+* ``module_checksum_upgrade.exclude_patterns``: comma-separated list of file 
+  name patterns to ignore when computing addon checksums. Defaults to 
+  ``*.pyc,*.pyo,*.pot,static/*``. Filename patterns must be compatible
+  with the python ``fnmatch`` function.
+
+In addition to the above pattern, .po files corresponding to languages that
+are not installed in the Odoo database are ignored when computing checksums.
+
 Bug Tracker
 ===========
 
@@ -38,13 +51,6 @@ Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
-
-Roadmap
-=======
-
-* Add a mechanism to only take into account installed translations
-  when computing checksums (and ignore ``i18n/*.pot``).
-* Ignore the content of the ``static`` directory when computing checksums.
 
 Credits
 =======
