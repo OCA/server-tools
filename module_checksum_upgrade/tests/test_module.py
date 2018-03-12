@@ -13,6 +13,7 @@ from openerp.tests import common
 from openerp.tests.common import TransactionCase
 
 from ..addon_hash import addon_hash
+from ..models.module import IncompleteUpgradeError
 
 MODULE_NAME = 'module_checksum_upgrade'
 
@@ -141,5 +142,40 @@ class TestModuleAfterInstall(TransactionCase):
                 saved_checksums = Imm._get_saved_checksums()
                 self.assertTrue(saved_checksums['base'])
                 self.assertTrue(saved_checksums[MODULE_NAME])
+            finally:
+                Bmu._revert_method('upgrade_module')
+
+    def test_incomplete_upgrade(self):
+        Imm = self.env['ir.module.module']
+        Bmu = self.env['base.module.upgrade']
+
+        installed_modules = Imm.search([('state', '=', 'installed')])
+        # change the checksum of 'base'
+        Imm._save_installed_checksums()
+        saved_checksums = Imm._get_saved_checksums()
+        saved_checksums['base'] = False
+        Imm._save_checksums(saved_checksums)
+
+        def upgrade_module_mock(self_model):
+            upgrade_module_mock.call_count += 1
+            # since we are upgrading base, all installed module
+            # must have been marked to upgrade at this stage
+            self.assertEqual(self.base_module.state, 'to upgrade')
+            self.assertEqual(self.own_module.state, 'to upgrade')
+            installed_modules.write({'state': 'installed'})
+            # simulate partial upgrade
+            self.own_module.write({'state': 'to upgrade'})
+
+        upgrade_module_mock.call_count = 0
+
+        # upgrade_changed_checksum commits, so mock that
+        with mock.patch.object(self.env.cr, 'commit'):
+
+            # we simulate an install by setting module states
+            Bmu._patch_method('upgrade_module', upgrade_module_mock)
+            try:
+                with self.assertRaises(IncompleteUpgradeError):
+                    Imm.upgrade_changed_checksum()
+                self.assertEqual(upgrade_module_mock.call_count, 1)
             finally:
                 Bmu._revert_method('upgrade_module')
