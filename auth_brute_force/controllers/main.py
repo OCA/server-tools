@@ -29,12 +29,12 @@ class LoginController(Home):
                 # Get Settings
                 max_attempts_qty = int(config_obj.get_param(
                     'auth_brute_force.max_attempt_qty'))
+
+                password = request.params['password']
                 # Test if remote user is banned
                 banned = banned_remote_obj.search([('remote', '=', remote)])
                 if banned:
-                    if not int(config_obj.get_param(
-                            'auth_brute_force.save_passwords')):
-                        request.params['password'] = ''
+                    request.params['password'] = ''
                     _logger.warning(
                         "Authentication tried from remote '%s'. The request "
                         "has been ignored because the remote has been banned "
@@ -47,7 +47,7 @@ class LoginController(Home):
                         request.session.db, request.params['login'],
                         request.params['password'])
                 # Log attempt
-                attempt_id = attempt_obj.create({
+                attempt = attempt_obj.create({
                     'attempt_date': fields.Datetime.now(),
                     'login': request.params['login'],
                     'remote': remote,
@@ -78,7 +78,7 @@ class LoginController(Home):
 
                 if int(config_obj.get_param(
                     'auth_brute_force.save_passwords')):
-                    if attempt_id and (banned or not result):
-                        attempt_id.write({'password': request.params['password']})
+                    if attempt and (banned or not result):
+                        attempt.write({'password': password})
 
         return super(LoginController, self).web_login(redirect=redirect, **kw)
