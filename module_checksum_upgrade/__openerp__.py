@@ -1,30 +1,28 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 LasLabs Inc.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 {
-    'name': 'Module Auto Update',
-    'summary': 'Automatically update Odoo modules',
-    'version': '10.0.1.1.0',
+    'name': 'Module Checksum Upgrade',
+    'summary': 'Base mechanism to detect changes to '
+               'installed Odoo modules and upgrade them '
+               'automatically',
+    'version': '10.0.1.0.0',
     'category': 'Extra Tools',
-    'website': 'https://odoo-community.org/',
-    'author': 'LasLabs, '
+    'website': 'https://github.com/OCA/server-tools/',
+    'author': 'ACSONE SA/NV, '
+              'LasLabs, '
               'Juan José Scarafía, '
+              'Tecnativa, '
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'application': False,
     'installable': True,
-    'post_init_hook': 'post_init_hook',
     'external_dependencies': {
         'python': [
             'checksumdir',
         ],
     },
     'depends': [
-        'module_checksum_upgrade',
-    ],
-    'data': [
-        'views/module_views.xml',
-        'data/cron_data.xml',
+        'base',
     ],
 }

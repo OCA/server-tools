@@ -20,7 +20,7 @@ try:
 except ImportError:
     _logger.debug('Cannot `import checksumdir`.')
 
-model = 'odoo.addons.module_auto_update.models.module'
+model = 'openerp.addons.module_checksum_upgrade.models.module'
 
 
 class EndTestException(Exception):
