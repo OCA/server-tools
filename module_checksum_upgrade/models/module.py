@@ -9,6 +9,7 @@ import os
 
 from openerp import api, models
 from openerp.modules.module import get_module_path
+from openerp.tools import config
 
 from ..addon_hash import addon_hash
 
@@ -86,7 +87,7 @@ class Module(models.Model):
         )
 
     @api.model
-    def upgrade_changed_checksum(self):
+    def upgrade_changed_checksum(self, overwrite_existing_translations=False):
         """ Run an upgrade of the database, upgrading only changed modules.
 
         Installed modules for which the checksum has changed since the
@@ -109,7 +110,13 @@ class Module(models.Model):
         step, it is therefore not intended to be run as part of a
         larger transaction.
         """
-        _logger.info("Checksum upgrade starting...")
+        _logger.info(
+            "Checksum upgrade starting (i18n-overwrite=%s)...",
+            overwrite_existing_translations
+        )
+
+        config['overwrite_existing_translations'] = \
+            overwrite_existing_translations
 
         _logger.info("Updating modules list...")
         self.update_list()
