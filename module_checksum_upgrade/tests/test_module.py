@@ -179,3 +179,25 @@ class TestModuleAfterInstall(TransactionCase):
                 self.assertEqual(upgrade_module_mock.call_count, 1)
             finally:
                 Bmu._revert_method('upgrade_module')
+
+    def test_nothing_to_upgrade(self):
+        Imm = self.env['ir.module.module']
+        Bmu = self.env['base.module.upgrade']
+
+        Imm._save_installed_checksums()
+
+        def upgrade_module_mock(self_model):
+            upgrade_module_mock.call_count += 1
+
+        upgrade_module_mock.call_count = 0
+
+        # upgrade_changed_checksum commits, so mock that
+        with mock.patch.object(self.env.cr, 'commit'):
+
+            # we simulate an install by setting module states
+            Bmu._patch_method('upgrade_module', upgrade_module_mock)
+            try:
+                Imm.upgrade_changed_checksum()
+                self.assertEqual(upgrade_module_mock.call_count, 0)
+            finally:
+                Bmu._revert_method('upgrade_module')
