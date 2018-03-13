@@ -6,6 +6,7 @@ import os
 import unittest
 
 from .. import addon_hash
+from ..models.module import DEFAULT_EXCLUDE_PATTERNS
 
 
 class TestAddonHash(unittest.TestCase):
@@ -40,7 +41,7 @@ class TestAddonHash(unittest.TestCase):
     def test_exclude(self):
         files = list(addon_hash._walk(
             self.data_dir,
-            exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
+            exclude_patterns=DEFAULT_EXCLUDE_PATTERNS.split(','),
             keep_langs=['fr_FR', 'nl'],
         ))
         self.assertEqual(files, [

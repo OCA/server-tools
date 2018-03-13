@@ -13,7 +13,7 @@ from openerp.tests import common
 from openerp.tests.common import TransactionCase
 
 from ..addon_hash import addon_hash
-from ..models.module import IncompleteUpgradeError
+from ..models.module import IncompleteUpgradeError, DEFAULT_EXCLUDE_PATTERNS
 
 MODULE_NAME = 'module_checksum_upgrade'
 
@@ -29,7 +29,7 @@ class TestModule(TransactionCase):
         keep_langs = self.env['res.lang'].search([]).mapped('code')
         self.own_checksum = addon_hash(
             self.own_dir_path,
-            exclude_patterns=['*.pyc', '*.pyo', '*.pot', 'static/*'],
+            exclude_patterns=DEFAULT_EXCLUDE_PATTERNS.split(','),
             keep_langs=keep_langs,
         )
         self.own_writeable = os.access(self.own_dir_path, os.W_OK)

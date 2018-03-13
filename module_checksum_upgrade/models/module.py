@@ -16,6 +16,8 @@ PARAM_INSTALLED_CHECKSUMS = \
     'module_checksum_upgrade.installed_checksums'
 PARAM_EXCLUDE_PATTERNS = \
     'module_checksum_upgrade.exclude_patterns'
+DEFAULT_EXCLUDE_PATTERNS = \
+    '*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*'
 
 _logger = logging.getLogger(__name__)
 
@@ -33,7 +35,7 @@ class Module(models.Model):
 
         exclude_patterns = self.env["ir.config_parameter"].get_param(
             PARAM_EXCLUDE_PATTERNS,
-            '*.pyc,*.pyo,*.pot,static/*',
+            DEFAULT_EXCLUDE_PATTERNS,
         )
         exclude_patterns = [p.strip() for p in exclude_patterns.split(',')]
         keep_langs = self.env['res.lang'].search([]).mapped('code')
