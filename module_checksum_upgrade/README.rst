@@ -68,6 +68,10 @@ Contributors
 * Juan José Scarafía <jjs@adhoc.com.ar>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
 
+The core concept of this module comes from `module_auto_update` which
+was initially implemented by LasLabs Inc, based on an idea from
+Jairo Llopis.
+
 Do not contact contributors directly about support or help with technical issues.
 
 Maintainer
