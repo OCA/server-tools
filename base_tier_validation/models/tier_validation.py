@@ -94,6 +94,21 @@ class TierValidation(models.AbstractModel):
                 "Error evaluating tier validation conditions.\n %s") % error)
         return res
 
+    @api.model
+    def _get_under_validation_exceptions(self):
+        """Extend for more field exceptions."""
+        return ['message_follower_ids']
+
+    @api.multi
+    def _check_allow_write_under_validation(self, vals):
+        """Allow to add exceptions for fields that are allowed to be written
+        even when the record is under validation."""
+        exceptions = self._get_under_validation_exceptions()
+        for val in vals:
+            if val not in exceptions:
+                return False
+        return True
+
     @api.multi
     def write(self, vals):
         for rec in self:
@@ -113,7 +128,8 @@ class TierValidation(models.AbstractModel):
                         "one record."))
             if (rec.review_ids and getattr(rec, self._state_field) in
                     self._state_from and not vals.get(self._state_field) in
-                    (self._state_to + [self._cancel_state])):
+                    (self._state_to + [self._cancel_state]) and not
+                    self._check_allow_write_under_validation(vals)):
                 raise ValidationError(_("The operation is under validation."))
         if vals.get(self._state_field) in self._state_from:
             self.mapped('review_ids').sudo().unlink()
