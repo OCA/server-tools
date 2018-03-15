@@ -68,6 +68,7 @@ Contributors
 ------------
 
 * Sébastien Alix <sebastien.alix@osiell.com>
+* Antonio Russo <antonio.r@rwsdigital.com>
 
 Maintainer
 ----------

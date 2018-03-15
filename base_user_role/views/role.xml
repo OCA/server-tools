@@ -20,7 +20,7 @@
                     <page string="Users">
                         <field name="line_ids" nolabel="1">
                             <tree editable="bottom" decoration-muted="not is_enabled">
-                                <field name="user_id" domain="[('id','!=', 1)]"/>
+                                <field name="user_id"/>
                                 <field name="date_from"/>
                                 <field name="date_to"/>
                                 <field name="is_enabled"/>
