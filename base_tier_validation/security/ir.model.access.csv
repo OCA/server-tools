@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_tier_review,access.tier.review,model_tier_review,,1,1,1,1
-access_tier_definition,user.tier.definition,model_tier_definition,,1,0,0,0
-access_tier_definition,user.tier.definition,model_tier_definition,base.group_system,1,1,1,1
+access_tier_definition_all,tier.definition.all,model_tier_definition,,1,0,0,0
+access_tier_definition_settings,tier.definition.settings,model_tier_definition,base.group_system,1,1,1,1
