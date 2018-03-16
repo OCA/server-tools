@@ -25,7 +25,6 @@
         'base',
     ],
     'data': [
-        'views/module_views.xml',
-        'data/cron_data.xml',
+        'data/cron_data_deprecated.xml',
     ],
 }
