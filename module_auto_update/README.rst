@@ -6,6 +6,12 @@
 Module Auto Update
 ==================
 
+Ipmortant note: this module may present reliability issues. 
+In particular, the server should restarted before running the upgrade cron.
+See https://github.com/OCA/server-tools/issues/1151 and
+https://github.com/OCA/server-tools/pull/1176 for more information.
+OCA recommands using ``module_checksum_upgrade`` instead.
+
 This module will automatically check for and apply module upgrades on a schedule.
 
 Upgrade checking is accomplished by comparing the SHA1 checksums of currently-installed modules to the checksums of corresponding modules in the addons directories.
