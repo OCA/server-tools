@@ -3,7 +3,6 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 import os
-import tempfile
 
 import mock
 
@@ -11,12 +10,12 @@ from openerp.modules import get_module_path
 from openerp.tests.common import TransactionCase
 from openerp.tools import mute_logger
 
-from ..addon_hash import addon_hash
+from openerp.addons.module_auto_update.addon_hash import addon_hash
 
-from .. import post_init_hook
+from ..models.module_deprecated import PARAM_DEPRECATED
 
 
-model = 'openerp.addons.module_auto_update.models.module_deprecated'
+model = 'openerp.addons.module_auto_update.models.module'
 
 
 class TestModule(TransactionCase):
@@ -24,6 +23,7 @@ class TestModule(TransactionCase):
     def setUp(self):
         super(TestModule, self).setUp()
         module_name = 'module_auto_update'
+        self.env["ir.config_parameter"].set_param(PARAM_DEPRECATED, "1")
         self.own_module = self.env['ir.module.module'].search([
             ('name', '=', module_name),
         ])
@@ -41,37 +41,6 @@ class TestModule(TransactionCase):
         get_module_path_mock.return_value = self.own_dir_path
         test_module = self.env['ir.module.module'].create(vals)
         return test_module
-
-    def test_compute_checksum_dir(self):
-        """It should compute the directory's SHA-1 hash"""
-        self.assertEqual(
-            self.own_module.checksum_dir, self.own_checksum,
-            'Module directory checksum not computed properly',
-        )
-
-    def test_compute_checksum_dir_ignore_excluded(self):
-        """It should exclude .pyc/.pyo extensions from checksum
-        calculations"""
-        if not self.own_writeable:
-            self.skipTest("Own directory not writeable")
-        with tempfile.NamedTemporaryFile(
-                suffix='.pyc', dir=self.own_dir_path):
-            self.assertEqual(
-                self.own_module.checksum_dir, self.own_checksum,
-                'SHA1 checksum does not ignore excluded extensions',
-            )
-
-    def test_compute_checksum_dir_recomputes_when_file_added(self):
-        """It should return a different value when a non-.pyc/.pyo file is
-        added to the module directory"""
-        if not self.own_writeable:
-            self.skipTest("Own directory not writeable")
-        with tempfile.NamedTemporaryFile(
-                suffix='.py', dir=self.own_dir_path):
-            self.assertNotEqual(
-                self.own_module.checksum_dir, self.own_checksum,
-                'SHA1 checksum not recomputed',
-            )
 
     def test_store_checksum_installed_state_installed(self):
         """It should set the module's checksum_installed equal to
@@ -200,17 +169,4 @@ class TestModule(TransactionCase):
         _store_checksum_installed_mock.assert_called_once_with(vals)
         self.env['ir.module.module']._revert_method(
             '_store_checksum_installed',
-        )
-
-    def test_post_init_hook(self):
-        """It should set checksum_installed equal to checksum_dir for all
-        installed modules"""
-        installed_modules = self.env['ir.module.module'].search([
-            ('state', '=', 'installed'),
-        ])
-        post_init_hook(self.env.cr, None)
-        self.assertListEqual(
-            installed_modules.mapped('checksum_dir'),
-            installed_modules.mapped('checksum_installed'),
-            'Installed modules did not have checksum_installed stored',
         )
