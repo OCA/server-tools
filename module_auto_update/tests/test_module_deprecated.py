@@ -20,7 +20,7 @@ try:
 except ImportError:
     _logger.debug('Cannot `import checksumdir`.')
 
-model = 'openerp.addons.module_auto_update.models.module'
+model = 'openerp.addons.module_auto_update.models.module_deprecated'
 
 
 class TestModule(TransactionCase):
@@ -141,19 +141,21 @@ class TestModule(TransactionCase):
     def test_create(self):
         """It should call _store_checksum_installed method"""
         _store_checksum_installed_mock = mock.MagicMock()
-        self.env['ir.module.module']._patch_method(
-            '_store_checksum_installed',
-            _store_checksum_installed_mock,
-        )
-        vals = {
-            'name': 'module_auto_update_test_module',
-            'state': 'installed',
-        }
-        self.create_test_module(vals)
-        _store_checksum_installed_mock.assert_called_once_with(vals)
-        self.env['ir.module.module']._revert_method(
-            '_store_checksum_installed',
-        )
+        try:
+            self.env['ir.module.module']._patch_method(
+                '_store_checksum_installed',
+                _store_checksum_installed_mock,
+            )
+            vals = {
+                'name': 'module_auto_update_test_module',
+                'state': 'installed',
+            }
+            self.create_test_module(vals)
+            _store_checksum_installed_mock.assert_called_once_with(vals)
+        finally:
+            self.env['ir.module.module']._revert_method(
+                '_store_checksum_installed',
+            )
 
     @mute_logger("openerp.modules.module")
     @mock.patch('%s.get_module_path' % model)
