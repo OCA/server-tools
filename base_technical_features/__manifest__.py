@@ -8,6 +8,7 @@
     "category": "Usability",
     "website": "https://github.com/oca/server-tools",
     "author": "Opener B.V., Odoo Community Association (OCA)",
+    "depends": ['web'],
     "data": [
         'security/res_groups.xml',
         'views/res_users.xml',
