@@ -6,7 +6,7 @@
     'summary': 'Automatically update Odoo modules',
     'version': '11.0.1.0.0',
     'category': 'Extra Tools',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/server-tools',
     'author': 'LasLabs, '
               'Juan José Scarafía, '
               'Tecnativa, '
@@ -15,7 +15,7 @@
     'license': 'LGPL-3',
     'application': False,
     'installable': True,
-    'post_init_hook': 'post_init_hook',
+    'uninstall_hook': 'uninstall_hook',
     'depends': [
         'base',
     ],
