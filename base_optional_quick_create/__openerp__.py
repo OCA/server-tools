@@ -35,9 +35,12 @@ Got the idea from https://twitter.com/nbessi/status/337869826028605441
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends": ['base'],
+    "depends": ['base', 'web'],
     "data": [
         'model_view.xml',
+    ],
+    "js": [
+        'static/src/js/extensions.js'
     ],
     "demo": [],
     'test': [
