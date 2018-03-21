@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Odoo Community Association (OCA)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="user_gravatar_gravatar_url" model="ir.config_parameter">
+        <field name="key">user_gravatar.gravatar_url</field>
+        <field name="value">https://www.gravatar.com/avatar/{}?s=200</field>
+    </record>
+</odoo>
