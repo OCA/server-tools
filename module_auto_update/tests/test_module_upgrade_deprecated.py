@@ -8,12 +8,15 @@ from openerp.modules import get_module_path
 from openerp.modules.registry import RegistryManager
 from openerp.tests.common import TransactionCase
 
+from ..models.module_deprecated import PARAM_DEPRECATED
+
 
 class TestModuleUpgrade(TransactionCase):
 
     def setUp(self):
         super(TestModuleUpgrade, self).setUp()
         module_name = 'module_auto_update'
+        self.env["ir.config_parameter"].set_param(PARAM_DEPRECATED, "1")
         self.own_module = self.env['ir.module.module'].search([
             ('name', '=', module_name),
         ])

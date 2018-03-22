@@ -1,54 +1,43 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
+# Copyright 2018 ACSONE SA/NV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import logging
 import os
 import tempfile
 
 import mock
 
 from openerp.modules import get_module_path
+from openerp.tests import common
 from openerp.tests.common import TransactionCase
-from openerp.tools import mute_logger
 
-from .. import post_init_hook
+from ..addon_hash import addon_hash
+from ..models.module import IncompleteUpgradeError, DEFAULT_EXCLUDE_PATTERNS
 
-_logger = logging.getLogger(__name__)
-try:
-    from checksumdir import dirhash
-except ImportError:
-    _logger.debug('Cannot `import checksumdir`.')
-
-model = 'openerp.addons.module_auto_update.models.module'
+MODULE_NAME = 'module_auto_update'
 
 
 class TestModule(TransactionCase):
 
     def setUp(self):
         super(TestModule, self).setUp()
-        module_name = 'module_auto_update'
         self.own_module = self.env['ir.module.module'].search([
-            ('name', '=', module_name),
+            ('name', '=', MODULE_NAME),
         ])
-        self.own_dir_path = get_module_path(module_name)
-        self.own_checksum = dirhash(
+        self.own_dir_path = get_module_path(MODULE_NAME)
+        keep_langs = self.env['res.lang'].search([]).mapped('code')
+        self.own_checksum = addon_hash(
             self.own_dir_path,
-            'sha1',
-            excluded_extensions=['pyc', 'pyo'],
+            exclude_patterns=DEFAULT_EXCLUDE_PATTERNS.split(','),
+            keep_langs=keep_langs,
         )
         self.own_writeable = os.access(self.own_dir_path, os.W_OK)
-
-    @mock.patch('%s.get_module_path' % model)
-    def create_test_module(self, vals, get_module_path_mock):
-        get_module_path_mock.return_value = self.own_dir_path
-        test_module = self.env['ir.module.module'].create(vals)
-        return test_module
 
     def test_compute_checksum_dir(self):
         """It should compute the directory's SHA-1 hash"""
         self.assertEqual(
-            self.own_module.checksum_dir, self.own_checksum,
+            self.own_module._get_checksum_dir(), self.own_checksum,
             'Module directory checksum not computed properly',
         )
 
@@ -57,10 +46,9 @@ class TestModule(TransactionCase):
         calculations"""
         if not self.own_writeable:
             self.skipTest("Own directory not writeable")
-        with tempfile.NamedTemporaryFile(
-                suffix='.pyc', dir=self.own_dir_path):
+        with tempfile.NamedTemporaryFile(suffix='.pyc', dir=self.own_dir_path):
             self.assertEqual(
-                self.own_module.checksum_dir, self.own_checksum,
+                self.own_module._get_checksum_dir(), self.own_checksum,
                 'SHA1 checksum does not ignore excluded extensions',
             )
 
@@ -69,149 +57,147 @@ class TestModule(TransactionCase):
         added to the module directory"""
         if not self.own_writeable:
             self.skipTest("Own directory not writeable")
-        with tempfile.NamedTemporaryFile(
-                suffix='.py', dir=self.own_dir_path):
+        with tempfile.NamedTemporaryFile(suffix='.py', dir=self.own_dir_path):
             self.assertNotEqual(
-                self.own_module.checksum_dir, self.own_checksum,
+                self.own_module._get_checksum_dir(), self.own_checksum,
                 'SHA1 checksum not recomputed',
             )
 
-    def test_store_checksum_installed_state_installed(self):
-        """It should set the module's checksum_installed equal to
-        checksum_dir when vals contain a ``latest_version`` str."""
-        self.own_module.checksum_installed = 'test'
-        self.own_module._store_checksum_installed({'latest_version': '1.0'})
-        self.assertEqual(
-            self.own_module.checksum_installed, self.own_module.checksum_dir,
-        )
+    def test_saved_checksums(self):
+        Imm = self.env['ir.module.module']
+        base_module = Imm.search([('name', '=', 'base')])
+        self.assertEqual(base_module.state, 'installed')
+        self.assertFalse(Imm._get_saved_checksums())
+        Imm._save_installed_checksums()
+        saved_checksums = Imm._get_saved_checksums()
+        self.assertTrue(saved_checksums)
+        self.assertTrue(saved_checksums['base'])
 
-    def test_store_checksum_installed_state_uninstalled(self):
-        """It should clear the module's checksum_installed when vals
-        contain ``"latest_version": False``"""
-        self.own_module.checksum_installed = 'test'
-        self.own_module._store_checksum_installed({'latest_version': False})
-        self.assertIs(self.own_module.checksum_installed, False)
+    def test_get_modules_with_changed_checksum(self):
+        Imm = self.env['ir.module.module']
+        self.assertTrue(Imm._get_modules_with_changed_checksum())
+        Imm._save_installed_checksums()
+        self.assertFalse(Imm._get_modules_with_changed_checksum())
 
-    def test_store_checksum_installed_vals_contain_checksum_installed(self):
-        """It should not set checksum_installed to False or checksum_dir when
-        a checksum_installed is included in vals"""
-        self.own_module.checksum_installed = 'test'
-        self.own_module._store_checksum_installed({
-            'state': 'installed',
-            'checksum_installed': 'test',
-        })
-        self.assertEqual(
-            self.own_module.checksum_installed, 'test',
-            'Providing checksum_installed in vals did not prevent overwrite',
-        )
 
-    def test_store_checksum_installed_with_retain_context(self):
-        """It should not set checksum_installed to False or checksum_dir when
-        self has context retain_checksum_installed=True"""
-        self.own_module.checksum_installed = 'test'
-        self.own_module.with_context(
-            retain_checksum_installed=True,
-        )._store_checksum_installed({'state': 'installed'})
-        self.assertEqual(
-            self.own_module.checksum_installed, 'test',
-            'Providing retain_checksum_installed context did not prevent '
-            'overwrite',
-        )
+@common.at_install(False)
+@common.post_install(True)
+class TestModuleAfterInstall(TransactionCase):
 
-    def test_button_uninstall_cancel(self):
-        """It should preserve checksum_installed when cancelling uninstall"""
-        self.own_module.write({'state': 'to remove'})
-        self.own_module.checksum_installed = 'test'
-        self.own_module.button_uninstall_cancel()
-        self.assertEqual(
-            self.own_module.checksum_installed, 'test',
-            'Uninstall cancellation does not preserve checksum_installed',
-        )
+    def setUp(self):
+        super(TestModuleAfterInstall, self).setUp()
+        Imm = self.env['ir.module.module']
+        self.own_module = Imm.search([('name', '=', MODULE_NAME)])
+        self.base_module = Imm.search([('name', '=', 'base')])
 
-    def test_button_upgrade_cancel(self):
-        """It should preserve checksum_installed when cancelling upgrades"""
-        self.own_module.write({'state': 'to upgrade'})
-        self.own_module.checksum_installed = 'test'
+    def test_get_modules_partially_installed(self):
+        Imm = self.env['ir.module.module']
+        self.assertTrue(
+            self.own_module not in Imm._get_modules_partially_installed())
+        self.own_module.button_upgrade()
+        self.assertTrue(
+            self.own_module in Imm._get_modules_partially_installed())
         self.own_module.button_upgrade_cancel()
-        self.assertEqual(
-            self.own_module.checksum_installed, 'test',
-            'Upgrade cancellation does not preserve checksum_installed',
-        )
+        self.assertTrue(
+            self.own_module not in Imm._get_modules_partially_installed())
 
-    def test_create(self):
-        """It should call _store_checksum_installed method"""
-        _store_checksum_installed_mock = mock.MagicMock()
-        self.env['ir.module.module']._patch_method(
-            '_store_checksum_installed',
-            _store_checksum_installed_mock,
-        )
-        vals = {
-            'name': 'module_auto_update_test_module',
-            'state': 'installed',
-        }
-        self.create_test_module(vals)
-        _store_checksum_installed_mock.assert_called_once_with(vals)
-        self.env['ir.module.module']._revert_method(
-            '_store_checksum_installed',
-        )
+    def test_upgrade_changed_checksum(self):
+        Imm = self.env['ir.module.module']
+        Bmu = self.env['base.module.upgrade']
 
-    @mute_logger("openerp.modules.module")
-    @mock.patch('%s.get_module_path' % model)
-    def test_get_module_list(self, module_path_mock):
-        """It should change the state of modules with different
-        checksum_dir and checksum_installed to 'to upgrade'"""
-        module_path_mock.return_value = self.own_dir_path
-        vals = {
-            'name': 'module_auto_update_test_module',
-            'state': 'installed',
-        }
-        test_module = self.create_test_module(vals)
-        test_module.checksum_installed = 'test'
-        self.env['base.module.upgrade'].get_module_list()
-        self.assertEqual(
-            test_module.state, 'to upgrade',
-            'List update does not mark upgradeable modules "to upgrade"',
-        )
+        # check modules are in installed state
+        installed_modules = Imm.search([('state', '=', 'installed')])
+        self.assertTrue(self.own_module in installed_modules)
+        self.assertTrue(self.base_module in installed_modules)
+        self.assertTrue(len(installed_modules) > 2)
+        # change the checksum of 'base'
+        Imm._save_installed_checksums()
+        saved_checksums = Imm._get_saved_checksums()
+        saved_checksums['base'] = False
+        Imm._save_checksums(saved_checksums)
+        changed_modules = Imm._get_modules_with_changed_checksum()
+        self.assertEqual(len(changed_modules), 1)
+        self.assertTrue(self.base_module in changed_modules)
 
-    @mock.patch('%s.get_module_path' % model)
-    def test_get_module_list_only_changes_installed(self, module_path_mock):
-        """It should not change the state of a module with a former state
-        other than 'installed' to 'to upgrade'"""
-        module_path_mock.return_value = self.own_dir_path
-        vals = {
-            'name': 'module_auto_update_test_module',
-            'state': 'uninstalled',
-        }
-        test_module = self.create_test_module(vals)
-        self.env['base.module.upgrade'].get_module_list()
-        self.assertNotEqual(
-            test_module.state, 'to upgrade',
-            'List update changed state of an uninstalled module',
-        )
+        def upgrade_module_mock(self_model):
+            upgrade_module_mock.call_count += 1
+            # since we are upgrading base, all installed module
+            # must have been marked to upgrade at this stage
+            self.assertEqual(self.base_module.state, 'to upgrade')
+            self.assertEqual(self.own_module.state, 'to upgrade')
+            installed_modules.write({'state': 'installed'})
 
-    def test_write(self):
-        """It should call _store_checksum_installed method"""
-        _store_checksum_installed_mock = mock.MagicMock()
-        self.env['ir.module.module']._patch_method(
-            '_store_checksum_installed',
-            _store_checksum_installed_mock,
-        )
-        vals = {'state': 'installed'}
-        self.own_module.write(vals)
-        _store_checksum_installed_mock.assert_called_once_with(vals)
-        self.env['ir.module.module']._revert_method(
-            '_store_checksum_installed',
-        )
+        upgrade_module_mock.call_count = 0
 
-    def test_post_init_hook(self):
-        """It should set checksum_installed equal to checksum_dir for all
-        installed modules"""
-        installed_modules = self.env['ir.module.module'].search([
-            ('state', '=', 'installed'),
-        ])
-        post_init_hook(self.env.cr, None)
-        self.assertListEqual(
-            installed_modules.mapped('checksum_dir'),
-            installed_modules.mapped('checksum_installed'),
-            'Installed modules did not have checksum_installed stored',
-        )
+        # upgrade_changed_checksum commits, so mock that
+        with mock.patch.object(self.env.cr, 'commit'):
+
+            # we simulate an install by setting module states
+            Bmu._patch_method('upgrade_module', upgrade_module_mock)
+            try:
+                Imm.upgrade_changed_checksum()
+                self.assertEqual(upgrade_module_mock.call_count, 1)
+                self.assertEqual(self.base_module.state, 'installed')
+                self.assertEqual(self.own_module.state, 'installed')
+                saved_checksums = Imm._get_saved_checksums()
+                self.assertTrue(saved_checksums['base'])
+                self.assertTrue(saved_checksums[MODULE_NAME])
+            finally:
+                Bmu._revert_method('upgrade_module')
+
+    def test_incomplete_upgrade(self):
+        Imm = self.env['ir.module.module']
+        Bmu = self.env['base.module.upgrade']
+
+        installed_modules = Imm.search([('state', '=', 'installed')])
+        # change the checksum of 'base'
+        Imm._save_installed_checksums()
+        saved_checksums = Imm._get_saved_checksums()
+        saved_checksums['base'] = False
+        Imm._save_checksums(saved_checksums)
+
+        def upgrade_module_mock(self_model):
+            upgrade_module_mock.call_count += 1
+            # since we are upgrading base, all installed module
+            # must have been marked to upgrade at this stage
+            self.assertEqual(self.base_module.state, 'to upgrade')
+            self.assertEqual(self.own_module.state, 'to upgrade')
+            installed_modules.write({'state': 'installed'})
+            # simulate partial upgrade
+            self.own_module.write({'state': 'to upgrade'})
+
+        upgrade_module_mock.call_count = 0
+
+        # upgrade_changed_checksum commits, so mock that
+        with mock.patch.object(self.env.cr, 'commit'):
+
+            # we simulate an install by setting module states
+            Bmu._patch_method('upgrade_module', upgrade_module_mock)
+            try:
+                with self.assertRaises(IncompleteUpgradeError):
+                    Imm.upgrade_changed_checksum()
+                self.assertEqual(upgrade_module_mock.call_count, 1)
+            finally:
+                Bmu._revert_method('upgrade_module')
+
+    def test_nothing_to_upgrade(self):
+        Imm = self.env['ir.module.module']
+        Bmu = self.env['base.module.upgrade']
+
+        Imm._save_installed_checksums()
+
+        def upgrade_module_mock(self_model):
+            upgrade_module_mock.call_count += 1
+
+        upgrade_module_mock.call_count = 0
+
+        # upgrade_changed_checksum commits, so mock that
+        with mock.patch.object(self.env.cr, 'commit'):
+
+            # we simulate an install by setting module states
+            Bmu._patch_method('upgrade_module', upgrade_module_mock)
+            try:
+                Imm.upgrade_changed_checksum()
+                self.assertEqual(upgrade_module_mock.call_count, 0)
+            finally:
+                Bmu._revert_method('upgrade_module')
