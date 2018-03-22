@@ -5,7 +5,7 @@
 {
     'name': 'Module Auto Update',
     'summary': 'Automatically update Odoo modules',
-    'version': '9.0.2.0.0',
+    'version': '8.0.2.0.0',
     'category': 'Extra Tools',
     'website': 'https://github.com/OCA/server-tools',
     'author': 'LasLabs, '
@@ -16,11 +16,9 @@
     'license': 'LGPL-3',
     'application': False,
     'installable': True,
+    'install_hook': 'install_hook',
     'uninstall_hook': 'uninstall_hook',
     'depends': [
         'base',
-    ],
-    'data': [
-        'data/cron_data_deprecated.xml',
     ],
 }

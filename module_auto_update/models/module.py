@@ -22,7 +22,7 @@ DEFAULT_EXCLUDE_PATTERNS = \
 _logger = logging.getLogger(__name__)
 
 
-class IncompleteUpgradeError(exceptions.UserError):
+class IncompleteUpgradeError(exceptions.Warning):
     pass
 
 

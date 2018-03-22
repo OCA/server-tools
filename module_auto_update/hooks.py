@@ -8,11 +8,13 @@ from .models.module import PARAM_INSTALLED_CHECKSUMS
 from .models.module_deprecated import PARAM_DEPRECATED
 
 
+def install_hook(cr, registry):
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    # make sure migration to 9 does not enable deprecated features
+    env["ir.config_parameter"].set_param(PARAM_DEPRECATED, '0')
+
+
 def uninstall_hook(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
     env["ir.config_parameter"].set_param(PARAM_INSTALLED_CHECKSUMS, False)
-    # TODO Remove from here when removing deprecated features
     env["ir.config_parameter"].set_param(PARAM_DEPRECATED, False)
-    prefix = "module_auto_update.field_ir_module_module_checksum_%s"
-    fields = env.ref(prefix % "dir") | env.ref(prefix % "installed")
-    fields.with_context(_force_unlink=True).unlink()
