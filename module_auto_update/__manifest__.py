@@ -5,7 +5,7 @@
 {
     'name': 'Module Auto Update',
     'summary': 'Automatically update Odoo modules',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'category': 'Extra Tools',
     'website': 'https://odoo-community.org/',
     'author': 'LasLabs, '
