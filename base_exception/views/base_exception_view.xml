@@ -40,9 +40,10 @@
                             <field name="rule_group"/>
                             <field name="model"/>
                             <field name="next_state"/>
+                            <field name="domain" attrs="{'invisible': [('type','!=','by_domain')]}"/>
                         </group>
                     </group>
-                    <notebook>
+                    <notebook attrs="{'invisible': [('type','!=','by_py_code')]}">
                         <page name="code" string="Python Code">
                             <field name="code" widget="ace" options="{'mode': 'python'}" placeholder="Enter Python code here. Help about Python expression is available in the help tab of this document."/>
                         </page>
