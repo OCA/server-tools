@@ -20,7 +20,8 @@ class DateRange(models.Model):
     date_end = fields.Date(string='End date', required=True)
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', index=1, required=True,
-        ondelete='restrict')
+        ondelete='restrict', domain="['|', ('company_id', '=', company_id), "
+                                    "('company_id', '=', False)]")
     type_name = fields.Char(
         string='Type', related='type_id.name', readonly=True, store=True)
     company_id = fields.Many2one(
@@ -33,6 +34,23 @@ class DateRange(models.Model):
     _sql_constraints = [
         ('date_range_uniq', 'unique (name,type_id, company_id)',
          'A date range must be unique per company !')]
+
+    @api.onchange('company_id')
+    def _onchange_company_id(self):
+        if self.company_id and self.type_id.company_id and \
+                self.type_id.company_id != self.company_id:
+            self._cache.update(
+                self._convert_to_cache({'type_id': False}, update=True))
+
+    @api.multi
+    @api.constrains('company_id', 'type_id')
+    def _check_company_id_type_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.type_id.company_id and\
+                    rec.company_id != rec.type_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Date Range and in '
+                      'Date Range Type must be the same.'))
 
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
     def _validate_range(self):

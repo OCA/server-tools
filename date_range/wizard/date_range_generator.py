@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools.translate import _
+from odoo.exceptions import ValidationError
 from dateutil.rrule import (rrule,
                             YEARLY,
                             MONTHLY,
@@ -22,7 +24,8 @@ class DateRangeGenerator(models.TransientModel):
     date_start = fields.Date(strint='Start date', required=True)
     type_id = fields.Many2one(
         comodel_name='date.range.type', string='Type', required=True,
-        ondelete='cascade')
+        domain="['|', ('company_id', '=', company_id), "
+               "('company_id', '=', False)]", ondelete='cascade')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
         default=_default_company)
@@ -58,6 +61,23 @@ class DateRangeGenerator(models.TransientModel):
                 'type_id': self.type_id.id,
                 'company_id': self.company_id.id})
         return date_ranges
+
+    @api.onchange('company_id')
+    def _onchange_company_id(self):
+        if self.company_id and self.type_id.company_id and \
+                self.type_id.company_id != self.company_id:
+            self._cache.update(
+                self._convert_to_cache({'type_id': False}, update=True))
+
+    @api.multi
+    @api.constrains('company_id', 'type_id')
+    def _check_company_id_type_id(self):
+        for rec in self.sudo():
+            if rec.company_id and rec.type_id.company_id and\
+                    rec.company_id != rec.type_id.company_id:
+                raise ValidationError(
+                    _('The Company in the Date Range Generator and in '
+                      'Date Range Type must be the same.'))
 
     @api.multi
     def action_apply(self):
