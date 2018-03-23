@@ -15,7 +15,6 @@ class TierValidation(models.AbstractModel):
     _state_to = ['confirmed']
     _cancel_state = 'cancel'
 
-    # TODO: reset validation?
     # TODO: step by step validation?
 
     review_ids = fields.One2many(
@@ -69,6 +68,8 @@ class TierValidation(models.AbstractModel):
     @api.model
     def _calc_reviews_validated(self, reviews):
         """Override for different validation policy."""
+        if not reviews:
+            return False
         return not any([s != 'approved' for s in reviews.mapped('status')])
 
     @api.model
@@ -122,7 +123,7 @@ class TierValidation(models.AbstractModel):
                         raise ValidationError(_(
                             "This action needs to be validated for at least "
                             "one record. \nPlease request a validation."))
-                if not rec.validated:
+                if rec.review_ids and not rec.validated:
                     raise ValidationError(_(
                         "A validation process is still open for at least "
                         "one record."))
@@ -132,7 +133,7 @@ class TierValidation(models.AbstractModel):
                     self._check_allow_write_under_validation(vals)):
                 raise ValidationError(_("The operation is under validation."))
         if vals.get(self._state_field) in self._state_from:
-            self.mapped('review_ids').sudo().unlink()
+            self.mapped('review_ids').unlink()
         return super(TierValidation, self).write(vals)
 
     def _validate_tier(self, tiers=False):
@@ -179,3 +180,9 @@ class TierValidation(models.AbstractModel):
                             })
                     # TODO: notify? post some msg in chatter?
         return created_trs
+
+    @api.multi
+    def restart_validation(self):
+        for rec in self:
+            if getattr(rec, self._state_field) in self._state_from:
+                rec.mapped('review_ids').unlink()
