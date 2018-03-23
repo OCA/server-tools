@@ -41,6 +41,11 @@ class ExceptionRule(models.Model):
     model = fields.Selection(
         selection=[],
         string='Apply on', required=True)
+    type = fields.Selection(
+        selection=[('by_domain', 'By domain'),
+                   ('by_py_code', 'By Python Code')],
+        string='Exception Type', required=True)
+    domain = fields.Char('Domain')
     active = fields.Boolean('Active')
     code = fields.Text(
         'Python Code',
@@ -64,6 +69,19 @@ class ExceptionRule(models.Model):
 #  - uid: current user id
 #  - context: current context
 """)
+
+    @api.multi
+    def _get_domain(self):
+        """ override me to customize domains according exceptions cases """
+        self.ensure_one()
+        return safe_eval(self.domain)
+
+    @api.onchange('type',)
+    def onchange_type(self):
+        if self.type == 'by_domain':
+            self.code = False
+        elif self.type == 'by_py_code':
+            self.domain = False
 
 
 class BaseException(models.AbstractModel):
@@ -141,6 +159,7 @@ class BaseException(models.AbstractModel):
     def detect_exceptions(self):
         """returns the list of exception_ids for all the considered base.exceptions
         """
+        import pdb; pdb.set_trace()
         if not self:
             return []
         exception_obj = self.env['exception.rule']
@@ -195,10 +214,17 @@ class BaseException(models.AbstractModel):
     def _detect_exceptions(self, model_exceptions,
                            sub_exceptions):
         self.ensure_one()
+        import pdb; pdb.set_trace()
         exception_ids = []
         for rule in model_exceptions:
-            if self._rule_eval(rule, self.rule_group, self):
+            if rule.type == 'by_py_code' and self._rule_eval(
+                    rule, self.rule_group, self):
                 exception_ids.append(rule.id)
+            elif rule.type == 'by_domain' and rule.domain:
+                domain = rule._get_domain()
+                domain.append(('id', '=', self.id))
+                if self.search(domain):
+                    exception_ids.append(rule.id)
         if sub_exceptions:
             for obj_line in self._get_lines():
                 for rule in sub_exceptions:
@@ -208,8 +234,15 @@ class BaseException(models.AbstractModel):
                         # (ex sale order line if obj is sale order)
                         continue
                     group_line = self.rule_group + '_line'
-                    if self._rule_eval(rule, group_line, obj_line):
+                    if rule.type == 'by_py_code' and self._rule_eval(
+                            rule, group_line, obj_line):
                         exception_ids.append(rule.id)
+                    elif rule.type == 'by_domain' and rule.domain:
+                        domain = rule._get_domain()
+                        domain.append(('id', '=', obj_line.id))
+                        if obj_line.search(domain):
+                            exception_ids.append(rule.id)
+
         return exception_ids
 
     @implemented_by_base_exception

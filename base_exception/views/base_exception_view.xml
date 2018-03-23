@@ -31,7 +31,13 @@
                     <group colspan="4" col="2" groups="base.group_system">
                         <field name="rule_group"/>
                         <field name="model"/>
-                        <field name="code"/>
+                        <field name="type"/>
+                        <field name="domain" 
+                            attrs="{'invisible': [('type','!=','by_domain')]}
+                            "/>
+                        <field name="code"
+                            attrs="{'invisible': [('type','!=','by_py_code')]}
+                            "/>
                     </group>
                 </form>
             </field>
