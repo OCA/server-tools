@@ -19,7 +19,8 @@ class DateRange(models.Model):
     date_start = fields.Date(string='Start date', required=True)
     date_end = fields.Date(string='End date', required=True)
     type_id = fields.Many2one(
-        comodel_name='date.range.type', string='Type', index=1, required=True)
+        comodel_name='date.range.type', string='Type', index=1, required=True,
+        ondelete='restrict')
     type_name = fields.Char(
         string='Type', related='type_id.name', readonly=True, store=True)
     company_id = fields.Many2one(
