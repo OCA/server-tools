@@ -62,7 +62,8 @@ class OAuth2ProviderController(http.Controller):
         return werkzeug.wrappers.BaseResponse(
             json.dumps(data), status=status, headers=headers)
 
-    @http.route('/oauth2/authorize', type='http', auth='user', methods=['GET'])
+    @http.route('/oauth2/authorize', type='http', auth='user', methods=['GET'],
+                website=True)
     def authorize(self, client_id=None, response_type=None, redirect_uri=None,
                   scope=None, state=None, *args, **kwargs):
         """ Check client's request, and display an authorization page to the user,
@@ -123,7 +124,8 @@ class OAuth2ProviderController(http.Controller):
             })
 
     @http.route(
-        '/oauth2/authorize', type='http', auth='user', methods=['POST'])
+        '/oauth2/authorize', type='http', auth='user', methods=['POST'],
+        website=True)
     def authorize_post(self, *args, **kwargs):
         """ Redirect to the requested URI during the authorization """
         client = http.request.env['oauth.provider.client'].search([
@@ -184,6 +186,9 @@ class OAuth2ProviderController(http.Controller):
             ])
         if existing_code:
             credentials['odoo_user_id'] = existing_code.user_id.id
+            credentials['scope'] = ' '.join(
+                existing_code.scope_ids.mapped('code'))
+
         # Retrieve the existing token, if any, to get Odoo's user id
         existing_token = http.request.env['oauth.provider.token'].search([
             ('client_id.identifier', '=', client_id),
@@ -199,7 +204,8 @@ class OAuth2ProviderController(http.Controller):
         return werkzeug.wrappers.BaseResponse(
             body, status=status, headers=headers)
 
-    @http.route('/oauth2/tokeninfo', type='http', auth='none', methods=['GET'])
+    @http.route('/oauth2/tokeninfo', type='http', auth='none', methods=['GET'],
+                website=True)
     def tokeninfo(self, access_token=None, *args, **kwargs):
         """ Return some information about the supplied token
 
@@ -241,9 +247,11 @@ class OAuth2ProviderController(http.Controller):
                 data={'error': 'invalid_or_expired_token'}, status=401)
 
         data = token.get_data_for_model('res.users', res_id=token.user_id.id)
+        data.update(token.user_id._get_additional_userinfo(token))
         return self._json_response(data=data)
 
-    @http.route('/oauth2/otherinfo', type='http', auth='none', methods=['GET'])
+    @http.route('/oauth2/otherinfo', type='http', auth='none', methods=['GET'],
+                website=True)
     def otherinfo(self, access_token=None, model=None, *args, **kwargs):
         """ Return allowed information about the requested model """
         ensure_db()
@@ -263,7 +271,8 @@ class OAuth2ProviderController(http.Controller):
         return self._json_response(data=data)
 
     @http.route(
-        '/oauth2/revoke_token', type='http', auth='none', methods=['POST'])
+        '/oauth2/revoke_token', type='http', auth='none', methods=['POST'],
+        website=True)
     def revoke_token(self, token=None, *args, **kwargs):
         """ Revoke the supplied token """
         ensure_db()
