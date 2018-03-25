@@ -3,7 +3,7 @@
     Copyright 2016 SYLEAM
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-<odoo>
+<openerp><data>
     <record id="view_oauth_provider_client_tree" model="ir.ui.view">
         <field name="name">oauth.provider.client.tree</field>
         <field name="model">oauth.provider.client</field>
@@ -86,4 +86,4 @@
         <field name="view_id" ref="view_oauth_provider_client_tree"/>
     </record>
     <menuitem id="menu_oauth_provider_client" parent="base.menu_users" sequence="40" action="act_open_oauth_provider_client_view"/>
-</odoo>
+</data></openerp>

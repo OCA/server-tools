@@ -218,7 +218,7 @@ class TestOAuthProviderToken(TransactionCase):
         expired_tokens, not_expired_tokens = \
             self._generate_tokens_for_active_search()
 
-        with self.assertRaises(exceptions.UserError):
+        with self.assertRaises(exceptions.Warning):
             token_obj.search([('active', '>', True)])
 
     def test_get_data_from_model_with_at_least_one_scope_matching(self):

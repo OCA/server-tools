@@ -10,7 +10,6 @@ from werkzeug.wrappers import BaseResponse
 from openerp import fields
 from openerp.service import wsgi_server
 from openerp.tests.common import TransactionCase
-from openerp.tools.misc import consteq
 
 _logger = logging.getLogger(__name__)
 
@@ -95,16 +94,13 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
             headers=headers)
 
     @mock.patch('openerp.http.WebRequest.env', new_callable=mock.PropertyMock)
-    @mock.patch('openerp.http.WebRequest.validate_csrf')
     def post_request(
-            self, uri, validate_csrf, request_env, data=None, headers=None):
+            self, uri, request_env, data=None, headers=None):
         """ Execute a POST request on the test client """
         # Mock the http request's environ to allow it to see test records
         user = self.logged_user or self.env.ref('base.public_user')
         request_env.return_value = self.env(user=user)
-        # Disable CSRF tokens check during tests
-        validate_csrf.return_value = consteq('', '')
-
+       
         return self.test_client.post(
             uri, data=data, environ_base=self.werkzeug_environ,
             headers=headers)

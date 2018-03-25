@@ -3,12 +3,11 @@
     Copyright 2016 SYLEAM
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-<odoo>
+<openerp><data>
     <template id="oauth_provider.authorization" name="OAuth Authorization Error">
         <t t-set="disable_footer" t-value="True"/>
         <t t-call="web.login_layout">
             <form class="oe_login_form" role="form" method="post" action="/oauth2/authorize">
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                 <div>
                     <h3 t-esc="oauth_client"/>
                     This application would like to access these resources :
@@ -36,4 +35,4 @@
             </div>
         </t>
     </template>
-</odoo>
+</data></openerp>

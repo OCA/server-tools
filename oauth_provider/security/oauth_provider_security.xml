@@ -3,7 +3,7 @@
     Copyright 2016 SYLEAM
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-<odoo>
+<openerp><data>
     <record id="group_oauth_provider_manager" model="res.groups">
         <field name="name">OAuth Provider Manager</field>
     </record>
@@ -29,4 +29,4 @@
         <field name="perm_unlink" eval="0"/>
         <field name="perm_write" eval="0"/>
     </record>
-</odoo>
+</data></openerp>

@@ -71,7 +71,7 @@ class OAuthProviderToken(models.Model):
             domain = [('expires_at', operators[operator, operand],
                        fields.Datetime.now())]
         else:
-            raise exceptions.UserError(
+            raise exceptions.Warning(
                 _('Invalid operator {operator} for  field active!').format(
                     operator=operator))
 

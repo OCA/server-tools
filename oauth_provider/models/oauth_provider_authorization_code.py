@@ -23,6 +23,7 @@ class OAuthProviderAuthorizationCode(models.Model):
         help='Redirect URI associated to this authorization code.')
     scope_ids = fields.Many2many(
         comodel_name='oauth.provider.scope', string='Scopes',
+        relation='oauth_provider_code_rel_scope',
         help='Scopes allowed by this authorization code.')
     active = fields.Boolean(
         default=True, help='When unchecked, the code is invalidated.')
