@@ -18,9 +18,9 @@ class ResUsers(models.Model):
         ('oauth_identifier_unique', 'UNIQUE (oauth_identifier)',
          'The OAuth identifier of the user must be unique !'),
     ]
-  
+
     def _get_additional_userinfo(self, token):
         """ To be inheriated
             Add addtional info to userinfo response"""
-            
-        return {}    
+
+        return {} 
