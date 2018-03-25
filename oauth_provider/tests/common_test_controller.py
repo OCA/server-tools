@@ -100,7 +100,7 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         # Mock the http request's environ to allow it to see test records
         user = self.logged_user or self.env.ref('base.public_user')
         request_env.return_value = self.env(user=user)
-       
+
         return self.test_client.post(
             uri, data=data, environ_base=self.werkzeug_environ,
             headers=headers)
