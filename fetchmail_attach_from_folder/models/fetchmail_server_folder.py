@@ -5,6 +5,7 @@ import base64
 import logging
 
 from odoo import _, api, models, fields
+from odoo.exceptions import UserError
 
 from .. import match_algorithm
 
@@ -90,93 +91,98 @@ class FetchmailServerFolder(models.Model):
 
     @api.multi
     def button_attach_mail_manually(self):
+        self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'fetchmail.attach.mail.manually',
             'target': 'new',
-            'context': dict(self.env.context, default_folder_id=self.id),
+            'context': dict(self.env.context, folder=self),
             'view_type': 'form',
             'view_mode': 'form'}
 
     @api.multi
-    def get_msgids(self, connection):
+    def get_msgids(self, connection, criteria):
         """Return imap ids of messages to process"""
-        return connection.search(None, 'UNDELETED')
-
-    @api.multi
-    def retrieve_imap_folder(self):
-        """Retrieve all mails for one IMAP folder.
-
-        For each folder on each server we create a separate connection.
-        """
-        for this in self:
-            server = this.server_id
-            try:
-                _logger.info(
-                    'start checking for emails in folder %s on server %s',
-                    this.path, server.name)
-                imap_server = server.connect()
-                if imap_server.select(this.path)[0] != 'OK':
-                    _logger.error(
-                        'Could not open mailbox %s on %s',
-                        this.path, server.name)
-                    continue
-                result, msgids = this.get_msgids(imap_server)
-                if result != 'OK':
-                    _logger.error(
-                        'Could not search mailbox %s on %s',
-                        this.path, server.name)
-                    continue
-                match_algorithm = this.get_algorithm()
-                for msgid in msgids[0].split():
-                    this.apply_matching(
-                        imap_server, msgid, match_algorithm)
-                _logger.info(
-                    'finished checking for emails in %s server %s',
-                    this.path, server.name)
-            except Exception:
-                _logger.info(_(
-                    "General failure when trying to fetch mail from"
-                    " %s server %s."),
-                    server.type, server.name, exc_info=True)
-            finally:
-                if imap_server:
-                    imap_server.close()
-                    imap_server.logout()
-
-    @api.multi
-    def apply_matching(self, connection, msgid, match_algorithm):
-        """Return ids of objects matched"""
         self.ensure_one()
+        server = self.server_id
+        _logger.info(
+            'start checking for emails in folder %s on server %s',
+            self.path, server.name)
+        if connection.select(self.path)[0] != 'OK':
+            raise UserError(_(
+                "Could not open mailbox %s on %s") %
+                (self.path, server.name))
+        result, msgids = connection.search(None, criteria)
+        if result != 'OK':
+            raise UserError(_(
+                "Could not search mailbox %s on %s") %
+                (self.path, server.name))
+        _logger.info(
+            'finished checking for emails in %s on server %s',
+            self.path, server.name)
+        return msgids
+
+    @api.multi
+    def fetch_msg(self, connection, msgid):
+        """Select a single message from a folder."""
+        self.ensure_one()
+        server = self.server_id
         result, msgdata = connection.fetch(msgid, '(RFC822)')
         if result != 'OK':
-            _logger.error(
-                'Could not fetch %s in %s on %s',
-                msgid, self.path, self.server_id.server)
-            return
+            raise UserError(_(
+                "Could not fetch %s in %s on %s") %
+                (msgid, self.path, server.server))
+        message_org = msgdata[0][1]  # rfc822 message source
         mail_message = self.env['mail.thread'].message_parse(
-            msgdata[0][1], save_original=self.server_id.original)
-        if self.env['mail.message'].search(
-                [('message_id', '=', mail_message['message_id'])]):
-            # Ignore mails that have been handled already
-            return
-        matches = match_algorithm.search_matches(
-            self, mail_message, msgdata[0][1])
-        if matches and (len(matches) == 1 or self.match_first):
+            message_org, save_original=server.original)
+        return (mail_message, message_org)
+
+    @api.multi
+    def retrieve_imap_folder(self, connection):
+        """Retrieve all mails for one IMAP folder."""
+        self.ensure_one()
+        msgids = self.get_msgids(connection, 'UNDELETED')
+        match_algorithm = self.get_algorithm()
+        for msgid in msgids[0].split():
             try:
                 self.env.cr.execute('savepoint apply_matching')
-                match_algorithm.handle_match(
-                    connection,
-                    matches[0], self, mail_message,
-                    msgdata[0][1], msgid)
+                self.apply_matching(connection, msgid, match_algorithm)
                 self.env.cr.execute('release savepoint apply_matching')
             except Exception:
                 self.env.cr.execute('rollback to savepoint apply_matching')
                 _logger.exception(
                     "Failed to fetch mail %s from %s",
                     msgid, self.server_id.name)
-        elif self.flag_nonmatching:
-            connection.store(msgid, '+FLAGS', '\\FLAGGED')
+
+    @api.multi
+    def update_msg(self, connection, msgid, matched=True, flagged=False):
+        """Update msg in imap folder depending on match and settings."""
+        if matched:
+            if self.delete_matching:
+                connection.store(msgid, '+FLAGS', '\\DELETED')
+            elif flagged and self.flag_nonmatching:
+                connection.store(msgid, '-FLAGS', '\\FLAGGED')
+        else:
+            if self.flag_nonmatching:
+                connection.store(msgid, '+FLAGS', '\\FLAGGED')
+
+    @api.multi
+    def apply_matching(self, connection, msgid, match_algorithm):
+        """Return ids of objects matched"""
+        self.ensure_one()
+        mail_message, message_org = self.fetch_msg(connection, msgid)
+        if self.env['mail.message'].search(
+                [('message_id', '=', mail_message['message_id'])]):
+            # Ignore mails that have been handled already
+            return
+        matches = match_algorithm.search_matches(self, mail_message)
+        matched = matches and (len(matches) == 1 or self.match_first)
+        if matched:
+            match_algorithm.handle_match(
+                connection,
+                matches[0], self, mail_message,
+                message_org, msgid)
+        self.update_msg(connection, msgid, matched=matched)
 
     @api.multi
     def attach_mail(self, match_object, mail_message):
