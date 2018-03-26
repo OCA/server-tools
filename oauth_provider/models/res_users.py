@@ -23,4 +23,4 @@ class ResUsers(models.Model):
         """ To be inheriated
             Add addtional info to userinfo response"""
 
-        return {} 
+        return {}
