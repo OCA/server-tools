@@ -12,7 +12,7 @@ class Base(object):
     # Fields on fetchmail_server folder readonly for this algorithm
     readonly_fields = []
 
-    def search_matches(self, folder, mail_message, mail_message_org):
+    def search_matches(self, folder, mail_message):
         """Returns recordset found for model with mail_message."""
         return []
 
@@ -21,5 +21,3 @@ class Base(object):
             mail_message, mail_message_org, msgid):
         """Do whatever it takes to handle a match"""
         folder.attach_mail(match_object, mail_message)
-        if folder.delete_matching:
-            connection.store(msgid, '+FLAGS', '\\DELETED')
