@@ -9,7 +9,6 @@ from .base import Base
 
 class EmailExact(Base):
     """Search for exactly the mailadress as noted in the email"""
-
     name = 'Exact mailadress'
     required_fields = ['model_field', 'mail_field']
 
@@ -32,7 +31,7 @@ class EmailExact(Base):
             safe_eval(folder.domain or '[]'))
         return search_domain
 
-    def search_matches(self, folder, mail_message, mail_message_org):
+    def search_matches(self, folder, mail_message):
         """Returns recordset of matching objects."""
         object_model = folder.env[folder.model_id.model]
         search_domain = self._get_mailaddress_search_domain(
