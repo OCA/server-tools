@@ -18,7 +18,7 @@ def pre_init_hook(cr):
     on the first run, when installing the module.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
-    if not 'oauth_identifier' in env['res.users']._select_column_data(cr):
+    if not env['res.users']._select_column_data(cr).get('oauth_identifier'):
         cr.execute('ALTER TABLE res_users ADD COLUMN oauth_identifier varchar')
         cr.execute('SELECT id FROM res_users')
         for user_id in cr.fetchall():
