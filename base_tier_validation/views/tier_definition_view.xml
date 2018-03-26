@@ -37,7 +37,7 @@
                     </group>
                 </group>
                 <group col="4" name="bottom">
-                    <field name="python_code"/>
+                    <field name="python_code" colspan="4"/>
                 </group>
             </form>
         </field>

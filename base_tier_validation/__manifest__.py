@@ -4,7 +4,7 @@
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "9.0.1.0.1",
+    "version": "10.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Eficent, Odoo Community Association (OCA)",

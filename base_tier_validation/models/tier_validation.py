@@ -2,9 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
-from openerp.exceptions import ValidationError, UserError
-from openerp.tools.safe_eval import safe_eval
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError, UserError
+from odoo.tools.safe_eval import safe_eval
 
 
 class TierValidation(models.AbstractModel):
