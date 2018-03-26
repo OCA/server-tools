@@ -17,7 +17,7 @@ class OdooStandard(Base):
         'flag_nonmatching',
     ]
 
-    def search_matches(self, folder, mail_message, mail_message_org):
+    def search_matches(self, folder, mail_message):
         """Always match. Duplicates will be fished out by message_id"""
         return [True]
 
@@ -29,5 +29,3 @@ class OdooStandard(Base):
             folder.model_id.model, mail_message_org,
             save_original=folder.server_id.original,
             strip_attachments=(not folder.server_id.attach))
-        if folder.delete_matching:
-            connection.store(msgid, '+FLAGS', '\\DELETED')

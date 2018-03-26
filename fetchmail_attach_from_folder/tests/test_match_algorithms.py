@@ -30,6 +30,10 @@ MSG_BODY = [
 
 class MockConnection():
 
+    def select(self, path):
+        """Mock selecting a folder."""
+        return ('OK', )
+
     def store(self, msgid, msg_item, value):
         """Mock store command."""
         return 'OK'
@@ -37,6 +41,10 @@ class MockConnection():
     def fetch(self, msgid, parts):
         """Return RFC822 formatted message."""
         return ('OK', MSG_BODY)
+
+    def search(self, charset, criteria):
+        """Return some msgid's."""
+        return ('OK', ['123 456'])
 
 
 class TestMatchAlgorithms(TransactionCase):
@@ -56,8 +64,7 @@ class TestMatchAlgorithms(TransactionCase):
             self, match_algorithm, expected_xmlid, folder, mail_message,
             mail_message_org=None):
         matcher = match_algorithm()
-        matches = matcher.search_matches(
-            folder, mail_message, mail_message_org)
+        matches = matcher.search_matches(folder, mail_message)
         self.assertEqual(len(matches), 1)
         self.assertEqual(
             matches[0], self.env.ref(expected_xmlid))
@@ -108,8 +115,7 @@ class TestMatchAlgorithms(TransactionCase):
         folder = self._get_base_folder()
         folder.match_algorithm = 'OdooStandard'
         matcher = odoo_standard.OdooStandard()
-        matches = matcher.search_matches(
-            folder, None, mail_message_org)
+        matches = matcher.search_matches(folder, None)
         self.assertEqual(len(matches), 1)
         matcher.handle_match(
             None, matches[0], folder, None, mail_message_org, None)
@@ -125,6 +131,12 @@ class TestMatchAlgorithms(TransactionCase):
         msgid = "<485a8041-d560-a981-5afc-d31c1f136748@acme.com>"
         matcher = email_exact.EmailExact()
         folder.apply_matching(connection, msgid, matcher)
+
+    def test_retrieve_imap_folder_domain(self):
+        folder = self._get_base_folder()
+        folder.match_algorithm = 'EmailDomain'
+        connection = MockConnection()
+        folder.retrieve_imap_folder(connection)
 
     def test_field_view_get(self):
         """For the moment just check execution withouth errors."""
