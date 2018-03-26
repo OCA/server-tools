@@ -20,8 +20,8 @@ For certificate requests to work, your site needs to be accessible via plain
 HTTP, see below for configuration examples in case you force your clients to
 the SSL version.
 
-After installation, trigger the cronjob `Update letsencrypt certificates` and
-watch your log for messages.
+After installation, trigger the cronjob `Update letsencrypt certificates` (in
+Settings / Automation / Scheduled Actions) and watch your log for messages.
 
 This addon depends on the ``openssl`` binary and the ``acme_tiny`` and ``IPy``
 python modules.
@@ -44,13 +44,17 @@ Configuration
 =============
 
 This addons requests a certificate for the domain named in the configuration
-parameter ``web.base.url`` - if this comes back as ``localhost`` or the like,
-the module doesn't request anything.
+parameter ``web.base.url`` (in Settings / Parameters / System Parameters) 
+— if this comes back as ``localhost`` or the like, the module doesn't request 
+anything.
 
 If you want your certificate to contain multiple alternative names, just add
 them as configuration parameters ``letsencrypt.altname.N`` with ``N`` starting
 from ``0``. The amount of domains that can be added are subject to `rate
 limiting <https://community.letsencrypt.org/t/rate-limits-for-lets-encrypt/6769>`_.
+
+Although ACME v2 protocol is implemented in ``acme-tiny`` `there is no plan to support 
+wildcard names <https://github.com/diafygi/acme-tiny/issues/195#issuecomment-372097617>`_.
 
 Note that all those domains must be publicly reachable on port 80 via HTTP, and
 they must have an entry for ``.well-known/acme-challenge`` pointing to your odoo
