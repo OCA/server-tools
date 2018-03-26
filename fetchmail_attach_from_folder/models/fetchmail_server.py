@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright - 2013-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
 import simplejson
 from lxml import etree
 
 from odoo import _, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 from odoo.tools.misc import UnquoteEvalContext
+
+
+_logger = logging.getLogger(__name__)
 
 
 class FetchmailServer(models.Model):
@@ -38,8 +42,20 @@ class FetchmailServer(models.Model):
         for this in self:
             if not this.folders_only:
                 super(FetchmailServer, this).fetch_mail()
-            for folder in this.folder_ids.filtered('active'):
-                folder.retrieve_imap_folder()
+            try:
+                # New connection for retrieving folders
+                connection = this.connect()
+                for folder in this.folder_ids.filtered('active'):
+                    folder.retrieve_imap_folder(connection)
+                connection.close()
+            except Exception:
+                _logger.error(_(
+                    "General failure when trying to connect to"
+                    " %s server %s."),
+                    this.type, this.name, exc_info=True)
+            finally:
+                if connection:
+                    connection.logout()
         return True
 
     @api.multi
