@@ -19,65 +19,40 @@ class AttachMailManually(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        folder_model = self.env['fetchmail.server.folder']
-        thread_model = self.env['mail.thread']
         defaults = super(AttachMailManually, self).default_get(fields_list)
-        default_folder_id = self.env.context.get('default_folder_id')
-        for folder in folder_model.browse([default_folder_id]):
-            defaults['mail_ids'] = []
-            connection = folder.server_id.connect()
-            connection.select(folder.path)
-            result, msgids = connection.search(
-                None,
-                'FLAGGED' if folder.flag_nonmatching else 'UNDELETED')
-            if result != 'OK':
-                _logger.error(
-                    'Could not search mailbox %s on %s',
-                    folder.path, folder.server_id.name)
-                continue
-            for msgid in msgids[0].split():
-                result, msgdata = connection.fetch(msgid, '(RFC822)')
-                if result != 'OK':
-                    _logger.error(
-                        'Could not fetch %s in %s on %s',
-                        msgid, folder.path, folder.server_id.name)
-                    continue
-                mail_message = thread_model.message_parse(
-                    msgdata[0][1],
-                    save_original=folder.server_id.original)
-                defaults['mail_ids'].append((0, 0, {
-                    'msgid': msgid,
-                    'subject': mail_message.get('subject', ''),
-                    'date': mail_message.get('date', ''),
-                    'object_id': '%s,-1' % folder.model_id.model}))
-            connection.close()
+        defaults['mail_ids'] = []
+        folder = self.env.context.get('folder')
+        connection = folder.server_id.connect()
+        connection.select(folder.path)
+        criteria = 'FLAGGED' if folder.flag_nonmatching else 'UNDELETED'
+        msgids = folder.get_msgids(connection, criteria)
+        for msgid in msgids[0].split():
+            mail_message, message_org = folder.fetch_msg(connection, msgid)
+            defaults['mail_ids'].append((0, 0, {
+                'msgid': msgid,
+                'subject': mail_message.get('subject', ''),
+                'date': mail_message.get('date', ''),
+                'object_id': '%s,-1' % folder.model_id.model}))
+        connection.close()
         return defaults
 
     @api.multi
     def attach_mails(self):
-        thread_model = self.env['mail.thread']
-        for this in self:
-            folder = this.folder_id
-            server = folder.server_id
-            connection = server.connect()
-            connection.select(folder.path)
-            for mail in this.mail_ids:
-                if not mail.object_id:
-                    continue
-                result, msgdata = connection.fetch(mail.msgid, '(RFC822)')
-                if result != 'OK':
-                    _logger.error(
-                        'Could not fetch %s in %s on %s',
-                        mail.msgid, folder.path, server)
-                    continue
-                mail_message = thread_model.message_parse(
-                    msgdata[0][1], save_original=server.original)
-                folder.attach_mail(mail.object_id, mail_message)
-                if folder.delete_matching:
-                    connection.store(mail.msgid, '+FLAGS', '\\DELETED')
-                elif folder.flag_nonmatching:
-                    connection.store(mail.msgid, '-FLAGS', '\\FLAGGED')
-            connection.close()
+        self.ensure_one()
+        folder = self.folder_id
+        server = folder.server_id
+        connection = server.connect()
+        connection.select(folder.path)
+        for mail in self.mail_ids:
+            if not mail.object_id:
+                continue
+            msgid = mail.msgid
+            mail_message, message_org = folder.fetch_msg(connection, msgid)
+            folder.attach_mail(mail.object_id, mail_message)
+            folder.update_msg(
+                connection, msgid, matched=True,
+                flagged=folder.flag_nonmatching)
+        connection.close()
         return {'type': 'ir.actions.act_window_close'}
 
     @api.model
@@ -88,11 +63,9 @@ class AttachMailManually(models.TransientModel):
             view_id=view_id, view_type=view_type, toolbar=toolbar,
             submenu=submenu)
         tree = result['fields']['mail_ids']['views']['tree']
-        folder_model = self.env['fetchmail.server.folder']
-        default_folder_id = self.env.context.get('default_folder_id')
-        for folder in folder_model.browse([default_folder_id]):
-            tree['fields']['object_id']['selection'] = [
-                (folder.model_id.model, folder.model_id.name)]
+        folder = self.env.context.get('folder')
+        tree['fields']['object_id']['selection'] = [
+            (folder.model_id.model, folder.model_id.name)]
         return result
 
 

@@ -11,10 +11,9 @@ class EmailDomain(EmailExact):
     """
     name = 'Domain of email address'
 
-    def search_matches(self, folder, mail_message, mail_message_org):
+    def search_matches(self, folder, mail_message):
         """Returns recordset of matching objects."""
-        matches = super(EmailDomain, self).search_matches(
-            folder, mail_message, mail_message_org)
+        matches = super(EmailDomain, self).search_matches(folder, mail_message)
         if not matches:
             object_model = folder.env[folder.model_id.model]
             domains = []
