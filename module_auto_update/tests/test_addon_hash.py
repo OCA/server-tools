@@ -38,6 +38,7 @@ class TestAddonHash(unittest.TestCase):
             'i18n_extra/nl_NL.po',
             'models/stuff.py',
             'models/stuff.pyc',
+            'models/stuff.pyo',
             'static/src/some.js',
         ])
 
