@@ -10,7 +10,7 @@ from odoo.modules import get_module_path
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
-from openerp.addons.module_auto_update.addon_hash import addon_hash
+from odoo.addons.module_auto_update.addon_hash import addon_hash
 
 from ..models.module_deprecated import PARAM_DEPRECATED
 
