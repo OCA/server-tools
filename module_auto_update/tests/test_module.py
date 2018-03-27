@@ -8,9 +8,9 @@ import tempfile
 
 import mock
 
-from openerp.modules import get_module_path
-from openerp.tests import common
-from openerp.tests.common import TransactionCase
+from odoo.modules import get_module_path
+from odoo.tests import common
+from odoo.tests.common import TransactionCase
 
 from ..addon_hash import addon_hash
 from ..models.module import IncompleteUpgradeError, DEFAULT_EXCLUDE_PATTERNS
