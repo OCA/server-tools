@@ -12,10 +12,12 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     """Autoenable deprecated behavior."""
     try:
-        cr.execute(
-            "INSERT INTO ir_config_parameter (key, value) VALUES (%s, '1')",
-            (PARAM_DEPRECATED,)
-        )
+        with cr.savepoint():
+            cr.execute(
+                """INSERT INTO ir_config_parameter (key, value)
+                   VALUES (%s, '1')""",
+                (PARAM_DEPRECATED,)
+            )
         _logger.warn("Deprecated features have been autoenabled, see "
                      "addon's README to know how to upgrade to the new "
                      "supported autoupdate mechanism.")
