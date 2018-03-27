@@ -7,8 +7,8 @@ import json
 import logging
 import os
 
-from openerp import api, exceptions, models, tools
-from openerp.modules.module import get_module_path
+from odoo import api, exceptions, models, tools
+from odoo.modules.module import get_module_path
 
 from ..addon_hash import addon_hash
 
