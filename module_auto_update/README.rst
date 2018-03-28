@@ -6,35 +6,68 @@
 Module Auto Update
 ==================
 
-This module will automatically check for and apply module upgrades on a schedule.
-
-Upgrade checking is accomplished by comparing the SHA1 checksums of currently-installed modules to the checksums of corresponding modules in the addons directories.
-
-Installation
-============
-
-Prior to installing this module, you need to:
-
-#. Install checksumdir with `pip install checksumdir`
-#. Ensure all installed modules are up-to-date. When installed, this module will assume the versions found in the addons directories are currently installed.
+This addon provides mechanisms to compute sha1 hashes of installed addons,
+and save them in the database. It also provides a method that exploits these
+mechanisms to update a database by upgrading only the modules for which the
+hash has changed since the last successful upgrade.
 
 Configuration
 =============
 
-The default time for checking and applying upgrades is 3:00 AM (UTC). To change this schedule, modify the "Perform Module Upgrades" scheduled action.
+This module supports the following system parameters:
 
-This module will ignore .pyc and .pyo file extensions by default. To modify this, create a module_auto_update.checksum_excluded_extensions system parameter with the desired extensions listed as comma-separated values.
+* ``module_auto_update.exclude_patterns``: comma-separated list of file
+  name patterns to ignore when computing addon checksums. Defaults to
+  ``*.pyc,*.pyo,i18n/*.pot,i18n_extra/*.pot,static/*``.
+  Filename patterns must be compatible with the python ``fnmatch`` function.
+
+In addition to the above pattern, .po files corresponding to languages that
+are not installed in the Odoo database are ignored when computing checksums.
 
 Usage
 =====
 
-Modules scheduled for upgrade can be viewed by clicking the "Updates" menu item in the Apps sidebar.
+The main method provided by this module is ``upgrade_changed_checksum``
+on ``ir.module.module``. It runs a database upgrade for all installed
+modules for which the hash has changed since the last successful
+run of this method. On success it saves the hashes in the database.
 
-To perform upgrades manually, click the "Apply Scheduled Upgrades" menu item in the Apps sidebar.
+The first time this method is invoked after installing the module, it
+runs an upgrade of all modules, because it has not saved the hashes yet.
+This is by design, priviledging safety. Should this be an issue,
+the method ``_save_installed_checksums`` can be invoked in a situation
+where one is sure all modules on disk are installed and up-to-date in the
+database.
+
+An easy way to invoke this upgrade mechanism is by issuing the following
+in an Odoo shell session::
+
+  env['ir.module.module'].upgrade_changed_checksum()
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
+
+Known issues / Roadmap
+======================
+
+* Since version ``2.0.0``, some features have been deprecated.
+  When you upgrade from previous versions, these features will be kept for
+  backwards compatibility, but beware! They are buggy!
+
+  If you install this addon from scratch, these features are disabled by
+  default.
+
+  To force enabling or disabling the deprecated features, set a configuration
+  parameter called ``module_auto_update.enable_deprecated`` to either ``1``
+  or ``0``. It is recommended that you disable them.
+
+  Keep in mind that from this version, all upgrades are assumed to run in a
+  separate odoo instance, dedicated exclusively to upgrade Odoo.
+
+* When migrating the addon to new versions, the deprecated features should be
+  removed. To make it simple all deprecated features are found in files
+  suffixed with ``_deprecated``.
 
 Bug Tracker
 ===========
@@ -57,6 +90,8 @@ Contributors
 
 * Brent Hughes <brent.hughes@laslabs.com>
 * Juan José Scarafía <jjs@adhoc.com.ar>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
+* Stéphane Bidoul <stephane.bidoul@acsone.eu> (https://acsone.eu)
 
 Do not contact contributors directly about support or help with technical issues.
 
