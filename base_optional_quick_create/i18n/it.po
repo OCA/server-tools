@@ -1,33 +1,30 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_optional_quick_create
-# 
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+#	* base_optional_quick_create
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"POT-Creation-Date: 2018-03-19 17:10+0000\n"
+"PO-Revision-Date: 2018-03-19 17:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: base_optional_quick_create
 #: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model_avoid_quick_create
 msgid "Avoid quick create"
-msgstr ""
+msgstr "Evita creazione veloce"
 
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/models/ir_model.py:21
 #, python-format
-msgid "Can't create quickly. Opening create form"
-msgstr ""
+msgid "Can't create %s with name %s quickly.\nPlease contact your system administrator to disable this behaviour."
+msgstr "Non è possibile creare velocemente un %s con nome %s.\nSi prega di contattare l'amministratore di sistema per disabilitare questo comportamento."
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
