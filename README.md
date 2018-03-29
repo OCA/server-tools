@@ -50,7 +50,7 @@ addon | version | summary
 [base_locale_uom_default](base_locale_uom_default/) | 10.0.1.0.0 | This provides settings to select default UoMs at the language level.
 [base_manifest_extension](base_manifest_extension/) | 10.0.1.0.0 | Adds useful keys to manifest files
 [base_multi_image](base_multi_image/) | 10.0.1.0.0 | Allow multiple images for database objects
-[base_optional_quick_create](base_optional_quick_create/) | 10.0.1.0.0 | Avoid 'quick create' on m2o fields, on a 'by model' basis
+[base_optional_quick_create](base_optional_quick_create/) | 10.0.1.0.1 | Avoid 'quick create' on m2o fields, on a 'by model' basis
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 10.0.1.0.0 | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 10.0.1.1.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
@@ -74,7 +74,7 @@ addon | version | summary
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
-[module_auto_update](module_auto_update/) | 10.0.1.0.1 | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 10.0.2.0.1 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [password_security](password_security/) | 10.0.1.1.3 | Allow admin to set password security requirements.
