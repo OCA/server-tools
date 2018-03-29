@@ -10,10 +10,11 @@ class MassObject(models.Model):
     _description = "Mass Editing Object"
 
     name = fields.Char('Name', required=True, select=1)
-    model_id = fields.Many2one('ir.model', 'Model', required=True,
-                               help="Model is used for Selecting Fields. "
-                                    "This is editable until Sidebar menu "
-                                    "is not created.")
+    mass_editing_model_id = fields.Many2one(
+        'ir.model', 'Model', required=True,
+        help="Model is used for Selecting Fields. "
+        "This is editable until Sidebar menu "
+        "is not created.", oldname="model_id")
     field_ids = fields.Many2many('ir.model.fields', 'mass_field_rel',
                                  'mass_id', 'field_id', 'Fields')
     ref_ir_act_window_id = fields.Many2one('ir.actions.act_window',
@@ -33,14 +34,14 @@ class MassObject(models.Model):
         ('name_uniq', 'unique (name)', _('Name must be unique!')),
     ]
 
-    @api.onchange('model_id')
-    def _onchange_model_id(self):
+    @api.onchange('mass_editing_model_id')
+    def _onchange_mass_editing_model_id_domain(self):
         self.field_ids = [(6, 0, [])]
         model_list = []
-        if self.model_id:
+        if self.mass_editing_model_id:
             model_obj = self.env['ir.model']
-            model_list = [self.model_id.id]
-            active_model_obj = self.env[self.model_id.model]
+            model_list = [self.mass_editing_model_id.id]
+            active_model_obj = self.env[self.mass_editing_model_id.model]
             if active_model_obj._inherits:
                 keys = active_model_obj._inherits.keys()
                 inherits_model_list = model_obj.search([('model', 'in', keys)])
@@ -53,7 +54,7 @@ class MassObject(models.Model):
         self.ensure_one()
         vals = {}
         action_obj = self.env['ir.actions.act_window']
-        src_obj = self.model_id.model
+        src_obj = self.mass_editing_model_id.model
         button_name = _('Mass Editing (%s)') % self.name
         vals['ref_ir_act_window_id'] = action_obj.create({
             'name': button_name,

@@ -12,12 +12,13 @@ class IrModelFields(models.Model):
     def search(self, args, offset=0, limit=0, order=None, count=False):
         model_domain = []
         for domain in args:
-            if (len(domain) > 2 and domain[0] == 'model_id' and
-                    isinstance(domain[2], basestring)):
-                model_domain += [('model_id', 'in',
-                                  map(int, domain[2][1:-1].split(',')))]
-            else:
-                model_domain.append(domain)
+            if len(domain) > 2 and domain[0] == 'mass_editing_model_id':
+                if isinstance(domain[2], basestring):
+                    domain = ('model_id', 'in',
+                              map(int, domain[2][1:-1].split(',')))
+                else:
+                    domain = ('model_id', 'in', domain[2])
+            model_domain.append(domain)
         return super(IrModelFields, self).search(model_domain, offset=offset,
                                                  limit=limit, order=order,
                                                  count=count)
