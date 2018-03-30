@@ -18,4 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import model
+import base64
+from openerp.osv.orm import Model, browse_record
+from openerp.osv import fields
+
+class MailMessage(Model):
+    _inherit = 'mail.message'
+
+    def _needaction_count(self, cr, uid, dom, context=None):
+        if dom == [('model', '=', 'fetchmail.inbox.invoice')]:
+            return len(self.search(cr, uid, dom, context=context))
+        return super(MailMessage, self)._needaction_count(
+                cr, uid, dom, context=context)

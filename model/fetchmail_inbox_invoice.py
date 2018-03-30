@@ -18,4 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import model
+from openerp.osv.orm import Model
+from openerp.osv import fields
+
+class FetchmailInboxInvoice(Model):
+    _inherit = 'fetchmail.inbox'
+    _name = 'fetchmail.inbox.invoice'
+    _table = 'fetchmail_inbox'
+    _description = 'Fetchmail inbox for invoices'

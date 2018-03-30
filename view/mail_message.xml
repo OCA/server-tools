@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_message_form" model="ir.ui.view">
+            <field name="model">mail.message</field>
+            <field name="inherit_id" ref="mail.view_message_form"/>
+            <field name="arch" type="xml">
+                <sheet position="before">
+                    <header attrs="{'invisible': [('model', '!=', 'fetchmail.inbox.invoice')]}">
+                        <button string="Attach to existing invoice" type="object" name="fetchmail_inbox_attach_existing" class="oe_highlight" />
+                        <button string="Create invoice" type="object" name="fetchmail_inbox_create" />
+                    </header>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</openerp>
