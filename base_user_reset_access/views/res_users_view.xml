@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015-2017 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form (base_user_reset_access)</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']//group[last()]" position="before">
+                    <group name="Reset Access Right">
+                        <button name="reset_access_right" string="Reset Access Right" type="object"
+                            confirm="This will reset the user's access rights to the minimum configuration. Are you sure?"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
