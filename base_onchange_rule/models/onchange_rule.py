@@ -101,7 +101,7 @@ class OnchangeRule(models.Model):
                 if rule_line.dest_field_id.relation:
                     dest_val = rule_line.m2o_value.id
                 else:
-                    dest_val = rule_line.dest_selection_value
+                    dest_val = rule_line.selection_value
                 if dest_val:
                     values[rule_line.dest_field_id.name] = dest_val
                 to_update_records.write(values)

@@ -22,8 +22,8 @@
         <field name="onchange_field_id" eval="ref('base.field_res_partner_user_id')"/>
         <field name="implied_record">res.users,1</field>
         <field name="dest_field_id" eval="ref('base.field_res_partner_lang')"/>
-        <field name="dest_selection_value">fr_FR</field>
-        <field name="dest_val_type">fixed</field>
+        <field name="selection_value">fr_FR</field>
+        <field name="val_type">fixed</field>
     </record>
 
       <record id="salesperson_lang_line_en" model="onchange.rule.line">
@@ -31,8 +31,8 @@
         <field name="onchange_field_id" eval="ref('base.field_res_partner_user_id')"/>
         <field name="implied_record">res.users,5</field>
         <field name="dest_field_id" eval="ref('base.field_res_partner_lang')"/>
-        <field name="dest_m2o_value">res.lang,1</field>
-        <field name="dest_val_type">fixed</field>
+        <field name="m2o_value">res.lang,1</field>
+        <field name="val_type">fixed</field>
     </record>
 
 

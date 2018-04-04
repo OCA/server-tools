@@ -49,16 +49,18 @@
                                     <field name="dest_field_id"
                                     domain="[('model_id', '=', parent.model_id),
                                     ('ttype', 'in', ('many2one', 'selection'))]"/>
-                                    <field name="dest_val_type" widget="radio"/>
-                                    <field name="dest_related_field" string="Related Field"
-                                           attrs="{'required': [('dest_val_type', '=', 'related')], 'invisible': [('dest_val_type', '!=', 'related')]}"
+                                    <field name="val_type" widget="radio"/>
+                                    <field name="related_field" string="Related Field"
+                                           attrs="{'required': [('val_type', '=', 'related')], 'invisible': [('val_type', '!=', 'related')]}"
                                         placeholer="partner_id.price_list_id"/>
-                                    <field name="dest_m2o_value"
+                                    <field name="m2o_value"
                                         context="{'dest_field_id': onchange_field_id}"
                                         attrs="{
-                                        'invisible': ['|', ('dest_selection_value', '!=', False), ('dest_val_type', '!=', 'fixed')]}"/>
-                                    <field name="dest_selection_value" string="Selection Value"
-                                           attrs="{'invisible': [('dest_val_type', '!=', 'fixed')]}"/>
+                                        'invisible': ['|', ('selection_value', '!=', False), ('val_type', '!=', 'fixed')]}"/>
+                                    <field name="selection_value" string="Selection Value"
+                                           attrs="{'invisible': [('val_type', '!=', 'fixed')]}"/>
+                                    <field name="code" 
+                                           attrs="{'invisible': [('val_type', '!=', 'code')]}"/>
                                     <field name="is_restrictive_rule"/>
                                 </group>
                                 <group string="Onchange Parameters" colspan="4">
@@ -78,10 +80,8 @@
                             <field name="dest_field_id" string="Destination Field"
                                    domain="[('model_id', '=', parent.model_id),
                                             ('ttype', 'in', ('many2one', 'selection'))]"/>
-                            <field name="dest_related_field" string="Dest. Related Field"/>
-                            <field name="dest_m2o_value" string="M2o Value"
-                                   context="{'dest_field_id': onchange_field_id}"/>
-                            <field name="dest_selection_value" string="Select. Value"/>
+                            <field name="related_field" string="Related Field"/>
+                            <field name="dest_value" string="Value"/>
                             <field name="onchange_domain"/>
                             <field name="is_restrictive_rule" string="Restrictive"/>
                             <button name="button_duplicate_record" type="object" icon="fa-copy"/>
@@ -134,10 +134,10 @@
                 <field name="dest_field_id" string="Destination Field"
                        domain="[('model_id', '=', parent.model_id),
                                 ('ttype', 'in', ('many2one', 'selection'))]"/>
-                <field name="dest_related_field" string="Dest. Related Field"/>
-                <field name="dest_m2o_value" string="M2o Value"
+                <field name="related_field" string="Dest. Related Field"/>
+                <field name="m2o_value" string="M2o Value"
                        context="{'dest_field_id': onchange_field_id}"/>
-                <field name="dest_selection_value" string="Select. Value"/>
+                <field name="selection_value" string="Select. Value"/>
                 <field name="onchange_domain"/>
                 <field name="is_restrictive_rule" string="Restrictive"/>
             </tree>

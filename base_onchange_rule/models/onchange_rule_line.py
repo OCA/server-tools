@@ -37,25 +37,27 @@ class OnchangeRuleLine(models.TransientModel):
         required=True,
         help="Select field that'll be driven by onchange "
              "according to implied record.")
-    dest_val_type = fields.Selection(
+    val_type = fields.Selection(
         string="Value Type",
         selection=[
             ("fixed", "Fixed"),
-            ("related", "Related")],
+            ("related", "Related"),
+            ("code", "Code")],
         help="Destination value type")
-    dest_selection_value = fields.Char(
+    selection_value = fields.Char(
         string="Selection Value",
-        # selection='_compute_destination_value',
         help="Final select value after onchange is executed")
-    dest_m2o_value = fields.Reference(
+    m2o_value = fields.Reference(
         selection='_authorised_destination_models', string="M2O Value",
         help="Final value after onchange is executed (Many2one)")
-    dest_related_field = fields.Char(
-        string="Destination Related Field",
+    dest_value = fields.Char(string='Value', compute='_compute_value')
+    related_field = fields.Char(
+        string="Related Field",
         help="Related value is used to apply the onchange value get"
              " form related fields.\nE.g.: on sale order we can apply"
              " the partner price list by using this notation:"
              " partner_id.price_list_id")
+    code = fields.Char()
     readonly = fields.Boolean(
         help="If checked ensure than record can't be updated by user "
              "(only by inserted data)")
@@ -103,6 +105,13 @@ class OnchangeRuleLine(models.TransientModel):
         models = self.env['ir.model'].search(domain)
         return [(x.model, x.name) for x in models]
 
+    def _compute_value(self):
+        for rec in self:
+            m2o = rec.m2o_value
+            if m2o:
+                m2o = m2o[m2o._rec_name]
+            rec.dest_value = (m2o or rec.selection_value or '')
+
     @api.multi
     @api.onchange('onchange_field_id')
     def _compute_implied_record(self):
@@ -113,14 +122,14 @@ class OnchangeRuleLine(models.TransientModel):
                 rec.implied_record = last
 
     @api.multi
-    @api.onchange('dest_val_type')
-    def _onchange_dest_val_type(self):
+    @api.onchange('val_type')
+    def _onchange_val_type(self):
         for rec in self:
-            if rec.dest_val_type == 'fixed':
-                rec.dest_related_field = False
-            elif rec.dest_val_type == 'related':
-                rec.dest_m2o_value = False
-                rec.dest_selection_value = False
+            if rec.val_type == 'fixed':
+                rec.related_field = False
+            elif rec.val_type == 'related':
+                rec.m2o_value = False
+                rec.selection_value = False
 
     @api.multi
     @api.onchange('dest_field_id')
@@ -129,7 +138,7 @@ class OnchangeRuleLine(models.TransientModel):
         if self.dest_field_id.relation:
             last = self.env[self.dest_field_id.relation].search(
                 [], order='id desc', limit=1)
-            self.dest_m2o_value = last
+            self.m2o_value = last
         if self.dest_field_id.ttype == 'selection':
             select_vals = self.env[
                 self.dest_field_id.model_id.model].fields_get()[
@@ -137,16 +146,16 @@ class OnchangeRuleLine(models.TransientModel):
             return select_vals
         return
 
-    @api.constrains('dest_related_field', 'model_id')
+    @api.constrains('related_field', 'model_id')
     def _check_des_related_field(self):
         """ Ensuring that the related field exists and
         it corresponding to the destination field relation """
         for rule_line in self:
             model_name = rule_line.model_id.model
             model_obj = self.env[model_name]
-            if not rule_line.dest_related_field:
+            if not rule_line.related_field:
                 continue
-            related_field = rule_line.dest_related_field
+            related_field = rule_line.related_field
             try:
                 local_dict = {'obj': model_obj}
                 related_model = safe_eval(
@@ -182,40 +191,40 @@ class OnchangeRuleLine(models.TransientModel):
                 # constrains should raise ValidationError exceptions
                 raise ValidationError(err)
 
-    @api.constrains('dest_selection_value')
-    def _check_dest_selection_value(self):
-        """ Ensure that the dest_selection_value is in destination
+    @api.constrains('selection_value')
+    def _check_selection_value(self):
+        """ Ensure that the selection_value is in destination
         fields selection """
         for rule_line in self:
             if rule_line.dest_field_id.ttype == 'selection':
                 select_vals = self.env[
                     rule_line.dest_field_id.model_id.model].fields_get()[
                     rule_line.dest_field_id.name]['selection']
-                if rule_line.dest_selection_value\
+                if rule_line.selection_value\
                         not in [s[0] for s in select_vals]:
                     raise ValidationError(
                         _('The value "%s" you chose for the destination '
                           'selection field "%s" is wrong.'
                           ' Value must be in this list %s')
-                        % (rule_line.dest_selection_value,
+                        % (rule_line.selection_value,
                            rule_line.dest_field_id.name,
                            select_vals)
                     )
 
-    @api.constrains('dest_m2o_value')
-    def _check_dest_m2o_value(self):
-        """ Ensure that the dest_m2o_value exite an correspending to
+    @api.constrains('m2o_value')
+    def _check_m2o_value(self):
+        """ Ensure that the m2o_value exite an correspending to
          dest_field_id.relation model"""
         for rule_line in self:
             if rule_line.dest_field_id.relation:
-                if rule_line.dest_m2o_value and \
-                        rule_line.dest_m2o_value._name != \
+                if rule_line.m2o_value and \
+                        rule_line.m2o_value._name != \
                         rule_line.dest_field_id.relation:
                     raise ValidationError(
                         _('The value "%s" of the destination '
                           'one2many field "%s" doesn''t exist in model "%s". '
                           'Choose an existing value')
-                        % (rule_line.dest_m2o_value,
+                        % (rule_line.m2o_value,
                            rule_line.dest_field_id.name,
                            self.env[rule_line.dest_field_id.relation].
                             _description)
@@ -229,14 +238,14 @@ class OnchangeRuleLine(models.TransientModel):
         for rule_line in self:
             dest_val = False
             domain = ast.literal_eval(self.onchange_domain or "{}")
-            if rule_line.dest_val_type == 'fixed':
+            if rule_line.val_type == 'fixed':
                 if rule_line.dest_field_id.relation:
-                    dest_val = rule_line.dest_m2o_value.id
+                    dest_val = rule_line.m2o_value.id
                 else:
-                    dest_val = rule_line.dest_selection_value
-            elif rule_line.dest_val_type == 'related':
+                    dest_val = rule_line.selection_value
+            elif rule_line.val_type == 'related':
                 dest_val = safe_eval(
-                    "obj.%s" % rule_line.dest_related_field, {
+                    "obj.%s" % rule_line.related_field, {
                         'obj': onchange_self})
             if rule_line.implied_record == onchange_self[
                     rule_line.onchange_field_id.name]:
@@ -256,9 +265,9 @@ class OnchangeRuleLine(models.TransientModel):
     def _get_domain_for_restrictive_rule(self):
         result = ast.literal_eval(self.onchange_domain or "{}")
         if self.is_restrictive_rule:
-            if self.dest_field_id.relation and self.dest_m2o_value:
+            if self.dest_field_id.relation and self.m2o_value:
                 field_domain = {self.dest_field_id.name: [
-                    ('id', '=', self.dest_m2o_value.id),
+                    ('id', '=', self.m2o_value.id),
                 ]}
                 if not result:
                     result = field_domain
@@ -267,7 +276,7 @@ class OnchangeRuleLine(models.TransientModel):
                 else:
                     domain = result[self.dest_field_id.name] or []
                     result[self.dest_field_id.name] = domain.apend(
-                        ('id', '=', self.dest_m2o_value.id))
+                        ('id', '=', self.m2o_value.id))
         return result
 
     def _get_restrictive_rule_line(self, records):
