@@ -105,4 +105,54 @@
               id="menu_onchange_rule_action"
               parent="base.menu_automation" sequence="10"/>
 
+
+    <record id="onchange_rule_line_search" model="ir.ui.view">
+        <field name="model">onchange.rule.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="onchange_rule_id"/>
+                <field name="onchange_field_id"/>
+                <filter string="Restrictive" name="is_restrictive_rule" domain="[('is_restrictive_rule', '=', True)]"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Onchange Rule" domain="[]" context="{'group_by':'onchange_rule_id'}"/>
+               </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="onchange_rule_line_tree" model="ir.ui.view">
+        <field name="model">onchange.rule.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="onchange_rule_id"/>
+                <field name="onchange_field_id"
+                       domain="[('model_id', '=', parent.model_id),
+                                ('ttype', 'in', ('many2one', 'selection'))]"/>
+                <field name="implied_model" readonly="1"/>
+                <field name="implied_record"
+                       context="{'onchange_field_id': onchange_field_id}"/>
+                <field name="dest_field_id" string="Destination Field"
+                       domain="[('model_id', '=', parent.model_id),
+                                ('ttype', 'in', ('many2one', 'selection'))]"/>
+                <field name="dest_related_field" string="Dest. Related Field"/>
+                <field name="dest_m2o_value" string="M2o Value"
+                       context="{'dest_field_id': onchange_field_id}"/>
+                <field name="dest_selection_value" string="Select. Value"/>
+                <field name="onchange_domain"/>
+                <field name="is_restrictive_rule" string="Restrictive"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onchange_rule_line_action" model="ir.actions.act_window">
+        <field name="name">Onchange Rule Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onchange.rule.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem action="onchange_rule_line_action"
+              id="menu_onchange_rule_line_action"
+              parent="base.menu_automation" sequence="20"/>
+
 </odoo>

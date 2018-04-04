@@ -208,7 +208,8 @@ class OnchangeRuleLine(models.TransientModel):
          dest_field_id.relation model"""
         for rule_line in self:
             if rule_line.dest_field_id.relation:
-                if rule_line.dest_m2o_value._name !=\
+                if rule_line.dest_m2o_value and \
+                        rule_line.dest_m2o_value._name != \
                         rule_line.dest_field_id.relation:
                     raise ValidationError(
                         _('The value "%s" of the destination '
@@ -228,10 +229,15 @@ class OnchangeRuleLine(models.TransientModel):
         for rule_line in self:
             dest_val = False
             domain = ast.literal_eval(self.onchange_domain or "{}")
-            if rule_line.dest_field_id.relation:
-                dest_val = rule_line.dest_m2o_value.id
-            else:
-                dest_val = rule_line.dest_selection_value
+            if rule_line.dest_val_type == 'fixed':
+                if rule_line.dest_field_id.relation:
+                    dest_val = rule_line.dest_m2o_value.id
+                else:
+                    dest_val = rule_line.dest_selection_value
+            elif rule_line.dest_val_type == 'related':
+                dest_val = safe_eval(
+                    "obj.%s" % rule_line.dest_related_field, {
+                        'obj': onchange_self})
             if rule_line.implied_record == onchange_self[
                     rule_line.onchange_field_id.name]:
                 result['value'] = {rule_line.dest_field_id.name: dest_val}
@@ -244,14 +250,13 @@ class OnchangeRuleLine(models.TransientModel):
                         rule_line.onchange_rule_id.name,
                         'message': rule_line.onchange_warning,
                     }
-
         return result
 
     @api.model
     def _get_domain_for_restrictive_rule(self):
         result = ast.literal_eval(self.onchange_domain or "{}")
         if self.is_restrictive_rule:
-            if self.dest_field_id.relation:
+            if self.dest_field_id.relation and self.dest_m2o_value:
                 field_domain = {self.dest_field_id.name: [
                     ('id', '=', self.dest_m2o_value.id),
                 ]}
