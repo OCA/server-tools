@@ -59,8 +59,10 @@
                                         'invisible': ['|', ('selection_value', '!=', False), ('val_type', '!=', 'fixed')]}"/>
                                     <field name="selection_value" string="Selection Value"
                                            attrs="{'invisible': [('val_type', '!=', 'fixed')]}"/>
-                                    <field name="code" 
-                                           attrs="{'invisible': [('val_type', '!=', 'code')]}"/>
+                                    <field name="method" 
+                                           attrs="{'invisible': [('val_type', '!=', 'method')]}"/>
+                                    <field name="method_comment" 
+                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': 1}"/>
                                     <field name="is_restrictive_rule"/>
                                 </group>
                                 <group string="Onchange Parameters" colspan="4">
@@ -80,7 +82,7 @@
                             <field name="dest_field_id" string="Destination Field"
                                    domain="[('model_id', '=', parent.model_id),
                                             ('ttype', 'in', ('many2one', 'selection'))]"/>
-                            <field name="related_field" string="Related Field"/>
+                            <field name="val_type"/>
                             <field name="dest_value" string="Value"/>
                             <field name="onchange_domain"/>
                             <field name="is_restrictive_rule" string="Restrictive"/>

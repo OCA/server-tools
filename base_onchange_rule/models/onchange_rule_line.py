@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import ast
+import re
 
 from odoo import _, api, fields, models
 from odoo.tools.safe_eval import safe_eval
@@ -38,11 +39,11 @@ class OnchangeRuleLine(models.TransientModel):
         help="Select field that'll be driven by onchange "
              "according to implied record.")
     val_type = fields.Selection(
-        string="Value Type",
+        string="Type",
         selection=[
             ("fixed", "Fixed"),
             ("related", "Related"),
-            ("code", "Code")],
+            ("method", "Method")],
         help="Destination value type")
     selection_value = fields.Char(
         string="Selection Value",
@@ -57,7 +58,11 @@ class OnchangeRuleLine(models.TransientModel):
              " form related fields.\nE.g.: on sale order we can apply"
              " the partner price list by using this notation:"
              " partner_id.price_list_id")
-    code = fields.Char()
+    method = fields.Char(
+        help="Name of the python function called to set value")
+    method_comment = fields.Char(
+        string="Comment",
+        help="Explanation of the method: documentation")
     readonly = fields.Boolean(
         help="If checked ensure than record can't be updated by user "
              "(only by inserted data)")
@@ -110,9 +115,10 @@ class OnchangeRuleLine(models.TransientModel):
             m2o = rec.m2o_value
             if m2o:
                 m2o = m2o[m2o._rec_name]
-            rec.dest_value = (m2o or rec.selection_value or '')
+            rec.dest_value = (m2o or rec.selection_value or
+                              rec.related_field or (rec.method and
+                                  rec.method_comment or '') or '')
 
-    @api.multi
     @api.onchange('onchange_field_id')
     def _compute_implied_record(self):
         for rec in self:
@@ -121,13 +127,20 @@ class OnchangeRuleLine(models.TransientModel):
                     [], order='id desc', limit=1)
                 rec.implied_record = last
 
-    @api.multi
     @api.onchange('val_type')
     def _onchange_val_type(self):
         for rec in self:
             if rec.val_type == 'fixed':
                 rec.related_field = False
+                rec.method = False
+                rec.method_comment = False
             elif rec.val_type == 'related':
+                rec.m2o_value = False
+                rec.selection_value = False
+                rec.method = False
+                rec.method_comment = False
+            elif rec.val_type == 'method':
+                rec.related_field = False
                 rec.m2o_value = False
                 rec.selection_value = False
 
@@ -147,7 +160,7 @@ class OnchangeRuleLine(models.TransientModel):
         return
 
     @api.constrains('related_field', 'model_id')
-    def _check_des_related_field(self):
+    def _check_related_field(self):
         """ Ensuring that the related field exists and
         it corresponding to the destination field relation """
         for rule_line in self:
@@ -171,7 +184,7 @@ class OnchangeRuleLine(models.TransientModel):
                 raise ValidationError(err)
 
     @api.constrains('onchange_domain')
-    def _check_des_field_domain(self):
+    def _check_field_domain(self):
         """ Ensuring that the domain is for destination field relation """
         for rule_line in self:
             model_obj = self.env[rule_line.model_id.model]
@@ -227,8 +240,20 @@ class OnchangeRuleLine(models.TransientModel):
                         % (rule_line.m2o_value,
                            rule_line.dest_field_id.name,
                            self.env[rule_line.dest_field_id.relation].
-                            _description)
-                    )
+                            _description))
+
+    @api.constrains('method')
+    def _check_method(self):
+        for line in self:
+            if re.search(r'[a-z_][a-z0-9_]*', line.method):
+                raise UserError(
+                    _("Some chars in method field '%s' are invalid for a "
+                      "python function name:\nonly a z and _ authorized"
+                      % line.method))
+            if not hasattr(line.implied_record, line.method):
+                raise UserError(_("Object %s has no attribute %s") % (
+                    line.implied_record[line.implied_record._name],
+                    line.method))
 
     @api.multi
     def _get_onchange_value(self):
@@ -247,6 +272,9 @@ class OnchangeRuleLine(models.TransientModel):
                 dest_val = safe_eval(
                     "obj.%s" % rule_line.related_field, {
                         'obj': onchange_self})
+            elif rule_line.val_type == 'method':
+                obj = onchange_self[rule_line.onchange_field_id.name]
+                dest_val = getattr(obj, rule_line.method)()
             if rule_line.implied_record == onchange_self[
                     rule_line.onchange_field_id.name]:
                 result['value'] = {rule_line.dest_field_id.name: dest_val}
