@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import api, SUPERUSER_ID
+import logging
+from openerp import api, exceptions, SUPERUSER_ID
+_logger = logging.getLogger(__name__)
 
 
 def post_init_hook(cr, registry):
@@ -13,8 +15,15 @@ def post_init_hook(cr, registry):
     """
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        env["ir.exports.line"].search([
+        for export_line in env["ir.exports.line"].search([
             ("field1_id", "=", False),
             ("export_id", "!=", False),
             ("name", "!=", False),
-        ])._inverse_name()
+        ]):
+            try:
+                export_line._inverse_name()
+            except exceptions.ValidationError:
+                export_line.active = False
+                _logger.error(
+                    'Deactivated invalid export line #%d', export_line,
+                )

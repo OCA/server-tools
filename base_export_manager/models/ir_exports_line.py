@@ -18,6 +18,7 @@ class IrExportsLine(models.Model):
         compute="_compute_name",
         inverse="_inverse_name",
         help="Field's technical name.")
+    active = fields.Boolean(default=True)
     field1_id = fields.Many2one(
         "ir.model.fields",
         "First field",
