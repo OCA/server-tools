@@ -115,9 +115,9 @@ class OnchangeRuleLine(models.TransientModel):
             m2o = rec.m2o_value
             if m2o:
                 m2o = m2o[m2o._rec_name]
-            rec.dest_value = (m2o or rec.selection_value or
-                              rec.related_field or (rec.method and
-                                  rec.method_comment or '') or '')
+            rec.dest_value = (
+                m2o or rec.selection_value or rec.related_field or
+                rec.method_comment or rec.method or '')
 
     @api.onchange('onchange_field_id')
     def _compute_implied_record(self):
@@ -245,14 +245,14 @@ class OnchangeRuleLine(models.TransientModel):
     @api.constrains('method')
     def _check_method(self):
         for line in self:
-            if re.search(r'[a-z_][a-z0-9_]*', line.method):
+            if re.search(r'^[a-z0-9_]+$', line.method).group() != line.method:
                 raise UserError(
-                    _("Some chars in method field '%s' are invalid for a "
+                    _("Some chars in method field '%s' \nare invalid for a "
                       "python function name:\nonly a z and _ authorized"
                       % line.method))
-            if not hasattr(line.implied_record, line.method):
-                raise UserError(_("Object %s has no attribute %s") % (
-                    line.implied_record[line.implied_record._name],
+            if not hasattr(line.env[line.model_id.model], line.method):
+                raise UserError(_("Object '%s' has no attribute '%s'") % (
+                    line.implied_record[line.implied_record._rec_name],
                     line.method))
 
     @api.multi
@@ -273,8 +273,7 @@ class OnchangeRuleLine(models.TransientModel):
                     "obj.%s" % rule_line.related_field, {
                         'obj': onchange_self})
             elif rule_line.val_type == 'method':
-                obj = onchange_self[rule_line.onchange_field_id.name]
-                dest_val = getattr(obj, rule_line.method)()
+                dest_val = getattr(onchange_self, rule_line.method)()
             if rule_line.implied_record == onchange_self[
                     rule_line.onchange_field_id.name]:
                 result['value'] = {rule_line.dest_field_id.name: dest_val}

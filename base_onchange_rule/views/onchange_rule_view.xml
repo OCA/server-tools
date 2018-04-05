@@ -32,42 +32,51 @@
                     <field name="rule_line_ids" colspan="4" nolabel="1">
                         <form string="Rules lines">
                             <group>
+                                <field name="readonly" invisible="1"/>
                                 <group string="Source">
                                     <field name="onchange_field_id"
-                                        domain="[('model_id', '=', parent.model_id),
-                                        ('ttype', 'in', ('many2one', 'selection'))]"/>
+                                           domain="[('model_id', '=', parent.model_id),
+                                           ('ttype', 'in', ('many2one', 'selection'))]"
+                                           attrs="{'readonly': [('readonly', '=', 1)]}"/>
                                     <field name="implied_model" readonly="1"/>
                                     <label for="implied_record"/>
                                     <div>
                                         <field
                                             context="{'onchange_field_id':
                                              onchange_field_id,}"
-                                            name="implied_record" class="oe_inline"/>
+                                            name="implied_record" class="oe_inline" 
+                                            attrs="{'readonly': [('readonly', '=', 1)]}"/>
                                     </div>
                                 </group>
                                 <group string="Destination">
-                                    <field name="dest_field_id"
+                                    <field name="dest_field_id" attrs="{'readonly': [('readonly', '=', 1)]}"
                                     domain="[('model_id', '=', parent.model_id),
                                     ('ttype', 'in', ('many2one', 'selection'))]"/>
-                                    <field name="val_type" widget="radio"/>
+                                    <field name="val_type" widget="radio" 
+                                           attrs="{'readonly': [('readonly', '=', 1)]}" />
                                     <field name="related_field" string="Related Field"
-                                           attrs="{'required': [('val_type', '=', 'related')], 'invisible': [('val_type', '!=', 'related')]}"
+                                           attrs="{'required': [('val_type', '=', 'related')],
+                                                   'invisible': [('val_type', '!=', 'related')],
+                                                   'readonly': [('readonly', '=', 1)]}"
                                         placeholer="partner_id.price_list_id"/>
                                     <field name="m2o_value"
                                         context="{'dest_field_id': onchange_field_id}"
                                         attrs="{
-                                        'invisible': ['|', ('selection_value', '!=', False), ('val_type', '!=', 'fixed')]}"/>
+                                        'invisible': ['|', ('selection_value', '!=', False), ('val_type', '!=', 'fixed')],
+                                        'readonly': [('readonly', '=', 1)]}"/>
                                     <field name="selection_value" string="Selection Value"
-                                           attrs="{'invisible': [('val_type', '!=', 'fixed')]}"/>
+                                           attrs="{'invisible': [('val_type', '!=', 'fixed')], 'readonly': [('readonly', '=', 1)]}"/>
                                     <field name="method" 
-                                           attrs="{'invisible': [('val_type', '!=', 'method')]}"/>
-                                    <field name="method_comment" 
-                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': 1}"/>
+                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="method_comment" nolabel="1" colspan="2"
+                                           placeholder="... two words about what expect with this method !"
+                                           attrs="{'invisible': [('val_type', '!=', 'method')], 'readonly': [('readonly', '=', 1)]}"/>
                                     <field name="is_restrictive_rule"/>
                                 </group>
                                 <group string="Onchange Parameters" colspan="4">
-                                    <field name="onchange_domain" placeholder="{'partner_id': [('name', '=', 'Akretion')]}"/>
-                                    <field name="onchange_warning" />
+                                    <field name="onchange_domain" placeholder="{'partner_id': [('name', '=', 'Akretion')]}"
+                                           attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                    <field name="onchange_warning" attrs="{'readonly': [('readonly', '=', 1)]}"/>
                                 </group>
                             </group>
                         </form>
