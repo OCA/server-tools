@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-============================
-Mail log messages to process
-============================
+===========================
+Mail log message to process
+===========================
 
 This module allows to log into the server the basic information of emails
 that have been fetched from the mail server, before they start to be processed.
@@ -14,6 +14,9 @@ missing in Odoo. Can help to better resolve questions of the type 'Was it that
 the email was never fetched, or a problem found when it was processed by
 Odoo?'.
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+    :alt: Try me on Runbot
+    :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 Bug Tracker
 ===========
