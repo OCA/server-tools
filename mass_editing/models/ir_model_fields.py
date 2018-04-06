@@ -17,8 +17,8 @@ class IrModelFields(models.Model):
             if (len(domain) > 2 and domain[0] == 'model_id' and
                     isinstance(domain[2], six.string_types) and
                     list(domain[2][1:-1])):
-                model_domain += [('model_id', 'in',
-                                  map(int, domain[2][1:-1].split(',')))]
+                model_ids = [int(x) for x in domain[2][1:-1].split(',')]
+                model_domain.append(('model_id', 'in', model_ids))
             else:
                 model_domain.append(domain)
         return super(IrModelFields, self).search(model_domain, offset=offset,

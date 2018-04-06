@@ -24,10 +24,6 @@ class MassObject(models.Model):
                                                 "template available on "
                                                 "records of the related "
                                                 "document model.")
-    ref_ir_value_id = fields.Many2one('ir.values', 'Sidebar button',
-                                      readonly=True,
-                                      help="Sidebar button to open "
-                                           "the sidebar action.")
     model_list = fields.Char('Model List')
 
     _sql_constraints = [
@@ -43,7 +39,7 @@ class MassObject(models.Model):
             model_list = [self.model_id.id]
             active_model_obj = self.env[self.model_id.model]
             if active_model_obj._inherits:
-                keys = active_model_obj._inherits.keys()
+                keys = list(active_model_obj._inherits.keys())
                 inherits_model_list = model_obj.search([('model', 'in', keys)])
                 model_list.extend((inherits_model_list and
                                    inherits_model_list.ids or []))
@@ -65,15 +61,7 @@ class MassObject(models.Model):
             'context': "{'mass_editing_object' : %d}" % (self.id),
             'view_mode': 'form, tree',
             'target': 'new',
-        }).id
-        # We make sudo as any user with rights in this model should be able
-        # to create the action, not only admin
-        vals['ref_ir_value_id'] = self.env['ir.values'].sudo().create({
-            'name': button_name,
-            'model': src_obj,
-            'key2': 'client_action_multi',
-            'value': "ir.actions.act_window," +
-                     str(vals['ref_ir_act_window_id']),
+            'binding_model_id': self.model_id.id,
         }).id
         self.write(vals)
         return True
