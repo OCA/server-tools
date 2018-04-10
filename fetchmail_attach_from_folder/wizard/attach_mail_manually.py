@@ -21,7 +21,10 @@ class AttachMailManually(models.TransientModel):
     def default_get(self, fields_list):
         defaults = super(AttachMailManually, self).default_get(fields_list)
         defaults['mail_ids'] = []
-        folder = self.env.context.get('folder')
+        folder_model = self.env['fetchmail.server.folder']
+        folder_id = self.env.context.get('folder_id')
+        defaults['folder_id'] = folder_id
+        folder = folder_model.browse([folder_id])
         connection = folder.server_id.connect()
         connection.select(folder.path)
         criteria = 'FLAGGED' if folder.flag_nonmatching else 'UNDELETED'
@@ -62,8 +65,10 @@ class AttachMailManually(models.TransientModel):
         result = super(AttachMailManually, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar,
             submenu=submenu)
+        folder_model = self.env['fetchmail.server.folder']
+        folder_id = self.env.context.get('folder_id')
+        folder = folder_model.browse([folder_id])
         tree = result['fields']['mail_ids']['views']['tree']
-        folder = self.env.context.get('folder')
         tree['fields']['object_id']['selection'] = [
             (folder.model_id.model, folder.model_id.name)]
         return result
