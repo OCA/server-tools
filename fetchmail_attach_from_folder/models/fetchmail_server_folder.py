@@ -96,7 +96,7 @@ class FetchmailServerFolder(models.Model):
             'type': 'ir.actions.act_window',
             'res_model': 'fetchmail.attach.mail.manually',
             'target': 'new',
-            'context': dict(self.env.context, folder=self),
+            'context': dict(self.env.context, folder_id=self.id),
             'view_type': 'form',
             'view_mode': 'form'}
 
