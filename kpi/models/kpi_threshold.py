@@ -13,27 +13,25 @@ class KPIThreshold(models.Model):
 
     @api.multi
     def _compute_is_valid_threshold(self):
-        result = {}
         for obj in self:
             # check if ranges overlap
             # TODO: This code can be done better
+            obj.valid = True
             for range1 in obj.range_ids:
-                for range2 in obj.range_ids:
-                    if (range1.valid and range2.valid and
-                            range1.min_value < range2.min_value):
-                        result[obj.id] = range1.max_value <= range2.min_value
-        return result
-
-    @api.multi
-    def _compute_generate_invalid_message(self):
-        result = {}
-        for obj in self:
+                if not range1.valid:
+                    obj.valid = False
+                    break
+                for range2 in (obj.range_ids-range1):
+                    if (range1.max_value >= range2.min_value and
+                            range1.min_value <= range2.max_value):
+                        obj.valid = False
+                        break
             if obj.valid:
-                result[obj.id] = ""
+                obj.invalid_message = None
             else:
-                result[obj.id] = ("Two of your ranges are overlapping. Please "
-                                  "make sure your ranges do not overlap.")
-        return result
+                obj.invalid_message = (
+                    "Some ranges are invalid or overlapping. "
+                    "Please make sure your ranges do not overlap.")
 
     name = fields.Char('Name', size=50, required=True)
     range_ids = fields.Many2many(
@@ -46,7 +44,7 @@ class KPIThreshold(models.Model):
     valid = fields.Boolean(string='Valid', required=True,
                            compute="_compute_is_valid_threshold", default=True)
     invalid_message = fields.Char(string='Message', size=100,
-                                  compute="_compute_generate_invalid_message")
+                                  compute="_compute_is_valid_threshold")
     kpi_ids = fields.One2many('kpi', 'threshold_id', 'KPIs')
     company_id = fields.Many2one(
         'res.company', 'Company',

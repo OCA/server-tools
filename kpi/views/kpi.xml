@@ -48,37 +48,39 @@
             <field name="model">kpi</field>
             <field name="arch" type="xml">
                 <form string="Key Performance Indicator">
-                    <group col="6" colspan="6">
-                        <field name="name" colspan="2"/>
-                        <field name="threshold_id" colspan="2"/>
-                        <field name="category_id" colspan="2"/>
-                        <newline/>
-                        <field name="value" colspan="2"/>
-                        <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
-                        <field name="active" colspan="2"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
-                    </group>
-                    <notebook colspan="6">
-                        <page string="History">
-                            <field name="history_ids" readonly="1" nolabel="1"/>
-                        </page>
-                        <page string="Computation">
-                            <group col="6">
-                                <field name="periodicity" colspan="2"/>
-                                <field name="periodicity_uom" colspan="2"/>
-                                <field name="next_execution_date" colspan="2"/>
-                                <separator string="KPI Computation" colspan="6"/>
-                                <newline/>
-                                <field name="kpi_type" colspan="2"/>
-                                <field name="dbsource_id" colspan="2" attrs="{'invisible' : [('kpi_type', '!=', 'external')]}"/>
-                                <newline/>
-                                <field name="kpi_code" colspan="6"/>
-                            </group>
-                        </page>
-                        <page string="Description">
-                            <field name="description" nolabel="1"/>
-                        </page>
-                    </notebook>
+                    <sheet>
+                        <group col="6" colspan="6">
+                            <field name="name" colspan="2"/>
+                            <field name="threshold_id" colspan="2"/>
+                            <field name="category_id" colspan="2"/>
+                            <newline/>
+                            <field name="value" colspan="2"/>
+                            <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
+                            <field name="active" colspan="2"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <notebook colspan="6">
+                            <page string="History">
+                                <field name="history_ids" readonly="1" nolabel="1"/>
+                            </page>
+                            <page string="Computation">
+                                <group col="6">
+                                    <field name="periodicity" colspan="2"/>
+                                    <field name="periodicity_uom" colspan="2"/>
+                                    <field name="next_execution_date" colspan="2"/>
+                                    <separator string="KPI Computation" colspan="6"/>
+                                    <newline/>
+                                    <field name="kpi_type" colspan="2"/>
+                                    <field name="dbsource_id" colspan="2" attrs="{'invisible' : [('kpi_type', '!=', 'external')]}"/>
+                                    <newline/>
+                                    <field name="kpi_code" colspan="6"/>
+                                </group>
+                            </page>
+                            <page string="Description">
+                                <field name="description" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>

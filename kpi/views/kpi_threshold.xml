@@ -9,7 +9,7 @@
             <field name="name">kpi.threshold.tree</field>
             <field name="model">kpi.threshold</field>
             <field name="arch" type="xml">
-                <tree string="Thresholds">
+                <tree string="Thresholds" decoration-danger="invalid_message">
                     <field name="name"/>
                     <field name="invalid_message"/>
                     <field name="company_id" groups="base.group_multi_company"/>
@@ -22,21 +22,24 @@
             <field name="model">kpi.threshold</field>
             <field name="arch" type="xml">
                 <form string="Threshold">
-                    <group col="6" colspan="6">
-                        <field name="name" colspan="2"/>
-                        <field name="company_id" groups="base.group_multi_company" colspan="2"/>
-                    <newline/>
-                    <separator string="Ranges" colspan="6"/>
-                    <newline/>
-                    <field name="range_ids" nolabel="1" colspan="6"/>
-                    <newline/>
-                    <separator string="KPIs" colspan="6"/>
-                    <newline/>
-                    <field name="kpi_ids" nolabel="1" colspan="6"/>
-                    <newline/>
-                    <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', '')]}" colspan="2"/>
-                    <newline/>
-                    </group>
+                    <sheet>
+                        <group col="6" colspan="6">
+                            <field name="name" colspan="2"/>
+                            <field name="company_id" groups="base.group_multi_company" colspan="2"/>
+                            <newline/>
+                            <separator string="Ranges" colspan="6"/>
+                            <newline/>
+                            <field name="range_ids" nolabel="1" colspan="6"/>
+                            <newline/>
+                            <separator string="KPIs" colspan="6"/>
+                            <newline/>
+                            <field name="kpi_ids" nolabel="1" colspan="6"/>
+                            <newline/>
+                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                            <newline/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
