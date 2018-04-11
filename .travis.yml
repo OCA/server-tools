@@ -22,10 +22,12 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup,base_binary_validation"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup,base_binary_validation"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="base_binary_validation"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="base_binary_validation"
 
 before_install:
  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
