@@ -11,11 +11,4 @@
             <field name="context">{"search_default_filter_no_success":1}</field>
         </record>
 
-        <record id="action_res_banned_remote" model="ir.actions.act_window">
-            <field name="name">Banned Remotes</field>
-            <field name="res_model">res.banned.remote</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
 </odoo>

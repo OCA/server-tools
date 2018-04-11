@@ -69,14 +69,15 @@ For further information, please visit:
 Known issues / Roadmap
 ======================
 
-* The ID used to identify a remote request is the IP provided in the request
-  (key 'REMOTE_ADDR').
+* Remove 🐒 patch for https://github.com/odoo/odoo/issues/24183 when fixed.
+
 * Depending of server and / or user network configuration, the idenfication
   of the user can be wrong, and mainly in the following cases:
-* If the Odoo server is behind an Apache / NGinx proxy without redirection,
-  all the request will be have the value '127.0.0.1' for the REMOTE_ADDR key;
-* If some users are behind the same Internet Service Provider, if a user is
-  banned, all the other users will be banned too;
+
+  * If the Odoo server is behind an Apache / NGinx proxy and it is not properly
+    configured, all requests will use the same IP address. Blocking such IP
+    could render Odoo unusable for all users! **Make sure your logs output the
+    correct IP for werkzeug traffic before installing this addon.**
 
 Bug Tracker
 ===========
@@ -94,6 +95,7 @@ Contributors
 
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
 * David Vidal <david.vidal@tecnativa.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Maintainer
 ----------
