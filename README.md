@@ -60,7 +60,7 @@ addon | version | summary
 [html_image_url_extractor](html_image_url_extractor/) | 9.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 9.0.1.0.0 | Generate excerpts from any HTML field
 [keychain](keychain/) | 9.0.1.0.0 | Store accounts and credentials
-[kpi](kpi/) | 9.0.1.0.0 | Key Performance Indicator
+[kpi](kpi/) | 9.0.1.1.0 | Key Performance Indicator
 [letsencrypt](letsencrypt/) | 9.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_cleanup](mail_cleanup/) | 9.0.1.0.0 | Mark as read or delete mails after a set time
 [mail_environment](mail_environment/) | 9.0.1.0.0 | Configure mail servers with server_environment_files
