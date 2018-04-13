@@ -6,7 +6,7 @@ import ast
 
 from odoo.tests import common
 from odoo.modules import registry
-from odoo.addons.mass_editing.hooks import uninstall_hook
+from ..hooks import uninstall_hook
 
 
 @common.at_install(False)
@@ -45,9 +45,8 @@ class TestMassEditing(common.TransactionCase):
             search([('model_id', '=', self.partner_title_model.id),
                     ('name', 'in', ['abbreviation'])])
         self.mass_partner_title = self._create_mass_editing(
-                                            self.partner_title_model,
-                                            self.fields_partner_title_model,
-                                            'Partner Title')
+            self.partner_title_model, self.fields_partner_title_model,
+            'Partner Title')
 
     def _create_partner(self):
         """Create a Partner."""
@@ -70,7 +69,7 @@ class TestMassEditing(common.TransactionCase):
             'shortcut': 'Amb.',
         })
         # Adding translated terms
-        ctx = {'lang':'de_DE'}
+        ctx = {'lang': 'de_DE'}
         partner_title.with_context(ctx).write({'name': 'Botschafter',
                                                'shortcut': 'Bots.'})
         return partner_title

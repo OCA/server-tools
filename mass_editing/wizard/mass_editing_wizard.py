@@ -254,10 +254,12 @@ class MassEditingWizard(models.TransientModel):
                             ('name', '=', split_key)])
                         if model_field and model_field.translate:
                             translation_ids = translation_obj.search([
-                              ('res_id', 'in', self._context.get('active_ids')),
-                              ('type', '=', 'model'),
-                              ('name', '=', u"{0},{1}".format(
-                                self._context.get('active_model'), split_key))])
+                                ('res_id', 'in', self._context.get(
+                                    'active_ids')),
+                                ('type', '=', 'model'),
+                                ('name', '=', u"{0},{1}".format(
+                                    self._context.get('active_model'),
+                                    split_key))])
                             translation_ids.unlink()
 
                     elif val == 'remove_m2m':
