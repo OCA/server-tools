@@ -91,6 +91,7 @@ Contributors
 
 * Oihane Crucelaegui <oihanecrucelaegi@gmail.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+* Raul Martin <raul.martin@braintec-group.com>
 
 Maintainer
 ----------

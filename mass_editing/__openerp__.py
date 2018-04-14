@@ -5,10 +5,12 @@
     'name': 'Mass Editing',
     'version': '9.0.1.0.0',
     'author': 'Serpent Consulting Services Pvt. Ltd., '
+              'brain-tec AG, '
               'Odoo Community Association (OCA)',
     'contributors': [
         'Oihane Crucelaegui <oihanecrucelaegi@gmail.com>',
         'Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>',
+        'Raul Martin <raul.martin@braintec-group.com>',
     ],
     'category': 'Tools',
     'website': 'http://www.serpentcs.com',
