@@ -237,6 +237,8 @@ class MassEditingWizard(models.TransientModel):
         if (self._context.get('active_model') and
                 self._context.get('active_ids')):
             model_obj = self.env[self._context.get('active_model')]
+            model_field_obj = self.env['ir.model.fields']
+            translation_obj = self.env['ir.translation']
             values = {}
             for key, val in vals.items():
                 if key.startswith('selection_'):
@@ -245,6 +247,21 @@ class MassEditingWizard(models.TransientModel):
                         values.update({split_key: vals.get(split_key, False)})
                     elif val == 'remove':
                         values.update({split_key: False})
+                        # If field to remove is translatable,
+                        # its translations have to be removed
+                        model_field = model_field_obj.search([
+                            ('model', '=', self._context.get('active_model')),
+                            ('name', '=', split_key)])
+                        if model_field and model_field.translate:
+                            translation_ids = translation_obj.search([
+                                ('res_id', 'in', self._context.get(
+                                    'active_ids')),
+                                ('type', '=', 'model'),
+                                ('name', '=', u"{0},{1}".format(
+                                    self._context.get('active_model'),
+                                    split_key))])
+                            translation_ids.unlink()
+
                     elif val == 'remove_m2m':
                         values.update({split_key: [(5, 0, [])]})
                     elif val == 'add':
