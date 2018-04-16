@@ -73,4 +73,3 @@ class DateRange(models.Model):
         self.ensure_one()
         return [(field_name, '>=', self.date_start),
                 (field_name, '<=', self.date_end)]
-

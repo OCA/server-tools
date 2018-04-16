@@ -63,4 +63,3 @@ class DateRangeGenerator(models.TransientModel):
                 self.env['date.range'].create(dr)
         return self.env['ir.actions.act_window'].for_xml_id(
             module='date_range', xml_id='date_range_action')
-

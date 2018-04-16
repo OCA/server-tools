@@ -25,4 +25,3 @@
         "static/src/xml/date_range.xml",
     ]
 }
-

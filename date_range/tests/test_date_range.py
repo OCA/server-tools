@@ -96,4 +96,3 @@ class DateRangeTest(TransactionCase):
             domain,
             [('my_field', '>=', '2015-01-01'),
              ('my_field', '<=', '2015-12-31')])
-

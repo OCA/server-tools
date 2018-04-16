@@ -16,4 +16,3 @@ class DateRangeTypeTest(TransactionCase):
              'company_id': False,
              'allow_overlap': False})
         self.assertFalse(drt.company_id)
-

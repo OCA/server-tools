@@ -30,4 +30,3 @@ class DateRangeGeneratorTest(TransactionCase):
         self.assertEqual(range4.date_start, '1943-10-01')
         self.assertEqual(range4.date_end, '1943-12-31')
         self.assertEqual(range4.type_id, self.type)
-

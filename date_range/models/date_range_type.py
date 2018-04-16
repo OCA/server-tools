@@ -24,4 +24,3 @@ class DateRangeType(models.Model):
     _sql_constraints = [
         ('date_range_type_uniq', 'unique (name,company_id)',
          'A date range type must be unique per company !')]
-
