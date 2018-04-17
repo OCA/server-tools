@@ -21,7 +21,8 @@ def post_init_hook(cr, registry):
             ("name", "!=", False),
         ]):
             try:
-                export_line._inverse_name()
+                with env.cr.savepoint(), env.clear_upon_failure():
+                    export_line._inverse_name()
             except exceptions.ValidationError:
                 export_line.active = False
                 _logger.error(
