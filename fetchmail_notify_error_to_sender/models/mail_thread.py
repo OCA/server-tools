@@ -17,7 +17,6 @@ class MailThread(models.AbstractModel):
                 custom_values=custom_values)
         except ValueError as ve:
             fetchmail_server_id = self.env.context.get('fetchmail_server_id')
-            print (tools.pycompat.text_type(ve))
             if not fetchmail_server_id:
                 raise ve
             fetchmail_server = self.env['fetchmail.server'].with_context({
