@@ -23,6 +23,10 @@ To use this module, you need to:
    These items will correspond with a new user that is created, when a user
    logs in via LDAP in Odoo.
 
+The default attribute used for the name is "cn".
+For Active Directory, you might prefer to use "displayName" instead.
+AD also supports the "mail" attribute, so it can be mapped into Odoo.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/repo/149
