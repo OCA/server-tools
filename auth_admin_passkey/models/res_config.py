@@ -14,7 +14,7 @@ class BaseConfigSettings(models.TransientModel):
         return {
             'auth_admin_passkey_send_to_admin':
             self.env["ir.config_parameter"].get_param(
-                "auth_admin_passkey.send_to_admin")
+                "auth_admin_passkey.send_to_admin") in ['True','1'] and 1 or 0
         }
 
     @api.multi
@@ -29,7 +29,7 @@ class BaseConfigSettings(models.TransientModel):
         return {
             'auth_admin_passkey_send_to_user':
             self.env["ir.config_parameter"].get_param(
-                "auth_admin_passkey.send_to_user")
+                "auth_admin_passkey.send_to_user") in ['True','1'] and 1 or 0
         }
 
     @api.multi
@@ -42,11 +42,11 @@ class BaseConfigSettings(models.TransientModel):
     auth_admin_passkey_send_to_admin = fields.Boolean(
         string='Send email to admin user.',
         help="""When the administrator use his password to login in """
-             """with a different account, OpenERP will send an email """
+             """with a different account, System will send an email """
              """to the admin user.""")
 
     auth_admin_passkey_send_to_user = fields.Boolean(
         string='Send email to user.',
         help="""When the administrator use his password to login in """
-             """with a different account, OpenERP will send an email """
+             """with a different account, System will send an email """
              """to the account user.""")
