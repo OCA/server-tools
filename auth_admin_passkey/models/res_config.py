@@ -22,7 +22,7 @@ class BaseConfigSettings(models.TransientModel):
         for config in self:
             self.env['ir.config_parameter'].set_param(
                 "auth_admin_passkey.send_to_admin",
-                config.auth_admin_passkey_send_to_admin or '')
+                config.auth_admin_passkey_send_to_admin or 'False')
 
     @api.model
     def get_default_auth_admin_passkey_send_to_user(self, fields):
@@ -37,7 +37,7 @@ class BaseConfigSettings(models.TransientModel):
         for config in self:
             self.env['ir.config_parameter'].set_param(
                 "auth_admin_passkey.send_to_user",
-                config.auth_admin_passkey_send_to_user or '')
+                config.auth_admin_passkey_send_to_user or 'False')
 
     auth_admin_passkey_send_to_admin = fields.Boolean(
         string='Send email to admin user.',
