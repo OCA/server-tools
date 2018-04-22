@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="company_form_view">
+        <field name="model">base.config.settings</field>
+        <field name="inherit_id" ref="auth_ldap.view_general_configuration_form_inherit_auth_ldap"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ldaps']/form/group" position="after">
+                <group string="Map User Groups" >
+                    <field name="only_ldap_groups" />
+                    <label for="group_mapping_ids" />
+                    <field name="group_mapping_ids" nolabel="1">
+                        <tree editable="top">
+                            <field name="ldap_attribute" attrs="{'required': [('operator','not in',['query'])], 'readonly': [('operator','in',['query'])]}" />
+                            <field name="operator" />
+                            <field name="value" />
+                            <field name="group_id" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
