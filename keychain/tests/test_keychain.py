@@ -4,7 +4,7 @@
 
 from odoo.tests.common import TransactionCase
 from odoo.tools.config import config
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 import logging
@@ -80,20 +80,20 @@ class TestKeychain(TransactionCase):
         try:
             account._get_password()
             self.assertTrue(False, 'It should not work with another key')
-        except Warning as err:
-            self.assertTrue(True, 'It should raise a Warning')
+        except UserError as err:
+            self.assertTrue(True, 'It should raise a UserError')
             self.assertTrue(
                 'has been encrypted with a diff' in str(err),
                 'It should display the right msg')
         else:
-            self.assertTrue(False, 'It should raise a Warning')
+            self.assertTrue(False, 'It should raise a UserError')
 
     def test_no_key(self):
         """It should raise an exception when no key is set."""
         account = self._create_account()
         del config.options['keychain_key']
 
-        with self.assertRaises(Warning) as err:
+        with self.assertRaises(UserError) as err:
             account.clear_password = 'aiuepr'
             account._inverse_set_password()
             self.assertTrue(False, 'It should not work without key')
@@ -106,7 +106,7 @@ class TestKeychain(TransactionCase):
         account = self._create_account()
 
         config['keychain_key'] = ""
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             account.clear_password = 'aiuepr'
             account._inverse_set_password()
             self.assertTrue(False, 'It should not work missing formated key')
@@ -138,7 +138,7 @@ class TestKeychain(TransactionCase):
             'abc', 'Should work with dev')
 
         config['running_env'] = 'prod'
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.assertEqual(
                 account._get_password(),
                 'abc', 'Should not work with prod key')
@@ -176,7 +176,7 @@ class TestKeychain(TransactionCase):
         account.clear_password = 'abc'
         account._inverse_set_password()
 
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.assertEqual(
                 account._get_password(),
                 'abc', 'Should not work with dev')

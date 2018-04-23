@@ -7,7 +7,7 @@ import logging
 import json
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from odoo.tools.config import config
 from odoo.tools.translate import _
 
@@ -66,8 +66,8 @@ class KeychainAccount(models.Model):
         """Password in clear text."""
         try:
             return self._decode_password(self.password)
-        except Warning as warn:
-            raise Warning(_(
+        except UserError as warn:
+            raise UserError(_(
                 "%s \n"
                 "Account: %s %s %s " % (
                     warn,
@@ -161,7 +161,7 @@ class KeychainAccount(models.Model):
         try:
             return unicode(cipher.decrypt(str(data)), 'UTF-8')
         except InvalidToken:
-            raise Warning(_(
+            raise UserError(_(
                 "Password has been encrypted with a different "
                 "key. Unless you can recover the previous key, "
                 "this password is unreadable."
@@ -195,7 +195,7 @@ class KeychainAccount(models.Model):
             envs = cls._retrieve_env()  # ex: ('dev', False)
         keys = _get_keys(envs)
         if len(keys) == 0:
-            raise Warning(_(
+            raise UserError(_(
                 "No 'keychain_key_%s' entries found in config file. "
                 "Use a key similar to: %s" % (envs[0], Fernet.generate_key())
             ))
