@@ -78,6 +78,7 @@ setuptools.setup(
         'odoo10-addon-sql_request_abstract',
         'odoo10-addon-user_immutable',
         'odoo10-addon-user_threshold',
+        'odoo10-addon-users_ldap_groups',
         'odoo10-addon-users_ldap_mail',
         'odoo10-addon-users_ldap_populate',
         'odoo10-addon-webhook',
