@@ -5,6 +5,7 @@
 
 from odoo import api, fields, models
 
+
 class BaseConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
 
@@ -14,7 +15,7 @@ class BaseConfigSettings(models.TransientModel):
         return {
             'auth_admin_passkey_send_to_admin':
             self.env["ir.config_parameter"].get_param(
-                "auth_admin_passkey.send_to_admin") in ['True','1'] and 1 or 0
+                "auth_admin_passkey.send_to_admin") in ['True', '1'] and 1 or 0
         }
 
     @api.multi
@@ -29,7 +30,7 @@ class BaseConfigSettings(models.TransientModel):
         return {
             'auth_admin_passkey_send_to_user':
             self.env["ir.config_parameter"].get_param(
-                "auth_admin_passkey.send_to_user") in ['True','1'] and 1 or 0
+                "auth_admin_passkey.send_to_user") in ['True', '1'] and 1 or 0
         }
 
     @api.multi
