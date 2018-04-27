@@ -5,7 +5,7 @@
     "version": "10.0.1.0.0",
     'category': 'Technical Settings',
     "website": "www.akretion.com",
-    "author": " Akretion",
+    "author": "Akretion",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
