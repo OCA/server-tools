@@ -4,7 +4,7 @@
 {
     "name": "Text from HTML field",
     "summary": "Generate excerpts from any HTML field",
-    "version": "11.0.1.0.1",
+    "version": "11.0.1.0.2",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Grupo ESOC Ingeniería de Servicios, "
@@ -16,7 +16,7 @@
     "installable": True,
     "external_dependencies": {
         "python": [
-            "lxml.html",
+            "lxml",
         ],
     },
     "depends": [
