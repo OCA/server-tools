@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data noupdate="0">
+       <menuitem id="menu_test_materialized"
+                 sequence="99"
+                 name="Materialized tests"/>
+           <menuitem id="sub_menu_test_materialized"
+                     sequence="25"
+                     parent="menu_test_materialized"
+                     name="Materialized view test"/>
+                <menuitem id="menu_model_test_using_sql_mat_view"
+                          action="act_open_model_test_using_sql_mat_view_view"
+                          sequence="20"
+                          parent="sub_menu_test_materialized"
+                          name="User count per group"/>
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Pierre Verkest <pverkest@anybox.fr>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <data noupdate="0">
+        <record id="manager_group" model="res.groups">
+            <field name="name">Materialized sql view Manager</field>
+            <field name="comment">Allow to show and manualy launch 
+            refresh materialized SQL view.</field>
+        </record>
+    </data>
+</openerp>
