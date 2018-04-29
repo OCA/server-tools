@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # © 2016 ACSONE SA/NA (<http://acsone.eu>)
 # © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
@@ -38,7 +37,6 @@ class IrModel(models.Model):
         return super(IrModel, self)._register_hook()
 
     @api.model
-    @api.returns('self', lambda value: value.id)
     def create(self, vals):
         ir_model = super(IrModel, self).create(vals)
         ir_model._patch_quick_create()
