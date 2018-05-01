@@ -8,7 +8,8 @@
     'summary': 'If fetching mails gives error, send an email to sender',
     'version': '11.0.1.0.0',
     'category': 'Tools',
-    'author': "Agile Business Group,Eficent,haidd,Odoo Community Association (OCA)",
+    'author':
+        "Agile Business Group,Eficent,haidd,Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'depends': [
