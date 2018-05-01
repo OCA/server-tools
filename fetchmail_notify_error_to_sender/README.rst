@@ -35,7 +35,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/9.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 Bug Tracker
 ===========
@@ -58,6 +58,7 @@ Contributors
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Miquel Raïch <miquel.raich@eficent.com> (migration to v9 and v10)
+* Hai Dinh <haidd.uit@gmail.com> (migration to V11)
 
 Maintainer
 ----------
