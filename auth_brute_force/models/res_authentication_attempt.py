@@ -6,7 +6,6 @@ import json
 import logging
 from urllib2 import urlopen
 from odoo import api, fields, models
-from odoo.osv.expression import TRUE_DOMAIN
 
 GEOLOCALISATION_URL = u"http://ip-api.com/json/{}"
 
