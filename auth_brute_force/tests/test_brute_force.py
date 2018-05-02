@@ -44,6 +44,10 @@ class BruteForceCase(HttpCase):
             pass
         # Complex password to avoid conflicts with `password_security`
         self.good_password = "Admin$%02584"
+        self.data_demo = {
+            "login": "demo",
+            "password": "Demo%&/(908409**",
+        }
         with self.cursor() as cr:
             env = self.env(cr)
             env["ir.config_parameter"].set_param(
@@ -52,8 +56,11 @@ class BruteForceCase(HttpCase):
                 "auth_brute_force.max_by_ip", 4)
             # Clean attempts to be able to count in tests
             env["res.authentication.attempt"].search([]).unlink()
-            # Make sure admin has good password
+            # Make sure involved users have good passwords
             env.user.password = self.good_password
+            env["res.users"].search([
+                ("login", "=", self.data_demo["login"]),
+            ]).password = self.data_demo["password"]
 
     @skipUnless(can_import("odoo.addons.web"), "Needs web addon")
     @mute_logger(*GARBAGE_LOGGERS)
@@ -132,10 +139,6 @@ class BruteForceCase(HttpCase):
             "login": "administrator",  # Wrong
             "password": self.good_password,
         }
-        data2 = {
-            "login": "demo",
-            "password": "demo",
-        }
         # Make sure user is logged out
         self.url_open("/web/session/logout", timeout=30)
         # Fail 3 times
@@ -158,11 +161,15 @@ class BruteForceCase(HttpCase):
             self.assertTrue(
                 env["res.authentication.attempt"]._trusted(
                     "127.0.0.1",
-                    data2["login"],
+                    self.data_demo["login"],
                 ),
             )
         # Demo user can login
-        response = self.url_open("/web/login", bytes(urlencode(data2)), 30)
+        response = self.url_open(
+            "/web/login",
+            bytes(urlencode(self.data_demo)),
+            30,
+        )
         # If you pass, you get /web
         self.assertTrue(
             response.geturl().endswith("/web"),
@@ -251,10 +258,6 @@ class BruteForceCase(HttpCase):
             "login": "administrator",  # Wrong
             "password": self.good_password,
         }
-        data2 = {
-            "login": "demo",
-            "password": "demo",
-        }
         # Fail 3 times
         for n in range(3):
             self.assertFalse(self.xmlrpc_common.authenticate(
@@ -271,12 +274,16 @@ class BruteForceCase(HttpCase):
             self.assertTrue(
                 env["res.authentication.attempt"]._trusted(
                     "127.0.0.1",
-                    data2["login"],
+                    self.data_demo["login"],
                 ),
             )
         # Demo user can login
         self.assertTrue(self.xmlrpc_common.authenticate(
-            self.env.cr.dbname, data2["login"], data2["password"], {}))
+            self.env.cr.dbname,
+            self.data_demo["login"],
+            self.data_demo["password"],
+            {},
+        ))
         # Attempts recorded
         with self.cursor() as cr:
             env = self.env(cr)
