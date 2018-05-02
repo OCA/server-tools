@@ -71,7 +71,6 @@ class MassObject(models.Model):
         # We make sudo as any user with rights in this model should be able
         # to delete the action, not only admin
         self.mapped('ref_ir_act_window_id').sudo().unlink()
-        self.mapped('ref_ir_value_id').sudo().unlink()
         return True
 
     @api.multi
