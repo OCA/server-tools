@@ -6,7 +6,7 @@ import json
 import logging
 from urllib2 import urlopen
 from odoo import api, fields, models
-from odoo.osv.expression import TRUE_LEAF
+from odoo.osv.expression import TRUE_DOMAIN
 
 GEOLOCALISATION_URL = u"http://ip-api.com/json/{}"
 
@@ -46,13 +46,13 @@ class ResAuthenticationAttempt(models.Model):
             try:
                 res = json.loads(urlopen(url, timeout=5).read())
             except Exception:
-                _logger.error(
+                _logger.warning(
                     "Couldn't fetch details from %s",
                     url,
                     exc_info=True,
                 )
             else:
-                item.metadata = "\n".join(
+                item.remote_metadata = "\n".join(
                     '%s: %s' % pair for pair in res.items())
 
     @api.multi
@@ -60,6 +60,40 @@ class ResAuthenticationAttempt(models.Model):
         whitelist = self._whitelist_remotes()
         for one in self:
             one.whitelisted = one.remote in whitelist
+
+    @api.model
+    def _hits_limit(self, limit, remote, login=None):
+        """Know if a given remote hits a given limit.
+
+        :param int limit:
+            The maximum amount of failures allowed.
+
+        :param str remote:
+            The remote IP to search for.
+
+        :param str login:
+            If you want to check the IP+login combination limit, supply the
+            login.
+        """
+        domain = [
+            ("remote", "=", remote),
+        ]
+        if login is not None:
+            domain += [("login", "=", login)]
+        # Find last successful login
+        last_ok = self.search(
+            domain + [("result", "=", "successful")],
+            order='create_date desc',
+            limit=1,
+        )
+        if last_ok:
+            domain += [("create_date", ">", last_ok.create_date)]
+        # Count failures since last success, if any
+        recent_failures = self.search_count(
+            domain + [("result", "!=", "successful")],
+        )
+        # Did we hit the limit?
+        return recent_failures >= limit
 
     @api.model
     def _trusted(self, remote, login):
@@ -83,21 +117,7 @@ class ResAuthenticationAttempt(models.Model):
             return True
         # Check if remote is banned
         limit = int(get_param("auth_brute_force.max_by_ip", 50))
-        domain_good = [
-            ("result", "=", "successful"),
-            ("remote", "=", remote),
-        ]
-        domain_bad = [
-            ("result", "!=", "successful"),
-            ("remote", "=", remote),
-        ]
-        last_ok = self.search(domain_good, order='create_date desc', limit=1)
-        recent_failures = self.search(
-            domain_bad + [("create_date", ">", last_ok.create_date)
-                          if last_ok else TRUE_LEAF],
-            count=True
-        )
-        if recent_failures >= limit:
+        if self._hits_limit(limit, remote):
             _logger.warning(
                 "Authentication failed from remote '%s'. "
                 "The remote has been banned. "
@@ -108,15 +128,7 @@ class ResAuthenticationAttempt(models.Model):
             return False
         # Check if remote + login combination is banned
         limit = int(get_param("auth_brute_force.max_by_ip_user", 10))
-        domain_good += [("login", "=", login)]
-        domain_bad += [("login", "=", login)]
-        last_ok = self.search(domain_good, order='create_date desc', limit=1)
-        recent_failures = self.search(
-            domain_bad + [("create_date", ">", last_ok.create_date)
-                          if last_ok else TRUE_LEAF],
-            count=True
-        )
-        if recent_failures >= limit:
+        if self._hits_limit(limit, remote, login):
             _logger.warning(
                 "Authentication failed from remote '%s'. "
                 "The remote and login combination has been banned. "

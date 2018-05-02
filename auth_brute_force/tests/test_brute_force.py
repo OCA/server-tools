@@ -37,7 +37,7 @@ class BruteForceCase(HttpCase):
         # Some tests could retain environ from last test and produce fake
         # results without this patch
         # HACK https://github.com/odoo/odoo/issues/24183
-        # TODO Remvove when fixed
+        # TODO Remove in v12
         try:
             del current_thread().environ
         except AttributeError:

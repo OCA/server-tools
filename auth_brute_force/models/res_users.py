@@ -16,7 +16,7 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     # HACK https://github.com/odoo/odoo/issues/24183
-    # TODO Remvove when fixed, and use normal odoo.http.request to get details
+    # TODO Remove in v12, and use normal odoo.http.request to get details
     @api.model_cr
     def _register_hook(self):
         """🐒-patch XML-RPC controller to know remote address."""
@@ -97,7 +97,7 @@ class ResUsers(models.Model):
         """Update a given auth attempt if we still ignore its result."""
         auth_id = getattr(current_thread(), "auth_attempt_id", False)
         if not auth_id:
-            return dict()  # No running auth attempt; nothing to do
+            return {}  # No running auth attempt; nothing to do
         # Use a separate cursor to keep changes always
         with cls.pool.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
@@ -105,7 +105,7 @@ class ResUsers(models.Model):
             # Update only on 1st call
             if not attempt.result:
                 attempt.write(values)
-            return attempt.copy_data()[0] if attempt else dict()
+            return attempt.copy_data()[0] if attempt else {}
 
     # Override all auth-related core methods
     @classmethod

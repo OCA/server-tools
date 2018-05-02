@@ -7,11 +7,14 @@
     <record id="view_res_authentication_attempt_tree" model="ir.ui.view">
         <field name="model">res.authentication.attempt</field>
         <field name="arch" type="xml">
-            <tree colors="orange: result == 'failed';red: result == 'banned'">
-                <field name="create_date" />
-                <field name="remote" />
-                <field name="login" />
-                <field name="result" />
+            <tree
+                decoration-warning="result == 'failed'"
+                decoration-error="result == 'banned'"
+            >
+                <field name="create_date"/>
+                <field name="remote"/>
+                <field name="login"/>
+                <field name="result"/>
             </tree>
         </field>
     </record>
@@ -51,8 +54,8 @@
         <field name="model">res.authentication.attempt</field>
         <field name="arch" type="xml">
             <graph>
-                <field name="create_date" />
-                <field name="result" />
+                <field name="create_date"/>
+                <field name="result"/>
             </graph>
         </field>
     </record>

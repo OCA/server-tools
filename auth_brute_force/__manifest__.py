@@ -10,7 +10,7 @@
     'author': "GRAP, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    'website': 'https://github.com/OCA/server-auth',
+    'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
     'depends': [
         # If we don't depend on it, it would inhibit this addon
