@@ -239,7 +239,7 @@ class MassEditingWizard(models.TransientModel):
             model_obj = self.env[self._context.get('active_model')]
             values = {}
             for key, val in vals.items():
-                if key.startswith('selection_'):
+                if key.startswith('selection__'):
                     split_key = key.split('__', 1)[1]
                     if val == 'set':
                         values.update({split_key: vals.get(split_key, False)})
