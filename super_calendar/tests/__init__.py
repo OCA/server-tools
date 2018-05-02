@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2012 Domsense srl (<http://www.domsense.com>)
 # Copyright 2015 Anubía, soluciones en la nube,SL (http://www.anubia.es)
