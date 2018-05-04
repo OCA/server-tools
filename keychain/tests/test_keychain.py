@@ -221,3 +221,24 @@ class TestKeychain(TransactionCase):
                 self.assertTrue(True, 'Should validate json')
             except:
                 self.assertTrue(False, 'It should validate a good json')
+
+    def test_default_init_and_valid(self):
+        """."""
+        self.keychain._fields['namespace'].selection.append(
+            ('keychain_test_default', 'test')
+        )
+        account = self.keychain.create({
+            "name": "test",
+            "namespace": "keychain_test_default",
+            "login": "test",
+            "technical_name": "keychain.test"
+        })
+        try:
+            account.write({"login": "test default"})
+        except ValidationError:
+            self.assertTrue(False, 'It should validate any json in default')
+
+        self.assertEqual(
+            account.data, account._serialize_data(
+                account._default_init_data()),
+            'Data should be default value')

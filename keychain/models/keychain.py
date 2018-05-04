@@ -116,11 +116,58 @@ class KeychainAccount(models.Model):
 
     @implemented_by_keychain
     def _validate_data(self, data):
+        """Ensure data is valid according to the namespace.
+
+        How to use:
+        - Create a method prefixed with your namespace
+        - Put your validation logic inside
+        - Return true if data is valid for your usage
+
+        This method will be called on write().
+        If false is returned an user error will be raised.
+
+        Example:
+        def _hereismynamspace_validate_data():
+            return len(data.get('some_param', '') > 6)
+
+        @params data dict
+        @returns boolean
+        """
         pass
+
+    def _default_validate_data(self, data):
+        """Default validation.
+
+        By default says data is always valid.
+        See _validata_data() for more information.
+        """
+        return True
 
     @implemented_by_keychain
     def _init_data(self):
+        """Initialize data field.
+
+        How to use:
+        - Create a method prefixed with your namespace
+        - Return a dict with the keys and may be default
+        values your expect.
+
+        This method will be called on write().
+
+        Example:
+        def _hereismynamspace_init_data():
+            return { 'some_param': 'default_value' }
+
+        @returns dict
+        """
         pass
+
+    def _default_init_data(self):
+        """Default initialization.
+
+        See _init_data() for more information.
+        """
+        return {}
 
     @staticmethod
     def _retrieve_env():
