@@ -79,14 +79,14 @@ class TestKeychain(TransactionCase):
         config['keychain_key'] = Fernet.generate_key()
         try:
             account._get_password()
-            self.assertTrue(False, 'It should not work with another key')
+            self.fail('It should not work with another key')
         except UserError as err:
             self.assertTrue(True, 'It should raise a UserError')
             self.assertTrue(
                 'has been encrypted with a diff' in str(err),
                 'It should display the right msg')
         else:
-            self.assertTrue(False, 'It should raise a UserError')
+            self.fail('It should raise a UserError')
 
     def test_no_key(self):
         """It should raise an exception when no key is set."""
@@ -96,7 +96,7 @@ class TestKeychain(TransactionCase):
         with self.assertRaises(UserError) as err:
             account.clear_password = 'aiuepr'
             account._inverse_set_password()
-            self.assertTrue(False, 'It should not work without key')
+            self.fail('It should not work without key')
         self.assertTrue(
             'Use a key similar to' in str(err.exception),
             'It should display the right msg')
@@ -109,7 +109,7 @@ class TestKeychain(TransactionCase):
         with self.assertRaises(UserError):
             account.clear_password = 'aiuepr'
             account._inverse_set_password()
-            self.assertTrue(False, 'It should not work missing formated key')
+            self.fail('It should not work missing formated key')
 
         self.assertTrue(True, 'It shoud raise a ValueError')
 
@@ -193,9 +193,7 @@ class TestKeychain(TransactionCase):
         for json in wrong_jsons:
             with self.assertRaises(ValidationError) as err:
                 account.write({"data": json})
-                self.assertTrue(
-                    False,
-                    'Should not validate baddly formatted json')
+                self.fail('Should not validate baddly formatted json')
             self.assertTrue(
                 'Data should be a valid JSON' in str(err.exception),
                 'It should raise a ValidationError')
@@ -220,7 +218,7 @@ class TestKeychain(TransactionCase):
                 account.write({"data": json})
                 self.assertTrue(True, 'Should validate json')
             except:
-                self.assertTrue(False, 'It should validate a good json')
+                self.fail('It should validate a good json')
 
     def test_default_init_and_valid(self):
         """."""
@@ -236,7 +234,7 @@ class TestKeychain(TransactionCase):
         try:
             account.write({"login": "test default"})
         except ValidationError:
-            self.assertTrue(False, 'It should validate any json in default')
+            self.fail('It should validate any json in default')
 
         self.assertEqual(
             account.data, account._serialize_data(
