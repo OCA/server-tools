@@ -90,3 +90,14 @@ class TestMultiToken(SavepointCase):
         self.assertEqual(
             len(self.token_model._oauth_user_tokens(self.user.id)),
             self.user.oauth_access_max_token)
+
+    def test_remove_oauth_access_token(self):
+        res = self.user._get_session_token_fields()
+        self.assertFalse('oauth_access_token' in res)
+        self.assertTrue('oauth_master_uuid' in res)
+
+    def test_action_oauth_clear_token(self):
+        self.user.action_oauth_clear_token()
+        active_token = self.user.oauth_access_token_ids.filtered(
+            lambda x: x.active_token)
+        self.assertEqual(len(active_token), 0)
