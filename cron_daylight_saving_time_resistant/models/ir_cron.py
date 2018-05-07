@@ -20,6 +20,22 @@ class IrCron(models.Model):
         help="Adjust interval to run at the same hour after and before"
         "daylight saving time change. It's used twice a year")
 
+    def _calculate_daylight_offset(self, nextcall, delta, numbercall, now):
+
+        tz = nextcall.tzinfo
+        before_offset = tz.normalize(nextcall).utcoffset()
+
+        while nextcall < now and numbercall:
+            if numbercall > 0:
+                numbercall -= 1
+            if numbercall:
+                nextcall += delta
+
+        after_offset = tz.normalize(nextcall).utcoffset()
+
+        diff_offset = after_offset - before_offset
+        return diff_offset
+
     def _process_job(cls, job_cr, job, cron_cr):
         """Add or remove the Daylight saving offset when needed."""
         with api.Environment.manage():
@@ -31,21 +47,11 @@ class IrCron(models.Model):
                     job['nextcall'],
                     DEFAULT_SERVER_DATETIME_FORMAT)
             )
+            numbercall = job['numbercall']
             delta = _intervalTypes[job['interval_type']](
                 job['interval_number'])
-
-            numbercall = job['numbercall']
-            future_call = nextcall
-            while future_call < now and numbercall:
-                if numbercall > 0:
-                    numbercall -= 1
-                if numbercall:
-                    future_call += delta
-
-            after_offset = future_call.utcoffset()
-            before_offset = nextcall.utcoffset()
-
-            diff_offset = after_offset - before_offset
+            diff_offset = cls._calculate_daylight_offset(
+                nextcall, delta, numbercall, now)
 
             if diff_offset and job['daylight_saving_time_resistant']:
                 if nextcall < now and numbercall:
