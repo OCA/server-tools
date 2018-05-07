@@ -34,20 +34,20 @@ class IrCron(models.Model):
             delta = _intervalTypes[job['interval_type']](
                 job['interval_number'])
 
-            if (nextcall + delta) < now:
-                before_offset = (nextcall + delta).utcoffset()
-                after_offset = now.utcoffset()
-            elif nextcall < now:
-                before_offset = nextcall.utcoffset()
-                after_offset = (nextcall + delta).utcoffset()
-            else:
-                before_offset = 0
-                after_offset = 0
+            numbercall = job['numbercall']
+            future_call = nextcall
+            while future_call < now and numbercall:
+                if numbercall > 0:
+                    numbercall -= 1
+                if numbercall:
+                    future_call += delta
+
+            after_offset = future_call.utcoffset()
+            before_offset = nextcall.utcoffset()
 
             diff_offset = after_offset - before_offset
 
             if diff_offset and job['daylight_saving_time_resistant']:
-                numbercall = job['numbercall']
                 if nextcall < now and numbercall:
                     nextcall -= diff_offset
                     modified_next_call = fields.Datetime.to_string(
