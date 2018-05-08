@@ -185,7 +185,11 @@ class AuditlogRule(models.Model):
     def write(self, vals):
         """Update the registry when existing rules are updated."""
         super(AuditlogRule, self).write(vals)
-        if self._register_hook():
+        updated = False
+        for rule in self:
+            if rule._register_hook():
+                updated = True
+        if updated:
             modules.registry.RegistryManager.signal_registry_change(
                 self.env.cr.dbname)
         return True
