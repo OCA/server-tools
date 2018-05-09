@@ -5,16 +5,5 @@
 from odoo.exceptions import AccessDenied
 
 
-class MfaTokenError(AccessDenied):
-
-    def __init__(self, message):
-        super(MfaTokenError, self).__init__()
-        self.message = message
-
-
-class MfaTokenInvalidError(MfaTokenError):
-    pass
-
-
-class MfaTokenExpiredError(MfaTokenError):
+class MfaLoginNeeded(AccessDenied):
     pass
