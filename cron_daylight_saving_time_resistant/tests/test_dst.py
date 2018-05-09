@@ -4,10 +4,10 @@
 from openerp.tests.common import TransactionCase
 from datetime import datetime, timedelta
 from pytz import timezone
-import pytz
-print "hi !"
+
+
 class TestDST(TransactionCase):
-    print "test ?"
+
     def test_dst(self):
         """First test, caching some data."""
         cron = self.env['ir.cron']
@@ -17,7 +17,7 @@ class TestDST(TransactionCase):
         winter_feb_0 = datetime(2018, 1, 2, 0, 0)
         summer_june_12 = datetime(2018, 6, 15, 12, 0)
         summer_sep_3 = datetime(2018, 9, 17, 3, 0)
-        winter_jan_next_year = datetime(2019, 2,3, 0, 0)
+        winter_jan_next_year = datetime(2019, 2, 3, 0, 0)
         tests = [{
             'nextcall': brux.localize(winter_jan_12),
             'delta': timedelta(days=5),
@@ -78,4 +78,3 @@ class TestDST(TransactionCase):
                 ncall,
                 test['now'])
             self.assertEqual(res, test['expected'])
-

@@ -34,7 +34,7 @@ Known issues / Roadmap
 
 * Write tests
 * Edge cases like run every 5 minutes + dst resistant may behave 
-incorrectly during the time change.
+  incorrectly during the time change.
 
 
 Bug Tracker
