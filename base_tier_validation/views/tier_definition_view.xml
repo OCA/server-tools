@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="tier_definition_view_tree" model="ir.ui.view">
+        <field name="name">tier.definition.tree</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <tree string="Tier Definition">
+                <field name="model_id"/>
+                <field name="sequence"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tier_definition_view_form" model="ir.ui.view">
+        <field name="name">tier.definition.form</field>
+        <field name="model">tier.definition</field>
+        <field name="arch" type="xml">
+            <form string="Tier Definition">
+                <group>
+                    <group name="left">
+                        <field name="model_id" options="{'no_create': True}"/>
+                        <field name="review_type"/>
+                        <field name="reviewer_id"
+                               attrs="{'invisible': [('review_type', '!=', 'individual')]}"/>
+                        <field name="reviewer_group_id"
+                               attrs="{'invisible': [('review_type', '!=', 'group')]}"/>
+                    </group>
+                    <group name="right">
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group col="4" name="bottom">
+                    <field name="python_code" colspan="4"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="tier_definition_action" model="ir.actions.act_window">
+        <field name="name">Tier Definition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tier.definition</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_tier_confirmation"
+              name="Tier Validations"
+              parent="base.menu_custom"/>
+    <menuitem id="menu_tier_definition"
+              parent="menu_tier_confirmation"
+              action="tier_definition_action"/>
+
+</odoo>
