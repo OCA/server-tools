@@ -1,9 +1,15 @@
+
 # -*- coding: utf-8 -*-
 # Copyright 2016 Florent de Labarre
 # Copyright 2017 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
-
+import uuid
 from odoo import api, fields, models, exceptions
+from odoo.addons import base
+
+
+base.res.res_users.USER_PRIVATE_FIELDS.\
+    append('oauth_master_uuid')
 
 
 class ResUsers(models.Model):
@@ -17,9 +23,19 @@ class ResUsers(models.Model):
     )
     oauth_access_max_token = fields.Integer(
         string='Max number of simultaneous connections',
-        default=5,
+        default=10,
         required=True
     )
+    oauth_master_uuid = fields.Char(
+        string='Master UUID',
+        copy=False,
+        readonly=True,
+        required=True,
+        default=lambda self: self._generate_oauth_master_uuid(),
+    )
+
+    def _generate_oauth_master_uuid(self):
+        return uuid.uuid4().hex
 
     @property
     def multi_token_model(self):
@@ -52,6 +68,8 @@ class ResUsers(models.Model):
     def action_oauth_clear_token(self):
         """Inactivate current user tokens."""
         self.mapped('oauth_access_token_ids')._oauth_clear_token()
+        for res in self:
+            res.oauth_master_uuid = self._generate_oauth_master_uuid()
 
     @api.model
     def check_credentials(self, password):
@@ -66,3 +84,8 @@ class ResUsers(models.Model):
             ])
             if not res:
                 raise
+
+    def _get_session_token_fields(self):
+        res = super(ResUsers, self)._get_session_token_fields()
+        res.remove('oauth_access_token')
+        return res | {'oauth_master_uuid'}
