@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo10-addon-base_suspend_security',
         'odoo10-addon-base_technical_features',
         'odoo10-addon-base_technical_user',
+        'odoo10-addon-base_tier_validation',
         'odoo10-addon-base_user_gravatar',
         'odoo10-addon-base_user_role',
         'odoo10-addon-base_view_inheritance_extension',
