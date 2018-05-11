@@ -56,6 +56,7 @@ addon | version | summary
 [base_suspend_security](base_suspend_security/) | 10.0.1.0.0 | Suspend security checks for a call
 [base_technical_features](base_technical_features/) | 10.0.1.0.0 | Access to technical features without activating debug mode
 [base_technical_user](base_technical_user/) | 10.0.1.0.0 | Add a technical user parameter on the company
+[base_tier_validation](base_tier_validation/) | 10.0.1.0.0 | Implement a validation process based on tiers.
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.1 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 10.0.1.0.1 | User roles
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.1 | Adds more operators for view inheritance
