@@ -4,12 +4,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-
+from os import utime
 from os.path import getmtime
 from time import time
-from os import utime
 
 from odoo import api, http, models
+
 
 _logger = logging.getLogger(__name__)
 
@@ -104,6 +104,10 @@ class ResUsers(models.Model):
 
     @classmethod
     def check(cls, *args, **kwargs):
+        
+        if not http.request:
+            return
+        
         res = super(ResUsers, cls).check(*args, **kwargs)
         http.request.env.user._auth_timeout_check()
         return res
