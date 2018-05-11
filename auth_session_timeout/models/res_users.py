@@ -105,5 +105,6 @@ class ResUsers(models.Model):
     @classmethod
     def check(cls, *args, **kwargs):
         res = super(ResUsers, cls).check(*args, **kwargs)
-        http.request.env.user._auth_timeout_check()
+        if http.request:
+            http.request.env.user._auth_timeout_check()
         return res
