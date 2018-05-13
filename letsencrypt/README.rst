@@ -140,6 +140,7 @@ Contributors
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Dave Lasley <dave@laslabs.com>
 * Ronald Portier <ronald@therp.nl>
+* Ignacio Ibeas <ignacio@acysos.com>
 
 ACME implementation
 -------------------
