@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 # © 2016 Therp BV <http://therp.nl>
 # © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# © 2018 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import os
 import logging
-import urllib2
-import urlparse
+import urllib.request
+import urllib.parse
 import subprocess
 import tempfile
 from odoo import _, api, models, exceptions
@@ -81,7 +81,7 @@ class Letsencrypt(models.AbstractModel):
             import IPy
             try:
                 ip = IPy.IP(address)
-            except:
+            except Exception:
                 return False
             return ip.iptype() == 'PRIVATE'
 
@@ -107,12 +107,12 @@ class Letsencrypt(models.AbstractModel):
             'letsencrypt.openssl.cnf', '/etc/ssl/openssl.cnf'
         )
         csr = os.path.join(get_data_dir(), '%s.csr' % domain)
-        with tempfile.NamedTemporaryFile() as cfg:
+        with tempfile.NamedTemporaryFile(mode='wt') as cfg:
             cfg.write(open(config).read())
             if len(domains) > 1:
                 cfg.write(
                     '\n[SAN]\nsubjectAltName=' +
-                    ','.join(map(lambda x: 'DNS:%s' % x, domains)) + '\n')
+                    ','.join(['DNS:%s' % x for x in domains]) + '\n')
             cfg.file.flush()
             cmdline = [
                 'openssl', 'req', '-new',
@@ -131,7 +131,7 @@ class Letsencrypt(models.AbstractModel):
 
     @api.model
     def cron(self):
-        domain = urlparse.urlparse(
+        domain = urllib.parse.urlparse(
             self.env['ir.config_parameter'].get_param(
                 'web.base.url', 'localhost')).netloc
         self.validate_domain(domain)
@@ -149,16 +149,16 @@ class Letsencrypt(models.AbstractModel):
         with open(os.path.join(get_data_dir(), '%s.crt' % domain), 'w')\
                 as crt:
             crt.write(crt_text)
-            chain_cert = urllib2.urlopen(
+            chain_cert = urllib.request.urlopen(
                 self.env['ir.config_parameter'].get_param(
                     'letsencrypt.chain_certificate_address',
                     'https://letsencrypt.org/certs/'
                     'lets-encrypt-x3-cross-signed.pem')
             )
-            crt.write(chain_cert.read())
+            crt.write(str(chain_cert.read()))
             chain_cert.close()
             _logger.info('wrote %s', crt.name)
-        reload_cmd = self.env['ir.config_parameter'].get_param(
+        reload_cmd = self.env['ir.config_parameter'].sudo().get_param(
             'letsencrypt.reload_command', False)
         if reload_cmd:
             _logger.info('reloading webserver...')
