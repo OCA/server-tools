@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="config_parameter_reload" model="ir.config_parameter" forcecreate="True">
+            <field name="key">letsencrypt.reload_command</field>
+            <field name="value">sudo /usr/sbin/service nginx reload</field>
+        </record>
+    </data>
+</openerp>

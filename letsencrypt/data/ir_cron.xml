@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="cronjob" model="ir.cron">
+            <field name="name">Update letsencrypt certificates</field>
+            <field name="model_id" ref="model_letsencrypt"/>
+            <field name="state">code</field>
+            <field name="code">model.cron()</field>
+            <field name="interval_number">11</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</openerp>
