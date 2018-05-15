@@ -26,7 +26,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:36
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Add"
 msgstr "Ajouter"
 
@@ -34,6 +36,18 @@ msgstr "Ajouter"
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr "Avancées"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:179
+#, python-format
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:184
+#, python-format
+msgid "Close"
+msgstr "Fermer"
 
 #. module: mass_editing
 #: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
@@ -131,7 +145,9 @@ msgid "Object"
 msgstr "Objet"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:37
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Remove"
 msgstr "Supprimer"
 
@@ -141,15 +157,21 @@ msgid "Remove the contextual action to use this template on related documents"
 msgstr "Supprimer l'action contextuelle pour utiliser ce modèle sur les documents liés"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:35
+#, python-format
+msgid "Set"
+msgstr "Choisir"
+
+#. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
 msgid "Sidebar Action"
-msgstr ""
+msgstr "Action sur la barre latérale"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 #: field:mass.object,ref_ir_value:0
 msgid "Sidebar Button"
-msgstr ""
+msgstr "Bouton sur la barre latérale"
 
 #. module: mass_editing
 #: help:mass.object,ref_ir_act_window:0
