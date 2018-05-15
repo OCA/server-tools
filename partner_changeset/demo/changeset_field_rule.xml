@@ -43,7 +43,7 @@
 
     <record model="changeset.field.rule" id="changeset_field_rule_credit_limit">
       <field name="field_id" ref="base.field_res_partner_credit_limit"/>
-      <field name="action">validate</field>
+      <field name="action">auto</field>
     </record>
 
 </odoo>
