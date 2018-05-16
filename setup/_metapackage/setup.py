@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo11-addon-dbfilter_from_header',
         'odoo11-addon-html_image_url_extractor',
         'odoo11-addon-html_text',
+        'odoo11-addon-letsencrypt',
         'odoo11-addon-module_auto_update',
         'odoo11-addon-onchange_helper',
         'odoo11-addon-sentry',
