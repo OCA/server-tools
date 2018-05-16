@@ -9,9 +9,24 @@ from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 _logger = logging.getLogger(__name__)
 
 try:
-    from validate_email import validate_email
+    from email_validator import validate_email, EmailSyntaxError
 except ImportError:
-    _logger.debug("Cannot import `validate_email`.")
+    # TODO Remove in v12, dropping backwards compatibility with validate_email
+    # pragma: no-cover
+    try:
+        from validate_email import validate_email as _validate
+
+        class EmailSyntaxError(Exception):
+            message = False
+
+        def validate_email(*args, **kwargs):
+            if not _validate(*args, **kwargs):
+                raise EmailSyntaxError
+
+    except ImportError:
+        _logger.debug("Cannot import `email_validator`.")
+    else:
+        _logger.warning("Install `email_validator` to get full support.")
 
 
 class SignupVerifyEmail(AuthSignupHome):
@@ -27,10 +42,16 @@ class SignupVerifyEmail(AuthSignupHome):
         qcontext = self.get_auth_signup_qcontext()
 
         # Check good format of e-mail
-        if not validate_email(values.get("login", "")):
-            qcontext["error"] = _("That does not seem to be an email address.")
+        try:
+            validate_email(values.get("login", ""))
+        except EmailSyntaxError as error:
+            qcontext["error"] = getattr(
+                error,
+                "message",
+                _("That does not seem to be an email address."),
+            )
             return http.request.render("auth_signup.signup", qcontext)
-        elif not values.get("email"):
+        if not values.get("email"):
             values["email"] = values.get("login")
 
         # Remove password

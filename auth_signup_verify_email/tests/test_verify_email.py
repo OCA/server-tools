@@ -3,9 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from urllib import urlencode
+from mock import patch
 from lxml.html import document_fromstring
-from openerp import _
-from openerp.tests.common import at_install, post_install, HttpCase
+from odoo import _
+from odoo.tests.common import at_install, post_install, HttpCase
+from odoo.addons.mail.models import mail_template
 
 
 @at_install(False)
@@ -21,43 +23,28 @@ class UICase(HttpCase):
             "csrf_token": self.csrf_token(),
             "name": "Somebody",
         }
-        self.msg = {
-            "badmail": _("That does not seem to be an email address."),
-            "failure": _(
-                "Something went wrong, please try again later or contact us."),
-            "success": _("Check your email to activate your account!"),
-        }
 
     def html_doc(self, url="/web/signup", data=None, timeout=30):
         """Get an HTML LXML document."""
         if data:
             data = bytes(urlencode(data))
-        return document_fromstring(self.url_open(url, data, timeout).read())
+        with patch(mail_template.__name__ + ".MailTemplate.send_mail"):
+            result = self.url_open(url, data, timeout)
+        return document_fromstring(result.read())
 
     def csrf_token(self):
         """Get a valid CSRF token."""
         doc = self.html_doc()
         return doc.xpath("//input[@name='csrf_token']")[0].get("value")
 
-    def search_text(self, doc, text):
-        """Search for any element containing the text."""
-        return doc.xpath("//*[contains(text(), '%s')]" % text)
-
     def test_bad_email(self):
         """Test rejection of bad emails."""
         self.data["login"] = "bad email"
         doc = self.html_doc(data=self.data)
-        self.assertTrue(self.search_text(doc, self.msg["badmail"]))
+        self.assertTrue(doc.cssselect(".oe_signup_form .alert-danger"))
 
     def test_good_email(self):
-        """Test acceptance of good emails.
-
-        This test could lead to success if your SMTP settings are correct, or
-        to failure otherwise. Any case is expected, since tests usually run
-        under unconfigured demo instances.
-        """
+        """Test acceptance of good emails."""
         self.data["login"] = "good@example.com"
         doc = self.html_doc(data=self.data)
-        self.assertTrue(
-            self.search_text(doc, self.msg["failure"]) or
-            self.search_text(doc, self.msg["success"]))
+        self.assertTrue(doc.cssselect(".alert-success"))
