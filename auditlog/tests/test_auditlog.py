@@ -110,7 +110,19 @@ class TestAuditlogFast(TransactionCase, TestAuditlog):
             'state': 'subscribed',
             'log_type': 'fast',
         })
+        self.users_model_id = self.env.ref('base.model_res_users').id
+        self.users_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.users_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'state': 'subscribed',
+            'log_type': 'fast',
+        })
 
     def tearDown(self):
-        self.groups_rule.unlink()
+        rules = self.groups_rule + self.users_rule
+        rules.unlink()
         super(TestAuditlogFast, self).tearDown()
