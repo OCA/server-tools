@@ -5,7 +5,6 @@
 from urllib import urlencode
 from mock import patch
 from lxml.html import document_fromstring
-from odoo import _
 from odoo.tests.common import at_install, post_install, HttpCase
 from odoo.addons.mail.models import mail_template
 
