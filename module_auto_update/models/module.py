@@ -22,8 +22,28 @@ DEFAULT_EXCLUDE_PATTERNS = \
 _logger = logging.getLogger(__name__)
 
 
+class FailedUpgradeError(exceptions.UserError):
+    pass
+
+
 class IncompleteUpgradeError(exceptions.UserError):
     pass
+
+
+def ensure_module_state(env, modules, state):
+    # read module states, bypassing any Odoo cache
+    env.cr.execute(
+        "SELECT name FROM ir_module_module "
+        "WHERE id IN %s AND state != %s",
+        (tuple(modules.ids), state),
+    )
+    names = [r[0] for r in env.cr.fetchall()]
+    if names:
+        raise FailedUpgradeError(
+            "The following modules should be in state '%s' "
+            "at this stage: %s. Bailing out for safety." %
+            (state, ','.join(names), ),
+        )
 
 
 class Module(models.Model):
@@ -128,6 +148,11 @@ class Module(models.Model):
                      ','.join(changed_modules.mapped('name')))
         changed_modules.button_upgrade()
         self.env.cr.commit()  # pylint: disable=invalid-commit
+        # in rare situations, button_upgrade may fail without
+        # exception, this would lead to corruption because
+        # no upgrade would be performed and save_installed_checksums
+        # would update cheksums for modules that have not been upgraded
+        ensure_module_state(self.env, changed_modules, 'to upgrade')
 
         _logger.info("Upgrading...")
         self.env['base.module.upgrade'].upgrade_module()
