@@ -41,10 +41,10 @@ class UICase(HttpCase):
         """Test rejection of bad emails."""
         self.data["login"] = "bad email"
         doc = self.html_doc(data=self.data)
-        self.assertTrue(doc.cssselect(".oe_signup_form .alert-danger"))
+        self.assertTrue(doc.xpath('//p[@class="alert alert-danger"]'))
 
     def test_good_email(self):
         """Test acceptance of good emails."""
         self.data["login"] = "good@example.com"
         doc = self.html_doc(data=self.data)
-        self.assertTrue(doc.cssselect(".alert-success"))
+        self.assertTrue(doc.xpath('//p[@class="alert alert-success"]'))
