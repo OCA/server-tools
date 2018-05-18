@@ -75,7 +75,7 @@ addon | version | summary
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
-[module_auto_update](module_auto_update/) | 10.0.2.0.1 | Automatically update Odoo modules
+[module_auto_update](module_auto_update/) | 10.0.2.0.2 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 10.0.1.0.0 | Prototype your module.
 [onchange_helper](onchange_helper/) | 10.0.1.0.0 | Technical module that ease execution of onchange in Python code
 [password_security](password_security/) | 10.0.1.1.3 | Allow admin to set password security requirements.
