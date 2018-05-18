@@ -25,12 +25,14 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup,auth_session_timeout"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup,auth_session_timeout"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup,auth_session_timeout,auth_brute_force"
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup,auth_session_timeout,auth_brute_force"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="auth_session_timeout"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="auth_session_timeout"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="auth_brute_force"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="auth_brute_force"
 
 virtualenv:
   system_site_packages: true
