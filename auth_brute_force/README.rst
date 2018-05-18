@@ -22,9 +22,18 @@ extra information about remote IP.
 Configuration
 =============
 
-Once installed, you can change the ir.config_parameter value for the key
-'auth_brute_force.max_attempt_qty' (10 by default) that define the max number
-of attempts allowed before the user was banned.
+You can use these configuration parameters that control this addon behavior:
+
+* ``auth_brute_force.whitelist_remotes`` is a comma-separated list of
+  whitelisted IPs. Failures from these remotes are ignored.
+
+* ``auth_brute_force.max_by_ip`` defaults to 50, and indicates the maximum
+  successive failures allowed for an IP. After hitting the limit, the IP gets
+  banned.
+
+* ``auth_brute_force.max_by_ip_user`` defaults to 10, and indicates the
+  maximum successive failures allowed for any IP and user combination.
+  After hitting the limit, that user and IP combination is banned.
 
 Usage
 =====
@@ -34,17 +43,14 @@ Admin user have the possibility to unblock a banned IP.
 Logging
 -------
 
-This module generates some WARNING logs, in the three following cases:
+This module generates some WARNING logs, in the following cases:
 
-* Authentication failed from remote '127.0.0.1'. Login tried : 'admin'.
-  Attempt 1 / 10.
+* When the IP limit is reached: *Authentication failed from remote 'x.x.x.x'.
+  The remote has been banned. Login tried: xxxx.*
 
-* Authentication failed from remote '127.0.0.1'. The remote has been banned.
-  Login tried : 'admin'.
-
-* Authentication tried from remote '127.0.0.1'. The request has been ignored
-  because the remote has been banned after 10 attempts without success. Login
-  tried : 'admin'.
+* When the IP+user combination limit is reached:
+  *Authentication failed from remote 'x.x.x.x'.
+  The remote and login combination has been banned. Login tried: xxxx.*
 
 Screenshot
 ----------
@@ -53,13 +59,9 @@ Screenshot
 
 .. image:: /auth_brute_force/static/description/screenshot_attempts_list.png
 
-**Detail of a banned IP**
-
-.. image:: /auth_brute_force/static/description/screenshot_custom_ban.png
-
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-:alt: Try me on Runbot
+   :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/10.0
 
 For further information, please visit:
@@ -69,14 +71,18 @@ For further information, please visit:
 Known issues / Roadmap
 ======================
 
-* The ID used to identify a remote request is the IP provided in the request
-  (key 'REMOTE_ADDR').
+* Remove 🐒 patch for https://github.com/odoo/odoo/issues/24183 in v12.
+
 * Depending of server and / or user network configuration, the idenfication
   of the user can be wrong, and mainly in the following cases:
-* If the Odoo server is behind an Apache / NGinx proxy without redirection,
-  all the request will be have the value '127.0.0.1' for the REMOTE_ADDR key;
-* If some users are behind the same Internet Service Provider, if a user is
-  banned, all the other users will be banned too;
+
+  * If the Odoo server is behind an Apache / NGinx proxy and it is not properly
+    configured, all requests will use the same IP address. Blocking such IP
+    could render Odoo unusable for all users! **Make sure your logs output the
+    correct IP for werkzeug traffic before installing this addon.**
+
+* The IP metadata retrieval should use a better system. `See details here
+  <https://github.com/OCA/server-tools/pull/1219/files#r187014504>`_.
 
 Bug Tracker
 ===========
@@ -94,6 +100,7 @@ Contributors
 
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
 * David Vidal <david.vidal@tecnativa.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Maintainer
 ----------
