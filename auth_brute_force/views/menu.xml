@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 GRAP -Sylvain LE GAL
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<menuitem id="menu_res_authentication_attempt"
+    parent="base.menu_users"
+    action="action_res_authentication_attempt"/>
+
+<menuitem id="menu_res_banned_remote"
+    parent="base.menu_users"
+    action="action_res_banned_remote"/>
+
+</odoo>

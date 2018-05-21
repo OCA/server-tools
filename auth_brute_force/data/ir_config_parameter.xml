@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 GRAP -Sylvain LE GAL
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+<record id="max_attempt_qty" model="ir.config_parameter">
+    <field name="key">auth_brute_force.max_attempt_qty</field>
+    <field name="value">10</field>
+</record>
+
+</odoo>
