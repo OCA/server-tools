@@ -5,6 +5,7 @@
 from threading import current_thread
 from urllib import urlencode
 
+from decorator import decorator
 from mock import patch
 from werkzeug.utils import redirect
 
@@ -33,6 +34,7 @@ def skip_unless_addons_installed(*addons):
         Explain why you must skip this test.
     """
 
+    @decorator
     def _wrapper(method, self, *args, **kwargs):
         installed = self.addons_installed(*addons)
         if not installed:
