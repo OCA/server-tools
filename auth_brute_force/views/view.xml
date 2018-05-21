@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <tree
                 decoration-warning="result == 'failed'"
-                decoration-error="result == 'banned'"
+                decoration-danger="result == 'banned'"
             >
                 <field name="create_date"/>
                 <field name="remote"/>
@@ -44,6 +44,7 @@
                         <field name="login"/>
                         <field name="remote"/>
                         <field name="remote_metadata"/>
+                        <field name="whitelisted" invisible="1"/>
                     </group>
                 </sheet>
             </form>
