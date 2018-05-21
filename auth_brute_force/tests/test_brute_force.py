@@ -3,14 +3,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from threading import current_thread
-from unittest import skipUnless
 from urllib import urlencode
 
 from mock import patch
 from werkzeug.utils import redirect
 
 from odoo import http
-from odoo.tests.common import at_install, can_import, HttpCase, post_install
+from odoo.tests.common import at_install, HttpCase, post_install
 from odoo.tools import mute_logger
 
 from ..models import res_authentication_attempt, res_users
@@ -21,6 +20,28 @@ GARBAGE_LOGGERS = (
     res_authentication_attempt.__name__,
     res_users.__name__,
 )
+
+
+# HACK https://github.com/odoo/odoo/pull/24833
+def skip_unless_addons_installed(*addons):
+    """Decorator to skip a test unless some addons are installed.
+
+    :param *str addons:
+        Addon names that should be installed.
+
+    :param reason:
+        Explain why you must skip this test.
+    """
+
+    def _wrapper(method, self, *args, **kwargs):
+        installed = self.addons_installed(*addons)
+        if not installed:
+            missing = set(addons) - installed
+            self.skipTest("Required addons not installed: %s" %
+                          ",".join(sorted(missing)))
+        return method(self, *args, **kwargs)
+
+    return _wrapper
 
 
 @at_install(False)
@@ -62,7 +83,16 @@ class BruteForceCase(HttpCase):
                 ("login", "=", self.data_demo["login"]),
             ]).password = self.data_demo["password"]
 
-    @skipUnless(can_import("odoo.addons.web"), "Needs web addon")
+    # HACK https://github.com/odoo/odoo/pull/24833
+    def addons_installed(self, *addons):
+        """Know if the specified addons are installed."""
+        found = self.env["ir.module.module"].search([
+            ("name", "in", addons),
+            ("state", "not in", ["uninstalled", "uninstallable"]),
+        ])
+        return set(addons) - set(found.mapped("name"))
+
+    @skip_unless_addons_installed("web")
     @mute_logger(*GARBAGE_LOGGERS)
     def test_web_login_existing(self, *args):
         """Remote is banned with real user on web login form."""
@@ -131,7 +161,7 @@ class BruteForceCase(HttpCase):
         response = self.url_open("/web/login", bytes(urlencode(data1)), 30)
         self.assertTrue(response.geturl().endswith("/web"))
 
-    @skipUnless(can_import("odoo.addons.web"), "Needs web addon")
+    @skip_unless_addons_installed("web")
     @mute_logger(*GARBAGE_LOGGERS)
     def test_web_login_unexisting(self, *args):
         """Remote is banned with fake user on web login form."""
