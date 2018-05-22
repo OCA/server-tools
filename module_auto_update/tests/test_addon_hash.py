@@ -21,7 +21,7 @@ class TestAddonHash(unittest.TestCase):
     def test_basic(self):
         files = list(addon_hash._walk(
             self.sample_dir,
-            exclude_patterns=[],
+            exclude_patterns=["*/__pycache__/*"],
             keep_langs=[],
         ))
         self.assertEqual(files, [
