@@ -17,6 +17,7 @@ def get_new_values(model, record, on_change_result):
             new_values[fieldname] = value
     return new_values
 
+
 @api.model
 def play_onchanges(self, values, onchange_fields):
     onchange_specs = self._onchange_spec()
