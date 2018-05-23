@@ -4,48 +4,49 @@
 
 import time
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import at_install, post_install, SavepointCase
 
 from ..exceptions import PassError
 
 
-class TestResUsers(TransactionCase):
+@at_install(False)
+@post_install(True)
+class TestResUsers(SavepointCase):
 
-    def setUp(self):
-        super(TestResUsers, self).setUp()
-        self.main_comp = self.env.ref('base.main_company')
+    def setUp(cls):
+        super(TestResUsers, cls).setUp()
+        cls.main_comp = cls.env.ref('base.main_company')
         # Modify users as privileged, but non-root user
-        privileged_user = self.env['res.users'].create({
+        cls.privileged_user = cls.env['res.users'].create({
             'name': 'Privileged User',
             'login': 'privileged_user@example.com',
-            'company_id': self.main_comp.id,
+            'company_id': cls.main_comp.id,
             'groups_id': [
-                (4, self.env.ref('base.group_erp_manager').id),
-                (4, self.env.ref('base.group_partner_manager').id),
-                (4, self.env.ref('base.group_user').id),
+                (4, cls.env.ref('base.group_erp_manager').id),
+                (4, cls.env.ref('base.group_partner_manager').id),
+                (4, cls.env.ref('base.group_user').id),
             ],
         })
-        privileged_user.email = privileged_user.login
-        self.env = self.env(user=privileged_user)
-        self.login = 'foslabs@example.com'
-        self.partner_vals = {
+        cls.privileged_user.email = cls.privileged_user.login
+        cls.login = 'foslabs@example.com'
+        cls.partner_vals = {
             'name': 'Partner',
             'is_company': False,
-            'email': self.login,
+            'email': cls.login,
         }
-        self.password = 'asdQWE123$%^'
-        self.vals = {
+        cls.password = 'asdQWE123$%^'
+        cls.vals = {
             'name': 'User',
-            'login': self.login,
-            'password': self.password,
-            'company_id': self.main_comp.id
+            'login': cls.login,
+            'password': cls.password,
+            'company_id': cls.main_comp.id
         }
-        self.model_obj = self.env['res.users']
+        cls.model_obj = cls.env['res.users']
 
     def _new_record(self):
         partner_id = self.env['res.partner'].create(self.partner_vals)
         self.vals['partner_id'] = partner_id.id
-        return self.model_obj.create(self.vals)
+        return self.model_obj.create(self.vals).sudo(self.privileged_user)
 
     def test_password_write_date_is_saved_on_create(self):
         rec_id = self._new_record()
