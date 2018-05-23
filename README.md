@@ -21,7 +21,7 @@ addon | version | summary
 [attachment_base_synchronize](attachment_base_synchronize/) | 10.0.1.0.0 | Attachment Base Synchronize
 [auditlog](auditlog/) | 10.0.1.0.0 | Audit Log
 [auth_admin_passkey](auth_admin_passkey/) | 10.0.1.0.0 | Authentification - Admin Passkey
-[auth_brute_force](auth_brute_force/) | 10.0.2.1.0 | Track Authentication Attempts and Prevent Brute-force Attacks
+[auth_brute_force](auth_brute_force/) | 10.0.2.1.1 | Track Authentication Attempts and Prevent Brute-force Attacks
 [auth_session_timeout](auth_session_timeout/) | 10.0.1.0.2 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 10.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 10.0.1.0.0 | Auth Supplier
@@ -70,7 +70,7 @@ addon | version | summary
 [fetchmail_notify_error_to_sender](fetchmail_notify_error_to_sender/) | 10.0.1.0.0 | If fetching mails gives error, send an email to sender
 [html_image_url_extractor](html_image_url_extractor/) | 10.0.1.0.0 | Extract images found in any HTML field
 [html_text](html_text/) | 10.0.1.0.0 | Generate excerpts from any HTML field
-[keychain](keychain/) | 10.0.2.0.0 | Store accounts and credentials
+[keychain](keychain/) | 10.0.2.0.1 | Store accounts and credentials
 [letsencrypt](letsencrypt/) | 10.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
 [mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
