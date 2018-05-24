@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Authentification - Brute-Force Filter',
-    'version': '10.0.2.1.1',
+    'version': '9.0.1.0.0',
     'category': 'Tools',
     'summary': "Track Authentication Attempts and Prevent Brute-force Attacks",
     'author': "GRAP, "

@@ -9,9 +9,10 @@ from decorator import decorator
 from mock import patch
 from werkzeug.utils import redirect
 
-from odoo import http
-from odoo.tests.common import at_install, HttpCase, post_install
-from odoo.tools import mute_logger
+from openerp import http
+from openerp.tests.common import at_install, HttpCase, post_install
+from openerp.tools import mute_logger
+from openerp.modules.registry import RegistryManager
 
 from ..models import res_authentication_attempt, res_users
 
@@ -341,10 +342,11 @@ class BruteForceCase(HttpCase):
         }
         with self.cursor() as cr:
             env = self.env(cr)
+            pool = RegistryManager.get(cr.dbname)
             # Fail 3 times
             for n in range(3):
                 self.assertFalse(
-                    env["res.users"].authenticate(
+                    pool["res.users"].authenticate(
                         cr.dbname, data1["login"], data1["password"], {}))
             self.assertEqual(
                 env["res.authentication.attempt"].search(count=True, args=[]),
@@ -359,7 +361,7 @@ class BruteForceCase(HttpCase):
             # Now I know the password, and login works
             data1["password"] = self.good_password
             self.assertTrue(
-                env["res.users"].authenticate(
+                pool["res.users"].authenticate(
                     cr.dbname, data1["login"], data1["password"], {}))
 
     @mute_logger(*GARBAGE_LOGGERS)
@@ -370,11 +372,12 @@ class BruteForceCase(HttpCase):
             "password": self.good_password,
         }
         with self.cursor() as cr:
+            pool = RegistryManager.get(cr.dbname)
             env = self.env(cr)
             # Fail 3 times
             for n in range(3):
                 self.assertFalse(
-                    env["res.users"].authenticate(
+                    pool["res.users"].authenticate(
                         cr.dbname, data1["login"], data1["password"], {}))
             self.assertEqual(
                 env["res.authentication.attempt"].search(count=True, args=[]),
@@ -389,5 +392,5 @@ class BruteForceCase(HttpCase):
             # Now I know the user, and login works
             data1["login"] = "admin"
             self.assertTrue(
-                env["res.users"].authenticate(
+                pool["res.users"].authenticate(
                     cr.dbname, data1["login"], data1["password"], {}))

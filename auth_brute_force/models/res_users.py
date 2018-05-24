@@ -5,9 +5,9 @@
 import logging
 from contextlib import contextmanager
 from threading import current_thread
-from odoo import api, models, SUPERUSER_ID
-from odoo.exceptions import AccessDenied
-from odoo.service import wsgi_server
+from openerp import api, models, SUPERUSER_ID
+from openerp.exceptions import AccessDenied
+from openerp.service import wsgi_server
 
 _logger = logging.getLogger(__name__)
 
@@ -17,8 +17,7 @@ class ResUsers(models.Model):
 
     # HACK https://github.com/odoo/odoo/issues/24183
     # TODO Remove in v12, and use normal odoo.http.request to get details
-    @api.model_cr
-    def _register_hook(self):
+    def _register_hook(self, cr):
         """🐒-patch XML-RPC controller to know remote address."""
         original_fn = wsgi_server.application_unproxied
 
@@ -108,25 +107,22 @@ class ResUsers(models.Model):
             return attempt.copy_data()[0] if attempt else {}
 
     # Override all auth-related core methods
-    @classmethod
-    def _login(cls, db, login, password):
-        return cls._auth_attempt_force_raise(
+    def _login(self, db, login, password):
+        return self._auth_attempt_force_raise(
             login,
-            lambda: super(ResUsers, cls)._login(db, login, password),
+            lambda: super(ResUsers, self)._login(db, login, password),
         )
 
-    @classmethod
-    def authenticate(cls, db, login, password, user_agent_env):
-        return cls._auth_attempt_force_raise(
+    def authenticate(self, db, login, password, user_agent_env):
+        return self._auth_attempt_force_raise(
             login,
-            lambda: super(ResUsers, cls).authenticate(
+            lambda: super(ResUsers, self).authenticate(
                 db, login, password, user_agent_env),
         )
 
-    @classmethod
-    def check(cls, db, uid, passwd):
-        with cls._auth_attempt(uid):
-            return super(ResUsers, cls).check(db, uid, passwd)
+    def check(self, db, uid, passwd):
+        with self._auth_attempt(uid):
+            return super(ResUsers, self).check(db, uid, passwd)
 
     @api.model
     def check_credentials(self, password):

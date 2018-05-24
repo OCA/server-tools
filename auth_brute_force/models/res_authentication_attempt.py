@@ -5,7 +5,7 @@
 import json
 import logging
 from urllib2 import urlopen
-from odoo import api, fields, models
+from openerp import api, fields, models
 
 GEOLOCALISATION_URL = u"http://ip-api.com/json/{}"
 
