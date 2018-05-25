@@ -2,7 +2,6 @@
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from lxml import etree
 from openerp.tests.common import TransactionCase
 from openerp.tools import mute_logger
 
@@ -52,7 +51,7 @@ class ExtractorCase(TransactionCase):
         for laps, text in self.imgs_from_html(""):
             self.assertTrue(False)  # You should never get here
 
-        with self.assertRaises(etree.XMLSyntaxError):
+        with self.assertRaises(Exception):
             list(self.imgs_from_html("", fail=True))
 
     @mute_logger("openerp.addons.html_image_url_extractor.models"
@@ -62,15 +61,5 @@ class ExtractorCase(TransactionCase):
         for laps, text in self.imgs_from_html(False):
             self.assertTrue(False)  # You should never get here
 
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Exception):
             list(self.imgs_from_html(False, fail=True))
-
-    @mute_logger("openerp.addons.html_image_url_extractor.models"
-                 ".ir_fields_converter")
-    def test_bad_html(self):
-        """Bad HTML handled correctly."""
-        for laps, text in self.imgs_from_html("<<bad>"):
-            self.assertTrue(False)  # You should never get here
-
-        with self.assertRaises(etree.ParserError):
-            list(self.imgs_from_html("<<bad>", fail=True))
