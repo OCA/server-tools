@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo9-addon-admin_technical_features',
         'odoo9-addon-attachment_base_synchronize',
         'odoo9-addon-auditlog',
+        'odoo9-addon-auth_brute_force',
         'odoo9-addon-auth_from_http_remote_user',
         'odoo9-addon-auth_session_timeout',
         'odoo9-addon-auth_signup_verify_email',
