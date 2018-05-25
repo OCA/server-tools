@@ -120,10 +120,6 @@ class ResUsers(models.Model):
                 db, login, password, user_agent_env),
         )
 
-    def check(self, db, uid, passwd):
-        with self._auth_attempt(uid):
-            return super(ResUsers, self).check(db, uid, passwd)
-
     @api.model
     def check_credentials(self, password):
         """This is the most important and specific auth check method.

@@ -30,7 +30,6 @@ class ResAuthenticationAttempt(models.Model):
     remote_metadata = fields.Text(
         string="Remote IP metadata",
         compute='_compute_metadata',
-        store=True,
         help="Metadata publicly available for remote IP",
     )
     whitelisted = fields.Boolean(
