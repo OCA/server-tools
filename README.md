@@ -21,7 +21,7 @@ addon | version | summary
 [admin_technical_features](admin_technical_features/) | 9.0.0.1.0 | Checks the technical features box for admin user.
 [attachment_base_synchronize](attachment_base_synchronize/) | 9.0.1.0.0 | Attachment Base Synchronize
 [auditlog](auditlog/) | 9.0.1.0.0 | Audit Log
-[auth_brute_force](auth_brute_force/) | 9.0.1.0.0 | Track Authentication Attempts and Prevent Brute-force Attacks
+[auth_brute_force](auth_brute_force/) | 9.0.1.1.0 | Track Authentication Attempts and Prevent Brute-force Attacks
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 9.0.1.0.0 | Authenticate via HTTP Remote User
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
