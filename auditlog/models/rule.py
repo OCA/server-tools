@@ -4,6 +4,9 @@
 
 from odoo import models, fields, api, modules, _, sql_db
 
+import logging
+_logger = logging.getLogger(__name__)
+
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
     'display_name', '__last_update',
@@ -131,28 +134,28 @@ class AuditlogRule(models.Model):
             if getattr(rule, 'log_create') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('create', rule._make_create())
-                setattr(type(model_model), check_attr, True)
+                setattr(model_model, check_attr, True)
                 updated = True
             #   -> read
             check_attr = 'auditlog_ruled_read'
             if getattr(rule, 'log_read') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('read', rule._make_read())
-                setattr(type(model_model), check_attr, True)
+                setattr(model_model, check_attr, True)
                 updated = True
             #   -> write
             check_attr = 'auditlog_ruled_write'
             if getattr(rule, 'log_write') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('write', rule._make_write())
-                setattr(type(model_model), check_attr, True)
+                setattr(model_model, check_attr, True)
                 updated = True
             #   -> unlink
             check_attr = 'auditlog_ruled_unlink'
             if getattr(rule, 'log_unlink') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('unlink', rule._make_unlink())
-                setattr(type(model_model), check_attr, True)
+                setattr(model_model, check_attr, True)
                 updated = True
         return updated
 
@@ -166,7 +169,6 @@ class AuditlogRule(models.Model):
                 if getattr(rule, 'log_%s' % method) and hasattr(
                         getattr(model_model, method), 'origin'):
                     model_model._revert_method(method)
-                    delattr(type(model_model), 'auditlog_ruled_%s' % method)
                     updated = True
         if updated:
             modules.registry.RegistryManager.signal_registry_change(
@@ -237,8 +239,9 @@ class AuditlogRule(models.Model):
         self.ensure_one()
         log_type = self.log_type
 
-        def read(self, *args, **kwargs):
-            result = read.origin(self, *args, **kwargs)
+        @api.multi
+        def read(self, fields=None, load='_classic_read'):
+            result = read.origin(self, fields, load)
             # Sometimes the result is not a list but a dictionary
             # Also, we can not modify the current result as it will break calls
             result2 = result
@@ -246,19 +249,19 @@ class AuditlogRule(models.Model):
                 result2 = [result]
             read_values = dict((d['id'], d) for d in result2)
             # Old API
-            if args and isinstance(args[0], sql_db.Cursor):
-                cr, uid, ids = args[0], args[1], args[2]
+            if self and isinstance(self.env.cr, sql_db.Cursor):
+                cr, uid, ids = self.env.cr, self.env.uid, self.ids
                 if isinstance(ids, (int, long)):
                     ids = [ids]
                 # If the call came from auditlog itself, skip logging:
                 # avoid logs on `read` produced by auditlog during internal
                 # processing: read data of relevant records, 'ir.model',
                 # 'ir.model.fields'... (no interest in logging such operations)
-                if kwargs.get('context', {}).get('auditlog_disabled'):
+                if self.env.context.get('context', {}).get('auditlog_disabled'):
                     return result
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
-                rule_model.sudo().create_logs(
+                rule_model.sudo().with_context({'auditlog_disabled': True}).create_logs(
                     env.uid, self._name, ids,
                     'read', read_values, None, {'log_type': log_type})
             # New API
@@ -362,30 +365,32 @@ class AuditlogRule(models.Model):
         http_session_model = self.env['auditlog.http.session']
         for res_id in res_ids:
             model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
+            name = model_model.search([('id', '=', res_id)]).name_get()
             res_name = name and name[0] and name[0][1]
-            vals = {
-                'name': res_name,
-                'model_id': self.pool._auditlog_model_cache[res_model],
-                'res_id': res_id,
-                'method': method,
-                'user_id': uid,
-                'http_request_id': http_request_model.current_http_request(),
-                'http_session_id': http_session_model.current_http_session(),
-            }
-            vals.update(additional_log_values or {})
-            log = log_model.create(vals)
-            diff = DictDiffer(
-                new_values.get(res_id, EMPTY_DICT),
-                old_values.get(res_id, EMPTY_DICT))
-            if method is 'create':
-                self._create_log_line_on_create(log, diff.added(), new_values)
-            elif method is 'read':
-                self._create_log_line_on_read(
-                    log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
-            elif method is 'write':
-                self._create_log_line_on_write(
-                    log, diff.changed(), old_values, new_values)
+
+            if res_name and res_name != "False":
+                vals = {
+                    'name': res_name,
+                    'model_id': self.pool._auditlog_model_cache[res_model],
+                    'res_id': res_id,
+                    'method': method,
+                    'user_id': uid,
+                    'http_request_id': http_request_model.current_http_request(),
+                    'http_session_id': http_session_model.current_http_session(),
+                }
+                vals.update(additional_log_values or {})
+                log = log_model.create(vals)
+                diff = DictDiffer(
+                    new_values.get(res_id, EMPTY_DICT),
+                    old_values.get(res_id, EMPTY_DICT))
+                if method is 'create':
+                    self._create_log_line_on_create(log, diff.added(), new_values)
+                elif method is 'read':
+                    self._create_log_line_on_read(
+                        log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
+                elif method is 'write':
+                    self._create_log_line_on_write(
+                        log, diff.changed(), old_values, new_values)
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache

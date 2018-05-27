@@ -2,8 +2,6 @@
 # © 2015 ABF OSIELL <http://osiell.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from psycopg2.extensions import AsIs
-
 from odoo import models, fields, api
 from odoo.http import request
 
@@ -47,20 +45,14 @@ class AuditlogHTTPRequest(models.Model):
         first call.
         If no HTTP request is available, returns `False`.
         """
+
         if not request:
             return False
         http_session_model = self.env['auditlog.http.session']
         httprequest = request.httprequest
         if httprequest:
             if hasattr(httprequest, 'auditlog_http_request_id'):
-                # Verify existence. Could have been rolled back after a
-                # concurrency error
-                self.env.cr.execute(
-                    "SELECT id FROM %s WHERE id = %s", (
-                        AsIs(self._table),
-                        httprequest.auditlog_http_request_id))
-                if self.env.cr.fetchone():
-                    return httprequest.auditlog_http_request_id
+                return httprequest.auditlog_http_request_id
             vals = {
                 'name': httprequest.path,
                 'root_url': httprequest.url_root,
@@ -70,4 +62,5 @@ class AuditlogHTTPRequest(models.Model):
             }
             httprequest.auditlog_http_request_id = self.create(vals).id
             return httprequest.auditlog_http_request_id
+
         return False
