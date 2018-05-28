@@ -258,7 +258,7 @@ class AuditlogRule(models.Model):
                 # processing: read data of relevant records, 'ir.model',
                 # 'ir.model.fields'... (no interest in logging such operations)
                 if self.env.context.get('context', {}).\
-                get('auditlog_disabled'):
+                    get('auditlog_disabled'):
                     return result
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
