@@ -257,11 +257,13 @@ class AuditlogRule(models.Model):
                 # avoid logs on `read` produced by auditlog during internal
                 # processing: read data of relevant records, 'ir.model',
                 # 'ir.model.fields'... (no interest in logging such operations)
-                if self.env.context.get('context', {}).get('auditlog_disabled'):
+                if self.env.context.get('context', {}).\
+                    get('auditlog_disabled'):
                     return result
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
-                rule_model.sudo().with_context({'auditlog_disabled': True}).create_logs(
+                rule_model.sudo().with_context({'auditlog_disabled': True}).\
+                    create_logs(
                     env.uid, self._name, ids,
                     'read', read_values, None, {'log_type': log_type})
             # New API
@@ -375,8 +377,10 @@ class AuditlogRule(models.Model):
                     'res_id': res_id,
                     'method': method,
                     'user_id': uid,
-                    'http_request_id': http_request_model.current_http_request(),
-                    'http_session_id': http_session_model.current_http_session(),
+                    'http_request_id': http_request_model.\
+                                       current_http_request(),
+                    'http_session_id': http_session_model.\
+                                       current_http_session(),
                 }
                 vals.update(additional_log_values or {})
                 log = log_model.create(vals)
@@ -384,10 +388,12 @@ class AuditlogRule(models.Model):
                     new_values.get(res_id, EMPTY_DICT),
                     old_values.get(res_id, EMPTY_DICT))
                 if method is 'create':
-                    self._create_log_line_on_create(log, diff.added(), new_values)
+                    self._create_log_line_on_create(log, diff.added(),\
+                    new_values)
                 elif method is 'read':
                     self._create_log_line_on_read(
-                        log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
+                        log, old_values.get(res_id, EMPTY_DICT).keys(),\
+                        old_values)
                 elif method is 'write':
                     self._create_log_line_on_write(
                         log, diff.changed(), old_values, new_values)
