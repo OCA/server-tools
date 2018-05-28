@@ -263,7 +263,7 @@ class AuditlogRule(models.Model):
                 env = api.Environment(cr, uid, {'auditlog_disabled': True})
                 rule_model = env['auditlog.rule']
                 rule_model.sudo().with_context({'auditlog_disabled': True}).\
-                create_logs(
+                    create_logs(
                     env.uid, self._name, ids,
                     'read', read_values, None, {'log_type': log_type})
             # New API
