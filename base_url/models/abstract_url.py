@@ -97,13 +97,6 @@ class AbstractUrl(models.AbstractModel):
 
     @api.depends('url_builder')
     def _compute_url(self):
-        # We need a clear env before call the set_url method
-        # indeed set_url will call a create that will trigger
-        # the recomputation of computed field
-        # This avoid useless recomputation of field
-        # TODO we should see with odoo how we can improve the ORM
-        todo = self.env.all.todo
-        self.env.all.todo = {}
         for record in self:
             if type(record.record_id.id) == models.NewId\
                     or type(record.id) == models.NewId:
@@ -117,7 +110,6 @@ class AbstractUrl(models.AbstractModel):
             if new_url:
                 record.set_url(new_url)
             record.url_key = new_url
-        self.env.all.todo = todo
 
     def _compute_redirect_url(self):
         for record in self:
