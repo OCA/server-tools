@@ -239,6 +239,7 @@ class AuditlogRule(models.Model):
 
         @api.multi
         def read(self, fields=None, load='_classic_read'):
+            result = read.origin(self, fields, load)
             # Sometimes the result is not a list but a dictionary
             # Also, we can not modify the current result as it will break calls
             result2 = result
