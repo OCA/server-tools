@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mass_editing_normal_user,mass.editing.normal.user,model_mass_object,base.group_user,1,0,0,0
+access_mass_editing_normal_erp_manager,mass.editing.normal.erp_manager,model_mass_object,base.group_erp_manager,1,1,1,1
