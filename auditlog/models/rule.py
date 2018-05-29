@@ -368,33 +368,34 @@ class AuditlogRule(models.Model):
             name = model_model.search([('id', '=', res_id)]).name_get()
             res_name = name and name[0] and name[0][1]
 
-            if res_name and res_name != "False":
-                vals = {
-                    'name': res_name,
-                    'model_id': self.pool._auditlog_model_cache[res_model],
-                    'res_id': res_id,
-                    'method': method,
-                    'user_id': uid,
-                    'http_request_id': http_request_model.
-                    current_http_request(),
-                    'http_session_id': http_session_model.
-                    current_http_session(),
-                }
-                vals.update(additional_log_values or {})
-                log = log_model.create(vals)
-                diff = DictDiffer(
-                    new_values.get(res_id, EMPTY_DICT),
-                    old_values.get(res_id, EMPTY_DICT))
-                if method is 'create':
-                    self._create_log_line_on_create(
-                        log, diff.added(), new_values)
-                elif method is 'read':
-                    self._create_log_line_on_read(
-                        log, old_values.get(res_id, EMPTY_DICT).keys(),
-                        old_values)
-                elif method is 'write':
-                    self._create_log_line_on_write(
-                        log, diff.changed(), old_values, new_values)
+            if not res_name or res_name == "False":
+                continue
+            vals = {
+                'name': res_name,
+                'model_id': self.pool._auditlog_model_cache[res_model],
+                'res_id': res_id,
+                'method': method,
+                'user_id': uid,
+                'http_request_id': http_request_model.
+                current_http_request(),
+                'http_session_id': http_session_model.
+                current_http_session(),
+            }
+            vals.update(additional_log_values or {})
+            log = log_model.create(vals)
+            diff = DictDiffer(
+                new_values.get(res_id, EMPTY_DICT),
+                old_values.get(res_id, EMPTY_DICT))
+            if method is 'create':
+                self._create_log_line_on_create(
+                    log, diff.added(), new_values)
+            elif method is 'read':
+                self._create_log_line_on_read(
+                    log, old_values.get(res_id, EMPTY_DICT).keys(),
+                    old_values)
+            elif method is 'write':
+                self._create_log_line_on_write(
+                    log, diff.changed(), old_values, new_values)
 
     def _get_field(self, model, field_name):
         cache = self.pool._auditlog_field_cache
