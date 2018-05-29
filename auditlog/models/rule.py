@@ -4,9 +4,6 @@
 
 from odoo import models, fields, api, modules, _, sql_db
 
-import logging
-_logger = logging.getLogger(__name__)
-
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
     'display_name', '__last_update',
@@ -134,28 +131,28 @@ class AuditlogRule(models.Model):
             if getattr(rule, 'log_create') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('create', rule._make_create())
-                setattr(model_model, check_attr, True)
+                setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> read
             check_attr = 'auditlog_ruled_read'
             if getattr(rule, 'log_read') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('read', rule._make_read())
-                setattr(model_model, check_attr, True)
+                setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> write
             check_attr = 'auditlog_ruled_write'
             if getattr(rule, 'log_write') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('write', rule._make_write())
-                setattr(model_model, check_attr, True)
+                setattr(type(model_model), check_attr, True)
                 updated = True
             #   -> unlink
             check_attr = 'auditlog_ruled_unlink'
             if getattr(rule, 'log_unlink') \
                     and not hasattr(model_model, check_attr):
                 model_model._patch_method('unlink', rule._make_unlink())
-                setattr(model_model, check_attr, True)
+                setattr(type(model_model), check_attr, True)
                 updated = True
         return updated
 
@@ -169,6 +166,7 @@ class AuditlogRule(models.Model):
                 if getattr(rule, 'log_%s' % method) and hasattr(
                         getattr(model_model, method), 'origin'):
                     model_model._revert_method(method)
+                    delattr(type(model_model), 'auditlog_ruled_%s' % method)
                     updated = True
         if updated:
             modules.registry.RegistryManager.signal_registry_change(
