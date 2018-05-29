@@ -211,8 +211,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_create:
                 return new_record
             new_values = dict(
@@ -233,8 +233,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_create:
                 return new_record
             new_values = {new_record.id: vals2}
@@ -257,8 +257,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_read:
                 return result
             # Sometimes the result is not a list but a dictionary
@@ -318,8 +318,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_write:
                 return result
             new_values = dict(
@@ -345,8 +345,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_write:
                 return result
             rule_model.sudo().create_logs(
@@ -367,8 +367,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_unlink:
                 return unlink_full.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
@@ -386,8 +386,8 @@ class AuditlogRule(models.Model):
             model_obj = self.env['ir.model']
             model_result = model_obj.search([('model', '=', self._name)])
             auditlog_obj = self.env['auditlog.rule']
-            auditlog_result = auditlog_obj.search([('model_id', '=', 
-                model_result.id)])
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+               model_result.id)])
             if not auditlog_result.log_unlink:
                 return unlink_fast.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
