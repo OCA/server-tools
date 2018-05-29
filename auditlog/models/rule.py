@@ -204,6 +204,13 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             new_record = create_full.origin(self, vals, **kwargs)
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_create:
+                return new_record
             new_values = dict(
                 (d['id'], d) for d in new_record.sudo()
                 .with_context(prefetch_fields=False).read(list(self._fields)))
@@ -219,6 +226,13 @@ class AuditlogRule(models.Model):
             rule_model = self.env['auditlog.rule']
             vals2 = dict(vals)
             new_record = create_fast.origin(self, vals, **kwargs)
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_create:
+                return new_record
             new_values = {new_record.id: vals2}
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
@@ -235,6 +249,13 @@ class AuditlogRule(models.Model):
 
         def read(self, fields=None, load='_classic_read', **kwargs):
             result = read.origin(self, fields, load, **kwargs)
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_read:
+                return result
             # Sometimes the result is not a list but a dictionary
             # Also, we can not modify the current result as it will break calls
             result2 = result
@@ -271,6 +292,13 @@ class AuditlogRule(models.Model):
                 (d['id'], d) for d in self.sudo()
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             result = write_full.origin(self, vals, **kwargs)
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_write:
+                return result
             new_values = dict(
                 (d['id'], d) for d in self.sudo()
                 .with_context(prefetch_fields=False).read(list(self._fields)))
@@ -291,6 +319,13 @@ class AuditlogRule(models.Model):
             old_values = dict((id_, old_vals2) for id_ in self.ids)
             new_values = dict((id_, vals2) for id_ in self.ids)
             result = write_fast.origin(self, vals, **kwargs)
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_write:
+                return result
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
                 'write', old_values, new_values, {'log_type': log_type})
@@ -306,6 +341,13 @@ class AuditlogRule(models.Model):
 
         @api.multi
         def unlink_full(self, **kwargs):
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_unlink:
+                return unlink_full.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             old_values = dict(
@@ -318,6 +360,13 @@ class AuditlogRule(models.Model):
 
         @api.multi
         def unlink_fast(self, **kwargs):
+            model_obj = self.env['ir.model']
+            model_result = model_obj.search([('model', '=', self._name)])
+            auditlog_obj = self.env['auditlog.rule']
+            auditlog_result = auditlog_obj.search([('model_id', '=',
+                model_result.id)])
+            if not auditlog_result.log_unlink:
+                return unlink_fast.origin(self, **kwargs)
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             rule_model.sudo().create_logs(
