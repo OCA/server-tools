@@ -344,6 +344,8 @@ class AuditlogRule(models.Model):
             model_model = self.env[res_model]
             name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
+            if not res_name or res_name == "False":
+                continue
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
