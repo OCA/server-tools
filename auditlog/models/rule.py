@@ -240,44 +240,23 @@ class AuditlogRule(models.Model):
         @api.multi
         def read(self, fields=None, load='_classic_read'):
             result = read.origin(self, fields, load)
-            # Sometimes the result is not a list but a dictionary
-            # Also, we can not modify the current result as it will break calls
             result2 = result
             if not isinstance(result2, list):
                 result2 = [result]
             read_values = dict((d['id'], d) for d in result2)
-            # Old API
-            if self and isinstance(self.env.cr, sql_db.Cursor):
-                cr, uid, ids = self.env.cr, self.env.uid, self.ids
-                if isinstance(ids, (int, long)):
-                    ids = [ids]
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if self.env.context.get('context', {}).\
-                   get('auditlog_disabled'):
-                    return result
-                env = api.Environment(cr, uid, {'auditlog_disabled': True})
-                rule_model = env['auditlog.rule']
-                rule_model.sudo().with_context({'auditlog_disabled': True}).\
-                    create_logs(
-                    env.uid, self._name, ids,
-                    'read', read_values, None, {'log_type': log_type})
-            # New API
-            else:
-                # If the call came from auditlog itself, skip logging:
-                # avoid logs on `read` produced by auditlog during internal
-                # processing: read data of relevant records, 'ir.model',
-                # 'ir.model.fields'... (no interest in logging such operations)
-                if self.env.context.get('auditlog_disabled'):
-                    return result
-                self = self.with_context(auditlog_disabled=True)
-                rule_model = self.env['auditlog.rule']
-                rule_model.sudo().create_logs(
-                    self.env.uid, self._name, self.ids,
-                    'read', read_values, None, {'log_type': log_type})
+            # If the call came from auditlog itself, skip logging:
+            # avoid logs on `read` produced by auditlog during internal
+            # processing: read data of relevant records, 'ir.model',
+            # 'ir.model.fields'... (no interest in logging such operations)
+            if self.env.context.get('auditlog_disabled'):
+                return result
+            self = self.with_context(auditlog_disabled=True)
+            rule_model = self.env['auditlog.rule']
+            rule_model.sudo().create_logs(
+                self.env.uid, self._name, self.ids,
+                'read', read_values, None, {'log_type': log_type})
             return result
+
         return read
 
     @api.multi
@@ -387,12 +366,10 @@ class AuditlogRule(models.Model):
                 new_values.get(res_id, EMPTY_DICT),
                 old_values.get(res_id, EMPTY_DICT))
             if method is 'create':
-                self._create_log_line_on_create(
-                    log, diff.added(), new_values)
+                self._create_log_line_on_create(log, diff.added(), new_values)
             elif method is 'read':
                 self._create_log_line_on_read(
-                    log, old_values.get(res_id, EMPTY_DICT).keys(),
-                    old_values)
+                    log, old_values.get(res_id, EMPTY_DICT).keys(), old_values)
             elif method is 'write':
                 self._create_log_line_on_write(
                     log, diff.changed(), old_values, new_values)
