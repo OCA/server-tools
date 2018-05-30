@@ -28,10 +28,10 @@
                             <field name="action_id" readonly="1" groups="base.group_no_one"/>
                         </group>
                         <group colspan="1">
-                            <field name="log_read" attrs="{'readonly': [('state', '=', 'subscribed')]}"/>
-                            <field name="log_write" attrs="{'readonly': [('state', '=', 'subscribed')]}"/>
-                            <field name="log_unlink" attrs="{'readonly': [('state', '=', 'subscribed')]}"/>
-                            <field name="log_create" attrs="{'readonly': [('state', '=', 'subscribed')]}"/>
+                            <field name="log_read"/>
+                            <field name="log_write"/>
+                            <field name="log_unlink"/>
+                            <field name="log_create"/>
                         </group>
                     </group>
                 </sheet>
