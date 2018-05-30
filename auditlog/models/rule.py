@@ -344,21 +344,16 @@ class AuditlogRule(models.Model):
         http_session_model = self.env['auditlog.http.session']
         for res_id in res_ids:
             model_model = self.env[res_model]
-            name = model_model.search([('id', '=', res_id)]).name_get()
+            name = model_model.browse(res_id).name_get()
             res_name = name and name[0] and name[0][1]
-
-            if not res_name or res_name == "False":
-                continue
             vals = {
                 'name': res_name,
                 'model_id': self.pool._auditlog_model_cache[res_model],
                 'res_id': res_id,
                 'method': method,
                 'user_id': uid,
-                'http_request_id': http_request_model.
-                current_http_request(),
-                'http_session_id': http_session_model.
-                current_http_session(),
+                'http_request_id': http_request_model.current_http_request(),
+                'http_session_id': http_session_model.current_http_session(),
             }
             vals.update(additional_log_values or {})
             log = log_model.create(vals)
