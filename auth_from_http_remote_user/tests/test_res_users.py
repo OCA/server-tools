@@ -1,55 +1,53 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2014-2018 ACSONE SA/NV
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests import common
-import mock
 import os
 from contextlib import contextmanager
 import unittest
+import mock
+from odoo.tests.common import TransactionCase
 
 
 @contextmanager
 def mock_cursor(cr):
-    with mock.patch('openerp.sql_db.Connection.cursor') as mocked_cursor_call:
+    with mock.patch('odoo.sql_db.Connection.cursor') as mocked_cursor_call:
         org_close = cr.close
-        org_autocommit = cr.autocommit
+        org_commit = cr.commit
         try:
+            cr.commit = mock.Mock()
             cr.close = mock.Mock()
-            cr.autocommit = mock.Mock()
             mocked_cursor_call.return_value = cr
             yield
         finally:
             cr.close = org_close
-    cr.autocommit = org_autocommit
+            cr.commit = org_commit
 
 
-class TestResUsers(common.TransactionCase):
+class TestResUsers(TransactionCase):
 
     def test_login(self):
-        res_users_obj = self.registry('res.users')
+        res_users_obj = self.env['res.users']
         res = res_users_obj.authenticate(
-            common.get_db_name(), 'admin', 'admin', None)
-        uid = res
+            self.env.cr.dbname, 'demo', 'demo', None)
         self.assertTrue(res, "Basic login must works as expected")
+        demo = res_users_obj.browse([res])
         token = "123456"
         res = res_users_obj.authenticate(
-            common.get_db_name(), 'admin', token, None)
+            self.env.cr.dbname, 'demo', token, None)
         self.assertFalse(res)
         # mimic what the new controller do when it find a value in
         # the http header (HTTP_REMODE_USER)
-        res_users_obj.write(self.cr, self.uid, uid, {'sso_key': token})
-
+        demo.sso_key = token
         # Here we need to mock the cursor since the login is natively done
         # inside its own connection
-        with mock_cursor(self.cr):
-            # We can verifies that the given (uid, token) is authorized for
+        with mock_cursor(self.env.cr):
+            # We can verifies that the given (id, token) is authorized for
             # the database
-            res_users_obj.check(common.get_db_name(), uid, token)
-
+            res_users_obj.check(self.env.cr.dbname, demo.id, token)
             # we are able to login with the new token
             res = res_users_obj.authenticate(
-                common.get_db_name(), 'admin', token, None)
+                self.env.cr.dbname, 'demo', token, None)
             self.assertTrue(res)
 
     @unittest.skipIf(os.environ.get('TRAVIS'),
@@ -64,13 +62,7 @@ class TestResUsers(common.TransactionCase):
     def test_copy(self):
         '''Check that the sso_key is not copied on copy
         '''
-        res_users_obj = self.registry('res.users')
-        vals = {'sso_key': '123'}
-        res_users_obj.write(self.cr, self.uid, self.uid, vals)
-        read_vals = res_users_obj.read(
-            self.cr, self.uid, self.uid, ['sso_key'])
-        self.assertDictContainsSubset(vals, read_vals)
-        copy = res_users_obj.copy(self.cr, self.uid, self.uid)
-        read_vals = res_users_obj.read(
-            self.cr, self.uid, copy, ['sso_key'])
-        self.assertFalse(read_vals.get('sso_key'))
+        self.env.user.sso_key = '123'
+        self.assertTrue(self.env.user.sso_key)
+        copy = self.env.user.copy()
+        self.assertFalse(copy.sso_key)

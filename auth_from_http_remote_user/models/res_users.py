@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2014-2018 ACSONE SA/NV
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
-import openerp.exceptions
-from openerp.addons.auth_from_http_remote_user import utils
+from odoo import api, fields, models
+from odoo.exceptions import AccessDenied
+from .. import utils
 
 
 class ResUsers(models.Model):
@@ -17,7 +17,7 @@ class ResUsers(models.Model):
     def check_credentials(self, password):
         try:
             return super(ResUsers, self).check_credentials(password)
-        except openerp.exceptions.AccessDenied:
+        except AccessDenied:
             res = self.sudo().search([('id', '=', self.env.uid),
                                       ('sso_key', '=', password)])
             if not res:

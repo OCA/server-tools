@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014 ACSONE SA/NV (<http://acsone.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from openerp import SUPERUSER_ID
-
-from openerp import http
-from openerp.http import request
-from openerp.addons.web.controllers import main
-from openerp.modules.registry import RegistryManager
-from ..models.auth_from_http_remote_user import \
-    AuthFromHttpRemoteUserInstalled
-from .. import utils
+# Copyright 2014-2018 ACSONE SA/NV
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import random
 import logging
 import werkzeug
+
+from odoo import api, http, registry, SUPERUSER_ID
+from odoo.http import request
+from odoo.addons.web.controllers import main
+from ..models.auth_from_http_remote_user import \
+    AuthFromHttpRemoteUserInstalled
+from .. import utils
 
 _logger = logging.getLogger(__name__)
 
@@ -32,26 +29,25 @@ class Home(main.Home):
             return werkzeug.exceptions.Unauthorized().get_response()
         return super(Home, self).web_client(s_action, **kw)
 
-    def _search_user(self, res_users, login, cr):
-        user_ids = res_users.search(cr, SUPERUSER_ID, [('login', '=', login),
-                                                       ('active', '=', True)])
-        assert len(user_ids) < 2
-        if user_ids:
-            return user_ids[0]
-        return None
+    def _search_user(self, res_users, login):
+        users = res_users.search(
+            [('login', '=', login), ('active', '=', True)])
+        assert len(users) < 2
+        return users
 
     def _bind_http_remote_user(self, db_name):
         try:
-            registry = RegistryManager.get(db_name)
-            with registry.cursor() as cr:
-                if AuthFromHttpRemoteUserInstalled._name not in registry:
+            with registry(db_name).cursor() as cr:
+                env = api.Environment(cr, SUPERUSER_ID, {})
+                if AuthFromHttpRemoteUserInstalled._name not in env:
                     # module not installed in database,
                     # continue usual behavior
                     return
 
-                headers = http.request.httprequest.headers.environ
+                headers = request.httprequest.headers.environ
 
                 login = headers.get(self._REMOTE_USER_ATTRIBUTE, None)
+
                 if not login:
                     # no HTTP_REMOTE_USER header,
                     # continue usual behavior
@@ -68,24 +64,25 @@ class Home(main.Home):
                     else:
                         request.session.logout(keep_db=True)
 
-                res_users = registry.get('res.users')
-                user_id = self._search_user(res_users, login, cr)
-                if not user_id:
+                res_users = env['res.users']
+                user = self._search_user(res_users, login)
+                if not user:
                     # HTTP_REMOTE_USER login not found in database
                     request.session.logout(keep_db=True)
                     raise http.AuthenticationError()
 
                 # generate a specific key for authentication
                 key = randomString(utils.KEY_LENGTH, '0123456789abcdef')
-                res_users.write(cr, SUPERUSER_ID, [user_id], {'sso_key': key})
+                user.sso_key = key
             request.session.authenticate(db_name, login=login,
-                                         password=key, uid=user_id)
+                                         password=key, uid=user.id)
         except http.AuthenticationError, e:
             raise e
         except Exception, e:
             _logger.error("Error binding Http Remote User session",
                           exc_info=True)
             raise e
+
 
 randrange = random.SystemRandom().randrange
 
