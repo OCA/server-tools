@@ -32,6 +32,8 @@ class IncompleteUpgradeError(exceptions.UserError):
 
 def ensure_module_state(env, modules, state):
     # read module states, bypassing any Odoo cache
+    if not modules:
+        return
     env.cr.execute(
         "SELECT name FROM ir_module_module "
         "WHERE id IN %s AND state != %s",
