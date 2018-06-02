@@ -1,7 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
+
 Suspend security
-=====================
+================
 
 This module was written to  allow you to call code with some `uid` while being sure no security checks (`ir.model.access` and `ir.rule`) are done. In this way, it's the same as `sudo()`, but the crucial difference is that the code still runs with the original user id. This can be important for inherited code that calls workflow functions, subscribes the current user to some object, etc.
 
