@@ -6,15 +6,15 @@
 Webhook
 =======
 
-Module to receive `webhook <https://en.wikipedia.org/wiki/Webhook>`_ events.
+Module to receive `webhook events <https://en.wikipedia.org/wiki/Webhook>`_.
 This module invoke methods to process webhook events.
-
 
 Configuration
 =============
 
 You will need create a new module to add your logic to process the events with methods called:
 *def run_CONSUMER_EVENT\**
+
 Example with gihub consumer and push event.
 
 .. code-block:: python
