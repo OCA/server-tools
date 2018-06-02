@@ -48,7 +48,7 @@ Known issues / Roadmap
 ======================
 
 * Kudos if you find a way to do this more elegantly, preferably with a simple
-bugfix in the Odoo core
+  bugfix in the Odoo core
 
 Bug Tracker
 ===========
