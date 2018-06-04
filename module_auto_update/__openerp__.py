@@ -23,4 +23,6 @@
     'data': [
         'data/cron_data_deprecated.xml',
     ],
+    'development_status': 'Production/Stable',
+    'maintainers': ['sbidoul'],
 }
