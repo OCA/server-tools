@@ -21,4 +21,6 @@
     'depends': [
         'base',
     ],
+    'development_status': 'Production/Stable',
+    'maintainers': ['sbidoul'],
 }
