@@ -4,7 +4,7 @@
 
 ============
 Mail cleanup
-===========
+============
 
 This module allows to:
 * mark e-mails older than x days as read,
