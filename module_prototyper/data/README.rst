@@ -41,11 +41,6 @@ For further information, please visit:
 
  * https://www.odoo.com/forum/help-1
 
-Known issues / Roadmap
-======================
-
- * ...
-
 Bug Tracker
 ===========
 

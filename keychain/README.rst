@@ -209,9 +209,6 @@ help us smashing it by providing a detailed and welcomed feedback.
 Credits
 =======
 
-`Akretion <https://akretion.com>`_
-
-
 Contributors
 ------------
 

@@ -37,7 +37,7 @@ it will update this date with the latest message received.
 System administrators need to be attentive to the Odoo logs, looking for errors
 raised during the processing of emails, in order to avoid situations where
 lots of emails are downloaded and reprocessed every time, due to errors found
- in a few old emails that were unattended.
+in a few old emails that were unattended.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
