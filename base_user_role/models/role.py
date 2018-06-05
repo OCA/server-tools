@@ -67,7 +67,7 @@ class ResUsersRoleLine(models.Model):
     role_id = fields.Many2one(
         'res.users.role', string=u"Role", ondelete='cascade')
     user_id = fields.Many2one(
-        'res.users', string=u"User",domain=[('id','!=', SUPERUSER_ID)])
+        'res.users', string=u"User", domain=[('id', '!=', SUPERUSER_ID)])
     date_from = fields.Date(u"From")
     date_to = fields.Date(u"To")
     is_enabled = fields.Boolean(u"Enabled", compute='_compute_is_enabled')
