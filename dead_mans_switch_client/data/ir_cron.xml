@@ -5,7 +5,8 @@
         <field name="interval_number">5</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
-        <field name="model">dead.mans.switch.client</field>
-        <field name="function">alive</field>
+        <field name="model_id" ref="dead_mans_switch_client.model_dead_mans_switch_client"/>
+        <field name="state">code</field>
+        <field name="code">model.alive()</field>
     </record>
 </odoo>
