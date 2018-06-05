@@ -5,7 +5,6 @@
                 context="{'default_key': 'dead_mans_switch_client.url'}"/>
     <record id="todo_setup" model="ir.actions.todo">
         <field name="name">Configure the dead man's switch server</field>
-        <field name="type">automatic</field>
         <field name="action_id" ref="action_setup"/>
     </record>
 </odoo>

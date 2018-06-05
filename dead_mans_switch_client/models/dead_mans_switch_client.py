@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015-2016 Therp BV <http://therp.nl>
 # © 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
 # © 2017 Avoin.Systems - Miku Laitinen
@@ -10,7 +9,7 @@ try:
     import psutil
 except ImportError:  # pragma: no cover
     psutil = None
-import urllib2
+import urllib
 from odoo import api, models
 from odoo.tools.config import config
 
@@ -72,15 +71,15 @@ class DeadMansSwitchClient(models.AbstractModel):
             'dead_mans_switch_client.send_timeout', SEND_TIMEOUT)
         data = self._get_data()
         logger.debug('sending %s', data)
-        urllib2.urlopen(
-            urllib2.Request(
-                url,
-                json.dumps({
+        urllib.request.urlopen(
+            urllib.request.Request(
+                url=url,
+                data=json.dumps({
                     'jsonrpc': '2.0',
                     'method': 'call',
                     'params': data,
-                }),
-                {
+                }).encode('utf-8'),
+                headers={
                     'Content-Type': 'application/json',
                 }),
             timeout=timeout)
