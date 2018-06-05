@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Creu Blanca
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+
+<odoo>
+    <record model="ir.cron" id="nagios_server_cron">
+        <field name="name">Perform Nagios update</field>
+        <field name="active" eval="True"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="model_nagios_server"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_send([])</field>
+    </record>
+</odoo>
