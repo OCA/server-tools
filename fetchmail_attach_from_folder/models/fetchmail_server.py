@@ -5,7 +5,7 @@ import logging
 import simplejson
 from lxml import etree
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
 from odoo.tools.safe_eval import safe_eval
 from odoo.tools.misc import UnquoteEvalContext
 
@@ -46,7 +46,8 @@ class FetchmailServer(models.Model):
                 # New connection for retrieving folders
                 connection = this.connect()
                 for folder in this.folder_ids.filtered('active'):
-                    folder.retrieve_imap_folder(connection)
+                    if folder.state == 'done':
+                        folder.retrieve_imap_folder(connection)
                 connection.close()
             except Exception:
                 _logger.error(_(
@@ -57,21 +58,6 @@ class FetchmailServer(models.Model):
                 if connection:
                     connection.logout()
         return True
-
-    @api.multi
-    def button_confirm_login(self):
-        retval = super(FetchmailServer, self).button_confirm_login()
-        for this in self:
-            this.write({'state': 'draft'})
-            connection = this.connect()
-            connection.select()
-            for folder in this.folder_ids.filtered('active'):
-                if connection.select(folder.path)[0] != 'OK':
-                    raise exceptions.ValidationError(
-                        _('Mailbox %s not found!') % folder.path)
-            connection.close()
-            this.write({'state': 'done'})
-        return retval
 
     def fields_view_get(
             self, view_id=None, view_type='form',
