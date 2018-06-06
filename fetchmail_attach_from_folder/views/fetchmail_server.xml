@@ -33,12 +33,18 @@
                                 <field name="mail_field" />
                             </tree>
                             <form>
+                                <field name="state" invisible="1" />
                                 <header>
+                                    <button
+                                        type="object"
+                                        name="button_confirm_folder"
+                                        string="Test &amp; Confirm"
+                                        states="draft"/>
                                     <button
                                         type="object"
                                         name="button_attach_mail_manually"
                                         string="Attach mail manually"
-                                        icon="gtk-redo" />
+                                        states="done"/>
                                 </header>
                                 <group>
                                     <group>
