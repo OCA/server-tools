@@ -5,7 +5,7 @@ import base64
 import logging
 
 from odoo import _, api, models, fields
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from .. import match_algorithm
 
@@ -35,11 +35,21 @@ class FetchmailServerFolder(models.Model):
         algorithms.sort()
         return algorithms
 
+    server_id = fields.Many2one('fetchmail.server', 'Server')
     sequence = fields.Integer('Sequence')
+    state = fields.Selection([
+        ('draft', 'Not Confirmed'),
+        ('done', 'Confirmed')],
+        string='Status',
+        readonly=True,
+        required=True,
+        copy=False,
+        default='draft')
     path = fields.Char(
         'Path',
-        help="The path to your mail folder. Typically would be something like "
-        "'INBOX.myfolder'", required=True)
+        required=True,
+        help="The path to your mail folder."
+             " Typically would be something like 'INBOX.myfolder'")
     model_id = fields.Many2one(
         'ir.model', 'Model', required=True,
         help='The model to attach emails to')
@@ -62,7 +72,6 @@ class FetchmailServerFolder(models.Model):
         'Field (email)',
         help='The field in the email used for matching. Typically '
         "this is 'to' or 'from'")
-    server_id = fields.Many2one('fetchmail.server', 'Server')
     delete_matching = fields.Boolean(
         'Delete matches',
         help='Delete matched emails from server')
@@ -88,6 +97,20 @@ class FetchmailServerFolder(models.Model):
     @api.multi
     def get_algorithm(self):
         return self._get_match_algorithms()[self.match_algorithm]()
+
+    @api.multi
+    def button_confirm_folder(self):
+        for this in self:
+            this.write({'state': 'draft'})
+            if not this.active:
+                continue
+            connection = this.server_id.connect()
+            connection.select()
+            if connection.select(this.path)[0] != 'OK':
+                raise ValidationError(
+                    _('Invalid folder %s!') % this.path)
+            connection.close()
+            this.write({'state': 'done'})
 
     @api.multi
     def button_attach_mail_manually(self):
