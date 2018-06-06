@@ -2,6 +2,7 @@
 # Copyright - 2013-2018 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
+import re
 import simplejson
 from lxml import etree
 
@@ -12,10 +13,41 @@ from odoo.tools.misc import UnquoteEvalContext
 
 _logger = logging.getLogger(__name__)
 
+list_response_pattern = re.compile(
+    r'\((?P<flags>.*?)\) "(?P<delimiter>.*)" (?P<name>.*)')
+
 
 class FetchmailServer(models.Model):
     _inherit = 'fetchmail.server'
 
+    @api.multi
+    def _compute_folders_available(self):
+        """Retrieve available folders from IMAP server."""
+        def parse_list_response(line):
+            flags, delimiter, mailbox_name = \
+                list_response_pattern.match(line).groups()
+            mailbox_name = mailbox_name.strip('"')
+            return (flags, delimiter, mailbox_name)
+
+        for this in self:
+            if this.state != 'done':
+                this.folders_available = _('Confirm connection first.')
+                continue
+            connection = this.connect()
+            list_result = connection.list()
+            if list_result[0] != 'OK':
+                this.folders_available = _('Unable to retrieve folders.')
+                continue
+            folders_available = []
+            for folder_entry in list_result[1]:
+                folders_available.append(parse_list_response(folder_entry)[2])
+            this.folders_available = '\n'.join(folders_available)
+            connection.logout()
+
+    folders_available = fields.Text(
+        string='Available folders',
+        compute='_compute_folders_available',
+        readonly=True)
     folder_ids = fields.One2many(
         comodel_name='fetchmail.server.folder',
         inverse_name='server_id',
@@ -32,10 +64,6 @@ class FetchmailServer(models.Model):
     def onchange_server_type(self):
         super(FetchmailServer, self).onchange_server_type()
         self.state = 'draft'
-
-    @api.onchange('folder_ids')
-    def onchange_folder_ids(self):
-        self.onchange_server_type()
 
     @api.multi
     def fetch_mail(self):
