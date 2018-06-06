@@ -78,6 +78,10 @@
                             </form>
                         </field>
                     </group>
+                    <separator
+                        string="Folders available on server"
+                        colspan="6" />
+                    <field name="folders_available" />
                 </page>
             </xpath>
         </field>
