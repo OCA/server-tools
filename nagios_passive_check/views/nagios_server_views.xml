@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nagios_server_form" model="ir.ui.view">
+        <field name="name">nagios.server.form</field>
+        <field name="model">nagios.server</field>
+        <field name="arch" type="xml">
+            <form string="Nagios server">
+                <header>
+                    <button type="object" name="send" string="Connect"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="target"/>
+                            <field name="host"/>
+                            <field name="service"/>
+                            <field name="performance_type"/>
+                        </group>
+                        <group>
+                            <field name="requires_authentication"/>
+                            <field name="authentication_user"/>
+                            <field name="authentication_password" password="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_nagios_server_tree" model="ir.ui.view">
+        <field name="name">nagios.server.tree</field>
+        <field name="model">nagios.server</field>
+        <field name="arch" type="xml">
+            <tree string="Nagios servers">
+                <field name="name"/>
+                <field name="target"/>
+                <field name="host"/>
+                <field name="service"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="nagios_server_action">
+        <field name="name">Nagios servers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">nagios.server</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_nagios" name="Nagios"
+        parent="base.menu_automation" sequence="50"
+        groups="base.group_system"
+        action="nagios_server_action"/>
+</odoo>
