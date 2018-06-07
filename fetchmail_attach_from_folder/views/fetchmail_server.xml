@@ -31,6 +31,7 @@
                                 <field name="model_field" />
                                 <field name="match_algorithm" />
                                 <field name="mail_field" />
+                                <field name="state" />
                             </tree>
                             <form>
                                 <field name="state" invisible="1" />
@@ -44,6 +45,16 @@
                                         type="object"
                                         name="button_attach_mail_manually"
                                         string="Attach mail manually"
+                                        states="done"/>
+                                    <button
+                                        type="object"
+                                        name="fetch_mail"
+                                        string="Fetch folder now"
+                                        states="done"/>
+                                    <button
+                                        string="Reset Confirmation"
+                                        type="object"
+                                        name="set_draft"
                                         states="done"/>
                                 </header>
                                 <group>
