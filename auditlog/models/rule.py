@@ -5,7 +5,7 @@
 import logging
 from psycopg2 import ProgrammingError
 from openerp import models, fields, api, modules, _, SUPERUSER_ID, sql_db
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, Warning as UserError
 
 FIELDS_BLACKLIST = [
     'id', 'create_uid', 'create_date', 'write_uid', 'write_date',
@@ -50,8 +50,12 @@ class AuditlogRule(models.Model):
 
     name = fields.Char(u"Name", size=32, required=True)
     model_id = fields.Many2one(
-        'ir.model', u"Model", required=True,
-        help=u"Select model for which you want to generate log.")
+        'ir.model', u"Model",
+        help=u"Select model for which you want to generate log.",
+        on_delete='set null',
+        index=True)
+    model_name = fields.Char(string=u'Model Name')
+    model_model = fields.Char(string=u'Technical Model Name')
     user_ids = fields.Many2many(
         'res.users',
         'audittail_rules_users',
@@ -200,7 +204,7 @@ class AuditlogRule(models.Model):
         """Restore original ORM methods of models defined in rules."""
         updated = False
         for rule in self:
-            model_model = self.env[rule.model_id.model]
+            model_model = self.env[rule.model_id.model or rule.model_model]
             for method in ['create', 'read', 'write', 'unlink']:
                 if getattr(rule, 'log_%s' % method) and hasattr(
                         getattr(model_model, method), 'origin'):
@@ -218,8 +222,15 @@ class AuditlogRule(models.Model):
 
     # Unable to find a way to declare the `create` method with the new API,
     # errors occurs with the `_register_hook()` BaseModel method.
+    # pylint: disable=old-api7-method-defined
     def create(self, cr, uid, vals, context=None):
         """Update the registry when a new rule is created."""
+        if 'model_id' not in vals or not vals['model_id']:
+            raise UserError(_("No model defined to create line."))
+        model = self.pool('ir.model').browse(
+            cr, uid, vals['model_id'], context=context)
+        vals.update({'model_name': model.name,
+                     'model_model': model.model})
         res_id = super(AuditlogRule, self).create(
             cr, uid, vals, context=context)
         if self._register_hook(cr, [res_id]):
@@ -228,8 +239,17 @@ class AuditlogRule(models.Model):
 
     # Unable to find a way to declare the `write` method with the new API,
     # errors occurs with the `_register_hook()` BaseModel method.
+    # pylint: disable=old-api7-method-defined
     def write(self, cr, uid, ids, vals, context=None):
         """Update the registry when existing rules are updated."""
+        if 'model_id' in vals:
+            if not vals['model_id']:
+                raise UserError(_("Field 'model_id' cannot be empty."))
+            if vals['model_id']:
+                model = self.pool('ir.model').browse(
+                    cr, uid, vals['model_id'], context=context)
+                vals.update({'model_name': model.name,
+                            'model_model': model.model})
         if isinstance(ids, (int, long)):
             ids = [ids]
         super(AuditlogRule, self).write(cr, uid, ids, vals, context=context)
@@ -686,12 +706,12 @@ class AuditlogRule(models.Model):
             act_window = act_window_model.search(
                 [('name', '=', 'View Log'),
                  ('res_model', '=', 'auditlog.log'),
-                 ('src_model', '=', rule.model_id.model)])
+                 ('src_model', '=', rule.model_id.model or rule.model_model)])
             if act_window:
                 value = 'ir.actions.act_window,%s' % act_window.id
                 act_window.unlink()
                 ir_value = ir_values_model.search(
-                    [('model', '=', rule.model_id.model),
+                    [('model', '=', rule.model_id.model or rule.model_model),
                      ('value', '=', value)])
                 if ir_value:
                     ir_value.unlink()

@@ -13,7 +13,7 @@ class AuditlogHTTPRequest(models.Model):
     _order = "create_date DESC"
     _rec_name = 'display_name'
 
-    display_name = fields.Char(u"Name", compute="_display_name")
+    display_name = fields.Char(u"Name", compute="_compute_display_name")
     name = fields.Char(u"Path")
     root_url = fields.Char(u"Root URL")
     user_id = fields.Many2one(
@@ -25,7 +25,7 @@ class AuditlogHTTPRequest(models.Model):
         'auditlog.log', 'http_request_id', string=u"Logs")
 
     @api.multi
-    def _display_name(self):
+    def _compute_display_name(self):
         for httprequest in self:
             create_date = fields.Datetime.from_string(httprequest.create_date)
             tz_create_date = fields.Datetime.context_timestamp(
