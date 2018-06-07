@@ -70,22 +70,7 @@ class FetchmailServer(models.Model):
         for this in self:
             if not this.folders_only:
                 super(FetchmailServer, this).fetch_mail()
-            try:
-                # New connection for retrieving folders
-                connection = this.connect()
-                for folder in this.folder_ids.filtered('active'):
-                    if folder.state == 'done':
-                        folder.retrieve_imap_folder(connection)
-                connection.close()
-            except Exception:
-                _logger.error(_(
-                    "General failure when trying to connect to"
-                    " %s server %s."),
-                    this.type, this.name, exc_info=True)
-            finally:
-                if connection:
-                    connection.logout()
-        return True
+            this.folder_ids.fetch_mail()
 
     def fields_view_get(
             self, view_id=None, view_type='form',
