@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-# © 2015 ABF OSIELL <http://osiell.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# (Copyright) 2015 ABF OSIELL <http://osiell.com>
+# (Copyright) 2018 Creu Blanca
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import psutil
 import os
 
-from openerp import api, fields, models
-from openerp.tools import config
+from odoo import api, fields, models
+from odoo.tools import config
 
 
 class NscaServer(models.Model):
@@ -99,3 +100,44 @@ class NscaServer(models.Model):
         res = super(NscaServer, self).create(vals)
         res.write_config_file()
         return res
+
+    @api.model
+    def current_status(self):
+        ram = 0
+        cpu = 0
+        if psutil:
+            process = psutil.Process(os.getpid())
+            # psutil changed its api through versions
+            processes = [process]
+            if config.get(
+                    'workers') and process.parent:  # pragma: no cover
+                if hasattr(process.parent, '__call__'):
+                    process = process.parent()
+                else:
+                    process = process.parent
+                if hasattr(process, 'children'):
+                    processes += process.children(True)
+                elif hasattr(process, 'get_children'):
+                    processes += process.get_children(True)
+            for process in processes:
+                if hasattr(process, 'memory_percent'):
+                    ram += process.memory_percent()
+                if hasattr(process, 'cpu_percent'):
+                    cpu += process.cpu_percent(interval=1)
+        user_count = 0
+        if 'bus.presence' in self.env.registry:
+            user_count = self.env['bus.presence'].search_count([
+                ('status', '=', 'online'),
+            ])
+        performance = {
+            'cpu': {
+                'value': cpu,
+            },
+            'ram': {
+                'value': ram,
+            },
+            'user_count': {
+                'value': user_count,
+            },
+        }
+        return 0, u"OK", performance
