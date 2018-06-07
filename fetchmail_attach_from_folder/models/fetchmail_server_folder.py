@@ -124,6 +124,11 @@ class FetchmailServerFolder(models.Model):
             'view_mode': 'form'}
 
     @api.multi
+    def set_draft(self):
+        self.write({'state': 'draft'})
+        return True
+
+    @api.multi
     def get_msgids(self, connection, criteria):
         """Return imap ids of messages to process"""
         self.ensure_one()
@@ -167,6 +172,7 @@ class FetchmailServerFolder(models.Model):
         msgids = self.get_msgids(connection, 'UNDELETED')
         match_algorithm = self.get_algorithm()
         for msgid in msgids[0].split():
+            # We will accept exceptions for single messages
             try:
                 self.env.cr.execute('savepoint apply_matching')
                 self.apply_matching(connection, msgid, match_algorithm)
@@ -176,6 +182,29 @@ class FetchmailServerFolder(models.Model):
                 _logger.exception(
                     "Failed to fetch mail %s from %s",
                     msgid, self.server_id.name)
+
+    @api.multi
+    def fetch_mail(self):
+        """Retrieve all mails for IMAP folders.
+
+        We will use a separate connection for each folder.
+        """
+        for this in self:
+            if not this.active or this.state != 'done':
+                continue
+            connection = None
+            try:
+                # New connection per folder
+                connection = this.server_id.connect()
+                this.retrieve_imap_folder(connection)
+                connection.close()
+            except Exception:
+                _logger.error(_(
+                    "General failure when trying to connect to %s server %s."),
+                    this.server_id.type, this.server_id.name, exc_info=True)
+            finally:
+                if connection:
+                    connection.logout()
 
     @api.multi
     def update_msg(self, connection, msgid, matched=True, flagged=False):
