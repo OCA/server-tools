@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
+    <data noupdate="1">
 
-<record id="demo_nsca_check_mails" model="nsca.check">
-    <field name="server_id" ref="nsca_server_default"/>
-    <field name="service">Odoo Mail Queue</field>
-    <field name="interval_number" eval="10"/>
-    <field name="interval_type">minutes</field>
-    <field name="nsca_model">mail.mail</field>
-    <field name="nsca_function">nsca_check_mails</field>
-    <field name="nsca_args"></field>
-</record>
+        <record id="nsca_server_default" model="nsca.server">
+            <field name="name">nagios.example.net</field>
+            <field name="port">5667</field>
+            <field name="node_hostname">MY-SERVER</field>
+        </record>
 
-</data>
-</openerp>
+        <record id="demo_nsca_check_mails" model="nsca.check">
+            <field name="server_id" ref="nsca_server_default"/>
+            <field name="service">Odoo Mail Queue</field>
+            <field name="interval_number" eval="10"/>
+            <field name="interval_type">minutes</field>
+            <field name="nsca_model">mail.mail</field>
+            <field name="nsca_function">nsca_check_mails</field>
+            <field name="nsca_args"></field>
+        </record>
+
+    </data>
+</odoo>
