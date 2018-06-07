@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2015 ABF OSIELL <http://osiell.com>
+# (Copyright) 2015 ABF OSIELL <http://osiell.com>
+# (Copyright) 2018 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
@@ -7,10 +7,9 @@ import os
 import shlex
 import subprocess
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
-
-from openerp.addons.base.ir.ir_cron import str2tuple
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -46,11 +45,9 @@ class NscaCheck(models.Model):
         has the side effect to re-create the fields on the current model).
         """
         res = super(NscaCheck, self).default_get(fields_list)
-        NscaServer = self.env['nsca.server']
-        res['name'] = 'TEMP'    # Required on 'ir.cron', replaced later
+        res['name'] = 'TEMP'  # Required on 'ir.cron', replaced later
         res['interval_number'] = 10
         res['interval_type'] = 'minutes'
-        res['server_id'] = NscaServer.search([])[0].id
         return res
 
     @api.multi
@@ -59,12 +56,13 @@ class NscaCheck(models.Model):
             - Compute the name of the NSCA check to be readable
               among the others 'ir.cron' records.
         """
+        model = self.env['ir.model'].search([('model', '=', self._name)])
         for check in self:
             vals = {
                 'name': u"%s - %s" % (_(u"NSCA Check"), check.service),
-                'model': self._name,
-                'function': '_cron_check',
-                'args': '(%s,)' % check.id,
+                'model_id': model.id,
+                'state': 'code',
+                'code': 'model._cron_check(%s,)' % check.id,
                 'doall': False,
                 'numbercall': -1
             }
@@ -72,6 +70,11 @@ class NscaCheck(models.Model):
 
     @api.model
     def create(self, vals):
+        if not vals.get('model_id', False):
+            vals['model_id'] = self.env['ir.model'].search([
+                ('model', '=', self._name)]).id
+        if not vals.get('state', False):
+            vals['state'] = 'code'
         check = super(NscaCheck, self).create(vals)
         check._force_values()
         return check
@@ -87,28 +90,47 @@ class NscaCheck(models.Model):
     def _cron_check(self, check_id):
         self._check_send_nsca_command()
         check = self.browse(check_id)
-        rc, message = 3, "Unknown"
+        rc, message, performance = 3, "Unknown", {}
         try:
-            args = str2tuple(check.nsca_args)
             NscaModel = self.env[check.nsca_model]
-            result = getattr(NscaModel, check.nsca_function)(*args)
+            results = {'model': NscaModel}
+            safe_eval(
+                'result = model.%s(%s)' % (
+                    check.nsca_function, check.nsca_args or ''),
+                results, mode="exec", nocopy=True)
+            result = results['result']
             if not result:
                 if check.allow_void_result:
                     return False
                 raise ValueError(
                     "'%s' method does not return" % check.nsca_function)
-            rc, message = result
-        except Exception, exc:
+            if len(result) == 2:
+                rc, message = result
+            else:
+                rc, message, performance = result
+        except Exception as exc:
             rc, message = 2, "%s" % exc
-            _logger.error("%s - %s", check.service, message)
-        check._send_nsca(rc, message)
+            _logger.warning("%s - %s", check.service, message)
+        check._send_nsca(rc, message, performance)
         return True
 
     @api.multi
-    def _send_nsca(self, rc, message):
+    def _send_nsca(self, rc, message, performance):
         """Send the result of the check to the NSCA daemon."""
         for check in self:
-            check_result = self._format_check_result(check, rc, message)
+            msg = message
+            if len(performance) > 0:
+                msg += '| ' + ''.join(
+                    ["%s=%s%s;%s;%s;%s;%s" % (
+                        key,
+                        performance[key]['value'],
+                        performance[key].get('uom', ''),
+                        performance[key].get('warn', ''),
+                        performance[key].get('crit', ''),
+                        performance[key].get('min', ''),
+                        performance[key].get('max', ''),
+                    ) for key in sorted(performance)])
+            check_result = self._format_check_result(check, rc, msg)
             cmd = self._prepare_command(check)
             self._run_command(check, cmd, check_result)
 
@@ -143,8 +165,8 @@ class NscaCheck(models.Model):
                 stderr=subprocess.STDOUT)
             stdout = proc.communicate(
                 input=check_result)[0]
-            _logger.info("%s: %s", check_result, stdout.strip())
-        except Exception, exc:
+            _logger.debug("%s: %s", check_result, stdout.strip())
+        except Exception as exc:
             _logger.error(exc)
 
     def _check_send_nsca_command(self):
