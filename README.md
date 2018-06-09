@@ -72,9 +72,10 @@ addon | version | summary
 [logging_json](logging_json/) | 8.0.1.0.0 | JSON Logging
 [mail_environment](mail_environment/) | 8.0.0.1.0 | Server env config for mail + fetchmail
 [mass_editing](mass_editing/) | 8.0.1.3.0 | Mass Editing
+[module_auto_update](module_auto_update/) | 8.0.2.0.3 | Automatically update Odoo modules
 [module_prototyper](module_prototyper/) | 8.0.0.3.0 | Prototype your module.
 [module_uninstall_check](module_uninstall_check/) | 8.0.1.0.0 | Add Extra Checks before uninstallation of modules
-[password_security](password_security/) | 8.0.1.1.1 | Allow admin to set password security requirements.
+[password_security](password_security/) | 8.0.1.1.2 | Allow admin to set password security requirements.
 [profiler](profiler/) | 8.0.1.0.0 | profiler
 [qweb_usertime](qweb_usertime/) | 8.0.1.0.0 | Add user time rendering support in QWeb
 [save_translation_file](save_translation_file/) | 8.0.1.0.0 | Allows developpers to easily generate i18n files

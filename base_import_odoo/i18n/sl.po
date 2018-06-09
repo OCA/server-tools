@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-11 07:46+0000\n"
-"PO-Revision-Date: 2017-11-11 07:46+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"POT-Creation-Date: 2018-02-01 01:50+0000\n"
+"PO-Revision-Date: 2018-02-01 01:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -226,6 +225,12 @@ msgid "Password"
 msgstr "Geslo"
 
 #. module: base_import_odoo
+#: code:addons/base_import_odoo/models/import_odoo_database.py:579
+#, python-format
+msgid "Please install the \"odoorpc\" libary in your environment"
+msgstr ""
+
+#. module: base_import_odoo
 #: view:import.odoo.database:base_import_odoo.view_import_odoo_database_form
 msgid "Refresh"
 msgstr "Osveži"
@@ -326,7 +331,7 @@ msgid "Type"
 msgstr "Tip"
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:558
+#: code:addons/base_import_odoo/models/import_odoo_database.py:560
 #, python-format
 msgid "Unhandled field type %s"
 msgstr "Neobravnavani tip polja %s"
@@ -337,7 +342,7 @@ msgid "Unique"
 msgstr "Unikatno"
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:355
+#: code:addons/base_import_odoo/models/import_odoo_database.py:357
 #, python-format
 msgid "Unknown mapping"
 msgstr "Neznano mapiranje"

@@ -37,6 +37,16 @@ Once installed, you can change the ir.config_parameter value for the key
 'auth_brute_force.max_attempt_qty' (10 by default) that define the max number
 of attempts allowed before the user was banned.
 
+You can also add a ir.config_parameter value for the key
+'auth_brute_force.environ_log' which allows to log also specific request
+environment variables.
+
+The format is a  comma-delimited list of variable names
+example: REMOTE_ADDR,REMOTE_PORT
+
+or you can just use the jocker '*' for log or discover all variables,
+most variable names depends of WSGI specification and reverse-proxy configuration.
+
 Usage
 -----
 
@@ -69,11 +79,6 @@ Screenshot
 .. image:: /auth_brute_force/static/description/screenshot_custom_ban.png
 
 
-Usage
-=====
-
-* go to ...
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/8.0
@@ -97,6 +102,7 @@ Contributors
 ------------
 
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
+* Sylvain CALADOR (https://akretion.com)
 
 Maintainer
 ----------

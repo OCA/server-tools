@@ -29,6 +29,7 @@
                     <field name="remote" />
                     <field name="login" />
                     <field name="result" />
+                    <field name="environ" />
                 </tree>
             </field>
         </record>
@@ -48,6 +49,7 @@
             <field name="arch" type="xml">
                 <search>
                    <field name="login"/>
+                   <field name="environ"/>
                    <filter name="filter_no_success" string="Without Success" domain="[('result','!=', 'successfull')]"/>
                    <filter name="filter_banned" string="Banned" domain="[('result','=', 'banned')]"/>
                    <filter name="filter_failed" string="Failed" domain="[('result','=', 'failed')]"/>

@@ -19,9 +19,9 @@ Example
 We have a group called `Amsterdam` and want it to contain all users from
 city of Amsterdam. So we use the membership condition
 
-```
-user.partner_id.city == 'Amsterdam'
-```
+.. code:: python
+
+   user.partner_id.city == 'Amsterdam'
 
 Now we can be sure every user living in this city is in the right group, and we
 can start assigning local menus to it, adjust permissions, etc. Keep in mind

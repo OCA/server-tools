@@ -3,9 +3,11 @@
 # * users_ldap_groups
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Giacomo <giacomo.spettoli@gmail.com>, 2015
@@ -19,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 14:34+0000\n"
-"PO-Revision-Date: 2016-05-08 15:26+0000\n"
+"POT-Creation-Date: 2018-02-01 01:52+0000\n"
+"PO-Revision-Date: 2018-01-31 12:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -140,6 +142,11 @@ msgid ""
 "The value to check the attribute against.\n"
 "For active directory, use the dn of the desired group"
 msgstr "la valeur pour vérifier l'attribut ci contre.\nPour Active Directory, utiliser le dn du groupe désiré"
+
+#. module: users_ldap_groups
+#: model:ir.model,name:users_ldap_groups.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,value:0
