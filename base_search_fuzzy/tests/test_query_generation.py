@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2016 Eficent Business and IT Consulting Services S.L.
-# © 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.osv import expression
 from odoo.tests.common import TransactionCase, at_install, post_install
@@ -37,8 +36,8 @@ class QueryGenerationCase(TransactionCase):
             where_clause_params)
         self.assertEqual(
             complete_where,
-            'SELECT FROM "res_partner" WHERE '
-            '("res_partner"."name" % \'test\')')
+            b'SELECT FROM "res_partner" WHERE '
+            b'("res_partner"."name" % \'test\')')
 
     def test_fuzzy_where_generation_translatable(self):
         """Check the generation of the where clause for translatable fields."""
@@ -58,7 +57,7 @@ class QueryGenerationCase(TransactionCase):
             where_clause_params)
 
         self.assertIn(
-            """SELECT id FROM temp_irt_current WHERE name % 'Goschaeftlic'""",
+            b"""SELECT id FROM temp_irt_current WHERE name % 'Goschaeftlic'""",
             complete_where)
 
     def test_fuzzy_order_generation(self):
