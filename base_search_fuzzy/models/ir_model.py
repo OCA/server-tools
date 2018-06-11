@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2016 Eficent Business and IT Consulting Services S.L.
-# © 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2016 Eficent Business and IT Consulting Services S.L.
+# Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2017 LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
@@ -43,7 +42,7 @@ def patch_leaf_trgm(method):
             if left in model._fields:
                 params = str(right)
 
-            if isinstance(params, basestring):
+            if isinstance(params, str):
                 params = [params]
             return query, params
         elif operator == 'inselect':
