@@ -24,9 +24,13 @@
 from odoo import models, fields, _, exceptions, api
 from odoo.osv.orm import setup_modifiers
 from lxml import etree
-from unidecode import unidecode
 import ast
 import re
+
+try:
+    from unidecode import unidecode
+except ImportError as err:
+    _logger.debug(err)
 
 
 def safe_column_name(string):
