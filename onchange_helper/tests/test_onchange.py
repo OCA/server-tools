@@ -15,10 +15,12 @@ class TestOnchange(common.TransactionCase):
         self.assertEqual(result['is_company'], True)
 
     def test_playing_onchange_on_record(self):
-        result = self.env.ref('base.main_company').play_onchanges({
+        company = self.env.ref('base.main_company')
+        result = company.play_onchanges({
             'email': 'contact@akretion.com'},
             ['email'])
         self.assertEqual(
             result['rml_footer'],
             u'Phone: +1 555 123 8069 | Email: contact@akretion.com | '
             u'Website: http://www.example.com')
+        self.assertEqual(company.email, u'info@yourcompany.example.com')

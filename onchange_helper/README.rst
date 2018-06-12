@@ -18,7 +18,7 @@ To use this module, you need to:
 
 Example if you want to create a sale order and you want to get the values relative to partner_id field (as if you fill the field from UI)
 
-    `vals = {'partner_id: 1'}`
+    `vals = {'partner_id': 1}`
 
     `vals = self.env['sale.order'].play_onchanges(vals, ['partner_id'])`
 
@@ -26,7 +26,7 @@ Then, `vals` will be updated with partner_invoice_id, partner_shipping_id, price
 
 You can also use it on existing record for example:
 
-    `vals = {'partner_shipping_id: 1'}`
+    `vals = {'partner_shipping_id': 1}`
 
     `vals = sale.play_onchanges(vals, ['partner_shipping_id'])`
 
