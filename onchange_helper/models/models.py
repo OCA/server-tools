@@ -32,7 +32,7 @@ class Base(models.AbstractModel):
         # If self is an empty record we will have an empty value
         if self:
             self.ensure_one()
-            record_values = self.read()[0]
+            record_values = self._convert_to_write(self.read()[0])
         else:
             record_values = {}
         for field in self._fields:
