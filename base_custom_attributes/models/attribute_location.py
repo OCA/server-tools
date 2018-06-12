@@ -47,7 +47,8 @@ class AttributeLocation(models.Model):
     attribute_group_id = fields.Many2one(
         'attribute.group',
         'Attribute Group',
-        required=True
+        required=True,
+        ondelete="cascade"
     )
 
     sequence = fields.Integer('Sequence')

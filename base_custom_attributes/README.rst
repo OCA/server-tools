@@ -1,9 +1,9 @@
 Base Custom Attributes
 ======================
 
-This module implements employee exemption.
-This allows in salary rules to know whether the employee is exempted from a source deduction.
-
+This module allows to create attributes on a chosen model.
+An attribute is a field that can be serialized.
+If the attribute serialized it will not create a new column in the database.
 
 Credits
 =======

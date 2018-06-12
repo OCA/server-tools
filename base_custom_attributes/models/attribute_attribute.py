@@ -21,8 +21,9 @@
 #                                                                             #
 ###############################################################################
 
-from odoo import models, fields, _, exceptions, api
+from odoo import models, fields, _, api
 from odoo.osv.orm import setup_modifiers
+from odoo.exceptions import ValidationError
 from lxml import etree
 import ast
 import re
@@ -187,7 +188,7 @@ class AttributeAttribute(models.Model):
             field = field_obj.browse(vals['field_id'])
 
             if vals.get('serialized'):
-                raise exceptions.ValidationError(
+                raise ValidationError(
                     _('Error'),
                     _("Can't create a serialized attribute on "
                       "an existing ir.model.fields (%s)") % field.name)
@@ -256,3 +257,11 @@ class AttributeAttribute(models.Model):
 
         if not name.startswith('x_'):
             self.name = u'x_%s' % name
+
+    @api.multi
+    def write(self, vals):
+        if 'attribute_type' in vals.keys():
+            raise ValidationError(
+                    _("Can't change the type of an attribute. "
+                      "Please create a new one."))
+        super(AttributeAttribute, self).write(vals)
