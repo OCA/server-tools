@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
 # © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # © 2015 Antiun Ingeniería S.L. - Jairo Llopis
 # © 2016 Sodexis
+# © 2018 Amaris - Quentin Theuret <quentin.theuret@amaris.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Multiple images base",
     "summary": "Allow multiple images for database objects",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Tecnativa, "
               "Antiun Ingeniería, S.L., Sodexis, "
-              "LasLabs, "
+              "LasLabs, Amaris, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "http://www.antiun.com",

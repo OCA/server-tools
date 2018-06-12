@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # © 2016 Antiun Ingeniería S.L. - Jairo Llopis
+# c 2018 Amaris - Quentin Theuret
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, SUPERUSER_ID
@@ -59,7 +59,7 @@ def pre_init_hook_for_submodules(cr, model, field):
                     %s
                 )
                 %s
-            """ % (image_field, extract_query)
+            """, (image_field, extract_query)
         )
 
 

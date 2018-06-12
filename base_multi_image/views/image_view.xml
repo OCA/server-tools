@@ -94,6 +94,7 @@
             <field name="name"/>
             <field name="storage"/>
             <field name="sequence"/>
+            <field name="id" />
             <templates>
                 <t t-name="kanban-box">
                     <div style="position: relative">

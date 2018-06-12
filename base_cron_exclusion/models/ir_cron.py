@@ -14,13 +14,14 @@ _logger = logging.getLogger(__name__)
 class IrCron(models.Model):
     _inherit = "ir.cron"
 
-    @api.one
+    @api.multi
     @api.constrains('mutually_exclusive_cron_ids')
     def _check_auto_exclusion(self):
-        if self in self.mutually_exclusive_cron_ids:
-            raise ValidationError(_(
-                "You can not mutually exclude a scheduled actions with "
-                "itself."))
+        for record in self:
+            if record in self.mutually_exclusive_cron_ids:
+                raise ValidationError(_(
+                    "You can not mutually exclude a scheduled actions with "
+                    "itself."))
 
     mutually_exclusive_cron_ids = fields.Many2many(
         comodel_name="ir.cron", relation="ir_cron_exclusion",

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # © 2015 Antiun Ingeniería S.L. - Jairo Llopis
@@ -19,22 +18,22 @@ class Owner(models.AbstractModel):
     image_main = fields.Binary(
         string="Main image",
         store=False,
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main")
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main")
     image_main_medium = fields.Binary(
         string="Medium image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_medium",
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_medium",
         store=False)
     image_main_small = fields.Binary(
         string="Small image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_small",
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_small",
         store=False)
 
     @api.multi
     @api.depends('image_ids')
-    def _get_multi_image(self):
+    def _compute_multi_image(self):
         """Get the main image for this object.
 
         This is provided as a compatibility layer for submodels that already
@@ -47,7 +46,7 @@ class Owner(models.AbstractModel):
             s.image_main_small = first.image_small
 
     @api.multi
-    def _set_multi_image(self, image=False, name=False):
+    def _inverse_multi_image(self, image=False, name=False):
         """Save or delete the main image for this record.
 
         This is provided as a compatibility layer for submodels that already
@@ -77,16 +76,16 @@ class Owner(models.AbstractModel):
                 s.image_ids[0].unlink()
 
     @api.multi
-    def _set_multi_image_main(self):
-        self._set_multi_image(self.image_main)
+    def _inverse_multi_image_main(self):
+        self._inverse_multi_image(self.image_main)
 
     @api.multi
-    def _set_multi_image_main_medium(self):
-        self._set_multi_image(self.image_main_medium)
+    def _inverse_multi_image_main_medium(self):
+        self._inverse_multi_image(self.image_main_medium)
 
     @api.multi
-    def _set_multi_image_main_small(self):
-        self._set_multi_image(self.image_main_small)
+    def _inverse_multi_image_main_small(self):
+        self._inverse_multi_image(self.image_main_small)
 
     @api.multi
     def unlink(self):
