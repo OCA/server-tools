@@ -45,6 +45,8 @@ Known issues / Roadmap
 * Remove calls to ``cr.commit()`` in tests when
   https://github.com/odoo/odoo/issues/12237 gets fixed.
 
+* Drop support for ``validate_email`` in favor of ``email_validator``.
+
 Bug Tracker
 ===========
 
