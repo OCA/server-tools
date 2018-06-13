@@ -58,7 +58,7 @@ addon | version | summary
 [base_technical_user](base_technical_user/) | 10.0.1.0.0 | Add a technical user parameter on the company
 [base_tier_validation](base_tier_validation/) | 10.0.1.0.0 | Implement a validation process based on tiers.
 [base_user_gravatar](base_user_gravatar/) | 10.0.1.0.1 | Synchronize Gravatar Image
-[base_user_role](base_user_role/) | 10.0.1.0.1 | User roles
+[base_user_role](base_user_role/) | 10.0.1.0.2 | User roles
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.1 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 10.0.1.0.0 | Database cleanup
