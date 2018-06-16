@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo10-addon-auditlog',
         'odoo10-addon-auth_admin_passkey',
         'odoo10-addon-auth_brute_force',
+        'odoo10-addon-auth_oauth_multi_token',
         'odoo10-addon-auth_session_timeout',
         'odoo10-addon-auth_signup_verify_email',
         'odoo10-addon-auth_supplier',
