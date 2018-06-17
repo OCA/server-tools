@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Jeffery Chen Fan <jeffery9@gmail.com>, 2016
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-26 01:45+0000\n"
 "PO-Revision-Date: 2016-11-26 01:45+0000\n"
 "Last-Translator: Jeffery Chen Fan <jeffery9@gmail.com>, 2016\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: auditlog
@@ -57,6 +58,13 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
+msgstr ""
+
+#. module: auditlog
+#: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
+#: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
+#: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
+msgid "Auto-vacuum audit logs"
 msgstr ""
 
 #. module: auditlog
@@ -134,8 +142,10 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
 
 #. module: auditlog
@@ -332,15 +342,15 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
 
 #. module: auditlog
@@ -444,7 +454,7 @@ msgid "Values"
 msgstr ""
 
 #. module: auditlog
-#: code:addons/auditlog/models/rule.py:535
+#: code:addons/auditlog/models/rule.py:517
 #, python-format
 msgid "View logs"
 msgstr ""
