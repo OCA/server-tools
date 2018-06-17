@@ -146,8 +146,7 @@ msgstr "IP adres SFTP server"
 #. module: auto_backup
 #: help:db.backup,sendmailsftpfail:0
 msgid "If you check this option you can choose to automaticly get e-mailed when the backup to the external server failed."
-msgstr "Als u deze optie aanvinkt kan u kiezen om automatisch een e-mail aan te krijgen als de backup
-naar de externe server mislukt."
+msgstr "Als u deze optie aanvinkt kan u kiezen om automatisch een e-mail aan te krijgen als de backup naar de externe server mislukt."
 
 #. module: auto_backup
 #: help:db.backup,autoremove:0
