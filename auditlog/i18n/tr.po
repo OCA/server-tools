@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-12-06 03:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auditlog
@@ -140,11 +140,15 @@ msgstr "Tam Günlük"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
-"Tam Günlük: İşlemden önceki ve sonraki verinin farkını bulur. (hesaplanan alanlar gibi bilgileri saklar ama daha yavaş çalışır)\n"
-"Hızlı Günlük: Sadece oluştur ve yaz işlemleri ile yapılanları kaydeder. (daha az bilgi içerir ama daha hızlıdır)"
+"Tam Günlük: İşlemden önceki ve sonraki verinin farkını bulur. (hesaplanan "
+"alanlar gibi bilgileri saklar ama daha yavaş çalışır)\n"
+"Hızlı Günlük: Sadece oluştur ve yaz işlemleri ile yapılanları kaydeder. "
+"(daha az bilgi içerir ama daha hızlıdır)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -340,18 +344,17 @@ msgstr "Günlük oluşturmak istediğiniz modeli seçin."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 "bu modelde oluşturulan her kayıt için günlük tutmak isterseniz bunu seçin."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
-msgstr ""
-"bu modelde silinen her kayıt için günlük tutmak isterseniz bunu seçin."
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
+msgstr "bu modelde silinen her kayıt için günlük tutmak isterseniz bunu seçin."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_write
