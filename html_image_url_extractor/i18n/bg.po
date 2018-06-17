@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * html_image_url_extractor
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -12,33 +12,25 @@ msgstr ""
 "PO-Revision-Date: 2016-12-03 04:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. module: html_image_url_extractor
-#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter_create_uid
-msgid "Created by"
-msgstr "Създадено от"
-
-#. module: html_image_url_extractor
-#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter_create_date
-msgid "Created on"
-msgstr "Създадено на"
-
-#. module: html_image_url_extractor
-#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter_write_uid
-msgid "Last Updated by"
-msgstr "Последно обновено от"
-
-#. module: html_image_url_extractor
-#: model:ir.model.fields,field_description:html_image_url_extractor.field_ir_fields_converter_write_date
-msgid "Last Updated on"
-msgstr "Последно обновено на"
 
 #. module: html_image_url_extractor
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
 msgid "ir.fields.converter"
 msgstr ""
+
+#~ msgid "Created by"
+#~ msgstr "Създадено от"
+
+#~ msgid "Created on"
+#~ msgstr "Създадено на"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Последно обновено от"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Последно обновено на"
