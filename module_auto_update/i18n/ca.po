@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_auto_update
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,20 +12,20 @@ msgstr ""
 "PO-Revision-Date: 2017-07-21 02:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_dir
-msgid "Checksum dir"
+msgid "Checksum Dir"
 msgstr ""
 
 #. module: module_auto_update
 #: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_installed
-msgid "Checksum installed"
+msgid "Checksum Installed"
 msgstr ""
 
 #. module: module_auto_update
@@ -39,21 +39,8 @@ msgid "Module Upgrade"
 msgstr ""
 
 #. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.menu_default_modules
-msgid "Modules"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.module_action_open_updates
-msgid "Open Updates and Update Apps List Server Action"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.ui.view,arch_db:module_auto_update.module_view_search
-msgid "Scheduled Upgrades"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.module_menu_updates
-msgid "Updates"
+#: model:ir.actions.server,name:module_auto_update.module_check_upgrades_cron_ir_actions_server
+#: model:ir.cron,cron_name:module_auto_update.module_check_upgrades_cron
+#: model:ir.cron,name:module_auto_update.module_check_upgrades_cron
+msgid "Perform Module Upgrades"
 msgstr ""
