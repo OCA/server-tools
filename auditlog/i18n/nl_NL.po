@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Frank Schellenberg <opensource@schellenberg.nl>, 2018
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2018-01-04 15:28+0000\n"
 "PO-Revision-Date: 2018-01-04 15:28+0000\n"
 "Last-Translator: Frank Schellenberg <opensource@schellenberg.nl>, 2018\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
@@ -141,11 +142,15 @@ msgstr "Volledig log"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
-"Volledig log: Maakt een diff van de data voor en na de verandering (legt dus meer gegevens vast maar is ook trager).\n"
-"Beknopt log: Legt alleen de veranderingen vast van Create and Write acties (minder informatie, maar wel sneller)."
+"Volledig log: Maakt een diff van de data voor en na de verandering (legt dus "
+"meer gegevens vast maar is ook trager).\n"
+"Beknopt log: Legt alleen de veranderingen vast van Create and Write acties "
+"(minder informatie, maar wel sneller)."
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -341,8 +346,8 @@ msgstr "Selecteer het model waarvoor een log moet worden bijgehouden."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 "Vink aan indien je als je alle Create (Maak) acties voor elk record van dit "
 "model wilt volgen."
@@ -350,11 +355,11 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
-"Vink aan indien je als je alle Delete (Verwijder) acties voor elk record van"
-" dit model wilt volgen."
+"Vink aan indien je als je alle Delete (Verwijder) acties voor elk record van "
+"dit model wilt volgen."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_write
@@ -362,8 +367,8 @@ msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
 msgstr ""
-"Vink aan indien je als je alle Update (Wijziging) acties voor elk record van"
-" dit model wilt volgen."
+"Vink aan indien je als je alle Update (Wijziging) acties voor elk record van "
+"dit model wilt volgen."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_read
