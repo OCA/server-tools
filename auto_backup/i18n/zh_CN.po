@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-03-03 10:08+0000\n"
 "PO-Revision-Date: 2018-03-03 10:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: auto_backup
@@ -252,9 +253,10 @@ msgstr "搜索计划备份调度程序“Backup scheduler”。"
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
-msgstr "设置计划动作为有效，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数据库具体备份方案。"
+"Set the scheduler to active and fill in how often you want backups generated."
+msgstr ""
+"设置计划动作为有效，并填写备份间隔时间，间隔时间单位，间隔次数，执行时间等数"
+"据库具体备份方案。"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_name
@@ -287,8 +289,8 @@ msgstr "接受 SSH/SFTP 使用的FTP 服务器上的端口。"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
 msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
 
 #. module: auto_backup
@@ -296,7 +298,9 @@ msgstr "SFTP 连接使用该用户名。这是在SFTP服务器上的用户。"
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存在设置的目录下面。"
+msgstr ""
+"请注意你的 SFTP服务器网络安全！数据库备份文件将备份到你的SFTP服务器，文件保存"
+"在设置的目录下面。"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
