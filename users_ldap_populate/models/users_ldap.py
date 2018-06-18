@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2012 Therp BV (<http://therp.nl>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
-
+# Copyright 2012 Therp BV (<https://therp.nl>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/gpl.html).
+import logging
 import re
 
 from odoo import models, fields, api, _, SUPERUSER_ID
 from odoo.exceptions import UserError
-import logging
 
 _logger = logging.getLogger('orm.ldap')
 
@@ -129,13 +128,18 @@ class CompanyLDAP(models.Model):
             ldap_binddn.encode('utf-8'),
             ldap_password.encode('utf-8')
         )
-        results = conn.search_st(
-            conf['ldap_base'].encode('utf-8'),
-            ldap.SCOPE_SUBTREE,
-            ldap_filter.encode('utf8'),
-            None,
-            timeout=timeout
-        )
+        try:
+            results = conn.search_st(
+                conf['ldap_base'].encode('utf-8'),
+                ldap.SCOPE_SUBTREE,
+                ldap_filter.encode('utf8'),
+                None,
+                timeout=timeout
+            )
+        except Exception:
+            _logger.error(_(
+                'Error searching with filter %s'), ldap_filter, exc_info=True)
+            raise
         conn.unbind()
         return results
 
