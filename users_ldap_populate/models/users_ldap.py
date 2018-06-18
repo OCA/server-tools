@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2012 Therp BV (<http://therp.nl>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# Copyright 2012 Therp BV (<https://therp.nl>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/gpl.html).
 
 import re
 
@@ -125,9 +125,14 @@ class CompanyLDAP(models.Model):
         conn = self.connect(conf)
         conn.simple_bind_s(conf['ldap_binddn'] or '',
                            conf['ldap_password'] or '')
-        results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
-                                 ldap_filter.encode('utf8'), None,
-                                 timeout=timeout)
+        try:
+            results = conn.search_st(
+                conf['ldap_base'], ldap.SCOPE_SUBTREE,
+                ldap_filter.encode('utf8'), None, timeout=timeout)
+        except Exception:
+            _logger.error(_(
+                'Error searching with filter %s'), ldap_filter, exc_info=True)
+            raise
         conn.unbind()
         return results
 
