@@ -63,8 +63,10 @@ def pre_init_hook_for_submodules(cr, model, field):
         )
 
 
-def uninstall_hook_for_submodules(cr, registry, model, field=None, field_medium=None, field_small=None):
-    """Moves images from multi to single mode and remove multi-images for a given model.
+def uninstall_hook_for_submodules(cr, registry, model, field=None,
+                                  field_medium=None, field_small=None):
+    """Moves images from multi to single mode and remove multi-images for a
+    given model.
 
     :param odoo.sql_db.Cursor cr:
         Database cursor.
@@ -75,23 +77,24 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None, field_medium=
     :param str model:
         Model technical name, like "res.partner". All multi-images for that
         model will be deleted
-    
+
     :param str field:
         Binary field that had the images in that :param:`model`, like
         ``image``.
-    
+
     :param str field_medium:
-        Binary field that had the medium-sized images in that :param:`model`, like
-        ``image_medium``.
-    
+        Binary field that had the medium-sized images in that :param:`model`,
+        like ``image_medium``.
+
     :param str field_small:
-        Binary field that had the small-sized images in that :param:`model`, like
-        ``image_small``.
+        Binary field that had the small-sized images in that :param:`model`,
+        like ``image_small``.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
         Image = env["base_multi_image.image"]
-        images = Image.search([("owner_model", "=", model)], order="sequence, id")
+        images = Image.search([("owner_model", "=", model)],
+                              order="sequence, id")
         if images and (field or field_medium or field_small):
             main_images = {}
             for image in images:
@@ -104,8 +107,8 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None, field_medium=
             FieldSmall = field_small and Model._fields[field_small]
             # fields.Binary(), save the binary content directly to the table
             if field and not Field.attachment \
-            or field_medium and not FieldMedium.attachment \
-            or field_small and not FieldSmall.attachment:
+                    or field_medium and not FieldMedium.attachment \
+                    or field_small and not FieldSmall.attachment:
                 fields = []
                 if field and not Field.attachment:
                     fields.append(field + " = " + "%(image)s")
@@ -132,8 +135,8 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None, field_medium=
                     cr.execute(query, vars)
             # fields.Binary(attachment=True), save the ir_attachment record ID
             if field and Field.attachment \
-            or field_medium and FieldMedium.attachment \
-            or field_small and FieldSmall.attachment:
+                    or field_medium and FieldMedium.attachment \
+                    or field_small and FieldSmall.attachment:
                 for main_image in main_images:
                     owner = Model.browse(main_image.owner_id)
                     if field and Field.attachment:
