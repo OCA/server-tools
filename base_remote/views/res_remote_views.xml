@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_remote_form" model="ir.ui.view">
+        <field name="name">res.remote.form</field>
+        <field name="model">res.remote</field>
+        <field name="arch" type="xml">
+            <form string="Remote">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group name="technical">
+                        <group name="network">
+                            <field name="ip"/>
+                            <field name="in_network"/>
+                        </group>
+                    </group>
+                    <notebook/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="res_remote_tree" model="ir.ui.view">
+        <field name="name">res.remote.tree</field>
+        <field name="model">res.remote</field>
+        <field name="arch" type="xml">
+            <tree string="Remotes">
+                <field name="name"/>
+                <field name="ip"/>
+            </tree>
+        </field>
+    </record>
+    <record id="res_remote_action" model="ir.actions.act_window">
+        <field name="name">Remotes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.remote</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="res_remote_menu"
+              name="Remotes"
+              sequence="30"
+              parent="base.menu_users"
+              action="res_remote_action"/>
+</odoo>
