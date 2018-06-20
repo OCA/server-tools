@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2017-12-06 03:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2018-06-21 03:31+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_action_id
@@ -27,12 +28,12 @@ msgstr "Ação"
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr "Auditar"
+msgstr "Auditoria"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr "Auditlog - Deletar logs antigos"
+msgstr "Auditlog - Deletar registros antigos"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
@@ -64,7 +65,7 @@ msgstr "Histórico de Auditoria - Regras"
 #: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
 #: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
-msgstr ""
+msgstr "Registros de auditoria de vácuo automático"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_user_context
@@ -120,7 +121,7 @@ msgstr "Rascunho"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr ""
+msgstr "Registro rápido"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_id
@@ -136,7 +137,7 @@ msgstr "Campos atualizados"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr ""
+msgstr "Registro completo"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
@@ -146,6 +147,11 @@ msgid ""
 "Fast log: only log the changes made through the create and write operations "
 "(less information, but it is faster)"
 msgstr ""
+"Registro completo: faça um diff entre os dados antes e depois da operação ("
+"registre mais informações como campos computados que foram atualizados, mas "
+"é mais lento)\n"
+"Registro rápido: registra somente as alterações feitas nas operações de "
+"criação e gravação (menos informações, mas é mais rápido)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -153,19 +159,19 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Agrupado por"
+msgstr "Agrupado por..."
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr ""
+msgstr "Contexto HTTP"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_request_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "HTTP Request"
-msgstr ""
+msgstr "Requisição HTTP"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
@@ -175,7 +181,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_tree
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
-msgstr ""
+msgstr "Solicitações HTTP"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_id
@@ -318,7 +324,7 @@ msgstr "Nome do Recurso"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_root_url
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 msgid "Root URL"
-msgstr ""
+msgstr "URL Raíz"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
@@ -336,7 +342,7 @@ msgstr "Regras"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_model_id
 msgid "Select model for which you want to generate log."
-msgstr "Selecione o modelo do qual deseja gerar histórico"
+msgstr "Selecione o modelo para o qual você deseja gerar registro."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
@@ -378,12 +384,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_session_id
 msgid "Session"
-msgstr ""
+msgstr "Sessão"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session_name
 msgid "Session ID"
-msgstr ""
+msgstr "ID de sessão"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_state
@@ -413,6 +419,8 @@ msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
 msgstr ""
+"Já existe uma regra definida neste modelo\n"
+"Você não pode definir outro: edite o existente."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_log_type
