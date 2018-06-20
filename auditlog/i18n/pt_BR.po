@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-06 03:40+0000\n"
-"PO-Revision-Date: 2018-06-20 13:31+0000\n"
+"PO-Revision-Date: 2018-06-21 03:31+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -28,12 +28,12 @@ msgstr "Ação"
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr "Auditar"
+msgstr "Auditoria"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
 msgid "Auditlog - Delete old logs"
-msgstr "Auditlog - Deletar logs antigos"
+msgstr "Auditlog - Deletar registros antigos"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
@@ -159,7 +159,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Group By..."
-msgstr "Agrupado por"
+msgstr "Agrupado por..."
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
@@ -342,7 +342,7 @@ msgstr "Regras"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_model_id
 msgid "Select model for which you want to generate log."
-msgstr "Selecione o modelo do qual deseja gerar histórico"
+msgstr "Selecione o modelo para o qual você deseja gerar registro."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
