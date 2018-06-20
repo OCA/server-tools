@@ -39,6 +39,6 @@ avoid breaking modules which access via SQL the login_date column, a cron
  "depends": ['base'],
  "data": ['security/ir.model.access.csv',
           'cron.xml'],
- "auto_install": False,
+ "auto_install": True,
  "installable": True
  }
