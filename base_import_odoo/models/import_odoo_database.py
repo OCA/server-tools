@@ -248,9 +248,12 @@ class ImportOdooDatabase(models.Model):
         })
 
     def _create_record_filter_fields(self, model, record):
-        """Return a version of record with unknown fields for model removed"""
+        """Return a version of record with unknown fields for model removed
+        and required fields with no value set to the default if it exists"""
+        defaults = model.default_get(record.keys())
         return {
             key: value
+            if value or not model._fields[key].required else defaults.get(key)
             for key, value in record.items()
             if key in model._fields
         }
