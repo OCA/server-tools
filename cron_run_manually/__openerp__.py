@@ -34,4 +34,5 @@ of the scheduler.
         "tests/correct_uid.yml",
     ],
     'installable': True,
+    'auto_install': True,
 }
