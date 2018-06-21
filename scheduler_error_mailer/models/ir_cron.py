@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 # © 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
 # © 2016 Sodexis
+# © 2018 bloopark systems (<http://bloopark.de>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 import logging
 
@@ -22,11 +22,12 @@ class IrCron(models.Model):
     )
 
     @api.model
-    def _handle_callback_exception(
-            self, model_name, method_name, args, job_id, job_exception):
-        res = super(IrCron, self)._handle_callback_exception(
-            model_name, method_name, args, job_id, job_exception)
-
+    def _handle_callback_exception(self, cron_name, server_action_id, job_id,
+                                   job_exception):
+        res = super(IrCron, self)._handle_callback_exception(cron_name,
+                                                             server_action_id,
+                                                             job_id,
+                                                             job_exception)
         my_cron = self.browse(job_id)
 
         if my_cron.email_template_id:
@@ -49,7 +50,6 @@ class IrCron(models.Model):
 
     @api.model
     def _test_scheduler_failure(self):
-        """This function is used to test and debug this module"""
-
+        """This function is used to test and debug this module."""
         raise UserError(
             _("Task failure with UID = %d.") % self._uid)
