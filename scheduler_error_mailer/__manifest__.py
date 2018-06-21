@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 # © 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
 # © 2016 Sodexis
+# © 2018 bloopark systems (<http://bloopark.de>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Scheduler Error Mailer',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Extra Tools',
     'license': 'AGPL-3',
     'author': "Akretion,Sodexis,Odoo Community Association (OCA)",
