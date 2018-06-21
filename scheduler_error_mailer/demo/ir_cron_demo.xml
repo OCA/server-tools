@@ -3,6 +3,7 @@
   scheduler_error_mailer for Odoo
   Copyright (C) 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
   Copyright (C) 2016 Sodexis
+  Copyright (C) 2018 bloopark systems (<http://bloopark.de>)
   The licence is in the file __openerp__.py
 -->
 
@@ -18,8 +19,9 @@
             <field name="numbercall">-1</field>
             <!-- don't limit the number of calls -->
             <field name="doall" eval="True"/>
-            <field name="model">ir.cron</field>
-            <field name="function">_test_scheduler_failure</field>
+            <field name="model_id" ref="model_ir_cron"/>
+            <field name="state">code</field>
+            <field name="code">model._test_scheduler_failure()</field>
             <field name="email_template_id" ref="scheduler_error_mailer.scheduler_error_mailer"/>
         </record>
 
