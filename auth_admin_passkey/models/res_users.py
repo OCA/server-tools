@@ -19,7 +19,7 @@ class ResUsers(models.Model):
         mail_obj = self.env['mail.mail'].sudo()
         icp_obj = self.env['ir.config_parameter']
 
-        admin_user = self.browse(SUPERUSER_ID)
+        admin_user = self.sudo().browse(SUPERUSER_ID)
         login_user = self.browse(user_id)
 
         send_to_admin = safe_eval(
