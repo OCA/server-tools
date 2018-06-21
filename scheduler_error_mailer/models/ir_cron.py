@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
 # © 2016 Sodexis
 # © 2018 bloopark systems (<http://bloopark.de>)
@@ -6,6 +5,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+
 import logging
 
 
@@ -51,7 +51,6 @@ class IrCron(models.Model):
 
     @api.model
     def _test_scheduler_failure(self):
-        """This function is used to test and debug this module"""
-
+        """This function is used to test and debug this module."""
         raise UserError(
             _("Task failure with UID = %d.") % self._uid)
