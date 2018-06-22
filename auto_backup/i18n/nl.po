@@ -57,7 +57,6 @@ msgstr "Backup geslaagd"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_days_to_keep
-#, fuzzy
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
@@ -181,7 +180,6 @@ msgstr "ID"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup___last_update
-#, fuzzy
 msgid "Last Modified on"
 msgstr "Laatst bijgewerkt op"
 
@@ -224,13 +222,11 @@ msgstr ""
 
 #. module: auto_backup
 #: selection:db.backup,method:0
-#, fuzzy
 msgid "Remote SFTP server"
 msgstr "Gebruikersnaam SFTP Server"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_password
-#, fuzzy
 msgid "SFTP Password"
 msgstr "SFTP poort"
 
@@ -241,7 +237,6 @@ msgstr "SFTP poort"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_host
-#, fuzzy
 msgid "SFTP Server"
 msgstr "Gebruikersnaam SFTP Server"
 
@@ -274,14 +269,12 @@ msgstr "Test SFTP Connectie"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_host
-#, fuzzy
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr "Het IP adres van uw externe server. Bijvoorbeeld: 192.168.0.1"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_password
-#, fuzzy
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
@@ -314,7 +307,6 @@ msgstr ""
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
-#, fuzzy
 msgid "Username in the SFTP Server"
 msgstr "Gebruikersnaam SFTP Server"
 
@@ -333,128 +325,3 @@ msgstr ""
 msgid "sftp.example.com"
 msgstr ""
 
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Auto. E-mail on backup fail"
-#~ msgstr "Auto. e-mailen wanneer backup mislukt"
-
-#~ msgid "Backups"
-#~ msgstr "Backups"
-
-#~ msgid ""
-#~ "Choose after how many days the backup should be deleted from the FTP "
-#~ "server. For example:\n"
-#~ "If you fill in 5 the backups will be removed after 5 days from the FTP "
-#~ "server."
-#~ msgstr ""
-#~ "Kies na hoeveel dagen de backups verwijderd moeten worden van de FTP "
-#~ "server. Bijvoorbeeld:\n"
-#~ "Als u 5 invult zal de backup na 5 dagen verwijderd worden van de FTP "
-#~ "server."
-
-#~ msgid ""
-#~ "Choose after how many days the backup should be deleted. For example:\n"
-#~ "If you fill in 5 the backups will be removed after 5 days."
-#~ msgstr ""
-#~ "Kies na hoeveel dagen de backup verwijderd moet worden. Bijvoorbeeld:\n"
-#~ "Als u 5 invult zal de backup verwijderd worden na 5 dagen."
-
-#~ msgid "Configure Backup"
-#~ msgstr "Configureer backup"
-
-#~ msgid "Contact us!"
-#~ msgstr "Contacteer ons!"
-
-#~ msgid "Database you want to schedule backups for"
-#~ msgstr "Database waar u backups voor wilt plannen"
-
-#~ msgid "E-mail to notify"
-#~ msgstr "E-mail om te verwittigen"
-
-#~ msgid "Error ! No such database exists!"
-#~ msgstr "Error! Deze database bestaat niet!"
-
-#~ msgid ""
-#~ "Fill in the e-mail where you want to be notified that the backup failed "
-#~ "on the FTP."
-#~ msgstr ""
-#~ "Vul de e-mail in waarop u wilt verwittigd worden als de backup mislukt op "
-#~ "de FTP."
-
-#~ msgid "For example: /odoo/backups/"
-#~ msgstr "Bijvoorbeeld: /odoo/backups/"
-
-#~ msgid "Host"
-#~ msgstr "Host"
-
-#~ msgid "IP Address SFTP Server"
-#~ msgstr "IP adres SFTP server"
-
-#~ msgid ""
-#~ "If you check this option you can choose to automaticly get e-mailed when "
-#~ "the backup to the external server failed."
-#~ msgstr ""
-#~ "Als u deze optie aanvinkt kan u kiezen om automatisch een e-mail aan te "
-#~ "krijgen als de backup naar de externe server mislukt."
-
-#~ msgid ""
-#~ "If you check this option you can choose to automaticly remove the backup "
-#~ "after xx days"
-#~ msgstr ""
-#~ "Als u deze optie aanvinkt kan u kiezen om automatisch backups te "
-#~ "verwijderen na xx dagen"
-
-#~ msgid ""
-#~ "If you check this option you can specify the details needed to write to a "
-#~ "remote server with SFTP."
-#~ msgstr ""
-#~ "Als u deze optie aanvinkt kan u de details invullen die nodig zijn om te "
-#~ "connecteren met de externe SFTP server."
-
-#~ msgid "Need more help?"
-#~ msgstr "Meer hulp nodig?"
-
-#~ msgid "Password User SFTP Server"
-#~ msgstr "Wachtwoord gebruiker SFTP server"
-
-#~ msgid "Path external server"
-#~ msgstr "Pad externe server"
-
-#~ msgid "Port"
-#~ msgstr "Poort"
-
-#~ msgid "Remove SFTP after x days"
-#~ msgstr "SFTP verwijderen na x dagen"
-
-#~ msgid "Remove after x days"
-#~ msgstr "Verwijderen na x dagen"
-
-#~ msgid "SFTP"
-#~ msgstr "SFTP"
-
-#~ msgid "Search options"
-#~ msgstr "Zoekopties"
-
-#~ msgid "Test"
-#~ msgstr "Test"
-
-#~ msgid ""
-#~ "The location to the folder where the dumps should be written to. For "
-#~ "example /odoo/backups/.\n"
-#~ "Files will then be written to /odoo/backups/ on your remote server."
-#~ msgstr ""
-#~ "De locatie naar de folder waar de backup naar toe moet geschreven worden. "
-#~ "Bijvoorbeeld odoo/backups/\n"
-#~ "Bestanden worden dan naar /odoo/backups/ geschreven op de externe server"
-
-#~ msgid ""
-#~ "This configures the scheduler for automatic backup of the given database "
-#~ "running on given host at given port on regular intervals."
-#~ msgstr ""
-#~ "Dit configureert de planner voor automatische backups op de ingegeven "
-#~ "database waar de host, poort en database op zijn ingegeven voor reguliere "
-#~ "intervallen."
-
-#~ msgid "Write to external server with sftp"
-#~ msgstr "Schrijf naar externe server met SFTP"
