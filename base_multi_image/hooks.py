@@ -63,8 +63,10 @@ def pre_init_hook_for_submodules(cr, model, field):
         )
 
 
-def uninstall_hook_for_submodules(cr, registry, model):
-    """Remove multi-images for a given model.
+def uninstall_hook_for_submodules(cr, registry, model, field=None,
+                                  field_medium=None, field_small=None):
+    """Moves images from multi to single mode and remove multi-images for a
+    given model.
 
     :param odoo.sql_db.Cursor cr:
         Database cursor.
@@ -75,11 +77,74 @@ def uninstall_hook_for_submodules(cr, registry, model):
     :param str model:
         Model technical name, like "res.partner". All multi-images for that
         model will be deleted
+
+    :param str field:
+        Binary field that had the images in that :param:`model`, like
+        ``image``.
+
+    :param str field_medium:
+        Binary field that had the medium-sized images in that :param:`model`,
+        like ``image_medium``.
+
+    :param str field_small:
+        Binary field that had the small-sized images in that :param:`model`,
+        like ``image_small``.
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
     with cr.savepoint():
         Image = env["base_multi_image.image"]
-        images = Image.search([("owner_model", "=", model)])
+        images = Image.search([("owner_model", "=", model)],
+                              order="sequence, id")
+        if images and (field or field_medium or field_small):
+            main_images = {}
+            for image in images:
+                if image.owner_id not in main_images:
+                    main_images[image.owner_id] = image
+            main_images = main_images.values()
+            Model = env[model]
+            Field = field and Model._fields[field]
+            FieldMedium = field_medium and Model._fields[field_medium]
+            FieldSmall = field_small and Model._fields[field_small]
+            # fields.Binary(), save the binary content directly to the table
+            if field and not Field.attachment \
+                    or field_medium and not FieldMedium.attachment \
+                    or field_small and not FieldSmall.attachment:
+                fields = []
+                if field and not Field.attachment:
+                    fields.append(field + " = " + "%(image)s")
+                if field_medium and not FieldMedium.attachment:
+                    fields.append(field_medium + " = " + "%(image_medium)s")
+                if field_small and not FieldSmall.attachment:
+                    fields.append(field_small + " = " + "%(image_small)s")
+                query = """
+                    UPDATE %(table)s
+                    SET %(fields)s
+                    WHERE id = %%(id)s
+                """ % {
+                    "table": Model._table,
+                    "fields": ", ".join(fields),
+                }
+                for main_image in main_images:
+                    vars = {"id": main_image.owner_id}
+                    if field and not Field.attachment:
+                        vars["image"] = main_image.image_main
+                    if field_medium and not FieldMedium.attachment:
+                        vars["image_medium"] = main_image.image_medium
+                    if field_small and not FieldSmall.attachment:
+                        vars["image_small"] = main_image.image_small
+                    cr.execute(query, vars)
+            # fields.Binary(attachment=True), save the ir_attachment record ID
+            if field and Field.attachment \
+                    or field_medium and FieldMedium.attachment \
+                    or field_small and FieldSmall.attachment:
+                for main_image in main_images:
+                    owner = Model.browse(main_image.owner_id)
+                    if field and Field.attachment:
+                        Field.write(owner, main_image.image_main)
+                    if field_medium and FieldMedium.attachment:
+                        FieldMedium.write(owner, main_image.image_medium)
+                    if field_small and FieldSmall.attachment:
+                        FieldSmall.write(owner, main_image.image_small)
         images.unlink()
 
 
