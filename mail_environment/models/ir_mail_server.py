@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models
 
-from odoo.addons.server_environment import serv_config
+from odoo.addons.server_environment.models import serv_config
 
 
 class IrMailServer(models.Model):
