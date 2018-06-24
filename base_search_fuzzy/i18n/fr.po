@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_search_fuzzy
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,23 +12,23 @@ msgstr ""
 "PO-Revision-Date: 2017-12-01 02:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
 msgid ""
 "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
-"faster to search than a GiST index, but slower to build or update; so GIN is"
-" better suited for static data and GiST for often-updated data.\""
+"faster to search than a GiST index, but slower to build or update; so GIN is "
+"better suited for static data and GiST for often-updated data.\""
 msgstr ""
-"Cité dans la documentation PostgreSQL: \"En règle générale, un index GIN est"
-" plus rapide pour la recherche qu'un index GiST, mais plus lent à construire"
-" ou à mettre à jour, donc GIN est mieux adapté pour les données statiques et"
-" GiST pour des données souvent mises à jour.\""
+"Cité dans la documentation PostgreSQL: \"En règle générale, un index GIN est "
+"plus rapide pour la recherche qu'un index GiST, mais plus lent à construire "
+"ou à mettre à jour, donc GIN est mieux adapté pour les données statiques et "
+"GiST pour des données souvent mises à jour.\""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_uid
@@ -106,8 +106,8 @@ msgstr "Modèles"
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
 "the index already exists and the index is located in the same table then "
-"this index is reused. If the index is located in another table then a number"
-" is added at the end of the index name."
+"this index is reused. If the index is located in another table then a number "
+"is added at the end of the index name."
 msgstr ""
 
 #. module: base_search_fuzzy
