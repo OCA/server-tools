@@ -1,33 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_concurrency
+#	* base_concurrency
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 05:31+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Lithuanian (Lithuania) (http://www.transifex.com/oca/OCA-"
-"server-tools-8-0/language/lt_LT/)\n"
-"Language: lt_LT\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: \n"
 
 #. module: base_concurrency
 #: field:res.users.login,create_uid:0
 msgid "Created by"
-msgstr "Sukūrė"
+msgstr ""
 
 #. module: base_concurrency
 #: field:res.users.login,create_date:0
 msgid "Created on"
-msgstr "Sukurta"
+msgstr ""
 
 #. module: base_concurrency
 #: field:res.users.login,display_name:0
@@ -37,7 +31,7 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_concurrency
 #: field:res.users.login,__last_update:0
@@ -47,12 +41,12 @@ msgstr ""
 #. module: base_concurrency
 #: field:res.users.login,write_uid:0
 msgid "Last Updated by"
-msgstr "Paskutinį kartą atnaujino"
+msgstr ""
 
 #. module: base_concurrency
 #: field:res.users.login,write_date:0
 msgid "Last Updated on"
-msgstr "Paskutinį kartą atnaujinta"
+msgstr ""
 
 #. module: base_concurrency
 #: field:res.users.login,login_dt:0
@@ -73,3 +67,4 @@ msgstr ""
 #: model:ir.model,name:base_concurrency.model_res_users
 msgid "Users"
 msgstr ""
+
