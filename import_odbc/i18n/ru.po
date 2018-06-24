@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * import_odbc
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,17 +12,19 @@ msgstr ""
 "PO-Revision-Date: 2017-03-07 03:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ru\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: import_odbc
 #: help:import.odbc.dbtable,sql_source:0
 msgid ""
-"Column names must be valid                                   \"import_data\""
-" columns."
+"Column names must be valid                                   \"import_data\" "
+"columns."
 msgstr ""
 
 #. module: import_odbc
@@ -48,8 +50,10 @@ msgstr ""
 #. module: import_odbc
 #: help:import.odbc.dbtable,last_sync:0
 msgid ""
-"Datetime for the last succesfull                                      sync. \n"
-"Later changes on the source may                                      not be replicated on the destination"
+"Datetime for the last succesfull                                      "
+"sync. \n"
+"Later changes on the source may                                      not be "
+"replicated on the destination"
 msgstr ""
 
 #. module: import_odbc
@@ -91,8 +95,11 @@ msgstr ""
 #. module: import_odbc
 #: help:import.odbc.dbtable,raise_import_errors:0
 msgid ""
-"Import errors not                                               handled, intended for                                               debugging purposes. \n"
-"Also                                               forces debug messages to be                                               written to the server log."
+"Import errors not                                               handled, "
+"intended for                                               debugging "
+"purposes. \n"
+"Also                                               forces debug messages to "
+"be                                               written to the server log."
 msgstr ""
 
 #. module: import_odbc

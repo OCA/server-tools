@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * import_odbc
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
@@ -12,17 +12,17 @@ msgstr ""
 "PO-Revision-Date: 2017-03-07 03:47+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: import_odbc
 #: help:import.odbc.dbtable,sql_source:0
 msgid ""
-"Column names must be valid                                   \"import_data\""
-" columns."
+"Column names must be valid                                   \"import_data\" "
+"columns."
 msgstr "Spaltennamen müssen gültige \"import_data\"-Spalten sein."
 
 #. module: import_odbc
@@ -48,8 +48,10 @@ msgstr "Datequellenbezeichnung"
 #. module: import_odbc
 #: help:import.odbc.dbtable,last_sync:0
 msgid ""
-"Datetime for the last succesfull                                      sync. \n"
-"Later changes on the source may                                      not be replicated on the destination"
+"Datetime for the last succesfull                                      "
+"sync. \n"
+"Later changes on the source may                                      not be "
+"replicated on the destination"
 msgstr ""
 "Zeitstempel der letzten erfolgreichen Synchronisation.\n"
 "Spätere Änderungen an der Quelle können sich ggf. nicht im Ziel wieder finden"
@@ -93,8 +95,11 @@ msgstr "Importiere Tabellendaten"
 #. module: import_odbc
 #: help:import.odbc.dbtable,raise_import_errors:0
 msgid ""
-"Import errors not                                               handled, intended for                                               debugging purposes. \n"
-"Also                                               forces debug messages to be                                               written to the server log."
+"Import errors not                                               handled, "
+"intended for                                               debugging "
+"purposes. \n"
+"Also                                               forces debug messages to "
+"be                                               written to the server log."
 msgstr ""
 "Importfehler nicht beachtet, für Debuggingzwecke gedacht.\n"
 "Erzwingt auch Debugmeldungen im Server-Log."
