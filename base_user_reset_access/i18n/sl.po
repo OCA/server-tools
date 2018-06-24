@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_user_reset_access
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2015-12-12 10:18+0000\n"
 "PO-Revision-Date: 2015-12-12 17:35+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: base_user_reset_access
 #: code:addons/base_user_reset_access/models/res_users.py:37
@@ -34,7 +36,9 @@ msgstr "Ponastavi dostopne pravice"
 msgid ""
 "This will reset the user's access rights to the minimum configuration. Are "
 "you sure?"
-msgstr "Ponastavitev uporabnikovih dostopnih pravic na minimalno konfiguracijo. Ste prepričani?"
+msgstr ""
+"Ponastavitev uporabnikovih dostopnih pravic na minimalno konfiguracijo. Ste "
+"prepričani?"
 
 #. module: base_user_reset_access
 #: model:ir.model,name:base_user_reset_access.model_res_users
