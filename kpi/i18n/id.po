@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * kpi
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-23 18:00+0000\n"
 "Last-Translator: Wahyu Setiawan <wahyusetiaaa@gmail.com>, 2017\n"
 "Language-Team: Indonesian (https://www.transifex.com/oca/teams/23907/id/)\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: kpi
@@ -33,7 +33,7 @@ msgid "Categories"
 msgstr "Kategori"
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2102
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2257
 #: model:ir.ui.view,arch_db:kpi.view_kpi_category_form
 #: model:ir.ui.view,arch_db:kpi.view_kpi_filter
 msgid "Category"
@@ -111,6 +111,18 @@ msgstr "Keterangan"
 #: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_display_name
 msgid "Display Name"
 msgstr "Nama Tampilan"
+
+#. module: kpi
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_max_error
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_range_min_error
+msgid "Error"
+msgstr ""
+
+#. module: kpi
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
+#: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_range_form
+msgid "Errors"
+msgstr ""
 
 #. module: kpi
 #: model:ir.model.fields,field_description:kpi.field_kpi_history_date
@@ -250,7 +262,7 @@ msgid "Last Updated on"
 msgstr "Diperbaharui pada"
 
 #. module: kpi
-#: code:addons/kpi/models/kpi_threshold.py:71
+#: code:addons/kpi/models/kpi_threshold.py:69
 #, python-format
 msgid "Make sure your ranges do not overlap!"
 msgstr ""
@@ -385,7 +397,7 @@ msgid "SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
 msgstr ""
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2097
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2252
 #: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
 msgid "Threshold"
 msgstr ""
@@ -400,7 +412,7 @@ msgid "Thresholds"
 msgstr ""
 
 #. module: kpi
-#: code:addons/kpi/models/kpi_threshold.py:70
+#: code:addons/kpi/models/kpi_threshold.py:68
 #, python-format
 msgid "Two of your ranges are overlapping."
 msgstr ""
