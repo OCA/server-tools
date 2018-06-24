@@ -1,27 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * webhook
+#	* webhook
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:11+0000\n"
-"PO-Revision-Date: 2017-12-01 02:11+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
-"Language: nl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_active
 msgid "Active"
-msgstr "Actief"
+msgstr ""
 
 #. module: webhook
 #: model:ir.ui.view,arch_db:webhook.view_webhook_form
@@ -37,19 +32,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_create_uid
 #: model:ir.model.fields,field_description:webhook.field_webhook_create_uid
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_create_date
 #: model:ir.model.fields,field_description:webhook.field_webhook_create_date
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_display_name
 #: model:ir.model.fields,field_description:webhook.field_webhook_display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_python_code_get_ip
@@ -65,7 +60,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_id
 #: model:ir.model.fields,field_description:webhook.field_webhook_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_ids
@@ -75,8 +70,7 @@ msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,help:webhook.field_webhook_address_name
-msgid ""
-"IP or network address of your consumer webhook:\n"
+msgid "IP or network address of your consumer webhook:\n"
 "ip address e.g.: 10.10.0.8\n"
 "network address e.g. of: 10.10.0.8/24"
 msgstr ""
@@ -85,25 +79,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:webhook.field_webhook___last_update
 #: model:ir.model.fields,field_description:webhook.field_webhook_address___last_update
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_write_uid
 #: model:ir.model.fields,field_description:webhook.field_webhook_write_uid
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,field_description:webhook.field_webhook_address_write_date
 #: model:ir.model.fields,field_description:webhook.field_webhook_write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,help:webhook.field_webhook_name
-msgid ""
-"Name of your consumer webhook. This name will be used in named of event "
-"methods"
+msgid "Name of your consumer webhook. This name will be used in named of event methods"
 msgstr ""
 
 #. module: webhook
@@ -114,15 +106,13 @@ msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,help:webhook.field_webhook_python_code_get_event
-msgid ""
-"Python code to get event from request data.\n"
+msgid "Python code to get event from request data.\n"
 "You have object.env.request variable with full webhook request."
 msgstr ""
 
 #. module: webhook
 #: model:ir.model.fields,help:webhook.field_webhook_python_code_get_ip
-msgid ""
-"Python code to get remote IP address from request data.\n"
+msgid "Python code to get remote IP address from request data.\n"
 "You have object.env.request variable with full webhook request."
 msgstr ""
 
@@ -158,11 +148,11 @@ msgstr ""
 #. module: webhook
 #: code:addons/webhook/controllers/main.py:38
 #, python-format
-msgid ""
-"webhook consumer [%s] from remote address [%s] not found jsonrequest [%s]"
+msgid "webhook consumer [%s] from remote address [%s] not found jsonrequest [%s]"
 msgstr ""
 
 #. module: webhook
 #: model:ir.model,name:webhook.model_webhook_address
 msgid "webhook.address"
 msgstr ""
+
