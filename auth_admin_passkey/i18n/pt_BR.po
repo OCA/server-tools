@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_admin_passkey
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
 "PO-Revision-Date: 2017-08-01 02:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
@@ -70,8 +71,8 @@ msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the account user."
 msgstr ""
-"Quando o administrador usa sua senha para dar login com uma conta diferente,"
-" OPENERP irá enviar um email para a conta do usuário."
+"Quando o administrador usa sua senha para dar login com uma conta diferente, "
+"OPENERP irá enviar um email para a conta do usuário."
 
 #. module: auth_admin_passkey
 #: model:ir.model.fields,help:auth_admin_passkey.field_base_config_settings_auth_admin_passkey_send_to_admin
@@ -79,8 +80,8 @@ msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the admin user."
 msgstr ""
-"Quando o administrador usa sua senha para dar login com uma conta diferente,"
-" OPENERP irá enviar um email para a conta do administrador."
+"Quando o administrador usa sua senha para dar login com uma conta diferente, "
+"OPENERP irá enviar um email para a conta do administrador."
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:62
