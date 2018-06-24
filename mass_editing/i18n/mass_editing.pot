@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mass_editing
+#	* mass_editing
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:46+0000\n"
-"PO-Revision-Date: 2016-11-26 01:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/"
-"es_CO/)\n"
-"Language: es_CO\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:98
@@ -39,25 +33,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_create_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
-msgstr "Creado"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_display_name
 msgid "Display Name"
-msgstr "Nombre Público"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
-msgid ""
-"Display a button in the sidebar of related documents to open a composition "
-"wizard"
+msgid "Display a button in the sidebar of related documents to open a composition wizard"
 msgstr ""
 
 #. module: mass_editing
@@ -71,25 +63,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_id
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard___last_update
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object___last_update
 msgid "Last Modified on"
-msgstr "Última Modificación el"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_uid
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_uid
 msgid "Last Updated by"
-msgstr "Actualizado por"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_write_date
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_write_date
 msgid "Last Updated on"
-msgstr "Actualizado"
+msgstr ""
 
 #. module: mass_editing
 #: model:ir.actions.act_window,name:mass_editing.action_mass_object_form
@@ -121,15 +113,13 @@ msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_model_id
-msgid ""
-"Model is used for Selecting Fields. This is editable until Sidebar menu is "
-"not created."
+msgid "Model is used for Selecting Fields. This is editable until Sidebar menu is not created."
 msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:33
@@ -161,9 +151,7 @@ msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
-msgid ""
-"Sidebar action to make this template available on records of the related "
-"document model."
+msgid "Sidebar action to make this template available on records of the related document model."
 msgstr ""
 
 #. module: mass_editing
@@ -180,3 +168,4 @@ msgstr ""
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
 msgid "mass.editing.wizard"
 msgstr ""
+

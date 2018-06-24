@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mass_editing
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # leemannd <leemannd@gmail.com>, 2016
@@ -12,15 +12,16 @@ msgstr ""
 "POT-Creation-Date: 2016-12-03 04:12+0000\n"
 "PO-Revision-Date: 2016-12-03 04:12+0000\n"
 "Last-Translator: leemannd <leemannd@gmail.com>, 2016\n"
-"Language-Team: French (Switzerland) (https://www.transifex.com/oca/teams/23907/fr_CH/)\n"
+"Language-Team: French (Switzerland) (https://www.transifex.com/oca/"
+"teams/23907/fr_CH/)\n"
+"Language: fr_CH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr_CH\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:103
+#: code:addons/mass_editing/models/mass_object.py:98
 #, python-format
 msgid "%s (copy)"
 msgstr ""
@@ -46,12 +47,6 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_create_date
 msgid "Created on"
 msgstr "Créé le"
-
-#. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:91
-#, python-format
-msgid "Deletion of the action record failed."
-msgstr ""
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_editing_wizard_display_name
@@ -105,7 +100,7 @@ msgid "Mass Editing"
 msgstr ""
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:58
+#: code:addons/mass_editing/models/mass_object.py:57
 #, python-format
 msgid "Mass Editing (%s)"
 msgstr ""
@@ -138,7 +133,7 @@ msgid "Name"
 msgstr ""
 
 #. module: mass_editing
-#: code:addons/mass_editing/models/mass_object.py:34
+#: code:addons/mass_editing/models/mass_object.py:33
 #: sql_constraint:mass.object:0
 #, python-format
 msgid "Name must be unique!"
