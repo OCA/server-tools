@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_signup_verify_email
-# 
+#
 # Translators:
 # Alexandre Papin <papin.alexandre@me.com>, 2017
 msgid ""
@@ -12,30 +12,27 @@ msgstr ""
 "PO-Revision-Date: 2017-03-18 02:19+0000\n"
 "Last-Translator: Alexandre Papin <papin.alexandre@me.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_signup_verify_email
-#: code:addons/auth_signup_verify_email/controllers/main.py:54
-#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:30
+#: code:addons/auth_signup_verify_email/controllers/main.py:75
 #, python-format
 msgid "Check your email to activate your account!"
 msgstr "Un email vous à été envoyé pour activer votre compte."
 
 #. module: auth_signup_verify_email
-#: code:addons/auth_signup_verify_email/controllers/main.py:50
-#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:28
+#: code:addons/auth_signup_verify_email/controllers/main.py:71
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
 msgstr ""
 "Une erreur est survenue, veuillez réessayer plus tard ou contactez nous."
 
 #. module: auth_signup_verify_email
-#: code:addons/auth_signup_verify_email/controllers/main.py:31
-#: code:addons/auth_signup_verify_email/tests/test_verify_email.py:27
+#: code:addons/auth_signup_verify_email/controllers/main.py:51
 #, python-format
 msgid "That does not seem to be an email address."
 msgstr "Veuillez fournir une adresse email valide."
