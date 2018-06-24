@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_signup_verify_email
-# 
+#
 # Translators:
 # Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-02-23 17:59+0000\n"
 "PO-Revision-Date: 2017-09-22 23:49+0000\n"
 "Last-Translator: Fernando Lara <gennesis45@gmail.com>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/es_ES/)\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-server-"
+"tools-9-0/language/es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_signup_verify_email
@@ -30,7 +31,9 @@ msgstr "Compruebe su correo electrónico para activar su cuenta!"
 #: code:addons/auth_signup_verify_email/tests/test_verify_email.py:29
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
-msgstr "Se ha producido un error. Inténtelo de nuevo más tarde o póngase en contacto con nosotros. "
+msgstr ""
+"Se ha producido un error. Inténtelo de nuevo más tarde o póngase en contacto "
+"con nosotros. "
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31

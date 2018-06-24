@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_signup_verify_email
-# 
+#
 # Translators:
 # Bole <bole@dajmi5.com>, 2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2018-02-23 17:59+0000\n"
 "PO-Revision-Date: 2017-09-22 23:49+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
-"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr_HR/)\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-"
+"tools-9-0/language/hr_HR/)\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr_HR\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:54
@@ -30,7 +32,9 @@ msgstr "Provjerite svoj mail za aktiviranje računa"
 #: code:addons/auth_signup_verify_email/tests/test_verify_email.py:29
 #, python-format
 msgid "Something went wrong, please try again later or contact us."
-msgstr "Nešto nije u redu, molimo pokušajte se prijaviti kasnije ili nas kontaktirajte."
+msgstr ""
+"Nešto nije u redu, molimo pokušajte se prijaviti kasnije ili nas "
+"kontaktirajte."
 
 #. module: auth_signup_verify_email
 #: code:addons/auth_signup_verify_email/controllers/main.py:31
