@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_export_manager
+#	* base_export_manager
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 01:45+0000\n"
-"PO-Revision-Date: 2016-11-26 01:45+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Dutch (Belgium) (https://www.transifex.com/oca/teams/23907/"
-"nl_BE/)\n"
-"Language: nl_BE\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: base_export_manager
 #. openerp-web
@@ -108,7 +102,7 @@ msgstr ""
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_sequence
 msgid "Sequence"
-msgstr "Volgorde"
+msgstr ""
 
 #. module: base_export_manager
 #: model:ir.model.fields,field_description:base_export_manager.field_ir_exports_line_field3_id
@@ -152,3 +146,4 @@ msgstr ""
 #: model:ir.model,name:base_export_manager.model_ir_model_access
 msgid "ir.model.access"
 msgstr ""
+
