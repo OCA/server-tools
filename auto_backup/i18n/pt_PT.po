@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-18 02:15+0000\n"
 "PO-Revision-Date: 2017-03-18 02:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/23907/pt_PT/)\n"
+"Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/"
+"teams/23907/pt_PT/)\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -195,8 +196,8 @@ msgstr "Ajuda"
 #: sql_constraint:db.backup:0
 msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr ""
-"Não é possível remover cópias de segurança do futuro. Para isso, peça ao Dr."
-" Milagres."
+"Não é possível remover cópias de segurança do futuro. Para isso, peça ao Dr. "
+"Milagres."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
@@ -325,8 +326,7 @@ msgstr "Pesquisar a ação chamada 'Backup Scheduler'."
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
+"Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
 "Marque o agendador como ativo e preencha a frequência desejada para a "
 "criação de cópias de segurança."
@@ -366,8 +366,8 @@ msgstr "A porta no servidor FTP que aceita ligações SSH/SFTP."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
 msgstr ""
 "Nome de utilizador a usar na ligação SFTP. É o nome de utilizador do "
 "servidor externo."

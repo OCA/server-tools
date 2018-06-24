@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-04-19 17:59+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -277,8 +277,8 @@ msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
-"Ruta cap al fitxer de clau privada. Només l'usuari Odoo ha de tenir permisos"
-" de lectura per aquest fitxer. "
+"Ruta cap al fitxer de clau privada. Només l'usuari Odoo ha de tenir permisos "
+"de lectura per aquest fitxer. "
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
@@ -323,8 +323,7 @@ msgstr "Cerqueu una acció anomenada 'Backup scheduler'."
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
+"Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
 "Poseu la programació amb actiu i ompliu amb quina freqüència voleu generar "
 "les vostres còpies. "
@@ -364,8 +363,8 @@ msgstr "El port al servidor FTP que acceptarà trucades SSH/SFTP."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
 msgstr ""
 "El nom d'usuari on es generarà la connexió SFTP. Això és l'usuari en el "
 "servidor extern. "
