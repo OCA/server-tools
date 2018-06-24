@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_admin_passkey
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
@@ -18,18 +18,21 @@ msgstr ""
 "POT-Creation-Date: 2017-03-02 09:58+0000\n"
 "PO-Revision-Date: 2017-01-12 18:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:66
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr "<pre>L'utilisateur dont l'identifiant est '%s' a le même mot de passe que vous.</pre>"
+msgstr ""
+"<pre>L'utilisateur dont l'identifiant est '%s' a le même mot de passe que "
+"vous.</pre>"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:41
@@ -43,7 +46,16 @@ msgid ""
 "\n"
 "- Login date : %s\n"
 "\n"
-msgstr "L'administrateur a utilisé son mot de passe \"bris de glace\" pour s'identifier avec l'identifiant '%s'.\n\n\n\nInformations techniques ci-dessous : \n\n- Date d'authentification : %s\n\n"
+msgstr ""
+"L'administrateur a utilisé son mot de passe \"bris de glace\" pour "
+"s'identifier avec l'identifiant '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Informations techniques ci-dessous : \n"
+"\n"
+"- Date d'authentification : %s\n"
+"\n"
 
 #. module: auth_admin_passkey
 #: view:base.config.settings:auth_admin_passkey.view_res_config_settings
@@ -76,14 +88,18 @@ msgstr "Utilisateurs"
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the account user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, Odoo lui enverra un mail."
+msgstr ""
+"Quand l'administrateur utilise son mot de passe pour s'authentifier avec un "
+"compte différent, Odoo lui enverra un mail."
 
 #. module: auth_admin_passkey
 #: help:base.config.settings,auth_admin_passkey_send_to_admin:0
 msgid ""
 "When the administrator use his password to login in with a different "
 "account, Odoo will send an email to the admin user."
-msgstr "Quand l'administrateur utilise son mot de passe pour s'authentifier avec un compte différent, Odoo enverra un mail à l'utilisateur."
+msgstr ""
+"Quand l'administrateur utilise son mot de passe pour s'authentifier avec un "
+"compte différent, Odoo enverra un mail à l'utilisateur."
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:64
