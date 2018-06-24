@@ -1,0 +1,244 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:127
+#, python-format
+msgid "A validation process is still open for at least one record."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_active
+msgid "Active"
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.definition,review_type:0
+msgid "Any user in a specific group."
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.review,status:0
+msgid "Approved"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_company_id
+msgid "Company"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_create_uid
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_create_date
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_definition_id
+msgid "Definition id"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_display_name
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_display_name
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:94
+#, python-format
+msgid "Error evaluating tier validation conditions.\n"
+" %s"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_id
+msgid "ID"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition___last_update
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review___last_update
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_write_uid
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_write_date
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_model
+msgid "Model"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_need_validation
+msgid "Need validation"
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.review,status:0
+msgid "Pending"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_model_id
+msgid "Referenced Model"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_rejected
+#: selection:tier.review,status:0
+msgid "Rejected"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_res_id
+msgid "Related Document ID"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_model
+msgid "Related Document Model"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_reviewer_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_reviewer_id
+msgid "Reviewer"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_reviewer_group_id
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_reviewer_group_id
+msgid "Reviewer group"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_reviewer_ids
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_reviewer_ids
+msgid "Reviewers"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: base_tier_validation
+#: selection:tier.definition,review_type:0
+msgid "Specific user"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_status
+msgid "Status"
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:134
+#, python-format
+msgid "The operation is under validation."
+msgstr ""
+
+#. module: base_tier_validation
+#: code:addons/base_tier_validation/models/tier_validation.py:123
+#, python-format
+msgid "This action needs to be validated for at least one record. \n"
+"Please request a validation."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_sequence
+msgid "Tier"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.actions.act_window,name:base_tier_validation.tier_definition_action
+#: model:ir.ui.menu,name:base_tier_validation.menu_tier_definition
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_form
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_definition_view_tree
+msgid "Tier Definition"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_python_code
+msgid "Tier Definition Expression"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.ui.view,arch_db:base_tier_validation.tier_review_view_tree
+msgid "Tier Review"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.ui.menu,name:base_tier_validation.menu_tier_confirmation
+msgid "Tier Validations"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_validated
+msgid "Validated"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_definition_review_type
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_review_review_type
+msgid "Validated by"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,field_description:base_tier_validation.field_tier_validation_review_ids
+msgid "Validations"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model.fields,help:base_tier_validation.field_tier_definition_python_code
+msgid "Write Python code that defines when this tier confirmation will be needed. The result of executing the expresion must be a boolean."
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_tier_definition
+msgid "tier.definition"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_tier_review
+msgid "tier.review"
+msgstr ""
+
+#. module: base_tier_validation
+#: model:ir.model,name:base_tier_validation.model_tier_validation
+msgid "tier.validation"
+msgstr ""
+
