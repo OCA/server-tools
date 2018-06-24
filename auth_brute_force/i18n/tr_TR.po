@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_brute_force
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-31 08:34+0000\n"
 "PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr_TR/)\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/tr_TR/)\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr_TR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: auth_brute_force
@@ -84,6 +85,11 @@ msgstr "Açıklama"
 #: field:res.banned.remote,display_name:0
 msgid "Display Name"
 msgstr "Görünen ad"
+
+#. module: auth_brute_force
+#: field:res.authentication.attempt,environ:0
+msgid "Environment"
+msgstr ""
 
 #. module: auth_brute_force
 #: code:addons/auth_brute_force/models/res_authentication_attempt.py:33

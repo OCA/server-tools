@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * auth_brute_force
+#	* auth_brute_force
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 21:28+0000\n"
-"PO-Revision-Date: 2016-03-07 17:50+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/el_GR/)\n"
-"Language: el_GR\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: auth_brute_force
 #: field:res.banned.remote,active:0
@@ -67,18 +62,18 @@ msgstr ""
 #: field:res.authentication.attempt,create_uid:0
 #: field:res.banned.remote,create_uid:0
 msgid "Created by"
-msgstr "Δημιουργήθηκε από "
+msgstr ""
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,create_date:0
 #: field:res.banned.remote,create_date:0
 msgid "Created on"
-msgstr "Δημιουργήθηκε στις"
+msgstr ""
 
 #. module: auth_brute_force
 #: field:res.banned.remote,description:0
 msgid "Description"
-msgstr "Περιγραφή"
+msgstr ""
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,display_name:0
@@ -100,9 +95,10 @@ msgid "Failed"
 msgstr ""
 
 #. module: auth_brute_force
-#: field:res.authentication.attempt,id:0 field:res.banned.remote,id:0
+#: field:res.authentication.attempt,id:0
+#: field:res.banned.remote,id:0
 msgid "ID"
-msgstr "Κωδικός"
+msgstr ""
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,__last_update:0
@@ -114,16 +110,17 @@ msgstr ""
 #: field:res.authentication.attempt,write_uid:0
 #: field:res.banned.remote,write_uid:0
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr ""
 
 #. module: auth_brute_force
 #: field:res.authentication.attempt,write_date:0
 #: field:res.banned.remote,write_date:0
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr ""
 
 #. module: auth_brute_force
-#: field:res.authentication.attempt,remote:0 field:res.banned.remote,remote:0
+#: field:res.authentication.attempt,remote:0
+#: field:res.banned.remote,remote:0
 msgid "Remote ID"
 msgstr ""
 
@@ -153,3 +150,4 @@ msgstr ""
 #: view:res.authentication.attempt:auth_brute_force.view_res_authentication_attempt_search
 msgid "Without Success"
 msgstr ""
+
