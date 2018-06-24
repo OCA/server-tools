@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_custom_info
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -11,18 +11,20 @@ msgstr ""
 "POT-Creation-Date: 2017-05-30 01:20+0000\n"
 "PO-Revision-Date: 2017-05-30 01:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/teams/23907/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (https://www.transifex.com/oca/"
+"teams/23907/es_AR/)\n"
+"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_AR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_custom_info
 #: model:ir.ui.view,arch_db:base_custom_info.custom_info_value_form
 msgid ""
 "<strong>Warning!</strong>\n"
-"                        You might see no changes in parent form until you save it."
+"                        You might see no changes in parent form until you "
+"save it."
 msgstr ""
 
 #. module: base_custom_info
@@ -289,16 +291,16 @@ msgstr ""
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property_maximum
 msgid ""
-"For numeric fields, it means the maximum possible value; for text fields, it"
-" means the maximum possible length. If it is smaller than the minimum, then "
+"For numeric fields, it means the maximum possible value; for text fields, it "
+"means the maximum possible length. If it is smaller than the minimum, then "
 "this check is skipped"
 msgstr ""
 
 #. module: base_custom_info
 #: model:ir.model.fields,help:base_custom_info.field_custom_info_property_minimum
 msgid ""
-"For numeric fields, it means the minimum possible value; for text fields, it"
-" means the minimum possible length. If it is bigger than the maximum, then "
+"For numeric fields, it means the minimum possible value; for text fields, it "
+"means the minimum possible length. If it is bigger than the maximum, then "
 "this check is skipped"
 msgstr ""
 
@@ -389,8 +391,7 @@ msgstr "Última actualización el"
 #: code:addons/base_custom_info/models/custom_info_value.py:151
 #, python-format
 msgid ""
-"Length for %(prop)s is %(val)s, but it should be between %(min)d and "
-"%(max)d."
+"Length for %(prop)s is %(val)s, but it should be between %(min)d and %(max)d."
 msgstr ""
 
 #. module: base_custom_info
