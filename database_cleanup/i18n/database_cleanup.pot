@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * database_cleanup
+#	* database_cleanup
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-17 22:04+0000\n"
-"PO-Revision-Date: 2017-08-17 22:04+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
-"Language: nl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_column_purge_line_ids
@@ -27,7 +22,7 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.cleanup_create_indexes_line_action
 #: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
 msgid "Create"
-msgstr "Aanmaken"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.ui.view,arch_db:database_cleanup.cleanup_create_indexes_wizard_view_form
@@ -53,7 +48,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_purged
 msgid "Created"
-msgstr "Aangemaakt"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_uid
@@ -73,7 +68,7 @@ msgstr "Aangemaakt"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_uid
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_create_date
@@ -93,7 +88,7 @@ msgstr "Aangemaakt door"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_create_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_create_date
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_data_data_id
@@ -130,7 +125,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_display_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr ""
 
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
@@ -167,7 +162,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_id
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line___last_update
@@ -189,7 +184,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property___last_update
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table___last_update
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_write_uid
@@ -209,7 +204,7 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_uid
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_uid
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_write_date
@@ -229,7 +224,7 @@ msgstr "Laatst bijgewerkt door"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_property_write_date
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_menu_menu_id
@@ -244,12 +239,12 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_column_model_id
 msgid "Model"
-msgstr "Model"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_ir_model
 msgid "Models"
-msgstr "Modellen"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_model_purge_line_ids
@@ -272,7 +267,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_name
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_table_name
 msgid "Name"
-msgstr "Naam"
+msgstr ""
 
 #. module: database_cleanup
 #: code:addons/database_cleanup/models/purge_menus.py:46
@@ -468,7 +463,7 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_line_property_reason
 msgid "Reason"
-msgstr "Oorzaak"
+msgstr ""
 
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
@@ -536,3 +531,4 @@ msgstr ""
 #: model:ir.model,name:database_cleanup.model_ir_model_data
 msgid "ir.model.data"
 msgstr ""
+
