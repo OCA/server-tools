@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_base_synchronize
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-08-01 02:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -131,20 +132,22 @@ msgstr "Velikost datoteke"
 #: code:addons/attachment_base_synchronize/models/attachment.py:54
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
 msgstr ""
-"Datoteka okvarjena: Nekaj je narobe s pridobljeno datoteko. Ponovno zaženite"
-" opravilo, prosim."
+"Datoteka okvarjena: Nekaj je narobe s pridobljeno datoteko. Ponovno zaženite "
+"opravilo, prosim."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 msgstr ""
 "Hash datoteke prihaja z zunanjim lastnikom datoteke.\n"
-"Če je podano, omogoča preverjanje, če je prenesena datoteke natančna kopija originalne."
+"Če je podano, omogoča preverjanje, če je prenesena datoteke natančna kopija "
+"originalne."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
@@ -152,8 +155,8 @@ msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
 msgstr ""
-"Hash datoteke obdelan s podatki o datoteki za primerjavo z zunanjim hash (če"
-" je podan)."
+"Hash datoteke obdelan s podatki o datoteki za primerjavo z zunanjim hash (če "
+"je podan)."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
