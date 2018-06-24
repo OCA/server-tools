@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_optional_quick_create
+#	* base_optional_quick_create
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 08:34+0000\n"
-"PO-Revision-Date: 2015-09-18 13:54+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/tr_TR/)\n"
-"Language: tr_TR\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: base_optional_quick_create
 #: field:ir.model,avoid_quick_create:0
@@ -33,9 +28,10 @@ msgstr ""
 #: code:addons/base_optional_quick_create/model.py:38
 #, python-format
 msgid "Error"
-msgstr "Hata"
+msgstr ""
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
 msgid "Models"
-msgstr "Tipler"
+msgstr ""
+
