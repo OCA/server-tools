@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_brute_force
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Nicolas JEUDY <njeudy@panda-chi.io>, 2017
@@ -13,26 +13,16 @@ msgstr ""
 "PO-Revision-Date: 2017-12-01 02:09+0000\n"
 "Last-Translator: Nicolas JEUDY <njeudy@panda-chi.io>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_brute_force
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_active
-msgid "Active"
-msgstr "Active"
-
-#. module: auth_brute_force
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_attempt_date
-msgid "Attempt Date"
-msgstr "Date de la tentative"
-
-#. module: auth_brute_force
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_attempt_ids
-msgid "Attempts"
-msgstr "Tentatives"
+#: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_form
+msgid "Add remote to whitelist"
+msgstr ""
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
@@ -46,95 +36,77 @@ msgid "Authentication Result"
 msgstr "Résultat de l'authentification"
 
 #. module: auth_brute_force
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_ban_date
-msgid "Ban Date"
-msgstr "Ban Date"
-
-#. module: auth_brute_force
-#: code:addons/auth_brute_force/models/res_authentication_attempt.py:15
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
-#, python-format
 msgid "Banned"
 msgstr "Banni"
 
 #. module: auth_brute_force
-#: model:ir.actions.act_window,name:auth_brute_force.action_res_banned_remote
-#: model:ir.ui.menu,name:auth_brute_force.menu_res_banned_remote
-msgid "Banned Remotes"
-msgstr "Clients distants bannis"
-
-#. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_create_uid
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_create_date
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: auth_brute_force
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_description
-msgid "Description"
-msgstr "Description"
-
-#. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_display_name
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: auth_brute_force
-#: code:addons/auth_brute_force/models/res_authentication_attempt.py:14
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
-#, python-format
 msgid "Failed"
 msgstr "Echoué"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_id
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_id
 msgid "ID"
 msgstr "ID"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt___last_update
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote___last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_write_uid
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_write_uid
 msgid "Last Updated by"
 msgstr "Mis à jour par"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_write_date
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_write_date
 msgid "Last Updated on"
 msgstr "Mis à jour le"
 
 #. module: auth_brute_force
+#: model:ir.model.fields,help:auth_brute_force.field_res_authentication_attempt_remote_metadata
+msgid "Metadata publicly available for remote IP"
+msgstr ""
+
+#. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_remote
-#: model:ir.model.fields,field_description:auth_brute_force.field_res_banned_remote_remote
-msgid "Remote ID"
+#, fuzzy
+msgid "Remote IP"
 msgstr "ID du client Distant"
 
 #. module: auth_brute_force
-#: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
-msgid "Successful"
-msgstr "Réussie"
+#: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_remote_metadata
+msgid "Remote IP metadata"
+msgstr ""
 
 #. module: auth_brute_force
-#: code:addons/auth_brute_force/models/res_authentication_attempt.py:13
+#: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_form
+msgid "Remove remote from whitelist"
+msgstr ""
+
+#. module: auth_brute_force
+#: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
-#, python-format
-msgid "Successfull"
+msgid "Successful"
 msgstr "Réussie"
 
 #. module: auth_brute_force
@@ -143,9 +115,14 @@ msgid "Tried Login"
 msgstr "Idenfiant essayé"
 
 #. module: auth_brute_force
-#: model:ir.model.fields,help:auth_brute_force.field_res_banned_remote_active
-msgid "Uncheck this box to unban the remote"
-msgstr "Décochez cette case afin d'annuler l'exclusion du client distant"
+#: model:ir.model,name:auth_brute_force.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: auth_brute_force
+#: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_whitelisted
+msgid "Whitelisted"
+msgstr ""
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
@@ -157,7 +134,29 @@ msgstr "Sans succès"
 msgid "res.authentication.attempt"
 msgstr "res.authentication.attempt"
 
-#. module: auth_brute_force
-#: model:ir.model,name:auth_brute_force.model_res_banned_remote
-msgid "res.banned.remote"
-msgstr "res.authentication.attempt"
+#~ msgid "Active"
+#~ msgstr "Active"
+
+#~ msgid "Attempt Date"
+#~ msgstr "Date de la tentative"
+
+#~ msgid "Attempts"
+#~ msgstr "Tentatives"
+
+#~ msgid "Ban Date"
+#~ msgstr "Ban Date"
+
+#~ msgid "Banned Remotes"
+#~ msgstr "Clients distants bannis"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Successfull"
+#~ msgstr "Réussie"
+
+#~ msgid "Uncheck this box to unban the remote"
+#~ msgstr "Décochez cette case afin d'annuler l'exclusion du client distant"
+
+#~ msgid "res.banned.remote"
+#~ msgstr "res.authentication.attempt"
