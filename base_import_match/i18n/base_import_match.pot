@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_import_match
+#	* base_import_match
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:14+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
-"language/es/)\n"
-"Language: es\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: base_import_match
 #: field:base_import.match.field,conditional:0
@@ -27,77 +22,70 @@ msgstr ""
 #: field:base_import.match,create_uid:0
 #: field:base_import.match.field,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,create_date:0
 #: field:base_import.match.field,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match
 msgid "Deduplicate settings prior to CSV imports."
-msgstr "Configuración para deduplicar antes de importar CSV."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,display_name:0
 #: field:base_import.match.field,display_name:0
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr ""
 
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr "Habilítelo si quiere usar este campo sólo bajo ciertas condiciones."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
 msgid "Field"
-msgstr "Campo"
+msgstr ""
 
 #. module: base_import_match
 #: model:ir.model,name:base_import_match.model_base_import_match_field
 msgid "Field import match definition"
-msgstr "Definición de concordancia de importación del campo"
+msgstr ""
 
 #. module: base_import_match
 #: help:base_import.match.field,field_id:0
 msgid "Field that will be part of an unique key."
-msgstr "Campo que formará parte de una clave única."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,field_ids:0
 msgid "Fields"
-msgstr "Campos"
+msgstr ""
 
 #. module: base_import_match
 #: help:base_import.match,field_ids:0
 msgid "Fields that will define an unique key."
-msgstr "Campos que definirán una clave única."
+msgstr ""
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
 msgid "Group By"
-msgstr "Agrupar por"
+msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,id:0 field:base_import.match.field,id:0
+#: field:base_import.match,id:0
+#: field:base_import.match.field,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_import_match
 #: help:base_import.match.field,imported_value:0
-msgid ""
-"If the imported value is not this, the whole matching rule will be "
-"discarded. Be careful, this data is always treated as a string, and "
-"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor "
-"'true', only EXACTLY 'True'."
+msgid "If the imported value is not this, the whole matching rule will be discarded. Be careful, this data is always treated as a string, and comparison is case-sensitive so if you set 'True', it will NOT match '1' nor 'true', only EXACTLY 'True'."
 msgstr ""
-"Si el valor importado no es éste, la regla de concordancia será descartada. "
-"Tenga cuidado, ya que estos datos siempre serán tratados como una cadena, y "
-"la comparación en sensible a las mayúsculas, por lo que si establece 'True', "
-"no concordará con '!' ni con 'true'."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view
@@ -106,35 +94,36 @@ msgstr ""
 #: model:ir.actions.act_window,name:base_import_match.match_action
 #: model:ir.ui.menu,name:base_import_match.match_menu
 msgid "Import Match"
-msgstr "Coincidencia de importación"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match.field,imported_value:0
 msgid "Imported value"
-msgstr "Valor importado"
+msgstr ""
 
 #. module: base_import_match
-#: help:base_import.match,model_id:0 help:base_import.match.field,model_id:0
+#: help:base_import.match,model_id:0
+#: help:base_import.match.field,model_id:0
 msgid "In this model you will apply the match."
-msgstr "En este modelo se aplicará la coincidencia."
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,__last_update:0
 #: field:base_import.match.field,__last_update:0
 msgid "Last Modified on"
-msgstr "Última actualización por"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,write_uid:0
 #: field:base_import.match.field,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,write_date:0
 #: field:base_import.match.field,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match.field,match_id:0
@@ -143,17 +132,20 @@ msgstr ""
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_search_view
-#: field:base_import.match,model_id:0 field:base_import.match,model_name:0
+#: field:base_import.match,model_id:0
+#: field:base_import.match,model_name:0
 #: field:base_import.match.field,model_id:0
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: base_import_match
-#: field:base_import.match,name:0 field:base_import.match.field,name:0
+#: field:base_import.match,name:0
+#: field:base_import.match.field,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: base_import_match
 #: field:base_import.match,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr ""
+
