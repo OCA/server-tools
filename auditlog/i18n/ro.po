@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Daniel Schweiger <danielcccasle@gmail.com>, 2017
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2017-06-22 01:11+0000\n"
 "Last-Translator: Daniel Schweiger <danielcccasle@gmail.com>, 2017\n"
 "Language-Team: Romanian (https://www.transifex.com/oca/teams/23907/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_action_id
@@ -134,14 +135,16 @@ msgstr "Registru complet"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
 "Registru complet: realizeaza o comparatie intre datele anterioare si dupa "
 "operatie ( registreaza informatia din columne procesate si actualizate, dar "
 "este mai lent) Registru rapid: registreaza doar schimbarile realizate la "
-"crearea si scrierea informatiei in columne ( mai putina informatie, dar este"
-" mai rapid) "
+"crearea si scrierea informatiei in columne ( mai putina informatie, dar este "
+"mai rapid) "
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -337,8 +340,8 @@ msgstr "Selecteaza modelul pentru care doresti sa generezi un registru."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 "Selecteaza daca doresti sa te mentii informat cu crearea columnelor din "
 "acest model cu aceasta regula."
@@ -346,8 +349,8 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
 "Selecteaza daca doresti sa te mentii informat cu eliminarea columnelor din "
 "acest model cu aceasta regula."
@@ -367,8 +370,8 @@ msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
 msgstr ""
-"Selecteaza daca doresti sa te mentii informat cu scrierea/accesul columnelor"
-" din acest model cu aceasta regula."
+"Selecteaza daca doresti sa te mentii informat cu scrierea/accesul columnelor "
+"din acest model cu aceasta regula."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id

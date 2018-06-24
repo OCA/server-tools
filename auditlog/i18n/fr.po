@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Quentin THEURET <odoo@kerpeo.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-12-01 02:09+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auditlog
@@ -134,11 +134,17 @@ msgstr "Journaux complet"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
-"journal complet: faire une comparaison entre les données avant et après l'opération (enregistre plus d'informations comme les champs calculés qui ont été mis à jour, mais c'est plus lent) \n"
-"journal rapide: enregistre seulement les modifications apportées par les opérations de créations et modifications  (moins d'informations, mais c'est plus rapide)"
+"journal complet: faire une comparaison entre les données avant et après "
+"l'opération (enregistre plus d'informations comme les champs calculés qui "
+"ont été mis à jour, mais c'est plus lent) \n"
+"journal rapide: enregistre seulement les modifications apportées par les "
+"opérations de créations et modifications  (moins d'informations, mais c'est "
+"plus rapide)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -334,17 +340,17 @@ msgstr "Sélectionnez le modèle pour lequel vous voulez générer un historique
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
-"Cochez cette case si vous voulez garder une trace de la création d'un nouvel"
-" enregistrement concernant le modèle défini dans cette règle."
+"Cochez cette case si vous voulez garder une trace de la création d'un nouvel "
+"enregistrement concernant le modèle défini dans cette règle."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
 "Cochez cette case si vous voulez garder une trace des suppressions des "
 "enregistrements du modèle défini dans cette règle."
@@ -364,8 +370,8 @@ msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
 msgstr ""
-"Cochez cette case si vous voulez garder une trace de la lecture/ouverture de"
-" chaque enregistrement du modèle défini dans cette règle."
+"Cochez cette case si vous voulez garder une trace de la lecture/ouverture de "
+"chaque enregistrement du modèle défini dans cette règle."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id
@@ -407,7 +413,8 @@ msgid ""
 "You cannot define another: please edit the existing one."
 msgstr ""
 "Il existe déjà une règle définie sur ce modèle\n"
-"Vous ne pouvez pas en définir une nouvelle, vous devez modifier celle existante."
+"Vous ne pouvez pas en définir une nouvelle, vous devez modifier celle "
+"existante."
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_log_type
