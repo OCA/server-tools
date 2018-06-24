@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_import_match
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Esther Martín Menéndez <esthermartin001@gmail.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-02-22 00:48+0000\n"
 "Last-Translator: Esther Martín Menéndez <esthermartin001@gmail.com>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_match
@@ -98,8 +98,8 @@ msgstr "ID"
 msgid ""
 "If the imported value is not this, the whole matching rule will be "
 "discarded. Be careful, this data is always treated as a string, and "
-"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
-" 'true', only EXACTLY 'True'."
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor "
+"'true', only EXACTLY 'True'."
 msgstr ""
 
 #. module: base_import_match
@@ -162,3 +162,8 @@ msgstr "Izena"
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_sequence
 msgid "Sequence"
 msgstr "Sekuentzia"
+
+#. module: base_import_match
+#: model:ir.model,name:base_import_match.model_base
+msgid "base"
+msgstr ""
