@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_multi_image
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,18 +10,25 @@ msgstr ""
 "POT-Creation-Date: 2016-06-09 12:31+0000\n"
 "PO-Revision-Date: 2016-03-31 07:18+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/hr_HR/)\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-server-"
+"tools-9-0/language/hr_HR/)\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr_HR\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:22
 #: sql_constraint:base_multi_image.image:0
 #, python-format
 msgid "A document can have only one image with the same name."
+msgstr ""
+
+#. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_attachment_id
+msgid "Attachment"
 msgstr ""
 
 #. module: base_multi_image
@@ -64,6 +71,11 @@ msgstr ""
 #. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_filename
 msgid "Filename"
+msgstr ""
+
+#. module: base_multi_image
+#: selection:base_multi_image.image,storage:0
+msgid "Filestore"
 msgstr ""
 
 #. module: base_multi_image
@@ -146,8 +158,8 @@ msgstr ""
 #: model:ir.model.fields,help:base_multi_image.field_base_multi_image_image_image_medium
 msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
-"with aspect ratio preserved, only when the image exceeds one of those sizes."
-" Use this field in form views or kanban views."
+"with aspect ratio preserved, only when the image exceeds one of those sizes. "
+"Use this field in form views or kanban views."
 msgstr ""
 
 #. module: base_multi_image
@@ -193,6 +205,11 @@ msgid "Product Images"
 msgstr ""
 
 #. module: base_multi_image
+#: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_owner_ref_id
+msgid "Referenced Owner"
+msgstr ""
+
+#. module: base_multi_image
 #: model:ir.model.fields,field_description:base_multi_image.field_base_multi_image_image_sequence
 msgid "Sequence"
 msgstr ""
@@ -227,6 +244,30 @@ msgstr ""
 #. module: base_multi_image
 #: selection:base_multi_image.image,storage:0
 msgid "URL"
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:205
+#, python-format
+msgid "You must provide a file path for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:199
+#, python-format
+msgid "You must provide an URL for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:211
+#, python-format
+msgid "You must provide an attached file for the image."
+msgstr ""
+
+#. module: base_multi_image
+#: code:addons/base_multi_image/models/image.py:217
+#, python-format
+msgid "You must provide an attachment for the image."
 msgstr ""
 
 #. module: base_multi_image
