@@ -1,27 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * fetchmail_attach_from_folder
+#	* fetchmail_attach_from_folder
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2017-01-13 09:28+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Norwegian Bokmål (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/nb/)\n"
-"Language: nb\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,active:0
 msgid "Active"
-msgstr "Aktiv"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
@@ -32,7 +27,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,context:0
@@ -47,9 +42,7 @@ msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,context:0
-msgid ""
-"Context that is passed during mail processing. Can be used to set default "
-"values."
+msgid "Context that is passed during mail processing. Can be used to set default values."
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -57,19 +50,19 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,create_uid:0
 #: field:fetchmail.server.folder,create_uid:0
 msgid "Created by"
-msgstr "Opprettet av"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,create_date:0
 #: field:fetchmail.attach.mail.manually.mail,create_date:0
 #: field:fetchmail.server.folder,create_date:0
 msgid "Created on"
-msgstr "Opprettet den"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually.mail,date:0
 msgid "Date"
-msgstr "Dato"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,delete_matching:0
@@ -86,7 +79,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,display_name:0
 #: field:fetchmail.server.folder,display_name:0
 msgid "Display Name"
-msgstr "Visnings navn"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,domain:0
@@ -110,8 +103,7 @@ msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,model_order:0
-msgid ""
-"Field(s) to order by, this mostly useful in conjunction with 'Use 1st match'"
+msgid "Field(s) to order by, this mostly useful in conjunction with 'Use 1st match'"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -149,7 +141,7 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,id:0
 #: field:fetchmail.server.folder,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
@@ -158,9 +150,7 @@ msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,match_first:0
-msgid ""
-"If there are multiple matches, use the first one. If not checked, multiple "
-"matches count as no match at all"
+msgid "If there are multiple matches, use the first one. If not checked, multiple matches count as no match at all"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -174,21 +164,21 @@ msgstr ""
 #: field:fetchmail.attach.mail.manually.mail,__last_update:0
 #: field:fetchmail.server.folder,__last_update:0
 msgid "Last Modified on"
-msgstr "Sist oppdatert "
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_uid:0
 #: field:fetchmail.attach.mail.manually.mail,write_uid:0
 #: field:fetchmail.server.folder,write_uid:0
 msgid "Last Updated by"
-msgstr "Sist oppdatert av"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.attach.mail.manually,write_date:0
 #: field:fetchmail.attach.mail.manually.mail,write_date:0
 #: field:fetchmail.server.folder,write_date:0
 msgid "Last Updated on"
-msgstr "Sist oppdatert"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:190
@@ -260,7 +250,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,sequence:0
 msgid "Sequence"
-msgstr "Sekvens"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,server_id:0
@@ -279,17 +269,14 @@ msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,mail_field:0
-msgid ""
-"The field in the email used for matching. Typically this is 'to' or 'from'"
+msgid "The field in the email used for matching. Typically this is 'to' or 'from'"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,model_field:0
-msgid ""
-"The field in your model that contains the field to match against.\n"
+msgid "The field in your model that contains the field to match against.\n"
 "Examples:\n"
-"'email' if your model is res.partner, or 'partner_id.email' if you're "
-"matching sale orders"
+"'email' if your model is res.partner, or 'partner_id.email' if you're matching sale orders"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -299,9 +286,7 @@ msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,path:0
-msgid ""
-"The path to your mail folder. Typically would be something like 'INBOX."
-"myfolder'"
+msgid "The path to your mail folder. Typically would be something like 'INBOX.myfolder'"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -337,7 +322,7 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.attach.mail.manually:fetchmail_attach_from_folder.view_attach_mail_manually
 msgid "or"
-msgstr "eller"
+msgstr ""
 
 #. module: fetchmail_attach_from_folder
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
@@ -353,3 +338,4 @@ msgstr ""
 #: view:fetchmail.server:fetchmail_attach_from_folder.view_email_server_form
 msgid "{'required': [('type', '!=', 'imap')]}"
 msgstr ""
+
