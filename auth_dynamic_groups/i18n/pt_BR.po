@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_dynamic_groups
-# 
+#
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-18 20:45+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auth_dynamic_groups
@@ -55,7 +56,10 @@ msgid ""
 "The condition to be met for a user to be a member of this group. It is "
 "evaluated as python code at login time, you get `user` passed as a browse "
 "record"
-msgstr "A condição a ser cumprida para um usuário ser um membro deste grupo. É avaliado como código python no momento do login, você pega `user` passado como um registro de procura"
+msgstr ""
+"A condição a ser cumprida para um usuário ser um membro deste grupo. É "
+"avaliado como código python no momento do login, você pega `user` passado "
+"como um registro de procura"
 
 #. module: auth_dynamic_groups
 #: model:ir.model,name:auth_dynamic_groups.model_res_users
