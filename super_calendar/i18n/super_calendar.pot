@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * super_calendar
+#	* super_calendar
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:51+0000\n"
-"PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Mongolian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
-"language/mn/)\n"
-"Language: mn\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: super_calendar
 #: model:ir.ui.menu,name:super_calendar.super_calendar_calendar
@@ -60,14 +55,14 @@ msgstr ""
 #: field:super.calendar.configurator,create_uid:0
 #: field:super.calendar.configurator.line,create_uid:0
 msgid "Created by"
-msgstr "Үүсгэгч"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,create_date:0
 #: field:super.calendar.configurator,create_date:0
 #: field:super.calendar.configurator.line,create_date:0
 msgid "Created on"
-msgstr "Үүсгэсэн"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -88,7 +83,7 @@ msgstr ""
 #: field:super.calendar,name:0
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid "Description"
-msgstr "Тодорхойлолт"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,description_type:0
@@ -106,7 +101,7 @@ msgstr ""
 #: field:super.calendar.configurator,display_name:0
 #: field:super.calendar.configurator.line,display_name:0
 msgid "Display Name"
-msgstr "Дэлгэцийн Нэр"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -166,7 +161,7 @@ msgstr ""
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Group By"
-msgstr "Бүлэглэх"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -194,31 +189,32 @@ msgid "Group all elements in the same year."
 msgstr ""
 
 #. module: super_calendar
-#: field:super.calendar,id:0 field:super.calendar.configurator,id:0
+#: field:super.calendar,id:0
+#: field:super.calendar.configurator,id:0
 #: field:super.calendar.configurator.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,__last_update:0
 #: field:super.calendar.configurator,__last_update:0
 #: field:super.calendar.configurator.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Сүүлийн засвар хийсэн огноо"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,write_uid:0
 #: field:super.calendar.configurator,write_uid:0
 #: field:super.calendar.configurator.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Сүүлийн засвар хийсэн"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,write_date:0
 #: field:super.calendar.configurator,write_date:0
 #: field:super.calendar.configurator.line,write_date:0
 msgid "Last Updated on"
-msgstr "Сүүлийн засвар хийсэн огноо"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
@@ -250,7 +246,7 @@ msgstr ""
 #. module: super_calendar
 #: field:super.calendar.configurator,name:0
 msgid "Name"
-msgstr "Нэр"
+msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar:super_calendar.super_calendar_search
@@ -306,21 +302,19 @@ msgstr ""
 
 #. module: super_calendar
 #: help:super.calendar.configurator.line,description_code:0
-msgid ""
-"Use '${o}' to refer to the involved object.\n"
+msgid "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
 msgstr ""
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
-msgid ""
-"Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
+msgid "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
 msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar,user_id:0
 msgid "User"
-msgstr "Хэрэглэгч"
+msgstr ""
 
 #. module: super_calendar
 #: field:super.calendar.configurator.line,user_field_id:0
@@ -336,3 +330,4 @@ msgstr ""
 #: view:super.calendar:super_calendar.super_calendar_search
 msgid "Year"
 msgstr ""
+

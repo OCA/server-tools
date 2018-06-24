@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * super_calendar
-# 
+#
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
@@ -26,11 +26,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:48+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: super_calendar
@@ -317,20 +318,25 @@ msgstr "Superkalender"
 #: code:addons/super_calendar/models/super_calendar_configurator.py:112
 #, python-format
 msgid "The 'User' field of record %s (%s) does not refer to res.users"
-msgstr "Das 'Anwender'-Feld des Datensatzes %s (%s) bezieht sich nicht auf res.users"
+msgstr ""
+"Das 'Anwender'-Feld des Datensatzes %s (%s) bezieht sich nicht auf res.users"
 
 #. module: super_calendar
 #: help:super.calendar.configurator.line,description_code:0
 msgid ""
 "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
-msgstr "Nehme '${o}' zum Bezug auf das betroffene Objekt.\nZ.B.: '${o.project_id.name}'"
+msgstr ""
+"Nehme '${o}' zum Bezug auf das betroffene Objekt.\n"
+"Z.B.: '${o.project_id.name}'"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid ""
 "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
-msgstr "Nehme '${o}' zum Bezug auf das betroffene Objekt.\nZ.B.: '${o.project_id.name}'"
+msgstr ""
+"Nehme '${o}' zum Bezug auf das betroffene Objekt.\n"
+"Z.B.: '${o.project_id.name}'"
 
 #. module: super_calendar
 #: field:super.calendar,user_id:0

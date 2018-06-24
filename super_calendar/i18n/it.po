@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * super_calendar
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
@@ -22,11 +22,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: super_calendar
@@ -326,7 +327,8 @@ msgstr ""
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid ""
 "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
-msgstr "Usare '${o}' per richiamare l'oggetto scelto. Esempio: '${o.project_id.name}'"
+msgstr ""
+"Usare '${o}' per richiamare l'oggetto scelto. Esempio: '${o.project_id.name}'"
 
 #. module: super_calendar
 #: field:super.calendar,user_id:0
