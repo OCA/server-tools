@@ -1,31 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * auth_totp
+#	* auth_totp
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 03:48+0000\n"
-"PO-Revision-Date: 2017-03-03 03:48+0000\n"
-"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2017\n"
-"Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
-"Language: fi\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
-msgid ""
-"<span>Please provide a name for your app/device. </span>\n"
-"                        <span>Then scan the QR code below to add this "
-"account to your authenticator app and enter in the six digit code produced "
-"by the app.</span>"
+msgid "<span>Please provide a name for your app/device. </span>\n"
+"                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>"
 msgstr ""
 
 #. module: auth_totp
@@ -66,12 +57,12 @@ msgstr ""
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.mfa_login
 msgid "Confirm"
-msgstr "Vahvista"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_confirmation_code
@@ -81,28 +72,28 @@ msgstr ""
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
 msgid "Create"
-msgstr "Luo"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_create_uid
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_uid
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_create_uid
 msgid "Created by"
-msgstr "Luonut"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_create_date
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_date
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_create_date
 msgid "Created on"
-msgstr "Luotu"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_display_name
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_display_name
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_display_name
 msgid "Display Name"
-msgstr "Nimi"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_confirmation_code
@@ -114,28 +105,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_id
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator___last_update
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create___last_update
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device___last_update
 msgid "Last Modified on"
-msgstr "Viimeksi muokattu"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_write_uid
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_write_uid
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_write_uid
 msgid "Last Updated by"
-msgstr "Viimeksi päivittänyt"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_write_date
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_write_date
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_device_write_date
 msgid "Last Updated on"
-msgstr "Viimeksi päivitetty"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model,name:auth_totp.model_res_users_authenticator
@@ -177,19 +168,16 @@ msgstr ""
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_name
 msgid "Name"
-msgstr "Nimi"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
-msgid ""
-"Note: Please add at least one authentication app/device before enabling MFA."
+msgid "Note: Please add at least one authentication app/device before enabling MFA."
 msgstr ""
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.view_users_form
-msgid ""
-"Note: Please have user add at least one authentication app/device before "
-"enabling MFA."
+msgid "Note: Please have user add at least one authentication app/device before enabling MFA."
 msgstr ""
 
 #. module: auth_totp
@@ -212,24 +200,17 @@ msgstr ""
 #: code:addons/auth_totp/models/res_users_authenticator.py:24
 #: sql_constraint:res.users.authenticator:0
 #, python-format
-msgid ""
-"There is already an MFA app/device with this name associated with your "
-"account. Please pick a new name and try again."
+msgid "There is already an MFA app/device with this name associated with your account. Please pick a new name and try again."
 msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_user_id
-msgid ""
-"This is the user whose account the new authentication app/device will be "
-"tied to"
+msgid "This is the user whose account the new authentication app/device will be tied to"
 msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_ids
-msgid ""
-"To delete an authentication app, remove it from this list. To add a new "
-"authentication app, please use the button to the right. If the button is not "
-"present, you do not have the permissions to do this."
+msgid "To delete an authentication app, remove it from this list. To add a new authentication app, please use the button to the right. If the button is not present, you do not have the permissions to do this."
 msgstr ""
 
 #. module: auth_totp
@@ -251,15 +232,12 @@ msgstr ""
 #. module: auth_totp
 #: model:ir.model,name:auth_totp.model_res_users
 msgid "Users"
-msgstr "Käyttäjät"
+msgstr ""
 
 #. module: auth_totp
 #: code:addons/auth_totp/models/res_users.py:46
 #, python-format
-msgid ""
-"You have MFA enabled but do not have any authentication apps/devices set up. "
-"To keep from being locked out, please add one before you activate this "
-"feature."
+msgid "You have MFA enabled but do not have any authentication apps/devices set up. To keep from being locked out, please add one before you activate this feature."
 msgstr ""
 
 #. module: auth_totp
@@ -278,10 +256,7 @@ msgstr ""
 #. module: auth_totp
 #: code:addons/auth_totp/wizards/res_users_authenticator_create.py:105
 #, python-format
-msgid ""
-"Your confirmation code is not correct. Please try again, making sure that "
-"your MFA device is set to the correct time and that you have entered the "
-"most recent code generated by your authentication app."
+msgid "Your confirmation code is not correct. Please try again, making sure that your MFA device is set to the correct time and that you have entered the most recent code generated by your authentication app."
 msgstr ""
 
 #. module: auth_totp
@@ -289,3 +264,4 @@ msgstr ""
 #, python-format
 msgid "Your confirmation code is not correct. Please try again."
 msgstr ""
+

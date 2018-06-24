@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_totp
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,24 +12,21 @@ msgstr ""
 "PO-Revision-Date: 2017-03-03 03:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#. module: auth_totp
-#: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
-msgid ""
-"<span>Note: Please add at least one authentication app/device before "
-"enabling MFA.</span>"
-msgstr ""
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
 msgid ""
 "<span>Please provide a name for your app/device. </span>\n"
-"                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>"
+"                        <span>Then scan the QR code below to add this "
+"account to your authenticator app and enter in the six digit code produced "
+"by the app.</span>"
 msgstr ""
 
 #. module: auth_totp
@@ -163,6 +160,7 @@ msgid "MFA Enabled?"
 msgstr ""
 
 #. module: auth_totp
+#: model:ir.ui.view,arch_db:auth_totp.view_users_form
 #: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
 msgid "MFA Settings"
 msgstr ""
@@ -181,6 +179,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_name
 msgid "Name"
 msgstr "Nazwa"
+
+#. module: auth_totp
+#: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
+msgid ""
+"Note: Please add at least one authentication app/device before enabling MFA."
+msgstr ""
+
+#. module: auth_totp
+#: model:ir.ui.view,arch_db:auth_totp.view_users_form
+msgid ""
+"Note: Please have user add at least one authentication app/device before "
+"enabling MFA."
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users_authenticator_create_qr_code_tag
@@ -218,7 +229,8 @@ msgstr ""
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_ids
 msgid ""
 "To delete an authentication app, remove it from this list. To add a new "
-"authentication app, please use the button to the right."
+"authentication app, please use the button to the right. If the button is not "
+"present, you do not have the permissions to do this."
 msgstr ""
 
 #. module: auth_totp
@@ -243,29 +255,29 @@ msgid "Users"
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/models/res_users.py:38
+#: code:addons/auth_totp/models/res_users.py:46
 #, python-format
 msgid ""
-"You have MFA enabled but do not have any authentication apps/devices set up."
-" To keep from being locked out, please add one before you activate this "
+"You have MFA enabled but do not have any authentication apps/devices set up. "
+"To keep from being locked out, please add one before you activate this "
 "feature."
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/models/res_users.py:90
+#: code:addons/auth_totp/models/res_users.py:98
 #, python-format
 msgid "Your MFA login token has expired. Please try again."
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/models/res_users.py:70
-#: code:addons/auth_totp/models/res_users.py:84
+#: code:addons/auth_totp/models/res_users.py:78
+#: code:addons/auth_totp/models/res_users.py:92
 #, python-format
 msgid "Your MFA login token is not valid. Please try again."
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/wizards/res_users_authenticator_create.py:104
+#: code:addons/auth_totp/wizards/res_users_authenticator_create.py:105
 #, python-format
 msgid ""
 "Your confirmation code is not correct. Please try again, making sure that "
@@ -274,7 +286,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/controllers/main.py:112
+#: code:addons/auth_totp/controllers/main.py:120
 #, python-format
 msgid "Your confirmation code is not correct. Please try again."
 msgstr ""

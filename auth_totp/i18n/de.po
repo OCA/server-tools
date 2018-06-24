@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_totp
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,20 +12,24 @@ msgstr ""
 "PO-Revision-Date: 2017-07-20 03:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.res_users_authenticator_create_view_form
 msgid ""
 "<span>Please provide a name for your app/device. </span>\n"
-"                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>"
+"                        <span>Then scan the QR code below to add this "
+"account to your authenticator app and enter in the six digit code produced "
+"by the app.</span>"
 msgstr ""
 "<span>Pflegen Sie bitte eine Bezeichnung für Ihre Anwendung/App. </span>\n"
-"<span>Danach scannen Sie den unten abgebildeten QR code, um das Konto für Ihre Authentifizierungs-Anwendung zu ergänzen und den erzeugten 6stelligen Schlüssel einzugeben.</span>"
+"<span>Danach scannen Sie den unten abgebildeten QR code, um das Konto für "
+"Ihre Authentifizierungs-Anwendung zu ergänzen und den erzeugten 6stelligen "
+"Schlüssel einzugeben.</span>"
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.mfa_login
@@ -36,8 +40,8 @@ msgstr "<span>Merke dieses Gerät</span>"
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_create_name
 msgid "A name that will help you remember this authentication app/device"
 msgstr ""
-"Eine Bezeichnung, die Ihnen hilft sich an die Authentifierung dieser "
-"App/Gerät zu erninnern"
+"Eine Bezeichnung, die Ihnen hilft sich an die Authentifierung dieser App/"
+"Gerät zu erninnern"
 
 #. module: auth_totp
 #: model:ir.ui.view,arch_db:auth_totp.view_users_form_simple_modif
@@ -229,8 +233,8 @@ msgstr ""
 #: model:ir.model.fields,help:auth_totp.field_res_users_authenticator_ids
 msgid ""
 "To delete an authentication app, remove it from this list. To add a new "
-"authentication app, please use the button to the right. If the button is not"
-" present, you do not have the permissions to do this."
+"authentication app, please use the button to the right. If the button is not "
+"present, you do not have the permissions to do this."
 msgstr ""
 
 #. module: auth_totp
@@ -258,8 +262,8 @@ msgstr "Benutzer"
 #: code:addons/auth_totp/models/res_users.py:46
 #, python-format
 msgid ""
-"You have MFA enabled but do not have any authentication apps/devices set up."
-" To keep from being locked out, please add one before you activate this "
+"You have MFA enabled but do not have any authentication apps/devices set up. "
+"To keep from being locked out, please add one before you activate this "
 "feature."
 msgstr ""
 
@@ -286,7 +290,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_totp
-#: code:addons/auth_totp/controllers/main.py:119
+#: code:addons/auth_totp/controllers/main.py:120
 #, python-format
 msgid "Your confirmation code is not correct. Please try again."
 msgstr ""
