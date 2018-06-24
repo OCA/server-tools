@@ -1,39 +1,35 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * disable_openerp_online
+#	* disable_openerp_online
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:14+0000\n"
-"PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/pt_BR/)\n"
-"Language: pt_BR\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: disable_openerp_online
 #: field:publisher_warranty.contract,create_uid:0
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: disable_openerp_online
 #: field:publisher_warranty.contract,create_date:0
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: disable_openerp_online
 #: field:publisher_warranty.contract,write_uid:0
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr ""
 
 #. module: disable_openerp_online
 #: field:publisher_warranty.contract,write_date:0
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr ""
+
