@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mass_editing
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
@@ -35,15 +35,18 @@ msgstr ""
 "POT-Creation-Date: 2017-01-17 07:52+0000\n"
 "PO-Revision-Date: 2016-12-27 08:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr_CA/)\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/fr_CA/)\n"
+"Language: fr_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr_CA\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:36
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Add"
 msgstr ""
 
@@ -51,6 +54,18 @@ msgstr ""
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr "Avancé"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:179
+#, python-format
+msgid "Apply"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:184
+#, python-format
+msgid "Close"
+msgstr ""
 
 #. module: mass_editing
 #: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
@@ -78,7 +93,9 @@ msgstr "Afficher le nom"
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
 "wizard"
-msgstr "Afficher un bouton dans le menu latéral des documents associés pour ouvrir un assistant de rédaction"
+msgstr ""
+"Afficher un bouton dans le menu latéral des documents associés pour ouvrir "
+"un assistant de rédaction"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
@@ -148,13 +165,21 @@ msgid "Object"
 msgstr "Objet"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:37
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Remove"
 msgstr ""
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:35
+#, python-format
+msgid "Set"
 msgstr ""
 
 #. module: mass_editing
