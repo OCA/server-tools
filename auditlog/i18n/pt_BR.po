@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
@@ -34,11 +34,12 @@ msgstr ""
 "POT-Creation-Date: 2017-11-11 07:46+0000\n"
 "PO-Revision-Date: 2017-11-09 00:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: auditlog
@@ -173,9 +174,16 @@ msgstr "Registro completo"
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr "Registro completo: faça uma diferença entre os dados antes e depois da operação (registra mais informações como campos calculados que foram atualizados, mas é mais lento) \nRegistro rápido: apenas registra as alterações feitas através das operações de criação e gravação (menos informações, mas é mais rápido)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
+msgstr ""
+"Registro completo: faça uma diferença entre os dados antes e depois da "
+"operação (registra mais informações como campos calculados que foram "
+"atualizados, mas é mais lento) \n"
+"Registro rápido: apenas registra as alterações feitas através das operações "
+"de criação e gravação (menos informações, mas é mais rápido)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -386,37 +394,45 @@ msgstr "Selecione o modelo do qual deseja gerar histórico"
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
-msgstr "Selecione este se quiser manter o rastreio de criação de qualquer registro do modelo desta regra"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
+msgstr ""
+"Selecione este se quiser manter o rastreio de criação de qualquer registro "
+"do modelo desta regra"
 
 #. module: auditlog
 #: help:auditlog.rule,log_custom_method:0
 msgid ""
-"Select this if you want to keep track of custom methods on any record of the"
-" model of this rule"
+"Select this if you want to keep track of custom methods on any record of the "
+"model of this rule"
 msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
-msgstr "Selecione este se quiser manter o rastreio de exclusão de qualquer registro do modelo desta regra"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
+msgstr ""
+"Selecione este se quiser manter o rastreio de exclusão de qualquer registro "
+"do modelo desta regra"
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr "Selecione este se quiser manter o rastreio de modificação de qualquer registro do modelo desta regra"
+msgstr ""
+"Selecione este se quiser manter o rastreio de modificação de qualquer "
+"registro do modelo desta regra"
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr "Selecione este se quiser manter o rastreio de leitura/abertura de qualquer registro do modelo desta regra"
+msgstr ""
+"Selecione este se quiser manter o rastreio de leitura/abertura de qualquer "
+"registro do modelo desta regra"
 
 #. module: auditlog
 #: field:auditlog.http.request,http_session_id:0
@@ -456,7 +472,9 @@ msgstr "Nome técnico"
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr "Já existe uma regra definida neste modelo.\nVocê não pode definir outro: edite o existente."
+msgstr ""
+"Já existe uma regra definida neste modelo.\n"
+"Você não pode definir outro: edite o existente."
 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
@@ -522,4 +540,5 @@ msgstr ""
 #. module: auditlog
 #: help:auditlog.rule,user_ids:0
 msgid "if  User is not added then it will applicable for all users"
-msgstr "Se um usuário não é incluído, então ele será aplicado para todos os usuários"
+msgstr ""
+"Se um usuário não é incluído, então ele será aplicado para todos os usuários"

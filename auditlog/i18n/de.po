@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013-2014
@@ -17,11 +17,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:34+0000\n"
 "PO-Revision-Date: 2017-08-11 11:59+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
@@ -156,9 +157,16 @@ msgstr "Volles Log"
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr "Volles Log: Protokolliert Unterschiede zwischen Stand vor und nach dem Vorgang (protokolliert mehr Info, wie aktualisierte berechnete Felder, ist aber langsamer)\nSchnell-Log: Protolliert nur Änderungen durch Anlage- und Schreibvorgänge (weniger Auskunft, jedoch schneller)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
+msgstr ""
+"Volles Log: Protokolliert Unterschiede zwischen Stand vor und nach dem "
+"Vorgang (protokolliert mehr Info, wie aktualisierte berechnete Felder, ist "
+"aber langsamer)\n"
+"Schnell-Log: Protolliert nur Änderungen durch Anlage- und Schreibvorgänge "
+"(weniger Auskunft, jedoch schneller)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -369,37 +377,45 @@ msgstr "Wählen Sie das Modell, das protokolliert werden soll."
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
-msgstr "Aktivieren Sie dies, wenn die die Erstellungs-Vorgänge aller Datensätze für das Modell protokollieren wollen"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
+msgstr ""
+"Aktivieren Sie dies, wenn die die Erstellungs-Vorgänge aller Datensätze für "
+"das Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_custom_method:0
 msgid ""
-"Select this if you want to keep track of custom methods on any record of the"
-" model of this rule"
+"Select this if you want to keep track of custom methods on any record of the "
+"model of this rule"
 msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
-msgstr "Aktivieren Sie dies, wenn die die Lösch-Vorgänge aller Datensätze für das Modell protokollieren wollen"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
+msgstr ""
+"Aktivieren Sie dies, wenn die die Lösch-Vorgänge aller Datensätze für das "
+"Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr "Aktivieren Sie dies, wenn die die Änderungs-Vorgänge aller Datensätze für das Modell protokollieren wollen"
+msgstr ""
+"Aktivieren Sie dies, wenn die die Änderungs-Vorgänge aller Datensätze für "
+"das Modell protokollieren wollen"
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr "Aktivieren Sie dies, wenn die die Lese-Vorgänge aller Datensätze für das Modell protokollieren wollen"
+msgstr ""
+"Aktivieren Sie dies, wenn die die Lese-Vorgänge aller Datensätze für das "
+"Modell protokollieren wollen"
 
 #. module: auditlog
 #: field:auditlog.http.request,http_session_id:0
@@ -439,7 +455,9 @@ msgstr "Technische Bezeichnung"
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr "Es wurde bereits eine Regel für dieses Modell erstellen.\nSie können keine weiteren erstellen. Ändern Sie die bestehende. "
+msgstr ""
+"Es wurde bereits eine Regel für dieses Modell erstellen.\n"
+"Sie können keine weiteren erstellen. Ändern Sie die bestehende. "
 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
