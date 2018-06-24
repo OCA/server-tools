@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * attachment_metadata
+#	* attachment_metadata
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: server-tools (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:47+0000\n"
-"PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-server-"
-"tools-8-0/language/el_GR/)\n"
-"Language: el_GR\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -37,7 +32,7 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_tree
 msgid "Attachments"
-msgstr "Συνημμένα "
+msgstr ""
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -53,17 +48,17 @@ msgstr ""
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
 #: field:ir.attachment.metadata,company_id:0
 msgid "Company"
-msgstr "Εταιρεία"
+msgstr ""
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_uid:0
 msgid "Created by"
-msgstr "Δημιουργήθηκε από "
+msgstr ""
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,create_date:0
 msgid "Created on"
-msgstr "Δημιουργήθηκε στις"
+msgstr ""
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -78,7 +73,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,description:0
 msgid "Description"
-msgstr "Περιγραφή"
+msgstr ""
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,display_name:0
@@ -108,24 +103,18 @@ msgstr ""
 #. module: attachment_metadata
 #: code:addons/attachment_metadata/models/attachment.py:43
 #, python-format
-msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch "
-"the task."
+msgid "File corrupted: Something was wrong with the retrieved file, please relaunch the task."
 msgstr ""
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
-msgid ""
-"File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the "
-"original file."
+msgid "File hash comes from the external owner of the file.\n"
+"If provided allow to check than downloaded file is the exact copy of the original file."
 msgstr ""
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,internal_hash:0
-msgid ""
-"File hash computed with file data to be compared to external hash when "
-"provided."
+msgid "File hash computed with file data to be compared to external hash when provided."
 msgstr ""
 
 #. module: attachment_metadata
@@ -147,7 +136,7 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,id:0
 msgid "ID"
-msgstr "Κωδικός"
+msgstr ""
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,internal_hash:0
@@ -162,12 +151,12 @@ msgstr ""
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_uid:0
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr ""
 
 #. module: attachment_metadata
 #: field:ir.attachment.metadata,write_date:0
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr ""
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,attachment_id:0
@@ -217,9 +206,7 @@ msgstr ""
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,file_type:0
-msgid ""
-"The file type determines an import method to be used to parse and transform "
-"data before their import in ERP"
+msgid "The file type determines an import method to be used to parse and transform data before their import in ERP"
 msgstr ""
 
 #. module: attachment_metadata
@@ -242,3 +229,4 @@ msgstr ""
 #: field:ir.attachment.metadata,url:0
 msgid "Url"
 msgstr ""
+

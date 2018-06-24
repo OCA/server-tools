@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_metadata
-# 
+#
 # Translators:
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-08-21 06:45+0000\n"
 "PO-Revision-Date: 2016-08-21 06:55+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: attachment_metadata
@@ -109,23 +110,31 @@ msgstr "Taille du fichier"
 #: code:addons/attachment_metadata/models/attachment.py:43
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
-msgstr "Fichier corrompu: Quelque chose ne va pas lors de la récupération du fichier, veuillez relancer la tâche."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
+msgstr ""
+"Fichier corrompu: Quelque chose ne va pas lors de la récupération du "
+"fichier, veuillez relancer la tâche."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
-msgstr "L'empreinte du fichier provient du propriétaire externe de ce fichier.\nSi fourni elle permet de vérifier que le fichier téléchargé est la copie exacte du fichier original."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
+msgstr ""
+"L'empreinte du fichier provient du propriétaire externe de ce fichier.\n"
+"Si fourni elle permet de vérifier que le fichier téléchargé est la copie "
+"exacte du fichier original."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,internal_hash:0
 msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
-msgstr "l'empreinte du fichier calculé avec les données du fichier sera comparé à l'empreinte externe lorsqu'elle est fournie."
+msgstr ""
+"l'empreinte du fichier calculé avec les données du fichier sera comparé à "
+"l'empreinte externe lorsqu'elle est fournie."
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -219,7 +228,9 @@ msgstr "L'objet de cette base de données de cette pièce jointe sera attaché �
 msgid ""
 "The file type determines an import method to be used to parse and transform "
 "data before their import in ERP"
-msgstr "Le type de fichier détermine la méthode d'importation a utiliser pour parcourir et transformer les données avant de les importer dans l'ERP "
+msgstr ""
+"Le type de fichier détermine la méthode d'importation a utiliser pour "
+"parcourir et transformer les données avant de les importer dans l'ERP "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_metadata
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: attachment_metadata
@@ -109,23 +110,30 @@ msgstr "Dateigröße"
 #: code:addons/attachment_metadata/models/attachment.py:43
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
-msgstr "Datei verstümmelt: Etwas ist bei der erhaltenen Datei schief gelaufen, bitte Aufgabe wiederholen."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
+msgstr ""
+"Datei verstümmelt: Etwas ist bei der erhaltenen Datei schief gelaufen, bitte "
+"Aufgabe wiederholen."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
-msgstr "Dateiprüfsumme stammt von externem Dateibesitzer.\nWenn verfügbar erlaubt dies die exakte Übereinstimmung mit Originaldatei."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
+msgstr ""
+"Dateiprüfsumme stammt von externem Dateibesitzer.\n"
+"Wenn verfügbar erlaubt dies die exakte Übereinstimmung mit Originaldatei."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,internal_hash:0
 msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
-msgstr "Aus Datei errechnete Prüfsumme, mit externem Hash zu vergleich, wenn verfügbar."
+msgstr ""
+"Aus Datei errechnete Prüfsumme, mit externem Hash zu vergleich, wenn "
+"verfügbar."
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -219,7 +227,9 @@ msgstr "Das Datenbankobjekt dem dieser Anhang zugefügt wird"
 msgid ""
 "The file type determines an import method to be used to parse and transform "
 "data before their import in ERP"
-msgstr "Der Dateityp legt die Methode fest, die beim Parsen und Umwandeln vor dem Import ins ERP eingesetzt wird."
+msgstr ""
+"Der Dateityp legt die Methode fest, die beim Parsen und Umwandeln vor dem "
+"Import ins ERP eingesetzt wird."
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0

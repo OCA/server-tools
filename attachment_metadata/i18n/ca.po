@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_metadata
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-28 09:47+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: attachment_metadata
@@ -108,23 +109,31 @@ msgstr "Mida del Fitxer "
 #: code:addons/attachment_metadata/models/attachment.py:43
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
-msgstr "Fitxer corromput: Alguna cosa ha fallat al rebre el fitxer, si us plau torneu a carregar la tasca. "
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
+msgstr ""
+"Fitxer corromput: Alguna cosa ha fallat al rebre el fitxer, si us plau "
+"torneu a carregar la tasca. "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
-msgstr "El Hash del fitxer prové del propietari extern del fitxer. Si es proporciona ens permet comprovar que el fitxer descarregat és una còpia exacta del fitxer original. "
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
+msgstr ""
+"El Hash del fitxer prové del propietari extern del fitxer. Si es proporciona "
+"ens permet comprovar que el fitxer descarregat és una còpia exacta del "
+"fitxer original. "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,internal_hash:0
 msgid ""
 "File hash computed with file data to be compared to external hash when "
 "provided."
-msgstr "El hash del fitxer és calcula amb les dades del fitxer comparades amb el hash extern quan es proporciona. "
+msgstr ""
+"El hash del fitxer és calcula amb les dades del fitxer comparades amb el "
+"hash extern quan es proporciona. "
 
 #. module: attachment_metadata
 #: view:ir.attachment.metadata:attachment_metadata.view_external_attachment_search
@@ -211,14 +220,17 @@ msgstr "Nom del fitxer desat "
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_model:0
 msgid "The database object this attachment will be attached to"
-msgstr "Els objectes de la base de dades en aquesta adjunció també seran adjuntats "
+msgstr ""
+"Els objectes de la base de dades en aquesta adjunció també seran adjuntats "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,file_type:0
 msgid ""
 "The file type determines an import method to be used to parse and transform "
 "data before their import in ERP"
-msgstr "El tipus de fitxer determina un mètode d'importació per ser utilitzat per analitzar i transformar les dades abans des ser importades al ERP  "
+msgstr ""
+"El tipus de fitxer determina un mètode d'importació per ser utilitzat per "
+"analitzar i transformar les dades abans des ser importades al ERP  "
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,res_id:0
