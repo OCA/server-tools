@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_import_odoo
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Kostas Goutoudis <goutoudis@gmail.com>, 2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-10-26 03:03+0000\n"
 "PO-Revision-Date: 2017-10-26 03:03+0000\n"
 "Last-Translator: Kostas Goutoudis <goutoudis@gmail.com>, 2017\n"
-"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/el_GR/)\n"
+"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/"
+"el_GR/)\n"
+"Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_odoo
@@ -133,8 +134,8 @@ msgstr ""
 #. module: base_import_odoo
 #: help:import.odoo.database.field,remote_id:0
 msgid ""
-"If you leave this empty, every (set) field value will be mapped to the local"
-" ID"
+"If you leave this empty, every (set) field value will be mapped to the local "
+"ID"
 msgstr ""
 
 #. module: base_import_odoo
@@ -222,6 +223,12 @@ msgid "Password"
 msgstr ""
 
 #. module: base_import_odoo
+#: code:addons/base_import_odoo/models/import_odoo_database.py:602
+#, python-format
+msgid "Please install the \"odoorpc\" libary in your environment"
+msgstr ""
+
+#. module: base_import_odoo
 #: view:import.odoo.database:base_import_odoo.view_import_odoo_database_form
 msgid "Refresh"
 msgstr ""
@@ -249,8 +256,8 @@ msgstr ""
 #. module: base_import_odoo
 #: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
-"Select fields for which to generate unique values during import. You'll need"
-" this for res.users#login for example."
+"Select fields for which to generate unique values during import. You'll need "
+"this for res.users#login for example."
 msgstr ""
 
 #. module: base_import_odoo
@@ -310,7 +317,7 @@ msgid "Type"
 msgstr "Τύπος"
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:558
+#: code:addons/base_import_odoo/models/import_odoo_database.py:583
 #, python-format
 msgid "Unhandled field type %s"
 msgstr ""
@@ -321,7 +328,7 @@ msgid "Unique"
 msgstr ""
 
 #. module: base_import_odoo
-#: code:addons/base_import_odoo/models/import_odoo_database.py:355
+#: code:addons/base_import_odoo/models/import_odoo_database.py:380
 #, python-format
 msgid "Unknown mapping"
 msgstr ""
@@ -339,8 +346,8 @@ msgstr ""
 #. module: base_import_odoo
 #: view:import.odoo.database.field:base_import_odoo.view_import_odoo_database_field_form
 msgid ""
-"When a record of this model is imported, it will be replaced with the record"
-" you select as local ID. If you select a field and/or a remote ID, this "
+"When a record of this model is imported, it will be replaced with the record "
+"you select as local ID. If you select a field and/or a remote ID, this "
 "replacement is only effective when setting the specified field and/or when "
 "the remote value is the specified record."
 msgstr ""
