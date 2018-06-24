@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-03-04 07:38+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
@@ -134,11 +134,16 @@ msgstr "Volles Log"
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
-"Volles Log: Protokolliert Unterschiede zwischen Stand vor und nach dem Vorgang (protokolliert mehr Info, wie aktualisierte berechnete Felder, ist aber langsamer)\n"
-"Schnell-Log: Protolliert nur Änderungen durch Anlage- und Schreibvorgänge (weniger Auskunft, jedoch schneller)"
+"Volles Log: Protokolliert Unterschiede zwischen Stand vor und nach dem "
+"Vorgang (protokolliert mehr Info, wie aktualisierte berechnete Felder, ist "
+"aber langsamer)\n"
+"Schnell-Log: Protolliert nur Änderungen durch Anlage- und Schreibvorgänge "
+"(weniger Auskunft, jedoch schneller)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -334,8 +339,8 @@ msgstr "Wählen Sie das Modell, das protokolliert werden soll."
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 "Aktivieren Sie dies, wenn die die Erstellungs-Vorgänge aller Datensätze für "
 "das Modell protokollieren wollen"
@@ -343,8 +348,8 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
 "Aktivieren Sie dies, wenn die die Lösch-Vorgänge aller Datensätze für das "
 "Modell protokollieren wollen"

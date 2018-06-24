@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2016
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-04-19 17:59+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2016\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
@@ -134,11 +134,16 @@ msgstr "Registre complert "
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
 msgstr ""
-"Registre sencer: fa una diferenciació entre les dades abans i després de l'operació (registra més informació tipus camps processats que s'han actualitzat, però és més lent)\n"
-"Registre ràpid: només registra els canvis fets per les operacions de crear i escriure (menys informació, però és més ràpid)"
+"Registre sencer: fa una diferenciació entre les dades abans i després de "
+"l'operació (registra més informació tipus camps processats que s'han "
+"actualitzat, però és més lent)\n"
+"Registre ràpid: només registra els canvis fets per les operacions de crear i "
+"escriure (menys informació, però és més ràpid)"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
@@ -334,8 +339,8 @@ msgstr "Seleccioneu el model pel qual voleu generar un registre. "
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
 msgstr ""
 "Seleccioneu això si voleu fer un seguiment de la creació de qualsevol "
 "registre del model d'aquesta regla"
@@ -343,8 +348,8 @@ msgstr ""
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_unlink
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
 msgstr ""
 "Seleccioneu això si voleu fer un seguiment de la eliminació de qualsevol "
 "registre del model d'aquesta regla"
