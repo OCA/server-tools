@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * fetchmail_notify_error_to_sender
-# 
+#
 # Translators:
 # Paolo Valier <paolo.valier@hotmail.it>, 2018
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-01-06 02:25+0000\n"
 "Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: fetchmail_notify_error_to_sender
@@ -24,7 +24,8 @@ msgid ""
 "\n"
 "<div>\n"
 "    <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
-"    <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
+"    <p>we got a problem with your email: <i>${ctx.get('sender_message')."
+"get('subject')}</i></p>\n"
 "    <p>Maybe you used a wrong recipient address?</p>\n"
 "    <p><br/></p>\n"
 "    <p>Technical details:</p>\n"
@@ -35,7 +36,8 @@ msgstr ""
 "\n"
 "<div>\n"
 "    <p>Salve ${ctx.get('sender_message').get('from')},</p>\n"
-"    <p>abbiamo avuto un problema con la tua mail: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
+"    <p>abbiamo avuto un problema con la tua mail: <i>${ctx."
+"get('sender_message').get('subject')}</i></p>\n"
 "    <p>Forse hai usato un indirizzo errato?</p>\n"
 "    <p><br/></p>\n"
 "    <p>Dettagli tecnici:</p>\n"
@@ -61,8 +63,7 @@ msgstr "Server POP/IMAP"
 #. module: fetchmail_notify_error_to_sender
 #: model:mail.template,subject:fetchmail_notify_error_to_sender.email_template_error_notice
 msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
-msgstr ""
-"Ricezione errore con: ${ctx.get('sender_message').get('subject')|safe}"
+msgstr "Ricezione errore con: ${ctx.get('sender_message').get('subject')|safe}"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
@@ -70,5 +71,5 @@ msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
 msgstr ""
-"Imposta qui il template da usare per inviare una notifica al mittente quando"
-" si verificano errori durante il recupero dell'e-mail"
+"Imposta qui il template da usare per inviare una notifica al mittente quando "
+"si verificano errori durante il recupero dell'e-mail"
