@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_external_dbsource
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-04-19 17:59+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_external_dbsource
@@ -30,7 +30,8 @@ msgid ""
 "    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
 "    - ORACLE: username/%s@//server.address:port/instance\n"
 "    - PostgreSQL:\n"
-"        dbname='template1' user='dbuser' host='localhost' port='5432'         password=%s\n"
+"        dbname='template1' user='dbuser' host='localhost' "
+"port='5432'         password=%s\n"
 "    - SQLite: sqlite:///test.db\n"
 "    "
 msgstr ""
@@ -42,7 +43,8 @@ msgstr ""
 "    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
 "    - ORACLE: username/%s@//server.address:port/instance\n"
 "    - PostgreSQL:\n"
-"        dbname='template1' user='dbuser' host='localhost' port='5432'         password=%s\n"
+"        dbname='template1' user='dbuser' host='localhost' "
+"port='5432'         password=%s\n"
 "    - SQLite: sqlite:///test.db\n"
 "    "
 
@@ -55,7 +57,8 @@ msgstr "Cadena de connexió "
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
-"Connection test failed:                         Here is what we got instead:\n"
+"Connection test failed:                         Here is what we got "
+"instead:\n"
 " %s"
 msgstr ""
 "Prova de connexió fallida: Això és el que hauriem d'aconseguir en comptes:\n"

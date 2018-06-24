@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_external_dbsource
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-10-28 11:05+0000\n"
 "PO-Revision-Date: 2017-10-28 11:05+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_external_dbsource
@@ -30,7 +31,8 @@ msgid ""
 "    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
 "    - ORACLE: username/%s@//server.address:port/instance\n"
 "    - PostgreSQL:\n"
-"        dbname='template1' user='dbuser' host='localhost' port='5432'         password=%s\n"
+"        dbname='template1' user='dbuser' host='localhost' "
+"port='5432'         password=%s\n"
 "    - SQLite: sqlite:///test.db\n"
 "    "
 msgstr ""
@@ -44,7 +46,8 @@ msgstr "Caracter de Conexão"
 #: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
-"Connection test failed:                         Here is what we got instead:\n"
+"Connection test failed:                         Here is what we got "
+"instead:\n"
 " %s"
 msgstr ""
 "Teste de conexão falhou: Aqui está o que obtemos disso:\n"

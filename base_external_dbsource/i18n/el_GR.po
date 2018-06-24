@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_external_dbsource
-# 
+#
 # Translators:
 # Kostas Goutoudis <goutoudis@gmail.com>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-10 02:52+0000\n"
 "PO-Revision-Date: 2016-09-10 02:52+0000\n"
 "Last-Translator: Kostas Goutoudis <goutoudis@gmail.com>, 2016\n"
-"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/el_GR/)\n"
+"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/"
+"el_GR/)\n"
+"Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_external_dbsource
@@ -29,7 +30,8 @@ msgid ""
 "    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
 "    - ORACLE: username/%s@//server.address:port/instance\n"
 "    - PostgreSQL:\n"
-"        dbname='template1' user='dbuser' host='localhost' port='5432'         password=%s\n"
+"        dbname='template1' user='dbuser' host='localhost' "
+"port='5432'         password=%s\n"
 "    - SQLite: sqlite:///test.db\n"
 "    "
 msgstr ""
@@ -40,15 +42,16 @@ msgid "Connection string"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:155
 #, python-format
 msgid ""
-"Connection test failed:                         Here is what we got instead:\n"
+"Connection test failed:                         Here is what we got "
+"instead:\n"
 " %s"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:179
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:165
 #, python-format
 msgid ""
 "Connection test succeeded:                           Everything seems "
