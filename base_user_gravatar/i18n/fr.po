@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_user_gravatar
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,16 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-23 21:19+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: base_user_gravatar
-#: view:res.users:base_user_gravatar.view_users_form
-#: view:res.users:base_user_gravatar.view_users_form_simple_modif
+#: model:ir.ui.view,arch_db:base_user_gravatar.view_users_form
+#: model:ir.ui.view,arch_db:base_user_gravatar.view_users_form_simple_modif
 msgid "Get Gravatar image"
 msgstr ""
 
@@ -30,7 +31,7 @@ msgid "Sorry Gravatar not found."
 msgstr ""
 
 #. module: base_user_gravatar
-#: code:addons/base_user_gravatar/models/res_users.py:36
+#: code:addons/base_user_gravatar/models/res_users.py:37
 #, python-format
 msgid "There is no Gravatar image for this email (%s)"
 msgstr ""
