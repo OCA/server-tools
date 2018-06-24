@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_search_fuzzy
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
@@ -13,18 +13,18 @@ msgstr ""
 "PO-Revision-Date: 2017-04-19 17:59+0000\n"
 "Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
 msgid ""
 "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
-"faster to search than a GiST index, but slower to build or update; so GIN is"
-" better suited for static data and GiST for often-updated data.\""
+"faster to search than a GiST index, but slower to build or update; so GIN is "
+"better suited for static data and GiST for often-updated data.\""
 msgstr ""
 "Cita de la documentació de PostgreSQL: \"Com a norma general, un índex GIN "
 "és més ràpid en cercar que un índex GIST, però més lent a compilar o "
@@ -104,8 +104,8 @@ msgid ""
 "this index is resused. If the index is located in another table then a "
 "number is added at the end of the index name."
 msgstr ""
-"El nom de l'índex es genera automàticament tipus fieldname_indextype_idx. Si"
-" l'índex ja existeix i l'índex es troba a la mateixa taula aleshores aquest "
+"El nom de l'índex es genera automàticament tipus fieldname_indextype_idx. Si "
+"l'índex ja existeix i l'índex es troba a la mateixa taula aleshores aquest "
 "índex es re-utilitza. Si l'índex es troba en una altra taula aleshores "
 "s'afegeix un número al final del nom del índex."
 

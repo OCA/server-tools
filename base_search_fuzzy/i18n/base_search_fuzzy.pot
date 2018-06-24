@@ -1,42 +1,32 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_search_fuzzy
+#	* base_search_fuzzy
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 04:21+0000\n"
-"PO-Revision-Date: 2017-01-14 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
-"Language: ru\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: \n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
-msgid ""
-"Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
-"faster to search than a GiST index, but slower to build or update; so GIN is "
-"better suited for static data and GiST for often-updated data.\""
+msgid "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is faster to search than a GiST index, but slower to build or update; so GIN is better suited for static data and GiST for often-updated data.\""
 msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_uid
 msgid "Created by"
-msgstr "Создано"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_date
 msgid "Created on"
-msgstr "Создан"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_display_name
@@ -46,7 +36,7 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_field_id
 msgid "Field"
-msgstr "Поле"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: selection:trgm.index,index_type:0
@@ -61,7 +51,7 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_index_name
@@ -81,12 +71,12 @@ msgstr ""
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_uid
 msgid "Last Updated by"
-msgstr "Последний раз обновлено"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_date
 msgid "Last Updated on"
-msgstr "Последний раз обновлено"
+msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model,name:base_search_fuzzy.model_ir_model
@@ -95,11 +85,7 @@ msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_name
-msgid ""
-"The index name is automatically generated like fieldname_indextype_idx. If "
-"the index already exists and the index is located in the same table then "
-"this index is resused. If the index is located in another table then a "
-"number is added at the end of the index name."
+msgid "The index name is automatically generated like fieldname_indextype_idx. If the index already exists and the index is located in the same table then this index is resused. If the index is located in another table then a number is added at the end of the index name."
 msgstr ""
 
 #. module: base_search_fuzzy
@@ -129,3 +115,4 @@ msgstr ""
 #: model:ir.model,name:base_search_fuzzy.model_trgm_index
 msgid "trgm.index"
 msgstr ""
+

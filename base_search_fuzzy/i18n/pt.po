@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_search_fuzzy
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,18 +12,18 @@ msgstr ""
 "PO-Revision-Date: 2017-01-14 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_search_fuzzy
 #: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
 msgid ""
 "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
-"faster to search than a GiST index, but slower to build or update; so GIN is"
-" better suited for static data and GiST for often-updated data.\""
+"faster to search than a GiST index, but slower to build or update; so GIN is "
+"better suited for static data and GiST for often-updated data.\""
 msgstr ""
 
 #. module: base_search_fuzzy
