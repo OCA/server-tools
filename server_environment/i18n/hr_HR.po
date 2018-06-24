@@ -8,30 +8,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 10:39+0000\n"
-"PO-Revision-Date: 2017-05-01 10:39+0000\n"
+"POT-Creation-Date: 2017-12-01 02:11+0000\n"
+"PO-Revision-Date: 2017-12-01 02:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
-"Language: de\n"
+"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/"
+"hr_HR/)\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_uid
 msgid "Created by"
-msgstr "Erstellt von"
+msgstr "Kreirao"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_create_date
 msgid "Created on"
-msgstr "Erstellt am:"
+msgstr "Kreirano"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_display_name
 msgid "Display Name"
-msgstr "Anzeigename"
+msgstr "Naziv"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_id
@@ -41,89 +43,89 @@ msgstr "ID"
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config___last_update
 msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+msgstr "Zadnje modificirano"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_uid
 msgid "Last Updated by"
-msgstr "Zuletzt aktualisiert von"
+msgstr "Zadnji ažurirao"
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_write_date
 msgid "Last Updated on"
-msgstr "Zuletzt aktualisiert am"
+msgstr "Zadnje ažurirano"
 
 #. module: server_environment
 #: model:ir.actions.act_window,name:server_environment.act_show_config_window
 #: model:ir.ui.menu,name:server_environment.menu_server_show_config
 msgid "Server Environment"
-msgstr "Server-Umfeld"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
 #: | ged_folder
 msgid "custom_ged | ged_folder"
-msgstr "custom_ged | ged_folder"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTA
 msgid "external_service | CONSTA"
-msgstr "external_service | CONSTA"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTB
 msgid "external_service | CONSTB"
-msgstr "external_service | CONSTB"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service
 #: | CONSTC
 msgid "external_service | CONSTC"
-msgstr "external_service | CONSTC"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | in_path
 msgid "external_service.ftp | in_path"
-msgstr "external_service.ftp | in_path"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | out_path
 msgid "external_service.ftp | out_path"
-msgstr "external_service.ftp | out_path"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | password
 msgid "external_service.ftp | password"
-msgstr "external_service.ftp | password"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | port
 msgid "external_service.ftp | port"
-msgstr "external_service.ftp | port"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | server
 msgid "external_service.ftp | server"
-msgstr "external_service.ftp | server"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | tls
 msgid "external_service.ftp | tls"
-msgstr "external_service.ftp | tls"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | user
 msgid "external_service.ftp | user"
-msgstr "external_service.ftp | user"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
@@ -141,13 +143,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_misc
 #: | completed_state
 msgid "misc | completed_state"
-msgstr "misc | completed_state"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_misc
 #: | smtp_server
 msgid "misc | smtp_server"
-msgstr "misc | smtp_server"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_odoo
@@ -566,25 +568,25 @@ msgstr ""
 #. module: server_environment
 #: model:ir.model,name:server_environment.model_server_config
 msgid "server.config"
-msgstr "server.config"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | architecture
 msgid "system | architecture"
-msgstr "system | architecture"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | locale
 msgid "system | locale"
-msgstr "system | locale"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | lsb_release
 msgid "system | lsb_release"
-msgstr "system | lsb_release"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
@@ -596,40 +598,40 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | os_name
 msgid "system | os.name"
-msgstr "system | os.name"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | platform
 msgid "system | platform"
-msgstr "system | platform"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | python
 msgid "system | python"
-msgstr "system | python"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | release
 msgid "system | release"
-msgstr "system | release"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | revision
 msgid "system | revision"
-msgstr "system | revision"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_system
 #: | version
 msgid "system | version"
-msgstr "system | version"
+msgstr ""
 
 #. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_wkhtml2pdf
 #: | lib_path
 msgid "wkhtml2pdf | lib_path"
-msgstr "wkhtml2pdf | lib_path"
+msgstr ""
