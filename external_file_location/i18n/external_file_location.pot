@@ -1,24 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * external_file_location
+#	* external_file_location
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Carlos Hormigo, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 18:00+0000\n"
-"PO-Revision-Date: 2018-02-23 18:00+0000\n"
-"Last-Translator: Carlos Hormigo, 2018\n"
-"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/"
-"ca_ES/)\n"
-"Language: ca_ES\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_after_import
@@ -49,7 +42,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_company_id
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_company_id
 msgid "Company"
-msgstr "Companyia"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_md5_check
@@ -60,13 +53,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_uid
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_uid
 msgid "Created by"
-msgstr "Creat per"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_date
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_date
 msgid "Created on"
-msgstr "Creat a"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.ui.view,arch_db:external_file_location.view_task_form
@@ -77,7 +70,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_display_name
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_display_name
 msgid "Display Name"
-msgstr "Nom visible"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model,name:external_file_location.model_ir_attachment_metadata
@@ -117,9 +110,7 @@ msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_filename
-msgid ""
-"File name which is imported.You can use file pattern like *.txtto import all "
-"txt files"
+msgid "File name which is imported.You can use file pattern like *.txtto import all txt files"
 msgstr ""
 
 #. module: external_file_location
@@ -170,29 +161,26 @@ msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_new_name
-msgid ""
-"Imported File will be renamed to this nameName can use mako template where "
-"obj is an ir_attachement. template exemple :   ${obj.name}-${obj."
-"create_date}.csv"
+msgid "Imported File will be renamed to this nameName can use mako template where obj is an ir_attachement. template exemple :   ${obj.name}-${obj.create_date}.csv"
 msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location___last_update
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task___last_update
 msgid "Last Modified on"
-msgstr "Darrera modificació en"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_uid
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_uid
 msgid "Last Updated by"
-msgstr "Darrera actualització per"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_date
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_date
 msgid "Last Updated on"
-msgstr "Darrera actualització el"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model,name:external_file_location.model_external_file_location
@@ -228,7 +216,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:external_file_location.view_location_form
 #: model:ir.ui.view,arch_db:external_file_location.view_task_form
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,field_description:external_file_location.field_external_file_task_new_name
@@ -284,7 +272,6 @@ msgstr ""
 
 #. module: external_file_location
 #: model:ir.model.fields,help:external_file_location.field_external_file_task_file_type
-msgid ""
-"The file type determines an import method to be used to parse and transform "
-"data before their import in ERP"
+msgid "The file type determines an import method to be used to parse and transform data before their import in ERP"
 msgstr ""
+
