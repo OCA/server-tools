@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_prototyper
-# 
+#
 # Translators:
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2013
 # Antonio Trueba, 2016
@@ -20,12 +20,14 @@ msgstr ""
 "POT-Creation-Date: 2016-05-06 02:41+0000\n"
 "PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: module_prototyper
 #: selection:module_prototyper.module.export,api_version:0
@@ -112,9 +114,9 @@ msgstr "Kontekst"
 #: help:ir.model.fields,client_context:0
 #, python-format
 msgid ""
-"Context to use on the client side when handling the field (python "
-"dictionary)"
-msgstr "Kontekst za uporabo na odjemalčevi strani pri uporabi polja (python slovar)"
+"Context to use on the client side when handling the field (python dictionary)"
+msgstr ""
+"Kontekst za uporabo na odjemalčevi strani pri uporabi polja (python slovar)"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_uid:0
@@ -177,78 +179,99 @@ msgid ""
 "Enter the description of your module, what it does, how to install, "
 "configure and use it, the roadmap or known issues. The description will be "
 "exported in README.rst"
-msgstr "Vnos opisa modula, kaj počne, kako se namesti, nastavi in uporablja, plan razvoja in znane težave. Opis bo izvožen v README.rst"
+msgstr ""
+"Vnos opisa modula, kaj počne, kako se namesti, nastavi in uporablja, plan "
+"razvoja in znane težave. Opis bo izvožen v README.rst"
 
 #. module: module_prototyper
 #: help:module_prototyper,right_ids:0
 msgid ""
 "Enter the list of access rights that you have created and want to export in "
 "this module."
-msgstr "Vnos seznama dostopnih pravic, ki ste jih ustvarili in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama dostopnih pravic, ki ste jih ustvarili in jih želite izvoziti v "
+"ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,field_ids:0
 msgid ""
 "Enter the list of fields that you have created or modified and want to "
-"export in this module. New models will be exported as long as you choose one"
-" of his fields."
-msgstr "Vnos seznama polj, ki so bila ustvarjena ali spremenjena in jih želite izvoziti iz tega modula. Novi modeli bodo izvoženi le, če izberete eno od teh polj."
+"export in this module. New models will be exported as long as you choose one "
+"of his fields."
+msgstr ""
+"Vnos seznama polj, ki so bila ustvarjena ali spremenjena in jih želite "
+"izvoziti iz tega modula. Novi modeli bodo izvoženi le, če izberete eno od "
+"teh polj."
 
 #. module: module_prototyper
 #: help:module_prototyper,group_ids:0
 msgid ""
 "Enter the list of groups that you have created and want to export in this "
 "module."
-msgstr "Vnos seznama skupin, ki so bile ustvarjene in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama skupin, ki so bile ustvarjene in jih želite izvoziti v ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,menu_ids:0
 msgid ""
 "Enter the list of menu items that you have created and want to export in "
 "this module. Related windows actions will be exported as well."
-msgstr "Vnos seznama menijskih postavk, ki so bile ustvarjene in jih želite izvoziti v ta modul. Povezana okenska dejanja bodo prav tako izvožena."
+msgstr ""
+"Vnos seznama menijskih postavk, ki so bile ustvarjene in jih želite izvoziti "
+"v ta modul. Povezana okenska dejanja bodo prav tako izvožena."
 
 #. module: module_prototyper
 #: help:module_prototyper,rule_ids:0
 msgid ""
 "Enter the list of record rules that you have created and want to export in "
 "this module."
-msgstr "Vnos seznama pravil zapisov, ki so bila ustvarjena in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama pravil zapisov, ki so bila ustvarjena in jih želite izvoziti v "
+"ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,report_ids:0
 msgid ""
 "Enter the list of reports that you have created and want to export in this "
 "module."
-msgstr "Vnos seznama poročil, ki so bila ustvarjena in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama poročil, ki so bila ustvarjena in jih želite izvoziti v ta "
+"modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,dependency_ids:0
 msgid ""
-"Enter the list of required modules that need to be installed for your module"
-" to work properly"
-msgstr "Vnos seznama zahtevanih modulov, ki morajo biti nameščeni, da bi vaš modul pravilno deloval."
+"Enter the list of required modules that need to be installed for your module "
+"to work properly"
+msgstr ""
+"Vnos seznama zahtevanih modulov, ki morajo biti nameščeni, da bi vaš modul "
+"pravilno deloval."
 
 #. module: module_prototyper
 #: help:module_prototyper,view_ids:0
 msgid ""
 "Enter the list of views that you have created and want to export in this "
 "module."
-msgstr "Seznam prikazov, ki so bili ustvarjeni in jih želite izvoziti v ta modul."
+msgstr ""
+"Seznam prikazov, ki so bili ustvarjeni in jih želite izvoziti v ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,activity_ids:0
 msgid ""
 "Enter the list of workflow activities that you have created and want to "
 "export in this module"
-msgstr "Vnos seznama dejavnosti delotoka, ki so bile ustvarjene in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama dejavnosti delotoka, ki so bile ustvarjene in jih želite "
+"izvoziti v ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,transition_ids:0
 msgid ""
 "Enter the list of workflow transitions that you have created and want to "
 "export in this module"
-msgstr "Vnos seznama tranzicij delotoka, ki so bile ustvarjene in jih želite izvoziti v ta modul."
+msgstr ""
+"Vnos seznama tranzicij delotoka, ki so bile ustvarjene in jih želite "
+"izvoziti v ta modul."
 
 #. module: module_prototyper
 #: help:module_prototyper,maintainer:0
@@ -425,7 +448,9 @@ msgstr "Opombe razvijalcem."
 msgid ""
 "Notes to help developers to understand the work or advanced features that "
 "should be added, ie: onchange, etc."
-msgstr "Opombe v pomoč razvijalcem, da bi razumeli delovanje naprednih funkcij, ki bi morale biti dodane. Na primer: onchange in podobno."
+msgstr ""
+"Opombe v pomoč razvijalcem, da bi razumeli delovanje naprednih funkcij, ki "
+"bi morale biti dodane. Na primer: onchange in podobno."
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -518,7 +543,9 @@ msgstr "Zapisi, ki ustrezajo zapisom, bodo dodani kot demonstracijski podatki."
 msgid ""
 "The technical name will be used to define the name of the exported module, "
 "the name of the model."
-msgstr "Tehnični naziv bo uporabljen za določitev naziva izvoženega modula in naziv modela."
+msgstr ""
+"Tehnični naziv bo uporabljen za določitev naziva izvoženega modula in naziv "
+"modela."
 
 #. module: module_prototyper
 #: field:module_prototyper,transition_ids:0

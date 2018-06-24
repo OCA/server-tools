@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_prototyper
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Antonio Trueba, 2016
@@ -19,11 +19,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: module_prototyper
@@ -111,9 +112,10 @@ msgstr "Kontext"
 #: help:ir.model.fields,client_context:0
 #, python-format
 msgid ""
-"Context to use on the client side when handling the field (python "
+"Context to use on the client side when handling the field (python dictionary)"
+msgstr ""
+"Auf Klientseite zu verwendender Kontext, beim Umgang mit dem Feld (Python "
 "dictionary)"
-msgstr "Auf Klientseite zu verwendender Kontext, beim Umgang mit dem Feld (Python dictionary)"
 
 #. module: module_prototyper
 #: field:module_prototyper,create_uid:0
@@ -176,84 +178,111 @@ msgid ""
 "Enter the description of your module, what it does, how to install, "
 "configure and use it, the roadmap or known issues. The description will be "
 "exported in README.rst"
-msgstr "Pflegen Sie eine Beschreibung Ihres Modul, was es macht, wie es installiert, konfiguriert und verwendet wird, eine Roadmap oder bekannte Probleme. Die Beschreibung wird als README.rst exportiert"
+msgstr ""
+"Pflegen Sie eine Beschreibung Ihres Modul, was es macht, wie es installiert, "
+"konfiguriert und verwendet wird, eine Roadmap oder bekannte Probleme. Die "
+"Beschreibung wird als README.rst exportiert"
 
 #. module: module_prototyper
 #: help:module_prototyper,right_ids:0
 msgid ""
 "Enter the list of access rights that you have created and want to export in "
 "this module."
-msgstr "Erstellen Sie eine Liste der von Ihnen angelegten Berechtigungen und die Sie in das Modul exportiert haben möchten."
+msgstr ""
+"Erstellen Sie eine Liste der von Ihnen angelegten Berechtigungen und die Sie "
+"in das Modul exportiert haben möchten."
 
 #. module: module_prototyper
 #: help:module_prototyper,field_ids:0
 msgid ""
 "Enter the list of fields that you have created or modified and want to "
-"export in this module. New models will be exported as long as you choose one"
-" of his fields."
-msgstr "Erstellen Sie eine Liste der Felder, die Sie angelegt oder geändert haben und in das Modul exportieren möchten. Neue Modelle werden exportiert so lange Sie eines dessen Felder angeben."
+"export in this module. New models will be exported as long as you choose one "
+"of his fields."
+msgstr ""
+"Erstellen Sie eine Liste der Felder, die Sie angelegt oder geändert haben "
+"und in das Modul exportieren möchten. Neue Modelle werden exportiert so "
+"lange Sie eines dessen Felder angeben."
 
 #. module: module_prototyper
 #: help:module_prototyper,group_ids:0
 msgid ""
 "Enter the list of groups that you have created and want to export in this "
 "module."
-msgstr "Erstellen Sie eine Liste aller Gruppen, die Sie angelegt haben und in das Modul exportieren möchten."
+msgstr ""
+"Erstellen Sie eine Liste aller Gruppen, die Sie angelegt haben und in das "
+"Modul exportieren möchten."
 
 #. module: module_prototyper
 #: help:module_prototyper,menu_ids:0
 msgid ""
 "Enter the list of menu items that you have created and want to export in "
 "this module. Related windows actions will be exported as well."
-msgstr "Erstellen Sie eine Liste aller Menüs, die Sie angelegt Haben und im Modul exportieren möchten. Diesbezügliche Window-Actions werden ebenfalls mit exportiert."
+msgstr ""
+"Erstellen Sie eine Liste aller Menüs, die Sie angelegt Haben und im Modul "
+"exportieren möchten. Diesbezügliche Window-Actions werden ebenfalls mit "
+"exportiert."
 
 #. module: module_prototyper
 #: help:module_prototyper,rule_ids:0
 msgid ""
 "Enter the list of record rules that you have created and want to export in "
 "this module."
-msgstr "Erstellen Sie eine Liste aller Datensatzregeln, die Sie angelegt haben und in das Modul exportiert haben möchten."
+msgstr ""
+"Erstellen Sie eine Liste aller Datensatzregeln, die Sie angelegt haben und "
+"in das Modul exportiert haben möchten."
 
 #. module: module_prototyper
 #: help:module_prototyper,report_ids:0
 msgid ""
 "Enter the list of reports that you have created and want to export in this "
 "module."
-msgstr "Erstellen Sie eine Liste aller Berichte, die Sie angelegt haben und in das Modul exportiert haben möchten."
+msgstr ""
+"Erstellen Sie eine Liste aller Berichte, die Sie angelegt haben und in das "
+"Modul exportiert haben möchten."
 
 #. module: module_prototyper
 #: help:module_prototyper,dependency_ids:0
 msgid ""
-"Enter the list of required modules that need to be installed for your module"
-" to work properly"
-msgstr "Erstellen Sie eine Liste erforderlicher Module, die zum Funktionieren Ihres Moduls installiert sein müssen"
+"Enter the list of required modules that need to be installed for your module "
+"to work properly"
+msgstr ""
+"Erstellen Sie eine Liste erforderlicher Module, die zum Funktionieren Ihres "
+"Moduls installiert sein müssen"
 
 #. module: module_prototyper
 #: help:module_prototyper,view_ids:0
 msgid ""
 "Enter the list of views that you have created and want to export in this "
 "module."
-msgstr "Erstellen Sie eine Lister der Sichten, die Sie erstellt haben und in Ihr Modul exportiert haben möchten."
+msgstr ""
+"Erstellen Sie eine Lister der Sichten, die Sie erstellt haben und in Ihr "
+"Modul exportiert haben möchten."
 
 #. module: module_prototyper
 #: help:module_prototyper,activity_ids:0
 msgid ""
 "Enter the list of workflow activities that you have created and want to "
 "export in this module"
-msgstr "Erstellen Sie eine Liste der Workflow-Aktivitäten, die Sie erstellt haben und in das Modul exportiert haben möchten"
+msgstr ""
+"Erstellen Sie eine Liste der Workflow-Aktivitäten, die Sie erstellt haben "
+"und in das Modul exportiert haben möchten"
 
 #. module: module_prototyper
 #: help:module_prototyper,transition_ids:0
 msgid ""
 "Enter the list of workflow transitions that you have created and want to "
 "export in this module"
-msgstr "Erstellen Sie eine Liste der Workflow-Übergänge, die Sie angelegt und in das Modul exportiert haben möchten"
+msgstr ""
+"Erstellen Sie eine Liste der Workflow-Übergänge, die Sie angelegt und in das "
+"Modul exportiert haben möchten"
 
 #. module: module_prototyper
 #: help:module_prototyper,maintainer:0
 msgid ""
 "Enter the name of the person or organization who will maintain this module"
-msgstr "Geben Sie Namen der Person oder Organisation an, der/die das Modul verwalten wird "
+msgstr ""
+"Geben Sie Namen der Person oder Organisation an, der/die das Modul verwalten "
+"wird "
 
 #. module: module_prototyper
 #: help:module_prototyper,version:0
@@ -424,7 +453,9 @@ msgstr "Hinweis an Entwickler"
 msgid ""
 "Notes to help developers to understand the work or advanced features that "
 "should be added, ie: onchange, etc."
-msgstr "Hinweise, um Entwicklern zu helfen, die Arbeit und die Erweiterungen zu verstehen, die hinzugefügt werden sollten, z.B. onchange, usw."
+msgstr ""
+"Hinweise, um Entwicklern zu helfen, die Arbeit und die Erweiterungen zu "
+"verstehen, die hinzugefügt werden sollten, z.B. onchange, usw."
 
 #. module: module_prototyper
 #: selection:module_prototyper,license:0
@@ -494,30 +525,39 @@ msgstr "Text, der Hilfe zum Feld eingesetzt wird..."
 #: help:module_prototyper,human_name:0
 msgid ""
 "The Module Name will be used as the displayed name of the exported module."
-msgstr "Die Mudulbezeichnung wird als Anzeigename des exportierten Moduls verwendet."
+msgstr ""
+"Die Mudulbezeichnung wird als Anzeigename des exportierten Moduls verwendet."
 
 #. module: module_prototyper
 #: help:module_prototyper,icon_image:0
 msgid ""
 "The icon set up here will be used as the icon for the exported module also"
-msgstr "Das Icon, das hier angegeben wird, wird auch für das exportierte Modul verwendet"
+msgstr ""
+"Das Icon, das hier angegeben wird, wird auch für das exportierte Modul "
+"verwendet"
 
 #. module: module_prototyper
 #: help:module_prototyper,data_ids:0
 msgid "The records matching the filters will be added as data."
-msgstr "Die Datensätze, die mit den Filtern ausgewählt werden, werden als Daten hinzugefügt."
+msgstr ""
+"Die Datensätze, die mit den Filtern ausgewählt werden, werden als Daten "
+"hinzugefügt."
 
 #. module: module_prototyper
 #: help:module_prototyper,demo_ids:0
 msgid "The records matching the filters will be added as demo data."
-msgstr "Die Datensätze, die mit den Filtern ausgewählt werden, werden als Beispiel-Daten hinzugefügt."
+msgstr ""
+"Die Datensätze, die mit den Filtern ausgewählt werden, werden als Beispiel-"
+"Daten hinzugefügt."
 
 #. module: module_prototyper
 #: help:module_prototyper,name:0
 msgid ""
 "The technical name will be used to define the name of the exported module, "
 "the name of the model."
-msgstr "Die technische Bezeichnung legt den Namen des exportierten Moduls fest und kennzeichnet das Modell."
+msgstr ""
+"Die technische Bezeichnung legt den Namen des exportierten Moduls fest und "
+"kennzeichnet das Modell."
 
 #. module: module_prototyper
 #: field:module_prototyper,transition_ids:0
@@ -591,14 +631,18 @@ msgstr "get"
 #: help:ir.model.fields,column1:0
 #, python-format
 msgid "name of the column referring to 'these' records in the relation table"
-msgstr "Bezeichnung der Spalte, die auf 'diese' Datensätze in der Beziehungstabelle verweist"
+msgstr ""
+"Bezeichnung der Spalte, die auf 'diese' Datensätze in der Beziehungstabelle "
+"verweist"
 
 #. module: module_prototyper
 #: code:addons/module_prototyper/models/ir_model_fields.py:41
 #: help:ir.model.fields,column2:0
 #, python-format
 msgid "name of the column referring to 'those' records in the relation table"
-msgstr "Bezeichnung der Spalte, die auf 'jene' Datensätze der Beziehungstabelle verweist"
+msgstr ""
+"Bezeichnung der Spalte, die auf 'jene' Datensätze der Beziehungstabelle "
+"verweist"
 
 #. module: module_prototyper
 #: view:module_prototyper.module.export:module_prototyper.view_module_export_wizard
