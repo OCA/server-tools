@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * secure_uninstall
+#	* secure_uninstall
 #
-# Translators:
-# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-28 09:49+0000\n"
-"PO-Revision-Date: 2017-04-28 09:49+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
-"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
-"Language: ca\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: secure_uninstall
 #: help:base.module.upgrade,uninstall_password:0
@@ -25,16 +20,13 @@ msgstr ""
 
 #. module: secure_uninstall
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
-msgid ""
-"If you want uninstall module, write required password ('secure_uninstall' "
-"key in ERP config file)."
+msgid "If you want uninstall module, write required password ('secure_uninstall' key in ERP config file)."
 msgstr ""
 
 #. module: secure_uninstall
 #: code:addons/secure_uninstall/models/module.py:28
 #, python-format
-msgid ""
-"Missing configuration key\n"
+msgid "Missing configuration key\n"
 "--------------------\n"
 "'secure_uninstall' configuration key is not set in \n"
 "your Odoo server configuration file: please set it a value"
@@ -48,13 +40,12 @@ msgstr ""
 #. module: secure_uninstall
 #: field:base.module.upgrade,uninstall_password:0
 msgid "Password"
-msgstr "Contrasenya "
+msgstr ""
 
 #. module: secure_uninstall
 #: code:addons/secure_uninstall/models/module.py:36
 #, python-format
-msgid ""
-"Password Error\n"
+msgid "Password Error\n"
 "--------------------\n"
 "Provided password '%s' doesn't match with 'Master Password'\n"
 "('secure_uninstall' key) found in the Odoo server configuration file .\n"
@@ -73,3 +64,4 @@ msgstr ""
 #: view:base.module.upgrade:secure_uninstall.view_base_module_upgrade
 msgid "key_provided_by_administrator"
 msgstr ""
+
