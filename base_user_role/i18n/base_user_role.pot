@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_user_role
+#	* base_user_role
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 02:07+0000\n"
-"PO-Revision-Date: 2016-12-17 02:07+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Amharic (https://www.transifex.com/oca/teams/23907/am/)\n"
-"Language: am\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_model_access
@@ -53,13 +48,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_display_name
@@ -96,7 +91,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_id
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_implied_ids
@@ -113,13 +108,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_uid
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_write_date
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr ""
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_name
@@ -205,3 +200,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_view_access
 msgid "Views"
 msgstr ""
+

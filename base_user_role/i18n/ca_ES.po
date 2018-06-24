@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_user_role
-# 
+#
 # Translators:
 # Carlos Hormigo, 2018
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-02-23 18:00+0000\n"
 "PO-Revision-Date: 2018-02-23 18:00+0000\n"
 "Last-Translator: Carlos Hormigo, 2018\n"
-"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/"
+"ca_ES/)\n"
+"Language: ca_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_user_role
@@ -134,7 +135,7 @@ msgid "Role"
 msgstr ""
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1515
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1555
 msgid "Role lines"
 msgstr ""
 
