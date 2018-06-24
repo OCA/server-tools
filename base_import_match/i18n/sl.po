@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_import_match
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2017-07-26 13:30+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: base_import_match
 #: model:ir.model.fields,field_description:base_import_match.field_base_import_match_field_conditional
@@ -98,8 +99,8 @@ msgstr "ID"
 msgid ""
 "If the imported value is not this, the whole matching rule will be "
 "discarded. Be careful, this data is always treated as a string, and "
-"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
-" 'true', only EXACTLY 'True'."
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor "
+"'true', only EXACTLY 'True'."
 msgstr ""
 "Če se uvožena vrednost ne ujema s to, se opusti celotno pravilo ujemanja. "
 "Pozor, ti podatki se vedno obravnavajo kot niz, primerjava pa upošteva "
