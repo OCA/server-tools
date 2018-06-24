@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_base_synchronize
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-10-28 11:05+0000\n"
 "PO-Revision-Date: 2017-10-28 11:05+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: attachment_base_synchronize
@@ -152,8 +153,8 @@ msgstr "Tamanho do arquivo"
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
 msgstr ""
 "Arquivo corrompido: Alguma coisa estava errada com o arquivo recuperado, "
 "reexecute a tarefa."
@@ -162,7 +163,8 @@ msgstr ""
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 msgstr ""
 
 #. module: attachment_base_synchronize

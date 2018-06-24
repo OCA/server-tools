@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_base_synchronize
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # dglucose <eric.lemesre@gmail.com>, 2016
@@ -15,10 +15,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-04 09:41+0000\n"
 "Last-Translator: Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: attachment_base_synchronize
@@ -120,6 +120,11 @@ msgid "Error"
 msgstr "Erreur"
 
 #. module: attachment_base_synchronize
+#: selection:ir.attachment.metadata,file_type:0
+msgid "Export File (External location)"
+msgstr ""
+
+#. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid "External hash"
 msgstr "Empreinte externe"
@@ -149,8 +154,8 @@ msgstr "Taille du fichier"
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
 msgstr ""
 "Fichier corrompu: Quelque chose s'est mal passé pendant la récupération du "
 "fichier, relancez la tache.."
@@ -159,10 +164,12 @@ msgstr ""
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 msgstr ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash

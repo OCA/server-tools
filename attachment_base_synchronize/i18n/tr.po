@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_base_synchronize
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2016-12-29 03:39+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: attachment_base_synchronize
@@ -118,6 +118,11 @@ msgid "Error"
 msgstr "Hata"
 
 #. module: attachment_base_synchronize
+#: selection:ir.attachment.metadata,file_type:0
+msgid "Export File (External location)"
+msgstr ""
+
+#. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid "External hash"
 msgstr "Dış Hash"
@@ -147,8 +152,8 @@ msgstr "Dosya Boyu"
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
 msgstr ""
 "Dosya bozulmuş: Alınan dosya ile ilgili bir terslik var\n"
 " Lütfen işlemi tekrarlayın."
@@ -157,10 +162,12 @@ msgstr ""
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 msgstr ""
 "Dosya hash bilgisi dışardaki sahibinden geliyor.\n"
-"Eğer sağlanırsa indirilen dosyanın orjinal dosya ile aynı olup olmadığı kontrol edilir."
+"Eğer sağlanırsa indirilen dosyanın orjinal dosya ile aynı olup olmadığı "
+"kontrol edilir."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
