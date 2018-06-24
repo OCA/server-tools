@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_external_dbsource
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-10 02:52+0000\n"
 "PO-Revision-Date: 2016-09-10 02:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/teams/23907/es_CR/)\n"
+"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/"
+"teams/23907/es_CR/)\n"
+"Language: es_CR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_external_dbsource
@@ -29,9 +30,39 @@ msgid ""
 "    - ODBC: DRIVER={FreeTDS};SERVER=server.address;Database=mydb;UID=sa\n"
 "    - ORACLE: username/%s@//server.address:port/instance\n"
 "    - PostgreSQL:\n"
-"        dbname='template1' user='dbuser' host='localhost' port='5432'         password=%s\n"
+"        dbname='template1' user='dbuser' host='localhost' "
+"port='5432'         password=%s\n"
 "    - SQLite: sqlite:///test.db\n"
+"    - Elasticsearch: https://user:%s@localhost:9200\n"
 "    "
+msgstr ""
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:348
+#, python-format
+msgid ""
+"\"%s\" method not found, check that all assets are installed for the %s "
+"connector type."
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_ca_certs
+msgid "Ca certs"
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_client_cert
+msgid "Client cert"
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_client_key
+msgid "Client key"
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_conn_string_full
+msgid "Conn string full"
 msgstr ""
 
 #. module: base_external_dbsource
@@ -40,19 +71,20 @@ msgid "Connection string"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:169
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:189
 #, python-format
 msgid ""
-"Connection test failed:                         Here is what we got instead:\n"
-" %s"
+"Connection test failed:\n"
+"Here is what we got instead:\n"
+"%s"
 msgstr ""
 
 #. module: base_external_dbsource
-#: code:addons/base_external_dbsource/models/base_external_dbsource.py:179
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:193
 #, python-format
 msgid ""
-"Connection test succeeded:                           Everything seems "
-"properly set up!"
+"Connection test succeeded:\n"
+"Everything seems properly set up!"
 msgstr ""
 
 #. module: base_external_dbsource
@@ -102,6 +134,11 @@ msgid "External Database Sources"
 msgstr ""
 
 #. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "Firebird"
+msgstr ""
+
+#. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_id
 msgid "ID"
 msgstr "ID"
@@ -109,10 +146,8 @@ msgstr "ID"
 #. module: base_external_dbsource
 #: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_connector
 msgid ""
-"If a connector is missing from the                                      "
-"list, check the server log to confirm                                      "
-"that the required components were                                      "
-"detected."
+"If a connector is missing from the list, check the server log to confirm "
+"that the required components were detected."
 msgstr ""
 
 #. module: base_external_dbsource
@@ -131,8 +166,28 @@ msgid "Last Updated on"
 msgstr "Ultima actualización en"
 
 #. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "Microsoft SQL Server"
+msgstr ""
+
+#. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "MySQL"
+msgstr ""
+
+#. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "ODBC"
+msgstr ""
+
+#. module: base_external_dbsource
 #: model:ir.model.fields,field_description:base_external_dbsource.field_base_external_dbsource_password
 msgid "Password"
+msgstr ""
+
+#. module: base_external_dbsource
+#: model:ir.model.fields,help:base_external_dbsource.field_base_external_dbsource_ca_certs
+msgid "Path to CA Certs file on server."
 msgstr ""
 
 #. module: base_external_dbsource
@@ -146,6 +201,17 @@ msgid "PostgreSQL"
 msgstr ""
 
 #. module: base_external_dbsource
+#: selection:base.external.dbsource,connector:0
+msgid "SQLite"
+msgstr ""
+
+#. module: base_external_dbsource
 #: model:ir.ui.view,arch_db:base_external_dbsource.view_dbsource_form
 msgid "Test Connection"
+msgstr ""
+
+#. module: base_external_dbsource
+#: code:addons/base_external_dbsource/models/base_external_dbsource.py:160
+#, python-format
+msgid "query is a required argument"
 msgstr ""
