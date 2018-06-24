@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * users_ldap_populate
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2015-09-18 13:56+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/lt/)\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: users_ldap_populate
 #: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
@@ -31,6 +33,11 @@ msgstr "Sukūrė"
 #: field:res.company.ldap.populate_wizard,create_date:0
 msgid "Created on"
 msgstr "Sukurta"
+
+#. module: users_ldap_populate
+#: field:res.company.ldap,deactivate_unknown_users:0
+msgid "Deactivate unknown users"
+msgstr ""
 
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,display_name:0
@@ -63,6 +70,11 @@ msgid "Last Updated on"
 msgstr "Paskutinį kartą atnaujinta"
 
 #. module: users_ldap_populate
+#: help:res.company.ldap,no_deactivate_user_ids:0
+msgid "List users who never should be deactivated by the deactivation wizard"
+msgstr ""
+
+#. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,name:0
 msgid "Name"
 msgstr "Pavadinimas"
@@ -70,6 +82,11 @@ msgstr "Pavadinimas"
 #. module: users_ldap_populate
 #: field:res.company.ldap.populate_wizard,users_created:0
 msgid "Number of users created"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_deactivated:0
+msgid "Number of users deactivated"
 msgstr ""
 
 #. module: users_ldap_populate
@@ -85,4 +102,9 @@ msgstr ""
 #. module: users_ldap_populate
 #: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
 msgid "Populate users from LDAP"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap,no_deactivate_user_ids:0
+msgid "Users never to deactivate"
 msgstr ""
