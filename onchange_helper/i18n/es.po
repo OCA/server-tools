@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * onchange_helper
-# 
+#
 # Translators:
 # Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
@@ -12,13 +12,16 @@ msgstr ""
 "PO-Revision-Date: 2017-06-01 14:59+0000\n"
 "Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: onchange_helper
-#: model:ir.model,name:onchange_helper.model_ir_rule
-msgid "ir.rule"
-msgstr "ir.regla"
+#: model:ir.model,name:onchange_helper.model_base
+msgid "base"
+msgstr ""
+
+#~ msgid "ir.rule"
+#~ msgstr "ir.regla"
