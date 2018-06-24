@@ -1,24 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * base_external_system
+#	* base_external_system
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
-"Language: pl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: \n"
 
 #. module: base_external_system
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_company_ids
@@ -44,21 +37,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_create_uid
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_create_uid
 msgid "Created by"
-msgstr "Utworzone przez"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_create_date
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_create_date
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_create_date
 msgid "Created on"
-msgstr "Utworzono"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_display_name
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_display_name
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_display_name
 msgid "Display Name"
-msgstr "Wyświetlana nazwa "
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model,name:base_external_system.model_external_system
@@ -100,7 +93,7 @@ msgstr ""
 #. module: base_external_system
 #: model:ir.ui.view,arch_db:base_external_system.external_system_view_search
 msgid "Group By"
-msgstr "Pogrupuj wg"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_host
@@ -115,7 +108,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_id
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_ignore_fingerprint
@@ -141,28 +134,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter___last_update
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os___last_update
 msgid "Last Modified on"
-msgstr "Ostatnio modyfikowano"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_write_uid
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_write_uid
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_write_uid
 msgid "Last Updated by"
-msgstr "Ostatnio modyfikowane przez"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_write_date
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_write_date
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_write_date
 msgid "Last Updated on"
-msgstr "Ostatnia zmiana"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_name
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_name
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_os_name
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,field_description:base_external_system.field_external_system_adapter_password
@@ -211,9 +204,7 @@ msgstr ""
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_ignore_fingerprint
 #: model:ir.model.fields,help:base_external_system.field_external_system_ignore_fingerprint
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_ignore_fingerprint
-msgid ""
-"Set this to `True` in order to ignore an invalid/unknown fingerprint from "
-"the system."
+msgid "Set this to `True` in order to ignore an invalid/unknown fingerprint from the system."
 msgstr ""
 
 #. module: base_external_system
@@ -258,36 +249,28 @@ msgstr ""
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_fingerprint
 #: model:ir.model.fields,help:base_external_system.field_external_system_fingerprint
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_fingerprint
-msgid ""
-"This is the fingerprint that is advertised by this system in order to "
-"validate its identity."
+msgid "This is the fingerprint that is advertised by this system in order to validate its identity."
 msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_interface
 #: model:ir.model.fields,help:base_external_system.field_external_system_interface
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_interface
-msgid ""
-"This is the interface that this system represents. It is created "
-"automatically upon creation of the external system."
+msgid "This is the interface that this system represents. It is created automatically upon creation of the external system."
 msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_password
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_password
 #: model:ir.model.fields,help:base_external_system.field_external_system_password
-msgid ""
-"This is the password that is used for authenticating to this system, if "
-"applicable."
+msgid "This is the password that is used for authenticating to this system, if applicable."
 msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_private_key_password
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_private_key_password
 #: model:ir.model.fields,help:base_external_system.field_external_system_private_key_password
-msgid ""
-"This is the password to unlock the private key that was provided for this "
-"sytem."
+msgid "This is the password to unlock the private key that was provided for this sytem."
 msgstr ""
 
 #. module: base_external_system
@@ -301,18 +284,14 @@ msgstr ""
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_private_key
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_private_key
 #: model:ir.model.fields,help:base_external_system.field_external_system_private_key
-msgid ""
-"This is the private key that is used for authenticating to this system, if "
-"applicable."
+msgid "This is the private key that is used for authenticating to this system, if applicable."
 msgstr ""
 
 #. module: base_external_system
 #: model:ir.model.fields,help:base_external_system.field_external_system_adapter_username
 #: model:ir.model.fields,help:base_external_system.field_external_system_os_username
 #: model:ir.model.fields,help:base_external_system.field_external_system_username
-msgid ""
-"This is the username that is used for authenticating to this system, if "
-"applicable."
+msgid "This is the username that is used for authenticating to this system, if applicable."
 msgstr ""
 
 #. module: base_external_system
@@ -322,3 +301,4 @@ msgstr ""
 #: model:ir.ui.view,arch_db:base_external_system.external_system_view_search
 msgid "Username"
 msgstr ""
+
