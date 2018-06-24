@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_optional_quick_create
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-05-10 00:47+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_optional_quick_create
@@ -27,10 +27,15 @@ msgstr "Unterbinde Schnellanlage"
 #. module: base_optional_quick_create
 #: code:addons/base_optional_quick_create/models/ir_model.py:21
 #, python-format
-msgid "Can't create quickly. Opening create form"
-msgstr "Kann Schnellanlage nicht ausführen. Verwenden Sie Formularanlage"
+msgid ""
+"Can't create %s with name %s quickly.\n"
+"Please contact your system administrator to disable this behaviour."
+msgstr ""
 
 #. module: base_optional_quick_create
 #: model:ir.model,name:base_optional_quick_create.model_ir_model
 msgid "Models"
 msgstr "Datenmodelle"
+
+#~ msgid "Can't create quickly. Opening create form"
+#~ msgstr "Kann Schnellanlage nicht ausführen. Verwenden Sie Formularanlage"
