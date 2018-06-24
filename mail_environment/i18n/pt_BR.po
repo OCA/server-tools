@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mail_environment
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,14 +10,20 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: mail_environment
 #: model:ir.model,name:mail_environment.model_fetchmail_server
 msgid "POP/IMAP Server"
 msgstr "Servidor POP/IMAP"
+
+#. module: mail_environment
+#: model:ir.model,name:mail_environment.model_ir_mail_server
+msgid "ir.mail_server"
+msgstr ""
