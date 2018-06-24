@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * oauth_provider
+#	* oauth_provider
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 18:00+0000\n"
-"PO-Revision-Date: 2017-04-19 18:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Estonian (https://www.transifex.com/oca/teams/23907/et/)\n"
-"Language: et\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_active
@@ -27,7 +22,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_active
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_active
 msgid "Active"
-msgstr "Aktiivne"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.ui.view,arch_db:oauth_provider.view_oauth_provider_client_form
@@ -77,9 +72,7 @@ msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_skip_authorization
-msgid ""
-"Check this box if the user shouldn't be prompted to authorize or not the "
-"requested scopes."
+msgid "Check this box if the user shouldn't be prompted to authorize or not the requested scopes."
 msgstr ""
 
 #. module: oauth_provider
@@ -132,7 +125,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_create_uid
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_create_uid
 msgid "Created by"
-msgstr "Loonud"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_create_date
@@ -141,12 +134,12 @@ msgstr "Loonud"
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_create_date
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_create_date
 msgid "Created on"
-msgstr "Loodud"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_description
 msgid "Description"
-msgstr "Kirjeldus"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_scope_description
@@ -160,7 +153,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_display_name
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_display_name
 msgid "Display Name"
-msgstr "Näidatav nimi"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_expires_at
@@ -210,7 +203,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_id
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: oauth_provider
 #: selection:oauth.provider.client,grant_type:0
@@ -235,7 +228,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope___last_update
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token___last_update
 msgid "Last Modified on"
-msgstr "Viimati muudetud"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_write_uid
@@ -244,7 +237,7 @@ msgstr "Viimati muudetud"
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_write_uid
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_write_uid
 msgid "Last Updated by"
-msgstr "Viimati uuendatud"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_write_date
@@ -253,7 +246,7 @@ msgstr "Viimati uuendatud"
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_write_date
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_write_date
 msgid "Last Updated on"
-msgstr "Viimati uuendatud"
+msgstr ""
 
 #. module: oauth_provider
 #: selection:oauth.provider.client,application_type:0
@@ -290,7 +283,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_name
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_scope_name
 msgid "Name"
-msgstr "Nimi"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_code
@@ -454,7 +447,7 @@ msgstr ""
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_redirect_uri_sequence
 msgid "Sequence"
-msgstr "Järjekord"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_client_skip_authorization
@@ -525,15 +518,12 @@ msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_token_token_type
-msgid ""
-"Type of token stored. Currently, only the bearer token type is available."
+msgid "Type of token stored. Currently, only the bearer token type is available."
 msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_client_token_type
-msgid ""
-"Type of token to return. The base module only provides randomly generated "
-"tokens."
+msgid "Type of token to return. The base module only provides randomly generated tokens."
 msgstr ""
 
 #. module: oauth_provider
@@ -550,7 +540,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_authorization_code_user_id
 #: model:ir.model.fields,field_description:oauth_provider.field_oauth_provider_token_user_id
 msgid "User"
-msgstr "Kasutaja"
+msgstr ""
 
 #. module: oauth_provider
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_user_id
@@ -576,3 +566,4 @@ msgstr ""
 #: model:ir.model.fields,help:oauth_provider.field_oauth_provider_authorization_code_active
 msgid "When unchecked, the code is invalidated."
 msgstr ""
+
