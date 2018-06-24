@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_technical_features
-# 
+#
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Alexsandro Haag <alex@hgsoft.com.br>, 2015
@@ -26,11 +26,12 @@ msgstr ""
 "POT-Creation-Date: 2016-04-17 12:15+0000\n"
 "PO-Revision-Date: 2016-04-21 11:18+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-9-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_technical_features
@@ -78,7 +79,9 @@ msgstr "Benutzer"
 #: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
 msgid ""
 "Whether to display the technical features field in the user preferences."
-msgstr "Ob das Feld Technische Eigenschaften in den Benutzereinstellungen angezeigt wird."
+msgstr ""
+"Ob das Feld Technische Eigenschaften in den Benutzereinstellungen angezeigt "
+"wird."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_basemodel_monkeypatch
