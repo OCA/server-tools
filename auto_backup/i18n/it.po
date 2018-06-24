@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 # Paolo Valier, 2016-2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2017-04-09 06:55+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -60,7 +61,9 @@ msgstr "Backups"
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
-msgstr "I Backup antecedenti questo numero di giorni saranno eliminati automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
+msgstr ""
+"I Backup antecedenti questo numero di giorni saranno eliminati "
+"automaticamente. Impostare a 0 per disattivare l'eliminazione automatica."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -139,7 +142,9 @@ msgstr "Nome da visualizzare"
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
-msgstr "Non salvare i backup nel proprio filestore altrimenti verrà eseguita una copia di backup anche dei propri backup!"
+msgstr ""
+"Non salvare i backup nel proprio filestore altrimenti verrà eseguita una "
+"copia di backup anche dei propri backup!"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -164,7 +169,9 @@ msgstr "Followers"
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni Programmate."
+msgstr ""
+"Andare in  Configurazione / Funzioni Tecniche / Automazione / Azioni "
+"Programmate."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -176,7 +183,9 @@ msgstr "Aiuto"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Contiene il riepilogo Chatter (numero di messaggi, ...). Questa sintesi è direttamente in formato HTML, al fine di essere inserita nelle viste kanban."
+msgstr ""
+"Contiene il riepilogo Chatter (numero di messaggi, ...). Questa sintesi è "
+"direttamente in formato HTML, al fine di essere inserita nelle viste kanban."
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -248,7 +257,9 @@ msgstr "Nome"
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
-msgstr "Percorso al file della chiave privata. Soltanto l'utente Odoo dovrebbe avere il permesso in lettura di questo file."
+msgstr ""
+"Percorso al file della chiave privata. Soltanto l'utente Odoo dovrebbe avere "
+"il permesso in lettura di questo file."
 
 #. module: auto_backup
 #: field:db.backup,sftp_private_key:0
@@ -293,9 +304,10 @@ msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
-msgstr "Impostare lo scheduler per attivare e compilare la frequenza con cui si desidera generare il backup."
+"Set the scheduler to active and fill in how often you want backups generated."
+msgstr ""
+"Impostare lo scheduler per attivare e compilare la frequenza con cui si "
+"desidera generare il backup."
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
@@ -316,14 +328,17 @@ msgstr "Prova Connessione SFTP"
 #: help:db.backup,sftp_host:0
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
-msgstr "Il nome host o l'indirizzo IP del tuo server remoto. Per esempio 192.168.0.1"
+msgstr ""
+"Il nome host o l'indirizzo IP del tuo server remoto. Per esempio 192.168.0.1"
 
 #. module: auto_backup
 #: help:db.backup,sftp_password:0
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
-msgstr "La password per la connessione SFTP. Se viene specificato un file per la chiave privata, allora questo è la password per decodificarla."
+msgstr ""
+"La password per la connessione SFTP. Se viene specificato un file per la "
+"chiave privata, allora questo è la password per decodificarla."
 
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
@@ -333,9 +348,10 @@ msgstr "La porta sul server FTP che accetta chiamate SSH/SFTP."
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
-msgstr "Il nome utente per la connessione SFTP. Questo è l'utente sul server esterno."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
+msgstr ""
+"Il nome utente per la connessione SFTP. Questo è l'utente sul server esterno."
 
 #. module: auto_backup
 #: field:db.backup,message_unread:0
@@ -347,7 +363,9 @@ msgstr "Messaggi non letti"
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "Usare SFTP con cautela! Questa modalità scrive file nel percorso specificato su server esterni."
+msgstr ""
+"Usare SFTP con cautela! Questa modalità scrive file nel percorso specificato "
+"su server esterni."
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0

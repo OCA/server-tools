@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016-2017
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2017-03-18 02:08+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -59,7 +61,9 @@ msgstr "Varnostne kopije"
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
-msgstr "Varnostne kopije starejše od tega bodo samodejno izbrisane. Nastavite 0, da bi onemogočili samodejno brisanje."
+msgstr ""
+"Varnostne kopije starejše od tega bodo samodejno izbrisane. Nastavite 0, da "
+"bi onemogočili samodejno brisanje."
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -138,7 +142,9 @@ msgstr "Prikazni naziv"
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
-msgstr "Ne hranite varnostnih kopij v 'filestore', saj boste tako kopirali tudi same varnostne kopije!"
+msgstr ""
+"Ne hranite varnostnih kopij v 'filestore', saj boste tako kopirali tudi same "
+"varnostne kopije!"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -175,7 +181,9 @@ msgstr "Pomoč"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Povzetek (število sporočil,..) v html formatu, da se lahko neposredno vstavi v poglede tipa kanban."
+msgstr ""
+"Povzetek (število sporočil,..) v html formatu, da se lahko neposredno vstavi "
+"v poglede tipa kanban."
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -247,7 +255,9 @@ msgstr "Naziv"
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
-msgstr "Pot do datoteke privatnega ključa. Le Odoo uporabnik naj ima dovoljenje za branje te datoteke."
+msgstr ""
+"Pot do datoteke privatnega ključa. Le Odoo uporabnik naj ima dovoljenje za "
+"branje te datoteke."
 
 #. module: auto_backup
 #: field:db.backup,sftp_private_key:0
@@ -292,9 +302,10 @@ msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'"
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
-msgstr "Nastavite razporejevalnik kot aktiven in izpolnite, kako pogosto želite ustvarjati varnostne kopije."
+"Set the scheduler to active and fill in how often you want backups generated."
+msgstr ""
+"Nastavite razporejevalnik kot aktiven in izpolnite, kako pogosto želite "
+"ustvarjati varnostne kopije."
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
@@ -322,7 +333,9 @@ msgstr "IP naslov ali 'hostname' oddaljenega strežnika. Npr. 192.168.0.1"
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
-msgstr "Geslo za SFTP povezavo. Če določite datoteko privatnega ključa, je to geslo za dešifriranje ključa."
+msgstr ""
+"Geslo za SFTP povezavo. Če določite datoteko privatnega ključa, je to geslo "
+"za dešifriranje ključa."
 
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
@@ -332,8 +345,8 @@ msgstr "Vrata FTP strežnika, ki sprejema SSH/SFTP klice."
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
 msgstr "Uporabniško ime SFTP povezave. To je uporabnik zunanjega strežnika."
 
 #. module: auto_backup
@@ -346,7 +359,9 @@ msgstr "Neprebrana sporočila"
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "SFTP uporabljajte previdno! Datoteke se bodo zapisovale na zunanje strežnike v pot, ki jo sami določite."
+msgstr ""
+"SFTP uporabljajte previdno! Datoteke se bodo zapisovale na zunanje strežnike "
+"v pot, ki jo sami določite."
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0

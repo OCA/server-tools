@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-28 09:48+0000\n"
 "PO-Revision-Date: 2017-03-30 17:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -36,7 +37,8 @@ msgstr "Copies Automatitzades "
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr "Les còpies automàtiques de la base de dades poden ser programades així:  "
+msgstr ""
+"Les còpies automàtiques de la base de dades poden ser programades així:  "
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
@@ -58,7 +60,9 @@ msgstr "Còpies "
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
-msgstr "Còpies més antigues que això, s'esborraran automàticament. Poseu 0 per desactivar l'auto-esborrament. "
+msgstr ""
+"Còpies més antigues que això, s'esborraran automàticament. Poseu 0 per "
+"desactivar l'auto-esborrament. "
 
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
@@ -137,7 +141,9 @@ msgstr "Veure el nom"
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
-msgstr "No desar les còpies al vostre sistema de fitxers, o es copiaran les còpies de seguretat també! "
+msgstr ""
+"No desar les còpies al vostre sistema de fitxers, o es copiaran les còpies "
+"de seguretat també! "
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -246,7 +252,9 @@ msgstr "Nom"
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
-msgstr "Ruta cap al fitxer de clau privada. Només l'usuari Odoo ha de tenir permisos de lectura per aquest fitxer. "
+msgstr ""
+"Ruta cap al fitxer de clau privada. Només l'usuari Odoo ha de tenir permisos "
+"de lectura per aquest fitxer. "
 
 #. module: auto_backup
 #: field:db.backup,sftp_private_key:0
@@ -291,9 +299,10 @@ msgstr "Cerqueu una acció anomenada 'Backup scheduler'."
 #. module: auto_backup
 #: view:db.backup:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
-msgstr "Poseu la programació amb actiu i ompliu amb quina freqüència voleu generar les vostres còpies. "
+"Set the scheduler to active and fill in how often you want backups generated."
+msgstr ""
+"Poseu la programació amb actiu i ompliu amb quina freqüència voleu generar "
+"les vostres còpies. "
 
 #. module: auto_backup
 #: field:db.backup,message_summary:0
@@ -314,14 +323,18 @@ msgstr "Comprovar connexió SFTP "
 #: help:db.backup,sftp_host:0
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
-msgstr "El nom del equip o la adreça IP del vostre servidor remot. Per exemple 192.168.0.1 "
+msgstr ""
+"El nom del equip o la adreça IP del vostre servidor remot. Per exemple "
+"192.168.0.1 "
 
 #. module: auto_backup
 #: help:db.backup,sftp_password:0
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
-msgstr "La contrasenya per a la connexió SFTP. Si especifiqueu un fitxer de clau privada, aleshores aquesta és la contrasenya per desxifrar-lo. "
+msgstr ""
+"La contrasenya per a la connexió SFTP. Si especifiqueu un fitxer de clau "
+"privada, aleshores aquesta és la contrasenya per desxifrar-lo. "
 
 #. module: auto_backup
 #: help:db.backup,sftp_port:0
@@ -331,9 +344,11 @@ msgstr "El port al servidor FTP que acceptarà trucades SSH/SFTP."
 #. module: auto_backup
 #: help:db.backup,sftp_user:0
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
-msgstr "El nom d'usuari on es generarà la connexió SFTP. Això és l'usuari en el servidor extern. "
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
+msgstr ""
+"El nom d'usuari on es generarà la connexió SFTP. Això és l'usuari en el "
+"servidor extern. "
 
 #. module: auto_backup
 #: field:db.backup,message_unread:0
@@ -345,7 +360,9 @@ msgstr ""
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
-msgstr "Utilitzeu SFTP amb precaució! Això escriu els fitxers en un servidor extern dins de la ruta que heu especificat. "
+msgstr ""
+"Utilitzeu SFTP amb precaució! Això escriu els fitxers en un servidor extern "
+"dins de la ruta que heu especificat. "
 
 #. module: auto_backup
 #: field:db.backup,sftp_user:0
