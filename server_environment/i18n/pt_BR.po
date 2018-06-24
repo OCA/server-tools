@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * server_environment
-# 
+#
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015-2016
@@ -27,11 +27,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-09 10:34+0000\n"
 "PO-Revision-Date: 2016-07-05 18:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-9-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-9-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: server_environment
@@ -139,6 +140,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:server_environment.field_server_config_external_service_ftp
 #: | user
 msgid "external_service.ftp | user"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_empty
+msgid "ir.config_parameter | ircp_empty"
+msgstr ""
+
+#. module: server_environment
+#: model:ir.model.fields,field_description:server_environment.field_server_config_ir_config_parameter
+#: | ircp_from_config
+msgid "ir.config_parameter | ircp_from_config"
 msgstr ""
 
 #. module: server_environment
