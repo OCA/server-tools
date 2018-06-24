@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_custom_info
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:35+0000\n"
 "PO-Revision-Date: 2017-08-11 11:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Romanian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ro/)\n"
+"Language-Team: Romanian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ro/)\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ro\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action

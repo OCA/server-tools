@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_custom_info
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
@@ -20,11 +20,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_custom_info
@@ -37,7 +38,14 @@ msgid ""
 "        product properties group.\n"
 "      </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Legen Sie eine neue Vorlage für individuelle Info an.\n      </p><p>\n        Sie müssen eine eigene Vorlage je Produkt-\n        Eigenschaftengruppe anlegen.\n      </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Legen Sie eine neue Vorlage für individuelle Info an.\n"
+"      </p><p>\n"
+"        Sie müssen eine eigene Vorlage je Produkt-\n"
+"        Eigenschaftengruppe anlegen.\n"
+"      </p>\n"
+"    "
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_model_link
@@ -47,7 +55,9 @@ msgstr "Ein Modell dessen ''ir.model'' errechnet wird"
 #. module: base_custom_info
 #: sql_constraint:custom.info.value:0
 msgid "Another property with that name exists for that resource."
-msgstr "Eine andere Eigenschaft mit dieser Bezeichnung besteht bei dieser Ressource bereits."
+msgstr ""
+"Eine andere Eigenschaft mit dieser Bezeichnung besteht bei dieser Ressource "
+"bereits."
 
 #. module: base_custom_info
 #: sql_constraint:custom.info.property:0
@@ -148,7 +158,9 @@ msgstr "Info-Zeilen"
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
-msgstr "Vererbbares abstraktes Modell, um individuelle Info in beliebigem Modell hinzuzufügen"
+msgstr ""
+"Vererbbares abstraktes Modell, um individuelle Info in beliebigem Modell "
+"hinzuzufügen"
 
 #. module: base_custom_info
 #: field:custom.info,__last_update:0

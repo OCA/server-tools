@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_custom_info
-# 
+#
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2015
 # danimaribeiro <danimaribeiro@gmail.com>, 2016
@@ -17,12 +17,14 @@ msgstr ""
 "POT-Creation-Date: 2016-05-06 02:41+0000\n"
 "PO-Revision-Date: 2016-05-05 05:57+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: base_custom_info
 #: model:ir.actions.act_window,help:base_custom_info.custom_info_template_action
@@ -34,7 +36,14 @@ msgid ""
 "        product properties group.\n"
 "      </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\n        Določi novo predlogo informacij po meri.\n      </p><p>\n        Določiti morate predlogo informacij po meri za vsako\n        skupino lastnosti proizvodov.\n      </p>\n    "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"        Določi novo predlogo informacij po meri.\n"
+"      </p><p>\n"
+"        Določiti morate predlogo informacij po meri za vsako\n"
+"        skupino lastnosti proizvodov.\n"
+"      </p>\n"
+"    "
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_model_link
@@ -145,7 +154,8 @@ msgstr "Postavke informacij"
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
-msgstr "Deden abstraktni model za dodajanje informacij po meri kateremukoli modelu."
+msgstr ""
+"Deden abstraktni model za dodajanje informacij po meri kateremukoli modelu."
 
 #. module: base_custom_info
 #: field:custom.info,__last_update:0
