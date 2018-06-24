@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_auto_update
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Quentin THEURET <odoo@kerpeo.com>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-08-04 02:55+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: module_auto_update
@@ -39,24 +39,16 @@ msgstr "Module"
 msgid "Module Upgrade"
 msgstr "Mise à jour de module(s)"
 
-#. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.menu_default_modules
-msgid "Modules"
-msgstr "Modules"
+#~ msgid "Modules"
+#~ msgstr "Modules"
 
-#. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.module_action_open_updates
-msgid "Open Updates and Update Apps List Server Action"
-msgstr ""
-"Ouvrir les mises à jour et l'action serveur de la liste des mises à jour des"
-" applications"
+#~ msgid "Open Updates and Update Apps List Server Action"
+#~ msgstr ""
+#~ "Ouvrir les mises à jour et l'action serveur de la liste des mises à jour "
+#~ "des applications"
 
-#. module: module_auto_update
-#: model:ir.ui.view,arch_db:module_auto_update.module_view_search
-msgid "Scheduled Upgrades"
-msgstr "Mises à jour planifiées"
+#~ msgid "Scheduled Upgrades"
+#~ msgstr "Mises à jour planifiées"
 
-#. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.module_menu_updates
-msgid "Updates"
-msgstr "Mises à jour"
+#~ msgid "Updates"
+#~ msgstr "Mises à jour"
