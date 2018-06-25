@@ -12,16 +12,16 @@ A new menu named Export is created.
 Known issues / Roadmap
 ======================
 
-* Some words are prohibeted and can't be used is the query in anyways, even in
-  a select query :
-    * delete
-    * drop
-    * insert
-    * alter
-    * truncate
-    * execute
-    * create
-    * update
+* Some words are prohibited and can't be used is the query in anyways, even in
+  a select query:
+  - delete
+  - drop
+  - insert
+  - alter
+  - truncate
+  - execute
+  - create
+  - update
 
 See sql_request_abstract module to fix this issue.
 
