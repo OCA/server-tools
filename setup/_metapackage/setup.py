@@ -62,6 +62,7 @@ setuptools.setup(
         'odoo8-addon-logging_json',
         'odoo8-addon-mail_environment',
         'odoo8-addon-mass_editing',
+        'odoo8-addon-mass_sorting',
         'odoo8-addon-module_auto_update',
         'odoo8-addon-module_prototyper',
         'odoo8-addon-module_uninstall_check',
