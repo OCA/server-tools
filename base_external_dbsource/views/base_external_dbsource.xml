@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- DBSource -->
+
+        <record model="ir.ui.view" id="view_dbsource_tree">
+            <field name="name">base.external.dbsource.tree</field>
+            <field name="model">base.external.dbsource</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="External DB Sources">
+                    <field name="name"/>
+                    <field name="connector"/>
+                    <field name="conn_string"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_dbsource_form">
+            <field name="name">base.external.dbsource.form</field>
+            <field name="model">base.external.dbsource</field>
+            <field name="arch" type="xml">
+                <form string="External DB Source">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="password" password="True"/>
+                            </group>
+                        </group>
+                        <group col="1">
+                            <field name="connector"/>
+                            <field name="conn_string"
+                                   placeholder="Please check the tooltip for connection string examples"/>
+                            <button name="connection_test" string="Test Connection" type="object" icon="fa-refresh"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_dbsource">
+            <field name="name">External DB Sources</field>
+            <field name="res_model">base.external.dbsource</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_dbsource_tree"/>
+        </record>
+
+        <menuitem name="External DB Sources" id="menu_dbsource" parent="base.next_id_9" action="action_dbsource"/>
+</odoo>
