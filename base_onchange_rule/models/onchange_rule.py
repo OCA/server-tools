@@ -99,7 +99,7 @@ class OnchangeRule(models.Model):
                     rule_line.dest_field_id.name in records._fields:
                 dest_val = False
                 if rule_line.dest_field_id.relation:
-                    dest_val = rule_line.m2o_value.id
+                    dest_val = getattr(rule_line.m2o_value, 'id', False)
                 else:
                     dest_val = rule_line.selection_value
                 if dest_val:
