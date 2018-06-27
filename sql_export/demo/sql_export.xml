@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="sql_export_partner" model="sql.export">
+        <field name="name">Export Partners (Demo Data)</field>
+        <field name="query">SELECT name, street FROM res_partner;</field>
+    </record>
+
+    <function model="sql.export" name="button_validate_sql_expression" eval="([ref('sql_export.sql_export_partner')])"/>
+
+</odoo>
