@@ -77,6 +77,7 @@ setuptools.setup(
         'odoo10-addon-server_environment',
         'odoo10-addon-server_environment_files_sample',
         'odoo10-addon-server_environment_ir_config_parameter',
+        'odoo10-addon-sql_export',
         'odoo10-addon-sql_request_abstract',
         'odoo10-addon-user_immutable',
         'odoo10-addon-user_threshold',
