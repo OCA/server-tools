@@ -7,7 +7,7 @@
  'category': 'Tests',
  'depends': ['configuration_helper'],
  'website': 'https://github.com/OCA/server-tools',
- 'installable': False,
+ 'installable': True,
  'auto_install': False,
  'license': 'AGPL-3',
  'application': False,

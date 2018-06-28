@@ -13,6 +13,7 @@ class ResCompany(models.Model):
 
 class MyConfigA(models.TransientModel):
 
+    _name = 'res.config.settings'
     _inherit = ['res.config.settings', 'abstract.config.settings']
     _prefix = 'prefix_a_'
     _companyObject = ResCompany

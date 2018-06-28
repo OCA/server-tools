@@ -6,7 +6,6 @@ import odoo.tests.common as common
 class TestAbstractSettings(common.TransactionCase):
 
     def setUp(self):
-        import pdb; pdb.set_trace()
         super(TestAbstractSettings, self).setUp()
         self.partner_id = self.ref('base.res_partner_12')
         self.company = self.env.ref('base.main_company')
