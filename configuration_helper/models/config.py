@@ -30,7 +30,6 @@ class AbstractConfigSettings(models.AbstractModel):
 
     @api.model
     def _setup_base(self):
-        import pdb; pdb.set_trace()
         cls = type(self)
         super(AbstractConfigSettings, self)._setup_base()
         if not cls._companyObject:
