@@ -23,5 +23,7 @@
     ],
     "qweb": [
         "static/src/xml/date_range.xml",
-    ]
+    ],
+    'development_status': 'Mature',
+    'maintainers': ['lmignon'],
 }
