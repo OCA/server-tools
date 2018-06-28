@@ -80,7 +80,7 @@ addon | version | summary
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 9.0.1.0.0 | Override System Parameters from server environment file
 [sql_export](sql_export/) | 9.0.1.0.0 | Export data in csv file with SQL requests
-[sql_request_abstract](sql_request_abstract/) | 9.0.1.0.0 | Abstract Model to manage SQL Requests
+[sql_request_abstract](sql_request_abstract/) | 9.0.1.0.1 | Abstract Model to manage SQL Requests
 [subscription_action](subscription_action/) | 9.0.1.0.0 | Run a server action on a newly created document
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
