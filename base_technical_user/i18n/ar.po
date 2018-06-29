@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_technical_user
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: base_technical_user
+#: model:ir.model,name:base_technical_user.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Configuration"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+msgid "Technical Parameters"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.model.fields,field_description:base_technical_user.field_res_company_user_tech_id
+msgid "Technical User"
+msgstr ""
+
+#. module: base_technical_user
+#: model:ir.model.fields,help:base_technical_user.field_res_company_user_tech_id
+msgid "This user can be used by process for technical purpose"
+msgstr ""
