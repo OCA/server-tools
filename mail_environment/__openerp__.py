@@ -26,7 +26,6 @@
     'website': 'http://odoo-community.org',
     'depends': ['fetchmail',
                 'server_environment',
-                'server_environment_files',
                 ],
     'data': ['mail_view.xml'],
     'installable': True,
