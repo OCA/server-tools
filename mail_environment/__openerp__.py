@@ -62,7 +62,6 @@ password = openerp
     'depends': ['mail',
                 'fetchmail',
                 'server_environment',
-                'server_environment_files',
                 ],
     'data': ['mail_view.xml'],
     'demo': [],
