@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <!--Email template -->
+    <record id="email_template_error_notice" model="mail.template">
+        <field name="name">Fetchmail - error notice</field>
+        <field name="email_from">${ctx.get('sender_message').get('to')|safe}</field>
+        <field name="email_to">${ctx.get('sender_message').get('from')|safe}</field>
+        <field name="subject">Receiving error with: ${ctx.get('sender_message').get('subject')|safe}</field>
+        <field name="model_id" ref="fetchmail.model_fetchmail_server"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="user_signature" eval="True"/>
+        <field name="lang">${ctx.get('lang')}</field>
+        <field name="body_html"><![CDATA[
+            <div>
+            <p>Hello ${ctx.get('sender_message').get('from')},</p>
+            <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>
+            <p>Maybe you used a wrong recipient address?</p>
+            <p><br/></p>
+            <p>Technical details:</p>
+            <p><i>${ctx.get('route_exception').message}</i></p>
+            </div>
+        ]]></field>
+    </record>
+</odoo>
