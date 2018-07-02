@@ -33,7 +33,7 @@ class AbstractUrl(models.AbstractModel):
         store=True,
     )
     url_url_ids = fields.One2many(
-        compute='_compute_url_url_id',
+        compute='_compute_url_url_ids',
         comodel_name='url.url')
     redirect_url_key_ids = fields.One2many(
         compute='_compute_redirect_url',
