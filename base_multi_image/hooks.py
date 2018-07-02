@@ -120,7 +120,7 @@ def uninstall_hook_for_submodules(cr, registry, model, field=None,
                     UPDATE %(table)s
                     SET %(fields)s
                     WHERE id = %%(id)s
-                """ % {
+                """, {
                     "table": Model._table,
                     "fields": ", ".join(fields),
                 }

@@ -5,10 +5,16 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import os
 import logging
-from odoo import models, fields, api, exceptions, _
+from odoo import models
+from odoo import fields
+from odoo import api
+from odoo import exceptions
+from odoo import _
 from odoo import tools
 
 _logger = logging.getLogger(__name__)
