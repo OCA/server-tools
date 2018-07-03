@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 18:00+0000\n"
-"PO-Revision-Date: 2017-03-23 14:14+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2018-07-04 10:03+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_a_config_settings
@@ -82,19 +83,19 @@ msgstr "Darrera Actualització el"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_integer
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_integer
 msgid "Prefix a integer"
-msgstr "Prefixar un enter "
+msgstr "Prefixar un enter"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_name
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_name
 msgid "Prefix a name"
-msgstr "Prefixar un nom "
+msgstr "Prefixar un nom"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_partner_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_partner_id
 msgid "Prefix a partner id"
-msgstr "Prefixar un id d'empresa "
+msgstr "Prefixar un id d'empresa"
 
 #. module: test_configuration_helper
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_integer
@@ -112,4 +113,4 @@ msgstr "nom"
 #: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_partner_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_b_partner_id
 msgid "unknown"
-msgstr "desconegut "
+msgstr "desconegut"
