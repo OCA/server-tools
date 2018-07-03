@@ -9,45 +9,46 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 03:54+0000\n"
-"PO-Revision-Date: 2017-12-28 03:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2018-07-04 10:04+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_model_access
 msgid "Access Controls"
-msgstr "Controls d'accés "
+msgstr "Controls d'accés"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_menu_access
 msgid "Access Menu"
-msgstr "Menú d'accés "
+msgstr "Menú d'accés"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_category_id
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_group_category_id
 msgid "Application"
-msgstr "Aplicació "
+msgstr "Aplicació"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_group_id
 msgid "Associated group"
-msgstr "Grup associat "
+msgstr "Grup associat"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_color
 msgid "Color Index"
-msgstr "Índex de color "
+msgstr "Índex de color"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_comment
 msgid "Comment"
-msgstr "Comentari "
+msgstr "Comentari"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_create_uid
@@ -70,7 +71,7 @@ msgstr "Veure el nom"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_is_enabled
 msgid "Enabled"
-msgstr "Activat "
+msgstr "Activat"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_date_from
@@ -80,13 +81,13 @@ msgstr "De"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_full_name
 msgid "Group Name"
-msgstr "Nom del grup "
+msgstr "Nom del grup"
 
 #. module: base_user_role
 #: model:ir.model.fields,help:base_user_role.field_res_users_role_share
 msgid "Group created to set access rights for sharing data with some users."
 msgstr ""
-"Grup creat per donar drets d'accés per compartir dades amb altres usuaris. "
+"Grup creat per donar drets d'accés per compartir dades amb altres usuaris."
 
 #. module: base_user_role
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
@@ -102,7 +103,7 @@ msgstr "ID"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_implied_ids
 msgid "Inherits"
-msgstr "Heretats "
+msgstr "Heretats"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role___last_update
@@ -132,12 +133,12 @@ msgstr "Nom"
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_form
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_tree
 msgid "Role"
-msgstr "Rol "
+msgstr "Rol"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1555
 msgid "Role lines"
-msgstr "Línies de Rol "
+msgstr "Línies de Rol"
 
 #. module: base_user_role
 #: model:ir.actions.act_window,name:base_user_role.action_res_users_role_tree
@@ -146,7 +147,7 @@ msgstr "Línies de Rol "
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_form_inherit
 #: model:ir.ui.view,arch_db:base_user_role.view_res_users_role_search
 msgid "Roles"
-msgstr "Rols "
+msgstr "Rols"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_rule_groups
@@ -156,7 +157,7 @@ msgstr "Regles "
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_share
 msgid "Share Group"
-msgstr "Compartir Grup "
+msgstr "Compartir Grup"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_date_to
@@ -166,7 +167,7 @@ msgstr "A"
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_trans_implied_ids
 msgid "Transitively inherits"
-msgstr "Herència transitiva  "
+msgstr "Herència transitiva"
 
 #. module: base_user_role
 #: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_user_id
@@ -176,12 +177,12 @@ msgstr "Usuari"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
-msgstr "Rol d'usuari "
+msgstr "Rol d'usuari"
 
 #. module: base_user_role
 #: model:ir.module.category,name:base_user_role.ir_module_category_role
 msgid "User roles"
-msgstr "Rols d'usuaris "
+msgstr "Rols d'usuaris"
 
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users
@@ -195,7 +196,7 @@ msgstr "Usuaris"
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role_line
 msgid "Users associated to a role"
-msgstr "Usuaris associats a un rol "
+msgstr "Usuaris associats a un rol"
 
 #. module: base_user_role
 #: model:ir.model.fields,help:base_user_role.field_res_users_role_implied_ids
