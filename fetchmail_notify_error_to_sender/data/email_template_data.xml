@@ -17,7 +17,7 @@
             <p>Maybe you used a wrong recipient address?</p>
             <p><br/></p>
             <p>Technical details:</p>
-            <p><i>${ctx.get('route_exception').message}</i></p>
+            <p><i>${ctx.get('route_exception')}</i></p>
             </div>
         ]]></field>
     </record>
