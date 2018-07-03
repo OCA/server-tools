@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-04-19 17:59+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2016\n"
+"PO-Revision-Date: 2018-07-04 09:04+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_action_id
@@ -27,7 +28,7 @@ msgstr "Acció"
 #. module: auditlog
 #: model:ir.ui.menu,name:auditlog.menu_audit
 msgid "Audit"
-msgstr "Auditoria "
+msgstr "Auditoria"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_autovacuum
@@ -37,7 +38,7 @@ msgstr "Registre d'auditoria - Esborrar els registres antics"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_session
 msgid "Auditlog - HTTP User session log"
-msgstr "Registre d'auditoria - Registre de sessió HTTP d'usuari "
+msgstr "Registre d'auditoria - Registre de sessió HTTP d'usuari"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_http_request
@@ -47,7 +48,7 @@ msgstr "Registre d'auditoria - Registre de sol·licitud HTTP"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log
 msgid "Auditlog - Log"
-msgstr "Registre d'auditoria - Registre "
+msgstr "Registre d'auditoria - Registre"
 
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_log_line
@@ -57,7 +58,7 @@ msgstr "Registre d'auditoria - Detall del registre (camps actualitzats)"
 #. module: auditlog
 #: model:ir.model,name:auditlog.model_auditlog_rule
 msgid "Auditlog - Rule"
-msgstr "Registre d'auditoria - Regles "
+msgstr "Registre d'auditoria - Regles"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_user_context
@@ -113,7 +114,7 @@ msgstr "Esborrany"
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Fast log"
-msgstr "Registre ràpid "
+msgstr "Registre ràpid"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_id
@@ -124,12 +125,12 @@ msgstr "Camp"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_ids
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Fields updated"
-msgstr "Camps actualitzats "
+msgstr "Camps actualitzats"
 
 #. module: auditlog
 #: selection:auditlog.log,log_type:0 selection:auditlog.rule,log_type:0
 msgid "Full log"
-msgstr "Registre complert "
+msgstr "Registre complert"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_type
@@ -156,14 +157,14 @@ msgstr "Agrupa per..."
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "HTTP Context"
-msgstr "Context HTTP "
+msgstr "Context HTTP"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_request_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_form
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "HTTP Request"
-msgstr "Sol·licitud HTTP "
+msgstr "Sol·licitud HTTP"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_http_request_tree
@@ -173,7 +174,7 @@ msgstr "Sol·licitud HTTP "
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_tree
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_session_form
 msgid "HTTP Requests"
-msgstr "Sol·licituds HTTP "
+msgstr "Sol·licituds HTTP"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum_id
@@ -219,22 +220,22 @@ msgstr "Darrera Actualització el"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_log_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Log"
-msgstr "Registre "
+msgstr "Registre"
 
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Log - Field updated"
-msgstr "Registre - Camp actualitzat "
+msgstr "Registre - Camp actualitzat"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_log_create
 msgid "Log Creates"
-msgstr "Crear registre "
+msgstr "Crear registre"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_log_unlink
 msgid "Log Deletes"
-msgstr "Esborrar registre "
+msgstr "Esborrar registre"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_log_read
@@ -254,12 +255,12 @@ msgstr "Escriure registre"
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_tree
 msgid "Logs"
-msgstr "Registres "
+msgstr "Registres"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_method
 msgid "Method"
-msgstr "Mètode "
+msgstr "Mètode"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_model_id
@@ -278,7 +279,7 @@ msgstr "Nom"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_new_value
 msgid "New Value"
-msgstr "Nou valor "
+msgstr "Nou valor"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_new_value_text
@@ -288,7 +289,7 @@ msgstr "Nou valor Text"
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_old_value
 msgid "Old Value"
-msgstr "Valor antic "
+msgstr "Valor antic"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_old_value_text
@@ -299,18 +300,18 @@ msgstr "Valor antic Text"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_name
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_http_request_search
 msgid "Path"
-msgstr "Camí "
+msgstr "Ruta"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_res_id
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_search
 msgid "Resource ID"
-msgstr "ID del recurs "
+msgstr "ID del recurs"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_name
 msgid "Resource Name"
-msgstr "Nom del recurs "
+msgstr "Nom del recurs"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_root_url
@@ -321,7 +322,7 @@ msgstr "Arrel URL"
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Rule"
-msgstr "Regla "
+msgstr "Regla"
 
 #. module: auditlog
 #: model:ir.actions.act_window,name:auditlog.action_auditlog_rule_tree
@@ -329,12 +330,12 @@ msgstr "Regla "
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_tree
 msgid "Rules"
-msgstr "Regles "
+msgstr "Regles"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_model_id
 msgid "Select model for which you want to generate log."
-msgstr "Seleccioneu el model pel qual voleu generar un registre. "
+msgstr "Seleccioneu el model pel qual voleu generar un registre."
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_log_create
@@ -376,12 +377,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request_http_session_id
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_http_session_id
 msgid "Session"
-msgstr "Sessió "
+msgstr "Sessió"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session_name
 msgid "Session ID"
-msgstr "ID de sessió "
+msgstr "ID de sessió"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule_state
@@ -392,13 +393,13 @@ msgstr "Estat"
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_form
 msgid "Subscribe"
-msgstr "Subscriure "
+msgstr "Subscriure"
 
 #. module: auditlog
 #: selection:auditlog.rule,state:0
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_rule_search
 msgid "Subscribed"
-msgstr "Subscrit "
+msgstr "Subscrit"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_field_name
@@ -458,16 +459,15 @@ msgstr "Usuaris"
 #. module: auditlog
 #: model:ir.ui.view,arch_db:auditlog.view_auditlog_log_form
 msgid "Values"
-msgstr "Valors "
+msgstr "Valors"
 
 #. module: auditlog
 #: code:addons/auditlog/models/rule.py:535
 #, python-format
 msgid "View logs"
-msgstr "Veure registres "
+msgstr "Veure registres"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule_user_ids
 msgid "if  User is not added then it will applicable for all users"
-msgstr ""
-"Si l'usuari no està afegit aleshores s'aplicarà per a tots els usuaris "
+msgstr "Si l'usuari no està afegit aleshores s'aplicarà per a tots els usuaris"
