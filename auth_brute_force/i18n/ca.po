@@ -9,36 +9,37 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-07-03 10:00+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_form
 msgid "Add remote to whitelist"
-msgstr ""
+msgstr "Afegir el remot a la llista blanca"
 
 #. module: auth_brute_force
 #: model:ir.actions.act_window,name:auth_brute_force.action_res_authentication_attempt
 #: model:ir.ui.menu,name:auth_brute_force.menu_res_authentication_attempt
 msgid "Authentication Attempts"
-msgstr ""
+msgstr "Intents d'autenticació"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_result
 msgid "Authentication Result"
-msgstr ""
+msgstr "Resultat de l'autenticació"
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
 msgid "Banned"
-msgstr ""
+msgstr "Barrat"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_create_uid
@@ -84,53 +85,53 @@ msgstr "Darrera Actualització el"
 #. module: auth_brute_force
 #: model:ir.model.fields,help:auth_brute_force.field_res_authentication_attempt_remote_metadata
 msgid "Metadata publicly available for remote IP"
-msgstr ""
+msgstr "Les meta-dades estan disponibles públicament per la IP remota"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_remote
 msgid "Remote IP"
-msgstr ""
+msgstr "IP Remota"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_remote_metadata
 msgid "Remote IP metadata"
-msgstr ""
+msgstr "Meta-dades de la IP remota"
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_form
 msgid "Remove remote from whitelist"
-msgstr ""
+msgstr "Eliminar el remot de la llista blanca"
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 #: selection:res.authentication.attempt,result:0
 msgid "Successful"
-msgstr ""
+msgstr "Correcte"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_login
 msgid "Tried Login"
-msgstr ""
+msgstr "Intent d'entrada"
 
 #. module: auth_brute_force
 #: model:ir.model,name:auth_brute_force.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuaris"
 
 #. module: auth_brute_force
 #: model:ir.model.fields,field_description:auth_brute_force.field_res_authentication_attempt_whitelisted
 msgid "Whitelisted"
-msgstr ""
+msgstr "Permesos"
 
 #. module: auth_brute_force
 #: model:ir.ui.view,arch_db:auth_brute_force.view_res_authentication_attempt_search
 msgid "Without Success"
-msgstr ""
+msgstr "Sense èxit"
 
 #. module: auth_brute_force
 #: model:ir.model,name:auth_brute_force.model_res_authentication_attempt
 msgid "res.authentication.attempt"
-msgstr ""
+msgstr "res.authentication.attempt"
 
 #~ msgid "Active"
 #~ msgstr "Actiu"
