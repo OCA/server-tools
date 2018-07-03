@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-03-24 09:00+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2018-07-04 10:05+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
@@ -47,7 +48,7 @@ msgstr "Veure el nom"
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Duplicate"
-msgstr "Duplicar "
+msgstr "Duplicar"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_form_view
@@ -78,23 +79,23 @@ msgstr "Darrera Actualització el"
 #: model:ir.actions.act_window,name:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_action
 #: model:ir.ui.view,arch_db:base_report_auto_create_qweb.ir_actions_report_xml_duplicate_form_view
 msgid "Report duplication"
-msgstr "Duplicació d'informe "
+msgstr "Duplicació d'informe"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,field_description:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
 msgid "Suffix"
-msgstr "Sufix "
+msgstr "Sufix"
 
 #. module: base_report_auto_create_qweb
 #: code:addons/base_report_auto_create_qweb/models/report_xml.py:66
 #, python-format
 msgid "Template Name must contain at least a dot in it's name"
-msgstr "El nom de la plantilla ha de contenir com a mínim un punt al seu nom "
+msgstr "El nom de la plantilla ha de contenir com a mínim un punt al seu nom"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model.fields,help:base_report_auto_create_qweb.field_ir_actions_report_xml_duplicate_suffix
 msgid "This suffix will be added to the report"
-msgstr "Aquest sufix serà afegit al informe "
+msgstr "Aquest sufix serà afegit al informe"
 
 #. module: base_report_auto_create_qweb
 #: model:ir.model,name:base_report_auto_create_qweb.model_ir_actions_report_xml
