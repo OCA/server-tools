@@ -10,39 +10,40 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-04-19 17:59+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
+"PO-Revision-Date: 2018-07-04 10:04+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction
 msgid "Action Needed"
-msgstr "Acció necessària "
+msgstr "Acció necessària"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Attachment"
-msgstr "Adjunt "
+msgstr "Adjunt"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_name
 msgid "Attachment Name"
-msgstr "Nom de l'adjunt "
+msgstr "Nom de l'adjunt"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_local_url
 msgid "Attachment URL"
-msgstr "URL de l'adjunt "
+msgstr "URL de l'adjunt"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Attachment id"
-msgstr "ID de l'adjunt "
+msgstr "ID de l'adjunt"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -53,7 +54,7 @@ msgstr "Adjunts"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Binary"
-msgstr "Binari "
+msgstr "Binari"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_checksum
@@ -79,17 +80,17 @@ msgstr "Creat el"
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Creation Month"
-msgstr "Mes de creació "
+msgstr "Mes de creació"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_db_datas
 msgid "Database Data"
-msgstr "Dades de la Base de Dades "
+msgstr "Dades de la Base de Dades"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
 msgid "Date of the last message posted on the record."
-msgstr "Data del darrer missatge annexat al registre"
+msgstr "Data del darrer missatge annexat al registre."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_description
@@ -110,7 +111,7 @@ msgstr "Fet"
 #. module: attachment_base_synchronize
 #: model:ir.model,name:attachment_base_synchronize.model_ir_attachment_metadata
 msgid "Email Thread"
-msgstr "Tema del Correu electrònic "
+msgstr "Tema del Correu electrònic"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
@@ -120,12 +121,12 @@ msgstr "Error"
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,file_type:0
 msgid "Export File (External location)"
-msgstr "Exportar Fitxer (Localització Externa) "
+msgstr "Exportar Fitxer (Localització Externa)"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
 msgid "External hash"
-msgstr "Hash extern "
+msgstr "Hash extern"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -136,17 +137,17 @@ msgstr "Fallit"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas
 msgid "File Content"
-msgstr "Contingut del fitxer "
+msgstr "Contingut del fitxer"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_datas_fname
 msgid "File Name"
-msgstr "Nom del Fitxer "
+msgstr "Nom del Fitxer"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_size
 msgid "File Size"
-msgstr "Mida del Fitxer "
+msgstr "Mida del Fitxer"
 
 #. module: attachment_base_synchronize
 #: code:addons/attachment_base_synchronize/models/attachment.py:53
@@ -156,7 +157,7 @@ msgid ""
 "the task."
 msgstr ""
 "Fitxer corromput: Alguna cosa ha fallat al rebre el fitxer, si us plau "
-"torneu a carregar la tasca. "
+"torneu a carregar la tasca."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
@@ -165,9 +166,9 @@ msgid ""
 "If provided allow to check than downloaded file is the exact copy of the "
 "original file."
 msgstr ""
-"El Hash del fitxer prové del propietari extern del fitxer. Si es proporciona "
-"ens permet comprovar que el fitxer descarregat és una còpia exacta del "
-"fitxer original. "
+"El Hash del fitxer prové del propietari extern del fitxer. \n"
+"Si es proporciona ens permet comprovar que el fitxer descarregat és una "
+"còpia exacta del fitxer original."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
@@ -176,18 +177,18 @@ msgid ""
 "provided."
 msgstr ""
 "El hash del fitxer és calcula amb les dades del fitxer comparades amb el "
-"hash extern quan es proporciona. "
+"hash extern quan es proporciona."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "File type"
-msgstr "Tipus de fitxer "
+msgstr "Tipus de fitxer"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Filter on my documents"
-msgstr "Filtre als meus documents "
+msgstr "Filtre als meus documents"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_follower_ids
@@ -197,12 +198,12 @@ msgstr "Seguidors"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seguidors (Canals) "
+msgstr "Seguidors (Canals)"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidors (Empreses) "
+msgstr "Seguidors (Empreses)"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -217,22 +218,22 @@ msgstr "ID"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_unread
 msgid "If checked new messages require your attention."
-msgstr "Si està marcat, hi ha nous missatges "
+msgstr "Si està marcat, hi ha nous missatges."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si està marcat, els nous missatges volen la vostra atenció. "
+msgstr "Si està marcat, els nous missatges volen la vostra atenció."
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_index_content
 msgid "Indexed Content"
-msgstr "Contingut Indexat "
+msgstr "Contingut Indexat"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
 msgid "Internal hash"
-msgstr "Hash intern "
+msgstr "Hash intern"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_is_follower
@@ -242,7 +243,7 @@ msgstr "És seguidor"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_public
 msgid "Is public document"
-msgstr "És un document públic "
+msgstr "És un document públic"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_last_post
@@ -267,7 +268,7 @@ msgstr "Darrera Actualització el"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 msgid "Link to ir.attachment model "
-msgstr "Enllaça al model ir.attachment"
+msgstr "Enllaça al model ir.attachment "
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_ids
@@ -278,12 +279,12 @@ msgstr "Missatges"
 #: model:ir.actions.act_window,name:attachment_base_synchronize.action_attachment
 #: model:ir.ui.menu,name:attachment_base_synchronize.menu_ir_attachment
 msgid "Meta data Attachments"
-msgstr "Adjunts de meta-dades "
+msgstr "Adjunts de meta-dades"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_mimetype
 msgid "Mime Type"
-msgstr "Tipus Mime "
+msgstr "Tipus Mime"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
@@ -293,22 +294,22 @@ msgstr "El(s) meu(s) Document(s)"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction_counter
 msgid "Number of Actions"
-msgstr "Número d'accions "
+msgstr "Nombre d'accions"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de missatges que requereixen una acció "
+msgstr "Número de missatges que requereixen una acció"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_message_unread_counter
 msgid "Number of unread messages"
-msgstr "Número de missatges no llegits "
+msgstr "Número de missatges no llegits"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Owner"
-msgstr "Propietari "
+msgstr "Propietari"
 
 #. module: attachment_base_synchronize
 #: selection:ir.attachment.metadata,state:0
@@ -319,7 +320,7 @@ msgstr "Pendent"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_field
 msgid "Resource Field"
-msgstr "Camp del recurs "
+msgstr "Camp del recurs"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_id
@@ -329,7 +330,7 @@ msgstr "ID del recurs "
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_model
 msgid "Resource Model"
-msgstr "Model del recurs "
+msgstr "Model del recurs"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_res_name
@@ -339,12 +340,12 @@ msgstr "Nom del recurs "
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Run"
-msgstr "Executar "
+msgstr "Executar"
 
 #. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Set to Done"
-msgstr "Marca com a Fet "
+msgstr "Marcar com a Fet"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state
@@ -355,23 +356,22 @@ msgstr "Estat"
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state_message
 msgid "State message"
-msgstr "Missatge d'estat "
+msgstr "Missatge d'estat"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_store_fname
 msgid "Stored Filename"
-msgstr "Nom del fitxer desat "
+msgstr "Nom del fitxer desat"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
 msgid "Sync date"
-msgstr "Sincronitza la data "
+msgstr "Sincronitza la data"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_model
 msgid "The database object this attachment will be attached to"
-msgstr ""
-"Els objectes de la base de dades en aquesta adjunció també seran adjuntats "
+msgstr "Els objectes de la base de dades en aquesta adjunció seran adjuntats a"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_file_type
@@ -381,12 +381,12 @@ msgid ""
 msgstr ""
 "El tipus de fitxer determina un mètode d'importació a utilitzar-se per "
 "analitzar i transformar les dades abans de ser importades al ERP o una "
-"exportació "
+"exportació"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,help:attachment_base_synchronize.field_ir_attachment_metadata_res_id
 msgid "The record id this is attached to"
-msgstr "L'ID del registre també està adjuntat "
+msgstr "L'ID del registre també està adjuntat"
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_type
@@ -421,4 +421,4 @@ msgid ""
 "link to your file"
 msgstr ""
 "Podeu carregar un fitxer des del vostre ordinador o copiar/enganxar un "
-"enllaç de Internet al vostre fitxer "
+"enllaç de Internet al vostre fitxer"
