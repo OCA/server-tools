@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: server-tools (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-03-24 18:35+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2018-07-04 10:05+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-9-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: auth_supplier
 #: model:ir.ui.view,arch_db:auth_supplier.fields
@@ -27,9 +28,9 @@ msgstr "Tipus de compte"
 #. module: auth_supplier
 #: model:ir.ui.view,arch_db:auth_supplier.fields
 msgid "Customer"
-msgstr "Client "
+msgstr "Client"
 
 #. module: auth_supplier
 #: model:ir.ui.view,arch_db:auth_supplier.fields
 msgid "Supplier"
-msgstr "Proveïdor "
+msgstr "Proveïdor"
