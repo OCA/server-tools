@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:59+0000\n"
-"PO-Revision-Date: 2017-04-19 17:59+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
+"PO-Revision-Date: 2018-07-04 10:03+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -27,7 +28,7 @@ msgstr "/home/odoo/.ssh/id_rsa"
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_folder
 msgid "Absolute path for storing the backups"
-msgstr "Ruta absoluta per emmagatzemar les còpies "
+msgstr "Ruta absoluta per emmagatzemar les còpies"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_needaction
@@ -38,28 +39,27 @@ msgstr "Acció necessària "
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
 #: model:ir.ui.menu,name:auto_backup.backup_conf_menu
 msgid "Automated Backups"
-msgstr "Còpies Automatitzades "
+msgstr "Còpies Automatitzades"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
-msgstr ""
-"Les còpies automàtiques de la base de dades poden ser programades així:  "
+msgstr "Les còpies automàtiques de la base de dades poden ser programades així:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
-msgstr "Còpia Fallida  "
+msgstr "Còpia Fallida"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_success
 msgid "Backup Successful"
-msgstr "Còpia Realitzada "
+msgstr "Còpia Realitzada"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_tree
 msgid "Backups"
-msgstr "Còpies "
+msgstr "Còpies"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_days_to_keep
@@ -68,7 +68,7 @@ msgid ""
 "autodeletion."
 msgstr ""
 "Còpies més antigues que això, s'esborraran automàticament. Poseu 0 per "
-"desactivar l'auto-esborrament. "
+"desactivar l'auto-esborrament."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -78,18 +78,18 @@ msgstr "Configuració bàsica de les còpies"
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "Cannot duplicate a configuration."
-msgstr "No es pot duplicar una configuració "
+msgstr "No es pot duplicar una configuració."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
-msgstr "Elegiu el mètode d'emmagatzemament per aquesta còpia.  "
+msgstr "Elegiu el mètode d'emmagatzemament per aquesta còpia."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:251
 #, python-format
 msgid "Cleanup of old database backups failed."
-msgstr "La neteja de les còpies de les bases de dades antigues ha fallat. "
+msgstr "La neteja de les còpies de les bases de dades antigues ha fallat."
 
 #. module: auto_backup
 #: code:addons/auto_backup/models/db_backup.py:131
@@ -125,7 +125,7 @@ msgstr "La còpia de la base de dades ha fallat."
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
-msgstr "La còpia de la base de dades ha tingut èxit. "
+msgstr "La còpia de la base de dades ha tingut èxit."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_message_last_post
@@ -149,7 +149,7 @@ msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
 "No desar les còpies al vostre sistema de fitxers, o es copiaran les còpies "
-"de seguretat també! "
+"de seguretat també!"
 
 #. module: auto_backup
 #: model:ir.model,name:auto_backup.model_db_backup
@@ -159,12 +159,12 @@ msgstr "Tema del Correu electrònic "
 #. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.action_server_backup
 msgid "Execute backup(s)"
-msgstr "Executar còpia(es) "
+msgstr "Executar còpia(es)"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_folder
 msgid "Folder"
-msgstr "Carpeta "
+msgstr "Carpeta"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_follower_ids
@@ -184,12 +184,12 @@ msgstr "Seguidors (Empreses) "
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
-msgstr "Anar a Configuració / Tècnic / Automatització / Accions Programades"
+msgstr "Anar a Configuració / Tècnic / Automatització / Accions Programades."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
-msgstr "Ajuda "
+msgstr "Ajuda"
 
 #. module: auto_backup
 #: sql_constraint:db.backup:0
@@ -239,7 +239,7 @@ msgstr "Darrera Actualització el"
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Local disk"
-msgstr "Disc local "
+msgstr "Disc local"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_ids
@@ -278,42 +278,42 @@ msgid ""
 "permissions for that file."
 msgstr ""
 "Ruta cap al fitxer de clau privada. Només l'usuari Odoo ha de tenir permisos "
-"de lectura per aquest fitxer. "
+"de lectura per aquest fitxer."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
 msgid "Private key location"
-msgstr "Localització privada de la clau "
+msgstr "Localització privada de la clau"
 
 #. module: auto_backup
 #: selection:db.backup,method:0
 msgid "Remote SFTP server"
-msgstr "Servidor SFTP remot "
+msgstr "Servidor SFTP remot"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_password
 msgid "SFTP Password"
-msgstr "Contrasenya SFTP "
+msgstr "Contrasenya SFTP"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_port
 msgid "SFTP Port"
-msgstr "Port SFTP "
+msgstr "Port SFTP"
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_host
 msgid "SFTP Server"
-msgstr "Servidor SFTP "
+msgstr "Servidor SFTP"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "SFTP Settings"
-msgstr "Configuració SFTP "
+msgstr "Configuració SFTP"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_search
 msgid "Search options"
-msgstr "Opcions de cerca "
+msgstr "Opcions de cerca"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -326,17 +326,17 @@ msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
 "Poseu la programació amb actiu i ompliu amb quina freqüència voleu generar "
-"les vostres còpies. "
+"les vostres còpies."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_name
 msgid "Summary of this backup process"
-msgstr "Sumari d'aquest procés de còpies "
+msgstr "Sumari d'aquest procés de còpies"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
-msgstr "Comprovar connexió SFTP "
+msgstr "Comprovar connexió SFTP"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_host
@@ -344,7 +344,7 @@ msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr ""
 "El nom del equip o la adreça IP del vostre servidor remot. Per exemple "
-"192.168.0.1 "
+"192.168.0.1"
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_password
@@ -353,7 +353,7 @@ msgid ""
 "then this is the password to decrypt it."
 msgstr ""
 "La contrasenya per a la connexió SFTP. Si especifiqueu un fitxer de clau "
-"privada, aleshores aquesta és la contrasenya per desxifrar-lo. "
+"privada, aleshores aquesta és la contrasenya per desxifrar-lo."
 
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_port
@@ -367,7 +367,7 @@ msgid ""
 "on the external server."
 msgstr ""
 "El nom d'usuari on es generarà la connexió SFTP. Això és l'usuari en el "
-"servidor extern. "
+"servidor extern."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_message_unread
@@ -386,17 +386,17 @@ msgid ""
 "you specify."
 msgstr ""
 "Utilitzeu SFTP amb precaució! Això escriu els fitxers en un servidor extern "
-"dins de la ruta que heu especificat. "
+"dins de la ruta que heu especificat."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
 msgid "Username in the SFTP Server"
-msgstr "Nom d'usuari al servidor SFTP "
+msgstr "Nom d'usuari al servidor SFTP"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
-msgstr "Atenció: "
+msgstr "Atenció:"
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
