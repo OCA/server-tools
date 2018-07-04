@@ -14,6 +14,7 @@
                     <field name="folder"/>
                     <field name="days_to_keep"/>
                     <field name="method"/>
+                    <field name="tempdir" attrs="{'invisible': [('method', '!=', 'local')]}" groups="base.group_no_one" />
                 </group>
                 <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
                     <div class="bg-warning text-warning">
