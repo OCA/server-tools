@@ -1,22 +1,18 @@
-# -*- coding: utf-8 -*-
-# © 2016 Daniel Reis
+# Copyright 2016 Daniel Reis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
-from openerp import SUPERUSER_ID
-from openerp import tools
-
+from odoo import models, fields, api, tools
 
 # Extended name search is only used on some operators
-ALLOWED_OPS = set(['ilike', 'like'])
+ALLOWED_OPS = {'ilike', 'like'}
 
 
 @tools.ormcache(skiparg=0)
 def _get_rec_names(self):
     "List of fields to search into"
     model = self.env['ir.model'].search(
-        [('model', '=', str(self._model))])
-    rec_name = [self._rec_name] or []
+        [('model', '=', self._name)])
+    rec_name = [self._rec_name] if bool(self._rec_name) else []
     other_names = model.name_search_ids.mapped('name')
     return rec_name + other_names
 
@@ -30,14 +26,15 @@ def _extend_name_results(self, domain, results, limit):
     return results
 
 
-class ModelExtended(models.Model):
+class IrModel(models.Model):
     _inherit = 'ir.model'
 
     name_search_ids = fields.Many2many(
         'ir.model.fields',
         string='Name Search Fields')
 
-    def _register_hook(self, cr, ids=None):
+    @api.model_cr
+    def _register_hook(self):
 
         def make_name_search():
 
@@ -46,7 +43,8 @@ class ModelExtended(models.Model):
                             operator='ilike', limit=100):
                 # Perform standard name search
                 res = name_search.origin(
-                    self, name=name, args=args, operator=operator, limit=limit)
+                    self, name=name, args=args, operator=operator,
+                    limit=limit)
                 enabled = self.env.context.get('name_search_extended', True)
                 # Perform extended name search
                 # Note: Empty name causes error on
@@ -62,7 +60,8 @@ class ModelExtended(models.Model):
                             self, base_domain + domain, res, limit)
                     # Try ordered word search on each of the search fields
                     for rec_name in all_names:
-                        domain = [(rec_name, operator, name.replace(' ', '%'))]
+                        domain = [
+                            (rec_name, operator, name.replace(' ', '%'))]
                         res = _extend_name_results(
                             self, base_domain + domain, res, limit)
                     # Try unordered word search on each of the search fields
@@ -74,10 +73,8 @@ class ModelExtended(models.Model):
                 return res
             return name_search
 
-        if ids is None:
-            ids = self.search(cr, SUPERUSER_ID, [])
-        for model in self.browse(cr, SUPERUSER_ID, ids):
-            Model = self.pool.get(model.model)
-            if Model:
+        for model in self.sudo().search(self.ids or []):
+            Model = self.env.get(model.model)
+            if Model is not None:
                 Model._patch_method('name_search', make_name_search())
-        return super(ModelExtended, self)._register_hook(cr)
+        return super(IrModel, self)._register_hook()
