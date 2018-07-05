@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# © 2016 Daniel Reis
+# Copyright 2016 Daniel Reis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase, at_install, post_install
 
 
 @at_install(False)
