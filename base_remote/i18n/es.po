@@ -6,73 +6,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2018-07-13 08:36+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a mostrar"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_name
 msgid "Hostname"
-msgstr ""
+msgstr "Nombre del host"
 
 #. module: base_remote
 #: sql_constraint:res.remote:0
 msgid "Hostname must be unique"
-msgstr ""
+msgstr "El nombre del host debe ser único"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_in_network
 msgid "In Network"
-msgstr ""
+msgstr "En la Red local"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_ip
 msgid "Ip"
-msgstr ""
+msgstr "IP"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: base_remote
 #: model:ir.model.fields,field_description:base_remote.field_res_remote_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: base_remote
 #: model:ir.ui.view,arch_db:base_remote.res_remote_form
 msgid "Remote"
-msgstr ""
+msgstr "Remoto"
 
 #. module: base_remote
 #: model:ir.actions.act_window,name:base_remote.res_remote_action
@@ -80,19 +82,19 @@ msgstr ""
 #: model:ir.ui.menu,name:base_remote.res_remote_menu
 #: model:ir.ui.view,arch_db:base_remote.res_remote_tree
 msgid "Remotes"
-msgstr ""
+msgstr "Remotos"
 
 #. module: base_remote
 #: model:ir.model.fields,help:base_remote.field_res_remote_in_network
 msgid "Shows if the remote can be found through the socket"
-msgstr ""
+msgstr "Muestra si el remoto se pudo encontrar a través del socket"
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #. module: base_remote
 #: model:ir.model,name:base_remote.model_base
 msgid "base"
-msgstr ""
+msgstr "base"
