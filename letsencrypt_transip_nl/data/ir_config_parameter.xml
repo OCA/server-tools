@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="transip" model="ir.config_parameter">
+        <field name="key">letsencrypt_dns_provider</field>
+        <field name="value">transip</field>
+    </record>
+</odoo>
