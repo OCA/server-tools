@@ -63,15 +63,18 @@ class CleanupPurgeWizardModule(models.TransientModel):
     @api.model
     def find(self):
         res = []
+        purge_lines = self.env['cleanup.purge.line.module']
         for module in self.env['ir.module.module'].search([]):
             if get_module_path(module.name):
                 continue
             if module.state == 'uninstalled':
-                self.env['cleanup.purge.line.module'].create({
+                purge_lines += self.env['cleanup.purge.line.module'].create({
                     'name': module.name,
-                }).purge()
+                })
                 continue
             res.append((0, 0, {'name': module.name}))
+
+        purge_lines.purge()
 
         if not res:
             raise UserError(_('No modules found to purge'))
