@@ -47,11 +47,13 @@ class DeadMansSwitchClient(models.AbstractModel):
                     cpu += process.cpu_percent()
                 else:  # pragma: no cover
                     cpu = None
-        user_count = 0
-        if 'bus.presence' in self.env.registry:
-            user_count = self.env['bus.presence'].search_count([
-                ('status', '=', 'online'),
-            ])
+        user_count = len([
+            status for status in self.env['res.partner'].im_search(
+                '', self.env['res.users'].search([], count=True),
+            )
+            if status['im_status'] != 'offline'
+        ])
+
         return {
             'database_uuid': self.env['ir.config_parameter'].get_param(
                 'database.uuid'),
