@@ -29,7 +29,7 @@
                         <field name="state" widget="statusbar" />
                     </header>
                     <sheet>
-                        <div class="oe_title">
+                        <div class="oe_title oe_left">
                             <h1 class="oe_read_only"><field name="display_name" /></h1>
                         </div>
                         <div class="oe_button_box oe_right">
@@ -86,26 +86,22 @@
                                     <i class="fa fa-circle" style="color: gray" />
                                 </t>
                             </h4>
-                            <table class="table">
+                            <table class="table table-striped">
                                 <tr>
                                     <th>CPU</th>
                                     <td><field name="last_cpu" />%</td>
-                                    <td><field name="last_cpu_sparkline" widget="sparkline_bar" /></td>
                                 </tr>
                                 <tr>
                                     <th>RAM</th>
-                                    <td><field name="last_ram" />%</td>
-                                    <td><field name="last_ram_sparkline" widget="sparkline_bar" /></td>
+                                    <td><field name="last_ram"/>%</td>
                                 </tr>
                                 <tr>
                                     <th>Users</th>
                                     <td><field name="last_user_count" /></td>
-                                    <td><field name="last_user_count_sparkline" widget="sparkline_bar" /></td>
                                 </tr>
                                 <tr>
                                     <th>Last seen</th>
                                     <td><field name="last_seen" /></td>
-                                    <td />
                                 </tr>
                             </table>
                         </div>

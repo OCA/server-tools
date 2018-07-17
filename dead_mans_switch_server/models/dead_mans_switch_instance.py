@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# © 2015 Therp BV <http://therp.nl>
+# (c) 2015-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import json
+from psycopg2.extensions import AsIs
 from datetime import datetime, timedelta
 from openerp import _, api, fields, models
 
@@ -32,12 +32,8 @@ class DeadMansSwitchInstance(models.Model):
         'the instance is considered dead', default=600)
     last_seen = fields.Datetime('Last seen', compute='_compute_last_log')
     last_cpu = fields.Float('CPU', compute='_compute_last_log')
-    last_cpu_sparkline = fields.Text('CPU', compute='_compute_last_log')
     last_ram = fields.Float('RAM', compute='_compute_last_log')
-    last_ram_sparkline = fields.Text('RAM', compute='_compute_last_log')
     last_user_count = fields.Integer(
-        'Active users', compute='_compute_last_log')
-    last_user_count_sparkline = fields.Text(
         'Active users', compute='_compute_last_log')
 
     _sql_constraints = [
@@ -111,15 +107,17 @@ class DeadMansSwitchInstance(models.Model):
             "where coalesce(l.create_date, '1970-01-01'::timestamp) %s "
             "now() at time zone 'utc' - "
             "(2 * alive_max_delay || 'seconds')::interval "
-            "group by i.id " %
-            (alive and '>=' or '<'))
+            "group by i.id ",
+            (AsIs(alive and '>=' or '<'),),
+        )
         return [('id', 'in', [i for i, in self.env.cr.fetchall()])]
 
     @api.multi
     def _compute_last_log(self):
         for this in self:
             last_log = self.env['dead.mans.switch.log'].search(
-                [('instance_id', '=', this.id)], limit=12)
+                [('instance_id', '=', this.id)], limit=1,
+            )
             field_mapping = {
                 'last_seen': 'create_date',
                 'last_cpu': 'cpu',
@@ -128,13 +126,6 @@ class DeadMansSwitchInstance(models.Model):
             }
             for field, mapped_field in field_mapping.iteritems():
                 this[field] = last_log[:1][mapped_field]
-            sparkline_fields = ['last_cpu', 'last_ram', 'last_user_count']
-            for field in sparkline_fields:
-                this['%s_sparkline' % field] = json.dumps(
-                    list(reversed(last_log.mapped(lambda log: {
-                        'value': log[field_mapping[field]],
-                        'tooltip': log.create_date,
-                    }))))
 
     @api.model
     def check_alive(self):
@@ -152,7 +143,7 @@ class DeadMansSwitchInstance(models.Model):
             # don't nag too often
             return
         self.message_post(
-            type='comment', subtype='mt_comment',
+            subtype='mt_comment',
             subject=_('Dead man\'s switch warning: %s') %
             self.display_name, content_subtype='plaintext',
             body=_('%s seems to be dead') % self.display_name)

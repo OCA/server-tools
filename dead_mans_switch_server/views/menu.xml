@@ -8,7 +8,7 @@
             view_mode="kanban,tree,form" />
         <menuitem id="menu_dead_mans_switch"
             name="Customer instances"
-            parent="base.menu_reporting" />
+            parent="base.menu_board_root" />
         <menuitem id="menu_dead_mans_switch_instance"
             action="action_dead_mans_switch_instance"
             parent="menu_dead_mans_switch" />
