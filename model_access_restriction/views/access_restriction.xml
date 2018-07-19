@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="access_restriction_tree_view">
+        <field name="name">Access.restriction.tree (in model_access_restriction)</field>
+        <field name="model">access.restriction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ir_model_id" options="{'no_create': True}"/>
+                <field name="perm_create"/>
+                <field name="perm_read"/>
+                <field name="perm_write"/>
+                <field name="perm_unlink"/>
+                <field name="res_group_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="access_restriction_form_view">
+        <field name="name">Access.restriction.form (in model_access_restriction)</field>
+        <field name="model">access.restriction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="ir_model_id" options="{'no_create': True}"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <p colspan="2">If you don't specify a group, nobody will have access to the model</p>
+                            <field name="res_group_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <p colspan="2">Only specified groups are allowed to execute selected operation(s) on the model</p>
+                            <p colspan="2">Please be careful about side-effects for some models</p>
+                            <field name="perm_create"/>
+                            <field name="perm_read"/>
+                            <field name="perm_write"/>
+                            <field name="perm_unlink"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="access_restriction_search_view">
+        <field name="name">Access.restriction.search (in model_access_restriction)</field>
+        <field name="model">access.restriction</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="ir_model_id"/>
+                <filter string="Active" name="filter_active" domain="[('active', '=', True)]"/>
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Model" name="filter_model" context="{'group_by': 'ir_model_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="access_restriction_act_window">
+        <field name="name">Access restriction</field>
+        <field name="res_model">access.restriction</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'active_test': False, 'search_default_filter_active': True}</field>
+    </record>
+
+    <menuitem id="access_restriction_menu_item" parent="base.menu_security" sequence="20" action="access_restriction_act_window" name="Access restriction"/>
+</odoo>
