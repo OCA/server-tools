@@ -24,6 +24,7 @@ import os
 import ConfigParser
 from lxml import etree
 from itertools import chain
+from StringIO import StringIO
 
 from odoo import api, models, fields
 from odoo.tools.config import config as system_base_config
@@ -39,6 +40,9 @@ except ImportError:
     _logger.info('not using server_environment_files for configuration,'
                  ' no directory found')
     _dir = None
+
+
+ENV_VAR_NAMES = ('SERVER_ENV_CONFIG', 'SERVER_ENV_CONFIG_SECRET')
 
 # Same dict as RawConfigParser._boolean_states
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
@@ -111,14 +115,29 @@ def _load_config_from_rcfile(config_p):
     config_p.remove_section('options')
 
 
+def _load_config_from_env(config_p):
+    for varname in ENV_VAR_NAMES:
+        env_config = os.getenv(varname)
+        if env_config:
+            try:
+                config_p.readfp(StringIO(env_config))
+            except ConfigParser.Error as err:
+                raise Exception(
+                    '%s content could not be parsed: %s'
+                    % (varname, err,)
+                )
+
+
 def _load_config():
     """Load the configuration and return a ConfigParser instance."""
     config_p = ConfigParser.SafeConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
+
     if _dir:
         _load_config_from_server_env_files(config_p)
     _load_config_from_rcfile(config_p)
+    _load_config_from_env(config_p)
     return config_p
 
 

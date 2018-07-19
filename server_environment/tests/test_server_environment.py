@@ -18,11 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo.tests import common
-from odoo.addons.server_environment import serv_config
+from odoo.addons.server_environment import server_env
+from . import common
 
 
-class TestEnv(common.TransactionCase):
+class TestEnv(common.ServerEnvironmentCase):
 
     def test_view(self):
         model = self.env['server.config']
@@ -44,5 +44,9 @@ class TestEnv(common.TransactionCase):
         self.assertTrue(pass_checked)
 
     def test_value_retrival(self):
-        val = serv_config.get('external_service.ftp', 'user')
-        self.assertEqual(val, 'toto')
+        with self.set_config_dir('testfiles'):
+            parser = server_env._load_config()
+            val = parser.get('external_service.ftp', 'user')
+            self.assertEqual(val, 'testing')
+            val = parser.get('external_service.ftp', 'host')
+            self.assertEqual(val, 'sftp.example.com')
