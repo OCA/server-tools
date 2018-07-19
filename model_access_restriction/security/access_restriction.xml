@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.model.access" id="ir_model_access_access_restriction_everybody">
+        <field name="name">access_restriction_everybody</field>
+        <field name="model_id" ref="model_access_restriction"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <record model="ir.model.access" id="ir_model_access_access_restriction_manager">
+        <field name="name">access_restriction_erp_manager</field>
+        <field name="model_id" ref="model_access_restriction"/>
+        <field name="group_id" ref="base.group_erp_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>
