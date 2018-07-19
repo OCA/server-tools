@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2017 Therp BV <http://therp.nl>
+# Copyright 2017-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from mock import patch
-from openerp.tests.common import TransactionCase, post_install, at_install
+from odoo.tests.common import TransactionCase, post_install, at_install
 from ..models.import_odoo_database import ImportContext, field_context
 
 
@@ -104,7 +104,8 @@ class TestBaseImportOdoo(TransactionCase):
         self.assertFalse(demodb.cronjob_running)
         # in our setting we won't get dummies, so we test this manually
         import_context = ImportContext(
-            None, None, [], {}, {}, [], {}, field_context(None, None, None)
+            None, self.env.ref('base_import_odoo.model_partner'),
+            [], {}, {}, [], {}, field_context(None, None, None)
         )
         dummy_id = demodb._run_import_create_dummy(
             import_context, self.env['res.partner'], {'id': 424242},

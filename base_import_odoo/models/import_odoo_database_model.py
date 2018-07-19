@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# © 2017 Therp BV <http://therp.nl>
+# Copyright 2017-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import fields, models
+from odoo import fields, models
 
 
 class ImportOdooDatabaseModel(models.Model):
@@ -18,3 +18,8 @@ class ImportOdooDatabaseModel(models.Model):
         ondelete='cascade',
     )
     domain = fields.Char(help='Optional filter to import only a subset')
+    defaults = fields.Char(help='Optional defaults dict to avoid empty values')
+    postprocess = fields.Text(
+        help='Optional python code for postprocessing. Your code has access '
+        'to `vals` which is the dictionary passed to create/write, and `env`.',
+    )
