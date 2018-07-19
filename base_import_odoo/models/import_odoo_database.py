@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2017 Therp BV <http://therp.nl>
+# Copyright 2017-2018 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
 try:
@@ -11,7 +11,8 @@ except ImportError:  # pragma: no cover
 import psycopg2
 import traceback
 from urlparse import urlparse
-from openerp import _, api, exceptions, fields, models, tools
+from odoo import _, api, exceptions, fields, models, tools
+from odoo.tools.safe_eval import safe_eval
 from collections import namedtuple
 _logger = logging.getLogger('base_import_odoo')
 
@@ -86,11 +87,20 @@ class ImportOdooDatabase(models.Model):
             'cronjob_id': self._create_cronjob().id,
         })
 
+    @api.model
+    def _run_import_cron(self, ids):
+        return self.browse(ids)._run_import()
+
     @api.multi
     def _run_import(self, commit=True, commit_threshold=100):
         """Run the import as cronjob, commit often"""
         self.ensure_one()
         if not self.password:
+            self.write({
+                'status_data': dict(
+                    self.status_data, error='No password provided',
+                ),
+            })
             return
         # model name: [ids]
         remote_ids = {}
@@ -118,7 +128,7 @@ class ImportOdooDatabase(models.Model):
             model = model_line.model_id
             remote_ids[model.model] = remote.execute(
                 model.model, 'search',
-                tools.safe_eval(model_line.domain) if model_line.domain else []
+                safe_eval(model_line.domain) if model_line.domain else []
             )
             remote_counts[model.model] = len(remote_ids[model.model])
         self.write({
@@ -210,6 +220,21 @@ class ImportOdooDatabase(models.Model):
             self.id, model._name.replace('.', '_'), _id or 0,
         )
         record = self._create_record_filter_fields(model, record)
+        model_defaults = {}
+        if context.model_line.defaults:
+            model_defaults.update(safe_eval(context.model_line.defaults))
+        for key, value in model_defaults.items():
+            record.setdefault(key, value)
+        if context.model_line.postprocess:
+            safe_eval(
+                context.model_line.postprocess, {
+                    'vals': record,
+                    'env': self.env,
+                    '_id': _id,
+                    'remote': context.remote,
+                },
+                mode='exec',
+            )
         new = self.env.ref('base_import_odoo.%s' % xmlid, False)
         if new and new.exists():
             if self.duplicates == 'overwrite_empty':
@@ -284,7 +309,7 @@ class ImportOdooDatabase(models.Model):
         else:
             logged = True
             _logger.debug(
-                'Got %s(%d[%d]) from idmap', model._model, _id,
+                'Got %s(%d[%d]) from idmap', model._name, _id,
                 record['id'] or 0,
             )
         if not _id:
@@ -294,7 +319,7 @@ class ImportOdooDatabase(models.Model):
         elif not logged:
             logged = True
             _logger.debug(
-                'Got %s(%d[%d]) from dummies', model._model, _id, record['id'],
+                'Got %s(%d[%d]) from dummies', model._name, _id, record['id'],
             )
         if not _id:
             xmlid = self.env['ir.model.data'].search([
@@ -309,17 +334,17 @@ class ImportOdooDatabase(models.Model):
             logged = True
             _logger.debug(
                 'Got %s(%d[%d]) from mappings',
-                model._model, _id, record['id'],
+                model._name, _id, record['id'],
             )
         if not _id and create_dummy:
             _id = self._run_import_create_dummy(
                 context, model, record,
-                forcecreate=record['id'] not in
+                forcecreate=record['id'] and record['id'] not in
                 self.status_data['ids'].get(model._name, [])
             )
         elif _id and not logged:
             _logger.debug(
-                'Got %s(%d[%d]) from xmlid', model._model, _id, record['id'],
+                'Got %s(%d[%d]) from xmlid', model._name, _id, record['id'],
             )
         return _id
 
@@ -550,7 +575,7 @@ class ImportOdooDatabase(models.Model):
             name: field
             for name, field
             in self.env[context.model_line.model_id.model]._fields.items()
-            if not field.compute or field.related
+            if not field.compute or field.inverse
         }
 
     @api.multi
@@ -655,7 +680,7 @@ class ImportOdooDatabase(models.Model):
         return self.env['ir.cron'].create({
             'name': self.display_name,
             'model': self._name,
-            'function': '_run_import',
+            'function': '_run_import_cron',
             'doall': True,
             'args': str((self.ids,)),
         })
