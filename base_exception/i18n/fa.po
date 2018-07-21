@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-01 10:38+0000\n"
-"PO-Revision-Date: 2017-05-01 10:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-07-22 11:30+0000\n"
+"Last-Translator: derKonig <fshahy@gmail.com>\n"
 "Language-Team: Persian (https://www.transifex.com/oca/teams/23907/fa/)\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_active
 msgid "Active"
-msgstr ""
+msgstr "فعال"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
 msgid "Apply on"
-msgstr ""
+msgstr "اعمال بر"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid
@@ -62,12 +63,12 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_name
 msgid "Exception Name"
-msgstr ""
+msgstr "نام استثنا"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
-msgstr ""
+msgstr "قاعده استثنا"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_form
