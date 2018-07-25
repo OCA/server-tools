@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
@@ -6,7 +6,7 @@
 Abstract Model to manage SQL Requests
 =====================================
 
-This module provide an abstract model to manage SQL Select request on database.
+This module provides an abstract model to manage SQL Select requests on database.
 It is not usefull for itself. You can see an exemple of implementation in the
 'sql_export' module. (same repository).
 
@@ -45,7 +45,7 @@ Inherit the model:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/10.0
+   :target: https://runbot.odoo-community.org/runbot/149/11.0
 
 Bug Tracker
 ===========
