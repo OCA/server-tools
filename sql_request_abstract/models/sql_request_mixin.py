@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2015 Akretion (<http://www.akretion.com>)
 # Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
@@ -6,7 +5,7 @@
 
 import re
 import uuid
-import StringIO
+from io import StringIO
 import base64
 from psycopg2 import ProgrammingError
 
@@ -144,10 +143,12 @@ class SQLRequestMixin(models.AbstractModel):
         if mode in ('view', 'materialized_view'):
             rollback = False
 
-        params = params or {}
         # pylint: disable=sql-injection
-        query = self.query % params
-        query = query.decode('utf-8')
+        if params:
+            query = self.query % params
+        else:
+            query = self.query
+        query = query
 
         if mode in ('fetchone', 'fetchall'):
             pass
@@ -242,7 +243,7 @@ class SQLRequestMixin(models.AbstractModel):
             res = self._hook_executed_request()
         except ProgrammingError as e:
             raise UserError(
-                _("The SQL query is not valid:\n\n %s") % e.message)
+                _("The SQL query is not valid:\n\n %s") % e)
         finally:
             self._rollback_savepoint(rollback_name)
         return res
