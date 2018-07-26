@@ -16,10 +16,10 @@ Installation
 To install this module, you only need to add it to your addons, and load it as
 a server-wide module.
 
-This can be done with the ``load`` parameter in ``/etc/odoo.conf`` or with the
-``--load`` command-line parameter
+This can be done with the ``server_wide_modules`` parameter in ``/etc/odoo.conf``
+or with the ``--load`` command-line parameter
 
-``load = "web, web_kanban, dbfilter_from_header"``
+``server_wide_modules = "web, web_kanban, dbfilter_from_header"``
 
 Configuration
 =============
@@ -39,6 +39,9 @@ applied before looking at the regular expression in the header.
 
   ``RequestHeader set X-Odoo-dbfilter [your filter regex]``
 
+And make sure that proxy mode is enabled in Odoo's configuration file:
+
+``proxy_mode = True``
 
 Bug Tracker
 ===========
