@@ -9,35 +9,36 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2017\n"
+"PO-Revision-Date: 2018-07-27 16:15+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
 msgid "Show field Technical Features"
-msgstr ""
+msgstr "Mostrar campo Funcionalidades Técnicas"
 
 #. module: base_technical_features
 #: model:res.groups,name:base_technical_features.group_technical_features
 msgid "Technical Features (w/o debug mode)"
-msgstr ""
+msgstr "Funcionalidades Técnicas (s/ modo depuração)"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
 msgid "Technical features"
-msgstr ""
+msgstr "Funcionalidades Técnicas"
 
 #. module: base_technical_features
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr ""
+msgstr "O utilizador não tem acesso às funcionalidades técnicas."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
@@ -49,6 +50,8 @@ msgstr "Utilizadores"
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
+"Se deve ou não ser exibido o campo Funcionalidades Técnicas nas preferências "
+"do utilizador."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
