@@ -18,7 +18,14 @@ In nginx, use one of:
 * proxy_set_header X-OpenERP-dbfilter [your filter];
 * proxy_set_header X-Odoo-dbfilter [your filter];
 
-This addon has to be loaded as server-wide module.
+Make sure that proxy mode is enabled in Odoo's configuration file:
+
+`proxy_mode = True`
+
+And load module as a server-wide module, either via the ``--load`` command-line parameter
+or by the ``server_wide_modules`` parameter:
+
+``server_wide_modules = "web, web_kanban, dbfilter_from_header"``
 
 Bug Tracker
 ===========
