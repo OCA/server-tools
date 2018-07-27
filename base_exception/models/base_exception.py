@@ -97,6 +97,7 @@ class BaseException(models.AbstractModel):
         action = action.read()[0]
         action.update({
             'context': {
+                'active_model': self._name,
                 'active_id': self.ids[0],
                 'active_ids': self.ids
             }
