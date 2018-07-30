@@ -6,7 +6,7 @@
             <field name="name">attribute.option.wizard</field>
             <field name="model">attribute.option.wizard</field>
             <field name="arch" type="xml">
-                <form string="Options Wizard" version="7.0">
+                <form string="Options Wizard">
                     <field name="attribute_id" invisible="1"/>
                     <separator string="options_placeholder"/>
                     <footer>
