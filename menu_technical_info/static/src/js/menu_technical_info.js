@@ -1,8 +1,8 @@
-odoo.define('menu_technical_info.Menu', function (require) {
+odoo.define('menu_technical_info', function (require) {
 "use strict";
-    var $ = require('$'),
-        Menu = require('web.Menu'),
-        Model = require('web.Model');
+
+    var Menu = require('web.Menu');
+    var data = require('web.data');
 
     Menu.include({
         start: function() {
@@ -21,11 +21,10 @@ odoo.define('menu_technical_info.Menu', function (require) {
             if(!this.debug) return;
             var $menu_item = $(menu_item);
             if($menu_item.is('[title]')) return;
-            var ir_model_data = new Model('ir.model.data');
             var id = $menu_item.data('menu');
-            ir_model_data.query(['module', 'name']).filter([['res_id', '=', id],['model', '=', 'ir.ui.menu']]).first().then(function(menu) {
+            new data.DataSetSearch(this, 'ir.model.data', [], [['res_id', '=', id], ['model', '=', 'ir.ui.menu']]).read_slice().then(function(menu) {
                 $menu_item.tooltip({
-                    title: menu.module + '.' + menu.name
+                    title: menu[0].module + '.' + menu[0].name
                 }).tooltip('show');
             });
         }

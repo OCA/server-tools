@@ -34,6 +34,7 @@ Contributors
 ------------
 
 * Dennis Sluijk <d.sluijk@onestein.nl>
+* Henry Zhou <henry@maxsns.com>
 
 Maintainer
 ----------
