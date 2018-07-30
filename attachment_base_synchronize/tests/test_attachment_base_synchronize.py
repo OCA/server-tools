@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Angel Moya (http://angelmoya.es)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -30,7 +29,7 @@ class TestAttachmentBaseSynchronize(TransactionCase):
             'pending'
         )
         self.ir_attachment_metadata.run_attachment_metadata_scheduler()
-        self.env.invalidate_all()
+        self.env.cache.invalidate()
         with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
             new_env = api.Environment(
                 new_cr, self.env.uid, self.env.context)
