@@ -1,13 +1,10 @@
-# coding: utf-8
-# @ 2015 Florian DA COSTA @ Akretion
+# Copyright 2015 Florian DA COSTA @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from base64 import b64decode
 import hashlib
 import logging
-import odoo
-from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo import _, api, exceptions, fields, models, registry
 
 
 _logger = logging.getLogger(__name__)
@@ -31,7 +28,6 @@ class IrAttachmentMetadata(models.Model):
         help="Link to ir.attachment model ")
     file_type = fields.Selection(
         selection=[],
-        string="File type",
         help="The file type determines an import method to be used "
         "to parse and transform data before their import in ERP or an export")
     sync_date = fields.Datetime()
@@ -50,7 +46,7 @@ class IrAttachmentMetadata(models.Model):
                     b64decode(attachment.datas)).hexdigest()
             if attachment.external_hash and\
                attachment.internal_hash != attachment.external_hash:
-                raise UserError(
+                raise exceptions.UserError(
                     _("File corrupted: Something was wrong with "
                       "the retrieved file, please relaunch the task."))
 
@@ -58,7 +54,14 @@ class IrAttachmentMetadata(models.Model):
     def run_attachment_metadata_scheduler(self, domain=None):
         if domain is None:
             domain = [('state', '=', 'pending')]
-        attachments = self.search(domain)
+        batch_limit = self.env.ref(
+            'attachment_base_synchronize.attachment_sync_cron_batch_limit') \
+            .value
+        if batch_limit and batch_limit.isdigit():
+            limit = int(batch_limit)
+        else:
+            limit = 200
+        attachments = self.search(domain, limit=limit)
         if attachments:
             return attachments.run()
         return True
@@ -70,20 +73,20 @@ class IrAttachmentMetadata(models.Model):
         """
         for attachment in self:
             with api.Environment.manage():
-                with odoo.registry(self.env.cr.dbname).cursor() as new_cr:
+                with registry(self.env.cr.dbname).cursor() as new_cr:
                     new_env = api.Environment(
                         new_cr, self.env.uid, self.env.context)
                     attach = attachment.with_env(new_env)
                     try:
                         attach._run()
-                    except Exception, e:
+                    # pylint: disable=broad-except
+                    except Exception as e:
                         attach.env.cr.rollback()
-                        _logger.exception(e)
-                        attach.write(
-                            {
-                                'state': 'failed',
-                                'state_message': e,
-                            })
+                        _logger.exception(str(e))
+                        attach.write({
+                            'state': 'failed',
+                            'state_message': str(e),
+                        })
                         attach.env.cr.commit()
                     else:
                         vals = {
@@ -97,7 +100,7 @@ class IrAttachmentMetadata(models.Model):
     @api.multi
     def _run(self):
         self.ensure_one()
-        _logger.info('Start to process attachment metadata id %s' % self.id)
+        _logger.info('Start to process attachment metadata id %d', self.id)
 
     @api.multi
     def set_done(self):
