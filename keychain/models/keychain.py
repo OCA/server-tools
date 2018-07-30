@@ -48,12 +48,12 @@ class KeychainAccount(models.Model):
         help="'prod', 'dev', etc. or empty (for all)"
     )
     login = fields.Char(help="Login")
-    clear_password = fields.Char(
+    clear_password = fields.Text(
         help="Password. Leave empty if no changes",
         inverse='_inverse_set_password',
         compute='_compute_password',
         store=False)
-    password = fields.Char(
+    password = fields.Text(
         help="Password is derived from clear_password",
         readonly=True)
     data = fields.Text(help="Additionnal data as json")
