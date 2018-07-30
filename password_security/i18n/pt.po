@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 18:41+0000\n"
-"PO-Revision-Date: 2018-03-02 18:41+0000\n"
-"Last-Translator: Pedro Castro Silva <inactive+pcs.sossia@transifex.com>, "
-"2017\n"
+"PO-Revision-Date: 2018-07-30 17:15+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_minimum
@@ -182,7 +182,7 @@ msgid ""
 "administrator for assistance."
 msgstr ""
 "As senhas só podem ser alteradas após %d hora(s). Por favor, contacte um "
-"administrador para assistência"
+"administrador para assistência."
 
 #. module: password_security
 #: model:ir.model.fields,help:password_security.field_res_company_password_lower
@@ -228,7 +228,7 @@ msgstr "Caracter especial"
 #. module: password_security
 #: model:ir.ui.view,arch_db:password_security.view_company_form
 msgid "Timings"
-msgstr "Timings"
+msgstr "Temporizações"
 
 #. module: password_security
 #: model:ir.model.fields,field_description:password_security.field_res_company_password_upper
