@@ -76,7 +76,7 @@ class IrAttachmentMetadata(models.Model):
                     attach = attachment.with_env(new_env)
                     try:
                         attach._run()
-                    except Exception, e:
+                    except Exception as e:
                         attach.env.cr.rollback()
                         _logger.exception(e)
                         attach.write(
