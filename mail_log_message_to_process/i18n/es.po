@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mail_log_messages_to_process
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,13 +12,13 @@ msgstr ""
 "PO-Revision-Date: 2017-10-21 22:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: mail_log_messages_to_process
-#: model:ir.model,name:mail_log_messages_to_process.model_mail_thread
+#. module: mail_log_message_to_process
+#: model:ir.model,name:mail_log_message_to_process.model_mail_thread
 msgid "Email Thread"
 msgstr "Hilo correo electrónico"
