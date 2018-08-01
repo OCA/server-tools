@@ -15,6 +15,7 @@
                     <field name="folder"/>
                     <field name="days_to_keep"/>
                     <field name="method"/>
+                    <field name="backup_format"/>
                 </group>
                 <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
                     <div class="bg-warning text-warning">
