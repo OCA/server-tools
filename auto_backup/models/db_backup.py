@@ -169,10 +169,7 @@ class DbBackup(models.Model):
                 filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
 
-                    if backup:
-                        cached = open(backup)
-                    else:
-                        cached = db.dump_db(self.env.cr.dbname, None, backup_format=rec.backup_format)
+                    cached = db.dump_db(self.env.cr.dbname, None, backup_format=rec.backup_format)
 
                     with cached:
                         with rec.sftp_connection() as remote:
