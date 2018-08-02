@@ -84,9 +84,9 @@ class DbBackup(models.Model):
     )
 
     backup_format = fields.Selection(
-        [("dump.zip", "zip (includes filestore)"), ("dump", "pg_dump custom format (without filestore)")],
+        [("zip", "zip (includes filestore)"), ("dump", "pg_dump custom format (without filestore)")],
         string="Backup Format",
-        default='dump.zip',
+        default='zip',
         help="Choose the format for this backup."
     )
 
@@ -261,14 +261,14 @@ class DbBackup(models.Model):
                 self.name)
 
     @staticmethod
-    def filename(when, ext='dump.zip'):
+    def filename(when, ext='zip'):
         """Generate a file name for a backup.
 
         :param datetime.datetime when:
             Use this datetime instead of :meth:`datetime.datetime.now`.
         :param str ext: Extension of the file. Default: dump.zip
         """
-        return "{:%Y_%m_%d_%H_%M_%S}.{ext}".format(when, ext=ext)
+        return "{:%Y_%m_%d_%H_%M_%S}.{ext}".format(when, ext='dump.zip' if ext == 'zip' else ext)
 
     @api.multi
     def sftp_connection(self):
