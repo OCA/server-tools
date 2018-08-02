@@ -84,7 +84,10 @@ class DbBackup(models.Model):
     )
 
     backup_format = fields.Selection(
-        [("zip", "zip (includes filestore)"), ("dump", "pg_dump custom format (without filestore)")],
+        [
+            ("zip", "zip (includes filestore)"),
+            ("dump", "pg_dump custom format (without filestore)")
+        ],
         string="Backup Format",
         default='zip',
         help="Choose the format for this backup."
@@ -158,7 +161,11 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(self.env.cr.dbname, destiny, backup_format=rec.backup_format)
+                        db.dump_db(
+                            self.env.cr.dbname,
+                            destiny,
+                            backup_format=rec.backup_format
+                        )
                         backup = backup or destiny.name
                 successful |= rec
 
@@ -169,7 +176,11 @@ class DbBackup(models.Model):
                 filename = self.filename(datetime.now(), ext=rec.backup_format)
                 with rec.backup_log():
 
-                    cached = db.dump_db(self.env.cr.dbname, None, backup_format=rec.backup_format)
+                    cached = db.dump_db(
+                        self.env.cr.dbname,
+                        None,
+                        backup_format=rec.backup_format
+                    )
 
                     with cached:
                         with rec.sftp_connection() as remote:
@@ -268,7 +279,9 @@ class DbBackup(models.Model):
             Use this datetime instead of :meth:`datetime.datetime.now`.
         :param str ext: Extension of the file. Default: dump.zip
         """
-        return "{:%Y_%m_%d_%H_%M_%S}.{ext}".format(when, ext='dump.zip' if ext == 'zip' else ext)
+        return "{:%Y_%m_%d_%H_%M_%S}.{ext}".format(
+            when, ext='dump.zip' if ext == 'zip' else ext
+        )
 
     @api.multi
     def sftp_connection(self):
