@@ -74,6 +74,7 @@ addon | version | summary
 [keychain](keychain/) | 10.0.2.0.1 | Store accounts and credentials
 [letsencrypt](letsencrypt/) | 10.0.1.0.0 | Request SSL certificates from letsencrypt.org
 [mail_environment](mail_environment/) | 10.0.1.0.0 | Configure mail servers with server_environment_files
+[mail_log_message_to_process](mail_log_message_to_process/) | 10.0.1.0.0 | Log all messages received, before they start to be processed.
 [mass_editing](mass_editing/) | 10.0.1.1.0 | Mass Editing
 [mass_sorting](mass_sorting/) | 10.0.1.0.0 | Sort any models by any fields list
 [module_auto_update](module_auto_update/) | 10.0.2.0.3 | Automatically update Odoo modules
