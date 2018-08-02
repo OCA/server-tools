@@ -64,6 +64,7 @@ setuptools.setup(
         'odoo10-addon-keychain',
         'odoo10-addon-letsencrypt',
         'odoo10-addon-mail_environment',
+        'odoo10-addon-mail_log_message_to_process',
         'odoo10-addon-mass_editing',
         'odoo10-addon-mass_sorting',
         'odoo10-addon-module_auto_update',
