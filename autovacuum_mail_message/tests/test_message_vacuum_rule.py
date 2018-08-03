@@ -2,9 +2,10 @@
 # © 2018 Akretion (Florian da Costa)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests import common
 from datetime import date, timedelta
+
 from openerp import api, exceptions
+from openerp.tests import common
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 

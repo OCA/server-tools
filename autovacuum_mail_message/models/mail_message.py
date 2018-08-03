@@ -2,10 +2,11 @@
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import api, models
-import openerp
-
 import logging
+
+import openerp
+from openerp import api, models
+
 _logger = logging.getLogger(__name__)
 
 
@@ -28,13 +29,11 @@ class MailMessage(models.Model):
                         new_env.cr.commit()
                 except Exception as e:
                     _logger.exception(
-                        "Failed to delete messages : %s", e)
+                        "Failed to delete messages : %s", str(e))
 
+    # Call by cron
     @api.model
     def autovacuum_mail_message(self):
-        """
-            Called by ir.cron
-        """
         rules = self.env['message.vacuum.rule'].search([])
         for rule in rules:
             domain = rule.get_message_domain()

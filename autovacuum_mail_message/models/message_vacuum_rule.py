@@ -2,9 +2,10 @@
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp import api, fields, models, exceptions, _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import date, timedelta
+
+from openerp import _, api, exceptions, fields, models
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class MessageVacuumRule(models.Model):

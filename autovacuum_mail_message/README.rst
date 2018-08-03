@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :alt: License: LGPL-3
 
 =======================
