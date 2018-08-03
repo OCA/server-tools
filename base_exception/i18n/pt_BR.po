@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:42+0000\n"
-"PO-Revision-Date: 2017-07-21 02:42+0000\n"
-"Last-Translator: falexandresilva <falexandresilva@gmail.com>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
+"PO-Revision-Date: 2018-08-04 14:33+0000\n"
+"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_active
@@ -28,7 +29,7 @@ msgstr "Ativo"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
 msgid "Apply on"
-msgstr ""
+msgstr "Aplicar no"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid
@@ -60,33 +61,36 @@ msgid ""
 " %s \n"
 "(%s)"
 msgstr ""
+"Erro ao avaliar a regra exception.rule:\n"
+" %s \n"
+"(%s)"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_name
 msgid "Exception Name"
-msgstr ""
+msgstr "Nome da exceção"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
-msgstr ""
+msgstr "Regra de exceção"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Exception Rule Setup"
-msgstr ""
+msgstr "Configuração da regra da execeção"
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
 #: model:ir.model,name:base_exception.model_exception_rule
 #: model:ir.ui.menu,name:base_exception.menu_action_exception
 msgid "Exception Rules"
-msgstr ""
+msgstr "Regras de exceção"
 
 #. module: base_exception
 #: model:res.groups,name:base_exception.group_exception_rule_manager
 msgid "Exception manager"
-msgstr ""
+msgstr "Gerenciar Exceção"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_exception_ids
@@ -106,7 +110,7 @@ msgstr "Exceções para resolver"
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule_sequence
 msgid "Gives the sequence order when applying the test"
-msgstr ""
+msgstr "Dá a ordem de sequência ao aplicar o teste"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_id
@@ -123,12 +127,16 @@ msgid ""
 "and all have a value for next_state, we usethe exception having the smallest "
 "sequence value"
 msgstr ""
+"Se detectarmos uma exceção, definimos o estado do objeto (ex-purchase) para "
+"o next_state (ex 'to approve'). Se houver mais de uma exceção detectada e "
+"todas tiverem um valor para next_state, usamos a exceção com o menor valor "
+"de sequência"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_ignore_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_ignore
 msgid "Ignore Exceptions"
-msgstr ""
+msgstr "Ignorar Exceções"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception___last_update
@@ -150,33 +158,33 @@ msgstr "Última Atualização em"
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_main_exception_id
 msgid "Main Exception"
-msgstr ""
+msgstr "Exceção Principal"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_next_state
 msgid "Next state"
-msgstr ""
+msgstr "Próximo estado"
 
 #. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:28
 #, python-format
 msgid "Only 1 ID accepted, got %r."
-msgstr ""
+msgstr "Apenas 1 ID aceito, tenho %r."
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
 msgid "Outstanding exceptions to manage"
-msgstr ""
+msgstr "Excepções excepcionais para gerir"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Outstanding exceptions to manager"
-msgstr ""
+msgstr "Exceções proeminentes para o gerente"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_code
 msgid "Python Code"
-msgstr ""
+msgstr "Código Python"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule_code
@@ -184,18 +192,19 @@ msgid ""
 "Python code executed to check if the exception apply or not. Use failed = "
 "True to block the exception"
 msgstr ""
+"Código Python executado para verificar se a exceção se aplica ou não. Use "
+"failed = True para bloquear a exceção"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_related_model_id
-#, fuzzy
 msgid "Related Model"
-msgstr "Criado em"
+msgstr "Modelo Relatado"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_rule_group
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_rule_group
 msgid "Rule Group"
-msgstr ""
+msgstr "Regra de grupo"
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule_rule_group
@@ -203,6 +212,9 @@ msgid ""
 "Rule group is used to group the rules that must validated at same time for a "
 "target object. Ex: validate sale.order.line rules with sale order rules."
 msgstr ""
+"O grupo de regras é usado para agrupar as regras que devem ser validadas ao "
+"mesmo tempo para um objeto de destino. Ex: valide as regras de "
+"sale.order.line com regras de ordem de venda."
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
@@ -216,11 +228,13 @@ msgid ""
 "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
 "wrong. Value must be in this list %s"
 msgstr ""
+"O valor \"%s\" escolhido para o estado do campo \"próximo estado\" de \"%s\" "
+"está errado. O valor deve estar nesta lista %s"
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
-msgstr ""
+msgstr "_Fechar"
 
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
