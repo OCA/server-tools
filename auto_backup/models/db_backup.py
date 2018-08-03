@@ -84,6 +84,15 @@ class DbBackup(models.Model):
              "read permissions for that file.",
     )
 
+    backup_format = fields.Selection(
+        [
+            ("zip", "zip (includes filestore)"),
+            ("dump", "pg_dump custom format (without filestore)")
+        ],
+        default='zip',
+        help="Choose the format for this backup."
+    )
+
     frequency = fields.Selection(
         (["daily", "Daily"], ["hourly", "Hourly"]),
         default="daily",
@@ -138,11 +147,11 @@ class DbBackup(models.Model):
     def action_backup(self):
         """Run selected backups."""
         backup = None
-        filename = self.filename(datetime.now())
         successful = self.browse()
 
         # Start with local storage
         for rec in self.filtered(lambda r: r.method == "local"):
+            filename = self.filename(datetime.now(), ext=rec.backup_format)
             with rec.backup_log():
                 # Directory must exist
                 try:
@@ -158,21 +167,28 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(self.env.cr.dbname, destiny)
+                        db.dump_db(
+                            self.env.cr.dbname,
+                            destiny,
+                            backup_format=rec.backup_format
+                        )
                         backup = backup or destiny.name
                 successful |= rec
 
         # Ensure a local backup exists if we are going to write it remotely
         sftp = self.filtered(lambda r: r.method == "sftp")
         if sftp:
-            if backup:
-                cached = open(backup)
-            else:
-                cached = db.dump_db(self.env.cr.dbname, None)
+            for rec in sftp:
+                filename = self.filename(datetime.now(), ext=rec.backup_format)
+                with rec.backup_log():
 
-            with cached:
-                for rec in sftp:
-                    with rec.backup_log():
+                    cached = db.dump_db(
+                        self.env.cr.dbname,
+                        None,
+                        backup_format=rec.backup_format
+                    )
+
+                    with cached:
                         with rec.sftp_connection() as remote:
                             # Directory must exist
                             try:
@@ -227,18 +243,25 @@ class DbBackup(models.Model):
         now = datetime.now()
         for rec in self.filtered("days_to_keep"):
             with rec.cleanup_log():
-                oldest = self.filename(now - timedelta(days=rec.days_to_keep))
+                oldest = self.filename(
+                    now - timedelta(days=rec.days_to_keep),
+                    ext=rec.backup_format
+                )
 
                 if rec.method == "local":
-                    for name in iglob(os.path.join(rec.folder,
-                                                   "*.dump.zip")):
+                    path = os.path.join(
+                        rec.folder,
+                        "*.{}".format(rec.backup_format)
+                    )
+
+                    for name in iglob(path):
                         if os.path.basename(name) < oldest:
                             os.unlink(name)
 
                 elif rec.method == "sftp":
                     with rec.sftp_connection() as remote:
                         for name in remote.listdir(rec.folder):
-                            if (name.endswith(".dump.zip") and
+                            if (name.endswith(rec.backup_format) and
                                     os.path.basename(name) < oldest):
                                 remote.unlink('%s/%s' % (rec.folder, name))
 
@@ -266,13 +289,16 @@ class DbBackup(models.Model):
                 self.name)
 
     @staticmethod
-    def filename(when):
+    def filename(when, ext='zip'):
         """Generate a file name for a backup.
 
         :param datetime.datetime when:
             Use this datetime instead of :meth:`datetime.datetime.now`.
+        :param str ext: Extension of the file. Default: dump.zip
         """
-        return "{:%Y_%m_%d_%H_%M_%S}.dump.zip".format(when)
+        return "{:%Y_%m_%d_%H_%M_%S}.{ext}".format(
+            when, ext='dump.zip' if ext == 'zip' else ext
+        )
 
     @api.multi
     def sftp_connection(self):

@@ -176,18 +176,6 @@ class TestDbBackup(common.TransactionCase):
                     'wb'
                 )
 
-    def test_action_backup_sftp_remote_open(self):
-        """ It should open remote file w/ proper args """
-        rec_id = self.new_record()
-        with self.mock_assets() as assets:
-            with self.patch_filtered_sftp(rec_id):
-                conn = rec_id.sftp_connection().__enter__()
-                rec_id.action_backup()
-                conn.open.assert_called_once_with(
-                    assets['os'].path.join(),
-                    'wb'
-                )
-
     def test_action_backup_daily(self):
         """ It should search all records with daily frequency"""
         rec_id = self.new_record()
@@ -203,7 +191,7 @@ class TestDbBackup(common.TransactionCase):
         with mock.patch.object(rec_id, 'search'):
             rec_id.action_backup_all("hourly")
             rec_id.search.assert_called_once_with(
-                [("frequency", "=", "daily")]
+                [("frequency", "=", "hourly")]
             )
 
     def test_action_backup_all_return(self):
@@ -253,11 +241,23 @@ class TestDbBackup(common.TransactionCase):
             pysftp.Connection(), res,
         )
 
-    def test_filename(self):
+    def test_filename_default(self):
         """ It should not error and should return a .dump.zip file str """
         now = datetime.now()
         res = self.Model.filename(now)
         self.assertTrue(res.endswith(".dump.zip"))
+
+    def test_filename_zip(self):
+        """ It should return a dump.zip filename"""
+        now = datetime.now()
+        res = self.Model.filename(now, ext='zip')
+        self.assertTrue(res.endswith(".dump.zip"))
+
+    def test_filename_dump(self):
+        """ It should return a dump filename"""
+        now = datetime.now()
+        res = self.Model.filename(now, ext='dump')
+        self.assertTrue(res.endswith(".dump"))
 
     def test_default_frequence_daily(self):
         """ The default frequency is daily"""
@@ -275,4 +275,3 @@ class TestDbBackup(common.TransactionCase):
             'hourly',
             rec_id.frequency
         )
-
