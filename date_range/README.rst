@@ -133,7 +133,7 @@ promote its widespread use.
     :target: https://github.com/lmignon
     :alt: lmignon
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
