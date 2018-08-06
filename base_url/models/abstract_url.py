@@ -108,7 +108,7 @@ class AbstractUrl(models.AbstractModel):
             else:
                 new_url = record._build_url_key()
             if new_url:
-                record.sudo().set_url(new_url)
+                record.set_url(new_url)
             record.url_key = new_url
 
     def _compute_redirect_url(self):
