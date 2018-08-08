@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Vauxoo - https://www.vauxoo.com/
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -96,7 +95,7 @@ class Webhook(models.Model):
             _logger.debug(
                 'python_code "%s" with dict [%s] error [%s]',
                 python_code, eval_dict, error)
-        if isinstance(res, basestring):
+        if isinstance(res, str):
             res = tools.ustr(res)
         return res
 
