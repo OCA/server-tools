@@ -34,6 +34,8 @@
     proxy_set_header X-OpenERP-dbfilter [your filter];
     proxy_set_header X-Odoo-dbfilter [your filter];
 
+    Then make sure that proxy_mode = True in Odoo's configuration file.
+
     The addon has to be loaded as server-wide module.
     """,
     "category": "Tools",
