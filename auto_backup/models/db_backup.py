@@ -88,7 +88,6 @@ class DbBackup(models.Model):
             ("zip", "zip (includes filestore)"),
             ("dump", "pg_dump custom format (without filestore)")
         ],
-        string="Backup Format",
         default='zip',
         help="Choose the format for this backup."
     )
