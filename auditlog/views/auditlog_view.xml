@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_audit" name="Audit"
-        parent="base.menu_custom" sequence="50"
-        groups="base.group_system"/>
+              parent="base.menu_custom" sequence="50"
+              groups="base.group_system"/>
 
 
     <!-- auditlog.rule -->
@@ -14,9 +14,9 @@
             <form string="Rule">
                 <header>
                     <button string="Subscribe" name="subscribe"
-                        type="object" states="draft" class="oe_highlight"/>
+                            type="object" states="draft" class="oe_highlight"/>
                     <button string="Unsubscribe" name="unsubscribe"
-                        type="object" states="subscribed"/>
+                            type="object" states="subscribed"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -33,6 +33,31 @@
                             <field name="log_unlink"/>
                             <field name="log_create"/>
                         </group>
+                    </group>
+                    <group string="Field rules">
+                        <field name="field_rule_ids"
+                                  context="{'default_rule_id':id,'default_model_id': model_id}">
+                            <form string="Field rules">
+                                <group colspan="1">
+                                    <field name="model_id" invisible="1"/>
+                                    <field name="field_id"/>
+                                </group>
+                                <group colspan="1">
+                                    <field name="log_read" invisible="1"/>
+                                    <field name="log_write"/>
+                                    <field name="log_unlink"/>
+                                    <field name="log_create"/>
+                                </group>
+                            </form>
+                            <tree editable="bottom">
+                                <field name="model_id" invisible="1"/>
+                                <field name="field_id" options="{'no_open': True,'no_create_edit': True}"/>
+                                <field name="log_read"/>
+                                <field name="log_write"/>
+                                <field name="log_unlink"/>
+                                <field name="log_create"/>
+                            </tree>
+                        </field>
                     </group>
                 </sheet>
             </form>
@@ -63,13 +88,13 @@
             <search string="Rules">
                 <field name="name"/>
                 <filter name="state_draft"
-                    domain="[('state','=','draft')]" string="Draft"/>
+                        domain="[('state','=','draft')]" string="Draft"/>
                 <filter name="state_subscribed"
-                    domain="[('state','=','subscribed')]" string="Subscribed"/>
+                        domain="[('state','=','subscribed')]" string="Subscribed"/>
                 <field name="model_id"/>
                 <group expand="0" string="Group By...">
                     <filter name="group_by_state" string="State"
-                        domain="[]" context="{'group_by':'state'}"/>
+                            domain="[]" context="{'group_by':'state'}"/>
                 </group>
             </search>
         </field>
@@ -156,7 +181,7 @@
         </field>
     </record>
 
-   <record id="view_auditlog_log_search" model="ir.ui.view">
+    <record id="view_auditlog_log_search" model="ir.ui.view">
         <field name="name">auditlog.log.search</field>
         <field name="model">auditlog.log</field>
         <field name="arch" type="xml">
@@ -167,23 +192,23 @@
                 <field name="user_id"/>
                 <group expand="0" string="Group By...">
                     <filter name="group_by_user_id"
-                        string="User"
-                        domain="[]" context="{'group_by':'user_id'}"/>
+                            string="User"
+                            domain="[]" context="{'group_by':'user_id'}"/>
                     <filter name="group_by_model_id"
-                        string="Model"
-                        domain="[]" context="{'group_by':'model_id'}"/>
+                            string="Model"
+                            domain="[]" context="{'group_by':'model_id'}"/>
                     <filter name="group_by_res_id"
-                        string="Resource ID"
-                        domain="[]" context="{'group_by':'res_id'}"/>
+                            string="Resource ID"
+                            domain="[]" context="{'group_by':'res_id'}"/>
                     <filter name="group_by_create_date"
-                        string="Date"
-                        domain="[]" context="{'group_by':'create_date'}"/>
+                            string="Date"
+                            domain="[]" context="{'group_by':'create_date'}"/>
                     <filter name="group_by_http_session"
-                        string="User session"
-                        domain="[]" context="{'group_by':'http_session_id'}"/>
+                            string="User session"
+                            domain="[]" context="{'group_by':'http_session_id'}"/>
                     <filter name="group_by_http_request"
-                        string="HTTP Request"
-                        domain="[]" context="{'group_by':'http_request_id'}"/>
+                            string="HTTP Request"
+                            domain="[]" context="{'group_by':'http_request_id'}"/>
                 </group>
             </search>
         </field>
@@ -197,5 +222,5 @@
     </record>
 
     <menuitem id="menu_audit_logs" name="Logs"
-        parent="menu_audit" action="action_auditlog_log_tree"/>
+              parent="menu_audit" action="action_auditlog_log_tree"/>
 </odoo>

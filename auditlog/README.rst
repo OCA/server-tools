@@ -8,12 +8,16 @@ Audit Log - Track user operations
 
 This module allows the administrator to log user operations performed on data
 models such as ``create``, ``read``, ``write`` and ``delete``.
+Administrator can set rules to track those operation either on whole model, or
+per field.
 
 Usage
 =====
 
 Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
-which operations to log for a given data model.
+which operations to log for a given data model. Field rule lines define
+creating log only if operation is performed on specific field, while main rule
+applies to all fields.
 
 .. image:: /auditlog/static/description/rule.png
 
@@ -58,6 +62,7 @@ Contributors
 * Sebastien Alix <sebastien.alix@osiell.com>
 * Holger Brunn <hbrunn@therp.nl>
 * Holden Rehg <holdenrehg@gmail.com>
+* Aleksandar Gajic <aleksandar.gajic@modoolar.com>
 
 Images
 ------
