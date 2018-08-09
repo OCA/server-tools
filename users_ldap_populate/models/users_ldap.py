@@ -69,8 +69,9 @@ class CompanyLDAP(models.Model):
                     conf['ldap_filter'])
             results = self.get_ldap_entry_dicts(conf)
             for result in results:
-                user_id = self.get_or_create_user(
-                    conf, result[1][login_attr][0], result)
+                user_id = self.with_context(
+                    no_reset_password=True
+                ).get_or_create_user(conf, result[1][login_attr][0], result)
                 # this happens if something goes wrong while creating the user
                 # or fetching information from ldap
                 if not user_id:
