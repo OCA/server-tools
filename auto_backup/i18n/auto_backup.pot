@@ -40,6 +40,11 @@ msgid "Backup Failed"
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_backup_format
+msgid "Backup Format"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.actions.server,name:auto_backup.ir_cron_backup_scheduler_0_ir_actions_server
 #: model:ir.cron,cron_name:auto_backup.ir_cron_backup_scheduler_0
 #: model:ir.cron,name:auto_backup.ir_cron_backup_scheduler_0
@@ -67,24 +72,29 @@ msgid "Cannot duplicate a configuration."
 msgstr ""
 
 #. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_backup_format
+msgid "Choose the format for this backup."
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:128
+#: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr ""
@@ -105,14 +115,14 @@ msgid "Database Backup"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:203
+#: code:addons/auto_backup/models/db_backup.py:219
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:227
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -129,7 +139,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:114
+#: code:addons/auto_backup/models/db_backup.py:123
 #, python-format
 msgid "Do not save backups on your filestore, or you will backup your backups too!"
 msgstr ""
@@ -295,7 +305,17 @@ msgid "john"
 msgstr ""
 
 #. module: auto_backup
+#: selection:db.backup,backup_format:0
+msgid "pg_dump custom format (without filestore)"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
+msgstr ""
+
+#. module: auto_backup
+#: selection:db.backup,backup_format:0
+msgid "zip (includes filestore)"
 msgstr ""
 
