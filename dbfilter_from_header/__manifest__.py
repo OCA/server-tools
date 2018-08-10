@@ -25,4 +25,5 @@
     "external_dependencies": {
         'python': [],
     },
+    "post_load": "post_load",
 }
