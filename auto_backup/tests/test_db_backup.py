@@ -1,6 +1,7 @@
 # © 2015 Agile Business Group <http://www.agilebg.com>
 # © 2015 Alessio Gerace <alesiso.gerace@agilebg.com>
 # © 2016 Grupo ESOC Ingeniería de Servicios, S.L.U. - Jairo Llopis
+# © 2018 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
 # Copyright 2016 LasLabs Inc.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -187,12 +188,23 @@ class TestDbBackup(common.TransactionCase):
                     'wb'
                 )
 
-    def test_action_backup_all_search(self):
-        """ It should search all records """
+    def test_action_backup_daily(self):
+        """ It should search all records with daily frequency"""
         rec_id = self.new_record()
         with mock.patch.object(rec_id, 'search'):
             rec_id.action_backup_all()
-            rec_id.search.assert_called_once_with([])
+            rec_id.search.assert_called_once_with(
+                [("frequency", "=", "daily")]
+            )
+
+    def test_action_backup_hourly(self):
+        """ It should search all records with daily frequency"""
+        rec_id = self.new_record()
+        with mock.patch.object(rec_id, 'search'):
+            rec_id.action_backup_all("hourly")
+            rec_id.search.assert_called_once_with(
+                [("frequency", "=", "daily")]
+            )
 
     def test_action_backup_all_return(self):
         """ It should return result of backup operation """
@@ -246,3 +258,21 @@ class TestDbBackup(common.TransactionCase):
         now = datetime.now()
         res = self.Model.filename(now)
         self.assertTrue(res.endswith(".dump.zip"))
+
+    def test_default_frequence_daily(self):
+        """ The default frequency is daily"""
+        rec_id = self.new_record()
+        self.assertEqual(
+            'daily',
+            rec_id.frequency
+        )
+
+    def test_frequency_hourly(self):
+        """ The frequency can be set to hourly"""
+        rec_id = self.new_record()
+        rec_id.frequency = 'hourly'
+        self.assertEqual(
+            'hourly',
+            rec_id.frequency
+        )
+
