@@ -10,6 +10,8 @@ from ..hooks import uninstall_hook
 
 
 class TestMassEditing(common.TransactionCase):
+    at_install = False
+    post_install = True
 
     def setUp(self):
         super(TestMassEditing, self).setUp()
