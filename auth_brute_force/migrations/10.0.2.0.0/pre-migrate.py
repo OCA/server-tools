@@ -6,6 +6,8 @@ from psycopg2 import IntegrityError
 
 
 def migrate(cr, version):
+    if not version:
+        return
     # Fix typo across DB
     cr.execute(
         """ UPDATE res_authentication_attempt
