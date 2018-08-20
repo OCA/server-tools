@@ -22,7 +22,14 @@ class Base(models.AbstractModel):
         return new_values
 
     def play_onchanges(self, values, onchange_fields):
-        onchange_specs = self._onchange_spec()
+        # If the onchange specs contains fields declaration with more than
+        # one dot, the unpacking fails on the core onchange method.
+        # So removing to avoid the crash.
+        specs = self._onchange_spec()
+        onchange_specs = {}
+        for key, value in specs.iteritems():
+            if len(key.split('.')) < 3:
+                onchange_specs[key] = value
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
         all_values = values.copy()
