@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_cron_inactivity_period_user,access_ir_cron_inactivity_period_user,model_ir_cron_inactivity_period,base.group_user,1,,,
+access_ir_cron_inactivity_period_manager,access_ir_cron_inactivity_period_manager,model_ir_cron_inactivity_period,base.group_system,1,1,1,1
