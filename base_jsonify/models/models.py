@@ -50,12 +50,6 @@ class Base(models.AbstractModel):
 
         """
         result = []
-        empty_value = {
-            'char': None,
-            'int': None,
-            # 'float': None, TODO:  0.0 != False
-            'text': None,
-            }
 
         for rec in self:
             res = {}
@@ -73,8 +67,9 @@ class Base(models.AbstractModel):
                     else:
                         raise UserError(_('Wrong parser configuration'))
                 else:
-                    res[json_key] = rec[field_name]
-                    if not res[json_key] and field_type in empty_value:
-                        res[json_key] = empty_value[field_type]
+                    value = rec[field_name]
+                    if value is False and field_type != 'boolean':
+                        value = None
+                    res[json_key] = value
             result.append(res)
         return result

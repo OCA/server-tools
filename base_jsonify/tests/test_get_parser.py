@@ -66,7 +66,7 @@ class TestParser(TransactionCase):
                 })
             ],
         })
-        expected_json = [{
+        expected_json = {
             u'lang': u'en_US',
             u'comment': None,
             u'credit_limit': 0.0,
@@ -90,7 +90,23 @@ class TestParser(TransactionCase):
                 u'name': u'Sebatien Beau',
                 u'email': None
             }]
-        }]
+        }
         json_partner = partner.jsonify(parser)
 
-        self.assertDictEqual(json_partner[0], expected_json[0])
+        self.assertDictEqual(json_partner[0], expected_json)
+
+        json_partner = partner.jsonify(parser)
+
+        self.assertDictEqual(json_partner[0], expected_json)
+
+        # Check that only boolean fields have boolean values into json
+        # By default if a field is not set into Odoo, the value is always False
+        # This value is not the expected one into the json
+        partner.write({'child_ids': [(6, 0, [])],
+                       'active': False,
+                       'lang': False})
+        json_partner = partner.jsonify(parser)
+        expected_json['active'] = False
+        expected_json['lang'] = None
+        expected_json['children'] = []
+        self.assertDictEqual(json_partner[0], expected_json)
