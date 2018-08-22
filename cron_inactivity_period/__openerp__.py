@@ -16,6 +16,9 @@
         'security/ir.model.access.csv',
         'views/ir_cron.xml',
     ],
+    'demo': [
+        'demo/res_groups.xml',
+    ],
     'images': [
         'static/description/ir_cron_form.png',
     ],

@@ -23,12 +23,12 @@ msgstr "Heure de début"
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "crééé par"
 
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Créé le"
 
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,cron_id:0
@@ -38,7 +38,7 @@ msgstr "Cron id"
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nom affiché"
 
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,inactivity_hour_end:0
@@ -64,17 +64,17 @@ msgstr "Périodes d'inactivité"
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,__last_update:0
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Dernière mise à jour par"
 
 #. module: cron_inactivity_period
 #: field:ir.cron.inactivity.period,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Dernière mise à jour le"
 
 #. module: cron_inactivity_period
 #: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:36
@@ -91,5 +91,5 @@ msgstr "Type"
 #: code:addons/cron_inactivity_period/models/ir_cron_inactivity_period.py:66
 #, python-format
 msgid "Unimplemented Feature: Inactivity Period type '%s'"
-msgstr "Fonctionnalité non implémentée: Période d'inactivity de type '%s'"
+msgstr "Fonctionnalité non implémentée : Période d'inactivité de type '%s'"
 
