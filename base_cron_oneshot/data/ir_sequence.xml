@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+  <record id="seq_oneshot_name" model="ir.sequence">
+    <field name="name">Oneshot cron names sequence</field>
+  </record>
+
+</odoo>

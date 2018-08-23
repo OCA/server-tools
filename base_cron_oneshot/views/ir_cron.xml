@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="ir_cron_view_form" model="ir.ui.view">
+    <field name="name">ir.cron.form</field>
+    <field name="model">ir.cron</field>
+    <field name="inherit_id" ref="base.ir_cron_view_form"/>
+    <field name="arch" type="xml">
+      <field name="state" position="after">
+        <field name="oneshot"/>
+      </field>
+      <field name="numbercall" position="attributes">
+        <attribute name="attrs">
+          {'invisible': [('oneshot', '=', True)]}
+        </attribute>
+      </field>
+    </field>
+  </record>
+
+</odoo>
