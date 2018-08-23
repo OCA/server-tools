@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo11-addon-letsencrypt',
         'odoo11-addon-module_auto_update',
         'odoo11-addon-onchange_helper',
+        'odoo11-addon-scheduler_error_mailer',
         'odoo11-addon-sentry',
     ],
     classifiers=[
