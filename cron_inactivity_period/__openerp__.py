@@ -6,7 +6,7 @@
 {
     'name': 'Inactivity Periods for Cron Jobs',
     'version': '8.0.1.0.0',
-    'author': "GRAP, Odoo Community Association (OCA)",
+    'author': "GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Tools',
     'depends': [
