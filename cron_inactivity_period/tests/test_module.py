@@ -14,7 +14,7 @@ class TestModule(TransactionCase):
         self.config_obj = self.env['res.config']
         self.cron_obj = self.env['ir.cron']
         self.inactivity_period = self.env['ir.cron.inactivity.period']
-        self.vaccum_cron = self.env.ref('base.cronjob_osv_memory_autovacuum')
+        self.cron_job = self.env.ref('base.cronjob_osv_memory_autovacuum')
 
     # Test Section
     def test_01_no_inactivity_period(self):
@@ -25,7 +25,7 @@ class TestModule(TransactionCase):
 
     def test_02_no_activity_period(self):
         self.inactivity_period.create({
-            'cron_id': self.vaccum_cron.id,
+            'cron_id': self.cron_job.id,
             'type': 'hour',
             'inactivity_hour_begin': 0.0,
             'inactivity_hour_end': 23.59,
@@ -40,5 +40,5 @@ class TestModule(TransactionCase):
         self.config_obj.create({})
         self.env.cr.execute("update res_config set write_date = '1970-01-01'")
         self.cron_obj._callback(
-            'osv_memory.autovacuum', 'power_on', (), self.vaccum_cron.id)
+            'osv_memory.autovacuum', 'power_on', (), self.cron_job.id)
         return len(self.config_obj.search([]))

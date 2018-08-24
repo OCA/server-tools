@@ -23,7 +23,7 @@ class IrCron(models.Model):
         job = self.browse(job_id)
         if any(job.inactivity_period_ids._check_inactivity_period()):
             _logger.info(
-                "Job `%s` skipped because runned in an inactivity period",
+                "Job %s skipped during inactivity period",
                 job.name)
             return
         return super(IrCron, self)._callback(
