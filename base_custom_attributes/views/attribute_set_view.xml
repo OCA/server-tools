@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="attribute_set_form_view" model="ir.ui.view">
+            <field name="name">attribute.set.form</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <form string="Attribute Set">
+                    <group>
+                        <field name="name"/>
+                        <field name="model_id" invisible="context.get('force_model')"/>
+                        <field name="attribute_group_ids" colspan="4"
+                               context="{'default_model_id': model_id, 'from_attribute_set':True}">
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="attribute_set_tree_view" model="ir.ui.view">
+            <field name="name">attribute.set.tree</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute Set" >
+                    <field name="name" />
+                    <field name="model_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attribute_set_search" model="ir.ui.view">
+            <field name="name">attribute.set.list</field>
+            <field name="model">attribute.set</field>
+            <field name="arch" type="xml">
+                <search string="Search Attribute Sets">
+                    <field name="name"/>
+                    <field name="model_id" />
+               </search>
+            </field>
+        </record>
+
+        <record id="attribute_set_form_action" model="ir.actions.act_window">
+            <field name="name">Attribute Sets</field>
+            <field name="res_model">attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_attribute_set_search"/>
+            <field name="context">{"search_default_user_id":uid}</field>
+            <field name="help"></field>
+        </record>
+
+         <menuitem
+             action="attribute_set_form_action" id="menu_attribute_set_action"
+             parent="menu_attribute_in_admin" sequence="10"/>
+
+    </data>
+</odoo>
