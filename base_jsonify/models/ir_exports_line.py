@@ -12,8 +12,8 @@ class IrExportsLine(models.Model):
 
     alias = fields.Char(
         'Alias',
-        help=_('The complete path to the field where you can specify an '
-               'alias on the a step as field:alias')
+        help='The complete path to the field where you can specify an '
+             'alias on the a step as field:alias'
     )
 
     @api.constrains('alias', 'name')
