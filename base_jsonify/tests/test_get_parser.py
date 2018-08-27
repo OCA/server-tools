@@ -57,7 +57,7 @@ class TestParser(TransactionCase):
         partner = self.env['res.partner'].create({
             'name': 'Akretion',
             'country_id': self.env.ref('base.fr').id,
-            'lang': 'en_US', # default
+            'lang': 'en_US',  # default
             'category_id': [(0, 0, {'name': 'Inovator'})],
             'child_ids': [
                 (0, 0, {
