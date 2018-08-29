@@ -11,7 +11,7 @@
       </field>
       <field name="numbercall" position="attributes">
         <attribute name="attrs">
-          {'invisible': [('oneshot', '=', True)]}
+          {'readonly': [('oneshot', '=', True)]}
         </attribute>
       </field>
     </field>
