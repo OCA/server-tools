@@ -1,6 +1,6 @@
 # Copyright (C) 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-# pylint disable=anomalous-backslash-in-string
+# pylint: disable=anomalous-backslash-in-string
 
 from odoo import api
 from odoo.tests import common
