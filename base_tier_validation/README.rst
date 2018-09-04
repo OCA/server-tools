@@ -54,6 +54,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Opensynergy Indonesia <https://opensynergy-indonesia.com>>
 
 Do not contact contributors directly about support or help with technical issues.
 

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Base Tier Validation",
     "summary": "Implement a validation process based on tiers.",
-    "version": "9.0.1.0.2",
+    "version": "8.0.1.0.0",
     "category": "Tools",
     "website": "https://github.com/OCA/server-tools",
     "author": "Eficent, Odoo Community Association (OCA)",

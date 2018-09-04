@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2018 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models, _
-from openerp.exceptions import ValidationError, UserError
+from openerp.exceptions import Warning as UserError, ValidationError
 from openerp.tools.safe_eval import safe_eval
 
 
