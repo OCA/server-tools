@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 01:12+0000\n"
-"PO-Revision-Date: 2017-06-22 01:12+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-09-06 14:33+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: user_threshold
 #: model:ir.model,name:user_threshold.model_res_groups
@@ -30,6 +31,7 @@ msgstr "Zugriffsgruppen"
 #, python-format
 msgid "Cannot add user - Maximum number of allowed users reached"
 msgstr ""
+"Kann Nutzer nicht anlegen - Maximale Anzahl erlaubter Nutzer ist erreicht"
 
 #. module: user_threshold
 #: model:ir.model,name:user_threshold.model_res_company
@@ -39,32 +41,32 @@ msgstr "Unternehmen"
 #. module: user_threshold
 #: model:ir.ui.view,arch_db:user_threshold.view_users_form
 msgid "Exempt From Threshold"
-msgstr ""
+msgstr "Von Begrenzung ausgenommen"
 
 #. module: user_threshold
 #: model:ir.model.fields,field_description:user_threshold.field_res_users_threshold_exempt
 msgid "Exempt User From User Count Thresholds"
-msgstr ""
+msgstr "Nutzer von Nutzeranzahlbegrenzungen ausnehmen"
 
 #. module: user_threshold
 #: model:ir.model.fields,field_description:user_threshold.field_res_company_max_users
 msgid "Maximum Number of users allowed for this company"
-msgstr ""
+msgstr "Maximale Anzahl erlaubter Nutzer dieses Unternehmens"
 
 #. module: user_threshold
 #: model:ir.ui.view,arch_db:user_threshold.view_company_form
 msgid "Maximum Users"
-msgstr ""
+msgstr "Maximale Anwender"
 
 #. module: user_threshold
 #: model:ir.ui.view,arch_db:user_threshold.view_users_form
 msgid "User Threshold"
-msgstr ""
+msgstr "Anwenderbeschränkung"
 
 #. module: user_threshold
 #: model:res.groups,name:user_threshold.group_threshold_manager
 msgid "User Threshold Manager"
-msgstr ""
+msgstr "Anwenderbeschränkungs-Manager"
 
 #. module: user_threshold
 #: model:ir.model,name:user_threshold.model_res_users
@@ -79,6 +81,8 @@ msgid ""
 "You must be a member of the `User Threshold Manager` group to grant access "
 "to it."
 msgstr ""
+"Sie müssen Mitglied der Gruppe 'Anwenderbegrenzungs-Manager' sein, um "
+"Zugriff darauf zu gewähren."
 
 #. module: user_threshold
 #: code:addons/user_threshold/models/res_users.py:111
@@ -87,6 +91,8 @@ msgid ""
 "You must be a member of the `User Threshold Manager` group to grant "
 "threshold exemptions."
 msgstr ""
+"Sie müssen Mitglied der Gruppe 'Anwenderbegrenzungs-Manager' sein, um "
+"Beschränkungsausnahmen zu gewähren."
 
 #. module: user_threshold
 #: code:addons/user_threshold/models/ir_config_parameter.py:27
@@ -94,6 +100,8 @@ msgstr ""
 msgid ""
 "You must be a member of the `User Threshold Manager` to delete this parameter"
 msgstr ""
+"Sie müssen Mitglied der Gruppe 'Anwenderbegrenzungs-Manager' sein, um diesen "
+"Parameter entfernen zu können"
 
 #. module: user_threshold
 #: code:addons/user_threshold/models/ir_config_parameter.py:41
@@ -102,6 +110,8 @@ msgstr ""
 msgid ""
 "You must be a member of the `User Threshold Manager` to set this parameter"
 msgstr ""
+"Sie müssen Mitglied der Gruppe 'Anwenderbegrenzungs-Manager' sein, um diesen "
+"Parameter einstellen zu dürfen."
 
 #. module: user_threshold
 #: model:ir.model,name:user_threshold.model_ir_config_parameter
