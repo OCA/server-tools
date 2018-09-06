@@ -9,77 +9,84 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:11+0000\n"
-"PO-Revision-Date: 2017-12-01 02:11+0000\n"
-"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"PO-Revision-Date: 2018-09-07 15:25+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: sequence_check_digit
 #: code:addons/sequence_check_digit/models/ir_sequence.py:46
 #, python-format
 msgid "%s is not an implemented function"
-msgstr ""
+msgstr "Funktion %s ist nicht implementiert"
 
 #. module: sequence_check_digit
 #: model:ir.model.fields,field_description:sequence_check_digit.field_ir_sequence_check_digit_formula
 msgid "Check digit formula"
-msgstr ""
+msgstr "Prüfe Ziffern-Berechnung"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
 msgid "Damm"
-msgstr ""
+msgstr "Schwelle"
 
 #. module: sequence_check_digit
 #: code:addons/sequence_check_digit/models/ir_sequence.py:40
 #: code:addons/sequence_check_digit/models/ir_sequence.py:49
 #, python-format
 msgid "Format is not accepted"
-msgstr ""
+msgstr "Format nicht akzeptabel"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "ISO 7064 Mod 11, 10"
-msgstr ""
+msgstr "ISO 7064 Mod 11, 10"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "ISO 7064 Mod 11, 2"
-msgstr ""
+msgstr "ISO 7064 Mod 11, 2"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "ISO 7064 Mod 37, 2"
-msgstr ""
+msgstr "ISO 7064 Mod 37, 2"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "ISO 7064 Mod 37, 36"
-msgstr ""
+msgstr "ISO 7064 Mod 37, 36"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "ISO 7064 Mod 97, 10"
-msgstr ""
+msgstr "ISO 7064 Mod 97, 10"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
+#, fuzzy
 msgid "Luhn"
-msgstr ""
+msgstr "Luhn"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
 msgid "None"
-msgstr ""
+msgstr "Ohne"
 
 #. module: sequence_check_digit
 #: selection:ir.sequence,check_digit_formula:0
 msgid "Verhoeff"
-msgstr ""
+msgstr "Verhoeff"
 
 #. module: sequence_check_digit
 #: model:ir.model,name:sequence_check_digit.model_ir_sequence
