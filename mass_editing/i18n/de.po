@@ -11,14 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"PO-Revision-Date: 2018-09-07 14:25+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: mass_editing
 #: code:addons/mass_editing/models/mass_object.py:99
@@ -108,7 +109,7 @@ msgstr "Massenverarbeitung (%s)"
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_object
 msgid "Mass Editing Object"
-msgstr ""
+msgstr "Objekt für Massenbearbeitung"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_model_id
@@ -126,6 +127,8 @@ msgid ""
 "Model is used for Selecting Fields. This is editable until Sidebar menu is "
 "not created."
 msgstr ""
+"Modell wird für Feldauswahl verwendet. Dies ist veränderlich solange das "
+"Sidebar-Menü nicht angelegt ist."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_name
@@ -148,17 +151,19 @@ msgstr "Objekt"
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove Sidebar Button"
-msgstr ""
+msgstr "Sidebar-Schaltfläche entfernen"
 
 #. module: mass_editing
 #: model:ir.ui.view,arch_db:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
 msgstr ""
+"Die Kontextaktion entfernen, um diese Vorlage auf zugehörige Dokumente "
+"anzuwenden"
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_act_window_id
 msgid "Sidebar action"
-msgstr ""
+msgstr "Sidebar-Aktion"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_act_window_id
@@ -166,18 +171,21 @@ msgid ""
 "Sidebar action to make this template available on records of the related "
 "document model."
 msgstr ""
+"Sidebar-Aktion, um diese Vorlage für Datensätze des zugehörigen "
+"Dokumentenmodells verfügbar zu machen."
 
 #. module: mass_editing
 #: model:ir.model.fields,field_description:mass_editing.field_mass_object_ref_ir_value_id
 msgid "Sidebar button"
-msgstr ""
+msgstr "Sidebar-Schaltfläche"
 
 #. module: mass_editing
 #: model:ir.model.fields,help:mass_editing.field_mass_object_ref_ir_value_id
 msgid "Sidebar button to open the sidebar action."
-msgstr ""
+msgstr "Sidebar-Schaltfläche, um die Sidebar-Aktion auszulösen."
 
 #. module: mass_editing
 #: model:ir.model,name:mass_editing.model_mass_editing_wizard
+#, fuzzy
 msgid "mass.editing.wizard"
-msgstr ""
+msgstr "mass.editing.wizard"
