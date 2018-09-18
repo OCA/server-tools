@@ -7,8 +7,10 @@
             <field name="arch" type="xml">
                 <tree string="Exception Rule">
                     <field name="active"/>
+                    <field name="warning_only"/>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="warning_text"/>
                     <field name="model"/>
                     <field name="sequence"/>
                 </tree>
@@ -36,6 +38,10 @@
                         <field name="code"
                                attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}"/>
                         <field name="active"/>
+                    </group>
+                    <group colspan="4" col="2" groups="base.group_system">
+                      <field name="warning_only"/>
+                      <field name="warning_text"/>
                     </group>
                 </form>
             </field>

@@ -6,6 +6,7 @@ import time
 
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
+from odoo.osv.expression import AND
 from odoo.tools.safe_eval import safe_eval
 from odoo import osv
 
@@ -52,6 +53,16 @@ class ExceptionRule(models.Model):
 #  - uid: current user id
 #  - context: current context
 """)
+    warning_only = fields.Boolean(
+        string='Warning only',
+        default=False
+    )
+    warning_text = fields.Char(
+        string='Warning message',
+        translate=True,
+        help='This message can be added to the record that raised a warning.'
+             'For a sale order line it could be the product name sold.'
+    )
 
     @api.constrains('exception_type', 'domain', 'code')
     def check_exception_type_consistency(self):
@@ -96,12 +107,21 @@ class BaseExceptionMethod(models.AbstractModel):
         return [('model', '=', self._name)]
 
     @api.multi
-    def detect_exceptions(self):
+    def detect_exceptions(self, with_warning=False, only_warning=False):
         """List all exception_ids applied on self
         Exception ids are also written on records
+
+        :param bool with_warning: Returns the warnings as well if True
+        :param bool only_warning: Returns only warning exception if True and
+                                  with_warning is True as well
+
         """
-        rules = self.env['exception.rule'].sudo().search(
-            self._rule_domain())
+        domain = self._rule_domain()
+        if not with_warning:
+            domain = AND([domain, [('warning_only', '=', False)]])
+        elif only_warning:
+            domain = AND([domain, [('warning_only', '=', True)]])
+        rules = self.env['exception.rule'].sudo().search(domain)
         all_exception_ids = []
         for rule in rules:
             records_with_exception = self._detect_exceptions(rule)
