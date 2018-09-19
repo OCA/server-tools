@@ -193,11 +193,12 @@ class AuditlogRule(models.Model):
         return super(AuditlogRule, self).unlink()
 
     @api.multi
-    def _make_create(self, additional_log_values={}):
+    def _make_create(self, additional_log_values=None):
         """Instanciate a create method that log its calls."""
         self.ensure_one()
+        if not additional_log_values:
+            additional_log_values = {}
         additional_log_values.update({'log_type': self.log_type})
-
 
         @api.model
         @api.returns('self', lambda value: value.id)
@@ -229,9 +230,11 @@ class AuditlogRule(models.Model):
         return create_full if self.log_type == 'full' else create_fast
 
     @api.multi
-    def _make_read(self, additional_log_values={}):
+    def _make_read(self, additional_log_values=None):
         """Instanciate a read method that log its calls."""
         self.ensure_one()
+        if not additional_log_values:
+            additional_log_values = {}
         additional_log_values.update({'log_type': self.log_type})
 
         def read(self, fields=None, load='_classic_read', **kwargs):
@@ -259,9 +262,11 @@ class AuditlogRule(models.Model):
         return read
 
     @api.multi
-    def _make_write(self, additional_log_values={}):
+    def _make_write(self, additional_log_values=None):
         """Instanciate a write method that log its calls."""
         self.ensure_one()
+        if not additional_log_values:
+            additional_log_values = {}
         additional_log_values.update({'log_type': self.log_type})
 
         @api.multi
@@ -300,9 +305,11 @@ class AuditlogRule(models.Model):
         return write_full if self.log_type == 'full' else write_fast
 
     @api.multi
-    def _make_unlink(self, additional_log_values={}):
+    def _make_unlink(self, additional_log_values=None):
         """Instanciate an unlink method that log its calls."""
         self.ensure_one()
+        if not additional_log_values:
+            additional_log_values = {}
         additional_log_values.update({'log_type': self.log_type})
 
         @api.multi
