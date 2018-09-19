@@ -193,10 +193,11 @@ class AuditlogRule(models.Model):
         return super(AuditlogRule, self).unlink()
 
     @api.multi
-    def _make_create(self):
+    def _make_create(self, additional_log_values={}):
         """Instanciate a create method that log its calls."""
         self.ensure_one()
-        log_type = self.log_type
+        additional_log_values.update({'log_type': self.log_type})
+
 
         @api.model
         @api.returns('self', lambda value: value.id)
@@ -209,7 +210,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
-                'create', None, new_values, {'log_type': log_type})
+                'create', None, new_values, additional_log_values)
             return new_record
 
         @api.model
@@ -222,16 +223,16 @@ class AuditlogRule(models.Model):
             new_values = {new_record.id: vals2}
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
-                'create', None, new_values, {'log_type': log_type})
+                'create', None, new_values, additional_log_values)
             return new_record
 
         return create_full if self.log_type == 'full' else create_fast
 
     @api.multi
-    def _make_read(self):
+    def _make_read(self, additional_log_values={}):
         """Instanciate a read method that log its calls."""
         self.ensure_one()
-        log_type = self.log_type
+        additional_log_values.update({'log_type': self.log_type})
 
         def read(self, fields=None, load='_classic_read', **kwargs):
             result = read.origin(self, fields, load, **kwargs)
@@ -253,15 +254,15 @@ class AuditlogRule(models.Model):
             rule_model = self.env['auditlog.rule']
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
-                'read', read_values, None, {'log_type': log_type})
+                'read', read_values, None, additional_log_values)
             return result
         return read
 
     @api.multi
-    def _make_write(self):
+    def _make_write(self, additional_log_values={}):
         """Instanciate a write method that log its calls."""
         self.ensure_one()
-        log_type = self.log_type
+        additional_log_values.update({'log_type': self.log_type})
 
         @api.multi
         def write_full(self, vals, **kwargs):
@@ -276,7 +277,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
-                'write', old_values, new_values, {'log_type': log_type})
+                'write', old_values, new_values, additional_log_values)
             return result
 
         @api.multi
@@ -293,16 +294,16 @@ class AuditlogRule(models.Model):
             result = write_fast.origin(self, vals, **kwargs)
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids,
-                'write', old_values, new_values, {'log_type': log_type})
+                'write', old_values, new_values, additional_log_values)
             return result
 
         return write_full if self.log_type == 'full' else write_fast
 
     @api.multi
-    def _make_unlink(self):
+    def _make_unlink(self, additional_log_values={}):
         """Instanciate an unlink method that log its calls."""
         self.ensure_one()
-        log_type = self.log_type
+        additional_log_values.update({'log_type': self.log_type})
 
         @api.multi
         def unlink_full(self, **kwargs):
@@ -313,7 +314,7 @@ class AuditlogRule(models.Model):
                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', old_values, None,
-                {'log_type': log_type})
+                additional_log_values)
             return unlink_full.origin(self, **kwargs)
 
         @api.multi
@@ -322,7 +323,7 @@ class AuditlogRule(models.Model):
             rule_model = self.env['auditlog.rule']
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, self.ids, 'unlink', None, None,
-                {'log_type': log_type})
+                additional_log_values)
             return unlink_fast.origin(self, **kwargs)
 
         return unlink_full if self.log_type == 'full' else unlink_fast
@@ -332,6 +333,8 @@ class AuditlogRule(models.Model):
                     additional_log_values=None):
         """Create logs. `old_values` and `new_values` are dictionaries, e.g:
             {RES_ID: {'FIELD': VALUE, ...}}
+            additional_log_values is a dictionary of vals added to
+                                  the log (at least log_type)
         """
         if old_values is None:
             old_values = EMPTY_DICT
