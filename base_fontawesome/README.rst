@@ -8,24 +8,21 @@ Base Fontawesome
 
 Provide up to date `Fontawesome <http://fontawesome.io/>`_ resources.
 
-Current version: 4.7.0 (the version of this module matches it).
+Current version: 5.3.1 (the version of this module matches it).
 
-Installation and usage
-======================
+Usage
+=====
 
-Install it as any other Odoo module. You'll get the standard Odoo Fontawesome assets
-replaced with the updated version of this module.
+Now, all free icons from `Font Awesome <https://fontawesome.com/icons?d=gallery&m=free>`_
+can be used on odoo. It also adds three options in order to add the icons:
+* solid_icon
+* regular_icon
+* brand_icon
+The usage depends on the configuration of the icon.
 
-Then in your theme styles (or any other CSS file) you can benefit from latest FA features.
+For example, brand_icon is necessary if we are using an icon of a brand::
 
-
-Roadmap
-=======
-
-As of today Odoo v11 (master) is already shipping the latest version of FA.
-In case they keep it up to date we can skip the migration of this module to v11.
-Otherwise we can keep it and upgrade it to have always the most recent version.
-
+    <button brand_icon="fa-amazon-pay"/>
 
 Bug Tracker
 ===========
@@ -41,7 +38,8 @@ Credits
 Contributors
 ------------
 
--  Simone Orsi simone.orsi@camptocamp.com
+* Simone Orsi simone.orsi@camptocamp.com
+* Enric Tobella <etobella@creublanca.es>
 
 
 Maintainer
