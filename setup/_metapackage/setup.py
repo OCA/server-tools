@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo11-addon-onchange_helper',
         'odoo11-addon-scheduler_error_mailer',
         'odoo11-addon-sentry',
+        'odoo11-addon-sql_request_abstract',
     ],
     classifiers=[
         'Programming Language :: Python',
