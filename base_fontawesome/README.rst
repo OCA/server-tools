@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/licence-lgpl--3-blue.svg
-   :target: http://www.gnu.org/licenses/LGPL-3.0-standalone.html
-   :alt: License: LGPL-3
+.. image:: https://img.shields.io/badge/licence-agpl--3-blue.svg
+   :target: http://www.gnu.org/licenses/AGPL-3.0-standalone.html
+   :alt: License: AGPL-3
 
 ================
 Base Fontawesome
@@ -42,6 +42,7 @@ Contributors
 ------------
 
 -  Simone Orsi simone.orsi@camptocamp.com
+-  OpenSynergy Indonesia <https://opensynergy-indonesia.com>
 
 
 Maintainer

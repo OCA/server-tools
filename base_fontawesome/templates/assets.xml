@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
 Copyright 2017 Simone Orsi
-License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+License AGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
-<odoo>
-
+<openerp>
+<data>
 	<template id="assets_common" inherit_id="web.assets_common">
 		<xpath expr="link[@href='/web/static/lib/fontawesome/css/font-awesome.css']" position="replace">
 			<link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-4.7.0/css/font-awesome.css" />
 		</xpath>
 	</template>
-
-</odoo>
+</data>
+</openerp>
