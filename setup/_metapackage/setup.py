@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo8-addon-base_user_reset_access',
         'odoo8-addon-base_user_role',
         'odoo8-addon-base_view_inheritance_extension',
+        'odoo8-addon-cron_inactivity_period',
         'odoo8-addon-cron_run_manually',
         'odoo8-addon-database_cleanup',
         'odoo8-addon-datetime_formatter',
