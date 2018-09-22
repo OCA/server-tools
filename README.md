@@ -51,6 +51,7 @@ addon | version | summary
 [base_user_reset_access](base_user_reset_access/) | 8.0.1.0.0 | Reset User Access Right
 [base_user_role](base_user_role/) | 8.0.1.2.0 | User roles
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 8.0.1.0.0 | Adds more operators for view inheritance
+[cron_inactivity_period](cron_inactivity_period/) | 8.0.1.0.0 | Inactivity Periods for Cron Jobs
 [cron_run_manually](cron_run_manually/) | 8.0.1.0.0 | Call cron jobs from their form view
 [database_cleanup](database_cleanup/) | 8.0.0.1.0 | Database cleanup
 [datetime_formatter](datetime_formatter/) | 8.0.1.0.0 | Helper functions to give correct format to date[time] fields
