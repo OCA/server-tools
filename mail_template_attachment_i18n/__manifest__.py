@@ -10,7 +10,9 @@
         'mail'
     ],
     'data': [
-        'views/mail_template_view.xml'
+        'views/mail_template_view.xml',
+
+        'security/ir.model.access.csv'
     ],
     'installable': True,
 }
