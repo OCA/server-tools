@@ -14,10 +14,10 @@ class MailTemplate(models.Model):
     )
 
     @api.multi
-    def generate_email(self, res_ids, template_fields=None):
+    def generate_email(self, res_ids, fields=None):
         self.ensure_one()
         res = super(MailTemplate, self).generate_email(
-            res_ids, template_fields
+            res_ids, fields
         )
 
         attached = []
