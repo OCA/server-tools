@@ -16,10 +16,15 @@ class MailTemplate(models.Model):
     @api.multi
     def generate_email(self, res_ids, fields=None):
         self.ensure_one()
+        multi = True
+        if isinstance(res_ids, int):
+            res_ids = [res_ids]
+            multi = False
         res = super(MailTemplate, self).generate_email(
             res_ids, fields
         )
-
+        # if isinstance(res_ids, int):
+        #     return res
         attached = []
         for res_id in res.keys():
             mail = res[res_id]
@@ -39,4 +44,4 @@ class MailTemplate(models.Model):
                         lang_attach.attachment_id.name,
                         lang_attach.attachment_id.datas))
                     attached.append(lang_attach.id)
-        return res
+        return multi and res or res[res_ids[0]]
