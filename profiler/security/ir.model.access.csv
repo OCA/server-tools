@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_profiler_profile_admin,profiler profile admin,model_profiler_profile,base.group_system,1,1,1,1
+access_profiler_profile_line_admin,profiler profile line admin,model_profiler_profile_python_line,base.group_system,1,1,1,1
