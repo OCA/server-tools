@@ -245,12 +245,14 @@ class OnchangeRuleLine(models.TransientModel):
     @api.constrains('method')
     def _check_method(self):
         for line in self:
-            if re.search(r'^[a-z0-9_]+$', line.method).group() != line.method:
+            if line.method and re.search(
+                    r'^[a-z0-9_]+$', line.method).group() != line.method:
                 raise UserError(
                     _("Some chars in method field '%s' \nare invalid for a "
                       "python function name:\nonly a z and _ authorized"
                       % line.method))
-            if not hasattr(line.env[line.model_id.model], line.method):
+            if line.method and not hasattr(
+                    line.env[line.model_id.model], line.method):
                 raise UserError(_("Object '%s' has no attribute '%s'") % (
                     line.implied_record[line.implied_record._rec_name],
                     line.method))
