@@ -22,10 +22,9 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="database_cleanup"
-  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="database_cleanup"
+  - WKHTMLTOPDF_VERSION="0.12.1" TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
+  - WKHTMLTOPDF_VERSION="0.12.4" TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
+  - WKHTMLTOPDF_VERSION="0.12.5" TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="database_cleanup"
 
 before_install:
  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
@@ -35,11 +34,12 @@ before_install:
  - "phantomjs --version"
 
 install:
-  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b oca-support_wkhtmltopdf_0.12.5-luisg ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
 script:
+  - wkhtmltopdf --version || true
   - travis_run_tests
 
 after_success:
