@@ -146,6 +146,7 @@ log_hostname=on
 log_line_prefix='%t [%p]: [%l-1] db=%d,user=%u '
 log_connections=on
 log_disconnections=on
+lc_messages='en_US.UTF-8'
 
 Reload configuration using the following query:
  - select pg_reload_conf()
@@ -189,7 +190,8 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 
     @api.model
     def now_utc(self):
-        self.env.cr.execute("SELECT to_char(now(), 'YYYY-MM-DD HH24:MI:SS')")
+        self.env.cr.execute("SELECT to_char(current_timestamp AT TIME "
+                            "ZONE 'UTC', 'YYYY-MM-DD HH24:MI:SS')")
         now = self.env.cr.fetchall()[0][0]
         # now = fields.Datetime.to_string(
         #     fields.Datetime.context_timestamp(self, datetime.now()))
