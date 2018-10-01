@@ -59,11 +59,11 @@ class IrActionsReport(models.Model):
     def create(self, values):
         values['report_name'] = self._format_template_name(
             values.get('report_name', ''))
-        if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
-                values.get('report_name') and
-                values['report_name'].find('.') == -1):
-            raise exceptions.Warning(
-                _("Template Name must contain at least a dot in it's name"))
+#         if (values.get('report_type') in ['qweb-pdf', 'qweb-html'] and
+#                 values.get('report_name') and
+#                 values['report_name'].find('.') == -1):
+#             raise exceptions.Warning(
+#                 _("Template Name must contain at least a dot in it's name"))
         if not self.env.context.get('enable_duplication', False):
             return super(IrActionsReport, self).create(values)
         report_xml = super(IrActionsReport, self).create(values)
