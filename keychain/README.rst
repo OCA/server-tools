@@ -163,7 +163,6 @@ Go to *settings / keychain*, create a record with the following
 Known issues / Roadmap
 ======================
 - Account inheritence is not supported out-of-the-box (like defining common settings for all environments)
-- Adapted to work with `server_environnement` modules
 - Key expiration or rotation should be done manually
 - Import passwords from data.xml
 
