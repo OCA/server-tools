@@ -138,7 +138,7 @@ class ProfilerProfile(models.Model):
 # Pre-enable logs
 logging_collector=on
 log_destination='stderr'
-log_directory='pg_log'
+log_directory='/var/log/postgresql'
 log_filename='postgresql.log'
 log_rotation_age=0
 log_checkpoints=on
@@ -147,6 +147,7 @@ log_line_prefix='%t [%p]: [%l-1] db=%d,user=%u '
 log_connections=on
 log_disconnections=on
 lc_messages='en_US.UTF-8'
+log_timezone='UTC'
 
 Reload configuration using the following query:
  - select pg_reload_conf()
@@ -190,8 +191,10 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 
     @api.model
     def now_utc(self):
+        self.env.cr.execute("SHOW log_timezone")
+        zone = self.env.cr.fetchone()[0]
         self.env.cr.execute("SELECT to_char(current_timestamp AT TIME "
-                            "ZONE 'UTC', 'YYYY-MM-DD HH24:MI:SS')")
+                            "ZONE %s, 'YYYY-MM-DD HH24:MI:SS')", (zone,))
         now = self.env.cr.fetchall()[0][0]
         # now = fields.Datetime.to_string(
         #     fields.Datetime.context_timestamp(self, datetime.now()))
