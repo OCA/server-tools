@@ -5,7 +5,7 @@
             <field name="model">keychain.account</field>
             <field name="arch" type="xml">
 
-                <tree string="Accounts">
+                <tree>
                     <field name="namespace"/>
                     <field name="name"/>
                     <field name="technical_name" />
@@ -19,7 +19,7 @@
         <record model="ir.ui.view" id="keychain_account_form">
             <field name="model">keychain.account</field>
             <field name="arch" type="xml">
-                <form string="Accounts form">
+                <form>
                     <group>
                         <field name="namespace"/>
                         <field name="name" />
