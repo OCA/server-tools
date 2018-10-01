@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2012-2016 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
@@ -52,7 +51,7 @@ class FetchmailServer(models.Model):
             if serv_config.has_section(custom_section_name):
                 config_vals.update(serv_config.items(custom_section_name))
 
-            for key, to_type in key_types.iteritems():
+            for key, to_type in key_types.items():
                 if config_vals.get(key):
                     config_vals[key] = to_type(config_vals[key])
 
