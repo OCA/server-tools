@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Adapted by Nicolas Bessi. Copyright Camptocamp SA
@@ -20,7 +19,7 @@
 ##############################################################################
 
 import os
-import ConfigParser
+import configparser
 from lxml import etree
 from itertools import chain
 
@@ -91,7 +90,7 @@ def _load_config():
     else:
         conf_files = _listconf(running_env)
 
-    config_p = ConfigParser.SafeConfigParser()
+    config_p = configparser.SafeConfigParser()
     # options are case-sensitive
     config_p.optionxform = str
     try:
@@ -144,9 +143,9 @@ class ServerConfiguration(models.TransientModel):
     def _add_columns(cls):
         """Add columns to model dynamically"""
         cols = chain(
-            cls._get_base_cols().items(),
-            cls._get_env_cols().items(),
-            cls._get_system_cols().items()
+            list(cls._get_base_cols().items()),
+            list(cls._get_env_cols().items()),
+            list(cls._get_system_cols().items())
         )
         for col, value in cols:
             col_name = col.replace('.', '_')
@@ -159,7 +158,7 @@ class ServerConfiguration(models.TransientModel):
     def _get_base_cols(cls):
         """ Compute base fields"""
         res = {}
-        for col, item in system_base_config.options.items():
+        for col, item in list(system_base_config.options.items()):
             key = cls._format_key('odoo', col)
             res[key] = item
         return res

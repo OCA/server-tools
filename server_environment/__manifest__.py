@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Adapted by Nicolas Bessi. Copyright Camptocamp SA
@@ -21,7 +20,7 @@
 
 {
     "name": "server configuration environment files",
-    "version": "10.0.1.2.0",
+    "version": "12.0.1.0.0",
     "depends": ["base"],
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "move some configurations out of the database",
@@ -29,7 +28,7 @@
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [
-        'serv_config.xml',
+        'views/serv_config.xml',
     ],
     'installable': True,
 }
