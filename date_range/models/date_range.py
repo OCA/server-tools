@@ -9,6 +9,7 @@ from odoo.exceptions import ValidationError
 
 class DateRange(models.Model):
     _name = "date.range"
+    _description = "Date Range"
     _order = "type_name,date_start"
 
     @api.model
@@ -35,7 +36,7 @@ class DateRange(models.Model):
         ('date_range_uniq', 'unique (name,type_id, company_id)',
          'A date range must be unique per company !')]
 
-    @api.onchange('company_id')
+    @api.onchange('company_id', 'type_id')
     def _onchange_company_id(self):
         if self.company_id and self.type_id.company_id and \
                 self.type_id.company_id != self.company_id:

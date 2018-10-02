@@ -15,6 +15,7 @@ from dateutil.relativedelta import relativedelta
 
 class DateRangeGenerator(models.TransientModel):
     _name = 'date.range.generator'
+    _description = 'Date Range Generator'
 
     @api.model
     def _default_company(self):

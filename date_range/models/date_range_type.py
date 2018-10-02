@@ -9,6 +9,7 @@ from odoo.exceptions import ValidationError
 
 class DateRangeType(models.Model):
     _name = "date.range.type"
+    _description = "Date Range Type"
 
     @api.model
     def _default_company(self):
@@ -36,10 +37,10 @@ class DateRangeType(models.Model):
             for rec in self.sudo():
                 if not rec.company_id:
                     continue
-                if bool(self.date_range_ids.filtered(
+                if bool(rec.date_range_ids.filtered(
                         lambda r: r.company_id and
                         r.company_id != rec.company_id)):
                     raise ValidationError(
                         _('You cannot change the company, as this '
                           'Date Range Type is  assigned to Date Range '
-                          '(%s).') % (self.date_range_ids.name_get()[0][1]))
+                          '(%s).') % (rec.date_range_ids.name_get()[0][1]))
