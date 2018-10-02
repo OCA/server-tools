@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_image_tree" model="ir.ui.view">
+      <field name="name">image.tree</field>
+      <field name="model">image</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="model_name" />
+          <field name="company_id" />
+          <field name="selector" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_image_form" model="ir.ui.view">
+      <field name="name">image.form</field>
+      <field name="model">image</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+              <field name="name"/>
+              <field name="model_name"/>
+              <field name="company_id"/>
+            </group>
+            <group>
+              <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}' />
+            </group>
+            <group string="Selector">
+              <field name="selector" nolabel="True" widget="ace" options="{'mode': 'python'}"/>
+            </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="image_action" model="ir.actions.act_window">
+        <field name="name">Images</field>
+        <field name="res_model">image</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="image_menu"
+        string="Images"
+        parent="base.menu_ir_property"
+        action="image_action"
+        sequence="99"/>
+  </data>
+</openerp>
