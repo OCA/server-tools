@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record model="ir.ui.view" id="inherit_fetchmail">
+    <field name="model">fetchmail.server</field>
+    <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+    <field name="arch" type="xml">
+      <field name="server" position="attributes">
+        <attribute name="attrs" eval="False"/>
+      </field>
+      <field name="port" position="attributes">
+        <attribute name="attrs" eval="False"/>
+      </field>
+      <field name="user" position="attributes">
+        <attribute name="attrs" eval="False"/>
+      </field>
+      <field name="password" position="attributes">
+        <attribute name="attrs" eval="False"/>
+      </field>
+    </field>
+  </record>
+</odoo>
