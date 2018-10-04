@@ -10,6 +10,7 @@
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <field name="parent_id"/>
                 <field name="active"/>
             </tree>
         </field>
@@ -25,6 +26,7 @@
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    <field name="parent_id"/>
                     <field name="active"/>
                 </group>
             </form>

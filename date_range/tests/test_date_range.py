@@ -98,3 +98,52 @@ class DateRangeTest(TransactionCase):
             domain,
             [('my_field', '>=', '2015-01-01'),
              ('my_field', '<=', '2015-12-31')])
+
+    def test_parent_id(self):
+        date_range = self.env['date.range']
+        date_range_type = self.env['date.range.type']
+        parent = date_range.create({
+            'name': 'FS2018',
+            'date_start': '2018-01-01',
+            'date_end': '2018-12-31',
+            'type_id': self.type.id,
+        })
+        # Check here that a validation error is thrown
+        # when parent and child have same type_id
+        with self.assertRaises(ValidationError):
+            date_range.create({
+                'name': 'FS2018-period1',
+                'date_start': '2018-01-01',
+                'date_end': '2018-04-30',
+                'type_id': self.type.id,
+                'parent_id': parent.id,
+            })
+        type_block = date_range_type.create({
+            'name': 'FS2018-type_block',
+            'company_id': False,
+            'allow_overlap': False,
+        })
+        period1 = date_range.create({
+            'name': 'FS2018-period1',
+            'date_start': '2018-01-01',
+            'date_end': '2018-04-30',
+            'type_id': type_block.id,
+            'parent_id': parent.id,
+        })
+        # Check here that a validation error is thrown
+        # when child periods overlap
+        with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
+            date_range.create({
+                'name': 'FS2018-period2',
+                'date_start': '2018-02-01',
+                'date_end': '2018-03-15',
+                'type_id': type_block.id,
+                'parent_id': parent.id,
+            })
+        self.assertEqual(
+            cm.exception.name,
+            'FS2018-period2 overlaps FS2018-period1'
+        )
+        # Ensure here that parent and children are of different type
+        self.assertNotEqual(parent.type_id, period1.type_id)
+        self.assertEqual(parent.type_id, period1.parent_id.type_id)

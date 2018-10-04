@@ -28,6 +28,8 @@ class DateRange(models.Model):
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
         "removing it.", default=True)
+    parent_id = fields.Many2one(
+        comodel_name='date.range', string="Parent", index=1)
 
     _sql_constraints = [
         ('date_range_uniq', 'unique (name,type_id, company_id)',
