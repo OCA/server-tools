@@ -1,25 +1,23 @@
-# -*- coding: utf-8 -*-
-# © 2015-2016 Yannick Vaucher (Camptocamp SA)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2015-2016 Yannick Vaucher (Camptocamp SA)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from openerp import api, exceptions, fields, models
-from openerp.tools.translate import _
+from odoo import _, api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class RecordLifespan(models.Model):
-    """ Configure records lifespans per model
+    """Configure records lifespans per model.
 
     After the lifespan is expired (compared to the `write_date` of the
     records), the records are deactivated.
     """
     _name = 'record.lifespan'
-    _order = 'model'
+    _order = 'model_name'
 
     model_id = fields.Many2one(
         'ir.model',
@@ -27,10 +25,10 @@ class RecordLifespan(models.Model):
         required=True,
         domain=[('has_an_active_field', '=', True)],
     )
-    model = fields.Char(
+    model_name = fields.Char(
         related='model_id.model',
+        readonly=True,
         string='Model Name',
-        store=True,
     )
     months = fields.Integer(
         required=True,
@@ -57,19 +55,19 @@ class RecordLifespan(models.Model):
 
     @api.multi
     def _archive_domain(self, expiration_date):
-        """ Returns the domain used to find the records to archive.
+        """Returns the domain used to find the records to archive.
 
         Can be inherited to change the archived records for a model.
         """
         model = self.env[self.model_id.model]
         domain = [('write_date', '<', expiration_date)]
-        if 'state' in model._columns:
+        if 'state' in model.fields_get_keys():
             domain += [('state', 'in', ('done', 'cancel'))]
         return domain
 
     @api.multi
     def _archive_lifespan_records(self):
-        """ Archive the records for a lifespan, so for a model.
+        """Archive the records for a lifespan, so for a model.
 
         Can be inherited to customize the archive strategy.
         The default strategy is to change the field ``active`` to False
@@ -84,7 +82,7 @@ class RecordLifespan(models.Model):
         if not isinstance(model, models.Model):
             raise exceptions.UserError(
                 _('Model %s not found') % model_name)
-        if 'active' not in model._columns:
+        if 'active' not in model.fields_get_keys():
             raise exceptions.UserError(
                 _('Model %s has no active field') % model_name)
 
@@ -96,19 +94,14 @@ class RecordLifespan(models.Model):
         if not recs:
             return
 
-        # use a SQL query to bypass tracking always messages on write for
-        # object inheriting mail.thread
-        query = ("UPDATE %s SET active = FALSE WHERE id in %%s"
-                 ) % model._table
-        self.env.cr.execute(query, (tuple(recs.ids),))
-        recs.invalidate_cache()
+        recs.with_context(tracking_disable=True).toggle_active()
         _logger.info(
             'Archived %s %s older than %s',
             len(recs.ids), model_name, expiration_date)
 
     @api.multi
     def archive_records(self):
-        """ Call the archiver for several record lifespans """
+        """Call the archiver for several record lifespans."""
         for lifespan in self:
             lifespan._archive_lifespan_records()
         return True

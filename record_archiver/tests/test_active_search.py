@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2015 Guewen Baconnier (Camptocamp SA)
+# Copyright 2015 Guewen Baconnier (Camptocamp SA)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import openerp.tests.common as common
+import odoo.tests.common as common
 
 
 class TestActiveSearch(common.TransactionCase):
