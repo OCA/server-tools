@@ -18,4 +18,4 @@ Do you want to contribute? Please read our [contributing guidelines](https://git
 
 Translation Status
 ------------------
-[![Transifex Status](https://www.transifex.com/projects/p/OCA-server-tools-12-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-server-tools-12-0)
+[![Translation status](https://translation.odoo-community.org/widgets/server-tools-12-0/-/multi-auto.svg)](https://translation.odoo-community.org/engage/server-tools-12-0/?utm_source=widget)
