@@ -11,6 +11,8 @@ where one is sure all modules on disk are installed and up-to-date in the
 database.
 
 An easy way to invoke this upgrade mechanism is by issuing the following
-in an Odoo shell session::
+in an Odoo shell session:
+
+.. code-block:: python
 
   env['ir.module.module'].upgrade_changed_checksum()
