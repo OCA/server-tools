@@ -13,7 +13,6 @@
               'ACSONE SA/NV, '
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',
-    'application': False,
     'installable': True,
     'uninstall_hook': 'uninstall_hook',
     'depends': [
