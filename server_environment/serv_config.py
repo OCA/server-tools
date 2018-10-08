@@ -293,8 +293,7 @@ class ServerConfiguration(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = {}
-        current_user = self.env.user
-        if not current_user.has_group(
+        if not self.env.user.has_group(
                 'server_environment.has_server_configuration_access'):
             return res
         for key in self._conf_defaults:
