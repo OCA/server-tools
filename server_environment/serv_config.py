@@ -246,6 +246,11 @@ class ServerConfiguration(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = {}
+        current_user = self.pool['res.users'].browse(
+            cr, uid, uid, context=context)
+        if not current_user.has_group(
+                'server_environment.has_server_configuration_access'):
+            return res
         for key in self._conf_defaults:
             if 'passw' in key and not self.show_passwords:
                 res[key] = '**********'
