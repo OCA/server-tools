@@ -68,7 +68,7 @@ class TestNsca(TransactionCase):
         check = self.env['nsca.check'].create({
             'server_id': server.id,
             'service': 'test',
-            'nsca_model': 'nsca.check',
+            'nsca_model': 'nsca.server',
             'allow_void_result': False,
             'nsca_function': '_check_send_nsca_command'
         })
@@ -84,13 +84,20 @@ class TestNsca(TransactionCase):
             'encryption_method': '3',
             'node_hostname': 'odoodev',
         })
+        self.assertEqual(server.check_count, 0)
         check = self.env['nsca.check'].create({
             'server_id': server.id,
             'service': 'test',
-            'nsca_model': 'nsca.check',
+            'nsca_model': 'nsca.server',
             'allow_void_result': True,
             'nsca_function': '_check_send_nsca_command'
         })
+        self.assertEqual(server.check_count, 1)
+        action = server.show_checks()
+        self.assertEqual(check, self.env['nsca.check'].browse(
+            action['res_id']))
+        self.assertEqual(check, self.env['nsca.check'].search(
+            action['domain']))
         with mock.patch('subprocess.Popen') as post:
             post.return_value = Popen
             self.env['nsca.check']._cron_check(check.id,)
