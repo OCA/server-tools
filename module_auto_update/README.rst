@@ -14,13 +14,13 @@ Module Auto Update
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/server-tools/tree/11.0/module_auto_update
+    :target: https://github.com/OCA/server-tools/tree/12.0/module_auto_update
     :alt: OCA/server-tools
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-tools-11-0/server-tools-11-0-module_auto_update
+    :target: https://translation.odoo-community.org/projects/server-tools-12-0/server-tools-12-0-module_auto_update
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/149/11.0
+    :target: https://runbot.odoo-community.org/runbot/149/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -64,30 +64,11 @@ where one is sure all modules on disk are installed and up-to-date in the
 database.
 
 An easy way to invoke this upgrade mechanism is by issuing the following
-in an Odoo shell session::
+in an Odoo shell session:
+
+.. code-block:: python
 
   env['ir.module.module'].upgrade_changed_checksum()
-
-Known issues / Roadmap
-======================
-
-* Since version ``2.0.0``, some features have been deprecated.
-  When you upgrade from previous versions, these features will be kept for
-  backwards compatibility, but beware! They are buggy!
-
-  If you install this addon from scratch, these features are disabled by
-  default.
-
-  To force enabling or disabling the deprecated features, set a configuration
-  parameter called ``module_auto_update.enable_deprecated`` to either ``1``
-  or ``0``. It is recommended that you disable them.
-
-  Keep in mind that from this version, all upgrades are assumed to run in a
-  separate odoo instance, dedicated exclusively to upgrade Odoo.
-
-* When migrating the addon to new versions, the deprecated features should be
-  removed. To make it simple all deprecated features are found in files
-  suffixed with ``_deprecated``.
 
 Bug Tracker
 ===========
@@ -95,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20module_auto_update%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/server-tools/issues/new?body=module:%20module_auto_update%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -139,6 +120,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-sbidoul| 
 
-This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/11.0/module_auto_update>`_ project on GitHub.
+This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/12.0/module_auto_update>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
