@@ -1,19 +1,19 @@
-# ?? 2004-2009 Tiny SPRL (<http://tiny.be>).
-# ?? 2015 Agile Business Group <http://www.agilebg.com>
-# ?? 2016 Grupo ESOC Ingenier??a de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2004-2009 Tiny SPRL (<http://tiny.be>).
+# Copyright 2015 Agile Business Group <http://www.agilebg.com>
+# Copyright 2016 Grupo ESOC Ingenieria de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Database Auto-Backup",
     "summary": "Backups database",
-    "version": "11.0.1.0.0",
-    "author": (
+    "version": "12.0.1.0.0",
+    "author":
         "Yenthe Van Ginneken, "
         "Agile Business Group, "
-        "Grupo ESOC Ingenier??a de Servicios, "
+        "Grupo ESOC Ingenieria de Servicios, "
         "LasLabs, "
-        "Odoo Community Association (OCA)"
-    ),
+        "AdaptiveCity, "
+        "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools/",
     "category": "Tools",
