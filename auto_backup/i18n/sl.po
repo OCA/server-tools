@@ -20,14 +20,24 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "/home/odoo/.ssh/id_rsa"
 msgstr "/home/odoo/.ssh/id_rsa"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_folder
+#: model:ir.model.fields,help:auto_backup.field_db_backup__folder
 msgid "Absolute path for storing the backups"
 msgstr "Absolutna pot za shranjevanje varnostnih kopij"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: auto_backup
 #: model:ir.actions.act_window,name:auto_backup.action_backup_conf_form
@@ -36,13 +46,18 @@ msgid "Automated Backups"
 msgstr "Samodejne varnostne kopije"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Automatic backups of the database can be scheduled as follows:"
 msgstr "Samodejne varnostne kopije podatkovne baze se lahko razporedi na:"
 
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__backup_format
+msgid "Backup Format"
 msgstr ""
 
 #. module: auto_backup
@@ -58,7 +73,7 @@ msgid "Backup Successful"
 msgstr ""
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_days_to_keep
+#: model:ir.model.fields,help:auto_backup.field_db_backup__days_to_keep
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
 "autodeletion."
@@ -67,7 +82,7 @@ msgstr ""
 "bi onemogo??ili samodejno brisanje."
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Basic backup configuration"
 msgstr "Osnove nastavitve varnostnega kopiranja"
 
@@ -77,35 +92,42 @@ msgid "Cannot duplicate a configuration."
 msgstr "Nastavitev ne morete podvojiti."
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_method
+#: model:ir.model.fields,help:auto_backup.field_db_backup__backup_format
+#, fuzzy
+#| msgid "Choose the storage method for this backup."
+msgid "Choose the format for this backup."
+msgstr "Izberite metodo shranjevanja za to varnostno kopiranje."
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__method
 msgid "Choose the storage method for this backup."
 msgstr "Izberite metodo shranjevanja za to varnostno kopiranje."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Brisanje starih varnostnih kopij podatkovnih baz neuspe??no."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:128
+#: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "Test povezave neuspe??en!"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Test povezave uspel!"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_uid
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_create_date
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
@@ -115,31 +137,31 @@ msgid "Database Backup"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:203
+#: code:addons/auto_backup/models/db_backup.py:219
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "Varnostno kopiranje podatkovne baze neuspe??no."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:227
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
 msgstr "Varnostno kopiranje podatkovne baze uspe??no."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_days_to_keep
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__days_to_keep
 msgid "Days To Keep"
 msgstr ""
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_display_name
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__display_name
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:114
+#: code:addons/auto_backup/models/db_backup.py:123
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -148,7 +170,7 @@ msgstr ""
 "varnostne kopije!"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Execute backup"
 msgstr ""
 
@@ -158,17 +180,32 @@ msgid "Execute backup(s)"
 msgstr "Izvedi varnostno/a kopiranje(a)"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_folder
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__folder
 msgid "Folder"
 msgstr "Mapa"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: auto_backup
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Go to Settings / Technical / Automation / Scheduled Actions."
 msgstr "Pojdi na Nastavitve / Tehni??no / Avtomatizacija / Planirana dejanja"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Help"
 msgstr "Pomo??"
 
@@ -178,22 +215,42 @@ msgid "I cannot remove backups from the future. Ask Doc for that."
 msgstr "Varnostnih kopij iz prihodnosti ne morete odstraniti."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__id
 msgid "ID"
 msgstr "ID"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup___last_update
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup____last_update
 msgid "Last Modified on"
 msgstr "Zadnji?? spremenjeno"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_uid
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_write_date
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__write_date
 msgid "Last Updated on"
 msgstr "Zadnji?? posodobljeno"
 
@@ -203,17 +260,57 @@ msgid "Local disk"
 msgstr "Lokalni disk"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_method
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__method
 msgid "Method"
 msgstr "Metoda"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_name
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__name
 msgid "Name"
 msgstr "Naziv"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_private_key
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_private_key
 msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
@@ -222,7 +319,7 @@ msgstr ""
 "branje te datoteke."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_private_key
 msgid "Private key location"
 msgstr "Lokacija privatnega klju??a"
 
@@ -232,32 +329,32 @@ msgid "Remote SFTP server"
 msgstr "Oddaljeni SFTP stre??nik"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_password
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_password
 msgid "SFTP Password"
 msgstr "SFTP geslo"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_port
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_port
 msgid "SFTP Port"
 msgstr "SFTP port"
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_host
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_host
 msgid "SFTP Server"
 msgstr "SFTP stre??nik"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "SFTP Settings"
 msgstr "SFTP nastavitve"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Search the action named 'Backup scheduler'."
 msgstr "Iskanje dejanja z nazivom 'Razporejevalnik varnostnih kopiranj'"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
@@ -265,23 +362,23 @@ msgstr ""
 "ustvarjati varnostne kopije."
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_name
+#: model:ir.model.fields,help:auto_backup.field_db_backup__name
 msgid "Summary of this backup process"
 msgstr "Povzetek procesa tega varnostnega kopiranja"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Test SFTP Connection"
 msgstr "Test SFTP povezave"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_host
+#: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_host
 msgid ""
 "The host name or IP address from your remote server. For example 192.168.0.1"
 msgstr "IP naslov ali 'hostname' oddaljenega stre??nika. Npr. 192.168.0.1"
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_password
+#: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_password
 msgid ""
 "The password for the SFTP connection. If you specify a private key file, "
 "then this is the password to decrypt it."
@@ -290,19 +387,29 @@ msgstr ""
 "za de??ifriranje klju??a."
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_port
+#: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_port
 msgid "The port on the FTP server that accepts SSH/SFTP calls."
 msgstr "Vrata FTP stre??nika, ki sprejema SSH/SFTP klice."
 
 #. module: auto_backup
-#: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
+#: model:ir.model.fields,help:auto_backup.field_db_backup__sftp_user
 msgid ""
 "The username where the SFTP connection should be made with. This is the user "
 "on the external server."
 msgstr "Uporabni??ko ime SFTP povezave. To je uporabnik zunanjega stre??nika."
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: auto_backup
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
@@ -311,21 +418,41 @@ msgstr ""
 "v pot, ki jo sami dolo??ite."
 
 #. module: auto_backup
-#: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__sftp_user
 msgid "Username in the SFTP Server"
 msgstr "Uporabni??ko ime za SFTP stre??nik"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "Warning:"
 msgstr "Opozorilo:"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: auto_backup
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "john"
 msgstr "john"
 
 #. module: auto_backup
-#: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
+#: selection:db.backup,backup_format:0
+msgid "pg_dump custom format (without filestore)"
+msgstr ""
+
+#. module: auto_backup
+#: model_terms:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
 msgstr "sftp.example.com"
+
+#. module: auto_backup
+#: selection:db.backup,backup_format:0
+msgid "zip (includes filestore)"
+msgstr ""

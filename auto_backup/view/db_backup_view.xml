@@ -18,7 +18,7 @@
                     <field name="backup_format"/>
                 </group>
                 <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
-                    <div class="bg-warning text-warning">
+                    <div class="bg-warning">
                         <h3>Warning:</h3>
                         Use SFTP with caution! This writes files to external servers under the path you specify.
                     </div>
