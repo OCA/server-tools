@@ -1,6 +1,6 @@
-# ?? 2004-2009 Tiny SPRL (<http://tiny.be>).
-# ?? 2015 Agile Business Group <http://www.agilebg.com>
-# ?? 2016 Grupo ESOC Ingenier??a de Servicios, S.L.U. - Jairo Llopis
+# Copyright 2004-2009 Tiny SPRL (<http://tiny.be>).
+# Copyright 2015 Agile Business Group <http://www.agilebg.com>
+# Copyright 2016 Grupo ESOC Ingenieria de Servicios, S.L.U. - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -215,7 +215,7 @@ class DbBackup(models.Model):
             _logger.exception("Database backup failed: %s", self.name)
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                "<p>%s</p><pre>%s</pre>" % (
+                body="<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
                     escaped_tb),
                 subtype=self.env.ref(
@@ -224,7 +224,7 @@ class DbBackup(models.Model):
             )
         else:
             _logger.info("Database backup succeeded: %s", self.name)
-            self.message_post(_("Database backup succeeded."))
+            self.message_post(body=_("Database backup succeeded."))
 
     @api.multi
     def cleanup(self):
@@ -261,7 +261,7 @@ class DbBackup(models.Model):
             _logger.exception("Cleanup of old database backups failed: %s")
             escaped_tb = tools.html_escape(traceback.format_exc())
             self.message_post(  # pylint: disable=translation-required
-                "<p>%s</p><pre>%s</pre>" % (
+                body="<p>%s</p><pre>%s</pre>" % (
                     _("Cleanup of old database backups failed."),
                     escaped_tb),
                 subtype=self.env.ref("auto_backup.failure"))
