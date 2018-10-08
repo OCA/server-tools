@@ -25,7 +25,7 @@ import ConfigParser
 from lxml import etree
 from itertools import chain
 
-from openerp import models, fields
+from openerp import api, models, fields
 from openerp.tools.config import config as system_base_config
 
 from .system_info import get_server_environment
@@ -246,6 +246,16 @@ class ServerConfiguration(models.TransientModel):
             res['fields'] = xfields
         return res
 
+    @api.model
+    def _is_secret(self, key):
+        """
+        This method is intended to be inherited to defined which keywords
+        should be secret.
+        :return: list of secret keywords
+        """
+        secret_keys = ['passw', 'key', 'secret', 'token']
+        return any(secret_key in key for secret_key in secret_keys)
+
     def default_get(self, cr, uid, fields_list, context=None):
         res = {}
         current_user = self.pool['res.users'].browse(
@@ -254,7 +264,8 @@ class ServerConfiguration(models.TransientModel):
                 'server_environment.has_server_configuration_access'):
             return res
         for key in self._conf_defaults:
-            if 'passw' in key and not self.show_passwords:
+            if not self.show_passwords and self._is_secret(
+                    cr, uid, context=context, key=key):
                 res[key] = '**********'
             else:
                 res[key] = self._conf_defaults[key]()
