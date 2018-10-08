@@ -138,21 +138,52 @@ class DateRangeTest(TransactionCase):
             'date_end': '2018-12-31',
             'type_id': self.type.id,
         })
-        # Check here that a validation error is thrown
-        # when parent and child have same type_id
-        with self.assertRaises(ValidationError):
-            self.date_range.create({
-                'name': 'FS2018-period1',
-                'date_start': '2018-01-01',
-                'date_end': '2018-04-30',
-                'type_id': self.type.id,
-                'parent_id': parent.id,
-            })
         type_block = date_range_type.create({
             'name': 'FS2018-type_block',
             'company_id': False,
             'allow_overlap': False,
         })
+        # Check here all three validation errors thrown
+        # when child range is not a subrange of parent
+        with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
+            self.date_range.create({
+                'name': 'FS2018-period1',
+                'date_start': '2018-06-06',
+                'date_end': '2019-01-02',
+                'type_id': type_block.id,
+                'parent_id': parent.id,
+            })
+        self.assertEqual(
+            cm.exception.name,
+            'FS2018-period1 not a subrange of FS2018: '
+            'End dates are not compatible (2019-01-02 > 2018-12-31)'
+        )
+        with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
+            self.date_range.create({
+                'name': 'FS2018-period1',
+                'date_start': '2017-06-06',
+                'date_end': '2018-01-02',
+                'type_id': type_block.id,
+                'parent_id': parent.id,
+            })
+        self.assertEqual(
+            cm.exception.name,
+            'FS2018-period1 not a subrange of FS2018: '
+            'Start dates are not compatible (2017-06-06 < 2018-01-01)'
+        )
+        with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
+            self.date_range.create({
+                'name': 'FS2018-period1',
+                'date_start': '2017-06-06',
+                'date_end': '2019-01-02',
+                'type_id': type_block.id,
+                'parent_id': parent.id,
+            })
+        self.assertEqual(
+            cm.exception.name,
+            'FS2018-period1 not a subrange of FS2018: '
+            'FS2018-period1 range not in 2018-01-01 - 2018-12-31'
+        )
         period1 = self.date_range.create({
             'name': 'FS2018-period1',
             'date_start': '2018-01-01',
