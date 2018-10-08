@@ -35,6 +35,31 @@ class DateRange(models.Model):
         ('date_range_uniq', 'unique (name,type_id, company_id)',
          'A date range must be unique per company !')]
 
+    @api.constrains('parent_id', 'date_start', 'date_end')
+    def _validate_child_range(self):
+        for this in self:
+            if not this.parent_id:
+                continue
+            start = this.parent_id.date_start <= this.date_start
+            end = this.parent_id.date_end >= this.date_end
+            child_range = start and end
+            if not child_range:
+                if (not start) and end:
+                    text = _("Start dates are not compatible (%s < %s)") % (
+                        this.date_start, this.parent_id.date_start)
+                elif (not end) and start:
+                    text = _("End dates are not compatible (%s > %s)") % (
+                        this.date_end, this.parent_id.date_end)
+                else:
+                    text = _("%s range not in %s - %s") % (
+                        this.name,
+                        this.parent_id.date_start,
+                        this.parent_id.date_end,
+                    )
+                raise ValidationError(
+                    _("%s not a subrange of %s: " + text) % (
+                        this.name, this.parent_id.name))
+
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
     def _validate_range(self):
         for this in self:
