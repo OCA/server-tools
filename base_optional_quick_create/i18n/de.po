@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * base_optional_quick_create
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-10 00:47+0000\n"
+"PO-Revision-Date: 2018-09-06 13:26+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
+
+#. module: base_optional_quick_create
+#: model:ir.model.fields,field_description:base_optional_quick_create.field_ir_model_avoid_quick_create
+msgid "Avoid quick create"
+msgstr "Unterbinde Schnellanlage"
+
+#. module: base_optional_quick_create
+#: code:addons/base_optional_quick_create/models/ir_model.py:21
+#, python-format
+msgid ""
+"Can't create %s with name %s quickly.\n"
+"Please contact your system administrator to disable this behaviour."
+msgstr ""
+"Kann %s mit Name %s nicht schnell anlegen.\n"
+"Sprechen Sie mit dem Administrator, um dieses Verhalten abzustellen."
+
+#. module: base_optional_quick_create
+#: model:ir.model,name:base_optional_quick_create.model_ir_model
+msgid "Models"
+msgstr "Datenmodelle"
+
+#~ msgid "Can't create quickly. Opening create form"
+#~ msgstr "Kann Schnellanlage nicht ausführen. Verwenden Sie Formularanlage"
