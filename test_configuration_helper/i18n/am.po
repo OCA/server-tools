@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * test_configuration_helper
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,18 +10,13 @@ msgstr ""
 "POT-Creation-Date: 2016-09-10 02:53+0000\n"
 "PO-Revision-Date: 2016-05-26 06:58+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Amharic (http://www.transifex.com/oca/OCA-server-tools-9-0/language/am/)\n"
+"Language-Team: Amharic (http://www.transifex.com/oca/OCA-server-tools-9-0/"
+"language/am/)\n"
+"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: am\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#. module: test_configuration_helper
-#: model:ir.model,name:test_configuration_helper.model_a_config_settings
-#: model:ir.model,name:test_configuration_helper.model_b_config_settings
-msgid "Abstract configuration settings"
-msgstr ""
 
 #. module: test_configuration_helper
 #: model:ir.model,name:test_configuration_helper.model_res_company
@@ -29,85 +24,39 @@ msgid "Companies"
 msgstr ""
 
 #. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_company_id
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_company_id
-msgid "Company"
-msgstr ""
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_uid
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_uid
-msgid "Created by"
-msgstr "Creado por"
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_create_date
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_create_date
-msgid "Created on"
-msgstr "Creado en"
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_display_name
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_id
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_id
-msgid "ID"
-msgstr "ID"
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings___last_update
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings___last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_uid
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_uid
-msgid "Last Updated by"
-msgstr "Última actualización por"
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_write_date
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_write_date
-msgid "Last Updated on"
-msgstr "Última actualización en"
-
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_integer
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_integer
-msgid "Prefix a integer"
+#: model:ir.model.fields,field_description:test_configuration_helper.field_res_config_settings_integer
+msgid "Prefix A Integer"
 msgstr ""
 
 #. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_name
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_name
-msgid "Prefix a name"
+#: model:ir.model.fields,field_description:test_configuration_helper.field_res_config_settings_name
+msgid "Prefix A Name"
 msgstr ""
 
 #. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_a_config_settings_partner_id
 #: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_a_partner_id
-msgid "Prefix a partner id"
+#: model:ir.model.fields,field_description:test_configuration_helper.field_res_config_settings_partner_id
+msgid "Prefix A Partner"
 msgstr ""
 
 #. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_integer
-#: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_b_integer
-msgid "int"
+#: model:ir.model,name:test_configuration_helper.model_res_config_settings
+msgid "res.config.settings"
 msgstr ""
 
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_name
-#: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_b_name
-msgid "name"
-msgstr ""
+#~ msgid "Created by"
+#~ msgstr "Creado por"
 
-#. module: test_configuration_helper
-#: model:ir.model.fields,field_description:test_configuration_helper.field_b_config_settings_partner_id
-#: model:ir.model.fields,field_description:test_configuration_helper.field_res_company_prefix_b_partner_id
-msgid "unknown"
-msgstr ""
+#~ msgid "Created on"
+#~ msgstr "Creado en"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Última actualización por"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Última actualización en"
