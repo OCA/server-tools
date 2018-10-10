@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo11-addon-base_remote',
         'odoo11-addon-base_search_fuzzy',
         'odoo11-addon-base_technical_user',
+        'odoo11-addon-configuration_helper',
         'odoo11-addon-database_cleanup',
         'odoo11-addon-datetime_formatter',
         'odoo11-addon-dbfilter_from_header',
@@ -29,6 +30,7 @@ setuptools.setup(
         'odoo11-addon-scheduler_error_mailer',
         'odoo11-addon-sentry',
         'odoo11-addon-sql_request_abstract',
+        'odoo11-addon-test_configuration_helper',
     ],
     classifiers=[
         'Programming Language :: Python',
