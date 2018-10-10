@@ -12,8 +12,10 @@
         "Agile Business Group, "
         "Grupo ESOC Ingeniería de Servicios, "
         "LasLabs, "
+        "Numigi, "
         "Odoo Community Association (OCA)"
     ),
+    "maintainers": ["foutoucour"],
     "license": "AGPL-3",
     "website": "https://github.com/OCA/server-tools/",
     "category": "Tools",
