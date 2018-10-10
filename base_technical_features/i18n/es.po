@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-01 02:10+0000\n"
-"PO-Revision-Date: 2017-12-01 02:10+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
+"PO-Revision-Date: 2018-10-11 12:17+0000\n"
+"Last-Translator: Harald Panten <harald.panten@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
@@ -38,7 +39,7 @@ msgstr "Características técnicas"
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr "El usuario no tiene acceso a las características técnicas"
+msgstr "El usuario no tiene acceso a las características técnicas."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
