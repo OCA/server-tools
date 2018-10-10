@@ -28,6 +28,22 @@ class NameSearchCase(TransactionCase):
              'supplier': True,
              'phone': '+351 777 333 555'})
 
+    def test_default_name_search(self):
+        """ Check if default name_search is preserved """
+        # pre-8.0.1.0.2 name_search_use_standard was set to NULL instead of
+        # True for any models initialized after this module, thereby breaking
+        # default name_search functionality (#1389).
+        # - Test for no NULL values
+        self.env.cr.execute(
+            'select count(*) from ir_model where '
+            'name_search_use_standard is null'
+        )
+        self.assertEquals(self.env.cr.fetchone()[0], 0)
+        # - report (auto)installs after base, so test if default name_search
+        # works well for one of its models
+        self.assertEquals(len(self.env['report.paperformat'].name_search(
+            'US Letter', operator='=')), 1)
+
     def test_RelevanceOrderedResults(self):
         """Return results ordered by relevance"""
         res = self.Partner.name_search('555 777')
