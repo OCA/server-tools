@@ -9,35 +9,36 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:43+0000\n"
-"PO-Revision-Date: 2017-08-01 02:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-10-10 21:14+0000\n"
+"Last-Translator: Harald Panten <harald.panten@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
 msgid "Show field Technical Features"
-msgstr ""
+msgstr "Mostrar el camp Característiques Tècniques"
 
 #. module: base_technical_features
 #: model:res.groups,name:base_technical_features.group_technical_features
 msgid "Technical Features (w/o debug mode)"
-msgstr ""
+msgstr "Característiques tècniques (sense mode de depuració)"
 
 #. module: base_technical_features
 #: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
 msgid "Technical features"
-msgstr ""
+msgstr "Característiques tècniques"
 
 #. module: base_technical_features
 #: code:addons/base_technical_features/models/res_users.py:48
 #, python-format
 msgid "The user does not have access to technical features."
-msgstr ""
+msgstr "L'usuari no té accés a les carcaterístiques tècniques."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_res_users
@@ -49,13 +50,15 @@ msgstr "Usuaris"
 msgid ""
 "Whether to display the technical features field in the user preferences."
 msgstr ""
+"Mostrar o no el camp de característiques tècniques a les preferències "
+"d'usuari."
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_base
 msgid "base"
-msgstr ""
+msgstr "base de dades"
 
 #. module: base_technical_features
 #: model:ir.model,name:base_technical_features.model_ir_ui_menu
 msgid "ir.ui.menu"
-msgstr ""
+msgstr "ir.ui.menu"
