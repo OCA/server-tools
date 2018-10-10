@@ -276,7 +276,7 @@ msgid "No dangling menu entries found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_modules.py:77
+#: code:addons/database_cleanup/models/purge_modules.py:80
 #, python-format
 msgid "No modules found to purge"
 msgstr ""
