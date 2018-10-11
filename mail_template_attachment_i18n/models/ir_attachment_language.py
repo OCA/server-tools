@@ -4,11 +4,6 @@
 from odoo import api, fields, models
 
 
-@api.model
-def _lang_get(self):
-    return self.env['res.lang'].get_installed()
-
-
 class IrAttachmentLanguage(models.Model):
     _name = 'ir.attachment.language'
 
@@ -20,7 +15,7 @@ class IrAttachmentLanguage(models.Model):
     )
 
     lang = fields.Selection(
-        selection=_lang_get,
+        selection=lambda self: self.env['res.lang'].get_installed(),
         string='Language',
         required=True,
     )

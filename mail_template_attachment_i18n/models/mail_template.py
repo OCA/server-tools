@@ -20,25 +20,21 @@ class MailTemplate(models.Model):
         if isinstance(res_ids, int):
             res_ids = [res_ids]
             multi = False
-        res = super(MailTemplate, self).generate_email(
+        res = super().generate_email(
             res_ids, fields
         )
-        # if isinstance(res_ids, int):
-        #     return res
         attached = []
         for res_id in res.keys():
             mail = res[res_id]
-            partner_ids = mail['partner_ids']
+            partner_ids = 'partner_ids' in mail and mail['partner_ids'] or False
             if not partner_ids:
                 continue
-            for partner_id in partner_ids:
-                partner = self.env['res.partner'].browse(partner_id)
+            for partner in self.env['res.partner'].browse(partner_ids):
                 for lang_attach in self.ir_attachment_language_ids.filtered(
                         lambda a: a.lang == partner.lang):
                     if lang_attach.attachment_id.id in attached:
                         continue
-                    if 'attachments' not in res[res_id] or not \
-                            res[res_id]['attachments']:
+                    if not res[res_id].get('attachments'):
                         res[res_id]['attachments'] = []
                     res[res_id]['attachments'].append((
                         lang_attach.attachment_id.name,

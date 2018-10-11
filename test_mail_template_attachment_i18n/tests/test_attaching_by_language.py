@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestAttachingByLanguage(TransactionCase):
     def setUp(self):
-        super(TestAttachingByLanguage, self).setUp()
+        super().setUp()
         self.english_partner = self.env['res.partner'].create({
             'name': 'English Partner',
             'email': 'test@english.nl',
