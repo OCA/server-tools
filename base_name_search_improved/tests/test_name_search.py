@@ -41,8 +41,18 @@ class NameSearchCase(TransactionCase):
         self.assertEquals(self.env.cr.fetchone()[0], 0)
         # - report (auto)installs after base, so test if default name_search
         # works well for one of its models
-        self.assertEquals(len(self.env['report.paperformat'].name_search(
-            'US Letter', operator='=')), 1)
+
+        # create model
+        self.env.cr.execute(
+            "INSERT INTO ir_model(model, name) "
+            "VALUES ('test.model', 'test.model')"
+        )
+        self.env.cr.execute(
+            "SELECT name_search_use_standard "
+            "FROM ir_model WHERE name = 'test.model'"
+        )
+        name_search_use_standard = self.env.cr.fetchone()[0]
+        self.assertEquals(name_search_use_standard, True)
 
     def test_RelevanceOrderedResults(self):
         """Return results ordered by relevance"""
