@@ -14,6 +14,32 @@
             </tree>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="view_profiling_lines">
+        <field name="name">view profiling_lines</field>
+        <field name="model">profiler.profile.python.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="cprof_ncalls"/>
+                <field name="cprof_nrcalls"/>
+                <field name="cprof_tottime"/>
+                <field name="cprof_ttpercall"/>
+                <field name="cprof_cumtime"/>
+                <field name="cprof_ctpercall"/>
+                <field name="cprof_fname"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_view_profiling_lines" model="ir.actions.act_window">
+        <field name="name">Profiling lines</field>
+        <field name="res_model">profiler.profile.python.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field eval="False" name="view_id"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
     <record model="ir.ui.view" id="view_profile_form">
         <field name="name">view profile form</field>
         <field name="model">profiler.profile</field>
@@ -30,6 +56,14 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button name="%(action_view_profiling_lines)s"
+                            type="action" string="View profiling lines"
+                            class="oe_stat_button"
+                            icon="fa-share-square-o"
+                            context="{'search_default_profile_id': active_id, 'default_profile_id': active_id}"
+                            attrs="{'invisible': ['|', ('enable_python', '=', False), ('date_finished', '=', False)]}">
+                        </button>
+
                         <button name="action_view_attachment"
                             type="object"
                             class="oe_stat_button"
