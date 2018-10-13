@@ -1,9 +1,8 @@
 
 import logging
 
-from odoo.http import WebRequest
-from odoo.sql_db import Cursor
-from odoo import api
+from openerp.http import WebRequest
+from openerp.sql_db import Cursor
 
 from .models.profiler_profile import ProfilerProfile
 
@@ -28,16 +27,6 @@ def patch_web_request_call_function():
     WebRequest._call_function = webreq_f
 
 
-def patch_call_kw_function():
-    _logger.info('Patching odoo.api.call_kw')
-    call_kw_f_origin = api.call_kw
-
-    def call_kw_f(*args, **kwargs):
-        with ProfilerProfile.profiling():
-            return call_kw_f_origin(*args, **kwargs)
-    api.call_kw = call_kw_f
-
-
 def patch_cursor_init():
     _logger.info('Patching sql_dp.Cursor.__init__')
     cursor_f_origin = Cursor.__init__
@@ -53,5 +42,4 @@ def patch_cursor_init():
 
 def post_load():
     patch_web_request_call_function()
-    patch_call_kw_function()
     patch_cursor_init()
