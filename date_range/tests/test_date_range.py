@@ -154,7 +154,7 @@ class DateRangeTest(TransactionCase):
             'FS2018-period1 not a subrange of FS2018: '
             'FS2018-period1 range not in 2018-01-01 - 2018-12-31'
         )
-        period1 = date_range.create({
+        date_range.create({
             'name': 'FS2018-period1',
             'date_start': '2018-01-01',
             'date_end': '2018-04-30',
@@ -175,6 +175,66 @@ class DateRangeTest(TransactionCase):
             cm.exception.name,
             'FS2018-period2 overlaps FS2018-period1'
         )
+
+    def test_parent_type_id(self):
+        """Check domain and constraint between parent and child types"""
+        date_range = self.env['date.range']
+        date_range_type = self.env['date.range.type']
+        # First create a parent type
+        parent_type = date_range_type.create({
+            'name': 'FS2018_parent_type',
+            'parent_type_id': False,
+        })
+        # catch here the validation error when assigning
+        # a date_range_type parent, to another parent(self included)
+        with self.assertRaises(ValidationError)as cm, self.env.cr.savepoint():
+            parent_type.write({
+                'parent_type_id': parent_type.id,
+            })
+        self.assertEqual(
+            cm.exception.name,
+            'A type parent  can not have a parent:'
+            ' FS2018_parent_type can not have FS2018_parent_type as parent'
+        )
+        # Then, add a child type
+        child_type = date_range_type.create({
+            'name': 'FS2018_child_type',
+            'parent_type_id': parent_type.id,
+        })
+        # Now create a parent range
+        parent_range = date_range.create({
+            'name': 'FS2018',
+            'date_start': '2018-01-01',
+            'date_end': '2018-12-31',
+            'type_id': parent_type.id,
+        })
+        # and two child ranges
+        child_range1 = date_range.create({
+            'name': 'FS2018-child1',
+            'date_start': '2018-01-01',
+            'date_end': '2018-04-30',
+            'type_id': child_type.id,
+            'parent_id': parent_range.id,
+        })
+        child_range2 = date_range.create({
+            'name': 'FS2018-child2',
+            'date_start': '2018-05-01',
+            'date_end': '2018-06-30',
+            'type_id': child_type.id,
+            'parent_id': parent_range.id,
+        })
+        # and check how parent_type_id behaves
+        self.assertEqual(parent_type, child_range1.parent_type_id)
+        self.assertEqual(
+            child_range1.parent_type_id,
+            child_range2.parent_type_id
+        )
         # Ensure here that parent and children are of different type
-        self.assertNotEqual(parent.type_id, period1.type_id)
-        self.assertEqual(parent.type_id, period1.parent_id.type_id)
+        self.assertNotEqual(
+            parent_range.type_id,
+            child_range1.type_id
+        )
+        self.assertEqual(
+            parent_range.type_id,
+            child_range2.parent_id.type_id
+        )
