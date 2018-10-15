@@ -26,6 +26,9 @@ class DateRangeType(models.Model):
         comodel_name='res.company', string='Company', index=1,
         default=_default_company)
     date_range_ids = fields.One2many('date.range', 'type_id', string='Ranges')
+    parent_type_id = fields.Many2one(
+        comodel_name='date.range.type',
+        index=1)
 
     _sql_constraints = [
         ('date_range_type_uniq', 'unique (name,company_id)',
@@ -44,3 +47,17 @@ class DateRangeType(models.Model):
                         _('You cannot change the company, as this '
                           'Date Range Type is  assigned to Date Range '
                           '(%s).') % (rec.date_range_ids.name_get()[0][1]))
+
+    @api.constrains('parent_type_id')
+    def _validate_parent_type_id(self):
+        for record in self:
+            parent = record
+            while parent:
+                if not parent.parent_type_id:
+                    break
+                if record.parent_type_id == parent:
+                    raise ValidationError(
+                        _("A type parent  can not have a parent:"
+                          " %s can not have %s as parent") % (
+                            parent.name, record.name))
+                parent = parent.parent_type_id
