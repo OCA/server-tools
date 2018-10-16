@@ -11,7 +11,7 @@ from odoo.tools.safe_eval import safe_eval
 from odoo.exceptions import UserError, ValidationError
 
 
-class OnchangeRuleLine(models.TransientModel):
+class OnchangeRuleLine(models.Model):
     _name = 'onchange.rule.line'
     _description = "Onchange Rule Lines"
     _order = 'sequence'
