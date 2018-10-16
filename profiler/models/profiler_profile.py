@@ -8,7 +8,7 @@ import subprocess
 import lxml.html
 from contextlib import contextmanager
 from cProfile import Profile
-from io import StringIO
+from io import BytesIO
 
 from psycopg2 import OperationalError, ProgrammingError
 
@@ -242,7 +242,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             ProfilerProfile.activate_deactivate_pglogs = enable
 
     def get_stats_string(self, cprofile_path):
-        pstats_stream = StringIO()
+        pstats_stream = BytesIO()
         pstats_obj = pstats.Stats(cprofile_path, stream=pstats_stream)
         pstats_obj.sort_stats('cumulative')
         pstats_obj.print_stats()
