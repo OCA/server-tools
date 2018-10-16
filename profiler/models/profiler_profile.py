@@ -129,8 +129,7 @@ class ProfilerProfile(models.Model):
 
         self.description = (
             "You need seudo-enable logs from your "
-            "postgresql-server configuration file.\n"
-            "Common paths:\n\t- %s\n"
+            "postgresql-server configuration file.\n\t- %s\n"
             "or your can looking for the service using: "
             "'ps aux | grep postgres'\n\n"
         ) % pg_config_file
