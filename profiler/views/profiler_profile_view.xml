@@ -30,6 +30,15 @@
             </tree>
         </field>
     </record>
+    <record id="view_profiling_lines_search" model="ir.ui.view">
+        <field name="name">view.profiling.lines.search</field>
+        <field name="model">profiler.profile.python.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Profiling lines">
+                <field name="profile_id"/>
+            </search>
+        </field>
+    </record>
     <record id="action_view_profiling_lines" model="ir.actions.act_window">
         <field name="name">Profiling lines</field>
         <field name="res_model">profiler.profile.python.line</field>
