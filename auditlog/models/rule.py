@@ -19,6 +19,7 @@ class DictDiffer(object):
     (3) keys same in both but changed values
     (4) keys same in both and unchanged values
     """
+
     def __init__(self, current_dict, past_dict):
         self.current_dict, self.past_dict = current_dict, past_dict
         self.set_current = set(current_dict)
@@ -204,9 +205,17 @@ class AuditlogRule(models.Model):
             self = self.with_context(auditlog_disabled=True)
             rule_model = self.env['auditlog.rule']
             new_record = create_full.origin(self, vals, **kwargs)
-            new_values = dict(
-                (d['id'], d) for d in new_record.sudo()
-                .with_context(prefetch_fields=False).read(list(self._fields)))
+            # Improvements to create full type logs for given record
+            # without information loss
+            vals2 = dict(vals)
+            for field in self._fields:
+                if field not in vals.keys():
+                    vals2.update({field: new_record[field]})
+            new_values = {new_record.id: vals2}
+            # Commented out to avoid information loss while reading record
+            #             new_values = dict(
+            #                 (d['id'], d) for d in new_record.sudo()
+            #                 .with_context(prefetch_fields=False).read(list(self._fields)))
             rule_model.sudo().create_logs(
                 self.env.uid, self._name, new_record.ids,
                 'create', None, new_values, {'log_type': log_type})
@@ -496,11 +505,23 @@ class AuditlogRule(models.Model):
             'new_value': new_values[log.res_id][field['name']],
             'new_value_text': new_values[log.res_id][field['name']],
         }
-        if log.log_type == 'full' and field['relation'] \
-                and '2many' in field['ttype']:
+        if log.log_type == 'full' and field['relation'] and '2many' in\
+                field['ttype'] and 'many2many' not in field['ttype']:
             new_value_text = self.env[field['relation']].browse(
                 vals['new_value']).name_get()
             vals['new_value_text'] = new_value_text
+        if log.log_type == 'full' and field['relation'] \
+                and 'many2one' in field['ttype']:
+            if new_values[log.res_id][field['name']]:
+                if isinstance(new_values[log.res_id][field['name']], int):
+                    vals['new_value_text'] = \
+                        new_values[log.res_id][field['name']]
+                else:
+                    vals['new_value_text'] = str(
+                        {new_values[log.res_id][field['name']].id:
+                         new_values[log.res_id][field['name']].name})
+            else:
+                vals['new_value_text'] = False
         return vals
 
     @api.multi
