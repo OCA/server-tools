@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="auth_ldap_multi_login_form">
+        <field name="name">Add login attributes to ldap view</field>
+        <field name="model">base.config.settings</field>
+        <field name="inherit_id" ref="auth_ldap.view_general_configuration_form_inherit_auth_ldap"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ldap_filter']" position="after">
+                <field name="login_attribute"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
