@@ -52,10 +52,12 @@ class RecordLifespan(models.Model):
                 continue
             model = self.env[lifespan.model_id.model]
             state_field = model.fields_get().get('state', {})
-            if not state_field:
+            if not state_field or state_field['type'] != 'selection':
                 continue
-            allowed_states \
-                = [x[0] for x in state_field.get('selection', [('')])]
+            allowed_states = [
+                state[0]
+                for state in state_field.get('selection', [('')])
+            ]
             if not all(archive_state in allowed_states
                        for archive_state in lifespan._get_archive_states()):
                 raise exceptions.ValidationError(_(
@@ -85,7 +87,7 @@ class RecordLifespan(models.Model):
         self.ensure_one()
         if not self.archive_states:
             return ['done', 'cancel']
-        return [s.strip() for s in self.archive_states.split(',')]
+        return [s.strip() for s in self.archive_states.split(',') if s.strip()]
 
     @api.multi
     def _archive_domain(self, expiration_date):
