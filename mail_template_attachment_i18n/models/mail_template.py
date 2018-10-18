@@ -26,7 +26,8 @@ class MailTemplate(models.Model):
         attached = []
         for res_id in res.keys():
             mail = res[res_id]
-            partner_ids = 'partner_ids' in mail and mail['partner_ids'] or False
+            partner_ids = 'partner_ids' in mail and \
+                          mail['partner_ids'] or False
             if not partner_ids:
                 continue
             for partner in self.env['res.partner'].browse(partner_ids):
