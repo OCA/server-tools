@@ -32,6 +32,15 @@ You can also use it on existing record for example:
 
 Then the onchange will be played with the vals passed and the existing vals of the sale. `vals` will be updated with partner_invoice_id, pricelist_id, etc..
 
+if you want overwrite values passed in param values by values onchange returned you can use `overwrite_values=True` in context. Ex :
+
+    `vals = {'partner_id': 1, partner_invoice_id: 10}`
+
+    `vals = self.env['sale.order'].with_context(
+        overwrite_values=True).play_onchanges(vals, ['partner_id'])`
+Then, `vals` will be updated with partner_invoice_id, partner_shipping_id, pricelist_id, etc... partner_invoice_id value will be ovewrited by value
+returned by onchange ex partner_invoice_id: 5. Without changing context value
+partner_invoice_id keep the first value (i.e 10).
 
 Behind the scene, `play_onchanges` will execute **all the methods** registered for the list of changed fields, so you do not have to call manually each onchange. To avoid performance issue when the method is called on a record, the record will be transformed into a memory record before calling the registered methods to avoid to trigger SQL updates command when values are assigned to the record by the onchange
 
