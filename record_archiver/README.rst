@@ -57,10 +57,6 @@ lifespan and with a state being ``done`` or ``cancel``. If these rules
 need to be modified for a model (e.g. change the states to archive), the
 hook ``RecordLifespan._archive_domain`` can be extended.
 
-Alternatively, you can provide a comma-separated list of states to
-``record.lifespan`` records to redefine a set of record states that
-should be archived.
-
 Bug Tracker
 ===========
 
@@ -84,6 +80,7 @@ Contributors
 
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
+* Artem Kostyuk <a.kostyuk@mobilunity.com>
 
 Maintainers
 ~~~~~~~~~~~
