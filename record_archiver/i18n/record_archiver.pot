@@ -1,13 +1,11 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* record_archiver
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 12:35+0000\n"
-"PO-Revision-Date: 2015-07-01 12:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,60 +14,110 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_archive_states
+msgid "Archive States"
+msgstr ""
+
+#. module: record_archiver
 #: model:ir.actions.act_window,help:record_archiver.action_record_lifespan_view
-msgid "<p class=\"oe_view_nocontent_create\">\n"
-"          Click to define a new lifespan for a type of records.\n"
-"        </p><p>\n"
-"          Every record of model with a lifespan will be set to inactive\n"
-"          after the the defined months are elapsed. The lifespan is\n"
-"          based on the last write on a record.\n"
-"        </p>\n"
-"      "
+msgid "Click to define a new lifespan for a type of records."
 msgstr ""
 
 #. module: record_archiver
-#: code:addons/record_archiver/models/record_lifespan.py:104
-#: code:addons/record_archiver/models/record_lifespan.py:108
-#, python-format
-msgid "Error"
+#: model:ir.model.fields,help:record_archiver.field_record_lifespan_archive_states
+msgid "Comma-separated list of states in which records should be archived. Implicit value is `'done, cancel')`."
 msgstr ""
 
 #. module: record_archiver
-#: field:ir.model,has_an_active_field:0
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.actions.act_window,help:record_archiver.action_record_lifespan_view
+msgid "Every record of model with a lifespan will be set to inactive\n"
+"        after the the defined months are elapsed. The lifespan is\n"
+"        based on the last write on a record."
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_ir_model_has_an_active_field
 msgid "Has an active field"
 msgstr ""
 
 #. module: record_archiver
-#: field:record.lifespan,model_id:0
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_id
+msgid "ID"
+msgstr ""
+
+#. module: record_archiver
+#: code:addons/record_archiver/models/record_lifespan.py:63
+#, python-format
+msgid "Invalid set of states for \"%s\" model:\n"
+"%s\n"
+"Valid states:\n"
+"%s"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.ui.menu,name:record_archiver.menu_record_lifespan_config
+msgid "Lifespans"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_model_id
 msgid "Model"
 msgstr ""
 
 #. module: record_archiver
-#: code:addons/record_archiver/models/record_lifespan.py:109
+#: code:addons/record_archiver/models/record_lifespan.py:124
 #, python-format
 msgid "Model %s has no active field"
 msgstr ""
 
 #. module: record_archiver
-#: code:addons/record_archiver/models/record_lifespan.py:105
+#: code:addons/record_archiver/models/record_lifespan.py:121
 #, python-format
 msgid "Model %s not found"
 msgstr ""
 
 #. module: record_archiver
-#: field:record.lifespan,model:0
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_model_name
 msgid "Model Name"
 msgstr ""
 
 #. module: record_archiver
-#: code:_description:0
 #: model:ir.model,name:record_archiver.model_ir_model
-#, python-format
 msgid "Models"
 msgstr ""
 
 #. module: record_archiver
-#: field:record.lifespan,months:0
+#: model:ir.model.fields,field_description:record_archiver.field_record_lifespan_months
 msgid "Months"
 msgstr ""
 
@@ -79,21 +127,31 @@ msgid "Months must be a value greater than 0"
 msgstr ""
 
 #. module: record_archiver
-#: help:record.lifespan,months:0
+#: model:ir.model.fields,help:record_archiver.field_record_lifespan_months
 msgid "Number of month after which the records will be set to inactive based on their write date"
 msgstr ""
 
 #. module: record_archiver
+#: model:ir.ui.menu,name:record_archiver.menu_record_archiver
+msgid "Record Archiver"
+msgstr ""
+
+#. module: record_archiver
+#: model:ir.actions.server,name:record_archiver.ir_cron_record_archiver_ir_actions_server
+#: model:ir.cron,cron_name:record_archiver.ir_cron_record_archiver
+#: model:ir.cron,name:record_archiver.ir_cron_record_archiver
+msgid "Records Archiver"
+msgstr ""
+
+#. module: record_archiver
 #: model:ir.actions.act_window,name:record_archiver.action_record_lifespan_view
-#: model:ir.ui.menu,name:record_archiver.menu_record_lifespan_config
-#: view:record.lifespan:0
+#: model:ir.ui.view,arch_db:record_archiver.view_record_lifespan_search
+#: model:ir.ui.view,arch_db:record_archiver.view_record_lifespan_tree
 msgid "Records Archiver Lifespans"
 msgstr ""
 
 #. module: record_archiver
-#: code:_description:0
 #: model:ir.model,name:record_archiver.model_record_lifespan
-#, python-format
 msgid "record.lifespan"
 msgstr ""
 
