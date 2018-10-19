@@ -14,7 +14,10 @@ class Base(models.AbstractModel):
         vals = on_change_result.get('value', {})
         new_values = {}
         for fieldname, value in vals.iteritems():
-            if fieldname not in record:
+            # if overwrite_values is True values record are owerited with
+            # on_change_result
+            if fieldname not in record or\
+                    self.env.context.get('overwrite_values'):
                 column = self._fields[fieldname]
                 if value and column.type == 'many2one':
                     value = value[0]  # many2one are tuple (id, name)
