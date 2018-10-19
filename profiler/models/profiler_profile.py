@@ -5,14 +5,19 @@ import os
 import pstats
 import re
 import subprocess
-import lxml.html
+import sys
 from contextlib import contextmanager
 from cProfile import Profile
-from io import BytesIO
 
+import lxml.html
 from psycopg2 import OperationalError, ProgrammingError
 
-from odoo import api, exceptions, fields, models, sql_db, tools, _
+from odoo import _, api, exceptions, fields, models, sql_db, tools
+
+if sys.version_info[0] >= 3:
+    from io import StringIO as IO
+else:
+    from io import BytesIO as IO
 
 DATETIME_FORMAT_FILE = "%Y%m%d_%H%M%S"
 CPROFILE_EMPTY_CHARS = b"{0"
@@ -241,7 +246,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
             ProfilerProfile.activate_deactivate_pglogs = enable
 
     def get_stats_string(self, cprofile_path):
-        pstats_stream = BytesIO()
+        pstats_stream = IO()
         pstats_obj = pstats.Stats(cprofile_path, stream=pstats_stream)
         pstats_obj.sort_stats('cumulative')
         pstats_obj.print_stats()
