@@ -1,1 +1,1 @@
-from . import mail_cleanup
+from . import fetchmail_server
