@@ -12,6 +12,7 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - pgbadger
       - nsca-client
 
 env:
