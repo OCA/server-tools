@@ -3,7 +3,7 @@
     'author': "Vauxoo, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/server-tools/tree/12.0/profiler",
     'category': 'Tests',
-    'version': '12.0.1.0.0',
+    'version': '11.0.1.0.0',
     'license': 'AGPL-3',
     'depends': ["document"],
     'data': [
