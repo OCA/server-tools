@@ -76,7 +76,7 @@ addon | version | summary
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [sequence_check_digit](sequence_check_digit/) | 9.0.1.0.0 | Adds a check digit on sequences
-[server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
+[server_environment](server_environment/) | 9.0.1.3.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 9.0.1.0.0 | Override System Parameters from server environment file
 [sql_export](sql_export/) | 9.0.1.0.0 | Export data in csv file with SQL requests
