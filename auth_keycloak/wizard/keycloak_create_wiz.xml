@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<odoo>
+  <record id="auth_keycloak_create_wiz" model="ir.ui.view">
+    <field name="name">auth.keycloak.create.wiz.form</field>
+    <field name="model">auth.keycloak.create.wiz</field>
+    <field name="arch" type="xml">
+      <form string="Create user on Keycloak">
+        <sheet>
+          <field name="management_enabled" invisible="1"/>
+          <group name="main">
+            <group name="provider">
+              <field name="provider_id" />
+              <div class="alert alert-warning" role="alert" attrs="{'invisible': [('management_enabled', '=', True)]}">
+                <strong>Users managerment not enabled!</strong>
+                You must configure "Users management" parameters on selected provider.
+              </div>
+            </group>
+            <group name="metadata" attrs="{'invisible': [('management_enabled', '=', False)]}">
+              <field name="endpoint" />
+              <field name="user" />
+              <field name="pwd" />
+              <field name="login_match_key" />
+            </group>
+          </group>
+          <group name="users">
+            <field name="user_ids" readonly="1">
+              <tree>
+                <field name="name" />
+                <field name="login" />
+                <field name="email" />
+                <field name="oauth_uid" />
+              </tree>
+            </field>
+          </group>
+          <footer>
+            <button name="button_create_user" string="Create"
+                    attrs="{'invisible': [('management_enabled', '=', False)]}"
+                    type="object" />
+            <button string="Cancel" class="btn-default" special="cancel" />
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="keycloak_create_users" model="ir.actions.act_window">
+    <field name="name">Keycloak create users</field>
+    <field name="res_model">auth.keycloak.create.wiz</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="auth_keycloak_create_wiz"/>
+    <field name="target">new</field>
+  </record>
+
+  <record id="action_purge_model_line_value" model="ir.values">
+    <field name="name">Push users to Keycloak</field>
+    <field name="key">action</field>
+    <field name="key2">client_action_multi</field>
+    <field name="model">res.users</field>
+    <field name="value" eval="'ir.actions.act_window,%d' % ref('auth_keycloak.keycloak_create_users')" />
+  </record>
+
+</odoo>

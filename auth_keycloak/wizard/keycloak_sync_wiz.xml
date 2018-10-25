@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<odoo>
+  <record id="auth_keycloak_sync_wiz" model="ir.ui.view">
+    <field name="name">auth.keycloak.sync.wiz.form</field>
+    <field name="model">auth.keycloak.sync.wiz</field>
+    <field name="arch" type="xml">
+      <form string="Sychronize existing users">
+        <sheet>
+          <field name="management_enabled" invisible="1"/>
+          <group name="main" string="Synchronize users">
+            <group name="provider">
+              <field name="provider_id" />
+              <div class="alert alert-warning" role="alert" attrs="{'invisible': [('management_enabled', '=', True)]}">
+                <strong>Users managerment not enabled!</strong>
+                You must configure "Users management" parameters on selected provider.
+              </div>
+            </group>
+            <group name="metadata" attrs="{'invisible': [('management_enabled', '=', False)]}">
+              <field name="endpoint" />
+              <field name="user" />
+              <field name="pwd" />
+              <field name="login_match_key" />
+            </group>
+          </group>
+          <footer>
+            <button name="button_sync" string="Sync"
+                    attrs="{'invisible': [('management_enabled', '=', False)]}"
+                    type="object" />
+            <button string="Cancel" class="btn-default" special="cancel" />
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="keycloak_sync_users" model="ir.actions.act_window">
+    <field name="name">Keycloak sync users</field>
+    <field name="res_model">auth.keycloak.sync.wiz</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="auth_keycloak_sync_wiz"/>
+    <field name="target">new</field>
+  </record>
+
+</odoo>

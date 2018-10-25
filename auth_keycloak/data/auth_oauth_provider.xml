@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+  <record id="default_keycloak_provider" model="auth.oauth.provider">
+    <field name="name">Keycloak</field>
+    <field name="enabled" eval="0" />
+    <field name="client_id">odoo</field>
+    <field name="auth_endpoint">http://keycloak:8080/auth/realms/master/protocol/openid-connect/auth</field>
+    <field name="validation_endpoint">http://keycloak:8080/auth/realms/master/protocol/openid-connect/token/introspect</field>
+    <field name="data_endpoint">http://keycloak:8080/auth/realms/master/protocol/openid-connect/userinfo</field>
+    <field name="scope">OAuth2</field>
+    <field name="body">Login with Keycloak</field>
+  </record>
+</odoo>

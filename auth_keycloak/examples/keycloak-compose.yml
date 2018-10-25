@@ -1,0 +1,23 @@
+# docker-compose example for keycloak container
+
+version: '2'
+services:
+  keycloak:
+    image: jboss/keycloak
+    ports:
+      - 8080:8080
+    # change this if your db container is named differently
+    depends_on:
+      - db
+    environment:
+      # odoodb=# create user keycloak with password 'keycloak';
+      # CREATE ROLE
+      # odoodb=# create database keycloak OWNER keycloak;
+      # CREATE DATABASE
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=db
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycloak

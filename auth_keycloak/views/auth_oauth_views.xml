@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+  <record id="view_oauth_provider_form" model="ir.ui.view">
+    <field name="name">auth.oauth.provider.form</field>
+    <field name="model">auth.oauth.provider</field>
+    <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form" />
+    <field name="arch" type="xml">
+      <field name="client_id" position="after">
+        <field name="client_secret" />
+      </field>
+      <xpath expr="//field[@name='auth_endpoint']/ancestor::group[1]" position="after">
+        <field name="id" invisible="1"/>
+        <!-- TODO: any good way to hide/show this properly -->
+        <group string="Users management (Keycloak)">
+          <field name="users_endpoint" />
+          <field name="superuser" />
+          <field name="superuser_pwd" />
+          <field name="users_management_enabled" />
+          <button string="Sync users" context="{'default_provider_id': id}"
+                  name="%(auth_keycloak.keycloak_sync_users)d"
+                  type="action"
+                  attrs="{'invisible': [('users_management_enabled', '=', False)]}" />
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>
