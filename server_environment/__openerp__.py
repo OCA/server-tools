@@ -29,6 +29,7 @@
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [
+        'security/res_groups.xml',
         'serv_config.xml',
     ],
     'installable': True,
