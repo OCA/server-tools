@@ -5,7 +5,7 @@
 
 {
     'name': 'Exception Rule',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Generic Modules',
     'summary': """
     This module provide an abstract model to manage customizable
