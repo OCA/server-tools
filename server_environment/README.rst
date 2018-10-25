@@ -15,7 +15,8 @@ module.
 
 All the settings will be read only and visible under the Configuration
 menu.  If you are not in the 'dev' environment you will not be able to
-see the values contained in keys named '*passw*'.
+see the values contained in the defined secret keys
+(by default : '*passw*', '*key*', '*secret*' and '*token*').
 
 Installation
 ============
