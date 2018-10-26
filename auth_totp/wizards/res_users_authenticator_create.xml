@@ -15,14 +15,14 @@
                 <sheet>
                     <div>
                         <span>Please provide a name for your app/device. </span>
-                        <span>Then scan the QR code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>
+                        <span>Then scan the QR code or enter the secret code below to add this account to your authenticator app and enter in the six digit code produced by the app.</span>
                     </div>
                     <group name="data">
                         <field name="name"/>
                         <field name="user_id"/>
+                        <field name="secret_key" readonly="1"/>
                         <field name="qr_code_tag"/>
                         <field name="confirmation_code"/>
-                        <field name="secret_key" invisible="1"/>
                     </group>
                 </sheet>
                 <footer>
