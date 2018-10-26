@@ -34,7 +34,7 @@
                 <field name="name" />
                 <field name="purged" />
                 <button type="object" name="purge"
-                    icon="gtk-cancel" string="Purge this model"
+                    icon="fa-times-circle text-danger" string="Purge this model"
                     attrs="{'invisible': [('purged', '=', True)]}"/>
             </tree>
         </field>
