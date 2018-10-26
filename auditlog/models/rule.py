@@ -507,9 +507,9 @@ class AuditlogRule(models.Model):
         }
         if log.log_type == 'full' and field['relation'] and '2many' in\
                 field['ttype'] and 'many2many' not in field['ttype']:
-            new_value_text = self.env[field['relation']].browse(
-                vals['new_value']).name_get()
-            vals['new_value_text'] = new_value_text
+            if not isinstance(new_values[log.res_id][field['name']], list):
+                new_value_text = vals['new_value'].name_get()
+                vals['new_value_text'] = new_value_text
         if log.log_type == 'full' and field['relation'] \
                 and 'many2one' in field['ttype']:
             if new_values[log.res_id][field['name']]:
