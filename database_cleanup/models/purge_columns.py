@@ -9,6 +9,7 @@ from ..identifier_adapter import IdentifierAdapter
 class CleanupPurgeLineColumn(models.TransientModel):
     _inherit = 'cleanup.purge.line'
     _name = 'cleanup.purge.line.column'
+    _description = 'Purge Column Wizard Lines'
 
     model_id = fields.Many2one('ir.model', 'Model', required=True,
                                ondelete='CASCADE')
