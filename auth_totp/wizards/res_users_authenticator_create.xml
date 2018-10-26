@@ -20,9 +20,9 @@
                     <group name="data">
                         <field name="name"/>
                         <field name="user_id"/>
+                        <field name="secret_key" readonly="1"/>
                         <field name="qr_code_tag"/>
                         <field name="confirmation_code"/>
-                        <field name="secret_key" invisible="1"/>
                     </group>
                 </sheet>
                 <footer>
