@@ -34,8 +34,6 @@ class DateRange(models.Model):
         readonly=True)
     parent_id = fields.Many2one(
         comodel_name='date.range', string="Parent",
-        domain="['|', ('type_id.parent_type_id', '!=', parent_type_id), "
-        "('parent_type_id', '=', False)]",
         index=1)
 
     _sql_constraints = [
@@ -51,21 +49,35 @@ class DateRange(models.Model):
             end = this.parent_id.date_end >= this.date_end
             child_range = start and end
             if not child_range:
+                text_dict = {
+                    'name': this.name,
+                    'start': this.date_start,
+                    'end': this.date_end,
+                    'parent_name': this.parent_id.name,
+                    'parent_start': this.parent_id.date_start,
+                    'parent_end': this.parent_id.date_end,
+                }
                 if (not start) and end:
-                    text = _("Start dates are not compatible (%s < %s)") % (
-                        this.date_start, this.parent_id.date_start)
+                    text = _(
+                        "Start date %(start)s of %(name)s must be greater than"
+                        " or equal to "
+                        "start date %(parent_start)s of %(parent_name)s"
+                    ) % text_dict
                 elif (not end) and start:
-                    text = _("End dates are not compatible (%s > %s)") % (
-                        this.date_end, this.parent_id.date_end)
+                    text = _(
+                        "End date %(end)s of %(name)s must be smaller than"
+                        " or equal to "
+                        "end date %(parent_end)s of %(parent_name)s"
+                    ) % text_dict
                 else:
-                    text = _("%s range not in %s - %s") % (
-                        this.name,
-                        this.parent_id.date_start,
-                        this.parent_id.date_end,
-                    )
+                    text = _(
+                        "%(name)s range not in "
+                        "%(parent_start)s - %(parent_end)s"
+                    ) % text_dict
                 raise ValidationError(
-                    _("%s not a subrange of %s: " + text) % (
-                        this.name, this.parent_id.name))
+                    _("%(name)s not a subrange of"
+                        " %(parent_name)s: " % text_dict) + text
+                    )
 
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
     def _validate_range(self):

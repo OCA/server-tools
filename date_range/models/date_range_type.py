@@ -39,9 +39,7 @@ class DateRangeType(models.Model):
             while parent:
                 if not parent.parent_type_id:
                     break
-                if record.parent_type_id == parent:
+                if parent.parent_type_id == record:
                     raise ValidationError(
-                        _("A type parent  can not have a parent:"
-                          " %s can not have %s as parent") % (
-                            parent.name, record.name))
+                        _("A type can not have itself as parent or child"))
                 parent = parent.parent_type_id

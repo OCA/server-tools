@@ -126,7 +126,8 @@ class DateRangeTest(TransactionCase):
         self.assertEqual(
             cm.exception.name,
             'FS2018-period1 not a subrange of FS2018: '
-            'End dates are not compatible (2019-01-02 > 2018-12-31)'
+            'End date 2019-01-02 of FS2018-period1 must be '
+            'smaller than or equal to end date 2018-12-31 of FS2018'
         )
         with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
             date_range.create({
@@ -139,7 +140,8 @@ class DateRangeTest(TransactionCase):
         self.assertEqual(
             cm.exception.name,
             'FS2018-period1 not a subrange of FS2018: '
-            'Start dates are not compatible (2017-06-06 < 2018-01-01)'
+            'Start date 2017-06-06 of FS2018-period1 must be '
+            'greater than or equal to start date 2018-01-01 of FS2018'
         )
         with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
             date_range.create({
@@ -186,15 +188,14 @@ class DateRangeTest(TransactionCase):
             'parent_type_id': False,
         })
         # catch here the validation error when assigning
-        # a date_range_type parent, to another parent(self included)
+        # a child as its own parent, or vise-versa (predestination)
         with self.assertRaises(ValidationError)as cm, self.env.cr.savepoint():
             parent_type.write({
                 'parent_type_id': parent_type.id,
             })
         self.assertEqual(
             cm.exception.name,
-            'A type parent  can not have a parent:'
-            ' FS2018_parent_type can not have FS2018_parent_type as parent'
+            'A type can not have itself as parent or child'
         )
         # Then, add a child type
         child_type = date_range_type.create({
