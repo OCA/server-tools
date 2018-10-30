@@ -48,6 +48,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * SodexisTeam <dev@sodexis.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
 
 Maintainer
 ----------
