@@ -100,15 +100,9 @@ class FetchmailServer(models.Model):
     def fetch_mail(self):
         # Called before the fetch, in order to clean up right before
         # retrieving emails.
-        context = self.env.context.copy()
-        context['fetchmail_cron_running'] = True
         for server in self:
             _logger.info('start cleaning up emails on %s server %s',
                          server.type, server.name)
-            context.update({
-                'fetchmail_server_id': server.id,
-                'server_type': server.type,
-            })
             imap_server = False
             if server.type == 'imap':
                 try:
