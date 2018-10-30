@@ -40,14 +40,15 @@
                             <field name="rule_group"/>
                             <field name="model"/>
                             <field name="next_state"/>
-                            <field name="domain" attrs="{'invisible': [('type','!=','by_domain')]}"/>
+                            <field name="exception_type" widget="radio"/>
+                            <field name="domain" attrs="{'invisible': [('exception_type','!=','by_domain')]}"/>
                         </group>
                     </group>
-                    <notebook attrs="{'invisible': [('type','!=','by_py_code')]}">
-                        <page name="code" string="Python Code">
+                    <notebook>
+                        <page name="code" string="Python Code" attrs="{'invisible': [('exception_type','!=','by_py_code')]}">
                             <field name="code" widget="ace" options="{'mode': 'python'}" placeholder="Enter Python code here. Help about Python expression is available in the help tab of this document."/>
                         </page>
-                        <page name="help" string="Help">
+                        <page name="help" string="Help" attrs="{'invisible': [('exception_type','!=','by_py_code')]}">
                             <group>
                                 <div style="margin-top: 4px;">
                                     <h3>Help with Python expressions</h3>
