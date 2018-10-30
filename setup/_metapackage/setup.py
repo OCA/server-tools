@@ -26,6 +26,7 @@ setuptools.setup(
         'odoo11-addon-html_text',
         'odoo11-addon-letsencrypt',
         'odoo11-addon-module_auto_update',
+        'odoo11-addon-nsca_client',
         'odoo11-addon-onchange_helper',
         'odoo11-addon-record_archiver',
         'odoo11-addon-scheduler_error_mailer',
