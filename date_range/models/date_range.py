@@ -36,8 +36,7 @@ class DateRange(models.Model):
         store=True,
         readonly=True)
     parent_id = fields.Many2one(
-        comodel_name='date.range', string="Parent",
-        index=1)
+        comodel_name='date.range', string="Parent", index=1)
 
     _sql_constraints = [
         ('date_range_uniq', 'unique (name,type_id, company_id)',
@@ -141,3 +140,16 @@ class DateRange(models.Model):
         self.ensure_one()
         return [(field_name, '>=', self.date_start),
                 (field_name, '<=', self.date_end)]
+
+    @api.multi
+    @api.onchange('type_id')
+    def onchange_type_id(self):
+        return {
+            'domain': {
+                'parent_id': [
+                    '|',
+                    ('parent_type_id', '=', False),
+                    ('type_id', '=', self.type_id.parent_type_id.id),
+                ]
+            }
+        }
