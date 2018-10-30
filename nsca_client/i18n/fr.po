@@ -1,0 +1,225 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* nsca_client
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-07 12:33+0000\n"
+"PO-Revision-Date: 2016-04-07 12:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "(1, u\"3 mails not sent\")"
+msgstr "(1, u\"3 mails non-envoyés\")"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "0: OK"
+msgstr "0: OK"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "1: WARNING"
+msgstr "1: WARNING"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "2: CRITICAL"
+msgstr "2: CRITICAL"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "3: UNKNOWN"
+msgstr "3: UNKNOWN"
+
+#. module: nsca_client
+#: field:nsca.check,allow_void_result:0
+msgid "Allow void result"
+msgstr "Autoriser l'absence de résultat"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "Any other RC value will be treated as CRITICAL."
+msgstr "Tout autre valeur RC sera traitée comme CRITICAL."
+
+#. module: nsca_client
+#: field:nsca.check,nsca_args:0
+msgid "Arguments"
+msgstr "Arguments"
+
+#. module: nsca_client
+#: help:nsca.check,allow_void_result:0
+msgid "By default, a CRITICAL message is sent if the method does not return.\n"
+"If checked, no message will be sent in such a case."
+msgstr "Par défaut, un message de niveau CRITICAL sera envoyé si la méthode ne retourne aucun résultat.\n"
+"Si cette option est cochée, aucun message ne sera envoyé dans un tel cas."
+
+#. module: nsca_client
+#: model:ir.actions.act_window,name:nsca_client.action_nsca_check_tree
+#: model:ir.ui.menu,name:nsca_client.menu_action_nsca_check_tree
+#: view:nsca.server:nsca_client.view_nsca_server_form
+#: field:nsca.server,check_ids:0
+msgid "Checks"
+msgstr "Contrôles"
+
+#. module: nsca_client
+#: code:addons/nsca_client/models/nsca_check.py:154
+#, python-format
+msgid "Command '%s' not found. Please install the NSCA client.\n"
+"On Debian/Ubuntu: apt-get install nsca-client"
+msgstr "Commande '%s' non-disponible. Veuillez installer le client NSCA.\n"
+"Sur Debian/Ubuntu: apt-get install nsca-client"
+
+#. module: nsca_client
+#: field:nsca.check,create_uid:0
+#: field:nsca.server,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: nsca_client
+#: field:nsca.check,create_date:0
+#: field:nsca.server,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: nsca_client
+#: field:nsca.check,cron_id:0
+msgid "Cron"
+msgstr "Cron"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "E.g."
+msgstr "Ex :"
+
+#. module: nsca_client
+#: field:nsca.server,encryption_method:0
+msgid "Encryption method"
+msgstr "Méthode de chiffrement"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "Frequency"
+msgstr "Fréquence"
+
+#. module: nsca_client
+#: field:nsca.server,name:0
+msgid "Hostname"
+msgstr "Serveur"
+
+#. module: nsca_client
+#: field:nsca.server,node_hostname:0
+msgid "Hostname of this node"
+msgstr "Nom d'hôte du noeud"
+
+#. module: nsca_client
+#: field:nsca.check,id:0
+#: field:nsca.server,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: nsca_client
+#: field:nsca.check,write_uid:0
+#: field:nsca.server,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: nsca_client
+#: field:nsca.check,write_date:0
+#: field:nsca.server,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: nsca_client
+#: field:nsca.check,nsca_function:0
+msgid "Method"
+msgstr "Méthode"
+
+#. module: nsca_client
+#: field:nsca.check,nsca_model:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: nsca_client
+#: code:addons/nsca_client/models/nsca_check.py:64
+#: model:ir.model,name:nsca_client.model_nsca_check
+#: view:nsca.check:nsca_client.view_nsca_check_form
+#, python-format
+msgid "NSCA Check"
+msgstr "Contrôle NSCA"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_tree
+msgid "NSCA Checks"
+msgstr "Contrôles NSCA"
+
+#. module: nsca_client
+#: model:ir.ui.menu,name:nsca_client.menu_nsca_client
+msgid "NSCA Client"
+msgstr "Client NSCA"
+
+#. module: nsca_client
+#: model:ir.model,name:nsca_client.model_nsca_server
+#: view:nsca.server:nsca_client.view_nsca_server_form
+msgid "NSCA Server"
+msgstr "Serveur NSCA"
+
+#. module: nsca_client
+#: view:nsca.server:nsca_client.view_nsca_server_tree
+msgid "NSCA Servers"
+msgstr "Serveurs NSCA"
+
+#. module: nsca_client
+#: view:nsca.server:nsca_client.view_nsca_server_form
+msgid "Node identity"
+msgstr "Identité du noeud"
+
+#. module: nsca_client
+#: field:nsca.server,password:0
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: nsca_client
+#: field:nsca.server,port:0
+msgid "Port"
+msgstr "Port"
+
+#. module: nsca_client
+#: field:nsca.check,server_id:0
+msgid "Server"
+msgstr "Serveur"
+
+#. module: nsca_client
+#: model:ir.actions.act_window,name:nsca_client.action_nsca_server_tree
+#: model:ir.ui.menu,name:nsca_client.menu_action_nsca_server_tree
+msgid "Servers"
+msgstr "Serveurs"
+
+#. module: nsca_client
+#: field:nsca.check,service:0
+msgid "Service"
+msgstr "Service"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "Settings"
+msgstr "Paramètres"
+
+#. module: nsca_client
+#: view:nsca.check:nsca_client.view_nsca_check_form
+msgid "The method must return a tuple (RC, MESSAGE) where RC is an integer:"
+msgstr "La méthode doit retourner un tuple (RC, MESSAGE) où RC est un entier :"
+
+#. module: nsca_client
+#: help:nsca.server,node_hostname:0
+msgid "This is the hostname of the current Odoo node declared in the monitoring server."
+msgstr "C'est le nom d'hôte identifiant le serveur Odoo dans la configuration du serveur NSCA."
+

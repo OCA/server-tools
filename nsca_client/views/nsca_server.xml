@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2015 ABF OSIELL <http://osiell.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<odoo>
+    <data>
+
+        <record id="view_nsca_server_form" model="ir.ui.view">
+            <field name="name">nsca.server.form</field>
+            <field name="model">nsca.server</field>
+            <field name="arch" type="xml">
+                <form string="NSCA Server">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="show_checks" type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-check-square">
+                                <field name="check_count" widget="statinfo"
+                                       string="Checks"/>
+                                <field name="check_ids" invisible="1"/>
+                            </button>
+                        </div>
+                        <group string="NSCA Server">
+                            <field name="name" style="width: 30%;"/>
+                            <field name="port"/>
+                            <field name="password" password="1"/>
+                            <field name="encryption_method"/>
+                            <field name="config_file_path"/>
+                        </group>
+                        <group string="Node identity">
+                            <field name="node_hostname"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_nsca_server_tree" model="ir.ui.view">
+            <field name="name">nsca.server.tree</field>
+            <field name="model">nsca.server</field>
+            <field name="arch" type="xml">
+                <tree string="NSCA Servers">
+                    <field name="name"/>
+                    <field name="port"/>
+                    <field name="config_file_path"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_nsca_server_tree">
+            <field name="name">Servers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">nsca.server</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_nsca_server_tree"/>
+        </record>
+
+        <menuitem id="menu_action_nsca_server_tree"
+                  parent="menu_nsca_client"
+                  action="action_nsca_server_tree"/>
+
+    </data>
+</odoo>
