@@ -122,14 +122,27 @@ class DateRange(models.Model):
                 (field_name, '<=', self.date_end)]
 
     @api.multi
-    @api.onchange('type_id')
+    @api.onchange('company_id', 'type_id', 'date_start', 'date_end')
     def onchange_type_id(self):
-        return {
-            'domain': {
-                'parent_id': [
-                    '|',
-                    ('parent_type_id', '=', False),
-                    ('type_id', '=', self.type_id.parent_type_id.id),
-                ]
-            }
-        }
+        """The type_id and the dates determine the choices for parent."""
+        domain = []
+        if self.company_id:
+            domain.append(('company_id', '=', self.company_id.id))
+        if self.parent_type_id:
+            domain.append(('type_id', '=', self.parent_type_id.id))
+        if self.date_start:
+            domain.append('|')
+            domain.append(('date_start', '<=', self.date_start))
+            domain.append(('date_start', '=', False))
+        if self.date_end:
+            domain.append('|')
+            domain.append(('date_end', '>=', self.date_end))
+            domain.append(('date_end', '=', False))
+        if domain:
+            # If user did not select a parent already, autoselect the last
+            # (ordered by date_start) or only parent that applies.
+            if self.type_id and self.date_start and not self.parent_id:
+                possible_parent = self.search(
+                    domain, limit=1, order='date_start desc')
+                self.parent_id = possible_parent  # can be empty!
+        return {'domain': {'parent_id': domain}}
