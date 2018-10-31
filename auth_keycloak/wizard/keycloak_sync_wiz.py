@@ -245,7 +245,7 @@ class KeycloakCreateWiz(models.TransientModel):
             lastname = odoo_user.partner_id.lastname
         else:
             # yeah, I know, it's not perfect... you can override it ;)
-            firstname, lastname = odoo_user.name.split(' ')
+            firstname, lastname = odoo_user.name
         values.update({
             'firstName': firstname,
             'lastName': lastname,
