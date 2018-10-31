@@ -4,7 +4,7 @@
 
 import responses
 import mock
-from odoo import exceptions
+from openerp import exceptions
 from .common import (
     TestKeycloakWizBase, FAKE_USERS_RESPONSE
 )
