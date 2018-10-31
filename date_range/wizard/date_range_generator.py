@@ -34,6 +34,8 @@ class DateRangeGenerator(models.TransientModel):
     duration_count = fields.Integer('Duration', required=True)
     count = fields.Integer(
         string="Number of ranges to generate", required=True)
+    parent_id = fields.Many2one(
+        comodel_name='date.range', string="Parent", index=1)
 
     @api.multi
     def _compute_date_ranges(self):
@@ -56,7 +58,8 @@ class DateRangeGenerator(models.TransientModel):
                 'date_start': date_start,
                 'date_end': date_end,
                 'type_id': self.type_id.id,
-                'company_id': self.company_id.id})
+                'company_id': self.company_id.id,
+                'parent_id': self.parent_id.id})
         return date_ranges
 
     @api.multi
@@ -67,3 +70,20 @@ class DateRangeGenerator(models.TransientModel):
                 self.env['date.range'].create(dr)
         return self.env['ir.actions.act_window'].for_xml_id(
             module='date_range', xml_id='date_range_action')
+
+    @api.multi
+    @api.onchange('type_id', 'date_start')
+    def onchange_type_id(self):
+        self.ensure_one()
+        date_range = self.env['date.range']
+        values = {
+            'date_start': self.date_start,
+            'type_id': self.type_id.id,
+        }
+        on_change = date_range._onchange_spec()
+        domain = date_range.onchange(
+            values,
+            ['type_id', 'date_start'],
+            on_change,
+        )
+        return domain
