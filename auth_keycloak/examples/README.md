@@ -30,13 +30,11 @@ start from point 0 and 1. Otherwise, jump to point 2.
 
 2. go to http://localhost:8080 (adapt URL to your setup) and log in as admin (admin/admin)
 
-3. create a new realm named `Odoo`
+3. go to "Clients" and click on "create" button
 
-4. go to "Clients" and click on "create" button
+4. create 'Odoo' client (you can import `odoo-client.json` to test)
 
-5. configure KC client properly. See `real-export.json` file as an example.
-
-   In particular, see that these flags are turned on:
+5. configure KC client properly. In particular, see that these flags are turned on:
 
    ```json
     "consentRequired": false,
@@ -44,6 +42,8 @@ start from point 0 and 1. Otherwise, jump to point 2.
     "implicitFlowEnabled": true,
     "directAccessGrantsEnabled": true,
    ```
+
+   And make sure your redirect URI matches with your odoo instance.
 
    (Note that these settings might differ from your final configuration
    but they are required for the scripts and our current internal configuration to work.)
