@@ -13,7 +13,7 @@ Usage
 =====
 
 When installed, all remotes will be stored by `hostname` on `res.remote`.
-They can be viewed on `Settings / Users & Companies / Remotes`.
+They can be viewed on `Settings / Remotes`.
 The last Ip of the remote will be stored.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
