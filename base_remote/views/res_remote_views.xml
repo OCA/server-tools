@@ -40,7 +40,7 @@
 
     <menuitem id="res_remote_menu"
               name="Remotes"
-              sequence="30"
-              parent="base.menu_users"
+              sequence="10"
+              parent="base.menu_administration"
               action="res_remote_action"/>
 </odoo>
