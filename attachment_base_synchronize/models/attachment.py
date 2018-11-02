@@ -58,7 +58,14 @@ class IrAttachmentMetadata(models.Model):
     def run_attachment_metadata_scheduler(self, domain=None):
         if domain is None:
             domain = [('state', '=', 'pending')]
-        attachments = self.search(domain)
+        batch_limit = self.env.ref(
+            'attachment_base_synchronize.attachment_sync_cron_batch_limit') \
+            .value
+        if batch_limit and batch_limit.isdigit():
+            limit = int(batch_limit)
+        else:
+            limit = 200
+        attachments = self.search(domain, limit=limit)
         if attachments:
             return attachments.run()
         return True

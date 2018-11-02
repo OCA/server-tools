@@ -17,6 +17,7 @@
         'views/attachment_view.xml',
         'security/ir.model.access.csv',
         'data/cron.xml',
+        'data/ir_config_parameter.xml',
     ],
     'demo': [
         'demo/attachment_metadata_demo.xml'
