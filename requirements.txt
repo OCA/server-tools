@@ -10,3 +10,4 @@ oauthlib
 pyjwt
 cryptography
 python-stdnum
+responses
