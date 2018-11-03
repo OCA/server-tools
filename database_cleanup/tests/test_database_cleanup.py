@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase, at_install, post_install
 
 
 # Use post_install to get all models loaded more info: odoo/odoo#13458
-@at_install(False)
+@at_install(True)
 @post_install(True)
 class TestDatabaseCleanup(TransactionCase):
     def setUp(self):
