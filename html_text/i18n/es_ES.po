@@ -21,5 +21,6 @@ msgstr ""
 
 #. module: html_text
 #: model:ir.model,name:html_text.model_ir_fields_converter
-msgid "ir.fields.converter"
+#, fuzzy
+msgid "Fields Converter"
 msgstr "ir.documentos.conversor"
