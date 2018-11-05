@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Camptocamp (https://www.camptocamp.com).
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License GPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
 
@@ -96,6 +96,7 @@ class ServerEnvMixin(models.AbstractModel):
 
     """
     _name = 'server.env.mixin'
+    _description = 'Mixin to add server environment in existing models'
 
     server_env_defaults = fields.Serialized()
 
