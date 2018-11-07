@@ -91,4 +91,4 @@ def post_load_hook():
             to_reload.append(node.name)
     for module_name in to_reload:
         del graph[module_name]
-    graph.add_modules(cr, to_reload)
+        graph.add_module(cr, module_name)
