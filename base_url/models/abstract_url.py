@@ -120,7 +120,7 @@ class AbstractUrl(models.AbstractModel):
 
     def _compute_url_url_ids(self):
         for record in self:
-            record.redirect_url_key_ids = record.env["url.url"].search([
+            record.url_url_ids = record.env["url.url"].search([
                 ('model_id', '=', get_model_ref(record)),
                 ])
 
