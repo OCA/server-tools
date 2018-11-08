@@ -93,13 +93,6 @@ class ExceptionRule(models.Model):
         self.ensure_one()
         return safe_eval(self.domain)
 
-    @api.onchange('exception_type',)
-    def onchange_exception_type(self):
-        if self.exception_type == 'by_domain':
-            self.code = False
-        elif self.exception_type == 'by_py_code':
-            self.domain = False
-
 
 class BaseException(models.AbstractModel):
     _name = 'base.exception'
