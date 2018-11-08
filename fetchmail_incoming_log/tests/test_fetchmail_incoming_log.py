@@ -7,10 +7,10 @@ from odoo.addons.mail.tests.common import TestMail
 from odoo.addons.mail.tests.test_mail_gateway import MAIL_TEMPLATE
 
 
-class TestMailLogMessageToProcess(TestMail):
+class TestFetchmailIncomingLog(TestMail):
 
     def setUp(self):
-        super(TestMailLogMessageToProcess, self).setUp()
+        super(TestFetchmailIncomingLog, self).setUp()
 
         self.fetchmail_server = self.env['fetchmail.server'].create({
             'name': 'Test Fetchmail Server',
