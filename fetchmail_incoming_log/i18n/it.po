@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: mail_log_message_to_process
-#: model:ir.model,name:mail_log_message_to_process.model_mail_thread
+#. module: fetchmail_incoming_log
+#: model:ir.model,name:fetchmail_incoming_log.model_mail_thread
 msgid "Email Thread"
 msgstr "Discussione Email"
