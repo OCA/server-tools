@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo11-addon-database_cleanup',
         'odoo11-addon-datetime_formatter',
         'odoo11-addon-dbfilter_from_header',
+        'odoo11-addon-fetchmail_incoming_log',
         'odoo11-addon-fetchmail_notify_error_to_sender',
         'odoo11-addon-html_image_url_extractor',
         'odoo11-addon-html_text',
