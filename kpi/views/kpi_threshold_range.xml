@@ -3,74 +3,69 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-    <data>
-        <!-- Ranges -->
-        <record id="view_kpi_threshold_range_tree" model="ir.ui.view">
-            <field name="name">kpi.threshold.range.tree</field>
-            <field name="model">kpi.threshold.range</field>
-            <field name="arch" type="xml">
-                <tree string="Ranges" decoration-danger="invalid_message">
-                    <field name="name"/>
-                    <field name="min_value"/>
-                    <field name="max_value"/>
-                    <field name="color" widget="color"/>
-                    <field name="invalid_message"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                </tree>
-            </field>
-        </record>
+    <!-- Ranges -->
+    <record id="view_kpi_threshold_range_tree" model="ir.ui.view">
+        <field name="name">kpi.threshold.range.tree</field>
+        <field name="model">kpi.threshold.range</field>
+        <field name="arch" type="xml">
+            <tree string="Ranges" decoration-danger="invalid_message">
+                <field name="name"/>
+                <field name="min_value"/>
+                <field name="max_value"/>
+                <field name="color" widget="color"/>
+                <field name="invalid_message"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
 
-        <record id="view_kpi_threshold_range_form" model="ir.ui.view">
-            <field name="name">kpi.threshold.range.form</field>
-            <field name="model">kpi.threshold.range</field>
-            <field name="arch" type="xml">
-                <form string="Range">
-                    <sheet>
-                        <group col="6" colspan="6">
-                            <field name="name"/>
-                            <field name="color"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                            <newline/>
+    <record id="view_kpi_threshold_range_form" model="ir.ui.view">
+        <field name="name">kpi.threshold.range.form</field>
+        <field name="model">kpi.threshold.range</field>
+        <field name="arch" type="xml">
+            <form string="Range">
+                <sheet>
+                    <group col="6" colspan="6">
+                        <field name="name" colspan="2"/>
+                        <field name="color" colspan="2"/>
+                        <field name="company_id" groups="base.group_multi_company" colspan="2" />
+                    </group>
+                    <group col="6">
+                        <separator string="Minimum"/>
+                        <newline/>
+                        <field name="min_type" colspan="3"/>
+                        <field name="min_fixed_value" colspan="3" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
+                        <field name="min_dbsource_id" colspan="3" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
+                        <field name="min_code" colspan="6" attrs="{'invisible' : [('min_type', 'not in', ('local','external','python'))]}"/>
+                        <field name="min_error" colspan="6" attrs="{'invisible': [('min_error', '=', False)]}" />
+                        <newline/>
+                        <separator string="Maximum"/>
+                        <newline/>
+                        <field name="max_type" colspan="3"/>
+                        <field name="max_fixed_value" colspan="3" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
+                        <field name="max_dbsource_id" colspan="3" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
+                        <newline/>
+                        <field name="max_code" colspan="6" attrs="{'invisible' : [('max_type', 'not in', ('local','external','python'))]}"/>
+                        <newline/>
+                        <field name="max_error" colspan="6" attrs="{'invisible': [('max_error', '=', False)]}" />
+                        <newline/>
+                    </group>
+                    <group col="6" colspan="6">
+                        <separator string="Thresholds" colspan="4"/>
+                        <field name="threshold_ids" nolabel="1" colspan="4"/>
+                        <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                        <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-                            <separator string="Minimum" colspan="4"/>
-                            <newline/>
-                            <field name="min_type" colspan="2"/>
-                            <field name="min_fixed_value" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'static')]}"/>
-                            <field name="min_dbsource_id" colspan="2" attrs="{'invisible' : [('min_type', '!=', 'external')]}"/>
-                            <newline/>
-                            <field name="min_code" colspan="6" attrs="{'invisible' : [('min_type', 'NOT IN', ('local','external','python'))]}"/>
-                            <newline/>
-                            <field name="min_error" colspan="6" attrs="{'invisible': [('min_error', '=', False)]}" />
-                            <newline/>
-                            <separator string="Maximum" colspan="4"/>
-                            <newline/>
-                            <field name="max_type"/>
-                            <field name="max_fixed_value" attrs="{'invisible' : [('max_type', '!=', 'static')]}"/>
-                            <field name="max_dbsource_id" attrs="{'invisible' : [('max_type', '!=', 'external')]}"/>
-                            <newline/>
-                            <field name="max_code" colspan="6" attrs="{'invisible' : [('max_type', 'NOT IN', ('local','external','python'))]}"/>
-                            <newline/>
-                            <field name="max_error" colspan="6" attrs="{'invisible': [('max_error', '=', False)]}" />
-                            <newline/>
-                            <separator string="Thresholds" colspan="4"/>
-                            <field name="threshold_ids" nolabel="1" colspan="4"/>
-                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
-                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="open_threshold_range_list">
-            <field name="name">Ranges</field>
-            <field name="res_model">kpi.threshold.range</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_kpi_threshold_range_tree"/>
-        </record>
-
-
-
-    </data>
+    <record model="ir.actions.act_window" id="open_threshold_range_list">
+        <field name="name">Ranges</field>
+        <field name="res_model">kpi.threshold.range</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_kpi_threshold_range_tree"/>
+    </record>
 </odoo>

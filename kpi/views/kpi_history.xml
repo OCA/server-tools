@@ -3,38 +3,36 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-    <data>
-        <!-- KPI history -->
-        <record id="view_kpi_history_tree" model="ir.ui.view">
-            <field name="name">kpi.history.tree</field>
-            <field name="model">kpi.history</field>
-            <field name="arch" type="xml">
-                <tree string="KPI History">
-                    <field name="name"/>
-                    <field name="date"/>
-                    <field name="value"/>
-                    <field name="color" widget="color"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                </tree>
-            </field>
-        </record>
-        <record id="view_kpi_history_form" model="ir.ui.view">
-            <field name="name">kpi.history.form</field>
-            <field name="model">kpi.history</field>
-            <field name="arch" type="xml">
-                <form string="KPI History">
-                    <sheet>
-                        <group col="4" colspan="4">
-                            <field name="kpi_id"/>
-                            <field name="name"/>
-                            <field name="date"/>
-                            <field name="value"/>
-                            <field name="color" widget="color"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-    </data>
+    <!-- KPI history -->
+    <record id="view_kpi_history_tree" model="ir.ui.view">
+        <field name="name">kpi.history.tree</field>
+        <field name="model">kpi.history</field>
+        <field name="arch" type="xml">
+            <tree string="KPI History">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="value"/>
+                <field name="color" widget="color"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_kpi_history_form" model="ir.ui.view">
+        <field name="name">kpi.history.form</field>
+        <field name="model">kpi.history</field>
+        <field name="arch" type="xml">
+            <form string="KPI History">
+                <sheet>
+                    <group col="4" colspan="4">
+                        <field name="kpi_id"/>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="value"/>
+                        <field name="color" widget="color"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>

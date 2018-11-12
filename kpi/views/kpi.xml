@@ -2,98 +2,97 @@
 <!-- Copyright 2012 - Now Savoir-faire Linux <https://www.savoirfairelinux.com/>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <data>
-        <!-- KPI -->
-        <record id="view_kpi_tree" model="ir.ui.view">
-            <field name="name">kpi.tree</field>
-            <field name="model">kpi</field>
-            <field name="arch" type="xml">
-                <tree string="Key Performance Indicators">
+    <!-- KPI -->
+    <record id="view_kpi_tree" model="ir.ui.view">
+        <field name="name">kpi.tree</field>
+        <field name="model">kpi</field>
+        <field name="arch" type="xml">
+            <tree string="Key Performance Indicators">
+                <field name="name"/>
+                <field name="value" widget="progressbar"/>
+                <field name="category_id"/>
+                <field name="kpi_type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_kpi_filter" model="ir.ui.view">
+        <field name="name">kpi.filter</field>
+        <field name="model">kpi</field>
+        <field name="arch" type="xml">
+            <search string="KPI">
+                <group>
+                    <filter name="active"
+                            icon="terp-document-new"
+                            domain="[('active','=',True)]"
+                            string="Active"
+                            help="Only active KPIs are computed by the scheduler based on the periodicity configuration."/>
+                    <separator orientation="vertical"/>
                     <field name="name"/>
-                    <field name="value" widget="progressbar"/>
                     <field name="category_id"/>
-                    <field name="kpi_type"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                </tree>
-            </field>
-        </record>
+                    <field name="company_id" group="base.group_multi_company"/>
+                </group>
+                <newline/>
+                <group expand="0" name="Group By...">
+                    <filter string="Category" context="{'group_by':'category_id'}"/>
+                    <filter string="Type" context="{'group_by':'kpi_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
-        <record id="view_kpi_filter" model="ir.ui.view">
-            <field name="name">kpi.filter</field>
-            <field name="model">kpi</field>
-            <field name="arch" type="xml">
-                <search string="KPI">
+    <record id="view_kpi_form" model="ir.ui.view">
+        <field name="name">kpi.form</field>
+        <field name="model">kpi</field>
+        <field name="arch" type="xml">
+            <form string="Key Performance Indicator">
+                <sheet>
                     <group>
-                        <filter name="active"
-                                icon="terp-document-new"
-                                domain="[('active','=',True)]"
-                                string="Active"
-                                help="Only active KPIs are computed by the scheduler based on the periodicity configuration."/>
-                        <separator orientation="vertical"/>
-                        <field name="name"/>
-                        <field name="category_id"/>
-                        <field name="company_id" group="base.group_multi_company"/>
-                    </group>
-                    <newline/>
-                    <group expand="0" string="Group By...">
-                        <filter string="Category" context="{'group_by':'category_id'}"/>
-                        <filter string="Type" context="{'group_by':'kpi_type'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
-
-        <record id="view_kpi_form" model="ir.ui.view">
-            <field name="name">kpi.form</field>
-            <field name="model">kpi</field>
-            <field name="arch" type="xml">
-                <form string="Key Performance Indicator">
-                    <sheet>
-                        <group col="6" colspan="6">
-                            <field name="name" colspan="2"/>
-                            <field name="threshold_id" colspan="2"/>
-                            <field name="category_id" colspan="2"/>
-                            <newline/>
+                        <group>
+                            <field name="name" />
+                            <field name="threshold_id" />
+                            <field name="category_id" />
+                        </group>
+                        <group>
                             <field name="value" colspan="2"/>
-                            <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
                             <field name="active" colspan="2"/>
                             <field name="company_id" groups="base.group_multi_company"/>
+                            <button name="compute_kpi_value" string="Compute KPI Now" colspan="2" type="object"/>
                         </group>
-                        <notebook colspan="6">
-                            <page string="History">
-                                <field name="history_ids" readonly="1" nolabel="1"/>
-                            </page>
-                            <page string="Computation">
-                                <group col="6">
-                                    <field name="periodicity" colspan="2"/>
-                                    <field name="periodicity_uom" colspan="2"/>
-                                    <field name="next_execution_date" colspan="2"/>
-                                    <separator string="KPI Computation" colspan="6"/>
-                                    <newline/>
-                                    <field name="kpi_type" colspan="2"/>
-                                    <field name="dbsource_id" colspan="2" attrs="{'invisible' : [('kpi_type', '!=', 'external')]}"/>
-                                    <newline/>
-                                    <field name="kpi_code" colspan="6"/>
-                                </group>
-                            </page>
-                            <page string="Description">
-                                <field name="description" nolabel="1"/>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                    </group>
+                    <notebook colspan="6">
+                        <page string="History">
+                            <field name="history_ids" readonly="1" nolabel="1"/>
+                        </page>
+                        <page string="Computation">
+                            <group col="6">
+                                <field name="periodicity" colspan="3"/>
+                                <field name="periodicity_uom" colspan="3"/>
+                                <field name="next_execution_date" colspan="3"/>
+                                <separator string="KPI Computation" colspan="6"/>
+                                <newline/>
+                                <field name="kpi_type" colspan="2"/>
+                                <field name="dbsource_id" colspan="2" attrs="{'invisible' : [('kpi_type', '!=', 'external')]}"/>
+                                <newline/>
+                                <field name="kpi_code" colspan="6"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="open_kpi_list">
-            <field name="name">Key Performance Indicators</field>
-            <field name="res_model">kpi</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_kpi_tree"/>
-            <field name="search_view_id" ref="view_kpi_filter"/>
-        </record>
-
-
-    </data>
+    <record model="ir.actions.act_window" id="open_kpi_list">
+        <field name="name">Key Performance Indicators</field>
+        <field name="res_model">kpi</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_kpi_tree"/>
+        <field name="search_view_id" ref="view_kpi_filter"/>
+    </record>
 </odoo>
