@@ -3,46 +3,44 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-    <data>
-            <menuitem id="menu_reporting_kpi"
-                      name="KPI"
-                      action="open_kpi_list"
-                      sequence="15"
-                      parent="base.menu_reporting_dashboard"
-                      groups="base.group_user"/>
+        <menuitem id="menu_reporting_kpi"
+                  name="KPI"
+                  action="open_kpi_list"
+                  sequence="15"
+                  parent="base.menu_reporting_dashboard"
+                  groups="base.group_user"/>
 
-            <menuitem id="menu_configuration_kpi"
-                      name="KPI"
-                      parent="base.menu_reporting_config"
-                      groups="base.group_user"
-                      sequence="20"/>
+        <menuitem id="menu_configuration_kpi"
+                  name="KPI"
+                  parent="base.menu_reporting_config"
+                  groups="base.group_user"
+                  sequence="20"/>
 
-            <menuitem id="menu_configuration_kpi_category"
-                      name="Categories"
-                      action="open_category_list"
-                      parent="menu_configuration_kpi"
-                      groups="base.group_user"
-                      sequence="10"/>
+        <menuitem id="menu_configuration_kpi_category"
+                  name="Categories"
+                  action="open_category_list"
+                  parent="menu_configuration_kpi"
+                  groups="base.group_user"
+                  sequence="10"/>
 
-            <menuitem id="menu_configuration_kpi_range"
-                      name="Ranges"
-                      action="open_threshold_range_list"
-                      parent="menu_configuration_kpi"
-                      groups="base.group_user"
-                      sequence="20"/>
+        <menuitem id="menu_configuration_kpi_range"
+                  name="Ranges"
+                  action="open_threshold_range_list"
+                  parent="menu_configuration_kpi"
+                  groups="base.group_user"
+                  sequence="20"/>
 
-            <menuitem id="menu_configuration_kpi_dbsource"
-                      name="Data Sources"
-                      action="base_external_dbsource.action_dbsource"
-                      parent="menu_configuration_kpi"
-                      groups="base.group_user"
-                      sequence="20"/>
+        <menuitem id="menu_configuration_kpi_dbsource"
+                  name="Data Sources"
+                  action="base_external_dbsource.action_dbsource"
+                  parent="menu_configuration_kpi"
+                  groups="base.group_user"
+                  sequence="20"/>
 
-            <menuitem id="menu_configuration_kpi_threshold"
-                      name="Thresholds"
-                      action="open_threshold_list"
-                      parent="menu_configuration_kpi"
-                      groups="base.group_user"
-                      sequence="10"/>
-      </data>
+        <menuitem id="menu_configuration_kpi_threshold"
+                  name="Thresholds"
+                  action="open_threshold_list"
+                  parent="menu_configuration_kpi"
+                  groups="base.group_user"
+                  sequence="10"/>
  </odoo>

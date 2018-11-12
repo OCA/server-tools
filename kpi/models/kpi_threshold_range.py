@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2012 - Now Savoir-faire Linux <https://www.savoirfairelinux.com/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api
-from openerp.tools.safe_eval import safe_eval
+from odoo import fields, models, api
+from odoo.tools.safe_eval import safe_eval
 import re
 
 

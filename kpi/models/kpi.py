@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2012 - Now Savoir-faire Linux <https://www.savoirfairelinux.com/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
-from openerp import fields, models, api
-from openerp.tools.safe_eval import safe_eval
-from openerp.tools import (
+from odoo import fields, models, api
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools import (
     DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT,
 )
 import re

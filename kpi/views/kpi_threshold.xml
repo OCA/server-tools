@@ -3,55 +3,51 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-    <data>
-        <!-- Thresholds -->
-        <record id="view_kpi_threshold_tree" model="ir.ui.view">
-            <field name="name">kpi.threshold.tree</field>
-            <field name="model">kpi.threshold</field>
-            <field name="arch" type="xml">
-                <tree string="Thresholds" decoration-danger="invalid_message">
-                    <field name="name"/>
-                    <field name="invalid_message"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                </tree>
-            </field>
-        </record>
+    <!-- Thresholds -->
+    <record id="view_kpi_threshold_tree" model="ir.ui.view">
+        <field name="name">kpi.threshold.tree</field>
+        <field name="model">kpi.threshold</field>
+        <field name="arch" type="xml">
+            <tree string="Thresholds" decoration-danger="invalid_message">
+                <field name="name"/>
+                <field name="invalid_message"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
 
-        <record id="view_kpi_threshold_form" model="ir.ui.view">
-            <field name="name">kpi.threshold.form</field>
-            <field name="model">kpi.threshold</field>
-            <field name="arch" type="xml">
-                <form string="Threshold">
-                    <sheet>
-                        <group col="6" colspan="6">
-                            <field name="name" colspan="2"/>
-                            <field name="company_id" groups="base.group_multi_company" colspan="2"/>
-                            <newline/>
-                            <separator string="Ranges" colspan="6"/>
-                            <newline/>
-                            <field name="range_ids" nolabel="1" colspan="6"/>
-                            <newline/>
-                            <separator string="KPIs" colspan="6"/>
-                            <newline/>
-                            <field name="kpi_ids" nolabel="1" colspan="6"/>
-                            <newline/>
-                            <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
-                            <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
-                            <newline/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+    <record id="view_kpi_threshold_form" model="ir.ui.view">
+        <field name="name">kpi.threshold.form</field>
+        <field name="model">kpi.threshold</field>
+        <field name="arch" type="xml">
+            <form string="Threshold">
+                <sheet>
+                    <group col="6" colspan="6">
+                        <field name="name" colspan="2"/>
+                        <field name="company_id" groups="base.group_multi_company" colspan="2"/>
+                        <newline/>
+                        <separator string="Ranges" colspan="6"/>
+                        <newline/>
+                        <field name="range_ids" nolabel="1" colspan="6"/>
+                        <newline/>
+                        <separator string="KPIs" colspan="6"/>
+                        <newline/>
+                        <field name="kpi_ids" nolabel="1" colspan="6"/>
+                        <newline/>
+                        <separator string="Errors" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                        <field name="invalid_message" nolabel="1" attrs="{'invisible' : [('invalid_message', '=', False)]}" colspan="4"/>
+                        <newline/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="open_threshold_list">
-            <field name="name">Thresholds</field>
-            <field name="res_model">kpi.threshold</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_kpi_threshold_tree"/>
-        </record>
-
-
-    </data>
+    <record model="ir.actions.act_window" id="open_threshold_list">
+        <field name="name">Thresholds</field>
+        <field name="res_model">kpi.threshold</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_kpi_threshold_tree"/>
+    </record>
 </odoo>
