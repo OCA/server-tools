@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+
+    <record id="auto_export_backend" model="auto.export.backend">
+        <field name="name">Auto Export</field>
+        <field name="version">1</field>
+    </record>
+
+</odoo>
