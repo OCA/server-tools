@@ -85,10 +85,23 @@ def post_load_hook():
         return
 
     this = graph['base_manifest_extension']
-    to_reload = []
+    to_reload = set([])
     for node in graph.itervalues():
         if node.depth > this.depth:
-            to_reload.append(node.name)
-    for module_name in to_reload:
-        del graph[module_name]
-        graph.add_module(cr, module_name)
+            to_reload.add(node)
+            children = node.children
+            while children:
+                new_children = []
+                for child in children:
+                    to_reload.add(node)
+                    new_children.extend(child.children)
+                children = new_children
+    for node in sorted(to_reload, key=lambda x: x.depth):
+        del graph[node.name]
+        if not graph.add_module(cr, node.name):
+            # this happens when Odoo has already marked the module as missing
+            # dependencies. Force-add to the graph with updated info
+            graph.add_node(
+                node.name,
+                load_information_from_description_file(node.name),
+            )
