@@ -2,6 +2,7 @@
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import string
 import collections
 import logging
 
@@ -70,7 +71,7 @@ def select_transport(name=DEFAULT_TRANSPORT):
 
 def get_sentry_options():
     return [
-        SentryOption('dsn', '', str.strip),
+        SentryOption('dsn', '', string.strip),
         SentryOption('install_sys_hook', False, None),
         SentryOption('transport', DEFAULT_TRANSPORT, select_transport),
         SentryOption('include_paths', '', split_multiple),
