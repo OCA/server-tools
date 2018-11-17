@@ -76,7 +76,6 @@ setuptools.setup(
         'odoo10-addon-sentry',
         'odoo10-addon-sequence_check_digit',
         'odoo10-addon-server_environment',
-        'odoo10-addon-server_environment_files_sample',
         'odoo10-addon-server_environment_ir_config_parameter',
         'odoo10-addon-sql_export',
         'odoo10-addon-sql_request_abstract',
