@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-module_auto_update',
+        'odoo12-addon-sentry',
     ],
     classifiers=[
         'Programming Language :: Python',
