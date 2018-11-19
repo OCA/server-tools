@@ -65,6 +65,7 @@ class ExceptionRule(models.Model):
 #       base.exception line (ex rule_group = sale for sale order)
 #  - object: same as order or line, browse_record of the base.exception or
 #    base.exception line
+#  - obj: same as object
 #  - env: Odoo Environment (i.e. self.env)
 #  - time: Python time module
 #  - cr: database cursor
@@ -195,7 +196,7 @@ class BaseException(models.AbstractModel):
                 'obj': rec,
                 'env': self.env,
                 'cr': self.env.cr,
-                'uid': self.env.user.id,
+                'uid': self.env.uid,
                 'user': self.env.user,
                 'time': time,
                 # copy context to prevent side-effects of eval
