@@ -10,45 +10,55 @@ class DateRangeTest(TransactionCase):
 
     def setUp(self):
         super(DateRangeTest, self).setUp()
+        self.date_range = self.env['date.range']
         self.type = self.env['date.range.type'].create(
             {'name': 'Fiscal year',
              'company_id': False,
              'allow_overlap': False})
 
+        self.company = self.env['res.company'].create({
+            'name': 'Test company',
+        })
+        self.company_2 = self.env['res.company'].create({
+            'name': 'Test company 2',
+            'parent_id': self.company.id,
+        })
+        self.typeB = self.env['date.range.type'].create(
+            {'name': 'Fiscal year B',
+             'company_id': self.company.id,
+             'allow_overlap': False})
+
     def test_default_company(self):
-        date_range = self.env['date.range']
-        dt = date_range.create({
+        dr = self.date_range.create({
             'name': 'FS2016',
             'date_start': '2015-01-01',
             'date_end': '2016-12-31',
             'type_id': self.type.id,
         })
-        self.assertTrue(dt.company_id)
+        self.assertTrue(dr.company_id)
         # you can specify company_id to False
-        dt = date_range.create({
+        dr = self.date_range.create({
             'name': 'FS2016_NO_COMPANY',
             'date_start': '2015-01-01',
             'date_end': '2016-12-31',
             'type_id': self.type.id,
             'company_id': False
         })
-        self.assertFalse(dt.company_id)
+        self.assertFalse(dr.company_id)
 
     def test_empty_company(self):
-        date_range = self.env['date.range']
-        dt = date_range.create({
+        dr = self.date_range.create({
             'name': 'FS2016',
             'date_start': '2015-01-01',
             'date_end': '2016-12-31',
             'type_id': self.type.id,
             'company_id': None,
         })
-        self.assertEqual(dt.name, 'FS2016')
+        self.assertEqual(dr.name, 'FS2016')
 
     def test_invalid(self):
-        date_range = self.env['date.range']
         with self.assertRaises(ValidationError) as cm:
-            date_range.create({
+            self.date_range.create({
                 'name': 'FS2016',
                 'date_end': '2015-01-01',
                 'date_start': '2016-12-31',
@@ -59,15 +69,14 @@ class DateRangeTest(TransactionCase):
             'FS2016 is not a valid range (2016-12-31 > 2015-01-01)')
 
     def test_overlap(self):
-        date_range = self.env['date.range']
-        date_range.create({
+        self.date_range.create({
             'name': 'FS2015',
             'date_start': '2015-01-01',
             'date_end': '2015-12-31',
             'type_id': self.type.id,
         })
         with self.assertRaises(ValidationError) as cm, self.env.cr.savepoint():
-            date_range.create({
+            self.date_range.create({
                 'name': 'FS2016',
                 'date_start': '2015-01-01',
                 'date_end': '2016-12-31',
@@ -76,7 +85,7 @@ class DateRangeTest(TransactionCase):
         self.assertEqual(cm.exception.name, 'FS2016 overlaps FS2015')
         # check it's possible to overlap if it's allowed by the date range type
         self.type.allow_overlap = True
-        dr = date_range.create({
+        dr = self.date_range.create({
             'name': 'FS2016',
             'date_start': '2015-01-01',
             'date_end': '2016-12-31',
@@ -85,8 +94,7 @@ class DateRangeTest(TransactionCase):
         self.assertEquals(dr.name, 'FS2016')
 
     def test_domain(self):
-        date_range = self.env['date.range']
-        dr = date_range.create({
+        dr = self.date_range.create({
             'name': 'FS2015',
             'date_start': '2015-01-01',
             'date_end': '2015-12-31',
@@ -98,3 +106,26 @@ class DateRangeTest(TransactionCase):
             domain,
             [('my_field', '>=', '2015-01-01'),
              ('my_field', '<=', '2015-12-31')])
+
+    def test_date_range_multicompany_1(self):
+        dr = self.date_range.new({
+            'name': 'FS2016',
+            'date_start': '2015-01-01',
+            'date_end': '2016-12-31',
+            'type_id': self.typeB.id,
+            'company_id': self.company.id,
+        })
+        dr._cache.update(dr._convert_to_cache(
+            {'company_id': self.company_2.id}, update=True))
+        dr._onchange_company_id()
+        self.assertFalse(dr.type_id)
+
+    def test_date_range_multicompany_2(self):
+        with self.assertRaises(ValidationError):
+            self.date_range.create({
+                'name': 'FS2016',
+                'date_start': '2015-01-01',
+                'date_end': '2016-12-31',
+                'type_id': self.typeB.id,
+                'company_id': self.company_2.id,
+            })
