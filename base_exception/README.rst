@@ -29,6 +29,11 @@ Bugs are tracked on `GitHub Issues
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
+Roadmap
+-------
+Terms used in old api like `pool`, `cr`, `uid` must be removed porting this module in version 12.
+
+
 Images
 ------
 
