@@ -56,7 +56,9 @@ class ExceptionRule(models.Model):
 #       base.exception line (ex rule_group = sale for sale order)
 #  - object: same as order or line, browse_record of the base.exception or
 #    base.exception line
-#  - pool: ORM model pool (i.e. self.pool)
+#  - pool: ORM model pool (i.e. self.pool, deprecated in new api)
+#  - obj: same as object
+#  - env: ORM model pool (i.e. self.env)
 #  - time: Python time module
 #  - cr: database cursor
 #  - uid: current user id
@@ -160,18 +162,18 @@ class BaseException(models.AbstractModel):
 
     @api.model
     def _exception_rule_eval_context(self, obj_name, rec):
-        user = self.env['res.users'].browse(self._uid)
         return {obj_name: rec,
                 'self': self.pool.get(rec._name),
                 'object': rec,
                 'obj': rec,
                 'pool': self.pool,
-                'cr': self._cr,
-                'uid': self._uid,
-                'user': user,
+                'env': self.env,
+                'cr': self.env.cr,
+                'uid': self.env.uid,
+                'user': self.env.user,
                 'time': time,
                 # copy context to prevent side-effects of eval
-                'context': self._context.copy()}
+                'context': self.env.context.copy()}
 
     @api.model
     def _rule_eval(self, rule, obj_name, rec):
