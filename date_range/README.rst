@@ -92,6 +92,12 @@ To configure this module, you need to:
 Changelog
 =========
 
+10.0.3.0.0 (2019-11-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Added hierarchical feature for date_range.
+  (`#1380 <https://github.com/OCA/server-tools/pull/1380>`_)
+
 10.0.2.0.1 (2018-11-19)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -130,6 +136,7 @@ Contributors
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Miquel Raïch <miquel.raich@eficent.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Nikos Tsirintanis <ntsirintanis@therp.nl>
 
 Maintainers
 ~~~~~~~~~~~
