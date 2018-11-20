@@ -63,7 +63,7 @@ addon | version | summary
 [base_view_inheritance_extension](base_view_inheritance_extension/) | 10.0.1.0.1 | Adds more operators for view inheritance
 [configuration_helper](configuration_helper/) | 10.0.1.0.0 | Configuration Helper
 [database_cleanup](database_cleanup/) | 10.0.1.0.0 | Database cleanup
-[date_range](date_range/) | 10.0.2.0.1 | Manage all kind of date range
+[date_range](date_range/) | 10.0.3.0.0 | Manage all kind of date range
 [datetime_formatter](datetime_formatter/) | 10.0.1.0.0 | Helper functions to give correct format to date[time] fields
 [dbfilter_from_header](dbfilter_from_header/) | 10.0.1.0.0 | Filter databases with HTTP headers
 [dead_mans_switch_client](dead_mans_switch_client/) | 10.0.1.0.0 | Be notified when customers' Odoo instances go down
