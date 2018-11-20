@@ -31,6 +31,12 @@ class DateRange(models.Model):
     active = fields.Boolean(
         help="The active field allows you to hide the date range without "
         "removing it.", default=True)
+    parent_type_id = fields.Many2one(
+        related='type_id.parent_type_id',
+        store=True,
+        readonly=True)
+    parent_id = fields.Many2one(
+        comodel_name='date.range', string="Parent", index=1)
 
     _sql_constraints = [
         ('date_range_uniq', 'unique (name,type_id, company_id)',
@@ -52,6 +58,45 @@ class DateRange(models.Model):
                 raise ValidationError(
                     _('The Company in the Date Range and in '
                       'Date Range Type must be the same.'))
+
+    @api.constrains('parent_id', 'date_start', 'date_end')
+    def _validate_child_range(self):
+        for this in self:
+            if not this.parent_id:
+                continue
+            start = this.parent_id.date_start <= this.date_start
+            end = this.parent_id.date_end >= this.date_end
+            child_range = start and end
+            if not child_range:
+                text_dict = {
+                    'name': this.name,
+                    'start': this.date_start,
+                    'end': this.date_end,
+                    'parent_name': this.parent_id.name,
+                    'parent_start': this.parent_id.date_start,
+                    'parent_end': this.parent_id.date_end,
+                }
+                if (not start) and end:
+                    text = _(
+                        "Start date %(start)s of %(name)s must be greater than"
+                        " or equal to "
+                        "start date %(parent_start)s of %(parent_name)s"
+                    ) % text_dict
+                elif (not end) and start:
+                    text = _(
+                        "End date %(end)s of %(name)s must be smaller than"
+                        " or equal to "
+                        "end date %(parent_end)s of %(parent_name)s"
+                    ) % text_dict
+                else:
+                    text = _(
+                        "%(name)s range not in "
+                        "%(parent_start)s - %(parent_end)s"
+                    ) % text_dict
+                raise ValidationError(
+                    _("%(name)s not a subrange of"
+                        " %(parent_name)s: " % text_dict) + text
+                    )
 
     @api.constrains('type_id', 'date_start', 'date_end', 'company_id')
     def _validate_range(self):
@@ -95,3 +140,29 @@ class DateRange(models.Model):
         self.ensure_one()
         return [(field_name, '>=', self.date_start),
                 (field_name, '<=', self.date_end)]
+
+    @api.multi
+    @api.onchange('company_id', 'type_id', 'date_start', 'date_end')
+    def onchange_type_id(self):
+        """The type_id and the dates determine the choices for parent."""
+        domain = []
+        if self.company_id:
+            domain.append(('company_id', '=', self.company_id.id))
+        if self.parent_type_id:
+            domain.append(('type_id', '=', self.parent_type_id.id))
+        if self.date_start:
+            domain.append('|')
+            domain.append(('date_start', '<=', self.date_start))
+            domain.append(('date_start', '=', False))
+        if self.date_end:
+            domain.append('|')
+            domain.append(('date_end', '>=', self.date_end))
+            domain.append(('date_end', '=', False))
+        if domain:
+            # If user did not select a parent already, autoselect the last
+            # (ordered by date_start) or only parent that applies.
+            if self.type_id and self.date_start and not self.parent_id:
+                possible_parent = self.search(
+                    domain, limit=1, order='date_start desc')
+                self.parent_id = possible_parent  # can be empty!
+        return {'domain': {'parent_id': domain}}

@@ -15,6 +15,7 @@
                     </div>
                     <field name="date_start"/>
                     <field name="count"/>
+                    <field name="parent_id" options="{'no_create': True}"/>
                     <field groups="base.group_multi_company"
                         name="company_id" options="{'no_create': True}"/>
                 </group>

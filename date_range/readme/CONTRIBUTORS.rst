@@ -2,3 +2,4 @@
 * Alexis de Lattre <alexis.delattre@akretion.com>
 * Miquel Raïch <miquel.raich@eficent.com>
 * Andrea Stirpe <a.stirpe@onestein.nl>
+* Nikos Tsirintanis <ntsirintanis@therp.nl>
