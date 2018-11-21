@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo10-addon-auth_user_case_insensitive',
         'odoo10-addon-auto_backup',
         'odoo10-addon-base_cron_exclusion',
+        'odoo10-addon-base_custom_info',
         'odoo10-addon-base_exception',
         'odoo10-addon-base_export_manager',
         'odoo10-addon-base_export_security',
