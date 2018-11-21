@@ -31,6 +31,7 @@ addon | version | summary
 [auth_user_case_insensitive](auth_user_case_insensitive/) | 10.0.1.0.0 | Makes the user login field case insensitive
 [auto_backup](auto_backup/) | 10.0.1.0.2 | Backups database
 [base_cron_exclusion](base_cron_exclusion/) | 10.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
+[base_custom_info](base_custom_info/) | 10.0.1.0.0 | Add custom field in models
 [base_exception](base_exception/) | 10.0.1.0.0 | This module provide an abstract model to manage customizable exceptions to be applied on different models (sale order, invoice, ...)
 [base_export_manager](base_export_manager/) | 10.0.1.0.0 | Manage model export profiles
 [base_export_security](base_export_security/) | 10.0.1.0.0 | Security features for Odoo exports
@@ -107,7 +108,6 @@ addon | version | summary
 [auth_from_http_basic](auth_from_http_basic/) | 1.0 (unported) | Authenticate via HTTP basic authentication
 [auth_from_http_basic_logout](auth_from_http_basic_logout/) | 1.0 (unported) | Authenticate via HTTP basic authentication (logout helper)
 [auth_from_http_remote_user](auth_from_http_remote_user/) | 8.0.1.0.0 (unported) | Authenticate via HTTP Remote User
-[base_custom_info](base_custom_info/) | 9.0.1.0.0 (unported) | Add custom field in models
 [email_template_template](email_template_template/) | 1.0 (unported) | Templates for email templates
 [fetchmail_attach_from_folder](fetchmail_attach_from_folder/) | 8.0.1.0.1 (unported) | Attach mails in an IMAP folder to existing objects
 [import_odbc](import_odbc/) | 1.3 (unported) | Import data from SQL and ODBC data sources.
