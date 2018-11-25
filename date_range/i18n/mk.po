@@ -19,13 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:43
+#: code:addons/date_range/models/date_range.py:97
+#, python-format
+msgid "%(name)s not a subrange of %(parent_name)s: "
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range.py:92
+#, python-format
+msgid "%(name)s range not in %(parent_start)s - %(parent_end)s"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range.py:108
 #, python-format
 msgid "%s is not a valid range (%s > %s)"
 msgstr ""
 
 #. module: date_range
-#: code:addons/date_range/models/date_range.py:71
+#: code:addons/date_range/models/date_range.py:136
 #, python-format
 msgid "%s overlaps %s"
 msgstr ""
@@ -38,6 +50,12 @@ msgstr ""
 #. module: date_range
 #: sql_constraint:date.range.type:0
 msgid "A date range type must be unique per company !"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range_type.py:60
+#, python-format
+msgid "A type can not have itself as parent or child"
 msgstr ""
 
 #. module: date_range
@@ -78,11 +96,18 @@ msgid "Created on"
 msgstr "Креирано на"
 
 #. module: date_range
+#: model:ir.model,name:date_range.model_date_range
 #: model:ir.ui.view,arch_db:date_range.view_date_range_form_view
 msgid "Date Range"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model,name:date_range.model_date_range_generator
+msgid "Date Range Generator"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model,name:date_range.model_date_range_type
 #: model:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 msgid "Date Range Type"
 msgstr ""
@@ -134,6 +159,14 @@ msgstr ""
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_date_end
 msgid "End date"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range.py:86
+#, python-format
+msgid ""
+"End date %(end)s of %(name)s must be smaller than or equal to end date "
+"%(parent_end)s of %(parent_name)s"
 msgstr ""
 
 #. module: date_range
@@ -192,8 +225,25 @@ msgid "Number of ranges to generate"
 msgstr ""
 
 #. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_generator_parent_id
+#: model:ir.model.fields,field_description:date_range.field_date_range_parent_id
+msgid "Parent"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_parent_type_id
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_parent_type_id
+msgid "Parent type id"
+msgstr ""
+
+#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_name_prefix
 msgid "Range name prefix"
+msgstr ""
+
+#. module: date_range
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_date_range_ids
+msgid "Ranges"
 msgstr ""
 
 #. module: date_range
@@ -202,8 +252,30 @@ msgid "Start date"
 msgstr ""
 
 #. module: date_range
+#: code:addons/date_range/models/date_range.py:80
+#, python-format
+msgid ""
+"Start date %(start)s of %(name)s must be greater than or equal to start date "
+"%(parent_start)s of %(parent_name)s"
+msgstr ""
+
+#. module: date_range
 #: model:ir.ui.view,arch_db:date_range.date_range_generator_view_form
 msgid "Submit"
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/wizard/date_range_generator.py:83
+#, python-format
+msgid ""
+"The Company in the Date Range Generator and in Date Range Type must be the "
+"same."
+msgstr ""
+
+#. module: date_range
+#: code:addons/date_range/models/date_range.py:59
+#, python-format
+msgid "The Company in the Date Range and in Date Range Type must be the same."
 msgstr ""
 
 #. module: date_range
@@ -214,8 +286,8 @@ msgstr ""
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2025
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2022
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2027
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2024
 msgid "Type"
 msgstr "Тип"
 
@@ -225,18 +297,11 @@ msgid "Unit of time"
 msgstr ""
 
 #. module: date_range
-#: model:ir.model,name:date_range.model_date_range
-msgid "date.range"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model,name:date_range.model_date_range_generator
-msgid "date.range.generator"
-msgstr ""
-
-#. module: date_range
-#: model:ir.model,name:date_range.model_date_range_type
-msgid "date.range.type"
+#: code:addons/date_range/models/date_range_type.py:47
+#, python-format
+msgid ""
+"You cannot change the company, as this Date Range Type is  assigned to Date "
+"Range (%s)."
 msgstr ""
 
 #. module: date_range
