@@ -21,11 +21,13 @@ msgstr ""
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_export_group_ids
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_group_ids
 msgid "Allowed Groups"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_export_user_ids
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_user_ids
 msgid "Allowed Users"
 msgstr ""
@@ -36,7 +38,7 @@ msgid "Display Name"
 msgstr "Wyświetlana nazwa "
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: selection:sql.export,state:0 selection:sql.request.mixin,state:0
 msgid "Draft"
 msgstr "Projekt"
 
@@ -62,7 +64,7 @@ msgid "Manager"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:202
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:208
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -70,11 +72,13 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_export_name
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_name
 msgid "Name"
 msgstr "Nazwa"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_export_query
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_query
 msgid "Query"
 msgstr ""
@@ -85,16 +89,18 @@ msgid "SQL Request"
 msgstr ""
 
 #. module: sql_request_abstract
-#: selection:sql.request.mixin,state:0
+#: selection:sql.export,state:0 selection:sql.request.mixin,state:0
 msgid "SQL Valid"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_export_state
 #: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_state
 msgid "State"
 msgstr "Stan"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,help:sql_request_abstract.field_sql_export_state
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_state
 msgid ""
 "State of the Request:\n"
@@ -103,7 +109,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:241
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:247
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -112,13 +118,13 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:224
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:230
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:160
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:164
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr ""
@@ -129,6 +135,7 @@ msgid "User"
 msgstr "Użytkownik"
 
 #. module: sql_request_abstract
+#: model:ir.model.fields,help:sql_request_abstract.field_sql_export_query
 #: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_query
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
