@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sql_export
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
@@ -26,13 +26,11 @@ msgid "Allow the user to save the file with sql request's data"
 msgstr "Ermögliche dem Benutzer das Speichern der SQL-Abfrage mit Daten"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_group_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Groups"
 msgstr "Erlaubte Gruppen"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_user_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Users"
 msgstr "Erlaubte Benutzer"
@@ -69,11 +67,6 @@ msgstr "CSV-Datei"
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_display_name
 msgid "Display Name"
 msgstr "Anzeigename"
-
-#. module: sql_export
-#: selection:sql.export,state:0
-msgid "Draft"
-msgstr "Entwurf"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_encoding
@@ -131,20 +124,10 @@ msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_name
-msgid "Name"
-msgstr "Bezeichnung"
-
-#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_field_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Parameters"
 msgstr "Parameter"
-
-#. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_query
-msgid "Query"
-msgstr "Abfrage"
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
@@ -167,11 +150,6 @@ msgstr "SQL-Parameter"
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "SQL Request"
 msgstr "SQL-Abfrage"
-
-#. module: sql_export
-#: selection:sql.export,state:0
-msgid "SQL Valid"
-msgstr "SQL gültig"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_export
@@ -202,34 +180,9 @@ msgid "Sql export id"
 msgstr "SQL Export-ID"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_state
-msgid "State"
-msgstr "Status"
-
-#. module: sql_export
-#: model:ir.model.fields,help:sql_export.field_sql_export_state
-msgid ""
-"State of the Request:\n"
-" * 'Draft': Not tested\n"
-" * 'SQL Valid': SQL Request has been checked and is valid"
-msgstr ""
-"Status der Abfrage:\n"
-"* 'Entwurf': Ungeprüft\n"
-"* 'SQL gültig': SQL Abfrage ist geprüft und gültig"
-
-#. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Validate SQL Expression"
 msgstr "SQL-Ausdruck prüfen"
-
-#. module: sql_export
-#: model:ir.model.fields,help:sql_export.field_sql_export_query
-msgid ""
-"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE."
-msgstr ""
-"Sie dürfen die folgenden Begriffe nicht verwenden: DELETE, DROP, CREATE, "
-"INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE."
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
@@ -295,3 +248,34 @@ msgstr "windows-1251"
 #: selection:sql.export,encoding:0
 msgid "windows-1252"
 msgstr "windows-1252"
+
+#~ msgid "Draft"
+#~ msgstr "Entwurf"
+
+#~ msgid "Name"
+#~ msgstr "Bezeichnung"
+
+#~ msgid "Query"
+#~ msgstr "Abfrage"
+
+#~ msgid "SQL Valid"
+#~ msgstr "SQL gültig"
+
+#~ msgid "State"
+#~ msgstr "Status"
+
+#~ msgid ""
+#~ "State of the Request:\n"
+#~ " * 'Draft': Not tested\n"
+#~ " * 'SQL Valid': SQL Request has been checked and is valid"
+#~ msgstr ""
+#~ "Status der Abfrage:\n"
+#~ "* 'Entwurf': Ungeprüft\n"
+#~ "* 'SQL gültig': SQL Abfrage ist geprüft und gültig"
+
+#~ msgid ""
+#~ "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
+#~ "TRUNCATE, EXECUTE, UPDATE."
+#~ msgstr ""
+#~ "Sie dürfen die folgenden Begriffe nicht verwenden: DELETE, DROP, CREATE, "
+#~ "INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE."

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sql_export
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,27 +12,25 @@ msgstr ""
 "PO-Revision-Date: 2017-08-17 22:05+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_file_wizard
 msgid "Allow the user to save the file with sql request's data"
 msgstr ""
-"Permet à l'utilisateur de sauvegarder le fichier contenant les données de la"
-" requête SQL"
+"Permet à l'utilisateur de sauvegarder le fichier contenant les données de la "
+"requête SQL"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_group_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Groups"
 msgstr "Groupes Autorisés"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_user_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Allowed Users"
 msgstr "Utilisateurs Autorisés"
@@ -69,11 +67,6 @@ msgstr "Fichier CSV"
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard_display_name
 msgid "Display Name"
 msgstr "Nom affiché"
-
-#. module: sql_export
-#: selection:sql.export,state:0
-msgid "Draft"
-msgstr "En brouillon"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_encoding
@@ -131,20 +124,10 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_name
-msgid "Name"
-msgstr "Nom"
-
-#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export_field_ids
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Parameters"
 msgstr "Paramètres"
-
-#. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_query
-msgid "Query"
-msgstr "Requête"
 
 #. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
@@ -167,11 +150,6 @@ msgstr "Paramètre SQL"
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "SQL Request"
 msgstr "Requête SQL"
-
-#. module: sql_export
-#: selection:sql.export,state:0
-msgid "SQL Valid"
-msgstr "SQL Validé"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_export
@@ -202,32 +180,9 @@ msgid "Sql export id"
 msgstr "Sql export id"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.field_sql_export_state
-msgid "State"
-msgstr "Etat"
-
-#. module: sql_export
-#: model:ir.model.fields,help:sql_export.field_sql_export_state
-msgid ""
-"State of the Request:\n"
-" * 'Draft': Not tested\n"
-" * 'SQL Valid': SQL Request has been checked and is valid"
-msgstr ""
-"Etat de la requête:\n"
-" * 'En brouillon': non testée\n"
-" * 'SQL Validé': La requête SQL a été vérifiée et est valide"
-
-#. module: sql_export
 #: model:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Validate SQL Expression"
 msgstr "Valider l'expression SQL"
-
-#. module: sql_export
-#: model:ir.model.fields,help:sql_export.field_sql_export_query
-msgid ""
-"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE."
-msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
@@ -293,3 +248,27 @@ msgstr ""
 #: selection:sql.export,encoding:0
 msgid "windows-1252"
 msgstr ""
+
+#~ msgid "Draft"
+#~ msgstr "En brouillon"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Query"
+#~ msgstr "Requête"
+
+#~ msgid "SQL Valid"
+#~ msgstr "SQL Validé"
+
+#~ msgid "State"
+#~ msgstr "Etat"
+
+#~ msgid ""
+#~ "State of the Request:\n"
+#~ " * 'Draft': Not tested\n"
+#~ " * 'SQL Valid': SQL Request has been checked and is valid"
+#~ msgstr ""
+#~ "Etat de la requête:\n"
+#~ " * 'En brouillon': non testée\n"
+#~ " * 'SQL Validé': La requête SQL a été vérifiée et est valide"
