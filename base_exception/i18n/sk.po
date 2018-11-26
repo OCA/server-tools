@@ -51,7 +51,7 @@ msgid "Display Name"
 msgstr "Zobraziť meno"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:215
+#: code:addons/base_exception/models/base_exception.py:216
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -208,7 +208,7 @@ msgid "Sequence"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:87
+#: code:addons/base_exception/models/base_exception.py:88
 #, python-format
 msgid ""
 "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
