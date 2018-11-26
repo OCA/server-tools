@@ -28,6 +28,11 @@ server-tools/issues/new?body=module:%20
 base_exception%0Aversion:%20
 10.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
+Roadmap
+-------
+Terms used in old api like `pool`, `cr`, `uid` must be removed porting this module in version 12.
+
+
 Images
 ------
 
