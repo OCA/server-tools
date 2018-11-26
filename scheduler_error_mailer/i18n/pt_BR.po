@@ -63,22 +63,26 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_channel_ids
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_channel_ids
 msgid "Add Channels"
 msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_partner_ids
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_partner_ids
 msgid "Add Followers"
 msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_template_id
 #, fuzzy
 msgid "Email Template"
 msgstr "Modelo de Erro de E-mail"
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_email_template_id
 msgid "Error E-mail Template"
 msgstr "Modelo de Erro de E-mail"
 
@@ -89,6 +93,7 @@ msgstr ""
 
 #. module: scheduler_error_mailer
 #: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check_email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 "Selecione o modelo de email que será enviado quando o agendador falhar."
