@@ -21,6 +21,7 @@ msgstr ""
 
 #. module: base_cron_exclusion
 #: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron_mutually_exclusive_cron_ids
+#: model:ir.model.fields,field_description:base_cron_exclusion.field_nsca_check_mutually_exclusive_cron_ids
 #: model:ir.ui.view,arch_db:base_cron_exclusion.ir_cron_view
 msgid "Mutually Exclusive Scheduled Actions"
 msgstr "Vzájemně výlučné plánované akce"
