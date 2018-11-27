@@ -211,8 +211,8 @@ class TestOAuthProviderController(
         Must return an invalid_client error
         """
         # Don't define a secret for the client
-        auth_string = base64.b64encode(
-            '{client.identifier}:secret'.format(client=self.client))
+        auth_string = base64.b64encode('{client.identifier}:secret'.format(
+            client=self.client).encode()).decode()
 
         # Ask a token to the server
         response = self.post_request('/oauth2/token', data={
@@ -236,8 +236,8 @@ class TestOAuthProviderController(
         """
         # Define a secret for the client
         self.client.secret = 'OAuth Client secret'
-        auth_string = base64.b64encode(
-            '{client.identifier}:secret'.format(client=self.client))
+        auth_string = base64.b64encode('{client.identifier}:secret'.format(
+            client=self.client).encode()).decode()
 
         # Ask a token to the server
         response = self.post_request('/oauth2/token', data={
@@ -259,7 +259,8 @@ class TestOAuthProviderController(
         # Define a secret for the client
         self.client.secret = 'OAuth Client secret'
         auth_string = base64.b64encode(
-            '{client.identifier}:{client.secret}'.format(client=self.client))
+            '{client.identifier}:{client.secret}'.format(
+                client=self.client).encode()).decode()
 
         # Ask a token to the server
         response = self.post_request('/oauth2/token', data={
@@ -292,8 +293,8 @@ class TestOAuthProviderController(
         Must generate a token : Non basic authorization headers are ignored
         """
         # Don't define a secret for the client
-        auth_string = base64.b64encode(
-            '{client.identifier}:secret'.format(client=self.client))
+        auth_string = base64.b64encode('{client.identifier}:secret'.format(
+            client=self.client).encode()).decode()
 
         # Ask a token to the server
         response = self.post_request('/oauth2/token', data={
@@ -329,7 +330,8 @@ class TestOAuthProviderController(
         # Define a secret for the client
         self.client.secret = 'OAuth Client secret'
         auth_string = base64.b64encode(
-            '{client.identifier}:{client.secret}'.format(client=self.client))
+            '{client.identifier}:{client.secret}'.format(
+                client=self.client).encode()).decode()
 
         # Ask a token to the server
         response = self.post_request('/oauth2/token', data={

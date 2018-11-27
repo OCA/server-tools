@@ -25,6 +25,16 @@ class TestOAuthProviderScope(TransactionCase):
             ],
         }
 
+    def create_extra_user(self, name):
+        partner = self.env['res.partner'].create({
+            'name': name,
+        })
+        return self.env['res.users'].create({
+            'login': name,
+            'password': name,
+            'partner_id': partner.id,
+        })
+
     def new_scope(self, vals=None):
         values = self.scope_vals
         if vals is not None:
@@ -37,6 +47,9 @@ class TestOAuthProviderScope(TransactionCase):
         filter is defined
         """
         scope = self.new_scope({'filter_id': False})
+
+        self.create_extra_user('user_one')
+        self.create_extra_user('user_two')
 
         # Check a simple call with the right model
         data = scope.get_data_for_model('res.users')

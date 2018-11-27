@@ -44,7 +44,7 @@ class OdooValidator(RequestValidator):
     def authenticate_client(self, request, *args, **kwargs):
         """ Authenticate the client """
         auth_string = self._extract_auth(request)
-        auth_string_decoded = base64.b64decode(auth_string)
+        auth_string_decoded = base64.b64decode(auth_string).decode()
 
         # If we don't have a proper auth string, get values in the request body
         if ':' not in auth_string_decoded:

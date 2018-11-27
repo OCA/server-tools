@@ -57,11 +57,11 @@ class TestOAuthProviderController(
         # authorization_code added as GET parameter
         self.assertEqual(response.status_code, 302)
         query_string = oauthlib.common.urlencode({
-            'state': state,
             'access_token': token.token,
-            'token_type': token.token_type,
             'expires_in': 3600,
+            'token_type': token.token_type,
             'scope': token.scope_ids.code,
+            'state': state,
         }.items())
         self.assertEqual(
             response.headers['Location'], '{uri_base}#{query_string}'.format(
@@ -85,9 +85,10 @@ class TestOAuthProviderController(
             'state': state,
         })
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(self.client.name in response.data)
-        self.assertTrue(self.client.scope_ids[0].name in response.data)
-        self.assertTrue(self.client.scope_ids[0].description in response.data)
+        self.assertTrue(self.client.name in str(response.data))
+        self.assertTrue(self.client.scope_ids[0].name in str(response.data))
+        self.assertTrue(
+            self.client.scope_ids[0].description in str(response.data))
 
         # Then, call the POST route to validate the authorization
         response = self.post_request('/oauth2/authorize')
@@ -101,11 +102,11 @@ class TestOAuthProviderController(
         # token added as GET parameter
         self.assertEqual(response.status_code, 302)
         query_string = oauthlib.common.urlencode({
-            'state': state,
             'access_token': token.token,
-            'token_type': token.token_type,
             'expires_in': 3600,
+            'token_type': token.token_type,
             'scope': token.scope_ids.code,
+            'state': state,
         }.items())
         self.assertEqual(
             response.headers['Location'], '{uri_base}#{query_string}'.format(

@@ -23,7 +23,25 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         self.werkzeug_environ = {
             'REMOTE_ADDR': '127.0.0.1',
         }
-        self.user = self.env.ref('base.user_demo')
+
+        self.user = self.env['res.users'].search([('login', '=', 'demo')])
+        if not self.user:
+            partner = self.env['res.partner'].create({
+                'name': 'demo',
+            })
+            self.user = self.env['res.users'].create({
+                'login': 'demo',
+                'password': 'demo',
+                'partner_id': partner.id,
+                'company_id': self.env.ref('base.main_company').id,
+                'groups_id': [(6, 0, [
+                    self.env.ref('base.group_user').id,
+                    self.env.ref('base.group_partner_manager').id])],
+            })
+            self.user.write({'password': 'demo'})
+            # This has to be committed so that the login can be successful
+            self.env.cr.commit()
+
         self.logged_user = False
         self.initialize_test_client()
 
@@ -74,6 +92,7 @@ class OAuthProviderControllerTransactionCase(TransactionCase):
         self.post_request('/web/login', data={
             'login': username,
             'password': password,
+            'db': self.env.cr.dbname,
         })
         self.logged_user = self.env['res.users'].search([
             ('login', '=', username)])

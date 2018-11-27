@@ -127,4 +127,4 @@ class OAuthProviderClient(models.Model):
             + user.sudo().oauth_identifier
 
         # Use a sha256 to avoid a too long final string
-        return hashlib.sha256(user_identifier).hexdigest()
+        return hashlib.sha256(user_identifier.encode()).hexdigest()
