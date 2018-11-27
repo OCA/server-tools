@@ -85,7 +85,9 @@
         <field name="search_view_id" ref="view_auditlog_rule_search"/>
     </record>
 
-    <menuitem id="menu_action_auditlog_rule_tree" parent="menu_audit" action="action_auditlog_rule_tree"/>
+    <menuitem id="menu_action_auditlog_rule_tree"
+              parent="menu_audit"
+              action="action_auditlog_rule_tree"/>
 
 
     <!-- auditlog.log -->

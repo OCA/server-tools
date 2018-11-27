@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
@@ -12,17 +12,17 @@ models such as ``create``, ``read``, ``write`` and ``delete``.
 Usage
 =====
 
-Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
+# Go to `Settings / Technical / Audit / Rules` to subscribe rules. A rule defines
 which operations to log for a given data model.
 
 .. image:: /auditlog/static/description/rule.png
 
-Then, check logs in the `Settings / Technical / Audit / Logs` menu. You can
+# Then, check logs in the `Settings / Technical / Audit / Logs` menu. You can
 group them by user sessions, date, data model or HTTP requests:
 
 .. image:: /auditlog/static/description/logs.png
 
-Get the details:
+# Get the details:
 
 .. image:: /auditlog/static/description/log.png
 
@@ -46,7 +46,6 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/server-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/server-tools/issues/new?body=module:%20auditlog%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 
 Credits
