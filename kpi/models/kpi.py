@@ -74,6 +74,9 @@ class KPI(models.Model):
     value = fields.Float(string='Value',
                          compute="_compute_display_last_kpi_value",
                          )
+    color = fields.Text('Color', compute="_compute_display_last_kpi_value",)
+    last_execution = fields.Datetime(
+        'Last execution', compute="_compute_display_last_kpi_value",)
     kpi_type = fields.Selection((
         ('python', 'Python'),
         ('local', 'SQL - Local DB'),
@@ -109,9 +112,14 @@ class KPI(models.Model):
         for obj in self:
             history_ids = history_obj.search([("kpi_id", "=", obj.id)])
             if history_ids:
-                obj.value = obj.history_ids[0].value
+                his = obj.history_ids[0]
+                obj.value = his.value
+                obj.color = his.color
+                obj.last_execution = his.date
             else:
                 obj.value = 0
+                obj.color = '#FFFFFF'
+                obj.last_execution = False
 
     @api.multi
     def compute_kpi_value(self):
@@ -131,7 +139,7 @@ class KPI(models.Model):
                     if is_one_value(res):
                         kpi_value = res[0]['value']
                 elif obj.kpi_type == 'python':
-                    kpi_value = safe_eval(obj.kpi_code)
+                    kpi_value = safe_eval(obj.kpi_code, {'self': obj})
 
             threshold_obj = obj.threshold_id
             values = {

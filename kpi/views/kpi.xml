@@ -6,6 +6,7 @@
     <record id="view_kpi_tree" model="ir.ui.view">
         <field name="name">kpi.tree</field>
         <field name="model">kpi</field>
+        <field eval="8" name="priority"/>
         <field name="arch" type="xml">
             <tree string="Key Performance Indicators">
                 <field name="name"/>
@@ -14,6 +15,33 @@
                 <field name="kpi_type"/>
                 <field name="company_id" groups="base.group_multi_company"/>
             </tree>
+        </field>
+    </record>
+    <record id="view_kpi_kanban" model="ir.ui.view">
+        <field name="name">kpi.kanban</field>
+        <field name="model">kpi</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kpi_kanban">
+                <field name="id"/>
+                <field name="display_name"/>
+                <field name="color"/>
+                <field name="value"/>
+                <field name="last_execution"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kpi_kanban">
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_title oe_partner_heading"><strong><field name="display_name"/></strong></div>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"  t-attf-style="color:#{record.color.raw_value}">
+                                    <strong><field name="value"/></strong>
+                                </div><div class="o_kanban_tags_section oe_kanban_partner_categories">
+                                    <field name="last_execution"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -91,8 +119,7 @@
         <field name="name">Key Performance Indicators</field>
         <field name="res_model">kpi</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_kpi_tree"/>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="search_view_id" ref="view_kpi_filter"/>
     </record>
 </odoo>
