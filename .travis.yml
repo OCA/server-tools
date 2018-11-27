@@ -13,6 +13,7 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
       - nsca-client
+      - libmysqlclient-dev # To install mysqlclient and import MySQLdb
 
 env:
   global:
