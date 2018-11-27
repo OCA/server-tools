@@ -18,7 +18,7 @@ class KPIHistory(models.Model):
         'Execution Date',
         required=True,
         readonly=True,
-        default=fields.Datetime.now()
+        default=lambda r: fields.Datetime.now()
     )
     value = fields.Float('Value', required=True, readonly=True)
     color = fields.Text('Color', required=True,
