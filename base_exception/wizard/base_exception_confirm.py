@@ -10,6 +10,7 @@ from odoo.exceptions import ValidationError
 class ExceptionRuleConfirm(models.AbstractModel):
 
     _name = 'exception.rule.confirm'
+    _description = 'Confirm exception rule'
 
     related_model_id = fields.Many2one('base.exception',)
     exception_ids = fields.Many2many('exception.rule',

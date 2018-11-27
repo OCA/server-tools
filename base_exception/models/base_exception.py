@@ -95,6 +95,7 @@ class ExceptionRule(models.Model):
 
 class BaseException(models.AbstractModel):
     _name = 'base.exception'
+    _description = 'Exception'
 
     _order = 'main_exception_id asc'
 
