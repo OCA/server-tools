@@ -15,7 +15,8 @@
                     <newline/>
                 </group>
                 <group>
-                    <field name="ignore" groups='base_exception.group_exception_rule_manager'/>
+                    <field name="ignore"
+                           groups='base_exception.group_exception_rule_manager'/>
                 </group>
                 <footer>
                     <button name="action_confirm" string="_Close"
