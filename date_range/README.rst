@@ -140,5 +140,3 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 This module is part of the `OCA/server-tools <https://github.com/OCA/server-tools/tree/10.0/date_range>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
-
-You are welcome to contribute
