@@ -61,6 +61,7 @@ Images
 Contributors
 ------------
 
+* Chris Tribbeck <chris.tribbeck@subteno-it.fr>
 * Sylvain Garancher <sylvain.garancher@syleam.fr>
 
 Maintainer

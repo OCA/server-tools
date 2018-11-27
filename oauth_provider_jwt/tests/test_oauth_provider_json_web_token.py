@@ -214,7 +214,7 @@ class TestOAuthProviderController(OAuthProviderControllerTransactionCase):
     def test_public_key_retrieval_without_argument(self):
         """ Check the /oauth2/public_key route """
         response = self.get_request('/oauth2/public_key')
-        self.assertEqual(response.data, '')
+        self.assertEqual(response.data.decode(), '')
 
     def test_public_key_retrieval_symetric(self):
         """ Check the /oauth2/public_key route """
@@ -223,7 +223,7 @@ class TestOAuthProviderController(OAuthProviderControllerTransactionCase):
         response = self.get_request('/oauth2/public_key', data={
             'client_id': self.client.identifier,
         })
-        self.assertEqual(response.data, '')
+        self.assertEqual(response.data.decode(), '')
 
     def test_public_key_retrieval_asymetric(self):
         """ Check the /oauth2/public_key route """
@@ -232,4 +232,4 @@ class TestOAuthProviderController(OAuthProviderControllerTransactionCase):
         response = self.get_request('/oauth2/public_key', data={
             'client_id': self.client.identifier,
         })
-        self.assertEqual(response.data, public_key)
+        self.assertEqual(response.data.decode(), public_key)

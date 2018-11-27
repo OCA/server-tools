@@ -76,8 +76,9 @@ class OAuthProviderClient(models.Model):
     def _load_private_key(self):
         """ Load the client's private key into a cryptography's object instance
         """
+
         return load_pem_private_key(
-            str(self.jwt_private_key),
+            str(self.jwt_private_key).encode(),
             password=None,
             backend=default_backend(),
         )
@@ -180,7 +181,7 @@ class OAuthProviderClient(models.Model):
                 payload,
                 request.client.jwt_private_key,
                 algorithm=request.client.jwt_algorithm,
-            )
+            ).decode()
 
         # Add the custom generator only if none is already defined
         if self.token_type == 'jwt' and 'token_generator' not in kwargs:
