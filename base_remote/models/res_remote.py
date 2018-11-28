@@ -40,7 +40,7 @@ class ResRemote(models.Model):
         except socket.herror:
             logging.warning('Remote with ip %s could not be found' % addr)
             hostname = False
-        remote = self.search([('name', '=', hostname or addr)])
+        remote = self.search([('name', '=ilike', hostname or addr)])
         if not remote:
             remote = self.create(self._create_vals(addr, hostname))
         if remote.ip != addr:
