@@ -3,6 +3,13 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
+    <data noupdate="0">
+        <record id="group_kpi_manager" model="res.groups">
+            <field name="name">Manage KPI's</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+    </data>
     <data noupdate="1">
 
         <!-- Rule -->
