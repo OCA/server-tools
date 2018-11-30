@@ -11,7 +11,7 @@ def migrate(cr, version):
     # Don't act when coming from version 9
     cr.execute("SELECT 1 FROM pg_class WHERE relname = 'res_banned_remote'")
     if not cr.fetchone():
-        return 
+        return
     # Fix typo across DB
     cr.execute(
         """ UPDATE res_authentication_attempt
