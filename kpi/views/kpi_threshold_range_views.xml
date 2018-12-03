@@ -27,7 +27,7 @@
                 <sheet>
                     <group col="6" colspan="6">
                         <field name="name" colspan="2"/>
-                        <field name="color" colspan="2"/>
+                        <field name="color" colspan="2" widget="color"/>
                         <field name="company_id" groups="base.group_multi_company" colspan="2" />
                     </group>
                     <group col="6">

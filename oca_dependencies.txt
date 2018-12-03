@@ -1,0 +1,6 @@
+server-backend https://github.com/OCA/server-backend
+web
+# Until merge
+server-backend-mig-dbsource https://github.com/Eficent/server-backend 12.0-mig-base_external_dbsource
+server-backend-mig-dbsource-sqlite https://github.com/Eficent/server-backend 12.0-mig-base_external_dbsource_sqlite
+server-backend-mig-dbsource-mysql https://github.com/Eficent/server-backend 12.0-mig-base_external_dbsource_mysql

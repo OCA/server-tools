@@ -52,13 +52,14 @@ class KPIThresholdRange(models.Model):
         ('local', 'SQL - Local DB'),
         ('external', 'SQL - Externa DB'),
     ), 'Min Type', required=True)
-    min_value = fields.Float(string='Minimum', compute="_compute_min_value")
-    min_fixed_value = fields.Float('Minimum')
+    min_value = fields.Float(string='Minimum Value',
+                             compute="_compute_min_value")
+    min_fixed_value = fields.Float('Minimum Fixed Value')
     min_code = fields.Text('Minimum Computation Code')
-    min_error = fields.Char('Error', compute="_compute_min_value")
+    min_error = fields.Char('Minimum Error', compute="_compute_min_value")
     min_dbsource_id = fields.Many2one(
         'base.external.dbsource',
-        'External DB Source',
+        'External DB Source Minimum',
     )
     max_type = fields.Selection((
         ('static', 'Fixed value'),
@@ -66,13 +67,14 @@ class KPIThresholdRange(models.Model):
         ('local', 'SQL - Local DB'),
         ('external', 'SQL - External DB'),
     ), 'Max Type', required=True)
-    max_value = fields.Float(string='Maximum', compute="_compute_max_value")
-    max_fixed_value = fields.Float('Maximum')
+    max_value = fields.Float(string='Maximum Value',
+                             compute="_compute_max_value")
+    max_fixed_value = fields.Float('Maximum Fixed Value')
     max_code = fields.Text('Maximum Computation Code')
-    max_error = fields.Char('Error', compute="_compute_max_value")
+    max_error = fields.Char('Maximum Error', compute="_compute_max_value")
     max_dbsource_id = fields.Many2one(
         'base.external.dbsource',
-        'External DB Source',
+        'External DB Source Maximum',
     )
 
     color = fields.Char(

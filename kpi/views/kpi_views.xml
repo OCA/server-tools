@@ -63,8 +63,8 @@
                 </group>
                 <newline/>
                 <group expand="0" name="Group By...">
-                    <filter string="Category" context="{'group_by':'category_id'}"/>
-                    <filter string="Type" context="{'group_by':'kpi_type'}"/>
+                    <filter name="Category" context="{'group_by':'category_id'}"/>
+                    <filter name="Type" context="{'group_by':'kpi_type'}"/>
                 </group>
             </search>
         </field>
