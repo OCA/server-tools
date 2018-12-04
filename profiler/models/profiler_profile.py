@@ -150,7 +150,7 @@ log_hostname=on
 log_line_prefix='%t [%p]: [%l-1] db=%d,user=%u '
 log_connections=on
 log_disconnections=on
-lc_messages='en_US.UTF-8'
+lc_messages='C'
 log_timezone='UTC'
 
 Reload configuration using the following query:
@@ -170,7 +170,7 @@ log_min_error_statement=error
 log_duration=off
 log_error_verbosity=verbose
 log_lock_waits=on
-log_statement=none
+log_statement='none'
 log_temp_files=0
 
 #  Or enable logs from PGOPTIONS environment variable before to start odoo
@@ -179,7 +179,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
 -c client_min_messages=notice -c log_min_messages=warning \\
 -c log_min_error_statement=error -c log_connections=on \\
 -c log_disconnections=on -c log_duration=off -c log_error_verbosity=verbose \\
--c log_lock_waits=on -c log_statement=none -c log_temp_files=0"
+-c log_lock_waits=on -c log_statement='none' -c log_temp_files=0"
 ~/odoo_path/odoo-bin ...
 """
 
