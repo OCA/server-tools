@@ -2,8 +2,8 @@
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.eot");
-  src: url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.woff2") format("woff2"), url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.woff") format("woff"), url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.ttf") format("truetype"), url("../../lib/fontawesome-5.3.1/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.eot");
+  src: url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.woff2") format("woff2"), url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.woff") format("woff"), url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.ttf") format("truetype"), url("../../lib/fontawesome-5.5.0/webfonts/fa-solid-900.svg#fontawesome") format("svg");
   ont-weight: normal;
   font-style: normal;
   }

@@ -5,7 +5,7 @@
 {
     'name': 'Base Fontawesome',
     'summary': """Up to date Fontawesome resources.""",
-    'version': '11.0.5.3.1',
+    'version': '11.0.5.5.0',
     'license': 'LGPL-3',
     'author': 'Camptocamp,Creu Blanca,Odoo Community Association (OCA)',
     'depends': [
