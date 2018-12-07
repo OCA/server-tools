@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="location_amazon_s3" model="external.file.location">
+        <field name="name">Amazon S3 Sync</field>
+        <field name="protocol">amazon_s3</field>
+        <field name="bucket_name">valid-bucket-name</field>
+        <field name="s3_access_key_id">valid-access-key-id</field>
+        <field name="secret_access_key">valid-access-key</field>
+    </record>
+
+    <record id="s3_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" eval="ref('attachment_sync_s3.location_amazon_s3')"/>
+        <field name="filepath">odoo_sync</field>
+        <field name="name">Amazon S3 Task</field>
+    </record>
+
+</odoo>

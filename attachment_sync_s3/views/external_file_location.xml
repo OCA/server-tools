@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_location_form_s3" model="ir.ui.view">
+    <field name="name">view.location.form.inherit.s3</field>
+    <field name="model">external.file.location</field>
+    <field name="inherit_id" ref="external_file_location.view_location_form"/>
+    <field name="arch" type="xml">
+        <field name="protocol" position="after">
+            <field name="bucket_name" colspan="2" attrs="{'invisible': [('protocol', '!=', 'amazon_s3')]}"/>
+            <field name="s3_access_key_id" colspan="2" attrs="{'invisible': [('protocol', '!=', 'amazon_s3')]}"/>
+            <field name="secret_access_key" colspan="2" attrs="{'invisible': [('protocol', '!=', 'amazon_s3')]}"/>
+        </field>
+    </field>
+</record>
+</odoo>
