@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="location_gdrive" model="external.file.location">
+        <field name="name">Google Drive Sync</field>
+        <field name="protocol">google_drive</field>
+    </record>
+
+    <record id="gdrive_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" ref="attachment_sync_gdrive.location_gdrive"/>
+        <field name="filepath">odoo_sync</field>
+        <field name="name">Google Drive Task</field>
+    </record>
+
+</odoo>
