@@ -56,6 +56,13 @@ msgid "Backups"
 msgstr ""
 
 #. module: auto_backup
+#: help:db.backup,tempdir:0
+msgid ""
+"Backups first go to a temporary directory. In case you need to put them "
+"somewhere else, fill in the directory here"
+msgstr ""
+
+#. module: auto_backup
 #: help:db.backup,days_to_keep:0
 msgid ""
 "Backups older than this will be deleted automatically. Set 0 to disable "
@@ -78,19 +85,19 @@ msgid "Choose the storage method for this backup."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:250
+#: code:addons/auto_backup/models/db_backup.py:268
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:131
+#: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:128
+#: code:addons/auto_backup/models/db_backup.py:134
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr ""
@@ -106,14 +113,14 @@ msgid "Created on"
 msgstr "Kreirano"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:206
+#: code:addons/auto_backup/models/db_backup.py:224
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:214
+#: code:addons/auto_backup/models/db_backup.py:232
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -135,7 +142,7 @@ msgid "Display Name"
 msgstr "Naziv "
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:119
+#: code:addons/auto_backup/models/db_backup.py:125
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -304,6 +311,11 @@ msgstr "Sažetak"
 #. module: auto_backup
 #: help:db.backup,name:0
 msgid "Summary of this backup process"
+msgstr ""
+
+#. module: auto_backup
+#: field:db.backup,tempdir:0
+msgid "Temporary directory"
 msgstr ""
 
 #. module: auto_backup
