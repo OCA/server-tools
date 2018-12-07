@@ -1,0 +1,290 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * external_file_location
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-19 18:00+0000\n"
+"PO-Revision-Date: 2017-04-19 18:00+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_after_import
+msgid "Action after import a file"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_active
+msgid "Active"
+msgstr "Aktywny"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_address
+msgid "Address"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_after_import
+msgid "After import"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_attachment_ids
+msgid "Attachment"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_company_id
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_company_id
+msgid "Company"
+msgstr "Firma"
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_md5_check
+msgid "Control file integrity after import with a md5 file"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_uid
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_uid
+msgid "Created by"
+msgstr "Utworzone przez"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_create_date
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_create_date
+msgid "Created on"
+msgstr "Utworzono"
+
+#. module: external_file_location
+#: model:ir.ui.view,arch_db:external_file_location.view_task_form
+msgid "Data importation setting"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_display_name
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_display_name
+msgid "Display Name"
+msgstr "Wyświetlana nazwa "
+
+#. module: external_file_location
+#: model:ir.model,name:external_file_location.model_ir_attachment_metadata
+msgid "Email Thread"
+msgstr ""
+
+#. module: external_file_location
+#: selection:external.file.task,method_type:0
+msgid "Export"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model,name:external_file_location.model_external_file_task
+msgid "External file task"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.ui.view,arch_db:external_file_location.view_location_tree
+msgid "File Location"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.actions.act_window,name:external_file_location.action_location
+#: model:ir.ui.menu,name:external_file_location.menu_ir_location
+msgid "File Locations"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_file_type
+msgid "File Type"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.ui.menu,name:external_file_location.menu_file_exchange
+msgid "File exchange"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_filename
+msgid ""
+"File name which is imported.You can use file pattern like *.txtto import all "
+"txt files"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_filestore_rootpath
+msgid "FileStore Root Path"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_filename
+msgid "Filename"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_filepath
+msgid "Filepath"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_hide_login
+msgid "Hide login"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_hide_password
+msgid "Hide password"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_hide_port
+msgid "Hide port"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_id
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_id
+msgid "ID"
+msgstr "ID"
+
+#. module: external_file_location
+#: selection:external.file.task,method_type:0
+msgid "Import"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_move_path
+msgid "Imported File will be moved to this path"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_new_name
+msgid ""
+"Imported File will be renamed to this nameName can use mako template where "
+"obj is an ir_attachement. template exemple :   ${obj.name}-${obj."
+"create_date}.csv"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location___last_update
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task___last_update
+msgid "Last Modified on"
+msgstr "Ostatnio modyfikowano"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_uid
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_uid
+msgid "Last Updated by"
+msgstr "Ostatnio modyfikowane przez"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_write_date
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_write_date
+msgid "Last Updated on"
+msgstr "Ostatnia zmiana"
+
+#. module: external_file_location
+#: model:ir.model,name:external_file_location.model_external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_location_id
+#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_location_id
+#: model:ir.ui.view,arch_db:external_file_location.view_location_form
+msgid "Location"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_login
+msgid "Login"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_md5_check
+msgid "Md5 check"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_method_type
+msgid "Method type"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_move_path
+msgid "Move Path"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_name
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_name
+#: model:ir.ui.view,arch_db:external_file_location.view_location_form
+#: model:ir.ui.view,arch_db:external_file_location.view_task_form
+msgid "Name"
+msgstr "Nazwa"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_task_new_name
+msgid "New Name"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_password
+msgid "Password"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_filepath
+msgid "Path to imported/exported file"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_port
+msgid "Port"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_protocol
+msgid "Protocol"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.ui.view,arch_db:external_file_location.view_task_form
+msgid "Run"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_location_filestore_rootpath
+msgid "Server's root path"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_ir_attachment_metadata_task_id
+msgid "Task"
+msgstr "Zadanie"
+
+#. module: external_file_location
+#: model:ir.model.fields,field_description:external_file_location.field_external_file_location_task_ids
+msgid "Task ids"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.ui.view,arch_db:external_file_location.view_location_form
+#: model:ir.ui.view,arch_db:external_file_location.view_task_form
+#: model:ir.ui.view,arch_db:external_file_location.view_task_tree
+msgid "Tasks"
+msgstr ""
+
+#. module: external_file_location
+#: model:ir.model.fields,help:external_file_location.field_external_file_task_file_type
+msgid ""
+"The file type determines an import method to be used to parse and transform "
+"data before their import in ERP"
+msgstr ""
