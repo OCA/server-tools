@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="location_dropbox" model="external.file.location">
+        <field name="name">Dropbox Sync</field>
+        <field name="protocol">dropbox</field>
+        <field name="access_key_id">valid-access-id</field>
+    </record>
+
+    <record id="dropbox_export_task" model="external.file.task">
+        <field name="method_type">export</field>
+        <field name="location_id" ref="attachment_sync_dropbox.location_dropbox"/>
+        <field name="filepath">/odoo_sync</field>
+        <field name="name">Export Dropbox Task</field>
+    </record>
+
+</odoo>
