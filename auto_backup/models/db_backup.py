@@ -6,6 +6,7 @@
 
 import os
 import shutil
+import tempfile
 import traceback
 from contextlib import contextmanager
 from datetime import datetime, timedelta
@@ -53,6 +54,11 @@ class DbBackup(models.Model):
         selection=[("local", "Local disk"), ("sftp", "Remote SFTP server")],
         default="local",
         help="Choose the storage method for this backup.",
+    )
+    tempdir = fields.Char(
+        string="Temporary directory",
+        help="Backups first go to a temporary directory. In case you need to "
+        "put them somewhere else, fill in the directory here",
     )
     sftp_host = fields.Char(
         string='SFTP Server',
@@ -154,7 +160,8 @@ class DbBackup(models.Model):
                             shutil.copyfileobj(cached, destiny)
                     # Generate new backup
                     else:
-                        db.dump_db(self.env.cr.dbname, destiny)
+                        with rec.custom_tempdir():
+                            db.dump_db(self.env.cr.dbname, destiny)
                         backup = backup or destiny.name
                 successful |= rec
 
@@ -190,6 +197,17 @@ class DbBackup(models.Model):
     def action_backup_all(self):
         """Run all scheduled backups."""
         return self.search([]).action_backup()
+
+    @api.multi
+    @contextmanager
+    def custom_tempdir(self):
+        old_tempdir = tempfile.tempdir
+        if self.tempdir:
+            tempfile.tempdir = self.tempdir
+        try:
+            yield
+        finally:
+            tempfile.tempdir = old_tempdir
 
     @api.multi
     @contextmanager
