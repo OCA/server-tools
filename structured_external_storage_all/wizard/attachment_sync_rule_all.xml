@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="attachment_sync_rule_all" model="ir.ui.view">
+        <field name="name">attachment.sync.rule.all.view</field>
+        <field name="model">ir.attachment.sync.rule.all</field>
+        <field name="arch" type="xml">
+            <form string="Sync All Now">
+                <p class="oe_grey">
+                    Are you sure you want to sync all attachments now?
+                </p>
+                <footer>
+                    <button string="Sync Now" name="run_sync_now_all" type="object" default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_attachment_sync_all"
+        multi="True"
+        key2="client_action_multi" name="Queue and Sync All"
+        res_model="ir.attachment.sync.rule.all" src_model="ir.attachment.sync.rule"
+        view_mode="form" target="new" view_type="form" />
+
+</odoo>

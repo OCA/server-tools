@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="attachment_sync_create_metas" model="ir.ui.view">
+        <field name="name">attachment.sync.create.metas.view</field>
+        <field name="model">attachment.sync.create.metas.all</field>
+        <field name="arch" type="xml">
+            <form string="Queue all for Sync">
+                <p class="oe_grey">
+                    Are you sure you want to Queue all historic attachments for Sync?
+                </p>
+                <footer>
+                    <button string="Queue for Sync" name="queue_for_sync_all" type="object" default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_attachment_sync_queue_all"
+        multi="True"
+        key2="client_action_multi" name="Queue all for Sync"
+        res_model="attachment.sync.create.metas.all" src_model="ir.attachment.sync.rule"
+        view_mode="form" target="new" view_type="form" />
+
+</odoo>

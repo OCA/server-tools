@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="res_request_link_view_sync" model="ir.ui.view">
+        <field name="name">Add option to Sync Attachments</field>
+        <field name="model">res.request.link</field>
+        <field name="inherit_id" ref="base.res_request_link-view"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="ext_attachment_sync"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="res_request_link_view_sync_tree" model="ir.ui.view">
+        <field name="name">Add option to Sync attachments</field>
+        <field name="model">res.request.link</field>
+        <field name="inherit_id" ref="base.res_request_link_tree-view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='object']" position="after">
+                <field name="ext_attachment_sync"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

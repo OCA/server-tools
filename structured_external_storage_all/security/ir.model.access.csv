@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_backup_manager,ir.attachment.sync.rule.manager,model_ir_attachment_sync_rule,base.group_system,1,1,1,1
+access_backup_user,ir.attachment.sync.rule.user,model_ir_attachment_sync_rule,base.group_user,1,1,1,0
+
