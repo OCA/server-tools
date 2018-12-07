@@ -6,12 +6,13 @@ import logging
 _logger = logging.getLogger(__name__)
 
 try:
-    from fs import sftpfs
+    from fs import osfs  # sftpfs not available in python 3
 except ImportError:
     _logger.debug('Cannot `import fs`.')
 
 
-class SftpTask(sftpfs.SFTPFS):
+# TODO: Migration to 11.0
+class SftpTask(osfs.OSFS):
 
     _key = 'sftp'
     _name = 'SFTP'
@@ -20,6 +21,7 @@ class SftpTask(sftpfs.SFTPFS):
     _hide_login = False
     _hide_password = False
     _hide_port = False
+    _hide_address = False
 
     @staticmethod
     def connect(location):

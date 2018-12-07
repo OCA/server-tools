@@ -6,8 +6,8 @@
         <field name='interval_type'>minutes</field>
         <field name="numbercall">-1</field>
         <field name="active">True</field>
-        <field name="doall" eval="False"/>
-        <field name="model">external.file.task</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_external_file_task"/>
         <field name="function">run_task_scheduler</field>
         <field name="args">([[('method_type', '=', 'import')]])</field>
     </record>

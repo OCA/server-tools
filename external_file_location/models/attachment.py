@@ -9,6 +9,7 @@ import os
 
 class IrAttachmentMetadata(models.Model):
     _inherit = 'ir.attachment.metadata'
+    _order = 'location_id asc'
 
     task_id = fields.Many2one('external.file.task', string='Task')
     location_id = fields.Many2one(
@@ -28,6 +29,10 @@ class IrAttachmentMetadata(models.Model):
             location = self.location_id
             cls = protocols.get(location.protocol)[1]
             path = os.path.join(self.task_id.filepath, self.datas_fname)
-            with cls.connect(location) as conn:
-                datas = base64.decodestring(self.datas)
-                conn.setcontents(path, data=datas)
+            conn = cls.connect(location)
+            datas = base64.decodestring(self.datas)
+            conn.setcontents(path, data=datas)
+            try:
+                conn.close()
+            except AttributeError:
+                pass

@@ -1,57 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- © 2014-2016 Akretion (http://www.akretion.com)
-        # @ 2015 Valentin CHEMIERE @ Akretion
-        @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
-         License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<!-- © 2014-2016 Akretion (http://www.akretion.com)
+    # @ 2015 Valentin CHEMIERE @ Akretion
+    @author Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
     <record id="view_task_form" model="ir.ui.view">
         <field name="model">external.file.task</field>
         <field name="arch" type="xml">
-            <form name="Tasks" version="7.0">
+            <form string="Tasks">
                 <header>
-                    <button name="run_import" type="object" string="Run" icon="gtk-execute"
-                            attrs="{'invisible': [('method_type', '!=', 'import')]}"/>
-                    <button name="run_export" type="object" string="Run" icon="gtk-execute"
-                            attrs="{'invisible': [('method_type', '!=', 'export')]}"/>
+                    <button name="run_import" type="object" string="Run" icon="gtk-execute" attrs="{'invisible': [('method_type', '!=', 'import')]}"/>
+                    <button name="run_export" type="object" string="Run" icon="gtk-execute" attrs="{'invisible': [('method_type', '!=', 'export')]}"/>
                 </header>
                 <sheet>
                     <field name="method_type" invisible="1"/>
                     <group col="4">
                         <div class="oe_title" style="width: 390px;" colspan="4">
-                            <label class="oe_edit_only" for="name" name="Name"/>
-                            <h1>
-                                <field name="name" class="oe_inline"/>
-                            </h1>
+                            <label class="oe_edit_only" for="name" string="Name"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
                         </div>
                         <field name="method_type" colspan="2"/>
                         <span colspan="2"/>
-                        <field name="filename" colspan="4"
-                               attrs="{'invisible':[('method_type','!=','import')], 'required':[('method_type', '=', 'import')]}"/>
-                        <field name="filepath" colspan="4"/>
+                        <field name="filename" colspan="4" attrs="{'invisible':[('method_type','!=','import')], 'required':[('method_type', '=', 'import')]}"/>
+                        <field name="filepath" colspan="4" />
                         <field name="company_id" colspan="4"/>
+                        <field name="active" colspan="4"/>
+                        <field name="md5_check" colspan="4"
+                            attrs="{'invisible':
+                            [('method_type','!=','import')]}"
+                        />
                     </group>
                     <group col="6">
                         <field name="after_import" attrs="{'invisible':[('method_type','!=','import')]}"/>
-                        <group col="4" colspan="4">
+                        <group col="4" colspan="4" >
                             <field name="move_path" colspan="4"
-                                   attrs="{'invisible':['|', '&amp;',
+                                attrs="{'invisible':['|', '&amp;',
                                 ('after_import','!=','move'),
                                 ('after_import','!=','move_rename'),
                                 ('method_type','!=','import')]}"/>
                             <field name="new_name" colspan="4"
-                                   attrs="{'invisible': ['|', '&amp;',
+                                attrs="{'invisible': ['|', '&amp;',
                                 ('after_import','!=','rename'),
                                 ('after_import','!=','move_rename'),
                                 ('method_type','!=','import')]}"/>
                         </group>
-                        <field name="md5_check" colspan="2"
-                               attrs="{'invisible':
-                                [('method_type','!=','import')]}"
-                        />
-                        <field name="active" colspan="2"/>
                     </group>
-                    <group name="Data importation setting">
-                        <field name="file_type" attrs="{'invisible':[('method_type','!=','import')]}"/>
+                    <group string="Data importation setting" attrs="{'invisible':[('method_type','!=','import')]}">
+                        <field name="file_type"/>
                     </group>
                 </sheet>
             </form>
@@ -61,7 +56,7 @@
     <record id="view_task_tree" model="ir.ui.view">
         <field name="model">external.file.task</field>
         <field name="arch" type="xml">
-            <tree name="Tasks">
+            <tree string="Tasks" >
                 <field name="name" select="1"/>
                 <field name="method_type"/>
                 <field name="filename"/>
