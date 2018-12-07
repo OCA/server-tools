@@ -2,18 +2,25 @@
 <odoo>
     <record id="view_attachment_improved_form" model="ir.ui.view">
         <field name="model">ir.attachment.metadata</field>
-        <field name="inherit_id" ref="attachment_base_synchronize.view_attachment_improved_form"/>
+        <field name="inherit_id" ref="attachment_base_synchronize.view_attachment_improved_form" />
         <field name="arch" type="xml">
             <field name="url" position="after">
                 <field name="task_id" attrs="{'required': [('file_type', '=', 'export_external_location')]}"/>
                 <field name="location_id"/>
             </field>
+            <!-- Add chatter -->
+            <xpath expr="//sheet" position="after">
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </xpath>
         </field>
     </record>
 
     <record id="view_external_attachment_tree" model="ir.ui.view">
         <field name="model">ir.attachment.metadata</field>
-        <field name="inherit_id" ref="attachment_base_synchronize.view_external_attachment_tree"/>
+        <field name="inherit_id" ref="attachment_base_synchronize.view_external_attachment_tree" />
         <field name="arch" type="xml">
             <field name="file_type" position="after">
                 <field name="task_id"/>

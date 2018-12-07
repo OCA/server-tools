@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <menuitem id="menu_file_exchange"
-              parent="base.menu_administration"
-              sequence="20"
-              name="File exchange"
-    />
+        parent="base.menu_administration"
+        sequence="20"
+        name="File exchange"
+        />
 </odoo>

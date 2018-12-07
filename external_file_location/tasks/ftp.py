@@ -11,6 +11,7 @@ except ImportError:
     _logger.debug('Cannot `import fs`.')
 
 
+# TODO: Migration to 11.0
 class FtpTask(ftpfs.FTPFS):
 
     _key = 'sftp'
@@ -20,6 +21,7 @@ class FtpTask(ftpfs.FTPFS):
     _hide_login = False
     _hide_password = False
     _hide_port = False
+    _hide_address = False
 
     @staticmethod
     def connect(location):

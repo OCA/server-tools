@@ -11,6 +11,7 @@ except ImportError:
     _logger.debug('Cannot `import fs`.')
 
 
+# TODO: Migration to 11.0
 class FileStoreTask(osfs.OSFS):
 
     _key = 'filestore'
@@ -19,6 +20,7 @@ class FileStoreTask(osfs.OSFS):
     _hide_login = True
     _hide_password = True
     _hide_port = True
+    _hide_address = False
 
     @staticmethod
     def connect(location):

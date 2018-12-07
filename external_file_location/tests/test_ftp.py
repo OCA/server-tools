@@ -8,12 +8,13 @@ import hashlib
 from .common import TestConnection, ContextualStringIO
 from .mock_server import server_mock_ftp
 from .mock_server import MultiResponse
-from odoo.exceptions import UserError
+from openerp.exceptions import UserError
 
 
 _logger = logging.getLogger(__name__)
 
 
+# TODO: Migration to 11.0
 class TestFtpConnection(TestConnection):
 
     def setUp(self):

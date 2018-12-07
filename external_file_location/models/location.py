@@ -23,9 +23,10 @@ class Location(models.Model):
     login = fields.Char()
     password = fields.Char()
     task_ids = fields.One2many('external.file.task', 'location_id')
-    hide_login = fields.Boolean()
-    hide_password = fields.Boolean()
-    hide_port = fields.Boolean()
+    hide_login = fields.Boolean(compute='_compute_protocol_dependent_fields')
+    hide_password = fields.Boolean(compute='_compute_protocol_dependent_fields')
+    hide_port = fields.Boolean(compute='_compute_protocol_dependent_fields')
+    hide_address = fields.Boolean(compute='_compute_protocol_dependent_fields')
     company_id = fields.Many2one(
         'res.company', 'Company',
         default=lambda self: self.env['res.company']._company_default_get(
@@ -35,23 +36,25 @@ class Location(models.Model):
     def _get_classes(self):
         "surcharge this method to add new protocols"
         return {
-            'ftp': ('FTP', FtpTask),
-            'sftp': ('SFTP', SftpTask),
-            'file_store': ('File Store', FileStoreTask),
+            # TODO: Migration to 11.0
+            # 'ftp': ('FTP', FtpTask),
+            # 'sftp': ('SFTP', SftpTask),
+            # 'file_store': ('File Store', FileStoreTask),
         }
 
     @api.model
     def _get_protocol(self):
         protocols = self._get_classes()
         selection = []
-        for key, val in protocols.iteritems():
+        for key, val in protocols.items():
             selection.append((key, val[0]))
         return selection
 
-    @api.onchange('protocol')
-    def onchange_protocol(self):
+    @api.depends('protocol')
+    def _compute_protocol_dependent_fields(self):
         protocols = self._get_classes()
-        if self.protocol:
+        active_protocols = [k for k, v in protocols.items()]
+        if self.protocol in active_protocols:
             cls = protocols.get(self.protocol)[1]
             self.port = cls._default_port
             if cls._hide_login:
@@ -66,3 +69,12 @@ class Location(models.Model):
                 self.hide_port = True
             else:
                 self.hide_port = False
+            if cls._hide_address:
+                self.hide_address = True
+            else:
+                self.hide_address = False
+        else:
+            self.hide_login = True
+            self.hide_password = True
+            self.hide_port = True
+            self.hide_address = True
