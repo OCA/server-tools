@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+<!-- TODO: Migration to 11.0
     <record id="location_ftp" model="external.file.location">
         <field name="name">TEST FTP</field>
         <field name="protocol">ftp</field>
@@ -8,7 +9,6 @@
         <field name="password">my-ftp-password</field>
         <field name="port">21</field>
     </record>
-
     <record id="location_sftp" model="external.file.location">
         <field name="name">TEST SFTP</field>
         <field name="protocol">sftp</field>
@@ -17,7 +17,6 @@
         <field name="password">my-sftp-password</field>
         <field name="port">22</field>
     </record>
-
     <record id="location_filestore" model="external.file.location">
         <field name="name">TEST File Store</field>
         <field name="protocol">file_store</field>
@@ -92,4 +91,5 @@
         <field name="task_id" eval="ref('external_file_location.filestore_export_task')"/>
         <field name="file_type">export_external_location</field>
     </record>
+    -->
 </odoo>

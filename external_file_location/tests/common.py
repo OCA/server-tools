@@ -1,11 +1,12 @@
 # coding: utf-8
 # @ 2016 Florian da Costa @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import odoo.tests.common as common
-from odoo import api
-from StringIO import StringIO
+import openerp.tests.common as common
+from openerp import api
+from io import StringIO
 
 
+# TODO: Migration to 11.0
 class ContextualStringIO(StringIO):
     """
     snippet from http://bit.ly/1HfH6uW (stackoverflow)

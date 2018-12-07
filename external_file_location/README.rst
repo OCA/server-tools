@@ -30,6 +30,11 @@ To use this module, you need to:
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/149/9.0
 
+Known issues / Roadmap
+======================
+
+* FTP, SFTP, Filestore functionality disabled.
+
 Bug Tracker
 ===========
 
@@ -53,6 +58,7 @@ Contributors
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Florian DA COSTA <florian.dacosta@akretion.com>
 * Carlos ALMEIDA <carlos.almeida@tkobr.com>
+* Dan Kiplangat <dan@sunflowerweb.nl>
 
 Maintainer
 ----------
