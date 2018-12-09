@@ -1,10 +1,10 @@
-# coding: utf-8
 # @ 2016 Florian DA COSTA @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
 import base64
 import os
+
+from odoo import models, fields, api
 
 
 class IrAttachmentMetadata(models.Model):
@@ -23,7 +23,7 @@ class IrAttachmentMetadata(models.Model):
 
     @api.multi
     def _run(self):
-        super(IrAttachmentMetadata, self)._run()
+        ret = super(IrAttachmentMetadata, self)._run()
         if self.file_type == 'export_external_location':
             protocols = self.env['external.file.location']._get_classes()
             location = self.location_id
@@ -32,7 +32,9 @@ class IrAttachmentMetadata(models.Model):
             conn = cls.connect(location)
             datas = base64.decodestring(self.datas)
             conn.setcontents(path, data=datas)
+            # pylint: disable=except-pass
             try:
                 conn.close()
             except AttributeError:
                 pass
+        return ret
