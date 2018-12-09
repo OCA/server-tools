@@ -7,7 +7,8 @@ External File Location
 ======================
 
 This module was written to extend the functionality of ir.attachment to support remote communication and allow you to import/export file to a remote server.
-For now, FTP, SFTP and local filestore are handled by the module.
+
+In version 8.0, this module used to support FTP, SFTP and local filestore options natively, but now a distinct `external_file_location_*` module is needed for each type of backend.
 
 Installation
 ============
@@ -33,7 +34,7 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* FTP, SFTP, Filestore functionality disabled.
+* FTP, SFTP, Filestore functionality not yet ported.
 
 Bug Tracker
 ===========

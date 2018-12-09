@@ -3,9 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
-from ..tasks.filestore import FileStoreTask
-from ..tasks.ftp import FtpTask
-from ..tasks.sftp import SftpTask
 
 
 class Location(models.Model):
@@ -34,13 +31,8 @@ class Location(models.Model):
 
     @api.model
     def _get_classes(self):
-        "surcharge this method to add new protocols"
-        return {
-            # TODO: Migration to 11.0
-            # 'ftp': ('FTP', FtpTask),
-            # 'sftp': ('SFTP', SftpTask),
-            # 'file_store': ('File Store', FileStoreTask),
-        }
+        """ override this method to add new protocols """
+        return {}
 
     @api.model
     def _get_protocol(self):
