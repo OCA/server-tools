@@ -13,12 +13,6 @@
     'depends': [
         'attachment_base_synchronize',
     ],
-    'external_dependencies': {
-        'python': [
-            'fs',
-            'paramiko',
-        ],
-    },
     'data': [
         'views/menu.xml',
         'views/attachment_view.xml',
@@ -26,9 +20,6 @@
         'views/task_view.xml',
         'data/cron.xml',
         'security/ir.model.access.csv',
-    ],
-    'demo': [
-        'demo/task_demo.xml',
     ],
     'installable': True,
     'application': False,
