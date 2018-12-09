@@ -20,31 +20,21 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_dir
-msgid "Checksum Dir"
-msgstr "Kontrolní součet Dir"
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_installed
-msgid "Checksum Installed"
-msgstr "Kontrolní součet je nainstalován"
-
-#. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
 msgid "Module"
 msgstr "Modul"
 
-#. module: module_auto_update
-#: model:ir.model,name:module_auto_update.model_base_module_upgrade
-msgid "Module Upgrade"
-msgstr "Aktualizace modulů"
+#~ msgid "Checksum Dir"
+#~ msgstr "Kontrolní součet Dir"
 
-#. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.module_check_upgrades_cron_ir_actions_server
-#: model:ir.cron,cron_name:module_auto_update.module_check_upgrades_cron
-#: model:ir.cron,name:module_auto_update.module_check_upgrades_cron
-msgid "Perform Module Upgrades"
-msgstr "Provést aktualizaci modulů"
+#~ msgid "Checksum Installed"
+#~ msgstr "Kontrolní součet je nainstalován"
+
+#~ msgid "Module Upgrade"
+#~ msgstr "Aktualizace modulů"
+
+#~ msgid "Perform Module Upgrades"
+#~ msgstr "Provést aktualizaci modulů"
 
 #~ msgid "Modules"
 #~ msgstr "Moduly"
