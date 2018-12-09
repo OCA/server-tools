@@ -19,28 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_dir
-msgid "Checksum Dir"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_installed
-msgid "Checksum Installed"
-msgstr ""
-
-#. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
 msgid "Module"
 msgstr "Modül"
-
-#. module: module_auto_update
-#: model:ir.model,name:module_auto_update.model_base_module_upgrade
-msgid "Module Upgrade"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.module_check_upgrades_cron_ir_actions_server
-#: model:ir.cron,cron_name:module_auto_update.module_check_upgrades_cron
-#: model:ir.cron,name:module_auto_update.module_check_upgrades_cron
-msgid "Perform Module Upgrades"
-msgstr ""
