@@ -1,4 +1,3 @@
-# coding: utf-8
 # @ 2015 Valentin CHEMIERE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -9,10 +8,9 @@ class Location(models.Model):
     _name = 'external.file.location'
     _description = 'Location'
 
-    name = fields.Char(string='Name', required=True)
+    name = fields.Char(required=True)
     protocol = fields.Selection(selection='_get_protocol', required=True)
-    address = fields.Char(
-        string='Address')
+    address = fields.Char()
     filestore_rootpath = fields.Char(
         string='FileStore Root Path',
         help="Server's root path")
@@ -21,7 +19,8 @@ class Location(models.Model):
     password = fields.Char()
     task_ids = fields.One2many('external.file.task', 'location_id')
     hide_login = fields.Boolean(compute='_compute_protocol_dependent_fields')
-    hide_password = fields.Boolean(compute='_compute_protocol_dependent_fields')
+    hide_password = fields.Boolean(
+        compute='_compute_protocol_dependent_fields')
     hide_port = fields.Boolean(compute='_compute_protocol_dependent_fields')
     hide_address = fields.Boolean(compute='_compute_protocol_dependent_fields')
     company_id = fields.Many2one(
@@ -45,26 +44,13 @@ class Location(models.Model):
     @api.depends('protocol')
     def _compute_protocol_dependent_fields(self):
         protocols = self._get_classes()
-        active_protocols = [k for k, v in protocols.items()]
-        if self.protocol in active_protocols:
+        if self.protocol in protocols:
             cls = protocols.get(self.protocol)[1]
             self.port = cls._default_port
-            if cls._hide_login:
-                self.hide_login = True
-            else:
-                self.hide_login = False
-            if cls._hide_password:
-                self.hide_password = True
-            else:
-                self.hide_password = False
-            if cls._hide_port:
-                self.hide_port = True
-            else:
-                self.hide_port = False
-            if cls._hide_address:
-                self.hide_address = True
-            else:
-                self.hide_address = False
+            self.hide_login = bool(cls._hide_login)
+            self.hide_password = bool(cls._hide_password)
+            self.hide_port = bool(cls._hide_port)
+            self.hide_address = bool(cls._hide_address)
         else:
             self.hide_login = True
             self.hide_password = True

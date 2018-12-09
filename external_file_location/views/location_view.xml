@@ -42,7 +42,7 @@
     <record id="view_location_tree" model="ir.ui.view">
         <field name="model">external.file.location</field>
         <field name="arch" type="xml">
-            <tree string="File Location">
+            <tree>
                 <field name="name" select="1"/>
                 <field name="protocol"/>
                 <field name="address"/>

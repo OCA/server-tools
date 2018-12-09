@@ -6,26 +6,23 @@
 External File Location
 ======================
 
-This module was written to extend the functionality of ir.attachment to support remote communication and allow you to import/export file to a remote server.
+This module was written to extend the functionality of ir.attachment to support remote communication and allow you to import/export file to a remote server. This is a base module, it needs child modules to be useful.
 
 In version 8.0, this module used to support FTP, SFTP and local filestore options natively, but now a distinct `external_file_location_*` module is needed for each type of backend.
 
 Installation
 ============
 
-To install this module, you need to:
-
-* fs python module at version 0.5.4 or under
-* Paramiko python module
+To install this module, you need to choose one of its child modules, eg. the one for Google Drive, and this module will come with automatically.
 
 Usage
 =====
 
 To use this module, you need to:
 
-* Add a location with your server infos
+* Add a location with your server info
 * Create a task with your file info and remote communication method
-* A cron task will trigger each task
+* A cron job will trigger each task
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -34,7 +31,7 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* FTP, SFTP, Filestore functionality not yet ported.
+* FTP, SFTP, Filestore functionality not yet ported. Can be ported to child modules such as `external_file_location_ftp` etc.
 
 Bug Tracker
 ===========
