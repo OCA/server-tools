@@ -28,10 +28,10 @@
         </field>
     </record>
 
-     <record id="view_external_attachment_tree" model="ir.ui.view">
+    <record id="view_external_attachment_tree" model="ir.ui.view">
         <field name="model">ir.attachment.metadata</field>
         <field name="arch" type="xml">
-            <tree string="Attachments" default_order='create_date desc'>
+            <tree default_order='create_date desc'>
                 <field name="name"/>
                 <field name="datas_fname"/>
                 <field name="file_type"/>
