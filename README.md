@@ -91,6 +91,7 @@ addon | version | summary
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 10.0.1.0.1 | Override System Parameters from server environment file
 [sql_export](sql_export/) | 10.0.1.0.0 | Export data in csv file with SQL requests
 [sql_request_abstract](sql_request_abstract/) | 10.0.1.0.1 | Abstract Model to manage SQL Requests
+[subscription_action](subscription_action/) | 10.0.1.0.0 | Run a server action on a newly created document
 [user_immutable](user_immutable/) | 10.0.1.0.0 | Add Immutable User Support
 [user_threshold](user_threshold/) | 10.0.1.0.1 | Add Configurable User Threshold Support
 [users_ldap_groups](users_ldap_groups/) | 10.0.0.0.0 | Adds user accounts to groups based on rules defined by the administrator.
