@@ -6,7 +6,7 @@
 Attachment Sync Google Drive
 ============================
 
-Automatically upload Account Related attachment  to Google Drive
+Automatically upload Attachments  to Google Drive
 
 Installation
 ============

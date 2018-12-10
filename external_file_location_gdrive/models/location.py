@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2018 Sunflower IT (http://sunflowerweb.nl)
+# Copyright 2018 Sunflower IT (http://sunflowerweb.nl)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import models, api
 from ..tasks.google_drive import GoogleDriveTask
 
 

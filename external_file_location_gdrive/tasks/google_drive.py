@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2018 Sunflower IT (http://sunflowerweb.nl)
+# Copyright 2018 Sunflower IT (http://sunflowerweb.nl)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import httplib2
 from io import BytesIO
 from googleapiclient import discovery
 from oauth2client.client import AccessTokenCredentials
-from googleapiclient.http import MediaFileUpload, MediaIoBaseUpload
+from googleapiclient.http import MediaIoBaseUpload
 from odoo.tools.mimetypes import guess_mimetype
 
 FOLDER = 'application/vnd.google-apps.folder'
