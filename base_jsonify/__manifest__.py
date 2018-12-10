@@ -22,6 +22,7 @@
         "base",
     ],
     "data": [
+        'views/ir_exports_view.xml',
     ],
     "demo": [
         'demo/export_demo.xml',
