@@ -11,7 +11,7 @@
 
     <record id="s3_export_task" model="external.file.task">
         <field name="method_type">export</field>
-        <field name="location_id" eval="ref('attachment_sync_s3.location_amazon_s3')"/>
+        <field name="location_id" eval="ref('external_file_location_s3.location_amazon_s3')"/>
         <field name="filepath">odoo_sync</field>
         <field name="name">Amazon S3 Task</field>
     </record>

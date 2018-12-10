@@ -6,7 +6,7 @@
 Attachment Sync Amazon S3
 =========================
 
-Automatically upload Account Related attachments to Amazon S3 Bucket
+Automatically upload Attachments to Amazon S3 Bucket
 
 Installation
 ============
