@@ -6,7 +6,7 @@
 Attachment Sync Dropbox
 =======================
 
-Automatically upload Account Related attachment  to dropbox
+Automatically upload Attachments  to dropbox
 
 Installation
 ============

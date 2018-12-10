@@ -4,7 +4,7 @@
 
 from odoo.tools import config
 from dropbox import exceptions as dropbox_exceptions
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 from odoo import _
 import logging
 _logger = logging.getLogger(__name__)

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Attachment Sync Dropbox",
+    "name": "External File Location Dropbox",
     "version": "11.0.1.0.0",
     "category": "Storage",
     "author": "Sunflower IT,Odoo Community Association (OCA)",
