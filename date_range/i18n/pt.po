@@ -291,8 +291,8 @@ msgstr "O campo Ativo permite-lhe esconder o período sem o remover."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator_type_id
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2027
-#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2024
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_id_2079
+#: model:ir.model.fields,field_description:date_range.field_date_range_type_name_2076
 msgid "Type"
 msgstr "Tipo"
 
