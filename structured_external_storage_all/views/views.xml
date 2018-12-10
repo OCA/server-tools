@@ -54,8 +54,7 @@
         <field name="name">attachment.sync.rule.view.tree</field>
         <field name="model">ir.attachment.sync.rule</field>
         <field name="arch" type="xml">
-            <tree string="Attachment Sync Rules">
-                <field name="sequence"/>
+            <tree>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="source_model"/>

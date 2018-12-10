@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
- <record id="view_external_attachment_search_inherit" model="ir.ui.view">
-    <field name="model">ir.attachment.metadata</field>
-    <field name="inherit_id" ref="attachment_base_synchronize.view_external_attachment_search"/>
-    <field name="arch" type="xml">
-        <xpath expr="//search/group" position="inside">
-            <filter string="Location" domain="[]" context="{'group_by': 'location_id'}"/>
-        </xpath>
-    </field>
+    <record id="view_external_attachment_search_inherit" model="ir.ui.view">
+        <field name="model">ir.attachment.metadata</field>
+        <field name="inherit_id" ref="attachment_base_synchronize.view_external_attachment_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group" position="inside">
+                <filter string="Location" domain="[]" context="{'group_by': 'location_id'}"/>
+            </xpath>
+        </field>
     </record>
 </odoo>

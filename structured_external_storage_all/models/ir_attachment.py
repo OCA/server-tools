@@ -1,21 +1,26 @@
-# -*- coding: utf-8 -*-
-# © 2018 Sunflower IT (http://sunflowerweb.nl)
+# Copyright 2018 Sunflower IT (http://sunflowerweb.nl)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 import datetime
-import dateutil.relativedelta as relativedelta
+
+from dateutil.relativedelta import relativedelta
+from jinja2 import TemplateError
+from jinja2.sandbox import SandboxedEnvironment
+from werkzeug import urls
+
 from odoo import api, models, tools
 from odoo.tools.safe_eval import safe_eval
-from werkzeug import urls
-from jinja2.sandbox import SandboxedEnvironment
+
+
 _logger = logging.getLogger(__name__)
-jinja2_template_env = SandboxedEnvironment(
+
+JINJA_ENV = SandboxedEnvironment(
     variable_start_string="${",
     variable_end_string="}",
     trim_blocks=True,               # do not output newline after blocks
     autoescape=True,                # XML/HTML automatic escaping
 )
-jinja2_template_env.globals.update({
+JINJA_ENV.globals.update({
     'str': str,
     'quote': urls.url_quote,
     'datetime': datetime,
@@ -25,7 +30,7 @@ jinja2_template_env.globals.update({
     'max': max,
     'sum': sum,
     'round': round,
-    'relativedelta': lambda *a, **kw: relativedelta.relativedelta(*a, **kw)
+    'relativedelta': relativedelta
 })
 
 
@@ -97,7 +102,7 @@ class Attachment(models.Model):
         return True
 
     def render_template(self, template, model, res_id):
-        template = jinja2_template_env.from_string(tools.ustr(template))
+        template = JINJA_ENV.from_string(tools.ustr(template))
         user = self.env.user
         record = self.env[model].browse(res_id)
 
@@ -107,9 +112,10 @@ class Attachment(models.Model):
         variables['object'] = record
         try:
             render_result = template.render(variables)
-        except Exception:
-            _logger.error("Failed to render template %r using values %r" % (
-                template, variables))
+        except TemplateError:
+            _logger.error(
+                "Failed to render template %r using values %r",
+                template, variables)
             render_result = u""
         if render_result == u"False":
             render_result = u""

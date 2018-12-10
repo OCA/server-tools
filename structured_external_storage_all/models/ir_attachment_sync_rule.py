@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2018 Sunflower IT (http://sunflowerweb.nl)
+# Copyright 2018 Sunflower IT (http://sunflowerweb.nl)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -19,39 +18,41 @@ class AttachmentSyncRule(models.Model):
         return [(m.object, m.name) for m in model_objs]
 
     sequence = fields.Integer(default=1)
-    name = fields.Char('Name', required=True)
+    name = fields.Char(required=True)
     active = fields.Boolean(default=True)
     source_model = fields.Many2one(
-        'res.request.link', 'Source Model', required=True,
+        'res.request.link', required=True,
         domain=[('ext_attachment_sync', '=', True)])
     sync_type = fields.Selection(
-        string='Sync Type', related='location_id.protocol', readonly=True)
-    last_sync_date = fields.Datetime('Last Sync Date')
+        related='location_id.protocol', readonly=True)
+    last_sync_date = fields.Datetime()
     location_id = fields.Many2one(
         'external.file.location', 'Sync Name', required=True)
     file_name_format = fields.Char(
-        'File Name Format', required=True, default="${object.name}")
+        required=True, default="${object.name}")
     domain = fields.Char(
-        'Domain', default="[]",
+        default="[]",
         help="Conditions that will apply e.g [(amount, condition, 500, )]")
     task_ids = fields.One2many(
         'external.file.task', related='location_id.task_ids', readonly=True)
 
-    @api.one
+    @api.multi
     @api.constrains('domain')
     def _check_domain(self):
-        model_obj = self.env[self.source_model.object]
-        domain = safe_eval(self.domain)
-        for leaf in domain:
-            if not isinstance(leaf, tuple) or not len(leaf) == 3:
-                raise ValidationError(
-                    _("Domain should have the format "
-                      "'[('field_name', 'condition', value), ...]'"))
-        model_obj.search(domain)  # Testing if domain works
+        for this in self:
+            model_obj = self.env[this.source_model.object]
+            domain = safe_eval(this.domain)
+            for leaf in domain:
+                if not isinstance(leaf, tuple) or not len(leaf) == 3:
+                    raise ValidationError(
+                        _("Domain should have the format "
+                          "'[('field_name', 'condition', value), ...]'"))
+            model_obj.search(domain)  # Testing if domain works
 
     @api.multi
     def run_sync_now(self):
         self.queue_for_sync()
+        # pylint: disable=invalid-commit
         self.env.cr.commit()  # syncer creates a new cursor
         self.sync_created_metadata()
 
