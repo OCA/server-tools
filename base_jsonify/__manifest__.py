@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017-2018 Akretion (http://www.akretion.com)
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # Raphaël Reverdy <raphael.reverdy@akretion.com>
