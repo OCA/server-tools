@@ -1,5 +1,6 @@
-This module add the jsonify method to the ORM. This method take as argument
-the browse record and the "parser" that specify the field to extract.
+This module adds a 'jsonify' method to every model of the ORM.
+It works on the current recordset and requires a single argument 'parser'
+that specify the field to extract.
 
 Example of parser:
 
