@@ -22,11 +22,11 @@ from openerp.models import Model
 from openerp import SUPERUSER_ID
 
 
-class res_users(Model):
+class ResUsers(Model):
     _inherit = 'res.users'
 
     def _login(self, db, login, password):
-        uid = super(res_users, self)._login(db, login, password)
+        uid = super(ResUsers, self)._login(db, login, password)
 
         if uid and uid != SUPERUSER_ID:
             self.update_dynamic_groups(uid, db)
@@ -53,6 +53,8 @@ class res_users(Model):
                         '(%s, %s)',
                         (uid, dynamic_group.id))
             self.invalidate_cache(cr, uid, ['groups_id'], [uid])
+            # we really need a new transaction
+            # pylint: disable=invalid-commit
             cr.commit()
         finally:
             cr.close()
