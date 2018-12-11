@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2017 Akretion (http://www.akretion.com)
 # Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -34,7 +33,7 @@ def convert_dict(dict_parser):
     tuples.
     """
     parser = []
-    for field, value in dict_parser.iteritems():
+    for field, value in dict_parser.items():
         if value is True:
             parser.append(field)
         else:
