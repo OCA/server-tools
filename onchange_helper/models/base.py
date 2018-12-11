@@ -12,7 +12,7 @@ class Base(models.AbstractModel):
     def _get_new_values(self, record, on_change_result):
         vals = on_change_result.get('value', {})
         new_values = {}
-        for fieldname, value in vals.iteritems():
+        for fieldname, value in vals.items():
             if fieldname not in record:
                 column = self._fields[fieldname]
                 if value and column.type == 'many2one':
@@ -25,10 +25,6 @@ class Base(models.AbstractModel):
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
         all_values = values.copy()
-        for field in self._fields:
-            if field not in all_values:
-                all_values[field] = False
-
         # If self is a record (play onchange on existing record)
         # we take the value of the field
         # If self is an empty record we will have an empty value
@@ -48,6 +44,8 @@ class Base(models.AbstractModel):
             all_values.update(new_values)
 
         return {
-            f: v for f, v in all_values.iteritems()
+            f: v for f, v in all_values.items()
             if not self._fields[f].compute
-            and (f in values or f in new_values)}
+               and (f in values or f in new_values)}
+
+
