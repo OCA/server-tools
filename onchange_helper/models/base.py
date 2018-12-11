@@ -2,8 +2,8 @@
 # Copyright 2016-2017 Camptocamp (http://www.camptocamp.com/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-
 from odoo import api, models
+
 
 class Base(models.AbstractModel):
     _inherit = 'base'
@@ -46,6 +46,4 @@ class Base(models.AbstractModel):
         return {
             f: v for f, v in all_values.items()
             if not self._fields[f].compute
-               and (f in values or f in new_values)}
-
-
+            and (f in values or f in new_values)}
