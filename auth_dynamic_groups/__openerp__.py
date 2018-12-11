@@ -21,7 +21,7 @@
 {
     "name": "Dynamic groups",
     "version": "8.0.1.0.0",
-    "author": "Therp BV",
+    "author": "Odoo Community Association (OCA),Therp BV",
     "license": "AGPL-3",
     "complexity": "normal",
     'summary': 'Have membership conditions for certain groups',
