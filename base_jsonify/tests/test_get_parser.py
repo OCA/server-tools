@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © <YEAR(S)> <AUTHOR(S)>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -9,20 +8,20 @@ class TestParser(TransactionCase):
 
     def test_getting_parser(self):
         expected_parser = [
-            u'active',
-            (u'category_id', [u'name']),
-            (u'child_ids', [(
-                u'child_ids', [u'name']),
-                (u'country_id', [u'code', u'name']),
-                u'email', u'id',
-                u'name'
+            'active',
+            ('category_id', ['name']),
+            ('child_ids', [(
+                'child_ids', ['name']),
+                ('country_id', ['code', 'name']),
+                'email', 'id',
+                'name'
             ]),
-            u'color',
-            u'comment',
-            (u'country_id', [u'code', u'name']),
-            u'credit_limit',
-            u'lang',
-            u'name']
+            'color',
+            'comment',
+            ('country_id', ['code', 'name']),
+            'credit_limit',
+            'lang',
+            'name']
 
         exporter = self.env.ref('base_jsonify.ir_exp_partner')
         parser = exporter.get_json_parser()
@@ -32,27 +31,27 @@ class TestParser(TransactionCase):
         self.env.ref('base_jsonify.category_id_name').write({
             'alias': 'category_id:category/name'
         })
-        expected_parser[1] = (u'category_id:category', [u'name'])
+        expected_parser[1] = ('category_id:category', ['name'])
         parser = exporter.get_json_parser()
         self.assertEqual(parser, expected_parser)
 
     def test_json_export(self):
         parser = [
-            u'lang',
-            u'comment',
-            u'credit_limit',
-            u'name',
-            u'color',
-            (u'child_ids:children', [
-                (u'child_ids:children', [u'name']),
-                u'email',
-                (u'country_id:country', [u'code', u'name']),
-                u'name',
-                u'id',
+            'lang',
+            'comment',
+            'credit_limit',
+            'name',
+            'color',
+            ('child_ids:children', [
+                ('child_ids:children', ['name']),
+                'email',
+                ('country_id:country', ['code', 'name']),
+                'name',
+                'id',
             ]),
-            (u'country_id:country', [u'code', u'name']),
-            u'active',
-            (u'category_id', [u'name'])
+            ('country_id:country', ['code', 'name']),
+            'active',
+            ('category_id', ['name'])
         ]
         partner = self.env['res.partner'].create({
             'name': 'Akretion',
@@ -67,28 +66,28 @@ class TestParser(TransactionCase):
             ],
         })
         expected_json = {
-            u'lang': u'en_US',
-            u'comment': None,
-            u'credit_limit': 0.0,
-            u'name': u'Akretion',
-            u'color': 0,
-            u'country': {
-                u'code': u'FR',
-                u'name': u'France'
+            'lang': 'en_US',
+            'comment': None,
+            'credit_limit': 0.0,
+            'name': 'Akretion',
+            'color': 0,
+            'country': {
+                'code': 'FR',
+                'name': 'France'
             },
-            u'active': True,
-            u'category_id': [
-                {u'name': u'Inovator'}
+            'active': True,
+            'category_id': [
+                {'name': 'Inovator'}
             ],
-            u'children': [{
-                u'id': partner.child_ids.id,
-                u'country': {
-                    u'code': u'FR',
-                    u'name': u'France'
+            'children': [{
+                'id': partner.child_ids.id,
+                'country': {
+                    'code': 'FR',
+                    'name': 'France'
                 },
-                u'children': [],
-                u'name': u'Sebatien Beau',
-                u'email': None
+                'children': [],
+                'name': 'Sebatien Beau',
+                'email': None
             }]
         }
         json_partner = partner.jsonify(parser)
