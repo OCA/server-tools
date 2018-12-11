@@ -15,6 +15,9 @@ class Base(models.AbstractModel):
 
     @api.model
     def __parse_field(self, parser_field):
+        """
+        Deducts how to handle a field from its parser
+        """
         field_name = parser_field
         subparser = None
         if isinstance(parser_field, tuple):
@@ -36,7 +39,7 @@ class Base(models.AbstractModel):
                 ('line_id', ['id', ('product_id', ['name']), 'price_unit'])
             ]
 
-        In order to be consitent with the odoo api the jsonify method always
+        In order to be consistent with the odoo api the jsonify method always
         return a list of object even if there is only one element in input
 
         By default the key into the json is the name of the field extracted
