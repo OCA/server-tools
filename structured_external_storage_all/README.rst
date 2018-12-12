@@ -6,35 +6,43 @@
 Structured External Storage All Attachments
 ===========================================
 
-Creates ir.attachment.metadata records for the attachments to sync to respective
-clouds: Dropbox, Google Drive, Amazon S3 Bucket.
+On top of `external_file_location`, this module allows you to define a structured set of syncing rules (eg. a syncing scheme) for ir.attachment records to an external storage service supported by any installed `external_file_location_*` modules.
+
+Mix-and-match is possible, as well as domain filtering - so for example it is possible to have the Sale Orders sync to Dropbox, 2018 Sale Orders to Google Drive also, and any invoices to S3.
+
+The destination folder location and file name for the attachments can be configured based on the attachment object fields, so for example the Sale Order Name or the Sale Order Year (Python-calculated formula from date). A dressed-down Mako template language can be used for this.
 
 Installation
 ============
-- Just install
+
+- Install this module
+- Install any `external_file_location_*` modules for external storage services that you want to use
 
 Configuration
 =============
 
+- Configure the `external_file_location_*` modules with the correct username
+  and password, and establish a connection (see README of those modules).
 - Create the Sync Rules in *Settings->External Backup->Attachment Sync Rules*
 
   - Select the Odoo 'Model' of which you want the attachments to sync
   - Select which 'Sync' to use. These are based on protocols installed through
-    the attachment_sync_xxx (Google Drive, Dropbox, Amazon S3) modules and can
-    be set per company
+    the `external_file_location_*` modules (Google Drive, Dropbox, Amazon S3)
+    and can be set per company
   - Sefine which files to include by 'Domain' and specify how they should be
-    named through 'File Name Format'
+    named through 'File Name Format', e.g "${object.name}" for Sale Orders 
+    will save the file as SO001.pdf depending on the SO name
   - Save and either 'Sync Now' or 'Queue for Sync'
 
-  .. image:: structured_external_storage_all/static/description/sync_rules.png
+  .. image:: static/description/sync_rules.png
      :width: 700 px
 
 - Queue for Sync button creates the metadata from old attachment files for the
   cron task: Settings > Technical > Database Structure > Meta Data Attachments
 - Add more models you want to sync attachments for in "Referenceable Models"
   *Settings->Technical-> Database Structure -> Referenceable Models*
-- Use Jinja templates for custom file names E.g "${object.name}" for Sale Orders 
-  will save the file as SO001.pdf depending on the SO name
+- Repeat this process for all desired sync rules. The sequence determines the
+  order of evaluation of the rules.
 
 Credits
 =======
@@ -64,5 +72,4 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 To contribute to this module, please visit https://odoo-community.org.
-
 
