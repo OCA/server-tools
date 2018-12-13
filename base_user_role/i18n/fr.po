@@ -132,7 +132,7 @@ msgid "Role"
 msgstr "Rôle"
 
 #. module: base_user_role
-#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1612
+#: model:ir.model.fields,field_description:base_user_role.field_res_users_role_line_ids_1613
 msgid "Role lines"
 msgstr "Role lines"
 
