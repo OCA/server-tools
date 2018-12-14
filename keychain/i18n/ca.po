@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 18:00+0000\n"
-"PO-Revision-Date: 2018-07-03 14:05+0000\n"
+"PO-Revision-Date: 2018-12-15 19:58+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: keychain
 #: code:addons/keychain/models/keychain.py:76
@@ -108,9 +108,8 @@ msgstr "Clauer"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_backend_keychain_account_id
-#, fuzzy
 msgid "Keychain account id"
-msgstr "keychain.account"
+msgstr "Id de compte Keychain"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account___last_update
@@ -202,9 +201,8 @@ msgstr "keychain.account"
 
 #. module: keychain
 #: model:ir.model,name:keychain.model_keychain_backend
-#, fuzzy
 msgid "keychain.backend"
-msgstr "keychain.account"
+msgstr "keychain.backend"
 
 #~ msgid "Accounts form"
 #~ msgstr "Formularis de comptes"
