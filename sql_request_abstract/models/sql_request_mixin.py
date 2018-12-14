@@ -15,6 +15,7 @@ from odoo.exceptions import UserError
 
 class SQLRequestMixin(models.AbstractModel):
     _name = 'sql.request.mixin'
+    _description = 'SQL Request Mixin'
 
     _clean_query_enabled = True
 
