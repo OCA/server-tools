@@ -4,7 +4,7 @@
 
 {
     'name': 'SQL Request Abstract',
-    'version': '11.0.1.0.1',
+    'version': '12.0.1.0.1',
     'author': 'GRAP,Akretion,Odoo Community Association (OCA)',
     'website': 'https://www.odoo-community.org',
     'license': 'AGPL-3',
