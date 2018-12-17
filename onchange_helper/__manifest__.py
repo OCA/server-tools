@@ -4,7 +4,8 @@
 {
     'name': 'Onchange Helper',
     'version': '12.0.1.0.0',
-    'summary': 'Technical module that ease execution of onchange in Python code',
+    'summary': 'Technical module that ease execution'
+    ' of onchange in Python code',
     'author': 'Akretion,Camptocamp,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/server-tools',
     'license': 'AGPL-3',
