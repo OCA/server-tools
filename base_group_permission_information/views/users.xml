@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_all_access_form" model="ir.ui.view">
+        <field name="name">res.users.all.access.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="button_compute_all_groups" type="object" string="Compute all access"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="ALL Access Rights Recap">
+                    <label for="all_rules_ids"/>
+                    <field name="all_rules_ids" readonly="1">
+                        <tree string="Rules">
+                            <field name="name"/>
+                            <field name="model_id"/>
+                            <field name="global"/>
+                        </tree>
+                    </field>
+                    <label for="all_access_ids"/>
+                    <field name="all_access_ids" readonly="1">
+                        <tree string="Access Rules">
+                            <field name="model_id"/>
+                            <field name="perm_read"/>
+                            <field name="perm_write"/>
+                            <field name="perm_create"/>
+                            <field name="perm_unlink"/>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                    <label for="all_menus_ids"/>
+                    <field name="all_menus_ids" readonly="1"/>
+                    <label for="all_views_ids"/>
+                    <field name="all_views_ids" readonly="1"/>
+                    <label for="trans_group_implied_ids"/>
+                    <field name="trans_group_implied_ids" readonly="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_groups_all_access_form" model="ir.ui.view">
+        <field name="name">res.groups.all.access.form</field>
+        <field name="model">res.groups</field>
+        <field name="inherit_id" ref="base.view_groups_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="button_compute_all_groups" type="object" string="Compute all access"/>
+                </header>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="ALL Access Rights Recap">
+                    <label for="all_rules_ids"/>
+                    <field name="all_rules_ids" readonly="1">
+                        <tree string="Rules">
+                            <field name="name"/>
+                            <field name="model_id"/>
+                            <field name="global"/>
+                        </tree>
+                    </field>
+                    <label for="all_access_ids"/>
+                    <field name="all_access_ids" readonly="1">
+                        <tree string="Access Rules">
+                            <field name="model_id"/>
+                            <field name="perm_read"/>
+                            <field name="perm_write"/>
+                            <field name="perm_create"/>
+                            <field name="perm_unlink"/>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                    <label for="all_menus_ids"/>
+                    <field name="all_menus_ids" readonly="1"/>
+                    <label for="all_views_ids"/>
+                    <field name="all_views_ids" readonly="1"/>
+                    <label for="trans_inplied_ids"/>
+                    <field name="trans_implied_ids" readonly="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_ir_model_access_pivot" model="ir.ui.view">
+         <field name="name">ir.model.access.pivot</field>
+         <field name="model">ir.model.access</field>
+         <field name="arch" type="xml">
+             <pivot>
+                 <field name="group_id" type="col"/>
+                 <field name="model_id"  type="row"/>
+                 <field name="create_int" type="measure"/>
+                 <field name="write_int" type="measure"/>
+                 <field name="read_int" type="measure"/>
+                 <field name="unlink_int" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+    <record id="base.ir_access_act" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+
+    <record id="view_ir_rule_pivot" model="ir.ui.view">
+         <field name="name">ir.rule</field>
+         <field name="model">ir.rule</field>
+         <field name="arch" type="xml">
+             <pivot>
+                 <field name="global"  type="row"/>
+                 <field name="model_id"  type="row"/>
+                 <field name="name"  type="row"/>
+                 <field name="create_int" type="measure"/>
+                 <field name="write_int" type="measure"/>
+                 <field name="read_int" type="measure"/>
+                 <field name="unlink_int" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+    <record id="base.action_rule" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+</odoo>
