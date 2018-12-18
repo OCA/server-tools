@@ -22,9 +22,12 @@ class Base(models.AbstractModel):
 
     @api.model
     def play_onchanges(self, values, onchange_fields):
-        onchange_specs = self._onchange_spec()
+        # _onchange_spec() will return onchange fields from the default view
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
+        onchange_specs = {
+            field_name: '1' for field_name, field in self._fields.items()
+        }
         all_values = values.copy()
         # If self is a record (play onchange on existing record)
         # we take the value of the field
@@ -38,7 +41,8 @@ class Base(models.AbstractModel):
                 }
             )
         else:
-            record_values = {}
+            # We get default values, they may be used in onchange
+            record_values = self.default_get(self._fields.keys())
         for field in self._fields:
             if field not in all_values:
                 all_values[field] = record_values.get(field, False)
@@ -52,5 +56,6 @@ class Base(models.AbstractModel):
         return {
             f: v
             for f, v in all_values.items()
-            if not self._fields[f].compute and (f in values or f in new_values)
+            if not self._fields[f].compute
+            and (f in values or f in new_values or f in onchange_fields)
         }
