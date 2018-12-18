@@ -1,8 +1,9 @@
 
 import logging
 
-from openerp.http import WebRequest
-from openerp.sql_db import Cursor
+from odoo.http import WebRequest
+from odoo import http
+from odoo.sql_db import Cursor
 
 from .models.profiler_profile import ProfilerProfile
 
@@ -40,6 +41,19 @@ def patch_cursor_init():
     Cursor.__init__ = init_f
 
 
+def patch_dispatch_rpc():
+    _logger.info('Patching Dispatch RPC http.dispatch_rpc')
+
+    dispatch_rpc = http.dispatch_rpc
+
+    def dispatch_rpc_f(service_name, method, params):
+        with ProfilerProfile.profiling():
+            return dispatch_rpc(service_name, method, params)
+
+    http.dispatch_rpc = dispatch_rpc_f
+
+
 def post_load():
     patch_web_request_call_function()
     patch_cursor_init()
+    patch_dispatch_rpc()
