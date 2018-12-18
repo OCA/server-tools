@@ -36,6 +36,7 @@
         <field name="arch" type="xml">
             <search string="Search Profiling lines">
                 <field name="profile_id"/>
+                <field name="cprof_fname"/>
             </search>
         </field>
     </record>
