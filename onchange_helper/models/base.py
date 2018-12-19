@@ -22,6 +22,14 @@ class Base(models.AbstractModel):
 
     @api.model
     def play_onchanges(self, values, onchange_fields):
+        """
+        :param values: dict of input value that
+        :param onchange_fields: fields for which onchange methods will be
+        played
+        Order in onchange_fields is very important as onchanges methods will
+        be played in that order.
+        :return: changed values
+        """
         # _onchange_spec() will return onchange fields from the default view
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
