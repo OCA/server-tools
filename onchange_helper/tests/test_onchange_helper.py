@@ -1,8 +1,8 @@
 # Copyright 2017 Onestein (<http://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-#from odoo.tests.common import TransactionCase
 import odoo.tests.common as common
+
 
 class TestOnchangeHelper(common.TransactionCase):
 
