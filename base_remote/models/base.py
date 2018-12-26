@@ -13,5 +13,7 @@ class Base(models.AbstractModel):
         try:
             remote_addr = current_thread().environ["REMOTE_ADDR"]
         except KeyError:
-            remote_addr = False
+            return self.env['res.remote']
+        except AttributeError:
+            return self.env['res.remote']
         return self.env['res.remote']._get_remote(remote_addr)
