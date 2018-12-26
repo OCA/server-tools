@@ -1,8 +1,6 @@
 # Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from xmlrpc.client import Fault
-
 from mock import patch
 from werkzeug.utils import redirect
 
@@ -56,9 +54,8 @@ class TestRemote(HttpCase):
         """Test Login Failure"""
         data1 = self.data_demo
         data1['password'] = 'Failure!'
-        with self.assertRaises(Fault):
-            self.assertFalse(self.xmlrpc_common.authenticate(
-                self.env.cr.dbname, data1["login"], data1["password"], {}))
+        self.assertFalse(self.xmlrpc_common.authenticate(
+            self.env.cr.dbname, data1["login"], data1["password"], {}))
         with self.cursor() as cr:
             env = self.env(cr)
             self.assertTrue(
