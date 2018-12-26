@@ -3,7 +3,6 @@
 
 from threading import current_thread
 from odoo import api, models, SUPERUSER_ID
-from odoo.exceptions import AccessDenied
 from odoo.service import wsgi_server
 
 
@@ -30,12 +29,9 @@ class ResUsers(models.Model):
         with cls.pool.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
             remote = env["res.users"].remote
-            remote.ensure_one()
-        result = method()
-        if not result:
-            # Force exception to record auth failure
-            raise AccessDenied()
-        return result
+            if remote:
+                remote.ensure_one()
+        return method()
 
     # Override all auth-related core methods
     @classmethod
