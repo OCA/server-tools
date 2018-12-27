@@ -72,7 +72,6 @@ class CompanyLDAP(models.Model):
                 user_id = self.with_context(
                     no_reset_password=True
                 ).get_or_create_user(conf, result[1][login_attr][0], result)
-                # ).get_or_create_user(conf, result['user'][1], result)
                 # this happens if something goes wrong while creating the user
                 # or fetching information from ldap
                 if not user_id:
@@ -112,13 +111,10 @@ class CompanyLDAP(models.Model):
         conn.simple_bind_s(conf['ldap_binddn'] or '',
                            conf['ldap_password'] or '')
         results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
-                                 # ldap_filter.encode('utf8'), None,
                                  ldap_filter, None,
                                  timeout=60)
         conn.unbind()
         return results
-        # return self.sudo().search([('ldap_server', '!=', False)],
-        #                           order='sequence').read([])
 
     def do_deactivate_unknown_users(self, known_user_ids):
         """Deactivate users not found in last populate run."""
