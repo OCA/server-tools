@@ -43,9 +43,24 @@ class Base(models.AbstractModel):
         for field in onchange_fields:
             onchange_values = self.onchange(all_values, field, onchange_specs)
             new_values.update(self._get_new_values(values, onchange_values))
-            all_values.update(new_values)
+            clean_new_values = self.clean_o2m_m2o_m2m_fields(new_values)
+            all_values.update(clean_new_values)
 
         return {
             f: v for f, v in all_values.iteritems()
             if not self._fields[f].compute
             and (f in values or f in new_values)}
+
+    @api.multi
+    def clean_o2m_m2o_m2m_fields(self, vals):
+        for itens in vals:
+            if type(vals.get(itens)) is list:
+                index = 1
+                while index < len(vals.get(itens)):
+                    for value in vals.get(itens)[index]:
+                        if type(value) is dict:
+                            for item in value:
+                                if type(value.get(item)) is tuple:
+                                    value[item] = value.get(item)[0]
+                    index += 1
+        return vals
