@@ -84,3 +84,33 @@ class TestKPI(TransactionCase):
             'max_fixed_value': 1,
         })
         self.assertFalse(range_error.valid)
+
+    def test_kpi_python(self):
+        kpi_category = self.env['kpi.category'].create({
+            'name': 'Dynamic KPIs'
+        })
+        kpi_threshold = self.env['kpi.threshold'].create({
+            'name': 'KPI Threshold for dynamic KPIs'
+        })
+        kpi_code = """
+            {
+                'value': 1.0,
+                'color': '#00FF00'
+            }
+        """
+        kpi = self.env['kpi'].create({
+            'name': 'Dynamic python kpi',
+            'description': 'Dynamic python kpi',
+            'category_id': kpi_category.id,
+            'threshold_id': kpi_threshold.id,
+            'periodicity': 1,
+            'periodicity_uom': 'day',
+            'kpi_type': 'python',
+            'kpi_code': kpi_code,
+        })
+        kpi.update_kpi_value()
+        kpi_history = self.env['kpi.history'].search(
+            [('kpi_id', '=', kpi.id)])
+        self.assertEqual(len(kpi_history), 1)
+        self.assertEqual(kpi_history.color, '#00FF00')
+        self.assertEqual(kpi_history.value, 1.0)

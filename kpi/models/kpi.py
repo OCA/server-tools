@@ -1,7 +1,8 @@
 # Copyright 2012 - Now Savoir-faire Linux <https://www.savoirfairelinux.com/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from odoo import fields, models, api
 from odoo.tools.safe_eval import safe_eval
 from odoo.tools import (
@@ -122,48 +123,56 @@ class KPI(models.Model):
                 obj.last_execution = False
 
     @api.multi
-    def compute_kpi_value(self):
-        for obj in self:
-            kpi_value = 0
-            if obj.kpi_code:
-                if obj.kpi_type == 'local' and is_sql_or_ddl_statement(
-                        obj.kpi_code):
-                    self.env.cr.execute(obj.kpi_code)
-                    dic = self.env.cr.dictfetchall()
-                    if is_one_value(dic):
-                        kpi_value = dic[0]['value']
-                elif (obj.kpi_type == 'external' and obj.dbsource_id.id and
-                      is_sql_or_ddl_statement(obj.kpi_code)):
-                    dbsrc_obj = obj.dbsource_id
-                    res = dbsrc_obj.execute(obj.kpi_code)
-                    if is_one_value(res):
-                        kpi_value = res[0]['value']
-                elif obj.kpi_type == 'python':
-                    kpi_value = safe_eval(obj.kpi_code, {'self': obj})
-
-            threshold_obj = obj.threshold_id
-            values = {
-                'kpi_id': obj.id,
+    def _get_kpi_value(self):
+        self.ensure_one()
+        kpi_value = 0
+        if self.kpi_code:
+            if self.kpi_type == 'local' and is_sql_or_ddl_statement(
+                    self.kpi_code):
+                self.env.cr.execute(self.kpi_code)
+                dic = self.env.cr.dictfetchall()
+                if is_one_value(dic):
+                    kpi_value = dic[0]['value']
+            elif (self.kpi_type == 'external' and self.dbsource_id.id and
+                  is_sql_or_ddl_statement(self.kpi_code)):
+                dbsrc_obj = self.dbsource_id
+                res = dbsrc_obj.execute(self.kpi_code)
+                if is_one_value(res):
+                    kpi_value = res[0]['value']
+            elif self.kpi_type == 'python':
+                kpi_value = safe_eval(self.kpi_code, {'self': self})
+        if isinstance(kpi_value, dict):
+            res = kpi_value
+        else:
+            threshold_obj = self.threshold_id
+            res = {
                 'value': kpi_value,
                 'color': threshold_obj.get_color(kpi_value),
             }
+        res.update({'kpi_id': self.id})
+        return res
+
+    @api.multi
+    def compute_kpi_value(self):
+        for obj in self:
+            history_vals = obj._get_kpi_value()
             history_obj = self.env['kpi.history']
-            history_obj.create(values)
+            history_obj.create(history_vals)
         return True
 
     @api.multi
     def update_next_execution_date(self):
         for obj in self:
             if obj.periodicity_uom == 'hour':
-                delta = timedelta(hours=obj.periodicity)
+                delta = relativedelta(hours=obj.periodicity)
             elif obj.periodicity_uom == 'day':
-                delta = timedelta(days=obj.periodicity)
+                delta = relativedelta(days=obj.periodicity)
             elif obj.periodicity_uom == 'week':
-                delta = timedelta(weeks=obj.periodicity)
+                delta = relativedelta(weeks=obj.periodicity)
             elif obj.periodicity_uom == 'month':
-                delta = timedelta(months=obj.periodicity)
+                delta = relativedelta(months=obj.periodicity)
             else:
-                delta = timedelta()
+                delta = relativedelta()
             new_date = datetime.now() + delta
 
             obj.next_execution_date = new_date.strftime(DATETIME_FORMAT)
