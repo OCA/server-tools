@@ -62,6 +62,7 @@ class KPI(models.Model):
     periodicity = fields.Integer('Periodicity', default=1)
 
     periodicity_uom = fields.Selection((
+        ('minute', 'Minute'),
         ('hour', 'Hour'),
         ('day', 'Day'),
         ('week', 'Week'),
@@ -165,6 +166,8 @@ class KPI(models.Model):
         for obj in self:
             if obj.periodicity_uom == 'hour':
                 delta = relativedelta(hours=obj.periodicity)
+            elif obj.periodicity_uom == 'minute':
+                delta = relativedelta(minutes=obj.periodicity)
             elif obj.periodicity_uom == 'day':
                 delta = relativedelta(days=obj.periodicity)
             elif obj.periodicity_uom == 'week':
