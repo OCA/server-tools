@@ -158,7 +158,7 @@ class KPI(models.Model):
         for obj in self:
             history_vals = obj._get_kpi_value()
             history_obj = self.env['kpi.history']
-            history_obj.create(history_vals)
+            history_obj.sudo().create(history_vals)
         return True
 
     @api.multi
