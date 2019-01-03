@@ -187,6 +187,7 @@ class TestDbBackup(common.TransactionCase):
 
     def test_action_backup_hourly(self):
         """ It should search all records with daily frequency"""
+
         rec_id = self.new_record()
         with mock.patch.object(rec_id, 'search'):
             rec_id.action_backup_all("hourly")

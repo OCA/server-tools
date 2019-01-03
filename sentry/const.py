@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016-2017 Versada <https://versada.eu/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -86,4 +85,5 @@ def get_sentry_options():
             'ignore_exceptions', DEFAULT_IGNORED_EXCEPTIONS, split_multiple),
         SentryOption('processors', DEFAULT_PROCESSORS, split_multiple),
         SentryOption('environment', None, None),
+        SentryOption('release', None, None),
     ]
