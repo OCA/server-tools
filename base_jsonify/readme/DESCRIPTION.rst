@@ -25,7 +25,7 @@ can define your mapping as follow into the parser definition:
 .. code-block:: python
 
     parser = [
-         'field_name:json_key'
+        'field_name:json_key'
     ]
 
 .. code-block:: python
@@ -40,4 +40,4 @@ can define your mapping as follow into the parser definition:
     ]
 
 Also the module provide a method "get_json_parser" on the ir.exports object
-that generate a parser from an ir.exports configuration
+that generate a parser from an ir.exports configuration.
