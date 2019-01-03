@@ -7,12 +7,15 @@ from odoo import api, models
 
 
 def update_dict(data, fields):
-    """
-    Contruct a tree of fields.
-    ie: {
-        "name": True,
-        "resource": True,
+    """Contruct a tree of fields.
+
+    Example:
+
+        {
+            "name": True,
+            "resource": True,
         }
+
     Order of keys is important.
     """
     field = fields[0]
@@ -27,10 +30,9 @@ def update_dict(data, fields):
 
 
 def convert_dict(dict_parser):
-    """
-    Converts the dict returned by update_dict to a list consistent with the
-    Odoo API. The list is composed of strings (field names or aliases) or
-    tuples.
+    """Convert dict returned by update_dict to list consistent w/ Odoo API.
+
+    The list is composed of strings (field names or aliases) or tuples.
     """
     parser = []
     for field, value in dict_parser.items():
@@ -46,9 +48,9 @@ class IrExport(models.Model):
 
     @api.multi
     def get_json_parser(self):
-        """
-        Creates a parser from a ir_exports record and returns it. This parser
-        can then be used to "jsonify" records of the ir_export's model.
+        """Creates a parser from ir.exports record and return it.
+
+        The final parser can be used to "jsonify" records of ir.export's model.
         """
         self.ensure_one()
         dict_parser = OrderedDict()
