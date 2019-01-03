@@ -14,9 +14,7 @@ class Base(models.AbstractModel):
 
     @api.model
     def __parse_field(self, parser_field):
-        """
-        Deducts how to handle a field from its parser
-        """
+        """Deduct how to handle a field from its parser."""
         field_name = parser_field
         subparser = None
         if isinstance(parser_field, tuple):
@@ -28,7 +26,8 @@ class Base(models.AbstractModel):
 
     @api.multi
     def jsonify(self, parser):
-        """ Convert the record according to the parser given
+        """Convert the record according to the given parser.
+
         Example of parser:
             parser = [
                 'name',
