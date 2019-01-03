@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2014 ABF OSIELL <http://osiell.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+
 
 {
     'name': 'User roles',
     'version': '10.0.1.0.2',
     'category': 'Tools',
     'author': 'ABF OSIELL, Odoo Community Association (OCA)',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'maintainer': 'ABF OSIELL',
     'website': 'http://www.osiell.com',
     'depends': [

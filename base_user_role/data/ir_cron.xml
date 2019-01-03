@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 ABF OSIELL <http://osiell.com>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+ -->
 <odoo noupdate="1">
 
 <record model="ir.cron" id="cron_update_users">
