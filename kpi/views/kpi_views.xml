@@ -75,6 +75,11 @@
         <field name="model">kpi</field>
         <field name="arch" type="xml">
             <form string="Key Performance Indicator">
+                <div class="alert alert-warning"
+                     attrs="{'invisible': [('cron_warn_msg', '=', False)]}" style="margin-bottom:0px;">
+                    <i class="fa fa-exclamation-circle fa-2x" style="padding-right:3mm;"/>
+                    <field class="oe_inline" name="cron_warn_msg" style="font-size: 16px;"/>
+                </div>
                 <sheet>
                     <group>
                         <group>

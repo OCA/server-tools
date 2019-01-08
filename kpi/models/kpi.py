@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 from odoo.tools.safe_eval import safe_eval
 from odoo.tools import (
     DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT,
@@ -35,6 +35,14 @@ RE_SELECT_QUERY = re.compile('.*(' + '|'.join((
     'INDEX',
 )) + ')')
 
+PERIODICITY_DICT = {
+    'minutes': 1,
+    'hours': 60,
+    'days': 1440,
+    'weeks': 43200,
+    'months': 172800,
+}
+
 
 def is_sql_or_ddl_statement(query):
     """Check if sql query is a SELECT statement"""
@@ -61,13 +69,10 @@ class KPI(models.Model):
     )
     periodicity = fields.Integer('Periodicity', default=1)
 
-    periodicity_uom = fields.Selection((
-        ('minute', 'Minute'),
-        ('hour', 'Hour'),
-        ('day', 'Day'),
-        ('week', 'Week'),
-        ('month', 'Month')
-    ), 'Periodicity UoM', required=True, default='day')
+    periodicity_uom = fields.Selection(
+        selection=lambda self:
+        self.env['ir.cron']._fields['interval_type'].selection,
+        string='Periodicity UoM', required=True, default='days')
 
     next_execution_date = fields.Datetime(
         'Next execution date',
@@ -107,6 +112,29 @@ class KPI(models.Model):
     company_id = fields.Many2one(
         'res.company', 'Company',
         default=lambda self: self.env.user.company_id.id)
+
+    cron_warn_msg = fields.Char(
+        'Cron Warning Message',
+        compute='_compute_cron_warn_msg',
+    )
+
+    @api.depends('periodicity_uom')
+    def _compute_cron_warn_msg(self):
+        self.cron_warn_msg = False
+        cron = self.env.ref('kpi.ir_cron_kpi_action',
+                            raise_if_not_found=False)
+        if not cron:
+            return
+        cron_periodicity = PERIODICITY_DICT[cron.interval_type]
+        periodicity = PERIODICITY_DICT[self.periodicity_uom]
+        if periodicity < cron_periodicity:
+            if periodicity*self.periodicity < cron_periodicity:
+                self.cron_warn_msg = _(
+                    'The cron that updates the KPI values is set to execute '
+                    'every %s %s. To update the cron periodicity please '
+                    'contact the system administrator' %
+                    (cron.interval_number, cron.interval_type)
+                )
 
     @api.multi
     def _compute_display_last_kpi_value(self):
@@ -164,15 +192,15 @@ class KPI(models.Model):
     @api.multi
     def update_next_execution_date(self):
         for obj in self:
-            if obj.periodicity_uom == 'hour':
+            if obj.periodicity_uom == 'hours':
                 delta = relativedelta(hours=obj.periodicity)
-            elif obj.periodicity_uom == 'minute':
+            elif obj.periodicity_uom == 'minutes':
                 delta = relativedelta(minutes=obj.periodicity)
-            elif obj.periodicity_uom == 'day':
+            elif obj.periodicity_uom == 'days':
                 delta = relativedelta(days=obj.periodicity)
-            elif obj.periodicity_uom == 'week':
+            elif obj.periodicity_uom == 'weeks':
                 delta = relativedelta(weeks=obj.periodicity)
-            elif obj.periodicity_uom == 'month':
+            elif obj.periodicity_uom == 'months':
                 delta = relativedelta(months=obj.periodicity)
             else:
                 delta = relativedelta()
@@ -186,9 +214,8 @@ class KPI(models.Model):
     @api.model
     def update_kpi_value(self):
         filters = [
-            '&',
-            '|',
             ('active', '=', True),
+            '|',
             ('next_execution_date', '<=', datetime.now().strftime(
                 DATETIME_FORMAT)),
             ('next_execution_date', '=', False),

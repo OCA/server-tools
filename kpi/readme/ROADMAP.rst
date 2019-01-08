@@ -1,0 +1,1 @@
+-* Use web_widget_color to display color associated to threshold range

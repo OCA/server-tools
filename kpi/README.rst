@@ -10,9 +10,9 @@ Key Performance Indicator
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fserver--tools-lightgray.png?logo=github
     :target: https://github.com/OCA/server-tools/tree/11.0/kpi
     :alt: OCA/server-tools
@@ -20,10 +20,10 @@ Key Performance Indicator
     :target: https://translation.odoo-community.org/projects/server-tools-11-0/server-tools-11-0-kpi
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/253/11.0
+    :target: https://runbot.odoo-community.org/runbot/149/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module provides the basis for creating key performance indicators,
 including static and dynamic thresholds (SQL query or Python code),
@@ -41,18 +41,17 @@ A threshold is a list of ranges and a range is:
 * a maximum value (fixed, sql query or python code)
 * color (RGB code like #00FF00 for green, #FFA500 for orange, #FF0000 for red)
 
-
 **Table of contents**
 
 .. contents::
-   :local:	
+   :local:
 
 Configuration
 =============
 
-Users must be added to the appropriate groups within Odoo as follows:
-* Creators: Settings > Users > Groups > Management System / User
-* Responsible Persons: Settings > Users > Groups > Management System / Approving User
+-Users must be added to the appropriate groups within Odoo as follows:
+-* Creators: Settings > Users > Groups > Management System / User
+-* Responsible Persons: Settings > Users > Groups > Management System / Approving User
 
 Usage
 =====
@@ -60,11 +59,10 @@ Usage
 Example of usage:
 https://www.youtube.com/watch?v=OC4-y2klzIk
 
-
 Known issues / Roadmap
 ======================
 
-* Use web_widget_color to display color associated to threshold range
+-* Use web_widget_color to display color associated to threshold range
 
 Bug Tracker
 ===========
@@ -79,6 +77,11 @@ Do not contact contributors directly about support or help with technical issues
 Credits
 =======
 
+Authors
+~~~~~~~
+
+* Savoir-faire Linux
+
 Contributors
 ~~~~~~~~~~~~
 
@@ -88,6 +91,7 @@ Contributors
 * Sandy Carter <sandy.carter@savoirfairelinux.com>
 * Gervais Naoussi <gervaisnaoussi@gmail.com>
 * Iván Todorovich <ivan.todorovich@gmail.com>
+* Adrià Gil <adria.gil@eficent.com>
 
 Maintainers
 ~~~~~~~~~~~

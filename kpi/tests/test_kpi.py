@@ -104,7 +104,7 @@ class TestKPI(TransactionCase):
             'category_id': kpi_category.id,
             'threshold_id': kpi_threshold.id,
             'periodicity': 1,
-            'periodicity_uom': 'day',
+            'periodicity_uom': 'days',
             'kpi_type': 'python',
             'kpi_code': kpi_code,
         })
