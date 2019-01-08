@@ -194,6 +194,15 @@ class BaseException(models.AbstractModel):
             if hasattr(exception_obj, field.name)
         ] or [None])[0]
 
+    def _rule_domain(self):
+        """Filter exception.rules.
+
+        By default, only the rules with the correct rule group
+        will be used.
+        """
+        # TODO fix self[0] : it may not be the same on all ids in self
+        return [('rule_group', '=', self[0].rule_group)]
+
     @api.multi
     def detect_exceptions(self):
         """List all exception_ids applied on self
@@ -203,8 +212,7 @@ class BaseException(models.AbstractModel):
             return []
         exception_obj = self.env['exception.rule']
         all_exceptions = exception_obj.sudo().search(
-            [('rule_group', '=', self[0].rule_group)])
-        # TODO fix self[0] : it may not be the same on all ids in self
+            self._rule_domain())
         model_exceptions = all_exceptions.filtered(
             lambda ex: ex.model == self._name)
         sub_exceptions = all_exceptions.filtered(
