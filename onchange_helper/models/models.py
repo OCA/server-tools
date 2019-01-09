@@ -53,6 +53,13 @@ class Base(models.AbstractModel):
 
     @api.multi
     def clean_o2m_m2o_m2m_fields(self, vals):
+        """The dict returned by onchange method fill o2m fields inside a tuple
+        ( eg.: 'tax_line_ids': [(5,), (0, 0, {'account_id': (14, u'111200
+        Tax Received')})] ), but if you want write the value it need to
+        be an integer not a tuple ( eg.: 'tax_line_ids': [(5,),
+        (0, 0, {'account_id': 14 })] ) or you receive error, the method below
+         try to solve the problem
+        """
         for itens in vals:
             if type(vals.get(itens)) is list:
                 index = 1
