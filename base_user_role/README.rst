@@ -17,6 +17,8 @@ you to:
   * define functional roles by aggregating low-level groups,
   * set user accounts with the predefined roles (roles are cumulative),
   * update groups of all relevant user accounts (all at once),
+  * update groups in a user account when you add or remove a role on this user
+    account,
   * ensure that user accounts will have the groups defined in their roles
     (nothing more, nothing less). In other words, you can not set groups
     manually on a user as long as there is roles configured on it,
@@ -25,6 +27,11 @@ you to:
 
 That way you make clear the different responsabilities within a company, and
 are able to add and update user accounts in a scalable and reliable way.
+
+Be careful, when you remove the last role to a user, if no role is defined on
+the user, its groups are let untouched (his rights are not updated).
+Therefore, always leave a role to a user even if this role is basic.
+For example, a role by default.
 
 Configuration
 =============
