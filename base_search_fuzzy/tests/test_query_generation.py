@@ -74,7 +74,7 @@ class QueryGenerationCase(TransactionCase):
             return
 
         if not self.TrgmIndex.index_exists('res.partner', 'name'):
-            field_partner_name = self.env.ref('base.field_res_partner_name')
+            field_partner_name = self.env.ref('base.field_res_partner__name')
             self.TrgmIndex.create({
                 'field_id': field_partner_name.id,
                 'index_type': 'gin',
