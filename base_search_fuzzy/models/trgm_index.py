@@ -17,6 +17,7 @@ class TrgmIndex(models.Model):
 
     _name = 'trgm.index'
     _rec_name = 'field_id'
+    _description = 'Trigram Index'
 
     field_id = fields.Many2one(
         comodel_name='ir.model.fields',
