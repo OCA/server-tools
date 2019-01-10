@@ -69,13 +69,28 @@ class CompanyLDAP(models.Model):
                     conf['ldap_filter'])
             results = self.get_ldap_entry_dicts(conf)
             for result in results:
+                login = result[1][login_attr][0].lower().strip()
                 user_id = self.with_context(
                     no_reset_password=True
-                ).get_or_create_user(conf, result[1][login_attr][0], result)
-                # this happens if something goes wrong while creating the user
-                # or fetching information from ldap
+                ).get_or_create_user(conf, login, result)
                 if not user_id:
-                    deactivate_unknown = False
+                    # this happens if the user exists but is active = False
+                    # -> fetch the user again and reactivate it
+                    self.env.cr.execute(
+                        "SELECT id FROM res_users "
+                        "WHERE lower(login)=%s",
+                        (login,))
+                    res = self.env.cr.fetchone()
+                    if res:
+                        self.env['res.users'].sudo().browse(
+                            res[0]
+                        ).write(
+                            {'active': True}
+                        )
+                    else:
+                        raise UserError(
+                            'Unable to process user with login %s' % login
+                        )
                 known_user_ids.append(user_id)
 
         users_created = users_model.search_count([]) - users_count_before
