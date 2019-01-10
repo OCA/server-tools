@@ -5,8 +5,8 @@
     'name': "Fuzzy Search",
     'summary': "Fuzzy search with the PostgreSQL trigram extension",
     'category': 'Uncategorized',
-    'version': '11.0.1.0.0',
-    'website': 'https://odoo-community.org/',
+    'version': '12.0.1.0.0',
+    'website': 'https://github.com/OCA/server-tools',
     'author': 'bloopark systems GmbH & Co. KG, '
               'Eficent, '
               'Serpent CS, '
