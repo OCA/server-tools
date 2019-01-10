@@ -8,7 +8,7 @@
 
 #. You can tweak the number of strings to be returned by adjusting the set
    limit (default: 0.3). NB: Currently you have to set the limit by executing
-   the following SQL statment:
+   the following SQL statement:
 
    ``self.env.cr.execute("SELECT set_limit(0.2);")``
 
