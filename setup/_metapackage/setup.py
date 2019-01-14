@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-base_search_fuzzy',
         'odoo12-addon-module_auto_update',
         'odoo12-addon-sentry',
     ],
