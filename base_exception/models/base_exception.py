@@ -201,8 +201,10 @@ class BaseException(models.AbstractModel):
         """List all exception_ids applied on self
         Exception ids are also written on records
         """
+        all_exception_ids = []  # return of the current def()
         if not self:
-            return []
+            return all_exception_ids
+
         exception_obj = self.env['exception.rule']
         all_exceptions = exception_obj.sudo().search(
             self._rule_domain())
@@ -210,23 +212,47 @@ class BaseException(models.AbstractModel):
             lambda ex: ex.model == self._name)
         sub_exceptions = all_exceptions.filtered(
             lambda ex: ex.model != self._name)
-
         reverse_field = self._reverse_field()
         if reverse_field:
             optimize = True
         else:
             optimize = False
-
         exception_by_rec, exception_by_rule = self._detect_exceptions(
             model_exceptions, sub_exceptions, optimize)
+        already_done = {
+            rule: self.browse(False)
+            for rule in exception_by_rule}
+        for rec, rules in exception_by_rec.iteritems():
+            # some rules can be excluded by _rule_domain
+            # we keep them if they are already present
+            rules_not_tested = rec.exception_ids - all_exceptions
+            # some exceptions will be set on a per record basis
+            # so we write all exceptions triggered on the rec even the ones
+            # found by domain.
+            # it will reduce the number of requests and
+            # ensure consistency
+            for rule, records in exception_by_rule.iteritems():
+                if rec in records:
+                    exception_by_rule[rule] = records - rec
+                    rules.append(rule.id)
+                    already_done[rule] |= rec  # keep track
+            outcome = rules + rules_not_tested.ids
+            if set(rec.exception_ids.ids) != set(outcome):
+                # don't trigger a db request if nothing had changed
+                rec.exception_ids = [(6, 0, outcome)]
+            all_exception_ids += outcome
 
-        all_exception_ids = []
-        for obj, exception_ids in exception_by_rec.iteritems():
-            obj.exception_ids = [(6, 0, exception_ids)]
-            all_exception_ids += exception_ids
-        for rule, exception_ids in exception_by_rule.iteritems():
-            rule[reverse_field] = [(6, 0, exception_ids.ids)]
-            if exception_ids:
+        for rule, records in exception_by_rule.iteritems():
+            # all the records may have not been evaluated this time
+            # we can only change the records in self
+            outcome = (
+                rule[reverse_field] - self +
+                already_done[rule] +
+                records)
+            if rule[reverse_field] != outcome:
+                # don't trigger a db request if nothing had changed
+                rule[reverse_field] = [(6, 0, outcome.ids)]
+            if records:
                 all_exception_ids += [rule.id]
         return list(set(all_exception_ids))
 
@@ -298,12 +324,13 @@ class BaseException(models.AbstractModel):
 
         if len(python_rules) or len(dom_rules) or sub_exceptions:
             for rec in self:
+                exception_by_rec.setdefault(rec, [])
                 for rule in python_rules:
                     if (
                         not rec.ignore_exception and
                         self._rule_eval(rule, rec.rule_group, rec)
                     ):
-                        exception_by_rec.setdefault(rec, []).append(rule.id)
+                        exception_by_rec[rec].append(rule.id)
                         exception_set.add(rule.id)
                 for rule in dom_rules:
                     # there is no reverse many2many, so this rule
@@ -312,8 +339,7 @@ class BaseException(models.AbstractModel):
                     domain.append(['ignore_exception', '=', False])
                     domain.append(['id', '=', rec.id])
                     if self.search_count(domain):
-                        exception_by_rec.setdefault(
-                            rec, []).append(rule.id)
+                        exception_by_rec[rec].append(rule.id)
                         exception_set.add(rule.id)
                 if sub_exceptions:
                     group_line = rec.rule_group + '_line'
