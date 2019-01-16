@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="ir_sequence_form_view">
+        <field name="name">ir.sequence.form (in sequence_date_range)</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.sequence_view"/>
+        <field name="priority" eval="90"/>
+        <field name="arch" type="xml">
+            <field name="use_date_range" position="after">
+                <field name="date_range_field" attrs="{'invisible': [('use_date_range', '!=', True)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

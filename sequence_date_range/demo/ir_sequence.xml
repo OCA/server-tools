@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="ir_sequence_demo" model="ir.sequence">
+        <field name="name">Demo sequence</field>
+        <field name="code">custom.demo.sequence</field>
+        <field name="prefix">STJ/%(range_year)s-%(range_month)s-%(range_day)s/</field>
+        <field name="date_range_field">date_to</field>
+        <field name="padding" eval="4"/>
+        <field name="use_date_range" eval="True"/>
+        <field name="number_increment" eval="1"/>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="ir_sequence_date_range_demo1" model="ir.sequence.date_range">
+        <field name="sequence_id" ref="ir_sequence_demo"/>
+        <field name="date_from" eval="time.strftime(str(DateTime.today().year - 2) + '-10-01')"/>
+        <field name="date_to" eval="time.strftime(str(DateTime.today().year - 1) + '-09-30')"/>
+        <field name="number_next" eval="1"/>
+    </record>
+
+    <record id="ir_sequence_date_range_demo2" model="ir.sequence.date_range">
+        <field name="sequence_id" ref="ir_sequence_demo"/>
+        <field name="date_from" eval="time.strftime(str(DateTime.today().year - 1) + '-10-01')"/>
+        <field name="date_to" eval="time.strftime(str(DateTime.today().year) + '-09-30')"/>
+        <field name="number_next" eval="1"/>
+    </record>
+
+    <record id="ir_sequence_date_range_demo3" model="ir.sequence.date_range">
+        <field name="sequence_id" ref="ir_sequence_demo"/>
+        <field name="date_from" eval="time.strftime(str(DateTime.today().year) + '-10-01')"/>
+        <field name="date_to" eval="time.strftime(str(DateTime.today().year + 1) + '-09-30')"/>
+        <field name="number_next" eval="1"/>
+    </record>
+</odoo>
