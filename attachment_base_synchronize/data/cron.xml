@@ -11,7 +11,6 @@
         <field name="model_id" ref="model_ir_attachment_metadata"/>
         <field name="state">code</field>
         <field name="code">model.run_attachment_metadata_scheduler()</field>
-        <field name="args">([])</field>
     </record>
 
 </odoo>
