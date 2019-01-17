@@ -77,6 +77,7 @@ setuptools.setup(
         'odoo10-addon-scheduler_error_mailer',
         'odoo10-addon-sentry',
         'odoo10-addon-sequence_check_digit',
+        'odoo10-addon-sequence_date_range',
         'odoo10-addon-server_environment',
         'odoo10-addon-server_environment_ir_config_parameter',
         'odoo10-addon-sql_export',
