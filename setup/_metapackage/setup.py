@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo11-addon-base_remote',
         'odoo11-addon-base_search_fuzzy',
         'odoo11-addon-base_technical_user',
+        'odoo11-addon-base_view_inheritance_extension',
         'odoo11-addon-configuration_helper',
         'odoo11-addon-database_cleanup',
         'odoo11-addon-datetime_formatter',
