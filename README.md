@@ -87,6 +87,7 @@ addon | version | summary
 [scheduler_error_mailer](scheduler_error_mailer/) | 10.0.1.0.0 | Scheduler Error Mailer
 [sentry](sentry/) | 10.0.1.0.1 | Report Odoo errors to Sentry
 [sequence_check_digit](sequence_check_digit/) | 10.0.1.0.0 | Adds a check digit on sequences
+[sequence_date_range](sequence_date_range/) | 10.0.1.0.0 | Module used to use the year of the date_to into sequences (instead of date_from)
 [server_environment](server_environment/) | 10.0.1.3.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 10.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 10.0.1.0.1 | Override System Parameters from server environment file
