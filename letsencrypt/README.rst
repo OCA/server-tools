@@ -53,9 +53,6 @@ them as configuration parameters ``letsencrypt.altname.N`` with ``N`` starting
 from ``0``. The amount of domains that can be added are subject to `rate
 limiting <https://community.letsencrypt.org/t/rate-limits-for-lets-encrypt/6769>`_.
 
-Although ACME v2 protocol is implemented in ``acme-tiny`` `there is no plan to support 
-wildcard names <https://github.com/diafygi/acme-tiny/issues/195#issuecomment-372097617>`_.
-
 Note that all those domains must be publicly reachable on port 80 via HTTP, and
 they must have an entry for ``.well-known/acme-challenge`` pointing to your odoo
 instance.
