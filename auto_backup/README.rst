@@ -30,6 +30,17 @@ remove them automatically and even write them to an external server
 through an encrypted tunnel. You can even specify how long local backups
 and external backups should be kept, automatically!
 
+Split scheduled operations
+=========================
+If you want schedule only one operation instead of all at once, which is the default cronjob, on the python code you have to use this code: model.browse(id of backup operation).action_backup()  
+Now create as many jobs you need.
+
+Example (Two backup operations):
+--------------------------------
+Backup operation with id:1- daily copying only the database   (pg_dump)               Python code: model.browse(1).action_backup()
+Backup operation with id:4- weekly copying db+datastore      zip(includes filestore)  Python code: model.browse(4).action_backup()
+
+
 Connect with an FTP Server
 --------------------------
 
