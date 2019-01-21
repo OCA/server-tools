@@ -2,12 +2,12 @@
 
 
 import socket
-from odoo.addons.mail.tests.common import TestMail
-from odoo.addons.mail.tests.test_mail_gateway import MAIL_TEMPLATE
+from odoo.addons.test_mail.data.test_mail_data import MAIL_TEMPLATE
+from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
 from odoo.tools import mute_logger
 
 
-class TestFetchmailNotifyErrorToSender(TestMail):
+class TestFetchmailNotifyErrorToSender(TestMailgateway):
 
     def setUp(self):
         super(TestFetchmailNotifyErrorToSender, self).setUp()
@@ -27,7 +27,8 @@ class TestFetchmailNotifyErrorToSender(TestMail):
         email_from='Sylvie Lelitre <test.sylvie.lelitre@agrolait.com>',
         cc_email='',
         msg_id='<1198923581.41972151344608186760.JavaMail@agrolait.com>',
-        model=None, target_model='mail.test', target_field='name', ctx=False,
+        model=None, target_model='mail.test.simple', target_field='name',
+        ctx=None
     ):
         self.assertFalse(self.env[target_model].search([
             (target_field, '=', subject),
@@ -61,7 +62,7 @@ class TestFetchmailNotifyErrorToSender(TestMail):
                 to_email='noone@example.com',
                 subject='spam',
                 extra='In-Reply-To: <12321321-openerp-%d-mail.test@%s>' % (
-                    self.test_public.id,
+                    self.test_record.id,
                     socket.gethostname(),
                 ),
                 ctx={
