@@ -47,5 +47,5 @@ class Base(models.AbstractModel):
 
         return {
             f: v for f, v in all_values.iteritems()
-            if not self._fields[f].compute
+            if not (self._fields[f].compute and not self._fields[f].inverse)
             and (f in values or f in new_values)}
