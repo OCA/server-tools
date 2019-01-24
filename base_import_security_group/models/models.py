@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Anubía, soluciones en la nube,SL (http://www.anubia.es)
 # Copyright 2017 Onestein (http://www.onestein.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -26,7 +25,7 @@ class Base(models.AbstractModel):
             raise_if_not_found=False
         )
         if not allowed_group_id or current_user.has_group(allowed_group):
-            res = super(Base, self).load(fields=fields, data=data)
+            res = super().load(fields=fields, data=data)
         else:
             msg = ('User (ID: %s) is not allowed to import data '
                    'in model %s.') % (self.env.uid, self._name)

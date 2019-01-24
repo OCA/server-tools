@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Onestein (http://www.onestein.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -8,7 +7,7 @@ from odoo.tests import common
 
 class TestImportSecurityGroup(common.HttpCase):
     def setUp(self):
-        super(TestImportSecurityGroup, self).setUp()
+        super().setUp()
         self.Access = self.env['ir.model.access']
         self.user_test = self.env.ref('base.user_demo')
 

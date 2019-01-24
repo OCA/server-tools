@@ -1,30 +1,42 @@
 odoo.define('web.ListImport', function (require) {
     "use strict";
-    var core = require('web.core');
+
+    var KanbanController = require('web.KanbanController');
+    var KanbanView = require('web.KanbanView');
+    var ListController = require('web.ListController');
     var ListView = require('web.ListView');
-    var Model = require('web.Model');
+    var session = require('web.session');
 
-    ListView.prototype.defaults.import_enabled = false;
-    ListView.include(/** @lends instance.web.ListView# */{
+    var ImportViewMixin = {
 
-        load_list: function (data, grouped) {
+    init: function (viewInfo, params) {
 
-            var self = this;
-            var Users = new Model('res.users');
+        var self = this
+        var result = self._super.apply(self, arguments);
+        var base_group = 'base_import_security_group.group_import_csv';
 
-            var result = this._super.apply(this, arguments);
-            Users.call('has_group', ['base_import_security_group.group_import_csv'])
-                .then(function (result) {
-                    var import_enabled = result;
-                    self.options.import_enabled = import_enabled;
+        session.user_has_group(base_group).then(function (result){
+            var importEnabled = false
+            if (result){
+                importEnabled =  true;
+            }
+            self.controllerParams.importEnabled = importEnabled;
+            });
+        },
 
-                    if (import_enabled === false) {
-                        if (self.$buttons) {
-                            self.$buttons.find('.o_button_import').remove();
-                        }
-                    }
-                });
-            return result;
-        }
+    };
+
+    ListView.include({
+    init: function () {
+        this._super.apply(this, arguments);
+        ImportViewMixin.init.apply(this, arguments);
+        },
+    });
+
+    KanbanView.include({
+    init: function () {
+        this._super.apply(this, arguments);
+        ImportViewMixin.init.apply(this, arguments);
+        },
     });
 });
