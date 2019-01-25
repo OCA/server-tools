@@ -8,11 +8,10 @@ from openupgradelib import openupgrade
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
     cr = env.cr
-    
     cr.execute("SELECT 1 FROM pg_class WHERE relname = 'sale_exception'")
-    if cr.fetchone():
+    if openupgrade.table_exists('sale_exception'):
         openupgrade.rename_tables(cr, [('sale_exception', 'exception_rule')])
-        
+
     except_model = env['ir.model'].search([('name', '=', 'sale.exception')])
     if len(except_model) == 1:
         openupgrade.rename_models(cr, [('sale.exception', 'exception.rule')])
