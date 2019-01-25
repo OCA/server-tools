@@ -22,6 +22,7 @@
 import re
 from openerp.osv import orm, fields  # pylint: disable=W0402
 from openerp import SUPERUSER_ID
+from openerp.tools.translate import _
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -100,12 +101,29 @@ class CompanyLDAP(orm.Model):
                     conf['ldap_filter'])
             results = self.get_ldap_entry_dicts(conf)
             for result in results:
+                login = result[1][login_attr][0].lower().strip()
                 user_id = self.get_or_create_user(
-                    cr, uid, conf, result[1][login_attr][0], result)
-                # this happens if something goes wrong while creating the user
-                # or fetching information from ldap
+                    cr, uid, conf, login, result)
                 if not user_id:
-                    deactivate_unknown = False
+                    # this happens if the user exists but is active = False
+                    # -> fetch the user again and reactivate it
+                    cr.execute(
+                        "SELECT id FROM res_users "
+                        "WHERE lower(login)=%s",
+                        (login,))
+                    res = cr.fetchone()
+                    if res:
+                        self.pool.get('res.users').write(
+                            cr, SUPERUSER_ID,
+                            res[0],
+                            {'active': True},
+                            context=context
+                        )
+                    else:
+                        raise orm.except_orm(
+                            _('UserError'),
+                            _('Unable to process user with login %s' % login)
+                        )
                 known_user_ids.append(user_id)
 
         users_no_after = users_pool.search(
