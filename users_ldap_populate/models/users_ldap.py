@@ -78,7 +78,7 @@ class CompanyLDAP(models.Model):
                     # -> fetch the user again and reactivate it
                     self.env.cr.execute(
                         "SELECT id FROM res_users "
-                        "WHERE lower(login=%s",
+                        "WHERE lower(login)=%s",
                         (login,))
                     res = self.env.cr.fetchone()
                     if res:
