@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_type
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_type
 msgid ""
 "Cite from PostgreSQL documentation: \"As a rule of thumb, a GIN index is "
 "faster to search than a GiST index, but slower to build or update; so GIN is "
@@ -28,22 +28,22 @@ msgid ""
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_uid
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_create_date
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_display_name
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_field_id
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__field_id
 msgid "Field"
 msgstr ""
 
@@ -58,17 +58,17 @@ msgid "GiST"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_id
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_index_name
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_name
 msgid "Index Name"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_index_type
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__index_type
 msgid "Index Type"
 msgstr ""
 
@@ -79,17 +79,17 @@ msgid "Invalid field %r in domain term %r"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index___last_update
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_uid
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index_write_date
+#: model:ir.model.fields,field_description:base_search_fuzzy.field_trgm_index__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
@@ -99,7 +99,7 @@ msgid "Models"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_index_name
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__index_name
 msgid ""
 "The index name is automatically generated like fieldname_indextype_idx. If "
 "the index already exists and the index is located in the same table then "
@@ -108,25 +108,21 @@ msgid ""
 msgstr ""
 
 #. module: base_search_fuzzy
-#: code:addons/base_search_fuzzy/models/trgm_index.py:125
+#: code:addons/base_search_fuzzy/models/trgm_index.py:126
 #, python-format
 msgid "The pg_trgm extension does not exists or cannot be installed."
 msgstr ""
 
 #. module: base_search_fuzzy
 #: model:ir.actions.act_window,name:base_search_fuzzy.trgm_index_action
+#: model:ir.model,name:base_search_fuzzy.model_trgm_index
 #: model:ir.ui.menu,name:base_search_fuzzy.trgm_index_menu
-#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
-#: model:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
+#: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_form
+#: model_terms:ir.ui.view,arch_db:base_search_fuzzy.trgm_index_view_tree
 msgid "Trigram Index"
 msgstr ""
 
 #. module: base_search_fuzzy
-#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index_field_id
+#: model:ir.model.fields,help:base_search_fuzzy.field_trgm_index__field_id
 msgid "You can either select a field of type \"text\" or \"char\"."
-msgstr ""
-
-#. module: base_search_fuzzy
-#: model:ir.model,name:base_search_fuzzy.model_trgm_index
-msgid "trgm.index"
 msgstr ""
