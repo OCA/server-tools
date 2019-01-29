@@ -71,7 +71,10 @@ class ProfilerProfile(models.Model):
 
     @api.model
     def _find_loggers_path(self):
-        self.env.cr.execute("SHOW log_directory")
+        try:
+            self.env.cr.execute("SHOW log_directory")
+        except ProgrammingError:
+            return
         log_directory = self.env.cr.fetchone()[0]
         self.env.cr.execute("SHOW log_filename")
         log_filename = self.env.cr.fetchone()[0]
@@ -123,12 +126,16 @@ class ProfilerProfile(models.Model):
     def onchange_enable_postgresql(self):
         if not self.enable_postgresql:
             return
-        self.env.cr.execute("SHOW config_file")
-        pg_config_file = self.env.cr.fetchone()[0]
+        try:
+            self.env.cr.execute("SHOW config_file")
+        except ProgrammingError:
+            pg_config_file = None
+        else:
+            pg_config_file = self.env.cr.fetchone()[0]
         db_host = tools.config.get('db_host')
         if db_host == 'localhost' or db_host == '127.0.0.1':
             db_host = False
-        if db_host:
+        if db_host and pg_config_file:
             pg_config_file = 'postgres@%s:%s' % (db_host, pg_config_file)
             self.pg_remote = db_host
 
@@ -308,7 +315,10 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
         except IOError:
             self.description += (
                 "\nInstall 'apt-get install pgbadger'")
+            return
         try:
+            if not self.pg_log_path:
+                raise IOError
             with open(self.pg_log_path, "r"):
                 pass
         except IOError:
@@ -316,7 +326,7 @@ export PGOPTIONS="-c log_min_duration_statement=0 \\
                 "\nCheck if exists and has permission to read the log file."
                 "\nMaybe running: chmod 604 '%s'"
             ) % self.pg_log_path
-
+            return
         pgbadger_cmd = [
             pgbadger_bin, '-f', 'stderr', '--sample', '15',
             '-o', '-', '-x', 'html', '--quiet',
