@@ -6,8 +6,9 @@
 import datetime
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo import SUPERUSER_ID
+from odoo.exceptions import ValidationError
 
 
 _logger = logging.getLogger(__name__)
@@ -73,6 +74,20 @@ class ResUsersRoleLine(models.Model):
     date_from = fields.Date(u"From")
     date_to = fields.Date(u"To")
     is_enabled = fields.Boolean(u"Enabled", compute='_compute_is_enabled')
+    company_id = fields.Many2one(
+        'res.company', 'Company',
+        default=lambda self: self.env.user.company_id)
+
+    @api.multi
+    @api.constrains('user_id', 'company_id')
+    def _check_company(self):
+        for record in self:
+            if (self.company_id and
+                    self.company_id != self.user_id.company_id and
+                    self.company_id not in self.user_id.company_ids):
+                raise ValidationError(
+                    _('User "{}" does not have access to the company "{}"')
+                    .format(self.user_id.name, self.company_id.name))
 
     @api.multi
     @api.depends('date_from', 'date_to')
