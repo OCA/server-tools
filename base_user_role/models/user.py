@@ -62,9 +62,8 @@ class ResUsers(models.Model):
                 lambda rec: rec.is_enabled)
             for role_line in role_lines:
                 role = role_line.role_id
-                if role:
-                    group_ids.append(role.group_id.id)
-                    group_ids.extend(role.implied_ids.ids)
+                group_ids.append(role.group_id.id)
+                group_ids.extend(role.implied_ids.ids)
             group_ids = list(set(group_ids))    # Remove duplicates IDs
             vals = {
                 'groups_id': [(6, 0, group_ids)],
