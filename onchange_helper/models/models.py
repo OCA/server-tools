@@ -34,7 +34,7 @@ class Base(models.AbstractModel):
         # we need all fields in the dict even the empty ones
         # otherwise 'onchange()' will not apply changes to them
         onchange_specs = {
-            field_name: '1' for field_name, field in self._fields.items()
+            field_name: '1' for field_name in self._fields
         }
         all_values = values.copy()
 
@@ -46,15 +46,17 @@ class Base(models.AbstractModel):
             record_values = self._convert_to_write(
                 {
                     field_name: self[field_name]
-                    for field_name, field in self._fields.items()
+                    for field_name in self._fields
                 }
             )
         else:
             # We get default values, they may be used in onchange
             record_values = self.default_get(self._fields.keys())
-        for field in self._fields:
-            if field not in all_values:
-                all_values[field] = record_values.get(field, False)
+        for field_name, field in self._fields.items():
+            if not field.store:
+                continue
+            if field_name not in all_values:
+                all_values[field_name] = record_values.get(field_name, False)
 
         new_values = {}
         for field in onchange_fields:
