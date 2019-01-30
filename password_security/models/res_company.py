@@ -49,3 +49,8 @@ class ResCompany(models.Model):
         default=24,
         help='Amount of hours until a user may change password again',
     )
+    password_no_login = fields.Boolean(
+        'Password cannot contain Login',
+        default=True,
+        help='Disallow passwords containing the login.',
+    )

@@ -21,6 +21,7 @@
     ],
     "demo": [
         'demo/res_users.xml',
+        'demo/res_company.xml',
     ],
     'installable': True,
 }

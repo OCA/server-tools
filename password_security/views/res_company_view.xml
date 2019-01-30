@@ -22,6 +22,7 @@
                         <group string="Extra">
                             <field name="password_length" />
                             <field name="password_history" />
+                            <field name="password_no_login" />
                         </group>
                     </group>
                     <group name="chars_grp" string="Required Characters">
