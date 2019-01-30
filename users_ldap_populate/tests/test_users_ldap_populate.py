@@ -5,7 +5,7 @@ from openerp.tests.common import TransactionCase
 from contextlib import contextmanager
 
 
-class patch_ldap_connection(object):
+class PatchLdapConnection(object):
     def __init__(self, results):
         self.results = results
 
@@ -30,7 +30,7 @@ def patch_ldap(self, results):
     original_initialize = ldap.initialize
 
     def initialize(uri):
-        return patch_ldap_connection(results)
+        return PatchLdapConnection(results)
     ldap.initialize = initialize
     yield
     ldap.initialize = original_initialize
