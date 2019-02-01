@@ -105,7 +105,7 @@ class ResLang(models.Model):
         # Convert str to datetime objects
         if isinstance(value, str):
             try:
-                value = fields.Datetime.from_string(value)
+                value = fields.Datetime.to_datetime(value)
             except ValueError:
                 # Probably failed due to value being only time
                 value = datetime.strptime(value, DEFAULT_SERVER_TIME_FORMAT)
