@@ -41,7 +41,7 @@ def get_fake_ldap(self):
     company.write({
         'ldaps': [(0, 0, {
             'ldap_server': 'fake',
-            'ldap_port': 'fake',
+            'ldap_server_port': 1234,
             'ldap_filter': '(uid=%s)',
             'ldap_base': 'fake',
             'deactivate_unknown_users': True,
