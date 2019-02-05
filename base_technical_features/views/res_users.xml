@@ -4,6 +4,7 @@
         <field name="name">Add technical features checkbox to user preferences form</field>
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]"/>
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="technical_features" readonly="0"
