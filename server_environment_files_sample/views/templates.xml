@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2019-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <template id="login_layout_no_db" name="Login Layout" inherit_id="web.login_layout" >
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/server_environment_files_sample/static/RUNNING_ENV/web_login.css"/>
+        </xpath>
+    </template>
+
+</data></openerp>

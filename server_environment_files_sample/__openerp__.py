@@ -22,8 +22,8 @@
 {
     "name": "Example server configuration environment files repository module",
     "version": "8.0.1.0.0",
-    "depends": ["base"],
-    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "depends": ["server_environment", "web"],
+    "author": "Camptocamp,GRAP,Odoo Community Association (OCA)",
     "description": """\
 File store for environment file sample module
 =============================================
@@ -43,7 +43,9 @@ variable of the OpenERP configuration file.
     "website": "http://www.camptocamp.com",
     "license": "GPL-3 or any later version",
     "category": "Tools",
-    "data": [],
+    "data": [
+        'views/templates.xml',
+    ],
     "installable": True,
     "active": False,
 }
