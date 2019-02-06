@@ -12,6 +12,18 @@ _RRULE_SCALAR_FIELDS = [
 _RRULE_ZERO_IS_NOT_NONE = ['_freq']
 
 
+def get_tz_from_rrule(_rrule):
+    """ Get timezone from dtstart if it's filled """
+    if _rrule._dtstart:
+        tz = _rrule._dtstart.tzinfo
+        if tz:
+            try:
+                return tz._filename
+            except AttributeError:
+                return tz.zone
+    return None
+
+
 class LocalRRuleSet(rruleset):
     """An rruleset that yields the naive utc representation of a date if the
     original date was timezone aware"""
@@ -30,7 +42,10 @@ class SerializableRRuleSet(list):
     stuff in __iter__"""
     def __init__(self, *args):
         self._rrule = list(args)
-        self.tz = None
+        if self._rrule:
+            self.tz = get_tz_from_rrule(self._rrule[0])
+        else:
+            self.tz = None
         super(SerializableRRuleSet, self).__init__(self)
 
     def __iter__(self):

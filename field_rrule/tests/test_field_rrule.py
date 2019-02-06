@@ -65,9 +65,11 @@ class TestFieldRrule(TransactionCase):
         self.assertTrue(record.rrule_with_default.after(
             fields.Datetime.from_string('2016-02-01 00:00:00'), inc=True))
         record.env.user.write({'tz': 'Europe/Amsterdam'})
+
         record.rrule_with_tz = SerializableRRuleSet(
             rrule(
                 dtstart=fields.Datetime.from_string('2017-02-02 23:00:00'),
+                until=fields.Datetime.from_string('2018-02-02 23:00:00'),
                 interval=1,
                 freq=MONTHLY,
                 count=2,
@@ -84,16 +86,26 @@ class TestFieldRrule(TransactionCase):
                 datetime.datetime(2017, 3, 31, 22, 0),
             ]
         )
+
         # doing the same with a timezone-aware datetime should work too
+        # NOTE: this one has dtstart and until exactly on the expected dates,
+        # in order to catch any timezone shifting issues
+        tz_amsterdam = gettz('Europe/Amsterdam')
         record.rrule_with_tz = SerializableRRuleSet(
             rrule(
-                dtstart=fields.Datetime.from_string('2017-02-03 00:00:00')
-                .replace(tzinfo=gettz('Europe/Amsterdam')),
+                dtstart=fields.Datetime.from_string('2017-03-01 00:00:00')
+                .replace(tzinfo=tz_amsterdam),
+                until=fields.Datetime.from_string('2017-04-01 00:00:00')
+                .replace(tzinfo=tz_amsterdam),
                 interval=1,
                 freq=MONTHLY,
                 count=2,
                 bymonthday=[1],
             )
+        )
+        self.assertEqual(
+            record.rrule_with_tz._rrule[0]._dtstart,
+            datetime.datetime(2017, 3, 1, 0, 0, tzinfo=tz_amsterdam)
         )
         self.assertTrue(record.rrule_with_tz.tz)
         self.assertEqual(
@@ -103,6 +115,7 @@ class TestFieldRrule(TransactionCase):
                 datetime.datetime(2017, 3, 31, 22, 0),
             ]
         )
+
         # and the same again with the json representation
         record.rrule_with_tz = [
             {
