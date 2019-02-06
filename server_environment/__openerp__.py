@@ -23,7 +23,7 @@
     "name": "server configuration environment files",
     "version": "8.0.1.1.0",
     "depends": ["base"],
-    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "author": "Camptocamp,GRAP,Odoo Community Association (OCA)",
     "description": """\
 Environment file pattern for OpenERP
 ====================================
@@ -75,6 +75,35 @@ Example usage
        print (key, value)
 
     serv_config.get('external_service.ftp', 'tls')
+
+This module provides also the possibility to load static files depending
+on the environment.
+
+Example usage
+-------------
+
+Create a file view/templates.xml, and insert a css file
+
+::
+
+    <openerp><data>
+        <template id="login_layout_no_db" name="Login Layout"
+                inherit_id="web.login_layout" >
+            <xpath expr="." position="inside">
+                <link rel="stylesheet"
+                href="/server_environment_files/static/RUNNING_ENV/css.css"/>
+            </xpath>
+        </template>
+    </data></openerp>
+
+Then, create css files for each environment you have. exemple:
+::
+
+    /server_environment_files/static/dev/css.css
+    /server_environment_files/static/prod/css.css
+    ...
+
+
     """,
     "website": "http://www.camptocamp.com",
     "license": "GPL-3 or any later version",
