@@ -5,6 +5,8 @@ import pytz
 from dateutil.rrule import rrule, rruleset
 from dateutil.tz import gettz
 from openerp import fields, models
+from openerp.exceptions import ValidationError
+
 _RRULE_DATETIME_FIELDS = ['_until', '_dtstart']
 _RRULE_SCALAR_FIELDS = [
     '_wkst', '_cache', '_until', '_dtstart', '_count', '_freq', '_interval',
@@ -31,14 +33,18 @@ class SerializableRRuleSet(list):
     def __init__(self, *args):
         self._rrule = list(args)
 
+        def _as_utc(_date):
+            if _date and _date.tzinfo:
+                return _date.astimezone(pytz.utc)
+            else:
+                return _date
+
         # Datetime-aware rrules are difficult to serialize, so we store as UTC
+        # NOTE: any naive timezones are _assumed_ to be in UTC, as we cannot
+        # retrieve the Odoo user's timezone at this point
         if self._rrule:
-            if self._rrule[0]._dtstart and self._rrule[0]._dtstart.tzinfo:
-                self._rrule[0]._dtstart = \
-                    self._rrule[0]._dtstart.astimezone(pytz.utc)
-            if self._rrule[0]._until and self._rrule[0]._until.tzinfo:
-                self._rrule[0]._until = \
-                    self._rrule[0]._until.astimezone(pytz.utc)
+            self._rrule[0]._dtstart = _as_utc(self._rrule[0]._dtstart)
+            self._rrule[0]._until = _as_utc(self._rrule[0]._until)
 
         self.tz = None
         super(SerializableRRuleSet, self).__init__(self)
