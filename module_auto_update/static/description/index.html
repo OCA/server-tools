@@ -410,7 +410,10 @@ This is by design, priviledging safety. Should this be an issue,
 the method <tt class="docutils literal">_save_installed_checksums</tt> can be invoked in a situation
 where one is sure all modules on disk are installed and up-to-date in the
 database.</p>
-<p>An easy way to invoke this upgrade mechanism is by issuing the following
+<p>To invoke the upgrade mechanism, navigate to <em>Apps</em> menu and use the
+<em>Auto-Upgrade Modules</em> button, available only in developer mode. Restarting
+the Odoo instance is highly recommended to minify risk of any possible issues.</p>
+<p>Another easy way to invoke this upgrade mechanism is by issuing the following
 in an Odoo shell session:</p>
 <pre class="code python literal-block">
 <span class="n">env</span><span class="p">[</span><span class="s1">'ir.module.module'</span><span class="p">]</span><span class="o">.</span><span class="n">upgrade_changed_checksum</span><span class="p">()</span>
