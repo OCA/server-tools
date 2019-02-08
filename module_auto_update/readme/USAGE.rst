@@ -10,7 +10,11 @@ the method ``_save_installed_checksums`` can be invoked in a situation
 where one is sure all modules on disk are installed and up-to-date in the
 database.
 
-An easy way to invoke this upgrade mechanism is by issuing the following
+To invoke the upgrade mechanism, navigate to *Apps* menu and use the
+*Auto-Upgrade Modules* button, available only in developer mode. Restarting
+the Odoo instance is highly recommended to minify risk of any possible issues.
+
+Another easy way to invoke this upgrade mechanism is by issuing the following
 in an Odoo shell session:
 
 .. code-block:: python
