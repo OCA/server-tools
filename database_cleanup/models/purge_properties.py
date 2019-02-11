@@ -4,6 +4,7 @@
 from odoo import api, models, fields
 REASON_DUPLICATE = 1
 REASON_DEFAULT = 2
+REASON_DEFAULT_FALSE = 3
 
 
 class CleanupPurgeLineProperty(models.TransientModel):
@@ -17,6 +18,7 @@ class CleanupPurgeLineProperty(models.TransientModel):
     reason = fields.Selection([
         (REASON_DUPLICATE, 'Duplicated property'),
         (REASON_DEFAULT, 'Same value as default'),
+        (REASON_DEFAULT_FALSE, 'Empty default property'),
     ])
 
     @api.multi
@@ -42,6 +44,15 @@ class CleanupPurgeWizardProperty(models.TransientModel):
         ])
         handled_field_ids = []
         for prop in default_properties:
+            if not prop.get_by_record():
+                result.append({
+                    'name': '%s@%s: %s' % (
+                        prop.name, prop.res_id, prop.get_by_record()
+                    ),
+                    'property_id': prop.id,
+                    'reason': REASON_DEFAULT_FALSE,
+                })
+                continue
             if prop.fields_id.id in handled_field_ids:
                 continue
             domain = [
