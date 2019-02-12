@@ -9,6 +9,10 @@ Image URLs from HTML field
 This module includes a method that extracts image URLs from any chunk of HTML,
 in appearing order.
 
+It is useful for modules such as `website_blog_excerpt_img
+<https://github.com/OCA/website/tree/9.0/website_blog_excerpt_img>`_: blog list shows the first
+image included in the post if haven't a defined cover image.
+
 Usage
 =====
 
@@ -38,7 +42,7 @@ QWeb example::
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/11.0
+   :target: https://runbot.odoo-community.org/runbot/149/12.0
 
 Known issues / Roadmap
 ======================
@@ -59,9 +63,10 @@ Credits
 Contributors
 ------------
 
-* Jairo Llopis <yajo.sk8@gmail.com>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 * Vicent Cubells <vicent.cubells@tecnativa.com>
 * Dennis Sluijk <d.sluijk@onestein.nl>
+* Cristina Martin R. <cristina.martin@tecnativa.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
