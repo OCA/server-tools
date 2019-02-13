@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo9-addon-auth_totp',
         'odoo9-addon-auth_totp_password_security',
         'odoo9-addon-auto_backup',
+        'odoo9-addon-autovacuum_mail_message',
         'odoo9-addon-base_cron_exclusion',
         'odoo9-addon-base_custom_info',
         'odoo9-addon-base_export_manager',
