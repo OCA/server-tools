@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+     <record  model="ir.ui.view" id="message_vacuum_rule_form_view">
+        <field name="name">message.vacuum.rule.form.view</field>
+        <field name="model">message.vacuum.rule</field>
+        <field name="arch" type="xml">
+            <form string="Message Vacuum Rule">
+                <sheet>
+                    <group>
+                        <group col="4">
+                            <field name="name" colspan="2"/>
+                            <field name="company_id" colspan="2"/>
+                            <field name="message_type" colspan="2"/>
+                            <field name="empty_subtype" colspan="2"/>
+                            <field name="retention_time" colspan="2"/>
+                        </group>
+                        <separator string="Message Models" colspan="4"/>
+                        <field name="model_ids" nolabel="1" colspan="4"/>
+                        <separator string="Message Subtypes" colspan="4"/>
+                        <field name="message_subtype_ids" nolabel="1" colspan="4"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+     </record>
+
+        <record model="ir.ui.view" id="message_vacuum_rule_tree_view">
+        <field name="name">message.vacuum.rule.form.view</field>
+        <field name="model">message.vacuum.rule</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="message_type"/>
+                    <field name="empty_subtype"/>
+                    <field name="retention_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_message_vacuum_rule">
+            <field name="name">Message Vacuum Rule</field>
+            <field name="res_model">message.vacuum.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_action_message_vacuum_rule" parent="base.menu_email" action="action_message_vacuum_rule"/>
+
+</odoo>
