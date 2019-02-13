@@ -29,6 +29,7 @@ addon | version | summary
 [auth_totp](auth_totp/) | 9.0.1.1.0 | Allows users to enable MFA and add optional trusted devices
 [auth_totp_password_security](auth_totp_password_security/) | 9.0.1.0.0 | auth_totp and password_security compatibility
 [auto_backup](auto_backup/) | 9.0.1.1.1 | Backups database
+[autovacuum_mail_message](autovacuum_mail_message/) | 9.0.1.0.0 | Automatic Delete old mail message to clean database
 [base_cron_exclusion](base_cron_exclusion/) | 9.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 9.0.2.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
