@@ -82,12 +82,12 @@ class ResUsersRoleLine(models.Model):
     @api.constrains('user_id', 'company_id')
     def _check_company(self):
         for record in self:
-            if (self.company_id and
-                    self.company_id != self.user_id.company_id and
-                    self.company_id not in self.user_id.company_ids):
+            if (record.company_id and
+                    record.company_id != record.user_id.company_id and
+                    record.company_id not in record.user_id.company_ids):
                 raise ValidationError(
                     _('User "{}" does not have access to the company "{}"')
-                    .format(self.user_id.name, self.company_id.name))
+                    .format(record.user_id.name, record.company_id.name))
 
     @api.multi
     @api.depends('date_from', 'date_to')
