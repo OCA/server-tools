@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
 # © 2016 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import json
 from lxml import etree
-from openerp import _, api, fields, models, SUPERUSER_ID
-from openerp.osv import expression  # pylint: disable=W0402
-from openerp.addons.base_suspend_security.base_suspend_security import\
+from odoo import _, api, fields, models, SUPERUSER_ID
+from odoo.osv import expression
+from odoo.addons.base_suspend_security.base_suspend_security import\
     BaseSuspendSecurityUid
 
 
 class RestrictFieldAccessMixin(models.AbstractModel):
     """Mixin to restrict access to fields on record level"""
     _name = 'restrict.field.access.mixin'
+    _description = "Mixin to restrict fields on certain condition"
 
     @api.multi
     def _compute_restrict_field_access(self):
@@ -37,18 +37,20 @@ class RestrictFieldAccessMixin(models.AbstractModel):
     restrict_field_access = fields.Boolean(
         'Field access restricted', compute='_compute_restrict_field_access')
 
-    @api.model
-    @api.returns('self', lambda x: x.id)
-    def create(self, vals):
-        restricted_vals = self._restrict_field_access_filter_vals(
-            vals, action='create')
+    @api.model_create_multi
+    def create(self, vals_list):
+        restricted_vals_list = []
+        for vals in vals_list:
+            restricted_vals = self._restrict_field_access_filter_vals(
+                vals, action='create')
+            restricted_vals_list.append(restricted_vals)
         return self.browse(
             super(RestrictFieldAccessMixin,
                   # TODO: this allows users to slip in nonallowed
                   # fields with x2many operations, so we need to reset
                   # this somewhere, probably just at the beginning of create
                   self._restrict_field_access_suspend())
-            .create(restricted_vals).ids
+            .create(restricted_vals_list).ids
         )
 
     @api.multi
@@ -70,10 +72,9 @@ class RestrictFieldAccessMixin(models.AbstractModel):
             for field in record:
                 if not this._restrict_field_access_is_field_accessible(field):
                     record[field] = self._fields[field].convert_to_read(
-                        self._fields[field].null(self.env))
-                    if self._fields[field] in self.env.cache:
-                        self.env.cache[self._fields[field]].pop(
-                            record['id'], False)
+                        self._fields[field].null(self), record)
+                    if self.env.cache.get(self, self._fields[field]):
+                        self.env.cache.remove(self, self._fields[field])
         return result
 
     @api.model
@@ -93,7 +94,7 @@ class RestrictFieldAccessMixin(models.AbstractModel):
             for term in domain
         )
         if groupby:
-            if isinstance(groupby, basestring):
+            if isinstance(groupby, str):
                 groupby = [groupby]
             has_inaccessible_field |= any(
                 not self._restrict_field_access_is_field_accessible(
@@ -120,12 +121,13 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         )
 
     @api.multi
-    def _BaseModel__export_rows(self, fields):
+    def _export_rows(self, fields, *, _is_toplevel_call=True):
         """Null inaccessible fields"""
         result = []
         for this in self:
             rows = super(RestrictFieldAccessMixin, this)\
-                ._BaseModel__export_rows(fields)
+                ._export_rows(
+                fields, _is_toplevel_call=_is_toplevel_call)
             for row in rows:
                 for i, path in enumerate(fields):
                     # we only need to take care of our own fields, super calls
@@ -140,7 +142,7 @@ class RestrictFieldAccessMixin(models.AbstractModel):
                             field.convert_to_cache(
                                 field.null(self.env), this, validate=False,
                             ),
-                            self.env
+                            self
                         )
             result.extend(rows)
         return result
@@ -189,14 +191,13 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         in order not to leak information"""
         pass
 
-    @api.cr_uid_context
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
-        # pylint: disable=R8110
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form',
+                        toolbar=False, submenu=False):
         # This needs to be oldstyle because res.partner in base passes context
         # as positional argument
         result = super(RestrictFieldAccessMixin, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type, context=context,
+            view_id=view_id, view_type=view_type,
             toolbar=toolbar, submenu=submenu)
 
         # TODO: for editable trees, we'll have to inject this into the
@@ -209,29 +210,28 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         for field in arch.xpath('//field'):
             field.attrib['modifiers'] = json.dumps(
                 self._restrict_field_access_adjust_field_modifiers(
-                    cr, uid,
                     field,
                     json.loads(field.attrib.get('modifiers', '{}')),
-                    context=context))
+                ))
 
         self._restrict_field_access_inject_restrict_field_access_arch(
-            cr, uid, arch, result['fields'], context=context)
+            arch, result['fields'])
 
         result['arch'] = etree.tostring(arch, encoding="utf-8")
         return result
 
     @api.model
     def _restrict_field_access_inject_restrict_field_access_arch(
-            self, arch, fields):
+            self, arch, field_list):
         """inject the field restrict_field_access into arch if not there"""
-        if 'restrict_field_access' not in fields:
+        if 'restrict_field_access' not in field_list:
             etree.SubElement(arch, 'field', {
                 'name': 'restrict_field_access',
                 'modifiers': json.dumps({
                     ('tree_' if arch.tag == 'tree' else '') + 'invisible': True
                 }),
             })
-            fields['restrict_field_access'] =\
+            field_list['restrict_field_access'] =\
                 self._fields['restrict_field_access'].get_description(self.env)
 
     @api.model
@@ -290,7 +290,7 @@ class RestrictFieldAccessMixin(models.AbstractModel):
                 lambda itemtuple:
                 this._restrict_field_access_is_field_accessible(
                     itemtuple[0], action=action),
-                vals.iteritems()))
+                vals.items()))
 
     @api.multi
     def _restrict_field_access_is_field_accessible(self, field_name,
