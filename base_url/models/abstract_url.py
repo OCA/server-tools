@@ -42,6 +42,7 @@ class AbstractUrl(models.AbstractModel):
         'res.lang',
         string='Lang',
         required=True)
+    active = fields.Boolean(string="Active", default=True)
 
     def _build_url_key(self):
         self.ensure_one()
@@ -55,6 +56,13 @@ class AbstractUrl(models.AbstractModel):
             'redirect': False,
             'model_id': get_model_ref(self),
             }
+
+    def _reuse_url(self, existing_url):
+        # TODO add user notification in the futur SEO dashboard
+        existing_url.write({
+           'model_id': get_model_ref(self),
+           'redirect': False,
+           })
 
     def set_url(self, url_key):
         """
@@ -74,15 +82,18 @@ class AbstractUrl(models.AbstractModel):
             ])
         if existing_url:
             if self != existing_url.model_id:
-                raise UserError(
-                    _("Url_key already exist in other model"
-                      "\n- name: %s\n - id: %s\n"
-                      "- url_key: %s\n - url_key_id %s") % (
-                          existing_url.model_id.name,
-                          existing_url.model_id.record_id.id,
-                          existing_url.url_key,
-                          existing_url.id,
-                          ))
+                if existing_url.redirect:
+                    self._reuse_url(existing_url)
+                else:
+                    raise UserError(
+                        _("Url_key already exist in other model"
+                          "\n- name: %s\n - id: %s\n"
+                          "- url_key: %s\n - url_key_id %s") % (
+                              existing_url.model_id.name,
+                              existing_url.model_id.record_id.id,
+                              existing_url.url_key,
+                              existing_url.id,
+                              ))
             else:
                 existing_url.write({'redirect': False})
         else:
@@ -95,7 +106,10 @@ class AbstractUrl(models.AbstractModel):
             ('redirect', '=', False)])
         redirect_urls.write({'redirect': True})
 
-    @api.depends('url_builder')
+    def _redirect_existing_url(self):
+        return True
+
+    @api.depends('url_builder', 'manual_url_key', 'active')
     def _compute_url(self):
         for record in self:
             if type(record.record_id.id) == models.NewId\
@@ -103,13 +117,17 @@ class AbstractUrl(models.AbstractModel):
                 # Do not update field value on onchange
                 # as with_context is broken on NewId
                 continue
-            if record.url_builder == 'manual':
-                new_url = record.manual_url_key
+            if not record.active:
+                record._redirect_existing_url()
+                record.url_key = ''
             else:
-                new_url = record._build_url_key()
-            if new_url:
-                record.set_url(new_url)
-            record.url_key = new_url
+                if record.url_builder == 'manual':
+                    new_url = record.manual_url_key
+                else:
+                    new_url = record._build_url_key()
+                if new_url:
+                    record.set_url(new_url)
+                record.url_key = new_url
 
     def _compute_redirect_url(self):
         for record in self:

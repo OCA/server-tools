@@ -5,12 +5,9 @@
 
 from odoo import api, fields, models
 import logging
+from .abstract_url import get_model_ref
 
 _logger = logging.getLogger(__name__)
-
-
-def get_model_ref(record):
-    return "%s,%s" % (record._name, record.id)
 
 
 class UrlUrl(models.Model):
@@ -51,40 +48,6 @@ class UrlUrl(models.Model):
     @api.model
     def _reference_models(self):
         return []
-
-    @api.model
-    def create(self, vals):
-        """
-        Inherit the create to remove existing url in some case
-        :param vals: dict
-        :return: self recordset
-        """
-        url = vals.get('url_key')
-        backend_id = vals.get('backend_id')
-        lang_id = vals.get('lang_id')
-        self._clean_existing_redirect(url, backend_id, lang_id)
-        return super(UrlUrl, self).create(vals)
-
-    @api.model
-    def _clean_existing_redirect(self, url, backend_id, lang_id):
-        """
-        If a new URL is created (related to the same backend) and the existing
-        is a redirect, we have to remove them to give priority to the new url.
-        :param url: str
-        :param backend_id: str (because it's a reference field)
-        :param lang_id: int
-        :return: bool
-        """
-        domain = [
-            ('url_key', '=', url),
-            ('redirect', '=', True),
-            ('backend_id', '=', backend_id),
-            ('lang_id', '=', lang_id),
-        ]
-        old_url = self.search(domain)
-        if old_url:
-            old_url.unlink()
-        return True
 
     def _get_object(self, url):
         """
