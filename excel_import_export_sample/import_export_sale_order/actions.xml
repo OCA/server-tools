@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sales Order Import/Export -->
+    # TODO: should we use our own place to keep data instead of ir.attachment
+    # and we also can use add to menu
+    <act_window id="action_sale_oder_export_xlsx"
+        name="Export Excel"
+        res_model="export.xlsx.wizard"
+        src_model="sale.order"
+        view_mode="form"
+        target="new"
+        context="{
+          'template_domain': [('res_model', '=', 'sale.order'),
+                              ('fname', '=', 'sale_order.xlsx'),
+                              ('gname', '=', False)],
+        }"/>
+    <act_window id="action_sale_oder_import_xlsx"
+        name="Import Excel"
+        res_model="import.xlsx.wizard"
+        src_model="sale.order"
+        view_mode="form"
+        target="new"
+        context="{
+          'template_domain': [('res_model', '=', 'sale.order'),
+                              ('fname', '=', 'sale_order.xlsx'),
+                              ('gname', '=', False)],
+          'template_context': {},
+          'template_import_states': [],
+        }"/>
+
+</odoo>

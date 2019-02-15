@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_xlsx_wizard" model="ir.ui.view">
+        <field name="name">import.xlsx.wizard</field>
+        <field name="model">import.xlsx.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import File Template">
+                <field name="state" invisible="1"/>
+                <group states="choose">
+                    <group>
+                        <field name="template_id" widget="selection"/>
+                        <field name="fname" invisible="1"/>
+                        <field name="datas" filename="fname"/>
+                        <field name="res_model" invisible="1"/>
+                        <field name="res_id" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="import_file"/>
+                    </group>
+                </group>
+                <group states="get">
+                    <p>
+                        Import Successful!
+                    </p>
+                </group>
+                <footer states="choose">
+                    <button name="action_import" string="Import" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                <footer states="get">
+                    <button string="Close" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
