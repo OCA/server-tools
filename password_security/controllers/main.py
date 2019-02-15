@@ -39,11 +39,7 @@ class PasswordSecurityHome(AuthSignupHome):
         login_success = request.params.get('login_success', False)
         if not request.httprequest.method == 'POST' or not login_success:
             return response
-        uid = request.session.authenticate(
-            request.session.db,
-            request.params['login'],
-            request.params['password']
-        )
+        uid = request.uid
         if not uid:
             return response
         users_obj = request.env['res.users'].sudo()
