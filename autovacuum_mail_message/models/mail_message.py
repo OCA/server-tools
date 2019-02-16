@@ -20,12 +20,16 @@ class MailMessage(models.Model):
                     self.env.cr.dbname).cursor() as new_cr:
                 new_env = api.Environment(new_cr, self.env.uid,
                                           self.env.context)
-                self = self.with_env(new_env)
                 try:
                     while self:
                         batch_delete_messages = self[0:1000]
                         self -= batch_delete_messages
-                        batch_delete_messages.unlink()
+                        # do not attach new env to self because it may be
+                        # huge, and the cache is cleaned after each unlink
+                        # so we do not want to much record is the env in
+                        # which we call unlink because odoo would prefetch
+                        # fields, cleared right after.
+                        batch_delete_messages.with_env(new_env).unlink()
                         new_env.cr.commit()
                 except Exception as e:
                     _logger.exception(

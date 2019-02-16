@@ -6,11 +6,22 @@ from datetime import date, timedelta
 
 from openerp import _, api, exceptions, fields, models
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.tools.safe_eval import safe_eval
+import datetime
 
 
 class MessageVacuumRule(models.Model):
     _name = "message.vacuum.rule"
     _description = "Rules Used to delete message historic"
+
+    @api.depends('model_ids')
+    @api.multi
+    def _get_model_id(self):
+        for rule in self:
+            if rule.model_ids and len(rule.model_ids) == 1:
+                rule.model_id = rule.model_ids.id
+            else:
+                rule.model_id = False
 
     name = fields.Char(required=True)
     company_id = fields.Many2one(
@@ -28,6 +39,13 @@ class MessageVacuumRule(models.Model):
         'ir.model', string="Models",
         help="Models concerned by the rule. If left empty, it will take all "
              "models into account")
+    model_id = fields.Many2one(
+        'ir.model', readonly=True,
+        compute='_get_model_id',
+        help="Technical field used to set attributes (invisible/required, "
+             "domain, etc...for other fields, like the domain filter")
+    model_filter_domain = fields.Text(
+        string='Model Filter Domain')
     message_type = fields.Selection([
         ('email', 'Email'),
         ('comment', 'Comment'),
@@ -38,6 +56,8 @@ class MessageVacuumRule(models.Model):
         help="Number of days the messages concerned by this rule will be "
              "keeped in the database after creation. Once the delay is "
              "passed, they will be automatically deleted.")
+    active = fields.Boolean()
+    description = fields.Text()
 
     @api.multi
     @api.constrains('retention_time')
@@ -70,4 +90,15 @@ class MessageVacuumRule(models.Model):
         elif not subtype_ids and not self.empty_subtype:
             subtype_domain += [('subtype_id', '!=', False)]
         message_domain += subtype_domain
+        # Case we want a condition on linked model records
+        if self.model_id and self.model_filter_domain:
+            domain = safe_eval(self.model_filter_domain,
+                               locals_dict={'datetime': datetime})
+
+            res_model = self.model_id.model
+            res_records = self.env[res_model].with_context(
+                active_test=False).search(domain)
+            res_ids = res_records.ids
+            message_domain += ['|', ('res_id', 'in', res_ids),
+                               ('res_id', '=', False)]
         return message_domain
