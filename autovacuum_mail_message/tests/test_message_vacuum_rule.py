@@ -93,3 +93,30 @@ class TestMessageVacuumRule(common.TransactionCase):
         }
         with self.assertRaises(exceptions.ValidationError):
             self.env['message.vacuum.rule'].create(rule_vals)
+
+    def test_res_model_domain(self):
+        partner = self.env['res.partner'].create({'name': 'Test Partner'})
+        # automatic creation message
+        self.assertEqual(len(partner.message_ids), 1)
+        # change date message to simulate it is an old one
+        partner.message_ids.write({'date': '2017-01-01'})
+        partner_model = self.env.ref('base.model_res_partner')
+
+        rule_vals = {
+            'name': 'Partners',
+            'retention_time': 399,
+            'message_type': 'all',
+            'model_ids': [(6, 0, [partner_model.id])],
+            'model_filter_domain': "[['name', '=', 'Dummy']]",
+            'empty_subtype': True,
+        }
+        rule = self.env['message.vacuum.rule'].create(rule_vals)
+        self.message_obj.autovacuum_mail_message()
+        # no message deleted as the filter does not match
+        self.assertEqual(len(partner.message_ids), 1)
+
+        rule.write({
+            'model_filter_domain': "[['name', '=', 'Test Partner']]"
+        })
+        self.message_obj.autovacuum_mail_message()
+        self.assertEqual(len(partner.message_ids), 0)

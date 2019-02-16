@@ -8,18 +8,23 @@
         <field name="arch" type="xml">
             <form string="Message Vacuum Rule">
                 <sheet>
-                    <group>
-                        <group col="4">
+                    <group col="4">
+                        <group col="4" colspan="4">
                             <field name="name" colspan="2"/>
                             <field name="company_id" colspan="2"/>
                             <field name="message_type" colspan="2"/>
                             <field name="empty_subtype" colspan="2"/>
                             <field name="retention_time" colspan="2"/>
+                            <field name="active" colspan="2"/>
                         </group>
                         <separator string="Message Models" colspan="4"/>
                         <field name="model_ids" nolabel="1" colspan="4"/>
+                        <field name="model_id" colspan="4"/>
+                        <field name="model_filter_domain" attrs="{'invisible': [('model_id', '=', False)]}" colspan="4"/>
                         <separator string="Message Subtypes" colspan="4"/>
                         <field name="message_subtype_ids" nolabel="1" colspan="4"/>
+                        <separator string="Description" colspan="4"/>
+                        <field name="description" nolabel="1" colspan="4"/>
                     </group>
                 </sheet>
             </form>
