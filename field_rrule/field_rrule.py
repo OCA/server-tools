@@ -177,6 +177,9 @@ class FieldRRule(fields.Field):
         """set the timezone on an rruleset and adjust dates there"""
         value.tz = tz
         tz = gettz(tz)
+        if not tz:
+            value.tz = None
+            return
         for rule in value._rrule:
             for fieldname in _RRULE_DATETIME_FIELDS:
                 date = getattr(rule, fieldname)
