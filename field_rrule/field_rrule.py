@@ -5,7 +5,7 @@ import json
 import pytz
 from dateutil.rrule import rrule, rruleset
 from dateutil.tz import gettz
-from odoo import fields, models
+from odoo import fields, models, tools
 _RRULE_DATETIME_FIELDS = ['_until', '_dtstart']
 _RRULE_SCALAR_FIELDS = [
     '_wkst', '_cache', '_until', '_dtstart', '_count', '_freq', '_interval',
@@ -157,7 +157,7 @@ class FieldRRule(fields.Field):
 
     def convert_to_cache_parse_data_rrule(self, record, data):
         """parse a data dictionary from the database"""
-        return {
+        data = {
             key: fields.Datetime.from_string(value)
             if '_%s' % key in _RRULE_DATETIME_FIELDS
             else map(int, value)
@@ -169,6 +169,9 @@ class FieldRRule(fields.Field):
             for key, value in data.iteritems()
             if key != 'type'
         }
+        if not data.get('dtstart') and tools.config['test_enable']:
+            data['dtstart'] = fields.Datetime.from_string('1900-01-01')
+        return data
 
     def convert_to_column(self, value, record):
         return json.dumps(value)
