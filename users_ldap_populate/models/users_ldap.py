@@ -8,7 +8,7 @@ from odoo import models, fields, api, _, SUPERUSER_ID
 from odoo.exceptions import UserError
 import logging
 
-_logger = logging.getLogger(__name__)
+_logger = logging.getLogger('orm.ldap')
 
 try:
     import ldap
@@ -45,16 +45,13 @@ class CompanyLDAP(models.Model):
 
         Return the number of users created (as far as we can tell).
         """
-        logger = logging.getLogger('orm.ldap')
-        logger.debug(
+        _logger.debug(
             "action_populate called on res.company.ldap ids %s", self.ids)
-
         users_model = self.env['res.users']
         users_count_before = users_model.search_count([])
-
         deactivate_unknown, known_user_ids = self._check_users()
         if deactivate_unknown:
-            logger.debug("will deactivate unknown users")
+            _logger.debug("will deactivate unknown users")
         for conf in self.get_ldap_dicts():
             if not conf['create_user']:
                 continue
@@ -81,18 +78,19 @@ class CompanyLDAP(models.Model):
                         "WHERE lower(login)=%s",
                         (login,))
                     res = self.env.cr.fetchone()
+                    _logger.debug('unarchiving user %s', login)
                     if res:
                         self.env['res.users'].sudo().browse(
                             res[0]
                         ).write(
                             {'active': True}
                         )
+                        user_id = res[0]
                     else:
                         raise UserError(
                             'Unable to process user with login %s' % login
                         )
                 known_user_ids.append(user_id)
-
         users_created = users_model.search_count([]) - users_count_before
 
         deactivated_users_count = 0
@@ -100,23 +98,25 @@ class CompanyLDAP(models.Model):
             deactivated_users_count = \
                 self.do_deactivate_unknown_users(known_user_ids)
 
-        logger.debug("%d users created", users_created)
-        logger.debug("%d users deactivated", deactivated_users_count)
+        _logger.debug("%d users created", users_created)
+        _logger.debug("%d users deactivated", deactivated_users_count)
         return users_created, deactivated_users_count
 
     def _check_users(self):
+        ldap_config = self.search([])
         deactivate_unknown = None
         known_user_ids = [self.env.user.id]
-        for item in self.read(['no_deactivate_user_ids',
-                               'deactivate_unknown_users'],
-                              load='_classic_write'):
+        for item in ldap_config.read(
+                ['no_deactivate_user_ids',
+                 'deactivate_unknown_users'],
+                load='_classic_write'):
             if deactivate_unknown is None:
                 deactivate_unknown = True
             known_user_ids.extend(item['no_deactivate_user_ids'])
             deactivate_unknown &= item['deactivate_unknown_users']
         return deactivate_unknown, known_user_ids
 
-    def get_ldap_entry_dicts(self, conf, user_name='*'):
+    def get_ldap_entry_dicts(self, conf, user_name='*', timeout=60):
         """Execute ldap query as defined in conf.
 
         Don't call self.query because it supresses possible exceptions
@@ -127,21 +127,29 @@ class CompanyLDAP(models.Model):
                            conf['ldap_password'] or '')
         results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
                                  ldap_filter.encode('utf8'), None,
-                                 timeout=60)
+                                 timeout=timeout)
         conn.unbind()
         return results
 
     def do_deactivate_unknown_users(self, known_user_ids):
         """Deactivate users not found in last populate run."""
         unknown_user_ids = []
-        users = self.env['res.users'].search(
-            [('id', 'not in', known_user_ids)])
+        known_user_ids = list(set(known_user_ids))
+        users = self.env['res.users'].sudo().search(
+            [('id', 'not in', known_user_ids)], order='login')
+        ldap_confs = self.get_ldap_dicts()
         for unknown_user in users:
-            present_in_ldap = False
-            for conf in self.get_ldap_dicts():
-                present_in_ldap |= bool(self.get_ldap_entry_dicts(
-                    conf, user_name=unknown_user.login))
+            _logger.debug('checking user %s', unknown_user.login)
+            present_in_ldap = any(
+                bool(
+                    self.get_ldap_entry_dicts(
+                        conf,
+                        user_name=unknown_user.login,
+                    ))
+                for conf in ldap_confs
+            )
             if not present_in_ldap:
+                _logger.debug('archiving user %s', unknown_user.login)
                 unknown_user.active = False
                 unknown_user_ids.append(unknown_user.id)
         return len(unknown_user_ids)

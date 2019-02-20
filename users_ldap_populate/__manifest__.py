@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
 {
     "name": "LDAP Populate",
-    "version": "10.0.1.0.2",
+    "version": "10.0.1.0.3",
     "author": "Therp BV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": 'Tools',
