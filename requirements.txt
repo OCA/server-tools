@@ -3,3 +3,7 @@ raven
 pysftp
 acme_tiny
 IPy
+unicodecsv
+xlrd
+xlwt
+openpyxl
