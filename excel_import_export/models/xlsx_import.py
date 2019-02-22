@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 import base64
 import uuid
 import xlrd
@@ -65,7 +67,7 @@ class XLSXImport(models.AbstractModel):
                     return field_type
         except Exception:
             raise ValidationError(
-                _('Invalid delaration, %s has no valid field type') % field)
+                _('Invalid declaration, %s has no valid field type') % field)
 
     @api.model
     def _get_field_types(self, model, fields):
@@ -98,7 +100,7 @@ class XLSXImport(models.AbstractModel):
                             line_del_dom.get(line_field, []))
                         lines.unlink()
         except Exception as e:
-            raise ValidationError(_('Error deleting data!\n%s') % e)
+            raise ValidationError(_('Error deleting data\n%s') % e)
 
     @api.model
     def _get_line_vals(self, st, worksheet, model, line_field):
@@ -165,7 +167,7 @@ class XLSXImport(models.AbstractModel):
                     st = wb.sheet_by_index(sheet_name - 1)
                 if not st:
                     raise ValidationError(
-                        _('Sheet %s not found!') % sheet_name)
+                        _('Sheet %s not found') % sheet_name)
                 # HEAD(s)
                 for rc, field in worksheet.get('_HEAD_', {}).items():
                     rc, key_eval_cond = co.get_field_condition(rc)
@@ -214,9 +216,9 @@ class XLSXImport(models.AbstractModel):
             return self.env.ref(xml_id)
         except xlrd.XLRDError:
             raise ValidationError(
-                _('Invalid file format, only .xls or .xlsx file allowed!'))
+                _('Invalid file format, only .xls or .xlsx file allowed'))
         except Exception as e:
-            raise ValidationError(_('Error importing data!\n%s') % e)
+            raise ValidationError(_('Error importing data\n%s') % e)
 
     @api.model
     def import_excel(self, model, file, header_map=None,
@@ -259,7 +261,7 @@ class XLSXImport(models.AbstractModel):
             wb = xlrd.open_workbook(file_contents=decoded_data)
         except xlrd.XLRDError:
             raise ValidationError(
-                _('Invalid file format, only .xls or .xlsx file allowed!'))
+                _('Invalid file format, only .xls or .xlsx file allowed'))
         except Exception:
             raise
         st = wb.sheet_by_index(0)
@@ -363,7 +365,7 @@ class XLSXImport(models.AbstractModel):
                                         "<type 'exceptions.TypeError'>: "
                                         "'bool' object is not iterable"):
                 raise ValidationError(
-                    _('Data not valid or no data to import!'))
+                    _('Data not valid or no data to import'))
             else:
                 raise ValidationError(errors[0]['message'].encode('utf-8'))
         return xml_ids
@@ -382,7 +384,7 @@ class XLSXImport(models.AbstractModel):
                     eval_context = {'object': record}
                     eval(code, eval_context)
         except Exception as e:
-            raise ValidationError(_('Post import operation error!\n%s') % e)
+            raise ValidationError(_('Post import operation error\n%s') % e)
 
     @api.model
     def import_xlsx(self, import_file, template, res_model, res_id=False):

@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -36,9 +38,11 @@ class ExportXLSXWizard(models.TransientModel):
         size=500,
     )
     state = fields.Selection(
-        [('choose', 'choose'),
-         ('get', 'get')],
+        [('choose', 'Choose'),
+         ('get', 'Get')],
         default='choose',
+        help="* Choose: wizard show in user selection mode"
+             "\n* Get: wizard show results from user action",
     )
 
     @api.model
@@ -48,7 +52,7 @@ class ExportXLSXWizard(models.TransientModel):
         template_domain = self._context.get('template_domain', [])
         templates = self.env['xlsx.template'].search(template_domain)
         if not templates:
-            raise ValidationError(_('No template found!'))
+            raise ValidationError(_('No template found'))
         defaults = super(ExportXLSXWizard, self).default_get(fields)
         for template in templates:
             if not template.datas:

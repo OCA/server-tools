@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 import os
+import logging
 from . import common as co
-from openpyxl.utils.exceptions import IllegalCharacterError
-from openpyxl import load_workbook
 import base64
 from io import BytesIO
 import time
@@ -10,6 +11,14 @@ from datetime import date, datetime as dt
 from odoo.tools.float_utils import float_compare
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
+try:
+    from openpyxl import load_workbook
+    from openpyxl.utils.exceptions import IllegalCharacterError
+except ImportError:
+    _logger.debug(
+        'Cannot import "openpyxl". Please make sure it is installed.')
 
 
 class XLSXExport(models.AbstractModel):
@@ -36,7 +45,7 @@ class XLSXExport(models.AbstractModel):
         lines = record[line_field]
         if max_row > 0 and len(lines) > max_row:
             raise Exception(
-                _('Records in %s exceed max record allowed!') % line_field)
+                _('Records in %s exceed max records allowed') % line_field)
         vals = dict([(field, []) for field in fields])
         # Get field condition & aggre function
         field_cond_dict = {}
@@ -86,7 +95,7 @@ class XLSXExport(models.AbstractModel):
                     st = workbook.worksheets[sheet_name - 1]
                 if not st:
                     raise ValidationError(
-                        _('Sheet %s not found!') % sheet_name)
+                        _('Sheet %s not found') % sheet_name)
                 # ================ HEAD ================
                 self._fill_head(ws, st, record)
                 # ============= Line Items =============
@@ -107,14 +116,14 @@ class XLSXExport(models.AbstractModel):
                     worksheet_range[sheet_name] = '%s:%s' % (begin_rc, end_rc)
 
         except KeyError as e:
-            raise ValidationError(_('Key Error!\n%s') % e)
+            raise ValidationError(_('Key Error\n%s') % e)
         except IllegalCharacterError as e:
             raise ValidationError(
-                _('IllegalCharacterError!\n'
-                  'Some exporting data contains special character\n%s') % e)
+                _('IllegalCharacterError\n'
+                  'Some exporting data contain special character\n%s') % e)
         except Exception as e:
             raise ValidationError(
-                _('Error filling data into excel sheets!\n%s') % e)
+                _('Error filling data into Excel sheets\n%s') % e)
 
     @api.model
     def _get_field_data(self, _field, _line):

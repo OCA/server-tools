@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, RedirectWarning
 
@@ -41,9 +43,11 @@ class ImportXLSXWizard(models.TransientModel):
         readonly=True,
     )
     state = fields.Selection(
-        [('choose', 'choose'),
-         ('get', 'get')],
+        [('choose', 'Choose'),
+         ('get', 'Get')],
         default='choose',
+        help="* Choose: wizard show in user selection mode"
+             "\n* Get: wizard show results from user action",
     )
 
     @api.model
@@ -63,11 +67,11 @@ class ImportXLSXWizard(models.TransientModel):
             if 'state' in record and \
                     record['state'] not in import_states:
                 messages.append(
-                    _('Document must be in %s states!') % import_states)
+                    _('Document must be in %s states') % import_states)
                 valid = False
         else:  # no specific state specified, test with draft
             if 'state' in record and 'draft' not in record['state']:  # not in
-                messages.append(_('Document must be in draft state!'))
+                messages.append(_('Document must be in draft state'))
                 valid = False
         # Context testing
         if self._context.get('template_context', False):
@@ -79,7 +83,7 @@ class ImportXLSXWizard(models.TransientModel):
                     valid = False
                     messages.append(
                         _('This import action is not usable '
-                          'in this document context!'))
+                          'in this document context'))
                     break
         if not valid:
             raise ValidationError('\n'.join(messages))
@@ -92,7 +96,7 @@ class ImportXLSXWizard(models.TransientModel):
         template_domain = self._context.get('template_domain', [])
         templates = self.env['xlsx.template'].search(template_domain)
         if not templates:
-            raise ValidationError(_('No template found!'))
+            raise ValidationError(_('No template found'))
         defaults = super(ImportXLSXWizard, self).default_get(fields)
         for template in templates:
             if not template.datas:
@@ -111,9 +115,9 @@ class ImportXLSXWizard(models.TransientModel):
         self.ensure_one()
         Import = self.env['xlsx.import']
         if not self.import_file:
-            raise ValidationError(_('Please choose excel file to import!'))
-        record = Import.import_xlsx(self.import_file, self.template_id,
-                                    self.res_model, self.res_id)
+            raise ValidationError(_('Please select Excel file to import'))
+        Import.import_xlsx(self.import_file, self.template_id,
+                           self.res_model, self.res_id)
         self.write({'state': 'get'})
         return {
             'type': 'ir.actions.act_window',

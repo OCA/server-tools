@@ -1,3 +1,6 @@
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 from openerp import models, fields, api
 
 
@@ -16,7 +19,7 @@ class ReportSaleOrder(models.TransientModel):
         'sale.order',
         string='Results',
         compute='_compute_results',
-        help='Use compute fields, so there is nothing store in database',
+        help='Use compute fields, so there is nothing stored in database',
     )
 
     @api.multi

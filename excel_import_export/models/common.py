@@ -1,18 +1,30 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 import re
 import uuid
-import xlrd
 import csv
 import base64
 import string
 import itertools
+import logging
 from datetime import datetime as dt
 from ast import literal_eval
-from openpyxl.styles import colors, PatternFill, Alignment, Font
 from dateutil.parser import parse
 from io import StringIO
 from odoo.exceptions import ValidationError
 from odoo import _
+
+_logger = logging.getLogger(__name__)
+try:
+    import xlrd
+except ImportError:
+    _logger.debug('Cannot import "xlrd". Please make sure it is installed.')
+try:
+    from openpyxl.styles import colors, PatternFill, Alignment, Font
+except ImportError:
+    _logger.debug(
+        'Cannot import "openpyxl". Please make sure it is installed.')
 
 
 def adjust_cell_formula(value, k):
@@ -272,12 +284,11 @@ def csv_from_excel(excel_content, delimiter, quote):
     for rownum in xrange(sh.nrows):
         row = []
         for x in sh.row_values(rownum):
-            # if isinstance(x, str):
-            #     x = x.strip()
             if quoting == csv.QUOTE_NONE and delimiter in x:
                 raise ValidationError(
                     _('Template with CSV Quoting = False, data must not '
-                      'containg same char with delimeter -> "%s"') % delimiter)
+                      'contain the same char as delimiter -> "%s"') %
+                    delimiter)
             row.append(x)
         wr.writerow(row)
     content.seek(0)  # Set index to 0, and start reading
@@ -334,7 +345,6 @@ def _get_cell_value(cell, field_type=False):
         value = cell.value
     # If string, cleanup
     if isinstance(value, str):
-        # value = value.encode('utf-8')
         if value[-2:] == '.0':
             value = value[:-2]
     # Except boolean, when no value, we should return as ''

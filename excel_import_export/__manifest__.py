@@ -1,11 +1,13 @@
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {'name': 'Excel Import/Export',
- 'version': '11.0.0.0.0',
+ 'summary': 'Base module for easy way to develop excel import/export',
+ 'version': '11.0.1.0.0',
  'author': 'Ecosoft,Odoo Community Association (OCA)',
  'license': 'AGPL-3',
- 'category': 'Generic Modules',
+ 'website': 'https://github.com/OCA/server-tools/',
+ 'category': 'Tools',
  'depends': ['mail'],
  'external_dependencies': {
     'python': ['unicodecsv', 'xlrd', 'xlwt', 'openpyxl'], },
@@ -15,6 +17,6 @@
           'views/xlsx_report.xml',
           ],
  'installable': True,
- 'development_status': '????',
+ 'development_status': 'alpha',
  'maintainers': ['kittiu'],
  }
