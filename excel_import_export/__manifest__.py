@@ -11,7 +11,8 @@
  'depends': ['mail'],
  'external_dependencies': {
     'python': ['unicodecsv', 'xlrd', 'xlwt', 'openpyxl'], },
- 'data': ['wizard/export_xlsx_wizard.xml',
+ 'data': ['security/ir.model.access.csv',
+          'wizard/export_xlsx_wizard.xml',
           'wizard/import_xlsx_wizard.xml',
           'views/xlsx_template_view.xml',
           'views/xlsx_report.xml',
