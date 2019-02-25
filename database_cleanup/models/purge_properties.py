@@ -20,6 +20,7 @@ class CleanupPurgeLineProperty(models.TransientModel):
         (REASON_DUPLICATE, 'Duplicated property'),
         (REASON_DEFAULT, 'Same value as default'),
         (REASON_DEFAULT_FALSE, 'Empty default property'),
+        (REASON_UNKNOWN_MODEL, 'Unknown model'),
     ])
 
     @api.multi
