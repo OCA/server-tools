@@ -85,7 +85,7 @@ addon | version | summary
 [subscription_action](subscription_action/) | 9.0.1.0.0 | Run a server action on a newly created document
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
+[users_ldap_populate](users_ldap_populate/) | 9.0.1.1.0 | LDAP Populate
 
 
 Unported addons
