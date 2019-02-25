@@ -79,7 +79,7 @@ msgid "Name"
 msgstr "Нэр"
 
 #. module: users_ldap_populate
-#: code:addons/users_ldap_populate/models/users_ldap.py:67
+#: code:addons/users_ldap_populate/models/users_ldap.py:64
 #, python-format
 msgid ""
 "No login attribute found: Could not extract login attribute from filter %s"
