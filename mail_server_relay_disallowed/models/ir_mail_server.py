@@ -4,8 +4,8 @@
 import logging
 import threading
 
-from odoo.addons.base.models.ir_mail_server import extract_rfc2822_addresses
-from odoo.addons.base.models.ir_mail_server import MailDeliveryException
+from odoo.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
+from odoo.addons.base.ir.ir_mail_server import MailDeliveryException
 from odoo.osv import osv
 from odoo.tools.translate import _
 import odoo.tools as tools
