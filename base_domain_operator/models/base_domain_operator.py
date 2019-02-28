@@ -4,10 +4,10 @@
 from collections import Iterable
 from psycopg2.extensions import AsIs
 # pylint: disable=W0402
-from openerp.osv.expression import ExtendedLeaf, OR_OPERATOR, AND_OPERATOR,\
+from odoo.osv.expression import ExtendedLeaf, OR_OPERATOR, AND_OPERATOR,\
     FALSE_DOMAIN
-from openerp import api, models
-from openerp.osv import expression as expression_module
+from odoo import api, models
+from odoo.osv import expression as expression_module
 from ..expression import BaseDomainOperatorExtendedLeaf, Expression,\
     is_leaf_base_domain_operator
 
@@ -16,7 +16,7 @@ class BaseDomainOperator(models.AbstractModel):
     _name = 'base.domain.operator'
     _description = 'Implement custom domain operators'
 
-    def _register_hook(self, cr):
+    def _register_hook(self):
         if not isinstance(expression_module.expression, Expression):
             expression_module.expression = Expression
             expression_module.ExtendedLeaf = BaseDomainOperatorExtendedLeaf

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # © 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api
+from odoo import api
 # pylint: disable=W0402
-from openerp.osv.expression import ExtendedLeaf, expression, is_operator,\
+from odoo.osv.expression import ExtendedLeaf, expression, is_operator,\
     is_leaf
 
 
@@ -22,12 +22,13 @@ class BaseDomainOperatorExtendedLeaf(ExtendedLeaf):
 
 
 class Expression(expression):
-    def parse(self, cr, uid, context):  # pylint: disable=R8110
+
+    def parse(self):
         domain = []
-        env = api.Environment(cr, uid, context)
+        env = api.Environment(*self.root_model.env.args)
         if 'base.domain.operator' not in env.registry:
             # this can happen during intialization
-            return super(Expression, self).parse(cr, uid, context)
+            return super(Expression, self).parse()
         base_domain_operator = env['base.domain.operator']
         for leaf in self.expression:
             if not is_operator(leaf):
@@ -43,7 +44,7 @@ class Expression(expression):
             else:
                 domain.append(leaf)
         self.expression = domain
-        return super(Expression, self).parse(cr, uid, context)
+        return super(Expression, self).parse()
 
 
 def is_leaf_base_domain_operator(element, internal=False):
