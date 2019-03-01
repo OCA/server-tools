@@ -119,13 +119,13 @@ msgid "Populate users from LDAP"
 msgstr "Remplissage des utilisateurs depuis le LDAP"
 
 #. module: users_ldap_populate
-#: code:addons/users_ldap_populate/model/users_ldap.py:125
+#: code:addons/users_ldap_populate/models/users_ldap.py:125
 #, python-format
 msgid "Unable to process user with login %s"
 msgstr "Pas pu traiter l'utilisateur avec le login %s"
 
 #. module: users_ldap_populate
-#: code:addons/users_ldap_populate/model/users_ldap.py:124
+#: code:addons/users_ldap_populate/models/users_ldap.py:124
 #, python-format
 msgid "UserError"
 msgstr "Erreur"
