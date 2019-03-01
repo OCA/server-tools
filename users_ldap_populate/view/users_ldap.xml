@@ -6,7 +6,7 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="auth_ldap.company_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//form[@string='LDAP Configuration']" position="inside">
+                <xpath expr="//field[@name='ldaps']/form" position="inside">
                     <group string="Populate user database">
                         <field name="deactivate_unknown_users"/>
                         <field name="no_deactivate_user_ids" attrs="{'invisible': [('deactivate_unknown_users', '=', False)]}" widget="many2many_tags" />
