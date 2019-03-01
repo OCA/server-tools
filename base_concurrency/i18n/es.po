@@ -17,15 +17,16 @@ msgstr ""
 "Project-Id-Version: server-tools (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-28 02:41+0000\n"
-"PO-Revision-Date: 2016-05-27 15:24+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2019-03-01 15:20+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: base_concurrency
 #: field:res.users.login,create_uid:0
@@ -70,7 +71,7 @@ msgstr "Última conexión"
 #. module: base_concurrency
 #: sql_constraint:res.users.login:0
 msgid "The user can only have one login line!"
-msgstr ""
+msgstr "El usuario sólo puede tener una línea de login!"
 
 #. module: base_concurrency
 #: field:res.users.login,user_id:0
