@@ -32,6 +32,7 @@ Setup the session parameters as described above.
 Known issues / Roadmap
 ======================
 
+* The module doesn't work after `this commit <https://github.com/odoo/odoo/commit/da1f153d61d747d9357694382fe04f96c0ca886a#diff-03542f2676ca18278ea62cb40f5a2261>`__. Backport of `update from 11.0 <https://github.com/OCA/server-auth/commit/f19bd6ef199e284cbbfd002ba0b40ef3bd67b598>`__ has to be done. See `#1237 <https://github.com/OCA/server-tools/issues/1237>`__
 
 Bug Tracker
 ===========
