@@ -20,5 +20,6 @@ msgstr ""
 
 #. module: html_image_url_extractor
 #: model:ir.model,name:html_image_url_extractor.model_ir_fields_converter
-msgid "ir.fields.converter"
+#, fuzzy
+msgid "Fields Converter"
 msgstr "ir.fields.converter"
