@@ -62,27 +62,7 @@ msgid ""
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_channel_ids
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_channel_ids
-msgid "Add Channels"
-msgstr ""
-
-#. module: scheduler_error_mailer
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_partner_ids
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_partner_ids
-msgid "Add Followers"
-msgstr ""
-
-#. module: scheduler_error_mailer
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_template_id
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_template_id
-#, fuzzy
-msgid "Email Template"
-msgstr "错误E-mail 模板"
-
-#. module: scheduler_error_mailer
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron_email_template_id
-#: model:ir.model.fields,field_description:scheduler_error_mailer.field_nsca_check_email_template_id
+#: model:ir.model.fields,field_description:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Error E-mail Template"
 msgstr "错误E-mail 模板"
 
@@ -92,8 +72,7 @@ msgid "Scheduled Actions"
 msgstr ""
 
 #. module: scheduler_error_mailer
-#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron_email_template_id
-#: model:ir.model.fields,help:scheduler_error_mailer.field_nsca_check_email_template_id
+#: model:ir.model.fields,help:scheduler_error_mailer.field_ir_cron__email_template_id
 msgid "Select the email template that will be sent when this scheduler fails."
 msgstr ""
 
@@ -114,3 +93,7 @@ msgstr ""
 #: model:mail.template,subject:scheduler_error_mailer.scheduler_error_mailer
 msgid "[DB ${ctx.get('dbname')}] Scheduler '${object.name or ''}' FAILED"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Email Template"
+#~ msgstr "错误E-mail 模板"
