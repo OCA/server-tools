@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-base_search_fuzzy',
+        'odoo12-addon-datetime_formatter',
         'odoo12-addon-html_image_url_extractor',
         'odoo12-addon-html_text',
         'odoo12-addon-module_auto_update',
