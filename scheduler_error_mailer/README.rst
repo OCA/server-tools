@@ -51,6 +51,10 @@ Contributors
 * Sodexis <dev@sodexis.com>
 * Achraf Mhadhbi <machraf@bloopark.de>
 
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Cristina Martin R.
+
 
 Maintainer
 ----------
