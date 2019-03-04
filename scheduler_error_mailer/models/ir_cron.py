@@ -1,6 +1,6 @@
-# © 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
-# © 2016 Sodexis
-# © 2018 bloopark systems (<http://bloopark.de>)
+# Copyright 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
+# Copyright 2016 Sodexis
+# Copyright 2018 bloopark systems (<http://bloopark.de>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
