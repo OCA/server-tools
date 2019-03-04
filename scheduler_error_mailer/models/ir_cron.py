@@ -1,6 +1,6 @@
-# © 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
-# © 2016 Sodexis
-# © 2018 bloopark systems (<http://bloopark.de>)
+# Copyright 2012-2013 Akretion Sébastien BEAU,David Beal,Alexis de Lattre
+# Copyright 2016 Sodexis
+# Copyright 2018 bloopark systems (<http://bloopark.de>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -34,7 +34,7 @@ class IrCron(models.Model):
             # we put the job_exception in context to be able to print it inside
             # the email template
             context = {
-                'job_exception': job_exception,
+                'job_exception': str(job_exception),
                 'dbname': self._cr.dbname,
             }
 
