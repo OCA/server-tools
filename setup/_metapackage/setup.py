@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-html_image_url_extractor',
         'odoo12-addon-html_text',
         'odoo12-addon-module_auto_update',
+        'odoo12-addon-scheduler_error_mailer',
         'odoo12-addon-sentry',
     ],
     classifiers=[
