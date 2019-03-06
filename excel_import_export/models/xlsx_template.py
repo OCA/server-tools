@@ -18,6 +18,7 @@ class XLSXTemplate(models.Model):
     - Default values, etc.
     """
     _name = 'xlsx.template'
+    _description = 'Excel template file and instruction'
     _order = 'name'
 
     name = fields.Char(
@@ -110,9 +111,11 @@ class XLSXTemplate(models.Model):
                                         'not for model %s') % rec.res_model)
 
     @api.model
-    def load_xlsx_template(self, tempalte_ids):
+    def load_xlsx_template(self, tempalte_ids, addon=False):
         for template in self.browse(tempalte_ids):
-            addon = list(template.get_external_id().values())[0].split('.')[0]
+            if not addon:
+                addon = list(template.get_external_id().
+                             values())[0].split('.')[0]
             addon_path = get_module_path(addon)
             file_path = False
             for root, dirs, files in os.walk(addon_path):
@@ -228,7 +231,6 @@ class XLSXTemplate(models.Model):
                                 'field_name': field_name,
                                 }
                         import_lines.append((0, 0, vals))
-            print(import_lines)
             rec.write({'import_ids': import_lines})
 
     @api.multi
@@ -269,8 +271,8 @@ class XLSXTemplate(models.Model):
                     excel_cell = line.excel_cell
                     field_name = line.field_name or ''
                     field_name += line.field_cond or ''
-                    field_name += line.format or ''
-                    field_name += line.format_cond or ''
+                    field_name += line.style or ''
+                    field_name += line.style_cond or ''
                     if line.is_sum:
                         field_name += '@{sum}'
                     cell_dict = {excel_cell: field_name}
@@ -289,6 +291,8 @@ class XLSXTemplate(models.Model):
                     continue
                 if line.section_type in ('head', 'row'):
                     row_field = line.row_field
+                    if line.section_type == 'row' and line.no_delete:
+                        row_field = '_NODEL_%s' % row_field
                     row_dict = {row_field: {}}
                     inst_dict[itype][prev_sheet].update(row_dict)
                     prev_row = row_field
@@ -419,11 +423,11 @@ class XLSXTemplateExport(models.Model):
         string='Sum',
         default=False,
     )
-    format = fields.Char(
-        string='Default Format',
+    style = fields.Char(
+        string='Default Style',
     )
-    format_cond = fields.Char(
-        string='Format w/Cond.',
+    style_cond = fields.Char(
+        string='Style w/Cond.',
     )
 
     @api.model
@@ -436,13 +440,13 @@ class XLSXTemplateExport(models.Model):
         if self._context.get('compute_from_input') and vals.get('field_name'):
             field_name, field_cond = co.get_field_condition(vals['field_name'])
             field_cond = field_cond or 'value or ""'
-            field_name, format = co.get_field_format(field_name)
-            field_name, format_cond = co.get_field_format_cond(field_name)
+            field_name, style = co.get_field_style(field_name)
+            field_name, style_cond = co.get_field_style_cond(field_name)
             field_name, func = co.get_field_aggregation(field_name)
             vals.update({'field_name': field_name,
                          'field_cond': '${%s}' % (field_cond or ''),
-                         'format': '#{%s}' % (format or ''),
-                         'format_cond': '#?%s?' % (format_cond or ''),
+                         'style': '#{%s}' % (style or ''),
+                         'style_cond': '#?%s?' % (style_cond or ''),
                          'is_sum': func == 'sum' and True or False,
                          })
         return vals

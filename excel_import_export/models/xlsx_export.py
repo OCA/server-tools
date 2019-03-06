@@ -24,6 +24,7 @@ except ImportError:
 
 class XLSXExport(models.AbstractModel):
     _name = 'xlsx.export'
+    _description = 'Excel Export AbstractModel'
 
     @api.model
     def get_eval_context(self, model, record, value):
@@ -52,24 +53,24 @@ class XLSXExport(models.AbstractModel):
         if max_row > 0 and len(lines) > max_row:
             raise Exception(
                 _('Records in %s exceed max records allowed') % line_field)
-        vals = dict([(field, []) for field in fields])  # value and do_format
+        vals = dict([(field, []) for field in fields])  # value and do_style
         # Get field condition & aggre function
         field_cond_dict = {}
         aggre_func_dict = {}
-        field_format_dict = {}
-        format_cond_dict = {}
+        field_style_dict = {}
+        style_cond_dict = {}
         pair_fields = []  # I.e., ('debit${value and . or .}@{sum}', 'debit')
         for field in fields:
             temp_field, eval_cond = co.get_field_condition(field)
             eval_cond = eval_cond or 'value or ""'
-            temp_field, field_format = co.get_field_format(temp_field)
-            temp_field, format_cond = co.get_field_format_cond(temp_field)
+            temp_field, field_style = co.get_field_style(temp_field)
+            temp_field, style_cond = co.get_field_style_cond(temp_field)
             raw_field, aggre_func = co.get_field_aggregation(temp_field)
             # Dict of all special conditions
             field_cond_dict.update({field: eval_cond})
             aggre_func_dict.update({field: aggre_func})
-            field_format_dict.update({field: field_format})
-            format_cond_dict.update({field: format_cond})
+            field_style_dict.update({field: field_style})
+            style_cond_dict.update({field: style_cond})
             # --
             pair_fields.append((field, raw_field))
         for line in lines:
@@ -80,38 +81,37 @@ class XLSXExport(models.AbstractModel):
                     self.get_eval_context(line._name, line, value)
                 if eval_cond:
                     value = safe_eval(eval_cond, eval_context)
-                # Format w/Cond takes priority
-                format_cond = format_cond_dict[field[0]]
-                format = self._eval_format_cond(line._name, line,
-                                                value, format_cond)
-                if format is None:
-                    format = False  # No format
-                elif format is False:
-                    format = field_format_dict[field[0]]  # Use default format
-                vals[field[0]].append((value, format))
+                # style w/Cond takes priority
+                style_cond = style_cond_dict[field[0]]
+                style = self._eval_style_cond(line._name, line,
+                                              value, style_cond)
+                if style is None:
+                    style = False  # No style
+                elif style is False:
+                    style = field_style_dict[field[0]]  # Use default style
+                vals[field[0]].append((value, style))
         return (vals, aggre_func_dict,)
 
     @api.model
-    def _eval_format_cond(self, model, record, value, format_cond):
+    def _eval_style_cond(self, model, record, value, style_cond):
         eval_context = self.get_eval_context(model, record, value)
-        # cond = object.name=="SO024" and #{format=text;font=bold}
-        field = format_cond = format_cond or '#??'
-        formats = {}
-        for i in range(format_cond.count('#{')):
+        field = style_cond = style_cond or '#??'
+        styles = {}
+        for i in range(style_cond.count('#{')):
             i += 1
-            field, format = co.get_field_format(field)
-            formats.update({i: format})
-            format_cond = format_cond.replace('#{%s}' % format, str(i))
-        if not formats:
+            field, style = co.get_field_style(field)
+            styles.update({i: style})
+            style_cond = style_cond.replace('#{%s}' % style, str(i))
+        if not styles:
             return False
-        res = safe_eval(format_cond, eval_context)
+        res = safe_eval(style_cond, eval_context)
         if res is None or res is False:
             return res
-        return formats[res]
+        return styles[res]
 
     @api.model
     def _fill_workbook_data(self, workbook, record, data_dict):
-        """ Fill data from record with format in data_dict to workbook """
+        """ Fill data from record with style in data_dict to workbook """
         if not record or not data_dict:
             return
         try:
@@ -157,8 +157,8 @@ class XLSXExport(models.AbstractModel):
         for rc, field in ws.get('_HEAD_', {}).items():
             tmp_field, eval_cond = co.get_field_condition(field)
             eval_cond = eval_cond or 'value or ""'
-            tmp_field, field_format = co.get_field_format(tmp_field)
-            tmp_field, format_cond = co.get_field_format_cond(tmp_field)
+            tmp_field, field_style = co.get_field_style(tmp_field)
+            tmp_field, style_cond = co.get_field_style_cond(tmp_field)
             value = tmp_field and self._get_field_data(tmp_field, record)
             # Eval
             eval_context = self.get_eval_context(record._name,
@@ -167,11 +167,11 @@ class XLSXExport(models.AbstractModel):
                 value = safe_eval(eval_cond, eval_context)
             if value is not None:
                 st[rc] = value
-            fc = not format_cond and True or \
-                safe_eval(format_cond, eval_context)
-            if field_format and fc:  # has format and pass format_cond
+            fc = not style_cond and True or \
+                safe_eval(style_cond, eval_context)
+            if field_style and fc:  # has style and pass style_cond
                 styles = self.env['xlsx.styles'].get_openpyxl_styles()
-                co.fill_cell_format(st[rc], field_format, styles)
+                co.fill_cell_style(st[rc], field_style, styles)
 
     @api.model
     def _fill_lines(self, ws, st, record):
@@ -204,15 +204,15 @@ class XLSXExport(models.AbstractModel):
                         for _x in range(row_count-1):
                             st.insert_rows(row+1)
                 # --
-                for (row_val, format) in vals[field]:
+                for (row_val, style) in vals[field]:
                     new_row = row + i
                     new_rc = '%s%s' % (col, new_row)
                     row_val = co.adjust_cell_formula(row_val, i)
                     if row_val not in ('None', None):
                         st[new_rc] = co.str_to_number(row_val)
-                    if format:
+                    if style:
                         styles = self.env['xlsx.styles'].get_openpyxl_styles()
-                        co.fill_cell_format(st[new_rc], format, styles)
+                        co.fill_cell_style(st[new_rc], style, styles)
                     i += 1
                 # Add footer line if at least one field have sum
                 f = func.get(field, False)

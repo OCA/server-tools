@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class XLSXReport(models.AbstractModel):
     """ Common class for xlsx reporting wizard """
     _name = 'xlsx.report'
+    _description = 'Excel Report AbstractModel'
 
     name = fields.Char(
         string='File Name',

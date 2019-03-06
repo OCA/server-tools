@@ -65,14 +65,14 @@ def get_field_condition(field):
     return (field, False)
 
 
-def get_field_format(field):
+def get_field_style(field):
     """
-        Available formats
+        Available styles
         - font = bold, bold_red
         - fill = red, blue, yellow, green, grey
         - align = left, center, right
         - number = true, false
-        i.e., 'field#{font=bold;fill=red;align=center;format=number}'
+        i.e., 'field#{font=bold;fill=red;align=center;style=number}'
     """
     if field and '#{' in field and '}' in field:
         i = field.index('#{')
@@ -86,7 +86,7 @@ def get_field_format(field):
     return (field, False)
 
 
-def get_field_format_cond(field):
+def get_field_style_cond(field):
     """ i..e, 'field#?object.partner_id and #{font=bold} or #{}?' """
     if field and '#?' in field and '?' in field:
         i = field.index('#?')
@@ -100,30 +100,30 @@ def get_field_format_cond(field):
     return (field, False)
 
 
-def fill_cell_format(field, field_format, styles):
-    formats = field_format.split(';')
-    for f in formats:
+def fill_cell_style(field, field_style, styles):
+    field_styles = field_style.split(';')
+    for f in field_styles:
         (key, value) = f.split('=')
         if key not in styles.keys():
-            raise ValidationError(_('Invalid format type %s' % key))
+            raise ValidationError(_('Invalid style type %s' % key))
         if value.lower() not in styles[key].keys():
             raise ValidationError(
-                _('Invalid value %s for format type %s' % (value, key)))
-        cell_format = styles[key][value]
+                _('Invalid value %s for style type %s' % (value, key)))
+        cell_style = styles[key][value]
         if key == 'font':
-            field.font = cell_format
+            field.font = cell_style
         if key == 'fill':
-            field.fill = cell_format
+            field.fill = cell_style
         if key == 'align':
-            field.alignment = cell_format
-        if key == 'format':
+            field.alignment = cell_style
+        if key == 'style':
             if value == 'text':
                 try:
                     # In case value can't be encoded as utf, we do normal str()
                     field.value = field.value.encode('utf-8')
                 except Exception:
                     field.value = str(field.value)
-            field.number_format = cell_format
+            field.number_format = cell_style
 
 
 def get_line_max(line_field):
@@ -234,7 +234,7 @@ def csv_from_excel(excel_content, delimiter, quote):
     if delimiter == " " and quoting == csv.QUOTE_NONE:
         quoting = csv.QUOTE_MINIMAL
     wr = csv.writer(content, delimiter=delimiter, quoting=quoting)
-    for rownum in xrange(sh.nrows):
+    for rownum in range(sh.nrows):
         row = []
         for x in sh.row_values(rownum):
             if quoting == csv.QUOTE_NONE and delimiter in x:

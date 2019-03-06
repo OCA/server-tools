@@ -9,6 +9,7 @@ class ExportXLSXWizard(models.TransientModel):
     """ This wizard is used with the template (xlsx.template) to export
     xlsx template filled with data form the active record """
     _name = 'export.xlsx.wizard'
+    _description = 'Wizard for exporting excel'
 
     name = fields.Char(
         string='File Name',

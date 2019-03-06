@@ -15,10 +15,11 @@ except ImportError:
 
 class XLSXStyles(models.AbstractModel):
     _name = 'xlsx.styles'
+    _description = 'Available styles for excel'
 
     @api.model
     def get_openpyxl_styles(self):
-        """ List all syles that can be used with formating directive #{...} """
+        """ List all syles that can be used with styleing directive #{...} """
         return {
             'font': {
                 'bold': Font(name="Arial", size=10, bold=True),
@@ -37,7 +38,7 @@ class XLSXStyles(models.AbstractModel):
                 'center': Alignment(horizontal='center'),
                 'right': Alignment(horizontal='right'),
             },
-            'format': {
+            'style': {
                 'number': '#,##0.00',
                 'date': 'dd/mm/yyyy',
                 'datestamp': 'yyyy-mm-dd',

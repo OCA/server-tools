@@ -14,14 +14,14 @@
                 '__EXPORT__': {
                     1: {
                         '_HEAD_': {
-                            'B2': 'partner_id.display_name${value or ""}#{align=left;format=text}',
+                            'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
                         },
                         'results': {
-                            'A5': 'name${value or ""}#{format=text}',
-                            'B5': 'confirmation_date${value or ""}#{format=date}',
-                            'C5': 'amount_untaxed${value or 0}#{format=number}@{sum}',
-                            'D5': 'amount_tax${value or 0}#{format=number}@{sum}',
-                            'E5': 'amount_total${value or 0}#{format=number}@{sum}',
+                            'A5': 'name${value or ""}#{style=text}',
+                            'B5': 'confirmation_date${value or ""}#{style=date}',
+                            'C5': 'amount_untaxed${value or 0}#{style=number}@{sum}',
+                            'D5': 'amount_tax${value or 0}#{style=number}@{sum}',
+                            'E5': 'amount_total${value or 0}#{style=number}@{sum}',
                         },
                     },
                 },

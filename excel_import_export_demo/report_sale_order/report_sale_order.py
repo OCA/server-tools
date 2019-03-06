@@ -21,12 +21,6 @@ class ReportSaleOrder(models.TransientModel):
         compute='_compute_results',
         help='Use compute fields, so there is nothing stored in database',
     )
-    results2 = fields.Many2many(
-        'sale.order',
-        string='Results',
-        compute='_compute_results',
-        help='Use compute fields, so there is nothing stored in database',
-    )
 
     @api.multi
     def _compute_results(self):
@@ -39,4 +33,3 @@ class ReportSaleOrder(models.TransientModel):
         if self.partner_id:
             domain += [('partner_id', '=', self.partner_id.id)]
         self.results = Result.search(domain)
-        self.results2 = Result.search(domain)

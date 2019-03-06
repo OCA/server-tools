@@ -14,23 +14,23 @@
                 '__EXPORT__': {
                     'sale_order': {
                         '_HEAD_': {
-                            'B2': 'partner_id.display_name${value or ""}#{align=left;format=text}',
-                            'B3': 'name${value or ""}#{align=left;format=text}',
+                            'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
+                            'B3': 'name${value or ""}#{align=left;style=text}',
                         },
                         'order_line': {
-                            'A6': 'product_id.display_name${value or ""}#{format=text}',
-                            'B6': 'name${value or ""}#{format=text}',
-                            'C6': 'product_uom_qty${value or 0}#{format=number}',
-                            'D6': 'product_uom.name${value or ""}#{format=text}',
-                            'E6': 'price_unit${value or 0}#{format=number}',
+                            'A6': 'product_id.display_name${value or ""}#{style=text}',
+                            'B6': 'name${value or ""}#{style=text}',
+                            'C6': 'product_uom_qty${value or 0}#{style=number}',
+                            'D6': 'product_uom.name${value or ""}#{style=text}',
+                            'E6': 'price_unit${value or 0}#{style=number}',
                             'F6': 'tax_id${value and ",".join([x.display_name for x in value]) or ""}',
-                            'G6': 'price_subtotal${value or 0}#{format=number}',
+                            'G6': 'price_subtotal${value or 0}#{style=number}',
                         }
                     }
                 },
                 '__IMPORT__': {
                     'sale_order': {
-                        'order_line': {
+                        '_NODEL_order_line': {
                             'A6': 'product_id',
                             'B6': 'name',
                             'C6': 'product_uom_qty',

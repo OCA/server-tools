@@ -8,7 +8,7 @@
  'website': 'https://github.com/OCA/server-tools/',
  'category': 'Tools',
  'depends': ['excel_import_export',
-             'sale'],
+             'sale_management'],
  'data': ['import_export_sale_order/actions.xml',
           'import_export_sale_order/templates.xml',
           'report_sale_order/report_sale_order.xml',

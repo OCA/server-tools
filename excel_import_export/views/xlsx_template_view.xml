@@ -60,8 +60,8 @@
                                     <field name="field_name" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
                                     <field name="field_cond" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
                                     <field name="is_sum" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
-                                    <field name="format" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
-                                    <field name="format_cond" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
+                                    <field name="style" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
+                                    <field name="style_cond" attrs="{'invisible': [('section_type', '!=', 'data')]}"/>
                                 </tree>
                             </field>
                             <div style="margin-top: 4px;">
@@ -85,7 +85,7 @@
                                     <li><b>Field</b>: Field of the record, e.g., product_id.uom_id.name. They are orm compliant.</li>
                                     <li><b>Field Cond.</b>: Python code in <code>${...}</code> to manipulate field value, e.g., if field = product_id, <code>value</code> will represent product object, e.g., <code>${value and value.uom_id.name or ""}</code></li>
                                     <li><b>Sum</b>: Add sum value on last row, <code>@{sum}</code></li>
-                                    <li><b>Style</b>: Default style in <code>#{...}</code> that apply to each cell, e.g., <code>#{align=left;format=text}</code>. See module's <b>style.py</b> for available styles.</li>
+                                    <li><b>Style</b>: Default style in <code>#{...}</code> that apply to each cell, e.g., <code>#{align=left;style=text}</code>. See module's <b>style.py</b> for available styles.</li>
                                     <li><b>Style w/Cond.</b>: Conditional style by python code in <code>#?...?</code>, e.g., apply style for specific product, <code>#?value.name == "ABC" and #{font=bold;fill=red} or None?</code></li>
                                 </ul>
                                 <p><b>Note:</b></p>
@@ -171,14 +171,14 @@
     '__EXPORT__': {
         'sale_order': {  # sheet can be name (string) or index (integer)
             '_HEAD_': {
-                'B2': 'partner_id.display_name${value or ""}#{align=left;format=text}',
-                'B3': 'name${value or ""}#{align=left;format=text}',
+                'B2': 'partner_id.display_name${value or ""}#{align=left;style=text}',
+                'B3': 'name${value or ""}#{align=left;style=text}',
             },
             'line_ids': {  # prefix with _CONT_ to continue rows from previous row field
-                'A6': 'product_id.display_name${value or ""}#{format=text}',
-                'C6': 'product_uom_qty${value or 0}#{format=number}',
-                'E6': 'price_unit${value or 0}#{format=number}',
-                'G6': 'price_subtotal${value or 0}#{format=number}',
+                'A6': 'product_id.display_name${value or ""}#{style=text}',
+                'C6': 'product_uom_qty${value or 0}#{style=number}',
+                'E6': 'price_unit${value or 0}#{style=number}',
+                'G6': 'price_subtotal${value or 0}#{style=number}',
             },
         },
     },

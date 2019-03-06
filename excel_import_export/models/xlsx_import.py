@@ -18,6 +18,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class XLSXImport(models.AbstractModel):
     _name = 'xlsx.import'
+    _description = 'Excel Import AbstractModel'
 
     @api.model
     def get_eval_context(self, model=False, value=False):
@@ -78,6 +79,12 @@ class XLSXImport(models.AbstractModel):
                     if '_NODEL_' not in line_field:
                         if line_field in record and record[line_field]:
                             record[line_field].unlink()
+            # Remove _NODEL_ from dict
+            for s, sv in data_dict.items():
+                for f, fv in data_dict[s].items():
+                    if '_NODEL_' in f:
+                        new_fv = data_dict[s].pop(f)
+                        data_dict[s][f.replace('_NODEL_', '')] = new_fv
         except Exception as e:
             raise ValidationError(_('Error deleting data\n%s') % e)
 
@@ -196,8 +203,8 @@ class XLSXImport(models.AbstractModel):
                  'encoding': '',
                  'separator': '',
                  'quoting': '"',
-                 'date_format': '',
-                 'datetime_format': '%Y-%m-%d %H:%M:%S',
+                 'date_style': '',
+                 'datetime_style': '%Y-%m-%d %H:%M:%S',
                  'float_thousand_separator': ',',
                  'float_decimal_separator': '.',
                  'fields': []})
@@ -207,7 +214,7 @@ class XLSXImport(models.AbstractModel):
             return self.env.ref(xml_id)
         except xlrd.XLRDError:
             raise ValidationError(
-                _('Invalid file format, only .xls or .xlsx file allowed'))
+                _('Invalid file style, only .xls or .xlsx file allowed'))
         except Exception as e:
             raise ValidationError(_('Error importing data\n%s') % e)
 
