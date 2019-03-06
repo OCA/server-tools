@@ -9,6 +9,7 @@ import time
 from datetime import date, datetime as dt
 from odoo.tools.float_utils import float_compare
 from odoo import models, fields, api, _
+from odoo.tools.safe_eval import safe_eval
 from odoo.exceptions import ValidationError
 from . import common as co
 
@@ -78,7 +79,7 @@ class XLSXExport(models.AbstractModel):
                 eval_context = \
                     self.get_eval_context(line._name, line, value)
                 if eval_cond:
-                    value = eval(eval_cond, eval_context)
+                    value = safe_eval(eval_cond, eval_context)
                 # Format w/Cond takes priority
                 format_cond = format_cond_dict[field[0]]
                 format = self._eval_format_cond(line._name, line,
@@ -103,7 +104,7 @@ class XLSXExport(models.AbstractModel):
             format_cond = format_cond.replace('#{%s}' % format, str(i))
         if not formats:
             return False
-        res = eval(format_cond, eval_context)
+        res = safe_eval(format_cond, eval_context)
         if res is None or res is False:
             return res
         return formats[res]
@@ -163,10 +164,11 @@ class XLSXExport(models.AbstractModel):
             eval_context = self.get_eval_context(record._name,
                                                  record, value)
             if eval_cond:
-                value = eval(eval_cond, eval_context)
+                value = safe_eval(eval_cond, eval_context)
             if value is not None:
                 st[rc] = value
-            fc = not format_cond and True or eval(format_cond, eval_context)
+            fc = not format_cond and True or \
+                safe_eval(format_cond, eval_context)
             if field_format and fc:  # has format and pass format_cond
                 styles = self.env['xlsx.styles'].get_openpyxl_styles()
                 co.fill_cell_format(st[rc], field_format, styles)

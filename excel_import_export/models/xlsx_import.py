@@ -13,7 +13,7 @@ from datetime import date, datetime as dt
 from odoo.tools.float_utils import float_compare
 from odoo import models, api, _
 from odoo.exceptions import ValidationError
-from odoo.tools.safe_eval import safe_eval as eval
+from odoo.tools.safe_eval import safe_eval
 
 
 class XLSXImport(models.AbstractModel):
@@ -101,9 +101,9 @@ class XLSXImport(models.AbstractModel):
                     eval_context = self.get_eval_context(model=model,
                                                          value=value)
                     if key_eval_cond:
-                        value = eval(key_eval_cond, eval_context)
+                        value = safe_eval(key_eval_cond, eval_context)
                     if val_eval_cond:
-                        value = eval(val_eval_cond, eval_context)
+                        value = safe_eval(val_eval_cond, eval_context)
                     vals[out_field].append(value)
                 if not filter(lambda x: x != '', vals[out_field]):
                     vals.pop(out_field)
@@ -153,9 +153,9 @@ class XLSXImport(models.AbstractModel):
                     eval_context = self.get_eval_context(model=model,
                                                          value=value)
                     if key_eval_cond:
-                        value = str(eval(key_eval_cond, eval_context))
+                        value = str(safe_eval(key_eval_cond, eval_context))
                     if val_eval_cond:
-                        value = str(eval(val_eval_cond, eval_context))
+                        value = str(safe_eval(val_eval_cond, eval_context))
                     out_st.write(0, col_idx, field)  # Next Column
                     out_st.write(1, col_idx, value)  # Next Value
                     header_fields.append(field)
@@ -220,7 +220,7 @@ class XLSXImport(models.AbstractModel):
             if '${' in operation:
                 code = (operation.split('${'))[1].split('}')[0]
                 eval_context = {'object': record}
-                eval(code, eval_context)
+                safe_eval(code, eval_context)
         except Exception as e:
             raise ValidationError(_('Post import operation error\n%s') % e)
 
