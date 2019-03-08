@@ -56,7 +56,7 @@ Usage
 
 Inherit the model:
 
-    from openerp import models
+    from odoo import models
 
     class MyModel(models.model)
         _name = 'my.model'
@@ -90,14 +90,6 @@ Contributors
 
 * Florian da Costa <florian.dacosta@akretion.com>
 * Sylvain LE GAL (https://twitter.com/legalsylvain)
-
-Funders
-~~~~~~~
-
-The development of this module has been financially supported by:
-
-* Akretion (<http://www.akretion.com>)
-* GRAP, Groupement Régional Alimentaire de Proximité (<http://www.grap.coop>)
 
 Maintainers
 ~~~~~~~~~~~
