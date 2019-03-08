@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo12-addon-module_auto_update',
         'odoo12-addon-scheduler_error_mailer',
         'odoo12-addon-sentry',
+        'odoo12-addon-sql_request_abstract',
     ],
     classifiers=[
         'Programming Language :: Python',
