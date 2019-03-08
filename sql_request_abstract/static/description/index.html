@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.14: http://docutils.sourceforge.net/" />
 <title>SQL Request Abstract</title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -36,6 +36,14 @@ table.borderless td, table.borderless th {
 
 .hidden {
   display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
 
 a.toc-backref {
   text-decoration: none ;
@@ -161,18 +169,23 @@ h2.subtitle {
 hr.docutils {
   width: 75% }
 
-img.align-left, .figure.align-left, object.align-left {
+img.align-left, .figure.align-left, object.align-left, table.align-left {
   clear: left ;
   float: left ;
   margin-right: 1em }
 
-img.align-right, .figure.align-right, object.align-right {
+img.align-right, .figure.align-right, object.align-right, table.align-right {
   clear: right ;
   float: right ;
   margin-left: 1em }
 
 img.align-center, .figure.align-center, object.align-center {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
   margin-left: auto;
   margin-right: auto;
 }
@@ -193,6 +206,15 @@ div.align-right {
 
 /* div.align-center * { */
 /*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
 
 ol.simple, ul.simple {
   margin-bottom: 1em }
@@ -351,10 +373,10 @@ It is not usefull for itself. You can see an exemple of implementation in the
 ‘sql_export’ module. (same repository).</p>
 <div class="section" id="implemented-features">
 <h1>Implemented features</h1>
-<ul>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt>Add some restrictions in the sql request:</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li>you can only read datas. No update, deletion or creation are possible.</li>
 <li>some tables are not allowed, because they could contains clear password
 or keys. For the time being (‘ir_config_parameter’).</li>
@@ -362,13 +384,12 @@ or keys. For the time being (‘ir_config_parameter’).</li>
 </dd>
 </dl>
 </li>
-<li><p class="first">The request can be in a ‘draft’ or a ‘SQL Valid’ status. To be valid,
+<li>The request can be in a ‘draft’ or a ‘SQL Valid’ status. To be valid,
 the request has to be cleaned, checked and tested. All of this operations
-can be disabled in the inherited modules.</p>
-</li>
+can be disabled in the inherited modules.</li>
 <li><dl class="first docutils">
 <dt>This module two new groups:</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li>SQL Request / User : Can see all the sql requests by default and execute
 them, if they are valid.</li>
 <li>SQL Request / Manager : has full access on sql requests.</li>
@@ -389,7 +410,7 @@ them, if they are valid.</li>
 <h2><a class="toc-backref" href="#id1">Usage</a></h2>
 <p>Inherit the model:</p>
 <blockquote>
-<p>from openerp import models</p>
+<p>from odoo import models</p>
 <dl class="docutils">
 <dt>class MyModel(models.model)</dt>
 <dd><p class="first">_name = ‘my.model’
