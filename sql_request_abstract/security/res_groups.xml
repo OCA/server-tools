@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2017 - Today: GRAP (http://www.grap.coop)
+@author Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record model="res.groups" id="group_sql_request_user">
+        <field name="name">User</field>
+        <field name="category_id" ref="category_sql_abstract" />
+    </record>
+
+
+    <record model="res.groups" id="group_sql_request_manager">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="category_sql_abstract" />
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_sql_request_user'))]" />
+    </record>
+
+</odoo>
