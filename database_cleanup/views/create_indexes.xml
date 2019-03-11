@@ -39,7 +39,7 @@
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
         <field name="model_id" ref="database_cleanup.model_cleanup_create_indexes_line" />
-        <field name="code">env.get('cleanup.create_indexes.line').purge()</field>
+        <field name="code">records.purge()</field>
     </record>
 
     <record id="cleanup_create_indexes_line_action_value" model="ir.values">
