@@ -141,6 +141,11 @@ msgid "Duplicated property"
 msgstr "Deduplicirano svojstvo"
 
 #. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Empty default property"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_field_id
 msgid "Field id"
 msgstr "ID Polja"
@@ -493,6 +498,11 @@ msgstr "Odaberite stavke za brisanje"
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_purge_line_ids
 msgid "Tables to purge"
 msgstr "Tablice za brisanje"
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Unknown model"
+msgstr ""
 
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_wizard_id
