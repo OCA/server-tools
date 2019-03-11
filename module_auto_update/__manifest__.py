@@ -23,5 +23,4 @@
         'views/ir_module_module.xml',
     ],
     'development_status': 'Production/Stable',
-    'maintainers': ['sbidoul'],
 }
