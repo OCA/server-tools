@@ -14,6 +14,7 @@
     'license': 'AGPL-3',
     'depends': [
         'fetchmail',
+        'test_mail',
     ],
     'data': [
         'views/fetchmail_view.xml',
