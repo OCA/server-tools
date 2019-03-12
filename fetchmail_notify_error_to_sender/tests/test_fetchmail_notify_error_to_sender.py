@@ -1,10 +1,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 import socket
 from odoo.addons.test_mail.data.test_mail_data import MAIL_TEMPLATE
 from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
 from odoo.tools import mute_logger
+from email.utils import formataddr
 
 
 class TestFetchmailNotifyErrorToSender(TestMailgateway):
@@ -28,7 +28,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
         cc_email='',
         msg_id='<1198923581.41972151344608186760.JavaMail@agrolait.com>',
         model=None, target_model='mail.test.simple', target_field='name',
-        ctx=None
+        ctx=None,
     ):
         self.assertFalse(self.env[target_model].search([
             (target_field, '=', subject),
@@ -49,7 +49,7 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
 
     @mute_logger('odoo.addons.mail.models.mail_thread', 'odoo.models')
     def test_message_process(self):
-        email_from = 'valid.lelitre@agrolait.com'
+        email_from = formataddr((self.partner_1.name, self.partner_1.email))
 
         count_return_mails_before = self.env['mail.mail'].search_count([
             ('email_to', '=', email_from),
@@ -61,13 +61,13 @@ class TestFetchmailNotifyErrorToSender(TestMailgateway):
                 email_from=email_from,
                 to_email='noone@example.com',
                 subject='spam',
-                extra='In-Reply-To: <12321321-openerp-%d-mail.test@%s>' % (
-                    self.test_record.id,
-                    socket.gethostname(),
-                ),
+                extra='In-Reply-To: <12321321-openerp-%d-mail.test.simple@%s'
+                      '>' % (self.test_record.id,
+                             socket.gethostname(),
+                             ),
                 ctx={
                     'fetchmail_server_id': self.fetchmail_server.id,
-                }
+                    }
             )
 
         count_return_mails_after = self.env['mail.mail'].search_count([
