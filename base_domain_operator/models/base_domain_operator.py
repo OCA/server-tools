@@ -31,6 +31,8 @@ class BaseDomainOperator(models.AbstractModel):
         # this function is more of less a verbatim copy of
         # https://github.com/OCA/OCB/blob/10.0/odoo/osv/expression.py#L738
         def parent_of_domain(left, ids, left_model, parent=None, prefix=''):
+            if isinstance(right, basestring):
+                ids = [_id for _id, dummy in left_model.name_search(ids)]
             if left_model._parent_store and (not left_model.pool._init) and (
                     not self.env.context.get('defer_parent_store_computation')
             ):

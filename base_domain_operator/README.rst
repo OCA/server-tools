@@ -42,7 +42,7 @@ Known issues / Roadmap
 ======================
 
 * given the upstream code is not exactly extension friendly, we'll have to reimplement a bunch of helper functions
-* ``parent_of`` currently doesn't support dotted paths and searching for names (``name_get``), this needs to be amended as needed
+* ``parent_of`` currently doesn't support dotted paths, this needs to be amended as needed
 * another nice operator would be ``indomain``, probably also with a way to refer to the table's columns in the right hand side of expressions
 
 Bug Tracker
