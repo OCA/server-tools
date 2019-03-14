@@ -42,7 +42,7 @@ Known issues / Roadmap
 ======================
 
 * given the upstream code is not exactly extension friendly, we'll have to reimplement a bunch of helper functions
-* ``parent_of`` currently doesn't support dotted paths and searching for names (``name_get``), this needs to be amended as needed
+* ``parent_of`` currently doesn't support dotted paths, this needs to be amended as needed
 * another nice operator would be ``indomain``, probably also with a way to refer to the table's columns in the right hand side of expressions
 
 Bug Tracker
@@ -65,6 +65,7 @@ Contributors
 ------------
 
 * Holger Brunn <hbrunn@therp.nl>
+* George Daramouskas <gdaramouskas@therp.nl>
 
 Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
 

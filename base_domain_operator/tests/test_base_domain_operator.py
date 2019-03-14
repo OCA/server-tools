@@ -5,6 +5,10 @@ from openerp.tests.common import TransactionCase
 
 
 class TestBaseDomainOperator(TransactionCase):
+
+    post_install = True
+    at_install = False
+
     def test_base_domain_operator(self):
         self.env['base.domain.operator']._register_hook()
         # parent_of with an id
@@ -32,3 +36,8 @@ class TestBaseDomainOperator(TransactionCase):
             ('name', 'substring_of', ' YourCompany is great')
         ])
         self.assertTrue(substring_matches)
+        matches_parent_of = self.env['res.partner'].search([
+            ('id', 'parent_of', child.name)
+        ])
+        parent = matches_parent_of - child
+        self.assertTrue(child in parent.child_ids)
