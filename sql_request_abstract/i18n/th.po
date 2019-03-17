@@ -19,17 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_group_ids
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__group_ids
 msgid "Allowed Groups"
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_user_ids
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__user_ids
 msgid "Allowed Users"
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_display_name
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__display_name
 msgid "Display Name"
 msgstr "ชื่อที่ใช้แสดง"
 
@@ -39,18 +39,18 @@ msgid "Draft"
 msgstr "ฉบับร่าง"
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_id
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__id
 msgid "ID"
 msgstr "รหัส"
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:139
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:140
 #, python-format
 msgid "It is not allowed to execute a not checked request."
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin___last_update
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin____last_update
 msgid "Last Modified on"
 msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
 
@@ -60,7 +60,7 @@ msgid "Manager"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:207
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:208
 #, python-format
 msgid ""
 "Materialized View requires PostgreSQL 9.3 or greater but PostgreSQL %s is "
@@ -68,12 +68,12 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_name
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__name
 msgid "Name"
 msgstr "ชื่อ"
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_query
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__query
 msgid "Query"
 msgstr ""
 
@@ -83,17 +83,22 @@ msgid "SQL Request"
 msgstr ""
 
 #. module: sql_request_abstract
+#: model:ir.model,name:sql_request_abstract.model_sql_request_mixin
+msgid "SQL Request Mixin"
+msgstr ""
+
+#. module: sql_request_abstract
 #: selection:sql.request.mixin,state:0
 msgid "SQL Valid"
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin_state
+#: model:ir.model.fields,field_description:sql_request_abstract.field_sql_request_mixin__state
 msgid "State"
 msgstr ""
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_state
+#: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__state
 msgid ""
 "State of the Request:\n"
 " * 'Draft': Not tested\n"
@@ -101,7 +106,7 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:246
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:247
 #, python-format
 msgid ""
 "The SQL query is not valid:\n"
@@ -110,13 +115,13 @@ msgid ""
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:229
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:230
 #, python-format
 msgid "The query is not allowed because it contains unsafe word '%s'"
 msgstr ""
 
 #. module: sql_request_abstract
-#: code:addons/sql_request_abstract/models/sql_request_mixin.py:163
+#: code:addons/sql_request_abstract/models/sql_request_mixin.py:164
 #, python-format
 msgid "Unimplemented mode : '%s'"
 msgstr ""
@@ -127,13 +132,8 @@ msgid "User"
 msgstr "ผู้ใช้"
 
 #. module: sql_request_abstract
-#: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin_query
+#: model:ir.model.fields,help:sql_request_abstract.field_sql_request_mixin__query
 msgid ""
 "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
 "TRUNCATE, EXECUTE, UPDATE."
-msgstr ""
-
-#. module: sql_request_abstract
-#: model:ir.model,name:sql_request_abstract.model_sql_request_mixin
-msgid "sql.request.mixin"
 msgstr ""
