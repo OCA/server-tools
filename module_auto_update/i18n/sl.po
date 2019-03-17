@@ -20,6 +20,12 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: module_auto_update
+#: model:ir.actions.server,name:module_auto_update.ir_module_module_upgrade_changed_checksum
+#: model:ir.ui.menu,name:module_auto_update.menu_ir_module_module_upgrade_changed_checksum
+msgid "Auto-Upgrade Modules"
+msgstr ""
+
+#. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
 msgid "Module"
 msgstr "Modul"
