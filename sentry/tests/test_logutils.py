@@ -4,10 +4,12 @@
 import unittest
 
 import mock
+from odoo.tests.common import tagged
 
 from ..logutils import SanitizeOdooCookiesProcessor
 
 
+@tagged('standard', 'at_install')
 class TestOdooCookieSanitizer(unittest.TestCase):
 
     def test_cookie_as_string(self):

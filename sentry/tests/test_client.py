@@ -8,6 +8,7 @@ import unittest
 import raven
 
 from odoo import exceptions
+from odoo.tests.common import tagged
 
 from .. import initialize_raven
 from ..logutils import OdooSentryHandler
@@ -58,6 +59,7 @@ class InMemoryClient(raven.Client):
         return False
 
 
+@tagged('standard', 'at_install')
 class TestClientSetup(unittest.TestCase):
 
     def setUp(self):

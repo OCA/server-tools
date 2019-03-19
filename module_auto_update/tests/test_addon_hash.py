@@ -4,10 +4,13 @@
 import os
 import unittest
 
+from odoo.tests.common import tagged
+
 from .. import addon_hash
 from ..models.module import DEFAULT_EXCLUDE_PATTERNS
 
 
+@tagged('standard', 'at_install')
 class TestAddonHash(unittest.TestCase):
 
     def setUp(self):
