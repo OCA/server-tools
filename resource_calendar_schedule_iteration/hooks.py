@@ -1,20 +1,13 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-import pytz
 import datetime
 
 from datetime import timedelta
 
 from odoo.addons.resource.models.resource import ResourceCalendar
+from odoo.addons.resource.models.resource import to_naive_user_tz
 from odoo.tools.float_utils import float_compare
-
-
-def to_naive_user_tz(datetime, record):
-    tz_name = record._context.get('tz') or record.env.user.tz
-    tz = tz_name and pytz.timezone(tz_name) or pytz.UTC
-    return pytz.UTC.localize(datetime.replace(
-        tzinfo=None), is_dst=False).astimezone(tz).replace(tzinfo=None)
 
 
 def post_load_hook():
@@ -79,7 +72,7 @@ def post_load_hook():
 
         # HOOK. Use the iterations_limit here
         while float_compare(remaining_hours, 0.0, precision_digits=2) in (
-                1, 0) and iterations < 1000:
+                1, 0) and iterations < iterations_limit:
             if backwards:
                 call_args['end_time'] = current_datetime.time()
             else:
@@ -117,10 +110,10 @@ def post_load_hook():
         ResourceCalendar._schedule_days_original = \
             ResourceCalendar._schedule_days
 
-    ResourceCalendar._schedule_days = _new_schedule_days
+    ResourceCalendar._patch_method("_schedule_days", _new_schedule_days)
 
     if not hasattr(ResourceCalendar, '_schedule_hours_original'):
         ResourceCalendar._schedule_hours_original = \
             ResourceCalendar._schedule_hours
 
-    ResourceCalendar._schedule_hours = _new_schedule_hours
+    ResourceCalendar._patch_method("_schedule_hours", _new_schedule_hours)
