@@ -74,6 +74,7 @@ addon | version | summary
 [oauth_provider](oauth_provider/) | 9.0.1.0.0 | Allows to use Odoo as an OAuth2 provider
 [oauth_provider_jwt](oauth_provider_jwt/) | 9.0.1.0.0 | Adds the JSON Web Token support for OAuth2 provider
 [password_security](password_security/) | 9.0.1.2.3 | Allow admin to set password security requirements.
+[record_archiver](record_archiver/) | 9.0.1.0.0 | Records Archiver
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [sequence_check_digit](sequence_check_digit/) | 9.0.1.0.0 | Adds a check digit on sequences
