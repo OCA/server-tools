@@ -64,6 +64,7 @@ setuptools.setup(
         'odoo9-addon-oauth_provider',
         'odoo9-addon-oauth_provider_jwt',
         'odoo9-addon-password_security',
+        'odoo9-addon-record_archiver',
         'odoo9-addon-res_config_settings_enterprise_remove',
         'odoo9-addon-scheduler_error_mailer',
         'odoo9-addon-sequence_check_digit',
