@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <record id="respource_calendar_schedule_days_iteration_limit"
+            model="ir.config_parameter">
+        <field name="key">resource.calendar.schedule.days.iteration.limit</field>
+        <field name="value">100</field>
+    </record>
+
+    <record id="respource_calendar_schedule_hours_iteration_limit"
+            model="ir.config_parameter">
+        <field name="key">resource.calendar.schedule.hours.iteration.limit</field>
+        <field name="value">1000</field>
+    </record>
+
+</odoo>
