@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2017 Therp BV <http://therp.nl>
+# Copyright 2017 Therp BV <http://therp.nl>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api
 # pylint: disable=W0402
@@ -25,7 +25,7 @@ class Expression(expression):
 
     def parse(self):
         domain = []
-        env = api.Environment(*self.root_model.env.args)
+        env = self.root_model.env
         if 'base.domain.operator' not in env.registry:
             # this can happen during intialization
             return super(Expression, self).parse()

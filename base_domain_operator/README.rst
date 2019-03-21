@@ -32,8 +32,8 @@ To use this module, you need to:
 To add your own operators:
 
 #. in ``base.domain.operator``, define a function ``_operator_${your_operator}`` with decorator ``@api.model`` and signature ``leaf, expression``
-#. ``leaf`` is a 3-tuple of a domain proposition, ``expression`` an instance of ``openerp.osv.expression.expression``
-#. return a list of ``openerp.osv.expression.ExtendedLeaf`` instances that maps your operator to some expressions the original domain parser can evaluate
+#. ``leaf`` is a 3-tuple of a domain proposition, ``expression`` an instance of ``odoo.osv.expression.expression``
+#. return a list of ``odoo.osv.expression.ExtendedLeaf`` instances that maps your operator to some expressions the original domain parser can evaluate
 #. note that you can use the internal ``inselect`` operator here if you pass ``internal=True`` to ``ExtendedLeaf``'s constructor
 #. be careful with using the ORM in those handlers to avoid infinite loops
 #. take good care that you don't introduce SQL injections and other security problems
@@ -42,7 +42,7 @@ Known issues / Roadmap
 ======================
 
 * given the upstream code is not exactly extension friendly, we'll have to reimplement a bunch of helper functions
-* ``parent_of`` currently doesn't support dotted paths, this needs to be amended as needed
+* ``parent_of`` currently doesn't support dotted paths and searching for names (``name_get``), this needs to be amended as needed
 * another nice operator would be ``indomain``, probably also with a way to refer to the table's columns in the right hand side of expressions
 
 Bug Tracker
