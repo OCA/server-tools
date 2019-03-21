@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo11-addon-nsca_client',
         'odoo11-addon-onchange_helper',
         'odoo11-addon-record_archiver',
+        'odoo11-addon-resource_calendar_schedule_iteration',
         'odoo11-addon-scheduler_error_mailer',
         'odoo11-addon-sentry',
         'odoo11-addon-sql_request_abstract',
