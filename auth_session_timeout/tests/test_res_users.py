@@ -32,7 +32,7 @@ class TestResUsers(TransactionCase):
         """ Multi patch names in `odoo.addons.auth_session_timeout.models.
         res_users` for mocking them.
 
-        :param assets: The symbols in res_users that will be patched with 
+        :param assets: The symbols in res_users that will be patched with
         MagicMock objects.
         """
         if assets is None:
@@ -64,7 +64,7 @@ class TestResUsers(TransactionCase):
 
     def test_session_validity_gets_session_file(self):
         """ All the sessions a user generates are saved as a file in the
-        filesystem by Werkzeug. 
+        filesystem by Werkzeug.
 
         This function makes sure that our `_auth_timeout_check` makes an
         attempt in fetching that file by the correct session id.
@@ -120,8 +120,7 @@ class TestResUsers(TransactionCase):
         """
         with self._mock_assets(['http', 'getmtime']) as assets:
             assets['getmtime'].return_value = 0
-            attrs = {'__nonzero__': lambda self: True}
-            assets['http'].request.configure_mock(**attrs)
+            assets['http'].request.env.user = self.TestUser
             assets['http'].request.session.uid = self.TestUser.id
             assets['http'].request.session.dbname = self.env.cr.dbname
             assets['http'].request.session.sid = '123'
