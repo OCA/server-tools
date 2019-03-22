@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,12 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_jsonify
-#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line_alias
+#: model:ir.model.fields,field_description:base_jsonify.field_ir_exports_line__alias
 msgid "Alias"
 msgstr ""
 
 #. module: base_jsonify
-#: model:ir.ui.view,arch_db:base_jsonify.view_ir_exports
+#: model:ir.model,name:base_jsonify.model_base
+msgid "Base"
+msgstr ""
+
+#. module: base_jsonify
+#: model_terms:ir.ui.view,arch_db:base_jsonify.view_ir_exports
 msgid "Configuration"
 msgstr ""
 
@@ -30,45 +35,40 @@ msgid "Export Fields"
 msgstr ""
 
 #. module: base_jsonify
-#: model:ir.ui.view,arch_db:base_jsonify.view_ir_exports
+#: model:ir.model,name:base_jsonify.model_ir_exports
+msgid "Exports"
+msgstr ""
+
+#. module: base_jsonify
+#: model:ir.model,name:base_jsonify.model_ir_exports_line
+msgid "Exports Line"
+msgstr ""
+
+#. module: base_jsonify
+#: model_terms:ir.ui.view,arch_db:base_jsonify.view_ir_exports
 msgid "Index"
 msgstr ""
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:28
+#: code:addons/base_jsonify/models/ir_exports_line.py:27
 #, python-format
 msgid "Name and Alias must have the same hierarchy depth"
 msgstr ""
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/ir_exports_line.py:33
+#: code:addons/base_jsonify/models/ir_exports_line.py:32
 #, python-format
 msgid "The alias must reference the same field as in name '%s' not in '%s'"
 msgstr ""
 
 #. module: base_jsonify
-#: model:ir.model.fields,help:base_jsonify.field_ir_exports_line_alias
+#: model:ir.model.fields,help:base_jsonify.field_ir_exports_line__alias
 msgid "The complete path to the field where you can specify an alias on the a step as field:alias"
 msgstr ""
 
 #. module: base_jsonify
-#: code:addons/base_jsonify/models/models.py:71
+#: code:addons/base_jsonify/models/models.py:69
 #, python-format
 msgid "Wrong parser configuration"
-msgstr ""
-
-#. module: base_jsonify
-#: model:ir.model,name:base_jsonify.model_base
-msgid "base"
-msgstr ""
-
-#. module: base_jsonify
-#: model:ir.model,name:base_jsonify.model_ir_exports
-msgid "ir.exports"
-msgstr ""
-
-#. module: base_jsonify
-#: model:ir.model,name:base_jsonify.model_ir_exports_line
-msgid "ir.exports.line"
 msgstr ""
 
