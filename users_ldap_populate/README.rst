@@ -55,6 +55,7 @@ Contributors
 * Holger Brunn <hbrunn@therp.nl>
 * Daniel Reis <dgreis@sapo.pt>
 * Stefan Rijnhart <stefan@opener.am>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Maintainer
 ----------

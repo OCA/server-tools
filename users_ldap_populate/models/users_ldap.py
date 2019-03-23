@@ -160,7 +160,7 @@ class CompanyLDAP(orm.Model):
                 bool(
                     self.get_ldap_entry_dicts(
                         conf,
-                        user_name=unknown_user.login,
+                        user_name=unknown_user['login'],
                     ))
                 for conf in self.get_ldap_dicts(cr, ids)
             )
