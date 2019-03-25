@@ -60,9 +60,9 @@ class AbstractUrl(models.AbstractModel):
     def _reuse_url(self, existing_url):
         # TODO add user notification in the futur SEO dashboard
         existing_url.write({
-           'model_id': get_model_ref(self),
-           'redirect': False,
-           })
+            'model_id': get_model_ref(self),
+            'redirect': False,
+        })
 
     def set_url(self, url_key):
         """
