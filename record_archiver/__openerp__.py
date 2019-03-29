@@ -7,7 +7,7 @@
  'license': 'AGPL-3',
  'category': 'misc',
  'depends': ['base'],
- 'website': 'www.camptocamp.com',
+ 'website': 'https://github.com/OCA/server-tools',
  'data': ['views/record_lifespan_view.xml',
           'data/cron.xml',
           'security/ir.model.access.csv',
