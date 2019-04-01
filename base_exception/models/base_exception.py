@@ -128,7 +128,8 @@ class BaseException(models.AbstractModel):
         action_data.update({
             'context': {
                 'active_id': self.ids[0],
-                'active_ids': self.ids
+                'active_ids': self.ids,
+                'active_model': self._name,
             }
         })
         return action_data
