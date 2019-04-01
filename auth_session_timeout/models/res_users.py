@@ -102,6 +102,7 @@ class ResUsers(models.Model):
                     'Exception updating session file access/modified times.',
                 )
 
+    @tools.ormcache('sid')
     def _compute_session_token(self, sid):
         res = super(ResUsers, self)._compute_session_token(sid)
         if http.request:
