@@ -9,7 +9,7 @@ from os.path import getmtime
 from time import time
 from os import utime
 
-from odoo import api, http, models
+from odoo import api, http, models, tools
 
 _logger = logging.getLogger(__name__)
 
