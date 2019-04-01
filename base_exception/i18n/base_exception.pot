@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-22 09:46+0000\n"
-"PO-Revision-Date: 2017-03-22 09:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,12 +21,6 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
 msgid "Apply on"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
-msgid "Blocked in draft due to exceptions"
 msgstr ""
 
 #. module: base_exception
@@ -54,7 +46,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:185
+#: code:addons/base_exception/models/base_exception.py:217
 #, python-format
 msgid "Error when evaluating the exception.rule rule:\n"
 " %s \n"
@@ -90,7 +82,6 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_exception_ids
-#: model:ir.model.fields,field_description:base_exception.field_sale_order_exception_ids
 msgid "Exceptions"
 msgstr ""
 
@@ -101,7 +92,6 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_exception_ids
-#: model:ir.model.fields,field_description:base_exception.field_sale_exception_confirm_exception_ids
 msgid "Exceptions to resolve"
 msgstr ""
 
@@ -118,10 +108,13 @@ msgid "ID"
 msgstr ""
 
 #. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule_next_state
+msgid "If we detect exception we set the state of object (ex purchase) to the next_state (ex 'to approve'). If there are more than one exception detected and all have a value for next_state, we usethe exception having the smallest sequence value"
+msgstr ""
+
+#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_ignore_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_ignore
-#: model:ir.model.fields,field_description:base_exception.field_sale_exception_confirm_ignore
-#: model:ir.model.fields,field_description:base_exception.field_sale_order_ignore_exception
 msgid "Ignore Exceptions"
 msgstr ""
 
@@ -144,8 +137,28 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_main_exception_id
-#: model:ir.model.fields,field_description:base_exception.field_sale_order_main_exception_id
 msgid "Main Exception"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_next_state
+msgid "Next state"
+msgstr ""
+
+#. module: base_exception
+#: code:addons/base_exception/wizard/base_exception_confirm.py:28
+#, python-format
+msgid "Only 1 ID accepted, got %r."
+msgstr ""
+
+#. module: base_exception
+#: model:ir.actions.act_window,name:base_exception.action_exception_rule_confirm
+msgid "Outstanding exceptions to manage"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+msgid "Outstanding exceptions to manager"
 msgstr ""
 
 #. module: base_exception
@@ -155,18 +168,18 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,help:base_exception.field_exception_rule_code
-msgid "Python code executed to check if the exception apply or not. The code must apply block = True to apply the exception."
+msgid "Python code executed to check if the exception apply or not. Use failed = True to block the exception"
 msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_related_model_id
-msgid "Related model id"
+msgid "Related Model"
 msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_rule_group
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_rule_group
-msgid "Rule group"
+msgid "Rule Group"
 msgstr ""
 
 #. module: base_exception
@@ -175,23 +188,14 @@ msgid "Rule group is used to group the rules that must validated at same time fo
 msgstr ""
 
 #. module: base_exception
-#: selection:exception.rule,rule_group:0
-msgid "Sale"
-msgstr ""
-
-#. module: base_exception
-#: selection:exception.rule,model:0
-msgid "Sale order"
-msgstr ""
-
-#. module: base_exception
-#: selection:exception.rule,model:0
-msgid "Sale order line"
-msgstr ""
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
 msgid "Sequence"
+msgstr ""
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:88
+#, python-format
+msgid "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is wrong. Value must be in this list %s"
 msgstr ""
 
 #. module: base_exception
