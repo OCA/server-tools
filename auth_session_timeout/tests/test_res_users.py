@@ -114,16 +114,28 @@ class TestResUsers(TransactionCase):
             res = self._auth_timeout_check(assets['http'])
             self.assertFalse(res)
 
-    def test_on_timeout_session_loggedout(self):
+    @mock.patch('odoo.addons.base.ir.ir_http.request')
+    @mock.patch('odoo.addons.auth_session_timeout.models.ir_http.request')
+    def test_on_timeout_session_loggedout(self, request_mock, request_mock2):
         """ Make sure that when the timeout has come, the user is actually
         logged out.
         """
         with self._mock_assets(['http', 'getmtime']) as assets:
             assets['getmtime'].return_value = 0
             assets['http'].request.env.user = self.TestUser
+            request_mock.env.user = self.TestUser
+            request_mock2.env.user = self.TestUser
             assets['http'].request.session.uid = self.TestUser.id
+            request_mock.session.uid = self.TestUser.id
+            request_mock2.session.uid = self.TestUser.id
             assets['http'].request.session.dbname = self.env.cr.dbname
+            request_mock.session.dbname = self.env.cr.dbname
+            request_mock2.session.dbname = self.env.cr.dbname
             assets['http'].request.session.sid = '123'
+            request_mock.session.sid = '123'
+            request_mock2.session.sid = '123'
             assets['http'].request.session.logout = mock.Mock()
-            self.TestUser._compute_session_token('123')
+            request_mock.session.logout = mock.Mock()
+            request_mock2.session.logout = mock.Mock()
+            self.env['ir.http']._authenticate()
             self.assertTrue(assets['http'].request.session.logout.called)

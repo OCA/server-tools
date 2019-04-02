@@ -9,7 +9,7 @@ from os.path import getmtime
 from time import time
 from os import utime
 
-from odoo import api, http, models, tools
+from odoo import api, http, models
 
 _logger = logging.getLogger(__name__)
 
@@ -101,10 +101,3 @@ class ResUsers(models.Model):
                 _logger.exception(
                     'Exception updating session file access/modified times.',
                 )
-
-    @tools.ormcache('sid')
-    def _compute_session_token(self, sid):
-        res = super(ResUsers, self)._compute_session_token(sid)
-        if http.request:
-            http.request.env.user._auth_timeout_check()
-        return res
