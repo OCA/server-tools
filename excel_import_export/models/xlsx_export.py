@@ -244,7 +244,7 @@ class XLSXExport(models.AbstractModel):
         f.write(decoded_data)
         f.seek(0)
         f.close()
-        # Workbook created, temp fie removed
+        # Workbook created, temp file removed
         wb = load_workbook(ftemp)
         os.remove(ftemp)
         # Start working with workbook
