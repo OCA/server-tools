@@ -52,7 +52,7 @@ msgid "Display Name"
 msgstr "Visnings navn"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:216
+#: code:addons/base_exception/models/base_exception.py:217
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
