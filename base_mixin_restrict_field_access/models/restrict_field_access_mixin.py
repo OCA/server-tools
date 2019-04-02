@@ -242,18 +242,19 @@ class RestrictFieldAccessMixin(models.AbstractModel):
         # TODO: this can be fooled by embedded views
         if not self._restrict_field_access_is_field_accessible(
                 field_node.attrib['name'], action='write'):
-            for modifier, value in [('readonly', True), ('required', False)]:
+            for modifier, expr, value in [('readonly', expression.OR, True),
+                                          ('required', expression.AND, False)]:
                 domain = modifiers.get(modifier, [])
                 if isinstance(domain, list) and domain:
                     domain = expression.normalize_domain(domain)
                 elif bool(domain) == value:
                     # readonly/nonrequired anyways
-                    return modifiers
+                    continue
                 else:
                     domain = []
                 restrict_domain = [('restrict_field_access', '=', value)]
                 if domain:
-                    restrict_domain = expression.OR([
+                    restrict_domain = expr([
                         restrict_domain,
                         domain
                     ])
