@@ -207,13 +207,17 @@ class DbBackup(models.Model):
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Database backup failed."),
                     escaped_tb),
-                subtype=self.env.ref(
+                subtype_id=self.env.ref(
                     "auto_backup.mail_message_subtype_failure"
-                ),
+                ).id,
             )
         else:
             _logger.info("Database backup succeeded: %s", self.name)
-            self.message_post(_("Database backup succeeded."))
+            self.message_post(
+                _("Database backup succeeded."),
+                subtype_id=self.env.ref(
+                    "auto_backup.mail_message_subtype_success"
+                ).id)
 
     @api.multi
     def cleanup(self):
@@ -252,7 +256,9 @@ class DbBackup(models.Model):
                 "<p>%s</p><pre>%s</pre>" % (
                     _("Cleanup of old database backups failed."),
                     escaped_tb),
-                subtype=self.env.ref("auto_backup.failure"))
+                subtype_id=self.env.ref(
+                    "auto_backup.mail_message_subtype_failure"
+                ).id)
         else:
             _logger.info("Cleanup of old database backups succeeded: %s",
                          self.name)
