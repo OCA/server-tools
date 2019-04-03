@@ -44,7 +44,7 @@ addon | version | summary
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 9.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
-[base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
+[base_technical_features](base_technical_features/) | 9.0.1.0.1 | Access to technical features without activating debug mode
 [base_tier_validation](base_tier_validation/) | 9.0.1.0.2 | Implement a validation process based on tiers.
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
