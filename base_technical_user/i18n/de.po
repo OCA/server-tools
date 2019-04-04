@@ -24,21 +24,21 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #. module: base_technical_user
-#: model:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
 msgid "Configuration"
 msgstr ""
 
 #. module: base_technical_user
-#: model:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
+#: model_terms:ir.ui.view,arch_db:base_technical_user.res_company_view_form_inherit_base_technical_user
 msgid "Technical Parameters"
 msgstr ""
 
 #. module: base_technical_user
-#: model:ir.model.fields,field_description:base_technical_user.field_res_company_user_tech_id
+#: model:ir.model.fields,field_description:base_technical_user.field_res_company__user_tech_id
 msgid "Technical User"
 msgstr ""
 
 #. module: base_technical_user
-#: model:ir.model.fields,help:base_technical_user.field_res_company_user_tech_id
+#: model:ir.model.fields,help:base_technical_user.field_res_company__user_tech_id
 msgid "This user can be used by process for technical purpose"
 msgstr ""
