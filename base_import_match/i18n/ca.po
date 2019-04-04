@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_import_match
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:35+0000\n"
 "PO-Revision-Date: 2016-05-27 15:24+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_match
@@ -90,9 +91,14 @@ msgstr "ID"
 msgid ""
 "If the imported value is not this, the whole matching rule will be "
 "discarded. Be careful, this data is always treated as a string, and "
-"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
-" 'true', only EXACTLY 'True'."
-msgstr "Si el valor importat no es aquest, el conjunt de regles d'associació ha de ser descartat. Aneu amb compte, aquestes dades sempre són tractades com una cadena, i la comparació és sensible a majúscules i minúscules, per la qual cosa si s'estableix 'Veritat', NO coincidirà ni amb '1' ni amb 'veritat', només EXACTAMENT amb 'Veritat'."
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor "
+"'true', only EXACTLY 'True'."
+msgstr ""
+"Si el valor importat no es aquest, el conjunt de regles d'associació ha de "
+"ser descartat. Aneu amb compte, aquestes dades sempre són tractades com una "
+"cadena, i la comparació és sensible a majúscules i minúscules, per la qual "
+"cosa si s'estableix 'Veritat', NO coincidirà ni amb '1' ni amb 'veritat', "
+"només EXACTAMENT amb 'Veritat'."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_auto_update
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
@@ -13,48 +13,20 @@ msgstr ""
 "PO-Revision-Date: 2017-10-21 22:54+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_dir
-msgid "Checksum dir"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.model.fields,field_description:module_auto_update.field_ir_module_module_checksum_installed
-msgid "Checksum installed"
-msgstr ""
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: module_auto_update
 #: model:ir.model,name:module_auto_update.model_ir_module_module
 msgid "Module"
 msgstr "Modul"
 
-#. module: module_auto_update
-#: model:ir.model,name:module_auto_update.model_base_module_upgrade
-msgid "Module Upgrade"
-msgstr "Nadgradnja modula"
+#~ msgid "Module Upgrade"
+#~ msgstr "Nadgradnja modula"
 
-#. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.menu_default_modules
-msgid "Modules"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.actions.server,name:module_auto_update.module_action_open_updates
-msgid "Open Updates and Update Apps List Server Action"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.ui.view,arch_db:module_auto_update.module_view_search
-msgid "Scheduled Upgrades"
-msgstr ""
-
-#. module: module_auto_update
-#: model:ir.ui.menu,name:module_auto_update.module_menu_updates
-msgid "Updates"
-msgstr "Posodobitve"
+#~ msgid "Updates"
+#~ msgstr "Posodobitve"

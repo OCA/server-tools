@@ -14,6 +14,7 @@
                     <field name="folder"/>
                     <field name="days_to_keep"/>
                     <field name="method"/>
+                    <field name="tempdir" attrs="{'invisible': [('method', '!=', 'local')]}" groups="base.group_no_one" />
                 </group>
                 <div attrs="{'invisible': [('method', '!=', 'sftp')]}">
                     <div class="bg-warning text-warning">
@@ -43,6 +44,10 @@
                         <li>Search the action named 'Backup scheduler'.</li>
                         <li>Set the scheduler to active and fill in how often you want backups generated.</li>
                     </ol>
+                </div>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
         </field>

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_multi_image
-# 
+#
 # Translators:
 # bossnm11 <bossnm11@gmail.com>, 2014
 # Bruno JOLIVEAU, 2015
@@ -32,11 +32,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_multi_image
@@ -161,9 +162,13 @@ msgstr "Mittelgroßes Bild"
 #: help:base_multi_image.image,image_medium:0
 msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
-"with aspect ratio preserved, only when the image exceeds one of those sizes."
-" Use this field in form views or kanban views."
-msgstr "Mittelgroßes Bild. Es wird automatisch auf 128 x 128 Pixel, unter Beibehaltung der Seitenverhältnisse, umgerechnet, sofern eine Seite diese Größe überschreitet. Verwenden Sie dieses Bild in Formularen und Kanban-Sichten"
+"with aspect ratio preserved, only when the image exceeds one of those sizes. "
+"Use this field in form views or kanban views."
+msgstr ""
+"Mittelgroßes Bild. Es wird automatisch auf 128 x 128 Pixel, unter "
+"Beibehaltung der Seitenverhältnisse, umgerechnet, sofern eine Seite diese "
+"Größe überschreitet. Verwenden Sie dieses Bild in Formularen und Kanban-"
+"Sichten"
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
@@ -232,7 +237,10 @@ msgstr "Bild mit kleinen Abmessungen"
 msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "Kleines Bild. Dieses wird automatisch als 64 x 64 Bild, unter Beibehaltung des Seitenverhältnisses, umgerechnet. Verwenden Sie dieses Bild da, wo ein kleines Bild benötigt wird."
+msgstr ""
+"Kleines Bild. Dieses wird automatisch als 64 x 64 Bild, unter Beibehaltung "
+"des Seitenverhältnisses, umgerechnet. Verwenden Sie dieses Bild da, wo ein "
+"kleines Bild benötigt wird."
 
 #. module: base_multi_image
 #: field:base_multi_image.image,storage:0

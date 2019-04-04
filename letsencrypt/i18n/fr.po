@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * letsencrypt
-# 
+#
 # Translators:
 # Christophe CHAUVET <christophe.chauvet@gmail.com>, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-08-21 06:45+0000\n"
 "PO-Revision-Date: 2016-08-21 07:53+0000\n"
 "Last-Translator: Christophe CHAUVET <christophe.chauvet@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: letsencrypt
@@ -48,4 +49,6 @@ msgstr "Dernière modification le"
 #: code:addons/letsencrypt/models/letsencrypt.py:93
 #, python-format
 msgid "Let's encrypt doesn't work with private addresses or local domains!"
-msgstr "Let's encrypt ne fonctionne pas pour les adresses privées ou les domaines locaux!"
+msgstr ""
+"Let's encrypt ne fonctionne pas pour les adresses privées ou les domaines "
+"locaux!"

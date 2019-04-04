@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * super_calendar
-# 
+#
 # Translators:
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012-2013
@@ -17,11 +17,12 @@ msgstr ""
 "POT-Creation-Date: 2016-05-12 14:34+0000\n"
 "PO-Revision-Date: 2016-05-08 15:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: super_calendar
@@ -308,20 +309,25 @@ msgstr "Super Calendrier"
 #: code:addons/super_calendar/models/super_calendar_configurator.py:112
 #, python-format
 msgid "The 'User' field of record %s (%s) does not refer to res.users"
-msgstr "Le champ 'Utilisateur' de l'enregistrement %s (%s) ne réfère pas à res.users"
+msgstr ""
+"Le champ 'Utilisateur' de l'enregistrement %s (%s) ne réfère pas à res.users"
 
 #. module: super_calendar
 #: help:super.calendar.configurator.line,description_code:0
 msgid ""
 "Use '${o}' to refer to the involved object.\n"
 "E.g.: '${o.project_id.name}'"
-msgstr "Utilisez '${o}' pour référer à l'objet concerné. \nPar exemple : '${o.project_id.name}'"
+msgstr ""
+"Utilisez '${o}' pour référer à l'objet concerné. \n"
+"Par exemple : '${o.project_id.name}'"
 
 #. module: super_calendar
 #: view:super.calendar.configurator:super_calendar.super_calendar_configurator_form
 msgid ""
 "Use '${o}' to refer to the involved object. E.g.: '${o.project_id.name}'"
-msgstr "Utilisez '${o}' pour référer à l'objet concerné. Par exemple : '${o.project_id.name}'"
+msgstr ""
+"Utilisez '${o}' pour référer à l'objet concerné. Par exemple : '${o."
+"project_id.name}'"
 
 #. module: super_calendar
 #: field:super.calendar,user_id:0

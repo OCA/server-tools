@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_multi_image
-# 
+#
 # Translators:
 # Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
@@ -18,12 +18,14 @@ msgstr ""
 "POT-Creation-Date: 2016-05-06 02:41+0000\n"
 "PO-Revision-Date: 2016-05-05 05:58+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: base_multi_image
 #: code:addons/base_multi_image/models/image.py:22
@@ -147,9 +149,12 @@ msgstr "Srednje velika slika"
 #: help:base_multi_image.image,image_medium:0
 msgid ""
 "Medium-sized image. It is automatically resized as a 128 x 128 px image, "
-"with aspect ratio preserved, only when the image exceeds one of those sizes."
-" Use this field in form views or kanban views."
-msgstr "Srednje velika slika: samodejno spremeni velikost na 128x128 px in pri tem ohrani razmerja le, če slika presega eno od teh dveh velikosti. Uporabi to polje v obrazcih in kanbanskih prikazih."
+"with aspect ratio preserved, only when the image exceeds one of those sizes. "
+"Use this field in form views or kanban views."
+msgstr ""
+"Srednje velika slika: samodejno spremeni velikost na 128x128 px in pri tem "
+"ohrani razmerja le, če slika presega eno od teh dveh velikosti. Uporabi to "
+"polje v obrazcih in kanbanskih prikazih."
 
 #. module: base_multi_image
 #: model:ir.actions.act_window,name:base_multi_image.image_action
@@ -218,7 +223,9 @@ msgstr "Slika majhne velikosti"
 msgid ""
 "Small-sized image. It is automatically resized as a 64 x 64 px image, with "
 "aspect ratio preserved. Use this field anywhere a small image is required."
-msgstr "Slika majhne velikosti: samodejno spremeni velikost na 64x64 px in pri tem ohrani razmerja. Uporabite to polje kjerkoli potrebujete majhno sliko."
+msgstr ""
+"Slika majhne velikosti: samodejno spremeni velikost na 64x64 px in pri tem "
+"ohrani razmerja. Uporabite to polje kjerkoli potrebujete majhno sliko."
 
 #. module: base_multi_image
 #: field:base_multi_image.image,storage:0

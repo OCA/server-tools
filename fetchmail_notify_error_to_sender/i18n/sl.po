@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * fetchmail_notify_error_to_sender
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-26 07:45+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: fetchmail_notify_error_to_sender
 #: model:email.template,body_html:fetchmail_notify_error_to_sender.email_template_error_notice
@@ -24,14 +26,26 @@ msgid ""
 "\n"
 "<div>\n"
 "    <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
-"    <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
+"    <p>we got a problem with your email: <i>${ctx.get('sender_message')."
+"get('subject')}</i></p>\n"
 "    <p>Maybe you used a wrong recipient address?</p>\n"
 "    <p><br/></p>\n"
 "    <p>Technical details:</p>\n"
 "    <p><i>${ctx.get('route_exception').message}</i></p>\n"
 "</div>\n"
 "            "
-msgstr "\n<div>\n    <p>Pozdravljeni ${ctx.get('sender_message').get('from')}.</p>\n    <p>Z vašim e-poštnim sporočilom imamo težave: <i>${ctx.get('sender_message').get('subject')}</i></p>\n    <p>Ste mogoče uporabili napačen e-poštni naslov?</p>\n    <p><br/></p>\n    <p>Tehnični podatki:</p>\n    <p><i>${ctx.get('route_exception').message}</i></p>\n</div>\n            "
+msgstr ""
+"\n"
+"<div>\n"
+"    <p>Pozdravljeni ${ctx.get('sender_message').get('from')}.</p>\n"
+"    <p>Z vašim e-poštnim sporočilom imamo težave: <i>${ctx."
+"get('sender_message').get('subject')}</i></p>\n"
+"    <p>Ste mogoče uporabili napačen e-poštni naslov?</p>\n"
+"    <p><br/></p>\n"
+"    <p>Tehnični podatki:</p>\n"
+"    <p><i>${ctx.get('route_exception').message}</i></p>\n"
+"</div>\n"
+"            "
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model,name:fetchmail_notify_error_to_sender.model_mail_thread
@@ -58,4 +72,6 @@ msgstr "Napaka pri prejemu: ${ctx.get('sender_message').get('subject')|safe}"
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
-msgstr "Nastavite predlogo, ki bo uporabljena za pošiljanje obvestila pošiljatelju, kadar se bi pojavile napake pri prejemu e-pošte"
+msgstr ""
+"Nastavite predlogo, ki bo uporabljena za pošiljanje obvestila pošiljatelju, "
+"kadar se bi pojavile napake pri prejemu e-pošte"

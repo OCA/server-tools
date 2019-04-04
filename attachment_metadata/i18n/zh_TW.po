@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * attachment_metadata
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-28 09:47+0000\n"
 "PO-Revision-Date: 2016-06-01 09:37+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/zh_TW/)\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: attachment_metadata
@@ -108,15 +109,16 @@ msgstr ""
 #: code:addons/attachment_metadata/models/attachment.py:43
 #, python-format
 msgid ""
-"File corrupted: Something was wrong with the retrieved file, please relaunch"
-" the task."
+"File corrupted: Something was wrong with the retrieved file, please relaunch "
+"the task."
 msgstr ""
 
 #. module: attachment_metadata
 #: help:ir.attachment.metadata,external_hash:0
 msgid ""
 "File hash comes from the external owner of the file.\n"
-"If provided allow to check than downloaded file is the exact copy of the original file."
+"If provided allow to check than downloaded file is the exact copy of the "
+"original file."
 msgstr ""
 
 #. module: attachment_metadata

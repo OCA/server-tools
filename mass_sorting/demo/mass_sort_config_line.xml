@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="mass_sort_config_demo_line_1" model="mass.sort.config.line">
+        <field name="config_id" ref="mass_sort_config_demo"/>
+        <field name="field_id" ref="mass_sorting.field_mass_sort_config_line_field_id"/>
+    </record>
+
+    <record id="mass_sort_config_demo_line_2" model="mass.sort.config.line">
+        <field name="config_id" ref="mass_sort_config_demo"/>
+        <field name="field_id" ref="mass_sorting.field_mass_sort_config_line_desc"/>
+    </record>
+
+</data></openerp>

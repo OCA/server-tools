@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="view_mass_sort_wizard_form" model="ir.ui.view">
+        <field name="model">mass.sort.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group attrs="{'invisible': [('allow_custom_setting', '=', True)]}">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group col="4" string="Sorting Criterias" attrs="{'invisible': [('allow_custom_setting', '=', False)]}">
+                    <field name="line_ids" colspan="4" nolabel="1" >
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="field_id"/>
+                            <field name="desc"/>
+                        </tree>
+                    </field>
+                </group>
+                <field name="config_id" invisible="1"/>
+                <field name="allow_custom_setting" invisible="1"/>
+                <field name="one2many_model" invisible="1"/>
+                <footer>
+                    <button string="Confirm" name="button_apply" type="object" class="btn btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-default"/>
+               </footer>
+            </form>
+        </field>
+    </record>
+
+</data></openerp>

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * cron_run_manually
-# 
+#
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-18 21:19+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: cron_run_manually
@@ -28,7 +29,9 @@ msgstr "Um outro processo já está ocupado executando este trabalho"
 #: code:addons/cron_run_manually/ir_cron.py:38
 #, python-format
 msgid "Only the admin user is allowed to execute inactive cron jobs manually"
-msgstr "Apenas o usuário administrador está autorizado a executar cron jobs inativos manualmente"
+msgstr ""
+"Apenas o usuário administrador está autorizado a executar cron jobs inativos "
+"manualmente"
 
 #. module: cron_run_manually
 #: view:ir.cron:cron_run_manually.ir_cron_view_tree_inherited

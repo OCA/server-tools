@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_import_match
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_import_match
@@ -49,7 +50,9 @@ msgstr "Anzeigename"
 #. module: base_import_match
 #: help:base_import.match.field,conditional:0
 msgid "Enable if you want to use this field only in some conditions."
-msgstr "Aktivieren, wenn Sie dieses Feld nur unter bestimmten Bedingungen verwenden möchten."
+msgstr ""
+"Aktivieren, wenn Sie dieses Feld nur unter bestimmten Bedingungen verwenden "
+"möchten."
 
 #. module: base_import_match
 #: field:base_import.match.field,field_id:0
@@ -91,9 +94,13 @@ msgstr "ID"
 msgid ""
 "If the imported value is not this, the whole matching rule will be "
 "discarded. Be careful, this data is always treated as a string, and "
-"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor"
-" 'true', only EXACTLY 'True'."
-msgstr "Wenn der importierte Wert nicht dieser ist, wird die ganze Übereinstimmungsregel verworfen. Vorsicht, dieser Wert wird immer als Textstring behandelt und Vergleiche unterscheiden Gross-/Kleinschreibung, so dass Ihr Wert 'True' z.B. nicht mit '1' oder 'true' übereinstimmen wird."
+"comparison is case-sensitive so if you set 'True', it will NOT match '1' nor "
+"'true', only EXACTLY 'True'."
+msgstr ""
+"Wenn der importierte Wert nicht dieser ist, wird die ganze "
+"Übereinstimmungsregel verworfen. Vorsicht, dieser Wert wird immer als "
+"Textstring behandelt und Vergleiche unterscheiden Gross-/Kleinschreibung, so "
+"dass Ihr Wert 'True' z.B. nicht mit '1' oder 'true' übereinstimmen wird."
 
 #. module: base_import_match
 #: view:base_import.match:base_import_match.match_form_view

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * users_ldap_groups
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
@@ -18,12 +18,14 @@ msgstr ""
 "POT-Creation-Date: 2018-02-01 01:52+0000\n"
 "PO-Revision-Date: 2018-01-31 12:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,create_uid:0
@@ -63,7 +65,10 @@ msgid ""
 "If this is checked, manual changes to group membership are undone on every "
 "login (so OpenERP groups are always synchronous with LDAP groups). If not, "
 "manually added groups are preserved."
-msgstr "Če označeno, so vse ročne spremembe članov skupin prezrte ob vsaki prijavi (tako so OpenERP skupine vedno sinhrone z LDAP skupinami). Če ni, se ročno dodane skupine ohranijo."
+msgstr ""
+"Če označeno, so vse ročne spremembe članov skupin prezrte ob vsaki prijavi "
+"(tako so OpenERP skupine vedno sinhrone z LDAP skupinami). Če ni, se ročno "
+"dodane skupine ohranijo."
 
 #. module: users_ldap_groups
 #: field:res.company.ldap.group_mapping,ldap_attribute:0
@@ -116,7 +121,9 @@ msgstr "Operater"
 msgid ""
 "The LDAP attribute to check.\n"
 "For active directory, use memberOf."
-msgstr "LDAP atribut za preverjanje.\nZa aktivni imenik uporabite memberOf."
+msgstr ""
+"LDAP atribut za preverjanje.\n"
+"Za aktivni imenik uporabite memberOf."
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,group:0
@@ -128,14 +135,18 @@ msgstr "OpenERP skupina za dodelitev"
 msgid ""
 "The operator to check the attribute against the value\n"
 "For active directory, use 'contains'"
-msgstr "Operater za primerjavo atributa z vrednostjo\nza aktivni imenik, uporabite 'contains'"
+msgstr ""
+"Operater za primerjavo atributa z vrednostjo\n"
+"za aktivni imenik, uporabite 'contains'"
 
 #. module: users_ldap_groups
 #: help:res.company.ldap.group_mapping,value:0
 msgid ""
 "The value to check the attribute against.\n"
 "For active directory, use the dn of the desired group"
-msgstr "Vrednost za primerjavo atributa.\nZa aktivni imenik uporabite dn željene skupine"
+msgstr ""
+"Vrednost za primerjavo atributa.\n"
+"Za aktivni imenik uporabite dn željene skupine"
 
 #. module: users_ldap_groups
 #: model:ir.model,name:users_ldap_groups.model_res_users

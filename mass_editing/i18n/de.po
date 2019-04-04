@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mass_editing
-# 
+#
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
@@ -18,15 +18,18 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:36
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -34,6 +37,18 @@ msgstr "Hinzufügen"
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr "Erweitert"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:179
+#, python-format
+msgid "Apply"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:184
+#, python-format
+msgid "Close"
+msgstr ""
 
 #. module: mass_editing
 #: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
@@ -131,14 +146,24 @@ msgid "Object"
 msgstr "Objekt"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:37
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Remove"
 msgstr "Entferne"
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
-msgstr "Entferne die Kontextuelle Aktion, um diese Vorlage auf ähnliche Dokumente anzuwenden"
+msgstr ""
+"Entferne die Kontextuelle Aktion, um diese Vorlage auf ähnliche Dokumente "
+"anzuwenden"
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:35
+#, python-format
+msgid "Set"
+msgstr ""
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
@@ -156,7 +181,9 @@ msgstr "Sidebar-Button"
 msgid ""
 "Sidebar action to make this template available on records                  "
 "of the related document model"
-msgstr "Seitenmenü-Aktion, um diese Vorlage für Datensätze des entsprechenden Modells verfügbar zu machen"
+msgstr ""
+"Seitenmenü-Aktion, um diese Vorlage für Datensätze des entsprechenden "
+"Modells verfügbar zu machen"
 
 #. module: mass_editing
 #: help:mass.object,ref_ir_value:0

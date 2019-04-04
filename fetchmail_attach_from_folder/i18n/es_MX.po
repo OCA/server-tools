@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * fetchmail_attach_from_folder
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 09:45+0000\n"
 "PO-Revision-Date: 2017-08-21 07:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es_MX/)\n"
+"Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/es_MX/)\n"
+"Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_MX\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: fetchmail_attach_from_folder
@@ -287,7 +288,8 @@ msgstr ""
 msgid ""
 "The field in your model that contains the field to match against.\n"
 "Examples:\n"
-"'email' if your model is res.partner, or 'partner_id.email' if you're matching sale orders"
+"'email' if your model is res.partner, or 'partner_id.email' if you're "
+"matching sale orders"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -298,8 +300,8 @@ msgstr ""
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,path:0
 msgid ""
-"The path to your mail folder. Typically would be something like "
-"'INBOX.myfolder'"
+"The path to your mail folder. Typically would be something like 'INBOX."
+"myfolder'"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder

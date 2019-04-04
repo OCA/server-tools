@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_admin_passkey
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
@@ -20,18 +20,21 @@ msgstr ""
 "POT-Creation-Date: 2017-03-02 09:58+0000\n"
 "PO-Revision-Date: 2017-01-11 15:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:66
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
-msgstr "<pre>El usuario con identificador '%s' tiene la misma contraseña que usted.</pre>"
+msgstr ""
+"<pre>El usuario con identificador '%s' tiene la misma contraseña que usted.</"
+"pre>"
 
 #. module: auth_admin_passkey
 #: code:addons/auth_admin_passkey/models/res_users.py:41
@@ -45,7 +48,15 @@ msgid ""
 "\n"
 "- Login date : %s\n"
 "\n"
-msgstr "El usuario administrador ha usado su contraseña para acceder a '%s'.\n\n\n\nDatos técnicos a continuación : \n\n- Fecha de acceso : %s\n\n"
+msgstr ""
+"El usuario administrador ha usado su contraseña para acceder a '%s'.\n"
+"\n"
+"\n"
+"\n"
+"Datos técnicos a continuación : \n"
+"\n"
+"- Fecha de acceso : %s\n"
+"\n"
 
 #. module: auth_admin_passkey
 #: view:base.config.settings:auth_admin_passkey.view_res_config_settings

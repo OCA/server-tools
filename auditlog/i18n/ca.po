@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auditlog
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:34+0000\n"
 "PO-Revision-Date: 2017-08-11 11:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auditlog
@@ -149,9 +150,16 @@ msgstr "Registre complert "
 #. module: auditlog
 #: help:auditlog.rule,log_type:0
 msgid ""
-"Full log: make a diff between the data before and after the operation (log more info like computed fields which were updated, but it is slower)\n"
-"Fast log: only log the changes made through the create and write operations (less information, but it is faster)"
-msgstr "Registre sencer: fa una diferenciació entre les dades abans i després de l'operació (registra més informació tipus camps processats que s'han actualitzat, però és més lent)\nRegistre ràpid: només registra els canvis fets per les operacions de crear i escriure (menys informació, però és més ràpid)"
+"Full log: make a diff between the data before and after the operation (log "
+"more info like computed fields which were updated, but it is slower)\n"
+"Fast log: only log the changes made through the create and write operations "
+"(less information, but it is faster)"
+msgstr ""
+"Registre sencer: fa una diferenciació entre les dades abans i després de "
+"l'operació (registra més informació tipus camps processats que s'han "
+"actualitzat, però és més lent)\n"
+"Registre ràpid: només registra els canvis fets per les operacions de crear i "
+"escriure (menys informació, però és més ràpid)"
 
 #. module: auditlog
 #: view:auditlog.http.request:auditlog.view_auditlog_http_request_search
@@ -362,37 +370,45 @@ msgstr "Seleccioneu el model pel qual voleu generar un registre. "
 #. module: auditlog
 #: help:auditlog.rule,log_create:0
 msgid ""
-"Select this if you want to keep track of creation on any record of the model"
-" of this rule"
-msgstr "Seleccioneu això si voleu fer un seguiment de la creació de qualsevol registre del model d'aquesta regla"
+"Select this if you want to keep track of creation on any record of the model "
+"of this rule"
+msgstr ""
+"Seleccioneu això si voleu fer un seguiment de la creació de qualsevol "
+"registre del model d'aquesta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_custom_method:0
 msgid ""
-"Select this if you want to keep track of custom methods on any record of the"
-" model of this rule"
+"Select this if you want to keep track of custom methods on any record of the "
+"model of this rule"
 msgstr ""
 
 #. module: auditlog
 #: help:auditlog.rule,log_unlink:0
 msgid ""
-"Select this if you want to keep track of deletion on any record of the model"
-" of this rule"
-msgstr "Seleccioneu això si voleu fer un seguiment de la eliminació de qualsevol registre del model d'aquesta regla"
+"Select this if you want to keep track of deletion on any record of the model "
+"of this rule"
+msgstr ""
+"Seleccioneu això si voleu fer un seguiment de la eliminació de qualsevol "
+"registre del model d'aquesta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_write:0
 msgid ""
 "Select this if you want to keep track of modification on any record of the "
 "model of this rule"
-msgstr "Seleccioneu això si voleu fer un seguiment de la modificació de qualsevol registre del model d'aquesta regla"
+msgstr ""
+"Seleccioneu això si voleu fer un seguiment de la modificació de qualsevol "
+"registre del model d'aquesta regla"
 
 #. module: auditlog
 #: help:auditlog.rule,log_read:0
 msgid ""
 "Select this if you want to keep track of read/open on any record of the "
 "model of this rule"
-msgstr "Seleccioneu això si voleu fer un seguiment de la lectura/obertura de qualsevol registre del model d'aquesta regla"
+msgstr ""
+"Seleccioneu això si voleu fer un seguiment de la lectura/obertura de "
+"qualsevol registre del model d'aquesta regla"
 
 #. module: auditlog
 #: field:auditlog.http.request,http_session_id:0
@@ -432,7 +448,9 @@ msgstr "Nom tècnic "
 msgid ""
 "There is already a rule defined on this model\n"
 "You cannot define another: please edit the existing one."
-msgstr "Ja hi ha una regla definida per aquest mode\nNo en podeu definir una altra: si us plau editeu la existent."
+msgstr ""
+"Ja hi ha una regla definida per aquest mode\n"
+"No en podeu definir una altra: si us plau editeu la existent."
 
 #. module: auditlog
 #: field:auditlog.log,log_type:0 field:auditlog.rule,log_type:0
@@ -498,4 +516,5 @@ msgstr ""
 #. module: auditlog
 #: help:auditlog.rule,user_ids:0
 msgid "if  User is not added then it will applicable for all users"
-msgstr "Si l'usuari no està afegit aleshores s'aplicarà per a tots els usuaris "
+msgstr ""
+"Si l'usuari no està afegit aleshores s'aplicarà per a tots els usuaris "

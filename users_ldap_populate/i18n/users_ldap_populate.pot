@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* users_ldap_populate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: users_ldap_populate
+#: view:res.company.ldap.populate_wizard:users_ldap_populate.populate_wizard_view
+msgid "Add populate button to ldap view"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap,deactivate_unknown_users:0
+msgid "Deactivate unknown users"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,id:0
+msgid "ID"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,ldap_id:0
+msgid "LDAP Configuration"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: users_ldap_populate
+#: help:res.company.ldap,no_deactivate_user_ids:0
+msgid "List users who never should be deactivated by the deactivation wizard"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,name:0
+msgid "Name"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_created:0
+msgid "Number of users created"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap.populate_wizard,users_deactivated:0
+msgid "Number of users deactivated"
+msgstr ""
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate"
+msgstr ""
+
+#. module: users_ldap_populate
+#: view:res.company:users_ldap_populate.company_form_view
+msgid "Populate user database"
+msgstr ""
+
+#. module: users_ldap_populate
+#: model:ir.model,name:users_ldap_populate.model_res_company_ldap_populate_wizard
+msgid "Populate users from LDAP"
+msgstr ""
+
+#. module: users_ldap_populate
+#: code:addons/users_ldap_populate/models/users_ldap.py:125
+#, python-format
+msgid "Unable to process user with login %s"
+msgstr ""
+
+#. module: users_ldap_populate
+#: code:addons/users_ldap_populate/models/users_ldap.py:124
+#, python-format
+msgid "UserError"
+msgstr ""
+
+#. module: users_ldap_populate
+#: field:res.company.ldap,no_deactivate_user_ids:0
+msgid "Users never to deactivate"
+msgstr ""
+

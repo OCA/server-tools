@@ -23,7 +23,7 @@ from openerp.tools.safe_eval import safe_eval
 from openerp import _
 
 
-class res_groups(models.Model):
+class ResGroups(models.Model):
     _inherit = 'res.groups'
 
     is_dynamic = fields.Boolean('Dynamic')

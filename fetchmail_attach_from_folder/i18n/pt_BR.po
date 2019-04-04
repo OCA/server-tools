@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * fetchmail_attach_from_folder
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
@@ -21,11 +21,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: fetchmail_attach_from_folder
@@ -132,7 +133,9 @@ msgstr "Preencha um filtro de pesquisa para diminuir os objetos para combinar"
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,flag_nonmatching:0
 msgid "Flag emails in the server that don't match any object in Odoo"
-msgstr "E-mails assinalados no servidor que não correspondem a qualquer objeto em Odoo"
+msgstr ""
+"E-mails assinalados no servidor que não correspondem a qualquer objeto em "
+"Odoo"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,flag_nonmatching:0
@@ -171,7 +174,9 @@ msgstr "INBOX.subpasta1"
 msgid ""
 "If there are multiple matches, use the first one. If not checked, multiple "
 "matches count as no match at all"
-msgstr "Se há multiplas combinações, use a primeira. Se não verificado, múltiplas combinações contam como nenhuma combinação"
+msgstr ""
+"Se há multiplas combinações, use a primeira. Se não verificado, múltiplas "
+"combinações contam como nenhuma combinação"
 
 #. module: fetchmail_attach_from_folder
 #: code:addons/fetchmail_attach_from_folder/model/fetchmail_server.py:228
@@ -298,7 +303,8 @@ msgstr "O campo no email usado para combinação. Tipicamente é  'to' ou 'from'
 msgid ""
 "The field in your model that contains the field to match against.\n"
 "Examples:\n"
-"'email' if your model is res.partner, or 'partner_id.email' if you're matching sale orders"
+"'email' if your model is res.partner, or 'partner_id.email' if you're "
+"matching sale orders"
 msgstr ""
 
 #. module: fetchmail_attach_from_folder
@@ -309,14 +315,17 @@ msgstr "O modelo para anexar emails ao"
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,path:0
 msgid ""
-"The path to your mail folder. Typically would be something like "
-"'INBOX.myfolder'"
-msgstr "O caminho para sua pasta de mail. Tipicamente seria alguma coisa como 'INBOX.myfolder'"
+"The path to your mail folder. Typically would be something like 'INBOX."
+"myfolder'"
+msgstr ""
+"O caminho para sua pasta de mail. Tipicamente seria alguma coisa como 'INBOX."
+"myfolder'"
 
 #. module: fetchmail_attach_from_folder
 #: help:fetchmail.server.folder,msg_state:0
 msgid "The state messages fetched from this folder should be assigned in Odoo"
-msgstr "As mensagens de estado trazidas desta pasta devem ser atribuídas no Odoo"
+msgstr ""
+"As mensagens de estado trazidas desta pasta devem ser atribuídas no Odoo"
 
 #. module: fetchmail_attach_from_folder
 #: field:fetchmail.server.folder,match_first:0

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * log_forwarded_for_ip
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2016-11-28 21:29+0000\n"
 "PO-Revision-Date: 2016-10-11 09:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Bosnian (http://www.transifex.com/oca/OCA-server-tools-8-0/language/bs/)\n"
+"Language-Team: Bosnian (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/bs/)\n"
+"Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bs\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: log_forwarded_for_ip
 #: field:log.forwarded.for.ip.installed,display_name:0

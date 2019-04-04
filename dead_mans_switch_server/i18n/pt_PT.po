@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * dead_mans_switch_server
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:36+0000\n"
 "PO-Revision-Date: 2017-08-11 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_PT/)\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-"
+"server-tools-8-0/language/pt_PT/)\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: dead_mans_switch_server
@@ -124,7 +125,9 @@ msgstr "Seguidores"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Contém o resumo do Chatter (número de mensagens, ...). Este resumo é formatado diretamente em html para poder ser inserido em vistas de kanban."
+msgstr ""
+"Contém o resumo do Chatter (número de mensagens, ...). Este resumo é "
+"formatado diretamente em html para poder ser inserido em vistas de kanban."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0

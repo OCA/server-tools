@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_custom_info
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 # Antonio Trueba, 2016
@@ -19,11 +19,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-10 06:16+0000\n"
 "PO-Revision-Date: 2016-12-16 17:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_custom_info
@@ -36,7 +37,13 @@ msgid ""
 "        product properties group.\n"
 "      </p>\n"
 "    "
-msgstr "<p class=\"oe_view_nocontent_create\">\nPulsa para definir una nueva plantilla de información personalizada.\n</p><p>\nDebe definir una plantilla de información personalizada para cada diferente grupo de propiedades.\n</p>"
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"Pulsa para definir una nueva plantilla de información personalizada.\n"
+"</p><p>\n"
+"Debe definir una plantilla de información personalizada para cada diferente "
+"grupo de propiedades.\n"
+"</p>"
 
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info_model_link
@@ -147,7 +154,9 @@ msgstr "Líneas de información"
 #. module: base_custom_info
 #: model:ir.model,name:base_custom_info.model_custom_info
 msgid "Inheritable abstract model to add custom info in any model"
-msgstr "Modelo abstracto que se puede heredar para añadir información personalizada a cualquier modelo"
+msgstr ""
+"Modelo abstracto que se puede heredar para añadir información personalizada "
+"a cualquier modelo"
 
 #. module: base_custom_info
 #: field:custom.info,__last_update:0

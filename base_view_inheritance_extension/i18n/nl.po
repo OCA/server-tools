@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_view_inheritance_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2018-08-31 09:47+0000\n"
+"Last-Translator: lfreeke <lfreeke@therp.nl>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
+
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "'The company name'"
+msgstr "'De naam van het bedrijf'"
+
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "A new page"
+msgstr "Een nieuwe pagina"
+
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "Partner form"
+msgstr "Relatieformulier"
+
+#. module: base_view_inheritance_extension
+#: view:res.partner:base_view_inheritance_extension.view_partner_form
+msgid "context.get('company_id', context.get('company'))"
+msgstr "context.get('company_id', context.get('company'))"

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * dead_mans_switch_server
-# 
+#
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015-2016
 # Antonio Trueba, 2016
@@ -23,11 +23,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-07 03:47+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: dead_mans_switch_server
@@ -137,7 +138,10 @@ msgstr "Follower"
 msgid ""
 "Holds the Chatter summary (number of messages, ...). This summary is "
 "directly in html format in order to be inserted in kanban views."
-msgstr "Beinhaltet die Dialogzusammenfassung (Anzahl Mitteilungen, ...). Diese Zusammenfassung liegt in HTML vor, um direkt in Kanban-Ansichten verwendet werden zu können."
+msgstr ""
+"Beinhaltet die Dialogzusammenfassung (Anzahl Mitteilungen, ...). Diese "
+"Zusammenfassung liegt in HTML vor, um direkt in Kanban-Ansichten verwendet "
+"werden zu können."
 
 #. module: dead_mans_switch_server
 #: field:dead.mans.switch.instance,id:0 field:dead.mans.switch.log,id:0
@@ -275,7 +279,9 @@ msgstr "Ausgesetzt"
 msgid ""
 "The amount of seconds without notice after which the instance is considered "
 "dead"
-msgstr "Die Sekundenzahl ohne Rückmeldung nach der die Instanz als tot betrachtet wird"
+msgstr ""
+"Die Sekundenzahl ohne Rückmeldung nach der die Instanz als tot betrachtet "
+"wird"
 
 #. module: dead_mans_switch_server
 #: view:dead.mans.switch.log:dead_mans_switch_server.search_dead_mans_switch_log

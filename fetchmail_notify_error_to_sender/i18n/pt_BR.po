@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * fetchmail_notify_error_to_sender
-# 
+#
 # Translators:
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-09-29 11:14+0000\n"
 "PO-Revision-Date: 2015-09-18 22:16+0000\n"
 "Last-Translator: Armando Vulcano Junior <vulcano@uol.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: fetchmail_notify_error_to_sender
@@ -24,7 +25,8 @@ msgid ""
 "\n"
 "<div>\n"
 "    <p>Hello ${ctx.get('sender_message').get('from')},</p>\n"
-"    <p>we got a problem with your email: <i>${ctx.get('sender_message').get('subject')}</i></p>\n"
+"    <p>we got a problem with your email: <i>${ctx.get('sender_message')."
+"get('subject')}</i></p>\n"
 "    <p>Maybe you used a wrong recipient address?</p>\n"
 "    <p><br/></p>\n"
 "    <p>Technical details:</p>\n"
@@ -58,4 +60,6 @@ msgstr "Recebendo erro com: ${ctx.get('sender_message').get('subject')|safe}"
 msgid ""
 "Set here the template to use to send notice to sender when errors occur "
 "while fetching email"
-msgstr "Configure aqui o modelo para usar para enviar aviso ao remetente quando ocorrer erro durante a carga de email"
+msgstr ""
+"Configure aqui o modelo para usar para enviar aviso ao remetente quando "
+"ocorrer erro durante a carga de email"

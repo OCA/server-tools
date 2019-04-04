@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auth_admin_passkey
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,21 +10,22 @@ msgstr ""
 "POT-Creation-Date: 2016-12-31 08:34+0000\n"
 "PO-Revision-Date: 2015-09-18 13:53+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-tools-8-0/language/tr_TR/)\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-server-"
+"tools-8-0/language/tr_TR/)\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr_TR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:69
+#: code:addons/auth_admin_passkey/models/res_users.py:66
 #, python-format
 msgid "<pre>User with login '%s' has the same password as you.</pre>"
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:44
+#: code:addons/auth_admin_passkey/models/res_users.py:41
 #, python-format
 msgid ""
 "Admin user used his passkey to login with '%s'.\n"
@@ -43,7 +44,7 @@ msgid "Passkey"
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:41
+#: code:addons/auth_admin_passkey/models/res_users.py:38
 #, python-format
 msgid "Passkey used"
 msgstr ""
@@ -78,7 +79,7 @@ msgid ""
 msgstr ""
 
 #. module: auth_admin_passkey
-#: code:addons/auth_admin_passkey/models/res_users.py:67
+#: code:addons/auth_admin_passkey/models/res_users.py:64
 #, python-format
 msgid "[WARNING] Odoo Security Risk"
 msgstr ""

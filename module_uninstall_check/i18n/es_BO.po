@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * module_uninstall_check
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-07-26 03:00+0000\n"
 "PO-Revision-Date: 2017-07-26 03:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Bolivia) (https://www.transifex.com/oca/teams/23907/es_BO/)\n"
+"Language-Team: Spanish (Bolivia) (https://www.transifex.com/oca/teams/23907/"
+"es_BO/)\n"
+"Language: es_BO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_BO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: module_uninstall_check
@@ -26,7 +27,8 @@ msgstr ""
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall,module_id:0
 msgid ""
-"Choose a module. The wizard will display all the models and fields linked to that module, that will be dropped, if selected module is uninstalled.\n"
+"Choose a module. The wizard will display all the models and fields linked to "
+"that module, that will be dropped, if selected module is uninstalled.\n"
 " Note : Only Non Transient items will be displayed"
 msgstr ""
 
@@ -214,7 +216,8 @@ msgstr ""
 #. module: module_uninstall_check
 #: help:wizard.module.uninstall.line,model_row_qty:0
 msgid ""
-"The approximate value of the number of records in the database, based on the PostgreSQL column 'reltuples'.\n"
+"The approximate value of the number of records in the database, based on the "
+"PostgreSQL column 'reltuples'.\n"
 " You should reindex your database, to have a more precise value\n"
 "\n"
 " 'REINDEX database your_database_name;'"

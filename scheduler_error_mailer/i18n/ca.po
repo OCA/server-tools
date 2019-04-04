@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * scheduler_error_mailer
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,37 +10,45 @@ msgstr ""
 "POT-Creation-Date: 2017-04-28 09:49+0000\n"
 "PO-Revision-Date: 2017-04-19 13:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: scheduler_error_mailer
 #: model:email.template,body_html:scheduler_error_mailer.scheduler_error_mailer
 msgid ""
 "\n"
-"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
 "\n"
-"<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the database <em>${ctx.get('dbname')}</em> but it failed. Here is the error message :</p>\n"
+"<p>Odoo tried to run the scheduler <em>${object.name or ''}</em> in the "
+"database <em>${ctx.get('dbname')}</em> but it failed. Here is the error "
+"message :</p>\n"
 "\n"
 "<strong>\n"
-"${ctx.get('job_exception') and ctx.get('job_exception').value or ctx.get('job_exception') or 'Failed to get the error message from the context.'|e}\n"
+"${ctx.get('job_exception') and ctx.get('job_exception').value or ctx."
+"get('job_exception') or 'Failed to get the error message from the context.'|"
+"e}\n"
 "</strong>\n"
 "\n"
 "<pre>\n"
 "${ctx.get('traceback')|e}\n"
 "</pre>\n"
 "\n"
-"<p>You may check the logs of the Odoo server to get more information about this failure.</p>\n"
+"<p>You may check the logs of the Odoo server to get more information about "
+"this failure.</p>\n"
 "\n"
 "<p>Properties of the scheduler <em>${object.name or ''}</em> :</p>\n"
 "<ul>\n"
 "<li>Model : ${object.model or ''}</li>\n"
 "<li>Method : ${object.function or ''}</li>\n"
 "<li>Arguments : ${object.args or ''}</li>\n"
-"<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}</li>\n"
+"<li>Interval : ${object.interval_number or '0'} ${object.interval_type or ''}"
+"</li>\n"
 "<li>Number of calls : ${object.numbercall or '0'}</li>\n"
 "<li>Repeat missed : ${object.doall}</li>\n"
 "<li>User : ${object.user_id.name or ''}</li>\n"
@@ -69,7 +77,9 @@ msgstr "Error en la plantilla de correu electrònic "
 #. module: scheduler_error_mailer
 #: help:ir.cron,email_template_id:0
 msgid "Select the email template that will be sent when this scheduler fails."
-msgstr "Seleccioneu la plantilla de correu electrònic que s'enviarà quan aquesta programació falli. "
+msgstr ""
+"Seleccioneu la plantilla de correu electrònic que s'enviarà quan aquesta "
+"programació falli. "
 
 #. module: scheduler_error_mailer
 #: code:addons/scheduler_error_mailer/ir_cron.py:80

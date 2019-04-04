@@ -144,8 +144,10 @@ class SQLRequestMixin(models.AbstractModel):
         if mode in ('view', 'materialized_view'):
             rollback = False
 
-        params = params and params or {}
-        query = self.env.cr.mogrify(self.query, params).decode('utf-8')
+        params = params or {}
+        # pylint: disable=sql-injection
+        query = self.query % params
+        query = query.decode('utf-8')
 
         if mode in ('fetchone', 'fetchall'):
             pass

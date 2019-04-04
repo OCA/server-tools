@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_user_role
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2017-11-18 08:56+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: base_user_role
 #: field:res.users.role,model_access:0
@@ -159,8 +160,8 @@ msgid ""
 "evaluated as python code at login time, you get `user` passed as a browse "
 "record"
 msgstr ""
-"Pogoj, ki ga mora uporabnik izpolniti, da bi bil član te skupine. Ovrednoten"
-" je kot python koda ob prijavi. Uporabnik je spuščen kot brskalni zapis."
+"Pogoj, ki ga mora uporabnik izpolniti, da bi bil član te skupine. Ovrednoten "
+"je kot python koda ob prijavi. Uporabnik je spuščen kot brskalni zapis."
 
 #. module: base_user_role
 #: field:res.users.role.line,date_to:0

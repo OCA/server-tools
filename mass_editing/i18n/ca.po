@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * mass_editing
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,15 +10,18 @@ msgstr ""
 "POT-Creation-Date: 2017-08-17 03:36+0000\n"
 "PO-Revision-Date: 2015-09-18 13:55+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-server-tools-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:36
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Add"
 msgstr ""
 
@@ -26,6 +29,18 @@ msgstr ""
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Advanced"
 msgstr "Avançat "
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:179
+#, python-format
+msgid "Apply"
+msgstr ""
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:184
+#, python-format
+msgid "Close"
+msgstr ""
 
 #. module: mass_editing
 #: field:mass.editing.wizard,create_uid:0 field:mass.object,create_uid:0
@@ -53,7 +68,9 @@ msgstr "Veure el nom"
 msgid ""
 "Display a button in the sidebar of related documents to open a composition "
 "wizard"
-msgstr "Mostra un botó a la barra lateral dels documents relacionats per obrir un assistent de composició "
+msgstr ""
+"Mostra un botó a la barra lateral dels documents relacionats per obrir un "
+"assistent de composició "
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
@@ -123,14 +140,24 @@ msgid "Object"
 msgstr "Objecte "
 
 #. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:37
 #: view:mass.object:mass_editing.view_mass_object_form
+#, python-format
 msgid "Remove"
 msgstr ""
 
 #. module: mass_editing
 #: view:mass.object:mass_editing.view_mass_object_form
 msgid "Remove the contextual action to use this template on related documents"
-msgstr "Eliminar l'acció contextual per utilitzar aquesta plantilla als documents relacionats "
+msgstr ""
+"Eliminar l'acció contextual per utilitzar aquesta plantilla als documents "
+"relacionats "
+
+#. module: mass_editing
+#: code:addons/mass_editing/wizard/mass_editing_wizard.py:35
+#, python-format
+msgid "Set"
+msgstr ""
 
 #. module: mass_editing
 #: field:mass.object,ref_ir_act_window:0
