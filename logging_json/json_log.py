@@ -17,9 +17,9 @@ from openerp.netsvc import ColoredFormatter
 _logger = logging.getLogger(__name__)
 
 try:
-    from pythonjsonlogger.jsonlogger import JsonFormatter, RESERVED_ATTRS
+    from pythonjsonlogger import jsonlogger
 except ImportError:
-    JsonFormatter = object
+    jsonlogger = None  # noqa
     _logger.debug("Cannot 'import pythonjsonlogger'.")
 
 
@@ -55,7 +55,7 @@ REGEX = {
 }
 
 
-class OdooJsonFormatter(JsonFormatter):
+class OdooJsonFormatter(jsonlogger.JsonFormatter):
 
     def add_fields(self, log_record, record, message_dict):
         record.pid = os.getpid()
@@ -80,9 +80,9 @@ class OdooJsonDevFormatter(ColoredFormatter):
     def format(self, record):
         response = super(OdooJsonDevFormatter, self).format(record)
         extra = {}
-        reserved_attrs = list(RESERVED_ATTRS) + ["dbname", "pid"]
+        RESERVED_ATTRS = list(jsonlogger.RESERVED_ATTRS) + ["dbname", "pid"]
         for key, value in record.__dict__.items():
-            if (key not in reserved_attrs and not
+            if (key not in RESERVED_ATTRS and not
                     (hasattr(key, "startswith") and key.startswith('_'))):
                 extra[key] = value
         if extra:
