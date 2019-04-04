@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 # Copyright 2016 Akretion Mourad EL HADJ MIMOUNE
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from openerp import api, fields, models
 
 
 class PurchaseTest(models.Model):

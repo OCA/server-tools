@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
 # Copyright 2017 Akretion (http://www.akretion.com)
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
@@ -5,7 +6,7 @@
 
 {
     'name': 'Exception Rule',
-    'version': '11.0.1.1.0',
+    'version': '8.0.1.1.0',
     'category': 'Generic Modules',
     'summary': """
     This module provide an abstract model to manage customizable

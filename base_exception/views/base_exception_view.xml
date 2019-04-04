@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<odoo>
+<openerp>
+<data>
     <record id="view_exception_rule_tree" model="ir.ui.view">
         <field name="name">exception.rule.tree</field>
         <field name="model">exception.rule</field>
@@ -59,5 +60,5 @@
         sequence="90"
         groups="base_exception.group_exception_rule_manager"
     />
-
-</odoo>
+</data>
+</openerp>

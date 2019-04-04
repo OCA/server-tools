@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
 # Copyright 2017 Akretion (http://www.akretion.com)
 # Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
@@ -5,11 +6,11 @@
 
 import time
 from functools import wraps
-from odoo import api, fields, models, _
+from openerp import api, fields, models, _
 import logging
 
-from odoo.exceptions import UserError, ValidationError
-from odoo.tools.safe_eval import safe_eval
+from openerp.exceptions import Warning as UserError, ValidationError
+from openerp.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 

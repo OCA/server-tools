@@ -18,7 +18,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/149/11.0
+   :target: https://runbot.odoo-community.org/runbot/149/8.0
 
 
 Bug Tracker
@@ -49,6 +49,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * SodexisTeam <dev@sodexis.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+* Agustín Cruz Lozano <agustin.cruz@openpyme.mx>
 
 Maintainer
 ----------

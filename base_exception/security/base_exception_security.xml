@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<openerp>
+<data>
 
     <record id="group_exception_rule_manager" model="res.groups">
         <field name="name">Exception manager</field>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
-</odoo>
+</data>
+</openerp>
