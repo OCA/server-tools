@@ -5,7 +5,7 @@
 
 from odoo import api, fields, models, _
 import logging
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 _logger = logging.getLogger(__name__)
 
 try:
@@ -26,17 +26,21 @@ class AbstractUrl(models.AbstractModel):
             ('auto', 'Automatic'),
             ('manual', 'Manual'),
             ], default='auto')
+    automatic_url_key = fields.Char(
+        compute="_compute_automatic_url_key",
+        store=True
+    )
     manual_url_key = fields.Char()
     url_key = fields.Char(
         string='Url key',
-        compute='_compute_url',
+        compute='_compute_url_key',
         store=True,
     )
     url_url_ids = fields.One2many(
         compute='_compute_url_url_ids',
         comodel_name='url.url')
-    redirect_url_key_ids = fields.One2many(
-        compute='_compute_redirect_url',
+    redirect_url_url_ids = fields.One2many(
+        compute='_compute_redirect_url_url_ids',
         comodel_name='url.url')
     lang_id = fields.Many2one(
         'res.lang',
@@ -48,10 +52,67 @@ class AbstractUrl(models.AbstractModel):
     )
     active = fields.Boolean(string="Active", default=True)
 
-    def _build_url_key(self):
+    @api.constrains("url_builder", "manual_url_key")
+    def _check_manual_url_key(self):
+        for rec in self:
+            if rec.url_builder == "manual" and not rec.manual_url_key:
+                raise ValidationError(
+                    _("Manual url key is required if builder is set to manual")
+                )
+
+    @api.onchange('manual_url_key')
+    def on_url_key_change(self):
         self.ensure_one()
-        return slugify(self.record_id.with_context(
-            lang=self.lang_id.code).name)
+        if self.manual_url_key:
+            url = slugify(self.manual_url_key)
+            if url != self.manual_url_key:
+                self.manual_url_key = url
+                return {
+                    'warning': {
+                        'title': 'Adapt text rules',
+                        'message': 'it will be adapted to %s' % url,
+                    }}
+
+    @api.multi
+    @api.depends("url_key")
+    def _compute_is_urls_sync_required(self):
+        for record in self:
+            record.is_urls_sync_required = True
+
+    @api.multi
+    def _compute_automatic_url_key(self):
+        raise NotImplemented(
+            "Automatic url key must be computed in concrete model"
+        )
+
+    @api.multi
+    @api.depends("manual_url_key", "automatic_url_key", "url_builder",
+                 "active")
+    def _compute_url_key(self):
+        for record in self:
+            if not record.active:
+                record.url_key = ''
+            else:
+                if record.url_builder == 'manual':
+                    new_url = record.manual_url_key
+                else:
+                    new_url = record.automatic_url_key
+                record.url_key = new_url
+
+    @api.multi
+    def _compute_redirect_url_url_ids(self):
+        for record in self:
+            record.redirect_url_url_ids = record.env["url.url"].search([
+                ('model_id', '=', get_model_ref(record)),
+                ('redirect', '=', True),
+            ])
+
+    @api.multi
+    def _compute_url_url_ids(self):
+        for record in self:
+            record.url_url_ids = record.env["url.url"].search([
+                ('model_id', '=', get_model_ref(record)),
+            ])
 
     @api.model
     def _prepare_url(self, url_key):
@@ -69,7 +130,7 @@ class AbstractUrl(models.AbstractModel):
         })
 
     def set_url(self, url_key):
-        """
+        """ Se a new url
         backup old url
 
         1 find url redirect true and same model_id
@@ -94,7 +155,7 @@ class AbstractUrl(models.AbstractModel):
                           "\n- name: %s\n - id: %s\n"
                           "- url_key: %s\n - url_key_id %s") % (
                               existing_url.model_id.name,
-                              existing_url.model_id.record_id.id,
+                              existing_url.model_id.id,
                               existing_url.url_key,
                               existing_url.id,
                               ))
@@ -111,55 +172,11 @@ class AbstractUrl(models.AbstractModel):
         redirect_urls.write({'redirect': True})
 
     def _redirect_existing_url(self):
+        """
+        This method is called when the record is deactivated to give a chance
+        to the concrete model to implement a redirect strategy
+        """
         return True
-
-    @api.depends('url_builder', 'manual_url_key', 'active')
-    def _compute_is_urls_sync_required(self):
-        for record in self:
-            record.is_urls_sync_required = True
-
-    @api.depends('url_builder', 'manual_url_key', 'active')
-    def _compute_url(self):
-        for record in self:
-            if type(record.record_id.id) == models.NewId\
-                    or type(record.id) == models.NewId:
-                # Do not update field value on onchange
-                # as with_context is broken on NewId
-                continue
-            if not record.active:
-                record.url_key = ''
-            else:
-                if record.url_builder == 'manual':
-                    new_url = record.manual_url_key
-                else:
-                    new_url = record._build_url_key()
-                record.url_key = new_url
-
-    def _compute_redirect_url(self):
-        for record in self:
-            record.redirect_url_key_ids = record.env["url.url"].search([
-                ('model_id', '=', get_model_ref(record)),
-                ('redirect', '=', True),
-                ])
-
-    def _compute_url_url_ids(self):
-        for record in self:
-            record.url_url_ids = record.env["url.url"].search([
-                ('model_id', '=', get_model_ref(record)),
-                ])
-
-    @api.onchange('manual_url_key')
-    def on_url_key_change(self):
-        self.ensure_one()
-        if self.manual_url_key:
-            url = slugify(self.manual_url_key)
-            if url != self.manual_url_key:
-                self.manual_url_key = url
-                return {
-                    'warning': {
-                        'title': 'Adapt text rules',
-                        'message': 'it will be adapted to %s' % url,
-                    }}
 
     @api.multi
     def _sync_urls(self):
@@ -174,6 +191,13 @@ class AbstractUrl(models.AbstractModel):
             else:
                 record.set_url(record.url_key)
         return records
+
+    @api.model
+    def create(self, value):
+        res = super(AbstractUrl, self).create(value)
+        synced = res._sync_urls()
+        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
+        return res
 
     @api.multi
     def write(self, value):
