@@ -21,7 +21,7 @@ class AuditlogtHTTPSession(models.Model):
     @api.depends('create_date', 'user_id')
     def _compute_display_name(self):
         for httpsession in self:
-            create_date = fields.Datetime.from_string(httpsession.create_date)
+            create_date = fields.Datetime.to_datetime(httpsession.create_date)
             tz_create_date = fields.Datetime.context_timestamp(
                 httpsession, create_date)
             httpsession.display_name = "%s (%s)" % (

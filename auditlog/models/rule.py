@@ -170,13 +170,16 @@ class AuditlogRule(models.Model):
         if updated:
             modules.registry.Registry(self.env.cr.dbname).signal_changes()
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Update the registry when a new rule is created."""
-        new_record = super(AuditlogRule, self).create(vals)
-        if new_record._register_hook():
-            modules.registry.Registry(self.env.cr.dbname).signal_changes()
-        return new_record
+        new_record_ids = []
+        for vals in vals_list:
+            new_record = super(AuditlogRule, self).create(vals)
+            if new_record._register_hook():
+                modules.registry.Registry(self.env.cr.dbname).signal_changes()
+            new_record_ids += [new_record.id]
+        return self.browse(new_record_ids)
 
     @api.multi
     def write(self, vals):
