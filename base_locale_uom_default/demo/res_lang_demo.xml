@@ -3,11 +3,11 @@
 
     <record id="base.lang_en" model="res.lang">
         <field name="default_uom_ids" eval="[(6, 0, [
-                    ref('product.product_uom_unit'),
-                    ref('product.product_uom_hour'),
-                    ref('product.product_uom_lb'),
-                    ref('product.product_uom_inch'),
-                    ref('product.product_uom_floz'),
+                    ref('uom.product_uom_unit'),
+                    ref('uom.product_uom_hour'),
+                    ref('uom.product_uom_lb'),
+                    ref('uom.product_uom_inch'),
+                    ref('uom.product_uom_floz'),
                 ])]" />
     </record>
 

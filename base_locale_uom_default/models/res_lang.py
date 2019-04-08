@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 LasLabs Inc.
+# Copyright 2019 Rubén Bravo <rubenred18@gmail.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import api, fields, models, _
@@ -12,7 +12,7 @@ class ResLang(models.Model):
 
     default_uom_ids = fields.Many2many(
         string='Default Units',
-        comodel_name='product.uom',
+        comodel_name='uom.uom',
     )
 
     @api.multi
@@ -43,7 +43,7 @@ class ResLang(models.Model):
         """
         if lang is None:
             lang = self.env.user.lang
-        if isinstance(lang, basestring):
+        if isinstance(lang, str):
             lang = self.env['res.lang'].search([
                 ('code', '=', lang),
             ],
