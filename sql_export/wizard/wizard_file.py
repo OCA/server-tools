@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 # Copyright (C) 2015 Akretion (<http://www.akretion.com>)
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -74,18 +74,18 @@ class SqlFileWizard(models.TransientModel):
             params=variable_dict, mode='stdout',
             copy_options=sql_export.copy_options)
         if self.sql_export_id.encoding:
-            res = res.encode(self.sql_export_id.encoding)
+            res = res.decode(self.sql_export_id.encoding)
         self.write({
             'binary_file': res,
-            'file_name': sql_export.name + '_' + date + '.csv'
+            'file_name': '%(name)s_%(date)s.csv' % {
+                'name': sql_export.name, 'date': date}
         })
         return {
-            'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'sql.file.wizard',
             'res_id': self.id,
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'context': self._context,
+            'context': self.env.context,
             'nodestroy': True,
         }
