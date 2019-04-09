@@ -1,13 +1,13 @@
-
 # Copyright (C) 2015 Akretion (<http://www.akretion.com>)
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, post_install
 from odoo.exceptions import Warning as UserError
 
 
+@post_install(True)
 class TestExportSqlQuery(TransactionCase):
 
     def setUp(self):
@@ -21,7 +21,7 @@ class TestExportSqlQuery(TransactionCase):
             'sql_export_id': self.sql_report_demo.id,
         })
         wizard.export_sql()
-        export = base64.b64decode(wizard.binary_file)
+        export = base64.b64decode(wizard.binary_file).decode('utf-8')
         self.assertEqual(export.split(';')[0], 'name')
         self.assertTrue(len(export.split(';')) > 6)
 
