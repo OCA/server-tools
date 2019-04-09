@@ -20,43 +20,89 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_active
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "<code>self</code>: Record on which the rule is evaluated."
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "<code>time</code>: useful Python libraries"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__active
 msgid "Active"
 msgstr "Aktiv"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_model
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__model
 msgid "Apply on"
 msgstr "Anwenden auf"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_uid
+#: selection:exception.rule,exception_type:0
+msgid "By domain"
+msgstr ""
+
+#. module: base_exception
+#: selection:exception.rule,exception_type:0
+#, fuzzy
+#| msgid "Python Code"
+msgid "By python code"
+msgstr "Python Code"
+
+#. module: base_exception
+#: model:ir.model.fields,help:base_exception.field_exception_rule__exception_type
+msgid ""
+"By python code: allow to define any arbitrary check\n"
+"By domain: limited to a selection by an odoo domain:\n"
+"           performance can be better when exceptions            are "
+"evaluated with several records"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_uid
 msgid "Created by"
 msgstr "Erstellt durch"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_create_date
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_description
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__description
 msgid "Description"
 msgstr "Beschreibung"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_display_name
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_display_name
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_display_name
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__display_name
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:217
-#, python-format
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__domain
+msgid "Domain"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid ""
-"Error when evaluating the exception.rule rule:\n"
-" %s \n"
+"Enter Python code here. Help about Python expression is available in the "
+"help tab of this document."
+msgstr ""
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:260
+#, fuzzy, python-format
+#| msgid ""
+#| "Error when evaluating the exception.rule rule:\n"
+#| " %s \n"
+#| "(%s)"
+msgid ""
+"Error when evaluating the exception.rule: %s\n"
 "(%s)"
 msgstr ""
 "Fehler bei Auswertung der exception.rule Regel:\n"
@@ -64,26 +110,47 @@ msgstr ""
 "(%s)"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_name
+#: model:ir.model,name:base_exception.model_base_exception
+#, fuzzy
+#| msgid "Exceptions"
+msgid "Exception"
+msgstr "Ausnahmen"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__name
 msgid "Exception Name"
 msgstr "Ausnahmebezeichnung"
 
 #. module: base_exception
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
+#: model:ir.model,name:base_exception.model_exception_rule
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_tree
 msgid "Exception Rule"
 msgstr "Ausnahmeregel"
 
 #. module: base_exception
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+#: model:ir.model,name:base_exception.model_exception_rule_confirm
+#, fuzzy
+#| msgid "exception.rule.confirm"
+msgid "Exception Rule Confirm Wizard"
+msgstr "exception.rule.confirm"
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Exception Rule Setup"
 msgstr "Einstellungen zu Ausnahmeregeln"
 
 #. module: base_exception
 #: model:ir.actions.act_window,name:base_exception.action_exception_rule_tree
-#: model:ir.model,name:base_exception.model_exception_rule
 #: model:ir.ui.menu,name:base_exception.menu_action_exception
 msgid "Exception Rules"
 msgstr "Ausnahmeregeln"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__exception_type
+#, fuzzy
+#| msgid "Exception Name"
+msgid "Exception Type"
+msgstr "Ausnahmebezeichnung"
 
 #. module: base_exception
 #: model:res.groups,name:base_exception.group_exception_rule_manager
@@ -91,34 +158,44 @@ msgid "Exception manager"
 msgstr "Ausnahmeverwaltung"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_exception_ids
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__exception_ids
 msgid "Exceptions"
 msgstr "Ausnahmen"
 
 #. module: base_exception
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Exceptions Rules"
 msgstr "Ausnahmenregeln"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_exception_ids
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
 msgid "Exceptions to resolve"
 msgstr "Aufzulösende Ausnahmen"
 
 #. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule_sequence
+#: model:ir.model.fields,help:base_exception.field_exception_rule__sequence
 msgid "Gives the sequence order when applying the test"
 msgstr "Gibt die Reihenfolge der Test-Ausführungen vor"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_id
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_id
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_id
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Help"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "Help with Python expressions"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__id
 msgid "ID"
 msgstr "ID"
 
 #. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule_next_state
+#: model:ir.model.fields,help:base_exception.field_exception_rule__next_state
 msgid ""
 "If we detect exception we set the state of object (ex purchase) to the "
 "next_state (ex 'to approve'). If there are more than one exception detected "
@@ -131,40 +208,40 @@ msgstr ""
 "den mit kleinstem Reihenfolgewert heran."
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_ignore_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_ignore
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__ignore_exception
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__ignore
 msgid "Ignore Exceptions"
 msgstr "Ausnahmen ignorieren"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception___last_update
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule___last_update
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm___last_update
+#: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_uid
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert durch"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_write_date
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_main_exception_id
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__main_exception_id
 msgid "Main Exception"
 msgstr "Haupt-Ausnahme"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_next_state
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__next_state
 msgid "Next state"
 msgstr "Nächster Status"
 
 #. module: base_exception
-#: code:addons/base_exception/wizard/base_exception_confirm.py:28
+#: code:addons/base_exception/wizard/base_exception_confirm.py:29
 #, python-format
 msgid "Only 1 ID accepted, got %r."
 msgstr "Nur 1 ID zugelassen, erhielt %r."
@@ -175,35 +252,36 @@ msgid "Outstanding exceptions to manage"
 msgstr "Ausstehende zu verarbeitende Ausnahmen"
 
 #. module: base_exception
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Outstanding exceptions to manager"
 msgstr "Ausstehende Ausnahmen an Manager"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_code
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__code
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
 msgid "Python Code"
 msgstr "Python Code"
 
 #. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule_code
+#: model:ir.model.fields,help:base_exception.field_exception_rule__code
 msgid ""
 "Python code executed to check if the exception apply or not. Use failed = "
 "True to block the exception"
 msgstr "Zur Prüfung ausgeführter Python Code, ob Ausnahme zutrifft oder nicht."
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_related_model_id
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__related_model_id
 msgid "Related Model"
 msgstr "Zugehöriges Modell"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_rule_group
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_rule_group
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__rule_group
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__rule_group
 msgid "Rule Group"
 msgstr "Regelgruppe"
 
 #. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule_rule_group
+#: model:ir.model.fields,help:base_exception.field_exception_rule__rule_group
 msgid ""
 "Rule group is used to group the rules that must validated at same time for a "
 "target object. Ex: validate sale.order.line rules with sale order rules."
@@ -213,12 +291,12 @@ msgstr ""
 "mit Regeln zu sale.order."
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
+#: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
 msgid "Sequence"
 msgstr "Reihenfolge"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:88
+#: code:addons/base_exception/models/base_exception.py:80
 #, python-format
 msgid ""
 "The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
@@ -228,16 +306,21 @@ msgstr ""
 "falsch. Der Wert muss einer aus Liste %s sein."
 
 #. module: base_exception
-#: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid "To block the exception use: <code>failed = True</code>"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
+msgid ""
+"Various fields may use Python code or Python expressions. The following "
+"variables can be used:"
+msgstr ""
+
+#. module: base_exception
+#: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Schliessen"
 
-#. module: base_exception
-#: model:ir.model,name:base_exception.model_base_exception
-msgid "base.exception"
-msgstr "base.exception"
-
-#. module: base_exception
-#: model:ir.model,name:base_exception.model_exception_rule_confirm
-msgid "exception.rule.confirm"
-msgstr "exception.rule.confirm"
+#~ msgid "base.exception"
+#~ msgstr "base.exception"
