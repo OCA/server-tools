@@ -1,4 +1,4 @@
-# © 2016 ABF OSIELL <https://osiell.com>
+# Copyright 2016 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import time
 
