@@ -1,7 +1,7 @@
 # Copyright (C) 2015 Akretion (<http://www.akretion.com>)
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class SqlExport(models.Model):
@@ -35,18 +35,16 @@ class SqlExport(models.Model):
          ('koir8_r', 'koir8_r')], string='Encoding', required=True,
         default='utf-8')
 
-    @api.multi
     def export_sql_query(self):
         self.ensure_one()
         wiz = self.env['sql.file.wizard'].create({
             'sql_export_id': self.id})
         return {
-            'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'sql.file.wizard',
             'res_id': wiz.id,
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'context': self._context,
+            'context': self.env.context,
             'nodestroy': True,
         }
