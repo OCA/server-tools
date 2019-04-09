@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
+from odoo.exceptions import ValidationError
+from odoo import fields
 from .common import setup_test_model
 from .purchase_test import PurchaseTest, LineTest
 import logging
@@ -20,11 +22,10 @@ class TestBaseException(common.SavepointCase):
 
         cls.base_exception = cls.env['base.exception']
         cls.exception_rule = cls.env['exception.rule']
+        if 'test_purchase_ids' not in cls.exception_rule._fields:
+            field = fields.Many2many('base.exception.test.purchase')
+            cls.exception_rule._add_field('test_purchase_ids', field)
         cls.exception_confirm = cls.env['exception.rule.confirm']
-
-        cls.exception_rule._fields['rule_group'].selection.append(
-            ('test_base', 'Test Base Exception'))
-
         cls.exception_rule._fields['model'].selection.append(
             ('base.exception.test.purchase', 'Purchase Order'))
 
@@ -34,25 +35,22 @@ class TestBaseException(common.SavepointCase):
         cls.exceptionnozip = cls.env['exception.rule'].create({
             'name': "No ZIP code on destination",
             'sequence': 10,
-            'rule_group': "test_base",
             'model': "base.exception.test.purchase",
-            'code': "if not test_base.partner_id.zip: failed=True",
+            'code': "if not obj.partner_id.zip: failed=True",
         })
 
         cls.exceptionno_minorder = cls.env['exception.rule'].create({
             'name': "Min order except",
             'sequence': 10,
-            'rule_group': "test_base",
             'model': "base.exception.test.purchase",
-            'code': "if test_base.amount_total <= 200.0: failed=True",
+            'code': "if obj.amount_total <= 200.0: failed=True",
         })
 
         cls.exceptionno_lineqty = cls.env['exception.rule'].create({
             'name': "Qty > 0",
             'sequence': 10,
-            'rule_group': "test_base",
             'model': "base.exception.test.purchase.line",
-            'code': "if test_base_line.qty <= 0: failed=True"
+            'code': "if obj.qty <= 0: failed=True"
         })
 
     def test_purchase_order_exception(self):
@@ -67,19 +65,10 @@ class TestBaseException(common.SavepointCase):
                 'qty': 1.5,
             })],
         })
-
-        potest1.button_confirm()
-        # Set ignore_exception flag  (Done after ignore is selected at wizard)
+        # Block because of exception during validation
+        with self.assertRaises(ValidationError):
+            potest1.button_confirm()
+        # Test ignore exeception make possible for the po to validate
         potest1.ignore_exception = True
         potest1.button_confirm()
         self.assertTrue(potest1.state == 'purchase')
-        # Simulation the opening of the wizard exception_confirm and
-        # set ignore_exception to True
-        except_confirm = self.exception_confirm.with_context(
-            {
-                'active_id': potest1.id,
-                'active_ids': [potest1.id],
-                'active_model': potest1._name
-            }).new({'ignore': True})
-        except_confirm.action_confirm()
-        self.assertTrue(potest1.ignore_exception)
