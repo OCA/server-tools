@@ -8,10 +8,6 @@ class PurchaseTest(models.Model):
     _name = "base.exception.test.purchase"
     _description = "Base Ecxeption Test Model"
 
-    rule_group = fields.Selection(
-        selection_add=[('test_base', 'test')],
-        default='test_base',
-    )
     name = fields.Char(required=True)
     user_id = fields.Many2one('res.users', string='Responsible')
     state = fields.Selection(
@@ -57,9 +53,9 @@ class PurchaseTest(models.Model):
     def button_cancel(cls):
         cls.write({'state': 'cancel'})
 
-    def test_base_get_lines(cls):
-        cls.ensure_one()
-        return cls.line_ids
+    @api.multi
+    def _reverse_field(self):
+        return 'test_purchase_ids'
 
 
 class LineTest(models.Model):

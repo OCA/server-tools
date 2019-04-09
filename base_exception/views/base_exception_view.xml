@@ -37,15 +37,13 @@
                     </group>
                     <group>
                         <group colspan="4" groups="base.group_system">
-                            <field name="rule_group"/>
                             <field name="model"/>
-                            <field name="next_state"/>
                             <field name="exception_type" widget="radio"/>
-                            <field name="domain" attrs="{'invisible': [('exception_type','!=','by_domain')]}"/>
+                            <field name="domain" attrs="{'invisible': [('exception_type','!=','by_domain')], 'required': [('exception_type','=','by_domain')]}"/>
                         </group>
                     </group>
                     <notebook>
-                        <page name="code" string="Python Code" attrs="{'invisible': [('exception_type','!=','by_py_code')]}">
+                        <page name="code" string="Python Code" attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}">
                             <field name="code" widget="ace" options="{'mode': 'python'}" placeholder="Enter Python code here. Help about Python expression is available in the help tab of this document."/>
                         </page>
                         <page name="help" string="Help" attrs="{'invisible': [('exception_type','!=','by_py_code')]}">
