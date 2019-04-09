@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <odoo>
+    
     <record id="view_exception_rule_tree" model="ir.ui.view">
         <field name="name">exception.rule.tree</field>
         <field name="model">exception.rule</field>
@@ -20,14 +21,18 @@
         <field name="arch" type="xml">
             <form string="Exception Rule Setup" name="exception_rule">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="name"/>
                             <field name="description"/>
-                        </group>
-                        <group>
-                            <field name="active"/>
-                            <field name="sequence"/>
                         </group>
                     </group>
                     <group>
@@ -35,9 +40,26 @@
                             <field name="rule_group"/>
                             <field name="model"/>
                             <field name="next_state"/>
-                            <field name="code"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page name="code" string="Python Code">
+                            <field name="code" widget="ace" options="{'mode': 'python'}" placeholder="Enter Python code here. Help about Python expression is available in the help tab of this document."/>
+                        </page>
+                        <page name="help" string="Help">
+                            <group>
+                                <div style="margin-top: 4px;">
+                                    <h3>Help with Python expressions</h3>
+                                    <p>Various fields may use Python code or Python expressions. The following variables can be used:</p>
+                                    <ul>
+                                        <li><code>self</code>: Record on which the rule is evaluated.</li>
+                                        <li><code>time</code>: useful Python libraries</li>
+                                        <li>To block the exception use: <code>failed = True</code></li>
+                                    </ul>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

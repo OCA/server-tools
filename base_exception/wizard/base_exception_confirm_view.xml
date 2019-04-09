@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="view_exception_rule_confirm" model="ir.ui.view">
         <field name="name">Exceptions Rules</field>
         <field name="model">exception.rule.confirm</field>
@@ -34,4 +35,5 @@
         <field name="view_id" ref="view_exception_rule_confirm"/>
         <field name="target">new</field>
     </record>
+
 </odoo>
