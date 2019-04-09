@@ -1,4 +1,4 @@
-# © 2015 ABF OSIELL <https://osiell.com>
+# Copyright 2015 ABF OSIELL <https://osiell.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, modules, _
@@ -44,32 +44,40 @@ class AuditlogRule(models.Model):
     _name = 'auditlog.rule'
     _description = "Auditlog - Rule"
 
-    name = fields.Char("Name", size=32, required=True)
+    name = fields.Char(
+        "Name", required=True,
+        states={'subscribed': [('readonly', True)]})
     model_id = fields.Many2one(
         'ir.model', "Model", required=True,
-        help="Select model for which you want to generate log.")
+        help="Select model for which you want to generate log.",
+        states={'subscribed': [('readonly', True)]})
     user_ids = fields.Many2many(
         'res.users',
         'audittail_rules_users',
         'user_id', 'rule_id',
         string="Users",
-        help="if  User is not added then it will applicable for all users")
+        help="if  User is not added then it will applicable for all users",
+        states={'subscribed': [('readonly', True)]})
     log_read = fields.Boolean(
         "Log Reads",
         help=("Select this if you want to keep track of read/open on any "
-              "record of the model of this rule"))
+              "record of the model of this rule"),
+        states={'subscribed': [('readonly', True)]})
     log_write = fields.Boolean(
         "Log Writes", default=True,
         help=("Select this if you want to keep track of modification on any "
-              "record of the model of this rule"))
+              "record of the model of this rule"),
+        states={'subscribed': [('readonly', True)]})
     log_unlink = fields.Boolean(
         "Log Deletes", default=True,
         help=("Select this if you want to keep track of deletion on any "
-              "record of the model of this rule"))
+              "record of the model of this rule"),
+        states={'subscribed': [('readonly', True)]})
     log_create = fields.Boolean(
         "Log Creates", default=True,
         help=("Select this if you want to keep track of creation on any "
-              "record of the model of this rule"))
+              "record of the model of this rule"),
+        states={'subscribed': [('readonly', True)]})
     log_type = fields.Selection(
         [('full', "Full log"),
          ('fast', "Fast log"),
@@ -79,7 +87,8 @@ class AuditlogRule(models.Model):
               "the operation (log more info like computed fields which were "
               "updated, but it is slower)\n"
               "Fast log: only log the changes made through the create and "
-              "write operations (less information, but it is faster)"))
+              "write operations (less information, but it is faster)"),
+        states={'subscribed': [('readonly', True)]})
     # log_action = fields.Boolean(
     #     "Log Action",
     #     help=("Select this if you want to keep track of actions on the "
@@ -92,7 +101,8 @@ class AuditlogRule(models.Model):
         [('draft', "Draft"), ('subscribed', "Subscribed")],
         string="State", required=True, default='draft')
     action_id = fields.Many2one(
-        'ir.actions.act_window', string="Action")
+        'ir.actions.act_window', string="Action",
+        states={'subscribed': [('readonly', True)]})
 
     _sql_constraints = [
         ('model_uniq', 'unique(model_id)',
