@@ -194,14 +194,13 @@ class BaseException(models.AbstractModel):
             if hasattr(exception_obj, field.name)
         ] or [None])[0]
 
+    @api.multi
     def _rule_domain(self):
         """Filter exception.rules.
-
         By default, only the rules with the correct rule group
         will be used.
         """
-        # TODO fix self[0] : it may not be the same on all ids in self
-        return [('rule_group', '=', self[0].rule_group)]
+        return [('rule_group', 'in', self.mapped('rule_group'))]
 
     @api.multi
     def detect_exceptions(self):
