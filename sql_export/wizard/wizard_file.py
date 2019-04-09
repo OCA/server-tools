@@ -1,9 +1,8 @@
-
 # Copyright (C) 2015 Akretion (<http://www.akretion.com>)
 # @author: Florian da Costa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import datetime
+from datetime import datetime
 from lxml import etree
 
 from odoo import models, fields, api, osv
@@ -22,23 +21,23 @@ class SqlFileWizard(models.TransientModel):
     def fields_view_get(self, view_id=None, view_type='form',
                         toolbar=False, submenu=False):
         """
-        Display dinamicaly parameter fields depending on the sql_export.
+        Display dynamically parameter fields depending on the sql_export.
         """
         res = super(SqlFileWizard, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar,
             submenu=submenu)
         export_obj = self.env['sql.export']
         if view_type == 'form':
-            sql_export = export_obj.browse(self._context.get('active_id'))
+            sql_export = export_obj.browse(self.env.context.get('active_id'))
             if sql_export.field_ids:
                 eview = etree.fromstring(res['arch'])
                 group = etree.Element(
                     'group', name="variables_group", colspan="4")
                 toupdate_fields = []
                 for field in sql_export.field_ids:
-                    kwargs = {'name': "%s" % field.name}
                     toupdate_fields.append(field.name)
-                    view_field = etree.SubElement(group, 'field', **kwargs)
+                    view_field = etree.SubElement(
+                        group, 'field', name=field.name)
                     osv.orm.setup_modifiers(
                         view_field, self.fields_get(field.name))
 
@@ -50,24 +49,21 @@ class SqlFileWizard(models.TransientModel):
                 res['arch'] = etree.tostring(eview, pretty_print=True)
         return res
 
-    @api.multi
     def export_sql(self):
         self.ensure_one()
         sql_export = self.sql_export_id
 
         # Manage Params
         variable_dict = {}
-        today = datetime.datetime.now()
-        today_tz = fields.Datetime.context_timestamp(
-            sql_export, today)
-        date = today_tz.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        now_tz = fields.Datetime.context_timestamp(sql_export, datetime.now())
+        date = now_tz.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         if sql_export.field_ids:
             for field in sql_export.field_ids:
                 variable_dict[field.name] = self[field.name]
         if "%(company_id)s" in sql_export.query:
             variable_dict['company_id'] = self.env.user.company_id.id
         if "%(user_id)s" in sql_export.query:
-            variable_dict['user_id'] = self._uid
+            variable_dict['user_id'] = self.env.uid
 
         # Execute Request
         res = sql_export._execute_sql_request(
