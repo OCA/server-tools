@@ -6,12 +6,8 @@
 import time
 from functools import wraps
 from odoo import api, fields, models, _
-import logging
-
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
-
-_logger = logging.getLogger(__name__)
 
 
 def implemented_by_base_exception(func):
@@ -28,50 +24,36 @@ def implemented_by_base_exception(func):
 
 class ExceptionRule(models.Model):
     _name = 'exception.rule'
-    _description = "Exception Rules"
+    _description = 'Exception Rule'
     _order = 'active desc, sequence asc'
 
     name = fields.Char('Exception Name', required=True, translate=True)
     description = fields.Text('Description', translate=True)
     sequence = fields.Integer(
         string='Sequence',
-        help="Gives the sequence order when applying the test")
+        help="Gives the sequence order when applying the test",
+    )
     rule_group = fields.Selection(
         selection=[],
         help="Rule group is used to group the rules that must validated "
         "at same time for a target object. Ex: "
         "validate sale.order.line rules with sale order rules.",
-        required=True)
-    model = fields.Selection(
-        selection=[],
-        string='Apply on', required=True)
+        required=True,
+    )
+    model = fields.Selection(selection=[], string='Apply on', required=True)
     active = fields.Boolean('Active')
     next_state = fields.Char(
         'Next state',
         help="If we detect exception we set the state of object (ex purchase) "
              "to the next_state (ex 'to approve'). If there are more than one "
              "exception detected and all have a value for next_state, we use"
-             "the exception having the smallest sequence value")
+             "the exception having the smallest sequence value",
+    )
     code = fields.Text(
         'Python Code',
         help="Python code executed to check if the exception apply or "
              "not. Use failed = True to block the exception",
-        default="""
-# Python code. Use failed = True to block the base.exception.
-# You can use the following variables :
-#  - self: ORM model of the record which is checked
-#  - "rule_group" or "rule_group_"line:
-#       browse_record of the base.exception or
-#       base.exception line (ex rule_group = sale for sale order)
-#  - object: same as order or line, browse_record of the base.exception or
-#    base.exception line
-#  - obj: same as object
-#  - env: Odoo Environment (i.e. self.env)
-#  - time: Python time module
-#  - cr: database cursor
-#  - uid: current user id
-#  - context: current context
-""")
+        )
 
     @api.constrains('next_state')
     def _check_next_state_value(self):
@@ -84,60 +66,55 @@ class ExceptionRule(models.Model):
                         'state']['selection']
                 select_vals_code = [s[0] for s in select_vals]
                 if rule.next_state not in select_vals_code:
-                    raise ValidationError(
-                        _('The value "%s" you choose for the "next state" '
-                          'field state of "%s" is wrong.'
-                          ' Value must be in this list %s')
-                        % (rule.next_state,
-                           rule.model,
-                           select_vals)
-                    )
+                    raise ValidationError(_(
+                        'The value "%s" you choose for the "next state" '
+                        'field state of "%s" is wrong.'
+                        ' Value must be in this list %s'
+                        ) % (
+                            rule.next_state,
+                            rule.model,
+                            select_vals
+                        ))
 
 
 class BaseException(models.AbstractModel):
     _name = 'base.exception'
-
     _order = 'main_exception_id asc'
+    _description = 'Exception'
 
     main_exception_id = fields.Many2one(
         'exception.rule',
         compute='_compute_main_error',
         string='Main Exception',
-        store=True)
-    rule_group = fields.Selection(
-        [],
-        readonly=True,
+        store=True,
     )
-    exception_ids = fields.Many2many(
-        'exception.rule',
-        string='Exceptions')
+    rule_group = fields.Selection([], readonly=True)
+    exception_ids = fields.Many2many('exception.rule', string='Exceptions')
     ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
 
     @api.depends('exception_ids', 'ignore_exception')
     def _compute_main_error(self):
-        for obj in self:
-            if not obj.ignore_exception and obj.exception_ids:
-                obj.main_exception_id = obj.exception_ids[0]
+        for rec in self:
+            if not rec.ignore_exception and rec.exception_ids:
+                rec.main_exception_id = rec.exception_ids[0]
             else:
-                obj.main_exception_id = False
+                rec.main_exception_id = False
 
     @api.multi
     def _popup_exceptions(self):
-        action = self._get_popup_action()
-        action_data = action.read()[0]
-        action_data.update({
+        action = self._get_popup_action().read()[0]
+        action.update({
             'context': {
                 'active_id': self.ids[0],
                 'active_ids': self.ids,
                 'active_model': self._name,
             }
         })
-        return action_data
+        return action
 
     @api.model
     def _get_popup_action(self):
-        action = self.env.ref('base_exception.action_exception_rule_confirm')
-        return action
+        return self.env.ref('base_exception.action_exception_rule_confirm')
 
     @api.multi
     def _check_exception(self):
@@ -191,36 +168,32 @@ class BaseException(models.AbstractModel):
 
     @api.model
     def _exception_rule_eval_context(self, obj_name, rec):
-        return {obj_name: rec,
-                'self': self.env[rec._name],
-                'object': rec,
-                'obj': rec,
-                'env': self.env,
-                'cr': self.env.cr,
-                'uid': self.env.uid,
-                'user': self.env.user,
-                'time': time,
-                # copy context to prevent side-effects of eval
-                'context': self.env.context.copy()}
+        return {
+            'time': time,
+            'self': rec,
+            # obj_name, object, obj: deprecated.
+            # should be removed in future migrations
+            obj_name: rec,
+            'object': rec,
+            'obj': rec,
+            # copy context to prevent side-effects of eval
+            # should be deprecated too, accesible through self.
+            'context': self.env.context.copy()
+        }
 
     @api.model
     def _rule_eval(self, rule, obj_name, rec):
-        expr = rule.code
-        space = self._exception_rule_eval_context(obj_name, rec)
+        eval_ctx = self._exception_rule_eval_context(obj_name, rec)
         try:
-            safe_eval(expr,
-                      space,
-                      mode='exec',
-                      nocopy=True)  # nocopy allows to return 'result'
+            safe_eval(rule.code, eval_ctx, mode='exec', nocopy=True)
         except Exception as e:
-            raise UserError(
-                _('Error when evaluating the exception.rule '
-                  'rule:\n %s \n(%s)') % (rule.name, e))
-        return space.get('failed', False)
+            raise UserError(_(
+                'Error when evaluating the exception.rule: '
+                '%s\n(%s)') % (rule.name, e))
+        return eval_ctx.get('failed', False)
 
     @api.multi
-    def _detect_exceptions(self, model_exceptions,
-                           sub_exceptions):
+    def _detect_exceptions(self, model_exceptions, sub_exceptions):
         self.ensure_one()
         exception_ids = []
         next_state_rule = False
@@ -228,8 +201,8 @@ class BaseException(models.AbstractModel):
             if self._rule_eval(rule, self.rule_group, self):
                 exception_ids.append(rule.id)
                 if rule.next_state:
-                    if not next_state_rule or\
-                       rule.sequence < next_state_rule.sequence:
+                    if not next_state_rule or \
+                            rule.sequence < next_state_rule.sequence:
                         next_state_rule = rule
         if sub_exceptions:
             for obj_line in self._get_lines():
