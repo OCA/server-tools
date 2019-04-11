@@ -5,6 +5,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import time
+import datetime
+import dateutil
+import pytz
+
 from functools import wraps
 from openerp import api, fields, models, _
 import logging
@@ -68,7 +72,7 @@ class ExceptionRule(models.Model):
 #    base.exception line
 #  - obj: same as object
 #  - env: Odoo Environment (i.e. self.env)
-#  - time: Python time module
+#  - time, datetime, dateutil: Python libraries
 #  - cr: database cursor
 #  - uid: current user id
 #  - context: current context
@@ -200,7 +204,14 @@ class BaseException(models.AbstractModel):
                 'cr': self.env.cr,
                 'uid': self.env.uid,
                 'user': self.env.user,
+                # python libs
                 'time': time,
+                'datetime': datetime,
+                'dateutil': dateutil,
+                # NOTE: only `timezone` function.
+                #       Do not provide the whole `pytz` module as users
+                #       will have access to `pytz.os` and `pytz.sys` to do nasty things
+                'timezone': pytz.timezone,
                 # copy context to prevent side-effects of eval
                 'context': self.env.context.copy()}
 
