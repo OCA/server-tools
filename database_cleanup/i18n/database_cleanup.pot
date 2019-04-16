@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-01 09:20+0000\n"
-"PO-Revision-Date: 2018-11-01 09:20+0000\n"
+"POT-Creation-Date: 2019-04-16 16:02+0000\n"
+"PO-Revision-Date: 2019-04-16 16:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -132,6 +132,11 @@ msgstr ""
 #. module: database_cleanup
 #: selection:cleanup.purge.line.property,reason:0
 msgid "Duplicated property"
+msgstr ""
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Empty default property"
 msgstr ""
 
 #. module: database_cleanup
@@ -289,7 +294,7 @@ msgid "No modules found to purge"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_columns.py:126
+#: code:addons/database_cleanup/models/purge_columns.py:128
 #, python-format
 msgid "No orphaned columns found"
 msgstr ""
@@ -307,7 +312,7 @@ msgid "No orphaned models found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_tables.py:105
+#: code:addons/database_cleanup/models/purge_tables.py:106
 #, python-format
 msgid "No orphaned tables found"
 msgstr ""
@@ -337,6 +342,16 @@ msgstr ""
 #: model:ir.actions.server,name:database_cleanup.action_purge_table_line
 #: model_terms:ir.ui.view,arch_db:database_cleanup.form_purge_wizard
 msgid "Purge"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line
+msgid "Purge Column Abstract Wizard"
+msgstr ""
+
+#. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
+msgid "Purge Column Wizard Lines"
 msgstr ""
 
 #. module: database_cleanup
@@ -451,6 +466,11 @@ msgid "Purge tables"
 msgstr ""
 
 #. module: database_cleanup
+#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
+msgid "Purge tables wizard lines"
+msgstr ""
+
+#. module: database_cleanup
 #: model_terms:ir.ui.view,arch_db:database_cleanup.tree_purge_line
 msgid "Purge this model"
 msgstr ""
@@ -483,7 +503,7 @@ msgid "Select lines"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_wizard.py:74
+#: code:addons/database_cleanup/models/purge_wizard.py:75
 #, python-format
 msgid "Select lines to purge"
 msgstr ""
@@ -491,6 +511,11 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table__purge_line_ids
 msgid "Tables to purge"
+msgstr ""
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Unknown model"
 msgstr ""
 
 #. module: database_cleanup
@@ -502,16 +527,6 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_create_indexes_line
 msgid "cleanup.create_indexes.line"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line
-msgid "cleanup.purge.line"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_column
-msgid "cleanup.purge.line.column"
 msgstr ""
 
 #. module: database_cleanup
@@ -527,10 +542,5 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model,name:database_cleanup.model_cleanup_purge_line_module
 msgid "cleanup.purge.line.module"
-msgstr ""
-
-#. module: database_cleanup
-#: model:ir.model,name:database_cleanup.model_cleanup_purge_line_table
-msgid "cleanup.purge.line.table"
 msgstr ""
 
