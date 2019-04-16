@@ -20,5 +20,5 @@ class ServerEnvironmentController(http.Controller):
         # module  server_environment_files_sample
         running_env = config.get('running_env', "RUNNING_ENV")
         return http.local_redirect(
-            'server_environment_%s/static/%s/%s' % (
+            '/server_environment_%s/static/%s/%s' % (
                 module_extension, running_env, local_path))
