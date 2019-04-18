@@ -44,17 +44,17 @@ except ImportError:
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
                    '0': False, 'no': False, 'false': False, 'off': False}
 
-if not system_base_config.get('running_env', False):
-    raise Exception(
-        "The parameter 'running_env' has not be set neither in base config "
-        "file option -c or in openerprc.\n"
-        "We strongly recommend against using the rc file but instead use an "
-        "explicit config file with this content:\n"
-        "[options]\nrunning_env = dev"
-    )
-
 ck_path = None
 if _dir:
+    if not system_base_config.get('running_env', False):
+        raise Exception(
+            "The parameter 'running_env' has not be set neither in base config "
+            "file option -c or in openerprc.\n"
+            "We strongly recommend against using the rc file but instead use an "
+            "explicit config file with this content:\n"
+            "[options]\nrunning_env = dev"
+        )
+
     ck_path = os.path.join(_dir, system_base_config['running_env'])
 
     if not os.path.exists(ck_path):
