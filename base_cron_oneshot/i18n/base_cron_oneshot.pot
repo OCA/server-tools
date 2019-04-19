@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_cron_oneshot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_cron_oneshot
+#: model:ir.model.fields,help:base_cron_oneshot.field_ir_cron_oneshot
+msgid "Enable this to run the cron only once. The cron will be deleted right after execution."
+msgstr ""
+
+#. module: base_cron_oneshot
+#: model:ir.actions.server,name:base_cron_oneshot.cron_oneshot_cleanup_ir_actions_server
+#: model:ir.cron,cron_name:base_cron_oneshot.cron_oneshot_cleanup
+#: model:ir.cron,name:base_cron_oneshot.cron_oneshot_cleanup
+msgid "Oneshot cron cleanup"
+msgstr ""
+
+#. module: base_cron_oneshot
+#: code:addons/base_cron_oneshot/models/ir_cron.py:59
+#, python-format
+msgid "Provide a method or some code!"
+msgstr ""
+
+#. module: base_cron_oneshot
+#: model:ir.model,name:base_cron_oneshot.model_ir_cron
+msgid "Scheduled Actions"
+msgstr ""
+
+#. module: base_cron_oneshot
+#: model:ir.model.fields,field_description:base_cron_oneshot.field_ir_cron_oneshot
+msgid "Single use"
+msgstr ""
+
