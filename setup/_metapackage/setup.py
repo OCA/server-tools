@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-auditlog',
+        'odoo12-addon-base_exception',
         'odoo12-addon-base_jsonify',
         'odoo12-addon-base_search_fuzzy',
         'odoo12-addon-datetime_formatter',
