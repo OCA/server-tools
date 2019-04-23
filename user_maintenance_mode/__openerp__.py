@@ -5,8 +5,6 @@
     'version': '8.0.1.0.0',
     'author': 'Tharathip C.,Ecosoft,Odoo Community Association (OCA)',
     'category': 'Hidden',
-    'description': """
-    """,
     'website': 'http://ecosoft.co.th',
     'depends': [
         'web',
