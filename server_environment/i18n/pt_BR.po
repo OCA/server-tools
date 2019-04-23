@@ -77,6 +77,12 @@ msgid "Server Environment"
 msgstr "Ambiente do servidor"
 
 #. module: server_environment
+#: model:res.groups,name:server_environment.has_server_configuration_access
+#, fuzzy
+msgid "View Server Environment Configuration"
+msgstr "Ambiente do servidor"
+
+#. module: server_environment
 #: model:ir.model.fields,field_description:server_environment.field_server_config_custom_ged
 #: | ged_folder
 msgid "custom_ged | ged_folder"

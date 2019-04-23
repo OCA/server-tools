@@ -23,18 +23,16 @@ class ResUsers(models.Model):
     def get_show_technical_features(self):
         """ Only display the technical features checkbox in the user
         preferences if the user has access to them """
-        users = self.env.ref('base.group_no_one').users
         for user in self:
-            user.show_technical_features = user in users
+            user.show_technical_features = user.has_group('base.group_no_one')
 
     @api.multi
     @api.depends('groups_id')
     def get_technical_features(self):
         """ Map user membership to boolean field value """
-        users = self.env.ref(
-            'base_technical_features.group_technical_features').users
         for user in self:
-            user.technical_features = user in users
+            user.technical_features = user.has_group(
+                'base_technical_features.group_technical_features')
 
     @api.multi
     def set_technical_features(self):

@@ -32,7 +32,7 @@ msgid "Categories"
 msgstr "Kategorie"
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2257
+#: model:ir.model.fields,field_description:kpi.field_kpi_category_id_2268
 #: model:ir.ui.view,arch_db:kpi.view_kpi_category_form
 #: model:ir.ui.view,arch_db:kpi.view_kpi_filter
 msgid "Category"
@@ -222,8 +222,7 @@ msgid "KPIs"
 msgstr ""
 
 #. module: kpi
-#: model:ir.model,name:kpi.model_kpi
-#: model:ir.ui.view,arch_db:kpi.view_kpi_form
+#: model:ir.model,name:kpi.model_kpi model:ir.ui.view,arch_db:kpi.view_kpi_form
 msgid "Key Performance Indicator"
 msgstr ""
 
@@ -396,7 +395,7 @@ msgid "SQL code must return the result as 'value' (i.e. 'SELECT 5 AS value')."
 msgstr ""
 
 #. module: kpi
-#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2252
+#: model:ir.model.fields,field_description:kpi.field_kpi_threshold_id_2263
 #: model:ir.ui.view,arch_db:kpi.view_kpi_threshold_form
 msgid "Threshold"
 msgstr ""

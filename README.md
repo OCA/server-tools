@@ -26,9 +26,10 @@ addon | version | summary
 [auth_session_timeout](auth_session_timeout/) | 9.0.1.0.0 | This module disable all inactive sessions since a given delay
 [auth_signup_verify_email](auth_signup_verify_email/) | 9.0.1.0.0 | Force uninvited users to use a good email for signup
 [auth_supplier](auth_supplier/) | 9.0.2.0.0 | Auth Supplier
-[auth_totp](auth_totp/) | 9.0.1.0.1 | Allows users to enable MFA and add optional trusted devices
+[auth_totp](auth_totp/) | 9.0.1.1.0 | Allows users to enable MFA and add optional trusted devices
 [auth_totp_password_security](auth_totp_password_security/) | 9.0.1.0.0 | auth_totp and password_security compatibility
 [auto_backup](auto_backup/) | 9.0.1.1.1 | Backups database
+[autovacuum_mail_message](autovacuum_mail_message/) | 9.0.1.0.0 | Automatic Delete old mail message to clean database
 [base_cron_exclusion](base_cron_exclusion/) | 9.0.1.0.0 | Allow you to select scheduled actions that should not run simultaneously.
 [base_custom_info](base_custom_info/) | 9.0.2.0.0 | Add custom field in models
 [base_export_manager](base_export_manager/) | 9.0.1.1.0 | Manage model export profiles
@@ -43,7 +44,7 @@ addon | version | summary
 [base_report_auto_create_qweb](base_report_auto_create_qweb/) | 9.0.1.0.0 | Report qweb auto generation
 [base_search_fuzzy](base_search_fuzzy/) | 9.0.1.0.0 | Fuzzy search with the PostgreSQL trigram extension
 [base_suspend_security](base_suspend_security/) | 9.0.1.0.0 | Suspend security checks for a call
-[base_technical_features](base_technical_features/) | 9.0.1.0.0 | Access to technical features without activating debug mode
+[base_technical_features](base_technical_features/) | 9.0.1.0.1 | Access to technical features without activating debug mode
 [base_tier_validation](base_tier_validation/) | 9.0.1.0.2 | Implement a validation process based on tiers.
 [base_user_gravatar](base_user_gravatar/) | 9.0.1.0.0 | Synchronize Gravatar Image
 [base_user_role](base_user_role/) | 9.0.1.0.0 | User roles
@@ -73,10 +74,11 @@ addon | version | summary
 [oauth_provider](oauth_provider/) | 9.0.1.0.0 | Allows to use Odoo as an OAuth2 provider
 [oauth_provider_jwt](oauth_provider_jwt/) | 9.0.1.0.0 | Adds the JSON Web Token support for OAuth2 provider
 [password_security](password_security/) | 9.0.1.2.3 | Allow admin to set password security requirements.
+[record_archiver](record_archiver/) | 9.0.1.0.0 | Records Archiver
 [res_config_settings_enterprise_remove](res_config_settings_enterprise_remove/) | 9.0.1.0.0 | Remove fields in all settings views marked as enterprise
 [scheduler_error_mailer](scheduler_error_mailer/) | 9.0.1.0.0 | Scheduler Error Mailer
 [sequence_check_digit](sequence_check_digit/) | 9.0.1.0.0 | Adds a check digit on sequences
-[server_environment](server_environment/) | 9.0.1.2.0 | move some configurations out of the database
+[server_environment](server_environment/) | 9.0.1.3.0 | move some configurations out of the database
 [server_environment_files_sample](server_environment_files_sample/) | 9.0.1.0.0 | sample config file for server_environment
 [server_environment_ir_config_parameter](server_environment_ir_config_parameter/) | 9.0.1.0.0 | Override System Parameters from server environment file
 [sql_export](sql_export/) | 9.0.1.0.0 | Export data in csv file with SQL requests
@@ -84,7 +86,7 @@ addon | version | summary
 [subscription_action](subscription_action/) | 9.0.1.0.0 | Run a server action on a newly created document
 [test_configuration_helper](test_configuration_helper/) | 9.0.1.0.0 | Configuration Helper - Tests
 [users_ldap_mail](users_ldap_mail/) | 9.0.1.0.0 | LDAP mapping for user name and e-mail
-[users_ldap_populate](users_ldap_populate/) | 9.0.1.0.0 | LDAP Populate
+[users_ldap_populate](users_ldap_populate/) | 9.0.1.1.0 | LDAP Populate
 
 
 Unported addons

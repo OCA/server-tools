@@ -29,6 +29,7 @@ class ResUsersAuthenticatorCreate(models.TransientModel):
         index=True,
     )
     secret_key = fields.Char(
+        string='Secret Code',
         default=lambda s: pyotp.random_base32(),
         required=True,
     )

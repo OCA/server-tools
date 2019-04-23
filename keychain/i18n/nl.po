@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:70
+#: code:addons/keychain/models/keychain.py:76
 #, python-format
 msgid ""
 "%s \n"
@@ -33,17 +33,12 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.actions.act_window,name:keychain.keychain_list_action
-#: model:ir.ui.view,arch_db:keychain.keychain_account_id
 msgid "Accounts"
 msgstr ""
 
 #. module: keychain
-#: model:ir.ui.view,arch_db:keychain.keychain_account_form
-msgid "Accounts form"
-msgstr ""
-
-#. module: keychain
 #: model:ir.model.fields,help:keychain.field_keychain_account_data
+#: model:ir.model.fields,help:keychain.field_keychain_backend_data
 msgid "Additionnal data as json"
 msgstr ""
 
@@ -64,23 +59,25 @@ msgstr "Aangemaakt op"
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_data
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_data
 msgid "Data"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:87
+#: code:addons/keychain/models/keychain.py:93
 #, python-format
 msgid "Data not valid"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:149
+#: code:addons/keychain/models/keychain.py:155
 #, python-format
 msgid "Data should be a valid JSON"
 msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_display_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_display_name
 msgid "Display Name"
 msgstr "Te tonen naam"
 
@@ -96,6 +93,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_id
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_id
 msgid "ID"
 msgstr "ID"
 
@@ -105,7 +103,13 @@ msgid "Keychain"
 msgstr ""
 
 #. module: keychain
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_keychain_account_id
+msgid "Keychain account id"
+msgstr ""
+
+#. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account___last_update
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend___last_update
 msgid "Last Modified on"
 msgstr "Laatst bijgewerkt op"
 
@@ -127,6 +131,7 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_name
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_name
 msgid "Name"
 msgstr "Naam"
 
@@ -136,7 +141,7 @@ msgid "Namespace"
 msgstr ""
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:198
+#: code:addons/keychain/models/keychain.py:223
 #, python-format
 msgid ""
 "No 'keychain_key_%s' entries found in config file. Use a key similar to: %s"
@@ -144,11 +149,12 @@ msgstr ""
 
 #. module: keychain
 #: model:ir.model.fields,field_description:keychain.field_keychain_account_password
+#: model:ir.model.fields,field_description:keychain.field_keychain_backend_password
 msgid "Password"
 msgstr "Wachtwoord"
 
 #. module: keychain
-#: code:addons/keychain/models/keychain.py:162
+#: code:addons/keychain/models/keychain.py:168
 #, python-format
 msgid ""
 "Password has been encrypted with a different key. Unless you can recover the "
@@ -183,4 +189,9 @@ msgstr ""
 #. module: keychain
 #: model:ir.model,name:keychain.model_keychain_account
 msgid "keychain.account"
+msgstr ""
+
+#. module: keychain
+#: model:ir.model,name:keychain.model_keychain_backend
+msgid "keychain.backend"
 msgstr ""
