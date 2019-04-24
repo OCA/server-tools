@@ -123,9 +123,9 @@ class CompanyLDAP(models.Model):
         """
         ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
         conn = self.connect(conf)
-        conn.simple_bind_s(conf['ldap_binddn'] or '',
-                           conf['ldap_password'] or '')
-        results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
+        conn.simple_bind_s(conf['ldap_binddn'].encode('utf-8') or '',
+                           conf['ldap_password'].encode('utf-8') or '')
+        results = conn.search_st(conf['ldap_base'].encode('utf-8'), ldap.SCOPE_SUBTREE,
                                  ldap_filter.encode('utf8'), None,
                                  timeout=timeout)
         conn.unbind()
