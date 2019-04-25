@@ -10,6 +10,7 @@
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': 'http://odoo-community.org',
+    'preloadable': False,
     'depends': ['fetchmail',
                 'server_environment',
                 ],

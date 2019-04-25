@@ -26,6 +26,7 @@
     "author": "Camptocamp,Odoo Community Association (OCA)",
     "summary": "sample config file for server_environment",
     "website": "http://www.camptocamp.com",
+    "preloadable": False,
     "license": "GPL-3 or any later version",
     "category": "Tools",
     "data": [],
