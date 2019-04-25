@@ -125,10 +125,17 @@ class CompanyLDAP(models.Model):
         conn = self.connect(conf)
         ldap_password = conf['ldap_password'] or ''
         ldap_binddn = conf['ldap_binddn'] or ''
-        conn.simple_bind_s(ldap_binddn.encode('utf-8'), ldap_password.encode('utf-8'))
-        results = conn.search_st(conf['ldap_base'].encode('utf-8'), ldap.SCOPE_SUBTREE,
-                                 ldap_filter.encode('utf8'), None,
-                                 timeout=timeout)
+        conn.simple_bind_s(
+            ldap_binddn.encode('utf-8'),
+            ldap_password.encode('utf-8')
+        )
+        results = conn.search_st(
+            conf['ldap_base'].encode('utf-8'),
+            ldap.SCOPE_SUBTREE,
+            ldap_filter.encode('utf8'),
+            None,
+            timeout=timeout
+        )
         conn.unbind()
         return results
 
