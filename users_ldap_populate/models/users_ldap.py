@@ -88,7 +88,7 @@ class CompanyLDAP(models.Model):
                         user_id = res[0]
                     else:
                         raise UserError(
-                            'Unable to process user with login %s' % login
+                            _("Unable to process user with login %s") % login
                         )
                 known_user_ids.append(user_id)
         users_created = users_model.search_count([]) - users_count_before
