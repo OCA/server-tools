@@ -47,7 +47,7 @@ msgstr "Nom affiché"
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_id
 msgid "ID"
-msgstr "ID"
+msgstr "Identifiant"
 
 #. module: users_ldap_populate
 #: model:ir.model.fields,field_description:users_ldap_populate.field_res_company_ldap_populate_wizard_ldap_id
@@ -87,6 +87,7 @@ msgstr "Pas d'attribut login trouvé : impossible d'extraire l'attribut pour le 
 
 #. module: users_ldap_populate
 #: code:addons/users_ldap_populate/models/users_ldap.py:91
+#, python-format
 msgid "Unable to process user with login %s"
 msgstr "Impossible de synchroniser l'utilisateur ayant l'identifiant suivant : %s"
 
