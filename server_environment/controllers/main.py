@@ -18,7 +18,7 @@ class ServerEnvironmentController(http.Controller):
         # the module in normal configuration, with the folder
         # server_environment_files and in demo configuration, withe the
         # module  server_environment_files_sample
-        running_env = config.get('running_env', "RUNNING_ENV")
+        running_env = config.get('running_env', "default")
         return http.local_redirect(
             '/server_environment_%s/static/%s/%s' % (
                 module_extension, running_env, local_path))
