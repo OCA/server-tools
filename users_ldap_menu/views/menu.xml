@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_ldap_settings" model="ir.actions.act_window">
+        <field name="name">LDAP Settings</field>
+        <field name="res_model">res.company.ldap</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_id" ref="view_mass_object_tree"/> -->
+    </record>
+
+    <menuitem 
+        id="menu_ldap_settings"
+        name="LDAP Settings"
+        parent="base.menu_users"
+        action="action_ldap_settings"
+        sequence="32"
+        />
+
+</odoo>
