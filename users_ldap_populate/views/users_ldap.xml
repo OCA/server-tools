@@ -8,9 +8,6 @@
             <xpath name="populate_ldap" expr="//field[@name='ldaps']/form" position="inside">
                 <group string="Populate user database">
                     <field name="deactivate_unknown_users"/>
-                    <field name="no_deactivate_user_ids"
-                           attrs="{'invisible': [('deactivate_unknown_users', '=', False)]}"
-                           widget="many2many_tags" />
                 </group>
                 <button name="populate_wizard"
                         string="Populate"
