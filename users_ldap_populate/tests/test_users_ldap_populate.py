@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 # pylint: disable=missing-docstring
 from contextlib import contextmanager
+
+from odoo.tools import mute_logger
 from odoo.tests.common import TransactionCase
 
 
@@ -37,25 +39,6 @@ def patch_ldap(results):
     ldap.initialize = original_initialize
 
 
-def get_fake_ldap(self):
-    company = self.env.ref('base.main_company')
-    company.write({
-        'ldaps': [(0, 0, {
-            'ldap_server': 'fake',
-            'ldap_server_port': 389,
-            'ldap_filter': '(uid=%s)',
-            'ldap_base': 'fake',
-            'deactivate_unknown_users': True,
-            'no_deactivate_user_ids': [(6, 0, [
-                self.env.ref('base.user_root').id,
-            ])],
-        })],
-    })
-    return company.ldaps.filtered(
-        lambda x: x.ldap_server == 'fake'
-    )
-
-
 EXPECTED_RESULTS = [
     ('DN=fake', {
         'cn': ['fake'],
@@ -65,18 +48,39 @@ EXPECTED_RESULTS = [
 
 class TestUsersLdapPopulate(TransactionCase):
 
+    # Without post_install and at_install tests will fail on existing
+    # databases due to required (and therefore not NULL) fields added to
+    # res.partner, for instance in account module. Of course inheriting
+    # models should Never set fields to required, but it happens in many
+    # existing modules anyway.
+    post_install = True
+    at_install = False
+
+    def setUp(self):  # pylint: disable=invalid-name
+        super(TestUsersLdapPopulate, self).setUp()
+        self.ldap_model = self.env['res.company.ldap']
+        self.fake_ldap = self.ldap_model.create({
+            'company': self.env.ref('base.main_company').id,
+            'ldap_server': 'fake',
+            'ldap_server_port': 389,
+            'ldap_filter': '(uid=%s)',
+            'ldap_base': 'fake',
+            'deactivate_unknown_users': True})
+
     def test_populate(self):
         with patch_ldap(EXPECTED_RESULTS):
-            get_fake_ldap(self).populate_wizard()
+            self.env.ref('base.user_demo').write({
+                'ldap_id': self.fake_ldap.id,
+                'last_synchronization': '2000-02-28'})  # long ago...
+            self.fake_ldap.populate_wizard()
             self.assertFalse(self.env.ref('base.user_demo').active)
             self.assertTrue(self.env.ref('base.user_root').active)
             self.assertTrue(self.env['res.users'].search([
-                ('login', '=', 'fake')
-            ]))
+                ('login', '=', 'fake')]))
 
+    @mute_logger("odoo.addons.users_ldap_populate.models.res_company_ldap")
     def test_populate_exception(self):
         with patch_ldap(EXPECTED_RESULTS):
-            fake_ldap = get_fake_ldap(self)
-            fake_ldap.ldap_filter = '(not_a_uid=%s)'
+            self.fake_ldap.ldap_filter = '(not_a_uid=%s)'
             with self.assertRaises(Exception):
-                fake_ldap.populate_wizard()
+                self.fake_ldap.populate_wizard()
