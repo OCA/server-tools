@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Email template for reset password -->
+    <record id="no_reset_password_email" model="mail.template">
+        <field name="name">Auth Signup: Reset Password</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field
+            name="email_from"
+            ><![CDATA["${object.company_id.name|safe}" <${(object.company_id.email or user.email)|safe}>]]></field>
+        <field name="email_to">${object.email|safe}</field>
+        <field name="subject">Password reset</field>
+        <field name="body_html"><![CDATA[
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+<table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+    <tbody><tr>
+        <td
+            valign="center"
+            width="200"
+            style="padding:10px 10px 10px 5px;font-size: 12px"
+            >
+            <img
+                src="/logo.png"
+                style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                alt="${user.company_id.name}"
+                >
+        </td>
+    </tr></tbody>
+</table>
+</div>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+<p>Dear ${object.name},</p>
+<p>A password reset was requested for the Odoo account linked to this email.</p>
+<p>However, your password is configured in the LDAP server of your company.
+    <br>Therefore you must reset your password following the normal procedures.
+    <br>The password reset functionality is meant for external users, that
+        do not have an account in our internal servers.
+</p>
+<p>If you do not expect this, you can safely ignore this email.</p>
+<p>Best regards,</p>
+</div>
+<div style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777">
+${user.signature | safe}
+<p style="font-size: 11px; margin-top: 10px;">
+    <strong>Sent by ${user.company_id.name}</strong>
+</p>
+</div>]]></field>
+        <field name="user_signature" eval="False"/>
+    </record>
+
+</odoo>
