@@ -43,7 +43,7 @@ EXPECTED_RESULTS = [
     ('DN=fake', {
         'cn': ['fake'],
         'uid': ['fake'],
-        'mail': ['fake@fakery.com']})]
+        'mail': ['fake@example.com']})]
 
 
 class TestUsersLdapPopulate(TransactionCase):
@@ -58,6 +58,7 @@ class TestUsersLdapPopulate(TransactionCase):
 
     def setUp(self):  # pylint: disable=invalid-name
         super(TestUsersLdapPopulate, self).setUp()
+        self.user_model = self.env['res.users']
         self.ldap_model = self.env['res.company.ldap']
         self.fake_ldap = self.ldap_model.create({
             'company': self.env.ref('base.main_company').id,
@@ -75,8 +76,18 @@ class TestUsersLdapPopulate(TransactionCase):
             self.fake_ldap.populate_wizard()
             self.assertFalse(self.env.ref('base.user_demo').active)
             self.assertTrue(self.env.ref('base.user_root').active)
-            self.assertTrue(self.env['res.users'].search([
-                ('login', '=', 'fake')]))
+            self.assertTrue(self.user_model.search([('login', '=', 'fake')]))
+
+    def test_reactivate(self):
+        with patch_ldap(EXPECTED_RESULTS):
+            self.fake_ldap.populate_wizard()
+            # we should have the fake user now.
+            fake_user = self.user_model.search(
+                [('login', '=', 'fake')], limit=1)
+            self.assertTrue(fake_user)
+            fake_user.write({'active': False})
+            self.fake_ldap.populate_wizard()
+            self.assertTrue(fake_user.active)
 
     @mute_logger("odoo.addons.users_ldap_populate.models.res_company_ldap")
     def test_populate_exception(self):
