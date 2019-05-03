@@ -88,7 +88,7 @@ class CompanyLDAP(models.Model):
                         user_id = res[0]
                     else:
                         raise UserError(
-                            'Unable to process user with login %s' % login
+                            _("Unable to process user with login %s") % login
                         )
                 known_user_ids.append(user_id)
         users_created = users_model.search_count([]) - users_count_before
@@ -123,11 +123,19 @@ class CompanyLDAP(models.Model):
         """
         ldap_filter = filter_format(conf['ldap_filter'] % user_name, ())
         conn = self.connect(conf)
-        conn.simple_bind_s(conf['ldap_binddn'] or '',
-                           conf['ldap_password'] or '')
-        results = conn.search_st(conf['ldap_base'], ldap.SCOPE_SUBTREE,
-                                 ldap_filter.encode('utf8'), None,
-                                 timeout=timeout)
+        ldap_password = conf['ldap_password'] or ''
+        ldap_binddn = conf['ldap_binddn'] or ''
+        conn.simple_bind_s(
+            ldap_binddn.encode('utf-8'),
+            ldap_password.encode('utf-8')
+        )
+        results = conn.search_st(
+            conf['ldap_base'].encode('utf-8'),
+            ldap.SCOPE_SUBTREE,
+            ldap_filter.encode('utf8'),
+            None,
+            timeout=timeout
+        )
         conn.unbind()
         return results
 
