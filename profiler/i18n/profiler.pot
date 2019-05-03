@@ -1,0 +1,275 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* profiler
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Attachments"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_ctpercall
+msgid "CT per call"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_ncalls
+msgid "Calls"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Clear"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_create_uid
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_create_date
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_cumtime
+msgid "Cumulative time"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_date_finished
+msgid "Date Finished"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_date_started
+msgid "Date Started"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_description
+msgid "Description"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Disable"
+msgstr ""
+
+#. module: profiler
+#: selection:profiler.profile,state:0
+msgid "Disabled"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_display_name
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Enable"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_enable_postgresql
+msgid "Enable Postgresql"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_enable_python
+msgid "Enable Python"
+msgstr ""
+
+#. module: profiler
+#: selection:profiler.profile,state:0
+msgid "Enabled"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_fname
+msgid "Filename:lineno(method)"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,help:profiler.field_profiler_profile_pg_log_path
+msgid "Getting the path to the logger"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_id
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_id
+msgid "ID"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,help:profiler.field_profiler_profile_use_py_index
+msgid "Index human-readable cProfile attachment.\n"
+"To access this report, you must open the cprofile attachment view using debug mode.\n"
+"Warning: Uses more resources."
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,help:profiler.field_profiler_profile_enable_postgresql
+msgid "It requires postgresql server logs seudo-enabled"
+msgstr ""
+
+#. module: profiler
+#: code:addons/profiler/models/profiler_profile.py:250
+#, python-format
+msgid "It's not possible change parameter.\n"
+"%s\n"
+"Please, disable postgresql or re-enable it in order to read the instructions"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile___last_update
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_write_uid
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_write_date
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_name
+msgid "Name"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_py_stats_lines
+msgid "PY Stats Lines"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_pg_log_path
+msgid "Pg Log Path"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_pg_remote
+msgid "Pg Remote"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_pg_stats_most_frequent_html
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "PostgreSQL Stats - Most Frequent"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_pg_stats_slowest_html
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "PostgreSQL Stats - Slowest"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_pg_stats_time_consuming_html
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "PostgreSQL Stats - Time Consuming"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_profile_id
+#: model:ir.ui.menu,name:profiler.menu_profile
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Profile"
+msgstr ""
+
+#. module: profiler
+#: model:ir.actions.act_window,name:profiler.profile_action_window
+#: model:ir.ui.menu,name:profiler.menu_profiler
+#: model:ir.ui.menu,name:profiler.menu_profiler_root
+msgid "Profiler"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model,name:profiler.model_profiler_profile
+msgid "Profiler Profile"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model,name:profiler.model_profiler_profile_python_line
+msgid "Profiler Python Line to save cProfiling results"
+msgstr ""
+
+#. module: profiler
+#: model:ir.actions.act_window,name:profiler.action_view_profiling_lines
+msgid "Profiling lines"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "Python Stats - Profiling Lines"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_nrcalls
+msgid "Recursive Calls"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profiling_lines_search
+msgid "Search Profiling lines"
+msgstr ""
+
+#. module: profiler
+#: code:addons/profiler/models/profiler_profile.py:219
+#, python-format
+msgid "Start the odoo server using the parameter '--workers=0'"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_state
+msgid "State"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_ttpercall
+msgid "Time per call"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_python_line_cprof_tottime
+msgid "Total time"
+msgstr ""
+
+#. module: profiler
+#: model:ir.model.fields,field_description:profiler.field_profiler_profile_use_py_index
+msgid "Use Py Index"
+msgstr ""
+
+#. module: profiler
+#: model:ir.ui.view,arch_db:profiler.view_profile_form
+msgid "View profiling lines"
+msgstr ""
+
