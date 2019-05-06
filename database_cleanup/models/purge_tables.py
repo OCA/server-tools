@@ -93,6 +93,7 @@ class CleanupPurgeWizardTable(models.TransientModel):
                 for column in model_pool._fields.values()
                 if column.type == 'many2many' and
                 (column.compute is None or column.store)
+                and column.relation
             ]
 
         self.env.cr.execute(
