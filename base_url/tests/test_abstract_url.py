@@ -2,10 +2,10 @@
 # Copyright 2019 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import mock
-
 from odoo.exceptions import ValidationError
 from odoo.tests import SavepointCase
-from .models import UrlBackendFake, ResPartnerAddressableFake
+
+from .models import ResPartnerAddressableFake, UrlBackendFake
 
 
 class TestAbstractUrl(SavepointCase):

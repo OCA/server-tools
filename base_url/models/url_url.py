@@ -3,8 +3,10 @@
 #    @author EBII MonsieurB <monsieurb@saaslys.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
 import logging
+
+from odoo import api, fields, models
+
 from .abstract_url import get_model_ref
 
 _logger = logging.getLogger(__name__)
@@ -20,26 +22,31 @@ class UrlUrl(models.Model):
         help="The id of content linked to the url.",
         readonly=True,
         string="Model",
-        required=True)
+        required=True,
+    )
     redirect = fields.Boolean(
-        help="If tick this url is a redirection to the new url")
+        help="If tick this url is a redirection to the new url"
+    )
     backend_id = fields.Reference(
         selection=[],
-        compute='_compute_related_fields',
+        compute="_compute_related_fields",
         store=True,
         help="Backend linked to this URL",
-        string="Backend")
+        string="Backend",
+    )
     lang_id = fields.Many2one(
-        'res.lang',
-        'Lang',
-        compute='_compute_related_fields',
-        store=True)
+        "res.lang", "Lang", compute="_compute_related_fields", store=True
+    )
 
-    _sql_constraints = [('unique_key_per_backend_per_lang',
-                         'unique(url_key, backend_id, lang_id)',
-                         'Already exists in database')]
+    _sql_constraints = [
+        (
+            "unique_key_per_backend_per_lang",
+            "unique(url_key, backend_id, lang_id)",
+            "Already exists in database",
+        )
+    ]
 
-    @api.depends('model_id')
+    @api.depends("model_id")
     def _compute_related_fields(self):
         for record in self:
             record.backend_id = get_model_ref(record.model_id.backend_id)
@@ -53,4 +60,4 @@ class UrlUrl(models.Model):
         """
         :return: return object attach to the url
         """
-        return self.search([('url_key', "=", url)]).model_id
+        return self.search([("url_key", "=", url)]).model_id

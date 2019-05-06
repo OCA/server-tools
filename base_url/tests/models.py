@@ -4,6 +4,7 @@
 import logging
 
 from odoo import api, fields, models
+
 from .models_mixin import TestMixin
 
 _logger = logging.getLogger(__name__)
@@ -11,7 +12,7 @@ _logger = logging.getLogger(__name__)
 try:
     from slugify import slugify
 except ImportError:
-    _logger.debug('Cannot `import slugify`.')
+    _logger.debug("Cannot `import slugify`.")
 
 
 class UrlBackendFake(models.Model, TestMixin):
@@ -25,7 +26,7 @@ class UrlBackendFake(models.Model, TestMixin):
 class ResPartnerAddressableFake(models.Model, TestMixin):
     _name = "res.partner.addressable.fake"
     _inherit = "abstract.url"
-    _inherits = {'res.partner': 'record_id'}
+    _inherits = {"res.partner": "record_id"}
     _description = "Fake partner addressable"
 
     backend_id = fields.Many2one(comodel_name="url.backend.fake")
