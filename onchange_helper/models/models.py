@@ -132,7 +132,10 @@ class Base(models.AbstractModel):
         if self:
             self.ensure_one()
 
-        if not isinstance(onchange_fields, list):
+        if not onchange_fields:
+            onchange_fields = values.keys()
+
+        elif not isinstance(onchange_fields, list):
             onchange_fields = [onchange_fields]
 
         if not onchange_fields:
