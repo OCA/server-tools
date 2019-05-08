@@ -1,7 +1,7 @@
 # Copyright 2004-2009 Tiny SPRL (<http://tiny.be>).
 # Copyright 2015 Agile Business Group <http://www.agilebg.com>
 # Copyright 2016 Grupo ESOC Ingenieria de Servicios, S.L.U. - Jairo Llopis
-# Copyright 2018 Numigi (tm) and all its contributors (https://bit.ly/numigiens)
+# Copyright 2018 Numigi (tm) and its contributors (https://bit.ly/numigiens)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
