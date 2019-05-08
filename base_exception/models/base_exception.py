@@ -185,7 +185,10 @@ class BaseException(models.AbstractModel):
                 continue
             exception_ids = obj._detect_exceptions(
                 model_exceptions, sub_exceptions)
-            obj.exception_ids = [(6, 0, exception_ids)]
+            if set(obj.exception_ids.ids).symmetric_difference(
+                set(exception_ids)
+            ):
+                obj.exception_ids = [(6, 0, exception_ids)]
             all_exception_ids += exception_ids
         return all_exception_ids
 
