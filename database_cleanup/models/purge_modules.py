@@ -63,8 +63,9 @@ class CleanupPurgeWizardModule(models.TransientModel):
     @api.model
     def find(self):
         res = []
-        for module in self.env['ir.module.module'].search([]):
-            if get_module_path(module.name):
+        IrModule = self.env['ir.module.module']
+        for module in IrModule.search([('to_buy', '=', False)]):
+            if get_module_path(module.name, display_warning=False):
                 continue
             if module.state == 'uninstalled':
                 self.env['cleanup.purge.line.module'].create({
