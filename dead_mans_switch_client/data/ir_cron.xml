@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="cron_client" model="ir.cron">
+        <field name="name">Dead man&apos;s switch client</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="dead_mans_switch_client.model_dead_mans_switch_client"/>
+        <field name="state">code</field>
+        <field name="code">model.alive()</field>
+    </record>
+</odoo>

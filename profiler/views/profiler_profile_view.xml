@@ -1,0 +1,147 @@
+<odoo>
+    <record model="ir.ui.view" id="view_profile_list">
+        <field name="name">view profile list</field>
+        <field name="model">profiler.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="enable_python"/>
+                <field name="use_py_index"/>
+                <field name="enable_postgresql"/>
+                <field name="date_started"/>
+                <field name="date_finished"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_profiling_lines">
+        <field name="name">view profiling_lines</field>
+        <field name="model">profiler.profile.python.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="cprof_ncalls"/>
+                <field name="cprof_nrcalls"/>
+                <field name="cprof_tottime"/>
+                <field name="cprof_ttpercall"/>
+                <field name="cprof_cumtime"/>
+                <field name="cprof_ctpercall"/>
+                <field name="cprof_fname"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_profiling_lines_search" model="ir.ui.view">
+        <field name="name">view.profiling.lines.search</field>
+        <field name="model">profiler.profile.python.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Profiling lines">
+                <field name="profile_id"/>
+                <field name="cprof_fname"/>
+            </search>
+        </field>
+    </record>
+    <record id="action_view_profiling_lines" model="ir.actions.act_window">
+        <field name="name">Profiling lines</field>
+        <field name="res_model">profiler.profile.python.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field eval="False" name="view_id"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_profile_form">
+        <field name="name">view profile form</field>
+        <field name="model">profiler.profile</field>
+        <field name="arch" type="xml">
+            <form string="Profile">
+                <header>
+                    <button name="enable" string="Enable" type="object"
+                        groups="base.group_system" states="disabled"/>
+                    <button name="disable" string="Disable" type="object"
+                        groups="base.group_system" states="enabled"/>
+                    <button name="clear" string="Clear" type="object"
+                        groups="base.group_system" states="enabled"/>
+                    <field name="state" widget="statusbar" statusbar_visible="disabled,enabled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_view_profiling_lines)s"
+                            type="action" string="View profiling lines"
+                            class="oe_stat_button"
+                            icon="fa-share-square-o"
+                            context="{'search_default_profile_id': active_id, 'default_profile_id': active_id}"
+                            attrs="{'invisible': ['|', ('enable_python', '=', False), ('date_finished', '=', False)]}">
+                        </button>
+
+                        <button name="action_view_attachment"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('attachment_count', '=', 0)]}">
+                            <field name="attachment_count" widget="statinfo" string="Attachments"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="enable_python" attrs="{'readonly': [('state','=', 'enabled')]}"/>
+                            <field name="use_py_index"/>
+                        </group>
+                        <group>
+                            <field name="enable_postgresql" attrs="{'readonly': [('state','=', 'enabled')]}"/>
+                            <field name="pg_log_path"/>
+                            <field name="pg_remote"/>
+                        </group>
+                        <group>
+                            <field name="date_started"/>
+                            <field name="date_finished"/>
+                        </group>
+                        <group colspan="4">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="PostgreSQL Stats - Slowest" attrs="{'invisible': ['|', ('enable_postgresql', '=', False), ('date_finished', '=', False)]}">
+                            <field name="pg_stats_slowest_html" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="PostgreSQL Stats - Time Consuming" attrs="{'invisible': ['|', ('enable_postgresql', '=', False), ('date_finished', '=', False)]}">
+                            <field name="pg_stats_time_consuming_html" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="PostgreSQL Stats - Most Frequent" attrs="{'invisible': ['|', ('enable_postgresql', '=', False), ('date_finished', '=', False)]}">
+                            <field name="pg_stats_most_frequent_html" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Python Stats - Profiling Lines" attrs="{'invisible': ['|', ('enable_python', '=', False), ('date_finished', '=', False)]}">
+                            <field name="py_stats_lines" nolabel="1" colspan="4">
+                                <tree>
+                                    <field name="cprof_ncalls"/>
+                                    <field name="cprof_nrcalls"/>
+                                    <field name="cprof_tottime"/>
+                                    <field name="cprof_ttpercall"/>
+                                    <field name="cprof_cumtime"/>
+                                    <field name="cprof_ctpercall"/>
+                                    <field name="cprof_fname"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="profile_action_window">
+        <field name="name">Profiler</field>
+        <field name="res_model">profiler.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Profiler" id="menu_profiler_root" web_icon="profiler,static/description/icon.png"/>
+    <menuitem name="Profiler" id="menu_profiler" parent="menu_profiler_root"/>
+    <menuitem name="Profile" id="menu_profile" parent="menu_profiler"
+        action="profile_action_window"/>
+</odoo>

@@ -165,6 +165,11 @@ msgid "E.g.\n"
 msgstr ""
 
 #. module: nsca_client
+#: model:ir.model.fields,help:nsca_client.field_nsca_check_oneshot
+msgid "Enable this to run the cron only once. The cron will be deleted right after execution."
+msgstr ""
+
+#. module: nsca_client
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_server_encryption_method
 msgid "Encryption method"
 msgstr ""
@@ -240,15 +245,11 @@ msgid "Method"
 msgstr ""
 
 #. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_crud_model_name
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check_model_id
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check_model_name
 #: model:ir.model.fields,field_description:nsca_client.field_nsca_check_nsca_model
 msgid "Model"
-msgstr ""
-
-#. module: nsca_client
-#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_crud_model_name
-msgid "Model Description"
 msgstr ""
 
 #. module: nsca_client
@@ -403,6 +404,11 @@ msgstr ""
 #. module: nsca_client
 #: model:ir.ui.view,arch_db:nsca_client.view_nsca_check_form
 msgid "Settings"
+msgstr ""
+
+#. module: nsca_client
+#: model:ir.model.fields,field_description:nsca_client.field_nsca_check_oneshot
+msgid "Single use"
 msgstr ""
 
 #. module: nsca_client

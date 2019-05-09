@@ -138,6 +138,11 @@ msgid "Duplicated property"
 msgstr ""
 
 #. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Empty default property"
+msgstr ""
+
+#. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_create_indexes_line_field_id
 msgid "Field"
 msgstr "Alan"
@@ -281,7 +286,7 @@ msgid "No dangling menu entries found"
 msgstr ""
 
 #. module: database_cleanup
-#: code:addons/database_cleanup/models/purge_modules.py:77
+#: code:addons/database_cleanup/models/purge_modules.py:80
 #, python-format
 msgid "No modules found to purge"
 msgstr ""
@@ -489,6 +494,11 @@ msgstr ""
 #. module: database_cleanup
 #: model:ir.model.fields,field_description:database_cleanup.field_cleanup_purge_wizard_table_purge_line_ids
 msgid "Tables to purge"
+msgstr ""
+
+#. module: database_cleanup
+#: selection:cleanup.purge.line.property,reason:0
+msgid "Unknown model"
 msgstr ""
 
 #. module: database_cleanup
