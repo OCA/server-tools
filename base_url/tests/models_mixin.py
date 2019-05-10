@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Orsi - Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from operator import attrgetter
@@ -67,7 +66,7 @@ class TestMixin(object):
             parents = cls._inherit
             parents = (
                 [parents]
-                if isinstance(parents, basestring)
+                if isinstance(parents, (str, bytes))
                 else (parents or [])
             )
             # kepp a copy to be sure to not modify the original _inherit

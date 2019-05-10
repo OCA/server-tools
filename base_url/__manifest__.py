@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #    Rewrite url Base module for OpenERP
 #    Copyright (C) 2013 Akretion (http://www.akretion.com)
 #    @author EBII MonsieurB <monsieurb@saaslys.com>
@@ -6,17 +5,16 @@
 
 {
     "name": "Base Url",
-    "version": "10.0.0.1.0",
+    "version": "12.0.0.1.0",
     "category": "tools",
     "license": "AGPL-3",
     "summary": "keep history of url for products & categories  ",
     "author": "Akretion, ACSONE SA/NV",
-    "website": "http://www.akretion.com/fr",
+    "website": "https://github.com/shopinvader",
     # any module necessary for this one to work correctly
     "depends": ["base"],
     "external_dependencies": {"python": ["slugify"]},
     "data": ["views/url_view.xml", "security/ir.model.access.csv"],
-    "demo": [],
     "url": "",
-    "installable": False,
+    "installable": True,
 }

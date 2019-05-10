@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #    Copyright (C) 2016 Akretion (http://www.akretion.com)
 #    @author EBII MonsieurB <monsieurb@saaslys.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -15,6 +14,7 @@ _logger = logging.getLogger(__name__)
 class UrlUrl(models.Model):
 
     _name = "url.url"
+    _description = "Url"
 
     url_key = fields.Char(required=True)
     model_id = fields.Reference(
