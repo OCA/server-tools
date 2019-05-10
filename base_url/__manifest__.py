@@ -18,5 +18,5 @@
     "data": ["views/url_view.xml", "security/ir.model.access.csv"],
     "demo": [],
     "url": "",
-    "installable": True,
+    "installable": False,
 }
