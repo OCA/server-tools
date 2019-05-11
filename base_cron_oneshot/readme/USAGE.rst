@@ -1,8 +1,7 @@
 You can create crons as usual via the admin interface or via code.
 The important thing, in both case, is to set `oneshot` flag as true.
 
-Developer shortcut
-------------------
+**Developer shortcut**
 
 You can easily create a oneshot cron like this:
 
