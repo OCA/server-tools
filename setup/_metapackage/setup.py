@@ -9,9 +9,11 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-auditlog',
+        'odoo12-addon-auto_backup',
         'odoo12-addon-base_exception',
         'odoo12-addon-base_jsonify',
         'odoo12-addon-base_search_fuzzy',
+        'odoo12-addon-base_technical_user',
         'odoo12-addon-datetime_formatter',
         'odoo12-addon-excel_import_export',
         'odoo12-addon-excel_import_export_demo',
@@ -20,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-module_auto_update',
         'odoo12-addon-scheduler_error_mailer',
         'odoo12-addon-sentry',
+        'odoo12-addon-sql_export',
         'odoo12-addon-sql_request_abstract',
     ],
     classifiers=[
