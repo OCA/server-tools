@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+     <report
+      id="action_report_user_profiler_sessions"
+      model="res.users.profiler.sessions"
+      string="Security Proposal Role Group"
+      report_type="qweb-html"
+      name="security_profiler.res_users_profiler_sessions_report"
+      file="security_profiler.res_users_profiler_sessions_report"
+      />
+
+</odoo>

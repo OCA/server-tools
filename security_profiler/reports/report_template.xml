@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="security_profiler.report_users_profiler_sessions">
+        <div class="container">
+            <t t-if="data.get('session')">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Security Proposal for <b><t t-esc="data['session'].user_role_name"/></b> role</h1>
+                        <h6>Date: <t t-esc="data['date']"/></h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <h6>Security Group:</h6>
+                            <code style='white-space: pre-wrap'><t t-esc="data['security']"/></code>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="data['accesses']">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <h6>Security Accesses:</h6>
+                            <code style='white-space: pre-wrap'><t t-esc="data['accesses']"/></code>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="data['actions']">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <h6>Security Actions:</h6>
+                            <code style='white-space: pre-wrap'><t t-esc="data['actions']"/></code>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="data['menus']">
+                    <div class="col-lg-12">
+                        <div class="mt16">
+                            <h6>Security Menus:</h6>
+                            <code style='white-space: pre-wrap'><t t-esc="data['menus']"/></code>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <h1 class="text-center">No data available.</h1>
+            </t>
+        </div>
+    </template>
+
+    <template id="security_profiler.res_users_profiler_sessions_report">
+            <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="data">
+                <div class="page">
+                    <t t-call="security_profiler.report_users_profiler_sessions"/>
+                </div>
+                <p style="page-break-before:always;"> </p>
+            </t>
+        </t>
+    </template>
+</odoo>

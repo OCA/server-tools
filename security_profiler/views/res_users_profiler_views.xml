@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <data>
+
+        <!-- Sessions -->
+        <record id="view_users_profiler_sessions_form" model="ir.ui.view">
+            <field name="name">res.users.profiler.sessions.form</field>
+            <field name="model">res.users.profiler.sessions</field>
+            <field name="arch" type="xml">
+                <form string="Profiler Sessions">
+                    <header>
+                        <field name="id" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="user_id" attrs="{'readonly':[('create_date','!=',False)]}"/>
+                                <field name="user_role_name"/>
+                                <field name="implied_groups" widget="many2many_tags"/>
+                                <field name="implied_menus" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                                <field name="create_date" readonly="1" string="Creation Date" attrs="{'invisible':[('create_date','=',False)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Profiled Accesses">
+                                <field name="profiled_accesses_ids">
+                                    <tree string="Profiled Accesses" create="0" edit="0" delete="0" decoration-info="new_access==True" decoration-muted="new_access==False">
+                                        <field name="res_model"/>
+                                        <field name="model_access_id"/>
+                                        <field name="count_read"/>
+                                        <field name="count_write"/>
+                                        <field name="count_create"/>
+                                        <field name="count_unlink"/>
+                                        <field name="new_access" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Profiled Actions">
+                                <field name="profiled_actions_ids">
+                                    <tree string="Profiled Actions" create="0" edit="0" delete="0" decoration-info="new_action==True" decoration-muted="new_action==False">
+                                        <field name="res_model"/>
+                                        <field name="action_name"/>
+                                        <field name="method_name"/>
+                                        <field name="count_action"/>
+                                        <field name="new_action" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Menus">
+                                <field name="profiled_menus_ids">
+                                    <tree string="Menus" create="0" edit="0" delete="0" default_order='complete_name, sequence, id' decoration-info="id not in parent.implied_menus" decoration-muted="id in parent.implied_menus">
+                                        <field name="complete_name"/>
+                                        <field name="sequence" invisible="1"/>
+                                        <field name="id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_users_profiler_sessions_tree" model="ir.ui.view">
+            <field name="name">res.users.profiler.sessions.tree</field>
+            <field name="model">res.users.profiler.sessions</field>
+            <field name="arch" type="xml">
+                <tree string="Profiler Sessions" edit="0" decoration-info="active==True">
+                    <field name="user_id"/>
+                    <field name="active"/>
+                    <field name="user_role_name"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_users_profiler_sessions" model="ir.actions.act_window">
+            <field name="name">Users Profiler Sessions</field>
+            <field name="res_model">res.users.profiler.sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">['|', ('active','=',True),('active','=',False)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_users_profiler_sessions" id="menu_action_users_profiler_sessions" parent="base.menu_security"/>
+
+        <!-- Accesses -->
+        <record id="view_users_profiler_accesses_form" model="ir.ui.view">
+            <field name="name">res.users.profiler.accesses.form</field>
+            <field name="model">res.users.profiler.accesses</field>
+            <field name="arch" type="xml">
+                <form string="Profiled Accesses" create="0" edit="0">
+                    <header>
+                        <field name="id" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="session_id" invisible="1"/>
+                                <field name="user_id"/>
+                                <field name="res_model"/>
+                                <field name="model_access_id"/>
+                            </group>
+                            <group>
+                                <field name="count_read"/>
+                                <field name="count_write"/>
+                                <field name="count_create"/>
+                                <field name="count_unlink"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_users_profiler_accesses_tree" model="ir.ui.view">
+            <field name="name">res.users.profiler.accesses.tree</field>
+            <field name="model">res.users.profiler.accesses</field>
+            <field name="arch" type="xml">
+                <tree string="Profiled Accesses" create="0" edit="0">
+                    <field name="session_id" invisible="1"/>
+                    <field name="user_id"/>
+                    <field name="res_model"/>
+                    <field name="model_access_id"/>
+                    <field name="count_read"/>
+                    <field name="count_write"/>
+                    <field name="count_create"/>
+                    <field name="count_unlink"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_users_profiler_accesses" model="ir.actions.act_window">
+            <field name="name">Users Profiled Accesses</field>
+            <field name="res_model">res.users.profiler.accesses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Actions -->
+        <record id="view_users_profiler_actions_form" model="ir.ui.view">
+            <field name="name">res.users.profiler.actions.form</field>
+            <field name="model">res.users.profiler.actions</field>
+            <field name="arch" type="xml">
+                <form string="Profiled Actions" create="0" edit="0">
+                    <header>
+                        <field name="id" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="session_id" invisible="1"/>
+                                <field name="user_id"/>
+                                <field name="res_model"/>
+                                <field name="action_id" invisible="1"/>
+                                <field name="action_type" invisible="1"/>
+                                <field name="action" attrs="{'invisible': [('action_type', '=', 'python')]}"/>
+                                <field name="view_id" attrs="{'invisible': [('view_id', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="action_name" attrs="{'invisible': [('action_type', '=', 'python')]}"/>
+                                <field name="method_name" attrs="{'invisible': [('action_type', '!=', 'python')]}"/>
+                                <field name="count_action"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="menus" string="Menus" attrs="{'invisible': [('action_type', '=', 'python')]}">
+                                <field name="menu_ids">
+                                    <tree string="Menus" create="0" edit="0" delete="0" default_order='complete_name, sequence, id'>
+                                        <field name="complete_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_users_profiler_actions_tree" model="ir.ui.view">
+            <field name="name">res.users.profiler.actions.tree</field>
+            <field name="model">res.users.profiler.actions</field>
+            <field name="arch" type="xml">
+                <tree string="Profiled Actions" create="0" edit="0">
+                    <field name="session_id" invisible="1"/>
+                    <field name="user_id"/>
+                    <field name="res_model"/>
+                    <field name="action_name"/>
+                    <field name="method_name"/>
+                    <field name="count_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_users_profiler_actions" model="ir.actions.act_window">
+            <field name="name">Users Profiled Actions</field>
+            <field name="res_model">res.users.profiler.actions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
