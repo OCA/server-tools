@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+  <data>
+
+    <template id="webclient_bootstrap" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//nav[@id='oe_main_menu_navbar']" position="attributes">
+            <attribute name="groups">base.group_user,base.group_portal,base_basic_employee_group.group_basic_user</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('o_main')]/div[hasclass('o_sub_menu')]" position="attributes">
+            <attribute name="groups">base.group_user,base.group_portal,base_basic_employee_group.group_basic_user</attribute>
+        </xpath>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Eficent Business and IT Consulting Services, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+  <data>
+
+    <record id="group_basic_user" model="res.groups">
+        <field name="name">Basic Employee</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record model="res.groups" id="base.group_user">
+        <field name="implied_ids" eval="[(4, ref('group_basic_user'))]"/>
+    </record>
+
+  </data>
+</odoo>
