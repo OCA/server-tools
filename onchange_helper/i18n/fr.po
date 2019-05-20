@@ -20,5 +20,8 @@ msgstr ""
 
 #. module: onchange_helper
 #: model:ir.model,name:onchange_helper.model_base
-msgid "base"
-msgstr "base"
+msgid "Base"
+msgstr ""
+
+#~ msgid "base"
+#~ msgstr "base"
