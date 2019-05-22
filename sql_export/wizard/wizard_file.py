@@ -36,8 +36,11 @@ class SqlFileWizard(models.TransientModel):
                 toupdate_fields = []
                 for field in sql_export.field_ids:
                     toupdate_fields.append(field.name)
+                    attrib = {'name': field.name}
+                    if field.required:
+                        attrib['required'] = 'True'
                     view_field = etree.SubElement(
-                        group, 'field', name=field.name)
+                        group, 'field', attrib=attrib)
                     osv.orm.setup_modifiers(
                         view_field, self.fields_get(field.name))
 
