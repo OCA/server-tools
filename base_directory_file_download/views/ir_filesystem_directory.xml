@@ -49,7 +49,7 @@
     <record id="ir_filesystem_directory_tree" model="ir.ui.view">
         <field name="model">ir.filesystem.directory</field>
         <field name="arch" type="xml">
-            <tree string="Directory">
+            <tree>
                 <field name="name" />
                 <field name="directory" />
             </tree>
