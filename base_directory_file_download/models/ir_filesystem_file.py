@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017-2018 Onestein (<http://www.onestein.eu>)
+# Copyright 2017-2018 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -21,7 +21,7 @@ class IrFilesystemDirectoryLine(models.TransientModel):
     stored_filename = fields.Char()
     directory_id = fields.Many2one(
         'ir.filesystem.directory',
-        string='Directory'
+        string='Directory',
     )
 
     @api.multi
