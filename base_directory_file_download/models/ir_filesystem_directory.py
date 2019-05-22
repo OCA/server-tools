@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017-2018 Onestein (<http://www.onestein.eu>)
+# Copyright 2017-2018 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -21,11 +21,11 @@ class IrFilesystemDirectory(models.Model):
     file_ids = fields.One2many(
         'ir.filesystem.file',
         compute='_compute_file_ids',
-        string='Files'
+        string='Files',
     )
     file_count = fields.Integer(
         compute='_compute_file_count',
-        string="# Files"
+        string="# Files",
     )
 
     @api.multi
