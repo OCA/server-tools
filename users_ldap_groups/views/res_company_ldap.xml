@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_company_ldap_form" model="ir.ui.view">
+        <field name="name">Add groups configuration to ldap view</field>
+        <field name="model">res.company.ldap</field>
+        <field
+            name="inherit_id"
+            ref="users_ldap_menu.res_company_ldap_form"
+            />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page id="page_group_mapping" string="Map User Groups">
+                    <group col="2">
+                        <field name="only_ldap_groups" />
+                        <separator
+                            string="Map LDAP attributes to Odoo groups"
+                            colspan="2"
+                            />
+                        <field
+                            name="group_mapping_ids"
+                            nolabel="1"
+                            colspan="2"
+                            >
+                            <tree editable="top">
+                                <field
+                                    name="ldap_attribute"
+                                    attrs="{
+                                    'required': [('operator','not in',['query'])],
+                                    'readonly': [('operator','in',['query'])]}"
+                                    />
+                                <field name="operator" />
+                                <field name="value" />
+                                <field name="group_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

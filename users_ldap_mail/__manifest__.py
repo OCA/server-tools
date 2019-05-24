@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
-# © Daniel Reis (https://launchpad.com/~dreis-pt)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+# Copyright Daniel Reis (https://launchpad.com/~dreis-pt).
+# Copyright 2019 Therp BV <https://therp.nl>.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/gpl.html).
 {
     'name': "LDAP mapping for user name and e-mail",
-    'version': "10.0.1.0.0",
-    'depends': ["auth_ldap"],
+    'version': "10.0.2.0.0",
     'author': "Daniel Reis (https://launchpad.com/~dreis-pt),"
               "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'category': "Tools",
+    "category": "Authentication",
+    "depends": [
+        'auth_ldap',
+        'users_ldap_menu',
+    ],
     'data': [
-        'views/users_ldap_view.xml',
+        'views/res_company_ldap.xml',
     ],
     'installable': True,
 }

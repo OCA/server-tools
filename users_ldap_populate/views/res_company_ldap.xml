@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_company_ldap_form" model="ir.ui.view">
+        <field name="name">Add populate button to ldap view</field>
+        <field name="model">res.company.ldap</field>
+        <field
+            name="inherit_id"
+            ref="users_ldap_menu.res_company_ldap_form"
+            />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button
+                        name="populate_wizard"
+                        string="Populate"
+                        type="object"
+                        />
+                </header>
+            </xpath>
+            <field
+                name="user"
+                position="after"
+                >
+                <field name="deactivate_unknown_users"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

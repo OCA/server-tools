@@ -19,19 +19,42 @@
         <field name="model">res.company.ldap</field>
         <field name="arch" type="xml">
             <form string="LDAP Configuration">
-                <group col="4">
-                    <field name="ldap_server"/>
-                    <field name="ldap_server_port"/>
-                    <field name="ldap_binddn"/>
-                    <field name="ldap_password" password="True"/>
-                    <field name="ldap_base"/>
-                    <field name="ldap_filter"/>
-                    <field name="create_user"/>
-                    <field name="user"/>
-                    <newline/>
-                    <field name="sequence"/>
-                    <field name="ldap_tls"/>
-                </group>
+                <sheet>
+                    <group name="connection_name" col="6">
+                        <field name="ldap_server" string="Server" />
+                        <field name="ldap_server_port" string="Port"/>
+                        <field name="sequence"/>
+                    </group>
+                    <notebook>
+                        <page
+                            id="page_configure_connection"
+                            string="Connection"
+                            >
+                            <group name="connection_configuration" col="4">
+                                <field name="ldap_binddn"/>
+                                <field name="ldap_password" password="True"/>
+                                <field name="ldap_base"/>
+                                <field name="ldap_tls"/>
+                                <separator string="LDAP filter" colspan="4" />
+                                <field
+                                    name="ldap_filter"
+                                    nolabel="1"
+                                    colspan="4"
+                                    widget="text"
+                                    />
+                            </group>
+                        </page>
+                        <page
+                            id="page_configure_creation"
+                            string="User creation"
+                            >
+                            <group name="creation_configuration" col="2">
+                                <field name="create_user"/>
+                                <field name="user"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
             </form>
         </field>
     </record>

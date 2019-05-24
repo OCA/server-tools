@@ -20,6 +20,6 @@ class ResCompanyLDAP(models.Model):
         users to one or more, or all companies. As yet we do nothing specific
         to support this.
         """
-        if not 'company' in vals:  # missing _id on field name is from Odoo.
+        if 'company' not in vals:  # missing _id on field name is from Odoo.
             vals['company'] = self.env.user.company_id.id
         return super(ResCompanyLDAP, self).create(vals)

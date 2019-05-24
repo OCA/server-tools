@@ -23,8 +23,7 @@ class ResCompanyLDAP(models.Model):
 
     deactivate_unknown_users = fields.Boolean(
         string='Deactivate unknown users',
-        default=False,
-    )
+        default=False)
 
     @api.multi
     def action_populate(self):
@@ -155,8 +154,7 @@ class ResCompanyLDAP(models.Model):
             'type': 'ir.actions.act_window',
             'target': 'new',
             'res_id': res_id,
-            'nodestroy': True,
-        }
+            'nodestroy': True}
 
     @api.model
     def cron_populate_all(self):

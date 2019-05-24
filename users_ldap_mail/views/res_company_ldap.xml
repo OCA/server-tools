@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="res_company_ldap_form" model="ir.ui.view">
+        <field name="name">Add name and email attributes to ldap view</field>
+        <field name="model">res.company.ldap</field>
+        <field
+            name="inherit_id"
+            ref="users_ldap_menu.res_company_ldap_form"
+            />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page id="page_attribute_mapping" string="Attribute mapping">
+                    <group col="2">
+                        <field name="name_attribute"/>
+                        <field name="mail_attribute"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
