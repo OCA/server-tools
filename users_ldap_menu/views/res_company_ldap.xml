@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_company_ldap_tree" model="ir.ui.view">
+        <field name="name">res_company_ldap.tree</field>
+        <field name="model">res.company.ldap</field>
+        <field name="arch" type="xml">
+            <tree string="LDAP Configuration">
+                <field name="sequence"/>
+                <field name="ldap_server"/>
+                <field name="ldap_server_port"/>
+                <field name="ldap_base"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_company_ldap_form" model="ir.ui.view">
+        <field name="name">res_company_ldap.form</field>
+        <field name="model">res.company.ldap</field>
+        <field name="arch" type="xml">
+            <form string="LDAP Configuration">
+                <group col="4">
+                    <field name="ldap_server"/>
+                    <field name="ldap_server_port"/>
+                    <field name="ldap_binddn"/>
+                    <field name="ldap_password" password="True"/>
+                    <field name="ldap_base"/>
+                    <field name="ldap_filter"/>
+                    <field name="create_user"/>
+                    <field name="user"/>
+                    <newline/>
+                    <field name="sequence"/>
+                    <field name="ldap_tls"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

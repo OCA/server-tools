@@ -6,7 +6,6 @@
         <field name="res_model">res.company.ldap</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <!-- <field name="view_id" ref="view_mass_object_tree"/> -->
     </record>
 
     <menuitem 
