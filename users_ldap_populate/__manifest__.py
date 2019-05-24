@@ -14,6 +14,7 @@
         'python': ['ldap'],
     },
     "data": [
+        'data/ir_cron.xml',
         'views/users_ldap.xml',
         'wizards/populate_wizard.xml',
     ],

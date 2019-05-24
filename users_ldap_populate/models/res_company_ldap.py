@@ -157,3 +157,8 @@ class ResCompanyLDAP(models.Model):
             'res_id': res_id,
             'nodestroy': True,
         }
+
+    @api.model
+    def cron_populate_all(self):
+        """Run populate on defined ldap servers."""
+        self.search([('create_user', '=', True)]).action_populate()
