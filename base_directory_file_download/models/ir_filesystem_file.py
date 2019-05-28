@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017-2018 Onestein (<https://www.onestein.eu>)
+# Copyright 2017-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
 import logging
 import os
 
@@ -43,14 +43,14 @@ class IrFilesystemDirectoryLine(models.TransientModel):
             if bin_size:
                 r = human_size(os.path.getsize(full_path))
             else:
-                r = open(full_path, 'rb').read().encode('base64')
+                r = base64.b64encode(open(full_path, 'rb').read())
         except (IOError, OSError):
             _logger.info("_read_file reading %s", fname, exc_info=True)
         return r
 
     @api.depends('stored_filename')
     def _compute_file(self):
-        bin_size = self._context.get('bin_size')
+        bin_size = self.env.context.get('bin_size')
         for line in self:
             if line.stored_filename:
                 content = line._file_read(line.stored_filename, bin_size)
