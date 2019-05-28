@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017-2018 Onestein (<https://www.onestein.eu>)
+# Copyright 2017-2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import base64
 import os
 from tempfile import gettempdir
 
@@ -36,7 +36,7 @@ class TestBaseDirectoryFilesDownload(common.TransactionCase):
             filename = file.stored_filename
             directory = test_dir.get_dir()
             with open(os.path.join(directory, filename), 'rb') as f:
-                content = f.read().encode('base64')
+                content = base64.b64encode(f.read())
                 self.assertEqual(file.file_content, content)
 
         # test onchange directory (to not existing)
