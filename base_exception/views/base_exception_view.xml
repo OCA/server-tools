@@ -29,15 +29,13 @@
                         <field name="sequence"/>
                     </group>
                     <group colspan="4" col="2" groups="base.group_system">
-                        <field name="rule_group"/>
                         <field name="model"/>
                         <field name="exception_type" widget="radio"/>
                         <field name="domain" 
-                            attrs="{'invisible': [('exception_type','!=','by_domain')]}
-                            "/>
+			       attrs="{'invisible': [('exception_type','!=','by_domain')], 'required': [('exception_type','=','by_domain')]}"/>
                         <field name="code"
-                            attrs="{'invisible': [('exception_type','!=','by_py_code')]}
-                            "/>
+                               attrs="{'invisible': [('exception_type','!=','by_py_code')], 'required': [('exception_type','=','by_py_code')]}"/>
+                        <field name="active"/>
                     </group>
                 </form>
             </field>
