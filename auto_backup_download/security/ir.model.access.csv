@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_filesystem_directory_backup,ir_filesystem_directory_backup,base_directory_file_download.model_ir_filesystem_directory,group_filesystem_directory_backup,1,1,1,1

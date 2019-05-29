@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="default_backup_directory" model="ir.filesystem.directory">
+        <field name="name">Database Backups</field>
+        <field name="is_backup">1</field>
+    </record>
+
+</odoo>

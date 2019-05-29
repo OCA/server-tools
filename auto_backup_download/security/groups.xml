@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_filesystem_directory_backup" model="res.groups">
+        <field name="name">Download database backups</field>
+    </record>
+
+</odoo>
