@@ -9,7 +9,7 @@ from odoo import fields
 
 def convert_to_cache(self, value, record, validate=True):
     # cache format: dict / list
-    if value is False:
+    if value is False or value is None:
         value = {}
     return value if isinstance(value, (dict, list)) else json.loads(value)
 
