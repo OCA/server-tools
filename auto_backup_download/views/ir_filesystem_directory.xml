@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_filesystem_directory_form" model="ir.ui.view">
+        <field name="model">ir.filesystem.directory</field>
+        <field name="inherit_id" ref="base_directory_file_download.ir_filesystem_directory_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='directory']" position='after'>
+                <field name="is_backup" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position='attributes'>
+                <attribute name="attrs">{'readonly':[('is_backup','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='directory']" position='attributes'>
+                <attribute name="required">0</attribute>
+                <attribute name="attrs">{'invisible':[('is_backup','=',True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ir_filesystem_directory_backup_action" model="ir.actions.act_window">
+        <field name="name">Backups</field>
+        <field name="res_model">ir.filesystem.directory</field>
+        <field name="res_id" ref="default_backup_directory"/>
+        <field name="view_mode">form</field>
+        <field name="context">{'is_backup':1}</field>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem id="menu_ir_filesystem_directory_backup"
+              action="ir_filesystem_directory_backup_action"
+              parent="base_directory_file_download.menu_ir_filesystem"
+              groups="group_filesystem_directory_backup"/>
+
+</odoo>
