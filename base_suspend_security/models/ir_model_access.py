@@ -33,3 +33,8 @@ class IrModelAccess(models.Model):
         return super(IrModelAccess, self).check(
             cr, uid, model, mode=mode, raise_exception=raise_exception,
             context=context)
+
+    def call_cache_clearing_methods(self, cr):
+        # we need to clear manually the original cache
+        super(IrModelAccess, self).check.clear_cache(self)
+        return super(IrModelAccess, self).call_cache_clearing_methods(cr)
