@@ -17,8 +17,7 @@ from odoo.tests.common import at_install, HttpCase, post_install
 class TestRemote(HttpCase):
     def setUp(self):
         super().setUp()
-        # HACK https://github.com/odoo/odoo/issues/24183
-        # TODO Remove in v12
+
         # Complex password to avoid conflicts with `password_security`
         self.good_password = "Admin$%02584"
         self.data_demo = {
