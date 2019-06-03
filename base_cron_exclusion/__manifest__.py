@@ -6,7 +6,7 @@
     "name": "Base Cron Exclusion",
     "summary": "Allow you to select scheduled actions that should not run "
                "simultaneously.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/server-tools",
     "category": "Tools",
