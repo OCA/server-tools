@@ -19,9 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: base_cron_exclusion
-#: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron_mutually_exclusive_cron_ids
-#: model:ir.model.fields,field_description:base_cron_exclusion.field_nsca_check_mutually_exclusive_cron_ids
-#: model:ir.ui.view,arch_db:base_cron_exclusion.ir_cron_view
+#: model:ir.model.fields,field_description:base_cron_exclusion.field_ir_cron__mutually_exclusive_cron_ids
+#: model_terms:ir.ui.view,arch_db:base_cron_exclusion.ir_cron_view_form
 msgid "Mutually Exclusive Scheduled Actions"
 msgstr "Acciones programadas excluyentes mutuamente"
 
