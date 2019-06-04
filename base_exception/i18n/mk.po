@@ -70,6 +70,7 @@ msgstr "Опис"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_display_name
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method_display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_display_name
 msgid "Display Name"
@@ -81,7 +82,7 @@ msgid "Domain"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:259
+#: code:addons/base_exception/models/base_exception.py:140
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -143,6 +144,7 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception_id
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method_id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm_id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_id
 msgid "ID"
@@ -156,6 +158,7 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception___last_update
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method___last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule___last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm___last_update
 msgid "Last Modified on"
@@ -194,22 +197,17 @@ msgid "Related model id"
 msgstr ""
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception_rule_group
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule_rule_group
-msgid "Rule group"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule_rule_group
-msgid ""
-"Rule group is used to group the rules that must validated at same time for a "
-"target object. Ex: validate sale.order.line rules with sale order rules."
-msgstr ""
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_sequence
 msgid "Sequence"
 msgstr "Секвенца"
+
+#. module: base_exception
+#: code:addons/base_exception/models/base_exception.py:62
+#, python-format
+msgid ""
+"There is a problem of configuration, python code or domain is missing to "
+"match the exception type."
+msgstr ""
 
 #. module: base_exception
 #: model:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
@@ -219,6 +217,11 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_base_exception
 msgid "base.exception"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception_method
+msgid "base.exception.method"
 msgstr ""
 
 #. module: base_exception
