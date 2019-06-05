@@ -4,6 +4,8 @@
 from odoo import api, models, fields
 REASON_DUPLICATE = 1
 REASON_DEFAULT = 2
+REASON_DEFAULT_FALSE = 3
+REASON_UNKNOWN_MODEL = 4
 
 
 class CleanupPurgeLineProperty(models.TransientModel):
@@ -17,6 +19,8 @@ class CleanupPurgeLineProperty(models.TransientModel):
     reason = fields.Selection([
         (REASON_DUPLICATE, 'Duplicated property'),
         (REASON_DEFAULT, 'Same value as default'),
+        (REASON_DEFAULT_FALSE, 'Empty default property'),
+        (REASON_UNKNOWN_MODEL, 'Unknown model'),
     ])
 
     @api.multi
@@ -42,6 +46,27 @@ class CleanupPurgeWizardProperty(models.TransientModel):
         ])
         handled_field_ids = []
         for prop in default_properties:
+            value = None
+            try:
+                value = prop.get_by_record()
+            except KeyError:
+                result.append({
+                    'name': '%s@%s: %s' % (
+                        prop.name, prop.res_id, value,
+                    ),
+                    'property_id': prop.id,
+                    'reason': REASON_UNKNOWN_MODEL,
+                })
+                continue
+            if not value:
+                result.append({
+                    'name': '%s@%s: %s' % (
+                        prop.name, prop.res_id, value,
+                    ),
+                    'property_id': prop.id,
+                    'reason': REASON_DEFAULT_FALSE,
+                })
+                continue
             if prop.fields_id.id in handled_field_ids:
                 continue
             domain = [
@@ -76,7 +101,8 @@ class CleanupPurgeWizardProperty(models.TransientModel):
             for redundant_property in self.env['ir.property'].search(domain):
                 result.append({
                     'name': '%s@%s: %s' % (
-                        prop.name, prop.res_id, prop.get_by_record()
+                        prop.name, redundant_property.res_id,
+                        prop.get_by_record()
                     ),
                     'property_id': redundant_property.id,
                     'reason': REASON_DEFAULT,

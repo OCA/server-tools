@@ -37,9 +37,7 @@
         <field name="type">ir.actions.server</field>
         <field name="state">code</field>
         <field name="model_id" ref="database_cleanup.model_cleanup_purge_line_column" />
-        <field name="code">
-            env.get('cleanup.purge.line.column').purge()
-        </field>
+        <field name="code">records.purge()</field>
     </record>
 
     <record id="action_purge_column_line_value" model="ir.values">

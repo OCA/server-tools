@@ -36,7 +36,7 @@ msgid "Technical features"
 msgstr "Características técnicas"
 
 #. module: base_technical_features
-#: code:addons/base_technical_features/models/res_users.py:48
+#: code:addons/base_technical_features/models/res_users.py:46
 #, python-format
 msgid "The user does not have access to technical features."
 msgstr "El usuario no tiene acceso a las características técnicas."

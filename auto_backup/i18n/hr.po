@@ -81,7 +81,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Odaberite metodu pohrane za ovaj backup."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:253
+#: code:addons/auto_backup/models/db_backup.py:257
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Čišćenje starih backup datoteka nije uspjelo."
@@ -116,7 +116,7 @@ msgid "Database backup failed."
 msgstr "Backup baze nije uspio."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:216
+#: code:addons/auto_backup/models/db_backup.py:217
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."

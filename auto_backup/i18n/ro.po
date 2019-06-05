@@ -83,7 +83,7 @@ msgid "Choose the storage method for this backup."
 msgstr "Alegeti o metoda de stocare pentru aceasta copie de siguranta."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:253
+#: code:addons/auto_backup/models/db_backup.py:257
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Curatarea de copie de siguranta a bazei de date a esuat."
@@ -118,7 +118,7 @@ msgid "Database backup failed."
 msgstr "Copie de siguranta baza de date esuat."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:216
+#: code:addons/auto_backup/models/db_backup.py:217
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."

@@ -41,6 +41,11 @@ class TestUserRole(TransactionCase):
                         self.group_settings_id.id])],
         }
         self.role2_id = self.role_model.create(vals)
+        self.company1 = self.env.ref('base.main_company')
+        self.company2 = self.env['res.company'].create({'name': 'company2'})
+        self.user_id.write(
+            {'company_ids': [
+                (4, self.company1.id, 0), (4, self.company2.id, 0)]})
 
     def test_role_1(self):
         self.user_id.write(
@@ -114,3 +119,38 @@ class TestUserRole(TransactionCase):
         })
         roles = self.role_model.browse([self.role1_id.id, self.role2_id.id])
         self.assertEqual(user.role_ids, roles)
+
+    def test_user_role_different_company(self):
+        self.user_id.write({'company_id': self.company1.id})
+        self.user_id.write({'role_line_ids': [(0, 0, {
+            'role_id': self.role2_id.id,
+            'company_id': self.company2.id})]})
+        # Check that user does not have any groups
+        self.assertEquals(
+            self.user_id.groups_id, self.env['res.groups'].browse())
+
+    def test_user_role_same_company(self):
+        self.user_id.write({'company_id': self.company1.id})
+        self.user_id.write({'role_line_ids': [(0, 0, {
+            'role_id': self.role1_id.id,
+            'company_id': self.company1.id})]})
+        user_group_ids = sorted(set(
+            [group.id for group in self.user_id.groups_id]))
+        role_group_ids = self.role1_id.trans_implied_ids.ids
+        role_group_ids.append(self.role1_id.group_id.id)
+        role_group_ids = sorted(set(role_group_ids))
+        # Check that user have groups implied by role 1
+        self.assertEqual(user_group_ids, role_group_ids)
+
+    def test_user_role_no_company(self):
+        self.user_id.write({'company_id': self.company1.id})
+        self.user_id.write({'role_line_ids': [(0, 0, {
+            'role_id': self.role2_id.id,
+            'company_id': False})]})
+        user_group_ids = sorted(set(
+            [group.id for group in self.user_id.groups_id]))
+        role_group_ids = self.role2_id.trans_implied_ids.ids
+        role_group_ids.append(self.role2_id.group_id.id)
+        role_group_ids = sorted(set(role_group_ids))
+        # Check that user have groups implied by role 2
+        self.assertEqual(user_group_ids, role_group_ids)
