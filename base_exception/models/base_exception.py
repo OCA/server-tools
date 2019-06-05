@@ -3,12 +3,24 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
+from functools import wraps
 
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
 from odoo import osv
 
+
+def implemented_by_base_exception(func):
+    """Call a prefixed function based on 'namespace'."""
+    @wraps(func)
+    def wrapper(cls, *args, **kwargs):
+        fun_name = func.__name__
+        fun = '_%s%s' % (cls.rule_group, fun_name)
+        if not hasattr(cls, fun):
+            fun = '_default%s' % (fun_name)
+        return getattr(cls, fun)(*args, **kwargs)
+    return wrapper
 
 class ExceptionRule(models.Model):
     _name = 'exception.rule'
