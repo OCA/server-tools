@@ -59,6 +59,7 @@ class ExceptionRule(models.Model):
 
 class BaseExceptionMethod(models.AbstractModel):
     _name = 'base.exception.method'
+    _description = 'Exception Rule Methods'
 
     @api.multi
     def _reverse_field(self):
