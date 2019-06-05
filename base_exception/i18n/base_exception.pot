@@ -84,7 +84,7 @@ msgid "Enter Python code here. Help about Python expression is available in the 
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:126
+#: code:addons/base_exception/models/base_exception.py:127
 #, python-format
 msgid "Error when evaluating the exception.rule rule:\n"
 " %s \n"
@@ -110,6 +110,11 @@ msgstr ""
 #. module: base_exception
 #: model:ir.model,name:base_exception.model_exception_rule_confirm
 msgid "Exception Rule Confirm Wizard"
+msgstr ""
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception_method
+msgid "Exception Rule Methods"
 msgstr ""
 
 #. module: base_exception
@@ -256,10 +261,5 @@ msgstr ""
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
-msgstr ""
-
-#. module: base_exception
-#: model:ir.model,name:base_exception.model_base_exception_method
-msgid "base.exception.method"
 msgstr ""
 
