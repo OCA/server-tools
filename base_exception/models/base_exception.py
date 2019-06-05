@@ -22,6 +22,7 @@ def implemented_by_base_exception(func):
         return getattr(cls, fun)(*args, **kwargs)
     return wrapper
 
+
 class ExceptionRule(models.Model):
     _name = 'exception.rule'
     _description = "Exception Rules"
