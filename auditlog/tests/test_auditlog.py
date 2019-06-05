@@ -119,3 +119,46 @@ class TestAuditlogFast(TransactionCase, TestAuditlog):
     def tearDown(self):
         self.groups_rule.unlink()
         super(TestAuditlogFast, self).tearDown()
+
+
+class TestAuditlogRule(TransactionCase):
+
+    def setUp(self):
+        super(TestAuditlogRule, self).setUp()
+        self.user = self.env['res.users'].create({
+            'name': 'Test User',
+            'login': 'test@test.com',
+            'company_id': 1,
+        })
+        self.group_test = self.env['res.groups'].create({
+            'name': 'Test Group',
+            'users': [(6, 0, self.user.ids)],
+        })
+        self.groups_model_id = self.env.ref('base.model_res_groups').id
+        self.groups_rule = self.env['auditlog.rule'].create({
+            'name': 'testrule for groups',
+            'model_id': self.groups_model_id,
+            'log_read': True,
+            'log_create': True,
+            'log_write': True,
+            'log_unlink': True,
+            'log_type': 'fast',
+            'group_ids': [(4, self.group_test.id)]
+        })
+
+    def test_no_LogCreation(self):
+        self.groups_rule.subscribe()
+
+        auditlog_log = self.env['auditlog.log']
+        testgroupnolog = self.env['res.groups'].create({
+            'name': 'testgroupnolog',
+        })
+        self.assertFalse(auditlog_log.search([
+            ('model_id', '=', self.groups_model_id),
+            ('method', '=', 'create'),
+            ('res_id', '=', testgroupnolog.id),
+        ]))
+
+    def tearDown(self):
+        self.groups_rule.unlink()
+        super(TestAuditlogRule, self).tearDown()

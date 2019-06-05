@@ -48,11 +48,8 @@ class AuditlogRule(models.Model):
     model_id = fields.Many2one(
         'ir.model', "Model", required=True,
         help="Select model for which you want to generate log.")
-    user_ids = fields.Many2many(
-        'res.users',
-        'audittail_rules_users',
-        'user_id', 'rule_id',
-        string="Users",
+    group_ids = fields.Many2many('res.groups', 'auditlog_rule_group_rel',
+                                 'auditlog_rule', 'gid', 'User Groups',
         help="if  User is not added then it will applicable for all users")
     log_read = fields.Boolean(
         "Log Reads",
@@ -94,12 +91,6 @@ class AuditlogRule(models.Model):
     action_id = fields.Many2one(
         'ir.actions.act_window', string="Action")
 
-    _sql_constraints = [
-        ('model_uniq', 'unique(model_id)',
-         ("There is already a rule defined on this model\n"
-          "You cannot define another: please edit the existing one."))
-    ]
-
     def _register_hook(self):
         """Get all rules and apply them to log method calls."""
         super(AuditlogRule, self)._register_hook()
@@ -121,6 +112,11 @@ class AuditlogRule(models.Model):
                 continue
             if not self.pool.get(rule.model_id.model):
                 # ignore rules for models not loadable currently
+                continue
+            if rule.group_ids and any(
+                    group.id not in self.env.user.groups_id.ids for group in
+                    rule.group_ids):
+                # ignore rules for no rule defined users
                 continue
             model_cache[rule.model_id.model] = rule.model_id.id
             model_model = self.env[rule.model_id.model]
