@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+from collections import defaultdict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -71,6 +72,45 @@ class AbstractUrl(models.AbstractModel):
     def _compute_is_urls_sync_required(self):
         for record in self:
             record.is_urls_sync_required = True
+
+    def _get_url_keywords(self):
+        """This method return a list of keyword that will be concatenated
+        with '-' to generate the url
+        Ex: if you return ['foo', '42'] the url will be foo-42
+
+        Note the self already include in the context the lang of the record
+        """
+        self.ensure_one()
+        return [self.name]
+
+    def _post_process_url_key(self, key):
+        """This method allow you to customized the url key.
+        you can use it to build full path be adding the url of parent record
+        Ex: key is 42 you can prefix it with "foo" and so return "foo/42"
+
+        Note: the self do not include in the context the lang of the record
+        """
+        self.ensure_one()
+        return key
+
+    def _generic_compute_automatic_url_key(self):
+        records_by_lang = defaultdict(self.browse)
+        for record in self:
+            records_by_lang[record.lang_id] |= record
+
+        key_by_id = {}
+        for lang_id, records in records_by_lang.items():
+            for record in records.with_context(lang=lang_id.code):
+                if not isinstance(record.id, models.NewId):
+                    key_by_id[record.id] = slugify(
+                        "-".join(record._get_url_keywords())
+                    )
+
+        for record in self:
+            if not isinstance(record.id, models.NewId):
+                record.automatic_url_key = record._post_process_url_key(
+                    key_by_id[record.id]
+                )
 
     def _compute_automatic_url_key(self):
         raise NotImplementedError(
@@ -195,11 +235,22 @@ class AbstractUrl(models.AbstractModel):
                 record.set_url(record.url_key)
         return records
 
-    def _recompute_done(self, field):
-        super(AbstractUrl, self)._recompute_done(field)
-        if field.name == "is_urls_sync_required":
-            synced = self.exists()._sync_urls()
-            synced.write({"is_urls_sync_required": False})
+    @api.model
+    def create(self, value):
+        res = super(AbstractUrl, self).create(value)
+        # without this flush we have cases where the url_key is not stored
+        self.flush()
+        synced = res._sync_urls()
+        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
+        return res
+
+    def write(self, value):
+        res = super(AbstractUrl, self).write(value)
+        # without this flush we have cases where the url_key is not stored
+        self.flush()
+        synced = self._sync_urls()
+        super(AbstractUrl, synced).write({"is_urls_sync_required": False})
+        return res
 
     def unlink(self):
         for record in self:

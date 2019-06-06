@@ -32,9 +32,3 @@ class ResPartnerAddressableFake(models.Model):
     @api.depends("lang_id", "special_code", "record_id.name")
     def _compute_automatic_url_key(self):
         self._generic_compute_automatic_url_key()
-
-    def _get_url_keywords(self):
-        res = super(ResPartnerAddressableFake, self)._get_url_keywords()
-        if self.special_code:
-            res += [self.special_code]
-        return res

@@ -125,38 +125,3 @@ class TestAbstractUrl(SavepointCase, FakeModelLoader):
         ) as mocked_redirect:
             my_partner.active = False
             mocked_redirect.assert_called_once()
-
-    def test_onchange_do_nothing(self):
-        # calling onchange should not fail and should not return an url
-        result = self.ResPartnerAddressable.onchange(
-            {}, ["automatic_url_key"], {}
-        )
-        self.assertEqual(result, {"value": {}})
-
-    def test_create_from_main(self):
-        partner = self.env["res.partner"].create({"name": self.name})
-        partner.write(
-            {
-                "binding_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "lang_id": self.lang.id,
-                            "url_builder": "auto",
-                            "backend_id": self.url_backend.id,
-                        },
-                    )
-                ]
-            }
-        )
-        self._check_url_key(partner.binding_ids, "partner-name")
-
-    def test_write_from_main(self):
-        my_partner = self._create_auto()
-        my_partner.record_id.write(
-            {"binding_ids": [(1, my_partner.id, {"special_code": "foo"})]}
-        )
-        self.assertEqual(2, len(my_partner.url_url_ids))
-        url_keys = set(my_partner.mapped("url_url_ids.url_key"))
-        self.assertSetEqual(url_keys, {"partner-name-foo", "partner-name"})
