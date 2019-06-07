@@ -76,7 +76,7 @@ class BaseExceptionMethod(models.AbstractModel):
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records
-        If self is empty, check exceptions on all records.
+        If self is empty, check exceptions on all active records.
         """
         rules = self.env['exception.rule'].sudo().search(
             self._rule_domain())
@@ -85,7 +85,7 @@ class BaseExceptionMethod(models.AbstractModel):
             records_with_exception = self._detect_exceptions(rule)
             reverse_field = self._reverse_field()
             if self:
-                commons = self and rule[reverse_field]
+                commons = self & rule[reverse_field]
                 to_remove = commons - records_with_exception
                 to_add = records_with_exception - commons
                 to_remove_list = [(3, x.id, _) for x in to_remove]
