@@ -62,6 +62,16 @@ class BaseExceptionMethod(models.AbstractModel):
     _description = 'Exception Rule Methods'
 
     @api.multi
+    def _get_main_records(self):
+        """
+            Used in case we check exceptions on a record but write these
+            exceptions on a parent record. Typical example is with
+            sale.order.line. We check exceptions on some sale order lines but
+            write these exceptions on the sale order, so they are visible.
+        """
+        return self
+
+    @api.multi
     def _reverse_field(self):
         raise NotImplementedError()
 
@@ -85,7 +95,8 @@ class BaseExceptionMethod(models.AbstractModel):
             records_with_exception = self._detect_exceptions(rule)
             reverse_field = self._reverse_field()
             if self:
-                commons = self & rule[reverse_field]
+                main_records = self._get_main_records()
+                commons = main_records & rule[reverse_field]
                 to_remove = commons - records_with_exception
                 to_add = records_with_exception - commons
                 to_remove_list = [(3, x.id, _) for x in to_remove]
