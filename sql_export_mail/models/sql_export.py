@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 Akretion
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api, _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from openerp.exceptions import Warning as UserError
+from odoo import models, fields, api, _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.exceptions import UserError
 from datetime import datetime, timedelta
-from openerp import SUPERUSER_ID
+from odoo import SUPERUSER_ID
 
 
 class SqlExport(models.Model):
@@ -34,14 +33,13 @@ class SqlExport(models.Model):
     def create_cron(self):
         self.ensure_one()
         nextcall = datetime.now() + timedelta(hours=2)
-        nextcall_fmt = datetime.strftime(nextcall,
-                                         DEFAULT_SERVER_DATETIME_FORMAT)
         cron_vals = {
             'active': True,
-            'model': 'sql.export',
-            'function': '_run_all_sql_export_for_cron',
+            'model_id': self.env.ref('sql_export.model_sql_export').id,
+            'state': 'code',
+            'code': 'model._run_all_sql_export_for_cron()',
             'name': 'SQL Export : %s' % self.name,
-            'nextcall': nextcall_fmt,
+            'nextcall': nextcall,
             'doall': False,
             'numbercall': -1,
             'user_id': SUPERUSER_ID,
@@ -50,7 +48,9 @@ class SqlExport(models.Model):
         # We need to pass cron_id in the cron args because a cron is not
         # aware of itself in the end method and we need it to find all
         # linked sql exports
-        write_vals = {'args': '[[%s]]' % cron.id}
+        write_vals = {
+            'code': 'model._run_all_sql_export_for_cron([%s])' % cron.id
+        }
         cron.write(write_vals)
         self.write({'cron_ids': [(4, cron.id)]})
 
@@ -135,10 +135,4 @@ class SqlExport(models.Model):
                 self.env.context.get('mail_to'))
         else:
             mail_users = self.mail_user_ids
-        emails = ''
-        for user in mail_users:
-            if emails and user.email:
-                emails += ',' + user.email
-            elif user.email:
-                emails += user.email
-        return emails
+        return ','.join([x.email for x in mail_users if x.email])
