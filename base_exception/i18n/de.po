@@ -77,6 +77,7 @@ msgstr "Beschreibung"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__display_name
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__display_name
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__display_name
 msgid "Display Name"
@@ -95,14 +96,15 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:260
+#: code:addons/base_exception/models/base_exception.py:138
 #, fuzzy, python-format
 #| msgid ""
 #| "Error when evaluating the exception.rule rule:\n"
 #| " %s \n"
 #| "(%s)"
 msgid ""
-"Error when evaluating the exception.rule: %s\n"
+"Error when evaluating the exception.rule rule:\n"
+" %s \n"
 "(%s)"
 msgstr ""
 "Fehler bei Auswertung der exception.rule Regel:\n"
@@ -133,6 +135,13 @@ msgstr "Ausnahmeregel"
 #| msgid "exception.rule.confirm"
 msgid "Exception Rule Confirm Wizard"
 msgstr "exception.rule.confirm"
+
+#. module: base_exception
+#: model:ir.model,name:base_exception.model_base_exception_method
+#, fuzzy
+#| msgid "Exception Rules"
+msgid "Exception Rule Methods"
+msgstr "Ausnahmeregeln"
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -189,23 +198,11 @@ msgstr ""
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__id
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method__id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__id
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__id
 msgid "ID"
 msgstr "ID"
-
-#. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule__next_state
-msgid ""
-"If we detect exception we set the state of object (ex purchase) to the "
-"next_state (ex 'to approve'). If there are more than one exception detected "
-"and all have a value for next_state, we usethe exception having the smallest "
-"sequence value"
-msgstr ""
-"Wenn wir eine Ausnahme feststellen, setzen wir den Status des Objekts (z.B. "
-"Bestellung) auf den next_state (z.B. Freizugeben). Wenn mehrere Ausnahmen "
-"festgestellt wurden und alle haben einen Wert next_state, dann ziehen wir "
-"den mit kleinstem Reihenfolgewert heran."
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__ignore_exception
@@ -215,6 +212,7 @@ msgstr "Ausnahmen ignorieren"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_base_exception____last_update
+#: model:ir.model.fields,field_description:base_exception.field_base_exception_method____last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule____last_update
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm____last_update
 msgid "Last Modified on"
@@ -234,11 +232,6 @@ msgstr "Zuletzt aktualisiert am"
 #: model:ir.model.fields,field_description:base_exception.field_base_exception__main_exception_id
 msgid "Main Exception"
 msgstr "Haupt-Ausnahme"
-
-#. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__next_state
-msgid "Next state"
-msgstr "Nächster Status"
 
 #. module: base_exception
 #: code:addons/base_exception/wizard/base_exception_confirm.py:29
@@ -275,35 +268,17 @@ msgid "Related Model"
 msgstr "Zugehöriges Modell"
 
 #. module: base_exception
-#: model:ir.model.fields,field_description:base_exception.field_base_exception__rule_group
-#: model:ir.model.fields,field_description:base_exception.field_exception_rule__rule_group
-msgid "Rule Group"
-msgstr "Regelgruppe"
-
-#. module: base_exception
-#: model:ir.model.fields,help:base_exception.field_exception_rule__rule_group
-msgid ""
-"Rule group is used to group the rules that must validated at same time for a "
-"target object. Ex: validate sale.order.line rules with sale order rules."
-msgstr ""
-"Regelgruppen werden verwendet, um Regeln zusammenzufassen, die gleichzeitig "
-"auf ein Zielobject angewendet werden müssen, z.B. Regeln zu sale.order.line "
-"mit Regeln zu sale.order."
-
-#. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule__sequence
 msgid "Sequence"
 msgstr "Reihenfolge"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:80
+#: code:addons/base_exception/models/base_exception.py:49
 #, python-format
 msgid ""
-"The value \"%s\" you choose for the \"next state\" field state of \"%s\" is "
-"wrong. Value must be in this list %s"
+"There is a problem of configuration, python code or domain is missing to "
+"match the exception type."
 msgstr ""
-"Der Wert \"%s\" den Sie als \"nächsten Status\" mit Feldstatus \"%s\" ist "
-"falsch. Der Wert muss einer aus Liste %s sein."
 
 #. module: base_exception
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_form
@@ -321,6 +296,39 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "_Close"
 msgstr "_Schliessen"
+
+#~ msgid ""
+#~ "If we detect exception we set the state of object (ex purchase) to the "
+#~ "next_state (ex 'to approve'). If there are more than one exception "
+#~ "detected and all have a value for next_state, we usethe exception having "
+#~ "the smallest sequence value"
+#~ msgstr ""
+#~ "Wenn wir eine Ausnahme feststellen, setzen wir den Status des Objekts (z."
+#~ "B. Bestellung) auf den next_state (z.B. Freizugeben). Wenn mehrere "
+#~ "Ausnahmen festgestellt wurden und alle haben einen Wert next_state, dann "
+#~ "ziehen wir den mit kleinstem Reihenfolgewert heran."
+
+#~ msgid "Next state"
+#~ msgstr "Nächster Status"
+
+#~ msgid "Rule Group"
+#~ msgstr "Regelgruppe"
+
+#~ msgid ""
+#~ "Rule group is used to group the rules that must validated at same time "
+#~ "for a target object. Ex: validate sale.order.line rules with sale order "
+#~ "rules."
+#~ msgstr ""
+#~ "Regelgruppen werden verwendet, um Regeln zusammenzufassen, die "
+#~ "gleichzeitig auf ein Zielobject angewendet werden müssen, z.B. Regeln zu "
+#~ "sale.order.line mit Regeln zu sale.order."
+
+#~ msgid ""
+#~ "The value \"%s\" you choose for the \"next state\" field state of \"%s\" "
+#~ "is wrong. Value must be in this list %s"
+#~ msgstr ""
+#~ "Der Wert \"%s\" den Sie als \"nächsten Status\" mit Feldstatus \"%s\" ist "
+#~ "falsch. Der Wert muss einer aus Liste %s sein."
 
 #~ msgid "base.exception"
 #~ msgstr "base.exception"
