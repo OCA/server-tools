@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Akretion
+# Copyright 2019 Akretion
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
@@ -47,9 +47,11 @@ class SqlExport(models.Model):
             'user_id': SUPERUSER_ID,
         }
         cron = self.env['ir.cron'].create(cron_vals)
+        # We need to pass cron_id in the cron args because a cron is not
+        # aware of itself in the end method and we need it to find all
+        # linked sql exports
         write_vals = {'args': '[[%s]]' % cron.id}
         cron.write(write_vals)
-
         self.write({'cron_ids': [(4, cron.id)]})
 
     @api.multi
@@ -64,17 +66,18 @@ class SqlExport(models.Model):
                 params=params, mode='fetchone')
             if not res:
                 return
-
         binary = self._execute_sql_request(
             params=params, mode='stdout', copy_options=self.copy_options)
+        msg_id = mail_template.send_mail(self.id, force_send=False)
+        mail = self.env['mail.mail'].browse(msg_id)
         attach_vals = {
             'name': now_time + ' - ' + self.name,
             'datas_fname': now_time + ' - ' + self.name + '.csv',
             'datas': binary,
+            'res_model': 'mail.mail',
+            'res_id': mail.id,
         }
         attachment = attach_obj.create(attach_vals)
-        msg_id = mail_template.send_mail(self.id, force_send=False)
-        mail = self.env['mail.mail'].browse(msg_id)
         mail.write({'attachment_ids': [(4, attachment.id)]})
 
     @api.model
