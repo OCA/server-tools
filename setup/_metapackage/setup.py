@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-server-tools Odoo addons",
     version=version,
     install_requires=[
+        'odoo11-addon-attachment_base_synchronize',
         'odoo11-addon-auditlog',
         'odoo11-addon-auto_backup',
         'odoo11-addon-base_cron_exclusion',
