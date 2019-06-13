@@ -63,11 +63,23 @@ class ExceptionRule(models.Model):
                       "domain is missing to match the exception type.")
                 )
 
+    def _get_eval_context(self):
+        """ Prepare the context used when evaluating python code
+            :returns: dict -- evaluation context given to safe_eval
+        """
+        return {
+            'uid': self.env.uid,
+            'user': self.env.user,
+            'env': self.env,
+            'self': self,
+        }
+
     @api.multi
     def _get_domain(self):
         """ override me to customize domains according exceptions cases """
         self.ensure_one()
-        return safe_eval(self.domain)
+        eval_context = self._get_eval_context()
+        return safe_eval(self.domain, eval_context)
 
 
 class BaseExceptionMethod(models.AbstractModel):
