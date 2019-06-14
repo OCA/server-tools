@@ -3,11 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.addons.mail.tests.common import TestMail
-from odoo.addons.mail.tests.test_mail_gateway import MAIL_TEMPLATE
+from odoo.addons.test_mail.tests.test_mail_gateway import TestMailgateway
+from odoo.addons.test_mail.data.test_mail_data import MAIL_TEMPLATE
 
 
-class TestFetchmailIncomingLog(TestMail):
+class TestFetchmailIncomingLog(TestMailgateway):
 
     def setUp(self):
         super(TestFetchmailIncomingLog, self).setUp()
