@@ -55,11 +55,8 @@ class ExceptionRule(models.Model):
             :returns: dict -- evaluation context given to safe_eval
         """
         return {
-            'uid': self.env.uid,
-            'user': self.env.user,
-            'env': self.env,
-            'self': self,
-        }
+             'ref': self.env.ref,
+       }
 
     @api.multi
     def _get_domain(self):
