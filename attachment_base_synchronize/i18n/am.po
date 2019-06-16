@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_access_token
+msgid "Access Token"
+msgstr ""
+
+#. module: attachment_base_synchronize
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "Attachment"
 msgstr ""
@@ -34,13 +40,7 @@ msgid "Attachment URL"
 msgstr ""
 
 #. module: attachment_base_synchronize
-#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_attachment_id
-msgid "Attachment id"
-msgstr ""
-
-#. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
-#: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_tree
 msgid "Attachments"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_external_hash
-msgid "External hash"
+msgid "External Hash"
 msgstr ""
 
 #. module: attachment_base_synchronize
@@ -128,7 +128,12 @@ msgid "File Size"
 msgstr ""
 
 #. module: attachment_base_synchronize
-#: code:addons/attachment_base_synchronize/models/attachment.py:54
+#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
+msgid "File Type"
+msgstr ""
+
+#. module: attachment_base_synchronize
+#: code:addons/attachment_base_synchronize/models/attachment.py:50
 #, python-format
 msgid ""
 "File corrupted: Something was wrong with the retrieved file, please relaunch "
@@ -151,7 +156,6 @@ msgid ""
 msgstr ""
 
 #. module: attachment_base_synchronize
-#: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_file_type
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_external_attachment_search
 msgid "File type"
 msgstr ""
@@ -178,7 +182,7 @@ msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_internal_hash
-msgid "Internal hash"
+msgid "Internal Hash"
 msgstr ""
 
 #. module: attachment_base_synchronize
@@ -259,6 +263,13 @@ msgid "Run"
 msgstr ""
 
 #. module: attachment_base_synchronize
+#: model:ir.actions.server,name:attachment_base_synchronize.cronjob_run_attachments_metadata_ir_actions_server
+#: model:ir.cron,cron_name:attachment_base_synchronize.cronjob_run_attachments_metadata
+#: model:ir.cron,name:attachment_base_synchronize.cronjob_run_attachments_metadata
+msgid "Run Attachments Metadata"
+msgstr ""
+
+#. module: attachment_base_synchronize
 #: model:ir.ui.view,arch_db:attachment_base_synchronize.view_attachment_improved_form
 msgid "Set to Done"
 msgstr ""
@@ -271,7 +282,7 @@ msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_state_message
-msgid "State message"
+msgid "State Message"
 msgstr ""
 
 #. module: attachment_base_synchronize
@@ -281,7 +292,7 @@ msgstr ""
 
 #. module: attachment_base_synchronize
 #: model:ir.model.fields,field_description:attachment_base_synchronize.field_ir_attachment_metadata_sync_date
-msgid "Sync date"
+msgid "Sync Date"
 msgstr ""
 
 #. module: attachment_base_synchronize
