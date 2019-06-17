@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -33,13 +33,13 @@ msgid "Email Thread"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
-#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
+#: model:ir.model.fields,field_description:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
 msgid "Error notice template"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
 #: model:ir.model,name:fetchmail_notify_error_to_sender.model_fetchmail_server
-msgid "POP/IMAP Server"
+msgid "Incoming Mail Server"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
@@ -48,7 +48,7 @@ msgid "Receiving error with: ${ctx.get('sender_message').get('subject')|safe}"
 msgstr ""
 
 #. module: fetchmail_notify_error_to_sender
-#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server_error_notice_template_id
+#: model:ir.model.fields,help:fetchmail_notify_error_to_sender.field_fetchmail_server__error_notice_template_id
 msgid "Set here the template to use to send notice to sender when errors occur while fetching email"
 msgstr ""
 
