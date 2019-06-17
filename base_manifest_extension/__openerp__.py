@@ -12,5 +12,5 @@
         'base',
     ],
     "post_load": 'post_load_hook',
-    'installable': False,
+    'installable': True,
 }
