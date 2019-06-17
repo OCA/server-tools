@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-datetime_formatter',
         'odoo12-addon-excel_import_export',
         'odoo12-addon-excel_import_export_demo',
+        'odoo12-addon-fetchmail_notify_error_to_sender',
         'odoo12-addon-html_image_url_extractor',
         'odoo12-addon-html_text',
         'odoo12-addon-module_auto_update',
