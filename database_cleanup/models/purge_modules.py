@@ -47,9 +47,7 @@ class CleanupPurgeLineModule(models.TransientModel):
         if not modules:
             return True
         self.logger.info('Purging modules %s', ', '.join(module_names))
-        modules.filtered(
-            lambda x: x.state not in ('uninstallable', 'uninstalled')
-        ).button_immediate_uninstall()
+        modules.button_immediate_uninstall()
         modules.refresh()
         modules.unlink()
         return self.write({'purged': True})
