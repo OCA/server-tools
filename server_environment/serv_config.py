@@ -40,8 +40,6 @@ except ImportError:
                  ' no directory found')
     _dir = None
 
-print _dir, 'BLAAA'
-
 # Same dict as RawConfigParser._boolean_states
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
                    '0': False, 'no': False, 'false': False, 'off': False}
