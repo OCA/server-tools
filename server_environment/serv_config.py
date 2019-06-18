@@ -40,6 +40,8 @@ except ImportError:
                  ' no directory found')
     _dir = None
 
+print _dir, 'BLAAA'
+
 # Same dict as RawConfigParser._boolean_states
 _boolean_states = {'1': True, 'yes': True, 'true': True, 'on': True,
                    '0': False, 'no': False, 'false': False, 'off': False}
@@ -146,12 +148,13 @@ class ServerConfiguration(models.TransientModel):
 
         """
         ModelClass = super(ServerConfiguration, cls)._build_model(pool, cr)
-        ModelClass._add_columns()
-        ModelClass.running_env = system_base_config['running_env']
-        # Only show passwords in development
-        ModelClass.show_passwords = ModelClass.running_env in ('dev',)
-        ModelClass._arch = None
-        ModelClass._build_osv()
+        if system_base_config.get('running_env', False):
+            ModelClass._add_columns()
+            ModelClass.running_env = system_base_config['running_env']
+            # Only show passwords in development
+            ModelClass.show_passwords = ModelClass.running_env in ('dev',)
+            ModelClass._arch = None
+            ModelClass._build_osv()
         return ModelClass
 
     @classmethod
