@@ -168,7 +168,7 @@ class RestrictFieldAccessMixin(models.AbstractModel):
             if not expression.is_leaf(term):
                 continue
             if not self._restrict_field_access_is_field_accessible(
-                    term[0], 'read'):
+                    term[0].split(".")[0], 'read'):
                 has_inaccessible_field = True
                 break
         if has_inaccessible_field:
