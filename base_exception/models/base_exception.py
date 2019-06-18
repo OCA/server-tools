@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import time
+import html
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
@@ -86,28 +87,45 @@ class BaseExceptionMethod(models.AbstractModel):
     def detect_exceptions(self):
         """List all exception_ids applied on self
         Exception ids are also written on records
-        If self is empty, check exceptions on all active records.
         """
         rules = self.env['exception.rule'].sudo().search(
             self._rule_domain())
         all_exception_ids = []
+        rules_to_remove = {}
+        rules_to_add = {}
         for rule in rules:
             records_with_exception = self._detect_exceptions(rule)
             reverse_field = self._reverse_field()
-            if self:
-                main_records = self._get_main_records()
-                commons = main_records & rule[reverse_field]
-                to_remove = commons - records_with_exception
-                to_add = records_with_exception - commons
-                to_remove_list = [(3, x.id, _) for x in to_remove]
-                to_add_list = [(4, x.id, _) for x in to_add]
-                rule.write({reverse_field: to_remove_list + to_add_list})
-            else:
-                rule.write({
-                    reverse_field: [(6, 0, records_with_exception.ids)]
-                })
+            main_records = self._get_main_records()
+            commons = main_records & rule[reverse_field]
+            to_remove = commons - records_with_exception
+            to_add = records_with_exception - commons
+            # we expect to always work on the same model type
+            if rule.id not in rules_to_remove:
+                rules_to_remove[rule.id] = main_records.browse()
+            rules_to_remove[rule.id] |= to_remove
+            if rule.id not in rules_to_add:
+                rules_to_add[rule.id] = main_records.browse()
+            rules_to_add[rule.id] |= to_add
             if records_with_exception:
                 all_exception_ids.append(rule.id)
+        # Cumulate all the records to attach to the rule
+        # before linking. We don't want to call "rule.write()"
+        # which would:
+        # * write on write_date so lock the expection.rule
+        # * trigger the recomputation of "main_exception_id" on
+        #   all the sale orders related to the rule, locking them all
+        #   and preventing concurrent writes
+        # Reversing the write by writing on SaleOrder instead of
+        # ExceptionRule fixes the 2 kinds of unexpected locks.
+        # It should not result in more queries than writing on ExceptionRule:
+        # the "to remove" part generates one DELETE per rule on the relation
+        # table
+        # and the "to add" part generates one INSERT (with unnest) per rule.
+        for rule_id, records in rules_to_remove.items():
+            records.write({'exception_ids': [(3, rule_id,)]})
+        for rule_id, records in rules_to_add.items():
+            records.write(({'exception_ids': [(4, rule_id,)]}))
         return all_exception_ids
 
     @api.model
@@ -148,16 +166,12 @@ class BaseExceptionMethod(models.AbstractModel):
 
     @api.multi
     def _get_base_domain(self):
-        domain = [('ignore_exception', '=', False)]
-        if self:
-            domain = osv.expression.AND([domain, [('id', 'in', self.ids)]])
-        return domain
+        return [('ignore_exception', '=', False), ('id', 'in', self.ids)]
 
     @api.multi
     def _detect_exceptions_by_py_code(self, rule):
         """
             Find exceptions found on self.
-            If self is empty, check on all records.
         """
         domain = self._get_base_domain()
         records = self.search(domain)
@@ -171,7 +185,6 @@ class BaseExceptionMethod(models.AbstractModel):
     def _detect_exceptions_by_domain(self, rule):
         """
             Find exceptions found on self.
-            If self is empty, check on all records.
         """
         base_domain = self._get_base_domain()
         rule_domain = rule._get_domain()
@@ -191,8 +204,21 @@ class BaseException(models.AbstractModel):
         string='Main Exception',
         store=True,
     )
-    exception_ids = fields.Many2many('exception.rule', string='Exceptions')
+    exceptions_summary = fields.Html(
+        'Exceptions Summary',
+        compute='_compute_exceptions_summary',
+    )
+    exception_ids = fields.Many2many(
+        'exception.rule',
+        string='Exceptions',
+        copy=False,
+    )
     ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
+
+    @api.multi
+    def action_ignore_exceptions(self):
+        self.write({'ignore_exception': True})
+        return True
 
     @api.depends('exception_ids', 'ignore_exception')
     def _compute_main_error(self):
@@ -201,6 +227,14 @@ class BaseException(models.AbstractModel):
                 rec.main_exception_id = rec.exception_ids[0]
             else:
                 rec.main_exception_id = False
+
+    @api.depends('exception_ids', 'ignore_exception')
+    def _compute_exceptions_summary(self):
+        for rec in self:
+            if rec.exception_ids and not rec.ignore_exception:
+                rec.exceptions_summary = '<ul>%s</ul>' % ''.join([
+                    '<li>%s: <i>%s</i></li>' % tuple(map(html.escape, (
+                        e.name, e.description))) for e in rec.exception_ids])
 
     @api.multi
     def _popup_exceptions(self):

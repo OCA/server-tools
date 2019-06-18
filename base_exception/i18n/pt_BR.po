@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-21 02:42+0000\n"
-"PO-Revision-Date: 2019-08-30 17:04+0000\n"
+"PO-Revision-Date: 2019-11-24 19:57+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -102,7 +102,7 @@ msgstr ""
 "disponível na guia de ajuda deste documento."
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:138
+#: code:addons/base_exception/models/base_exception.py:156
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -169,6 +169,11 @@ msgstr "Exceções"
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Exceptions Rules"
 msgstr "Regras de exceção"
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
+msgid "Exceptions Summary"
+msgstr "Resumo de Exceções"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
@@ -269,7 +274,7 @@ msgid "Sequence"
 msgstr "Sequência"
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:49
+#: code:addons/base_exception/models/base_exception.py:50
 #, python-format
 msgid ""
 "There is a problem of configuration, python code or domain is missing to "
