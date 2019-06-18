@@ -94,7 +94,7 @@ msgid ""
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:138
+#: code:addons/base_exception/models/base_exception.py:156
 #, python-format
 msgid ""
 "Error when evaluating the exception.rule rule:\n"
@@ -160,6 +160,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_exception.view_exception_rule_confirm
 msgid "Exceptions Rules"
 msgstr ""
+
+#. module: base_exception
+#: model:ir.model.fields,field_description:base_exception.field_base_exception__exceptions_summary
+#, fuzzy
+#| msgid "Description"
+msgid "Exceptions Summary"
+msgstr "Mô tả"
 
 #. module: base_exception
 #: model:ir.model.fields,field_description:base_exception.field_exception_rule_confirm__exception_ids
@@ -259,7 +266,7 @@ msgid "Sequence"
 msgstr ""
 
 #. module: base_exception
-#: code:addons/base_exception/models/base_exception.py:49
+#: code:addons/base_exception/models/base_exception.py:50
 #, python-format
 msgid ""
 "There is a problem of configuration, python code or domain is missing to "
