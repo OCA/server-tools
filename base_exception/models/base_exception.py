@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import time
+import html
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
@@ -191,8 +192,21 @@ class BaseException(models.AbstractModel):
         string='Main Exception',
         store=True,
     )
-    exception_ids = fields.Many2many('exception.rule', string='Exceptions')
+    exceptions_summary = fields.Html(
+        'Exceptions Summary',
+        compute='_compute_exceptions_summary',
+    )
+    exception_ids = fields.Many2many(
+        'exception.rule',
+        string='Exceptions',
+        copy=False,
+    )
     ignore_exception = fields.Boolean('Ignore Exceptions', copy=False)
+
+    @api.multi
+    def action_ignore_exceptions(self):
+        self.write({'ignore_exception': True})
+        return True
 
     @api.depends('exception_ids', 'ignore_exception')
     def _compute_main_error(self):
@@ -201,6 +215,14 @@ class BaseException(models.AbstractModel):
                 rec.main_exception_id = rec.exception_ids[0]
             else:
                 rec.main_exception_id = False
+
+    @api.depends('exception_ids', 'ignore_exception')
+    def _compute_exceptions_summary(self):
+        for rec in self:
+            if rec.exception_ids and not rec.ignore_exception:
+                rec.exceptions_summary = '<ul>%s</ul>' % ''.join([
+                    '<li>%s: <i>%s</i></li>' % tuple(map(html.escape, (
+                        e.name, e.description))) for e in rec.exception_ids])
 
     @api.multi
     def _popup_exceptions(self):
