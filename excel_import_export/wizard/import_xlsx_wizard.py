@@ -115,6 +115,21 @@ class ImportXLSXWizard(models.TransientModel):
         return defaults
 
     @api.multi
+    def get_import_sample(self):
+        self.ensure_one()
+        return {
+            'name': _('Import Excel'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'import.xlsx.wizard',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': self.id,
+            'views': [(False, 'form')],
+            'target': 'new',
+            'context': self._context.copy()
+        }
+
+    @api.multi
     def action_import(self):
         self.ensure_one()
         Import = self.env['xlsx.import']
