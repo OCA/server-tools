@@ -4,7 +4,8 @@
 
 import base64
 from odoo.tests.common import TransactionCase, post_install
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
+from odoo import fields
 
 
 @post_install(True)
@@ -56,3 +57,16 @@ class TestExportSqlQuery(TransactionCase):
             self.assertEqual(
                 sql_export.state, 'sql_valid',
                 "%s is a valid request" % (query))
+
+    def test_sql_query_with_params(self):
+        query = self.env.ref('sql_export.sql_export_partner_with_variables')
+        categ_id = self.env.ref('base.res_partner_category_0').id
+        wizard = self.wizard_obj.create({
+            'sql_export_id': query.id,
+            'x_date': fields.Date.today(),
+            'x_id': 1,
+            'x_partner_categ_ids': [(6, 0, [categ_id])]
+        })
+        wizard.export_sql()
+        export = base64.b64decode(wizard.binary_file)
+        self.assertTrue(export)
