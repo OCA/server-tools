@@ -61,6 +61,7 @@ setuptools.setup(
         'odoo10-addon-dbfilter_from_header',
         'odoo10-addon-dead_mans_switch_client',
         'odoo10-addon-disable_odoo_online',
+        'odoo10-addon-fetchmail_attach_from_folder',
         'odoo10-addon-fetchmail_notify_error_to_sender',
         'odoo10-addon-html_image_url_extractor',
         'odoo10-addon-html_text',
