@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from datetime import date, timedelta
 
-from openerp import _, api, exceptions, fields, models
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from openerp.tools.safe_eval import safe_eval
+from odoo import _, api, exceptions, fields, models
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools.safe_eval import safe_eval
 import datetime
 
 
@@ -56,7 +55,7 @@ class MessageVacuumRule(models.Model):
         help="Number of days the messages concerned by this rule will be "
              "keeped in the database after creation. Once the delay is "
              "passed, they will be automatically deleted.")
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     description = fields.Text()
 
     @api.multi

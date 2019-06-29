@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 # © 2018 Akretion (Florian da Costa)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import date, timedelta
 
-from openerp import api, exceptions
-from openerp.tests import common
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo import api, exceptions
+from odoo.tests import common
 
 
 class TestMessageVacuumRule(common.TransactionCase):
@@ -29,16 +27,14 @@ class TestMessageVacuumRule(common.TransactionCase):
 
     def setUp(self):
         super(TestMessageVacuumRule, self).setUp()
-        self.registry.enter_test_mode()
+        self.registry.enter_test_mode(self.env.cr)
         self.env = api.Environment(self.registry.test_cr, self.env.uid,
                                    self.env.context)
         self.subtype = self.env.ref('mail.mt_comment')
         self.message_obj = self.env['mail.message']
         self.channel_model = self.env.ref('mail.model_mail_channel')
         today = date.today()
-        before_400_days = today - timedelta(days=400)
-        self.before_400_days = before_400_days.strftime(
-            DEFAULT_SERVER_DATE_FORMAT)
+        self.before_400_days = today - timedelta(days=400)
 
     def test_mail_vacuum_rules(self):
         rule_vals = {

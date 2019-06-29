@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright (C) 2018 Akretion
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import logging
 
-import openerp
-from openerp import api, models
+import odoo
+from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +15,7 @@ class MailMessage(models.Model):
     @api.multi
     def batch_unlink(self):
         with api.Environment.manage():
-            with openerp.registry(
+            with odoo.registry(
                     self.env.cr.dbname).cursor() as new_cr:
                 new_env = api.Environment(new_cr, self.env.uid,
                                           self.env.context)
