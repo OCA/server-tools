@@ -46,7 +46,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_message_vacuum_rule">
-            <field name="name">Message Vacuum Rule</field>
+            <field name="name">Message Vacuum Rules</field>
             <field name="res_model">message.vacuum.rule</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
