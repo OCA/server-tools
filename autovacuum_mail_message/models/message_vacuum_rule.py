@@ -56,7 +56,7 @@ class MessageVacuumRule(models.Model):
         help="Number of days the messages concerned by this rule will be "
              "keeped in the database after creation. Once the delay is "
              "passed, they will be automatically deleted.")
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     description = fields.Text()
 
     @api.multi
