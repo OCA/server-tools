@@ -4,6 +4,7 @@
 import mock
 
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class Popen:
@@ -74,7 +75,8 @@ class TestNsca(TransactionCase):
         })
         with mock.patch('subprocess.Popen') as post:
             post.return_value = Popen
-            self.env['nsca.check']._cron_check(check.id,)
+            with mute_logger('odoo.addons.nsca_client.models.nsca_check'):
+                self.env['nsca.check']._cron_check(check.id,)
             post.assert_called_once()
 
     def test_void_ok(self):
